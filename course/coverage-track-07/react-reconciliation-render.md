@@ -1,3 +1,5 @@
+> **Pilot failed quality review.** This generated sample contains outdated version claims and/or technical errors. It is not ready for study.
+
 <!-- Generated with gemini-3-flash-preview; automated review only; source and code verification pending. -->
 
 ## Scope and version
