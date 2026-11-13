@@ -22,7 +22,8 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODELS: ${{ vars.GEMINI_MODELS }}
-          MAX_TASKS: '40'
+          PILOT: '1'
+          MAX_TASKS: '3'
           RUN_MINUTES: '12'
         run: npm run generate
       - name: Preserve local checkpoints
