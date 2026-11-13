@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { setTimeout as sleep } from 'node:timers/promises';
 
-const DEFAULT_MODELS = ['gemini-3.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-3-flash-preview', 'gemini-3.6-flash', 'gemini-3.8-flash'];
+const DEFAULT_MODELS = ['gemini-3.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-3.6-flash', 'gemini-3.8-flash'];
 export const required = ['## Simple explanation', '## How it works', '## Examples', '## Tradeoffs and comparisons', '## Interview questions and answers', '## Exercises and solutions', '## Review questions', '## Sources and limitations'];
 export function valid(text) { return typeof text === 'string' && text.length >= 1500 && required.every(h => text.includes(h)); }
 export function outputPath(task) { return path.join('course', task.track, task.id + '.md'); }
@@ -44,14 +44,17 @@ export async function produce(tasks, options) {
     if(e.status===429 && e.retryAfter>0 && e.retryAfter<=30000) {await pause(e.retryAfter);disabled.delete(model);}
    }
   }
-  if(!finished){console.log('No eligible model could complete the task; checkpoint retained');break;}
+  if(!finished) throw new Error('No eligible model could complete the task; checkpoint retained');
  }
  return {completed,calls};
+}
+function repairLegacyHeaders(tasks) {
+ for (const task of tasks) { const f=outputPath(task); if (!fs.existsSync(f)) continue; const s=fs.readFileSync(f,'utf8'); const fixed=s.replace(/^(<!-- Generated with [^\n]*? -->)\\n\\n/, '$1\n\n').replace(/\\n$/, '\n'); if (fixed!==s) atomicWrite(f,fixed); }
 }
 async function main() {
  const key=process.env.GEMINI_API_KEY, models=(process.env.GEMINI_MODELS || DEFAULT_MODELS.join(',')).split(',').map(x=>x.trim()).filter(Boolean);
  if(!key) throw new Error('Set GEMINI_API_KEY as a GitHub Actions secret');
- const tasks=JSON.parse(fs.readFileSync('curriculum/queue.json','utf8')).tasks;validateQueue(tasks);
+ const tasks=JSON.parse(fs.readFileSync('curriculum/queue.json','utf8')).tasks;validateQueue(tasks);repairLegacyHeaders(tasks);
  const limit=Number(process.env.MAX_TASKS??40),minutes=Number(process.env.RUN_MINUTES??12);
  if(!Number.isInteger(limit)||limit<1||!Number.isFinite(minutes)||minutes<3) throw new Error('Invalid run limits');
  console.log(JSON.stringify(await produce(tasks,{key,models,deadline:Date.now()+minutes*60000,limit})));
