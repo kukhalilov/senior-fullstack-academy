@@ -26,14 +26,14 @@ Why? Because if C# allowed `List<Dog>` to be treated as `List<Animal>`, you coul
 To allow safe polymorphism with generics, C# introduced variance modifiers for generic interfaces and delegates:
 
 1. **Covariance (`out` keyword)**:
-   * **Rule**: A type parameter can be marked `out` only if it is used exclusively in **output** positions (e.g., method return types, get-only properties).
+   * **Rule**: A type parameter can be marked `out` only if it is used only in variance-safe positions, normally output positions (e.g., method return types, get-only properties).
    * **Notation**: `IReadOnlyList<out T>`
    * **Effect**: Allows you to assign an interface of a derived type to a variable of a base type. (`IReadOnlyList<Dog>` can be assigned to `IReadOnlyList<Animal>`).
 
 2. **Contravariance (`in` keyword)**:
-   * **Rule**: A type parameter can be marked `in` only if it is used exclusively in **input** positions (e.g., method parameter types).
-   * **Notation**: `IAction<in T>`
-   * **Effect**: Allows you to assign an interface of a base type to a variable of a derived type. (`IAction<Animal>` can be assigned to `IAction<Dog>`).
+   * **Rule**: A type parameter can be marked `in` only if it is used only in variance-safe positions, normally input positions (e.g., method parameter types).
+   * **Notation**: `Action<in T>` (a delegate, not an interface)
+   * **Effect**: Allows a contravariant interface or delegate with a base type argument to be assigned where the derived type argument is expected. For example, `Action<Animal>` can be assigned to `Action<Dog>`.
 
 3. **Invariance (No keyword)**:
    * **Rule**: The type parameter is used in both input and output positions.
@@ -126,13 +126,13 @@ class Program
 | Concept | Keyword | Direction | Safety Mechanism | Common Use Case |
 | :--- | :--- | :--- | :--- | :--- |
 | **Covariance** | `out` | Base $\leftarrow$ Derived (assignment) | Compiler blocks `T` in input parameters. | Read-only collections, factories, providers (`IEnumerable<T>`). |
-| **Contravariance** | `in` | Derived $\leftarrow$ Base (assignment) | Compiler blocks `T` in return positions. | Event handlers, comparers, consumers (`IAction<T>`, `IComparer<T>`). |
+| **Contravariance** | `in` | Derived $\leftarrow$ Base (assignment) | Compiler blocks `T` in return positions. | Event handlers, comparers, consumers (`Action<T>`, `IComparer<T>`). |
 | **Invariance** | None | Exact match required | None (full read/write access allowed). | Mutable collections (`List<T>`, `Dictionary<TKey, TValue>`). |
 
 ### Tradeoffs
 * **Covariance (`out`)**: 
   * *Pros*: Maximum flexibility when consuming data; promotes code reuse.
-  * *Cons*: You cannot accept data of type `T` into methods on that interface. The data structure must be immutable regarding `T`.
+  * *Cons*: You cannot accept data of type `T` into methods on that interface. The covariant view prevents unsafe inputs of `T`; the underlying object can still be mutable.
 * **Contravariance (`in`)**:
   * *Pros*: Allows writing general-purpose utility methods or processors for specific derived types.
   * *Cons*: You cannot return data of type `T` from methods on that interface.
@@ -152,7 +152,7 @@ class Program
    * *Answer*: No. Variance modifiers (`out` and `in`) can only be applied to generic **interfaces** and **delegates**, not to classes or structs.
 
 4. **What happens if you try to use a covariant type parameter (`out T`) as a method parameter?**
-   * *Answer*: The C# compiler will generate a compilation error (e.g., *"Invalid variance: The type parameter 'T' must be contravariantly valid on..."*). Output-only parameters cannot appear in input positions.
+   * *Answer*: The C# compiler will generate a compilation error (e.g., *"Invalid variance: The type parameter 'T' must be contravariantly valid on..."*). The precise rule concerns variance safety, including nested delegate types; an `out` parameter can occur in some method-parameter types when the nested variance makes it safe.
 
 5. **Is array covariance safe in C#?**
    * *Answer*: Arrays in C# are historically covariant for reference types (e.g., `String[]` can be assigned to `Object[]`). However, this is *not* entirely type-safe at compile time; trying to put an invalid type into the array throws an `ArrayTypeMismatchException` at runtime. Generic covariance fixes this by enforcing safety strictly at compile time.
@@ -246,3 +246,5 @@ class Program
 
 * **Uncertainty statement**: Language specifications and compiler behaviors described herein reflect standard Microsoft .NET C# specifications up to recent versions (.NET 6/7/8/9). No external link verification or multi-platform guarantees beyond standard C# CLI specifications are claimed. 
 * **Limitations**: Advanced topics like IL-level variance representation or generic constraints (`where T : class`) interacting with variance are omitted for foundational clarity.
+
+Source checked: [Microsoft: covariance and contravariance in generics](https://learn.microsoft.com/dotnet/standard/generics/covariance-and-contravariance).

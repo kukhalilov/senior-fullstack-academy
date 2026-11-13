@@ -31,7 +31,7 @@ The standard model is the **TCP/IP 4-Layer Model**:
 1.  **Link Layer (Network Access):** Moves physical data across a local medium (like your home Wi-Fi or an Ethernet cable).
 2.  **Internet Layer:** Handles routing data across different networks using **IP Addresses**. It figures out the best path for a message to travel from your house to a server across the globe.
 3.  **Transport Layer:** Ensures reliable delivery. **TCP** lives here. It chops large files into smaller pieces called **packets**, sends them, makes sure none are lost, and glues them back together in the correct order at the destination.
-4.  **Application Layer:** Where apps live. **HTTP** lives here. It formats the actual human-readable or machine-readable content (like HTML, JSON, or images) that applications care about.
+4.  **Application Layer:** Where apps live. **HTTP** lives here. It supplies protocols such as HTTP for communication between applications; the content itself may have formats such as HTML, JSON, or images.
 
 ### The Lifecycle of an HTTP Request
 When you load `https://example.com`, several things happen behind the scenes:
@@ -39,9 +39,9 @@ When you load `https://example.com`, several things happen behind the scenes:
 1.  **DNS Lookup (Domain Name System):** Humans use readable names (`example.com`), but computers use IP addresses (`93.184.216.34`). Your computer asks a DNS server to translate the name into an IP address.
 2.  **TCP Handshake:** Your computer establishes a reliable connection with the server using a 3-step process (SYN, SYN-ACK, ACK) to ensure both sides are ready to talk.
 3.  **TLS Handshake (if HTTPS):** Encrypts the connection so eavesdroppers cannot read your data.
-4.  **HTTP Request Transmission:** Your browser sends a text-based request to the server.
+4.  **HTTP Request Transmission:** For HTTP/1.1, the browser sends a textual HTTP request; HTTP/2 and HTTP/3 use binary framing.
 5.  **Server Processing:** The server (often running a framework like ASP.NET Core) reads the request, runs business logic, queries a database, and generates data.
-6.  **HTTP Response Transmission:** The server sends back an HTTP status code (like `200 OK`) and the content.
+6.  **HTTP Response Transmission:** The server sends an HTTP status and, when applicable, response content. HTTP/3 uses QUIC over UDP rather than a TCP handshake.
 7.  **Connection Closure or Reuse:** The browser renders the page.
 
 ---
@@ -195,3 +195,5 @@ app.Run();
 
 ## Sources and limitations
 *   *Note on Verification:* This material is based on fundamental computer networking theory, RFC specifications for HTTP/1.1 and HTTP/2, and official Microsoft documentation for ASP.NET Core. External live verification of network specs or future protocol revisions (beyond current standards like HTTP/3 and QUIC) is not guaranteed. Implementation details may vary depending on specific operating system network stacks and framework updates.
+
+Source checked for HTTP framing and transports: [MDN: HTTP messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages).

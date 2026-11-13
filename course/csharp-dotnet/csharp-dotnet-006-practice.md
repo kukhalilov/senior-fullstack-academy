@@ -25,7 +25,7 @@ Modern C# asynchronous programming revolves around the **Task-based Asynchronous
 ### The `async` and `await` Keywords
 When you mark a method with the `async` keyword, you enable the use of the `await` operator inside it. 
 1. When the code hits an `await` statement on an incomplete asynchronous operation (like `Task.Delay` or an HTTP request), the method yields control back to its caller.
-2. The current thread is released back to a pool of available threads (the Thread Pool) to handle other requests rather than sitting idle.
+2. The async method returns control to its caller. An incomplete await does not itself return a thread to the thread pool: what the caller does next, and whether the current thread belongs to the pool, depends on the application.
 3. Once the awaited operation finishes, a thread (not necessarily the same one, depending on the synchronization context) picks up the remaining code after the `await` and continues execution.
 
 ### Cancellation with `CancellationToken`
@@ -112,7 +112,7 @@ If you run this code, it will print chunks 1 and 2. On chunk 3, the 3-second tim
 **Answer:** Preemptive cancellation (forcing a thread to stop from the outside) is dangerous because it can abruptly terminate code in the middle of writing to a database, holding a memory lock, or modifying shared state, leading to memory corruption or resource leaks. Cooperative cancellation ensures that the running task is notified of the cancellation request, allowing it to safely roll back changes, close files, and release resources before exiting.
 
 ### 3. What happens if you forget to use `await` on an async method that returns a `Task`?
-**Answer:** The method will run asynchronously in the background, but the calling method will continue executing immediately without waiting for it (referred to as a "fire-and-forget" call). If an unhandled exception occurs inside that unawaited task, it will become an unobserved task exception, which in older .NET versions could crash the process, though modern .NET runtimes handle unobserved exceptions differently (often logging them rather than crashing).
+**Answer:** The calling method continues without awaiting the returned task. The async method starts synchronously and may complete synchronously; an unawaited task does not by itself imply a background thread. If an unhandled exception occurs inside that unawaited task, it will become an unobserved task exception, which in older .NET versions could crash the process, though modern .NET runtimes handle unobserved exceptions differently (often logging them rather than crashing).
 
 ---
 
@@ -182,3 +182,5 @@ class Exercise1
 
 ## Sources and limitations
 *This lesson is based on official .NET documentation guidelines regarding asynchronous programming patterns and task cancellation. Content represents standard C#/.NET Core development practices up to .NET 8. Because execution environments, thread pool configurations, and third-party libraries vary, production applications should include robust logging and resource cleanup structures (like `try-finally` or `using` statements) around cancellation handlers.*
+
+Source checked: [Microsoft: the task asynchronous programming model](https://learn.microsoft.com/dotnet/csharp/asynchronous-programming/task-asynchronous-programming-model).

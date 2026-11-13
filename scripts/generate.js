@@ -26,7 +26,7 @@ export async function produce(tasks, options) {
  while(completed<limit && Date.now()<deadline-125000) {
   const task=choose(tasks,t=>fs.existsSync(outputPath(t))); if(!task) break;
   let draft=fs.existsSync(draftPath(task)) ? fs.readFileSync(draftPath(task),'utf8') : null; let finished=false;
-  const prompt=`Produce an independently readable lesson for ${task.title}, track ${task.track}, phase ${task.phase}. Use clear English for non-native speakers and explain technical terms. Cover practical implementation and tradeoffs, interview questions with complete answers, exercises with complete solutions. For DSA include problems, progressive hints, working C# solutions, examples, edge cases, and complexity. Use exactly these headings: ${required.join('; ')}. Identify uncertainty; do not invent source links or claim external verification. Return Markdown only.`;
+  const prompt=`Produce an independently readable, in-depth lesson for ${task.title}, track ${task.track}, phase ${task.phase}. Use clear English for non-native speakers and precisely explain technical terms. Give a detailed scope and enumerate relevant language features, APIs, public methods, attributes, options and overload families where applicable: purpose, signatures, behavior, constraints, versions, use cases and examples. For ${task.phase}, prioritize its objective and distinguish omitted members and uncertain version-specific claims; never claim exhaustive or source-verified coverage without evidence. Explain each important item step by step, edge cases, mistakes, debugging, tradeoffs, comparisons and end-to-end operation. Include substantial interview questions with complete answers and follow-ups, practical exercises and full worked solutions. For DSA include problems, progressive hints, C# solutions, dry runs, edge cases and complexity. Avoid inventing APIs or sources. Use exactly these headings: ${required.join('; ')}. Return Markdown only.`;
   for(const model of models) {
    if(disabled.has(model) || Date.now()>=deadline-125000) continue;
    try {
@@ -44,9 +44,14 @@ export async function produce(tasks, options) {
     if(e.status===429 && e.retryAfter>0 && e.retryAfter<=30000) {await pause(e.retryAfter);disabled.delete(model);}
    }
   }
+  if(!finished && Date.now()>=deadline-125000) { console.log('Run deadline reached; checkpoint retained'); break; }
   if(!finished) throw new Error('No eligible model could complete the task; checkpoint retained');
  }
  return {completed,calls};
+}
+export function coverageTasks(coverage) {
+ const phases=[['inventory','Feature and API inventory, scope and coverage map'],['deep-dive','Detailed tutorial, behavior, edge cases and end-to-end examples'],['practice','Hands-on exercises, complete solutions and runnable examples'],['interviews','Interview questions, comprehensive answers, follow-ups and comparisons']];
+ return coverage.tracks.flatMap(track=>track.topics.flatMap(topic=>phases.map(([phase,label],i)=>({id:topic.id+'-'+phase,track:'coverage-'+track.id,title:topic.title+' — '+label,module:topic.id,phase,coverage_target:topic.title,prerequisites:i?[topic.id+'-'+phases[i-1][0]]:[]}))));
 }
 function repairLegacyHeaders(tasks) {
  for (const task of tasks) { const f=outputPath(task); if (!fs.existsSync(f)) continue; const s=fs.readFileSync(f,'utf8'); const fixed=s.replace(/^(<!-- Generated with [^\n]*? -->)\\n\\n/, '$1\n\n').replace(/\\n$/, '\n'); if (fixed!==s) atomicWrite(f,fixed); }
@@ -54,7 +59,7 @@ function repairLegacyHeaders(tasks) {
 async function main() {
  const key=process.env.GEMINI_API_KEY, models=(process.env.GEMINI_MODELS || DEFAULT_MODELS.join(',')).split(',').map(x=>x.trim()).filter(Boolean);
  if(!key) throw new Error('Set GEMINI_API_KEY as a GitHub Actions secret');
- const tasks=JSON.parse(fs.readFileSync('curriculum/queue.json','utf8')).tasks;validateQueue(tasks);repairLegacyHeaders(tasks);
+ const coverage=JSON.parse(fs.readFileSync('curriculum/coverage.json','utf8')); const tasks=[...coverageTasks(coverage),...JSON.parse(fs.readFileSync('curriculum/queue.json','utf8')).tasks];validateQueue(tasks);repairLegacyHeaders(tasks);
  const limit=Number(process.env.MAX_TASKS??40),minutes=Number(process.env.RUN_MINUTES??12);
  if(!Number.isInteger(limit)||limit<1||!Number.isFinite(minutes)||minutes<3) throw new Error('Invalid run limits');
  console.log(JSON.stringify(await produce(tasks,{key,models,deadline:Date.now()+minutes*60000,limit})));
