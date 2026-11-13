@@ -52,7 +52,7 @@ export async function produce(tasks, options) {
    try {
     if(!draft){calls++;draft=await call(model,prompt,key);if(!valid(draft)||!sources.every(s=>draft.includes(s.url))){draft=null;throw new Error('Draft failed section or source validation');}atomicWrite(draftPath(task),draft);}
     calls++; const review=await call(models.find(m=>m!==model && !disabled.has(m)) || model,`Review and correct this draft for errors, omissions, clarity, misleading explanations, and missing solutions. Return the entire revised Markdown with the required headings intact. Do not claim independent source verification.\n\n${draft}`,key);
-    if(!valid(review)||!sources.every(s=>review.includes(s.url))) throw new Error('Review failed section or source validation');
+    if(!valid(review)||!sources.every(s=>review.includes(s.url))) { const missing=required.filter(h=>!review.includes(h)); const missingSources=sources.filter(src=>!review.includes(src.url)).length; console.error('Review diagnostics: length='+review.length+', missing headings='+missing.join('|')+', missing sources='+missingSources); atomicWrite(draftPath(task)+'.review.txt',review); throw new Error('Review failed section or source validation'); }
     const content=`<!-- Generated with ${model}; automated review only; source and code verification pending. -->\n\n`+review.trim()+'\n'; atomicWrite(outputPath(task),content); fs.rmSync(draftPath(task),{force:true});
     console.log(`Completed ${task.id} with ${model}; independent verification pending`); completed++;finished=true;failures=0;break;
    } catch(e) {
@@ -85,3 +85,4 @@ async function main() {
  console.log(JSON.stringify(await produce(tasks,{key,models,deadline:Date.now()+minutes*60000,limit})));
 }
 if(process.argv[1] && path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) main().catch(e=>{console.error(e.message);process.exitCode=1});
+
