@@ -1,7 +1,5 @@
 name: Generate academy
 on:
-  schedule:
-    - cron: '*/20 * * * *'
   workflow_dispatch:
 permissions:
   contents: write
@@ -50,3 +48,4 @@ jobs:
       - name: Report generation failure
         if: steps.generate.outcome == 'failure'
         run: exit 1
+
