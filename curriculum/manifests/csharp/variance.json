@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "id": "csharp.variance",
+  "title": "Variance in C#",
+  "track": "track-01",
+  "versionPolicy": "latest stable at generation; note recently introduced major changes; identify preview features and date source checks",
+  "sources": [
+    "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance"
+  ],
+  "sections": [
+    {
+      "id": "assignments",
+      "title": "Reference conversions and substitutability",
+      "prompt": "Explain identity and implicit reference conversions, inheritance, assignment direction, and invariance with compile and noncompile examples.",
+      "prerequisites": [],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "covariance",
+      "title": "Covariance and out",
+      "prompt": "Explain declaration-site out, reference conversions, IEnumerable and IReadOnlyList, read-only view versus underlying mutability, and safe producer examples.",
+      "prerequisites": [
+        "assignments"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "contravariance",
+      "title": "Contravariance and in",
+      "prompt": "Explain reversed conversions using Action and IComparer, consuming values, and concrete compile and noncompile examples.",
+      "prerequisites": [
+        "covariance"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "safety",
+      "title": "Variance safety and nested positions",
+      "prompt": "Explain formal input-safe and output-safe rules, nested delegates, non-virtual static member exceptions, ref parameters, and counterexamples.",
+      "prerequisites": [
+        "contravariance"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "delegates",
+      "title": "Delegate variance and method group conversion",
+      "prompt": "Distinguish delegate generic variance, method group signature variance, Func, Action, delegate combination and runtime restrictions.",
+      "prerequisites": [
+        "safety"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "value-types",
+      "title": "Value types boxing and constraints",
+      "prompt": "Explain why generic variance conversions require reference conversions, boxing is not generic variance, nullable and constraints with examples.",
+      "prerequisites": [
+        "delegates"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "arrays",
+      "title": "Array covariance and runtime checks",
+      "prompt": "Explain reference-array covariance, ArrayTypeMismatchException, multidimensional arrays and alternatives; give tested examples.",
+      "prerequisites": [
+        "value-types"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "inventory",
+      "title": "BCL variant interfaces and delegates",
+      "prompt": "Inventory the public variant generic interfaces and delegates in the selected .NET release, with type parameters, variance annotations, methods and evidence; flag omissions.",
+      "prerequisites": [
+        "arrays"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "interview",
+      "title": "Interview and practice",
+      "prompt": "Include graduated questions and answers, compilable examples, invalid-code exercises, interview follow-ups and misconception analysis.",
+      "prerequisites": [
+        "inventory"
+      ],
+      "coverage_status": "unverified"
+    }
+  ]
+}

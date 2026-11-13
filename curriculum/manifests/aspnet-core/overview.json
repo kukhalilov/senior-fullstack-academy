@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "aspnet-core.overview",
+  "title": "ASP.NET Core platform and comparisons",
+  "track": "track-02",
+  "versionPolicy": "latest stable at generation; note recently introduced major changes; identify preview features and date source checks",
+  "sources": [
+    "https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core"
+  ],
+  "sections": [
+    {
+      "id": "definition",
+      "title": "What ASP.NET Core is",
+      "prompt": "Define .NET runtime, SDK, ASP.NET Core framework and hosting; explain responsibilities and what each provides.",
+      "prerequisites": [],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "request-lifecycle",
+      "title": "End-to-end request lifecycle",
+      "prompt": "Trace DNS, TLS, proxy, Kestrel, middleware, endpoint routing, handler, response, logging and disposal step by step.",
+      "prerequisites": [
+        "definition"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "runtime-comparison",
+      "title": "Runtime and framework comparisons",
+      "prompt": "Compare Node.js with .NET as runtimes, Express or NestJS with ASP.NET Core, and JVM with .NET accurately and fairly.",
+      "prerequisites": [
+        "request-lifecycle"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "spring-django",
+      "title": "Spring Boot and Django",
+      "prompt": "Compare actual deployment models, languages, ecosystems, dependency injection, async and tradeoffs with Spring Boot and Django.",
+      "prerequisites": [
+        "runtime-comparison"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "host-server",
+      "title": "Host, server and deployment",
+      "prompt": "Explain generic host, web host, Kestrel, IIS modes, reverse proxy, configuration, and hosting tradeoffs.",
+      "prerequisites": [
+        "spring-django"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "features",
+      "title": "Feature inventory and entry points",
+      "prompt": "Inventory framework capabilities, principal packages, builders, configuration extension methods and relevant API families for the selected version.",
+      "prerequisites": [
+        "host-server"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "versions",
+      "title": "Recent significant changes",
+      "prompt": "Explain only verified notable changes in the latest stable release and recent prior major versions; label preview features.",
+      "prerequisites": [
+        "features"
+      ],
+      "coverage_status": "unverified"
+    },
+    {
+      "id": "practice",
+      "title": "Interview questions and practical examples",
+      "prompt": "Include a runnable minimal app, interview-ready short and detailed answers, realistic troubleshooting scenarios, exercises and complete solutions.",
+      "prerequisites": [
+        "versions"
+      ],
+      "coverage_status": "unverified"
+    }
+  ]
+}
