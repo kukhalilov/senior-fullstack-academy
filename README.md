@@ -19,4 +19,3 @@ Generated text is automatically checked for required sections and reviewed by a 
 ## Local development
 
 Requires Node.js 20+. `npm test` runs offline checks. To generate locally set `GEMINI_API_KEY` and `GEMINI_MODELS` in your shell, then run `npm run generate`. API use is controlled by your Google account and quotas.
-

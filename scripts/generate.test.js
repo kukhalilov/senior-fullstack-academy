@@ -1,0 +1,12 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {choose,valid,required,validateQueue,retryDelay,produce,draftPath,outputPath} from './generate.js';
+const lesson=required.join('\n\n')+'\n'+'Example content. '.repeat(110);
+test('prerequisites select only eligible unfinished units',()=>{const t=[{id:'a',prerequisites:[]},{id:'b',prerequisites:['a']}];assert.equal(choose(t,x=>x.id==='a').id,'b');assert.equal(choose(t,()=>true),undefined)});
+test('rejects missing sections and invalid curriculum',()=>{assert.equal(valid('short'),false);assert.equal(valid(lesson),true);assert.throws(()=>validateQueue([{id:'a',track:'x',prerequisites:['b']}]))});
+test('detects cycles',()=>assert.throws(()=>validateQueue([{id:'a',track:'x',prerequisites:['b']},{id:'b',track:'x',prerequisites:['a']}])));
+test('interprets retry headers',()=>{assert.equal(retryDelay('2'),2000);assert.equal(retryDelay(null),0)});
+test('resumes draft after a review failure without repeating generation',async()=>{const original=process.cwd();const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'academy-'));process.chdir(tmp);try{const task={id:'one',track:'dsa',title:'Example',phase:'practice',prerequisites:[]};let count=0;const first=await produce([task],{key:'dummy',models:['test'],deadline:Date.now()+300000,limit:1,call:async()=>{count++;if(count===2)throw new Error('failed review');return lesson}});assert.equal(first.completed,0);assert.equal(fs.existsSync(draftPath(task)),true);assert.equal(fs.existsSync(outputPath(task)),false);const next=await produce([task],{key:'dummy',models:['test'],deadline:Date.now()+300000,limit:1,call:async()=>{count++;return lesson}});assert.equal(next.completed,1);assert.equal(count,3);assert.equal(fs.existsSync(draftPath(task)),false);assert.ok(fs.readFileSync(outputPath(task),'utf8').includes('\n\n## Simple explanation'));}finally{process.chdir(original);fs.rmSync(tmp,{recursive:true,force:true});}});
