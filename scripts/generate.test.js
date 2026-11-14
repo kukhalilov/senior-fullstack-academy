@@ -413,3 +413,32 @@ test('frontend foundational topics separate HTML, forms, DOM, CSS, and React lib
   const titles = manifestFiles.map(file => JSON.parse(fs.readFileSync(`${frontend.manifestDirectory}/${file}`, 'utf8')).title.toLowerCase());
   for (const word of ['html', 'forms', 'dom', 'accessibility', 'css', 'react', 'redux', 'mobx', 'testing']) assert.ok(titles.some(title => title.includes(word)), word);
 });
+
+test('HTML document and forms inventories are based on the current Living Standard', () => {
+  const base = 'curriculum/manifests/react-and-frontend';
+  const html = JSON.parse(fs.readFileSync(`${base}/t07-001.json`, 'utf8'));
+  const forms = JSON.parse(fs.readFileSync(`${base}/t07-014.json`, 'utf8'));
+  for (const manifest of [html, forms]) {
+    assert.equal(manifest.inventoryComplete, true, manifest.id);
+    assert.equal(manifest.generationAllowed, true, manifest.id);
+    assert.equal(manifest.sourceSnapshot.edition, 'HTML Living Standard checked 2026-11-14');
+    for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${manifest.id}/${group.id}`);
+  }
+  const htmlItems = html.inventory.flatMap(group => group.items);
+  for (const item of ['<search>', 'headingoffset', 'headingreset', 'writingsuggestions', 'HTML parser error recovery']) assert.ok(htmlItems.includes(item), item);
+  const formItems = forms.inventory.flatMap(group => group.items);
+  for (const item of ['<selectedcontent>', 'type=datetime-local', 'type=color', 'type=image', 'HTMLFormElement.requestSubmit()', 'showPicker()', 'ValidityState.valueMissing', 'formdata event']) assert.ok(formItems.includes(item), item);
+  assert.equal(htmlItems.includes('<font>'), false);
+  assert.equal(htmlItems.includes('<frame>'), false);
+});
+
+test('browser DOM API inventory covers current interface families without duplicates', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-015.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${manifest.id}/${group.id}`);
+  const items = manifest.inventory.flatMap(group => group.items);
+  for (const item of ['Node.getRootNode()', 'Element.attachShadow()', 'Range.surroundContents()', 'Event.composedPath()', 'AbortSignal.any()', 'MutationObserver.takeRecords()', 'History.replaceState()', 'IntersectionObserverInit.scrollMargin', 'ResizeObserverEntry.devicePixelContentBoxSize']) assert.ok(items.includes(item), item);
+  for (const source of ['https://dom.spec.whatwg.org/', 'https://html.spec.whatwg.org/multipage/', 'https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver', 'https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API']) assert.ok(manifest.sourceSnapshot.urls.includes(source), source);
+  assert.equal(items.includes('Node.children'), false);
+});

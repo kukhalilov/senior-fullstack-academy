@@ -3,10 +3,35 @@
   "id": "t07-001",
   "track": "track-07",
   "title": "HTML document structure metadata and semantic content elements",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "HTML describes a document's structure and semantics; CSS controls presentation and JavaScript adds behavior.",
+    "The browser parses HTML tokens into a DOM tree using error-recovery rules, so source text and DOM are related but not identical.",
+    "Semantic elements communicate document roles to browsers, search systems, and assistive technologies.",
+    "Content categories and element-specific content models constrain valid nesting.",
+    "A useful mental model follows one page from doctype through metadata, landmarks, content, resources, and browser rendering."
+  ],
+  "inventory": [
+    {"id":"document-and-metadata-elements","title":"Document root and metadata elements","items":["<!DOCTYPE html>","<html>","<head>","<title>","<base>","<link>","<meta>","<style>","<body>"]},
+    {"id":"sectioning-and-headings","title":"Sectioning and heading elements","items":["<address>","<article>","<aside>","<footer>","<header>","<h1>","<h2>","<h3>","<h4>","<h5>","<h6>","<hgroup>","<main>","<nav>","<section>","<search>"]},
+    {"id":"block-text-and-lists","title":"Block text and list elements","items":["<blockquote>","<dd>","<div>","<dl>","<dt>","<figcaption>","<figure>","<hr>","<li>","<menu>","<ol>","<p>","<pre>","<ul>"]},
+    {"id":"inline-text-semantics","title":"Inline text and ruby annotation elements","items":["<a>","<abbr>","<b>","<bdi>","<bdo>","<br>","<cite>","<code>","<data>","<dfn>","<em>","<i>","<kbd>","<mark>","<q>","<rp>","<rt>","<ruby>","<s>","<samp>","<small>","<span>","<strong>","<sub>","<sup>","<time>","<u>","<var>","<wbr>","<rb>","<rtc>"]},
+    {"id":"media-and-embedded-content","title":"Image, media, embedded, SVG, and MathML elements","items":["<area>","<audio>","<img>","<map>","<track>","<video>","<embed>","<iframe>","<object>","<picture>","<source>","<svg>","<math>"]},
+    {"id":"scripting-edit-and-table-elements","title":"Scripting, edit, and table elements","items":["<canvas>","<noscript>","<script>","<del>","<ins>","<caption>","<col>","<colgroup>","<table>","<tbody>","<td>","<tfoot>","<th>","<thead>","<tr>"]},
+    {"id":"interactive-and-web-component-elements","title":"Interactive and Web Component elements","items":["<details>","<dialog>","<summary>","<slot>","<template>"]},
+    {"id":"global-attributes","title":"HTML global content attributes","items":["accesskey","autocapitalize","autocorrect","autofocus","class","contenteditable","data-*","dir","draggable","enterkeyhint","headingoffset","headingreset","hidden","id","inert","inputmode","is","itemid","itemprop","itemref","itemscope","itemtype","lang","nonce","popover","spellcheck","style","tabindex","title","translate","writingsuggestions","part","slot","exportparts"]},
+    {"id":"document-syntax-and-content-models","title":"Document syntax, content categories, and parsing concepts","items":["HTML document skeleton","Character encoding declaration","Void elements","Raw text elements","Escapable raw text elements","Optional start tags","Optional end tags","Boolean attributes","Quoted attribute values","Unquoted attribute values","Character references","Comments","DOCTYPE and standards mode","Metadata content","Flow content","Sectioning content","Heading content","Phrasing content","Embedded content","Interactive content","Palpable content","Script-supporting elements","Transparent content model","Foreign content for SVG and MathML","HTML parser error recovery","DOM tree construction","Custom data attributes and HTMLElement.dataset"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["<article>","<section>"],["<strong>","<b>"],["<em>","<i>"],["<div>","<span>"],["<ol>","<ul>"],["<picture>","<img>"],["HTML source markup","browser-parsed DOM"]],
+  "comparisonSources": ["https://html.spec.whatwg.org/multipage/semantics.html","https://html.spec.whatwg.org/multipage/dom.html","https://html.spec.whatwg.org/multipage/syntax.html","https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority":"WHATWG HTML Living Standard, current HTML element reference, and MDN reference index",
+    "edition":"HTML Living Standard checked 2026-11-14",
+    "checkedAt":"2026-11-14",
+    "urls":["https://html.spec.whatwg.org/multipage/semantics.html","https://html.spec.whatwg.org/multipage/dom.html","https://html.spec.whatwg.org/multipage/syntax.html","https://html.spec.whatwg.org/multipage/obsolete.html","https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"]
+  },
+  "scopeExclusions":["Form controls, input type states, validation, and submission attributes (t07-014)","Browser DOM interfaces and browser APIs (t07-015)","Accessibility and ARIA authoring practices (t07-002)","CSS language and layout (t07-016 through t07-018)","Obsolete and non-standard elements are explicitly excluded from the current element inventory; selected historical features may appear only in brief comparison notes"],
+  "generationAllowed": true
 }

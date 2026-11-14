@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1394,
+  "taskCount": 1415,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -7739,7 +7739,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-001-concepts",
@@ -7751,20 +7751,124 @@
       "prerequisites": [
         "t07-001-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-001-reference-inventory-pending",
+      "id": "t07-001-reference-document-and-metadata-elements",
       "track": "track-07",
-      "title": "HTML document structure metadata and semantic content elements — Reference: awaiting curated names",
+      "title": "HTML document structure metadata and semantic content elements — Reference: Document root and metadata elements",
       "module": "t07-001",
       "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
       "phase": "reference",
       "prerequisites": [
         "t07-001-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "document-and-metadata-elements"
+    },
+    {
+      "id": "t07-001-reference-sectioning-and-headings",
+      "track": "track-07",
+      "title": "HTML document structure metadata and semantic content elements — Reference: Sectioning and heading elements",
+      "module": "t07-001",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-001-reference-document-and-metadata-elements"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "sectioning-and-headings"
+    },
+    {
+      "id": "t07-001-reference-block-text-and-lists",
+      "track": "track-07",
+      "title": "HTML document structure metadata and semantic content elements — Reference: Block text and list elements",
+      "module": "t07-001",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-001-reference-sectioning-and-headings"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "block-text-and-lists"
+    },
+    {
+      "id": "t07-001-reference-inline-text-semantics",
+      "track": "track-07",
+      "title": "HTML document structure metadata and semantic content elements — Reference: Inline text and ruby annotation elements",
+      "module": "t07-001",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-001-reference-block-text-and-lists"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "inline-text-semantics"
+    },
+    {
+      "id": "t07-001-reference-media-and-embedded-content",
+      "track": "track-07",
+      "title": "HTML document structure metadata and semantic content elements — Reference: Image, media, embedded, SVG, and MathML elements",
+      "module": "t07-001",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-001-reference-inline-text-semantics"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "media-and-embedded-content"
+    },
+    {
+      "id": "t07-001-reference-scripting-edit-and-table-elements",
+      "track": "track-07",
+      "title": "HTML document structure metadata and semantic content elements — Reference: Scripting, edit, and table elements",
+      "module": "t07-001",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-001-reference-media-and-embedded-content"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "scripting-edit-and-table-elements"
+    },
+    {
+      "id": "t07-001-reference-interactive-and-web-component-elements",
+      "track": "track-07",
+      "title": "HTML document structure metadata and semantic content elements — Reference: Interactive and Web Component elements",
+      "module": "t07-001",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-001-reference-scripting-edit-and-table-elements"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "interactive-and-web-component-elements"
+    },
+    {
+      "id": "t07-001-reference-global-attributes",
+      "track": "track-07",
+      "title": "HTML document structure metadata and semantic content elements — Reference: HTML global content attributes",
+      "module": "t07-001",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-001-reference-interactive-and-web-component-elements"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "global-attributes"
+    },
+    {
+      "id": "t07-001-reference-document-syntax-and-content-models",
+      "track": "track-07",
+      "title": "HTML document structure metadata and semantic content elements — Reference: Document syntax, content categories, and parsing concepts",
+      "module": "t07-001",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-001-reference-global-attributes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "document-syntax-and-content-models"
     },
     {
       "id": "t07-001-practice",
@@ -7774,9 +7878,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-001.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-001-reference-inventory-pending"
+        "t07-001-reference-document-syntax-and-content-models"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-001-interview",
@@ -7788,7 +7892,7 @@
       "prerequisites": [
         "t07-001-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-002-overview",
@@ -8506,7 +8610,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-014.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-014-concepts",
@@ -8518,20 +8622,111 @@
       "prerequisites": [
         "t07-014-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-014-reference-inventory-pending",
+      "id": "t07-014-reference-form-control-elements",
       "track": "track-07",
-      "title": "HTML forms controls validation and form submission — Reference: awaiting curated names",
+      "title": "HTML forms controls validation and form submission — Reference: Native form and form-associated elements",
       "module": "t07-014",
       "manifest": "curriculum/manifests/react-and-frontend/t07-014.json",
       "phase": "reference",
       "prerequisites": [
         "t07-014-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "form-control-elements"
+    },
+    {
+      "id": "t07-014-reference-input-type-states",
+      "track": "track-07",
+      "title": "HTML forms controls validation and form submission — Reference: All current input type states",
+      "module": "t07-014",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-014-reference-form-control-elements"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "input-type-states"
+    },
+    {
+      "id": "t07-014-reference-input-content-attributes",
+      "track": "track-07",
+      "title": "HTML forms controls validation and form submission — Reference: Input element content attributes",
+      "module": "t07-014",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-014-reference-input-type-states"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "input-content-attributes"
+    },
+    {
+      "id": "t07-014-reference-form-submission-and-control-attributes",
+      "track": "track-07",
+      "title": "HTML forms controls validation and form submission — Reference: Form, button, select, and textarea attributes",
+      "module": "t07-014",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-014-reference-input-content-attributes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "form-submission-and-control-attributes"
+    },
+    {
+      "id": "t07-014-reference-native-constraint-validation",
+      "track": "track-07",
+      "title": "HTML forms controls validation and form submission — Reference: Constraint validation flags and APIs",
+      "module": "t07-014",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-014-reference-form-submission-and-control-attributes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "native-constraint-validation"
+    },
+    {
+      "id": "t07-014-reference-form-submission-model",
+      "track": "track-07",
+      "title": "HTML forms controls validation and form submission — Reference: Form submission and entry-list APIs",
+      "module": "t07-014",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-014-reference-native-constraint-validation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "form-submission-model"
+    },
+    {
+      "id": "t07-014-reference-input-element-apis",
+      "track": "track-07",
+      "title": "HTML forms controls validation and form submission — Reference: HTMLInputElement attributes, methods, and events",
+      "module": "t07-014",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-014-reference-form-submission-model"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "input-element-apis"
+    },
+    {
+      "id": "t07-014-reference-form-labeling-and-autofill",
+      "track": "track-07",
+      "title": "HTML forms controls validation and form submission — Reference: Label association, autocomplete, and input modality",
+      "module": "t07-014",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-014-reference-input-element-apis"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "form-labeling-and-autofill"
     },
     {
       "id": "t07-014-practice",
@@ -8541,9 +8736,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-014.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-014-reference-inventory-pending"
+        "t07-014-reference-form-labeling-and-autofill"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-014-interview",
@@ -8555,7 +8750,7 @@
       "prerequisites": [
         "t07-014-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-015-overview",
@@ -8565,7 +8760,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-015-concepts",
@@ -8577,20 +8772,98 @@
       "prerequisites": [
         "t07-015-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-015-reference-inventory-pending",
+      "id": "t07-015-reference-document-and-tree-interfaces",
       "track": "track-07",
-      "title": "Browser DOM events storage observers and navigation APIs — Reference: awaiting curated names",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: Document and node tree interfaces",
       "module": "t07-015",
       "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
       "phase": "reference",
       "prerequisites": [
         "t07-015-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "document-and-tree-interfaces"
+    },
+    {
+      "id": "t07-015-reference-element-and-attribute-interfaces",
+      "track": "track-07",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: Element querying, attributes, classes, and content APIs",
+      "module": "t07-015",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-015-reference-document-and-tree-interfaces"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "element-and-attribute-interfaces"
+    },
+    {
+      "id": "t07-015-reference-content-and-serialization-apis",
+      "track": "track-07",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: Text, markup, parsing, and serialization surfaces",
+      "module": "t07-015",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-015-reference-element-and-attribute-interfaces"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "content-and-serialization-apis"
+    },
+    {
+      "id": "t07-015-reference-events-and-dispatch",
+      "track": "track-07",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: DOM event targets, event objects, and dispatch methods",
+      "module": "t07-015",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-015-reference-content-and-serialization-apis"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "events-and-dispatch"
+    },
+    {
+      "id": "t07-015-reference-abort-and-mutation-observation",
+      "track": "track-07",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: Abort and DOM mutation observation APIs",
+      "module": "t07-015",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-015-reference-events-and-dispatch"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "abort-and-mutation-observation"
+    },
+    {
+      "id": "t07-015-reference-browser-storage-and-history",
+      "track": "track-07",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: Web storage and session history APIs",
+      "module": "t07-015",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-015-reference-abort-and-mutation-observation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "browser-storage-and-history"
+    },
+    {
+      "id": "t07-015-reference-observer-apis",
+      "track": "track-07",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: Viewport and element size observer interfaces",
+      "module": "t07-015",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-015-reference-browser-storage-and-history"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "observer-apis"
     },
     {
       "id": "t07-015-practice",
@@ -8600,9 +8873,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-015-reference-inventory-pending"
+        "t07-015-reference-observer-apis"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-015-interview",
@@ -8614,7 +8887,7 @@
       "prerequisites": [
         "t07-015-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-016-overview",
