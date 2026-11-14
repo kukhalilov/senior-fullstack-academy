@@ -3,10 +3,192 @@
   "id": "t10-005",
   "track": "track-10",
   "title": "debugging production incidents and root cause analysis",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "An incident is an unplanned interruption or degradation of a service that needs coordinated response. Declare it early when user impact is plausible; investigation and severity can be refined as evidence arrives.",
+    "Incident command separates coordination from hands-on diagnosis. Clear roles, a shared timeline, an incident channel, and regular updates reduce duplicated work and let responders focus on mitigation.",
+    "Restore user-facing service first. Mitigation can include rollback, traffic shifting, feature disablement, capacity protection, or graceful degradation; a permanent code fix can follow after risk is understood.",
+    "Troubleshooting forms and tests hypotheses using observable evidence. Change one variable at a time when possible, preserve logs and timestamps, and distinguish correlation from causal explanation.",
+    "A postmortem records impact, timeline, contributing conditions, recovery, and specific preventive actions. Blameless analysis examines the system and incentives that shaped decisions rather than searching for one person to blame.",
+    "Follow-up work needs an owner, priority, and completion evidence. Repeated incidents are a signal that prior actions did not remove the failure mechanism or were not implemented."
+  ],
+  "inventory": [
+    {
+      "id": "incident-declaration-and-severity",
+      "title": "User impact, detection, escalation, severity, and incident state",
+      "items": [
+        "Production incident",
+        "Service degradation",
+        "Customer impact",
+        "Incident declaration",
+        "Incident severity",
+        "Severity rubric",
+        "Incident commander (IC)",
+        "Incident channel",
+        "On-call engineer",
+        "Escalation policy",
+        "Alert acknowledgement",
+        "Alert fatigue",
+        "Incident start time",
+        "Detection delay",
+        "Time to acknowledge",
+        "Time to mitigate",
+        "Time to restore",
+        "Service Level Indicator (SLI) breach",
+        "Error budget burn alert",
+        "Status page update",
+        "Stakeholder notification"
+      ]
+    },
+    {
+      "id": "command-roles-and-communications",
+      "title": "Incident command, operations, communications, and shared working record",
+      "items": [
+        "Incident command system",
+        "Incident Commander (IC)",
+        "Operations Lead (OL)",
+        "Communications Lead (CL)",
+        "Scribe",
+        "Role delegation",
+        "Incident handoff",
+        "Command transfer",
+        "Shared incident timeline",
+        "Decision log",
+        "Hypothesis log",
+        "Situation report",
+        "Internal stakeholder update",
+        "Customer-facing update",
+        "Update cadence",
+        "Single source of incident state",
+        "Responder coordination",
+        "Incident channel access",
+        "Incident close criteria"
+      ]
+    },
+    {
+      "id": "triage-diagnosis-and-mitigation",
+      "title": "Evidence-driven troubleshooting and safe service restoration",
+      "items": [
+        "Triage",
+        "Blast radius",
+        "Impact assessment",
+        "Symptom versus cause",
+        "Working hypothesis",
+        "Falsifiable hypothesis",
+        "Evidence collection",
+        "Log correlation",
+        "Trace correlation",
+        "Metric correlation",
+        "Change correlation",
+        "Deployment marker",
+        "Dependency failure",
+        "Resource exhaustion",
+        "Queue backlog",
+        "Traffic spike",
+        "Configuration drift",
+        "Feature flag rollback",
+        "Code rollback",
+        "Traffic shift",
+        "Load shedding",
+        "Graceful degradation",
+        "Capacity expansion",
+        "Failover",
+        "Mitigation verification",
+        "Customer impact verification",
+        "Recovery validation",
+        "Reproduction after mitigation"
+      ]
+    },
+    {
+      "id": "postmortem-and-learning",
+      "title": "Blameless review, contributing factors, corrective actions, and recurrence prevention",
+      "items": [
+        "Incident postmortem",
+        "Blameless postmortem",
+        "Incident timeline",
+        "Impact statement",
+        "Contributing factor",
+        "Root-cause analysis",
+        "Systems thinking",
+        "Hindsight bias",
+        "Local rationality",
+        "Detection gap",
+        "Response gap",
+        "Mitigation gap",
+        "Recovery gap",
+        "What went well",
+        "What went poorly",
+        "Where we got lucky",
+        "Preventive action",
+        "Corrective action",
+        "Action owner",
+        "Action due date",
+        "Action priority",
+        "Effectiveness check",
+        "Recurring incident",
+        "Postmortem publication",
+        "Postmortem review",
+        "Learning review"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Incident Commander",
+      "Operations Lead",
+      "Communications Lead",
+      "Scribe"
+    ],
+    [
+      "Symptom",
+      "Triggering event",
+      "Contributing factor",
+      "Root cause"
+    ],
+    [
+      "Mitigation",
+      "Permanent fix"
+    ],
+    [
+      "Blameless postmortem",
+      "Fault-finding review"
+    ],
+    [
+      "Time to detect",
+      "Time to acknowledge",
+      "Time to mitigate",
+      "Time to restore"
+    ]
+  ],
+  "comparisonSources": [
+    "https://sre.google/workbook/incident-response/",
+    "https://sre.google/sre-book/managing-incidents/",
+    "https://sre.google/sre-book/emergency-response/",
+    "https://sre.google/sre-book/effective-troubleshooting/",
+    "https://sre.google/sre-book/postmortem-culture/",
+    "https://sre.google/sre-book/example-postmortem/"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Google Site Reliability Engineering Workbook incident response chapter and SRE Book guidance on incidents, emergency response, troubleshooting, and postmortems",
+    "edition": "Timeless incident-management practices and current public Google SRE guidance checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://sre.google/workbook/incident-response/",
+      "https://sre.google/sre-book/managing-incidents/",
+      "https://sre.google/sre-book/emergency-response/",
+      "https://sre.google/sre-book/effective-troubleshooting/",
+      "https://sre.google/sre-book/postmortem-culture/",
+      "https://sre.google/sre-book/example-postmortem/"
+    ]
+  },
+  "scopeExclusions": [
+    "Tool-specific incident management automation and Azure SRE Agent integration belong to infrastructure operations.",
+    "Routine application debugging and .NET profiling belong to t09-013.",
+    "Reliability design patterns and service-level objectives are covered in architecture and operations topics.",
+    "Detailed organization-wide crisis communications, legal disclosure, and regulatory reporting vary by employer and jurisdiction.",
+    "Incident response focuses on service reliability, not security breach forensics or law-enforcement procedures."
+  ],
+  "generationAllowed": true
 }

@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1772,
+  "taskCount": 1802,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -15688,7 +15688,7 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-001.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-001-concepts",
@@ -15700,20 +15700,59 @@
       "prerequisites": [
         "t10-001-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t10-001-reference-inventory-pending",
+      "id": "t10-001-reference-test-design-and-assertion-basics",
       "track": "track-10",
-      "title": "unit tests assertions fixtures mocks stubs fakes and isolation — Reference: awaiting curated names",
+      "title": "unit tests assertions fixtures mocks stubs fakes and isolation — Reference: Behavior-focused test structure, assertion intent, and isolation",
       "module": "t10-001",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-001.json",
       "phase": "reference",
       "prerequisites": [
         "t10-001-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "test-design-and-assertion-basics"
+    },
+    {
+      "id": "t10-001-reference-xunit-v3",
+      "track": "track-10",
+      "title": "unit tests assertions fixtures mocks stubs fakes and isolation — Reference: xUnit.net v3 test declarations, data, assertions, and fixtures",
+      "module": "t10-001",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-001-reference-test-design-and-assertion-basics"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "xunit-v3"
+    },
+    {
+      "id": "t10-001-reference-mstest-nunit-tunit",
+      "track": "track-10",
+      "title": "unit tests assertions fixtures mocks stubs fakes and isolation — Reference: Current MSTest, NUnit, and TUnit authoring surfaces",
+      "module": "t10-001",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-001-reference-xunit-v3"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "mstest-nunit-tunit"
+    },
+    {
+      "id": "t10-001-reference-test-doubles",
+      "track": "track-10",
+      "title": "unit tests assertions fixtures mocks stubs fakes and isolation — Reference: Test doubles, verification tradeoffs, and deterministic fixtures",
+      "module": "t10-001",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-001-reference-mstest-nunit-tunit"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "test-doubles"
     },
     {
       "id": "t10-001-practice",
@@ -15723,9 +15762,9 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-001.json",
       "phase": "practice",
       "prerequisites": [
-        "t10-001-reference-inventory-pending"
+        "t10-001-reference-test-doubles"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-001-interview",
@@ -15737,66 +15776,105 @@
       "prerequisites": [
         "t10-001-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-002-overview",
       "track": "track-10",
-      "title": "integration testing databases WebApplicationFactory and contracts — Big-picture orientation and mental model",
+      "title": "integration testing databases webapplicationfactory and contracts — Big-picture orientation and mental model",
       "module": "t10-002",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-002.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-002-concepts",
       "track": "track-10",
-      "title": "integration testing databases WebApplicationFactory and contracts — Core concepts and how they fit together",
+      "title": "integration testing databases webapplicationfactory and contracts — Core concepts and how they fit together",
       "module": "t10-002",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-002.json",
       "phase": "concepts",
       "prerequisites": [
         "t10-002-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t10-002-reference-inventory-pending",
+      "id": "t10-002-reference-aspnetcore-host-and-client",
       "track": "track-10",
-      "title": "integration testing databases WebApplicationFactory and contracts — Reference: awaiting curated names",
+      "title": "integration testing databases webapplicationfactory and contracts — Reference: ASP.NET Core in-process host setup and HTTP client behavior",
       "module": "t10-002",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-002.json",
       "phase": "reference",
       "prerequisites": [
         "t10-002-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "aspnetcore-host-and-client"
+    },
+    {
+      "id": "t10-002-reference-database-isolation",
+      "track": "track-10",
+      "title": "integration testing databases webapplicationfactory and contracts — Reference: Database lifecycle, provider choice, reset, and parallel safety",
+      "module": "t10-002",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-002-reference-aspnetcore-host-and-client"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "database-isolation"
+    },
+    {
+      "id": "t10-002-reference-service-and-http-contracts",
+      "track": "track-10",
+      "title": "integration testing databases webapplicationfactory and contracts — Reference: Consumer/provider contracts and external HTTP boundary testing",
+      "module": "t10-002",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-002-reference-database-isolation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "service-and-http-contracts"
+    },
+    {
+      "id": "t10-002-reference-reliability-and-diagnostics",
+      "track": "track-10",
+      "title": "integration testing databases webapplicationfactory and contracts — Reference: Test execution reliability, environment control, and actionable failures",
+      "module": "t10-002",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-002-reference-service-and-http-contracts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "reliability-and-diagnostics"
     },
     {
       "id": "t10-002-practice",
       "track": "track-10",
-      "title": "integration testing databases WebApplicationFactory and contracts — Exercises and worked solutions",
+      "title": "integration testing databases webapplicationfactory and contracts — Exercises and worked solutions",
       "module": "t10-002",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-002.json",
       "phase": "practice",
       "prerequisites": [
-        "t10-002-reference-inventory-pending"
+        "t10-002-reference-reliability-and-diagnostics"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-002-interview",
       "track": "track-10",
-      "title": "integration testing databases WebApplicationFactory and contracts — Interview questions and reasoning",
+      "title": "integration testing databases webapplicationfactory and contracts — Interview questions and reasoning",
       "module": "t10-002",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-002.json",
       "phase": "interview",
       "prerequisites": [
         "t10-002-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-003-overview",
@@ -15806,7 +15884,7 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-003.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-003-concepts",
@@ -15818,20 +15896,59 @@
       "prerequisites": [
         "t10-003-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t10-003-reference-inventory-pending",
+      "id": "t10-003-reference-react-component-and-dom-testing",
       "track": "track-10",
-      "title": "frontend tests accessibility browser automation and Playwright — Reference: awaiting curated names",
+      "title": "frontend tests accessibility browser automation and Playwright — Reference: Testing Library queries, rendering, interaction, async state, and cleanup",
       "module": "t10-003",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-003.json",
       "phase": "reference",
       "prerequisites": [
         "t10-003-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "react-component-and-dom-testing"
+    },
+    {
+      "id": "t10-003-reference-test-runner-and-ui-mocks",
+      "track": "track-10",
+      "title": "frontend tests accessibility browser automation and Playwright — Reference: Vitest/Jest test lifecycle, async control, fake timers, and network mocking",
+      "module": "t10-003",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-003-reference-react-component-and-dom-testing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "test-runner-and-ui-mocks"
+    },
+    {
+      "id": "t10-003-reference-playwright-browser-testing",
+      "track": "track-10",
+      "title": "frontend tests accessibility browser automation and Playwright — Reference: Playwright Test, browser contexts, resilient locators, assertions, and API setup",
+      "module": "t10-003",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-003-reference-test-runner-and-ui-mocks"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "playwright-browser-testing"
+    },
+    {
+      "id": "t10-003-reference-accessibility-and-visual-checks",
+      "track": "track-10",
+      "title": "frontend tests accessibility browser automation and Playwright — Reference: Accessibility semantics, automated scans, keyboard checks, and visual regression",
+      "module": "t10-003",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-003-reference-playwright-browser-testing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "accessibility-and-visual-checks"
     },
     {
       "id": "t10-003-practice",
@@ -15841,9 +15958,9 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-003.json",
       "phase": "practice",
       "prerequisites": [
-        "t10-003-reference-inventory-pending"
+        "t10-003-reference-accessibility-and-visual-checks"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-003-interview",
@@ -15855,66 +15972,118 @@
       "prerequisites": [
         "t10-003-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-004-overview",
       "track": "track-10",
-      "title": "test design flaky tests coverage limitations and maintainability — Big-picture orientation and mental model",
+      "title": "test design flaky tests coverage limits and maintainability — Big-picture orientation and mental model",
       "module": "t10-004",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-004.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-004-concepts",
       "track": "track-10",
-      "title": "test design flaky tests coverage limitations and maintainability — Core concepts and how they fit together",
+      "title": "test design flaky tests coverage limits and maintainability — Core concepts and how they fit together",
       "module": "t10-004",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-004.json",
       "phase": "concepts",
       "prerequisites": [
         "t10-004-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t10-004-reference-inventory-pending",
+      "id": "t10-004-reference-coverage-and-test-effectiveness",
       "track": "track-10",
-      "title": "test design flaky tests coverage limitations and maintainability — Reference: awaiting curated names",
+      "title": "test design flaky tests coverage limits and maintainability — Reference: Coverage measures, mutation analysis, and assertion strength",
       "module": "t10-004",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-004.json",
       "phase": "reference",
       "prerequisites": [
         "t10-004-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "coverage-and-test-effectiveness"
+    },
+    {
+      "id": "t10-004-reference-property-based-and-example-based-tests",
+      "track": "track-10",
+      "title": "test design flaky tests coverage limits and maintainability — Reference: Generated cases, invariants, shrinking, and example-based complements",
+      "module": "t10-004",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-004-reference-coverage-and-test-effectiveness"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "property-based-and-example-based-tests"
+    },
+    {
+      "id": "t10-004-reference-flaky-tests-and-concurrency",
+      "track": "track-10",
+      "title": "test design flaky tests coverage limits and maintainability — Reference: Nondeterminism, parallel execution, timeout, retry, and quarantine decisions",
+      "module": "t10-004",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-004-reference-property-based-and-example-based-tests"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "flaky-tests-and-concurrency"
+    },
+    {
+      "id": "t10-004-reference-snapshots-and-maintainability",
+      "track": "track-10",
+      "title": "test design flaky tests coverage limits and maintainability — Reference: Snapshot contracts, test clarity, and refactoring resilience",
+      "module": "t10-004",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-004-reference-flaky-tests-and-concurrency"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "snapshots-and-maintainability"
+    },
+    {
+      "id": "t10-004-reference-test-strategy-and-pyramid",
+      "track": "track-10",
+      "title": "test design flaky tests coverage limits and maintainability — Reference: Layered test portfolio, risk coverage, and balancing cost",
+      "module": "t10-004",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-004-reference-snapshots-and-maintainability"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "test-strategy-and-pyramid"
     },
     {
       "id": "t10-004-practice",
       "track": "track-10",
-      "title": "test design flaky tests coverage limitations and maintainability — Exercises and worked solutions",
+      "title": "test design flaky tests coverage limits and maintainability — Exercises and worked solutions",
       "module": "t10-004",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-004.json",
       "phase": "practice",
       "prerequisites": [
-        "t10-004-reference-inventory-pending"
+        "t10-004-reference-test-strategy-and-pyramid"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-004-interview",
       "track": "track-10",
-      "title": "test design flaky tests coverage limitations and maintainability — Interview questions and reasoning",
+      "title": "test design flaky tests coverage limits and maintainability — Interview questions and reasoning",
       "module": "t10-004",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-004.json",
       "phase": "interview",
       "prerequisites": [
         "t10-004-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-005-overview",
@@ -15924,7 +16093,7 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-005.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-005-concepts",
@@ -15936,20 +16105,59 @@
       "prerequisites": [
         "t10-005-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t10-005-reference-inventory-pending",
+      "id": "t10-005-reference-incident-declaration-and-severity",
       "track": "track-10",
-      "title": "debugging production incidents and root cause analysis — Reference: awaiting curated names",
+      "title": "debugging production incidents and root cause analysis — Reference: User impact, detection, escalation, severity, and incident state",
       "module": "t10-005",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-005.json",
       "phase": "reference",
       "prerequisites": [
         "t10-005-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "incident-declaration-and-severity"
+    },
+    {
+      "id": "t10-005-reference-command-roles-and-communications",
+      "track": "track-10",
+      "title": "debugging production incidents and root cause analysis — Reference: Incident command, operations, communications, and shared working record",
+      "module": "t10-005",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-005-reference-incident-declaration-and-severity"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "command-roles-and-communications"
+    },
+    {
+      "id": "t10-005-reference-triage-diagnosis-and-mitigation",
+      "track": "track-10",
+      "title": "debugging production incidents and root cause analysis — Reference: Evidence-driven troubleshooting and safe service restoration",
+      "module": "t10-005",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-005-reference-command-roles-and-communications"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "triage-diagnosis-and-mitigation"
+    },
+    {
+      "id": "t10-005-reference-postmortem-and-learning",
+      "track": "track-10",
+      "title": "debugging production incidents and root cause analysis — Reference: Blameless review, contributing factors, corrective actions, and recurrence prevention",
+      "module": "t10-005",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-005-reference-triage-diagnosis-and-mitigation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "postmortem-and-learning"
     },
     {
       "id": "t10-005-practice",
@@ -15959,9 +16167,9 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-005.json",
       "phase": "practice",
       "prerequisites": [
-        "t10-005-reference-inventory-pending"
+        "t10-005-reference-postmortem-and-learning"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-005-interview",
@@ -15973,7 +16181,7 @@
       "prerequisites": [
         "t10-005-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-006-overview",
@@ -15983,7 +16191,7 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-006.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-006-concepts",
@@ -15995,20 +16203,72 @@
       "prerequisites": [
         "t10-006-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t10-006-reference-inventory-pending",
+      "id": "t10-006-reference-review-intent-and-change-shape",
       "track": "track-10",
-      "title": "code review refactoring and legacy modernization — Reference: awaiting curated names",
+      "title": "code review refactoring and legacy modernization — Reference: Review goals, small diffs, context, and reviewability",
       "module": "t10-006",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-006.json",
       "phase": "reference",
       "prerequisites": [
         "t10-006-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "review-intent-and-change-shape"
+    },
+    {
+      "id": "t10-006-reference-reviewer-reasoning-and-feedback",
+      "track": "track-10",
+      "title": "code review refactoring and legacy modernization — Reference: Correctness, design, safety, feedback, and resolution",
+      "module": "t10-006",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-006-reference-review-intent-and-change-shape"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "reviewer-reasoning-and-feedback"
+    },
+    {
+      "id": "t10-006-reference-behavior-preserving-refactoring",
+      "track": "track-10",
+      "title": "code review refactoring and legacy modernization — Reference: Safe structural transformations and characterization strategies",
+      "module": "t10-006",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-006-reference-reviewer-reasoning-and-feedback"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "behavior-preserving-refactoring"
+    },
+    {
+      "id": "t10-006-reference-legacy-modernization-and-risk",
+      "track": "track-10",
+      "title": "code review refactoring and legacy modernization — Reference: Dependency discovery, seams, migration steps, and rollback planning",
+      "module": "t10-006",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-006-reference-behavior-preserving-refactoring"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "legacy-modernization-and-risk"
+    },
+    {
+      "id": "t10-006-reference-review-culture-and-quality-gates",
+      "track": "track-10",
+      "title": "code review refactoring and legacy modernization — Reference: Team conventions, ownership, automated checks, and learning",
+      "module": "t10-006",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-006-reference-legacy-modernization-and-risk"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "review-culture-and-quality-gates"
     },
     {
       "id": "t10-006-practice",
@@ -16018,9 +16278,9 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-006.json",
       "phase": "practice",
       "prerequisites": [
-        "t10-006-reference-inventory-pending"
+        "t10-006-reference-review-culture-and-quality-gates"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-006-interview",
@@ -16032,7 +16292,7 @@
       "prerequisites": [
         "t10-006-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-007-overview",
@@ -16042,7 +16302,7 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-007.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-007-concepts",
@@ -16054,20 +16314,59 @@
       "prerequisites": [
         "t10-007-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t10-007-reference-inventory-pending",
+      "id": "t10-007-reference-behavioral-question-families",
       "track": "track-10",
-      "title": "behavioral interviews STAR and authentic experience narratives — Reference: awaiting curated names",
+      "title": "behavioral interviews STAR and authentic experience narratives — Reference: Common experience prompts and the competencies they probe",
       "module": "t10-007",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-007.json",
       "phase": "reference",
       "prerequisites": [
         "t10-007-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "behavioral-question-families"
+    },
+    {
+      "id": "t10-007-reference-story-structure-and-evidence",
+      "track": "track-10",
+      "title": "behavioral interviews STAR and authentic experience narratives — Reference: STAR(R), personal contribution, outcomes, and reflection",
+      "module": "t10-007",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-007-reference-behavioral-question-families"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "story-structure-and-evidence"
+    },
+    {
+      "id": "t10-007-reference-story-bank-and-answer-delivery",
+      "track": "track-10",
+      "title": "behavioral interviews STAR and authentic experience narratives — Reference: Selecting, tailoring, and delivering truthful stories under time limits",
+      "module": "t10-007",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-007-reference-story-structure-and-evidence"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "story-bank-and-answer-delivery"
+    },
+    {
+      "id": "t10-007-reference-reflection-and-improvement",
+      "track": "track-10",
+      "title": "behavioral interviews STAR and authentic experience narratives — Reference: Handling gaps, outcomes, mistakes, and learning without fabrication",
+      "module": "t10-007",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-007-reference-story-bank-and-answer-delivery"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "reflection-and-improvement"
     },
     {
       "id": "t10-007-practice",
@@ -16077,9 +16376,9 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-007.json",
       "phase": "practice",
       "prerequisites": [
-        "t10-007-reference-inventory-pending"
+        "t10-007-reference-reflection-and-improvement"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-007-interview",
@@ -16091,7 +16390,7 @@
       "prerequisites": [
         "t10-007-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-008-overview",
@@ -16101,7 +16400,7 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-008.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-008-concepts",
@@ -16113,20 +16412,59 @@
       "prerequisites": [
         "t10-008-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t10-008-reference-inventory-pending",
+      "id": "t10-008-reference-mentoring-and-delegation",
       "track": "track-10",
-      "title": "mentorship communication estimation planning and leadership — Reference: awaiting curated names",
+      "title": "mentorship communication estimation planning and leadership — Reference: Coaching, pairing, delegation, growth, and psychological safety",
       "module": "t10-008",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-008.json",
       "phase": "reference",
       "prerequisites": [
         "t10-008-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "mentoring-and-delegation"
+    },
+    {
+      "id": "t10-008-reference-technical-communication",
+      "track": "track-10",
+      "title": "mentorship communication estimation planning and leadership — Reference: Written, synchronous, asynchronous, and cross-functional communication",
+      "module": "t10-008",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-008-reference-mentoring-and-delegation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "technical-communication"
+    },
+    {
+      "id": "t10-008-reference-planning-estimation-and-delivery",
+      "track": "track-10",
+      "title": "mentorship communication estimation planning and leadership — Reference: Breakdown, forecasting, dependencies, incremental delivery, and risk",
+      "module": "t10-008",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-008-reference-technical-communication"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "planning-estimation-and-delivery"
+    },
+    {
+      "id": "t10-008-reference-leadership-and-accountability",
+      "track": "track-10",
+      "title": "mentorship communication estimation planning and leadership — Reference: Technical leadership, decision making, influence, and follow-through",
+      "module": "t10-008",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-008-reference-planning-estimation-and-delivery"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "leadership-and-accountability"
     },
     {
       "id": "t10-008-practice",
@@ -16136,9 +16474,9 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-008.json",
       "phase": "practice",
       "prerequisites": [
-        "t10-008-reference-inventory-pending"
+        "t10-008-reference-leadership-and-accountability"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-008-interview",
@@ -16150,7 +16488,7 @@
       "prerequisites": [
         "t10-008-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-009-overview",
@@ -16160,7 +16498,7 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-009-concepts",
@@ -16172,20 +16510,72 @@
       "prerequisites": [
         "t10-009-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t10-009-reference-inventory-pending",
+      "id": "t10-009-reference-interview-structure-and-requirements",
       "track": "track-10",
-      "title": "architecture interviews tradeoffs requirements and constraints — Reference: awaiting curated names",
+      "title": "architecture interviews tradeoffs requirements and constraints — Reference: Collaborative framing, user journeys, scope, and quality targets",
       "module": "t10-009",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
       "phase": "reference",
       "prerequisites": [
         "t10-009-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "interview-structure-and-requirements"
+    },
+    {
+      "id": "t10-009-reference-workload-estimation",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Reference: Back-of-the-envelope demand, storage, traffic, and uncertainty",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-009-reference-interview-structure-and-requirements"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "workload-estimation"
+    },
+    {
+      "id": "t10-009-reference-high-level-design-walkthrough",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Reference: Entities, APIs, read/write flow, storage, and architectural decomposition",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-009-reference-workload-estimation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "high-level-design-walkthrough"
+    },
+    {
+      "id": "t10-009-reference-scaling-reliability-and-consistency",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Reference: Bottlenecks, data distribution, failure handling, and recovery",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-009-reference-high-level-design-walkthrough"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "scaling-reliability-and-consistency"
+    },
+    {
+      "id": "t10-009-reference-tradeoff-communication-and-case-practice",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Reference: Decision rationale, bottleneck iteration, and common design prompts",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t10-009-reference-scaling-reliability-and-consistency"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "tradeoff-communication-and-case-practice"
     },
     {
       "id": "t10-009-practice",
@@ -16195,9 +16585,9 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
       "phase": "practice",
       "prerequisites": [
-        "t10-009-reference-inventory-pending"
+        "t10-009-reference-tradeoff-communication-and-case-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t10-009-interview",
@@ -16209,7 +16599,7 @@
       "prerequisites": [
         "t10-009-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-001-overview",

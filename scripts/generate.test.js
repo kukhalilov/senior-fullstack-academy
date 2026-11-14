@@ -345,6 +345,56 @@ test('scheduled generation stays below the observed per-model Gemini free-tier d
   assert.match(generator, /Math\.min\(requestedCalls, 160\)/);
 });
 
+test('unit testing topic freezes current .NET frameworks, lifecycle APIs, assertions, and test-double boundaries', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/testing-and-senior-interviews/t10-001.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  for (const name of ['[Fact]','[Theory]','[TestMethod]','[DataRow]','[TestCase]','[SetUp]','[OneTimeSetUp]','[Arguments]','IClassFixture<TFixture>','Moq Mock<T>.Verify','NSubstitute Received()','State-based assertion','Interaction-based assertion']) assert.ok(names.includes(name), name);
+  assert.ok(manifest.versionNotes.every(note => note.sourceUrls.length > 0));
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('t10-002')));
+});
+
+test('integration and frontend testing topics freeze host, database, browser, and accessibility scopes', () => {
+  const base = 'curriculum/manifests/testing-and-senior-interviews';
+  const integration = JSON.parse(fs.readFileSync(`${base}/t10-002.json`, 'utf8'));
+  const frontend = JSON.parse(fs.readFileSync(`${base}/t10-003.json`, 'utf8'));
+  const quality = JSON.parse(fs.readFileSync(`${base}/t10-004.json`, 'utf8'));
+  for (const manifest of [integration, frontend, quality]) {
+    assert.equal(manifest.inventoryComplete, true, manifest.id);
+    assert.equal(manifest.generationAllowed, true, manifest.id);
+    const names = manifest.inventory.flatMap(group => group.items);
+    assert.equal(new Set(names).size, names.length, manifest.id);
+    assert.ok(manifest.sourceSnapshot.urls.length >= 8, manifest.id);
+  }
+  const integrationNames = integration.inventory.flatMap(group => group.items);
+  const frontendNames = frontend.inventory.flatMap(group => group.items);
+  for (const name of ['WebApplicationFactory<TEntryPoint>','TestServer','Testcontainers for .NET','PactNet','Consumer-driven contract testing']) assert.ok(integrationNames.includes(name), name);
+  for (const name of ['getByRole','userEvent.keyboard','Playwright test function','page.route','axe-core','WCAG 2.2 Level AA','toHaveScreenshot']) assert.ok(frontendNames.includes(name), name);
+  const qualityNames = quality.inventory.flatMap(group => group.items);
+  for (const name of ['Branch coverage','Mutation testing','Stryker.NET','FsCheck','Property-based testing','Flaky test','Cooperative cancellation','Snapshot baseline']) assert.ok(qualityNames.includes(name), name);
+});
+
+test('the remaining senior practice topics have explicit closed, source-backed curricula', () => {
+  const base = 'curriculum/manifests/testing-and-senior-interviews';
+  for (const [id,required] of [
+    ['t10-005',['Incident Commander (IC)','Operations Lead (OL)','Communications Lead (CL)','Blameless postmortem']],
+    ['t10-006',['Must-fix comment','Extract Function','Characterization test','Branch by abstraction']],
+    ['t10-007',['STAR(R) model','Situation','Task','Action','Result','Reflection','Truthful uncertainty']],
+    ['t10-008',['Technical mentorship','Estimate range','Influence without authority','Delegation boundary']],
+    ['t10-009',['Clarifying question','Peak RPS','Read path','Eventual consistency','URL shortener design prompt']],
+  ]) {
+    const manifest=JSON.parse(fs.readFileSync(`${base}/${id}.json`,'utf8'));
+    assert.equal(manifest.inventoryComplete,true,id);
+    assert.equal(manifest.generationAllowed,true,id);
+    const names=manifest.inventory.flatMap(group=>group.items);
+    assert.equal(new Set(names).size,names.length,id);
+    for(const name of required) assert.ok(names.includes(name),`${id}: ${name}`);
+    assert.ok(manifest.sourceSnapshot.urls.length>=3,id);
+  }
+});
+
 test('JavaScript language inventories use current standard names without duplicate entries', () => {
   const base = 'curriculum/manifests/javascript-typescript';
   for (const id of ['t06-001', 't06-003', 't06-004', 't06-005', 't06-006', 't06-011', 't06-013', 't06-014', 't06-015', 't06-016', 't06-017', 't06-018', 't06-019', 't06-020']) {

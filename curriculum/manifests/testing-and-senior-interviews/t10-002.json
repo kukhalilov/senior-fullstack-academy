@@ -2,11 +2,193 @@
   "schemaVersion": 4,
   "id": "t10-002",
   "track": "track-10",
-  "title": "integration testing databases WebApplicationFactory and contracts",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "title": "integration testing databases webapplicationfactory and contracts",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Integration tests exercise the behavior of two or more components together, including infrastructure boundaries that isolated unit tests intentionally replace.",
+    "An in-memory TestServer and a real Kestrel process exercise different boundaries. TestServer is fast and deterministic for application-pipeline behavior; real sockets, TLS, reverse proxies, containers, or deployment settings require an appropriate end-to-end environment.",
+    "WebApplicationFactory<TEntryPoint> bootstraps an ASP.NET Core application for tests. A custom factory can override configuration and services, but replacing too much production wiring weakens the test.",
+    "Each test run needs deliberate database isolation. Unique databases, schemas, transactions, disposable containers, or reset scripts have distinct limits when tests execute concurrently or use multiple connections.",
+    "Contract tests verify an agreed interface between a provider and consumer. They complement integration tests and should be used where independently deployed services need compatible request, response, and failure semantics.",
+    "Integration tests are slower and more environment-sensitive than unit tests; keep assertions focused on observable cross-component behavior, make dependencies explicit, and collect diagnostics on failure."
+  ],
+  "inventory": [
+    {
+      "id": "aspnetcore-host-and-client",
+      "title": "ASP.NET Core in-process host setup and HTTP client behavior",
+      "items": [
+        "Integration test",
+        "Microsoft.AspNetCore.Mvc.Testing",
+        "WebApplicationFactory<TEntryPoint>",
+        "WebApplicationFactory<TEntryPoint>.CreateClient",
+        "WebApplicationFactory<TEntryPoint>.Server",
+        "WebApplicationFactory<TEntryPoint>.Services",
+        "WebApplicationFactory<TEntryPoint>.ConfigureWebHost",
+        "WebApplicationFactory<TEntryPoint>.WithWebHostBuilder",
+        "ConfigureTestServices",
+        "TestServer",
+        "TestServer.CreateHandler",
+        "TestServer.SendAsync",
+        "HttpClient",
+        "HttpResponseMessage",
+        "WebApplicationFactoryClientOptions",
+        "AllowAutoRedirect",
+        "HandleCookies",
+        "BaseAddress",
+        "ASPNETCORE_ENVIRONMENT",
+        "Development test environment",
+        "InternalsVisibleTo",
+        "public partial Program"
+      ]
+    },
+    {
+      "id": "database-isolation",
+      "title": "Database lifecycle, provider choice, reset, and parallel safety",
+      "items": [
+        "Test database",
+        "Database per test",
+        "Database per test collection",
+        "Database per test run",
+        "Unique database name",
+        "Transaction rollback isolation",
+        "Database reset script",
+        "Respawn database reset",
+        "Disposable database container",
+        "Testcontainers for .NET",
+        "Testcontainers.MsSql",
+        "Testcontainers.PostgreSql",
+        "Testcontainers.MySql",
+        "Production database engine in tests",
+        "EF Core InMemory provider",
+        "SQLite in-memory provider",
+        "SQLite shared in-memory connection",
+        "Test data builder",
+        "Deterministic seed data",
+        "Parallel database test isolation",
+        "Database cleanup",
+        "Migration smoke test"
+      ]
+    },
+    {
+      "id": "service-and-http-contracts",
+      "title": "Consumer/provider contracts and external HTTP boundary testing",
+      "items": [
+        "Consumer-driven contract testing",
+        "Provider contract verification",
+        "Consumer contract",
+        "Provider verification",
+        "PactNet",
+        "Pact consumer test",
+        "Pact provider verification",
+        "Contract broker",
+        "Contract version",
+        "Backward-compatible contract change",
+        "HTTP integration test",
+        "Loopback HTTP server",
+        "WireMock.Net",
+        "HttpMessageHandler stub",
+        "TestServer versus Kestrel",
+        "Mock external service boundary",
+        "Schema compatibility test",
+        "OpenAPI contract test",
+        "Consumer/provider deployment compatibility"
+      ]
+    },
+    {
+      "id": "reliability-and-diagnostics",
+      "title": "Test execution reliability, environment control, and actionable failures",
+      "items": [
+        "Integration test collection",
+        "IClassFixture<WebApplicationFactory<TEntryPoint>>",
+        "IAsyncLifetime",
+        "Test fixture disposal",
+        "Test parallelization limit",
+        "External dependency readiness probe",
+        "Container health check",
+        "Startup timeout",
+        "HTTP request timeout",
+        "Request and response logging",
+        "Test output capture",
+        "Failed container log capture",
+        "Environment variable override",
+        "Configuration override",
+        "Clock and timezone control",
+        "Network dependency isolation",
+        "Retrying an integration test",
+        "Flaky integration test",
+        "CI service container",
+        "Test artifact retention"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "TestServer",
+      "Kestrel on a real socket"
+    ],
+    [
+      "EF Core InMemory provider",
+      "SQLite in-memory provider",
+      "Production database engine"
+    ],
+    [
+      "Database per test",
+      "Database per run with reset",
+      "Transaction rollback"
+    ],
+    [
+      "Unit test",
+      "Integration test",
+      "End-to-end test"
+    ],
+    [
+      "Consumer contract test",
+      "Provider contract verification"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/test-min-api?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/core/testing/",
+    "https://learn.microsoft.com/en-us/ef/core/testing/",
+    "https://github.com/pact-foundation/pact-net",
+    "https://dotnet.testcontainers.org/"
+  ],
+  "versionNotes": [
+    {
+      "edition": "ASP.NET Core integration testing references checked 2026-11-14",
+      "items": [
+        "Current ASP.NET Core API reference includes WebApplicationFactory<TEntryPoint> for ASP.NET Core 11. Keep examples aligned to the application target and the matching Microsoft.AspNetCore.Mvc.Testing package version."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn ASP.NET Core integration testing, minimal API testing, .NET testing and EF Core testing documentation; PactNet and Testcontainers for .NET official docs",
+    "edition": "ASP.NET Core 11 / .NET 11 stable API boundary and current integration-testing guidance checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/test-min-api?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/",
+      "https://learn.microsoft.com/en-us/ef/core/testing/",
+      "https://github.com/pact-foundation/pact-net",
+      "https://dotnet.testcontainers.org/",
+      "https://github.com/WireMock-Net/WireMock.Net",
+      "https://github.com/jbogard/Respawn"
+    ]
+  },
+  "scopeExclusions": [
+    "Unit test design and xUnit/MSTest/NUnit/TUnit authoring are covered in t10-001.",
+    "Frontend component and real-browser tests are covered in t10-003.",
+    "Property-based, mutation, load, performance, and flaky-suite methodology are covered in t10-004.",
+    "Full Pact, Testcontainers, WireMock.Net, EF Core, and WebApplicationFactory APIs are excluded; only names listed here are in scope.",
+    "Production deployment smoke tests and end-to-end observability are covered by operations topics."
+  ],
+  "generationAllowed": true
 }
