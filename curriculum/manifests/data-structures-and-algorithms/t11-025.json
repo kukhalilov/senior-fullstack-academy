@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-025",
+  "track": "track-11",
+  "title": "binary search tree ordering, lookup, and mutation",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A binary search tree maintains an ordering invariant across entire subtrees: values in the left subtree are smaller and values in the right subtree are larger, subject to a documented duplicate policy.",
+    "Search follows one root-to-leaf path by comparing the target with each node, giving O(height) time rather than guaranteed O(log n).",
+    "Inorder traversal of a BST yields values in sorted order; reverse inorder yields descending order and can stop early for order statistics.",
+    "Insertion follows search links until an empty child position is found and attaches the new node without changing existing node order.",
+    "Deletion has three structural cases: remove a leaf, replace a one-child node with its child, or replace a two-child node using an inorder successor or predecessor.",
+    "A plain BST can become skewed after ordered insertions, degrading search, insertion, and deletion to O(n); self-balancing trees address height through rotations and additional invariants.",
+    "Range queries can prune an entire subtree when its key bounds cannot contain answers; subtree-size metadata can support faster repeated rank queries but must be maintained on mutations.",
+    "Validation must propagate lower and upper bounds from ancestors; comparing only each node with its immediate children misses invalid descendants."
+  ],
+  "inventory": [
+    {"id":"ordering-and-search","title":"BST invariants, comparison, and lookup","items":["Global left-subtree ordering","Global right-subtree ordering","Strict versus duplicate-key policy","Lower bound inherited from ancestors","Upper bound inherited from ancestors","Search path","O(height) lookup","Inorder sorted traversal","Successor","Predecessor"]},
+    {"id":"insert-delete-and-rank","title":"Insertion, deletion, and ordered queries","items":["Insert at empty child link","Delete leaf node","Delete node with one child","Delete node with two children","Inorder successor replacement","Inorder predecessor replacement","Minimum and maximum key","Kth smallest by inorder traversal","Range query pruning","Subtree-size augmentation"]},
+    {"id":"shape-and-balancing-boundary","title":"Height, degeneration, and balanced-tree boundary","items":["Height-dependent operation cost","Degenerate chain from sorted insertion","Expected shape under random insertion","AVL tree balance invariant (orientation only)","Red-black tree color invariants (orientation only)","Tree rotations as rebalancing idea","Unbalanced BST limitation","Self-balancing trees excluded from implementation detail"]},
+    {"id":"correctness-and-representation","title":"Validation, edge cases, and representations","items":["Validate with inherited bounds","Duplicate key handling","Empty tree","Single-node tree","Integer minimum and maximum bounds","Node identity","Recursive versus iterative search","Mutation link update","Sorted array versus BST tradeoff"]}
+  ],
+  "practiceProblems": [
+    {"id":"validate-binary-search-tree","name":"Validate Binary Search Tree","difficulty":"introductory","patterns":["propagate ancestor bounds","global ordering invariant"]},
+    {"id":"search-in-a-binary-search-tree","name":"Search in a Binary Search Tree","difficulty":"introductory","patterns":["follow one ordered search path","prune opposite subtree"]},
+    {"id":"insert-into-binary-search-tree","name":"Insert into a Binary Search Tree","difficulty":"introductory","patterns":["find empty child link","preserve ordering invariant"]},
+    {"id":"delete-node-in-a-bst","name":"Delete Node in a BST","difficulty":"intermediate","patterns":["leaf and one-child cases","successor replacement for two children"]},
+    {"id":"kth-smallest-element-bst","name":"Kth Smallest Element in a BST","difficulty":"intermediate","patterns":["inorder order statistic","early stop after kth visit"]},
+    {"id":"lowest-common-ancestor-bst","name":"Lowest Common Ancestor of a Binary Search Tree","difficulty":"intermediate","patterns":["ordered split point","root-to-node search paths"]},
+    {"id":"construct-bst-preorder","name":"Construct Binary Search Tree from Preorder Traversal","difficulty":"intermediate","patterns":["preorder root sequence","inherited value bounds"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Binary search tree","Unordered binary tree"],["BST search","Binary search over a sorted array"],["Inorder successor","Inorder predecessor"],["Unbalanced BST","Self-balancing search tree"],["O(height) operation","Guaranteed O(log n) balanced operation"],["Two-child deletion by successor","Two-child deletion by predecessor"]],
+  "comparisonSources": ["https://usaco.guide/CPH.pdf"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Competitive Programmer's Handbook tree chapters and official LeetCode problem statements",
+    "edition": "Timeless BST algorithms; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/CPH.pdf","https://leetcode.com/problems/validate-binary-search-tree/","https://leetcode.com/problems/search-in-a-binary-search-tree/","https://leetcode.com/problems/insert-into-a-binary-search-tree/","https://leetcode.com/problems/delete-node-in-a-bst/","https://leetcode.com/problems/kth-smallest-element-in-a-bst/","https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/","https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/"]
+  },
+  "scopeExclusions": ["Binary tree traversals and general shape problems, covered in t11-010","AVL and red-black tree balancing algorithms","B-trees and database indexes","Treaps, splay trees, and randomized search trees","Full .NET SortedSet<T> or SortedDictionary<TKey,TValue> API catalog"],
+  "generationAllowed": true
+}

@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 998,
+  "taskCount": 1022,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -10574,61 +10574,200 @@
     {
       "id": "t11-010-overview",
       "track": "track-11",
-      "title": "trees traversals recursion BST and balanced trees — Big-picture orientation and mental model",
+      "title": "binary trees, recursion, and traversal patterns — Big-picture orientation and mental model",
       "module": "t11-010",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-010-concepts",
       "track": "track-11",
-      "title": "trees traversals recursion BST and balanced trees — Core concepts and how they fit together",
+      "title": "binary trees, recursion, and traversal patterns — Core concepts and how they fit together",
       "module": "t11-010",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-010-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-010-reference-inventory-pending",
+      "id": "t11-010-reference-tree-structure",
       "track": "track-11",
-      "title": "trees traversals recursion BST and balanced trees — Reference: awaiting curated names",
+      "title": "binary trees, recursion, and traversal patterns — Reference: Tree shape, terminology, and representations",
       "module": "t11-010",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
       "phase": "reference",
       "prerequisites": [
         "t11-010-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "tree-structure"
     },
     {
-      "id": "t11-010-practice",
+      "id": "t11-010-reference-depth-first-traversal",
       "track": "track-11",
-      "title": "trees traversals recursion BST and balanced trees — Exercises and worked solutions",
+      "title": "binary trees, recursion, and traversal patterns — Reference: Depth-first traversal orders",
+      "module": "t11-010",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-010-reference-tree-structure"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "depth-first-traversal"
+    },
+    {
+      "id": "t11-010-reference-breadth-first-and-level",
+      "track": "track-11",
+      "title": "binary trees, recursion, and traversal patterns — Reference: Breadth-first and level-based traversal",
+      "module": "t11-010",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-010-reference-depth-first-traversal"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "breadth-first-and-level"
+    },
+    {
+      "id": "t11-010-reference-recursive-tree-problems",
+      "track": "track-11",
+      "title": "binary trees, recursion, and traversal patterns — Reference: Recursive summaries, paths, and complexity",
+      "module": "t11-010",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-010-reference-breadth-first-and-level"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "recursive-tree-problems"
+    },
+    {
+      "id": "t11-010-practice-maximum-depth-binary-tree",
+      "track": "track-11",
+      "title": "binary trees, recursion, and traversal patterns — Problem: Maximum Depth of Binary Tree",
       "module": "t11-010",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-010-reference-inventory-pending"
+        "t11-010-reference-recursive-tree-problems"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "maximum-depth-binary-tree",
+      "problemTitle": "Maximum Depth of Binary Tree"
+    },
+    {
+      "id": "t11-010-practice-binary-tree-inorder-traversal",
+      "track": "track-11",
+      "title": "binary trees, recursion, and traversal patterns — Problem: Binary Tree Inorder Traversal",
+      "module": "t11-010",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-010-practice-maximum-depth-binary-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "binary-tree-inorder-traversal",
+      "problemTitle": "Binary Tree Inorder Traversal"
+    },
+    {
+      "id": "t11-010-practice-binary-tree-level-order-traversal",
+      "track": "track-11",
+      "title": "binary trees, recursion, and traversal patterns — Problem: Binary Tree Level Order Traversal",
+      "module": "t11-010",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-010-practice-binary-tree-inorder-traversal"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "binary-tree-level-order-traversal",
+      "problemTitle": "Binary Tree Level Order Traversal"
+    },
+    {
+      "id": "t11-010-practice-invert-binary-tree",
+      "track": "track-11",
+      "title": "binary trees, recursion, and traversal patterns — Problem: Invert Binary Tree",
+      "module": "t11-010",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-010-practice-binary-tree-level-order-traversal"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "invert-binary-tree",
+      "problemTitle": "Invert Binary Tree"
+    },
+    {
+      "id": "t11-010-practice-diameter-binary-tree",
+      "track": "track-11",
+      "title": "binary trees, recursion, and traversal patterns — Problem: Diameter of Binary Tree",
+      "module": "t11-010",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-010-practice-invert-binary-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "diameter-binary-tree",
+      "problemTitle": "Diameter of Binary Tree"
+    },
+    {
+      "id": "t11-010-practice-balanced-binary-tree",
+      "track": "track-11",
+      "title": "binary trees, recursion, and traversal patterns — Problem: Balanced Binary Tree",
+      "module": "t11-010",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-010-practice-diameter-binary-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "balanced-binary-tree",
+      "problemTitle": "Balanced Binary Tree"
+    },
+    {
+      "id": "t11-010-practice-path-sum",
+      "track": "track-11",
+      "title": "binary trees, recursion, and traversal patterns — Problem: Path Sum",
+      "module": "t11-010",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-010-practice-balanced-binary-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "path-sum",
+      "problemTitle": "Path Sum"
+    },
+    {
+      "id": "t11-010-practice-symmetric-tree",
+      "track": "track-11",
+      "title": "binary trees, recursion, and traversal patterns — Problem: Symmetric Tree",
+      "module": "t11-010",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-010-practice-path-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "symmetric-tree",
+      "problemTitle": "Symmetric Tree"
     },
     {
       "id": "t11-010-interview",
       "track": "track-11",
-      "title": "trees traversals recursion BST and balanced trees — Interview questions and reasoning",
+      "title": "binary trees, recursion, and traversal patterns — Interview questions and reasoning",
       "module": "t11-010",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-010.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-010-practice"
+        "t11-010-practice-symmetric-tree"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-011-overview",
@@ -12105,6 +12244,190 @@
       "phase": "interview",
       "prerequisites": [
         "t11-024-practice-kth-largest-element-stream"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-025-overview",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Big-picture orientation and mental model",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-025-concepts",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Core concepts and how they fit together",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-025-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-025-reference-ordering-and-search",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Reference: BST invariants, comparison, and lookup",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-025-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "ordering-and-search"
+    },
+    {
+      "id": "t11-025-reference-insert-delete-and-rank",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Reference: Insertion, deletion, and ordered queries",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-025-reference-ordering-and-search"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "insert-delete-and-rank"
+    },
+    {
+      "id": "t11-025-reference-shape-and-balancing-boundary",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Reference: Height, degeneration, and balanced-tree boundary",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-025-reference-insert-delete-and-rank"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "shape-and-balancing-boundary"
+    },
+    {
+      "id": "t11-025-reference-correctness-and-representation",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Reference: Validation, edge cases, and representations",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-025-reference-shape-and-balancing-boundary"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "correctness-and-representation"
+    },
+    {
+      "id": "t11-025-practice-validate-binary-search-tree",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Problem: Validate Binary Search Tree",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-025-reference-correctness-and-representation"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "validate-binary-search-tree",
+      "problemTitle": "Validate Binary Search Tree"
+    },
+    {
+      "id": "t11-025-practice-search-in-a-binary-search-tree",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Problem: Search in a Binary Search Tree",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-025-practice-validate-binary-search-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "search-in-a-binary-search-tree",
+      "problemTitle": "Search in a Binary Search Tree"
+    },
+    {
+      "id": "t11-025-practice-insert-into-binary-search-tree",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Problem: Insert into a Binary Search Tree",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-025-practice-search-in-a-binary-search-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "insert-into-binary-search-tree",
+      "problemTitle": "Insert into a Binary Search Tree"
+    },
+    {
+      "id": "t11-025-practice-delete-node-in-a-bst",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Problem: Delete Node in a BST",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-025-practice-insert-into-binary-search-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "delete-node-in-a-bst",
+      "problemTitle": "Delete Node in a BST"
+    },
+    {
+      "id": "t11-025-practice-kth-smallest-element-bst",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Problem: Kth Smallest Element in a BST",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-025-practice-delete-node-in-a-bst"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "kth-smallest-element-bst",
+      "problemTitle": "Kth Smallest Element in a BST"
+    },
+    {
+      "id": "t11-025-practice-lowest-common-ancestor-bst",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Problem: Lowest Common Ancestor of a Binary Search Tree",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-025-practice-kth-smallest-element-bst"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "lowest-common-ancestor-bst",
+      "problemTitle": "Lowest Common Ancestor of a Binary Search Tree"
+    },
+    {
+      "id": "t11-025-practice-construct-bst-preorder",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Problem: Construct Binary Search Tree from Preorder Traversal",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-025-practice-lowest-common-ancestor-bst"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "construct-bst-preorder",
+      "problemTitle": "Construct Binary Search Tree from Preorder Traversal"
+    },
+    {
+      "id": "t11-025-interview",
+      "track": "track-11",
+      "title": "binary search tree ordering, lookup, and mutation — Interview questions and reasoning",
+      "module": "t11-025",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-025.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-025-practice-construct-bst-preorder"
       ],
       "status": "draft-generation-eligible"
     }
