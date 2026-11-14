@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 914,
+  "taskCount": 925,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -9655,61 +9655,213 @@
     {
       "id": "t11-005-overview",
       "track": "track-11",
-      "title": "binary search bounds rotated arrays and search on answer — Big-picture orientation and mental model",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Big-picture orientation and mental model",
       "module": "t11-005",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-005-concepts",
       "track": "track-11",
-      "title": "binary search bounds rotated arrays and search on answer — Core concepts and how they fit together",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Core concepts and how they fit together",
       "module": "t11-005",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-005-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-005-reference-inventory-pending",
+      "id": "t11-005-reference-sorted-array-search",
       "track": "track-11",
-      "title": "binary search bounds rotated arrays and search on answer — Reference: awaiting curated names",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Reference: Search and bound variants",
       "module": "t11-005",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
       "phase": "reference",
       "prerequisites": [
         "t11-005-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "sorted-array-search"
     },
     {
-      "id": "t11-005-practice",
+      "id": "t11-005-reference-intervals-and-invariants",
       "track": "track-11",
-      "title": "binary search bounds rotated arrays and search on answer — Exercises and worked solutions",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Reference: Intervals, invariants, and termination",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-005-reference-sorted-array-search"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "intervals-and-invariants"
+    },
+    {
+      "id": "t11-005-reference-monotone-answer",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Reference: Binary search over a monotone answer space",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-005-reference-intervals-and-invariants"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "monotone-answer"
+    },
+    {
+      "id": "t11-005-reference-rotated-and-matrix",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Reference: Rotated arrays and matrix search",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-005-reference-monotone-answer"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "rotated-and-matrix"
+    },
+    {
+      "id": "t11-005-reference-limits-and-tradeoffs",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Reference: Limits and algorithm selection",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-005-reference-rotated-and-matrix"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "limits-and-tradeoffs"
+    },
+    {
+      "id": "t11-005-practice-binary-search",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Problem: Binary Search",
       "module": "t11-005",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-005-reference-inventory-pending"
+        "t11-005-reference-limits-and-tradeoffs"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "binary-search",
+      "problemTitle": "Binary Search"
+    },
+    {
+      "id": "t11-005-practice-search-insert-position",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Problem: Search Insert Position",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-005-practice-binary-search"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "search-insert-position",
+      "problemTitle": "Search Insert Position"
+    },
+    {
+      "id": "t11-005-practice-find-first-last-position",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Problem: Find First and Last Position of Element in Sorted Array",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-005-practice-search-insert-position"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "find-first-last-position",
+      "problemTitle": "Find First and Last Position of Element in Sorted Array"
+    },
+    {
+      "id": "t11-005-practice-search-in-rotated-sorted-array",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Problem: Search in Rotated Sorted Array",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-005-practice-find-first-last-position"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "search-in-rotated-sorted-array",
+      "problemTitle": "Search in Rotated Sorted Array"
+    },
+    {
+      "id": "t11-005-practice-find-minimum-rotated-sorted-array",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Problem: Find Minimum in Rotated Sorted Array",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-005-practice-search-in-rotated-sorted-array"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "find-minimum-rotated-sorted-array",
+      "problemTitle": "Find Minimum in Rotated Sorted Array"
+    },
+    {
+      "id": "t11-005-practice-koko-eating-bananas",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Problem: Koko Eating Bananas",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-005-practice-find-minimum-rotated-sorted-array"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "koko-eating-bananas",
+      "problemTitle": "Koko Eating Bananas"
+    },
+    {
+      "id": "t11-005-practice-capacity-to-ship-packages",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Problem: Capacity To Ship Packages Within D Days",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-005-practice-koko-eating-bananas"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "capacity-to-ship-packages",
+      "problemTitle": "Capacity To Ship Packages Within D Days"
+    },
+    {
+      "id": "t11-005-practice-search-a-2d-matrix",
+      "track": "track-11",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Problem: Search a 2D Matrix",
+      "module": "t11-005",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-005-practice-capacity-to-ship-packages"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "search-a-2d-matrix",
+      "problemTitle": "Search a 2D Matrix"
     },
     {
       "id": "t11-005-interview",
       "track": "track-11",
-      "title": "binary search bounds rotated arrays and search on answer — Interview questions and reasoning",
+      "title": "binary search, bounds, rotated arrays, and monotone answers — Interview questions and reasoning",
       "module": "t11-005",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-005.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-005-practice"
+        "t11-005-practice-search-a-2d-matrix"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-006-overview",
