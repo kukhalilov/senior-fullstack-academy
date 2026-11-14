@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 811,
+  "taskCount": 824,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -148,61 +148,113 @@
     {
       "id": "t01-003-overview",
       "track": "track-01",
-      "title": "primitive types literals conversions and numeric behavior — Big-picture orientation and mental model",
+      "title": "C# built-in type aliases and characteristics — Big-picture orientation and mental model",
       "module": "t01-003",
       "manifest": "curriculum/manifests/c-language-and-net/t01-003.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-003-concepts",
       "track": "track-01",
-      "title": "primitive types literals conversions and numeric behavior — Core concepts and how they fit together",
+      "title": "C# built-in type aliases and characteristics — Core concepts and how they fit together",
       "module": "t01-003",
       "manifest": "curriculum/manifests/c-language-and-net/t01-003.json",
       "phase": "concepts",
       "prerequisites": [
         "t01-003-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-003-reference-inventory-pending",
+      "id": "t01-003-reference-signed-integral",
       "track": "track-01",
-      "title": "primitive types literals conversions and numeric behavior — Reference: awaiting curated names",
+      "title": "C# built-in type aliases and characteristics — Reference: Signed integral type keywords",
       "module": "t01-003",
       "manifest": "curriculum/manifests/c-language-and-net/t01-003.json",
       "phase": "reference",
       "prerequisites": [
         "t01-003-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "signed-integral"
+    },
+    {
+      "id": "t01-003-reference-unsigned-integral",
+      "track": "track-01",
+      "title": "C# built-in type aliases and characteristics — Reference: Unsigned integral type keywords",
+      "module": "t01-003",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-003-reference-signed-integral"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "unsigned-integral"
+    },
+    {
+      "id": "t01-003-reference-native-integral",
+      "track": "track-01",
+      "title": "C# built-in type aliases and characteristics — Reference: Native-sized integral type keywords",
+      "module": "t01-003",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-003-reference-unsigned-integral"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "native-integral"
+    },
+    {
+      "id": "t01-003-reference-floating-point",
+      "track": "track-01",
+      "title": "C# built-in type aliases and characteristics — Reference: Floating-point and decimal type keywords",
+      "module": "t01-003",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-003-reference-native-integral"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "floating-point"
+    },
+    {
+      "id": "t01-003-reference-other-built-in",
+      "track": "track-01",
+      "title": "C# built-in type aliases and characteristics — Reference: Other built-in type keywords",
+      "module": "t01-003",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-003-reference-floating-point"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "other-built-in"
     },
     {
       "id": "t01-003-practice",
       "track": "track-01",
-      "title": "primitive types literals conversions and numeric behavior — Exercises and worked solutions",
+      "title": "C# built-in type aliases and characteristics — Exercises and worked solutions",
       "module": "t01-003",
       "manifest": "curriculum/manifests/c-language-and-net/t01-003.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-003-reference-inventory-pending"
+        "t01-003-reference-other-built-in"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-003-interview",
       "track": "track-01",
-      "title": "primitive types literals conversions and numeric behavior — Interview questions and reasoning",
+      "title": "C# built-in type aliases and characteristics — Interview questions and reasoning",
       "module": "t01-003",
       "manifest": "curriculum/manifests/c-language-and-net/t01-003.json",
       "phase": "interview",
       "prerequisites": [
         "t01-003-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-004-overview",
@@ -1537,6 +1589,117 @@
       "phase": "interview",
       "prerequisites": [
         "t01-023-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t01-024-overview",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Big-picture orientation and mental model",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t01-024-concepts",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Core concepts and how they fit together",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t01-024-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t01-024-reference-integer-literals",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: Integer literal forms and notation",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "integer-literals"
+    },
+    {
+      "id": "t01-024-reference-real-literals",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: Real literal forms",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-integer-literals"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "real-literals"
+    },
+    {
+      "id": "t01-024-reference-implicit-conversions",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: Predefined implicit numeric conversion source types",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-real-literals"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-conversions"
+    },
+    {
+      "id": "t01-024-reference-conversion-rules",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: Conversion rules and numeric behavior",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-conversions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "conversion-rules"
+    },
+    {
+      "id": "t01-024-reference-explicit-conversion-pairs",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: Every predefined explicit numeric conversion pair",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-conversion-rules"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-conversion-pairs"
+    },
+    {
+      "id": "t01-024-practice",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Exercises and worked solutions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t01-024-reference-explicit-conversion-pairs"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t01-024-interview",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Interview questions and reasoning",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t01-024-practice"
       ],
       "status": "draft-generation-eligible"
     },
@@ -8509,7 +8672,7 @@
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-001.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-generation-validation"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-001-concepts",
@@ -8521,7 +8684,7 @@
       "prerequisites": [
         "t11-001-overview"
       ],
-      "status": "blocked-on-generation-validation"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-001-reference-cost-models-and-cases",
@@ -8533,7 +8696,7 @@
       "prerequisites": [
         "t11-001-concepts"
       ],
-      "status": "blocked-on-generation-validation",
+      "status": "draft-generation-eligible",
       "inventoryGroup": "cost-models-and-cases"
     },
     {
@@ -8546,7 +8709,7 @@
       "prerequisites": [
         "t11-001-reference-cost-models-and-cases"
       ],
-      "status": "blocked-on-generation-validation",
+      "status": "draft-generation-eligible",
       "inventoryGroup": "asymptotic-notations"
     },
     {
@@ -8559,7 +8722,7 @@
       "prerequisites": [
         "t11-001-reference-asymptotic-notations"
       ],
-      "status": "blocked-on-generation-validation",
+      "status": "draft-generation-eligible",
       "inventoryGroup": "common-growth-families"
     },
     {
@@ -8572,7 +8735,7 @@
       "prerequisites": [
         "t11-001-reference-common-growth-families"
       ],
-      "status": "blocked-on-generation-validation",
+      "status": "draft-generation-eligible",
       "inventoryGroup": "recurrences-and-solving-methods"
     },
     {
@@ -8585,7 +8748,7 @@
       "prerequisites": [
         "t11-001-reference-recurrences-and-solving-methods"
       ],
-      "status": "blocked-on-generation-validation",
+      "status": "draft-generation-eligible",
       "inventoryGroup": "amortized-analysis-methods"
     },
     {
@@ -8610,7 +8773,7 @@
       "prerequisites": [
         "t11-001-practice"
       ],
-      "status": "blocked-on-generation-validation"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-002-overview",

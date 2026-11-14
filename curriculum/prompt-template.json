@@ -21,11 +21,13 @@
   },
   "closedWorld": {
     "rule": "Do not browse or invent version-specific names. Exact APIs, methods, attributes, language features, alternatives, and release changes may be named only when present in the supplied manifest data or its cited source snapshot.",
+    "namedFeatures": "The full topic inventory is supplied for overview, concepts, practice, and interview lessons. Use it as the complete allowed set of named topic features; do not enumerate it in the overview. A reference lesson receives only its assigned inventory group. Use named alternatives only when present in comparisons.",
     "inventory": "A reference lesson explains the supplied inventory names and may not add names. If the inventory is empty or incomplete, report blocked rather than filling it from model memory.",
     "concepts": "Teach the supplied concept map. If it is absent, the topic is not ready for generation; do not infer that a title is a complete syllabus.",
     "comparisons": "Include comparisons only when manifest.comparisons contains explicit alternatives and evidence. Empty means omit the comparison section.",
     "versions": "Include release history only when manifest.versionNotes contains named changes, exact affected versions, and source URLs. Empty means omit version-history discussion; never create a versions lesson for a timeless topic.",
-    "code": "Never claim an example was executed unless a test result is supplied. Mark unexecuted code examples as unverified and pseudocode as pseudocode."
+    "code": "Never claim an example was executed unless a test result is supplied. Mark unexecuted code examples as unverified and pseudocode as pseudocode.",
+    "sources": "Cite at least one relevant URL from sourceSnapshot, comparisonSources, or versionNotes.sourceUrls. Do not cite unsupplied URLs or claim independent verification."
   },
   "lessonTypes": {
     "overview": {

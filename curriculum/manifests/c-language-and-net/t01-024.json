@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 4,
+  "id": "t01-024",
+  "track": "track-01",
+  "title": "C# numeric literals and numeric conversions",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Literal syntax influences the compile-time type of a numeric constant",
+    "Suffixes and prefixes select numeric representation while digit separators improve readability",
+    "Implicit conversions allow safe assignments and operations; explicit conversions signal caller responsibility",
+    "Numeric promotions select operand types for arithmetic and comparison",
+    "Floating-point approximation, decimal precision, range, and overflow behavior affect correctness",
+    "Checked and unchecked contexts change how applicable overflow and narrowing conversions behave",
+    "Recent runtime changes can alter conversion accuracy without changing source syntax"
+  ],
+  "inventory": [
+    {
+      "id": "integer-literals",
+      "title": "Integer literal forms and notation",
+      "items": [
+        "Decimal integer literal",
+        "Hexadecimal integer literal",
+        "Binary integer literal",
+        "Integer literal type selection",
+        "Digit separator _",
+        "Unsigned suffix U or u",
+        "Long suffix L or l",
+        "Combined unsigned long suffix UL, Ul, uL, or ul"
+      ]
+    },
+    {
+      "id": "real-literals",
+      "title": "Real literal forms",
+      "items": [
+        "Real literal without suffix (double)",
+        "Float suffix F or f",
+        "Decimal suffix M or m",
+        "Double suffix D or d",
+        "Exponent notation E or e",
+        "Digit separator _ in numeric literals"
+      ]
+    },
+    {
+      "id": "implicit-conversions",
+      "title": "Predefined implicit numeric conversion source types",
+      "items": [
+        "sbyte to short (implicit numeric conversion)",
+        "sbyte to int (implicit numeric conversion)",
+        "sbyte to long (implicit numeric conversion)",
+        "sbyte to float (implicit numeric conversion)",
+        "sbyte to double (implicit numeric conversion)",
+        "sbyte to decimal (implicit numeric conversion)",
+        "sbyte to nint (implicit numeric conversion)",
+        "byte to short (implicit numeric conversion)",
+        "byte to ushort (implicit numeric conversion)",
+        "byte to int (implicit numeric conversion)",
+        "byte to uint (implicit numeric conversion)",
+        "byte to long (implicit numeric conversion)",
+        "byte to ulong (implicit numeric conversion)",
+        "byte to float (implicit numeric conversion)",
+        "byte to double (implicit numeric conversion)",
+        "byte to decimal (implicit numeric conversion)",
+        "byte to nint (implicit numeric conversion)",
+        "byte to nuint (implicit numeric conversion)",
+        "short to int (implicit numeric conversion)",
+        "short to long (implicit numeric conversion)",
+        "short to float (implicit numeric conversion)",
+        "short to double (implicit numeric conversion)",
+        "short to decimal (implicit numeric conversion)",
+        "short to nint (implicit numeric conversion)",
+        "ushort to int (implicit numeric conversion)",
+        "ushort to uint (implicit numeric conversion)",
+        "ushort to long (implicit numeric conversion)",
+        "ushort to ulong (implicit numeric conversion)",
+        "ushort to float (implicit numeric conversion)",
+        "ushort to double (implicit numeric conversion)",
+        "ushort to decimal (implicit numeric conversion)",
+        "ushort to nuint (implicit numeric conversion)",
+        "int to long (implicit numeric conversion)",
+        "int to float (implicit numeric conversion)",
+        "int to double (implicit numeric conversion)",
+        "int to decimal (implicit numeric conversion)",
+        "int to nint (implicit numeric conversion)",
+        "uint to long (implicit numeric conversion)",
+        "uint to ulong (implicit numeric conversion)",
+        "uint to float (implicit numeric conversion)",
+        "uint to double (implicit numeric conversion)",
+        "uint to decimal (implicit numeric conversion)",
+        "uint to nuint (implicit numeric conversion)",
+        "long to float (implicit numeric conversion)",
+        "long to double (implicit numeric conversion)",
+        "long to decimal (implicit numeric conversion)",
+        "ulong to float (implicit numeric conversion)",
+        "ulong to double (implicit numeric conversion)",
+        "ulong to decimal (implicit numeric conversion)",
+        "float to double (implicit numeric conversion)",
+        "nint to long (implicit numeric conversion)",
+        "nint to float (implicit numeric conversion)",
+        "nint to double (implicit numeric conversion)",
+        "nint to decimal (implicit numeric conversion)",
+        "nuint to ulong (implicit numeric conversion)",
+        "nuint to float (implicit numeric conversion)",
+        "nuint to double (implicit numeric conversion)",
+        "nuint to decimal (implicit numeric conversion)"
+      ]
+    },
+    {
+      "id": "conversion-rules",
+      "title": "Conversion rules and numeric behavior",
+      "items": [
+        "Explicit numeric conversion",
+        "Constant-expression conversion",
+        "Checked explicit numeric conversion",
+        "Unchecked explicit numeric conversion",
+        "Integral numeric promotion",
+        "Floating-point numeric promotion",
+        "Sign extension",
+        "Zero extension",
+        "Truncation toward zero",
+        "OverflowException",
+        "NaN",
+        "PositiveInfinity",
+        "NegativeInfinity"
+      ]
+    },
+    {
+      "id": "explicit-conversion-pairs",
+      "title": "Every predefined explicit numeric conversion pair",
+      "items": [
+        "sbyte to byte (explicit numeric conversion)",
+        "sbyte to ushort (explicit numeric conversion)",
+        "sbyte to uint (explicit numeric conversion)",
+        "sbyte to ulong (explicit numeric conversion)",
+        "sbyte to nuint (explicit numeric conversion)",
+        "byte to sbyte (explicit numeric conversion)",
+        "short to sbyte (explicit numeric conversion)",
+        "short to byte (explicit numeric conversion)",
+        "short to ushort (explicit numeric conversion)",
+        "short to uint (explicit numeric conversion)",
+        "short to ulong (explicit numeric conversion)",
+        "short to nuint (explicit numeric conversion)",
+        "ushort to sbyte (explicit numeric conversion)",
+        "ushort to byte (explicit numeric conversion)",
+        "ushort to short (explicit numeric conversion)",
+        "ushort to nint (explicit numeric conversion)",
+        "int to sbyte (explicit numeric conversion)",
+        "int to byte (explicit numeric conversion)",
+        "int to short (explicit numeric conversion)",
+        "int to ushort (explicit numeric conversion)",
+        "int to uint (explicit numeric conversion)",
+        "int to ulong (explicit numeric conversion)",
+        "int to nuint (explicit numeric conversion)",
+        "uint to sbyte (explicit numeric conversion)",
+        "uint to byte (explicit numeric conversion)",
+        "uint to short (explicit numeric conversion)",
+        "uint to ushort (explicit numeric conversion)",
+        "uint to int (explicit numeric conversion)",
+        "uint to nint (explicit numeric conversion)",
+        "long to sbyte (explicit numeric conversion)",
+        "long to byte (explicit numeric conversion)",
+        "long to short (explicit numeric conversion)",
+        "long to ushort (explicit numeric conversion)",
+        "long to int (explicit numeric conversion)",
+        "long to uint (explicit numeric conversion)",
+        "long to ulong (explicit numeric conversion)",
+        "long to nint (explicit numeric conversion)",
+        "long to nuint (explicit numeric conversion)",
+        "ulong to sbyte (explicit numeric conversion)",
+        "ulong to byte (explicit numeric conversion)",
+        "ulong to short (explicit numeric conversion)",
+        "ulong to ushort (explicit numeric conversion)",
+        "ulong to int (explicit numeric conversion)",
+        "ulong to uint (explicit numeric conversion)",
+        "ulong to long (explicit numeric conversion)",
+        "ulong to nint (explicit numeric conversion)",
+        "ulong to nuint (explicit numeric conversion)",
+        "nint to sbyte (explicit numeric conversion)",
+        "nint to byte (explicit numeric conversion)",
+        "nint to short (explicit numeric conversion)",
+        "nint to ushort (explicit numeric conversion)",
+        "nint to int (explicit numeric conversion)",
+        "nint to uint (explicit numeric conversion)",
+        "nint to ulong (explicit numeric conversion)",
+        "nint to nuint (explicit numeric conversion)",
+        "nuint to sbyte (explicit numeric conversion)",
+        "nuint to byte (explicit numeric conversion)",
+        "nuint to short (explicit numeric conversion)",
+        "nuint to ushort (explicit numeric conversion)",
+        "nuint to int (explicit numeric conversion)",
+        "nuint to uint (explicit numeric conversion)",
+        "nuint to long (explicit numeric conversion)",
+        "nuint to nint (explicit numeric conversion)",
+        "float to sbyte (explicit numeric conversion)",
+        "float to byte (explicit numeric conversion)",
+        "float to short (explicit numeric conversion)",
+        "float to ushort (explicit numeric conversion)",
+        "float to int (explicit numeric conversion)",
+        "float to uint (explicit numeric conversion)",
+        "float to long (explicit numeric conversion)",
+        "float to ulong (explicit numeric conversion)",
+        "float to nint (explicit numeric conversion)",
+        "float to nuint (explicit numeric conversion)",
+        "float to decimal (explicit numeric conversion)",
+        "double to sbyte (explicit numeric conversion)",
+        "double to byte (explicit numeric conversion)",
+        "double to short (explicit numeric conversion)",
+        "double to ushort (explicit numeric conversion)",
+        "double to int (explicit numeric conversion)",
+        "double to uint (explicit numeric conversion)",
+        "double to long (explicit numeric conversion)",
+        "double to ulong (explicit numeric conversion)",
+        "double to nint (explicit numeric conversion)",
+        "double to nuint (explicit numeric conversion)",
+        "double to float (explicit numeric conversion)",
+        "double to decimal (explicit numeric conversion)",
+        "decimal to sbyte (explicit numeric conversion)",
+        "decimal to byte (explicit numeric conversion)",
+        "decimal to short (explicit numeric conversion)",
+        "decimal to ushort (explicit numeric conversion)",
+        "decimal to int (explicit numeric conversion)",
+        "decimal to uint (explicit numeric conversion)",
+        "decimal to long (explicit numeric conversion)",
+        "decimal to ulong (explicit numeric conversion)",
+        "decimal to nint (explicit numeric conversion)",
+        "decimal to nuint (explicit numeric conversion)",
+        "decimal to float (explicit numeric conversion)",
+        "decimal to double (explicit numeric conversion)"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Implicit numeric conversion",
+      "Explicit numeric conversion"
+    ],
+    [
+      "Checked explicit numeric conversion",
+      "Unchecked explicit numeric conversion"
+    ],
+    [
+      "float",
+      "double",
+      "decimal"
+    ],
+    [
+      "Sign extension",
+      "Zero extension"
+    ],
+    [
+      "Binary floating-point conversion",
+      "Decimal conversion"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types"
+  ],
+  "versionNotes": [
+    {
+      "edition": "C# 7",
+      "items": [
+        "Binary integer literals and digit separators were introduced"
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7"
+      ]
+    },
+    {
+      "edition": ".NET 11",
+      "items": [
+        "Conversions between decimal and float or double are correctly rounded; earlier runtime behavior could round through intermediate values or discard significant digits"
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn C# numeric literal, numeric conversion, and numeric type references",
+    "edition": "C# 14 language reference and .NET 11 numeric conversion behavior; checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7"
+    ]
+  },
+  "scopeExclusions": [
+    "All nonnumeric conversions, including reference, boxing, unboxing, nullable, tuple, and user-defined conversions",
+    "Arithmetic and bitwise operator catalog beyond numeric promotion behavior",
+    "Parsing and formatting APIs",
+    "Floating-point standards and representation internals beyond the distinctions needed for safe type selection",
+    "Floating-point standards and representation internals beyond the distinctions needed for safe type selection"
+  ],
+  "generationAllowed": true
+}

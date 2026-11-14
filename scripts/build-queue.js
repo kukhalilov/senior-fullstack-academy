@@ -17,11 +17,11 @@ for (const track of catalog.tracks) {
   for (const file of files) {
     const manifestPath = path.join(track.manifestDirectory, file).replaceAll('\\', '/');
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-    const status = manifest.inventoryComplete === true && manifest.generationAllowed === true
-      ? 'draft-generation-eligible'
-      : manifest.inventoryComplete === true
-        ? 'blocked-on-generation-validation'
-        : 'blocked-on-inventory';
+    const statusFor = phase => manifest.inventoryComplete !== true
+      ? 'blocked-on-inventory'
+      : manifest.generationAllowed === true || manifest.generationAllowedPhases?.includes(phase)
+        ? 'draft-generation-eligible'
+        : 'blocked-on-generation-validation';
     let previous;
     const add = (phase, suffix, label, inventoryGroup) => {
       const id = `${manifest.id}-${suffix}`;
@@ -33,7 +33,7 @@ for (const track of catalog.tracks) {
         manifest: manifestPath,
         phase,
         prerequisites: previous ? [previous] : [],
-        status,
+        status: statusFor(phase),
       };
       if (inventoryGroup) task.inventoryGroup = inventoryGroup.id;
       tasks.push(task);

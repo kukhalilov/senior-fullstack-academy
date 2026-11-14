@@ -16,6 +16,11 @@ const legacy = new Map([
   ['curriculum/manifests/aspnet-core/overview.json', 'aspnet-core.overview'],
   ['curriculum/manifests/react/reconciliation.json', 'react.reconciliation'],
 ]);
+const statusFor = (manifest, phase) => manifest.inventoryComplete !== true
+  ? 'blocked-on-inventory'
+  : manifest.generationAllowed === true || manifest.generationAllowedPhases?.includes(phase)
+    ? 'draft-generation-eligible'
+    : 'blocked-on-generation-validation';
 
 for (const track of catalog.tracks) {
   const files = fs.readdirSync(track.manifestDirectory).filter(file => file.endsWith('.json'));
@@ -33,20 +38,20 @@ for (const track of catalog.tracks) {
     for (const phase of ['overview', 'concepts']) {
       const id = `${manifest.id}-${phase}`;
       expectedTasks.add(id);
-      expectedById.set(id, {module: manifest.id, phase, prerequisite: previous, status: !manifest.inventoryComplete ? 'blocked-on-inventory' : manifest.generationAllowed ? 'draft-generation-eligible' : 'blocked-on-generation-validation'});
+      expectedById.set(id, {module: manifest.id, phase, prerequisite: previous, status: statusFor(manifest, phase)});
       previous = id;
     }
     const referenceGroups = manifest.inventory.length ? manifest.inventory : [{id: 'inventory-pending'}];
     for (const group of referenceGroups) {
       const id = `${manifest.id}-reference-${group.id}`;
       expectedTasks.add(id);
-      expectedById.set(id, {module: manifest.id, phase: 'reference', prerequisite: previous, inventoryGroup: group.id, status: !manifest.inventoryComplete ? 'blocked-on-inventory' : manifest.generationAllowed ? 'draft-generation-eligible' : 'blocked-on-generation-validation'});
+      expectedById.set(id, {module: manifest.id, phase: 'reference', prerequisite: previous, inventoryGroup: group.id, status: statusFor(manifest, 'reference')});
       previous = id;
     }
     for (const phase of ['practice', 'interview']) {
       const id = `${manifest.id}-${phase}`;
       expectedTasks.add(id);
-      expectedById.set(id, {module: manifest.id, phase, prerequisite: previous, status: !manifest.inventoryComplete ? 'blocked-on-inventory' : manifest.generationAllowed ? 'draft-generation-eligible' : 'blocked-on-generation-validation'});
+      expectedById.set(id, {module: manifest.id, phase, prerequisite: previous, status: statusFor(manifest, phase)});
       previous = id;
     }
   }
@@ -87,16 +92,18 @@ for (const task of queue.tasks) {
 
 const complete = manifests.filter(manifest => manifest.inventoryComplete === true && manifest.concepts.length > 0 && manifest.inventory.length > 0 && manifest.sourceSnapshot?.edition && manifest.sourceSnapshot?.checkedAt && manifest.sourceSnapshot?.urls?.length && manifest.inventory.every(group => group.items.length > 0));
 const ready = complete.filter(manifest => manifest.generationAllowed === true);
+const partial = complete.filter(manifest => manifest.generationAllowed !== true && manifest.generationAllowedPhases?.length);
+const blocked = complete.length - ready.length - partial.length;
 for (const manifest of complete) {
   if (!manifest.scopeExclusions?.length) errors.push(`${manifest.id}: completed inventory must state scope exclusions`);
   if (manifest.comparisons.length && !manifest.comparisonSources?.length) errors.push(`${manifest.id}: comparisons need evidence sources`);
   if (manifest.versionNotes.some(note => !note.edition || !note.items?.length || !note.sourceUrls?.length)) errors.push(`${manifest.id}: every release note needs an edition, named changes, and source URLs`);
 }
-if (!structureOnly && complete.length !== manifests.length) errors.push(`${manifests.length - complete.length} of ${manifests.length} topic manifests still need a complete concept map and source-backed closed inventory; ${complete.length - ready.length} complete topic inventories are blocked from generation; whole-catalog generation remains paused.`);
+if (!structureOnly && complete.length !== manifests.length) errors.push(`${manifests.length - complete.length} of ${manifests.length} topic manifests still need a complete concept map and source-backed closed inventory; ${ready.length} topics are fully generation-enabled, ${partial.length} have phase-limited generation, and ${blocked} complete topics remain fully blocked; whole-catalog generation remains paused.`);
 
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log(`Catalog structure valid: ${manifests.length} topics and ${queue.tasks.length} lesson units; ${complete.length} complete inventories, ${ready.length} enabled for draft generation.`);
+  console.log(`Catalog structure valid: ${manifests.length} topics and ${queue.tasks.length} lesson units; ${complete.length} complete inventories, ${ready.length} fully enabled and ${partial.length} phase-limited for draft generation.`);
 }

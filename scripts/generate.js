@@ -17,10 +17,10 @@ for (const track of catalog.tracks) {
   for (const file of fs.readdirSync(track.manifestDirectory).filter(name => name.endsWith('.json'))) {
     const filePath = path.join(track.manifestDirectory, file);
     const manifest = readJson(filePath);
-    if (manifest.inventoryComplete && manifest.generationAllowed === true && manifest.concepts.length && manifest.sourceSnapshot?.urls?.length && manifest.inventory.length && manifest.inventory.every(group => group.items.length)) ready.set(manifest.id, {manifest,filePath});
+    if (manifest.inventoryComplete && (manifest.generationAllowed === true || manifest.generationAllowedPhases?.length) && manifest.concepts.length && manifest.sourceSnapshot?.urls?.length && manifest.inventory.length && manifest.inventory.every(group => group.items.length)) ready.set(manifest.id, {manifest,filePath});
   }
 }
-const isReadyTask=task=>ready.has(task.module) && /^t\d{2}-\d{3}$/.test(task.module) && /^[a-z0-9-]+$/.test(task.inventoryGroup??'overview');
+const isReadyTask=task=>ready.has(task.module) && (ready.get(task.module).manifest.generationAllowed===true || ready.get(task.module).manifest.generationAllowedPhases?.includes(task.phase)) && /^t\d{2}-\d{3}$/.test(task.module) && /^[a-z0-9-]+$/.test(task.inventoryGroup??'overview');
 const completed=new Set(fs.existsSync(outputRoot)?fs.readdirSync(outputRoot,{recursive:true}).filter(file=>file.endsWith('.md')):[]);
 const totalPending=queue.tasks.filter(task=>isReadyTask(task)&&!completed.has(path.join(task.module,`${task.id}.md`))).length;
 const pending=queue.tasks.filter(task=>isReadyTask(task)&&!completed.has(path.join(task.module,`${task.id}.md`))).slice(0,unitsPerRun);
@@ -36,8 +36,8 @@ function promptFor(task, manifest) {
   if(!spec) throw new Error(`No lesson template for ${phase}`);
   const group=phase==='reference'?manifest.inventory.find(x=>x.id===task.inventoryGroup):undefined;
   if(phase==='reference'&&!group) throw new Error(`Missing inventory group ${task.inventoryGroup}`);
-  const data={id:manifest.id,title:manifest.title,edition:manifest.sourceSnapshot.edition,concepts:manifest.concepts,scopeExclusions:manifest.scopeExclusions,sourceSnapshot:manifest.sourceSnapshot,comparisons:manifest.comparisons,comparisonSources:manifest.comparisonSources??[],versionNotes:manifest.versionNotes,...(group?{inventoryGroup:group}:{})};
-  return ['Write one self-contained Markdown lesson for a self-study learner. Output only Markdown.',`LESSON TYPE: ${phase}\nGOAL: ${spec.goal}\nREQUIRED SECTIONS: ${spec.requiredSections.join('; ')}\nUse each required section name verbatim as a Markdown heading.`,spec.instruction??'',JSON.stringify(template.pedagogy),JSON.stringify(template.closedWorld),'FROZEN TOPIC DATA:',JSON.stringify(data,null,2),'Use only supplied scope. Do not invent APIs, versions, or comparisons. Cite only supplied sources. Never claim tests ran without evidence. Mark this as an automatically generated draft.'].filter(Boolean).join('\n\n');
+  const data={id:manifest.id,title:manifest.title,edition:manifest.sourceSnapshot.edition,concepts:manifest.concepts,scopeExclusions:manifest.scopeExclusions,sourceSnapshot:manifest.sourceSnapshot,comparisons:manifest.comparisons,comparisonSources:manifest.comparisonSources??[],versionNotes:manifest.versionNotes,...(group?{inventoryGroup:group}:{inventory:manifest.inventory})};
+  return ['Write one self-contained Markdown lesson for a self-study learner. Output only Markdown.',`LESSON TYPE: ${phase}\nGOAL: ${spec.goal}\nREQUIRED SECTIONS: ${spec.requiredSections.join('; ')}\nUse each required section name verbatim as a Markdown heading.`,spec.instruction??'',JSON.stringify(template.pedagogy),JSON.stringify(template.closedWorld),'FROZEN TOPIC DATA:',JSON.stringify(data,null,2),'Mark this as an automatically generated draft.'].filter(Boolean).join('\n\n');
 }
 function checkLesson(task, manifest, text) {
   const phase=task.phase==='reference'?'reference':task.phase;

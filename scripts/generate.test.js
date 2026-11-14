@@ -51,9 +51,24 @@ test('C# program structure has source-backed syntax and current file-based app c
   assert.equal(manifest.generationAllowed, true);
   assert.equal(manifest.sourceSnapshot.edition, 'C# 14');
   assert.ok(names.includes('Top-level statements'));
-  assert.ok(names.includes('Top-level statements'));
   assert.ok(names.includes('static void Main()'));
   assert.ok(manifest.versionNotes.some(note => note.items.includes('File-based apps') && note.sourceUrls.length));
+});
+
+test('C# numeric conversion inventory covers every directed pair once', () => {
+  const types = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-003.json', 'utf8'));
+  const typeNames = types.inventory.flatMap(group => group.items);
+  const numericTypes = ['sbyte', 'byte', 'short', 'ushort', 'int', 'uint', 'long', 'ulong', 'nint', 'nuint', 'float', 'double', 'decimal'];
+  assert.ok(numericTypes.every(type => typeNames.includes(type)));
+  const conversions = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-024.json', 'utf8'));
+  const implicit = conversions.inventory.find(group => group.id === 'implicit-conversions').items;
+  const explicit = conversions.inventory.find(group => group.id === 'explicit-conversion-pairs').items;
+  const pairs = [...implicit, ...explicit].map(item => item.match(/^([a-z]+) to ([a-z]+) \((?:implicit|explicit) numeric conversion\)$/)?.slice(1).join('->'));
+  assert.equal(implicit.length, 58);
+  assert.equal(explicit.length, 98);
+  assert.equal(pairs.length, 156);
+  assert.equal(new Set(pairs).size, 156);
+  assert.ok(conversions.versionNotes.some(note => note.edition === '.NET 11'));
 });
 
 test('DSA complexity scope is source-backed but held until solution checks exist', () => {
@@ -65,6 +80,10 @@ test('DSA complexity scope is source-backed but held until solution checks exist
   assert.ok(names.includes('Master theorem'));
   assert.ok(names.includes('Potential method'));
   assert.ok(manifest.sourceSnapshot.urls.some(url => url.includes('opendsa-server.cs.vt.edu')));
+  assert.deepEqual(manifest.generationAllowedPhases, ['overview', 'concepts', 'reference', 'interview']);
+  const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
+  assert.equal(queue.tasks.find(task => task.id === 't11-001-overview').status, 'draft-generation-eligible');
+  assert.equal(queue.tasks.find(task => task.id === 't11-001-practice').status, 'blocked-on-generation-validation');
 });
 
 test('the curriculum teaches overview before references and has no forced versions phase', () => {
@@ -83,6 +102,7 @@ test('the curriculum teaches overview before references and has no forced versio
   assert.ok(template.dsaPractice.requiredSolutionFields.includes('Complete C# solution'));
   assert.ok(template.dsaPractice.requiredSolutionFields.includes('Correctness argument'));
   const path = JSON.parse(fs.readFileSync('curriculum/learning-path.json', 'utf8'));
-  assert.equal(path.topicCount, 157);
-  assert.equal(new Set(path.stages.flatMap(stage => stage.topics)).size, 157);
+  const pathTopicIds = path.stages.flatMap(stage => stage.topics);
+  assert.equal(path.topicCount, pathTopicIds.length);
+  assert.equal(new Set(pathTopicIds).size, path.topicCount);
 });
