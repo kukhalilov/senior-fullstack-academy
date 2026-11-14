@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1802,
+  "taskCount": 1817,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -545,7 +545,7 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-007.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-007-concepts",
@@ -557,20 +557,72 @@
       "prerequisites": [
         "t01-007-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-007-reference-inventory-pending",
+      "id": "t01-007-reference-class-inheritance-and-construction",
       "track": "track-01",
-      "title": "inheritance polymorphism interfaces abstract classes and access modifiers — Reference: awaiting curated names",
+      "title": "inheritance polymorphism interfaces abstract classes and access modifiers — Reference: Base classes, derived classes, constructor chaining, and abstract types",
       "module": "t01-007",
       "manifest": "curriculum/manifests/c-language-and-net/t01-007.json",
       "phase": "reference",
       "prerequisites": [
         "t01-007-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "class-inheritance-and-construction"
+    },
+    {
+      "id": "t01-007-reference-polymorphism-and-member-lookup",
+      "track": "track-01",
+      "title": "inheritance polymorphism interfaces abstract classes and access modifiers — Reference: Runtime dispatch, member hiding, and compile-time versus runtime type",
+      "module": "t01-007",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-007-reference-class-inheritance-and-construction"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "polymorphism-and-member-lookup"
+    },
+    {
+      "id": "t01-007-reference-interface-contracts",
+      "track": "track-01",
+      "title": "inheritance polymorphism interfaces abstract classes and access modifiers — Reference: Interface implementation forms, inheritance, default members, and static contracts",
+      "module": "t01-007",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-007-reference-polymorphism-and-member-lookup"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "interface-contracts"
+    },
+    {
+      "id": "t01-007-reference-accessibility-and-visibility",
+      "track": "track-01",
+      "title": "inheritance polymorphism interfaces abstract classes and access modifiers — Reference: Type/member access domains and effective accessibility",
+      "module": "t01-007",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-007-reference-interface-contracts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "accessibility-and-visibility"
+    },
+    {
+      "id": "t01-007-reference-design-choice-and-hierarchy",
+      "track": "track-01",
+      "title": "inheritance polymorphism interfaces abstract classes and access modifiers — Reference: Choosing classes, interfaces, composition, and inheritance boundaries",
+      "module": "t01-007",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-007-reference-accessibility-and-visibility"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "design-choice-and-hierarchy"
     },
     {
       "id": "t01-007-practice",
@@ -580,9 +632,9 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-007.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-007-reference-inventory-pending"
+        "t01-007-reference-design-choice-and-hierarchy"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-007-interview",
@@ -594,7 +646,7 @@
       "prerequisites": [
         "t01-007-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-008-overview",
@@ -604,7 +656,7 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-008.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-008-concepts",
@@ -616,20 +668,72 @@
       "prerequisites": [
         "t01-008-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-008-reference-inventory-pending",
+      "id": "t01-008-reference-fields-and-constants",
       "track": "track-01",
-      "title": "properties indexers fields methods parameters and overloads — Reference: awaiting curated names",
+      "title": "properties indexers fields methods parameters and overloads — Reference: Stored members, initialization, mutability, and fixed storage",
       "module": "t01-008",
       "manifest": "curriculum/manifests/c-language-and-net/t01-008.json",
       "phase": "reference",
       "prerequisites": [
         "t01-008-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "fields-and-constants"
+    },
+    {
+      "id": "t01-008-reference-properties-and-accessors",
+      "track": "track-01",
+      "title": "properties indexers fields methods parameters and overloads — Reference: Read/write contracts, auto-properties, init-only, required, and partial properties",
+      "module": "t01-008",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-008-reference-fields-and-constants"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "properties-and-accessors"
+    },
+    {
+      "id": "t01-008-reference-indexers-and-extension-members",
+      "track": "track-01",
+      "title": "properties indexers fields methods parameters and overloads — Reference: Indexed access and extension syntax on existing receiver types",
+      "module": "t01-008",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-008-reference-properties-and-accessors"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "indexers-and-extension-members"
+    },
+    {
+      "id": "t01-008-reference-methods-and-declarations",
+      "track": "track-01",
+      "title": "properties indexers fields methods parameters and overloads — Reference: Method forms, member modifiers, returns, and overload groups",
+      "module": "t01-008",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-008-reference-indexers-and-extension-members"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "methods-and-declarations"
+    },
+    {
+      "id": "t01-008-reference-parameters-and-call-binding",
+      "track": "track-01",
+      "title": "properties indexers fields methods parameters and overloads — Reference: Parameter passing, optionality, argument names, and overload resolution",
+      "module": "t01-008",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-008-reference-methods-and-declarations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "parameters-and-call-binding"
     },
     {
       "id": "t01-008-practice",
@@ -639,9 +743,9 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-008.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-008-reference-inventory-pending"
+        "t01-008-reference-parameters-and-call-binding"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-008-interview",
@@ -653,7 +757,7 @@
       "prerequisites": [
         "t01-008-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-009-overview",
@@ -663,7 +767,7 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-009.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-009-concepts",
@@ -675,20 +779,59 @@
       "prerequisites": [
         "t01-009-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-009-reference-inventory-pending",
+      "id": "t01-009-reference-generic-declarations-and-type-arguments",
       "track": "track-01",
-      "title": "generics constraints and generic methods — Reference: awaiting curated names",
+      "title": "generics constraints and generic methods — Reference: Type parameters, constructed types, and generic member declarations",
       "module": "t01-009",
       "manifest": "curriculum/manifests/c-language-and-net/t01-009.json",
       "phase": "reference",
       "prerequisites": [
         "t01-009-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "generic-declarations-and-type-arguments"
+    },
+    {
+      "id": "t01-009-reference-constraints-and-capability-contracts",
+      "track": "track-01",
+      "title": "generics constraints and generic methods — Reference: Constraint forms, ordering, nullability, and capability guarantees",
+      "module": "t01-009",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-009-reference-generic-declarations-and-type-arguments"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "constraints-and-capability-contracts"
+    },
+    {
+      "id": "t01-009-reference-inference-and-construction",
+      "track": "track-01",
+      "title": "generics constraints and generic methods — Reference: Type inference, explicit type arguments, and generic construction",
+      "module": "t01-009",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-009-reference-constraints-and-capability-contracts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "inference-and-construction"
+    },
+    {
+      "id": "t01-009-reference-generic-overloads-and-runtime",
+      "track": "track-01",
+      "title": "generics constraints and generic methods — Reference: Overload binding, inheritance, runtime representation, and design",
+      "module": "t01-009",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-009-reference-inference-and-construction"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "generic-overloads-and-runtime"
     },
     {
       "id": "t01-009-practice",
@@ -698,9 +841,9 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-009.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-009-reference-inventory-pending"
+        "t01-009-reference-generic-overloads-and-runtime"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-009-interview",
@@ -712,7 +855,7 @@
       "prerequisites": [
         "t01-009-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-010-overview",
@@ -722,7 +865,7 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-010.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-010-concepts",
@@ -734,20 +877,72 @@
       "prerequisites": [
         "t01-010-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-010-reference-inventory-pending",
+      "id": "t01-010-reference-variance-model-and-conversions",
       "track": "track-01",
-      "title": "covariance contravariance invariant types and delegates — Reference: awaiting curated names",
+      "title": "covariance contravariance invariant types and delegates — Reference: Covariant, contravariant, and invariant conversions and their limits",
       "module": "t01-010",
       "manifest": "curriculum/manifests/c-language-and-net/t01-010.json",
       "phase": "reference",
       "prerequisites": [
         "t01-010-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "variance-model-and-conversions"
+    },
+    {
+      "id": "t01-010-reference-declaring-and-using-variant-interfaces",
+      "track": "track-01",
+      "title": "covariance contravariance invariant types and delegates — Reference: Interface variance declarations, validity rules, and BCL examples",
+      "module": "t01-010",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-010-reference-variance-model-and-conversions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "declaring-and-using-variant-interfaces"
+    },
+    {
+      "id": "t01-010-reference-delegate-variance-and-method-binding",
+      "track": "track-01",
+      "title": "covariance contravariance invariant types and delegates — Reference: Variant delegate declarations, Func/Action, and method-group compatibility",
+      "module": "t01-010",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-010-reference-declaring-and-using-variant-interfaces"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "delegate-variance-and-method-binding"
+    },
+    {
+      "id": "t01-010-reference-array-variance-and-return-covariance",
+      "track": "track-01",
+      "title": "covariance contravariance invariant types and delegates — Reference: Array covariance, runtime store checks, and distinct override covariance",
+      "module": "t01-010",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-010-reference-delegate-variance-and-method-binding"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "array-variance-and-return-covariance"
+    },
+    {
+      "id": "t01-010-reference-variance-design-and-diagnostics",
+      "track": "track-01",
+      "title": "covariance contravariance invariant types and delegates — Reference: API design choices, type safety, and variance diagnostics",
+      "module": "t01-010",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-010-reference-array-variance-and-return-covariance"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "variance-design-and-diagnostics"
     },
     {
       "id": "t01-010-practice",
@@ -757,9 +952,9 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-010.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-010-reference-inventory-pending"
+        "t01-010-reference-variance-design-and-diagnostics"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-010-interview",
@@ -771,7 +966,7 @@
       "prerequisites": [
         "t01-010-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-011-overview",

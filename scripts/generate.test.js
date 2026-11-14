@@ -56,6 +56,25 @@ test('C# program structure has source-backed syntax and current file-based app c
   assert.ok(manifest.sourceSnapshot.urls.includes('https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15'));
 });
 
+test('C# inheritance, member, generics, and variance scopes are frozen and source-backed', () => {
+  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010']) {
+    const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/c-language-and-net/${id}.json`, 'utf8'));
+    const names = manifest.inventory.flatMap(group => group.items);
+    assert.equal(manifest.inventoryComplete, true, `${id} inventory must be complete`);
+    assert.equal(manifest.generationAllowed, true, `${id} must be enabled`);
+    assert.ok(manifest.concepts.length >= 4, `${id} needs an overview concept map`);
+    assert.ok(manifest.sourceSnapshot.urls.length >= 5, `${id} needs source evidence`);
+    assert.ok(manifest.scopeExclusions.length > 0, `${id} needs explicit boundaries`);
+    assert.equal(new Set(names).size, names.length, `${id} contains duplicate inventory names`);
+    assert.ok(manifest.inventory.every(group => group.items.length > 0), `${id} has an empty reference group`);
+  }
+  const generics = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-009.json', 'utf8'));
+  assert.ok(generics.inventory.flatMap(group => group.items).includes('allows ref struct anti-constraint'));
+  const members = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-008.json', 'utf8'));
+  assert.ok(members.inventory.flatMap(group => group.items).includes('Extension indexer'));
+  assert.ok(members.inventory.flatMap(group => group.items).includes('Implicit indexer access in object initializer'));
+});
+
 test('C# numeric conversion inventory covers every directed pair once', () => {
   const types = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-003.json', 'utf8'));
   const typeNames = types.inventory.flatMap(group => group.items);

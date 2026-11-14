@@ -3,10 +3,197 @@
   "id": "t01-009",
   "track": "track-01",
   "title": "generics constraints and generic methods",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A generic type or method is written once with type parameters and works with caller-supplied type arguments. The compiler substitutes those arguments for type checking while preserving static type safety; this is not the same as storing every value as object and casting later.",
+    "Constraints state what a type argument must support. They let a generic implementation safely use capabilities such as construction, reference identity, value semantics, a base class, an interface, or a static operator contract.",
+    "Generic inference often lets callers omit type arguments, but inference has defined inputs and does not infer from a desired return type. Constraints validate inferred candidates; they do not generally make inference discover a type argument by searching all possible types.",
+    "Generic types and methods participate in overload resolution. Variance, constraints, nullable annotations, and runtime representation each have distinct rules; changing one does not imply a change in the others.",
+    "Choose a generic abstraction when the same algorithm or data shape has meaningful behavior across multiple types. Avoid a type parameter that is used only once without expressing a relationship, and prefer the narrowest constraint that captures the required capability."
+  ],
+  "inventory": [
+    {
+      "id": "generic-declarations-and-type-arguments",
+      "title": "Type parameters, constructed types, and generic member declarations",
+      "items": [
+        "Generic type",
+        "Generic class",
+        "Generic struct",
+        "Generic interface",
+        "Generic delegate",
+        "Generic method",
+        "Generic local function",
+        "Generic type parameter",
+        "Type argument",
+        "Type parameter list",
+        "Type argument list",
+        "Arity",
+        "Open constructed type",
+        "Closed constructed type",
+        "Unbound generic type",
+        "Generic type definition",
+        "Constructed generic type",
+        "Nested generic type",
+        "Containing type type parameter",
+        "Generic member of a non-generic type",
+        "Generic member of a generic type",
+        "Generic method type parameter scope",
+        "Multiple type parameters",
+        "Same-name type parameter shadowing",
+        "Type parameter naming convention"
+      ]
+    },
+    {
+      "id": "constraints-and-capability-contracts",
+      "title": "Constraint forms, ordering, nullability, and capability guarantees",
+      "items": [
+        "where constraint clause",
+        "Base class constraint",
+        "Interface constraint",
+        "Multiple interface constraints",
+        "class constraint",
+        "class? constraint",
+        "notnull constraint",
+        "struct constraint",
+        "unmanaged constraint",
+        "new() constraint",
+        "Type parameter constraint",
+        "allows ref struct anti-constraint",
+        "default constraint",
+        "Constraint ordering",
+        "Constraint cannot repeat sealed type",
+        "Constraint on type parameter",
+        "Constraint on generic method",
+        "Constraint on generic type",
+        "Constraint inheritance",
+        "Constraint satisfaction",
+        "Constraint diagnostic",
+        "Nullable reference type constraint",
+        "Value type constraint",
+        "Reference type constraint",
+        "Unmanaged type constraint",
+        "Constructor constraint",
+        "Static abstract interface constraint",
+        "Generic math constraint",
+        "Constraint does not select a type argument",
+        "Constraint does not imply variance"
+      ]
+    },
+    {
+      "id": "inference-and-construction",
+      "title": "Type inference, explicit type arguments, and generic construction",
+      "items": [
+        "Explicit generic type argument",
+        "Omitted method type arguments",
+        "Generic method type inference",
+        "Input type",
+        "Output type in inference",
+        "Exact inference",
+        "Lower-bound inference",
+        "Upper-bound inference",
+        "Inference from argument expressions",
+        "Inference from lambda expression",
+        "Inference from method group",
+        "Inference from array creation expression",
+        "Inference from return type is not performed",
+        "Inference with nullable annotations",
+        "Type inference phase",
+        "Failed type inference",
+        "Type argument substitution",
+        "Type argument compatibility",
+        "Generic type construction",
+        "Generic method construction",
+        "Generic constructor restriction",
+        "Generic type in typeof expression",
+        "Generic type in default expression",
+        "Generic type in is and as operators",
+        "Generic type argument must be a type"
+      ]
+    },
+    {
+      "id": "generic-overloads-and-runtime",
+      "title": "Overload binding, inheritance, runtime representation, and design",
+      "items": [
+        "Generic method overload",
+        "Generic and non-generic overload",
+        "Overload resolution with type inference",
+        "Overload resolution with constraints",
+        "Generic overload ambiguity",
+        "Generic method hiding",
+        "Generic method override",
+        "Generic interface implementation",
+        "Generic base class construction",
+        "Generic type identity",
+        "Different closed types are distinct types",
+        "Generic type static field per closed type",
+        "Generic type initialization per closed type",
+        "Value type generic instantiation",
+        "Reference type generic instantiation",
+        "Runtime generic type information",
+        "Reified generic type arguments",
+        "Generic code sharing implementation detail",
+        "Boxing in generic code",
+        "Avoiding object-based casts with generics",
+        "Generic API usability",
+        "Unnecessary type parameter",
+        "Narrowest useful constraint",
+        "Generic algorithm versus generic data structure"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    ["Generic type parameter", "object parameter and cast"],
+    ["Generic type", "closed constructed generic type"],
+    ["class constraint", "class? constraint", "notnull constraint"],
+    ["struct constraint", "unmanaged constraint"],
+    ["Base class constraint", "Interface constraint"],
+    ["Explicit type arguments", "Inferred type arguments"],
+    ["Generic method overload", "Non-generic method overload"]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+  ],
+  "versionNotes": [
+    {
+      "edition": "C# 13 and current C# 15 generic constraint behavior",
+      "items": [
+        "C# 13 added the `allows ref struct` anti-constraint, permitting ref struct type arguments when the generic declaration follows ref-safety rules. C# 15 adds closed hierarchies and union types; their syntax and exhaustiveness behavior are treated in the dedicated type-shape and pattern-matching topics."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft C# programming guide, language reference, feature proposals, and release notes",
+    "edition": "C# 15 / .NET 11 GA generic language surface checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+    ]
+  },
+  "scopeExclusions": [
+    "Variance annotations and variance conversion are covered in t01-010.",
+    "Generic delegate and expression-tree behavior is covered in t01-011.",
+    "Generic math operator declarations and numeric APIs are covered in t01-012 and the numeric-types topic.",
+    "The complete reflection API for generic type metadata is covered in t01-019.",
+    "Closed hierarchy and union declaration syntax is covered in the type-shape and pattern-matching topics."
+  ],
+  "generationAllowed": true
 }

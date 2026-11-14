@@ -3,10 +3,228 @@
   "id": "t01-007",
   "track": "track-01",
   "title": "inheritance polymorphism interfaces abstract classes and access modifiers",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Inheritance reuses and specializes an existing class contract, but it also couples derived behavior to a base implementation. Use it for a genuine substitutable relationship; prefer composition when a type only needs another object's capability.",
+    "Virtual dispatch selects an override using the runtime object type, while nonvirtual member lookup is determined by the compile-time type. The `new` modifier hides a base member and does not override it.",
+    "An abstract class can share state and implementation while requiring derived types to implement abstract members. An interface describes a capability contract and supports multiple implementation inheritance without sharing instance storage.",
+    "Interfaces can provide default implementations and static abstract contracts. The selected feature may require a runtime capability; language syntax, target framework, and runtime support must be considered together.",
+    "Access modifiers define which code may use a type or member. The effective accessibility of a member cannot exceed the accessibility of its containing type or exposed signature types.",
+    "Polymorphism is valuable when callers depend on a stable abstraction and multiple implementations are interchangeable. Excessive inheritance hierarchies, fragile base classes, and hidden member behavior make changes harder to reason about."
+  ],
+  "inventory": [
+    {
+      "id": "class-inheritance-and-construction",
+      "title": "Base classes, derived classes, constructor chaining, and abstract types",
+      "items": [
+        "Base class",
+        "Derived class",
+        "Direct base class",
+        "Indirect base class",
+        "Single class inheritance",
+        "base class constructor",
+        "base constructor initializer : base(...)",
+        "base member access expression",
+        "Abstract class",
+        "abstract method",
+        "abstract property",
+        "abstract indexer",
+        "Abstract accessor",
+        "Concrete implementation of abstract member",
+        "Concrete class",
+        "Cannot instantiate abstract class",
+        "Virtual method",
+        "Virtual property",
+        "Virtual indexer",
+        "virtual accessor",
+        "Override member",
+        "override method",
+        "override property",
+        "override indexer",
+        "sealed override",
+        "sealed class",
+        "Cannot inherit from sealed class"
+      ]
+    },
+    {
+      "id": "polymorphism-and-member-lookup",
+      "title": "Runtime dispatch, member hiding, and compile-time versus runtime type",
+      "items": [
+        "Runtime type",
+        "Compile-time type",
+        "Virtual dispatch",
+        "Override dispatch",
+        "Nonvirtual member lookup",
+        "Member hiding",
+        "new modifier on a member",
+        "new modifier on a nested type",
+        "Base member selection",
+        "Polymorphic call",
+        "Method overload resolution",
+        "Method override resolution",
+        "Abstract dispatch",
+        "Sealed override dispatch",
+        "Covariant return type",
+        "Fragile base class",
+        "Substitutability",
+        "Liskov Substitution Principle",
+        "Composition over inheritance",
+        "Protected virtual extension point"
+      ]
+    },
+    {
+      "id": "interface-contracts",
+      "title": "Interface implementation forms, inheritance, default members, and static contracts",
+      "items": [
+        "Interface",
+        "Interface inheritance",
+        "Multiple interface implementation",
+        "Interface base list",
+        "Implicit interface implementation",
+        "Explicit interface implementation",
+        "Default interface method",
+        "Default interface property",
+        "Default interface event",
+        "Default interface indexer",
+        "static abstract interface member",
+        "static virtual interface member",
+        "static sealed interface member",
+        "Non-virtual static interface member",
+        "Interface reimplementation",
+        "Interface mapping",
+        "Generic interface implementation",
+        "Explicit member qualification",
+        "Interface segregation",
+        "Interface reference conversion"
+      ]
+    },
+    {
+      "id": "accessibility-and-visibility",
+      "title": "Type/member access domains and effective accessibility",
+      "items": [
+        "public accessibility",
+        "private accessibility",
+        "protected accessibility",
+        "internal accessibility",
+        "protected internal accessibility",
+        "private protected accessibility",
+        "file accessibility modifier",
+        "Top-level type accessibility",
+        "Nested type accessibility",
+        "Member accessibility",
+        "Effective accessibility",
+        "Containing type accessibility",
+        "Signature accessibility consistency",
+        "Friend assembly",
+        "InternalsVisibleToAttribute",
+        "Assembly boundary",
+        "Derived-type access",
+        "Same-assembly access",
+        "Same-assembly derived-type access",
+        "Protected access through derived receiver",
+        "Accessibility domain"
+      ]
+    },
+    {
+      "id": "design-choice-and-hierarchy",
+      "title": "Choosing classes, interfaces, composition, and inheritance boundaries",
+      "items": [
+        "Interface versus abstract class",
+        "Inheritance versus composition",
+        "Is-a relationship",
+        "Has-a relationship",
+        "Capability interface",
+        "Shared base implementation",
+        "Template method pattern",
+        "Fragile base class problem",
+        "Deep inheritance hierarchy",
+        "Sealed-by-default design choice",
+        "Extension point",
+        "Liskov substitutability check",
+        "Dependency inversion through interface",
+        "Closed hierarchy",
+        "Union type",
+        "Exhaustive pattern matching over closed alternatives"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Override member",
+      "Hidden member with new"
+    ],
+    [
+      "Abstract class",
+      "Interface"
+    ],
+    [
+      "Virtual dispatch",
+      "Nonvirtual member lookup"
+    ],
+    [
+      "Inheritance",
+      "Composition"
+    ],
+    [
+      "public",
+      "internal",
+      "protected internal",
+      "private protected"
+    ],
+    [
+      "static abstract interface member",
+      "Default interface implementation"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/override",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new-modifier",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/accessibility-levels",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+  ],
+  "versionNotes": [
+    {
+      "edition": "C# 8 through C# 15 selected interface/hierarchy changes",
+      "items": [
+        "C# 8 introduced default interface implementations, enabling interfaces to add supported members with bodies under compatible runtime conditions.",
+        "C# 11 added static abstract and static virtual interface members, enabling generic algorithms to express static operators and factories as constraints.",
+        "C# 15 adds non-virtual static interface members usable on older runtimes, plus closed hierarchies and union types; static abstract and default instance implementation runtime requirements remain distinct."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft C# language reference and version history",
+    "edition": "C# 15 / .NET 11 GA language surface checked 2026-11-14; memory-safety language preview is excluded",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/override",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new-modifier",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/accessibility-levels",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+    ]
+  },
+  "scopeExclusions": [
+    "Records, structs, constructors, object equality, and union declaration syntax are covered in separate C# type-shape topics.",
+    "Generic variance rules are covered in t01-010.",
+    "Generics and constraint grammar are covered in t01-009.",
+    "Pattern matching syntax is covered in t01-012; this topic only names closed-hierarchy design and its interaction with exhaustive matching.",
+    "The C# 15 memory-safety preview is excluded from the stable scope."
+  ],
+  "generationAllowed": true
 }
