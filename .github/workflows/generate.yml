@@ -1,8 +1,7 @@
 name: Generate academy drafts
 on:
   schedule:
-    # Six daily runs at four-hour intervals. The 80-call budget leaves room
-    # under the 500 RPD free-tier limit for retries and occasional manual use.
+    # Six daily runs at four-hour intervals, below the per-model free-tier quotas.
     - cron: '17 */4 * * *'
 permissions:
   contents: write
@@ -20,7 +19,7 @@ jobs:
           node-version: '24'
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.x'
+          dotnet-version: '11.0.x'
       - run: npm run build:queue
       - run: npm test
       - run: npm run validate:structure
@@ -31,9 +30,9 @@ jobs:
         if: steps.pending.outputs.pending != '0'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-3.5-flash-lite
-          UNITS_PER_RUN: '40'
-          MAX_API_CALLS_PER_RUN: '80'
+          GEMINI_MODELS: gemini-3.5-flash-lite,gemini-3.1-flash-lite
+          UNITS_PER_RUN: '80'
+          MAX_API_CALLS_PER_RUN: '160'
         run: npm run generate
       - name: Compile and run DSA solution checks
         id: validate_dsa

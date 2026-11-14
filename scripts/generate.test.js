@@ -331,13 +331,18 @@ test('the curriculum teaches overview before references and has no forced versio
   assert.deepEqual(path.stages.find(stage => stage.id === 'intermediate-dsa').prerequisites, ['programming-and-problem-solving']);
 });
 
-test('scheduled generation stays below the observed Gemini free-tier daily request quota', () => {
+test('scheduled generation stays below the observed per-model Gemini free-tier daily quotas', () => {
   const workflow = fs.readFileSync('.github/workflows/generate.yml', 'utf8');
   assert.match(workflow, /cron: '17 \*\/4 \* \* \*'/);
-  assert.match(workflow, /UNITS_PER_RUN: '40'/);
-  assert.match(workflow, /MAX_API_CALLS_PER_RUN: '80'/);
-  assert.equal(6 * 80, 480);
+  assert.match(workflow, /GEMINI_MODELS: gemini-3\.5-flash-lite,gemini-3\.1-flash-lite/);
+  assert.match(workflow, /UNITS_PER_RUN: '80'/);
+  assert.match(workflow, /MAX_API_CALLS_PER_RUN: '160'/);
+  assert.equal(6 * 160 / 2, 480);
   assert.ok(480 < 500);
+  const generator = fs.readFileSync('scripts/generate.js', 'utf8');
+  assert.match(generator, /models\[\(apiCalls-1\)%models\.length\]/);
+  assert.match(generator, /Math\.ceil\(4100\/models\.length\)/);
+  assert.match(generator, /Math\.min\(requestedCalls, 160\)/);
 });
 
 test('JavaScript language inventories use current standard names without duplicate entries', () => {

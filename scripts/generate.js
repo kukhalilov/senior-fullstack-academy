@@ -8,9 +8,11 @@ const queue = readJson('curriculum/queue.json');
 const requestedUnits = Number(process.env.UNITS_PER_RUN ?? 100);
 const unitsPerRun = Number.isInteger(requestedUnits) && requestedUnits > 0 ? Math.min(requestedUnits, 100) : 100;
 const requestedCalls = Number(process.env.MAX_API_CALLS_PER_RUN ?? 100);
-const maxApiCalls = Number.isInteger(requestedCalls) && requestedCalls > 0 ? Math.min(requestedCalls, 100) : 100;
+const maxApiCalls = Number.isInteger(requestedCalls) && requestedCalls > 0 ? Math.min(requestedCalls, 160) : 100;
 const dryRun = process.argv.includes('--dry-run');
-const model = process.env.GEMINI_MODEL ?? 'gemini-3.5-flash-lite';
+const models = (process.env.GEMINI_MODELS ?? process.env.GEMINI_MODEL ?? 'gemini-3.5-flash-lite,gemini-3.1-flash-lite')
+  .split(',').map(name => name.trim()).filter(Boolean);
+if (!models.length || new Set(models).size !== models.length) throw new Error('GEMINI_MODELS must contain unique model IDs');
 const outputRoot = 'course/drafts';
 const dsaProblemHeadings = ['Goals','Problem statement','Input constraints','Examples with expected output','Clarifying assumptions','Progressive hints','Complete C# solution','Correctness argument','Step-by-step dry run','Time complexity','Space complexity','Edge-case tests','Reflection questions'];
 const ready = new Map();
@@ -79,13 +81,17 @@ let lastRequestAt=0;
 let apiCalls=0;
 class RequestBudgetExhausted extends Error {}
 async function request(prompt,{maxOutputTokens=8192,json=false}={}) {
-  const wait=Math.max(0,4100-(Date.now()-lastRequestAt));
+  // Round-robin spacing keeps each model at least 4.1 s apart (below 15 RPM),
+  // while still allowing the configured models to use their independent RPM.
+  const minRequestInterval=Math.ceil(4100/models.length);
+  const wait=Math.max(0,minRequestInterval-(Date.now()-lastRequestAt));
   if(wait) await new Promise(resolve=>setTimeout(resolve,wait));
   lastRequestAt=Date.now();
   let delay=1500;
   for(let attempt=0;attempt<6;attempt++) {
     if(apiCalls>=maxApiCalls) throw new RequestBudgetExhausted(`Per-run API request budget reached (${maxApiCalls})`);
     apiCalls++;
+    const model=models[(apiCalls-1)%models.length];
     const generationConfig={temperature:json?0:0.25,maxOutputTokens,...(json?{responseMimeType:'application/json'}:{})};
     const response=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':apiKey},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig})});
     const body=await response.json().catch(()=>({}));
