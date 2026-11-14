@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1817,
+  "taskCount": 1825,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -976,7 +976,7 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-011.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-011-concepts",
@@ -988,20 +988,72 @@
       "prerequisites": [
         "t01-011-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-011-reference-inventory-pending",
+      "id": "t01-011-reference-delegate-types-and-invocation",
       "track": "track-01",
-      "title": "delegates events lambdas closures and expression trees — Reference: awaiting curated names",
+      "title": "delegates events lambdas closures and expression trees — Reference: Delegate declarations, instances, invocation lists, and built-in families",
       "module": "t01-011",
       "manifest": "curriculum/manifests/c-language-and-net/t01-011.json",
       "phase": "reference",
       "prerequisites": [
         "t01-011-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "delegate-types-and-invocation"
+    },
+    {
+      "id": "t01-011-reference-events-and-publisher-subscriber-pattern",
+      "track": "track-01",
+      "title": "delegates events lambdas closures and expression trees — Reference: Event declarations, accessors, event patterns, subscription lifetime",
+      "module": "t01-011",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-011-reference-delegate-types-and-invocation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "events-and-publisher-subscriber-pattern"
+    },
+    {
+      "id": "t01-011-reference-anonymous-functions-lambdas-and-capture",
+      "track": "track-01",
+      "title": "delegates events lambdas closures and expression trees — Reference: Lambda forms, typing, capture, attributes, and async callbacks",
+      "module": "t01-011",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-011-reference-events-and-publisher-subscriber-pattern"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "anonymous-functions-lambdas-and-capture"
+    },
+    {
+      "id": "t01-011-reference-expression-trees-and-query-providers",
+      "track": "track-01",
+      "title": "delegates events lambdas closures and expression trees — Reference: Expression tree construction, inspection, translation, and execution",
+      "module": "t01-011",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-011-reference-anonymous-functions-lambdas-and-capture"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "expression-trees-and-query-providers"
+    },
+    {
+      "id": "t01-011-reference-behavior-design-and-runtime-tradeoffs",
+      "track": "track-01",
+      "title": "delegates events lambdas closures and expression trees — Reference: Callback versus notification, allocations, async and provider boundaries",
+      "module": "t01-011",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-011-reference-expression-trees-and-query-providers"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "behavior-design-and-runtime-tradeoffs"
     },
     {
       "id": "t01-011-practice",
@@ -1011,9 +1063,9 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-011.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-011-reference-inventory-pending"
+        "t01-011-reference-behavior-design-and-runtime-tradeoffs"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-011-interview",
@@ -1025,7 +1077,7 @@
       "prerequisites": [
         "t01-011-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-012-overview",
@@ -1094,7 +1146,7 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-013.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-013-concepts",
@@ -1106,20 +1158,72 @@
       "prerequisites": [
         "t01-013-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-013-reference-inventory-pending",
+      "id": "t01-013-reference-throwing-catching-and-propagation",
       "track": "track-01",
-      "title": "exceptions error handling and disposal — Reference: awaiting curated names",
+      "title": "exceptions error handling and disposal — Reference: Throw forms, catch selection, filters, stack behavior, and cleanup flow",
       "module": "t01-013",
       "manifest": "curriculum/manifests/c-language-and-net/t01-013.json",
       "phase": "reference",
       "prerequisites": [
         "t01-013-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "throwing-catching-and-propagation"
+    },
+    {
+      "id": "t01-013-reference-common-exception-contracts-and-cancellation",
+      "track": "track-01",
+      "title": "exceptions error handling and disposal — Reference: Standard exception types, argument validation, cancellation, and retry signals",
+      "module": "t01-013",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-013-reference-throwing-catching-and-propagation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "common-exception-contracts-and-cancellation"
+    },
+    {
+      "id": "t01-013-reference-custom-exceptions-and-error-policy",
+      "track": "track-01",
+      "title": "exceptions error handling and disposal — Reference: Exception type design, invariants, logging, boundaries, and security",
+      "module": "t01-013",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-013-reference-common-exception-contracts-and-cancellation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "custom-exceptions-and-error-policy"
+    },
+    {
+      "id": "t01-013-reference-deterministic-resource-cleanup",
+      "track": "track-01",
+      "title": "exceptions error handling and disposal — Reference: IDisposable, IAsyncDisposable, using scopes, and ownership",
+      "module": "t01-013",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-013-reference-custom-exceptions-and-error-policy"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "deterministic-resource-cleanup"
+    },
+    {
+      "id": "t01-013-reference-finalization-and-operating-system-resources",
+      "track": "track-01",
+      "title": "exceptions error handling and disposal — Reference: Finalizers, SafeHandle, critical finalization, and GC interaction",
+      "module": "t01-013",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-013-reference-deterministic-resource-cleanup"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "finalization-and-operating-system-resources"
     },
     {
       "id": "t01-013-practice",
@@ -1129,9 +1233,9 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-013.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-013-reference-inventory-pending"
+        "t01-013-reference-finalization-and-operating-system-resources"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-013-interview",
@@ -1143,7 +1247,7 @@
       "prerequisites": [
         "t01-013-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-014-overview",

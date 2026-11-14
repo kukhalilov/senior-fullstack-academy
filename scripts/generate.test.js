@@ -57,7 +57,7 @@ test('C# program structure has source-backed syntax and current file-based app c
 });
 
 test('C# inheritance, member, generics, and variance scopes are frozen and source-backed', () => {
-  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010']) {
+  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010', 't01-011', 't01-013']) {
     const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/c-language-and-net/${id}.json`, 'utf8'));
     const names = manifest.inventory.flatMap(group => group.items);
     assert.equal(manifest.inventoryComplete, true, `${id} inventory must be complete`);
@@ -73,6 +73,12 @@ test('C# inheritance, member, generics, and variance scopes are frozen and sourc
   const members = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-008.json', 'utf8'));
   assert.ok(members.inventory.flatMap(group => group.items).includes('Extension indexer'));
   assert.ok(members.inventory.flatMap(group => group.items).includes('Implicit indexer access in object initializer'));
+  const callbacks = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-011.json', 'utf8'));
+  assert.ok(callbacks.inventory.flatMap(group => group.items).includes('Expression<TDelegate>'));
+  assert.ok(callbacks.inventory.flatMap(group => group.items).includes('Outer variable capture'));
+  const cleanup = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-013.json', 'utf8'));
+  assert.ok(cleanup.inventory.flatMap(group => group.items).includes('IAsyncDisposable.DisposeAsync'));
+  assert.ok(cleanup.inventory.flatMap(group => group.items).includes('ExceptionDispatchInfo.Throw'));
 });
 
 test('C# numeric conversion inventory covers every directed pair once', () => {
