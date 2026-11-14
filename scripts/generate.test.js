@@ -378,3 +378,38 @@ test('TypeScript 6 scopes freeze the compiler options, type operators, and curre
   assert.ok(build.inventory.flatMap(group => group.items).includes('Rolldown'));
   assert.ok(build.versionNotes.some(note => note.edition === 'Vite 8.0 stable (2026)'));
 });
+
+test('React 19.3 APIs are split by official reference surfaces and their exact names are frozen', () => {
+  const base = 'curriculum/manifests/react-and-frontend';
+  const core = JSON.parse(fs.readFileSync(`${base}/t07-019.json`, 'utf8'));
+  const dom = JSON.parse(fs.readFileSync(`${base}/t07-020.json`, 'utf8'));
+  const rendering = JSON.parse(fs.readFileSync(`${base}/t07-021.json`, 'utf8'));
+  const compiler = JSON.parse(fs.readFileSync(`${base}/t07-022.json`, 'utf8'));
+  for (const manifest of [core, dom, rendering, compiler]) {
+    assert.equal(manifest.inventoryComplete, true, manifest.id);
+    assert.equal(manifest.generationAllowed, true, manifest.id);
+    assert.match(manifest.sourceSnapshot.edition, /^(React 19\.3 stable|React Compiler stable documentation checked 2026-11-14)$/, manifest.id);
+    const allItems = manifest.inventory.flatMap(group => group.items);
+    assert.ok(allItems.length > 0, manifest.id);
+    assert.equal(new Set(allItems).size, allItems.length, manifest.id);
+  }
+  const coreItems = core.inventory.flatMap(group => group.items);
+  for (const item of ['useEffectEvent', 'useActionState', 'useOptimistic', '<Activity>', '<ViewTransition>', 'FragmentInstance.focusLast', 'addTransitionType', 'browser']) assert.ok(coreItems.includes(item), item);
+  const domItems = dom.inventory.flatMap(group => group.items);
+  for (const item of ['useFormStatus', 'requestFormReset', 'preinitModule', 'prefetchDNS', 'findDOMNode (removed; use refs)']) assert.ok(domItems.includes(item), item);
+  const renderItems = rendering.inventory.flatMap(group => group.items);
+  for (const item of ['createRoot', 'hydrateRoot', 'renderToReadableStream', 'renderToPipeableStream', 'prerender', 'resumeAndPrerenderToNodeStream']) assert.ok(renderItems.includes(item), item);
+  const compilerItems = compiler.inventory.flatMap(group => group.items);
+  assert.ok(compilerItems.includes('\"use memo\"'));
+  assert.ok(compilerItems.includes('\"use no memo\"'));
+});
+
+test('frontend foundational topics separate HTML, forms, DOM, CSS, and React libraries', () => {
+  const catalog = JSON.parse(fs.readFileSync('curriculum/catalog.json', 'utf8'));
+  const frontend = catalog.tracks.find(track => track.id === 'track-07');
+  const manifestFiles = fs.readdirSync(frontend.manifestDirectory).filter(file => file.endsWith('.json'));
+  assert.equal(frontend.topicCount, 25);
+  assert.equal(manifestFiles.length, 25);
+  const titles = manifestFiles.map(file => JSON.parse(fs.readFileSync(`${frontend.manifestDirectory}/${file}`, 'utf8')).title.toLowerCase());
+  for (const word of ['html', 'forms', 'dom', 'accessibility', 'css', 'react', 'redux', 'mobx', 'testing']) assert.ok(titles.some(title => title.includes(word)), word);
+});

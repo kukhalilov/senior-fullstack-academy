@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 4,
+  "id": "t07-020",
+  "track": "track-07",
+  "title": "React DOM components forms resource hints portals and preload APIs",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "React DOM adapts declarative React components to browser HTML, SVG, and DOM behavior.",
+    "The same component names accept React props with differences in naming, controlled input behavior, refs, and event semantics.",
+    "React 19 form Actions and resource hints connect UI rendering to browser submission and loading.",
+    "Browser-only APIs should be distinguished from core React APIs and server renderer entry points."
+  ],
+  "inventory": [
+    {"id":"common-dom-props","title":"Common DOM component prop behavior","items":["Common HTML/SVG props","camelCase DOM prop names","ref prop","dangerouslySetInnerHTML","data-* attributes","aria-* attributes","style prop object","event handler props","custom element attributes","custom element properties","custom element on-prefixed events"]},
+    {"id":"html-and-svg-components","title":"Built-in browser component families","items":["HTML built-in components","SVG built-in components","Custom HTML elements","Custom elements using the is attribute"]},
+    {"id":"forms-and-controlled-elements","title":"React form component APIs","items":["<form>","<input>","<select>","<textarea>","<button>","<option>","<progress>","<output>","action prop","formAction prop","value prop","defaultValue prop","checked prop","defaultChecked prop","onChange","onSubmit","name prop","method prop","encType prop","noValidate prop","required prop","multiple prop","form attribute","FormData submission payload"]},
+    {"id":"resource-and-metadata-components","title":"Resource and metadata component APIs","items":["<img>","<link>","<meta>","<script>","<style>","<title>","precedence prop","async prop"]},
+    {"id":"react-dom-hooks-and-actions","title":"React DOM forms hooks and APIs","items":["useFormStatus","requestFormReset","createPortal","flushSync"]},
+    {"id":"resource-preloading-apis","title":"React DOM resource loading APIs","items":["prefetchDNS","preconnect","preload","preloadModule","preinit","preinitModule"]},
+    {"id":"removed-react-dom-apis","title":"React 19 removed APIs and replacements","items":["findDOMNode (removed; use refs)","hydrate (removed; use hydrateRoot)","render (removed; use createRoot)","unmountComponentAtNode (removed; use root.unmount())","renderToNodeStream (removed; use current server APIs)","renderToStaticNodeStream (removed; use current server APIs)"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["value","defaultValue"],["checked","defaultChecked"],["action URL","action function"],["attribute","property for custom elements"],["createPortal","ordinary DOM child rendering"]],
+  "comparisonSources": ["https://react.dev/reference/react-dom/components","https://react.dev/reference/react-dom","https://react.dev/blog/2024/12/05/react-19"],
+  "versionNotes": [{"edition":"React 19","items":["Function-valued form action and formAction","Uncontrolled form reset after successful Actions","New resource preloading APIs","Removed legacy render and hydration APIs"],"sourceUrls":["https://react.dev/blog/2024/12/05/react-19","https://react.dev/reference/react-dom"]}],
+  "sourceSnapshot": {
+    "authority":"Official React DOM component and API references",
+    "edition":"React 19.3 stable",
+    "checkedAt":"2026-11-14",
+    "urls":["https://react.dev/reference/react-dom/components","https://react.dev/reference/react-dom","https://react.dev/reference/react-dom/hooks","https://react.dev/versions","https://react.dev/blog/2024/12/05/react-19"]
+  },
+  "scopeExclusions":["HTML element definitions and native form constraints (t07-001 and t07-014)","React client/server/static rendering entry points (t07-021)","React Server Components directives and compiler configuration (t07-019 and t07-022)"],
+  "generationAllowed": true
+}
