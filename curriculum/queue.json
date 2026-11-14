@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1855,
+  "taskCount": 1858,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -1996,61 +1996,100 @@
     {
       "id": "t01-020-overview",
       "track": "track-01",
-      "title": "streams file system serialization networking and HTTP clients — Big-picture orientation and mental model",
+      "title": "streams file system serialization sockets and HTTP clients — Big-picture orientation and mental model",
       "module": "t01-020",
       "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-020-concepts",
       "track": "track-01",
-      "title": "streams file system serialization networking and HTTP clients — Core concepts and how they fit together",
+      "title": "streams file system serialization sockets and HTTP clients — Core concepts and how they fit together",
       "module": "t01-020",
       "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
       "phase": "concepts",
       "prerequisites": [
         "t01-020-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-020-reference-inventory-pending",
+      "id": "t01-020-reference-stream-abstractions-and-implementations",
       "track": "track-01",
-      "title": "streams file system serialization networking and HTTP clients — Reference: awaiting curated names",
+      "title": "streams file system serialization sockets and HTTP clients — Reference: Stream capabilities, memory and file streams, wrappers, readers, writers, and async I/O",
       "module": "t01-020",
       "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
       "phase": "reference",
       "prerequisites": [
         "t01-020-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "stream-abstractions-and-implementations"
+    },
+    {
+      "id": "t01-020-reference-file-directory-and-path-apis",
+      "track": "track-01",
+      "title": "streams file system serialization sockets and HTTP clients — Reference: File, Directory, FileInfo, DirectoryInfo, Path, globbing, filesystem metadata, and safety",
+      "module": "t01-020",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-020-reference-stream-abstractions-and-implementations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "file-directory-and-path-apis"
+    },
+    {
+      "id": "t01-020-reference-serialization-and-compression",
+      "track": "track-01",
+      "title": "streams file system serialization sockets and HTTP clients — Reference: System.Text.Json serializer, DOM, converters, source generation, and compression streams",
+      "module": "t01-020",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-020-reference-file-directory-and-path-apis"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "serialization-and-compression"
+    },
+    {
+      "id": "t01-020-reference-network-socket-and-http-client",
+      "track": "track-01",
+      "title": "streams file system serialization sockets and HTTP clients — Reference: DNS endpoints, sockets, TCP and UDP helpers, HttpClient request/response, and safe transport use",
+      "module": "t01-020",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-020-reference-serialization-and-compression"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "network-socket-and-http-client"
     },
     {
       "id": "t01-020-practice",
       "track": "track-01",
-      "title": "streams file system serialization networking and HTTP clients — Exercises and worked solutions",
+      "title": "streams file system serialization sockets and HTTP clients — Exercises and worked solutions",
       "module": "t01-020",
       "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-020-reference-inventory-pending"
+        "t01-020-reference-network-socket-and-http-client"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-020-interview",
       "track": "track-01",
-      "title": "streams file system serialization networking and HTTP clients — Interview questions and reasoning",
+      "title": "streams file system serialization sockets and HTTP clients — Interview questions and reasoning",
       "module": "t01-020",
       "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
       "phase": "interview",
       "prerequisites": [
         "t01-020-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-021-overview",

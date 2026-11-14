@@ -57,7 +57,7 @@ test('C# program structure has source-backed syntax and current file-based app c
 });
 
 test('C# inheritance, member, generics, and variance scopes are frozen and source-backed', () => {
-  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010', 't01-011', 't01-012', 't01-013', 't01-014', 't01-015', 't01-016', 't01-017', 't01-018', 't01-019']) {
+  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010', 't01-011', 't01-012', 't01-013', 't01-014', 't01-015', 't01-016', 't01-017', 't01-018', 't01-019', 't01-020']) {
     const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/c-language-and-net/${id}.json`, 'utf8'));
     const names = manifest.inventory.flatMap(group => group.items);
     assert.equal(manifest.inventoryComplete, true, `${id} inventory must be complete`);
@@ -113,7 +113,13 @@ test('C# inheritance, member, generics, and variance scopes are frozen and sourc
   assert.ok(runtimeNames.includes('AssemblyLoadContext'));
   assert.ok(runtimeNames.includes('MetadataLoadContext'));
   assert.ok(runtimeNames.includes('PublishAot MSBuild property'));
-  assert.ok(runtime.scopeExclusions.some(item => item.includes('interop')));  const patterns = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-012.json', 'utf8'));
+  assert.ok(runtime.scopeExclusions.some(item => item.includes('interop')));  const io = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-020.json', 'utf8'));
+  const ioNames = io.inventory.flatMap(group => group.items);
+  assert.ok(ioNames.includes('Stream.ReadExactly(Span<Byte>)'));
+  assert.ok(ioNames.includes('File.ReadLinesAsync(String,CancellationToken)'));
+  assert.ok(ioNames.includes('JsonSerializerContext'));
+  assert.ok(ioNames.includes('HttpClient.SendAsync(HttpRequestMessage,HttpCompletionOption,CancellationToken)'));
+  assert.equal(new Set(ioNames).size, ioNames.length);  const patterns = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-012.json', 'utf8'));
   const patternNames = patterns.inventory.flatMap(group => group.items);
   assert.ok(patternNames.includes('Logical and pattern'));
   assert.ok(patternNames.includes('C# 15 labeled continue statement'));
