@@ -477,3 +477,24 @@ test('CSS property manifests cover the complete pinned standard and experimental
   for (const item of ['container-type', 'display', 'font-palette', 'line-clamp', 'scrollbar-width', 'text-wrap', 'view-transition-name', 'background-color', 'fill']) assert.ok(standard.includes(item), item);
   assert.ok(experimental.includes('anchor-name'));
 });
+
+test('accessibility inventory freezes all WCAG 2.2 criteria, current WAI-ARIA roles, attributes, and APG patterns', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-002.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${manifest.id}/${group.id}`);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length, 'accessibility reference names do not overlap between groups');
+  const group = id => manifest.inventory.find(item => item.id === id).items;
+  const criteria = manifest.inventory.filter(item => item.id.startsWith('perceivable-') || item.id.startsWith('operable-') || item.id.startsWith('understandable-') || item.id.startsWith('robust-')).flatMap(item => item.items);
+  assert.equal(criteria.length, 86);
+  assert.equal(group('aria-concrete-roles').length, 88);
+  assert.equal(group('aria-abstract-roles').length, 12);
+  assert.equal(group('aria-states-and-properties').length, 53);
+  assert.equal(group('apg-interaction-patterns').length, 30);
+  for (const item of ['2.4.11 Focus Not Obscured (Minimum) (AA)', '2.5.7 Dragging Movements (AA)', '3.3.8 Accessible Authentication (Minimum) (AA)', '4.1.3 Status Messages (AA)']) assert.ok(criteria.includes(item), item);
+  for (const item of ['image', 'comment', 'mark', 'suggestion']) assert.ok(group('aria-concrete-roles').includes(item), item);
+  for (const item of ['aria-colindextext', 'aria-description', 'aria-rowindextext', 'aria-braillelabel']) assert.ok(group('aria-states-and-properties').includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition === 'WAI-ARIA 1.3 Working Draft'));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(change => change.includes('Removed 4.1.1 Parsing'))));
+});

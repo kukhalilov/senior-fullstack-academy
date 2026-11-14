@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1492,
+  "taskCount": 1511,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -7902,7 +7902,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-002-concepts",
@@ -7914,20 +7914,267 @@
       "prerequisites": [
         "t07-002-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-002-reference-inventory-pending",
+      "id": "t07-002-reference-accessibility-model-and-principles",
       "track": "track-07",
-      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: awaiting curated names",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: Accessibility model, POUR principles, and WCAG guidelines",
       "module": "t07-002",
       "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
       "phase": "reference",
       "prerequisites": [
         "t07-002-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "accessibility-model-and-principles"
+    },
+    {
+      "id": "t07-002-reference-perceivable-text-alternatives",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: perceivable text alternatives",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-accessibility-model-and-principles"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "perceivable-text-alternatives"
+    },
+    {
+      "id": "t07-002-reference-perceivable-time-based-media",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: perceivable time based media",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-perceivable-text-alternatives"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "perceivable-time-based-media"
+    },
+    {
+      "id": "t07-002-reference-perceivable-adaptable",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: perceivable adaptable",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-perceivable-time-based-media"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "perceivable-adaptable"
+    },
+    {
+      "id": "t07-002-reference-perceivable-distinguishable",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: perceivable distinguishable",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-perceivable-adaptable"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "perceivable-distinguishable"
+    },
+    {
+      "id": "t07-002-reference-operable-keyboard-accessible",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: operable keyboard accessible",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-perceivable-distinguishable"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "operable-keyboard-accessible"
+    },
+    {
+      "id": "t07-002-reference-operable-enough-time",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: operable enough time",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-operable-keyboard-accessible"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "operable-enough-time"
+    },
+    {
+      "id": "t07-002-reference-operable-seizures-and-reactions",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: operable seizures and reactions",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-operable-enough-time"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "operable-seizures-and-reactions"
+    },
+    {
+      "id": "t07-002-reference-operable-navigable",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: operable navigable",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-operable-seizures-and-reactions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "operable-navigable"
+    },
+    {
+      "id": "t07-002-reference-operable-input-modalities",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: operable input modalities",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-operable-navigable"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "operable-input-modalities"
+    },
+    {
+      "id": "t07-002-reference-understandable-readable",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: understandable readable",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-operable-input-modalities"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "understandable-readable"
+    },
+    {
+      "id": "t07-002-reference-understandable-predictable",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: understandable predictable",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-understandable-readable"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "understandable-predictable"
+    },
+    {
+      "id": "t07-002-reference-understandable-input-assistance",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: understandable input assistance",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-understandable-predictable"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "understandable-input-assistance"
+    },
+    {
+      "id": "t07-002-reference-robust-compatible",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WCAG 2.2 success criteria: robust compatible",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-understandable-input-assistance"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "robust-compatible"
+    },
+    {
+      "id": "t07-002-reference-aria-concrete-roles",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: Concrete WAI-ARIA 1.3 draft roles",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-robust-compatible"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "aria-concrete-roles"
+    },
+    {
+      "id": "t07-002-reference-aria-abstract-roles",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: Abstract WAI-ARIA role model (not author-assigned)",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-aria-concrete-roles"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "aria-abstract-roles"
+    },
+    {
+      "id": "t07-002-reference-aria-states-and-properties",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: WAI-ARIA 1.3 draft states and properties",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-aria-abstract-roles"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "aria-states-and-properties"
+    },
+    {
+      "id": "t07-002-reference-apg-interaction-patterns",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: Current ARIA Authoring Practices Guide patterns",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-aria-states-and-properties"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "apg-interaction-patterns"
+    },
+    {
+      "id": "t07-002-reference-keyboard-focus-and-widget-behaviors",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: Keyboard and focus design concepts",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-apg-interaction-patterns"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "keyboard-focus-and-widget-behaviors"
+    },
+    {
+      "id": "t07-002-reference-accessibility-test-methods-and-tools",
+      "track": "track-07",
+      "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing — Reference: Accessibility evaluation methods and tools",
+      "module": "t07-002",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-002-reference-keyboard-focus-and-widget-behaviors"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "accessibility-test-methods-and-tools"
     },
     {
       "id": "t07-002-practice",
@@ -7937,9 +8184,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-002.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-002-reference-inventory-pending"
+        "t07-002-reference-accessibility-test-methods-and-tools"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-002-interview",
@@ -7951,7 +8198,7 @@
       "prerequisites": [
         "t07-002-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-003-overview",
