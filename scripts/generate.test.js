@@ -601,3 +601,22 @@ test('React rendering modes topic teaches host, hydration, and stream concepts w
   for (const item of ['Client rendering', 'Server rendering', 'Hydration mismatch', 'Selective hydration', 'Streaming server rendering', 'Static prerendering']) assert.ok(all.includes(item), item);
   assert.ok(manifest.scopeExclusions.some(item => item.includes('t07-021')));
 });
+
+test('frontend state management compares React, Redux Toolkit, RTK Query, and MobX by data ownership', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-024.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Component-local UI state', 'RTK Query', 'createApi(options)', 'tag-based cache invalidation', 'MobX dynamic dependency graph', 'Redux Toolkit versus MobX']) assert.ok(all.includes(item), item);
+});
+
+test('frontend testing inventory names the main React, user-event, Vitest, Playwright, and accessibility surfaces', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-025.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['render(ui, options?)', 'getByRole', 'findByRole', 'userEvent.setup(options?)', 'waitFor(callback, options?)', 'vi.fn(implementation?)', 'page.getByRole(role, options?)', 'Web-first assertion', '@axe-core/playwright']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('user-event v14')));
+});

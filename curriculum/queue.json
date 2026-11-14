@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1554,
+  "taskCount": 1563,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -11462,7 +11462,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-024.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-024-concepts",
@@ -11474,20 +11474,72 @@
       "prerequisites": [
         "t07-024-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-024-reference-inventory-pending",
+      "id": "t07-024-reference-state-domains-and-ownership",
       "track": "track-07",
-      "title": "Frontend state management Redux Toolkit and MobX comparisons — Reference: awaiting curated names",
+      "title": "Frontend state management Redux Toolkit and MobX comparisons — Reference: State categories and appropriate ownership",
       "module": "t07-024",
       "manifest": "curriculum/manifests/react-and-frontend/t07-024.json",
       "phase": "reference",
       "prerequisites": [
         "t07-024-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "state-domains-and-ownership"
+    },
+    {
+      "id": "t07-024-reference-built-in-react-state",
+      "track": "track-07",
+      "title": "Frontend state management Redux Toolkit and MobX comparisons — Reference: Built-in React sharing choices",
+      "module": "t07-024",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-024-reference-state-domains-and-ownership"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "built-in-react-state"
+    },
+    {
+      "id": "t07-024-reference-redux-ecosystem-selection",
+      "track": "track-07",
+      "title": "Frontend state management Redux Toolkit and MobX comparisons — Reference: Redux Toolkit and RTK Query role",
+      "module": "t07-024",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-024-reference-built-in-react-state"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "redux-ecosystem-selection"
+    },
+    {
+      "id": "t07-024-reference-mobx-ecosystem-selection",
+      "track": "track-07",
+      "title": "Frontend state management Redux Toolkit and MobX comparisons — Reference: MobX model and React integration role",
+      "module": "t07-024",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-024-reference-redux-ecosystem-selection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "mobx-ecosystem-selection"
+    },
+    {
+      "id": "t07-024-reference-selection-and-migration",
+      "track": "track-07",
+      "title": "Frontend state management Redux Toolkit and MobX comparisons — Reference: Decision criteria and migration tradeoffs",
+      "module": "t07-024",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-024-reference-mobx-ecosystem-selection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "selection-and-migration"
     },
     {
       "id": "t07-024-practice",
@@ -11497,9 +11549,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-024.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-024-reference-inventory-pending"
+        "t07-024-reference-selection-and-migration"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-024-interview",
@@ -11511,7 +11563,7 @@
       "prerequisites": [
         "t07-024-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-025-overview",
@@ -11521,7 +11573,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-025.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-025-concepts",
@@ -11533,20 +11585,85 @@
       "prerequisites": [
         "t07-025-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-025-reference-inventory-pending",
+      "id": "t07-025-reference-test-levels-and-test-design",
       "track": "track-07",
-      "title": "Frontend component testing unit integration end-to-end and accessibility — Reference: awaiting curated names",
+      "title": "Frontend component testing unit integration end-to-end and accessibility — Reference: Test levels and behavior-focused test design",
       "module": "t07-025",
       "manifest": "curriculum/manifests/react-and-frontend/t07-025.json",
       "phase": "reference",
       "prerequisites": [
         "t07-025-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "test-levels-and-test-design"
+    },
+    {
+      "id": "t07-025-reference-react-testing-library",
+      "track": "track-07",
+      "title": "Frontend component testing unit integration end-to-end and accessibility — Reference: React Testing Library render and semantic querying",
+      "module": "t07-025",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-025.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-025-reference-test-levels-and-test-design"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "react-testing-library"
+    },
+    {
+      "id": "t07-025-reference-user-interaction-testing",
+      "track": "track-07",
+      "title": "Frontend component testing unit integration end-to-end and accessibility — Reference: User event simulation and async behavior",
+      "module": "t07-025",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-025.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-025-reference-react-testing-library"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "user-interaction-testing"
+    },
+    {
+      "id": "t07-025-reference-unit-test-runner-and-mocks",
+      "track": "track-07",
+      "title": "Frontend component testing unit integration end-to-end and accessibility — Reference: Test runner, assertions, and dependency mocks",
+      "module": "t07-025",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-025.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-025-reference-user-interaction-testing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "unit-test-runner-and-mocks"
+    },
+    {
+      "id": "t07-025-reference-browser-end-to-end-testing",
+      "track": "track-07",
+      "title": "Frontend component testing unit integration end-to-end and accessibility — Reference: Playwright end-to-end tests and browser verification",
+      "module": "t07-025",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-025.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-025-reference-unit-test-runner-and-mocks"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "browser-end-to-end-testing"
+    },
+    {
+      "id": "t07-025-reference-accessibility-and-coverage",
+      "track": "track-07",
+      "title": "Frontend component testing unit integration end-to-end and accessibility — Reference: Accessibility verification, coverage, and CI quality",
+      "module": "t07-025",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-025.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-025-reference-browser-end-to-end-testing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "accessibility-and-coverage"
     },
     {
       "id": "t07-025-practice",
@@ -11556,9 +11673,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-025.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-025-reference-inventory-pending"
+        "t07-025-reference-accessibility-and-coverage"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-025-interview",
@@ -11570,7 +11687,7 @@
       "prerequisites": [
         "t07-025-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-001-overview",
