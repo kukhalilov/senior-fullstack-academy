@@ -2,11 +2,19 @@
   "schemaVersion": 4,
   "id": "t06-001",
   "track": "track-06",
-  "title": "variables scope closures hoisting and lexical environments",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "title": "JavaScript declarations, bindings, scope, and closures",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": ["How identifiers resolve through nested environments", "How declarations create bindings", "How block, function, and module scope differ", "How closures retain access to their defining lexical environment", "How declaration instantiation explains hoisting and the temporal dead zone"],
+  "inventory": [
+    {"id":"declarations-and-bindings","title":"Declaration forms and binding kinds","items":["var declaration","let declaration","const declaration","function declaration","class declaration","lexical declaration","variable declaration","binding identifier","global declaration","module-level declaration"]},
+    {"id":"scope-environments-and-closures","title":"Scope, environments, and closure behavior","items":["Global Environment Record","Module Environment Record","Function Environment Record","Declarative Environment Record","Object Environment Record","Lexical Environment","Variable Environment","lexical scope","block scope","function scope","scope chain","outer environment reference","closure","captured binding","live lexical binding"]},
+    {"id":"initialization-and-hoisting","title":"Declaration instantiation and initialization behavior","items":["Declaration instantiation","function declaration hoisting","var binding initialization","lexical binding initialization","temporal dead zone","re-declaration early errors","global object binding for var","global lexical binding"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["var declaration","let declaration"],["let declaration","const declaration"],["function scope","block scope"],["global script binding","module binding"],["binding initialization","temporal dead zone"]],
+  "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures"],
+  "versionNotes": [],
+  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript guide","edition":"ECMAScript 2026","checkedAt":"2026-11-14","urls":["https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures"]},
+  "scopeExclusions": ["Function parameter forms and invocation semantics (t06-003)","Object property descriptors (t06-004)","TypeScript-specific declaration and module behavior"],
+  "generationAllowed": true
 }

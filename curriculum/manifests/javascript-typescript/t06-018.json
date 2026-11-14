@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 4,
+  "id": "t06-018",
+  "track": "track-06",
+  "title": "JavaScript classes, inheritance, and private elements",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": ["Class syntax as a structured form over prototype-based behavior", "Construction order in base and derived classes", "Static versus instance members", "Private names and brand checks", "Field and static-block initialization order"],
+  "inventory": [
+    {"id":"class-forms-and-inheritance","title":"Class declarations, expressions, and inheritance","items":["Class declaration","Class expression","extends clause","Base class","Derived class","constructor method","Default base constructor","Default derived constructor","super() call","super property access","new.target in constructor","Static method","Instance method","Static getter","Static setter","Instance getter","Instance setter"]},
+    {"id":"fields-and-private-elements","title":"Fields, private elements, and initialization","items":["Public instance field","Public static field","Private instance field","Private static field","Private instance method","Private static method","Private getter","Private setter","Private static getter","Private static setter","Private-name brand check (#name in object)","Class static initialization block","Field initializer","Class heritage expression"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["class declaration","class expression"],["instance method","static method"],["public field","private field"],["base constructor","derived constructor"],["prototype method","class field"]],
+  "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes"],
+  "versionNotes": [{"edition":"ECMAScript 2022","items":["Public instance fields","Public static fields","Private methods and accessors","Class static initialization blocks"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html","https://github.com/tc39/proposal-class-fields"]}],
+  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript reference","edition":"ECMAScript 2026","checkedAt":"2026-11-14","urls":["https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes","https://github.com/tc39/proposal-class-fields"]},
+  "scopeExclusions": ["Plain object literal semantics (t06-004)","Function call binding methods (t06-017)","Decorators proposal, which is not in the ECMAScript 2026 standard edition"],
+  "generationAllowed": true
+}

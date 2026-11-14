@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1203,
+  "taskCount": 1249,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -5322,61 +5322,87 @@
     {
       "id": "t06-001-overview",
       "track": "track-06",
-      "title": "variables scope closures hoisting and lexical environments — Big-picture orientation and mental model",
+      "title": "JavaScript declarations, bindings, scope, and closures — Big-picture orientation and mental model",
       "module": "t06-001",
       "manifest": "curriculum/manifests/javascript-typescript/t06-001.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-001-concepts",
       "track": "track-06",
-      "title": "variables scope closures hoisting and lexical environments — Core concepts and how they fit together",
+      "title": "JavaScript declarations, bindings, scope, and closures — Core concepts and how they fit together",
       "module": "t06-001",
       "manifest": "curriculum/manifests/javascript-typescript/t06-001.json",
       "phase": "concepts",
       "prerequisites": [
         "t06-001-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t06-001-reference-inventory-pending",
+      "id": "t06-001-reference-declarations-and-bindings",
       "track": "track-06",
-      "title": "variables scope closures hoisting and lexical environments — Reference: awaiting curated names",
+      "title": "JavaScript declarations, bindings, scope, and closures — Reference: Declaration forms and binding kinds",
       "module": "t06-001",
       "manifest": "curriculum/manifests/javascript-typescript/t06-001.json",
       "phase": "reference",
       "prerequisites": [
         "t06-001-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "declarations-and-bindings"
+    },
+    {
+      "id": "t06-001-reference-scope-environments-and-closures",
+      "track": "track-06",
+      "title": "JavaScript declarations, bindings, scope, and closures — Reference: Scope, environments, and closure behavior",
+      "module": "t06-001",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-001-reference-declarations-and-bindings"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "scope-environments-and-closures"
+    },
+    {
+      "id": "t06-001-reference-initialization-and-hoisting",
+      "track": "track-06",
+      "title": "JavaScript declarations, bindings, scope, and closures — Reference: Declaration instantiation and initialization behavior",
+      "module": "t06-001",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-001-reference-scope-environments-and-closures"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "initialization-and-hoisting"
     },
     {
       "id": "t06-001-practice",
       "track": "track-06",
-      "title": "variables scope closures hoisting and lexical environments — Exercises and worked solutions",
+      "title": "JavaScript declarations, bindings, scope, and closures — Exercises and worked solutions",
       "module": "t06-001",
       "manifest": "curriculum/manifests/javascript-typescript/t06-001.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-001-reference-inventory-pending"
+        "t06-001-reference-initialization-and-hoisting"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-001-interview",
       "track": "track-06",
-      "title": "variables scope closures hoisting and lexical environments — Interview questions and reasoning",
+      "title": "JavaScript declarations, bindings, scope, and closures — Interview questions and reasoning",
       "module": "t06-001",
       "manifest": "curriculum/manifests/javascript-typescript/t06-001.json",
       "phase": "interview",
       "prerequisites": [
         "t06-001-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-002-overview",
@@ -5440,238 +5466,329 @@
     {
       "id": "t06-003-overview",
       "track": "track-06",
-      "title": "functions this binding arrow functions and prototypes — Big-picture orientation and mental model",
+      "title": "JavaScript function forms, parameters, and return behavior — Big-picture orientation and mental model",
       "module": "t06-003",
       "manifest": "curriculum/manifests/javascript-typescript/t06-003.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-003-concepts",
       "track": "track-06",
-      "title": "functions this binding arrow functions and prototypes — Core concepts and how they fit together",
+      "title": "JavaScript function forms, parameters, and return behavior — Core concepts and how they fit together",
       "module": "t06-003",
       "manifest": "curriculum/manifests/javascript-typescript/t06-003.json",
       "phase": "concepts",
       "prerequisites": [
         "t06-003-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t06-003-reference-inventory-pending",
+      "id": "t06-003-reference-function-forms",
       "track": "track-06",
-      "title": "functions this binding arrow functions and prototypes — Reference: awaiting curated names",
+      "title": "JavaScript function forms, parameters, and return behavior — Reference: Function syntaxes and callable forms",
       "module": "t06-003",
       "manifest": "curriculum/manifests/javascript-typescript/t06-003.json",
       "phase": "reference",
       "prerequisites": [
         "t06-003-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "function-forms"
+    },
+    {
+      "id": "t06-003-reference-parameters-and-arguments",
+      "track": "track-06",
+      "title": "JavaScript function forms, parameters, and return behavior — Reference: Parameter syntax and argument access",
+      "module": "t06-003",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-003-reference-function-forms"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "parameters-and-arguments"
+    },
+    {
+      "id": "t06-003-reference-calls-and-completion",
+      "track": "track-06",
+      "title": "JavaScript function forms, parameters, and return behavior — Reference: Calls, return behavior, and composition",
+      "module": "t06-003",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-003-reference-parameters-and-arguments"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "calls-and-completion"
     },
     {
       "id": "t06-003-practice",
       "track": "track-06",
-      "title": "functions this binding arrow functions and prototypes — Exercises and worked solutions",
+      "title": "JavaScript function forms, parameters, and return behavior — Exercises and worked solutions",
       "module": "t06-003",
       "manifest": "curriculum/manifests/javascript-typescript/t06-003.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-003-reference-inventory-pending"
+        "t06-003-reference-calls-and-completion"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-003-interview",
       "track": "track-06",
-      "title": "functions this binding arrow functions and prototypes — Interview questions and reasoning",
+      "title": "JavaScript function forms, parameters, and return behavior — Interview questions and reasoning",
       "module": "t06-003",
       "manifest": "curriculum/manifests/javascript-typescript/t06-003.json",
       "phase": "interview",
       "prerequisites": [
         "t06-003-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-004-overview",
       "track": "track-06",
-      "title": "objects property descriptors classes inheritance and modules — Big-picture orientation and mental model",
+      "title": "JavaScript objects, properties, descriptors, and reflection — Big-picture orientation and mental model",
       "module": "t06-004",
       "manifest": "curriculum/manifests/javascript-typescript/t06-004.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-004-concepts",
       "track": "track-06",
-      "title": "objects property descriptors classes inheritance and modules — Core concepts and how they fit together",
+      "title": "JavaScript objects, properties, descriptors, and reflection — Core concepts and how they fit together",
       "module": "t06-004",
       "manifest": "curriculum/manifests/javascript-typescript/t06-004.json",
       "phase": "concepts",
       "prerequisites": [
         "t06-004-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t06-004-reference-inventory-pending",
+      "id": "t06-004-reference-object-creation-and-property-keys",
       "track": "track-06",
-      "title": "objects property descriptors classes inheritance and modules — Reference: awaiting curated names",
+      "title": "JavaScript objects, properties, descriptors, and reflection — Reference: Object creation, keys, and property definitions",
       "module": "t06-004",
       "manifest": "curriculum/manifests/javascript-typescript/t06-004.json",
       "phase": "reference",
       "prerequisites": [
         "t06-004-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "object-creation-and-property-keys"
+    },
+    {
+      "id": "t06-004-reference-property-descriptors-and-reflection",
+      "track": "track-06",
+      "title": "JavaScript objects, properties, descriptors, and reflection — Reference: Property descriptors and reflection APIs",
+      "module": "t06-004",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-004-reference-object-creation-and-property-keys"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "property-descriptors-and-reflection"
+    },
+    {
+      "id": "t06-004-reference-prototype-and-integrity-apis",
+      "track": "track-06",
+      "title": "JavaScript objects, properties, descriptors, and reflection — Reference: Prototype operations, integrity, and Object methods",
+      "module": "t06-004",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-004-reference-property-descriptors-and-reflection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "prototype-and-integrity-apis"
     },
     {
       "id": "t06-004-practice",
       "track": "track-06",
-      "title": "objects property descriptors classes inheritance and modules — Exercises and worked solutions",
+      "title": "JavaScript objects, properties, descriptors, and reflection — Exercises and worked solutions",
       "module": "t06-004",
       "manifest": "curriculum/manifests/javascript-typescript/t06-004.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-004-reference-inventory-pending"
+        "t06-004-reference-prototype-and-integrity-apis"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-004-interview",
       "track": "track-06",
-      "title": "objects property descriptors classes inheritance and modules — Interview questions and reasoning",
+      "title": "JavaScript objects, properties, descriptors, and reflection — Interview questions and reasoning",
       "module": "t06-004",
       "manifest": "curriculum/manifests/javascript-typescript/t06-004.json",
       "phase": "interview",
       "prerequisites": [
         "t06-004-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-005-overview",
       "track": "track-06",
-      "title": "promises async await event loop tasks and microtasks — Big-picture orientation and mental model",
+      "title": "JavaScript promises, async functions, and event-loop scheduling — Big-picture orientation and mental model",
       "module": "t06-005",
       "manifest": "curriculum/manifests/javascript-typescript/t06-005.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-005-concepts",
       "track": "track-06",
-      "title": "promises async await event loop tasks and microtasks — Core concepts and how they fit together",
+      "title": "JavaScript promises, async functions, and event-loop scheduling — Core concepts and how they fit together",
       "module": "t06-005",
       "manifest": "curriculum/manifests/javascript-typescript/t06-005.json",
       "phase": "concepts",
       "prerequisites": [
         "t06-005-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t06-005-reference-inventory-pending",
+      "id": "t06-005-reference-promise-construction-and-composition",
       "track": "track-06",
-      "title": "promises async await event loop tasks and microtasks — Reference: awaiting curated names",
+      "title": "JavaScript promises, async functions, and event-loop scheduling — Reference: Promise APIs and chaining",
       "module": "t06-005",
       "manifest": "curriculum/manifests/javascript-typescript/t06-005.json",
       "phase": "reference",
       "prerequisites": [
         "t06-005-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "promise-construction-and-composition"
+    },
+    {
+      "id": "t06-005-reference-async-functions-and-await",
+      "track": "track-06",
+      "title": "JavaScript promises, async functions, and event-loop scheduling — Reference: Async function and await syntax",
+      "module": "t06-005",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-005-reference-promise-construction-and-composition"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "async-functions-and-await"
+    },
+    {
+      "id": "t06-005-reference-jobs-and-host-scheduling",
+      "track": "track-06",
+      "title": "JavaScript promises, async functions, and event-loop scheduling — Reference: Jobs, microtasks, and host event-loop queues",
+      "module": "t06-005",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-005-reference-async-functions-and-await"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "jobs-and-host-scheduling"
     },
     {
       "id": "t06-005-practice",
       "track": "track-06",
-      "title": "promises async await event loop tasks and microtasks — Exercises and worked solutions",
+      "title": "JavaScript promises, async functions, and event-loop scheduling — Exercises and worked solutions",
       "module": "t06-005",
       "manifest": "curriculum/manifests/javascript-typescript/t06-005.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-005-reference-inventory-pending"
+        "t06-005-reference-jobs-and-host-scheduling"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-005-interview",
       "track": "track-06",
-      "title": "promises async await event loop tasks and microtasks — Interview questions and reasoning",
+      "title": "JavaScript promises, async functions, and event-loop scheduling — Interview questions and reasoning",
       "module": "t06-005",
       "manifest": "curriculum/manifests/javascript-typescript/t06-005.json",
       "phase": "interview",
       "prerequisites": [
         "t06-005-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-006-overview",
       "track": "track-06",
-      "title": "errors exceptions fetch abort controller and browser APIs — Big-picture orientation and mental model",
+      "title": "JavaScript errors, exceptions, and error objects — Big-picture orientation and mental model",
       "module": "t06-006",
       "manifest": "curriculum/manifests/javascript-typescript/t06-006.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-006-concepts",
       "track": "track-06",
-      "title": "errors exceptions fetch abort controller and browser APIs — Core concepts and how they fit together",
+      "title": "JavaScript errors, exceptions, and error objects — Core concepts and how they fit together",
       "module": "t06-006",
       "manifest": "curriculum/manifests/javascript-typescript/t06-006.json",
       "phase": "concepts",
       "prerequisites": [
         "t06-006-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t06-006-reference-inventory-pending",
+      "id": "t06-006-reference-error-constructor-hierarchy",
       "track": "track-06",
-      "title": "errors exceptions fetch abort controller and browser APIs — Reference: awaiting curated names",
+      "title": "JavaScript errors, exceptions, and error objects — Reference: Built-in error constructors",
       "module": "t06-006",
       "manifest": "curriculum/manifests/javascript-typescript/t06-006.json",
       "phase": "reference",
       "prerequisites": [
         "t06-006-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "error-constructor-hierarchy"
+    },
+    {
+      "id": "t06-006-reference-error-properties-and-operations",
+      "track": "track-06",
+      "title": "JavaScript errors, exceptions, and error objects — Reference: Error properties and related syntax",
+      "module": "t06-006",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-006-reference-error-constructor-hierarchy"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "error-properties-and-operations"
     },
     {
       "id": "t06-006-practice",
       "track": "track-06",
-      "title": "errors exceptions fetch abort controller and browser APIs — Exercises and worked solutions",
+      "title": "JavaScript errors, exceptions, and error objects — Exercises and worked solutions",
       "module": "t06-006",
       "manifest": "curriculum/manifests/javascript-typescript/t06-006.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-006-reference-inventory-pending"
+        "t06-006-reference-error-properties-and-operations"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-006-interview",
       "track": "track-06",
-      "title": "errors exceptions fetch abort controller and browser APIs — Interview questions and reasoning",
+      "title": "JavaScript errors, exceptions, and error objects — Interview questions and reasoning",
       "module": "t06-006",
       "manifest": "curriculum/manifests/javascript-typescript/t06-006.json",
       "phase": "interview",
       "prerequisites": [
         "t06-006-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-007-overview",
@@ -5912,61 +6029,87 @@
     {
       "id": "t06-011-overview",
       "track": "track-06",
-      "title": "JavaScript coercion and equality — Big-picture orientation and mental model",
+      "title": "JavaScript coercion, equality, and comparison semantics — Big-picture orientation and mental model",
       "module": "t06-011",
       "manifest": "curriculum/manifests/javascript-typescript/t06-011.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-011-concepts",
       "track": "track-06",
-      "title": "JavaScript coercion and equality — Core concepts and how they fit together",
+      "title": "JavaScript coercion, equality, and comparison semantics — Core concepts and how they fit together",
       "module": "t06-011",
       "manifest": "curriculum/manifests/javascript-typescript/t06-011.json",
       "phase": "concepts",
       "prerequisites": [
         "t06-011-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t06-011-reference-inventory-pending",
+      "id": "t06-011-reference-conversion-operations",
       "track": "track-06",
-      "title": "JavaScript coercion and equality — Reference: awaiting curated names",
+      "title": "JavaScript coercion, equality, and comparison semantics — Reference: Conversion operators and abstract operations",
       "module": "t06-011",
       "manifest": "curriculum/manifests/javascript-typescript/t06-011.json",
       "phase": "reference",
       "prerequisites": [
         "t06-011-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "conversion-operations"
+    },
+    {
+      "id": "t06-011-reference-equality-and-sameness",
+      "track": "track-06",
+      "title": "JavaScript coercion, equality, and comparison semantics — Reference: Equality operators and sameness algorithms",
+      "module": "t06-011",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-011-reference-conversion-operations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "equality-and-sameness"
+    },
+    {
+      "id": "t06-011-reference-relational-and-boolean-contexts",
+      "track": "track-06",
+      "title": "JavaScript coercion, equality, and comparison semantics — Reference: Relational comparison and boolean contexts",
+      "module": "t06-011",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-011-reference-equality-and-sameness"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "relational-and-boolean-contexts"
     },
     {
       "id": "t06-011-practice",
       "track": "track-06",
-      "title": "JavaScript coercion and equality — Exercises and worked solutions",
+      "title": "JavaScript coercion, equality, and comparison semantics — Exercises and worked solutions",
       "module": "t06-011",
       "manifest": "curriculum/manifests/javascript-typescript/t06-011.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-011-reference-inventory-pending"
+        "t06-011-reference-relational-and-boolean-contexts"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-011-interview",
       "track": "track-06",
-      "title": "JavaScript coercion and equality — Interview questions and reasoning",
+      "title": "JavaScript coercion, equality, and comparison semantics — Interview questions and reasoning",
       "module": "t06-011",
       "manifest": "curriculum/manifests/javascript-typescript/t06-011.json",
       "phase": "interview",
       "prerequisites": [
         "t06-011-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-012-overview",
@@ -6147,238 +6290,669 @@
     {
       "id": "t06-013-overview",
       "track": "track-06",
-      "title": "JavaScript Map and Set — Big-picture orientation and mental model",
+      "title": "JavaScript Map and Set collections — Big-picture orientation and mental model",
       "module": "t06-013",
       "manifest": "curriculum/manifests/javascript-typescript/t06-013.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-013-concepts",
       "track": "track-06",
-      "title": "JavaScript Map and Set — Core concepts and how they fit together",
+      "title": "JavaScript Map and Set collections — Core concepts and how they fit together",
       "module": "t06-013",
       "manifest": "curriculum/manifests/javascript-typescript/t06-013.json",
       "phase": "concepts",
       "prerequisites": [
         "t06-013-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t06-013-reference-inventory-pending",
+      "id": "t06-013-reference-map-api",
       "track": "track-06",
-      "title": "JavaScript Map and Set — Reference: awaiting curated names",
+      "title": "JavaScript Map and Set collections — Reference: Map constructor, properties, methods, and symbols",
       "module": "t06-013",
       "manifest": "curriculum/manifests/javascript-typescript/t06-013.json",
       "phase": "reference",
       "prerequisites": [
         "t06-013-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "map-api"
+    },
+    {
+      "id": "t06-013-reference-set-api",
+      "track": "track-06",
+      "title": "JavaScript Map and Set collections — Reference: Set constructor, properties, methods, and symbols",
+      "module": "t06-013",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-013-reference-map-api"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "set-api"
     },
     {
       "id": "t06-013-practice",
       "track": "track-06",
-      "title": "JavaScript Map and Set — Exercises and worked solutions",
+      "title": "JavaScript Map and Set collections — Exercises and worked solutions",
       "module": "t06-013",
       "manifest": "curriculum/manifests/javascript-typescript/t06-013.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-013-reference-inventory-pending"
+        "t06-013-reference-set-api"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-013-interview",
       "track": "track-06",
-      "title": "JavaScript Map and Set — Interview questions and reasoning",
+      "title": "JavaScript Map and Set collections — Interview questions and reasoning",
       "module": "t06-013",
       "manifest": "curriculum/manifests/javascript-typescript/t06-013.json",
       "phase": "interview",
       "prerequisites": [
         "t06-013-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-014-overview",
       "track": "track-06",
-      "title": "JavaScript WeakMap and WeakSet — Big-picture orientation and mental model",
+      "title": "JavaScript WeakMap and WeakSet collections — Big-picture orientation and mental model",
       "module": "t06-014",
       "manifest": "curriculum/manifests/javascript-typescript/t06-014.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-014-concepts",
       "track": "track-06",
-      "title": "JavaScript WeakMap and WeakSet — Core concepts and how they fit together",
+      "title": "JavaScript WeakMap and WeakSet collections — Core concepts and how they fit together",
       "module": "t06-014",
       "manifest": "curriculum/manifests/javascript-typescript/t06-014.json",
       "phase": "concepts",
       "prerequisites": [
         "t06-014-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t06-014-reference-inventory-pending",
+      "id": "t06-014-reference-weakmap-api",
       "track": "track-06",
-      "title": "JavaScript WeakMap and WeakSet — Reference: awaiting curated names",
+      "title": "JavaScript WeakMap and WeakSet collections — Reference: WeakMap constructor, properties, and methods",
       "module": "t06-014",
       "manifest": "curriculum/manifests/javascript-typescript/t06-014.json",
       "phase": "reference",
       "prerequisites": [
         "t06-014-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "weakmap-api"
+    },
+    {
+      "id": "t06-014-reference-weakset-api",
+      "track": "track-06",
+      "title": "JavaScript WeakMap and WeakSet collections — Reference: WeakSet constructor, properties, and methods",
+      "module": "t06-014",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-014-reference-weakmap-api"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "weakset-api"
+    },
+    {
+      "id": "t06-014-reference-weak-key-semantics",
+      "track": "track-06",
+      "title": "JavaScript WeakMap and WeakSet collections — Reference: Weak-key admissibility and limitations",
+      "module": "t06-014",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-014-reference-weakset-api"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "weak-key-semantics"
     },
     {
       "id": "t06-014-practice",
       "track": "track-06",
-      "title": "JavaScript WeakMap and WeakSet — Exercises and worked solutions",
+      "title": "JavaScript WeakMap and WeakSet collections — Exercises and worked solutions",
       "module": "t06-014",
       "manifest": "curriculum/manifests/javascript-typescript/t06-014.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-014-reference-inventory-pending"
+        "t06-014-reference-weak-key-semantics"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-014-interview",
       "track": "track-06",
-      "title": "JavaScript WeakMap and WeakSet — Interview questions and reasoning",
+      "title": "JavaScript WeakMap and WeakSet collections — Interview questions and reasoning",
       "module": "t06-014",
       "manifest": "curriculum/manifests/javascript-typescript/t06-014.json",
       "phase": "interview",
       "prerequisites": [
         "t06-014-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-015-overview",
       "track": "track-06",
-      "title": "JavaScript typed arrays — Big-picture orientation and mental model",
+      "title": "JavaScript typed arrays and binary data views — Big-picture orientation and mental model",
       "module": "t06-015",
       "manifest": "curriculum/manifests/javascript-typescript/t06-015.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-015-concepts",
       "track": "track-06",
-      "title": "JavaScript typed arrays — Core concepts and how they fit together",
+      "title": "JavaScript typed arrays and binary data views — Core concepts and how they fit together",
       "module": "t06-015",
       "manifest": "curriculum/manifests/javascript-typescript/t06-015.json",
       "phase": "concepts",
       "prerequisites": [
         "t06-015-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t06-015-reference-inventory-pending",
+      "id": "t06-015-reference-typed-array-constructors",
       "track": "track-06",
-      "title": "JavaScript typed arrays — Reference: awaiting curated names",
+      "title": "JavaScript typed arrays and binary data views — Reference: TypedArray constructors and shared static members",
       "module": "t06-015",
       "manifest": "curriculum/manifests/javascript-typescript/t06-015.json",
       "phase": "reference",
       "prerequisites": [
         "t06-015-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "typed-array-constructors"
+    },
+    {
+      "id": "t06-015-reference-typed-array-instance-api",
+      "track": "track-06",
+      "title": "JavaScript typed arrays and binary data views — Reference: TypedArray instance accessors and methods",
+      "module": "t06-015",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-015-reference-typed-array-constructors"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "typed-array-instance-api"
+    },
+    {
+      "id": "t06-015-reference-buffers-and-data-view",
+      "track": "track-06",
+      "title": "JavaScript typed arrays and binary data views — Reference: Buffer objects, shared memory, and DataView",
+      "module": "t06-015",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-015-reference-typed-array-instance-api"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "buffers-and-data-view"
+    },
+    {
+      "id": "t06-015-reference-binary-text-conversion",
+      "track": "track-06",
+      "title": "JavaScript typed arrays and binary data views — Reference: Hex and base64 binary conversion APIs",
+      "module": "t06-015",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-015-reference-buffers-and-data-view"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "binary-text-conversion"
     },
     {
       "id": "t06-015-practice",
       "track": "track-06",
-      "title": "JavaScript typed arrays — Exercises and worked solutions",
+      "title": "JavaScript typed arrays and binary data views — Exercises and worked solutions",
       "module": "t06-015",
       "manifest": "curriculum/manifests/javascript-typescript/t06-015.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-015-reference-inventory-pending"
+        "t06-015-reference-binary-text-conversion"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-015-interview",
       "track": "track-06",
-      "title": "JavaScript typed arrays — Interview questions and reasoning",
+      "title": "JavaScript typed arrays and binary data views — Interview questions and reasoning",
       "module": "t06-015",
       "manifest": "curriculum/manifests/javascript-typescript/t06-015.json",
       "phase": "interview",
       "prerequisites": [
         "t06-015-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-016-overview",
       "track": "track-06",
-      "title": "JavaScript iterables and iterators — Big-picture orientation and mental model",
+      "title": "JavaScript iterables, iterators, and generator protocols — Big-picture orientation and mental model",
       "module": "t06-016",
       "manifest": "curriculum/manifests/javascript-typescript/t06-016.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-016-concepts",
       "track": "track-06",
-      "title": "JavaScript iterables and iterators — Core concepts and how they fit together",
+      "title": "JavaScript iterables, iterators, and generator protocols — Core concepts and how they fit together",
       "module": "t06-016",
       "manifest": "curriculum/manifests/javascript-typescript/t06-016.json",
       "phase": "concepts",
       "prerequisites": [
         "t06-016-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t06-016-reference-inventory-pending",
+      "id": "t06-016-reference-synchronous-iteration",
       "track": "track-06",
-      "title": "JavaScript iterables and iterators — Reference: awaiting curated names",
+      "title": "JavaScript iterables, iterators, and generator protocols — Reference: Synchronous iterable and iterator protocol",
       "module": "t06-016",
       "manifest": "curriculum/manifests/javascript-typescript/t06-016.json",
       "phase": "reference",
       "prerequisites": [
         "t06-016-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "synchronous-iteration"
+    },
+    {
+      "id": "t06-016-reference-generators-and-delegation",
+      "track": "track-06",
+      "title": "JavaScript iterables, iterators, and generator protocols — Reference: Generator functions, objects, and delegation",
+      "module": "t06-016",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-016-reference-synchronous-iteration"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "generators-and-delegation"
+    },
+    {
+      "id": "t06-016-reference-async-iteration",
+      "track": "track-06",
+      "title": "JavaScript iterables, iterators, and generator protocols — Reference: Async iteration and async generators",
+      "module": "t06-016",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-016-reference-generators-and-delegation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "async-iteration"
     },
     {
       "id": "t06-016-practice",
       "track": "track-06",
-      "title": "JavaScript iterables and iterators — Exercises and worked solutions",
+      "title": "JavaScript iterables, iterators, and generator protocols — Exercises and worked solutions",
       "module": "t06-016",
       "manifest": "curriculum/manifests/javascript-typescript/t06-016.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-016-reference-inventory-pending"
+        "t06-016-reference-async-iteration"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-016-interview",
       "track": "track-06",
-      "title": "JavaScript iterables and iterators — Interview questions and reasoning",
+      "title": "JavaScript iterables, iterators, and generator protocols — Interview questions and reasoning",
       "module": "t06-016",
       "manifest": "curriculum/manifests/javascript-typescript/t06-016.json",
       "phase": "interview",
       "prerequisites": [
         "t06-016-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-017-overview",
+      "track": "track-06",
+      "title": "JavaScript this binding and Function object methods — Big-picture orientation and mental model",
+      "module": "t06-017",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-017.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-017-concepts",
+      "track": "track-06",
+      "title": "JavaScript this binding and Function object methods — Core concepts and how they fit together",
+      "module": "t06-017",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-017.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t06-017-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-017-reference-this-binding-rules",
+      "track": "track-06",
+      "title": "JavaScript this binding and Function object methods — Reference: this values and call-site binding modes",
+      "module": "t06-017",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-017-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "this-binding-rules"
+    },
+    {
+      "id": "t06-017-reference-function-prototype-methods",
+      "track": "track-06",
+      "title": "JavaScript this binding and Function object methods — Reference: Function.prototype methods and well-known symbols",
+      "module": "t06-017",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-017-reference-this-binding-rules"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "function-prototype-methods"
+    },
+    {
+      "id": "t06-017-reference-function-own-properties",
+      "track": "track-06",
+      "title": "JavaScript this binding and Function object methods — Reference: Function object properties",
+      "module": "t06-017",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-017-reference-function-prototype-methods"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "function-own-properties"
+    },
+    {
+      "id": "t06-017-practice",
+      "track": "track-06",
+      "title": "JavaScript this binding and Function object methods — Exercises and worked solutions",
+      "module": "t06-017",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-017.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t06-017-reference-function-own-properties"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-017-interview",
+      "track": "track-06",
+      "title": "JavaScript this binding and Function object methods — Interview questions and reasoning",
+      "module": "t06-017",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-017.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t06-017-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-018-overview",
+      "track": "track-06",
+      "title": "JavaScript classes, inheritance, and private elements — Big-picture orientation and mental model",
+      "module": "t06-018",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-018.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-018-concepts",
+      "track": "track-06",
+      "title": "JavaScript classes, inheritance, and private elements — Core concepts and how they fit together",
+      "module": "t06-018",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-018.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t06-018-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-018-reference-class-forms-and-inheritance",
+      "track": "track-06",
+      "title": "JavaScript classes, inheritance, and private elements — Reference: Class declarations, expressions, and inheritance",
+      "module": "t06-018",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-018-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "class-forms-and-inheritance"
+    },
+    {
+      "id": "t06-018-reference-fields-and-private-elements",
+      "track": "track-06",
+      "title": "JavaScript classes, inheritance, and private elements — Reference: Fields, private elements, and initialization",
+      "module": "t06-018",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-018-reference-class-forms-and-inheritance"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "fields-and-private-elements"
+    },
+    {
+      "id": "t06-018-practice",
+      "track": "track-06",
+      "title": "JavaScript classes, inheritance, and private elements — Exercises and worked solutions",
+      "module": "t06-018",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-018.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t06-018-reference-fields-and-private-elements"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-018-interview",
+      "track": "track-06",
+      "title": "JavaScript classes, inheritance, and private elements — Interview questions and reasoning",
+      "module": "t06-018",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-018.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t06-018-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-019-overview",
+      "track": "track-06",
+      "title": "ECMAScript modules, imports, exports, and module loading semantics — Big-picture orientation and mental model",
+      "module": "t06-019",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-019.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-019-concepts",
+      "track": "track-06",
+      "title": "ECMAScript modules, imports, exports, and module loading semantics — Core concepts and how they fit together",
+      "module": "t06-019",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-019.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t06-019-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-019-reference-static-import-forms",
+      "track": "track-06",
+      "title": "ECMAScript modules, imports, exports, and module loading semantics — Reference: Static imports and import attributes",
+      "module": "t06-019",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-019-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "static-import-forms"
+    },
+    {
+      "id": "t06-019-reference-export-forms",
+      "track": "track-06",
+      "title": "ECMAScript modules, imports, exports, and module loading semantics — Reference: Export declarations and re-exports",
+      "module": "t06-019",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-019-reference-static-import-forms"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "export-forms"
+    },
+    {
+      "id": "t06-019-reference-module-meta-dynamic-loading",
+      "track": "track-06",
+      "title": "ECMAScript modules, imports, exports, and module loading semantics — Reference: Module metadata and asynchronous loading",
+      "module": "t06-019",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-019-reference-export-forms"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "module-meta-dynamic-loading"
+    },
+    {
+      "id": "t06-019-practice",
+      "track": "track-06",
+      "title": "ECMAScript modules, imports, exports, and module loading semantics — Exercises and worked solutions",
+      "module": "t06-019",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-019.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t06-019-reference-module-meta-dynamic-loading"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-019-interview",
+      "track": "track-06",
+      "title": "ECMAScript modules, imports, exports, and module loading semantics — Interview questions and reasoning",
+      "module": "t06-019",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-019.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t06-019-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-020-overview",
+      "track": "track-06",
+      "title": "Browser Fetch API, request cancellation, and response bodies — Big-picture orientation and mental model",
+      "module": "t06-020",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-020.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-020-concepts",
+      "track": "track-06",
+      "title": "Browser Fetch API, request cancellation, and response bodies — Core concepts and how they fit together",
+      "module": "t06-020",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-020.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t06-020-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-020-reference-fetch-interfaces-and-methods",
+      "track": "track-06",
+      "title": "Browser Fetch API, request cancellation, and response bodies — Reference: Fetch API interfaces, constructors, and methods",
+      "module": "t06-020",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-020-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "fetch-interfaces-and-methods"
+    },
+    {
+      "id": "t06-020-reference-cancellation-and-abort",
+      "track": "track-06",
+      "title": "Browser Fetch API, request cancellation, and response bodies — Reference: AbortController, AbortSignal, and cancellation",
+      "module": "t06-020",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-020-reference-fetch-interfaces-and-methods"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cancellation-and-abort"
+    },
+    {
+      "id": "t06-020-reference-fetch-host-behavior",
+      "track": "track-06",
+      "title": "Browser Fetch API, request cancellation, and response bodies — Reference: Request options and browser fetch behavior",
+      "module": "t06-020",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-020-reference-cancellation-and-abort"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "fetch-host-behavior"
+    },
+    {
+      "id": "t06-020-practice",
+      "track": "track-06",
+      "title": "Browser Fetch API, request cancellation, and response bodies — Exercises and worked solutions",
+      "module": "t06-020",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-020.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t06-020-reference-fetch-host-behavior"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t06-020-interview",
+      "track": "track-06",
+      "title": "Browser Fetch API, request cancellation, and response bodies — Interview questions and reasoning",
+      "module": "t06-020",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-020.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t06-020-practice"
+      ],
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-001-overview",
