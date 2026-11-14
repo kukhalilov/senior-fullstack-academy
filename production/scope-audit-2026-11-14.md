@@ -3,7 +3,7 @@
 ## Inventory totals
 
 - 11 tracks and 161 canonical topic manifests.
-- The queue contains 935 lesson units, rebuilt from each topic's overview, concepts, bounded references, practice units, and interview sequence. Each named DSA problem has its own practice unit.
+- The queue contains 956 lesson units, rebuilt from each topic's overview, concepts, bounded references, practice units, and interview sequence. Each named DSA problem has its own practice unit.
 - 16 manifests have source-backed inventories: 15 are fully enabled and one DSA analysis topic keeps its practice unit blocked pending executable checks.
 - 145 manifests remain inventory scaffolds; the full-catalog validator intentionally fails.
 - Three legacy pilot lessons remain in `course/` with quarantine warnings and are excluded from the accepted curriculum.

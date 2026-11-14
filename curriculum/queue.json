@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 935,
+  "taskCount": 956,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -10064,61 +10064,172 @@
     {
       "id": "t11-007-overview",
       "track": "track-11",
-      "title": "stacks queues monotonic stacks and queues — Big-picture orientation and mental model",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Big-picture orientation and mental model",
       "module": "t11-007",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-007-concepts",
       "track": "track-11",
-      "title": "stacks queues monotonic stacks and queues — Core concepts and how they fit together",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Core concepts and how they fit together",
       "module": "t11-007",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-007-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-007-reference-inventory-pending",
+      "id": "t11-007-reference-stack-models",
       "track": "track-11",
-      "title": "stacks queues monotonic stacks and queues — Reference: awaiting curated names",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Reference: Stack contracts, representations, and operations",
       "module": "t11-007",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
       "phase": "reference",
       "prerequisites": [
         "t11-007-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "stack-models"
     },
     {
-      "id": "t11-007-practice",
+      "id": "t11-007-reference-queue-models",
       "track": "track-11",
-      "title": "stacks queues monotonic stacks and queues — Exercises and worked solutions",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Reference: Queue contracts, representations, and operations",
+      "module": "t11-007",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-007-reference-stack-models"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "queue-models"
+    },
+    {
+      "id": "t11-007-reference-deques-and-simulations",
+      "track": "track-11",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Reference: Double-ended queues and structure simulations",
+      "module": "t11-007",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-007-reference-queue-models"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "deques-and-simulations"
+    },
+    {
+      "id": "t11-007-reference-applications-and-selection",
+      "track": "track-11",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Reference: Applications, complexity, and selection boundaries",
+      "module": "t11-007",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-007-reference-deques-and-simulations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "applications-and-selection"
+    },
+    {
+      "id": "t11-007-practice-valid-parentheses",
+      "track": "track-11",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Problem: Valid Parentheses",
       "module": "t11-007",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-007-reference-inventory-pending"
+        "t11-007-reference-applications-and-selection"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "valid-parentheses",
+      "problemTitle": "Valid Parentheses"
+    },
+    {
+      "id": "t11-007-practice-min-stack",
+      "track": "track-11",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Problem: Min Stack",
+      "module": "t11-007",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-007-practice-valid-parentheses"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "min-stack",
+      "problemTitle": "Min Stack"
+    },
+    {
+      "id": "t11-007-practice-implement-queue-using-stacks",
+      "track": "track-11",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Problem: Implement Queue using Stacks",
+      "module": "t11-007",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-007-practice-min-stack"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "implement-queue-using-stacks",
+      "problemTitle": "Implement Queue using Stacks"
+    },
+    {
+      "id": "t11-007-practice-implement-stack-using-queues",
+      "track": "track-11",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Problem: Implement Stack using Queues",
+      "module": "t11-007",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-007-practice-implement-queue-using-stacks"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "implement-stack-using-queues",
+      "problemTitle": "Implement Stack using Queues"
+    },
+    {
+      "id": "t11-007-practice-evaluate-reverse-polish-notation",
+      "track": "track-11",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Problem: Evaluate Reverse Polish Notation",
+      "module": "t11-007",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-007-practice-implement-stack-using-queues"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "evaluate-reverse-polish-notation",
+      "problemTitle": "Evaluate Reverse Polish Notation"
+    },
+    {
+      "id": "t11-007-practice-design-circular-queue",
+      "track": "track-11",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Problem: Design Circular Queue",
+      "module": "t11-007",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-007-practice-evaluate-reverse-polish-notation"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "design-circular-queue",
+      "problemTitle": "Design Circular Queue"
     },
     {
       "id": "t11-007-interview",
       "track": "track-11",
-      "title": "stacks queues monotonic stacks and queues — Interview questions and reasoning",
+      "title": "stacks, queues, deques, and priority-agnostic worklists — Interview questions and reasoning",
       "module": "t11-007",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-007.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-007-practice"
+        "t11-007-practice-design-circular-queue"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-008-overview",
@@ -11262,6 +11373,176 @@
       "phase": "interview",
       "prerequisites": [
         "t11-021-practice-unique-number-of-occurrences"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-022-overview",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Big-picture orientation and mental model",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-022-concepts",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Core concepts and how they fit together",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-022-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-022-reference-monotonic-stack-invariants",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Reference: Stack invariants and nearest-element queries",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-022-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "monotonic-stack-invariants"
+    },
+    {
+      "id": "t11-022-reference-amortized-and-circular-scans",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Reference: Scan direction, circular arrays, and amortized proof",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-022-reference-monotonic-stack-invariants"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "amortized-and-circular-scans"
+    },
+    {
+      "id": "t11-022-reference-monotonic-deque",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Reference: Monotonic deque and sliding-window extrema",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-022-reference-amortized-and-circular-scans"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "monotonic-deque"
+    },
+    {
+      "id": "t11-022-reference-boundary-and-aggregation-patterns",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Reference: Nearest boundaries and range aggregation",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-022-reference-monotonic-deque"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "boundary-and-aggregation-patterns"
+    },
+    {
+      "id": "t11-022-practice-daily-temperatures",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Problem: Daily Temperatures",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-022-reference-boundary-and-aggregation-patterns"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "daily-temperatures",
+      "problemTitle": "Daily Temperatures"
+    },
+    {
+      "id": "t11-022-practice-next-greater-element-ii",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Problem: Next Greater Element II",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-022-practice-daily-temperatures"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "next-greater-element-ii",
+      "problemTitle": "Next Greater Element II"
+    },
+    {
+      "id": "t11-022-practice-largest-rectangle-in-histogram",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Problem: Largest Rectangle in Histogram",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-022-practice-next-greater-element-ii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "largest-rectangle-in-histogram",
+      "problemTitle": "Largest Rectangle in Histogram"
+    },
+    {
+      "id": "t11-022-practice-sliding-window-maximum",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Problem: Sliding Window Maximum",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-022-practice-largest-rectangle-in-histogram"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "sliding-window-maximum",
+      "problemTitle": "Sliding Window Maximum"
+    },
+    {
+      "id": "t11-022-practice-sum-of-subarray-minimums",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Problem: Sum of Subarray Minimums",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-022-practice-sliding-window-maximum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "sum-of-subarray-minimums",
+      "problemTitle": "Sum of Subarray Minimums"
+    },
+    {
+      "id": "t11-022-practice-remove-k-digits",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Problem: Remove K Digits",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-022-practice-sum-of-subarray-minimums"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "remove-k-digits",
+      "problemTitle": "Remove K Digits"
+    },
+    {
+      "id": "t11-022-interview",
+      "track": "track-11",
+      "title": "monotonic stacks and monotonic queues — Interview questions and reasoning",
+      "module": "t11-022",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-022.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-022-practice-remove-k-digits"
       ],
       "status": "draft-generation-eligible"
     }

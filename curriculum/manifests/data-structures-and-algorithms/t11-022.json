@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-022",
+  "track": "track-11",
+  "title": "monotonic stacks and monotonic queues",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A monotonic stack keeps candidate values or indices in nondecreasing or nonincreasing order by removing candidates made permanently irrelevant by a new element.",
+    "The stack's invariant and the strictness of its comparison determine how equal values are handled; duplicates can change the answer if the inequality is chosen incorrectly.",
+    "For next-greater or next-smaller questions, scanning direction and whether unresolved indices remain on the stack define which future or previous candidate is found.",
+    "Each index is pushed once and popped at most once, so a nested while-loop can still produce linear total work through aggregate analysis.",
+    "A monotonic deque tracks candidate indices for a moving range, evicting expired indices from the front and dominated candidates from the back.",
+    "Sliding-window extrema use a deque whose values remain monotonic and whose indices preserve expiration order; storing indices handles duplicate values and window boundaries.",
+    "Histogram area and subarray-minimum counting use nearest smaller boundaries, with tie-breaking rules needed to assign equal-valued ranges exactly once.",
+    "The structures are useful when a query asks for a nearest extremal candidate or a sliding-window extremum; they do not replace a general-purpose stack, queue, heap, or range-query structure."
+  ],
+  "inventory": [
+    {"id":"monotonic-stack-invariants","title":"Stack invariants and nearest-element queries","items":["Monotonically increasing stack","Monotonically decreasing stack","Value stack","Index stack","Pop-dominated-candidates rule","Next greater element","Next smaller element","Previous greater element","Previous smaller element","Strict versus non-strict comparison","Duplicate-value tie handling"]},
+    {"id":"amortized-and-circular-scans","title":"Scan direction, circular arrays, and amortized proof","items":["Left-to-right unresolved-index scan","Right-to-left nearest-boundary scan","Circular-array scan by index modulo n","Each-index-pushed-once argument","Each-index-popped-once argument","Aggregate O(n) analysis","Unresolved candidates after final scan"]},
+    {"id":"monotonic-deque","title":"Monotonic deque and sliding-window extrema","items":["Monotonic deque","Deque of candidate indices","Expire out-of-window indices","Remove dominated candidates from the back","Sliding-window maximum","Sliding-window minimum","Window-size boundary handling","Duplicate extrema handling"]},
+    {"id":"boundary-and-aggregation-patterns","title":"Nearest boundaries and range aggregation","items":["Nearest smaller element on each side","Largest rectangle in a histogram","Subarray minimum contribution counting","Left and right span lengths","Equal-value ownership by asymmetric comparisons","Sentinel boundary technique","Off-by-one boundary verification"]}
+  ],
+  "practiceProblems": [
+    {"id":"daily-temperatures","name":"Daily Temperatures","difficulty":"introductory","patterns":["next-greater index","unresolved indices in a decreasing stack"]},
+    {"id":"next-greater-element-ii","name":"Next Greater Element II","difficulty":"intermediate","patterns":["circular scan","next-greater index with modulo traversal"]},
+    {"id":"largest-rectangle-in-histogram","name":"Largest Rectangle in Histogram","difficulty":"intermediate","patterns":["nearest smaller boundaries","width from left and right spans"]},
+    {"id":"sliding-window-maximum","name":"Sliding Window Maximum","difficulty":"intermediate","patterns":["monotonic deque","expire indices outside the window"]},
+    {"id":"sum-of-subarray-minimums","name":"Sum of Subarray Minimums","difficulty":"advanced","patterns":["nearest smaller boundaries","duplicate ownership and contribution counting"]},
+    {"id":"remove-k-digits","name":"Remove K Digits","difficulty":"intermediate","patterns":["greedy increasing stack","remove a larger preceding digit"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Monotonic increasing stack","Monotonic decreasing stack"],["Strict comparison","Non-strict comparison with duplicates"],["Nearest greater boundary","Nearest smaller boundary"],["Monotonic stack","Monotonic deque"],["Repeated full-window scan","Sliding-window monotonic deque"],["Monotonic deque","Heap for sliding-window maximum"]],
+  "comparisonSources": ["https://usaco.guide/gold/stacks","https://usaco.guide/gold/sliding-window"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide stack and sliding-window algorithm references; official LeetCode problem statements",
+    "edition": "Timeless algorithm patterns; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/gold/stacks","https://usaco.guide/gold/sliding-window","https://leetcode.com/problems/daily-temperatures/","https://leetcode.com/problems/next-greater-element-ii/","https://leetcode.com/problems/largest-rectangle-in-histogram/","https://leetcode.com/problems/sliding-window-maximum/","https://leetcode.com/problems/sum-of-subarray-minimums/","https://leetcode.com/problems/remove-k-digits/"]
+  },
+  "scopeExclusions": ["General stack and queue contracts and implementations, covered in t11-007","Priority queues and binary heaps, covered in t11-009","Segment trees and sparse tables for general range queries","Two-pointer window maintenance without monotonic candidate queues, covered in t11-003","Proofs for every less common Cartesian-tree variation"],
+  "generationAllowed": true
+}
