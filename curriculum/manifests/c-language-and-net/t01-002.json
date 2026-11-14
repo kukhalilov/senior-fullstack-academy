@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 4,
+  "id": "t01-002",
+  "track": "track-01",
+  "title": "C# source-file organization and application entry points",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "How source files and projects fit together",
+    "How namespaces organize types",
+    "How using directives make names available or assign aliases",
+    "How file-based and project-based applications differ",
+    "How top-level statements and Main define the entry point",
+    "How command-line arguments and exit codes cross the process boundary"
+  ],
+  "inventory": [
+    {
+      "id": "files-namespaces-and-imports",
+      "title": "Source units, namespaces, and using directives",
+      "items": [
+        "Compilation unit",
+        "File-scoped namespace declaration",
+        "Block-scoped namespace declaration",
+        "Namespace",
+        "Namespace using directive",
+        "Static using directive",
+        "Alias using directive",
+        "Global using directive",
+        "Global static using directive",
+        "Global alias using directive",
+        "Extern alias directive",
+        "Type declaration"
+      ]
+    },
+    {
+      "id": "entry-points-and-application-forms",
+      "title": "Application forms and entry points",
+      "items": [
+        "File-based app",
+        "Project-based app",
+        "Top-level statements",
+        "Main method",
+        "static void Main()",
+        "static int Main()",
+        "static Task Main()",
+        "static Task<int> Main()",
+        "static void Main(string[] args)",
+        "static int Main(string[] args)",
+        "static Task Main(string[] args)",
+        "static Task<int> Main(string[] args)",
+        "Command-line arguments",
+        "Program exit code"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "File-scoped namespace declaration",
+      "Block-scoped namespace declaration"
+    ],
+    [
+      "Top-level statements",
+      "Main method"
+    ],
+    [
+      "File-based app",
+      "Project-based app"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/main-command-line"
+  ],
+  "versionNotes": [
+    {
+      "edition": "C# 14",
+      "items": [
+        "File-based apps"
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn C# fundamentals and language reference",
+    "edition": "C# 14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/main-command-line",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14"
+    ]
+  },
+  "scopeExclusions": [
+    "Statements and control flow (separate topic)",
+    "Expression forms and operators (separate topic)",
+    "Type declarations and members in depth (separate topics)",
+    "Build configuration, project files, package restore, and full SDK command catalog",
+    "Runtime, IL, JIT, and application deployment behavior"
+  ],
+  "generationAllowed": true
+}

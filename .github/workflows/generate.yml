@@ -1,5 +1,7 @@
-name: Generate academy
+name: Generate academy drafts
 on:
+  schedule:
+    - cron: '17 */6 * * *'
   workflow_dispatch:
 permissions:
   contents: write
@@ -9,44 +11,30 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
       - run: npm test
-      - name: Generate a batch
-        id: generate
-        continue-on-error: true
+      - run: npm run validate:structure
+      - id: pending
+        name: Count eligible drafts
+        run: npm run generate -- --dry-run
+      - name: Generate bounded lesson drafts
+        if: steps.pending.outputs.pending != '0'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODELS: ${{ vars.GEMINI_MODELS }}
-          PILOT: '1'
-          MAX_TASKS: '3'
-          RUN_MINUTES: '12'
+          GEMINI_MODEL: gemini-3.5-flash-lite
+          UNITS_PER_RUN: '100'
         run: npm run generate
-      - name: Preserve local checkpoints
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: academy-checkpoints-${{ github.run_id }}
-          path: |
-            course/
-            production/drafts/
-          if-no-files-found: ignore
-          retention-days: 7
-      - name: Commit completed work
-        if: always()
+      - name: Commit generated drafts
+        if: always() && steps.pending.outputs.pending != '0'
         run: |
-          git config user.name "academy-bot"
-          git config user.email "academy-bot@users.noreply.github.com"
-          git add course production/drafts
-          if ! git diff --cached --quiet; then
-            git commit -m "Generate academy lessons"
-            git push
-          fi
-      - name: Report generation failure
-        if: steps.generate.outcome == 'failure'
-        run: exit 1
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add course/drafts
+          git diff --cached --quiet || git commit -m "Generate verified-shape lesson drafts"
+          git push
 

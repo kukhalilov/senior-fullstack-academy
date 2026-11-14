@@ -1,12 +1,13 @@
 # Curriculum map
 
-The queue covers the tracks below, with introductory units before advanced units. This is an initial topic inventory, not evidence that all APIs or subtopics have been enumerated. Generated lessons must be expanded into smaller units when they cannot cover an objective in depth. Each unit's title is a starting scope, not a claim of completeness.
+The curriculum is indexed in `catalog.json`; topic-specific scope and closed inventories live under `manifests/`. Read `queue.json` for the lesson sequence. The planned sequence is:
 
-- C# and .NET: language foundations, generics, async, CLR, diagnostics.
-- ASP.NET Core and networking: HTTP, request pipeline, hosting, APIs, SignalR.
-- SQL Server and EF Core: relational querying, indexes, transactions, performance and data access.
-- Security: authentication, authorization, web threats and secrets.
-- JavaScript, TypeScript and React: language fundamentals, browser, rendering, state and accessibility.
-- Architecture, infrastructure, testing and performance: design, operations, observability and delivery.
-- DSA: data structures, techniques, practice and solution analysis in C#.
-- Senior interviews: system design, communication and behavioral preparation.
+1. Big-picture overview and mental model.
+2. Core concepts and how they connect.
+3. One or more small reference lessons using pre-enumerated names.
+4. Practice with worked examples and solutions.
+5. Interview questions and reasoning.
+
+Recent release changes and comparable alternatives appear only when supported and relevant; there is no universal versions phase. The model is not responsible for discovering APIs or deciding what exists. Scheduled draft generation is enabled only for manifests marked complete and explicitly opted in; whole-catalog generation remains blocked until every topic has a source-backed concept map and inventory.
+
+The tracks cover C#/.NET, ASP.NET Core, SQL Server, EF Core, web security, JavaScript/TypeScript, React/frontend, architecture/distributed systems, infrastructure/operations, testing/interviews, and data structures/algorithms.
