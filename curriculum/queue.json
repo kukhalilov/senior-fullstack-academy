@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1851,
+  "taskCount": 1855,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -1885,61 +1885,113 @@
     {
       "id": "t01-019-overview",
       "track": "track-01",
-      "title": "CLR IL JIT AOT assemblies reflection attributes and loading — Big-picture orientation and mental model",
+      "title": "CLR execution IL JIT AOT assemblies reflection attributes and loading — Big-picture orientation and mental model",
       "module": "t01-019",
       "manifest": "curriculum/manifests/c-language-and-net/t01-019.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-019-concepts",
       "track": "track-01",
-      "title": "CLR IL JIT AOT assemblies reflection attributes and loading — Core concepts and how they fit together",
+      "title": "CLR execution IL JIT AOT assemblies reflection attributes and loading — Core concepts and how they fit together",
       "module": "t01-019",
       "manifest": "curriculum/manifests/c-language-and-net/t01-019.json",
       "phase": "concepts",
       "prerequisites": [
         "t01-019-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-019-reference-inventory-pending",
+      "id": "t01-019-reference-clr-and-managed-execution",
       "track": "track-01",
-      "title": "CLR IL JIT AOT assemblies reflection attributes and loading — Reference: awaiting curated names",
+      "title": "CLR execution IL JIT AOT assemblies reflection attributes and loading — Reference: CLR services, IL, metadata, compilation stages, type loading, and runtime execution",
       "module": "t01-019",
       "manifest": "curriculum/manifests/c-language-and-net/t01-019.json",
       "phase": "reference",
       "prerequisites": [
         "t01-019-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "clr-and-managed-execution"
+    },
+    {
+      "id": "t01-019-reference-assemblies-metadata-and-dependencies",
+      "track": "track-01",
+      "title": "CLR execution IL JIT AOT assemblies reflection attributes and loading — Reference: Assembly files, identity, references, resources, dependency graphs, and deployment metadata",
+      "module": "t01-019",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-019-reference-clr-and-managed-execution"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "assemblies-metadata-and-dependencies"
+    },
+    {
+      "id": "t01-019-reference-reflection-and-type-inspection",
+      "track": "track-01",
+      "title": "CLR execution IL JIT AOT assemblies reflection attributes and loading — Reference: System.Type, members, binding flags, invocation, generic inspection, and metadata-only loading",
+      "module": "t01-019",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-019-reference-assemblies-metadata-and-dependencies"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "reflection-and-type-inspection"
+    },
+    {
+      "id": "t01-019-reference-attributes-and-metadata-consumers",
+      "track": "track-01",
+      "title": "CLR execution IL JIT AOT assemblies reflection attributes and loading — Reference: Attribute declarations, usage, retrieval, custom metadata, and framework conventions",
+      "module": "t01-019",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-019-reference-reflection-and-type-inspection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "attributes-and-metadata-consumers"
+    },
+    {
+      "id": "t01-019-reference-loading-contexts-and-deployment-modes",
+      "track": "track-01",
+      "title": "CLR execution IL JIT AOT assemblies reflection attributes and loading — Reference: AssemblyLoadContext, plugin loading and unloading, trimming, ReadyToRun, and Native AOT",
+      "module": "t01-019",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-019-reference-attributes-and-metadata-consumers"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "loading-contexts-and-deployment-modes"
     },
     {
       "id": "t01-019-practice",
       "track": "track-01",
-      "title": "CLR IL JIT AOT assemblies reflection attributes and loading — Exercises and worked solutions",
+      "title": "CLR execution IL JIT AOT assemblies reflection attributes and loading — Exercises and worked solutions",
       "module": "t01-019",
       "manifest": "curriculum/manifests/c-language-and-net/t01-019.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-019-reference-inventory-pending"
+        "t01-019-reference-loading-contexts-and-deployment-modes"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-019-interview",
       "track": "track-01",
-      "title": "CLR IL JIT AOT assemblies reflection attributes and loading — Interview questions and reasoning",
+      "title": "CLR execution IL JIT AOT assemblies reflection attributes and loading — Interview questions and reasoning",
       "module": "t01-019",
       "manifest": "curriculum/manifests/c-language-and-net/t01-019.json",
       "phase": "interview",
       "prerequisites": [
         "t01-019-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-020-overview",
