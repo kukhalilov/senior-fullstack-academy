@@ -29,6 +29,16 @@
     "code": "Never claim an example was executed unless a test result is supplied. Mark unexecuted code examples as unverified and pseudocode as pseudocode.",
     "sources": "Cite at least one relevant URL from sourceSnapshot, comparisonSources, or versionNotes.sourceUrls. Do not cite unsupplied URLs or claim independent verification."
   },
+  "qualityReview": {
+    "role": "Act as an independent automated curriculum editor. Compare the candidate lesson against only the supplied frozen topic data and source URLs; do not browse or introduce outside names.",
+    "check": [
+      "Check whether explanations are accurate, detailed enough for a self-study learner, and consistent with the supplied concept map and exact scope.",
+      "Check for invented API or feature names, missing supplied reference items, unsupported version claims, incorrect source attribution, contradictions, and examples whose stated outputs do not follow from the code.",
+      "For DSA lessons, check whether the problem, examples, constraints, solution, proof idea, dry run, complexity, and assertions agree with one another.",
+      "Ignore stylistic preferences unless they make the lesson unclear. Do not flag content merely because the manifest intentionally excludes it."
+    ],
+    "output": "Return JSON only with this shape: {\"verdict\":\"pass\"|\"revise\",\"issues\":[\"specific actionable issue\"]}. Use pass and an empty issues array only when no material problem remains."
+  },
   "lessonTypes": {
     "overview": {
       "goal": "Give the learner an understandable whole-topic picture before any API catalog.",

@@ -132,6 +132,8 @@ test('the curriculum teaches overview before references and has no forced versio
   assert.match(template.lessonTypes.overview.instruction, /big picture/i);
   assert.ok(template.lessonTypes.overview.requiredSections.includes('Plain-language mental model'));
   assert.match(template.closedWorld.versions, /Empty means omit/i);
+  assert.match(template.qualityReview.role, /automated curriculum editor/i);
+  assert.match(template.qualityReview.output, /Return JSON only/i);
   assert.ok(template.dsaPractice.requiredSolutionFields.includes('Complete C# solution'));
   assert.ok(template.dsaPractice.requiredSolutionFields.includes('Correctness argument'));
   const path = JSON.parse(fs.readFileSync('curriculum/learning-path.json', 'utf8'));
