@@ -7,6 +7,8 @@ const catalog = readJson('curriculum/catalog.json');
 const queue = readJson('curriculum/queue.json');
 const requestedUnits = Number(process.env.UNITS_PER_RUN ?? 100);
 const unitsPerRun = Number.isInteger(requestedUnits) && requestedUnits > 0 ? Math.min(requestedUnits, 100) : 100;
+const requestedCalls = Number(process.env.MAX_API_CALLS_PER_RUN ?? 100);
+const maxApiCalls = Number.isInteger(requestedCalls) && requestedCalls > 0 ? Math.min(requestedCalls, 100) : 100;
 const dryRun = process.argv.includes('--dry-run');
 const model = process.env.GEMINI_MODEL ?? 'gemini-3.5-flash-lite';
 const outputRoot = 'course/drafts';
@@ -59,12 +61,16 @@ function checkLesson(task, manifest, text) {
   return ['<!-- GENERATED DRAFT: automated checks passed; factual verification is not implied. -->','',`# ${task.title}`,'',text.trim(),''].join('\n');
 }
 let lastRequestAt=0;
+let apiCalls=0;
+class RequestBudgetExhausted extends Error {}
 async function request(prompt) {
   const wait=Math.max(0,4100-(Date.now()-lastRequestAt));
   if(wait) await new Promise(resolve=>setTimeout(resolve,wait));
   lastRequestAt=Date.now();
   let delay=1500;
   for(let attempt=0;attempt<6;attempt++) {
+    if(apiCalls>=maxApiCalls) throw new RequestBudgetExhausted(`Per-run API request budget reached (${maxApiCalls})`);
+    apiCalls++;
     const response=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':apiKey},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.25,maxOutputTokens:8192}})});
     const body=await response.json().catch(()=>({}));
     if(response.ok) {
@@ -78,6 +84,7 @@ async function request(prompt) {
   }
 }
 let failures=0;
+let completedUnits=0;
 for(const task of pending) {
   try {
     const {manifest}=ready.get(task.module);
@@ -90,7 +97,12 @@ for(const task of pending) {
     const target=path.resolve(outputRoot,task.module,`${task.id}.md`);
     fs.mkdirSync(path.dirname(target),{recursive:true});
     fs.writeFileSync(target,lesson,'utf8');
+    completedUnits++;
     console.log(`Draft generated: ${target}`);
-  } catch(error) { failures++; console.error(`Failed ${task.id}: ${error.message}`); }
+  } catch(error) {
+    if(error instanceof RequestBudgetExhausted) { console.log(`${error.message}; remaining pending lessons will continue on the next scheduled run.`); break; }
+    failures++; console.error(`Failed ${task.id}: ${error.message}`);
+  }
 }
+console.log(`API request budget: ${apiCalls}/${maxApiCalls}; lessons completed: ${completedUnits}/${pending.length} selected.`);
 if(failures){console.error(`${failures} lesson units failed; successful drafts remain checkpointed on disk.`);process.exitCode=1;}

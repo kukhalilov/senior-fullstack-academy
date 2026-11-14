@@ -4,8 +4,8 @@
 
 - 11 tracks and 157 canonical topic manifests.
 - 799 planned lesson units in overview → concepts → bounded references → practice → interview order.
-- 3 topic manifests are enabled for draft generation; a fourth, DSA cost analysis, has a complete source-backed inventory but remains blocked until generated C# solutions can be checked.
-- 153 manifests remain inventory scaffolds; the existing validator fails as intended.
+- 5 topic manifests are enabled for draft generation; one complete DSA inventory remains blocked until C# solution-validation checks are completed.
+- 151 manifests remain inventory scaffolds; the existing validator fails as intended.
 - Three legacy pilot lessons remain in `course/` with quarantine warnings and are excluded from the accepted curriculum.
 - Scheduled GitHub Actions generation is implemented for manifests explicitly enabled for draft generation. JavaScript values/types, Array, and C# program structure are currently enabled; whole-catalog generation is still blocked.
 - DSA is listed as a track, but it currently has no independently generated course lessons.

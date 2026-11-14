@@ -3,10 +3,36 @@
   "id": "t01-022",
   "track": "track-01",
   "title": "C# statements, control flow, and exception-handling statement forms",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-inventory-complete-generation-held",
+  "concepts": [
+    "Statements perform actions while expressions produce values",
+    "Blocks group statements and define local scopes",
+    "Selection statements choose a path; iteration statements repeat work",
+    "Jump statements alter the next execution point and obey scope restrictions",
+    "Exception handling transfers control and guarantees cleanup where required",
+    "Resource-management statements dispose resources synchronously or asynchronously",
+    "Iterator statements produce values incrementally",
+    "Unsafe statement forms enable explicitly scoped pointer operations"
+  ],
+  "inventory": [
+    {"id":"statement-forms","title":"Statement forms and declarations","items":["Block statement","Empty statement","Expression statement","Declaration statement","Local variable declaration","Local constant declaration","Labeled statement"]},
+    {"id":"selection","title":"Selection statements","items":["if statement","if-else statement","switch statement","switch section","case constant label","case pattern label","default label","when guard"]},
+    {"id":"iteration","title":"Iteration statements","items":["for statement","foreach statement","await foreach statement","while statement","do statement","foreach iteration variable","for iteration clause"]},
+    {"id":"jumps-and-iterators","title":"Jump and iterator statements","items":["break statement","continue statement","goto statement","goto case statement","goto default statement","return statement","ref return statement","throw statement","yield return statement","yield break statement"]},
+    {"id":"exception-handling","title":"Exception-handling statements","items":["try-catch statement","catch clause","exception filter","finally clause"]},
+    {"id":"context-and-resources","title":"Checked context, locking, and resource disposal","items":["checked statement","unchecked statement","lock statement","using statement","using declaration","await using statement","await using declaration"]},
+    {"id":"unsafe","title":"Unsafe statement forms","items":["unsafe statement","fixed statement"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["if statement","switch statement"],["for statement","foreach statement","while statement","do statement"],["break statement","continue statement","goto statement"],["using statement","using declaration"],["using declaration","await using declaration"],["throw statement","throw expression"]],
+  "comparisonSources": ["https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements","https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn C# statements reference and C# language specification",
+    "edition": "C# 14 language reference; statement syntax checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/","https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements","https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements","https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"]
+  },
+  "scopeExclusions": ["Expression forms and operators, including switch and throw expressions","Type and member declarations","Exception type design and exception hierarchy","Asynchronous programming beyond await foreach and await using statement forms","Pointer types and unsafe expressions beyond unsafe and fixed statement forms"],
+  "generationAllowed": true
 }

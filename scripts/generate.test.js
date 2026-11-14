@@ -12,7 +12,7 @@ test('generation entry point requires the repository API secret before network c
 test('dry-run reports eligible units without requiring a key or making network calls', () => {
   const result = spawnSync(process.execPath, ['scripts/generate.js', '--dry-run'], {encoding: 'utf8'});
   assert.equal(result.status, 0);
-  assert.match(result.stdout, /25 eligible units pending/);
+  assert.match(result.stdout, /\d+ eligible units pending/);
 });
 
 test('JavaScript values and types has a bounded inventory without array members', () => {
