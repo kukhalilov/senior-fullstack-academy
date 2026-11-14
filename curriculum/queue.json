@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1847,
+  "taskCount": 1851,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -1774,61 +1774,113 @@
     {
       "id": "t01-018-overview",
       "track": "track-01",
-      "title": "memory spans allocation garbage collection and diagnostics — Big-picture orientation and mental model",
+      "title": "memory spans allocation garbage collection pooling and diagnostics — Big-picture orientation and mental model",
       "module": "t01-018",
       "manifest": "curriculum/manifests/c-language-and-net/t01-018.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-018-concepts",
       "track": "track-01",
-      "title": "memory spans allocation garbage collection and diagnostics — Core concepts and how they fit together",
+      "title": "memory spans allocation garbage collection pooling and diagnostics — Core concepts and how they fit together",
       "module": "t01-018",
       "manifest": "curriculum/manifests/c-language-and-net/t01-018.json",
       "phase": "concepts",
       "prerequisites": [
         "t01-018-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-018-reference-inventory-pending",
+      "id": "t01-018-reference-managed-memory-and-span-types",
       "track": "track-01",
-      "title": "memory spans allocation garbage collection and diagnostics — Reference: awaiting curated names",
+      "title": "memory spans allocation garbage collection pooling and diagnostics — Reference: Contiguous memory views, slicing, stack allocation, and lifetime constraints",
       "module": "t01-018",
       "manifest": "curriculum/manifests/c-language-and-net/t01-018.json",
       "phase": "reference",
       "prerequisites": [
         "t01-018-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "managed-memory-and-span-types"
+    },
+    {
+      "id": "t01-018-reference-memory-marshalling-and-buffer-pools",
+      "track": "track-01",
+      "title": "memory spans allocation garbage collection pooling and diagnostics — Reference: ArrayPool, MemoryPool, MemoryMarshal, Buffer, pinning, and unmanaged allocation boundaries",
+      "module": "t01-018",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-018-reference-managed-memory-and-span-types"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "memory-marshalling-and-buffer-pools"
+    },
+    {
+      "id": "t01-018-reference-garbage-collector-and-finalization",
+      "track": "track-01",
+      "title": "memory spans allocation garbage collection pooling and diagnostics — Reference: Reachability, generations, heaps, collection modes, finalization, and GC control APIs",
+      "module": "t01-018",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-018-reference-memory-marshalling-and-buffer-pools"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "garbage-collector-and-finalization"
+    },
+    {
+      "id": "t01-018-reference-allocation-and-lifetime-performance",
+      "track": "track-01",
+      "title": "memory spans allocation garbage collection pooling and diagnostics — Reference: Allocation behavior, object layout, pooling tradeoffs, pinning, and memory ownership design",
+      "module": "t01-018",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-018-reference-garbage-collector-and-finalization"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "allocation-and-lifetime-performance"
+    },
+    {
+      "id": "t01-018-reference-memory-diagnostics-and-profiling",
+      "track": "track-01",
+      "title": "memory spans allocation garbage collection pooling and diagnostics — Reference: Allocation and heap diagnostics, EventPipe tooling, metrics, dumps, and benchmark design",
+      "module": "t01-018",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-018-reference-allocation-and-lifetime-performance"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "memory-diagnostics-and-profiling"
     },
     {
       "id": "t01-018-practice",
       "track": "track-01",
-      "title": "memory spans allocation garbage collection and diagnostics — Exercises and worked solutions",
+      "title": "memory spans allocation garbage collection pooling and diagnostics — Exercises and worked solutions",
       "module": "t01-018",
       "manifest": "curriculum/manifests/c-language-and-net/t01-018.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-018-reference-inventory-pending"
+        "t01-018-reference-memory-diagnostics-and-profiling"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-018-interview",
       "track": "track-01",
-      "title": "memory spans allocation garbage collection and diagnostics — Interview questions and reasoning",
+      "title": "memory spans allocation garbage collection pooling and diagnostics — Interview questions and reasoning",
       "module": "t01-018",
       "manifest": "curriculum/manifests/c-language-and-net/t01-018.json",
       "phase": "interview",
       "prerequisites": [
         "t01-018-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-019-overview",
