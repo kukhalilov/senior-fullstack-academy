@@ -103,6 +103,22 @@ test('named DSA problems become independent practice units', () => {
   assert.equal(tasks[0].problemTitle, 'Two Sum');
 });
 
+test('two-pointer and sliding-window problems are separate source-backed lessons', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-003.json', 'utf8'));
+  const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
+  const tasks = queue.tasks.filter(task => task.module === manifest.id && task.phase === 'practice');
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  assert.equal(manifest.practiceProblems.length, 8);
+  assert.equal(tasks.length, 8);
+  assert.deepEqual(tasks.map(task => task.problemId), manifest.practiceProblems.map(problem => problem.id));
+  assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/silver/two-pointers'));
+  assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/gold/sliding-window'));
+  assert.ok(manifest.inventory.some(group => group.items.includes('Exactly-K via difference of at-most counts')));
+  const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
+  assert.equal(allDsaProblems.length, 32);
+});
+
 test('the curriculum teaches overview before references and has no forced versions phase', () => {
   const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
   assert.deepEqual(queue.learningSequence, ['overview', 'concepts', 'reference groups', 'practice units', 'interview']);

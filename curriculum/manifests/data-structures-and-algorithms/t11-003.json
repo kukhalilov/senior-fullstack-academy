@@ -2,11 +2,46 @@
   "schemaVersion": 4,
   "id": "t11-003",
   "track": "track-11",
-  "title": "two pointers and sliding window fixed and variable",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "title": "two-pointer and sliding-window techniques",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Two pointers track positions whose movement is justified by an ordering property or a maintained invariant.",
+    "Opposite-direction pointers can eliminate candidate pairs when sorted order or a symmetric objective proves which endpoint to move.",
+    "Same-direction read and write pointers support stable in-place filtering and compaction.",
+    "A sliding window is a contiguous range whose state is updated as its boundaries move.",
+    "Fixed-size windows add the entering value and remove the leaving value once per step.",
+    "Variable-size windows expand and contract while maintaining a validity condition; monotone validity is needed for a linear scan.",
+    "Frequency maps or counters maintain membership and multiplicity information for strings and arrays.",
+    "The at-most-K technique can derive exactly-K counts by subtracting the at-most-(K-1) count when the counting identity applies.",
+    "Sorting may enable a two-pointer scan but changes original order and adds preprocessing cost.",
+    "Negative numbers can break the monotone sum condition needed by common variable-size sum windows."
+  ],
+  "inventory": [
+    {"id":"pointer-movement","title":"Pointer arrangements and movement invariants","items":["Opposite-direction pointers","Same-direction pointers","Read/write compaction pointers","Two-pointer merge","Sorted-input elimination rule","Duplicate skipping after sorting"]},
+    {"id":"window-shapes","title":"Window sizes and boundary updates","items":["Fixed-size sliding window","Variable-size sliding window","Expand-then-contract window","Contiguous subarray window","Contiguous substring window","Enter-and-leave update"]},
+    {"id":"window-state","title":"Window state and validity","items":["Window validity invariant","Running window sum","Frequency map","Frequency array","Distinct-element count","At-most-K count","Exactly-K via difference of at-most counts","Monotone shrink condition","Nonnegative-input requirement for minimal-sum window"]},
+    {"id":"tradeoffs-and-failure-modes","title":"Tradeoffs and failure modes","items":["Sort-then-scan time and space tradeoff","Stable in-place update","Duplicate handling","Negative values invalidate monotone sum-window reasoning","Empty and single-element boundaries"]}
+  ],
+  "practiceProblems": [
+    {"id":"valid-palindrome","name":"Valid Palindrome","difficulty":"introductory","patterns":["opposite-direction pointers","skip irrelevant characters"]},
+    {"id":"two-sum-ii","name":"Two Sum II - Input Array Is Sorted","difficulty":"introductory","patterns":["opposite-direction pointers","sorted-input elimination rule"]},
+    {"id":"remove-duplicates-sorted-array","name":"Remove Duplicates from Sorted Array","difficulty":"introductory","patterns":["read/write compaction pointers","in-place stable update"]},
+    {"id":"three-sum","name":"3Sum","difficulty":"intermediate","patterns":["sort-then-scan","opposite-direction pointers","duplicate skipping after sorting"]},
+    {"id":"container-with-most-water","name":"Container With Most Water","difficulty":"intermediate","patterns":["opposite-direction pointers","greedy endpoint elimination"]},
+    {"id":"longest-substring-without-repeating-characters","name":"Longest Substring Without Repeating Characters","difficulty":"intermediate","patterns":["variable-size window","frequency map","distinct-element invariant"]},
+    {"id":"minimum-size-subarray-sum","name":"Minimum Size Subarray Sum","difficulty":"intermediate","patterns":["variable-size window","running window sum","nonnegative-input requirement"]},
+    {"id":"minimum-window-substring","name":"Minimum Window Substring","difficulty":"advanced","patterns":["variable-size window","frequency map","expand-then-contract window"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Opposite-direction pointers","Same-direction pointers"],["Fixed-size sliding window","Variable-size sliding window"],["At-most-K count","Exactly-K via difference of at-most counts"],["Sort-then-scan time and space tradeoff","Already-sorted two-pointer scan"]],
+  "comparisonSources": ["https://usaco.guide/silver/two-pointers","https://usaco.guide/gold/sliding-window"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide two pointers and sliding window; official LeetCode canonical problem statements",
+    "edition": "Timeless algorithm patterns; problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/silver/two-pointers","https://usaco.guide/gold/sliding-window","https://leetcode.com/problems/valid-palindrome/","https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/","https://leetcode.com/problems/remove-duplicates-from-sorted-array/","https://leetcode.com/problems/3sum/","https://leetcode.com/problems/container-with-most-water/","https://leetcode.com/problems/longest-substring-without-repeating-characters/","https://leetcode.com/problems/minimum-size-subarray-sum/","https://leetcode.com/problems/minimum-window-substring/"]
+  },
+  "scopeExclusions": ["Array storage and dynamic-array analysis, covered in t11-002","Prefix sums and difference arrays, covered in t11-004","Binary search on sorted data and answer spaces, covered in t11-005","Linked-list fast and slow pointers, covered in linked-list topics","Monotonic queues and sliding-window maximum, covered in the monotonic-structure topic","Sorting algorithm implementations, covered in sorting topics"],
+  "generationAllowed": true
 }

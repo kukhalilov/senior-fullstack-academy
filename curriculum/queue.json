@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 895,
+  "taskCount": 905,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -9274,61 +9274,200 @@
     {
       "id": "t11-003-overview",
       "track": "track-11",
-      "title": "two pointers and sliding window fixed and variable — Big-picture orientation and mental model",
+      "title": "two-pointer and sliding-window techniques — Big-picture orientation and mental model",
       "module": "t11-003",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-003-concepts",
       "track": "track-11",
-      "title": "two pointers and sliding window fixed and variable — Core concepts and how they fit together",
+      "title": "two-pointer and sliding-window techniques — Core concepts and how they fit together",
       "module": "t11-003",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-003-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-003-reference-inventory-pending",
+      "id": "t11-003-reference-pointer-movement",
       "track": "track-11",
-      "title": "two pointers and sliding window fixed and variable — Reference: awaiting curated names",
+      "title": "two-pointer and sliding-window techniques — Reference: Pointer arrangements and movement invariants",
       "module": "t11-003",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
       "phase": "reference",
       "prerequisites": [
         "t11-003-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "pointer-movement"
     },
     {
-      "id": "t11-003-practice",
+      "id": "t11-003-reference-window-shapes",
       "track": "track-11",
-      "title": "two pointers and sliding window fixed and variable — Exercises and worked solutions",
+      "title": "two-pointer and sliding-window techniques — Reference: Window sizes and boundary updates",
+      "module": "t11-003",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-003-reference-pointer-movement"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "window-shapes"
+    },
+    {
+      "id": "t11-003-reference-window-state",
+      "track": "track-11",
+      "title": "two-pointer and sliding-window techniques — Reference: Window state and validity",
+      "module": "t11-003",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-003-reference-window-shapes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "window-state"
+    },
+    {
+      "id": "t11-003-reference-tradeoffs-and-failure-modes",
+      "track": "track-11",
+      "title": "two-pointer and sliding-window techniques — Reference: Tradeoffs and failure modes",
+      "module": "t11-003",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-003-reference-window-state"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "tradeoffs-and-failure-modes"
+    },
+    {
+      "id": "t11-003-practice-valid-palindrome",
+      "track": "track-11",
+      "title": "two-pointer and sliding-window techniques — Problem: Valid Palindrome",
       "module": "t11-003",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-003-reference-inventory-pending"
+        "t11-003-reference-tradeoffs-and-failure-modes"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "valid-palindrome",
+      "problemTitle": "Valid Palindrome"
+    },
+    {
+      "id": "t11-003-practice-two-sum-ii",
+      "track": "track-11",
+      "title": "two-pointer and sliding-window techniques — Problem: Two Sum II - Input Array Is Sorted",
+      "module": "t11-003",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-003-practice-valid-palindrome"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "two-sum-ii",
+      "problemTitle": "Two Sum II - Input Array Is Sorted"
+    },
+    {
+      "id": "t11-003-practice-remove-duplicates-sorted-array",
+      "track": "track-11",
+      "title": "two-pointer and sliding-window techniques — Problem: Remove Duplicates from Sorted Array",
+      "module": "t11-003",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-003-practice-two-sum-ii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "remove-duplicates-sorted-array",
+      "problemTitle": "Remove Duplicates from Sorted Array"
+    },
+    {
+      "id": "t11-003-practice-three-sum",
+      "track": "track-11",
+      "title": "two-pointer and sliding-window techniques — Problem: 3Sum",
+      "module": "t11-003",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-003-practice-remove-duplicates-sorted-array"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "three-sum",
+      "problemTitle": "3Sum"
+    },
+    {
+      "id": "t11-003-practice-container-with-most-water",
+      "track": "track-11",
+      "title": "two-pointer and sliding-window techniques — Problem: Container With Most Water",
+      "module": "t11-003",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-003-practice-three-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "container-with-most-water",
+      "problemTitle": "Container With Most Water"
+    },
+    {
+      "id": "t11-003-practice-longest-substring-without-repeating-characters",
+      "track": "track-11",
+      "title": "two-pointer and sliding-window techniques — Problem: Longest Substring Without Repeating Characters",
+      "module": "t11-003",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-003-practice-container-with-most-water"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "longest-substring-without-repeating-characters",
+      "problemTitle": "Longest Substring Without Repeating Characters"
+    },
+    {
+      "id": "t11-003-practice-minimum-size-subarray-sum",
+      "track": "track-11",
+      "title": "two-pointer and sliding-window techniques — Problem: Minimum Size Subarray Sum",
+      "module": "t11-003",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-003-practice-longest-substring-without-repeating-characters"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "minimum-size-subarray-sum",
+      "problemTitle": "Minimum Size Subarray Sum"
+    },
+    {
+      "id": "t11-003-practice-minimum-window-substring",
+      "track": "track-11",
+      "title": "two-pointer and sliding-window techniques — Problem: Minimum Window Substring",
+      "module": "t11-003",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-003-practice-minimum-size-subarray-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "minimum-window-substring",
+      "problemTitle": "Minimum Window Substring"
     },
     {
       "id": "t11-003-interview",
       "track": "track-11",
-      "title": "two pointers and sliding window fixed and variable — Interview questions and reasoning",
+      "title": "two-pointer and sliding-window techniques — Interview questions and reasoning",
       "module": "t11-003",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-003.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-003-practice"
+        "t11-003-practice-minimum-window-substring"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-004-overview",
