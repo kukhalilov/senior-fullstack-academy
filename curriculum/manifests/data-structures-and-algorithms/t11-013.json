@@ -2,11 +2,44 @@
   "schemaVersion": 4,
   "id": "t11-013",
   "track": "track-11",
-  "title": "backtracking subsets permutations combinations and pruning",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "title": "backtracking, subsets, permutations, and combinations",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Backtracking explores a decision tree by extending a partial candidate, recursively exploring it, and undoing the choice before trying another branch.",
+    "A state must contain exactly the information needed to resume a branch; mutable state must be restored on every return path or copied before recursion.",
+    "Subsets correspond to choose-or-skip decisions, permutations correspond to choosing an unused element at each position, and combinations impose an ordering rule to avoid duplicate orderings.",
+    "The search tree is often exponential or factorial because the output itself is large; complexity should count both explored states and the cost of constructing each output.",
+    "Sorting candidates can make duplicate values adjacent and support duplicate-skip rules, but the skip condition must preserve distinct valid choices at different recursion depths.",
+    "Pruning is sound only when a proven condition shows no completion of the current partial state can satisfy the goal.",
+    "A recursion depth bound, candidate index, or used-element structure prevents revisiting choices and makes the search invariant explicit.",
+    "Backtracking differs from dynamic programming when the goal is to enumerate solutions or when overlapping states do not allow safe aggregation into a reusable result."
+  ],
+  "inventory": [
+    {"id":"search-tree-and-state","title":"Decision trees, partial state, and recursion","items":["Search space","Decision tree","Partial candidate","Choice","Explore branch","Undo choice","Base case","Recursion depth","Mutable path state","State-copy alternative"]},
+    {"id":"subset-and-combination-generation","title":"Subsets, combinations, and choose/skip search","items":["Subset choose-or-skip recursion","Combination generation","Candidate start index","Nondecreasing choice indices","Avoid permutation duplicates in combinations","Combination sum with reuse","Combination sum without reuse","Empty subset"]},
+    {"id":"permutations-and-duplicates","title":"Permutations, used-state, and duplicate control","items":["Permutation generation","Used-element boolean array","Swap-based in-place permutation","Duplicate values after sorting","Same-depth duplicate skip","Distinct positions with equal values","Lexicographic next permutation boundary"]},
+    {"id":"pruning-and-complexity","title":"Sound pruning, output size, and complexity","items":["Feasibility pruning","Bound-based pruning","Remaining-sum pruning","Early termination for decision search","Output-sensitive complexity","O(2^n) subset search","O(n!) permutation search","Branching factor","Search tree depth","Backtracking versus dynamic programming"]}
+  ],
+  "practiceProblems": [
+    {"id":"subsets","name":"Subsets","difficulty":"introductory","patterns":["choose or skip each element","emit a partial solution at each node"]},
+    {"id":"subsets-ii","name":"Subsets II","difficulty":"intermediate","patterns":["sort duplicate values","skip duplicates at the same recursion depth"]},
+    {"id":"permutations","name":"Permutations","difficulty":"introductory","patterns":["choose an unused element","restore path state on return"]},
+    {"id":"permutations-ii","name":"Permutations II","difficulty":"intermediate","patterns":["sorted duplicate values","used-index duplicate rule"]},
+    {"id":"combination-sum","name":"Combination Sum","difficulty":"intermediate","patterns":["candidate start index","reuse current candidate while reducing remainder"]},
+    {"id":"combination-sum-ii","name":"Combination Sum II","difficulty":"intermediate","patterns":["single-use candidates","same-depth duplicate skip and sum pruning"]},
+    {"id":"letter-combinations-phone-number","name":"Letter Combinations of a Phone Number","difficulty":"introductory","patterns":["cartesian-product search tree","append one choice per position"]},
+    {"id":"palindrome-partitioning","name":"Palindrome Partitioning","difficulty":"intermediate","patterns":["choose the next substring boundary","prune non-palindromic choices"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Subsets","Permutations"],["Combination search","Permutation search"],["Choose/skip recursion","Loop-based candidate selection"],["Copy path per branch","Mutate and undo path"],["Backtracking enumeration","Dynamic-programming state aggregation"]],
+  "comparisonSources": ["https://usaco.guide/bronze/complete-rec?lang=cpp","https://usaco.guide/CP2.pdf"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide complete search with recursion and Competitive Programming 2; official LeetCode problem statements",
+    "edition": "Timeless search patterns; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/bronze/complete-rec?lang=cpp","https://usaco.guide/CP2.pdf","https://leetcode.com/problems/subsets/","https://leetcode.com/problems/subsets-ii/","https://leetcode.com/problems/permutations/","https://leetcode.com/problems/permutations-ii/","https://leetcode.com/problems/combination-sum/","https://leetcode.com/problems/combination-sum-ii/","https://leetcode.com/problems/letter-combinations-of-a-phone-number/","https://leetcode.com/problems/palindrome-partitioning/"]
+  },
+  "scopeExclusions": ["Constraint satisfaction puzzles such as N-Queens and Sudoku, covered in t11-028","Dynamic programming state caching, covered in t11-015 and focused DP topics","Graph search and visited-state traversal, covered in graph topics","Meet-in-the-middle and advanced search-space compression","Randomized search and local search heuristics"],
+  "generationAllowed": true
 }

@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1068,
+  "taskCount": 1139,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -11168,179 +11168,596 @@
     {
       "id": "t11-013-overview",
       "track": "track-11",
-      "title": "backtracking subsets permutations combinations and pruning — Big-picture orientation and mental model",
+      "title": "backtracking, subsets, permutations, and combinations — Big-picture orientation and mental model",
       "module": "t11-013",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-013-concepts",
       "track": "track-11",
-      "title": "backtracking subsets permutations combinations and pruning — Core concepts and how they fit together",
+      "title": "backtracking, subsets, permutations, and combinations — Core concepts and how they fit together",
       "module": "t11-013",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-013-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-013-reference-inventory-pending",
+      "id": "t11-013-reference-search-tree-and-state",
       "track": "track-11",
-      "title": "backtracking subsets permutations combinations and pruning — Reference: awaiting curated names",
+      "title": "backtracking, subsets, permutations, and combinations — Reference: Decision trees, partial state, and recursion",
       "module": "t11-013",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
       "phase": "reference",
       "prerequisites": [
         "t11-013-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "search-tree-and-state"
     },
     {
-      "id": "t11-013-practice",
+      "id": "t11-013-reference-subset-and-combination-generation",
       "track": "track-11",
-      "title": "backtracking subsets permutations combinations and pruning — Exercises and worked solutions",
+      "title": "backtracking, subsets, permutations, and combinations — Reference: Subsets, combinations, and choose/skip search",
+      "module": "t11-013",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-013-reference-search-tree-and-state"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "subset-and-combination-generation"
+    },
+    {
+      "id": "t11-013-reference-permutations-and-duplicates",
+      "track": "track-11",
+      "title": "backtracking, subsets, permutations, and combinations — Reference: Permutations, used-state, and duplicate control",
+      "module": "t11-013",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-013-reference-subset-and-combination-generation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "permutations-and-duplicates"
+    },
+    {
+      "id": "t11-013-reference-pruning-and-complexity",
+      "track": "track-11",
+      "title": "backtracking, subsets, permutations, and combinations — Reference: Sound pruning, output size, and complexity",
+      "module": "t11-013",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-013-reference-permutations-and-duplicates"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "pruning-and-complexity"
+    },
+    {
+      "id": "t11-013-practice-subsets",
+      "track": "track-11",
+      "title": "backtracking, subsets, permutations, and combinations — Problem: Subsets",
       "module": "t11-013",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-013-reference-inventory-pending"
+        "t11-013-reference-pruning-and-complexity"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "subsets",
+      "problemTitle": "Subsets"
+    },
+    {
+      "id": "t11-013-practice-subsets-ii",
+      "track": "track-11",
+      "title": "backtracking, subsets, permutations, and combinations — Problem: Subsets II",
+      "module": "t11-013",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-013-practice-subsets"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "subsets-ii",
+      "problemTitle": "Subsets II"
+    },
+    {
+      "id": "t11-013-practice-permutations",
+      "track": "track-11",
+      "title": "backtracking, subsets, permutations, and combinations — Problem: Permutations",
+      "module": "t11-013",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-013-practice-subsets-ii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "permutations",
+      "problemTitle": "Permutations"
+    },
+    {
+      "id": "t11-013-practice-permutations-ii",
+      "track": "track-11",
+      "title": "backtracking, subsets, permutations, and combinations — Problem: Permutations II",
+      "module": "t11-013",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-013-practice-permutations"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "permutations-ii",
+      "problemTitle": "Permutations II"
+    },
+    {
+      "id": "t11-013-practice-combination-sum",
+      "track": "track-11",
+      "title": "backtracking, subsets, permutations, and combinations — Problem: Combination Sum",
+      "module": "t11-013",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-013-practice-permutations-ii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "combination-sum",
+      "problemTitle": "Combination Sum"
+    },
+    {
+      "id": "t11-013-practice-combination-sum-ii",
+      "track": "track-11",
+      "title": "backtracking, subsets, permutations, and combinations — Problem: Combination Sum II",
+      "module": "t11-013",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-013-practice-combination-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "combination-sum-ii",
+      "problemTitle": "Combination Sum II"
+    },
+    {
+      "id": "t11-013-practice-letter-combinations-phone-number",
+      "track": "track-11",
+      "title": "backtracking, subsets, permutations, and combinations — Problem: Letter Combinations of a Phone Number",
+      "module": "t11-013",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-013-practice-combination-sum-ii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "letter-combinations-phone-number",
+      "problemTitle": "Letter Combinations of a Phone Number"
+    },
+    {
+      "id": "t11-013-practice-palindrome-partitioning",
+      "track": "track-11",
+      "title": "backtracking, subsets, permutations, and combinations — Problem: Palindrome Partitioning",
+      "module": "t11-013",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-013-practice-letter-combinations-phone-number"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "palindrome-partitioning",
+      "problemTitle": "Palindrome Partitioning"
     },
     {
       "id": "t11-013-interview",
       "track": "track-11",
-      "title": "backtracking subsets permutations combinations and pruning — Interview questions and reasoning",
+      "title": "backtracking, subsets, permutations, and combinations — Interview questions and reasoning",
       "module": "t11-013",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-013.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-013-practice"
+        "t11-013-practice-palindrome-partitioning"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-014-overview",
       "track": "track-11",
-      "title": "greedy reasoning and counterexamples — Big-picture orientation and mental model",
+      "title": "greedy choices, invariants, and correctness proofs — Big-picture orientation and mental model",
       "module": "t11-014",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-014-concepts",
       "track": "track-11",
-      "title": "greedy reasoning and counterexamples — Core concepts and how they fit together",
+      "title": "greedy choices, invariants, and correctness proofs — Core concepts and how they fit together",
       "module": "t11-014",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-014-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-014-reference-inventory-pending",
+      "id": "t11-014-reference-greedy-decision-model",
       "track": "track-11",
-      "title": "greedy reasoning and counterexamples — Reference: awaiting curated names",
+      "title": "greedy choices, invariants, and correctness proofs — Reference: Local choices, invariants, and solution structure",
       "module": "t11-014",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
       "phase": "reference",
       "prerequisites": [
         "t11-014-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "greedy-decision-model"
     },
     {
-      "id": "t11-014-practice",
+      "id": "t11-014-reference-proof-methods",
       "track": "track-11",
-      "title": "greedy reasoning and counterexamples — Exercises and worked solutions",
+      "title": "greedy choices, invariants, and correctness proofs — Reference: Proof techniques and counterexamples",
+      "module": "t11-014",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-014-reference-greedy-decision-model"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "proof-methods"
+    },
+    {
+      "id": "t11-014-reference-common-greedy-families",
+      "track": "track-11",
+      "title": "greedy choices, invariants, and correctness proofs — Reference: Common decision families and data-structure support",
+      "module": "t11-014",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-014-reference-proof-methods"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "common-greedy-families"
+    },
+    {
+      "id": "t11-014-reference-limits-and-complexity",
+      "track": "track-11",
+      "title": "greedy choices, invariants, and correctness proofs — Reference: Failure modes, alternatives, and analysis",
+      "module": "t11-014",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-014-reference-common-greedy-families"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "limits-and-complexity"
+    },
+    {
+      "id": "t11-014-practice-assign-cookies",
+      "track": "track-11",
+      "title": "greedy choices, invariants, and correctness proofs — Problem: Assign Cookies",
       "module": "t11-014",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-014-reference-inventory-pending"
+        "t11-014-reference-limits-and-complexity"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "assign-cookies",
+      "problemTitle": "Assign Cookies"
+    },
+    {
+      "id": "t11-014-practice-lemonade-change",
+      "track": "track-11",
+      "title": "greedy choices, invariants, and correctness proofs — Problem: Lemonade Change",
+      "module": "t11-014",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-014-practice-assign-cookies"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "lemonade-change",
+      "problemTitle": "Lemonade Change"
+    },
+    {
+      "id": "t11-014-practice-jump-game",
+      "track": "track-11",
+      "title": "greedy choices, invariants, and correctness proofs — Problem: Jump Game",
+      "module": "t11-014",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-014-practice-lemonade-change"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "jump-game",
+      "problemTitle": "Jump Game"
+    },
+    {
+      "id": "t11-014-practice-gas-station",
+      "track": "track-11",
+      "title": "greedy choices, invariants, and correctness proofs — Problem: Gas Station",
+      "module": "t11-014",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-014-practice-jump-game"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "gas-station",
+      "problemTitle": "Gas Station"
+    },
+    {
+      "id": "t11-014-practice-partition-labels",
+      "track": "track-11",
+      "title": "greedy choices, invariants, and correctness proofs — Problem: Partition Labels",
+      "module": "t11-014",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-014-practice-gas-station"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "partition-labels",
+      "problemTitle": "Partition Labels"
+    },
+    {
+      "id": "t11-014-practice-hand-of-straights",
+      "track": "track-11",
+      "title": "greedy choices, invariants, and correctness proofs — Problem: Hand of Straights",
+      "module": "t11-014",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-014-practice-partition-labels"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "hand-of-straights",
+      "problemTitle": "Hand of Straights"
+    },
+    {
+      "id": "t11-014-practice-maximum-units-truck",
+      "track": "track-11",
+      "title": "greedy choices, invariants, and correctness proofs — Problem: Maximum Units on a Truck",
+      "module": "t11-014",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-014-practice-hand-of-straights"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "maximum-units-truck",
+      "problemTitle": "Maximum Units on a Truck"
+    },
+    {
+      "id": "t11-014-practice-queue-reconstruction-height",
+      "track": "track-11",
+      "title": "greedy choices, invariants, and correctness proofs — Problem: Queue Reconstruction by Height",
+      "module": "t11-014",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-014-practice-maximum-units-truck"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "queue-reconstruction-height",
+      "problemTitle": "Queue Reconstruction by Height"
     },
     {
       "id": "t11-014-interview",
       "track": "track-11",
-      "title": "greedy reasoning and counterexamples — Interview questions and reasoning",
+      "title": "greedy choices, invariants, and correctness proofs — Interview questions and reasoning",
       "module": "t11-014",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-014.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-014-practice"
+        "t11-014-practice-queue-reconstruction-height"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-015-overview",
       "track": "track-11",
-      "title": "dynamic programming memoization tabulation and common patterns — Big-picture orientation and mental model",
+      "title": "dynamic programming states, recurrences, and tabulation — Big-picture orientation and mental model",
       "module": "t11-015",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-015-concepts",
       "track": "track-11",
-      "title": "dynamic programming memoization tabulation and common patterns — Core concepts and how they fit together",
+      "title": "dynamic programming states, recurrences, and tabulation — Core concepts and how they fit together",
       "module": "t11-015",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-015-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-015-reference-inventory-pending",
+      "id": "t11-015-reference-state-and-recurrence",
       "track": "track-11",
-      "title": "dynamic programming memoization tabulation and common patterns — Reference: awaiting curated names",
+      "title": "dynamic programming states, recurrences, and tabulation — Reference: Subproblems, state, and recurrence",
       "module": "t11-015",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
       "phase": "reference",
       "prerequisites": [
         "t11-015-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "state-and-recurrence"
     },
     {
-      "id": "t11-015-practice",
+      "id": "t11-015-reference-evaluation-strategies",
       "track": "track-11",
-      "title": "dynamic programming memoization tabulation and common patterns — Exercises and worked solutions",
+      "title": "dynamic programming states, recurrences, and tabulation — Reference: Memoization, tabulation, and dependency order",
+      "module": "t11-015",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-015-reference-state-and-recurrence"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "evaluation-strategies"
+    },
+    {
+      "id": "t11-015-reference-complexity-and-optimization",
+      "track": "track-11",
+      "title": "dynamic programming states, recurrences, and tabulation — Reference: State complexity, memory, and reconstruction",
+      "module": "t11-015",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-015-reference-evaluation-strategies"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "complexity-and-optimization"
+    },
+    {
+      "id": "t11-015-reference-proof-and-debugging",
+      "track": "track-11",
+      "title": "dynamic programming states, recurrences, and tabulation — Reference: Correctness arguments and failure cases",
+      "module": "t11-015",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-015-reference-complexity-and-optimization"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "proof-and-debugging"
+    },
+    {
+      "id": "t11-015-practice-climbing-stairs",
+      "track": "track-11",
+      "title": "dynamic programming states, recurrences, and tabulation — Problem: Climbing Stairs",
       "module": "t11-015",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-015-reference-inventory-pending"
+        "t11-015-reference-proof-and-debugging"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "climbing-stairs",
+      "problemTitle": "Climbing Stairs"
+    },
+    {
+      "id": "t11-015-practice-house-robber",
+      "track": "track-11",
+      "title": "dynamic programming states, recurrences, and tabulation — Problem: House Robber",
+      "module": "t11-015",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-015-practice-climbing-stairs"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "house-robber",
+      "problemTitle": "House Robber"
+    },
+    {
+      "id": "t11-015-practice-coin-change",
+      "track": "track-11",
+      "title": "dynamic programming states, recurrences, and tabulation — Problem: Coin Change",
+      "module": "t11-015",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-015-practice-house-robber"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "coin-change",
+      "problemTitle": "Coin Change"
+    },
+    {
+      "id": "t11-015-practice-unique-paths",
+      "track": "track-11",
+      "title": "dynamic programming states, recurrences, and tabulation — Problem: Unique Paths",
+      "module": "t11-015",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-015-practice-coin-change"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "unique-paths",
+      "problemTitle": "Unique Paths"
+    },
+    {
+      "id": "t11-015-practice-minimum-path-sum",
+      "track": "track-11",
+      "title": "dynamic programming states, recurrences, and tabulation — Problem: Minimum Path Sum",
+      "module": "t11-015",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-015-practice-unique-paths"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "minimum-path-sum",
+      "problemTitle": "Minimum Path Sum"
+    },
+    {
+      "id": "t11-015-practice-min-cost-climbing-stairs",
+      "track": "track-11",
+      "title": "dynamic programming states, recurrences, and tabulation — Problem: Min Cost Climbing Stairs",
+      "module": "t11-015",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-015-practice-minimum-path-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "min-cost-climbing-stairs",
+      "problemTitle": "Min Cost Climbing Stairs"
+    },
+    {
+      "id": "t11-015-practice-decode-ways",
+      "track": "track-11",
+      "title": "dynamic programming states, recurrences, and tabulation — Problem: Decode Ways",
+      "module": "t11-015",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-015-practice-min-cost-climbing-stairs"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "decode-ways",
+      "problemTitle": "Decode Ways"
+    },
+    {
+      "id": "t11-015-practice-delete-and-earn",
+      "track": "track-11",
+      "title": "dynamic programming states, recurrences, and tabulation — Problem: Delete and Earn",
+      "module": "t11-015",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-015-practice-decode-ways"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "delete-and-earn",
+      "problemTitle": "Delete and Earn"
     },
     {
       "id": "t11-015-interview",
       "track": "track-11",
-      "title": "dynamic programming memoization tabulation and common patterns — Interview questions and reasoning",
+      "title": "dynamic programming states, recurrences, and tabulation — Interview questions and reasoning",
       "module": "t11-015",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-015.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-015-practice"
+        "t11-015-practice-delete-and-earn"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-016-overview",
@@ -13046,6 +13463,544 @@
       "phase": "interview",
       "prerequisites": [
         "t11-027-practice-min-cost-connect-all-points"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-028-overview",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Big-picture orientation and mental model",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-028-concepts",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Core concepts and how they fit together",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-028-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-028-reference-constraints-and-partial-assignments",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Reference: Variables, domains, and constraint state",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-028-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "constraints-and-partial-assignments"
+    },
+    {
+      "id": "t11-028-reference-search-order-and-pruning",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Reference: Search heuristics and sound pruning",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-028-reference-constraints-and-partial-assignments"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "search-order-and-pruning"
+    },
+    {
+      "id": "t11-028-reference-puzzle-structures",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Reference: Common constraint structures",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-028-reference-search-order-and-pruning"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "puzzle-structures"
+    },
+    {
+      "id": "t11-028-reference-state-restoration-and-correctness",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Reference: Mutation, restoration, and validation",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-028-reference-puzzle-structures"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "state-restoration-and-correctness"
+    },
+    {
+      "id": "t11-028-practice-n-queens",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Problem: N-Queens",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-028-reference-state-restoration-and-correctness"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "n-queens",
+      "problemTitle": "N-Queens"
+    },
+    {
+      "id": "t11-028-practice-sudoku-solver",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Problem: Sudoku Solver",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-028-practice-n-queens"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "sudoku-solver",
+      "problemTitle": "Sudoku Solver"
+    },
+    {
+      "id": "t11-028-practice-word-search",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Problem: Word Search",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-028-practice-sudoku-solver"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "word-search",
+      "problemTitle": "Word Search"
+    },
+    {
+      "id": "t11-028-practice-partition-to-k-equal-sum-subsets",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Problem: Partition to K Equal Sum Subsets",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-028-practice-word-search"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "partition-to-k-equal-sum-subsets",
+      "problemTitle": "Partition to K Equal Sum Subsets"
+    },
+    {
+      "id": "t11-028-practice-matchsticks-square",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Problem: Matchsticks to Square",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-028-practice-partition-to-k-equal-sum-subsets"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "matchsticks-square",
+      "problemTitle": "Matchsticks to Square"
+    },
+    {
+      "id": "t11-028-practice-word-search-ii",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Problem: Word Search II",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-028-practice-matchsticks-square"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "word-search-ii",
+      "problemTitle": "Word Search II"
+    },
+    {
+      "id": "t11-028-interview",
+      "track": "track-11",
+      "title": "constraint search, pruning, and puzzle backtracking — Interview questions and reasoning",
+      "module": "t11-028",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-028.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-028-practice-word-search-ii"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-029-overview",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Big-picture orientation and mental model",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-029-concepts",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Core concepts and how they fit together",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-029-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-029-reference-knapsack-state-and-transitions",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Reference: Capacity states and item decisions",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-029-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "knapsack-state-and-transitions"
+    },
+    {
+      "id": "t11-029-reference-loop-order-and-space",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Reference: Loop direction, reuse, and storage optimization",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-029-reference-knapsack-state-and-transitions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "loop-order-and-space"
+    },
+    {
+      "id": "t11-029-reference-variants-and-reductions",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Reference: Subset sum, partition, and counting variants",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-029-reference-loop-order-and-space"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "variants-and-reductions"
+    },
+    {
+      "id": "t11-029-reference-complexity-and-reconstruction",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Reference: Pseudo-polynomial cost and selected-item recovery",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-029-reference-variants-and-reductions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "complexity-and-reconstruction"
+    },
+    {
+      "id": "t11-029-practice-partition-equal-subset-sum",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Problem: Partition Equal Subset Sum",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-029-reference-complexity-and-reconstruction"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "partition-equal-subset-sum",
+      "problemTitle": "Partition Equal Subset Sum"
+    },
+    {
+      "id": "t11-029-practice-target-sum",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Problem: Target Sum",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-029-practice-partition-equal-subset-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "target-sum",
+      "problemTitle": "Target Sum"
+    },
+    {
+      "id": "t11-029-practice-coin-change-ii",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Problem: Coin Change II",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-029-practice-target-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "coin-change-ii",
+      "problemTitle": "Coin Change II"
+    },
+    {
+      "id": "t11-029-practice-last-stone-weight-ii",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Problem: Last Stone Weight II",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-029-practice-coin-change-ii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "last-stone-weight-ii",
+      "problemTitle": "Last Stone Weight II"
+    },
+    {
+      "id": "t11-029-practice-ones-and-zeroes",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Problem: Ones and Zeroes",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-029-practice-last-stone-weight-ii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "ones-and-zeroes",
+      "problemTitle": "Ones and Zeroes"
+    },
+    {
+      "id": "t11-029-practice-combination-sum-iv",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Problem: Combination Sum IV",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-029-practice-ones-and-zeroes"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "combination-sum-iv",
+      "problemTitle": "Combination Sum IV"
+    },
+    {
+      "id": "t11-029-interview",
+      "track": "track-11",
+      "title": "knapsack, subset-sum, and resource-allocation DP — Interview questions and reasoning",
+      "module": "t11-029",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-029.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-029-practice-combination-sum-iv"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-030-overview",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Big-picture orientation and mental model",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-030-concepts",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Core concepts and how they fit together",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-030-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-030-reference-subsequence-states",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Reference: Subsequence and alignment states",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-030-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "subsequence-states"
+    },
+    {
+      "id": "t11-030-reference-substring-and-interval-states",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Reference: Contiguous substring and interval recurrences",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-030-reference-subsequence-states"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "substring-and-interval-states"
+    },
+    {
+      "id": "t11-030-reference-string-segmentation-and-cost",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Reference: Segmentation and string transformation",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-030-reference-substring-and-interval-states"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "string-segmentation-and-cost"
+    },
+    {
+      "id": "t11-030-reference-complexity-and-reconstruction",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Reference: Rolling arrays, reconstruction, and validation",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-030-reference-string-segmentation-and-cost"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "complexity-and-reconstruction"
+    },
+    {
+      "id": "t11-030-practice-longest-common-subsequence",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Problem: Longest Common Subsequence",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-030-reference-complexity-and-reconstruction"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "longest-common-subsequence",
+      "problemTitle": "Longest Common Subsequence"
+    },
+    {
+      "id": "t11-030-practice-longest-increasing-subsequence",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Problem: Longest Increasing Subsequence",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-030-practice-longest-common-subsequence"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "longest-increasing-subsequence",
+      "problemTitle": "Longest Increasing Subsequence"
+    },
+    {
+      "id": "t11-030-practice-longest-common-substring",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Problem: Maximum Length of Repeated Subarray",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-030-practice-longest-increasing-subsequence"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "longest-common-substring",
+      "problemTitle": "Maximum Length of Repeated Subarray"
+    },
+    {
+      "id": "t11-030-practice-palindromic-substrings",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Problem: Palindromic Substrings",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-030-practice-longest-common-substring"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "palindromic-substrings",
+      "problemTitle": "Palindromic Substrings"
+    },
+    {
+      "id": "t11-030-practice-longest-palindromic-subsequence",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Problem: Longest Palindromic Subsequence",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-030-practice-palindromic-substrings"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "longest-palindromic-subsequence",
+      "problemTitle": "Longest Palindromic Subsequence"
+    },
+    {
+      "id": "t11-030-practice-word-break",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Problem: Word Break",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-030-practice-longest-palindromic-subsequence"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "word-break",
+      "problemTitle": "Word Break"
+    },
+    {
+      "id": "t11-030-practice-minimum-ascii-delete-sum",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Problem: Minimum ASCII Delete Sum for Two Strings",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-030-practice-word-break"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "minimum-ascii-delete-sum",
+      "problemTitle": "Minimum ASCII Delete Sum for Two Strings"
+    },
+    {
+      "id": "t11-030-practice-regular-expression-matching",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Problem: Regular Expression Matching",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-030-practice-minimum-ascii-delete-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "regular-expression-matching",
+      "problemTitle": "Regular Expression Matching"
+    },
+    {
+      "id": "t11-030-interview",
+      "track": "track-11",
+      "title": "sequence and string dynamic programming — Interview questions and reasoning",
+      "module": "t11-030",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-030.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-030-practice-regular-expression-matching"
       ],
       "status": "draft-generation-eligible"
     }

@@ -2,11 +2,44 @@
   "schemaVersion": 4,
   "id": "t11-014",
   "track": "track-11",
-  "title": "greedy reasoning and counterexamples",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "title": "greedy choices, invariants, and correctness proofs",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A greedy algorithm makes an irrevocable locally chosen step and relies on a proof that the choice can still lead to a globally optimal solution.",
+    "A plausible local rule is only a hypothesis; small counterexamples, exhaustive search on tiny inputs, or comparison against a brute-force oracle can expose false greedy claims.",
+    "An exchange argument transforms an optimal solution to include the greedy choice without making it worse, establishing that some optimum agrees with the algorithm.",
+    "A staying-ahead proof compares the greedy partial solution with any competing solution after each step using a suitable invariant.",
+    "A greedy-choice property and optimal substructure often appear together, but neither should be assumed from a few examples; the proof must match the actual problem constraints.",
+    "Sorting by an endpoint, ratio, deadline, or value can expose a useful decision order, but the objective and feasible-set structure determine which ordering is valid.",
+    "Greedy fails when early choices consume resources needed for a better later solution; dynamic programming may be required when different partial choices need comparison.",
+    "Proof and complexity are separate: a fast algorithm still needs a correctness argument, while sorting or a heap may dominate the runtime of a greedy scan."
+  ],
+  "inventory": [
+    {"id":"greedy-decision-model","title":"Local choices, invariants, and solution structure","items":["Greedy choice","Irrevocable decision","Feasible partial solution","Greedy invariant","Optimal substructure","Greedy-choice property","Decision ordering","Exchange argument","Staying-ahead proof","Cut property concept"]},
+    {"id":"proof-methods","title":"Proof techniques and counterexamples","items":["Exchange argument","Swap with an optimal solution","Induction over decisions","Invariant preservation","Staying-ahead comparison","Proof by contradiction","Smallest counterexample search","Brute-force oracle on tiny inputs","Randomized differential testing","Proof obligations for tie cases"]},
+    {"id":"common-greedy-families","title":"Common decision families and data-structure support","items":["Earliest-finish interval selection","Sort by deadline","Sort by endpoint","Choose locally cheapest available item","Min-heap scheduling choice","Maximum overlap resource selection","Greedy partition or coloring","Canonical coin-system caveat"]},
+    {"id":"limits-and-complexity","title":"Failure modes, alternatives, and analysis","items":["Counterexample to local optimum","Choice blocks globally better completion","Greedy versus dynamic programming","Greedy versus exhaustive search","Sorting cost in greedy algorithm","Priority-queue operation cost","Tie-breaking correctness","Input-assumption dependence","Approximation algorithms are distinct from exact greedy proofs"]}
+  ],
+  "practiceProblems": [
+    {"id":"assign-cookies","name":"Assign Cookies","difficulty":"introductory","patterns":["sort both groups","satisfy the smallest feasible requirement first"]},
+    {"id":"lemonade-change","name":"Lemonade Change","difficulty":"introductory","patterns":["maintain bill-count invariant","preserve flexible larger denominations"]},
+    {"id":"jump-game","name":"Jump Game","difficulty":"intermediate","patterns":["maintain farthest reachable index","prove earlier positions are dominated"]},
+    {"id":"gas-station","name":"Gas Station","difficulty":"intermediate","patterns":["prefix feasibility invariant","discard impossible starting segments"]},
+    {"id":"partition-labels","name":"Partition Labels","difficulty":"intermediate","patterns":["last-occurrence boundary","extend current greedy partition"]},
+    {"id":"hand-of-straights","name":"Hand of Straights","difficulty":"intermediate","patterns":["process smallest remaining value","greedy feasibility with ordered counts"]},
+    {"id":"maximum-units-truck","name":"Maximum Units on a Truck","difficulty":"introductory","patterns":["sort by value density under simple capacity constraints","take highest-value units first"]},
+    {"id":"queue-reconstruction-height","name":"Queue Reconstruction by Height","difficulty":"advanced","patterns":["sort by height and insertion count","maintain a placement invariant"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Greedy choice","Dynamic programming over alternatives"],["Exchange proof","Staying-ahead proof"],["Exact greedy algorithm","Greedy heuristic without proof"],["Earliest-finish interval rule","Earliest-start interval rule"],["Counterexample testing","Correctness proof"],["Exact greedy result","Approximation guarantee"]],
+  "comparisonSources": ["https://usaco.guide/bronze/intro-greedy","https://usaco.guide/silver/greedy-sorting","https://usaco.guide/PAPS.pdf"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide greedy references, Competitive Programmer's Handbook, and official LeetCode problem statements",
+    "edition": "Timeless algorithm-design techniques; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/bronze/intro-greedy","https://usaco.guide/silver/greedy-sorting","https://usaco.guide/PAPS.pdf","https://leetcode.com/problems/assign-cookies/","https://leetcode.com/problems/lemonade-change/","https://leetcode.com/problems/jump-game/","https://leetcode.com/problems/gas-station/","https://leetcode.com/problems/partition-labels/","https://leetcode.com/problems/hand-of-straights/","https://leetcode.com/problems/maximum-units-on-a-truck/","https://leetcode.com/problems/queue-reconstruction-by-height/"]
+  },
+  "scopeExclusions": ["Interval scheduling and overlap variants, covered in t11-008","Sweep-line event processing, covered in t11-023","Greedy graph algorithms such as Kruskal and Prim, covered in graph topics","Matroid theory beyond its role as a proof framework","Approximation algorithms and competitive analysis"],
+  "generationAllowed": true
 }

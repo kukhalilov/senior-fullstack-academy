@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-029",
+  "track": "track-11",
+  "title": "knapsack, subset-sum, and resource-allocation DP",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Knapsack DP chooses items subject to a capacity or resource budget; the state records which items remain eligible and how much capacity is available.",
+    "In 0/1 knapsack each item may be selected once, so a one-dimensional capacity loop runs downward to avoid reusing the current item.",
+    "In unbounded knapsack an item may be reused, so a one-dimensional capacity loop commonly runs upward; loop order encodes the reuse rule.",
+    "Subset sum asks whether selected values reach a target and is a special boolean knapsack recurrence; reachable sums can be represented with a boolean array or bitset.",
+    "Partition equal subset sum first checks that the total is even, then asks whether a subset reaches half the total; this reduction should be proved before applying the DP.",
+    "Target-sum counting can map plus/minus assignments to a subset-sum count when parity and range conditions are satisfied.",
+    "The O(nW) dynamic program is pseudo-polynomial because it depends on numeric capacity W rather than the number of bits needed to encode W.",
+    "When reconstructing selected items, preserve predecessor choices or use a carefully justified recomputation; equal-value choices may produce multiple optimal subsets."
+  ],
+  "inventory": [
+    {"id":"knapsack-state-and-transitions","title":"Capacity states and item decisions","items":["0/1 knapsack","Unbounded knapsack","Capacity dimension","Item-prefix dimension","Skip current item","Take current item","Maximum-value recurrence","Minimum-cost recurrence","Boolean reachability recurrence","Subset-sum decision"]},
+    {"id":"loop-order-and-space","title":"Loop direction, reuse, and storage optimization","items":["Descending capacity loop for 0/1 use","Ascending capacity loop for unbounded use","Accidental item reuse bug","One-dimensional compression","Two-dimensional reference table","Bitset subset-sum update","Initialize capacity-zero state","Impossible-state initialization"]},
+    {"id":"variants-and-reductions","title":"Subset sum, partition, and counting variants","items":["Equal partition by half-total target","Target Sum sign assignment reduction","Count subsets reaching target","Minimum partition difference","Coin change minimum count relationship","Coin change number-of-combinations relationship","Parity feasibility condition","Zero-valued item counting effect"]},
+    {"id":"complexity-and-reconstruction","title":"Pseudo-polynomial cost and selected-item recovery","items":["O(nW) time bound","O(W) compressed space","Pseudo-polynomial complexity","Capacity-range feasibility","Reconstruct selected item indices","Tie between optimal subsets","Overflow-safe total capacity","Compare with meet-in-the-middle"]}
+  ],
+  "practiceProblems": [
+    {"id":"partition-equal-subset-sum","name":"Partition Equal Subset Sum","difficulty":"intermediate","patterns":["reduce to subset sum at half total","boolean 0/1 capacity DP"]},
+    {"id":"target-sum","name":"Target Sum","difficulty":"intermediate","patterns":["sign assignment to subset-count reduction","counting DP by sum"]},
+    {"id":"coin-change-ii","name":"Coin Change II","difficulty":"intermediate","patterns":["count combinations without order duplicates","coin-first unbounded DP loop order"]},
+    {"id":"last-stone-weight-ii","name":"Last Stone Weight II","difficulty":"intermediate","patterns":["partition into two near-equal sums","minimize difference from reachable half sums"]},
+    {"id":"ones-and-zeroes","name":"Ones and Zeroes","difficulty":"intermediate","patterns":["two-resource 0/1 knapsack","descending loops across both capacities"]},
+    {"id":"combination-sum-iv","name":"Combination Sum IV","difficulty":"intermediate","patterns":["count ordered sequences","outer target loop changes ordering semantics"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["0/1 knapsack","Unbounded knapsack"],["Descending capacity loop","Ascending capacity loop"],["Subset-sum decision","Subset-sum counting"],["Coin-first combination count","Target-first ordered sequence count"],["Pseudo-polynomial DP","Meet-in-the-middle search"]],
+  "comparisonSources": ["https://usaco.guide/gold/intro-dp","https://usaco.guide/PAPS.pdf","https://usaco.guide/problems/cses-1158-book-shop/solution"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide DP and knapsack references, Competitive Programmer's Handbook, and official LeetCode problem statements",
+    "edition": "Timeless DP patterns; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/gold/intro-dp","https://usaco.guide/PAPS.pdf","https://usaco.guide/problems/cses-1158-book-shop/solution","https://leetcode.com/problems/partition-equal-subset-sum/","https://leetcode.com/problems/target-sum/","https://leetcode.com/problems/coin-change-ii/","https://leetcode.com/problems/last-stone-weight-ii/","https://leetcode.com/problems/ones-and-zeroes/","https://leetcode.com/problems/combination-sum-iv/"]
+  },
+  "scopeExclusions": ["General DP state-design foundations, covered in t11-015","Backtracking combination enumeration, covered in t11-013","Constraint search for equal buckets, covered in t11-028","Advanced bitset and polynomial convolution optimizations","Multi-dimensional resource DP beyond the named two-resource example"],
+  "generationAllowed": true
+}

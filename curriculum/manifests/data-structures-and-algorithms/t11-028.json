@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-028",
+  "track": "track-11",
+  "title": "constraint search, pruning, and puzzle backtracking",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Constraint search builds a partial assignment and checks whether it still satisfies constraints before investing work in deeper choices.",
+    "The most-constrained-variable heuristic chooses the variable with the fewest legal values, often exposing contradictions earlier than a fixed variable order.",
+    "Forward checking removes values made impossible by a choice; a branch with an empty remaining domain can be rejected immediately.",
+    "Symmetry breaking removes equivalent branches only when the transformation preserves the problem's solutions and does not discard a distinct required answer.",
+    "A complete solution must satisfy every constraint, while a partial solution only needs to remain extendable; local validity does not guarantee eventual completion.",
+    "Search complexity depends on branching factor and depth and may be factorial or exponential; pruning improves practical search but does not automatically improve worst-case bounds.",
+    "Bit masks can represent small domains or occupied rows, columns, and diagonals efficiently, but require careful width and shift bounds.",
+    "Backtracking correctness follows from exploring every legal choice not pruned by a sound rule and restoring all mutable state before exploring a sibling branch."
+  ],
+  "inventory": [
+    {"id":"constraints-and-partial-assignments","title":"Variables, domains, and constraint state","items":["Variable","Domain of candidate values","Partial assignment","Constraint predicate","Complete assignment","Consistency check","Remaining-domain representation","Constraint propagation","Forward checking","Dead-end detection"]},
+    {"id":"search-order-and-pruning","title":"Search heuristics and sound pruning","items":["Most-constrained-variable heuristic","Minimum remaining values","Fail-first ordering","Candidate ordering","Bound-based pruning","Early contradiction detection","Symmetry breaking","Duplicate-state elimination","Sound-pruning proof","Worst-case search tree"]},
+    {"id":"puzzle-structures","title":"Common constraint structures","items":["N-Queens column uniqueness","N-Queens diagonal occupancy","Sudoku row constraints","Sudoku column constraints","Sudoku subgrid constraints","Word-search visited cells","K-equal-subset capacity constraints","Bit-mask domain representation"]},
+    {"id":"state-restoration-and-correctness","title":"Mutation, restoration, and validation","items":["Choose-recurse-undo sequence","Restore board cell","Restore domain candidate","Stop after first solution","Enumerate all solutions","Validate complete assignment","Partial validity versus extendability","Brute-force tiny-case comparison","Exponential versus factorial growth"]}
+  ],
+  "practiceProblems": [
+    {"id":"n-queens","name":"N-Queens","difficulty":"intermediate","patterns":["column and diagonal constraints","bit-mask pruning"]},
+    {"id":"sudoku-solver","name":"Sudoku Solver","difficulty":"advanced","patterns":["constraint propagation","choose an empty cell with few candidates"]},
+    {"id":"word-search","name":"Word Search","difficulty":"intermediate","patterns":["grid path search","mark and restore visited cells"]},
+    {"id":"partition-to-k-equal-sum-subsets","name":"Partition to K Equal Sum Subsets","difficulty":"advanced","patterns":["capacity constraints","symmetry pruning between equivalent buckets"]},
+    {"id":"matchsticks-square","name":"Matchsticks to Square","difficulty":"intermediate","patterns":["assign items to constrained bins","sort largest-first and prune symmetric sides"]},
+    {"id":"word-search-ii","name":"Word Search II","difficulty":"advanced","patterns":["branch pruning against a word prefix","combine board search with trie prefix lookups"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Fixed variable order","Most-constrained-variable order"],["Forward checking","No domain propagation"],["Sound pruning","Heuristic guess that may discard solutions"],["Symmetry breaking","Duplicate solution filtering after enumeration"],["Find one solution","Enumerate all solutions"]],
+  "comparisonSources": ["https://usaco.guide/CP2.pdf","https://usaco.guide/bronze/complete-rec?lang=cpp"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Competitive Programming 2 complete-search chapter, USACO Guide complete search, and official LeetCode problem statements",
+    "edition": "Timeless search technique; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/CP2.pdf","https://usaco.guide/bronze/complete-rec?lang=cpp","https://leetcode.com/problems/n-queens/","https://leetcode.com/problems/sudoku-solver/","https://leetcode.com/problems/word-search/","https://leetcode.com/problems/partition-to-k-equal-sum-subsets/","https://leetcode.com/problems/matchsticks-to-square/","https://leetcode.com/problems/word-search-ii/"]
+  },
+  "scopeExclusions": ["General subset, permutation, and combination generation, covered in t11-013","Dynamic programming over overlapping states, covered in t11-015 and focused DP topics","Constraint programming solver libraries","SAT/SMT solving and exact-cover algorithm implementations","Trie implementation details, covered in t11-016"],
+  "generationAllowed": true
+}

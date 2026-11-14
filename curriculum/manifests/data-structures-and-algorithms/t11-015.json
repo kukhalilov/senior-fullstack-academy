@@ -2,11 +2,44 @@
   "schemaVersion": 4,
   "id": "t11-015",
   "track": "track-11",
-  "title": "dynamic programming memoization tabulation and common patterns",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "title": "dynamic programming states, recurrences, and tabulation",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Dynamic programming (DP) avoids repeating work by defining a finite set of subproblems and storing results when the same state is reached through multiple paths.",
+    "A state is a compact description of a subproblem; a recurrence specifies how its answer depends on smaller states, and base cases define the smallest states directly.",
+    "Top-down memoization follows recursive dependencies and caches results, while bottom-up tabulation computes states in an order that guarantees dependencies are ready.",
+    "The number of states multiplied by work per state determines time complexity; state dimensions and stored history determine memory complexity.",
+    "State design must retain enough information to make future choices independent of discarded history; missing a dimension can merge subproblems that have different answers.",
+    "A dependency graph clarifies valid evaluation order; a DP can often be viewed as shortest or longest paths through a directed acyclic state graph.",
+    "Space optimization is valid only when overwritten states are no longer needed; loop direction can change a 0/1 choice into accidental repeated use.",
+    "Reconstructing a solution requires preserving choices or recomputing predecessor decisions, while counting, minimizing, and maximizing use different recurrence operators."
+  ],
+  "inventory": [
+    {"id":"state-and-recurrence","title":"Subproblems, state, and recurrence","items":["Overlapping subproblems","Optimal substructure","State definition","State dimensions","Transition/recurrence","Base case","Impossible-state sentinel","Minimization recurrence","Maximization recurrence","Counting recurrence","State-space boundary"]},
+    {"id":"evaluation-strategies","title":"Memoization, tabulation, and dependency order","items":["Top-down memoization","Cache key","Bottom-up tabulation","Evaluation order","State dependency DAG","Push/forward DP","Pull/backward DP","Recursion depth","Uncomputed versus computed sentinel","Memoization cache"]},
+    {"id":"complexity-and-optimization","title":"State complexity, memory, and reconstruction","items":["Number of states","Work per state","Transition count","Time = states times transition work","Memory by stored dimensions","Rolling-array optimization","In-place state reuse","Loop direction dependency","Choice reconstruction","Predecessor reconstruction"]},
+    {"id":"proof-and-debugging","title":"Correctness arguments and failure cases","items":["Induction over state order","Base-case proof","Transition completeness","Transition soundness","Boundary initialization","Small-state hand trace","Brute-force differential check","Wrongly merged states","Overflow and sentinel arithmetic","Recurrence versus greedy choice"]}
+  ],
+  "practiceProblems": [
+    {"id":"climbing-stairs","name":"Climbing Stairs","difficulty":"introductory","patterns":["one-dimensional counting recurrence","memoization and tabulation comparison"]},
+    {"id":"house-robber","name":"House Robber","difficulty":"introductory","patterns":["take-or-skip state transition","rolling storage optimization"]},
+    {"id":"coin-change","name":"Coin Change","difficulty":"intermediate","patterns":["minimum-count recurrence","unreachable-state sentinel"]},
+    {"id":"unique-paths","name":"Unique Paths","difficulty":"introductory","patterns":["two-dimensional grid state","count paths from predecessor cells"]},
+    {"id":"minimum-path-sum","name":"Minimum Path Sum","difficulty":"intermediate","patterns":["grid minimization recurrence","row-by-row space optimization"]},
+    {"id":"min-cost-climbing-stairs","name":"Min Cost Climbing Stairs","difficulty":"introductory","patterns":["minimum-cost recurrence","choose among the previous one or two states"]},
+    {"id":"decode-ways","name":"Decode Ways","difficulty":"intermediate","patterns":["counting recurrence","one-character and valid two-character transitions"]},
+    {"id":"delete-and-earn","name":"Delete and Earn","difficulty":"intermediate","patterns":["transform values into weighted frequencies","reduce to take-or-skip DP"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Memoization","Tabulation"],["Push DP","Pull DP"],["Full state table","Rolling-array optimization"],["DP state aggregation","Backtracking enumeration"],["Minimization recurrence","Greedy choice"],["State count","Transition work per state"]],
+  "comparisonSources": ["https://usaco.guide/gold/intro-dp","https://usaco.guide/CPH.pdf"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide DP introduction, Competitive Programmer's Handbook, and official LeetCode problem statements",
+    "edition": "Timeless algorithm-design technique; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/gold/intro-dp","https://usaco.guide/CPH.pdf","https://leetcode.com/problems/climbing-stairs/","https://leetcode.com/problems/house-robber/","https://leetcode.com/problems/coin-change/","https://leetcode.com/problems/unique-paths/","https://leetcode.com/problems/minimum-path-sum/","https://leetcode.com/problems/min-cost-climbing-stairs/","https://leetcode.com/problems/decode-ways/","https://leetcode.com/problems/delete-and-earn/"]
+  },
+  "scopeExclusions": ["0/1 and unbounded knapsack variants, covered in t11-029","Detailed sequence/string edit and alignment patterns, covered in t11-030","Tree and graph traversal, covered in their own topics","Bitmask, digit, interval, and tree DP advanced families","DP optimizations such as divide-and-conquer and convex-hull trick"],
+  "generationAllowed": true
 }

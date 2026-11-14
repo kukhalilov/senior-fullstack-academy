@@ -116,7 +116,7 @@ test('two-pointer and sliding-window problems are separate source-backed lessons
   assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/gold/sliding-window'));
   assert.ok(manifest.inventory.some(group => group.items.includes('Exactly-K via difference of at-most counts')));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 133);
+  assert.equal(allDsaProblems.length, 177);
 });
 
 test('prefix-sum and difference-array problems have a closed source-backed scope', () => {
@@ -132,7 +132,7 @@ test('prefix-sum and difference-array problems have a closed source-backed scope
   assert.ok(manifest.inventory.some(group => group.items.includes('Difference array')));
   assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/silver/more-prefix-sums'));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 133);
+  assert.equal(allDsaProblems.length, 177);
 });
 
 test('binary-search variants and problems are bounded and independent', () => {
@@ -148,7 +148,7 @@ test('binary-search variants and problems are bounded and independent', () => {
   assert.ok(manifest.inventory.some(group => group.items.includes('Monotone feasibility predicate')));
   assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/silver/binary-search'));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 133);
+  assert.equal(allDsaProblems.length, 177);
 });
 
 test('linked-list pointer patterns have independent C# practice units', () => {
@@ -164,7 +164,7 @@ test('linked-list pointer patterns have independent C# practice units', () => {
   assert.ok(manifest.inventory.some(group => group.items.includes('Dummy head node')));
   assert.ok(manifest.sourceSnapshot.urls.some(url => url.includes('ListLinked.html')));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 133);
+  assert.equal(allDsaProblems.length, 177);
 });
 
 test('stack and monotonic structures have closed inventories and separate practice units', () => {
@@ -244,6 +244,29 @@ test('graph traversal, DAG ordering, shortest paths, and DSU use distinct manife
   assert.ok(topo.inventory.some(group => group.items.includes('Kahn\'s algorithm')));
   assert.ok(paths.inventory.some(group => group.items.includes('Bellman-Ford algorithm')));
   assert.ok(dsu.inventory.some(group => group.items.includes('Path compression')));
+});
+
+test('backtracking, greedy, and focused DP scopes remain independent', () => {
+  const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
+  for (const [id, count] of [['t11-013', 8], ['t11-014', 8], ['t11-015', 8], ['t11-028', 6], ['t11-029', 6], ['t11-030', 8]]) {
+    const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/data-structures-and-algorithms/${id}.json`, 'utf8'));
+    const tasks = queue.tasks.filter(task => task.module === id && task.phase === 'practice');
+    assert.equal(manifest.inventoryComplete, true);
+    assert.equal(manifest.generationAllowed, true);
+    assert.equal(manifest.practiceProblems.length, count);
+    assert.deepEqual(tasks.map(task => task.problemId), manifest.practiceProblems.map(problem => problem.id));
+    assert.ok(manifest.sourceSnapshot.urls.length >= 8);
+  }
+  const backtracking = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-013.json', 'utf8'));
+  const greedy = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-014.json', 'utf8'));
+  const dp = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-015.json', 'utf8'));
+  const knapsack = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-029.json', 'utf8'));
+  const sequence = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-030.json', 'utf8'));
+  assert.ok(backtracking.inventory.some(group => group.items.includes('Same-depth duplicate skip')));
+  assert.ok(greedy.inventory.some(group => group.items.includes('Exchange argument')));
+  assert.ok(dp.inventory.some(group => group.items.includes('State definition')));
+  assert.ok(knapsack.inventory.some(group => group.items.includes('Descending capacity loop for 0/1 use')));
+  assert.ok(sequence.inventory.some(group => group.items.includes('Substring contiguity condition')));
 });
 
 test('the curriculum teaches overview before references and has no forced versions phase', () => {

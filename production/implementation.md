@@ -2,7 +2,7 @@
 
 ## Curriculum structure
 
-`curriculum/catalog.json` indexes 167 atomic topics across 11 tracks. Every topic has one JSON manifest. `curriculum/prompt-template.json` contains the shared authoring contract, and `curriculum/queue.json` is rebuilt from those manifests. The current queue has 1,068 units: overview and concept lessons first, then bounded reference groups, practice units, and interview preparation. Every named DSA problem receives a separate practice unit.
+`curriculum/catalog.json` indexes 170 atomic topics across 11 tracks. Every topic has one JSON manifest. `curriculum/prompt-template.json` contains the shared authoring contract, and `curriculum/queue.json` is rebuilt from those manifests. The current queue has 1,139 units: overview and concept lessons first, then bounded reference groups, practice units, and interview preparation. Every named DSA problem receives a separate practice unit.
 
 The overview establishes the purpose, mental model, relationships among major concepts, and a running example before item-by-item API details. Reference lessons explain only names explicitly listed in their assigned manifest group. Timeless topics do not receive artificial version lessons. Relevant major recent release changes are included only when their exact release and source are recorded.
 
@@ -10,8 +10,8 @@ The learning path puts foundational DSA in the programming stage and intermediat
 
 ## Inventory and generation status
 
-Twenty-eight manifests have source-backed inventories: twenty-seven are fully enabled for draft generation and one DSA analysis topic enables all phases except its practice unit. Twenty enabled DSA topics have 133 named practice problems between them. The remaining 139 manifests do not yet have complete concept maps and exact closed inventories, so they remain blocked.
+Thirty-four manifests have source-backed inventories: thirty-three are fully enabled for draft generation and one DSA analysis topic enables all phases except its practice unit. Twenty-six enabled DSA topics have 177 named practice problems between them. The remaining 136 manifests do not yet have complete concept maps and exact closed inventories, so they remain blocked.
 
 GitHub Actions runs automatically every six hours with a maximum of 100 Gemini API calls per run, counting retries, second-pass content reviews, and revisions. The worker writes checked-shape drafts to `course/drafts/`. Deterministic checks verify required headings, supplied reference names, allowed citations, and output paths. Each lesson receives a second-pass review against the same frozen manifest; issues trigger bounded rewriting. Each DSA problem must contain a standalone C# solution that builds and passes its embedded checks on .NET 10 before the workflow commits generated files. Automated review does not prove that the teaching prose is factually complete or correct. The three original pilot lessons failed quality review and remain quarantined.
 
-`npm run validate:catalog` intentionally fails until all 167 topic inventories are complete. Whole-catalog generation is not enabled.
+`npm run validate:catalog` intentionally fails until all 170 topic inventories are complete. Whole-catalog generation is not enabled.
