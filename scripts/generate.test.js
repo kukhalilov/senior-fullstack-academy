@@ -620,3 +620,24 @@ test('frontend testing inventory names the main React, user-event, Vitest, Playw
   for (const item of ['render(ui, options?)', 'getByRole', 'findByRole', 'userEvent.setup(options?)', 'waitFor(callback, options?)', 'vi.fn(implementation?)', 'page.getByRole(role, options?)', 'Web-first assertion', '@axe-core/playwright']) assert.ok(all.includes(item), item);
   assert.ok(manifest.versionNotes.some(note => note.edition.includes('user-event v14')));
 });
+
+test('React application security inventory covers raw HTML, client secrets, and server mutation trust', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-013.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Client bundle contents are public', 'dangerouslySetInnerHTML', 'TrustedHTML', 'Server Function as network entry point', 'Authorization for each mutation', 'Content Security Policy header', 'Deployment rollback']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.sourceSnapshot.urls.includes('https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html'));
+});
+
+test('React framework inventory pins current Next.js and React Router modes and route APIs', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-023.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Next.js App Router', 'React Router Framework Mode', 'proxy.ts convention (Middleware replacement in Next.js 16)', 'revalidateTag(tag, profile)', 'createBrowserRouter(routes, options?)', 'useLoaderData()', 'clientLoader export', 'TanStack Start (Beta)']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('Next.js 16')));
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('React Router 8.0')));
+});

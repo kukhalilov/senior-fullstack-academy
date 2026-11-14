@@ -3,9 +3,9 @@
 ## Inventory totals
 
 - 11 tracks and 196 canonical topic manifests.
-- The queue contains 1,563 lesson units, rebuilt from each topic's overview, concepts, bounded references, practice units, and interview sequence. Each named DSA problem has its own practice unit.
-- 76 manifests have source-backed inventories: 75 are fully enabled and one DSA analysis topic keeps its practice unit blocked pending executable checks.
-- 108 manifests remain inventory scaffolds; the full-catalog validator intentionally fails.
+- The queue contains 1,571 lesson units, rebuilt from each topic's overview, concepts, bounded references, practice units, and interview sequence. Each named DSA problem has its own practice unit.
+- 90 manifests have source-backed inventories: 89 are fully enabled and one DSA analysis topic keeps its practice unit blocked pending executable checks.
+- 106 manifests remain inventory scaffolds; the full-catalog validator intentionally fails.
 - Three legacy pilot lessons remain in `course/` with quarantine warnings and are excluded from the accepted curriculum.
 - Scheduled GitHub Actions generation covers explicitly source-backed JavaScript, C#, and thirty-two DSA topics. A further DSA analysis topic enables non-practice phases only. Whole-catalog generation remains blocked.
 - DSA arrays, strings, hash maps, sets, two-pointer/sliding-window patterns, prefix/difference arrays, binary search, linked lists, stacks/queues, monotonic structures, intervals, sweep-line processing, comparison sorting, heaps, binary trees, BSTs, graph traversal, topological sorting, weighted shortest paths, DSU, backtracking, greedy reasoning, focused DP families, tries, bit operations, number theory, and range-query structures are separate topics. Their 213 named problems receive distinct queue units; C# solution code is compiled and its assertions executed before workflow commits.

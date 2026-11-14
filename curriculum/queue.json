@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1563,
+  "taskCount": 1571,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -9352,61 +9352,113 @@
     {
       "id": "t07-013-overview",
       "track": "track-07",
-      "title": "React application architecture testing security and deployment — Big-picture orientation and mental model",
+      "title": "React application architecture security and deployment — Big-picture orientation and mental model",
       "module": "t07-013",
       "manifest": "curriculum/manifests/react-and-frontend/t07-013.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-013-concepts",
       "track": "track-07",
-      "title": "React application architecture testing security and deployment — Core concepts and how they fit together",
+      "title": "React application architecture security and deployment — Core concepts and how they fit together",
       "module": "t07-013",
       "manifest": "curriculum/manifests/react-and-frontend/t07-013.json",
       "phase": "concepts",
       "prerequisites": [
         "t07-013-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-013-reference-inventory-pending",
+      "id": "t07-013-reference-application-boundaries",
       "track": "track-07",
-      "title": "React application architecture testing security and deployment — Reference: awaiting curated names",
+      "title": "React application architecture security and deployment — Reference: Frontend architecture and responsibility boundaries",
       "module": "t07-013",
       "manifest": "curriculum/manifests/react-and-frontend/t07-013.json",
       "phase": "reference",
       "prerequisites": [
         "t07-013-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "application-boundaries"
+    },
+    {
+      "id": "t07-013-reference-client-and-server-secrets",
+      "track": "track-07",
+      "title": "React application architecture security and deployment — Reference: Client bundle exposure and secret handling",
+      "module": "t07-013",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-013-reference-application-boundaries"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "client-and-server-secrets"
+    },
+    {
+      "id": "t07-013-reference-react-output-security",
+      "track": "track-07",
+      "title": "React application architecture security and deployment — Reference: React output handling and injection risks",
+      "module": "t07-013",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-013-reference-client-and-server-secrets"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "react-output-security"
+    },
+    {
+      "id": "t07-013-reference-server-function-security",
+      "track": "track-07",
+      "title": "React application architecture security and deployment — Reference: Server action authorization and input trust",
+      "module": "t07-013",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-013-reference-react-output-security"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "server-function-security"
+    },
+    {
+      "id": "t07-013-reference-production-build-and-delivery",
+      "track": "track-07",
+      "title": "React application architecture security and deployment — Reference: Production build, delivery, observability, and recovery",
+      "module": "t07-013",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-013-reference-server-function-security"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "production-build-and-delivery"
     },
     {
       "id": "t07-013-practice",
       "track": "track-07",
-      "title": "React application architecture testing security and deployment — Exercises and worked solutions",
+      "title": "React application architecture security and deployment — Exercises and worked solutions",
       "module": "t07-013",
       "manifest": "curriculum/manifests/react-and-frontend/t07-013.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-013-reference-inventory-pending"
+        "t07-013-reference-production-build-and-delivery"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-013-interview",
       "track": "track-07",
-      "title": "React application architecture testing security and deployment — Interview questions and reasoning",
+      "title": "React application architecture security and deployment — Interview questions and reasoning",
       "module": "t07-013",
       "manifest": "curriculum/manifests/react-and-frontend/t07-013.json",
       "phase": "interview",
       "prerequisites": [
         "t07-013-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-014-overview",
@@ -11403,7 +11455,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-023.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-023-concepts",
@@ -11415,20 +11467,72 @@
       "prerequisites": [
         "t07-023-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-023-reference-inventory-pending",
+      "id": "t07-023-reference-framework-choice-and-modes",
       "track": "track-07",
-      "title": "React routing frameworks data loading server components and deployment — Reference: awaiting curated names",
+      "title": "React routing frameworks data loading server components and deployment — Reference: Framework ecosystem and routing modes",
       "module": "t07-023",
       "manifest": "curriculum/manifests/react-and-frontend/t07-023.json",
       "phase": "reference",
       "prerequisites": [
         "t07-023-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "framework-choice-and-modes"
+    },
+    {
+      "id": "t07-023-reference-next-app-router",
+      "track": "track-07",
+      "title": "React routing frameworks data loading server components and deployment — Reference: Next.js 16 App Router conventions and route APIs",
+      "module": "t07-023",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-023.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-023-reference-framework-choice-and-modes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "next-app-router"
+    },
+    {
+      "id": "t07-023-reference-react-router-v8",
+      "track": "track-07",
+      "title": "React routing frameworks data loading server components and deployment — Reference: React Router 8.5 Framework and Data mode APIs",
+      "module": "t07-023",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-023.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-023-reference-next-app-router"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "react-router-v8"
+    },
+    {
+      "id": "t07-023-reference-data-fetching-cache-and-mutation",
+      "track": "track-07",
+      "title": "React routing frameworks data loading server components and deployment — Reference: Route data loading, mutation, and cache lifecycle",
+      "module": "t07-023",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-023.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-023-reference-react-router-v8"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "data-fetching-cache-and-mutation"
+    },
+    {
+      "id": "t07-023-reference-deployment-and-runtime",
+      "track": "track-07",
+      "title": "React routing frameworks data loading server components and deployment — Reference: Rendering runtime and deployment choices",
+      "module": "t07-023",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-023.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-023-reference-data-fetching-cache-and-mutation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "deployment-and-runtime"
     },
     {
       "id": "t07-023-practice",
@@ -11438,9 +11542,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-023.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-023-reference-inventory-pending"
+        "t07-023-reference-deployment-and-runtime"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-023-interview",
@@ -11452,7 +11556,7 @@
       "prerequisites": [
         "t07-023-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-024-overview",
