@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-020",
+  "track": "track-11",
+  "title": "hash maps and frequency tables",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A map associates each key with a value and supports lookup by key",
+    "A hash function maps keys to hash codes, while equality decides whether keys match",
+    "Distinct keys can collide and a hash table must resolve collisions correctly",
+    "Expected constant-time operations rely on distribution and load assumptions; worst-case behavior can be linear",
+    "Resizing and rehashing trade occasional linear work for efficient average operations",
+    "Frequency maps, complement lookup, grouping, and index maps turn repeated searches into one-pass or near-linear algorithms",
+    "Mutable keys and inconsistent equality/hash implementations can invalidate lookup behavior"
+  ],
+  "inventory": [
+    {"id":"map-abstraction","title":"Map abstraction and operations","items":["Key-value mapping","Key uniqueness","Value replacement","Insert or update","Lookup by key","Remove by key","Missing-key result"]},
+    {"id":"hash-table-mechanism","title":"Hash-table mechanism","items":["Hash function","Hash code","Equality comparison","Collision","Separate chaining","Open addressing","Linear probing","Quadratic probing","Double hashing","Load factor","Rehashing","Bucket array"]},
+    {"id":"algorithmic-map-patterns","title":"Map patterns in algorithm problems","items":["Frequency map","Complement lookup","Index map","Grouping by canonical key","Prefix-sum frequency map","Memoization table"]},
+    {"id":"cost-and-correctness","title":"Cost and correctness behavior","items":["Expected constant-time lookup","Worst-case linear lookup","Amortized insertion","Key equality contract","Mutable-key hazard","Hash collision attack"]}
+  ],
+  "practiceProblems": [
+    {"id":"two-sum","name":"Two Sum","difficulty":"introductory","patterns":["complement lookup"]},
+    {"id":"group-anagrams","name":"Group Anagrams","difficulty":"intermediate","patterns":["canonical key","frequency encoding"]},
+    {"id":"top-k-frequent","name":"Top K Frequent Elements","difficulty":"intermediate","patterns":["frequency map","selection"]},
+    {"id":"longest-consecutive","name":"Longest Consecutive Sequence","difficulty":"intermediate","patterns":["membership set","sequence start detection"]},
+    {"id":"isomorphic-strings","name":"Isomorphic Strings","difficulty":"introductory","patterns":["bidirectional mapping"]},
+    {"id":"subarray-sum-k","name":"Subarray Sum Equals K","difficulty":"intermediate","patterns":["prefix sum","frequency map"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Map","Set"],["Hash table","Sorted map"],["Expected constant-time lookup","Worst-case linear lookup"],["Separate chaining","Open addressing"],["Frequency map","Sorting for frequency comparison"]],
+  "comparisonSources": ["https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2","https://usaco.guide/bronze/intro-sets"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "OpenDSA hashing materials, Microsoft Learn Dictionary<TKey,TValue> reference, and USACO Guide map/set introduction",
+    "edition": "Timeless data-structure concepts; .NET 11 API reference checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2","https://usaco.guide/bronze/intro-sets"]
+  },
+  "scopeExclusions": ["Set operations and set-only data structures, covered in t11-021","Trie and prefix-tree structures, covered in t11-016","Database indexes and B-trees","Full Dictionary<TKey,TValue> API member catalogs","Cryptographic hash functions and password hashing"],
+  "generationAllowed": true
+}

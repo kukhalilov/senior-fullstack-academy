@@ -23,7 +23,7 @@ for (const track of catalog.tracks) {
         ? 'draft-generation-eligible'
         : 'blocked-on-generation-validation';
     let previous;
-    const add = (phase, suffix, label, inventoryGroup) => {
+    const add = (phase, suffix, label, inventoryGroup, problem) => {
       const id = `${manifest.id}-${suffix}`;
       const task = {
         id,
@@ -36,6 +36,10 @@ for (const track of catalog.tracks) {
         status: statusFor(phase),
       };
       if (inventoryGroup) task.inventoryGroup = inventoryGroup.id;
+      if (problem) {
+        task.problemId = problem.id;
+        task.problemTitle = problem.name;
+      }
       tasks.push(task);
       previous = id;
     };
@@ -43,7 +47,11 @@ for (const track of catalog.tracks) {
     add('concepts', 'concepts', phases.concepts);
     const groups = manifest.inventory.length ? manifest.inventory : [{ id: 'inventory-pending', title: 'awaiting curated names' }];
     for (const group of groups) add('reference', `reference-${group.id}`, `Reference: ${group.title}`, group);
-    add('practice', 'practice', phases.practice);
+    if (manifest.practiceProblems?.length) {
+      for (const problem of manifest.practiceProblems) add('practice', `practice-${problem.id}`, `Problem: ${problem.name}`, undefined, problem);
+    } else {
+      add('practice', 'practice', phases.practice);
+    }
     add('interview', 'interview', phases.interview);
   }
 }
@@ -51,7 +59,7 @@ for (const track of catalog.tracks) {
 const queue = {
   version: 5,
   generatedFrom: 'curriculum/catalog.json and topic manifests',
-  learningSequence: ['overview', 'concepts', 'reference groups', 'practice', 'interview'],
+  learningSequence: ['overview', 'concepts', 'reference groups', 'practice units', 'interview'],
   optionalManifestData: ['comparisons', 'versionNotes'],
   taskCount: tasks.length,
   tasks,

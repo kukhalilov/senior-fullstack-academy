@@ -12,24 +12,120 @@
     "Choosing a type means balancing domain meaning, range, precision, interoperability, and API expectations"
   ],
   "inventory": [
-    {"id":"signed-integral","title":"Signed integral type keywords","items":["sbyte","short","int","long"]},
-    {"id":"unsigned-integral","title":"Unsigned integral type keywords","items":["byte","ushort","uint","ulong"]},
-    {"id":"native-integral","title":"Native-sized integral type keywords","items":["nint","nuint"]},
-    {"id":"floating-point","title":"Floating-point and decimal type keywords","items":["float","double","decimal"]},
-    {"id":"other-built-in","title":"Other built-in type keywords","items":["bool","char","object","string","dynamic","void"]}
+    {
+      "id": "signed-integral",
+      "title": "Signed integral type keywords",
+      "items": [
+        "sbyte",
+        "short",
+        "int",
+        "long"
+      ]
+    },
+    {
+      "id": "unsigned-integral",
+      "title": "Unsigned integral type keywords",
+      "items": [
+        "byte",
+        "ushort",
+        "uint",
+        "ulong"
+      ]
+    },
+    {
+      "id": "native-integral",
+      "title": "Native-sized integral type keywords",
+      "items": [
+        "nint",
+        "nuint"
+      ]
+    },
+    {
+      "id": "floating-point",
+      "title": "Floating-point and decimal type keywords",
+      "items": [
+        "float",
+        "double",
+        "decimal"
+      ]
+    },
+    {
+      "id": "other-built-in",
+      "title": "Other built-in type keywords",
+      "items": [
+        "bool",
+        "char",
+        "object",
+        "string",
+        "dynamic",
+        "void"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["float","double","decimal"],["int","uint","long","ulong"],["nint","nuint","int","uint"],["object","dynamic"],["char","string"]],
-  "comparisonSources": ["https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types"],
+  "comparisons": [
+    [
+      "float",
+      "double",
+      "decimal"
+    ],
+    [
+      "int",
+      "uint",
+      "long",
+      "ulong"
+    ],
+    [
+      "nint",
+      "nuint",
+      "int",
+      "uint"
+    ],
+    [
+      "object",
+      "dynamic"
+    ],
+    [
+      "char",
+      "string"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types"
+  ],
   "versionNotes": [
-    {"edition":"C# 9","items":["Native-sized integer aliases nint and nuint became language keywords with built-in operators and conversions"],"sourceUrls":["https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"]}
+    {
+      "edition": "C# 9",
+      "items": [
+        "Native-sized integer aliases nint and nuint became language keywords with built-in operators and conversions"
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+      ]
+    }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn C# built-in type reference and C# language specification",
-    "edition": "C# 14; .NET 11 type documentation checked 2026-11-14",
+    "edition": "C# 14 stable; C# 15 public-preview language features on the prerelease .NET 11 SDK checked 2026-11-14",
     "checkedAt": "2026-11-14",
-    "urls": ["https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types"]
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+    ]
   },
-  "scopeExclusions": ["Numeric literal syntax and numeric conversion rules, covered in a separate topic","Nullable forms such as T? and nullable reference annotations, covered separately","Arrays, tuples, enums, structs, classes, interfaces, and delegates","Framework types not exposed as C# built-in keywords","Formatting and parsing APIs for values"],
+  "scopeExclusions": [
+    "Numeric literal syntax and numeric conversion rules, covered in a separate topic",
+    "Nullable forms such as T? and nullable reference annotations, covered separately",
+    "Arrays, tuples, enums, structs, classes, interfaces, and delegates",
+    "Framework types not exposed as C# built-in keywords",
+    "Formatting and parsing APIs for values"
+  ],
   "generationAllowed": true
 }

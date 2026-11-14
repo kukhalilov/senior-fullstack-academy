@@ -5,14 +5,14 @@
     "overview",
     "concepts",
     "reference groups",
-    "practice",
+    "practice units",
     "interview"
   ],
   "optionalManifestData": [
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 824,
+  "taskCount": 895,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -1641,9 +1641,9 @@
       "inventoryGroup": "real-literals"
     },
     {
-      "id": "t01-024-reference-implicit-conversions",
+      "id": "t01-024-reference-implicit-from-sbyte",
       "track": "track-01",
-      "title": "C# numeric literals and numeric conversions — Reference: Predefined implicit numeric conversion source types",
+      "title": "C# numeric literals and numeric conversions — Reference: sbyte implicit numeric conversions",
       "module": "t01-024",
       "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
       "phase": "reference",
@@ -1651,7 +1651,137 @@
         "t01-024-reference-real-literals"
       ],
       "status": "draft-generation-eligible",
-      "inventoryGroup": "implicit-conversions"
+      "inventoryGroup": "implicit-from-sbyte"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-byte",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: byte implicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-sbyte"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-byte"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-short",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: short implicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-byte"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-short"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-ushort",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: ushort implicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-short"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-ushort"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-int",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: int implicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-ushort"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-int"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-uint",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: uint implicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-int"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-uint"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-long",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: long implicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-uint"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-long"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-ulong",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: ulong implicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-long"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-ulong"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-nint",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: nint implicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-ulong"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-nint"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-nuint",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: nuint implicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-nint"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-nuint"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-float",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: float implicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-nuint"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-float"
     },
     {
       "id": "t01-024-reference-conversion-rules",
@@ -1661,15 +1791,15 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
       "phase": "reference",
       "prerequisites": [
-        "t01-024-reference-implicit-conversions"
+        "t01-024-reference-implicit-from-float"
       ],
       "status": "draft-generation-eligible",
       "inventoryGroup": "conversion-rules"
     },
     {
-      "id": "t01-024-reference-explicit-conversion-pairs",
+      "id": "t01-024-reference-explicit-from-sbyte",
       "track": "track-01",
-      "title": "C# numeric literals and numeric conversions — Reference: Every predefined explicit numeric conversion pair",
+      "title": "C# numeric literals and numeric conversions — Reference: sbyte explicit numeric conversions",
       "module": "t01-024",
       "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
       "phase": "reference",
@@ -1677,7 +1807,189 @@
         "t01-024-reference-conversion-rules"
       ],
       "status": "draft-generation-eligible",
-      "inventoryGroup": "explicit-conversion-pairs"
+      "inventoryGroup": "explicit-from-sbyte"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-byte",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: byte explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-sbyte"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-byte"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-short",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: short explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-byte"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-short"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-ushort",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: ushort explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-short"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-ushort"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-int",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: int explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-ushort"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-int"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-uint",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: uint explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-int"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-uint"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-long",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: long explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-uint"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-long"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-ulong",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: ulong explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-long"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-ulong"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-nint",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: nint explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-ulong"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-nint"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-nuint",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: nuint explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-nint"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-nuint"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-float",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: float explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-nuint"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-float"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-double",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: double explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-float"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-double"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-decimal",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: decimal explicit numeric conversions",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-double"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-decimal"
+    },
+    {
+      "id": "t01-024-reference-implicit-from-char",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: Implicit numeric conversions from char",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-explicit-from-decimal"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implicit-from-char"
+    },
+    {
+      "id": "t01-024-reference-explicit-from-char",
+      "track": "track-01",
+      "title": "C# numeric literals and numeric conversions — Reference: Explicit numeric conversions from char",
+      "module": "t01-024",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-024-reference-implicit-from-char"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-from-char"
     },
     {
       "id": "t01-024-practice",
@@ -1687,7 +1999,7 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-024.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-024-reference-explicit-conversion-pairs"
+        "t01-024-reference-explicit-from-char"
       ],
       "status": "draft-generation-eligible"
     },
@@ -8778,61 +9090,186 @@
     {
       "id": "t11-002-overview",
       "track": "track-11",
-      "title": "arrays strings hash maps and sets — Big-picture orientation and mental model",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Big-picture orientation and mental model",
       "module": "t11-002",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-002-concepts",
       "track": "track-11",
-      "title": "arrays strings hash maps and sets — Core concepts and how they fit together",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Core concepts and how they fit together",
       "module": "t11-002",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-002-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-002-reference-inventory-pending",
+      "id": "t11-002-reference-array-structure",
       "track": "track-11",
-      "title": "arrays strings hash maps and sets — Reference: awaiting curated names",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Reference: Array structure and access",
       "module": "t11-002",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
       "phase": "reference",
       "prerequisites": [
         "t11-002-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "array-structure"
     },
     {
-      "id": "t11-002-practice",
+      "id": "t11-002-reference-dynamic-array",
       "track": "track-11",
-      "title": "arrays strings hash maps and sets — Exercises and worked solutions",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Reference: Dynamic-array structure and resizing",
+      "module": "t11-002",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-002-reference-array-structure"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "dynamic-array"
+    },
+    {
+      "id": "t11-002-reference-multidimensional-arrays",
+      "track": "track-11",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Reference: Multidimensional array shapes",
+      "module": "t11-002",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-002-reference-dynamic-array"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "multidimensional-arrays"
+    },
+    {
+      "id": "t11-002-reference-array-algorithm-techniques",
+      "track": "track-11",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Reference: Array algorithm techniques and pitfalls",
+      "module": "t11-002",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-002-reference-multidimensional-arrays"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "array-algorithm-techniques"
+    },
+    {
+      "id": "t11-002-practice-two-sum",
+      "track": "track-11",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Problem: Two Sum",
       "module": "t11-002",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-002-reference-inventory-pending"
+        "t11-002-reference-array-algorithm-techniques"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "two-sum",
+      "problemTitle": "Two Sum"
+    },
+    {
+      "id": "t11-002-practice-contains-duplicate",
+      "track": "track-11",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Problem: Contains Duplicate",
+      "module": "t11-002",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-002-practice-two-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "contains-duplicate",
+      "problemTitle": "Contains Duplicate"
+    },
+    {
+      "id": "t11-002-practice-stock-one-transaction",
+      "track": "track-11",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Problem: Best Time to Buy and Sell Stock",
+      "module": "t11-002",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-002-practice-contains-duplicate"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "stock-one-transaction",
+      "problemTitle": "Best Time to Buy and Sell Stock"
+    },
+    {
+      "id": "t11-002-practice-maximum-subarray",
+      "track": "track-11",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Problem: Maximum Subarray",
+      "module": "t11-002",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-002-practice-stock-one-transaction"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "maximum-subarray",
+      "problemTitle": "Maximum Subarray"
+    },
+    {
+      "id": "t11-002-practice-product-except-self",
+      "track": "track-11",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Problem: Product of Array Except Self",
+      "module": "t11-002",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-002-practice-maximum-subarray"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "product-except-self",
+      "problemTitle": "Product of Array Except Self"
+    },
+    {
+      "id": "t11-002-practice-move-zeroes",
+      "track": "track-11",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Problem: Move Zeroes",
+      "module": "t11-002",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-002-practice-product-except-self"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "move-zeroes",
+      "problemTitle": "Move Zeroes"
+    },
+    {
+      "id": "t11-002-practice-rotate-array",
+      "track": "track-11",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Problem: Rotate Array",
+      "module": "t11-002",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-002-practice-move-zeroes"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "rotate-array",
+      "problemTitle": "Rotate Array"
     },
     {
       "id": "t11-002-interview",
       "track": "track-11",
-      "title": "arrays strings hash maps and sets — Interview questions and reasoning",
+      "title": "arrays and dynamic arrays for algorithmic problem solving — Interview questions and reasoning",
       "module": "t11-002",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-002-practice"
+        "t11-002-practice-rotate-array"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-003-overview",
@@ -9777,6 +10214,502 @@
         "t11-018-practice"
       ],
       "status": "blocked-on-inventory"
+    },
+    {
+      "id": "t11-019-overview",
+      "track": "track-11",
+      "title": "strings and character sequences — Big-picture orientation and mental model",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-019-concepts",
+      "track": "track-11",
+      "title": "strings and character sequences — Core concepts and how they fit together",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-019-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-019-reference-text-units",
+      "track": "track-11",
+      "title": "strings and character sequences — Reference: Text elements and Unicode units",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-019-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "text-units"
+    },
+    {
+      "id": "t11-019-reference-sequence-relations",
+      "track": "track-11",
+      "title": "strings and character sequences — Reference: String sequence relationships",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-019-reference-text-units"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "sequence-relations"
+    },
+    {
+      "id": "t11-019-reference-comparison-and-matching",
+      "track": "track-11",
+      "title": "strings and character sequences — Reference: Comparison and matching concepts",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-019-reference-sequence-relations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "comparison-and-matching"
+    },
+    {
+      "id": "t11-019-reference-complexity-and-correctness",
+      "track": "track-11",
+      "title": "strings and character sequences — Reference: String algorithm risks and costs",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-019-reference-comparison-and-matching"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "complexity-and-correctness"
+    },
+    {
+      "id": "t11-019-practice-valid-palindrome",
+      "track": "track-11",
+      "title": "strings and character sequences — Problem: Valid Palindrome",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-019-reference-complexity-and-correctness"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "valid-palindrome",
+      "problemTitle": "Valid Palindrome"
+    },
+    {
+      "id": "t11-019-practice-valid-anagram",
+      "track": "track-11",
+      "title": "strings and character sequences — Problem: Valid Anagram",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-019-practice-valid-palindrome"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "valid-anagram",
+      "problemTitle": "Valid Anagram"
+    },
+    {
+      "id": "t11-019-practice-reverse-string",
+      "track": "track-11",
+      "title": "strings and character sequences — Problem: Reverse String",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-019-practice-valid-anagram"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "reverse-string",
+      "problemTitle": "Reverse String"
+    },
+    {
+      "id": "t11-019-practice-first-unique-character",
+      "track": "track-11",
+      "title": "strings and character sequences — Problem: First Unique Character in a String",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-019-practice-reverse-string"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "first-unique-character",
+      "problemTitle": "First Unique Character in a String"
+    },
+    {
+      "id": "t11-019-practice-longest-palindromic-substring",
+      "track": "track-11",
+      "title": "strings and character sequences — Problem: Longest Palindromic Substring",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-019-practice-first-unique-character"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "longest-palindromic-substring",
+      "problemTitle": "Longest Palindromic Substring"
+    },
+    {
+      "id": "t11-019-practice-implement-strstr",
+      "track": "track-11",
+      "title": "strings and character sequences — Problem: Implement Substring Search",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-019-practice-longest-palindromic-substring"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "implement-strstr",
+      "problemTitle": "Implement Substring Search"
+    },
+    {
+      "id": "t11-019-interview",
+      "track": "track-11",
+      "title": "strings and character sequences — Interview questions and reasoning",
+      "module": "t11-019",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-019.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-019-practice-implement-strstr"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-020-overview",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Big-picture orientation and mental model",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-020-concepts",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Core concepts and how they fit together",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-020-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-020-reference-map-abstraction",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Reference: Map abstraction and operations",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-020-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "map-abstraction"
+    },
+    {
+      "id": "t11-020-reference-hash-table-mechanism",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Reference: Hash-table mechanism",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-020-reference-map-abstraction"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "hash-table-mechanism"
+    },
+    {
+      "id": "t11-020-reference-algorithmic-map-patterns",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Reference: Map patterns in algorithm problems",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-020-reference-hash-table-mechanism"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "algorithmic-map-patterns"
+    },
+    {
+      "id": "t11-020-reference-cost-and-correctness",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Reference: Cost and correctness behavior",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-020-reference-algorithmic-map-patterns"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cost-and-correctness"
+    },
+    {
+      "id": "t11-020-practice-two-sum",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Problem: Two Sum",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-020-reference-cost-and-correctness"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "two-sum",
+      "problemTitle": "Two Sum"
+    },
+    {
+      "id": "t11-020-practice-group-anagrams",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Problem: Group Anagrams",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-020-practice-two-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "group-anagrams",
+      "problemTitle": "Group Anagrams"
+    },
+    {
+      "id": "t11-020-practice-top-k-frequent",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Problem: Top K Frequent Elements",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-020-practice-group-anagrams"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "top-k-frequent",
+      "problemTitle": "Top K Frequent Elements"
+    },
+    {
+      "id": "t11-020-practice-longest-consecutive",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Problem: Longest Consecutive Sequence",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-020-practice-top-k-frequent"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "longest-consecutive",
+      "problemTitle": "Longest Consecutive Sequence"
+    },
+    {
+      "id": "t11-020-practice-isomorphic-strings",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Problem: Isomorphic Strings",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-020-practice-longest-consecutive"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "isomorphic-strings",
+      "problemTitle": "Isomorphic Strings"
+    },
+    {
+      "id": "t11-020-practice-subarray-sum-k",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Problem: Subarray Sum Equals K",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-020-practice-isomorphic-strings"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "subarray-sum-k",
+      "problemTitle": "Subarray Sum Equals K"
+    },
+    {
+      "id": "t11-020-interview",
+      "track": "track-11",
+      "title": "hash maps and frequency tables — Interview questions and reasoning",
+      "module": "t11-020",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-020.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-020-practice-subarray-sum-k"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-021-overview",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Big-picture orientation and mental model",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-021-concepts",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Core concepts and how they fit together",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-021-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-021-reference-set-model",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Reference: Set model and membership",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-021-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "set-model"
+    },
+    {
+      "id": "t11-021-reference-set-operations",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Reference: Mathematical set operations",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-021-reference-set-model"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "set-operations"
+    },
+    {
+      "id": "t11-021-reference-set-implementations",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Reference: Set implementation choices",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-021-reference-set-operations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "set-implementations"
+    },
+    {
+      "id": "t11-021-reference-set-algorithm-patterns",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Reference: Set patterns and tradeoffs",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-021-reference-set-implementations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "set-algorithm-patterns"
+    },
+    {
+      "id": "t11-021-practice-contains-duplicate",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Problem: Contains Duplicate",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-021-reference-set-algorithm-patterns"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "contains-duplicate",
+      "problemTitle": "Contains Duplicate"
+    },
+    {
+      "id": "t11-021-practice-intersection-two-arrays",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Problem: Intersection of Two Arrays",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-021-practice-contains-duplicate"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "intersection-two-arrays",
+      "problemTitle": "Intersection of Two Arrays"
+    },
+    {
+      "id": "t11-021-practice-happy-number",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Problem: Happy Number",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-021-practice-intersection-two-arrays"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "happy-number",
+      "problemTitle": "Happy Number"
+    },
+    {
+      "id": "t11-021-practice-jewels-and-stones",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Problem: Jewels and Stones",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-021-practice-happy-number"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "jewels-and-stones",
+      "problemTitle": "Jewels and Stones"
+    },
+    {
+      "id": "t11-021-practice-unique-number-of-occurrences",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Problem: Unique Number of Occurrences",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-021-practice-jewels-and-stones"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "unique-number-of-occurrences",
+      "problemTitle": "Unique Number of Occurrences"
+    },
+    {
+      "id": "t11-021-interview",
+      "track": "track-11",
+      "title": "sets and membership algorithms — Interview questions and reasoning",
+      "module": "t11-021",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-021.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-021-practice-unique-number-of-occurrences"
+      ],
+      "status": "draft-generation-eligible"
     }
   ]
 }

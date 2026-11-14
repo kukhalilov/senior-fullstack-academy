@@ -49,26 +49,32 @@ test('C# program structure has source-backed syntax and current file-based app c
   const names = manifest.inventory.flatMap(group => group.items);
   assert.equal(manifest.inventoryComplete, true);
   assert.equal(manifest.generationAllowed, true);
-  assert.equal(manifest.sourceSnapshot.edition, 'C# 14');
+  assert.match(manifest.sourceSnapshot.edition, /^C# 14 stable;/);
   assert.ok(names.includes('Top-level statements'));
   assert.ok(names.includes('static void Main()'));
   assert.ok(manifest.versionNotes.some(note => note.items.includes('File-based apps') && note.sourceUrls.length));
+  assert.ok(manifest.sourceSnapshot.urls.includes('https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15'));
 });
 
 test('C# numeric conversion inventory covers every directed pair once', () => {
   const types = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-003.json', 'utf8'));
   const typeNames = types.inventory.flatMap(group => group.items);
-  const numericTypes = ['sbyte', 'byte', 'short', 'ushort', 'int', 'uint', 'long', 'ulong', 'nint', 'nuint', 'float', 'double', 'decimal'];
+  const numericTypes = ['sbyte', 'byte', 'short', 'ushort', 'int', 'uint', 'long', 'ulong', 'nint', 'nuint', 'float', 'double', 'decimal', 'char'];
   assert.ok(numericTypes.every(type => typeNames.includes(type)));
   const conversions = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-024.json', 'utf8'));
-  const implicit = conversions.inventory.find(group => group.id === 'implicit-conversions').items;
-  const explicit = conversions.inventory.find(group => group.id === 'explicit-conversion-pairs').items;
+  const implicitGroups = conversions.inventory.filter(group => group.id.startsWith('implicit-from-'));
+  const explicitGroups = conversions.inventory.filter(group => group.id.startsWith('explicit-from-'));
+  const implicit = implicitGroups.flatMap(group => group.items);
+  const explicit = explicitGroups.flatMap(group => group.items);
   const pairs = [...implicit, ...explicit].map(item => item.match(/^([a-z]+) to ([a-z]+) \((?:implicit|explicit) numeric conversion\)$/)?.slice(1).join('->'));
-  assert.equal(implicit.length, 58);
-  assert.equal(explicit.length, 98);
-  assert.equal(pairs.length, 156);
-  assert.equal(new Set(pairs).size, 156);
-  assert.ok(conversions.versionNotes.some(note => note.edition === '.NET 11'));
+  assert.equal(implicit.length, 68);
+  assert.equal(explicit.length, 114);
+  assert.equal(pairs.length, 182);
+  assert.equal(new Set(pairs).size, 182);
+  assert.ok(implicit.includes('char to ushort (implicit numeric conversion)'));
+  assert.ok(explicit.includes('char to short (explicit numeric conversion)'));
+  assert.ok([...implicitGroups, ...explicitGroups].every(group => group.items.length <= 13));
+  assert.ok(conversions.versionNotes.some(note => note.edition === '.NET 11 prerelease'));
 });
 
 test('DSA complexity scope is source-backed but held until solution checks exist', () => {
@@ -86,9 +92,20 @@ test('DSA complexity scope is source-backed but held until solution checks exist
   assert.equal(queue.tasks.find(task => task.id === 't11-001-practice').status, 'blocked-on-generation-validation');
 });
 
+test('named DSA problems become independent practice units', () => {
+  const arrayTopic = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-002.json', 'utf8'));
+  const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
+  const tasks = queue.tasks.filter(task => task.module === arrayTopic.id && task.phase === 'practice');
+  assert.equal(arrayTopic.practiceProblems.length, 7);
+  assert.equal(tasks.length, 7);
+  assert.deepEqual(tasks.map(task => task.problemId), arrayTopic.practiceProblems.map(problem => problem.id));
+  assert.ok(tasks.every(task => task.status === 'draft-generation-eligible'));
+  assert.equal(tasks[0].problemTitle, 'Two Sum');
+});
+
 test('the curriculum teaches overview before references and has no forced versions phase', () => {
   const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
-  assert.deepEqual(queue.learningSequence, ['overview', 'concepts', 'reference groups', 'practice', 'interview']);
+  assert.deepEqual(queue.learningSequence, ['overview', 'concepts', 'reference groups', 'practice units', 'interview']);
   assert.equal(queue.tasks.some(task => task.phase === 'versions'), false);
   const overview = queue.tasks.find(task => task.phase === 'overview');
   const concepts = queue.tasks.find(task => task.phase === 'concepts' && task.module === overview.module);
@@ -105,4 +122,6 @@ test('the curriculum teaches overview before references and has no forced versio
   const pathTopicIds = path.stages.flatMap(stage => stage.topics);
   assert.equal(path.topicCount, pathTopicIds.length);
   assert.equal(new Set(pathTopicIds).size, path.topicCount);
+  assert.ok(path.stages.findIndex(stage => stage.id === 'intermediate-dsa') < path.stages.findIndex(stage => stage.id === 'web-language-foundations'));
+  assert.deepEqual(path.stages.find(stage => stage.id === 'intermediate-dsa').prerequisites, ['programming-and-problem-solving']);
 });

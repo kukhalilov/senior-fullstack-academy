@@ -12,6 +12,7 @@ const maxApiCalls = Number.isInteger(requestedCalls) && requestedCalls > 0 ? Mat
 const dryRun = process.argv.includes('--dry-run');
 const model = process.env.GEMINI_MODEL ?? 'gemini-3.5-flash-lite';
 const outputRoot = 'course/drafts';
+const dsaProblemHeadings = ['Goals','Problem statement','Input constraints','Examples with expected output','Clarifying assumptions','Progressive hints','Complete C# solution','Correctness argument','Step-by-step dry run','Time complexity','Space complexity','Edge-case tests','Reflection questions'];
 const ready = new Map();
 for (const track of catalog.tracks) {
   for (const file of fs.readdirSync(track.manifestDirectory).filter(name => name.endsWith('.json'))) {
@@ -20,7 +21,7 @@ for (const track of catalog.tracks) {
     if (manifest.inventoryComplete && (manifest.generationAllowed === true || manifest.generationAllowedPhases?.length) && manifest.concepts.length && manifest.sourceSnapshot?.urls?.length && manifest.inventory.length && manifest.inventory.every(group => group.items.length)) ready.set(manifest.id, {manifest,filePath});
   }
 }
-const isReadyTask=task=>ready.has(task.module) && (ready.get(task.module).manifest.generationAllowed===true || ready.get(task.module).manifest.generationAllowedPhases?.includes(task.phase)) && /^t\d{2}-\d{3}$/.test(task.module) && /^[a-z0-9-]+$/.test(task.inventoryGroup??'overview');
+const isReadyTask=task=>ready.has(task.module) && (ready.get(task.module).manifest.generationAllowed===true || ready.get(task.module).manifest.generationAllowedPhases?.includes(task.phase)) && /^t\d{2}-\d{3}$/.test(task.module) && /^[a-z0-9-]+$/.test(task.inventoryGroup??task.problemId??'overview');
 const completed=new Set(fs.existsSync(outputRoot)?fs.readdirSync(outputRoot,{recursive:true}).filter(file=>file.endsWith('.md')):[]);
 const totalPending=queue.tasks.filter(task=>isReadyTask(task)&&!completed.has(path.join(task.module,`${task.id}.md`))).length;
 const pending=queue.tasks.filter(task=>isReadyTask(task)&&!completed.has(path.join(task.module,`${task.id}.md`))).slice(0,unitsPerRun);
@@ -35,13 +36,18 @@ function promptFor(task, manifest) {
   const spec=template.lessonTypes[phase];
   if(!spec) throw new Error(`No lesson template for ${phase}`);
   const group=phase==='reference'?manifest.inventory.find(x=>x.id===task.inventoryGroup):undefined;
+  const practiceProblem=phase==='practice'&&task.problemId?manifest.practiceProblems?.find(problem=>problem.id===task.problemId):undefined;
   if(phase==='reference'&&!group) throw new Error(`Missing inventory group ${task.inventoryGroup}`);
-  const data={id:manifest.id,title:manifest.title,edition:manifest.sourceSnapshot.edition,concepts:manifest.concepts,scopeExclusions:manifest.scopeExclusions,sourceSnapshot:manifest.sourceSnapshot,comparisons:manifest.comparisons,comparisonSources:manifest.comparisonSources??[],versionNotes:manifest.versionNotes,...(group?{inventoryGroup:group}:{inventory:manifest.inventory})};
-  return ['Write one self-contained Markdown lesson for a self-study learner. Output only Markdown.',`LESSON TYPE: ${phase}\nGOAL: ${spec.goal}\nREQUIRED SECTIONS: ${spec.requiredSections.join('; ')}\nUse each required section name verbatim as a Markdown heading.`,spec.instruction??'',JSON.stringify(template.pedagogy),JSON.stringify(template.closedWorld),'FROZEN TOPIC DATA:',JSON.stringify(data,null,2),'Mark this as an automatically generated draft.'].filter(Boolean).join('\n\n');
+  if(phase==='practice'&&task.problemId&&!practiceProblem) throw new Error(`Missing practice problem ${task.problemId}`);
+  const data={id:manifest.id,title:manifest.title,edition:manifest.sourceSnapshot.edition,concepts:manifest.concepts,scopeExclusions:manifest.scopeExclusions,sourceSnapshot:manifest.sourceSnapshot,comparisons:manifest.comparisons,comparisonSources:manifest.comparisonSources??[],versionNotes:manifest.versionNotes,...(practiceProblem?{practiceProblem}:{}),...(group?{inventoryGroup:group}:{inventory:manifest.inventory})};
+  const dsaInstruction=practiceProblem&&manifest.track==='track-11'?`${JSON.stringify(template.dsaPractice,null,2)}\nSolve only the supplied named problem. Use these exact headings: ${dsaProblemHeadings.join('; ')}. Produce one standalone C# console program in a \`csharp dsa-solution\` code fence, with no external packages; every failed example or edge-case check must throw InvalidOperationException. Do not add other problem names.`:'';
+  return ['Write one self-contained Markdown lesson for a self-study learner. Output only Markdown.',`LESSON TYPE: ${phase}\nGOAL: ${spec.goal}\nREQUIRED SECTIONS: ${spec.requiredSections.join('; ')}\nUse each required section name verbatim as a Markdown heading.`,spec.instruction??'',dsaInstruction,JSON.stringify(template.pedagogy),JSON.stringify(template.closedWorld),'FROZEN TOPIC DATA:',JSON.stringify(data,null,2),'Mark this as an automatically generated draft.'].filter(Boolean).join('\n\n');
 }
 function checkLesson(task, manifest, text) {
   const phase=task.phase==='reference'?'reference':task.phase;
-  const required=template.lessonTypes[phase].requiredSections;
+  const required=task.problemId&&manifest.track==='track-11'
+    ? dsaProblemHeadings
+    : template.lessonTypes[phase].requiredSections;
   const headings=text.split(/\r?\n/).filter(line=>/^#{2,3}\s+/.test(line)).map(line=>line.replace(/^#{2,3}\s+/, '').trim().toLowerCase());
   const missing=required.filter(section=>!headings.includes(section.toLowerCase()));
   if(missing.length) throw new Error(`${task.id}: missing section headings: ${missing.join(', ')}`);
@@ -50,6 +56,8 @@ function checkLesson(task, manifest, text) {
     const absent=group.items.filter(item=>!text.includes(item));
     if(absent.length) throw new Error(`${task.id}: omitted supplied names: ${absent.join(', ')}`);
   }
+  if(task.problemTitle&&!text.includes(task.problemTitle)) throw new Error(`${task.id}: omitted assigned problem title ${task.problemTitle}`);
+  if(task.problemId&&manifest.track==='track-11'&&!/```csharp\s+dsa-solution\s*\r?\n[\s\S]*?```/.test(text)) throw new Error(`${task.id}: missing the runnable C# dsa-solution code block`);
   const allowedSources=new Set([...manifest.sourceSnapshot.urls,...(manifest.comparisonSources??[]),...manifest.versionNotes.flatMap(note=>note.sourceUrls??[])]);
   const cited=[...text.matchAll(/\]\((https?:\/\/[^)\s]+)\)|<(https?:\/\/[^>]+)>/g)].map(match=>(match[1]??match[2]).replace(/[.,;]+$/,''));
   if(!cited.some(source=>allowedSources.has(source))) throw new Error(`${task.id}: no supplied source URL was cited`);
