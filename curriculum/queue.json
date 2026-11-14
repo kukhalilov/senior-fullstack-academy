@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1825,
+  "taskCount": 1839,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -1082,61 +1082,113 @@
     {
       "id": "t01-012-overview",
       "track": "track-01",
-      "title": "extension methods operators and pattern matching — Big-picture orientation and mental model",
+      "title": "C# pattern matching user-defined operators and conversions — Big-picture orientation and mental model",
       "module": "t01-012",
       "manifest": "curriculum/manifests/c-language-and-net/t01-012.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-012-concepts",
       "track": "track-01",
-      "title": "extension methods operators and pattern matching — Core concepts and how they fit together",
+      "title": "C# pattern matching user-defined operators and conversions — Core concepts and how they fit together",
       "module": "t01-012",
       "manifest": "curriculum/manifests/c-language-and-net/t01-012.json",
       "phase": "concepts",
       "prerequisites": [
         "t01-012-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-012-reference-inventory-pending",
+      "id": "t01-012-reference-standard-and-user-defined-conversions",
       "track": "track-01",
-      "title": "extension methods operators and pattern matching — Reference: awaiting curated names",
+      "title": "C# pattern matching user-defined operators and conversions — Reference: Standard conversions, user-defined conversions, overload resolution, and checked context",
       "module": "t01-012",
       "manifest": "curriculum/manifests/c-language-and-net/t01-012.json",
       "phase": "reference",
       "prerequisites": [
         "t01-012-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "standard-and-user-defined-conversions"
+    },
+    {
+      "id": "t01-012-reference-overloaded-operators",
+      "track": "track-01",
+      "title": "C# pattern matching user-defined operators and conversions — Reference: Operator declarations, overloadable operators, checked forms, and generic math contracts",
+      "module": "t01-012",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-012-reference-standard-and-user-defined-conversions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "overloaded-operators"
+    },
+    {
+      "id": "t01-012-reference-pattern-forms-and-composition",
+      "track": "track-01",
+      "title": "C# pattern matching user-defined operators and conversions — Reference: Constant, type, relational, logical, recursive, and list patterns",
+      "module": "t01-012",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-012-reference-overloaded-operators"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "pattern-forms-and-composition"
+    },
+    {
+      "id": "t01-012-reference-is-switch-and-exhaustiveness",
+      "track": "track-01",
+      "title": "C# pattern matching user-defined operators and conversions — Reference: is patterns, switch statements, switch expressions, guards, and exhaustiveness",
+      "module": "t01-012",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-012-reference-pattern-forms-and-composition"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "is-switch-and-exhaustiveness"
+    },
+    {
+      "id": "t01-012-reference-operator-and-pattern-design",
+      "track": "track-01",
+      "title": "C# pattern matching user-defined operators and conversions — Reference: Readability, edge cases, nullable values, and safe decision logic",
+      "module": "t01-012",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-012-reference-is-switch-and-exhaustiveness"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "operator-and-pattern-design"
     },
     {
       "id": "t01-012-practice",
       "track": "track-01",
-      "title": "extension methods operators and pattern matching — Exercises and worked solutions",
+      "title": "C# pattern matching user-defined operators and conversions — Exercises and worked solutions",
       "module": "t01-012",
       "manifest": "curriculum/manifests/c-language-and-net/t01-012.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-012-reference-inventory-pending"
+        "t01-012-reference-operator-and-pattern-design"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-012-interview",
       "track": "track-01",
-      "title": "extension methods operators and pattern matching — Interview questions and reasoning",
+      "title": "C# pattern matching user-defined operators and conversions — Interview questions and reasoning",
       "module": "t01-012",
       "manifest": "curriculum/manifests/c-language-and-net/t01-012.json",
       "phase": "interview",
       "prerequisites": [
         "t01-012-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-013-overview",
@@ -1257,7 +1309,7 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-014.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-014-concepts",
@@ -1269,20 +1321,98 @@
       "prerequisites": [
         "t01-014-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-014-reference-inventory-pending",
+      "id": "t01-014-reference-collection-contracts-and-selection",
       "track": "track-01",
-      "title": "collections arrays list dictionary set stack queue concurrent and immutable collections — Reference: awaiting curated names",
+      "title": "collections arrays list dictionary set stack queue concurrent and immutable collections — Reference: Enumeration, generic collection contracts, mutability, and choosing a shape",
       "module": "t01-014",
       "manifest": "curriculum/manifests/c-language-and-net/t01-014.json",
       "phase": "reference",
       "prerequisites": [
         "t01-014-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "collection-contracts-and-selection"
+    },
+    {
+      "id": "t01-014-reference-array-and-list-apis",
+      "track": "track-01",
+      "title": "collections arrays list dictionary set stack queue concurrent and immutable collections — Reference: Fixed arrays, resizable List<T>, their current core methods, and performance",
+      "module": "t01-014",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-014-reference-collection-contracts-and-selection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "array-and-list-apis"
+    },
+    {
+      "id": "t01-014-reference-dictionary-and-key-value-apis",
+      "track": "track-01",
+      "title": "collections arrays list dictionary set stack queue concurrent and immutable collections — Reference: Dictionary and sorted key/value collections, comparer behavior, and lookup APIs",
+      "module": "t01-014",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-014-reference-array-and-list-apis"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "dictionary-and-key-value-apis"
+    },
+    {
+      "id": "t01-014-reference-set-and-priority-collections",
+      "track": "track-01",
+      "title": "collections arrays list dictionary set stack queue concurrent and immutable collections — Reference: HashSet, SortedSet, PriorityQueue, and order/uniqueness operations",
+      "module": "t01-014",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-014-reference-dictionary-and-key-value-apis"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "set-and-priority-collections"
+    },
+    {
+      "id": "t01-014-reference-queue-stack-and-linked-collections",
+      "track": "track-01",
+      "title": "collections arrays list dictionary set stack queue concurrent and immutable collections — Reference: FIFO, LIFO, linked lists, bit arrays, and specialized sequence structures",
+      "module": "t01-014",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-014-reference-set-and-priority-collections"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "queue-stack-and-linked-collections"
+    },
+    {
+      "id": "t01-014-reference-concurrent-immutable-and-frozen-collections",
+      "track": "track-01",
+      "title": "collections arrays list dictionary set stack queue concurrent and immutable collections — Reference: Concurrent collections, immutable snapshots, builders, and frozen read-mostly maps",
+      "module": "t01-014",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-014-reference-queue-stack-and-linked-collections"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "concurrent-immutable-and-frozen-collections"
+    },
+    {
+      "id": "t01-014-reference-collection-algorithm-and-performance",
+      "track": "track-01",
+      "title": "collections arrays list dictionary set stack queue concurrent and immutable collections — Reference: Complexity, ordering guarantees, capacity, equality, and safe iteration",
+      "module": "t01-014",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-014-reference-concurrent-immutable-and-frozen-collections"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "collection-algorithm-and-performance"
     },
     {
       "id": "t01-014-practice",
@@ -1292,9 +1422,9 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-014.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-014-reference-inventory-pending"
+        "t01-014-reference-collection-algorithm-and-performance"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-014-interview",
@@ -1306,66 +1436,118 @@
       "prerequisites": [
         "t01-014-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-015-overview",
       "track": "track-01",
-      "title": "LINQ operators deferred execution IEnumerable IQueryable — Big-picture orientation and mental model",
+      "title": "LINQ operators deferred execution IEnumerable IQueryable and async sequences — Big-picture orientation and mental model",
       "module": "t01-015",
       "manifest": "curriculum/manifests/c-language-and-net/t01-015.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-015-concepts",
       "track": "track-01",
-      "title": "LINQ operators deferred execution IEnumerable IQueryable — Core concepts and how they fit together",
+      "title": "LINQ operators deferred execution IEnumerable IQueryable and async sequences — Core concepts and how they fit together",
       "module": "t01-015",
       "manifest": "curriculum/manifests/c-language-and-net/t01-015.json",
       "phase": "concepts",
       "prerequisites": [
         "t01-015-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-015-reference-inventory-pending",
+      "id": "t01-015-reference-linq-model-and-query-shapes",
       "track": "track-01",
-      "title": "LINQ operators deferred execution IEnumerable IQueryable — Reference: awaiting curated names",
+      "title": "LINQ operators deferred execution IEnumerable IQueryable and async sequences — Reference: LINQ abstractions, syntax forms, provider pipeline, and query execution categories",
       "module": "t01-015",
       "manifest": "curriculum/manifests/c-language-and-net/t01-015.json",
       "phase": "reference",
       "prerequisites": [
         "t01-015-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "linq-model-and-query-shapes"
+    },
+    {
+      "id": "t01-015-reference-enumerable-standard-operators",
+      "track": "track-01",
+      "title": "LINQ operators deferred execution IEnumerable IQueryable and async sequences — Reference: Current Enumerable operators for filtering projection ordering joining grouping and aggregates",
+      "module": "t01-015",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-015-reference-linq-model-and-query-shapes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "enumerable-standard-operators"
+    },
+    {
+      "id": "t01-015-reference-queryable-provider-operators",
+      "track": "track-01",
+      "title": "LINQ operators deferred execution IEnumerable IQueryable and async sequences — Reference: Queryable operator families, expression trees, provider translation, and execution",
+      "module": "t01-015",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-015-reference-enumerable-standard-operators"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "queryable-provider-operators"
+    },
+    {
+      "id": "t01-015-reference-async-enumerable-operators",
+      "track": "track-01",
+      "title": "LINQ operators deferred execution IEnumerable IQueryable and async sequences — Reference: Built-in .NET 10 and .NET 11 AsyncEnumerable operators and asynchronous enumeration",
+      "module": "t01-015",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-015-reference-queryable-provider-operators"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "async-enumerable-operators"
+    },
+    {
+      "id": "t01-015-reference-execution-semantics-and-query-design",
+      "track": "track-01",
+      "title": "LINQ operators deferred execution IEnumerable IQueryable and async sequences — Reference: Evaluation timing, ordering, joins, grouping, equality, and query efficiency",
+      "module": "t01-015",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-015-reference-async-enumerable-operators"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "execution-semantics-and-query-design"
     },
     {
       "id": "t01-015-practice",
       "track": "track-01",
-      "title": "LINQ operators deferred execution IEnumerable IQueryable — Exercises and worked solutions",
+      "title": "LINQ operators deferred execution IEnumerable IQueryable and async sequences — Exercises and worked solutions",
       "module": "t01-015",
       "manifest": "curriculum/manifests/c-language-and-net/t01-015.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-015-reference-inventory-pending"
+        "t01-015-reference-execution-semantics-and-query-design"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-015-interview",
       "track": "track-01",
-      "title": "LINQ operators deferred execution IEnumerable IQueryable — Interview questions and reasoning",
+      "title": "LINQ operators deferred execution IEnumerable IQueryable and async sequences — Interview questions and reasoning",
       "module": "t01-015",
       "manifest": "curriculum/manifests/c-language-and-net/t01-015.json",
       "phase": "interview",
       "prerequisites": [
         "t01-015-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-016-overview",
