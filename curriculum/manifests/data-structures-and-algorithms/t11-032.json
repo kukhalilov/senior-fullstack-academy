@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-032",
+  "track": "track-11",
+  "title": "integer arithmetic, primes, gcd, and modular math",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "The greatest common divisor (GCD) is the largest positive integer dividing both inputs; Euclid's algorithm repeatedly replaces (a,b) with (b,a mod b).",
+    "The least common multiple can be computed as |a/gcd(a,b) times b|, dividing first to reduce overflow risk and handling zero separately.",
+    "Trial division only needs candidates through the square root, while the Sieve of Eratosthenes marks composite multiples in O(n log log n) time for a bounded range.",
+    "Prime factorization by repeated division builds exponents of prime factors; precomputed smallest-prime factors accelerate repeated factorizations within a bounded maximum value.",
+    "Modular addition and multiplication keep values within a residue class, but intermediate multiplication may overflow before the modulus is applied.",
+    "Binary exponentiation computes powers in O(log exponent) multiplications; modular division is multiplication by an inverse and is valid only when that inverse exists.",
+    "For prime modulus p, a nonzero residue a has inverse a^(p-2) mod p by Fermat's little theorem; for composite moduli, an inverse exists exactly when gcd(a,m)=1.",
+    "Combinatorial formulas using factorials and inverse factorials modulo p require factorial indices below p and a prime modulus; constraints must justify every algebraic shortcut."
+  ],
+  "inventory": [
+    {"id":"divisibility-and-gcd","title":"Divisibility, GCD, LCM, and Euclid","items":["Divisor and multiple","Greatest common divisor","Euclidean algorithm","Extended Euclidean algorithm","Least common multiple","gcd(0,a) convention","Coprime integers","Reduce before multiply to limit overflow","GCD of array by fold","GCD and linear Diophantine connection"]},
+    {"id":"primes-and-factorization","title":"Primality, sieves, and factorization","items":["Trial-division primality test","Square-root trial bound","Sieve of Eratosthenes","Composite multiple marking from p squared","O(n log log n) sieve bound","Prime factorization","Smallest-prime-factor table","Divisor enumeration from prime exponents","Prime-counting prefix array","Integer multiplication overflow in p squared"]},
+    {"id":"modular-arithmetic","title":"Residues, powers, and inverses","items":["Modulo equivalence class","Normalize negative remainder","Modular addition","Modular subtraction","Modular multiplication","Binary exponentiation","Modular inverse","Extended-Euclid inverse for coprime modulus","Fermat inverse for prime modulus","Modular division preconditions"]},
+    {"id":"combinatorics-and-numeric-limits","title":"Combinations, constraints, and numeric safety","items":["Factorial","Binomial coefficient","Pascal recurrence","Factorial and inverse-factorial tables","Prime-modulus assumption","Index below prime modulus assumption","Overflow-safe multiplication","Signed absolute-value minimum edge case","Integer square-root boundary","Floating-point rounding hazard"]}
+  ],
+  "practiceProblems": [
+    {"id":"count-primes","name":"Count Primes","difficulty":"intermediate","patterns":["Sieve of Eratosthenes","begin marking at the square of each prime"]},
+    {"id":"powx-n","name":"Pow(x, n)","difficulty":"intermediate","patterns":["binary exponentiation","negative exponent and minimum-integer handling"]},
+    {"id":"factorial-trailing-zeroes","name":"Factorial Trailing Zeroes","difficulty":"introductory","patterns":["count prime factors of five","repeated integer division"]},
+    {"id":"find-greatest-common-divisor-array","name":"Find Greatest Common Divisor of Array","difficulty":"introductory","patterns":["Euclidean algorithm","fold pairwise GCD"]},
+    {"id":"check-if-it-is-a-good-array","name":"Check If It Is a Good Array","difficulty":"intermediate","patterns":["Bézout identity","array GCD equals one"]},
+    {"id":"super-pow","name":"Super Pow","difficulty":"advanced","patterns":["modular exponentiation","process exponent digits without constructing the full exponent"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Trial division","Sieve of Eratosthenes"],["Euclidean GCD","Extended Euclidean algorithm"],["Ordinary exponentiation","Binary exponentiation"],["Inverse modulo prime","Inverse modulo composite"],["LCM multiply then divide","Divide by GCD before multiply"]],
+  "comparisonSources": ["https://usaco.guide/gold/divisibility","https://usaco.guide/gold/modular","https://cp-algorithms.com/algebra/euclid-algorithm.html","https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide divisibility and modular arithmetic, CP-Algorithms number theory articles, and official LeetCode problem statements",
+    "edition": "Timeless number theory; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/gold/divisibility","https://usaco.guide/gold/modular","https://cp-algorithms.com/algebra/euclid-algorithm.html","https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html","https://leetcode.com/problems/count-primes/","https://leetcode.com/problems/powx-n/","https://leetcode.com/problems/factorial-trailing-zeroes/","https://leetcode.com/problems/find-greatest-common-divisor-of-array/","https://leetcode.com/problems/check-if-it-is-a-good-array/","https://leetcode.com/problems/super-pow/"]
+  },
+  "scopeExclusions": ["Bitwise operator identities and masks, covered in t11-031","Floating-point numerical analysis","Cryptographic arithmetic","Advanced combinatorics and generating functions","Arbitrary-precision arithmetic libraries and language APIs"],
+  "generationAllowed": true
+}

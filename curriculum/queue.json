@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1139,
+  "taskCount": 1190,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -11762,61 +11762,172 @@
     {
       "id": "t11-016-overview",
       "track": "track-11",
-      "title": "tries bit manipulation and mathematics — Big-picture orientation and mental model",
+      "title": "tries, prefix trees, and string dictionaries — Big-picture orientation and mental model",
       "module": "t11-016",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-016-concepts",
       "track": "track-11",
-      "title": "tries bit manipulation and mathematics — Core concepts and how they fit together",
+      "title": "tries, prefix trees, and string dictionaries — Core concepts and how they fit together",
       "module": "t11-016",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-016-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-016-reference-inventory-pending",
+      "id": "t11-016-reference-trie-structure",
       "track": "track-11",
-      "title": "tries bit manipulation and mathematics — Reference: awaiting curated names",
+      "title": "tries, prefix trees, and string dictionaries — Reference: Prefix-node structure and terminal semantics",
       "module": "t11-016",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
       "phase": "reference",
       "prerequisites": [
         "t11-016-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "trie-structure"
     },
     {
-      "id": "t11-016-practice",
+      "id": "t11-016-reference-operations-and-representations",
       "track": "track-11",
-      "title": "tries bit manipulation and mathematics — Exercises and worked solutions",
+      "title": "tries, prefix trees, and string dictionaries — Reference: Insertion, lookup, deletion, and child storage",
+      "module": "t11-016",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-016-reference-trie-structure"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "operations-and-representations"
+    },
+    {
+      "id": "t11-016-reference-pattern-and-prefix-queries",
+      "track": "track-11",
+      "title": "tries, prefix trees, and string dictionaries — Reference: Prefix enumeration and wildcard search",
+      "module": "t11-016",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-016-reference-operations-and-representations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "pattern-and-prefix-queries"
+    },
+    {
+      "id": "t11-016-reference-variants-and-tradeoffs",
+      "track": "track-11",
+      "title": "tries, prefix trees, and string dictionaries — Reference: Compressed, bitwise, and memory variants",
+      "module": "t11-016",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-016-reference-pattern-and-prefix-queries"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "variants-and-tradeoffs"
+    },
+    {
+      "id": "t11-016-practice-implement-trie-prefix-tree",
+      "track": "track-11",
+      "title": "tries, prefix trees, and string dictionaries — Problem: Implement Trie (Prefix Tree)",
       "module": "t11-016",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-016-reference-inventory-pending"
+        "t11-016-reference-variants-and-tradeoffs"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "implement-trie-prefix-tree",
+      "problemTitle": "Implement Trie (Prefix Tree)"
+    },
+    {
+      "id": "t11-016-practice-design-add-and-search-words",
+      "track": "track-11",
+      "title": "tries, prefix trees, and string dictionaries — Problem: Design Add and Search Words Data Structure",
+      "module": "t11-016",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-016-practice-implement-trie-prefix-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "design-add-and-search-words",
+      "problemTitle": "Design Add and Search Words Data Structure"
+    },
+    {
+      "id": "t11-016-practice-replace-words",
+      "track": "track-11",
+      "title": "tries, prefix trees, and string dictionaries — Problem: Replace Words",
+      "module": "t11-016",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-016-practice-design-add-and-search-words"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "replace-words",
+      "problemTitle": "Replace Words"
+    },
+    {
+      "id": "t11-016-practice-map-sum-pairs",
+      "track": "track-11",
+      "title": "tries, prefix trees, and string dictionaries — Problem: Map Sum Pairs",
+      "module": "t11-016",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-016-practice-replace-words"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "map-sum-pairs",
+      "problemTitle": "Map Sum Pairs"
+    },
+    {
+      "id": "t11-016-practice-longest-word-in-dictionary",
+      "track": "track-11",
+      "title": "tries, prefix trees, and string dictionaries — Problem: Longest Word in Dictionary",
+      "module": "t11-016",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-016-practice-map-sum-pairs"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "longest-word-in-dictionary",
+      "problemTitle": "Longest Word in Dictionary"
+    },
+    {
+      "id": "t11-016-practice-word-search-ii",
+      "track": "track-11",
+      "title": "tries, prefix trees, and string dictionaries — Problem: Word Search II",
+      "module": "t11-016",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-016-practice-longest-word-in-dictionary"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "word-search-ii",
+      "problemTitle": "Word Search II"
     },
     {
       "id": "t11-016-interview",
       "track": "track-11",
-      "title": "tries bit manipulation and mathematics — Interview questions and reasoning",
+      "title": "tries, prefix trees, and string dictionaries — Interview questions and reasoning",
       "module": "t11-016",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-016.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-016-practice"
+        "t11-016-practice-word-search-ii"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-017-overview",
@@ -14001,6 +14112,572 @@
       "phase": "interview",
       "prerequisites": [
         "t11-030-practice-regular-expression-matching"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-031-overview",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Big-picture orientation and mental model",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-031-concepts",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Core concepts and how they fit together",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-031-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-031-reference-bitwise-operators",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Reference: Operators, truth tables, and shifts",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-031-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "bitwise-operators"
+    },
+    {
+      "id": "t11-031-reference-single-bit-masks",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Reference: Testing and changing individual bits",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-031-reference-bitwise-operators"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "single-bit-masks"
+    },
+    {
+      "id": "t11-031-reference-bit-identities-and-counting",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Reference: Low bits, parity, and population counts",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-031-reference-single-bit-masks"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "bit-identities-and-counting"
+    },
+    {
+      "id": "t11-031-reference-subset-masks-and-limits",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Reference: Subset masks and complexity",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-031-reference-bit-identities-and-counting"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "subset-masks-and-limits"
+    },
+    {
+      "id": "t11-031-practice-single-number",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Problem: Single Number",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-031-reference-subset-masks-and-limits"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "single-number",
+      "problemTitle": "Single Number"
+    },
+    {
+      "id": "t11-031-practice-number-of-1-bits",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Problem: Number of 1 Bits",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-031-practice-single-number"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "number-of-1-bits",
+      "problemTitle": "Number of 1 Bits"
+    },
+    {
+      "id": "t11-031-practice-counting-bits",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Problem: Counting Bits",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-031-practice-number-of-1-bits"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "counting-bits",
+      "problemTitle": "Counting Bits"
+    },
+    {
+      "id": "t11-031-practice-reverse-bits",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Problem: Reverse Bits",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-031-practice-counting-bits"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "reverse-bits",
+      "problemTitle": "Reverse Bits"
+    },
+    {
+      "id": "t11-031-practice-sum-two-integers",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Problem: Sum of Two Integers",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-031-practice-reverse-bits"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "sum-two-integers",
+      "problemTitle": "Sum of Two Integers"
+    },
+    {
+      "id": "t11-031-practice-single-number-ii",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Problem: Single Number II",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-031-practice-sum-two-integers"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "single-number-ii",
+      "problemTitle": "Single Number II"
+    },
+    {
+      "id": "t11-031-practice-bitwise-and-numbers-range",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Problem: Bitwise AND of Numbers Range",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-031-practice-single-number-ii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "bitwise-and-numbers-range",
+      "problemTitle": "Bitwise AND of Numbers Range"
+    },
+    {
+      "id": "t11-031-practice-subsets-bitmask",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Problem: Subsets",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-031-practice-bitwise-and-numbers-range"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "subsets-bitmask",
+      "problemTitle": "Subsets"
+    },
+    {
+      "id": "t11-031-interview",
+      "track": "track-11",
+      "title": "bitwise operations, masks, and subset enumeration — Interview questions and reasoning",
+      "module": "t11-031",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-031.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-031-practice-subsets-bitmask"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-032-overview",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Big-picture orientation and mental model",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-032-concepts",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Core concepts and how they fit together",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-032-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-032-reference-divisibility-and-gcd",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Reference: Divisibility, GCD, LCM, and Euclid",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-032-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "divisibility-and-gcd"
+    },
+    {
+      "id": "t11-032-reference-primes-and-factorization",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Reference: Primality, sieves, and factorization",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-032-reference-divisibility-and-gcd"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "primes-and-factorization"
+    },
+    {
+      "id": "t11-032-reference-modular-arithmetic",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Reference: Residues, powers, and inverses",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-032-reference-primes-and-factorization"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "modular-arithmetic"
+    },
+    {
+      "id": "t11-032-reference-combinatorics-and-numeric-limits",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Reference: Combinations, constraints, and numeric safety",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-032-reference-modular-arithmetic"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "combinatorics-and-numeric-limits"
+    },
+    {
+      "id": "t11-032-practice-count-primes",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Problem: Count Primes",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-032-reference-combinatorics-and-numeric-limits"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "count-primes",
+      "problemTitle": "Count Primes"
+    },
+    {
+      "id": "t11-032-practice-powx-n",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Problem: Pow(x, n)",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-032-practice-count-primes"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "powx-n",
+      "problemTitle": "Pow(x, n)"
+    },
+    {
+      "id": "t11-032-practice-factorial-trailing-zeroes",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Problem: Factorial Trailing Zeroes",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-032-practice-powx-n"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "factorial-trailing-zeroes",
+      "problemTitle": "Factorial Trailing Zeroes"
+    },
+    {
+      "id": "t11-032-practice-find-greatest-common-divisor-array",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Problem: Find Greatest Common Divisor of Array",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-032-practice-factorial-trailing-zeroes"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "find-greatest-common-divisor-array",
+      "problemTitle": "Find Greatest Common Divisor of Array"
+    },
+    {
+      "id": "t11-032-practice-check-if-it-is-a-good-array",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Problem: Check If It Is a Good Array",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-032-practice-find-greatest-common-divisor-array"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "check-if-it-is-a-good-array",
+      "problemTitle": "Check If It Is a Good Array"
+    },
+    {
+      "id": "t11-032-practice-super-pow",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Problem: Super Pow",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-032-practice-check-if-it-is-a-good-array"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "super-pow",
+      "problemTitle": "Super Pow"
+    },
+    {
+      "id": "t11-032-interview",
+      "track": "track-11",
+      "title": "integer arithmetic, primes, gcd, and modular math — Interview questions and reasoning",
+      "module": "t11-032",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-032.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-032-practice-super-pow"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-033-overview",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Big-picture orientation and mental model",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-033-concepts",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Core concepts and how they fit together",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-033-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-033-reference-fenwick-tree",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Reference: Fenwick tree / binary indexed tree",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-033-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "fenwick-tree"
+    },
+    {
+      "id": "t11-033-reference-segment-tree",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Reference: Segment tree and range aggregates",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-033-reference-fenwick-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "segment-tree"
+    },
+    {
+      "id": "t11-033-reference-range-updates-and-lazy",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Reference: Range updates and lazy propagation",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-033-reference-segment-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "range-updates-and-lazy"
+    },
+    {
+      "id": "t11-033-reference-static-query-and-selection",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Reference: Sparse tables and choosing a range structure",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-033-reference-range-updates-and-lazy"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "static-query-and-selection"
+    },
+    {
+      "id": "t11-033-practice-range-sum-query-mutable",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Problem: Range Sum Query - Mutable",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-033-reference-static-query-and-selection"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "range-sum-query-mutable",
+      "problemTitle": "Range Sum Query - Mutable"
+    },
+    {
+      "id": "t11-033-practice-count-smaller-numbers-after-self",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Problem: Count of Smaller Numbers After Self",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-033-practice-range-sum-query-mutable"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "count-smaller-numbers-after-self",
+      "problemTitle": "Count of Smaller Numbers After Self"
+    },
+    {
+      "id": "t11-033-practice-range-module",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Problem: Range Module",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-033-practice-count-smaller-numbers-after-self"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "range-module",
+      "problemTitle": "Range Module"
+    },
+    {
+      "id": "t11-033-practice-my-calendar-iii-range",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Problem: My Calendar III",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-033-practice-range-module"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "my-calendar-iii-range",
+      "problemTitle": "My Calendar III"
+    },
+    {
+      "id": "t11-033-practice-count-of-range-sum",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Problem: Count of Range Sum",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-033-practice-my-calendar-iii-range"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "count-of-range-sum",
+      "problemTitle": "Count of Range Sum"
+    },
+    {
+      "id": "t11-033-practice-reverse-pairs",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Problem: Reverse Pairs",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-033-practice-count-of-range-sum"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "reverse-pairs",
+      "problemTitle": "Reverse Pairs"
+    },
+    {
+      "id": "t11-033-practice-rmq-static-cses",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Problem: Static Range Minimum Queries",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-033-practice-reverse-pairs"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "rmq-static-cses",
+      "problemTitle": "Static Range Minimum Queries"
+    },
+    {
+      "id": "t11-033-practice-create-sorted-array-instructions",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Problem: Create Sorted Array through Instructions",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-033-practice-rmq-static-cses"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "create-sorted-array-instructions",
+      "problemTitle": "Create Sorted Array through Instructions"
+    },
+    {
+      "id": "t11-033-interview",
+      "track": "track-11",
+      "title": "Fenwick trees, segment trees, and static range queries — Interview questions and reasoning",
+      "module": "t11-033",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-033.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-033-practice-create-sorted-array-instructions"
       ],
       "status": "draft-generation-eligible"
     }

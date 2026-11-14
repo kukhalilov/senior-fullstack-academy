@@ -116,7 +116,7 @@ test('two-pointer and sliding-window problems are separate source-backed lessons
   assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/gold/sliding-window'));
   assert.ok(manifest.inventory.some(group => group.items.includes('Exactly-K via difference of at-most counts')));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 177);
+  assert.equal(allDsaProblems.length, 205);
 });
 
 test('prefix-sum and difference-array problems have a closed source-backed scope', () => {
@@ -132,7 +132,7 @@ test('prefix-sum and difference-array problems have a closed source-backed scope
   assert.ok(manifest.inventory.some(group => group.items.includes('Difference array')));
   assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/silver/more-prefix-sums'));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 177);
+  assert.equal(allDsaProblems.length, 205);
 });
 
 test('binary-search variants and problems are bounded and independent', () => {
@@ -148,7 +148,7 @@ test('binary-search variants and problems are bounded and independent', () => {
   assert.ok(manifest.inventory.some(group => group.items.includes('Monotone feasibility predicate')));
   assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/silver/binary-search'));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 177);
+  assert.equal(allDsaProblems.length, 205);
 });
 
 test('linked-list pointer patterns have independent C# practice units', () => {
@@ -164,7 +164,7 @@ test('linked-list pointer patterns have independent C# practice units', () => {
   assert.ok(manifest.inventory.some(group => group.items.includes('Dummy head node')));
   assert.ok(manifest.sourceSnapshot.urls.some(url => url.includes('ListLinked.html')));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 177);
+  assert.equal(allDsaProblems.length, 205);
 });
 
 test('stack and monotonic structures have closed inventories and separate practice units', () => {
@@ -267,6 +267,27 @@ test('backtracking, greedy, and focused DP scopes remain independent', () => {
   assert.ok(dp.inventory.some(group => group.items.includes('State definition')));
   assert.ok(knapsack.inventory.some(group => group.items.includes('Descending capacity loop for 0/1 use')));
   assert.ok(sequence.inventory.some(group => group.items.includes('Substring contiguity condition')));
+});
+
+test('tries, bit techniques, number theory, and range-query structures are separate', () => {
+  const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
+  for (const [id, count] of [['t11-016', 6], ['t11-031', 8], ['t11-032', 6], ['t11-033', 8]]) {
+    const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/data-structures-and-algorithms/${id}.json`, 'utf8'));
+    const tasks = queue.tasks.filter(task => task.module === id && task.phase === 'practice');
+    assert.equal(manifest.inventoryComplete, true);
+    assert.equal(manifest.generationAllowed, true);
+    assert.equal(manifest.practiceProblems.length, count);
+    assert.deepEqual(tasks.map(task => task.problemId), manifest.practiceProblems.map(problem => problem.id));
+    assert.ok(manifest.sourceSnapshot.urls.length >= 6);
+  }
+  const trie = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-016.json', 'utf8'));
+  const bits = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-031.json', 'utf8'));
+  const math = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-032.json', 'utf8'));
+  const ranges = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-033.json', 'utf8'));
+  assert.ok(trie.inventory.some(group => group.items.includes('Terminal/end-of-key marker')));
+  assert.ok(bits.inventory.some(group => group.items.includes('Clear least significant set bit x AND (x-1)')));
+  assert.ok(math.inventory.some(group => group.items.includes('Sieve of Eratosthenes')));
+  assert.ok(ranges.inventory.some(group => group.items.includes('Lazy tag')));
 });
 
 test('the curriculum teaches overview before references and has no forced versions phase', () => {
