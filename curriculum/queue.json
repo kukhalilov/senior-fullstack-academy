@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1022,
+  "taskCount": 1068,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -10772,120 +10772,398 @@
     {
       "id": "t11-011-overview",
       "track": "track-11",
-      "title": "graphs representations BFS DFS connectivity topological sorting — Big-picture orientation and mental model",
+      "title": "graph models, representations, and traversal — Big-picture orientation and mental model",
       "module": "t11-011",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-011-concepts",
       "track": "track-11",
-      "title": "graphs representations BFS DFS connectivity topological sorting — Core concepts and how they fit together",
+      "title": "graph models, representations, and traversal — Core concepts and how they fit together",
       "module": "t11-011",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-011-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-011-reference-inventory-pending",
+      "id": "t11-011-reference-graph-models",
       "track": "track-11",
-      "title": "graphs representations BFS DFS connectivity topological sorting — Reference: awaiting curated names",
+      "title": "graph models, representations, and traversal — Reference: Graph types, vertices, and edges",
       "module": "t11-011",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
       "phase": "reference",
       "prerequisites": [
         "t11-011-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "graph-models"
     },
     {
-      "id": "t11-011-practice",
+      "id": "t11-011-reference-representations",
       "track": "track-11",
-      "title": "graphs representations BFS DFS connectivity topological sorting — Exercises and worked solutions",
+      "title": "graph models, representations, and traversal — Reference: Explicit and implicit graph representations",
+      "module": "t11-011",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-011-reference-graph-models"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "representations"
+    },
+    {
+      "id": "t11-011-reference-dfs-bfs",
+      "track": "track-11",
+      "title": "graph models, representations, and traversal — Reference: DFS, BFS, and traversal state",
+      "module": "t11-011",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-011-reference-representations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "dfs-bfs"
+    },
+    {
+      "id": "t11-011-reference-connectivity-and-coloring",
+      "track": "track-11",
+      "title": "graph models, representations, and traversal — Reference: Connectivity, cycles, and graph coloring",
+      "module": "t11-011",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-011-reference-dfs-bfs"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "connectivity-and-coloring"
+    },
+    {
+      "id": "t11-011-practice-number-of-islands",
+      "track": "track-11",
+      "title": "graph models, representations, and traversal — Problem: Number of Islands",
       "module": "t11-011",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-011-reference-inventory-pending"
+        "t11-011-reference-connectivity-and-coloring"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "number-of-islands",
+      "problemTitle": "Number of Islands"
+    },
+    {
+      "id": "t11-011-practice-number-of-provinces",
+      "track": "track-11",
+      "title": "graph models, representations, and traversal — Problem: Number of Provinces",
+      "module": "t11-011",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-011-practice-number-of-islands"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "number-of-provinces",
+      "problemTitle": "Number of Provinces"
+    },
+    {
+      "id": "t11-011-practice-clone-graph",
+      "track": "track-11",
+      "title": "graph models, representations, and traversal — Problem: Clone Graph",
+      "module": "t11-011",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-011-practice-number-of-provinces"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "clone-graph",
+      "problemTitle": "Clone Graph"
+    },
+    {
+      "id": "t11-011-practice-is-graph-bipartite",
+      "track": "track-11",
+      "title": "graph models, representations, and traversal — Problem: Is Graph Bipartite?",
+      "module": "t11-011",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-011-practice-clone-graph"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "is-graph-bipartite",
+      "problemTitle": "Is Graph Bipartite?"
+    },
+    {
+      "id": "t11-011-practice-rotting-oranges",
+      "track": "track-11",
+      "title": "graph models, representations, and traversal — Problem: Rotting Oranges",
+      "module": "t11-011",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-011-practice-is-graph-bipartite"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "rotting-oranges",
+      "problemTitle": "Rotting Oranges"
+    },
+    {
+      "id": "t11-011-practice-find-if-path-exists",
+      "track": "track-11",
+      "title": "graph models, representations, and traversal — Problem: Find if Path Exists in Graph",
+      "module": "t11-011",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-011-practice-rotting-oranges"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "find-if-path-exists",
+      "problemTitle": "Find if Path Exists in Graph"
+    },
+    {
+      "id": "t11-011-practice-max-area-of-island",
+      "track": "track-11",
+      "title": "graph models, representations, and traversal — Problem: Max Area of Island",
+      "module": "t11-011",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-011-practice-find-if-path-exists"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "max-area-of-island",
+      "problemTitle": "Max Area of Island"
+    },
+    {
+      "id": "t11-011-practice-keys-and-rooms",
+      "track": "track-11",
+      "title": "graph models, representations, and traversal — Problem: Keys and Rooms",
+      "module": "t11-011",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-011-practice-max-area-of-island"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "keys-and-rooms",
+      "problemTitle": "Keys and Rooms"
     },
     {
       "id": "t11-011-interview",
       "track": "track-11",
-      "title": "graphs representations BFS DFS connectivity topological sorting — Interview questions and reasoning",
+      "title": "graph models, representations, and traversal — Interview questions and reasoning",
       "module": "t11-011",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-011.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-011-practice"
+        "t11-011-practice-keys-and-rooms"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-012-overview",
       "track": "track-11",
-      "title": "shortest paths Dijkstra Bellman Ford and union find — Big-picture orientation and mental model",
+      "title": "weighted shortest paths and distance relaxation — Big-picture orientation and mental model",
       "module": "t11-012",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-012-concepts",
       "track": "track-11",
-      "title": "shortest paths Dijkstra Bellman Ford and union find — Core concepts and how they fit together",
+      "title": "weighted shortest paths and distance relaxation — Core concepts and how they fit together",
       "module": "t11-012",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-012-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-012-reference-inventory-pending",
+      "id": "t11-012-reference-distance-model-and-relaxation",
       "track": "track-11",
-      "title": "shortest paths Dijkstra Bellman Ford and union find — Reference: awaiting curated names",
+      "title": "weighted shortest paths and distance relaxation — Reference: Distances, paths, and edge relaxation",
       "module": "t11-012",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
       "phase": "reference",
       "prerequisites": [
         "t11-012-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "distance-model-and-relaxation"
     },
     {
-      "id": "t11-012-practice",
+      "id": "t11-012-reference-dijkstra-and-bfs-variants",
       "track": "track-11",
-      "title": "shortest paths Dijkstra Bellman Ford and union find — Exercises and worked solutions",
+      "title": "weighted shortest paths and distance relaxation — Reference: Dijkstra, BFS, and 0-1 BFS",
+      "module": "t11-012",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-012-reference-distance-model-and-relaxation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "dijkstra-and-bfs-variants"
+    },
+    {
+      "id": "t11-012-reference-bellman-ford-and-all-pairs",
+      "track": "track-11",
+      "title": "weighted shortest paths and distance relaxation — Reference: Bellman-Ford and Floyd-Warshall",
+      "module": "t11-012",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-012-reference-dijkstra-and-bfs-variants"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "bellman-ford-and-all-pairs"
+    },
+    {
+      "id": "t11-012-reference-algorithm-selection",
+      "track": "track-11",
+      "title": "weighted shortest paths and distance relaxation — Reference: Preconditions, proof sketches, and algorithm selection",
+      "module": "t11-012",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-012-reference-bellman-ford-and-all-pairs"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "algorithm-selection"
+    },
+    {
+      "id": "t11-012-practice-network-delay-time",
+      "track": "track-11",
+      "title": "weighted shortest paths and distance relaxation — Problem: Network Delay Time",
       "module": "t11-012",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-012-reference-inventory-pending"
+        "t11-012-reference-algorithm-selection"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "network-delay-time",
+      "problemTitle": "Network Delay Time"
+    },
+    {
+      "id": "t11-012-practice-cheapest-flights-within-k-stops",
+      "track": "track-11",
+      "title": "weighted shortest paths and distance relaxation — Problem: Cheapest Flights Within K Stops",
+      "module": "t11-012",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-012-practice-network-delay-time"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "cheapest-flights-within-k-stops",
+      "problemTitle": "Cheapest Flights Within K Stops"
+    },
+    {
+      "id": "t11-012-practice-path-with-minimum-effort",
+      "track": "track-11",
+      "title": "weighted shortest paths and distance relaxation — Problem: Path With Minimum Effort",
+      "module": "t11-012",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-012-practice-cheapest-flights-within-k-stops"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "path-with-minimum-effort",
+      "problemTitle": "Path With Minimum Effort"
+    },
+    {
+      "id": "t11-012-practice-find-the-city",
+      "track": "track-11",
+      "title": "weighted shortest paths and distance relaxation — Problem: Find the City With the Smallest Number of Neighbors at a Threshold Distance",
+      "module": "t11-012",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-012-practice-path-with-minimum-effort"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "find-the-city",
+      "problemTitle": "Find the City With the Smallest Number of Neighbors at a Threshold Distance"
+    },
+    {
+      "id": "t11-012-practice-number-of-ways-arrive-destination",
+      "track": "track-11",
+      "title": "weighted shortest paths and distance relaxation — Problem: Number of Ways to Arrive at Destination",
+      "module": "t11-012",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-012-practice-find-the-city"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "number-of-ways-arrive-destination",
+      "problemTitle": "Number of Ways to Arrive at Destination"
+    },
+    {
+      "id": "t11-012-practice-minimum-obstacle-removal",
+      "track": "track-11",
+      "title": "weighted shortest paths and distance relaxation — Problem: Minimum Obstacle Removal to Reach Corner",
+      "module": "t11-012",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-012-practice-number-of-ways-arrive-destination"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "minimum-obstacle-removal",
+      "problemTitle": "Minimum Obstacle Removal to Reach Corner"
+    },
+    {
+      "id": "t11-012-practice-path-with-maximum-probability",
+      "track": "track-11",
+      "title": "weighted shortest paths and distance relaxation — Problem: Path with Maximum Probability",
+      "module": "t11-012",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-012-practice-minimum-obstacle-removal"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "path-with-maximum-probability",
+      "problemTitle": "Path with Maximum Probability"
+    },
+    {
+      "id": "t11-012-practice-shortest-path-binary-matrix",
+      "track": "track-11",
+      "title": "weighted shortest paths and distance relaxation — Problem: Shortest Path in Binary Matrix",
+      "module": "t11-012",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-012-practice-path-with-maximum-probability"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "shortest-path-binary-matrix",
+      "problemTitle": "Shortest Path in Binary Matrix"
     },
     {
       "id": "t11-012-interview",
       "track": "track-11",
-      "title": "shortest paths Dijkstra Bellman Ford and union find — Interview questions and reasoning",
+      "title": "weighted shortest paths and distance relaxation — Interview questions and reasoning",
       "module": "t11-012",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-012.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-012-practice"
+        "t11-012-practice-shortest-path-binary-matrix"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-013-overview",
@@ -12428,6 +12706,346 @@
       "phase": "interview",
       "prerequisites": [
         "t11-025-practice-construct-bst-preorder"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-026-overview",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Big-picture orientation and mental model",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-026-concepts",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Core concepts and how they fit together",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-026-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-026-reference-dag-and-order",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Reference: DAG properties and partial orders",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-026-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "dag-and-order"
+    },
+    {
+      "id": "t11-026-reference-kahns-algorithm",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Reference: Indegree queue algorithm",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-026-reference-dag-and-order"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "kahns-algorithm"
+    },
+    {
+      "id": "t11-026-reference-dfs-order",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Reference: DFS postorder algorithm and cycle detection",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-026-reference-kahns-algorithm"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "dfs-order"
+    },
+    {
+      "id": "t11-026-reference-correctness-and-cost",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Reference: Correctness, complexity, and applications",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-026-reference-dfs-order"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "correctness-and-cost"
+    },
+    {
+      "id": "t11-026-practice-course-schedule",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Problem: Course Schedule",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-026-reference-correctness-and-cost"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "course-schedule",
+      "problemTitle": "Course Schedule"
+    },
+    {
+      "id": "t11-026-practice-course-schedule-ii",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Problem: Course Schedule II",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-026-practice-course-schedule"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "course-schedule-ii",
+      "problemTitle": "Course Schedule II"
+    },
+    {
+      "id": "t11-026-practice-alien-dictionary",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Problem: Alien Dictionary",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-026-practice-course-schedule-ii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "alien-dictionary",
+      "problemTitle": "Alien Dictionary"
+    },
+    {
+      "id": "t11-026-practice-find-eventual-safe-states",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Problem: Find Eventual Safe States",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-026-practice-alien-dictionary"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "find-eventual-safe-states",
+      "problemTitle": "Find Eventual Safe States"
+    },
+    {
+      "id": "t11-026-practice-parallel-courses",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Problem: Parallel Courses",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-026-practice-find-eventual-safe-states"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "parallel-courses",
+      "problemTitle": "Parallel Courses"
+    },
+    {
+      "id": "t11-026-practice-minimum-height-trees",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Problem: Minimum Height Trees",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-026-practice-parallel-courses"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "minimum-height-trees",
+      "problemTitle": "Minimum Height Trees"
+    },
+    {
+      "id": "t11-026-interview",
+      "track": "track-11",
+      "title": "directed acyclic graphs and topological ordering — Interview questions and reasoning",
+      "module": "t11-026",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-026.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-026-practice-minimum-height-trees"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-027-overview",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Big-picture orientation and mental model",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-027-concepts",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Core concepts and how they fit together",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-027-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-027-reference-partition-and-operations",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Reference: Set partition, find, and union",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-027-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "partition-and-operations"
+    },
+    {
+      "id": "t11-027-reference-optimizations-and-complexity",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Reference: Path compression and union heuristics",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-027-reference-partition-and-operations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "optimizations-and-complexity"
+    },
+    {
+      "id": "t11-027-reference-applications",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Reference: Connectivity, cycles, and component metadata",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-027-reference-optimizations-and-complexity"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "applications"
+    },
+    {
+      "id": "t11-027-reference-limitations-and-implementation",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Reference: Limitations, invariants, and implementation details",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-027-reference-applications"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "limitations-and-implementation"
+    },
+    {
+      "id": "t11-027-practice-redundant-connection",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Problem: Redundant Connection",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-027-reference-limitations-and-implementation"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "redundant-connection",
+      "problemTitle": "Redundant Connection"
+    },
+    {
+      "id": "t11-027-practice-accounts-merge",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Problem: Accounts Merge",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-027-practice-redundant-connection"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "accounts-merge",
+      "problemTitle": "Accounts Merge"
+    },
+    {
+      "id": "t11-027-practice-number-of-provinces-dsu",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Problem: Number of Provinces",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-027-practice-accounts-merge"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "number-of-provinces-dsu",
+      "problemTitle": "Number of Provinces"
+    },
+    {
+      "id": "t11-027-practice-most-stones-removed",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Problem: Most Stones Removed with Same Row or Column",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-027-practice-number-of-provinces-dsu"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "most-stones-removed",
+      "problemTitle": "Most Stones Removed with Same Row or Column"
+    },
+    {
+      "id": "t11-027-practice-satisfiability-equality-equations",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Problem: Satisfiability of Equality Equations",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-027-practice-most-stones-removed"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "satisfiability-equality-equations",
+      "problemTitle": "Satisfiability of Equality Equations"
+    },
+    {
+      "id": "t11-027-practice-min-cost-connect-all-points",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Problem: Min Cost to Connect All Points",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-027-practice-satisfiability-equality-equations"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "min-cost-connect-all-points",
+      "problemTitle": "Min Cost to Connect All Points"
+    },
+    {
+      "id": "t11-027-interview",
+      "track": "track-11",
+      "title": "disjoint-set union and connectivity maintenance — Interview questions and reasoning",
+      "module": "t11-027",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-027.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-027-practice-min-cost-connect-all-points"
       ],
       "status": "draft-generation-eligible"
     }

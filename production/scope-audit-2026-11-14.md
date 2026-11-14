@@ -2,13 +2,13 @@
 
 ## Inventory totals
 
-- 11 tracks and 165 canonical topic manifests.
-- The queue contains 1,022 lesson units, rebuilt from each topic's overview, concepts, bounded references, practice units, and interview sequence. Each named DSA problem has its own practice unit.
-- 24 manifests have source-backed inventories: 23 are fully enabled and one DSA analysis topic keeps its practice unit blocked pending executable checks.
-- 141 manifests remain inventory scaffolds; the full-catalog validator intentionally fails.
+- 11 tracks and 167 canonical topic manifests.
+- The queue contains 1,068 lesson units, rebuilt from each topic's overview, concepts, bounded references, practice units, and interview sequence. Each named DSA problem has its own practice unit.
+- 28 manifests have source-backed inventories: 27 are fully enabled and one DSA analysis topic keeps its practice unit blocked pending executable checks.
+- 139 manifests remain inventory scaffolds; the full-catalog validator intentionally fails.
 - Three legacy pilot lessons remain in `course/` with quarantine warnings and are excluded from the accepted curriculum.
-- Scheduled GitHub Actions generation covers explicitly source-backed JavaScript, C#, and sixteen DSA topics. A further DSA analysis topic enables non-practice phases only. Whole-catalog generation remains blocked.
-- DSA arrays, strings, hash maps, sets, two-pointer/sliding-window patterns, prefix/difference arrays, binary search, linked lists, stacks/queues, monotonic structures, intervals, sweep-line processing, comparison sorting, heaps, binary trees, and BSTs are separate topics. Their 105 named problems receive distinct queue units; C# solution code is compiled and its assertions executed before workflow commits.
+- Scheduled GitHub Actions generation covers explicitly source-backed JavaScript, C#, and twenty DSA topics. A further DSA analysis topic enables non-practice phases only. Whole-catalog generation remains blocked.
+- DSA arrays, strings, hash maps, sets, two-pointer/sliding-window patterns, prefix/difference arrays, binary search, linked lists, stacks/queues, monotonic structures, intervals, sweep-line processing, comparison sorting, heaps, binary trees, BSTs, graph traversal, topological sorting, weighted shortest paths, and DSU are separate topics. Their 133 named problems receive distinct queue units; C# solution code is compiled and its assertions executed before workflow commits.
 
 ## Coverage review
 
