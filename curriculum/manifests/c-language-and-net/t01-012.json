@@ -2,11 +2,288 @@
   "schemaVersion": 4,
   "id": "t01-012",
   "track": "track-01",
-  "title": "extension methods operators and pattern matching",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "title": "C# pattern matching user-defined operators and conversions",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Pattern matching tests a value's shape and can extract data while expressing branches. Patterns use language-defined rules and are distinct from ordinary operator overload resolution.",
+    "A conversion changes how a value is viewed or transformed. Standard and user-defined conversion candidates interact with static typing and overload resolution; a conversion should clarify domain meaning without hiding expensive or lossy behavior.",
+    "User-defined operators let value-like types participate in familiar expressions, but overloads should preserve expected mathematical or logical semantics. Named methods are clearer when an operation is asymmetric, expensive, or surprising.",
+    "Switch expressions combine patterns and optional guards into a result-producing decision. Exhaustiveness depends on the input type and compiler knowledge of its alternatives; a discard arm is useful when alternatives may grow.",
+    "Use relational and logical patterns for bounded decisions, and property, positional, or list patterns to match structure. Keep guards side-effect free so branch selection remains easy to reason about."
+  ],
+  "inventory": [
+    {
+      "id": "standard-and-user-defined-conversions",
+      "title": "Standard conversions, user-defined conversions, overload resolution, and checked context",
+      "items": [
+        "Implicit conversion",
+        "Explicit conversion",
+        "Standard conversion",
+        "Identity conversion",
+        "Numeric conversion",
+        "Constant expression conversion",
+        "Implicit constant expression conversion",
+        "Enumeration conversion",
+        "Nullable conversion",
+        "Reference conversion",
+        "Boxing conversion",
+        "Unboxing conversion",
+        "Implicit reference conversion",
+        "Explicit reference conversion",
+        "User-defined conversion",
+        "Implicit conversion operator",
+        "Explicit conversion operator",
+        "Checked user-defined conversion operator",
+        "Conversion operator overload resolution",
+        "Conversion chaining restriction",
+        "Conversion from dynamic",
+        "Conversion to dynamic",
+        "Conversion from object",
+        "Conversion from null literal",
+        "Conversion to nullable value type",
+        "Conversion between nullable value types",
+        "Conversion and nullable reference annotations",
+        "Checked integral arithmetic context",
+        "Checked explicit numeric conversion",
+        "Unchecked integral overflow behavior",
+        "Overflow in constant expression",
+        "Overflow in runtime expression",
+        "Built-in conversion candidate",
+        "User-defined conversion candidate",
+        "Conversion overload resolution ambiguity",
+        "Lifted conversion for nullable value type",
+        "Prefer explicit conversion for lossy transformation",
+        "Implicit conversion design restriction"
+      ]
+    },
+    {
+      "id": "overloaded-operators",
+      "title": "Operator declarations, overloadable operators, checked forms, and generic math contracts",
+      "items": [
+        "Unary operator overload declaration",
+        "Binary operator overload declaration",
+        "Checked operator declaration",
+        "Pairing checked and unchecked operator overloads",
+        "Overloadable arithmetic operators",
+        "Overloadable bitwise operators",
+        "Overloadable comparison operators",
+        "Overloadable equality operators",
+        "Overloadable true operator",
+        "Overloadable false operator",
+        "Overloadable increment operator",
+        "Overloadable decrement operator",
+        "Overloadable logical operators",
+        "Overloadable shift operators",
+        "Unsigned right shift overload",
+        "Operator overload declaration restrictions",
+        "Operator must be public and static",
+        "At least one operator operand type must contain declaring type",
+        "Equality operator paired declaration",
+        "Equality and Object.Equals consistency",
+        "Comparison operator consistency",
+        "Operator overload semantic expectation",
+        "IAdditionOperators<TSelf,TOther,TResult>",
+        "ISubtractionOperators<TSelf,TOther,TResult>",
+        "IMultiplyOperators<TSelf,TOther,TResult>",
+        "IDivisionOperators<TSelf,TOther,TResult>",
+        "IComparisonOperators<TSelf,TOther,TResult>",
+        "IEqualityOperators<TSelf,TOther>",
+        "IUnaryNegationOperators<TSelf,TResult>",
+        "IBinaryInteger<TSelf>",
+        "INumber<TSelf>",
+        "Generic math static abstract operator contract",
+        "Named method versus operator overload"
+      ]
+    },
+    {
+      "id": "pattern-forms-and-composition",
+      "title": "Constant, type, relational, logical, recursive, and list patterns",
+      "items": [
+        "Pattern matching",
+        "Constant pattern",
+        "Declaration pattern",
+        "Var pattern",
+        "Discard pattern",
+        "Type pattern",
+        "Parenthesized pattern",
+        "Relational pattern",
+        "Greater-than relational pattern",
+        "Greater-than-or-equal relational pattern",
+        "Less-than relational pattern",
+        "Less-than-or-equal relational pattern",
+        "Logical not pattern",
+        "Logical and pattern",
+        "Logical or pattern",
+        "Pattern combinator precedence",
+        "Property pattern",
+        "Extended property pattern",
+        "Positional pattern",
+        "Deconstruct pattern input",
+        "Recursive pattern",
+        "List pattern",
+        "Exact-length list pattern",
+        "Slice pattern",
+        "List pattern designation",
+        "Indexable list pattern input",
+        "Span pattern input",
+        "Pattern variable designation",
+        "Pattern variable definite assignment",
+        "Pattern subsumption diagnostic",
+        "Pattern unreachable diagnostic",
+        "Pattern combinator variable consistency",
+        "Pattern matching nullable value",
+        "Pattern matching null",
+        "Pattern matching tuple",
+        "Pattern matching union case",
+        "Pattern matching closed hierarchy alternative"
+      ]
+    },
+    {
+      "id": "is-switch-and-exhaustiveness",
+      "title": "is patterns, switch statements, switch expressions, guards, and exhaustiveness",
+      "items": [
+        "is pattern expression",
+        "switch statement",
+        "switch expression",
+        "Switch expression arm",
+        "Switch expression governing expression",
+        "Switch expression arm result type",
+        "Switch arm pattern",
+        "Switch arm when guard",
+        "Switch expression discard arm",
+        "Switch expression exhaustiveness",
+        "Non-exhaustive switch expression diagnostic",
+        "Unreachable switch expression arm diagnostic",
+        "Switch statement case pattern label",
+        "Switch statement when guard",
+        "Switch statement default label",
+        "Switch statement case section",
+        "Switch expression evaluation order",
+        "Switch expression result conversion",
+        "Switch expression versus switch statement",
+        "Switch expression with union type",
+        "Switch expression with closed hierarchy",
+        "Exhaustive pattern matching with closed hierarchy",
+        "Pattern guard side effects",
+        "C# 15 labeled break statement",
+        "C# 15 labeled continue statement",
+        "Labeled loop nesting target",
+        "Labeled control transfer in nested loops"
+      ]
+    },
+    {
+      "id": "operator-and-pattern-design",
+      "title": "Readability, edge cases, nullable values, and safe decision logic",
+      "items": [
+        "Operator method versus named method",
+        "Avoid surprising operator overloads",
+        "Implicit conversion versus explicit conversion",
+        "Pattern matching versus cast and branch",
+        "Switch expression versus dictionary dispatch",
+        "Relational pattern range boundary",
+        "Property pattern null behavior",
+        "List pattern length behavior",
+        "Slice pattern capture behavior",
+        "Type pattern and nullable value",
+        "Pattern variable scope",
+        "Pattern guard evaluation",
+        "Checked and unchecked code review",
+        "Integral divide overflow edge case",
+        "Pattern exhaustiveness versus runtime fallback",
+        "Switch expression over open hierarchy",
+        "Switch expression over closed alternatives",
+        "Conversion side effects and evaluation order"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Implicit conversion",
+      "Explicit conversion"
+    ],
+    [
+      "Built-in conversion",
+      "User-defined conversion"
+    ],
+    [
+      "Checked conversion",
+      "Unchecked conversion"
+    ],
+    [
+      "Operator overload",
+      "Named method"
+    ],
+    [
+      "Type pattern",
+      "Declaration pattern",
+      "Var pattern"
+    ],
+    [
+      "Constant pattern",
+      "Relational pattern",
+      "Logical pattern"
+    ],
+    [
+      "Property pattern",
+      "Positional pattern",
+      "List pattern"
+    ],
+    [
+      "Switch statement",
+      "Switch expression"
+    ],
+    [
+      "Open hierarchy matching",
+      "Closed hierarchy matching"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+  ],
+  "versionNotes": [
+    {
+      "edition": "C# 8 through C# 15 selected pattern-matching changes",
+      "items": [
+        "C# 8 introduced switch expressions and recursive patterns; C# 9 added relational and logical patterns; C# 11 added list patterns; C# 15 adds union types, closed hierarchies, and labeled break/continue, allowing exhaustive handling of explicitly finite alternatives. Memory safety remains preview-only and is excluded."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft C# language reference, specification, programming guide, generic math API reference, and current release notes",
+    "edition": "C# 15 / .NET 11 stable patterns and user-defined operators checked 2026-11-14; memory safety preview excluded",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.inumber-1",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+    ]
+  },
+  "scopeExclusions": [
+    "The built-in operator inventory, precedence table, and operand evaluation rules are covered in t01-023.",
+    "Lambda syntax and anonymous-function conversion are covered in t01-011.",
+    "Extension member declaration syntax is covered in t01-008.",
+    "Generic math implementation and numeric APIs are covered in numeric and generic-math topics; this manifest names the contracts used for operator abstractions.",
+    "The C# 15 memory-safety preview is excluded from this stable-language scope."
+  ],
+  "generationAllowed": true
 }

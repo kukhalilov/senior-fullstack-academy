@@ -57,7 +57,7 @@ test('C# program structure has source-backed syntax and current file-based app c
 });
 
 test('C# inheritance, member, generics, and variance scopes are frozen and source-backed', () => {
-  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010', 't01-011', 't01-013']) {
+  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010', 't01-011', 't01-012', 't01-013', 't01-014', 't01-015']) {
     const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/c-language-and-net/${id}.json`, 'utf8'));
     const names = manifest.inventory.flatMap(group => group.items);
     assert.equal(manifest.inventoryComplete, true, `${id} inventory must be complete`);
@@ -79,6 +79,23 @@ test('C# inheritance, member, generics, and variance scopes are frozen and sourc
   const cleanup = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-013.json', 'utf8'));
   assert.ok(cleanup.inventory.flatMap(group => group.items).includes('IAsyncDisposable.DisposeAsync'));
   assert.ok(cleanup.inventory.flatMap(group => group.items).includes('ExceptionDispatchInfo.Throw'));
+  const collections = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-014.json', 'utf8'));
+  const collectionNames = collections.inventory.flatMap(group => group.items);
+  assert.ok(collectionNames.includes('Dictionary<TKey,TValue>.GetAlternateLookup<TAlternateKey>'));
+  assert.ok(collectionNames.includes('CollectionsMarshal.GetValueRefOrNullRef<TKey,TValue>'));
+  assert.ok(collectionNames.includes('FrozenDictionary<TKey,TValue>'));
+  const linq = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-015.json', 'utf8'));
+  const linqNames = linq.inventory.flatMap(group => group.items);
+  assert.equal(linqNames.length, 311);
+  assert.ok(linqNames.includes('Queryable.CountBy'));
+  assert.ok(linqNames.includes('Queryable.FullJoin'));
+  assert.ok(linqNames.includes('AsyncEnumerable.FirstOrDefaultAsync'));
+  assert.ok(!linqNames.includes('AsyncEnumerable.FirstOrDefault'));
+  assert.ok(linqNames.includes('TaskAsyncEnumerableExtensions.WithCancellation<T>'));  const patterns = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-012.json', 'utf8'));
+  const patternNames = patterns.inventory.flatMap(group => group.items);
+  assert.ok(patternNames.includes('Logical and pattern'));
+  assert.ok(patternNames.includes('C# 15 labeled continue statement'));
+  assert.ok(patterns.scopeExclusions.some(item => item.includes('t01-023')));
 });
 
 test('C# numeric conversion inventory covers every directed pair once', () => {
@@ -1262,4 +1279,3 @@ test('ASP.NET Core deployment inventory covers environment precedence, safe erro
   assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('ASP.NET Core 10 marks the legacy WebHost'))));
   assert.ok(manifest.sourceSnapshot.urls.includes('https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated'));
 });
-
