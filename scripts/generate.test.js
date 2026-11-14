@@ -641,3 +641,38 @@ test('React framework inventory pins current Next.js and React Router modes and 
   assert.ok(manifest.versionNotes.some(note => note.edition.includes('Next.js 16')));
   assert.ok(manifest.versionNotes.some(note => note.edition.includes('React Router 8.0')));
 });
+
+test('architecture principles and design-pattern inventories use bounded source-backed catalogues', () => {
+  const solid = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-001.json', 'utf8'));
+  const patterns = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-002.json', 'utf8'));
+  for (const manifest of [solid, patterns]) {
+    assert.equal(manifest.inventoryComplete, true);
+    assert.equal(manifest.generationAllowed, true);
+    assert.ok(manifest.concepts.length >= 5);
+    assert.ok(manifest.sourceSnapshot.urls.length >= 2);
+    const all = manifest.inventory.flatMap(group => group.items);
+    assert.equal(new Set(all).size, all.length);
+  }
+  const allPatterns = patterns.inventory.flatMap(group => group.items);
+  assert.equal(allPatterns.length, 23);
+  for (const item of ['Single Responsibility Principle (SRP)', 'Dependency Inversion Principle (DIP)', 'DRY (Don\'t Repeat Yourself)', 'YAGNI (You Aren\'t Gonna Need It)']) assert.ok(solid.inventory.flatMap(group => group.items).includes(item), item);
+  for (const item of ['Factory Method', 'Abstract Factory', 'Adapter', 'Proxy', 'Chain of Responsibility', 'Interpreter', 'Visitor']) assert.ok(allPatterns.includes(item), item);
+});
+
+test('application architecture inventory separates layering, ports, adapters, and inward dependency rules', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-003.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Modular monolith', 'Presentation layer', 'Inbound port', 'Outbound port', 'Dependency Rule', 'Source-code dependency direction', 'Runtime control flow']) assert.ok(all.includes(item), item);
+});
+
+test('DDD inventory distinguishes strategic contexts from tactical invariants and event types', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-004.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Ubiquitous language', 'Bounded Context', 'Anti-Corruption Layer', 'Entity', 'Value Object', 'Aggregate Root', 'Domain Event', 'Integration Event', 'Repository per Aggregate Root']) assert.ok(all.includes(item), item);
+});

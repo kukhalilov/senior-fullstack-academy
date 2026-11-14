@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1571,
+  "taskCount": 1585,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -11801,7 +11801,7 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-001.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-001-concepts",
@@ -11813,20 +11813,59 @@
       "prerequisites": [
         "t08-001-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t08-001-reference-inventory-pending",
+      "id": "t08-001-reference-solid-principles",
       "track": "track-08",
-      "title": "SOLID cohesion coupling DRY KISS YAGNI — Reference: awaiting curated names",
+      "title": "SOLID cohesion coupling DRY KISS YAGNI — Reference: The five SOLID principles and related design principles",
       "module": "t08-001",
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-001.json",
       "phase": "reference",
       "prerequisites": [
         "t08-001-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "solid-principles"
+    },
+    {
+      "id": "t08-001-reference-cohesion-taxonomy",
+      "track": "track-08",
+      "title": "SOLID cohesion coupling DRY KISS YAGNI — Reference: Cohesion levels used to reason about module responsibility",
+      "module": "t08-001",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-001-reference-solid-principles"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cohesion-taxonomy"
+    },
+    {
+      "id": "t08-001-reference-coupling-taxonomy",
+      "track": "track-08",
+      "title": "SOLID cohesion coupling DRY KISS YAGNI — Reference: Coupling forms used to reason about module dependencies",
+      "module": "t08-001",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-001-reference-cohesion-taxonomy"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "coupling-taxonomy"
+    },
+    {
+      "id": "t08-001-reference-changeability-heuristics",
+      "track": "track-08",
+      "title": "SOLID cohesion coupling DRY KISS YAGNI — Reference: Changeability and simplicity heuristics",
+      "module": "t08-001",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-001-reference-coupling-taxonomy"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "changeability-heuristics"
     },
     {
       "id": "t08-001-practice",
@@ -11836,9 +11875,9 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-001.json",
       "phase": "practice",
       "prerequisites": [
-        "t08-001-reference-inventory-pending"
+        "t08-001-reference-changeability-heuristics"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-001-interview",
@@ -11850,7 +11889,7 @@
       "prerequisites": [
         "t08-001-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-002-overview",
@@ -11860,7 +11899,7 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-002.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-002-concepts",
@@ -11872,20 +11911,59 @@
       "prerequisites": [
         "t08-002-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t08-002-reference-inventory-pending",
+      "id": "t08-002-reference-creational-patterns",
       "track": "track-08",
-      "title": "creational structural and behavioral design patterns — Reference: awaiting curated names",
+      "title": "creational structural and behavioral design patterns — Reference: The five canonical GoF creational patterns",
       "module": "t08-002",
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-002.json",
       "phase": "reference",
       "prerequisites": [
         "t08-002-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "creational-patterns"
+    },
+    {
+      "id": "t08-002-reference-structural-patterns",
+      "track": "track-08",
+      "title": "creational structural and behavioral design patterns — Reference: The seven canonical GoF structural patterns",
+      "module": "t08-002",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-002-reference-creational-patterns"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "structural-patterns"
+    },
+    {
+      "id": "t08-002-reference-behavioral-patterns-a",
+      "track": "track-08",
+      "title": "creational structural and behavioral design patterns — Reference: Behavioral patterns: responsibility, commands, iteration, and mediation",
+      "module": "t08-002",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-002-reference-structural-patterns"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "behavioral-patterns-a"
+    },
+    {
+      "id": "t08-002-reference-behavioral-patterns-b",
+      "track": "track-08",
+      "title": "creational structural and behavioral design patterns — Reference: Behavioral patterns: observation, state, algorithms, language, and templates",
+      "module": "t08-002",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-002-reference-behavioral-patterns-a"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "behavioral-patterns-b"
     },
     {
       "id": "t08-002-practice",
@@ -11895,9 +11973,9 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-002.json",
       "phase": "practice",
       "prerequisites": [
-        "t08-002-reference-inventory-pending"
+        "t08-002-reference-behavioral-patterns-b"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-002-interview",
@@ -11909,7 +11987,7 @@
       "prerequisites": [
         "t08-002-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-003-overview",
@@ -11919,7 +11997,7 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-003.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-003-concepts",
@@ -11931,20 +12009,59 @@
       "prerequisites": [
         "t08-003-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t08-003-reference-inventory-pending",
+      "id": "t08-003-reference-modular-monolith",
       "track": "track-08",
-      "title": "modular monolith layered hexagonal clean architecture — Reference: awaiting curated names",
+      "title": "modular monolith layered hexagonal clean architecture — Reference: Monolithic deployment with explicit internal module boundaries",
       "module": "t08-003",
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-003.json",
       "phase": "reference",
       "prerequisites": [
         "t08-003-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "modular-monolith"
+    },
+    {
+      "id": "t08-003-reference-layered-architecture",
+      "track": "track-08",
+      "title": "modular monolith layered hexagonal clean architecture — Reference: Layered application architecture and allowed dependencies",
+      "module": "t08-003",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-003-reference-modular-monolith"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "layered-architecture"
+    },
+    {
+      "id": "t08-003-reference-hexagonal-architecture",
+      "track": "track-08",
+      "title": "modular monolith layered hexagonal clean architecture — Reference: Ports and adapters around an application core",
+      "module": "t08-003",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-003-reference-layered-architecture"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "hexagonal-architecture"
+    },
+    {
+      "id": "t08-003-reference-clean-architecture",
+      "track": "track-08",
+      "title": "modular monolith layered hexagonal clean architecture — Reference: Clean Architecture dependency rules and boundary crossings",
+      "module": "t08-003",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-003-reference-hexagonal-architecture"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "clean-architecture"
     },
     {
       "id": "t08-003-practice",
@@ -11954,9 +12071,9 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-003.json",
       "phase": "practice",
       "prerequisites": [
-        "t08-003-reference-inventory-pending"
+        "t08-003-reference-clean-architecture"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-003-interview",
@@ -11968,7 +12085,7 @@
       "prerequisites": [
         "t08-003-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-004-overview",
@@ -11978,7 +12095,7 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-004.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-004-concepts",
@@ -11990,20 +12107,85 @@
       "prerequisites": [
         "t08-004-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t08-004-reference-inventory-pending",
+      "id": "t08-004-reference-strategic-design",
       "track": "track-08",
-      "title": "DDD entities value objects aggregates and bounded contexts — Reference: awaiting curated names",
+      "title": "DDD entities value objects aggregates and bounded contexts — Reference: Strategic domain modeling vocabulary and boundaries",
       "module": "t08-004",
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-004.json",
       "phase": "reference",
       "prerequisites": [
         "t08-004-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "strategic-design"
+    },
+    {
+      "id": "t08-004-reference-context-relationships",
+      "track": "track-08",
+      "title": "DDD entities value objects aggregates and bounded contexts — Reference: Bounded-context relationships and integration vocabulary",
+      "module": "t08-004",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-004-reference-strategic-design"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "context-relationships"
+    },
+    {
+      "id": "t08-004-reference-entities-and-value-objects",
+      "track": "track-08",
+      "title": "DDD entities value objects aggregates and bounded contexts — Reference: Identity-based and value-based domain objects",
+      "module": "t08-004",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-004-reference-context-relationships"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "entities-and-value-objects"
+    },
+    {
+      "id": "t08-004-reference-aggregates-and-invariants",
+      "track": "track-08",
+      "title": "DDD entities value objects aggregates and bounded contexts — Reference: Aggregate consistency boundaries",
+      "module": "t08-004",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-004-reference-entities-and-value-objects"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "aggregates-and-invariants"
+    },
+    {
+      "id": "t08-004-reference-domain-services-and-events",
+      "track": "track-08",
+      "title": "DDD entities value objects aggregates and bounded contexts — Reference: Domain behavior coordination and meaningful change events",
+      "module": "t08-004",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-004-reference-aggregates-and-invariants"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "domain-services-and-events"
+    },
+    {
+      "id": "t08-004-reference-domain-model-support-patterns",
+      "track": "track-08",
+      "title": "DDD entities value objects aggregates and bounded contexts — Reference: Patterns that support a domain model",
+      "module": "t08-004",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-004-reference-domain-services-and-events"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "domain-model-support-patterns"
     },
     {
       "id": "t08-004-practice",
@@ -12013,9 +12195,9 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-004.json",
       "phase": "practice",
       "prerequisites": [
-        "t08-004-reference-inventory-pending"
+        "t08-004-reference-domain-model-support-patterns"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-004-interview",
@@ -12027,7 +12209,7 @@
       "prerequisites": [
         "t08-004-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-005-overview",
