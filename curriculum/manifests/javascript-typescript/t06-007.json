@@ -2,11 +2,19 @@
   "schemaVersion": 4,
   "id": "t06-007",
   "track": "track-06",
-  "title": "TypeScript annotations inference union intersection and narrowing",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "title": "TypeScript primitive, literal, object, array, and tuple types",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": ["Static types describe values without changing JavaScript runtime behavior", "Annotations constrain declarations while inference derives types from expressions", "Literal widening and const contexts preserve or broaden information", "Object and collection types describe property and element shapes", "TypeScript syntax is erased unless a runtime JavaScript construct is emitted"],
+  "inventory": [
+    {"id":"primitive-and-special-types","title":"Primitive, special, literal, and declaration types","items":["string","number","boolean","bigint","symbol","null","undefined","void","never","object","Function","any","unknown","String literal type","Number literal type","Boolean literal type","BigInt literal type","unique symbol type","Type alias declaration","Enum declaration","Numeric enum","String enum","Const enum","Ambient enum"]},
+    {"id":"annotations-and-inference","title":"Type annotations, inference, and assertions","items":["Type annotation","Type inference","Widening literal type","Contextual typing","Type assertion (as Type)","Angle-bracket type assertion","Non-null assertion operator (!)","Definite assignment assertion (!)","as const assertion","satisfies operator","Const variable inference","Return type inference"]},
+    {"id":"object-and-collection-types","title":"Object, property, array, and tuple types","items":["Object type literal","Optional property modifier (?)","Readonly property modifier","Index signature","Call signature in object type","Construct signature in object type","Method signature in object type","Array type (T[])","Generic array type (Array<T>)","ReadonlyArray<T>","Tuple type","Named tuple element","Optional tuple element","Rest tuple element","Readonly tuple type"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["any","unknown"],["void","never"],["type annotation","type inference"],["type assertion","satisfies operator"],["Array<T>","ReadonlyArray<T>"]],
+  "comparisonSources": ["https://www.typescriptlang.org/docs/handbook/2/everyday-types.html","https://www.typescriptlang.org/docs/handbook/2/objects.html","https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions"],
+  "versionNotes": [{"edition":"TypeScript 4.9","items":["satisfies operator"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html"]}],
+  "sourceSnapshot": {"authority":"TypeScript Handbook and official release notes","edition":"TypeScript 6.0 stable","checkedAt":"2026-11-14","urls":["https://www.typescriptlang.org/docs/handbook/2/everyday-types.html","https://www.typescriptlang.org/docs/handbook/2/objects.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html"]},
+  "scopeExclusions": ["Union narrowing and control-flow analysis (t06-021)","Generic and advanced type operators (t06-008, t06-022)","Function call and overload signatures (t06-023)","TypeScript compiler options (t06-010)"],
+  "generationAllowed": true
 }

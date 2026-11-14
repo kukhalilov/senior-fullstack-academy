@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 4,
+  "id": "t06-023",
+  "track": "track-06",
+  "title": "TypeScript function types, overloads, predicates, and call signatures",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": ["Function types describe accepted arguments and return values", "Call and construct signatures allow object types to be callable or constructable", "Overload signatures expose multiple valid call shapes", "Type predicates connect runtime checks to static narrowing", "The implementation signature must support every public overload"],
+  "inventory": [
+    {"id":"function-signature-forms","title":"Function type and object call signatures","items":["Function type expression","Call signature","Construct signature","Method signature","Generic call signature","Generic construct signature","Optional parameter","Rest parameter","Tuple rest parameter","Named tuple parameter","this parameter","Constructor signature","Abstract construct signature"]},
+    {"id":"overloads-and-guards","title":"Overloads, predicates, and assertion signatures","items":["Overload signature","Overload implementation signature","Function overload","Method overload","Constructor overload","Type predicate return type","Assertion signature","Assertion condition signature","Callable object type","Newable object type"]},
+    {"id":"callback-and-variance","title":"Callbacks, contextual typing, and function compatibility","items":["Callback function type","Contextual parameter typing","Return type annotation","Optional callback parameter","Rest callback parameter","Function type compatibility"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["overload signature","union parameter"],["call signature","function type expression"],["type predicate","boolean return type"],["this parameter","JavaScript this binding"]],
+  "comparisonSources": ["https://www.typescriptlang.org/docs/handbook/2/functions.html","https://www.typescriptlang.org/docs/handbook/type-compatibility.html"],
+  "versionNotes": [],
+  "sourceSnapshot": {"authority":"TypeScript Handbook","edition":"TypeScript 6.0 stable","checkedAt":"2026-11-14","urls":["https://www.typescriptlang.org/docs/handbook/2/functions.html","https://www.typescriptlang.org/docs/handbook/type-compatibility.html"]},
+  "scopeExclusions": ["JavaScript function implementation and runtime behavior (t06-003)","Generic inference rules beyond function signatures (t06-008)","Type predicate control-flow results (t06-021)"],
+  "generationAllowed": true
+}
