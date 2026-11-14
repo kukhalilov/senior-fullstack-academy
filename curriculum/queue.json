@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1843,
+  "taskCount": 1847,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -1663,61 +1663,113 @@
     {
       "id": "t01-017-overview",
       "track": "track-01",
-      "title": "threads thread pool synchronization primitives race conditions — Big-picture orientation and mental model",
+      "title": "threads thread pool synchronization primitives races and parallelism — Big-picture orientation and mental model",
       "module": "t01-017",
       "manifest": "curriculum/manifests/c-language-and-net/t01-017.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-017-concepts",
       "track": "track-01",
-      "title": "threads thread pool synchronization primitives race conditions — Core concepts and how they fit together",
+      "title": "threads thread pool synchronization primitives races and parallelism — Core concepts and how they fit together",
       "module": "t01-017",
       "manifest": "curriculum/manifests/c-language-and-net/t01-017.json",
       "phase": "concepts",
       "prerequisites": [
         "t01-017-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-017-reference-inventory-pending",
+      "id": "t01-017-reference-concurrency-thread-and-pool-model",
       "track": "track-01",
-      "title": "threads thread pool synchronization primitives race conditions — Reference: awaiting curated names",
+      "title": "threads thread pool synchronization primitives races and parallelism — Reference: Concurrency model, managed threads, thread pool, and execution ownership",
       "module": "t01-017",
       "manifest": "curriculum/manifests/c-language-and-net/t01-017.json",
       "phase": "reference",
       "prerequisites": [
         "t01-017-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "concurrency-thread-and-pool-model"
+    },
+    {
+      "id": "t01-017-reference-mutual-exclusion-and-atomic-memory",
+      "track": "track-01",
+      "title": "threads thread pool synchronization primitives races and parallelism — Reference: C# lock, System.Threading.Lock, Monitor, Interlocked, Volatile, and memory visibility",
+      "module": "t01-017",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-017-reference-concurrency-thread-and-pool-model"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "mutual-exclusion-and-atomic-memory"
+    },
+    {
+      "id": "t01-017-reference-signaling-and-coordination-primitives",
+      "track": "track-01",
+      "title": "threads thread pool synchronization primitives races and parallelism — Reference: Wait handles, events, semaphores, mutexes, barriers, and countdown coordination",
+      "module": "t01-017",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-017-reference-mutual-exclusion-and-atomic-memory"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "signaling-and-coordination-primitives"
+    },
+    {
+      "id": "t01-017-reference-spin-and-lock-free-primitives",
+      "track": "track-01",
+      "title": "threads thread pool synchronization primitives races and parallelism — Reference: Spin waiting, SpinLock, atomic algorithms, and choosing synchronization costs",
+      "module": "t01-017",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-017-reference-signaling-and-coordination-primitives"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "spin-and-lock-free-primitives"
+    },
+    {
+      "id": "t01-017-reference-race-deadlock-and-parallel-design",
+      "track": "track-01",
+      "title": "threads thread pool synchronization primitives races and parallelism — Reference: Race conditions, deadlock, thread safety, parallel loops, partitioning, and diagnostics",
+      "module": "t01-017",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-017-reference-spin-and-lock-free-primitives"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "race-deadlock-and-parallel-design"
     },
     {
       "id": "t01-017-practice",
       "track": "track-01",
-      "title": "threads thread pool synchronization primitives race conditions — Exercises and worked solutions",
+      "title": "threads thread pool synchronization primitives races and parallelism — Exercises and worked solutions",
       "module": "t01-017",
       "manifest": "curriculum/manifests/c-language-and-net/t01-017.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-017-reference-inventory-pending"
+        "t01-017-reference-race-deadlock-and-parallel-design"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-017-interview",
       "track": "track-01",
-      "title": "threads thread pool synchronization primitives race conditions — Interview questions and reasoning",
+      "title": "threads thread pool synchronization primitives races and parallelism — Interview questions and reasoning",
       "module": "t01-017",
       "manifest": "curriculum/manifests/c-language-and-net/t01-017.json",
       "phase": "interview",
       "prerequisites": [
         "t01-017-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-018-overview",
