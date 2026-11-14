@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1511,
+  "taskCount": 1540,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -8208,7 +8208,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-003.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-003-concepts",
@@ -8220,20 +8220,72 @@
       "prerequisites": [
         "t07-003-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-003-reference-inventory-pending",
+      "id": "t07-003-reference-elements-and-jsx-output",
       "track": "track-07",
-      "title": "React elements render purity reconciliation identity and keys — Reference: awaiting curated names",
+      "title": "React elements render purity reconciliation identity and keys — Reference: React element descriptions and output values",
       "module": "t07-003",
       "manifest": "curriculum/manifests/react-and-frontend/t07-003.json",
       "phase": "reference",
       "prerequisites": [
         "t07-003-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "elements-and-jsx-output"
+    },
+    {
+      "id": "t07-003-reference-render-triggers-and-phases",
+      "track": "track-07",
+      "title": "React elements render purity reconciliation identity and keys — Reference: Render triggers and the render-commit sequence",
+      "module": "t07-003",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-003-reference-elements-and-jsx-output"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "render-triggers-and-phases"
+    },
+    {
+      "id": "t07-003-reference-purity-and-strict-mode",
+      "track": "track-07",
+      "title": "React elements render purity reconciliation identity and keys — Reference: Render purity and development checks",
+      "module": "t07-003",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-003-reference-render-triggers-and-phases"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "purity-and-strict-mode"
+    },
+    {
+      "id": "t07-003-reference-ui-trees-and-reconciliation",
+      "track": "track-07",
+      "title": "React elements render purity reconciliation identity and keys — Reference: React UI trees and matching rendered children",
+      "module": "t07-003",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-003-reference-purity-and-strict-mode"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "ui-trees-and-reconciliation"
+    },
+    {
+      "id": "t07-003-reference-state-preservation-and-keys",
+      "track": "track-07",
+      "title": "React elements render purity reconciliation identity and keys — Reference: State identity, preservation, reset, and list keys",
+      "module": "t07-003",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-003-reference-ui-trees-and-reconciliation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "state-preservation-and-keys"
     },
     {
       "id": "t07-003-practice",
@@ -8243,9 +8295,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-003.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-003-reference-inventory-pending"
+        "t07-003-reference-state-preservation-and-keys"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-003-interview",
@@ -8257,7 +8309,7 @@
       "prerequisites": [
         "t07-003-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-004-overview",
@@ -8267,7 +8319,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-004.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-004-concepts",
@@ -8279,20 +8331,85 @@
       "prerequisites": [
         "t07-004-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-004-reference-inventory-pending",
+      "id": "t07-004-reference-function-components-and-composition",
       "track": "track-07",
-      "title": "React function and class components JSX props and events — Reference: awaiting curated names",
+      "title": "React function and class components JSX props and events — Reference: Function components and composition",
       "module": "t07-004",
       "manifest": "curriculum/manifests/react-and-frontend/t07-004.json",
       "phase": "reference",
       "prerequisites": [
         "t07-004-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "function-components-and-composition"
+    },
+    {
+      "id": "t07-004-reference-class-components",
+      "track": "track-07",
+      "title": "React function and class components JSX props and events — Reference: Supported class component surface",
+      "module": "t07-004",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-004-reference-function-components-and-composition"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "class-components"
+    },
+    {
+      "id": "t07-004-reference-jsx-syntax",
+      "track": "track-07",
+      "title": "React function and class components JSX props and events — Reference: JSX syntax and JavaScript embedding",
+      "module": "t07-004",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-004-reference-class-components"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "jsx-syntax"
+    },
+    {
+      "id": "t07-004-reference-props-and-children",
+      "track": "track-07",
+      "title": "React function and class components JSX props and events — Reference: Component props and children",
+      "module": "t07-004",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-004-reference-jsx-syntax"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "props-and-children"
+    },
+    {
+      "id": "t07-004-reference-conditional-and-list-rendering",
+      "track": "track-07",
+      "title": "React function and class components JSX props and events — Reference: Choosing and mapping rendered output",
+      "module": "t07-004",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-004-reference-props-and-children"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "conditional-and-list-rendering"
+    },
+    {
+      "id": "t07-004-reference-event-handlers",
+      "track": "track-07",
+      "title": "React function and class components JSX props and events — Reference: React event handler behavior and propagation",
+      "module": "t07-004",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-004-reference-conditional-and-list-rendering"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "event-handlers"
     },
     {
       "id": "t07-004-practice",
@@ -8302,9 +8419,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-004.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-004-reference-inventory-pending"
+        "t07-004-reference-event-handlers"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-004-interview",
@@ -8316,7 +8433,7 @@
       "prerequisites": [
         "t07-004-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-005-overview",
@@ -8326,7 +8443,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-005.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-005-concepts",
@@ -8338,20 +8455,72 @@
       "prerequisites": [
         "t07-005-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-005-reference-inventory-pending",
+      "id": "t07-005-reference-state-hook",
       "track": "track-07",
-      "title": "React state reducer context and action hooks — Reference: awaiting curated names",
+      "title": "React state reducer context and action hooks — Reference: State declaration and update APIs",
       "module": "t07-005",
       "manifest": "curriculum/manifests/react-and-frontend/t07-005.json",
       "phase": "reference",
       "prerequisites": [
         "t07-005-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "state-hook"
+    },
+    {
+      "id": "t07-005-reference-reducer-hook",
+      "track": "track-07",
+      "title": "React state reducer context and action hooks — Reference: Reducer state transitions",
+      "module": "t07-005",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-005-reference-state-hook"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "reducer-hook"
+    },
+    {
+      "id": "t07-005-reference-context-hook",
+      "track": "track-07",
+      "title": "React state reducer context and action hooks — Reference: Context creation, provision, and subscription",
+      "module": "t07-005",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-005-reference-reducer-hook"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "context-hook"
+    },
+    {
+      "id": "t07-005-reference-actions-and-optimistic-state",
+      "track": "track-07",
+      "title": "React state reducer context and action hooks — Reference: Action state and optimistic updates",
+      "module": "t07-005",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-005-reference-context-hook"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "actions-and-optimistic-state"
+    },
+    {
+      "id": "t07-005-reference-hook-rules-and-custom-hooks",
+      "track": "track-07",
+      "title": "React state reducer context and action hooks — Reference: Hook call discipline and composition",
+      "module": "t07-005",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-005-reference-actions-and-optimistic-state"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "hook-rules-and-custom-hooks"
     },
     {
       "id": "t07-005-practice",
@@ -8361,9 +8530,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-005.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-005-reference-inventory-pending"
+        "t07-005-reference-hook-rules-and-custom-hooks"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-005-interview",
@@ -8375,7 +8544,7 @@
       "prerequisites": [
         "t07-005-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-006-overview",
@@ -8385,7 +8554,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-006.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-006-concepts",
@@ -8397,20 +8566,72 @@
       "prerequisites": [
         "t07-006-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-006-reference-inventory-pending",
+      "id": "t07-006-reference-effect-hook",
       "track": "track-07",
-      "title": "React effects refs imperative handles and external systems — Reference: awaiting curated names",
+      "title": "React effects refs imperative handles and external systems — Reference: Effect setup lifecycle and dependencies",
       "module": "t07-006",
       "manifest": "curriculum/manifests/react-and-frontend/t07-006.json",
       "phase": "reference",
       "prerequisites": [
         "t07-006-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "effect-hook"
+    },
+    {
+      "id": "t07-006-reference-effect-timing-variants",
+      "track": "track-07",
+      "title": "React effects refs imperative handles and external systems — Reference: Effect timing variants",
+      "module": "t07-006",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-006-reference-effect-hook"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "effect-timing-variants"
+    },
+    {
+      "id": "t07-006-reference-refs-and-dom-access",
+      "track": "track-07",
+      "title": "React effects refs imperative handles and external systems — Reference: Mutable refs and host-node access",
+      "module": "t07-006",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-006-reference-effect-timing-variants"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "refs-and-dom-access"
+    },
+    {
+      "id": "t07-006-reference-imperative-handles",
+      "track": "track-07",
+      "title": "React effects refs imperative handles and external systems — Reference: Exposing imperative interfaces",
+      "module": "t07-006",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-006-reference-refs-and-dom-access"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "imperative-handles"
+    },
+    {
+      "id": "t07-006-reference-effect-design-and-development-checks",
+      "track": "track-07",
+      "title": "React effects refs imperative handles and external systems — Reference: Effect purpose, cleanup, and development checks",
+      "module": "t07-006",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-006-reference-imperative-handles"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "effect-design-and-development-checks"
     },
     {
       "id": "t07-006-practice",
@@ -8420,9 +8641,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-006.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-006-reference-inventory-pending"
+        "t07-006-reference-effect-design-and-development-checks"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-006-interview",
@@ -8434,7 +8655,7 @@
       "prerequisites": [
         "t07-006-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-007-overview",
@@ -8444,7 +8665,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-007.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-007-concepts",
@@ -8456,20 +8677,72 @@
       "prerequisites": [
         "t07-007-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-007-reference-inventory-pending",
+      "id": "t07-007-reference-component-composition",
       "track": "track-07",
-      "title": "React context composition state ownership and component architecture — Reference: awaiting curated names",
+      "title": "React context composition state ownership and component architecture — Reference: Component boundaries and composition patterns",
       "module": "t07-007",
       "manifest": "curriculum/manifests/react-and-frontend/t07-007.json",
       "phase": "reference",
       "prerequisites": [
         "t07-007-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "component-composition"
+    },
+    {
+      "id": "t07-007-reference-state-ownership",
+      "track": "track-07",
+      "title": "React context composition state ownership and component architecture — Reference: State ownership and sharing",
+      "module": "t07-007",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-007-reference-component-composition"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "state-ownership"
+    },
+    {
+      "id": "t07-007-reference-state-shape",
+      "track": "track-07",
+      "title": "React context composition state ownership and component architecture — Reference: Designing maintainable state structures",
+      "module": "t07-007",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-007-reference-state-ownership"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "state-shape"
+    },
+    {
+      "id": "t07-007-reference-context-placement",
+      "track": "track-07",
+      "title": "React context composition state ownership and component architecture — Reference: Context placement and alternatives",
+      "module": "t07-007",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-007-reference-state-shape"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "context-placement"
+    },
+    {
+      "id": "t07-007-reference-architecture-decisions",
+      "track": "track-07",
+      "title": "React context composition state ownership and component architecture — Reference: Choosing state and composition boundaries",
+      "module": "t07-007",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-007-reference-context-placement"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "architecture-decisions"
     },
     {
       "id": "t07-007-practice",
@@ -8479,9 +8752,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-007.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-007-reference-inventory-pending"
+        "t07-007-reference-architecture-decisions"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-007-interview",
@@ -8493,7 +8766,7 @@
       "prerequisites": [
         "t07-007-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-008-overview",
@@ -8503,7 +8776,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-008.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-008-concepts",
@@ -8515,20 +8788,72 @@
       "prerequisites": [
         "t07-008-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-008-reference-inventory-pending",
+      "id": "t07-008-reference-manual-memoization",
       "track": "track-07",
-      "title": "React performance transitions deferred values profiling and compiler — Reference: awaiting curated names",
+      "title": "React performance transitions deferred values profiling and compiler — Reference: Manual memoization APIs and constraints",
       "module": "t07-008",
       "manifest": "curriculum/manifests/react-and-frontend/t07-008.json",
       "phase": "reference",
       "prerequisites": [
         "t07-008-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "manual-memoization"
+    },
+    {
+      "id": "t07-008-reference-concurrent-priorities",
+      "track": "track-07",
+      "title": "React performance transitions deferred values profiling and compiler — Reference: Non-blocking update priority APIs",
+      "module": "t07-008",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-008-reference-manual-memoization"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "concurrent-priorities"
+    },
+    {
+      "id": "t07-008-reference-profiling-and-measurement",
+      "track": "track-07",
+      "title": "React performance transitions deferred values profiling and compiler — Reference: React rendering performance measurement",
+      "module": "t07-008",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-008-reference-concurrent-priorities"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "profiling-and-measurement"
+    },
+    {
+      "id": "t07-008-reference-react-compiler-and-optimization",
+      "track": "track-07",
+      "title": "React performance transitions deferred values profiling and compiler — Reference: React Compiler optimization model",
+      "module": "t07-008",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-008-reference-profiling-and-measurement"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "react-compiler-and-optimization"
+    },
+    {
+      "id": "t07-008-reference-performance-reasoning",
+      "track": "track-07",
+      "title": "React performance transitions deferred values profiling and compiler — Reference: Diagnosing and choosing performance techniques",
+      "module": "t07-008",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-008-reference-react-compiler-and-optimization"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "performance-reasoning"
     },
     {
       "id": "t07-008-practice",
@@ -8538,9 +8863,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-008.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-008-reference-inventory-pending"
+        "t07-008-reference-performance-reasoning"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-008-interview",
@@ -8552,7 +8877,7 @@
       "prerequisites": [
         "t07-008-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-009-overview",
@@ -8621,7 +8946,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-010.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-010-concepts",
@@ -8633,20 +8958,72 @@
       "prerequisites": [
         "t07-010-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-010-reference-inventory-pending",
+      "id": "t07-010-reference-server-component-model",
       "track": "track-07",
-      "title": "React Server Components directives resources and server functions — Reference: awaiting curated names",
+      "title": "React Server Components directives resources and server functions — Reference: Server Component execution model",
       "module": "t07-010",
       "manifest": "curriculum/manifests/react-and-frontend/t07-010.json",
       "phase": "reference",
       "prerequisites": [
         "t07-010-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "server-component-model"
+    },
+    {
+      "id": "t07-010-reference-client-boundaries",
+      "track": "track-07",
+      "title": "React Server Components directives resources and server functions — Reference: Client module boundaries and serialization",
+      "module": "t07-010",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-010-reference-server-component-model"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "client-boundaries"
+    },
+    {
+      "id": "t07-010-reference-server-functions",
+      "track": "track-07",
+      "title": "React Server Components directives resources and server functions — Reference: Server Function semantics and directives",
+      "module": "t07-010",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-010-reference-client-boundaries"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "server-functions"
+    },
+    {
+      "id": "t07-010-reference-security-and-stability",
+      "track": "track-07",
+      "title": "React Server Components directives resources and server functions — Reference: Server boundary security and framework responsibilities",
+      "module": "t07-010",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-010-reference-server-functions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "security-and-stability"
+    },
+    {
+      "id": "t07-010-reference-server-components-interoperation",
+      "track": "track-07",
+      "title": "React Server Components directives resources and server functions — Reference: Server and client interoperation",
+      "module": "t07-010",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-010-reference-security-and-stability"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "server-components-interoperation"
     },
     {
       "id": "t07-010-practice",
@@ -8656,9 +9033,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-010.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-010-reference-inventory-pending"
+        "t07-010-reference-server-components-interoperation"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-010-interview",
@@ -8670,7 +9047,7 @@
       "prerequisites": [
         "t07-010-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-011-overview",

@@ -3,10 +3,28 @@
   "id": "t07-003",
   "track": "track-07",
   "title": "React elements render purity reconciliation identity and keys",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A React element is an immutable description of a UI node, not a DOM node; creating one does not display it.",
+    "Rendering calls components to calculate the next UI description. A render can be triggered without causing a DOM mutation.",
+    "React separates render calculation from commit work: it evaluates components, determines the required host changes, then applies relevant changes to the target renderer.",
+    "Render logic should be pure: the same props, state, and context produce the same result without changing pre-existing values. Events and Effects are separate places for side effects.",
+    "React models component relationships as a render tree, which differs from the host DOM tree and the JavaScript module dependency tree.",
+    "State belongs to a component identity at a position in the render tree. Type, position, and key determine whether React preserves that identity and its state across renders.",
+    "Keys identify siblings across list changes. Stable data-derived keys let React match moved or updated children; indexes and generated-on-render keys can associate state with the wrong item or reset it."
+  ],
+  "inventory": [
+    {"id":"elements-and-jsx-output","title":"React element descriptions and output values","items":["React element","Element type","Element props","Element children","Element key","Element ref","Element immutability","React node","Fragment","createElement(type, props, ...children)","JSX element expression"]},
+    {"id":"render-triggers-and-phases","title":"Render triggers and the render-commit sequence","items":["Initial render","Update render","State update render trigger","Parent render propagation","Render phase","Commit phase","Host tree update","No-op commit when output is unchanged","Re-render does not imply DOM mutation"]},
+    {"id":"purity-and-strict-mode","title":"Render purity and development checks","items":["Pure component calculation","Same inputs produce the same output","Read-only props during render","Read-only state during render","Read-only context during render","No mutation of pre-existing values during render","Local mutation of newly created values","Side effects outside render","Strict Mode development double invocation"]},
+    {"id":"ui-trees-and-reconciliation","title":"React UI trees and matching rendered children","items":["Render tree","Host DOM tree","Module dependency tree","Reconciliation","Child matching","Component identity","Host element identity","Sibling identity"]},
+    {"id":"state-preservation-and-keys","title":"State identity, preservation, reset, and list keys","items":["State associated with render-tree position","State preservation at the same position","State reset when a component is removed","State reset when component type changes","State reset when key changes","Explicit key as identity boundary","Sibling keys","Stable data-derived keys","Index keys","Random keys generated during render","Keys are scoped to siblings","Key is not passed as a component prop"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["React element","DOM node"],["Render phase","Commit phase"],["Render tree","Host DOM tree"],["Stable data-derived key","Array-index key"],["Component key","Component prop"]],
+  "comparisonSources": ["https://react.dev/learn/render-and-commit","https://react.dev/learn/preserving-and-resetting-state","https://react.dev/learn/understanding-your-ui-as-a-tree","https://react.dev/reference/react/createElement"],
+  "versionNotes": [],
+  "sourceSnapshot": {"authority":"Official React documentation","edition":"React 19.3 stable documentation checked 2026-11-14","checkedAt":"2026-11-14","urls":["https://react.dev/learn/render-and-commit","https://react.dev/learn/preserving-and-resetting-state","https://react.dev/learn/keeping-components-pure","https://react.dev/learn/understanding-your-ui-as-a-tree","https://react.dev/reference/react/createElement","https://react.dev/reference/react/StrictMode"]},
+  "scopeExclusions":["Component kinds, JSX transformation, props conventions, and event handlers (t07-004)","State, reducers, context, and action hooks (t07-005)","Memoization and render performance APIs (t07-006)","Client roots, server rendering, and hydration APIs (t07-021)","React Compiler optimization behavior (t07-022)"],
+  "generationAllowed": true
 }

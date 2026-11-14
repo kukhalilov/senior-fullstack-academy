@@ -498,3 +498,77 @@ test('accessibility inventory freezes all WCAG 2.2 criteria, current WAI-ARIA ro
   assert.ok(manifest.versionNotes.some(note => note.edition === 'WAI-ARIA 1.3 Working Draft'));
   assert.ok(manifest.versionNotes.some(note => note.items.some(change => change.includes('Removed 4.1.1 Parsing'))));
 });
+
+test('React rendering inventory covers element descriptions, render phases, purity, identity, and keys', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-003.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  assert.match(manifest.sourceSnapshot.edition, /^React 19\.3 stable documentation/);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['React element', 'Element key', 'createElement(type, props, ...children)', 'Render phase', 'Commit phase', 'No-op commit when output is unchanged', 'Strict Mode development double invocation', 'Render tree', 'Host DOM tree', 'State reset when key changes', 'Stable data-derived keys', 'Key is not passed as a component prop']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('t07-004')));
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('t07-005')));
+  assert.equal(manifest.versionNotes.length, 0);
+});
+
+test('React component, JSX, prop, and event inventory is source-backed and complete by group', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-004.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Function component', 'Class component', 'JSX syntax extension', 'Curly-brace JavaScript expression', 'children prop', 'Default prop value in parameter destructuring', 'Conditional rendering with &&', 'Event bubbling', 'stopPropagation()', 'preventDefault()']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.sourceSnapshot.urls.includes('https://react.dev/learn/responding-to-events'));
+});
+
+test('React state, reducer, context, and Action inventories use current hook names', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-005.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['useState(initialState)', 'useReducer(reducer, initialArg, init?)', 'createContext(defaultValue)', 'useContext(SomeContext)', 'useActionState(reducerAction, initialState, permalink?)', 'useOptimistic(state, updateFn?)', 'State snapshot per render', 'State batching', 'Rules of Hooks']) assert.ok(all.includes(item), item);
+  for (const url of ['https://react.dev/reference/react/useState', 'https://react.dev/reference/react/useReducer', 'https://react.dev/reference/react/useContext', 'https://react.dev/reference/react/useActionState']) assert.ok(manifest.sourceSnapshot.urls.includes(url), url);
+});
+
+test('React Effects and refs inventory separates synchronization, timing, and mutable handles', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-006.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['useEffect(setup, dependencies?)', 'useLayoutEffect(setup, dependencies?)', 'useInsertionEffect(setup, dependencies?)', 'useRef(initialValue)', 'useImperativeHandle(ref, createHandle, dependencies?)', 'Changing ref.current does not trigger a re-render', 'Strict Mode extra setup-cleanup cycle']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition === 'React 19'));
+  assert.ok(manifest.versionNotes.every(note => note.sourceUrls.length));
+});
+
+test('React architecture inventory distinguishes local ownership, lifted state, context, and composition', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-007.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Component composition', 'Lifting state up', 'Closest common parent', 'Controlled component', 'Avoid redundant state', 'Store an identifier instead of a selected object copy', 'Context for distant shared values', 'Composition as an alternative to prop drilling']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.sourceSnapshot.urls.includes('https://react.dev/learn/choosing-the-state-structure'));
+});
+
+test('React performance inventory covers current memo, transition, profiler, and compiler concepts', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-008.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['memo(Component, arePropsEqual?)', 'useMemo(calculateValue, dependencies)', 'useCallback(fn, dependencies)', 'useTransition()', 'startTransition(action)', 'useDeferredValue(value, initialValue?)', '<Profiler id onRender>', 'React Compiler']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.every(note => note.sourceUrls.length));
+});
+
+test('React Server Components inventory separates stable semantics from integration internals', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-010.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['React Server Component', "'use client'", "'use server'", 'Async Server Component', 'Server Function input validation', 'Unstable lower-level RSC implementation APIs']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.every(note => note.sourceUrls.length));
+});
