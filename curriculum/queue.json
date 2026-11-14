@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1839,
+  "taskCount": 1843,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -1552,61 +1552,113 @@
     {
       "id": "t01-016-overview",
       "track": "track-01",
-      "title": "async await Task ValueTask cancellation and synchronization context — Big-picture orientation and mental model",
+      "title": "C# async and await Task ValueTask cancellation and continuation context — Big-picture orientation and mental model",
       "module": "t01-016",
       "manifest": "curriculum/manifests/c-language-and-net/t01-016.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-016-concepts",
       "track": "track-01",
-      "title": "async await Task ValueTask cancellation and synchronization context — Core concepts and how they fit together",
+      "title": "C# async and await Task ValueTask cancellation and continuation context — Core concepts and how they fit together",
       "module": "t01-016",
       "manifest": "curriculum/manifests/c-language-and-net/t01-016.json",
       "phase": "concepts",
       "prerequisites": [
         "t01-016-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-016-reference-inventory-pending",
+      "id": "t01-016-reference-tap-and-language-constructs",
       "track": "track-01",
-      "title": "async await Task ValueTask cancellation and synchronization context — Reference: awaiting curated names",
+      "title": "C# async and await Task ValueTask cancellation and continuation context — Reference: Task-based asynchronous pattern, async methods, awaitables, and compiler behavior",
       "module": "t01-016",
       "manifest": "curriculum/manifests/c-language-and-net/t01-016.json",
       "phase": "reference",
       "prerequisites": [
         "t01-016-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "tap-and-language-constructs"
+    },
+    {
+      "id": "t01-016-reference-task-and-valuetask-apis",
+      "track": "track-01",
+      "title": "C# async and await Task ValueTask cancellation and continuation context — Reference: Task, Task<T>, ValueTask, factories, composition, waiting, and result retrieval APIs",
+      "module": "t01-016",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-016-reference-tap-and-language-constructs"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "task-and-valuetask-apis"
+    },
+    {
+      "id": "t01-016-reference-cancellation-contracts",
+      "track": "track-01",
+      "title": "C# async and await Task ValueTask cancellation and continuation context — Reference: Cooperative cancellation tokens, sources, registration, and cancellation exceptions",
+      "module": "t01-016",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-016-reference-task-and-valuetask-apis"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cancellation-contracts"
+    },
+    {
+      "id": "t01-016-reference-continuation-context-and-configuration",
+      "track": "track-01",
+      "title": "C# async and await Task ValueTask cancellation and continuation context — Reference: Synchronization context, scheduler, execution context, ConfigureAwait, and deadlock behavior",
+      "module": "t01-016",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-016-reference-cancellation-contracts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "continuation-context-and-configuration"
+    },
+    {
+      "id": "t01-016-reference-composition-errors-and-performance",
+      "track": "track-01",
+      "title": "C# async and await Task ValueTask cancellation and continuation context — Reference: Composition, concurrency, exception aggregation, blocking hazards, and API design",
+      "module": "t01-016",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-016-reference-continuation-context-and-configuration"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "composition-errors-and-performance"
     },
     {
       "id": "t01-016-practice",
       "track": "track-01",
-      "title": "async await Task ValueTask cancellation and synchronization context — Exercises and worked solutions",
+      "title": "C# async and await Task ValueTask cancellation and continuation context — Exercises and worked solutions",
       "module": "t01-016",
       "manifest": "curriculum/manifests/c-language-and-net/t01-016.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-016-reference-inventory-pending"
+        "t01-016-reference-composition-errors-and-performance"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-016-interview",
       "track": "track-01",
-      "title": "async await Task ValueTask cancellation and synchronization context — Interview questions and reasoning",
+      "title": "C# async and await Task ValueTask cancellation and continuation context — Interview questions and reasoning",
       "module": "t01-016",
       "manifest": "curriculum/manifests/c-language-and-net/t01-016.json",
       "phase": "interview",
       "prerequisites": [
         "t01-016-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-017-overview",

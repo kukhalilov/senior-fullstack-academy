@@ -57,7 +57,7 @@ test('C# program structure has source-backed syntax and current file-based app c
 });
 
 test('C# inheritance, member, generics, and variance scopes are frozen and source-backed', () => {
-  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010', 't01-011', 't01-012', 't01-013', 't01-014', 't01-015']) {
+  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010', 't01-011', 't01-012', 't01-013', 't01-014', 't01-015', 't01-016']) {
     const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/c-language-and-net/${id}.json`, 'utf8'));
     const names = manifest.inventory.flatMap(group => group.items);
     assert.equal(manifest.inventoryComplete, true, `${id} inventory must be complete`);
@@ -91,7 +91,12 @@ test('C# inheritance, member, generics, and variance scopes are frozen and sourc
   assert.ok(linqNames.includes('Queryable.FullJoin'));
   assert.ok(linqNames.includes('AsyncEnumerable.FirstOrDefaultAsync'));
   assert.ok(!linqNames.includes('AsyncEnumerable.FirstOrDefault'));
-  assert.ok(linqNames.includes('TaskAsyncEnumerableExtensions.WithCancellation<T>'));  const patterns = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-012.json', 'utf8'));
+  assert.ok(linqNames.includes('TaskAsyncEnumerableExtensions.WithCancellation<T>'));  const async = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-016.json', 'utf8'));
+  const asyncNames = async.inventory.flatMap(group => group.items);
+  assert.ok(asyncNames.includes('Task.WhenAll(Task[])'));
+  assert.ok(asyncNames.includes('CancellationTokenSource.CancelAsync()'));
+  assert.ok(asyncNames.includes('ConfigureAwaitOptions.ForceYielding'));
+  assert.ok(asyncNames.includes('Task.WaitAsync(TimeSpan,TimeProvider,CancellationToken)'));  const patterns = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-012.json', 'utf8'));
   const patternNames = patterns.inventory.flatMap(group => group.items);
   assert.ok(patternNames.includes('Logical and pattern'));
   assert.ok(patternNames.includes('C# 15 labeled continue statement'));
