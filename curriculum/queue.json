@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 925,
+  "taskCount": 935,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -9866,61 +9866,200 @@
     {
       "id": "t11-006-overview",
       "track": "track-11",
-      "title": "linked lists fast slow pointers reversal and cycles — Big-picture orientation and mental model",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Big-picture orientation and mental model",
       "module": "t11-006",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-006-concepts",
       "track": "track-11",
-      "title": "linked lists fast slow pointers reversal and cycles — Core concepts and how they fit together",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Core concepts and how they fit together",
       "module": "t11-006",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-006-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-006-reference-inventory-pending",
+      "id": "t11-006-reference-representations-and-traversal",
       "track": "track-11",
-      "title": "linked lists fast slow pointers reversal and cycles — Reference: awaiting curated names",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Reference: Node structures and traversal",
       "module": "t11-006",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
       "phase": "reference",
       "prerequisites": [
         "t11-006-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "representations-and-traversal"
     },
     {
-      "id": "t11-006-practice",
+      "id": "t11-006-reference-mutation-and-sentinels",
       "track": "track-11",
-      "title": "linked lists fast slow pointers reversal and cycles — Exercises and worked solutions",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Reference: Insertion, deletion, and sentinels",
+      "module": "t11-006",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-006-reference-representations-and-traversal"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "mutation-and-sentinels"
+    },
+    {
+      "id": "t11-006-reference-fast-slow-and-reversal",
+      "track": "track-11",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Reference: Fast/slow pointers, cycles, and reversal",
+      "module": "t11-006",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-006-reference-mutation-and-sentinels"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "fast-slow-and-reversal"
+    },
+    {
+      "id": "t11-006-reference-merge-identity-and-tradeoffs",
+      "track": "track-11",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Reference: Merging, identity, and implementation tradeoffs",
+      "module": "t11-006",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-006-reference-fast-slow-and-reversal"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "merge-identity-and-tradeoffs"
+    },
+    {
+      "id": "t11-006-practice-reverse-linked-list",
+      "track": "track-11",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Problem: Reverse Linked List",
       "module": "t11-006",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-006-reference-inventory-pending"
+        "t11-006-reference-merge-identity-and-tradeoffs"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "reverse-linked-list",
+      "problemTitle": "Reverse Linked List"
+    },
+    {
+      "id": "t11-006-practice-merge-two-sorted-lists",
+      "track": "track-11",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Problem: Merge Two Sorted Lists",
+      "module": "t11-006",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-006-practice-reverse-linked-list"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "merge-two-sorted-lists",
+      "problemTitle": "Merge Two Sorted Lists"
+    },
+    {
+      "id": "t11-006-practice-linked-list-cycle",
+      "track": "track-11",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Problem: Linked List Cycle",
+      "module": "t11-006",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-006-practice-merge-two-sorted-lists"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "linked-list-cycle",
+      "problemTitle": "Linked List Cycle"
+    },
+    {
+      "id": "t11-006-practice-remove-nth-node-from-end",
+      "track": "track-11",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Problem: Remove Nth Node From End of List",
+      "module": "t11-006",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-006-practice-linked-list-cycle"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "remove-nth-node-from-end",
+      "problemTitle": "Remove Nth Node From End of List"
+    },
+    {
+      "id": "t11-006-practice-reorder-list",
+      "track": "track-11",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Problem: Reorder List",
+      "module": "t11-006",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-006-practice-remove-nth-node-from-end"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "reorder-list",
+      "problemTitle": "Reorder List"
+    },
+    {
+      "id": "t11-006-practice-add-two-numbers",
+      "track": "track-11",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Problem: Add Two Numbers",
+      "module": "t11-006",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-006-practice-reorder-list"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "add-two-numbers",
+      "problemTitle": "Add Two Numbers"
+    },
+    {
+      "id": "t11-006-practice-intersection-of-two-linked-lists",
+      "track": "track-11",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Problem: Intersection of Two Linked Lists",
+      "module": "t11-006",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-006-practice-add-two-numbers"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "intersection-of-two-linked-lists",
+      "problemTitle": "Intersection of Two Linked Lists"
+    },
+    {
+      "id": "t11-006-practice-copy-list-with-random-pointer",
+      "track": "track-11",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Problem: Copy List with Random Pointer",
+      "module": "t11-006",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-006-practice-intersection-of-two-linked-lists"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "copy-list-with-random-pointer",
+      "problemTitle": "Copy List with Random Pointer"
     },
     {
       "id": "t11-006-interview",
       "track": "track-11",
-      "title": "linked lists fast slow pointers reversal and cycles — Interview questions and reasoning",
+      "title": "linked lists, pointer rewiring, reversal, and cycles — Interview questions and reasoning",
       "module": "t11-006",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-006.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-006-practice"
+        "t11-006-practice-copy-list-with-random-pointer"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-007-overview",

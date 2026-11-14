@@ -2,11 +2,46 @@
   "schemaVersion": 4,
   "id": "t11-006",
   "track": "track-11",
-  "title": "linked lists fast slow pointers reversal and cycles",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "title": "linked lists, pointer rewiring, reversal, and cycles",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A linked list stores values in separate nodes connected by references instead of contiguous indexed storage.",
+    "Singly linked nodes store a next reference; doubly linked nodes also store a previous reference, trading space for reverse navigation.",
+    "Inserting or deleting a known node can change a constant number of links, but finding the location still requires traversal.",
+    "A dummy head node simplifies operations that may change the actual head, including deletion and merging.",
+    "Pointer rewiring requires saving the next reference before overwriting a link and maintaining a clear invariant at every step.",
+    "Fast and slow pointers can locate a middle node, detect a cycle, or express a fixed distance between two positions.",
+    "Floyd cycle detection uses a fast pointer moving two links and a slow pointer moving one; a meeting proves a cycle exists.",
+    "Reversal changes link direction in place using previous, current, and next references, with empty and one-node cases handled explicitly.",
+    "Node identity and node value are different: intersection means sharing the same node object, not merely equal values.",
+    "Linked lists provide sequential access and pointer flexibility but usually have poorer locality and no constant-time indexing."
+  ],
+  "inventory": [
+    {"id":"representations-and-traversal","title":"Node structures and traversal","items":["Singly linked list","Doubly linked list","Circular linked list","Head reference","Tail reference","Node identity","Next reference","Previous reference","Sequential traversal"]},
+    {"id":"mutation-and-sentinels","title":"Insertion, deletion, and sentinels","items":["Pointer rewiring","Insert after a known node","Delete after a known node","Dummy head node","Sentinel node","Save-next-before-rewire rule","Head replacement","Tail maintenance"]},
+    {"id":"fast-slow-and-reversal","title":"Fast/slow pointers, cycles, and reversal","items":["Fast and slow pointers","Middle-node search","Nth node from end","Floyd cycle detection","Cycle entry detection","In-place list reversal","Previous-current-next invariant","Reverse a sublist"]},
+    {"id":"merge-identity-and-tradeoffs","title":"Merging, identity, and implementation tradeoffs","items":["Merge two sorted lists","Dummy-node merge","Recursive list traversal","Node intersection by identity","Hash-set cycle detection","Array versus linked-list indexing","Sequential memory locality"]}
+  ],
+  "practiceProblems": [
+    {"id":"reverse-linked-list","name":"Reverse Linked List","difficulty":"introductory","patterns":["in-place list reversal","previous-current-next invariant"]},
+    {"id":"merge-two-sorted-lists","name":"Merge Two Sorted Lists","difficulty":"introductory","patterns":["dummy-node merge","sorted pointer advancement"]},
+    {"id":"linked-list-cycle","name":"Linked List Cycle","difficulty":"introductory","patterns":["Floyd cycle detection","fast and slow pointers"]},
+    {"id":"remove-nth-node-from-end","name":"Remove Nth Node From End of List","difficulty":"intermediate","patterns":["dummy head node","fixed-gap two pointers"]},
+    {"id":"reorder-list","name":"Reorder List","difficulty":"intermediate","patterns":["middle-node search","in-place reversal","alternating merge"]},
+    {"id":"add-two-numbers","name":"Add Two Numbers","difficulty":"intermediate","patterns":["dummy-node construction","carry propagation"]},
+    {"id":"intersection-of-two-linked-lists","name":"Intersection of Two Linked Lists","difficulty":"intermediate","patterns":["node identity","pointer switching"]},
+    {"id":"copy-list-with-random-pointer","name":"Copy List with Random Pointer","difficulty":"advanced","patterns":["node identity mapping","two-pass cloning"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Singly linked list","Doubly linked list"],["Linked list","Dynamic array"],["Dummy head node","Head-special-case branching"],["Floyd cycle detection","Hash-set cycle detection"],["Node identity intersection","Equal node values"]],
+  "comparisonSources": ["https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "OpenDSA linked-list chapters, .NET LinkedList<T> reference for implementation comparison, and official LeetCode problem statements",
+    "edition": "Timeless linked-list algorithms; reference pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1","https://leetcode.com/problems/reverse-linked-list/","https://leetcode.com/problems/merge-two-sorted-lists/","https://leetcode.com/problems/linked-list-cycle/","https://leetcode.com/problems/remove-nth-node-from-end-of-list/","https://leetcode.com/problems/reorder-list/","https://leetcode.com/problems/add-two-numbers/","https://leetcode.com/problems/intersection-of-two-linked-lists/","https://leetcode.com/problems/copy-list-with-random-pointer/"]
+  },
+  "scopeExclusions": ["Arrays and dynamic arrays, covered in t11-002","Two-pointer/sliding-window array patterns, covered in t11-003","Stacks and queues, covered in t11-007","Binary trees, covered in tree topics","Full System.Collections.Generic.LinkedList<T> API catalog, covered in .NET collection references","Skip lists, XOR linked lists, and unrolled linked lists","Memory allocator implementation and garbage collection internals"],
+  "generationAllowed": true
 }
