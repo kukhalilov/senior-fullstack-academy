@@ -2,11 +2,648 @@
   "schemaVersion": 4,
   "id": "t07-018",
   "track": "track-07",
-  "title": "CSS typography color animation transforms and modern features",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "CSS properties are organized into interoperating modules; each module defines value grammar, inheritance, rendering effects, and interactions.",
+    "Typography properties control font selection, shaping, spacing, line construction, text decoration, and language-sensitive layout.",
+    "Color, image, border, background, and masking properties describe how boxes and their contents are painted.",
+    "Transforms, filters, animations, and transitions change visual presentation over time and create effects that can influence stacking and compositing.",
+    "Specialized property families support SVG, MathML, generated content, UI affordances, view transitions, and other platform capabilities.",
+    "Property names and specification status are distinct from browser support; experimental entries need compatibility review."
+  ],
+  "inventoryComplete": true,
+  "inventory": [
+    {
+      "id": "css-custom-properties-for-cascading-variables",
+      "title": "CSS Custom Properties for Cascading Variables properties",
+      "items": [
+        "--*"
+      ]
+    },
+    {
+      "id": "webkit-extensions",
+      "title": "WebKit Extensions properties",
+      "items": [
+        "-webkit-text-fill-color",
+        "-webkit-text-stroke",
+        "-webkit-text-stroke-color",
+        "-webkit-text-stroke-width"
+      ]
+    },
+    {
+      "id": "css-basic-user-interface",
+      "title": "CSS Basic User Interface properties",
+      "items": [
+        "accent-color",
+        "appearance",
+        "caret",
+        "caret-animation",
+        "caret-color",
+        "caret-shape",
+        "cursor",
+        "interactivity",
+        "interest-delay",
+        "interest-delay-end",
+        "interest-delay-start",
+        "outline",
+        "outline-color",
+        "outline-offset",
+        "outline-style",
+        "outline-width",
+        "pointer-events",
+        "resize",
+        "user-select",
+        "window-drag"
+      ]
+    },
+    {
+      "id": "css-inline",
+      "title": "CSS Inline properties",
+      "items": [
+        "alignment-baseline",
+        "baseline-shift",
+        "baseline-source",
+        "dominant-baseline",
+        "initial-letter",
+        "line-height",
+        "text-box",
+        "text-box-edge",
+        "text-box-trim",
+        "vertical-align"
+      ]
+    },
+    {
+      "id": "css-cascading-and-inheritance",
+      "title": "CSS Cascading and Inheritance properties",
+      "items": [
+        "all"
+      ]
+    },
+    {
+      "id": "css-animations",
+      "title": "CSS Animations properties",
+      "items": [
+        "animation",
+        "animation-composition",
+        "animation-delay",
+        "animation-direction",
+        "animation-duration",
+        "animation-fill-mode",
+        "animation-iteration-count",
+        "animation-name",
+        "animation-play-state",
+        "animation-timing-function",
+        "animation-trigger",
+        "timeline-trigger",
+        "timeline-trigger-activation-range",
+        "timeline-trigger-activation-range-end",
+        "timeline-trigger-activation-range-start",
+        "timeline-trigger-active-range",
+        "timeline-trigger-active-range-end",
+        "timeline-trigger-active-range-start",
+        "timeline-trigger-name",
+        "timeline-trigger-source",
+        "trigger-scope"
+      ]
+    },
+    {
+      "id": "filter-effects",
+      "title": "Filter Effects properties",
+      "items": [
+        "backdrop-filter",
+        "color-interpolation-filters",
+        "filter",
+        "flood-color",
+        "flood-opacity",
+        "lighting-color"
+      ]
+    },
+    {
+      "id": "css-transforms",
+      "title": "CSS Transforms properties",
+      "items": [
+        "backface-visibility",
+        "perspective",
+        "perspective-origin",
+        "rotate",
+        "scale",
+        "transform",
+        "transform-box",
+        "transform-origin",
+        "transform-style",
+        "translate"
+      ]
+    },
+    {
+      "id": "css-backgrounds-and-borders",
+      "title": "CSS Backgrounds and Borders properties",
+      "items": [
+        "background",
+        "background-attachment",
+        "background-clip",
+        "background-color",
+        "background-image",
+        "background-origin",
+        "background-position",
+        "background-position-x",
+        "background-position-y",
+        "background-repeat",
+        "background-size",
+        "border",
+        "border-bottom",
+        "border-bottom-color",
+        "border-bottom-left-radius",
+        "border-bottom-right-radius",
+        "border-bottom-style",
+        "border-bottom-width",
+        "border-color",
+        "border-image",
+        "border-image-outset",
+        "border-image-repeat",
+        "border-image-slice",
+        "border-image-source",
+        "border-image-width",
+        "border-left",
+        "border-left-color",
+        "border-left-style",
+        "border-left-width",
+        "border-radius",
+        "border-right",
+        "border-right-color",
+        "border-right-style",
+        "border-right-width",
+        "border-shape",
+        "border-style",
+        "border-top",
+        "border-top-color",
+        "border-top-left-radius",
+        "border-top-right-radius",
+        "border-top-style",
+        "border-top-width",
+        "border-width",
+        "box-shadow",
+        "corner-block-end-shape",
+        "corner-block-start-shape",
+        "corner-bottom-left-shape",
+        "corner-bottom-right-shape",
+        "corner-bottom-shape",
+        "corner-end-end-shape",
+        "corner-end-start-shape",
+        "corner-inline-end-shape",
+        "corner-inline-start-shape",
+        "corner-left-shape",
+        "corner-right-shape",
+        "corner-shape",
+        "corner-start-end-shape",
+        "corner-start-start-shape",
+        "corner-top-left-shape",
+        "corner-top-right-shape",
+        "corner-top-shape"
+      ]
+    },
+    {
+      "id": "compositing-and-blending",
+      "title": "Compositing and Blending properties",
+      "items": [
+        "background-blend-mode",
+        "isolation",
+        "mix-blend-mode"
+      ]
+    },
+    {
+      "id": "css-masking",
+      "title": "CSS Masking properties",
+      "items": [
+        "clip-path",
+        "clip-rule",
+        "mask",
+        "mask-border",
+        "mask-border-mode",
+        "mask-border-outset",
+        "mask-border-repeat",
+        "mask-border-slice",
+        "mask-border-source",
+        "mask-border-width",
+        "mask-clip",
+        "mask-composite",
+        "mask-image",
+        "mask-mode",
+        "mask-origin",
+        "mask-position",
+        "mask-repeat",
+        "mask-size",
+        "mask-type"
+      ]
+    },
+    {
+      "id": "css-color",
+      "title": "CSS Color properties",
+      "items": [
+        "color",
+        "color-scheme",
+        "dynamic-range-limit",
+        "forced-color-adjust",
+        "opacity",
+        "print-color-adjust"
+      ]
+    },
+    {
+      "id": "css-generated-content",
+      "title": "CSS Generated Content properties",
+      "items": [
+        "content",
+        "quotes"
+      ]
+    },
+    {
+      "id": "css-lists-and-counters",
+      "title": "CSS Lists and Counters properties",
+      "items": [
+        "counter-increment",
+        "counter-reset",
+        "counter-set",
+        "list-style",
+        "list-style-image",
+        "list-style-position",
+        "list-style-type"
+      ]
+    },
+    {
+      "id": "scalable-vector-graphics",
+      "title": "Scalable Vector Graphics properties",
+      "items": [
+        "cx",
+        "cy",
+        "d",
+        "fill",
+        "fill-opacity",
+        "fill-rule",
+        "marker",
+        "marker-end",
+        "marker-mid",
+        "marker-start",
+        "paint-order",
+        "path-length",
+        "r",
+        "rx",
+        "ry",
+        "shape-rendering",
+        "stop-color",
+        "stop-opacity",
+        "stroke",
+        "stroke-dasharray",
+        "stroke-dashoffset",
+        "stroke-linecap",
+        "stroke-linejoin",
+        "stroke-miterlimit",
+        "stroke-opacity",
+        "stroke-width",
+        "text-anchor",
+        "text-rendering",
+        "vector-effect",
+        "x",
+        "y"
+      ]
+    },
+    {
+      "id": "css-fonts",
+      "title": "CSS Fonts properties",
+      "items": [
+        "font",
+        "font-family",
+        "font-feature-settings",
+        "font-kerning",
+        "font-language-override",
+        "font-optical-sizing",
+        "font-palette",
+        "font-size",
+        "font-size-adjust",
+        "font-style",
+        "font-synthesis",
+        "font-synthesis-small-caps",
+        "font-synthesis-style",
+        "font-synthesis-weight",
+        "font-variant",
+        "font-variant-alternates",
+        "font-variant-caps",
+        "font-variant-east-asian",
+        "font-variant-emoji",
+        "font-variant-ligatures",
+        "font-variant-numeric",
+        "font-variant-position",
+        "font-variation-settings",
+        "font-weight"
+      ]
+    },
+    {
+      "id": "css-text",
+      "title": "CSS Text properties",
+      "items": [
+        "hanging-punctuation",
+        "hyphenate-character",
+        "hyphenate-limit-chars",
+        "hyphens",
+        "letter-spacing",
+        "line-break",
+        "overflow-wrap",
+        "tab-size",
+        "text-align",
+        "text-align-last",
+        "text-autospace",
+        "text-fit",
+        "text-indent",
+        "text-justify",
+        "text-transform",
+        "text-wrap",
+        "text-wrap-mode",
+        "text-wrap-style",
+        "white-space",
+        "white-space-collapse",
+        "word-break",
+        "word-spacing",
+        "word-wrap"
+      ]
+    },
+    {
+      "id": "css-images",
+      "title": "CSS Images properties",
+      "items": [
+        "image-orientation",
+        "image-rendering",
+        "object-fit",
+        "object-position"
+      ]
+    },
+    {
+      "id": "mathml",
+      "title": "MathML properties",
+      "items": [
+        "math-depth",
+        "math-style"
+      ]
+    },
+    {
+      "id": "motion-path",
+      "title": "Motion Path properties",
+      "items": [
+        "offset",
+        "offset-anchor",
+        "offset-distance",
+        "offset-path",
+        "offset-position",
+        "offset-rotate"
+      ]
+    },
+    {
+      "id": "css-paged-media",
+      "title": "CSS Paged Media properties",
+      "items": [
+        "page"
+      ]
+    },
+    {
+      "id": "css-ruby",
+      "title": "CSS Ruby properties",
+      "items": [
+        "ruby-align",
+        "ruby-overhang",
+        "ruby-position"
+      ]
+    },
+    {
+      "id": "css-shapes",
+      "title": "CSS Shapes properties",
+      "items": [
+        "shape-image-threshold",
+        "shape-margin",
+        "shape-outside"
+      ]
+    },
+    {
+      "id": "css-text-decoration",
+      "title": "CSS Text Decoration properties",
+      "items": [
+        "text-decoration",
+        "text-decoration-color",
+        "text-decoration-inset",
+        "text-decoration-line",
+        "text-decoration-skip-ink",
+        "text-decoration-style",
+        "text-decoration-thickness",
+        "text-emphasis",
+        "text-emphasis-color",
+        "text-emphasis-position",
+        "text-emphasis-style",
+        "text-shadow",
+        "text-underline-offset",
+        "text-underline-position"
+      ]
+    },
+    {
+      "id": "pointer-events",
+      "title": "Pointer Events properties",
+      "items": [
+        "touch-action"
+      ]
+    },
+    {
+      "id": "css-transitions",
+      "title": "CSS Transitions properties",
+      "items": [
+        "transition",
+        "transition-behavior",
+        "transition-delay",
+        "transition-duration",
+        "transition-property",
+        "transition-timing-function"
+      ]
+    },
+    {
+      "id": "css-view-transitions",
+      "title": "CSS View Transitions properties",
+      "items": [
+        "view-transition-class",
+        "view-transition-name",
+        "view-transition-scope"
+      ]
+    },
+    {
+      "id": "css-will-change",
+      "title": "CSS Will Change properties",
+      "items": [
+        "will-change"
+      ]
+    },
+    {
+      "id": "experimental-scroll-driven-animations",
+      "title": "Experimental scroll-driven animations properties",
+      "items": [
+        "animation-range",
+        "animation-range-end",
+        "animation-range-start",
+        "scroll-timeline",
+        "scroll-timeline-axis",
+        "scroll-timeline-name",
+        "timeline-scope",
+        "view-timeline",
+        "view-timeline-axis",
+        "view-timeline-inset",
+        "view-timeline-name"
+      ]
+    },
+    {
+      "id": "experimental-css-animations",
+      "title": "Experimental css animations properties",
+      "items": [
+        "animation-timeline"
+      ]
+    },
+    {
+      "id": "experimental-css-basic-user-interface",
+      "title": "Experimental css basic user interface properties",
+      "items": [
+        "field-sizing"
+      ]
+    },
+    {
+      "id": "experimental-css-fonts",
+      "title": "Experimental css fonts properties",
+      "items": [
+        "font-synthesis-position",
+        "font-width"
+      ]
+    },
+    {
+      "id": "experimental-css-images",
+      "title": "Experimental css images properties",
+      "items": [
+        "image-resolution",
+        "object-view-box"
+      ]
+    },
+    {
+      "id": "experimental-css-inline",
+      "title": "Experimental css inline properties",
+      "items": [
+        "initial-letter-align"
+      ]
+    },
+    {
+      "id": "experimental-css-values-and-units",
+      "title": "Experimental css values and units properties",
+      "items": [
+        "interpolate-size",
+        "link-parameters"
+      ]
+    },
+    {
+      "id": "experimental-css-rhythmic-sizing",
+      "title": "Experimental css rhythmic sizing properties",
+      "items": [
+        "line-height-step"
+      ]
+    },
+    {
+      "id": "experimental-css-box-model",
+      "title": "Experimental css box model properties",
+      "items": [
+        "margin-trim"
+      ]
+    },
+    {
+      "id": "experimental-mathml",
+      "title": "Experimental mathml properties",
+      "items": [
+        "math-shift"
+      ]
+    },
+    {
+      "id": "experimental-css-ruby",
+      "title": "Experimental css ruby properties",
+      "items": [
+        "ruby-merge"
+      ]
+    },
+    {
+      "id": "experimental-css-speech",
+      "title": "Experimental css speech properties",
+      "items": [
+        "speak-as"
+      ]
+    },
+    {
+      "id": "experimental-scalable-vector-graphics",
+      "title": "Experimental scalable vector graphics properties",
+      "items": [
+        "stroke-color"
+      ]
+    },
+    {
+      "id": "experimental-css-text-decoration",
+      "title": "Experimental css text decoration properties",
+      "items": [
+        "text-decoration-skip"
+      ]
+    },
+    {
+      "id": "experimental-css-mobile-text-size-adjustment",
+      "title": "Experimental css mobile text size adjustment properties",
+      "items": [
+        "text-size-adjust"
+      ]
+    },
+    {
+      "id": "experimental-css-text",
+      "title": "Experimental css text properties",
+      "items": [
+        "text-spacing-trim"
+      ]
+    }
+  ],
+  "comparisons": [
+    [
+      "transition",
+      "animation"
+    ],
+    [
+      "transform",
+      "translate"
+    ],
+    [
+      "opacity",
+      "visibility"
+    ],
+    [
+      "background",
+      "background-color"
+    ],
+    [
+      "font-size",
+      "line-height"
+    ]
+  ],
+  "comparisonSources": [
+    "https://www.w3.org/TR/css-2026/",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
+    "https://github.com/mdn/data/blob/1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27/css/properties.json"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "MDN CSS property index pinned to repository data; W3C CSS Snapshot 2026",
+    "edition": "MDN data commit 1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27; checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://www.w3.org/TR/css-2026/",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
+      "https://github.com/mdn/data/blob/1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27/css/properties.json"
+    ]
+  },
+  "scopeExclusions": [
+    "The selector, value, at-rule and box model baseline (t07-016)",
+    "Layout, flex, grid, positioning, overflow, responsive and scroll properties (t07-017)",
+    "Script APIs and CSSOM are in t07-015",
+    "Nonstandard and obsolete properties are excluded; experimental properties have separate groups."
+  ],
+  "generationAllowed": true
 }

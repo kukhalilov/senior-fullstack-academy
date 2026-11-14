@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1415,
+  "taskCount": 1492,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -8897,7 +8897,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-016-concepts",
@@ -8909,20 +8909,189 @@
       "prerequisites": [
         "t07-016-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-016-reference-inventory-pending",
+      "id": "t07-016-reference-selector-building-blocks",
       "track": "track-07",
-      "title": "CSS selectors at-rules cascade values and box model — Reference: awaiting curated names",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Selector syntax and structural building blocks",
       "module": "t07-016",
       "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
       "phase": "reference",
       "prerequisites": [
         "t07-016-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "selector-building-blocks"
+    },
+    {
+      "id": "t07-016-reference-standard-pseudo-classes",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Standard pseudo-classes",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-selector-building-blocks"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "standard-pseudo-classes"
+    },
+    {
+      "id": "t07-016-reference-experimental-pseudo-classes",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Experimental pseudo-classes in the pinned MDN index",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-standard-pseudo-classes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-pseudo-classes"
+    },
+    {
+      "id": "t07-016-reference-standard-pseudo-elements",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Standard pseudo-elements",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-experimental-pseudo-classes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "standard-pseudo-elements"
+    },
+    {
+      "id": "t07-016-reference-experimental-pseudo-elements",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Experimental pseudo-elements in the pinned MDN index",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-standard-pseudo-elements"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-pseudo-elements"
+    },
+    {
+      "id": "t07-016-reference-standard-at-rules",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Standard CSS at-rules",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-experimental-pseudo-elements"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "standard-at-rules"
+    },
+    {
+      "id": "t07-016-reference-experimental-at-rules",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Experimental CSS at-rules",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-standard-at-rules"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-at-rules"
+    },
+    {
+      "id": "t07-016-reference-standard-at-rule-descriptors",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Standard at-rule descriptors",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-experimental-at-rules"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "standard-at-rule-descriptors"
+    },
+    {
+      "id": "t07-016-reference-box-model-properties",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Standard CSS Box Model and Box Sizing properties",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-standard-at-rule-descriptors"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "box-model-properties"
+    },
+    {
+      "id": "t07-016-reference-standard-css-functions",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Standard CSS value functions",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-box-model-properties"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "standard-css-functions"
+    },
+    {
+      "id": "t07-016-reference-experimental-css-functions",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Experimental CSS value functions",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-standard-css-functions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-functions"
+    },
+    {
+      "id": "t07-016-reference-standard-css-value-types",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Standard CSS data types",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-experimental-css-functions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "standard-css-value-types"
+    },
+    {
+      "id": "t07-016-reference-standard-css-units",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Standard CSS units",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-standard-css-value-types"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "standard-css-units"
+    },
+    {
+      "id": "t07-016-reference-cascade-and-global-values",
+      "track": "track-07",
+      "title": "CSS selectors at-rules cascade values and box model — Reference: Cascade layers, value stages, and CSS-wide keywords",
+      "module": "t07-016",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-016-reference-standard-css-units"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cascade-and-global-values"
     },
     {
       "id": "t07-016-practice",
@@ -8932,9 +9101,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-016.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-016-reference-inventory-pending"
+        "t07-016-reference-cascade-and-global-values"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-016-interview",
@@ -8946,7 +9115,7 @@
       "prerequisites": [
         "t07-016-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-017-overview",
@@ -8956,7 +9125,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-017-concepts",
@@ -8968,20 +9137,293 @@
       "prerequisites": [
         "t07-017-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-017-reference-inventory-pending",
+      "id": "t07-017-reference-css-display",
       "track": "track-07",
-      "title": "CSS layout flexbox grid positioning and responsive design — Reference: awaiting curated names",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Display properties",
       "module": "t07-017",
       "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
       "phase": "reference",
       "prerequisites": [
         "t07-017-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-display"
+    },
+    {
+      "id": "t07-017-reference-css-box-alignment",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Box Alignment properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-display"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-box-alignment"
+    },
+    {
+      "id": "t07-017-reference-css-flexible-box-layout",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Flexible Box Layout properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-box-alignment"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-flexible-box-layout"
+    },
+    {
+      "id": "t07-017-reference-css-grid-layout",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Grid Layout properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-flexible-box-layout"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-grid-layout"
+    },
+    {
+      "id": "t07-017-reference-css-positioned-layout",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Positioned Layout properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-grid-layout"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-positioned-layout"
+    },
+    {
+      "id": "t07-017-reference-css-overflow",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Overflow properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-positioned-layout"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-overflow"
+    },
+    {
+      "id": "t07-017-reference-css-scroll-snap",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Scroll Snap properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-overflow"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-scroll-snap"
+    },
+    {
+      "id": "t07-017-reference-css-multi-column-layout",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Multi-column Layout properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-scroll-snap"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-multi-column-layout"
+    },
+    {
+      "id": "t07-017-reference-css-fragmentation",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Fragmentation properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-multi-column-layout"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-fragmentation"
+    },
+    {
+      "id": "t07-017-reference-css-table",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Table properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-fragmentation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-table"
+    },
+    {
+      "id": "t07-017-reference-css-containment",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Containment properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-table"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-containment"
+    },
+    {
+      "id": "t07-017-reference-css-conditional-rules",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Conditional Rules properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-containment"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-conditional-rules"
+    },
+    {
+      "id": "t07-017-reference-css-overscroll-behavior",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Overscroll Behavior properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-conditional-rules"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-overscroll-behavior"
+    },
+    {
+      "id": "t07-017-reference-css-scrollbars-styling",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Scrollbars Styling properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-overscroll-behavior"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-scrollbars-styling"
+    },
+    {
+      "id": "t07-017-reference-css-writing-modes",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Writing Modes properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-scrollbars-styling"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-writing-modes"
+    },
+    {
+      "id": "t07-017-reference-css-logical-properties-and-values",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Logical Properties and Values properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-writing-modes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-logical-properties-and-values"
+    },
+    {
+      "id": "t07-017-reference-css-scroll-anchoring",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Scroll Anchoring properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-logical-properties-and-values"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-scroll-anchoring"
+    },
+    {
+      "id": "t07-017-reference-css-viewport",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: CSS Viewport properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-scroll-anchoring"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-viewport"
+    },
+    {
+      "id": "t07-017-reference-experimental-css-positioned-layout",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: Experimental css positioned layout properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-css-viewport"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-positioned-layout"
+    },
+    {
+      "id": "t07-017-reference-experimental-css-anchor-positioning",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: Experimental css anchor positioning properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-experimental-css-positioned-layout"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-anchor-positioning"
+    },
+    {
+      "id": "t07-017-reference-experimental-css-overflow",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: Experimental css overflow properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-experimental-css-anchor-positioning"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-overflow"
+    },
+    {
+      "id": "t07-017-reference-experimental-css-scroll-snap",
+      "track": "track-07",
+      "title": "CSS layout flexbox grid positioning and responsive design — Reference: Experimental css scroll snap properties",
+      "module": "t07-017",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-017-reference-experimental-css-overflow"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-scroll-snap"
     },
     {
       "id": "t07-017-practice",
@@ -8991,9 +9433,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-017.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-017-reference-inventory-pending"
+        "t07-017-reference-experimental-css-scroll-snap"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-017-interview",
@@ -9005,66 +9447,625 @@
       "prerequisites": [
         "t07-017-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-018-overview",
       "track": "track-07",
-      "title": "CSS typography color animation transforms and modern features — Big-picture orientation and mental model",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Big-picture orientation and mental model",
       "module": "t07-018",
       "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-018-concepts",
       "track": "track-07",
-      "title": "CSS typography color animation transforms and modern features — Core concepts and how they fit together",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Core concepts and how they fit together",
       "module": "t07-018",
       "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
       "phase": "concepts",
       "prerequisites": [
         "t07-018-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-018-reference-inventory-pending",
+      "id": "t07-018-reference-css-custom-properties-for-cascading-variables",
       "track": "track-07",
-      "title": "CSS typography color animation transforms and modern features — Reference: awaiting curated names",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Custom Properties for Cascading Variables properties",
       "module": "t07-018",
       "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
       "phase": "reference",
       "prerequisites": [
         "t07-018-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-custom-properties-for-cascading-variables"
+    },
+    {
+      "id": "t07-018-reference-webkit-extensions",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: WebKit Extensions properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-custom-properties-for-cascading-variables"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "webkit-extensions"
+    },
+    {
+      "id": "t07-018-reference-css-basic-user-interface",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Basic User Interface properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-webkit-extensions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-basic-user-interface"
+    },
+    {
+      "id": "t07-018-reference-css-inline",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Inline properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-basic-user-interface"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-inline"
+    },
+    {
+      "id": "t07-018-reference-css-cascading-and-inheritance",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Cascading and Inheritance properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-inline"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-cascading-and-inheritance"
+    },
+    {
+      "id": "t07-018-reference-css-animations",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Animations properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-cascading-and-inheritance"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-animations"
+    },
+    {
+      "id": "t07-018-reference-filter-effects",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Filter Effects properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-animations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "filter-effects"
+    },
+    {
+      "id": "t07-018-reference-css-transforms",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Transforms properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-filter-effects"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-transforms"
+    },
+    {
+      "id": "t07-018-reference-css-backgrounds-and-borders",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Backgrounds and Borders properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-transforms"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-backgrounds-and-borders"
+    },
+    {
+      "id": "t07-018-reference-compositing-and-blending",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Compositing and Blending properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-backgrounds-and-borders"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "compositing-and-blending"
+    },
+    {
+      "id": "t07-018-reference-css-masking",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Masking properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-compositing-and-blending"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-masking"
+    },
+    {
+      "id": "t07-018-reference-css-color",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Color properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-masking"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-color"
+    },
+    {
+      "id": "t07-018-reference-css-generated-content",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Generated Content properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-color"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-generated-content"
+    },
+    {
+      "id": "t07-018-reference-css-lists-and-counters",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Lists and Counters properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-generated-content"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-lists-and-counters"
+    },
+    {
+      "id": "t07-018-reference-scalable-vector-graphics",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Scalable Vector Graphics properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-lists-and-counters"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "scalable-vector-graphics"
+    },
+    {
+      "id": "t07-018-reference-css-fonts",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Fonts properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-scalable-vector-graphics"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-fonts"
+    },
+    {
+      "id": "t07-018-reference-css-text",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Text properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-fonts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-text"
+    },
+    {
+      "id": "t07-018-reference-css-images",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Images properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-text"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-images"
+    },
+    {
+      "id": "t07-018-reference-mathml",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: MathML properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-images"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "mathml"
+    },
+    {
+      "id": "t07-018-reference-motion-path",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Motion Path properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-mathml"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "motion-path"
+    },
+    {
+      "id": "t07-018-reference-css-paged-media",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Paged Media properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-motion-path"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-paged-media"
+    },
+    {
+      "id": "t07-018-reference-css-ruby",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Ruby properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-paged-media"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-ruby"
+    },
+    {
+      "id": "t07-018-reference-css-shapes",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Shapes properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-ruby"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-shapes"
+    },
+    {
+      "id": "t07-018-reference-css-text-decoration",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Text Decoration properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-shapes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-text-decoration"
+    },
+    {
+      "id": "t07-018-reference-pointer-events",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Pointer Events properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-text-decoration"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "pointer-events"
+    },
+    {
+      "id": "t07-018-reference-css-transitions",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Transitions properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-pointer-events"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-transitions"
+    },
+    {
+      "id": "t07-018-reference-css-view-transitions",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS View Transitions properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-transitions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-view-transitions"
+    },
+    {
+      "id": "t07-018-reference-css-will-change",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Will Change properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-view-transitions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "css-will-change"
+    },
+    {
+      "id": "t07-018-reference-experimental-scroll-driven-animations",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental scroll-driven animations properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-css-will-change"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-scroll-driven-animations"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-animations",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css animations properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-scroll-driven-animations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-animations"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-basic-user-interface",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css basic user interface properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-animations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-basic-user-interface"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-fonts",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css fonts properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-basic-user-interface"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-fonts"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-images",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css images properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-fonts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-images"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-inline",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css inline properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-images"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-inline"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-values-and-units",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css values and units properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-inline"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-values-and-units"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-rhythmic-sizing",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css rhythmic sizing properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-values-and-units"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-rhythmic-sizing"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-box-model",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css box model properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-rhythmic-sizing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-box-model"
+    },
+    {
+      "id": "t07-018-reference-experimental-mathml",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental mathml properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-box-model"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-mathml"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-ruby",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css ruby properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-mathml"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-ruby"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-speech",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css speech properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-ruby"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-speech"
+    },
+    {
+      "id": "t07-018-reference-experimental-scalable-vector-graphics",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental scalable vector graphics properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-speech"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-scalable-vector-graphics"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-text-decoration",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css text decoration properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-scalable-vector-graphics"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-text-decoration"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-mobile-text-size-adjustment",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css mobile text size adjustment properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-text-decoration"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-mobile-text-size-adjustment"
+    },
+    {
+      "id": "t07-018-reference-experimental-css-text",
+      "track": "track-07",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: Experimental css text properties",
+      "module": "t07-018",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-018-reference-experimental-css-mobile-text-size-adjustment"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "experimental-css-text"
     },
     {
       "id": "t07-018-practice",
       "track": "track-07",
-      "title": "CSS typography color animation transforms and modern features — Exercises and worked solutions",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Exercises and worked solutions",
       "module": "t07-018",
       "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-018-reference-inventory-pending"
+        "t07-018-reference-experimental-css-text"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-018-interview",
       "track": "track-07",
-      "title": "CSS typography color animation transforms and modern features — Interview questions and reasoning",
+      "title": "CSS properties typography colors backgrounds surfaces effects motion and specialized features — Interview questions and reasoning",
       "module": "t07-018",
       "manifest": "curriculum/manifests/react-and-frontend/t07-018.json",
       "phase": "interview",
       "prerequisites": [
         "t07-018-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-019-overview",

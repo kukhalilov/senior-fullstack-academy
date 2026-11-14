@@ -442,3 +442,38 @@ test('browser DOM API inventory covers current interface families without duplic
   for (const source of ['https://dom.spec.whatwg.org/', 'https://html.spec.whatwg.org/multipage/', 'https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver', 'https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API']) assert.ok(manifest.sourceSnapshot.urls.includes(source), source);
   assert.equal(items.includes('Node.children'), false);
 });
+
+test('CSS foundation inventory freezes indexed selectors values at-rules and box model properties', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-016.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  assert.match(manifest.sourceSnapshot.edition, /MDN data commit 1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27/);
+  const all = manifest.inventory.flatMap(group => group.items);
+  for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${manifest.id}/${group.id}`);
+  assert.equal(new Set(all).size, all.length, 'inventory items do not overlap across reference groups');
+  const counts = Object.fromEntries(manifest.inventory.map(group => [group.id, group.items.length]));
+  assert.deepEqual(counts, { 'selector-building-blocks': 15, 'standard-pseudo-classes': 70, 'experimental-pseudo-classes': 6, 'standard-pseudo-elements': 26, 'experimental-pseudo-elements': 4, 'standard-at-rules': 17, 'experimental-at-rules': 1, 'standard-at-rule-descriptors': 35, 'box-model-properties': 27, 'standard-css-functions': 95, 'experimental-css-functions': 10, 'standard-css-value-types': 38, 'standard-css-units': 62, 'cascade-and-global-values': 30 });
+  for (const item of ['::view-transition', ':active-view-transition', ':has()', '@starting-style', '@position-try', '@font-face src', 'aspect-ratio', 'box-sizing', 'anchor()', 'calc()', 'CSS-wide keyword revert-layer', 'dvh', 'dvb', 'svb', 'lvmax', 'cqi', 'cqmax', 'rcap', 'length-percentage']) assert.ok(all.includes(item), item);
+  assert.equal(all.includes('@document'), false);
+  assert.equal(manifest.inventory.find(group => group.id === 'experimental-css-functions').items.includes('anchor()'), true);
+});
+
+test('CSS property manifests cover the complete pinned standard and experimental MDN index', () => {
+  const base = 'curriculum/manifests/react-and-frontend';
+  const manifests = ['t07-016.json', 't07-017.json', 't07-018.json'].map(file => JSON.parse(fs.readFileSync(`${base}/${file}`, 'utf8')));
+  const propertyGroups = manifests.flatMap(manifest => manifest.inventory.filter(group => /properties/i.test(group.title)));
+  const standard = propertyGroups.filter(group => !group.title.startsWith('Experimental')).flatMap(group => group.items);
+  const experimental = propertyGroups.filter(group => group.title.startsWith('Experimental')).flatMap(group => group.items);
+  assert.equal(standard.length, 498);
+  assert.equal(new Set(standard).size, 498, 'standard properties have no omissions caused by duplicates');
+  assert.equal(experimental.length, 40);
+  assert.equal(new Set(experimental).size, 40, 'experimental properties have no omissions caused by duplicates');
+  for (const manifest of manifests) {
+    assert.equal(manifest.inventoryComplete, true, manifest.id);
+    assert.equal(manifest.generationAllowed, true, manifest.id);
+    assert.ok(manifest.sourceSnapshot.urls.some(url => url.endsWith('/css/properties.json')));
+    for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${manifest.id}/${group.id}`);
+  }
+  for (const item of ['container-type', 'display', 'font-palette', 'line-clamp', 'scrollbar-width', 'text-wrap', 'view-transition-name', 'background-color', 'fill']) assert.ok(standard.includes(item), item);
+  assert.ok(experimental.includes('anchor-name'));
+});
