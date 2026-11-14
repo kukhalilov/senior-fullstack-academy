@@ -49,7 +49,7 @@ test('C# program structure has source-backed syntax and current file-based app c
   const names = manifest.inventory.flatMap(group => group.items);
   assert.equal(manifest.inventoryComplete, true);
   assert.equal(manifest.generationAllowed, true);
-  assert.match(manifest.sourceSnapshot.edition, /^C# 14 stable;/);
+  assert.match(manifest.sourceSnapshot.edition, /^C# 15 stable/);
   assert.ok(names.includes('Top-level statements'));
   assert.ok(names.includes('static void Main()'));
   assert.ok(manifest.versionNotes.some(note => note.items.includes('File-based apps') && note.sourceUrls.length));
@@ -74,7 +74,7 @@ test('C# numeric conversion inventory covers every directed pair once', () => {
   assert.ok(implicit.includes('char to ushort (implicit numeric conversion)'));
   assert.ok(explicit.includes('char to short (explicit numeric conversion)'));
   assert.ok([...implicitGroups, ...explicitGroups].every(group => group.items.length <= 13));
-  assert.ok(conversions.versionNotes.some(note => note.edition === '.NET 11 prerelease'));
+  assert.ok(conversions.versionNotes.some(note => note.edition === '.NET 11'));
 });
 
 test('DSA complexity scope is source-backed but held until solution checks exist', () => {
@@ -329,6 +329,15 @@ test('the curriculum teaches overview before references and has no forced versio
   assert.equal(new Set(pathTopicIds).size, path.topicCount);
   assert.ok(path.stages.findIndex(stage => stage.id === 'intermediate-dsa') < path.stages.findIndex(stage => stage.id === 'web-language-foundations'));
   assert.deepEqual(path.stages.find(stage => stage.id === 'intermediate-dsa').prerequisites, ['programming-and-problem-solving']);
+});
+
+test('scheduled generation stays below the observed Gemini free-tier daily request quota', () => {
+  const workflow = fs.readFileSync('.github/workflows/generate.yml', 'utf8');
+  assert.match(workflow, /cron: '17 \*\/4 \* \* \*'/);
+  assert.match(workflow, /UNITS_PER_RUN: '40'/);
+  assert.match(workflow, /MAX_API_CALLS_PER_RUN: '80'/);
+  assert.equal(6 * 80, 480);
+  assert.ok(480 < 500);
 });
 
 test('JavaScript language inventories use current standard names without duplicate entries', () => {
@@ -696,3 +705,481 @@ test('system-design inventory ties measurable quality targets to workload and ca
   assert.equal(new Set(all).size, all.length);
   for (const item of ['Functional requirement', 'Nonfunctional requirement', 'Service Level Indicator (SLI)', 'Service Level Objective (SLO)', 'Service Level Agreement (SLA)', 'Peak request rate', 'Capacity forecast', 'N+2 redundancy', 'Graceful degradation', 'Architecture Decision Record (ADR)']) assert.ok(all.includes(item), item);
 });
+
+test('protocol inventory names current HTTP, gRPC, and GraphQL contracts with published and draft status separated', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-007.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['QUERY', 'Accept-Query response field', 'HTTP/3', 'Bidirectional-streaming RPC', 'Empty selection set', 'Built-in directive @oneOf', 'application/graphql-response+json', 'GraphQL-over-HTTP Working Draft']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('RFC 10008') && note.items.some(item => item.includes('safe and idempotent'))));
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('GraphQL September 2026') && note.items.some(item => item.includes('Empty selection sets'))));
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('Working Draft') && note.items.some(item => item.includes('not a final released standard'))));
+});
+
+test('RabbitMQ and Kafka inventory keeps acknowledgement, ordering, retention, and replication guarantees scoped', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-008.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['RabbitMQ publisher confirm', 'RabbitMQ consumer delivery acknowledgement', 'Queue durability versus message persistence', 'RabbitMQ federation', 'Kafka per-partition order', 'Kafka consumer group rebalance', 'Kafka log compaction', 'Exactly-once processing scope']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('RabbitMQ 4.2') && note.items.some(item => item.includes('RabbitMQ 4.3.0'))));
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('no global total order')));
+});
+
+test('resilience inventory treats retries, circuit breakers, concurrency limits, and rate limits as distinct policies', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-009.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Full jitter', 'Retry budget', 'Closed circuit state', 'Half-open probe request', 'Token bucket algorithm', 'Concurrency limiter', 'HTTP 429 Too Many Requests', 'Hedging strategy']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('.NET 10 resilience libraries')));
+});
+
+test('distributed transaction inventory does not conflate compensation with rollback or claim global exactly-once', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-010.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Two-Phase Commit (2PC)', 'Transactional Outbox pattern', 'Polling publisher', 'Transaction-log tailing relay', 'Transactional Inbox pattern', 'Saga choreography', 'Saga orchestration', 'Compensating transaction', 'Point of no return']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('not exact inverses')));
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('do not claim arbitrary end-to-end exactly-once')));
+});
+
+test('Redis cache inventory includes current data types, cache failure modes, and recent command changes', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-011.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Cache-aside (lazy loading)', 'SET IFEQ', 'MSETEX', 'Redis allkeys-lrm', 'Redis volatile-lrm', 'Cache stampede', 'Single-flight request coalescing', 'Redis MULTI', 'Redis Functions']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('8.6') && note.items.some(item => item.includes('LRM'))));
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('8.4') && note.items.some(item => item.includes('DELEX'))));
+});
+
+test('scale and availability inventory distinguishes replica, backup, shard, cell, and service stamp', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-012.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Horizontal scaling (scale out)', 'Recovery Time Objective (RTO)', 'Recovery Point Objective (RPO)', 'Synchronous replication', 'Read replica', 'Replication versus backup', 'Consistent hashing', 'Shard key', 'Deployment stamp', 'Cell architecture']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.concepts.some(item => item.includes('not the same concept as a database shard')));
+});
+
+test('observability inventory names current OpenTelemetry signals and Prometheus rule surfaces', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-013.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['OpenTelemetry Logs data model', 'OpenTelemetry Metrics data model', 'Distributed trace', 'Baggage', 'ObservableUpDownCounter', 'Native histogram', 'Tail-based sampling', 'Receiver', 'Processor', 'Exporter', 'Connector', 'Extension', 'Prometheus Alertmanager', 'Burn rate']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('1.45.0')));
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('hundreds of optional components')));
+});
+
+test('Git inventory separates the index, working tree, history rewriting, recovery, and collaboration workflows', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-001.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Index (staging area)', 'git merge', 'git rebase --onto', 'git restore --staged', 'git reset --hard', 'git reflog', 'git push --force-with-lease', 'git worktree add']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.concepts.some(item => item.includes('changes their identities')));
+});
+
+test('GitHub Actions inventory includes automation, artifacts, safe credentials, and deployment recovery boundaries', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-002.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['on.schedule', 'on.workflow_call', 'strategy.matrix', 'Workflow concurrency group', 'Dependency cache versus artifact', 'actions/upload-artifact', 'Artifact attestation', 'GitHub Actions OIDC token', 'Environment protection rule', 'Database expand-and-contract migration']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('personal Free repository')));
+});
+
+test('IIS inventory names current ANCM hosting choices, app-pool controls, and verified startup failures', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-003.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['ApplicationPoolIdentity', 'In-process hosting model', 'Out-of-process hosting model', 'AspNetCoreModuleV2', 'HTTP 500.33 ANCM request handler load failure', 'HTTP 500.36 ANCM out-of-process handler load failure', 'HTTP 500.38 ANCM application DLL not found', 'HTTP 502.5 out-of-process process failure']) assert.ok(all.includes(item), item);
+});
+
+test('Kestrel and YARP inventories distinguish trusted forwarding, TLS, route, cluster, and destination behavior', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-004.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['HttpProtocols.Http3', 'ServerCertificateSelector', 'KnownProxies', 'ForwardLimit', 'RouteConfig', 'ClusterConfig', 'DestinationConfig', 'Active health check', 'Passive health check']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('unconfigured proxies are ignored by default'))));
+});
+
+test('Linux operations inventory covers Bash, permissions, process states, systemd, networking, and journald', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-005.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['pipefail', 'POSIX access control list (ACL)', 'Process state Z (zombie)', 'Type=notify-reload', 'systemctl enable', 'journalctl -b -1', 'ip route', 'ss']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('chmod 777')));
+});
+
+test('Docker inventory includes every Dockerfile instruction and Compose readiness/security boundaries', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-006.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['FROM', 'RUN', 'CMD', 'LABEL', 'EXPOSE', 'ENV', 'ADD', 'COPY', 'ENTRYPOINT', 'VOLUME', 'USER', 'WORKDIR', 'ARG', 'ONBUILD', 'STOPSIGNAL', 'HEALTHCHECK', 'SHELL', 'depends_on service_healthy', 'RUN --mount=type=secret']) assert.ok(all.includes(item), item);
+});
+
+test('cloud foundations and Azure/AWS provider service maps are separated and closed', () => {
+  for (const id of ['t09-007', 't09-010', 't09-011']) {
+    const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/infrastructure-and-operations/${id}.json`, 'utf8'));
+    assert.equal(manifest.inventoryComplete, true, id);
+    assert.equal(manifest.generationAllowed, true, id);
+    const all = manifest.inventory.flatMap(group => group.items);
+    assert.equal(new Set(all).size, all.length, id);
+    assert.ok(manifest.concepts.length >= 5, id);
+    assert.ok(manifest.scopeExclusions.length >= 3, id);
+  }
+  const cloud = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-007.json', 'utf8'));
+  const azure = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-010.json', 'utf8'));
+  const aws = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-011.json', 'utf8'));
+  assert.ok(cloud.scopeExclusions.some(item => item.includes('Azure-specific')));
+  assert.ok(azure.inventory.flatMap(group => group.items).includes('Managed identity'));
+  assert.ok(aws.inventory.flatMap(group => group.items).includes('AWS IAM Identity Center'));
+});
+
+test('Kubernetes and operations inventories separate orchestration, observability, incidents, and diagnostics', () => {
+  for (const id of ['t09-008', 't09-009', 't09-012', 't09-013']) {
+    const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/infrastructure-and-operations/${id}.json`, 'utf8'));
+    assert.equal(manifest.inventoryComplete, true, id);
+    assert.equal(manifest.generationAllowed, true, id);
+    const all = manifest.inventory.flatMap(group => group.items);
+    assert.equal(new Set(all).size, all.length, id);
+    assert.ok(manifest.sourceSnapshot.urls.length >= 4, id);
+  }
+  const k8s = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-008.json', 'utf8'));
+  const ops = JSON.parse(fs.readFileSync('curriculum/manifests/infrastructure-and-operations/t09-009.json', 'utf8'));
+  assert.ok(k8s.inventory.flatMap(group => group.items).includes('HTTPRoute'));
+  assert.ok(k8s.versionNotes.some(note => note.edition.includes('v1.33')));
+  assert.ok(ops.inventory.flatMap(group => group.items).includes('Service-level objective (SLO)'));
+  assert.ok(ops.scopeExclusions.some(item => item.includes('t09-012')));
+});
+
+test('ASP.NET Core platform, hosting, and middleware scopes use current minimal-host and pipeline names', () => {
+  const platform = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-001.json', 'utf8'));
+  const hosting = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-002.json', 'utf8'));
+  const middleware = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-003.json', 'utf8'));
+  for (const manifest of [platform, hosting, middleware]) {
+    assert.equal(manifest.inventoryComplete, true, manifest.id);
+    assert.equal(manifest.generationAllowed, true, manifest.id);
+    const names = manifest.inventory.flatMap(group => group.items);
+    assert.equal(new Set(names).size, names.length, manifest.id);
+  }
+  const hostNames = hosting.inventory.flatMap(group => group.items);
+  assert.ok(hostNames.includes('WebApplication.CreateSlimBuilder'));
+  assert.ok(hostNames.includes('IHostedLifecycleService.StartingAsync'));
+  assert.ok(hosting.versionNotes.some(note => note.edition.includes('.NET 11 GA')));
+  const middlewareNames = middleware.inventory.flatMap(group => group.items);
+  assert.ok(middlewareNames.includes('UseWhen'));
+  assert.ok(middlewareNames.includes('UseForwardedHeaders'));
+  assert.ok(middlewareNames.includes('UseAntiforgery'));
+  assert.ok(platform.versionNotes.some(note => note.items.some(item => item.includes('.NET 11 is the current STS'))));
+});
+
+test('C# manifests pin C# 15 and .NET 11 GA while retaining the memory-safety preview boundary', () => {
+  for (const id of ['t01-002', 't01-003', 't01-022', 't01-023', 't01-024']) {
+    const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/c-language-and-net/${id}.json`, 'utf8'));
+    assert.match(manifest.sourceSnapshot.edition, /C# 15 stable|C# 15 \/ \.NET 11 GA/);
+    assert.doesNotMatch(manifest.sourceSnapshot.edition, /prerelease|public-preview/);
+  }
+  const controlFlow = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-022.json', 'utf8'));
+  assert.equal(controlFlow.versionNotes[0].edition, 'C# 15');
+  const operators = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-023.json', 'utf8'));
+  assert.equal(operators.versionNotes[0].edition, 'C# 15');
+  const conversions = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-024.json', 'utf8'));
+  assert.equal(conversions.versionNotes.find(note => note.edition === '.NET 11').items.length, 2);
+});
+
+test('C# type, nullability, class, struct, record, and union maps have unique names and current boundaries', () => {
+  for (const id of ['t01-004', 't01-005', 't01-006']) {
+    const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/c-language-and-net/${id}.json`, 'utf8'));
+    assert.equal(manifest.inventoryComplete, true, id);
+    assert.equal(manifest.generationAllowed, true, id);
+    const names = manifest.inventory.flatMap(group => group.items);
+    assert.equal(new Set(names).size, names.length, id);
+    assert.ok(manifest.concepts.length >= 5, id);
+    assert.ok(manifest.sourceSnapshot.urls.length >= 8, id);
+  }
+  const types = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-004.json', 'utf8'));
+  assert.ok(types.inventory.flatMap(group => group.items).includes('EqualityComparer<T>.Default'));
+  const nullable = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-005.json', 'utf8'));
+  assert.ok(nullable.inventory.flatMap(group => group.items).includes('MemberNotNullWhenAttribute'));
+  const declarations = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-006.json', 'utf8'));
+  assert.ok(declarations.inventory.flatMap(group => group.items).includes('Union declaration'));
+  assert.ok(declarations.versionNotes.some(note => note.edition.includes('C# 14 and C# 15')));
+});
+
+test('ASP.NET Core routing, MVC and Minimal API inventories stay distinct and current to version 11', () => {
+  const routing = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-004.json', 'utf8'));
+  const mvc = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-005.json', 'utf8'));
+  const minimal = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-006.json', 'utf8'));
+  for (const manifest of [routing, mvc, minimal]) {
+    assert.equal(manifest.inventoryComplete, true, manifest.id);
+    assert.equal(manifest.generationAllowed, true, manifest.id);
+    const names = manifest.inventory.flatMap(group => group.items);
+    assert.equal(new Set(names).size, names.length, manifest.id);
+    assert.ok(manifest.sourceSnapshot.edition.includes('ASP.NET Core 11'), manifest.id);
+  }
+  assert.ok(routing.inventory.flatMap(group => group.items).includes('EndpointSelector'));
+  assert.ok(routing.inventory.flatMap(group => group.items).includes('IBindableFromHttpContext<TSelf>'));
+  assert.ok(mvc.inventory.flatMap(group => group.items).includes('IAsyncExceptionFilter'));
+  assert.ok(mvc.inventory.flatMap(group => group.items).includes('ActionResult<TValue>'));
+  assert.ok(minimal.inventory.flatMap(group => group.items).includes('AddOpenApiOperationTransformer'));
+  assert.ok(minimal.versionNotes.some(note => note.items.some(item => item.includes('WithOpenApi'))));
+});
+
+test('ASP.NET Core DI, configuration, and options manifests are closed, unique, and current to .NET 11', () => {
+  const di = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-007.json', 'utf8'));
+  const configuration = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-008.json', 'utf8'));
+  for (const manifest of [di, configuration]) {
+    assert.equal(manifest.inventoryComplete, true, manifest.id);
+    assert.equal(manifest.generationAllowed, true, manifest.id);
+    const names = manifest.inventory.flatMap(group => group.items);
+    assert.equal(new Set(names).size, names.length, `${manifest.id} duplicate inventory items`);
+    assert.ok(manifest.concepts.length >= 4, manifest.id);
+    assert.ok(manifest.sourceSnapshot.urls.length >= 6, manifest.id);
+    assert.ok(manifest.sourceSnapshot.edition.includes('.NET 11 GA'), manifest.id);
+  }
+  const diNames = di.inventory.flatMap(group => group.items);
+  assert.ok(diNames.includes('AddKeyedSingleton'));
+  assert.ok(diNames.includes('IAsyncServiceScope.DisposeAsync'));
+  assert.ok(!diNames.includes('IServiceProviderEngine'));
+  assert.ok(di.versionNotes.some(note => note.items.some(item => item.includes('AggregateException'))));
+  const configNames = configuration.inventory.flatMap(group => group.items);
+  assert.ok(configNames.includes('IOptionsMonitor<TOptions>.OnChange'));
+  assert.ok(configNames.includes('OptionsBuilder<TOptions>.ValidateAsync'));
+  assert.ok(configNames.includes('IAsyncStartupValidator'));
+  assert.ok(configNames.includes('EnableConfigurationBindingGenerator'));
+  assert.ok(configuration.versionNotes.some(note => note.items.some(item => item.toLowerCase().includes('synchronous access'))));
+});
+
+test('ASP.NET Core dependency injection, configuration, logging, and HTTP body manifests stay bounded and current', () => {
+  const manifests = ['t02-007', 't02-008', 't02-009', 't02-010'].map(id =>
+    JSON.parse(fs.readFileSync(`curriculum/manifests/asp-net-core/${id}.json`, 'utf8')));
+  for (const manifest of manifests) {
+    assert.equal(manifest.inventoryComplete, true, manifest.id);
+    assert.equal(manifest.generationAllowed, true, manifest.id);
+    assert.equal(manifest.status, 'source-backed-draft-generation-enabled', manifest.id);
+    const names = manifest.inventory.flatMap(group => group.items);
+    assert.equal(new Set(names).size, names.length, `${manifest.id} duplicate inventory items`);
+    assert.ok(manifest.concepts.length >= 4, manifest.id);
+    assert.ok(manifest.sourceSnapshot.urls.length >= 6, manifest.id);
+  }
+  const logging = manifests.find(manifest => manifest.id === 't02-009');
+  const loggingNames = logging.inventory.flatMap(group => group.items);
+  assert.ok(loggingNames.includes('LoggerMessageAttribute.EventId'));
+  assert.ok(loggingNames.includes('LogPropertiesAttribute.Transitive'));
+  assert.ok(!loggingNames.includes('LoggerMessageAttribute.Exception'));
+  const http = manifests.find(manifest => manifest.id === 't02-010');
+  const httpNames = http.inventory.flatMap(group => group.items);
+  assert.ok(httpNames.includes('HttpRequest.BodyReader'));
+  assert.ok(httpNames.includes('HttpResponse.BodyWriter'));
+  assert.ok(httpNames.includes('MultipartReader.ReadNextSectionAsync'));
+  assert.ok(http.versionNotes.some(note => note.items.some(item => item.includes('UseStreamBasedJsonParsing'))));
+});
+
+test('ASP.NET Core authentication and authorization separate principals, policy selection, and resource checks', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-011.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('IAuthenticationService.ChallengeAsync'));
+  assert.ok(names.includes('AuthorizationOptions.FallbackPolicy'));
+  assert.ok(names.includes('IAuthorizationService.AuthorizeAsync(ClaimsPrincipal,Object,String)'));
+  assert.ok(names.includes('AuthorizationHandlerContext.PendingRequirements'));
+  assert.ok(manifest.concepts.some(concept => concept.includes('challenge, and forbid')));
+  assert.ok(manifest.sourceSnapshot.urls.includes('https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased'));
+});
+
+test('ASP.NET Core Identity separates proprietary tokens, JWT validation, OIDC, cookies, and passkeys', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-012.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('MapIdentityApi<TUser>'));
+  assert.ok(names.includes('UserManager<TUser>.AddOrUpdatePasskeyAsync'));
+  assert.ok(names.includes('CookieAuthenticationOptions.SlidingExpiration'));
+  assert.ok(names.includes('OpenIdConnectOptions.UsePkce'));
+  assert.ok(names.includes('TokenValidationParameters.ValidateIssuerSigningKey'));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('not JWTs'))));
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('t02-011')));
+});
+
+test('ASP.NET Core API contracts pin OpenAPI 3.2, community API versioning, Problem Details, and patterns', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-013.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('AddOpenApi'));
+  assert.ok(names.includes('OpenApiOptions.OpenApiVersion'));
+  assert.ok(names.includes('AddApiVersioning'));
+  assert.ok(names.includes('Asp.Versioning.Http package'));
+  assert.ok(names.includes('IProblemDetailsService.WriteAsync'));
+  assert.ok(names.includes('Keyset pagination'));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('OpenAPI 3.2 by default'))));
+  assert.ok(manifest.concepts.some(concept => concept.includes('not built-in ASP.NET Core middleware')));
+});
+
+test('ASP.NET Core browser and traffic protections distinguish CORS, antiforgery, rate limits, and HSTS', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-014.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('CorsPolicyBuilder.WithOrigins'));
+  assert.ok(names.includes('IAntiforgery.GetAndStoreTokens'));
+  assert.ok(names.includes('RateLimiterOptions.AddConcurrencyLimiter'));
+  assert.ok(names.includes('UseHsts'));
+  assert.ok(manifest.concepts.some(concept => concept.includes('not authentication or authorization')));
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('t02-011')));
+});
+
+test('ASP.NET Core cache manifests separate object, distributed, hybrid, response, and output semantics', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-015.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('CacheExtensions.GetOrCreateAsync<TItem>'));
+  assert.ok(names.includes('IDistributedCache.SetAsync'));
+  assert.ok(names.includes('HybridCache.RemoveByTagAsync'));
+  assert.ok(names.includes('OutputCachePolicyBuilder.SetVaryByRouteValue'));
+  assert.ok(!names.includes('OutputCachePolicyBuilder.VaryByRouteValue'));
+  assert.ok(manifest.concepts.some(concept => concept.includes('different eligibility and variation rules')));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('SetLocking'))));
+});
+
+test('ASP.NET Core health and telemetry inventory is exact, sourced, and distinguishes .NET 11 built-ins', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-016.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('HealthCheckOptions.AllowCachingResponses'));
+  assert.ok(names.includes('HealthCheckRegistration.Period'));
+  assert.ok(names.includes('IHealthCheckPublisher.PublishAsync'));
+  assert.ok(names.includes('Readiness probe'));
+  assert.ok(names.includes('Liveness probe'));
+  assert.ok(names.includes('System.Diagnostics.Metrics.Meter'));
+  assert.ok(names.includes('System.Diagnostics.ActivitySource'));
+  assert.ok(names.includes('Microsoft.AspNetCore.Hosting meter'));
+  assert.ok(names.includes('Microsoft.AspNetCore.Server.Kestrel meter'));
+  assert.ok(names.includes('OpenTelemetryBuilder.WithMetrics'));
+  assert.ok(names.includes('TracerProviderBuilder.AddSource'));
+  assert.ok(!names.some(name => /HealthCheckOptions\.(TagsPredicate|MaximumBodySize|UseAsyncPredicate)/.test(name)));
+  assert.ok(!names.includes('HealthCheckRegistration.Timeouts'));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('optional for these built-in HTTP signals'))));
+  assert.ok(manifest.sourceSnapshot.urls.includes('https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-aspnetcore'));
+});
+
+test('HttpClient and resilience inventory separates factory lifetimes, handlers, and current strategy names', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-017.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('IHttpClientFactory.CreateClient'));
+  assert.ok(names.includes('IHttpClientBuilder.AddHttpMessageHandler'));
+  assert.ok(names.includes('SocketsHttpHandler.PooledConnectionLifetime'));
+  assert.ok(names.includes('IHttpClientBuilder.AddStandardResilienceHandler'));
+  assert.ok(names.includes('IHttpClientBuilder.AddStandardHedgingHandler'));
+  assert.ok(names.includes('HttpStandardResilienceOptions.TotalRequestTimeout'));
+  assert.ok(names.includes('HttpRetryStrategyOptionsExtensions.DisableForUnsafeHttpMethods'));
+  assert.ok(names.includes('ResponseHeadersRead and streaming large responses'));
+  assert.ok(manifest.concepts.some(concept => concept.includes('Handler scopes are separate')));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('legacy Microsoft.Extensions.Http.Polly'))));
+});
+
+test('hosted-service inventory covers lifecycle, scoped worker iterations, and queued-work limits', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-018.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('IHostedLifecycleService.StartingAsync'));
+  assert.ok(names.includes('BackgroundService.ExecuteAsync'));
+  assert.ok(names.includes('HostOptions.ServicesStartConcurrently'));
+  assert.ok(names.includes('BoundedChannelFullMode.DropOldest'));
+  assert.ok(names.includes('ChannelReader<T>.ReadAllAsync'));
+  assert.ok(names.includes('PeriodicTimer.WaitForNextTickAsync'));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('.NET 10 changed'))));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('.NET 11 changed'))));
+  assert.ok(manifest.concepts.some(concept => concept.includes('not a durable scheduler')));
+});
+
+test('SignalR inventory distinguishes transient hubs, real-time transport, stateful reconnect, and durable delivery', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-019.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('Hub<TClient>'));
+  assert.ok(names.includes('IHubContext<THub>'));
+  assert.ok(names.includes('ClientProxyExtensions.SendAsync'));
+  assert.ok(names.includes('HttpConnectionDispatcherOptions.AllowStatefulReconnects'));
+  assert.ok(names.includes('HubConnectionBuilderExtensions.WithAutomaticReconnect'));
+  assert.ok(names.includes('HubConnectionBuilderExtensions.WithStatefulReconnect'));
+  assert.ok(names.includes('Hub.OnAuthenticationRefreshedAsync'));
+  assert.ok(names.includes('Redis backplane does not persist or replay messages during outage'));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('Stateful reconnect is available starting in .NET 8'))));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('ASP.NET Core 11 adds'))));
+});
+
+test('Kestrel, IIS, and forwarded-header inventory pins the current trusted-proxy and KnownIPNetworks boundary', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-020.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('KestrelServerOptions.Listen'));
+  assert.ok(names.includes('IHttpMaxRequestBodySizeFeature.MaxRequestBodySize'));
+  assert.ok(names.includes('ForwardedHeadersOptions.KnownIPNetworks'));
+  assert.ok(names.includes('ForwardedHeadersOptions.KnownNetworks (obsolete starting ASP.NET Core 10)'));
+  assert.ok(names.includes('HttpConnectionDispatcherOptions.CloseOnAuthenticationExpiration') === false);
+  assert.ok(names.includes('AspNetCoreHostingModel InProcess'));
+  assert.ok(names.includes('IIS in-process hosting with IISHttpServer'));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('8.0.17 and 9.0.6'))));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('ASP.NET Core 10'))));
+});
+
+test('ASP.NET Core deployment inventory covers environment precedence, safe errors, and measurable performance', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/asp-net-core/t02-021.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('DOTNET_ENVIRONMENT'));
+  assert.ok(names.includes('ASPNETCORE_ENVIRONMENT'));
+  assert.ok(names.includes('WebApplication environment precedence between DOTNET_ENVIRONMENT and ASPNETCORE_ENVIRONMENT'));
+  assert.ok(names.includes('UseExceptionHandler'));
+  assert.ok(names.includes('IExceptionHandler.TryHandleAsync'));
+  assert.ok(names.includes('Developer exception page is for Development only'));
+  assert.ok(names.includes('Task.Wait and Task<TResult>.Result sync-over-async hazard'));
+  assert.ok(names.includes('IAsyncEnumerable<T> asynchronous response enumeration'));
+  assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('ASP.NET Core 10 marks the legacy WebHost'))));
+  assert.ok(manifest.sourceSnapshot.urls.includes('https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated'));
+});
+
