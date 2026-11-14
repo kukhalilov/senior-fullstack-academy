@@ -3,10 +3,28 @@
   "id": "t07-012",
   "track": "track-07",
   "title": "MobX observables computeds actions reactions and React integration",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "MobX models application state as observable values, derives computed values from them, and tracks which consumers read each observable during execution.",
+    "When an observable changes, MobX reruns only the dependent computations and reactions. The dependency graph is discovered dynamically from observable reads.",
+    "Actions mark state-changing operations and group writes into transactions so reactions do not observe intermediate states. Strict action enforcement can make mutation boundaries explicit.",
+    "Computed values are lazy, cached derivations. Reactions are for side effects that synchronize with systems outside the observable model; they should be disposed when no longer needed.",
+    "The observer integration subscribes React components to observables read during rendering and triggers updates when those dependencies change.",
+    "MobX favors mutable observable models and automatic dependency tracking, while Redux favors explicit action and reducer transitions with immutable state history."
+  ],
+  "inventory": [
+    {"id":"observable-state","title":"Observable creation and annotations","items":["observable annotation","observable(value)","observable.object(value, annotations?, options?)","observable.array(initialValues?, options?)","observable.map(initialValues?, options?)","observable.set(initialValues?, options?)","makeObservable(target, annotations, options?)","makeAutoObservable(target, overrides?, options?)","extendObservable(target, properties, overrides?, options?)","observable.ref","observable.shallow","observable.struct","observable.box(value, options?)","isObservable(value)","isObservableProp(value, property)","toJS(value)"]},
+    {"id":"computed-derivations","title":"Computed values and derivation annotations","items":["computed annotation","computed(options)","computed(fn, options?)","@computed getter","computed.struct","Computed getter caching","Computed value suspends when unobserved","Computed values cannot have side effects","Keep derivable values out of stored state"]},
+    {"id":"actions-and-transactions","title":"State-changing actions and transactional boundaries","items":["action annotation","action(fn)","action(name, fn)","@action method decorator","@action.bound method decorator","runInAction(fn)","transaction(action)","makeObservable action annotation","makeAutoObservable action inference","enforceActions configuration","Action transaction boundary","State mutation outside an action"]},
+    {"id":"reactions-and-disposal","title":"Reactive side-effect APIs","items":["autorun(effect, options?)","reaction(expression, effect, options?)","when(predicate, effect?, options?)","IReactionDisposer","Reaction dependency tracking","Reaction cleanup and disposal","Reaction equals option","Reaction delay option","Reaction fireImmediately option","Reaction scheduler option","Reaction effects only for external synchronization"]},
+    {"id":"react-observation","title":"React component observation integration","items":["observer(Component)","observer from mobx-react-lite","observer from mobx-react","useLocalObservable (mobx-react-lite)","Observable reads during React render","Observed component re-render","React Strict Mode compatibility"]},
+    {"id":"reactivity-model-and-configuration","title":"Dependency tracking and behavior configuration","items":["Observable dependency graph","Tracked observable read","Tracked function execution","Dynamic dependency tracking","Reaction scheduling after action completion","configure(options)","configure.enforceActions","configure.computedRequiresReaction","configure.reactionRequiresObservable","configure.observableRequiresReaction","configure.safeDescriptors","MobX transaction","MobX versus Redux state transition model"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Observable","Plain mutable value"],["Computed value","Stored derived state"],["Action","Untracked arbitrary mutation"],["autorun","reaction"],["MobX observable tracking","Redux explicit selector and action flow"],["observer","React-Redux useSelector"]],
+  "comparisonSources": ["https://mobx.js.org/observable-state.html","https://mobx.js.org/actions.html","https://mobx.js.org/computeds.html","https://mobx.js.org/reactions.html","https://mobx.js.org/react-integration.html","https://mobx.js.org/api.html","https://redux.js.org/toolkit/usage/usage-guide"],
+  "versionNotes": [{"edition":"MobX 6 documentation (current stable API family)","items":["MobX 6 supports standard decorators and makeAutoObservable as current class-based observable setup options; legacy decorator configurations have different transpiler requirements."],"sourceUrls":["https://mobx.js.org/enabling-decorators.html","https://mobx.js.org/observable-state.html"]}],
+  "sourceSnapshot": {"authority":"Official MobX and React integration documentation","edition":"MobX 6 API documentation checked 2026-11-14","checkedAt":"2026-11-14","urls":["https://mobx.js.org/observable-state.html","https://mobx.js.org/actions.html","https://mobx.js.org/computeds.html","https://mobx.js.org/reactions.html","https://mobx.js.org/react-integration.html","https://mobx.js.org/api.html","https://mobx.js.org/configuration.html","https://mobx.js.org/enabling-decorators.html"]},
+  "scopeExclusions":["MobX advanced APIs marked experimental/advanced in the API index, including intercept/observe, custom observables, lazy observables, and collection utilities","mobx-utils package helpers","Redux Toolkit APIs in detail (t07-011)","Broad Redux versus MobX decision matrix (t07-024)","React rendering and Hooks core (t07-003 through t07-006)"],
+  "generationAllowed": true
 }

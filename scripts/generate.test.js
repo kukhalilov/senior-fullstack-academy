@@ -572,3 +572,32 @@ test('React Server Components inventory separates stable semantics from integrat
   for (const item of ['React Server Component', "'use client'", "'use server'", 'Async Server Component', 'Server Function input validation', 'Unstable lower-level RSC implementation APIs']) assert.ok(all.includes(item), item);
   assert.ok(manifest.versionNotes.every(note => note.sourceUrls.length));
 });
+
+test('Redux Toolkit inventory covers current store, slice, selector, middleware, and React-Redux APIs', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-011.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['configureStore(options)', 'createSlice(options)', 'combineSlices(...slices)', 'createAsyncThunk(typePrefix, payloadCreator)', 'createListenerMiddleware(options)', 'createSelector(inputSelectors, resultFunction)', 'useSelector(selector, options?)', 'connect(mapStateToProps?, mapDispatchToProps?, mergeProps?, options?)']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('Redux Toolkit 2.0')));
+});
+
+test('MobX inventory covers current observable, computed, action, reaction, and React observer APIs', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-012.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['makeObservable(target, annotations, options?)', 'makeAutoObservable(target, overrides?, options?)', 'computed(fn, options?)', 'runInAction(fn)', 'autorun(effect, options?)', 'reaction(expression, effect, options?)', 'observer(Component)']) assert.ok(all.includes(item), item);
+});
+
+test('React rendering modes topic teaches host, hydration, and stream concepts without duplicating API reference', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-009.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Client rendering', 'Server rendering', 'Hydration mismatch', 'Selective hydration', 'Streaming server rendering', 'Static prerendering']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('t07-021')));
+});

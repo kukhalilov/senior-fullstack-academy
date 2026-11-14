@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1540,
+  "taskCount": 1554,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -8882,61 +8882,113 @@
     {
       "id": "t07-009-overview",
       "track": "track-07",
-      "title": "React DOM client server and static rendering APIs — Big-picture orientation and mental model",
+      "title": "React DOM rendering modes hydration and host integration — Big-picture orientation and mental model",
       "module": "t07-009",
       "manifest": "curriculum/manifests/react-and-frontend/t07-009.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-009-concepts",
       "track": "track-07",
-      "title": "React DOM client server and static rendering APIs — Core concepts and how they fit together",
+      "title": "React DOM rendering modes hydration and host integration — Core concepts and how they fit together",
       "module": "t07-009",
       "manifest": "curriculum/manifests/react-and-frontend/t07-009.json",
       "phase": "concepts",
       "prerequisites": [
         "t07-009-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-009-reference-inventory-pending",
+      "id": "t07-009-reference-renderer-and-host-model",
       "track": "track-07",
-      "title": "React DOM client server and static rendering APIs — Reference: awaiting curated names",
+      "title": "React DOM rendering modes hydration and host integration — Reference: React renderer and host tree concepts",
       "module": "t07-009",
       "manifest": "curriculum/manifests/react-and-frontend/t07-009.json",
       "phase": "reference",
       "prerequisites": [
         "t07-009-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "renderer-and-host-model"
+    },
+    {
+      "id": "t07-009-reference-client-server-hydration-modes",
+      "track": "track-07",
+      "title": "React DOM rendering modes hydration and host integration — Reference: Client rendering, server rendering, and hydration modes",
+      "module": "t07-009",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-009-reference-renderer-and-host-model"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "client-server-hydration-modes"
+    },
+    {
+      "id": "t07-009-reference-streaming-and-progressive-output",
+      "track": "track-07",
+      "title": "React DOM rendering modes hydration and host integration — Reference: Streaming, Suspense boundaries, and progressive response",
+      "module": "t07-009",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-009-reference-client-server-hydration-modes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "streaming-and-progressive-output"
+    },
+    {
+      "id": "t07-009-reference-static-rendering-and-runtime",
+      "track": "track-07",
+      "title": "React DOM rendering modes hydration and host integration — Reference: Static output modes and runtime constraints",
+      "module": "t07-009",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-009-reference-streaming-and-progressive-output"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "static-rendering-and-runtime"
+    },
+    {
+      "id": "t07-009-reference-mode-selection-and-failure-analysis",
+      "track": "track-07",
+      "title": "React DOM rendering modes hydration and host integration — Reference: Rendering-mode selection and diagnosis",
+      "module": "t07-009",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-009-reference-static-rendering-and-runtime"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "mode-selection-and-failure-analysis"
     },
     {
       "id": "t07-009-practice",
       "track": "track-07",
-      "title": "React DOM client server and static rendering APIs — Exercises and worked solutions",
+      "title": "React DOM rendering modes hydration and host integration — Exercises and worked solutions",
       "module": "t07-009",
       "manifest": "curriculum/manifests/react-and-frontend/t07-009.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-009-reference-inventory-pending"
+        "t07-009-reference-mode-selection-and-failure-analysis"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-009-interview",
       "track": "track-07",
-      "title": "React DOM client server and static rendering APIs — Interview questions and reasoning",
+      "title": "React DOM rendering modes hydration and host integration — Interview questions and reasoning",
       "module": "t07-009",
       "manifest": "curriculum/manifests/react-and-frontend/t07-009.json",
       "phase": "interview",
       "prerequisites": [
         "t07-009-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-010-overview",
@@ -9057,7 +9109,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-011.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-011-concepts",
@@ -9069,20 +9121,85 @@
       "prerequisites": [
         "t07-011-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-011-reference-inventory-pending",
+      "id": "t07-011-reference-store-setup-and-configuration",
       "track": "track-07",
-      "title": "React Redux Toolkit store slices selectors middleware and async workflows — Reference: awaiting curated names",
+      "title": "React Redux Toolkit store slices selectors middleware and async workflows — Reference: Store configuration and reducer composition",
       "module": "t07-011",
       "manifest": "curriculum/manifests/react-and-frontend/t07-011.json",
       "phase": "reference",
       "prerequisites": [
         "t07-011-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "store-setup-and-configuration"
+    },
+    {
+      "id": "t07-011-reference-reducers-actions-and-entities",
+      "track": "track-07",
+      "title": "React Redux Toolkit store slices selectors middleware and async workflows — Reference: Reducer, action, slice, and normalized entity APIs",
+      "module": "t07-011",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-011-reference-store-setup-and-configuration"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "reducers-actions-and-entities"
+    },
+    {
+      "id": "t07-011-reference-selectors-and-derived-data",
+      "track": "track-07",
+      "title": "React Redux Toolkit store slices selectors middleware and async workflows — Reference: Selector functions and memoized derivation",
+      "module": "t07-011",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-011-reference-reducers-actions-and-entities"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "selectors-and-derived-data"
+    },
+    {
+      "id": "t07-011-reference-async-workflows-and-middleware",
+      "track": "track-07",
+      "title": "React Redux Toolkit store slices selectors middleware and async workflows — Reference: Thunk and listener middleware workflows",
+      "module": "t07-011",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-011-reference-selectors-and-derived-data"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "async-workflows-and-middleware"
+    },
+    {
+      "id": "t07-011-reference-react-redux-integration",
+      "track": "track-07",
+      "title": "React Redux Toolkit store slices selectors middleware and async workflows — Reference: React-Redux provider, hooks, and legacy connector",
+      "module": "t07-011",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-011-reference-async-workflows-and-middleware"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "react-redux-integration"
+    },
+    {
+      "id": "t07-011-reference-modern-redux-invariants",
+      "track": "track-07",
+      "title": "React Redux Toolkit store slices selectors middleware and async workflows — Reference: Redux data flow and current API constraints",
+      "module": "t07-011",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-011-reference-react-redux-integration"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "modern-redux-invariants"
     },
     {
       "id": "t07-011-practice",
@@ -9092,9 +9209,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-011.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-011-reference-inventory-pending"
+        "t07-011-reference-modern-redux-invariants"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-011-interview",
@@ -9106,7 +9223,7 @@
       "prerequisites": [
         "t07-011-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-012-overview",
@@ -9116,7 +9233,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-012.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-012-concepts",
@@ -9128,20 +9245,85 @@
       "prerequisites": [
         "t07-012-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t07-012-reference-inventory-pending",
+      "id": "t07-012-reference-observable-state",
       "track": "track-07",
-      "title": "MobX observables computeds actions reactions and React integration — Reference: awaiting curated names",
+      "title": "MobX observables computeds actions reactions and React integration — Reference: Observable creation and annotations",
       "module": "t07-012",
       "manifest": "curriculum/manifests/react-and-frontend/t07-012.json",
       "phase": "reference",
       "prerequisites": [
         "t07-012-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "observable-state"
+    },
+    {
+      "id": "t07-012-reference-computed-derivations",
+      "track": "track-07",
+      "title": "MobX observables computeds actions reactions and React integration — Reference: Computed values and derivation annotations",
+      "module": "t07-012",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-012-reference-observable-state"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "computed-derivations"
+    },
+    {
+      "id": "t07-012-reference-actions-and-transactions",
+      "track": "track-07",
+      "title": "MobX observables computeds actions reactions and React integration — Reference: State-changing actions and transactional boundaries",
+      "module": "t07-012",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-012-reference-computed-derivations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "actions-and-transactions"
+    },
+    {
+      "id": "t07-012-reference-reactions-and-disposal",
+      "track": "track-07",
+      "title": "MobX observables computeds actions reactions and React integration — Reference: Reactive side-effect APIs",
+      "module": "t07-012",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-012-reference-actions-and-transactions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "reactions-and-disposal"
+    },
+    {
+      "id": "t07-012-reference-react-observation",
+      "track": "track-07",
+      "title": "MobX observables computeds actions reactions and React integration — Reference: React component observation integration",
+      "module": "t07-012",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-012-reference-reactions-and-disposal"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "react-observation"
+    },
+    {
+      "id": "t07-012-reference-reactivity-model-and-configuration",
+      "track": "track-07",
+      "title": "MobX observables computeds actions reactions and React integration — Reference: Dependency tracking and behavior configuration",
+      "module": "t07-012",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-012-reference-react-observation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "reactivity-model-and-configuration"
     },
     {
       "id": "t07-012-practice",
@@ -9151,9 +9333,9 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-012.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-012-reference-inventory-pending"
+        "t07-012-reference-reactivity-model-and-configuration"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-012-interview",
@@ -9165,7 +9347,7 @@
       "prerequisites": [
         "t07-012-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t07-013-overview",
