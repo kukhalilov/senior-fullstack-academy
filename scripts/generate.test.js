@@ -676,3 +676,23 @@ test('DDD inventory distinguishes strategic contexts from tactical invariants an
   assert.equal(new Set(all).size, all.length);
   for (const item of ['Ubiquitous language', 'Bounded Context', 'Anti-Corruption Layer', 'Entity', 'Value Object', 'Aggregate Root', 'Domain Event', 'Integration Event', 'Repository per Aggregate Root']) assert.ok(all.includes(item), item);
 });
+
+test('CQRS and event-sourcing inventory keeps the patterns distinct and covers replay and projection tradeoffs', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-005.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['CQRS without event sourcing', 'Event Sourcing', 'Event store', 'Projection', 'Eventual consistency', 'Optimistic concurrency control for stream append', 'Event schema evolution', 'Tolerant deserialization', 'Event versioning', 'Event upcasting']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('Sagas')));
+  assert.ok(manifest.scopeExclusions.some(item => item.includes('not recommended as a default')));
+});
+
+test('system-design inventory ties measurable quality targets to workload and capacity assumptions', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/architecture-and-distributed-systems/t08-006.json', 'utf8'));
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  const all = manifest.inventory.flatMap(group => group.items);
+  assert.equal(new Set(all).size, all.length);
+  for (const item of ['Functional requirement', 'Nonfunctional requirement', 'Service Level Indicator (SLI)', 'Service Level Objective (SLO)', 'Service Level Agreement (SLA)', 'Peak request rate', 'Capacity forecast', 'N+2 redundancy', 'Graceful degradation', 'Architecture Decision Record (ADR)']) assert.ok(all.includes(item), item);
+});

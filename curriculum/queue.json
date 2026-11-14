@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1585,
+  "taskCount": 1593,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -12219,7 +12219,7 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-005.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-005-concepts",
@@ -12231,20 +12231,72 @@
       "prerequisites": [
         "t08-005-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t08-005-reference-inventory-pending",
+      "id": "t08-005-reference-cqrs-boundary",
       "track": "track-08",
-      "title": "CQRS event sourcing and tradeoffs — Reference: awaiting curated names",
+      "title": "CQRS event sourcing and tradeoffs — Reference: Command-query separation and read/write model options",
       "module": "t08-005",
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-005.json",
       "phase": "reference",
       "prerequisites": [
         "t08-005-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cqrs-boundary"
+    },
+    {
+      "id": "t08-005-reference-projection-consistency",
+      "track": "track-08",
+      "title": "CQRS event sourcing and tradeoffs — Reference: Building and consuming query projections",
+      "module": "t08-005",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-005-reference-cqrs-boundary"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "projection-consistency"
+    },
+    {
+      "id": "t08-005-reference-event-store-and-stream",
+      "track": "track-08",
+      "title": "CQRS event sourcing and tradeoffs — Reference: Append-only event history and current-state reconstruction",
+      "module": "t08-005",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-005-reference-projection-consistency"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "event-store-and-stream"
+    },
+    {
+      "id": "t08-005-reference-concurrency-and-evolution",
+      "track": "track-08",
+      "title": "CQRS event sourcing and tradeoffs — Reference: Concurrency control and historical event compatibility",
+      "module": "t08-005",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-005-reference-event-store-and-stream"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "concurrency-and-evolution"
+    },
+    {
+      "id": "t08-005-reference-design-fit-and-tradeoffs",
+      "track": "track-08",
+      "title": "CQRS event sourcing and tradeoffs — Reference: Architecture fit, costs, and alternatives",
+      "module": "t08-005",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-005-reference-concurrency-and-evolution"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "design-fit-and-tradeoffs"
     },
     {
       "id": "t08-005-practice",
@@ -12254,9 +12306,9 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-005.json",
       "phase": "practice",
       "prerequisites": [
-        "t08-005-reference-inventory-pending"
+        "t08-005-reference-design-fit-and-tradeoffs"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-005-interview",
@@ -12268,7 +12320,7 @@
       "prerequisites": [
         "t08-005-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-006-overview",
@@ -12278,7 +12330,7 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-006.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-006-concepts",
@@ -12290,20 +12342,72 @@
       "prerequisites": [
         "t08-006-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t08-006-reference-inventory-pending",
+      "id": "t08-006-reference-requirements-and-quality",
       "track": "track-08",
-      "title": "system design requirements estimation capacity and tradeoffs — Reference: awaiting curated names",
+      "title": "system design requirements estimation capacity and tradeoffs — Reference: System purpose, constraints, and measurable quality objectives",
       "module": "t08-006",
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-006.json",
       "phase": "reference",
       "prerequisites": [
         "t08-006-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "requirements-and-quality"
+    },
+    {
+      "id": "t08-006-reference-service-level-language",
+      "track": "track-08",
+      "title": "system design requirements estimation capacity and tradeoffs — Reference: User-centered reliability and performance targets",
+      "module": "t08-006",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-006-reference-requirements-and-quality"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "service-level-language"
+    },
+    {
+      "id": "t08-006-reference-workload-model-and-capacity",
+      "track": "track-08",
+      "title": "system design requirements estimation capacity and tradeoffs — Reference: Demand shape, resource estimates, and capacity headroom",
+      "module": "t08-006",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-006-reference-service-level-language"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "workload-model-and-capacity"
+    },
+    {
+      "id": "t08-006-reference-overload-and-resilience-requirements",
+      "track": "track-08",
+      "title": "system design requirements estimation capacity and tradeoffs — Reference: Failure behavior, recovery, and overload decisions",
+      "module": "t08-006",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-006-reference-workload-model-and-capacity"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "overload-and-resilience-requirements"
+    },
+    {
+      "id": "t08-006-reference-tradeoff-and-decision-process",
+      "track": "track-08",
+      "title": "system design requirements estimation capacity and tradeoffs — Reference: Comparing architecture choices and managing uncertainty",
+      "module": "t08-006",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-006-reference-overload-and-resilience-requirements"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "tradeoff-and-decision-process"
     },
     {
       "id": "t08-006-practice",
@@ -12313,9 +12417,9 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-006.json",
       "phase": "practice",
       "prerequisites": [
-        "t08-006-reference-inventory-pending"
+        "t08-006-reference-tradeoff-and-decision-process"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-006-interview",
@@ -12327,7 +12431,7 @@
       "prerequisites": [
         "t08-006-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t08-007-overview",
