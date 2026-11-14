@@ -2,13 +2,13 @@
 
 ## Inventory totals
 
-- 11 tracks and 161 canonical topic manifests.
-- The queue contains 956 lesson units, rebuilt from each topic's overview, concepts, bounded references, practice units, and interview sequence. Each named DSA problem has its own practice unit.
-- 16 manifests have source-backed inventories: 15 are fully enabled and one DSA analysis topic keeps its practice unit blocked pending executable checks.
-- 145 manifests remain inventory scaffolds; the full-catalog validator intentionally fails.
+- 11 tracks and 164 canonical topic manifests.
+- The queue contains 998 lesson units, rebuilt from each topic's overview, concepts, bounded references, practice units, and interview sequence. Each named DSA problem has its own practice unit.
+- 22 manifests have source-backed inventories: 21 are fully enabled and one DSA analysis topic keeps its practice unit blocked pending executable checks.
+- 142 manifests remain inventory scaffolds; the full-catalog validator intentionally fails.
 - Three legacy pilot lessons remain in `course/` with quarantine warnings and are excluded from the accepted curriculum.
-- Scheduled GitHub Actions generation covers JavaScript values/types and Array; C# source-file organization, built-in types, numeric literals/conversions, statements, and operators; and eight DSA topics. A ninth DSA analysis topic enables non-practice phases only. Whole-catalog generation remains blocked.
-- DSA arrays, strings, hash maps, sets, two-pointer/sliding-window patterns, prefix/difference arrays, binary search, and linked lists are separate topics. Their 54 named problems receive distinct queue units; C# solution code is compiled and its assertions executed before workflow commits.
+- Scheduled GitHub Actions generation covers explicitly source-backed JavaScript, C#, and fourteen DSA topics. A further DSA analysis topic enables non-practice phases only. Whole-catalog generation remains blocked.
+- DSA arrays, strings, hash maps, sets, two-pointer/sliding-window patterns, prefix/difference arrays, binary search, linked lists, stacks/queues, monotonic structures, intervals, sweep-line processing, comparison sorting, and heaps are separate topics. Their 90 named problems receive distinct queue units; C# solution code is compiled and its assertions executed before workflow commits.
 
 ## Coverage review
 

@@ -116,7 +116,7 @@ test('two-pointer and sliding-window problems are separate source-backed lessons
   assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/gold/sliding-window'));
   assert.ok(manifest.inventory.some(group => group.items.includes('Exactly-K via difference of at-most counts')));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 66);
+  assert.equal(allDsaProblems.length, 90);
 });
 
 test('prefix-sum and difference-array problems have a closed source-backed scope', () => {
@@ -132,7 +132,7 @@ test('prefix-sum and difference-array problems have a closed source-backed scope
   assert.ok(manifest.inventory.some(group => group.items.includes('Difference array')));
   assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/silver/more-prefix-sums'));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 66);
+  assert.equal(allDsaProblems.length, 90);
 });
 
 test('binary-search variants and problems are bounded and independent', () => {
@@ -148,7 +148,7 @@ test('binary-search variants and problems are bounded and independent', () => {
   assert.ok(manifest.inventory.some(group => group.items.includes('Monotone feasibility predicate')));
   assert.ok(manifest.sourceSnapshot.urls.includes('https://usaco.guide/silver/binary-search'));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 66);
+  assert.equal(allDsaProblems.length, 90);
 });
 
 test('linked-list pointer patterns have independent C# practice units', () => {
@@ -164,7 +164,7 @@ test('linked-list pointer patterns have independent C# practice units', () => {
   assert.ok(manifest.inventory.some(group => group.items.includes('Dummy head node')));
   assert.ok(manifest.sourceSnapshot.urls.some(url => url.includes('ListLinked.html')));
   const allDsaProblems = queue.tasks.filter(task => task.module.startsWith('t11-') && task.problemId);
-  assert.equal(allDsaProblems.length, 66);
+  assert.equal(allDsaProblems.length, 90);
 });
 
 test('stack and monotonic structures have closed inventories and separate practice units', () => {
@@ -183,6 +183,27 @@ test('stack and monotonic structures have closed inventories and separate practi
   assert.ok(stack.inventory.some(group => group.items.includes('Circular array queue')));
   assert.ok(monotonic.inventory.some(group => group.items.includes('Strict versus non-strict comparison')));
   assert.ok(monotonic.inventory.some(group => group.items.includes('Sliding-window maximum')));
+});
+
+test('interval, sweep-line, sorting, and heap scopes remain separate and source-backed', () => {
+  const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
+  for (const [id, count] of [['t11-008', 6], ['t11-023', 6], ['t11-009', 6], ['t11-024', 6]]) {
+    const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/data-structures-and-algorithms/${id}.json`, 'utf8'));
+    const tasks = queue.tasks.filter(task => task.module === id && task.phase === 'practice');
+    assert.equal(manifest.inventoryComplete, true);
+    assert.equal(manifest.generationAllowed, true);
+    assert.equal(manifest.practiceProblems.length, count);
+    assert.deepEqual(tasks.map(task => task.problemId), manifest.practiceProblems.map(problem => problem.id));
+    assert.ok(manifest.sourceSnapshot.urls.length >= 6);
+  }
+  const intervals = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-008.json', 'utf8'));
+  const sweep = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-023.json', 'utf8'));
+  const sorting = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-009.json', 'utf8'));
+  const heaps = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-024.json', 'utf8'));
+  assert.ok(intervals.inventory.some(group => group.items.includes('Earliest-finish-time greedy rule')));
+  assert.ok(sweep.inventory.some(group => group.items.includes('Equal-coordinate event ordering')));
+  assert.ok(sorting.inventory.some(group => group.items.includes('Hoare partition scheme')));
+  assert.ok(heaps.inventory.some(group => group.items.includes('Build heap bottom-up')));
 });
 
 test('the curriculum teaches overview before references and has no forced versions phase', () => {

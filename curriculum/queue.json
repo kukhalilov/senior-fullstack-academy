@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 956,
+  "taskCount": 998,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -10234,120 +10234,342 @@
     {
       "id": "t11-008-overview",
       "track": "track-11",
-      "title": "intervals merging scheduling sweep line — Big-picture orientation and mental model",
+      "title": "interval representations, merging, and scheduling — Big-picture orientation and mental model",
       "module": "t11-008",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-008-concepts",
       "track": "track-11",
-      "title": "intervals merging scheduling sweep line — Core concepts and how they fit together",
+      "title": "interval representations, merging, and scheduling — Core concepts and how they fit together",
       "module": "t11-008",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-008-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-008-reference-inventory-pending",
+      "id": "t11-008-reference-interval-model",
       "track": "track-11",
-      "title": "intervals merging scheduling sweep line — Reference: awaiting curated names",
+      "title": "interval representations, merging, and scheduling — Reference: Endpoint models and overlap semantics",
       "module": "t11-008",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
       "phase": "reference",
       "prerequisites": [
         "t11-008-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "interval-model"
     },
     {
-      "id": "t11-008-practice",
+      "id": "t11-008-reference-merge-and-insert",
       "track": "track-11",
-      "title": "intervals merging scheduling sweep line — Exercises and worked solutions",
+      "title": "interval representations, merging, and scheduling — Reference: Merging and inserting intervals",
+      "module": "t11-008",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-008-reference-interval-model"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "merge-and-insert"
+    },
+    {
+      "id": "t11-008-reference-scheduling-greedy",
+      "track": "track-11",
+      "title": "interval representations, merging, and scheduling — Reference: Interval scheduling and overlap removal",
+      "module": "t11-008",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-008-reference-merge-and-insert"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "scheduling-greedy"
+    },
+    {
+      "id": "t11-008-reference-complexity-and-failure",
+      "track": "track-11",
+      "title": "interval representations, merging, and scheduling — Reference: Complexity and boundary cases",
+      "module": "t11-008",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-008-reference-scheduling-greedy"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "complexity-and-failure"
+    },
+    {
+      "id": "t11-008-practice-merge-intervals",
+      "track": "track-11",
+      "title": "interval representations, merging, and scheduling — Problem: Merge Intervals",
       "module": "t11-008",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-008-reference-inventory-pending"
+        "t11-008-reference-complexity-and-failure"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "merge-intervals",
+      "problemTitle": "Merge Intervals"
+    },
+    {
+      "id": "t11-008-practice-insert-interval",
+      "track": "track-11",
+      "title": "interval representations, merging, and scheduling — Problem: Insert Interval",
+      "module": "t11-008",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-008-practice-merge-intervals"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "insert-interval",
+      "problemTitle": "Insert Interval"
+    },
+    {
+      "id": "t11-008-practice-non-overlapping-intervals",
+      "track": "track-11",
+      "title": "interval representations, merging, and scheduling — Problem: Non-overlapping Intervals",
+      "module": "t11-008",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-008-practice-insert-interval"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "non-overlapping-intervals",
+      "problemTitle": "Non-overlapping Intervals"
+    },
+    {
+      "id": "t11-008-practice-minimum-arrows-balloons",
+      "track": "track-11",
+      "title": "interval representations, merging, and scheduling — Problem: Minimum Number of Arrows to Burst Balloons",
+      "module": "t11-008",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-008-practice-non-overlapping-intervals"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "minimum-arrows-balloons",
+      "problemTitle": "Minimum Number of Arrows to Burst Balloons"
+    },
+    {
+      "id": "t11-008-practice-interval-list-intersections",
+      "track": "track-11",
+      "title": "interval representations, merging, and scheduling — Problem: Interval List Intersections",
+      "module": "t11-008",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-008-practice-minimum-arrows-balloons"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "interval-list-intersections",
+      "problemTitle": "Interval List Intersections"
+    },
+    {
+      "id": "t11-008-practice-remove-covered-intervals",
+      "track": "track-11",
+      "title": "interval representations, merging, and scheduling — Problem: Remove Covered Intervals",
+      "module": "t11-008",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-008-practice-interval-list-intersections"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "remove-covered-intervals",
+      "problemTitle": "Remove Covered Intervals"
     },
     {
       "id": "t11-008-interview",
       "track": "track-11",
-      "title": "intervals merging scheduling sweep line — Interview questions and reasoning",
+      "title": "interval representations, merging, and scheduling — Interview questions and reasoning",
       "module": "t11-008",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-008.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-008-practice"
+        "t11-008-practice-remove-covered-intervals"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-009-overview",
       "track": "track-11",
-      "title": "sorting selection quicksort mergesort and heaps — Big-picture orientation and mental model",
+      "title": "comparison sorting algorithms and selection — Big-picture orientation and mental model",
       "module": "t11-009",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-009-concepts",
       "track": "track-11",
-      "title": "sorting selection quicksort mergesort and heaps — Core concepts and how they fit together",
+      "title": "comparison sorting algorithms and selection — Core concepts and how they fit together",
       "module": "t11-009",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-009-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-009-reference-inventory-pending",
+      "id": "t11-009-reference-elementary-and-divide-conquer",
       "track": "track-11",
-      "title": "sorting selection quicksort mergesort and heaps — Reference: awaiting curated names",
+      "title": "comparison sorting algorithms and selection — Reference: Elementary sorts and merge sort",
       "module": "t11-009",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
       "phase": "reference",
       "prerequisites": [
         "t11-009-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "elementary-and-divide-conquer"
     },
     {
-      "id": "t11-009-practice",
+      "id": "t11-009-reference-partition-and-heap-sort",
       "track": "track-11",
-      "title": "sorting selection quicksort mergesort and heaps — Exercises and worked solutions",
+      "title": "comparison sorting algorithms and selection — Reference: Quicksort and heap sort",
+      "module": "t11-009",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-009-reference-elementary-and-divide-conquer"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "partition-and-heap-sort"
+    },
+    {
+      "id": "t11-009-reference-properties-and-lower-bound",
+      "track": "track-11",
+      "title": "comparison sorting algorithms and selection — Reference: Correctness properties and comparison limits",
+      "module": "t11-009",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-009-reference-partition-and-heap-sort"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "properties-and-lower-bound"
+    },
+    {
+      "id": "t11-009-reference-selection-and-implementation",
+      "track": "track-11",
+      "title": "comparison sorting algorithms and selection — Reference: Order statistics and sorting contracts",
+      "module": "t11-009",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-009-reference-properties-and-lower-bound"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "selection-and-implementation"
+    },
+    {
+      "id": "t11-009-practice-sort-an-array",
+      "track": "track-11",
+      "title": "comparison sorting algorithms and selection — Problem: Sort an Array",
       "module": "t11-009",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-009-reference-inventory-pending"
+        "t11-009-reference-selection-and-implementation"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "sort-an-array",
+      "problemTitle": "Sort an Array"
+    },
+    {
+      "id": "t11-009-practice-sort-colors",
+      "track": "track-11",
+      "title": "comparison sorting algorithms and selection — Problem: Sort Colors",
+      "module": "t11-009",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-009-practice-sort-an-array"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "sort-colors",
+      "problemTitle": "Sort Colors"
+    },
+    {
+      "id": "t11-009-practice-sort-list",
+      "track": "track-11",
+      "title": "comparison sorting algorithms and selection — Problem: Sort List",
+      "module": "t11-009",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-009-practice-sort-colors"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "sort-list",
+      "problemTitle": "Sort List"
+    },
+    {
+      "id": "t11-009-practice-merge-sorted-array",
+      "track": "track-11",
+      "title": "comparison sorting algorithms and selection — Problem: Merge Sorted Array",
+      "module": "t11-009",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-009-practice-sort-list"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "merge-sorted-array",
+      "problemTitle": "Merge Sorted Array"
+    },
+    {
+      "id": "t11-009-practice-kth-largest-element-array",
+      "track": "track-11",
+      "title": "comparison sorting algorithms and selection — Problem: Kth Largest Element in an Array",
+      "module": "t11-009",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-009-practice-merge-sorted-array"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "kth-largest-element-array",
+      "problemTitle": "Kth Largest Element in an Array"
+    },
+    {
+      "id": "t11-009-practice-largest-number",
+      "track": "track-11",
+      "title": "comparison sorting algorithms and selection — Problem: Largest Number",
+      "module": "t11-009",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-009-practice-kth-largest-element-array"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "largest-number",
+      "problemTitle": "Largest Number"
     },
     {
       "id": "t11-009-interview",
       "track": "track-11",
-      "title": "sorting selection quicksort mergesort and heaps — Interview questions and reasoning",
+      "title": "comparison sorting algorithms and selection — Interview questions and reasoning",
       "module": "t11-009",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-009.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-009-practice"
+        "t11-009-practice-largest-number"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-010-overview",
@@ -11543,6 +11765,346 @@
       "phase": "interview",
       "prerequisites": [
         "t11-022-practice-remove-k-digits"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-023-overview",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Big-picture orientation and mental model",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-023-concepts",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Core concepts and how they fit together",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-023-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-023-reference-events-and-order",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Reference: Events, sorting, and coordinate ties",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-023-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "events-and-order"
+    },
+    {
+      "id": "t11-023-reference-active-state",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Reference: Maintaining active intervals and resources",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-023-reference-events-and-order"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "active-state"
+    },
+    {
+      "id": "t11-023-reference-coordinate-and-geometry",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Reference: Coordinate compression and geometric extension",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-023-reference-active-state"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "coordinate-and-geometry"
+    },
+    {
+      "id": "t11-023-reference-correctness-and-cost",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Reference: Invariants, complexity, and limits",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-023-reference-coordinate-and-geometry"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "correctness-and-cost"
+    },
+    {
+      "id": "t11-023-practice-meeting-rooms-ii",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Problem: Meeting Rooms II",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-023-reference-correctness-and-cost"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "meeting-rooms-ii",
+      "problemTitle": "Meeting Rooms II"
+    },
+    {
+      "id": "t11-023-practice-car-pooling",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Problem: Car Pooling",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-023-practice-meeting-rooms-ii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "car-pooling",
+      "problemTitle": "Car Pooling"
+    },
+    {
+      "id": "t11-023-practice-my-calendar-i",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Problem: My Calendar I",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-023-practice-car-pooling"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "my-calendar-i",
+      "problemTitle": "My Calendar I"
+    },
+    {
+      "id": "t11-023-practice-my-calendar-iii",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Problem: My Calendar III",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-023-practice-my-calendar-i"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "my-calendar-iii",
+      "problemTitle": "My Calendar III"
+    },
+    {
+      "id": "t11-023-practice-number-of-flowers-in-full-bloom",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Problem: Number of Flowers in Full Bloom",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-023-practice-my-calendar-iii"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "number-of-flowers-in-full-bloom",
+      "problemTitle": "Number of Flowers in Full Bloom"
+    },
+    {
+      "id": "t11-023-practice-the-skyline-problem",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Problem: The Skyline Problem",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-023-practice-number-of-flowers-in-full-bloom"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "the-skyline-problem",
+      "problemTitle": "The Skyline Problem"
+    },
+    {
+      "id": "t11-023-interview",
+      "track": "track-11",
+      "title": "sweep-line events and active intervals — Interview questions and reasoning",
+      "module": "t11-023",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-023.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-023-practice-the-skyline-problem"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-024-overview",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Big-picture orientation and mental model",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-024-concepts",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Core concepts and how they fit together",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t11-024-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t11-024-reference-heap-invariant-and-layout",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Reference: Heap order, tree shape, and array layout",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-024-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "heap-invariant-and-layout"
+    },
+    {
+      "id": "t11-024-reference-priority-queue-operations",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Reference: Priority queue operations and complexity",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-024-reference-heap-invariant-and-layout"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "priority-queue-operations"
+    },
+    {
+      "id": "t11-024-reference-variants-and-update",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Reference: Comparers, updates, and deletion strategies",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-024-reference-priority-queue-operations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "variants-and-update"
+    },
+    {
+      "id": "t11-024-reference-algorithm-patterns-and-tradeoffs",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Reference: Heap-based problem patterns and alternatives",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-024-reference-variants-and-update"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "algorithm-patterns-and-tradeoffs"
+    },
+    {
+      "id": "t11-024-practice-last-stone-weight",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Problem: Last Stone Weight",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-024-reference-algorithm-patterns-and-tradeoffs"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "last-stone-weight",
+      "problemTitle": "Last Stone Weight"
+    },
+    {
+      "id": "t11-024-practice-top-k-frequent-elements",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Problem: Top K Frequent Elements",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-024-practice-last-stone-weight"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "top-k-frequent-elements",
+      "problemTitle": "Top K Frequent Elements"
+    },
+    {
+      "id": "t11-024-practice-find-median-data-stream",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Problem: Find Median from Data Stream",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-024-practice-top-k-frequent-elements"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "find-median-data-stream",
+      "problemTitle": "Find Median from Data Stream"
+    },
+    {
+      "id": "t11-024-practice-merge-k-sorted-lists",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Problem: Merge k Sorted Lists",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-024-practice-find-median-data-stream"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "merge-k-sorted-lists",
+      "problemTitle": "Merge k Sorted Lists"
+    },
+    {
+      "id": "t11-024-practice-task-scheduler",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Problem: Task Scheduler",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-024-practice-merge-k-sorted-lists"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "task-scheduler",
+      "problemTitle": "Task Scheduler"
+    },
+    {
+      "id": "t11-024-practice-kth-largest-element-stream",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Problem: Kth Largest Element in a Stream",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-024-practice-task-scheduler"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "kth-largest-element-stream",
+      "problemTitle": "Kth Largest Element in a Stream"
+    },
+    {
+      "id": "t11-024-interview",
+      "track": "track-11",
+      "title": "binary heaps and priority queues — Interview questions and reasoning",
+      "module": "t11-024",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-024.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t11-024-practice-kth-largest-element-stream"
       ],
       "status": "draft-generation-eligible"
     }
