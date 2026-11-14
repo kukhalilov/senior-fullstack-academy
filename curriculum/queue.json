@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 905,
+  "taskCount": 914,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -9472,61 +9472,185 @@
     {
       "id": "t11-004-overview",
       "track": "track-11",
-      "title": "prefix sums difference arrays and range queries — Big-picture orientation and mental model",
+      "title": "prefix sums, difference arrays, and static range queries — Big-picture orientation and mental model",
       "module": "t11-004",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-004-concepts",
       "track": "track-11",
-      "title": "prefix sums difference arrays and range queries — Core concepts and how they fit together",
+      "title": "prefix sums, difference arrays, and static range queries — Core concepts and how they fit together",
       "module": "t11-004",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
       "phase": "concepts",
       "prerequisites": [
         "t11-004-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t11-004-reference-inventory-pending",
+      "id": "t11-004-reference-prefix-sum-basics",
       "track": "track-11",
-      "title": "prefix sums difference arrays and range queries — Reference: awaiting curated names",
+      "title": "prefix sums, difference arrays, and static range queries — Reference: Prefix definitions and range queries",
       "module": "t11-004",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
       "phase": "reference",
       "prerequisites": [
         "t11-004-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "prefix-sum-basics"
     },
     {
-      "id": "t11-004-practice",
+      "id": "t11-004-reference-prefix-frequency-patterns",
       "track": "track-11",
-      "title": "prefix sums difference arrays and range queries — Exercises and worked solutions",
+      "title": "prefix sums, difference arrays, and static range queries — Reference: Prefix sums for subarray counting",
+      "module": "t11-004",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-004-reference-prefix-sum-basics"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "prefix-frequency-patterns"
+    },
+    {
+      "id": "t11-004-reference-multidimensional-prefix",
+      "track": "track-11",
+      "title": "prefix sums, difference arrays, and static range queries — Reference: Two-dimensional prefix aggregates",
+      "module": "t11-004",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-004-reference-prefix-frequency-patterns"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "multidimensional-prefix"
+    },
+    {
+      "id": "t11-004-reference-difference-arrays",
+      "track": "track-11",
+      "title": "prefix sums, difference arrays, and static range queries — Reference: Difference arrays and offline range updates",
+      "module": "t11-004",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-004-reference-multidimensional-prefix"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "difference-arrays"
+    },
+    {
+      "id": "t11-004-reference-query-boundaries-and-limits",
+      "track": "track-11",
+      "title": "prefix sums, difference arrays, and static range queries — Reference: Boundary conventions and limits",
+      "module": "t11-004",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t11-004-reference-difference-arrays"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "query-boundaries-and-limits"
+    },
+    {
+      "id": "t11-004-practice-range-sum-query-immutable",
+      "track": "track-11",
+      "title": "prefix sums, difference arrays, and static range queries — Problem: Range Sum Query - Immutable",
       "module": "t11-004",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
       "phase": "practice",
       "prerequisites": [
-        "t11-004-reference-inventory-pending"
+        "t11-004-reference-query-boundaries-and-limits"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible",
+      "problemId": "range-sum-query-immutable",
+      "problemTitle": "Range Sum Query - Immutable"
+    },
+    {
+      "id": "t11-004-practice-find-pivot-index",
+      "track": "track-11",
+      "title": "prefix sums, difference arrays, and static range queries — Problem: Find Pivot Index",
+      "module": "t11-004",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-004-practice-range-sum-query-immutable"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "find-pivot-index",
+      "problemTitle": "Find Pivot Index"
+    },
+    {
+      "id": "t11-004-practice-subarray-sum-equals-k",
+      "track": "track-11",
+      "title": "prefix sums, difference arrays, and static range queries — Problem: Subarray Sum Equals K",
+      "module": "t11-004",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-004-practice-find-pivot-index"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "subarray-sum-equals-k",
+      "problemTitle": "Subarray Sum Equals K"
+    },
+    {
+      "id": "t11-004-practice-subarray-sums-divisible-by-k",
+      "track": "track-11",
+      "title": "prefix sums, difference arrays, and static range queries — Problem: Subarray Sums Divisible by K",
+      "module": "t11-004",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-004-practice-subarray-sum-equals-k"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "subarray-sums-divisible-by-k",
+      "problemTitle": "Subarray Sums Divisible by K"
+    },
+    {
+      "id": "t11-004-practice-range-sum-query-2d-immutable",
+      "track": "track-11",
+      "title": "prefix sums, difference arrays, and static range queries — Problem: Range Sum Query 2D - Immutable",
+      "module": "t11-004",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-004-practice-subarray-sums-divisible-by-k"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "range-sum-query-2d-immutable",
+      "problemTitle": "Range Sum Query 2D - Immutable"
+    },
+    {
+      "id": "t11-004-practice-corporate-flight-bookings",
+      "track": "track-11",
+      "title": "prefix sums, difference arrays, and static range queries — Problem: Corporate Flight Bookings",
+      "module": "t11-004",
+      "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t11-004-practice-range-sum-query-2d-immutable"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "corporate-flight-bookings",
+      "problemTitle": "Corporate Flight Bookings"
     },
     {
       "id": "t11-004-interview",
       "track": "track-11",
-      "title": "prefix sums difference arrays and range queries — Interview questions and reasoning",
+      "title": "prefix sums, difference arrays, and static range queries — Interview questions and reasoning",
       "module": "t11-004",
       "manifest": "curriculum/manifests/data-structures-and-algorithms/t11-004.json",
       "phase": "interview",
       "prerequisites": [
-        "t11-004-practice"
+        "t11-004-practice-corporate-flight-bookings"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t11-005-overview",
