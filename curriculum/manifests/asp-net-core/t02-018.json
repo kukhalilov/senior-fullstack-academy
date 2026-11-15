@@ -146,7 +146,17 @@
         "Queue shutdown completion and draining policy",
         "Work item idempotency and retry policy",
         "Queue depth and processing latency telemetry",
-        "Poison work item handling and dead-letter boundary"
+        "Poison work item handling and dead-letter boundary",
+        "Channel.CreateUnbounded<T>(UnboundedChannelOptions)",
+        "UnboundedChannelOptions",
+        "UnboundedChannelOptions.SingleReader",
+        "UnboundedChannelOptions.SingleWriter",
+        "UnboundedChannelOptions.AllowSynchronousContinuations",
+        "Channel.CreateBounded<T>(int)",
+        "Channel.CreateBounded<T>(BoundedChannelOptions)",
+        "Channel.CreateBounded<T>(BoundedChannelOptions, Action<T>)",
+        "Action<T> itemDropped callback for bounded channels",
+        "BoundedChannelOptions(int) constructor"
       ]
     },
     {
@@ -169,8 +179,11 @@
         "Worker process graceful shutdown signals",
         "Container stop grace period versus HostOptions.ShutdownTimeout",
         "Windows Service integration via Microsoft.Extensions.Hosting.WindowsServices",
+        "IServiceCollection.AddWindowsService",
+        "IServiceCollection.AddWindowsService(Action<WindowsServiceLifetimeOptions>)",
         "UseWindowsService hosting extension",
         "Linux systemd integration via Microsoft.Extensions.Hosting.Systemd",
+        "IServiceCollection.AddSystemd",
         "UseSystemd hosting extension",
         "Container health and readiness for worker processes",
         "Worker restart policy versus in-process retry loop",
@@ -183,21 +196,54 @@
     }
   ],
   "comparisons": [
-    ["IHostedService", "BackgroundService"],
-    ["IHostedLifecycleService", "IHostApplicationLifetime callbacks"],
-    ["sequential service start", "concurrent service start"],
-    ["in-process Channel<T>", "durable message broker"],
-    ["PeriodicTimer", "Task.Delay polling loop", "external scheduler"],
-    ["bounded channel full modes: Wait, DropNewest, DropOldest, DropWrite"],
-    ["BackgroundService exception policy StopHost", "BackgroundService exception policy Ignore"],
-    ["host shutdown timeout", "container orchestrator termination grace period"]
+    [
+      "IHostedService",
+      "BackgroundService"
+    ],
+    [
+      "IHostedLifecycleService",
+      "IHostApplicationLifetime callbacks"
+    ],
+    [
+      "sequential service start",
+      "concurrent service start"
+    ],
+    [
+      "in-process Channel<T>",
+      "durable message broker"
+    ],
+    [
+      "PeriodicTimer",
+      "Task.Delay polling loop",
+      "external scheduler"
+    ],
+    [
+      "bounded channel full modes: Wait, DropNewest, DropOldest, DropWrite"
+    ],
+    [
+      "BackgroundService exception policy StopHost",
+      "BackgroundService exception policy Ignore"
+    ],
+    [
+      "host shutdown timeout",
+      "container orchestrator termination grace period"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
     "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
     "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
     "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure",
-    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel-1"
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel-1",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.windowsservicelifetimehostbuilderextensions.addwindowsservice",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.systemdhostbuilderextensions.addsystemd",
+    "https://learn.microsoft.com/en-us/dotnet/core/extensions/windows-service",
+    "https://learn.microsoft.com/en-us/dotnet/core/extensions/channels",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchannelfullmode",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
   ],
   "versionNotes": [
     {
@@ -207,13 +253,16 @@
         ".NET 10 added HostOptions.ServicesStartConcurrently and ServicesStopConcurrently. The defaults preserve sequential startup and shutdown, so explicitly discuss dependency ordering before enabling concurrency.",
         ".NET 11 changed RunAsync, StopAsync, and wait-for-shutdown extension tasks to propagate an unhandled BackgroundService exception when BackgroundServiceExceptionBehavior.StopHost is active. This can turn a previously zero exit code into a failing process exit; keep this as a short operational migration note.",
         "IHostedLifecycleService is available in .NET 8 and later and provides StartingAsync, StartedAsync, StoppingAsync, and StoppedAsync phases around IHostedService start and stop.",
-        "Worker templates and hosted-service APIs are not a durable job scheduler. Package-specific schedulers, brokers, and Windows Service/systemd integrations have independent versions and must be presented as separate integrations."
+        "Worker templates and hosted-service APIs are not a durable job scheduler. Package-specific schedulers, brokers, and Windows Service/systemd integrations have independent versions and must be presented as separate integrations.",
+        "For HostApplicationBuilder, current Windows Service and systemd integrations can be registered through the services collection with AddWindowsService or AddSystemd where supported; older IHostBuilder flows use UseWindowsService or UseSystemd. These are separate packages and activate in their matching service environment.",
+        ".NET 6 added the Channel.CreateBounded overload with an itemDropped callback, allowing a bounded channel configured with a drop mode to observe each discarded item. UnboundedChannelOptions provides the same reader/writer/concurrency-continuation promises as other channel options; it does not add capacity or persistence."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded"
       ]
     }
   ],
@@ -235,7 +284,16 @@
       "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
       "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.windowsservices.windowsservicelifetimehostbuilderextensions.usewindowsservice",
-      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.systemd.systemdhostbuilderextensions.usesystemd"
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.systemd.systemdhostbuilderextensions.usesystemd",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.windowsservicelifetimehostbuilderextensions.addwindowsservice",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.systemdhostbuilderextensions.addsystemd",
+      "https://learn.microsoft.com/en-us/dotnet/core/extensions/windows-service",
+      "https://learn.microsoft.com/en-us/dotnet/core/extensions/channels",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchannelfullmode",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
     ]
   },
   "scopeExclusions": [
