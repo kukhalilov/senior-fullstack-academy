@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {parseReviewResponse} from './parse-review-response.js';
 import {normalizeDsaOutput} from './normalize-dsa-output.js';
+import {applicableReviewIssues} from './review-issue-scope.js';
 import {loadModelUsage,markDailyQuotaReached,markModelUnavailable,modelRpdLimits,pacificUsageDay,recordModelSuccess,remainingDailyCalls,saveModelUsage} from './model-usage.js';
 
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -223,8 +224,12 @@ async function processTask(task) {
         }
       }
       if(!review)throw reviewError??new Error('Gemini did not return a valid content review');
-      if(review.verdict==='pass'&&Array.isArray(review.issues)&&review.issues.length===0){accepted=lesson;break;}
-      const issues=Array.isArray(review.issues)?review.issues:['Reviewer returned no actionable issue list'];
+      const reportedIssues=Array.isArray(review.issues)?review.issues:['Reviewer returned no actionable issue list'];
+      const issues=applicableReviewIssues(phase,reportedIssues);
+      if(issues.length===0){
+        if(reportedIssues.length) console.warn(`Ignored ${reportedIssues.length} out-of-scope inventory omission claim(s) for ${phase} lesson ${task.id}.`);
+        accepted=lesson;break;
+      }
       if(attempt===2)throw new Error(`AI content review still requests changes: ${issues.join('; ')}`);
       result=await request(`${promptFor(task,manifest)}\n\nAUTOMATED CONTENT REVIEW REQUESTED A REVISION: Fix these specific issues while preserving the supplied scope: ${JSON.stringify(issues)}. Rewrite the complete lesson and cite only supplied source URLs.`);
     }

@@ -4,6 +4,7 @@ import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import {parseReviewResponse} from './parse-review-response.js';
 import {normalizeDsaOutput} from './normalize-dsa-output.js';
+import {applicableReviewIssues} from './review-issue-scope.js';
 import {markDailyQuotaReached,markModelUnavailable,modelRpdLimits,pacificUsageDay,recordModelSuccess,remainingDailyCalls} from './model-usage.js';
 
 test('model usage follows Pacific quota resets and enforces each model daily limit', () => {
@@ -29,6 +30,13 @@ test('DSA output normalization repairs unambiguous conventional headings and C# 
   assert.match(normalized, /```csharp dsa-solution/);
   const ambiguous = '```csharp\nConsole.WriteLine(1);\n```\n```csharp\nConsole.WriteLine(2);\n```';
   assert.equal(normalizeDsaOutput(ambiguous), ambiguous);
+});
+
+test('automated review cannot impose reference inventory coverage on overview and concepts', () => {
+  const falseOmission="The candidate omits the required inventory item 'Empty statement' from another category.";
+  const realIssue='The example returns the wrong result for an empty input.';
+  assert.deepEqual(applicableReviewIssues('overview',[falseOmission,realIssue]),[realIssue]);
+  assert.deepEqual(applicableReviewIssues('reference',[falseOmission]),[falseOmission]);
 });
 
 test('review responses accept schema-shaped JSON with optional Markdown fences', () => {
