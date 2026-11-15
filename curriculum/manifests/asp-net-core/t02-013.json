@@ -63,7 +63,12 @@
         "JSON Schema draft 2020-12",
         "OpenAPI binary response schema",
         "OpenAPI multiple content response schemas",
-        "OpenAPI Server-Sent Events itemSchema"
+        "OpenAPI Server-Sent Events itemSchema",
+        "HTTP QUERY method RFC 10008",
+        "HTTP QUERY is safe and idempotent with request content",
+        "Accept-Query response header supported query media types",
+        "OpenAPI 3.2 query field for QUERY operations",
+        "OpenAPI 3.0 and 3.1 QUERY extension representation"
       ]
     },
     {
@@ -86,6 +91,8 @@
         "ApiVersioningOptions.ReportApiVersions",
         "ApiVersioningOptions.ApiVersionReader",
         "ApiVersioningOptions.ApiVersionSelector",
+        "ApiVersioningOptions.UnsupportedApiVersionStatusCode",
+        "ApiVersioningOptions.Policies",
         "ApiVersion",
         "ApiVersionAttribute",
         "ApiVersionNeutralAttribute",
@@ -111,6 +118,14 @@
         "ApiVersionParser",
         "IApiVersionSelector",
         "DefaultApiVersionSelector",
+        "DeprecationPolicy",
+        "SunsetPolicy",
+        "ApiVersioningOptions.Policies.Deprecate",
+        "ApiVersioningOptions.Policies.Sunset",
+        "Version policy Effective",
+        "Version policy Link",
+        "Version policy Link.Title",
+        "Version policy Link.Type",
         "IApiVersionDescriptionProvider",
         "ApiVersionDescription",
         "AddApiExplorer",
@@ -122,7 +137,15 @@
         "API version reporting response headers",
         "Version-neutral endpoint",
         "Deprecated API version metadata",
+        "Deprecation and sunset policies apply to the requested API version",
+        "API version deprecation response header RFC 9745",
+        "API version sunset response header RFC 8594",
         "Unsupported API version response",
+        "Missing API version response",
+        "Malformed API version response",
+        "Unsupported API version default response status 400",
+        "URL segment unsupported API version response status 404",
+        "Media type unsupported API version response status 406 or 415",
         "Versioning Minimal APIs with Asp.Versioning.Http",
         "Versioning controllers with Asp.Versioning.Mvc",
         "Versioned OpenAPI document grouping",
@@ -285,18 +308,29 @@
     "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/customize-openapi",
     "https://dotnet.github.io/aspnet-api-versioning/",
     "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/docs/overview.html",
+    "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/how-to/overview.html",
+    "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/config/overview.html",
+    "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/version-discovery.html",
+    "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/how-to/requested-version.html",
+    "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/version-policies.html",
+    "https://github.com/dotnet/aspnet-api-versioning/releases",
+    "https://www.nuget.org/packages/Asp.Versioning.OpenApi",
     "https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors",
     "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-implementation",
-    "https://www.rfc-editor.org/rfc/rfc9110.html"
+    "https://www.rfc-editor.org/rfc/rfc9110.html",
+    "https://www.rfc-editor.org/rfc/rfc9457.html"
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-16",
       "items": [
         "ASP.NET Core 11 generates OpenAPI 3.2 by default; .NET 10 generated 3.1 by default. Explicitly select 3.1 when downstream tooling cannot consume 3.2.",
         "ASP.NET Core 11 upgrades Microsoft.OpenApi to 3.x, which changes transformer-facing model APIs; custom transformers written against 2.x may need source changes.",
         "ASP.NET Core 11 OpenAPI adds binary file response descriptions, HTTP QUERY operation descriptions for OpenAPI 3.2, and SSE itemSchema descriptions. Do not claim these are available in an OpenAPI 3.1 document.",
+        "HTTP QUERY is standardized in RFC 10008 (June 2026), not merely a proposed method. It is safe and idempotent, carries query content with a media type, and resources can advertise supported formats with Accept-Query. OpenAPI 3.2 has a native query operation field; OpenAPI 3.0/3.1 use the x-oai-additionalOperations extension representation in the ASP.NET Core generator.",
+        "Deprecation and Sunset are distinct standardized response headers: RFC 9745 Deprecation signals lifecycle status, while RFC 8594 Sunset indicates an expected date when the resource may become unresponsive.",
         "API versioning remains a separate Asp.Versioning package family rather than a built-in ASP.NET Core feature. The old Microsoft.AspNetCore.Mvc.Versioning package family is deprecated; keep exact third-party package APIs labeled as such.",
+        "Asp.Versioning package releases are independent of the .NET runtime release. At the 2026-11-16 check, the project GitHub releases page listed 10.2.0 while NuGet listed Asp.Versioning.OpenApi 10.2.3; verify each package's compatible framework and dependency ranges instead of assuming every package version matches.",
         "ASP.NET Core 11 UseExceptionHandler preserves BadHttpRequestException.StatusCode by default in Problem Details responses. Applications that depended on conversion to 500 should review their custom exception handling."
       ],
       "sourceUrls": [
@@ -305,14 +339,20 @@
         "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/microsoft-openapi-3x",
         "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
         "https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors",
-        "https://dotnet.github.io/aspnet-api-versioning/"
+        "https://dotnet.github.io/aspnet-api-versioning/",
+        "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/version-policies.html",
+        "https://github.com/dotnet/aspnet-api-versioning/releases",
+        "https://www.nuget.org/packages/Asp.Versioning.OpenApi",
+        "https://www.rfc-editor.org/rfc/rfc10008.html",
+        "https://www.rfc-editor.org/rfc/rfc9745.html",
+        "https://www.rfc-editor.org/rfc/rfc8594.html"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core OpenAPI/error handling/API implementation guidance; dotnet/aspnet-api-versioning official community documentation; RFC 9110 and RFC 8288",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14; Asp.Versioning docs current at check",
-    "checkedAt": "2026-11-14",
+    "edition": "ASP.NET Core 11 / .NET 11 GA and applicable RFCs checked 2026-11-16; Asp.Versioning docs current at check",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/customize-openapi",
@@ -323,8 +363,20 @@
       "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-implementation",
       "https://dotnet.github.io/aspnet-api-versioning/",
       "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/docs/overview.html",
+      "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/how-to/overview.html",
+      "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/config/overview.html",
+      "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/version-discovery.html",
+      "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/how-to/requested-version.html",
+      "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/version-policies.html",
+      "https://github.com/dotnet/aspnet-api-versioning/releases",
+      "https://www.nuget.org/packages/Asp.Versioning.OpenApi",
       "https://www.rfc-editor.org/rfc/rfc9110.html",
-      "https://www.rfc-editor.org/rfc/rfc8288.html"
+      "https://www.rfc-editor.org/rfc/rfc8288.html",
+      "https://www.rfc-editor.org/rfc/rfc9457.html",
+      "https://www.rfc-editor.org/rfc/rfc10008.html",
+      "https://www.rfc-editor.org/rfc/rfc9745.html",
+      "https://www.rfc-editor.org/rfc/rfc8594.html",
+      "https://www.rfc-editor.org/rfc/rfc6585.html"
     ]
   },
   "scopeExclusions": [
