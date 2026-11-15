@@ -1,46 +1,43 @@
-<!-- MANUALLY AUTHORED: checked against frozen problem statement, examples, constraints, and source. -->
-
 # two-pointer and sliding-window techniques — Problem: Remove Duplicates from Sorted Array
 
-# Goals
+## Goals
 
-- Turn a sorted array’s adjacent-run property into an in-place compaction algorithm.
-- Distinguish the logical result length from the physical array length.
-- Maintain a prefix of unique values without overwriting unread input.
-- Generalize the write-pointer invariant to stable filtering problems.
+- Use a read pointer to scan sorted values and a write pointer to compact unique values in place.
+- State what the valid prefix means at each step.
+- Preserve the required relative order without allocating a second array.
 
-# Problem statement
+## Problem statement
 
-Given an integer array nums sorted in non-decreasing order, remove duplicates in place so each distinct value appears once, keeping the relative order. Return k, the number of unique values. The first k elements must contain the unique values in sorted order; elements after index k - 1 are ignored. Do not allocate another array.
+Given an integer array nums sorted in non-decreasing order, remove duplicates in place so that each distinct value appears exactly once and the relative order is retained. Return k, the number of unique values. The first k elements must contain the unique values in sorted order; the remaining positions do not matter. Do not allocate another array for the result.
 
-# Input constraints
+## Input constraints
 
-- 1 <= nums.Length <= 30,000
-- -100 <= nums[i] <= 100
+- 1 <= nums.Length <= 30,000.
+- -100 <= nums[i] <= 100.
 - nums is sorted in non-decreasing order.
-- The array’s allocated length is not changed; only its meaningful prefix is returned as k.
 
-# Examples with expected output
+## Examples with expected output
 
-1. nums = [1, 1, 2] → k = 2, meaningful prefix [1, 2]
-2. nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4] → k = 5, meaningful prefix [0, 1, 2, 3, 4]
-3. nums = [7] → k = 1, meaningful prefix [7]
+1. nums = [1,1,2] -> k = 2, prefix = [1,2].
+2. nums = [0,0,1,1,1,2,2,3,3,4] -> k = 5, prefix = [0,1,2,3,4].
+3. nums = [1] -> k = 1, prefix = [1].
+4. nums = [1,2,3] -> k = 3, prefix = [1,2,3].
 
-# Clarifying assumptions
+## Clarifying assumptions
 
-- The input is sorted; equal values therefore appear next to one another.
-- The first k positions are the result. The array is not resized and values after that prefix have no required contents.
-- The method mutates the caller’s array and returns the logical length.
-- The non-empty length constraint means at least one unique value exists.
+- The input is nonempty and already sorted. The algorithm does not sort it.
+- Only the first k values are part of the result; the suffix can contain old or overwritten values.
+- The array is intentionally mutated.
+- Equal values are duplicates by value; only the first occurrence in sorted order is retained.
 
-# Progressive hints
+## Progressive hints
 
-1. In a sorted array, once a value has been seen, any duplicate of it is adjacent until the next distinct value.
-2. Keep a write index for the end of the unique prefix. Compare each later value with the last value written.
-3. When the current value differs, write it at the next free prefix position and advance the write index.
-4. Do not advance the write index for a duplicate. The read index still moves through every element.
+1. The first value is always the first unique value because the array is nonempty.
+2. Use `write` as the index where the next previously unseen value should go.
+3. Compare each read value with the last retained value at `write - 1`.
+4. When they differ, copy the current value to `write` and advance it. The returned count is the final write position.
 
-# Complete C# solution
+## Complete C# solution
 
 ```csharp dsa-solution
 using System;
@@ -50,97 +47,84 @@ public static class Program
     public static int RemoveDuplicates(int[] nums)
     {
         if (nums is null) throw new ArgumentNullException(nameof(nums));
-        if (nums.Length == 0) throw new ArgumentException("At least one value is required.", nameof(nums));
+        if (nums.Length == 0) return 0;
 
         int write = 1;
         for (int read = 1; read < nums.Length; read++)
         {
-            if (nums[read] == nums[write - 1])
-                continue;
-
-            nums[write] = nums[read];
-            write++;
+            if (nums[read] != nums[write - 1])
+            {
+                nums[write] = nums[read];
+                write++;
+            }
         }
-
         return write;
     }
 
-    private static void AssertResult(int[] nums, int expectedLength, int[] expectedPrefix, string label)
+    private static void AssertPrefix(int[] nums, int expectedLength, int[] expectedPrefix, string label)
     {
         int actualLength = RemoveDuplicates(nums);
-        if (actualLength != expectedLength)
-            throw new InvalidOperationException(label + ": wrong logical length.");
-        for (int i = 0; i < actualLength; i++)
-            if (nums[i] != expectedPrefix[i])
-                throw new InvalidOperationException(label + ": wrong value at index " + i);
+        if (actualLength != expectedLength) throw new InvalidOperationException(label + " length failed.");
+        for (int i = 0; i < expectedLength; i++)
+            if (nums[i] != expectedPrefix[i]) throw new InvalidOperationException(label + " prefix failed.");
     }
 
     public static void Main()
     {
-        AssertResult(new[] { 1, 1, 2 }, 2, new[] { 1, 2 }, "Example 1");
-        AssertResult(new[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 }, 5, new[] { 0, 1, 2, 3, 4 }, "Example 2");
-        AssertResult(new[] { 7 }, 1, new[] { 7 }, "Single element");
-        AssertResult(new[] { -2, -2, -2 }, 1, new[] { -2 }, "All equal");
-        AssertResult(new[] { -3, -1, 0 }, 3, new[] { -3, -1, 0 }, "No duplicates");
-        Console.WriteLine("All Remove Duplicates checks passed.");
+        AssertPrefix(new[] { 1, 1, 2 }, 2, new[] { 1, 2 }, "Example 1");
+        AssertPrefix(new[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 }, 5, new[] { 0, 1, 2, 3, 4 }, "Example 2");
+        AssertPrefix(new[] { 1 }, 1, new[] { 1 }, "Single value");
+        AssertPrefix(new[] { 1, 2, 3 }, 3, new[] { 1, 2, 3 }, "All unique");
+        AssertPrefix(new[] { -2, -2, -2 }, 1, new[] { -2 }, "All equal");
+        Console.WriteLine("All Remove Duplicates from Sorted Array checks passed.");
     }
 }
 ```
 
-# Correctness argument
+## Correctness argument
 
-Before each read index, the prefix nums[0..write) contains exactly the distinct values among the already-processed input, in their original sorted order. It is non-empty because the array has at least one element and nums[0] begins the prefix. If nums[read] equals nums[write - 1], sorted order guarantees it is a duplicate of the most recently written distinct value, so skipping it preserves the invariant. Otherwise it is a new, strictly larger value and belongs next in the unique sequence; writing it at nums[write] and incrementing write extends the correct prefix by one. At the end, write is the number of distinct values and the prefix contains all of them.
+At the start of each iteration with current read index r, the prefix `[0,write)` contains exactly the distinct values from the already processed input prefix `[0,r)`, in sorted order. Since the input is sorted, any duplicate of a value already retained appears adjacent to its other copies before any larger value. If `nums[read]` equals the last retained value, it adds no new distinct item and can be skipped. If it differs, sortedness means it is the next larger distinct value; copying it to `nums[write]` extends the correct prefix by one. Since write is at most read, the copy cannot overwrite an unread position. At termination, every distinct input value appears once in the prefix and no other value does; returning write gives exactly its length.
 
-# Step-by-step dry run
+## Step-by-step dry run
 
-For [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]:
+For `[0,0,1,1,1,2,2,3,3,4]`, initialize write = 1. The second zero equals the last kept zero, so skip it. At the first one, write it at index 1 and advance write to 2; skip the remaining ones. Do the same for 2, 3, and 4. The meaningful prefix becomes `[0,1,2,3,4]`, and write is 5.
 
-1. Start with write = 1 and prefix [0].
-2. Read the second 0: equal to nums[write - 1], so skip.
-3. Read 1: new value; write it at index 1, then write = 2.
-4. Skip the next two 1 values.
-5. Read 2: write at index 2, then write = 3; skip the duplicate 2.
-6. Read 3: write at index 3, then write = 4; skip the duplicate 3.
-7. Read 4: write at index 4, then write = 5.
-8. Return k = 5; only [0, 1, 2, 3, 4] is meaningful.
+## Time complexity
 
-# Time complexity
+O(n), one scan of the array.
 
-O(n): read visits each element once, and each unique value is written once.
+## Space complexity
 
-# Space complexity
+O(1) auxiliary space; updates happen in the input array.
 
-O(1) auxiliary space: the input array is reused and only two indices are stored.
+## Alternatives and tradeoffs
 
-# Alternatives and tradeoffs
+- A new list with distinct values can be simpler to reason about, but it violates the no-extra-result-array requirement and uses O(n) storage.
+- A hash set could detect values without sorted input, but it adds storage and does not use the given adjacent-duplicate property.
+- For a variant that allows each value at most c times, compare the current value with the item c positions before write, after handling the small-prefix boundary. The invariant must be adjusted and should be reproved.
 
-- A hash set can find unique values in an unsorted sequence, but uses O(n) extra memory and is unnecessary for sorted input.
-- Copying unique values into a new list is simpler in some application code, but violates the in-place requirement.
-- The same read/write pattern supports “keep at most m copies” in a sorted array: compare the current value with the value m positions behind the write position, after handling short prefixes.
-- If the input were not sorted, comparing only with the last written value would not identify all duplicates; sorting changes order and costs O(n log n).
+## Common mistakes and gotchas
 
-# Common mistakes and gotchas
+- Comparing with `nums[read - 1]` is also valid here due to sorted adjacency, but comparing with `nums[write - 1]` makes the retained-prefix invariant explicit.
+- Incrementing write for duplicates, which leaves duplicates in the output prefix.
+- Returning the final index instead of the prefix length.
+- Requiring the unused suffix to be cleared even though the contract ignores it.
+- Applying this adjacent-duplicate approach to unsorted input.
+- Using `write <= read` as a loop bound when write represents output length, not the next unread input index.
 
-- Return the logical length, not the original array length.
-- Do not clear the ignored tail; the judge checks only the first k positions.
-- Compare the read value to the last unique value, not to the immediately preceding input value, which may itself be a duplicate.
-- Start read at index 1 because index 0 seeds the unique prefix.
-- The input is guaranteed non-empty. A reusable library method should choose and document behavior for an empty input rather than accidentally indexing nums[0].
-- Do not increment write for a duplicate, or gaps will appear in the meaningful prefix.
+## Edge-case tests
 
-# Edge-case tests
+- One element.
+- All values equal.
+- Every value distinct.
+- Duplicate runs at the start, middle, and end.
+- Negative and positive values in sorted order.
 
-- One value.
-- Every value equal.
-- No duplicates.
-- Negative values and transitions between values.
-- Long runs of the same value.
+## Reflection questions
 
-# Reflection questions
+1. What does the prefix before write represent?
+2. Why can every duplicate be identified by comparing with the last retained value?
+3. Why does writing at write not destroy future input?
+4. What assumption would fail if the array were unsorted?
 
-1. Why does sorted order make equality with the last written value sufficient?
-2. Why can the write index never move ahead of the read index?
-3. Why is the array length unchanged even though duplicates are “removed”?
-4. How would you generalize the method to keep at most two copies?
-
-Sources: [LeetCode: Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/).
+Source: [LeetCode: Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/).
