@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {parseReviewResponse} from './parse-review-response.js';
+import {loadModelUsage,markDailyQuotaReached,markModelUnavailable,modelRpdLimits,pacificUsageDay,recordModelSuccess,remainingDailyCalls,saveModelUsage} from './model-usage.js';
 
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const template = readJson('curriculum/prompt-template.json');
@@ -9,11 +10,14 @@ const queue = readJson('curriculum/queue.json');
 const requestedUnits = Number(process.env.UNITS_PER_RUN ?? 100);
 const unitsPerRun = Number.isInteger(requestedUnits) && requestedUnits > 0 ? Math.min(requestedUnits, 100) : 100;
 const requestedCalls = Number(process.env.MAX_API_CALLS_PER_RUN ?? 100);
-const maxApiCalls = Number.isInteger(requestedCalls) && requestedCalls > 0 ? Math.min(requestedCalls, 160) : 100;
 const dryRun = process.argv.includes('--dry-run');
 const models = (process.env.GEMINI_MODELS ?? process.env.GEMINI_MODEL ?? 'gemini-3.5-flash-lite,gemini-3.1-flash-lite')
   .split(',').map(name => name.trim()).filter(Boolean);
 if (!models.length || new Set(models).size !== models.length) throw new Error('GEMINI_MODELS must contain unique model IDs');
+const usageFile='curriculum/model-usage.json';
+const modelUsage=loadModelUsage(usageFile,pacificUsageDay());
+const requestedCallBudget=Number.isInteger(requestedCalls)&&requestedCalls>0?Math.min(requestedCalls,160):100;
+const maxApiCalls=Math.min(requestedCallBudget,remainingDailyCalls(modelUsage,models));
 const rpmByModel = {
   'gemini-3.5-flash-lite': 15,
   'gemini-3.1-flash-lite': 15,
@@ -98,12 +102,18 @@ function checkLesson(task, manifest, text) {
 }
 let apiCalls=0;
 let nextModelIndex=0;
-const unavailableModels=new Set();
+const unavailableModels=new Set(modelUsage.unavailableModels);
 const lastRequestAtByModel=new Map();
+const inFlightCallsByModel=new Map();
+for(const model of models)if(modelRpdLimits[model]&&(modelUsage.requests[model]??0)>=modelRpdLimits[model])unavailableModels.add(model);
+function canUseDailyQuota(model){
+  const limit=modelRpdLimits[model];
+  return limit===undefined||(modelUsage.requests[model]??0)+(inFlightCallsByModel.get(model)??0)<limit;
+}
 function nextAvailableModel(){
   for(let i=0;i<models.length;i++){
     const model=models[nextModelIndex++%models.length];
-    if(!unavailableModels.has(model))return model;
+    if(!unavailableModels.has(model)&&canUseDailyQuota(model))return model;
   }
   return null;
 }
@@ -114,28 +124,52 @@ async function request(prompt,{maxOutputTokens=16384,json=false}={}) {
     if(apiCalls>=maxApiCalls) throw new RequestBudgetExhausted(`Per-run API request budget reached (${maxApiCalls})`);
     const model=nextAvailableModel();
     if(!model)throw new RequestBudgetExhausted('All configured Gemini models are exhausted or unavailable for this run');
-    const minRequestInterval=Math.ceil(61000/(rpmByModel[model]??5));
-    const lastRequestAt=lastRequestAtByModel.get(model)??0;
-    const wait=Math.max(0,minRequestInterval-(Date.now()-lastRequestAt));
-    if(wait) await new Promise(resolve=>setTimeout(resolve,wait));
-    lastRequestAtByModel.set(model,Date.now());
     apiCalls++;
+    inFlightCallsByModel.set(model,(inFlightCallsByModel.get(model)??0)+1);
+    const minRequestInterval=Math.ceil(61000/(rpmByModel[model]??5));
+    const now=Date.now();
+    const lastRequestAt=lastRequestAtByModel.get(model)??0;
+    const scheduledAt=Math.max(now,lastRequestAt+minRequestInterval);
+    lastRequestAtByModel.set(model,scheduledAt);
+    const wait=scheduledAt-now;
     const generationConfig={temperature:json?0:0.25,maxOutputTokens,...(json?{responseMimeType:'application/json',responseSchema:{type:'OBJECT',properties:{verdict:{type:'STRING',enum:['pass','revise']},issues:{type:'ARRAY',items:{type:'STRING'}}},required:['verdict','issues'],propertyOrdering:['verdict','issues']}}:{})};
-    const response=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':apiKey},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig})});
-    const body=await response.json().catch(()=>({}));
+    let response,body;
+    let networkError;
+    try{
+      if(wait) await new Promise(resolve=>setTimeout(resolve,wait));
+      response=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':apiKey},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig}),signal:AbortSignal.timeout(180000)});
+      body=await response.json().catch(()=>({}));
+    }catch(error){networkError=error;}
+    finally{inFlightCallsByModel.set(model,Math.max(0,(inFlightCallsByModel.get(model)??1)-1));}
+    if(networkError){
+      if(attempt===5)throw new Error(`Gemini network request failed after retry limit: ${networkError.message}`);
+      console.error(`Gemini transport failure; retrying with another configured model: ${networkError.message}`);
+      await new Promise(resolve=>setTimeout(resolve,delay)); delay=Math.min(delay*2,60000);
+      continue;
+    }
     if(response.ok) {
+      recordModelSuccess(modelUsage,model);
+      saveModelUsage(usageFile,modelUsage);
       const text=body.candidates?.[0]?.content?.parts?.map(p=>p.text??'').join('');
       if(text) return text;
-      throw new Error('Gemini returned no text content');
+      const finishReason=body.candidates?.[0]?.finishReason;
+      const blockReason=body.promptFeedback?.blockReason;
+      if(attempt===5)throw new Error(`Gemini returned no text content after retries (finishReason=${finishReason??'none'}, blockReason=${blockReason??'none'}).`);
+      console.error(`Gemini returned no text content; retrying with another configured model (finishReason=${finishReason??'none'}, blockReason=${blockReason??'none'}).`);
+      continue;
     }
     if(response.status===404 || (response.status===400 && /model.*(not found|not supported)|not found.*model/i.test(JSON.stringify(body)))){
       unavailableModels.add(model);
+      markModelUnavailable(modelUsage,model);
+      saveModelUsage(usageFile,modelUsage);
       console.error(`Gemini model unavailable; skipping it for this run: ${model}`);
       continue;
     }
     if(response.status===429){
       const quotaText=JSON.stringify(body);
       if(/generate_requests_per_day|requests_per_day|per.day|quota.*daily|rpd/i.test(quotaText)){
+        markDailyQuotaReached(modelUsage,model);
+        saveModelUsage(usageFile,modelUsage);
         unavailableModels.add(model);
         console.error(`Gemini daily quota reached; skipping ${model} for this run.`);
         continue;
@@ -147,7 +181,8 @@ async function request(prompt,{maxOutputTokens=16384,json=false}={}) {
 }
 let failures=0;
 let completedUnits=0;
-for(const task of pending) {
+let budgetReached=false;
+async function processTask(task) {
   try {
     const {manifest}=ready.get(task.module);
     let result=await request(promptFor(task,manifest));
@@ -181,9 +216,19 @@ for(const task of pending) {
     completedUnits++;
     console.log(`Draft generated: ${target}`);
   } catch(error) {
-    if(error instanceof RequestBudgetExhausted) { console.log(`${error.message}; remaining pending lessons will continue on the next scheduled run.`); break; }
+    if(error instanceof RequestBudgetExhausted) { budgetReached=true; console.log(`${error.message}; remaining pending lessons will continue on the next scheduled run.`); return; }
     failures++; console.error(`Failed ${task.id}: ${error.message}`);
   }
 }
+let nextTaskIndex=0;
+const requestConcurrency=Math.min(models.length,8,pending.length);
+await Promise.all(Array.from({length:requestConcurrency},async()=>{
+  while(!budgetReached){
+    const task=pending[nextTaskIndex++];
+    if(!task)return;
+    await processTask(task);
+  }
+}));
 console.log(`API request budget: ${apiCalls}/${maxApiCalls}; lessons completed: ${completedUnits}/${pending.length} selected.`);
+saveModelUsage(usageFile,modelUsage);
 if(failures){console.error(`${failures} lesson units failed; successful drafts remain checkpointed on disk.`);process.exitCode=1;}

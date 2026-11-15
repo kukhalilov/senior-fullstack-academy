@@ -3,6 +3,20 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import {parseReviewResponse} from './parse-review-response.js';
+import {markDailyQuotaReached,markModelUnavailable,modelRpdLimits,pacificUsageDay,recordModelSuccess,remainingDailyCalls} from './model-usage.js';
+
+test('model usage follows Pacific quota resets and enforces each model daily limit', () => {
+  assert.equal(pacificUsageDay(new Date('2026-11-16T07:59:00Z')), '2026-11-15');
+  const usage={requests:{'gemini-3.5-flash-lite':498,'gemini-3.1-flash-lite':500}};
+  recordModelSuccess(usage,'gemini-3.5-flash-lite');
+  assert.equal(usage.requests['gemini-3.5-flash-lite'],499);
+  assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),21);
+  markDailyQuotaReached(usage,'gemini-3.8-flash');
+  assert.equal(usage.requests['gemini-3.8-flash'],modelRpdLimits['gemini-3.8-flash']);
+  assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),1);
+  markModelUnavailable(usage,'gemini-3.5-flash-lite');
+  assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),0);
+});
 
 test('review responses accept schema-shaped JSON with optional Markdown fences', () => {
   assert.deepEqual(parseReviewResponse('{"verdict":"pass","issues":[]}'), {verdict:'pass',issues:[]});
@@ -451,28 +465,36 @@ test('scheduled generation stays below the observed per-model Gemini free-tier d
   assert.match(workflow, /UNITS_PER_RUN: '80'/);
   assert.match(workflow, /MAX_API_CALLS_PER_RUN: '160'/);
   const pools = [...workflow.matchAll(/GEMINI_MODELS: ([\w.,-]+)/g)].map(match => match[1].split(','));
-  const expectedModels = ['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash','gemini-3.6-flash','gemini-3-flash-preview','gemini-2.5-flash','gemini-2.5-flash-lite','gemini-4-hydrogen'];
+  const expectedModels = ['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash','gemini-3.6-flash','gemini-3-flash-preview','gemini-4-hydrogen'];
   assert.equal(pools.length, 2);
   for (const pool of pools) {
     assert.deepEqual(pool, expectedModels);
     assert.equal(new Set(pool).size, pool.length, 'model pool must not contain duplicates');
   }
   const dailyRequests = 6 * 160;
-  const dailyRequestCapacity = 500 + 500 + 20 + 20 + 20 + 20 + 20 + 20;
+  const dailyRequestCapacity = 500 + 500 + 20 + 20 + 20 + 20;
   assert.equal(dailyRequests, 960);
   assert.ok(dailyRequests <= dailyRequestCapacity);
   const generator = fs.readFileSync('scripts/generate.js', 'utf8');
+  assert.match(generator, /remainingDailyCalls\(modelUsage,models\)/);
+  assert.match(generator, /saveModelUsage\(usageFile,modelUsage\)/);
+  assert.match(workflow, /git add curriculum\/model-usage\.json/);
+  assert.match(workflow, /git pull --rebase origin main/);
   assert.match(generator, /nextAvailableModel\(\)/);
   assert.match(generator, /const rpmByModel =/);
   assert.match(generator, /Math\.ceil\(61000\/\(rpmByModel\[model\]\?\?5\)\)/);
-  for (const [model,rpm] of [['gemini-3.5-flash-lite',15],['gemini-3.1-flash-lite',15],['gemini-2.5-flash-lite',10],['gemini-4-hydrogen',5]]) {
+  assert.match(generator, /Gemini transport failure; retrying/);
+  assert.match(generator, /Gemini returned no text content; retrying/);
+  assert.match(generator, /lastRequestAtByModel\.set\(model,scheduledAt\)/);
+  assert.match(generator, /requestConcurrency=Math\.min\(models\.length,8,pending\.length\)/);
+  for (const [model,rpm] of [['gemini-3.5-flash-lite',15],['gemini-3.1-flash-lite',15],['gemini-3.8-flash',5],['gemini-4-hydrogen',5]]) {
     assert.match(generator, new RegExp(`['"]${model}['"]: ${rpm}`));
   }
   assert.match(generator, /Gemini daily quota reached; skipping/);
   assert.match(generator, /keep expected output outside code fences/);
   assert.match(generator, /do not substitute an unverified-status disclaimer/);
   assert.match(workflow, /npm run validate:drafts/);
-  assert.match(generator, /Math\.min\(requestedCalls, 160\)/);
+  assert.match(generator, /Math\.min\(requestedCalls,160\)/);
 });
 
 test('unit testing topic freezes current .NET frameworks, lifecycle APIs, assertions, and test-double boundaries', () => {
@@ -1387,6 +1409,7 @@ test('model pool and reviewer evidence rules prevent false missing-item reports'
   assert.ok(template.qualityReview.check.some(check => check.includes('exact candidate quotation')));
   assert.ok(template.qualityReview.check.some(check => check.includes('do not report a string that appears verbatim')));
   const workflow = fs.readFileSync('.github/workflows/generate.yml', 'utf8');
-  for (const model of ['gemini-3.8-flash','gemini-3.6-flash','gemini-3-flash-preview','gemini-2.5-flash','gemini-2.5-flash-lite','gemini-4-hydrogen']) assert.ok(workflow.includes(model));
+  for (const model of ['gemini-3.8-flash','gemini-3.6-flash','gemini-3-flash-preview','gemini-4-hydrogen']) assert.ok(workflow.includes(model));
+  assert.equal(workflow.includes('gemini-2.5-flash'),false,'models unavailable to this project should not be retried every run');
 });
 

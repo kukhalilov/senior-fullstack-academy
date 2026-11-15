@@ -41,7 +41,7 @@ jobs:
         if: steps.pending.outputs.pending != '0' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODELS: gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.8-flash,gemini-3.6-flash,gemini-3-flash-preview,gemini-2.5-flash,gemini-2.5-flash-lite,gemini-4-hydrogen
+          GEMINI_MODELS: gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.8-flash,gemini-3.6-flash,gemini-3-flash-preview,gemini-4-hydrogen
           UNITS_PER_RUN: '80'
           MAX_API_CALLS_PER_RUN: '160'
         run: npm run generate
@@ -49,7 +49,7 @@ jobs:
         if: steps.pending.outputs.pending != '0' && github.event_name == 'push'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODELS: gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.8-flash,gemini-3.6-flash,gemini-3-flash-preview,gemini-2.5-flash,gemini-2.5-flash-lite,gemini-4-hydrogen
+          GEMINI_MODELS: gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.8-flash,gemini-3.6-flash,gemini-3-flash-preview,gemini-4-hydrogen
           UNITS_PER_RUN: '4'
           MAX_API_CALLS_PER_RUN: '8'
         run: npm run generate
@@ -62,11 +62,22 @@ jobs:
         if: always() && steps.pending.outputs.pending != '0'
         run: npm run validate:drafts
       - name: Commit generated drafts
-        if: always() && steps.pending.outputs.pending != '0' && steps.validate_dsa.outcome != 'failure' && steps.validate_drafts.outcome != 'failure'
+        if: always() && steps.pending.outputs.pending != '0'
+        env:
+          VALIDATION_PASSED: ${{ steps.validate_dsa.outcome != 'failure' && steps.validate_drafts.outcome != 'failure' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add course/drafts curriculum/queue.json
-          git diff --cached --quiet || git commit -m "Generate verified-shape lesson drafts"
+          if [ "$VALIDATION_PASSED" != "true" ]; then
+            git stash push --include-untracked -- course/drafts curriculum/queue.json
+          fi
+          if [ -f curriculum/model-usage.json ]; then
+            git add curriculum/model-usage.json
+          fi
+          if [ "$VALIDATION_PASSED" = "true" ]; then
+            git add course/drafts curriculum/queue.json
+          fi
+          git diff --cached --quiet || git commit -m "Update generated academy drafts and Gemini quota usage"
+          git pull --rebase origin main
           git push
 

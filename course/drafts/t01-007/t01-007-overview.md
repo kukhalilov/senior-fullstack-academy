@@ -26,7 +26,7 @@ These features work together to define how objects relate to each other:
 # Concept map
 *   **Hierarchy:** Use **Inheritance** for "is-a" relationships (e.g., a `Dog` is an `Animal`). Use **Composition** (holding an object inside another) for "has-a" relationships.
 *   **Contracts:** Use **Interfaces** to define what an object can *do* (e.g., `ICanFly`). Use **Abstract classes** when you want to share code *and* define a contract.
-*   **Visibility:** Use **Access modifiers** (like `public` or `protected`) to hide internal details and expose only what is necessary.
+*   **Visibility:** Use **Access modifiers** to expose only the surface other code needs. In a class, an ordinary member defaults to `private`; choose `protected` only when derived classes need access, and use `public` when callers outside the type need the member.
 *   **Dispatch:** Use `virtual` and `override` to allow derived classes to change behavior. Use `new` only when you need to hide a base member (rarely recommended).
 
 # End-to-end walkthrough
@@ -41,7 +41,7 @@ Consider a simple system for a drawing application:
 # When to use it and tradeoffs
 *   **Use Inheritance** when you have a clear "is-a" relationship and want to share implementation code. **Tradeoff:** It creates tight coupling; changes to the base class can break all derived classes (the "Fragile base class" problem).
 *   **Use Interfaces** when you want to define capabilities across unrelated classes. **Tradeoff:** They do not store state, so you may repeat code if you don't use default interface implementations.
-*   **Use Access Modifiers** to follow the principle of least privilege. Keep members `private` or `protected` by default to prevent external code from relying on your internal implementation details.
+*   **Use Access Modifiers** to follow the principle of least privilege. Prefer `private` unless a specific caller needs access; `protected` intentionally expands access to derived classes, while `public` exposes the member to all callers that can access the type.
 
 # What later lessons cover
 *   **Generic constraints:** How to restrict types in collections (t01-009).
