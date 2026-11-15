@@ -172,19 +172,19 @@ test('C# numeric conversion inventory covers every directed pair once', () => {
   assert.ok(conversions.versionNotes.some(note => note.edition === '.NET 11'));
 });
 
-test('DSA complexity scope is source-backed but held until solution checks exist', () => {
+test('DSA complexity scope includes enabled analysis practice', () => {
   const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-001.json', 'utf8'));
   const names = manifest.inventory.flatMap(group => group.items);
   assert.equal(manifest.inventoryComplete, true);
-  assert.equal(manifest.generationAllowed, false);
+  assert.equal(manifest.generationAllowed, true);
   assert.ok(names.includes('Big O notation'));
   assert.ok(names.includes('Master theorem'));
   assert.ok(names.includes('Potential method'));
   assert.ok(manifest.sourceSnapshot.urls.some(url => url.includes('opendsa-server.cs.vt.edu')));
-  assert.deepEqual(manifest.generationAllowedPhases, ['overview', 'concepts', 'reference', 'interview']);
+  assert.ok(manifest.generationAllowedPhases.includes('practice'));
   const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
   assert.equal(queue.tasks.find(task => task.id === 't11-001-overview').status, 'draft-generation-eligible');
-  assert.equal(queue.tasks.find(task => task.id === 't11-001-practice').status, 'blocked-on-generation-validation');
+  assert.equal(queue.tasks.find(task => task.id === 't11-001-practice').status, 'draft-generation-eligible');
 });
 
 test('named DSA problems become independent practice units', () => {
