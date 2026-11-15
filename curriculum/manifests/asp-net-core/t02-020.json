@@ -164,15 +164,47 @@
         "Full IIS operations, application pools, and web.config troubleshooting are covered by infrastructure topic t09-003",
         "Kestrel operations, reverse-proxy products, load balancing, and TLS deployment are covered by infrastructure topic t09-004"
       ]
+    },
+    {
+      "id": "kestrel-dotnet-11-http3-and-tls-updates",
+      "title": "ASP.NET Core 11 Kestrel HTTP/3 TLS diagnostics and trailer limits",
+      "items": [
+        "ASP.NET Core 11 Kestrel HTTP/3 early request processing",
+        "Kestrel HTTP/3 processes requests before control stream SETTINGS",
+        "ASP.NET Core 11 ITlsHandshakeFeature.Exception",
+        "ASP.NET Core 11 ListenOptions.UseTlsClientHelloListener",
+        "ASP.NET Core 11 HttpsConnectionAdapterOptions.TlsClientHelloBytesCallback obsolete",
+        "ASP.NET Core 11 RequestHeadersTimeout applies to HTTP/2 and HTTP/3 trailer headers",
+        "ASP.NET Core 11 ITlsConnectionFeature.TryGetChannelBindingBytes",
+        "ASP.NET Core 11 ChannelBindingKind.Endpoint"
+      ]
     }
   ],
   "comparisons": [
-    ["Kestrel endpoint Listen configuration", "UseUrls and urls configuration"],
-    ["Kestrel TLS termination", "reverse-proxy TLS termination"],
-    ["forwarded headers from known proxies", "untrusted client-supplied forwarding headers"],
-    ["IIS in-process IISHttpServer", "IIS out-of-process Kestrel"],
-    ["Kestrel connection limits", "application-level concurrency and rate limits"],
-    ["ASP.NET Core Module integration", "Linux reverse-proxy integration"]
+    [
+      "Kestrel endpoint Listen configuration",
+      "UseUrls and urls configuration"
+    ],
+    [
+      "Kestrel TLS termination",
+      "reverse-proxy TLS termination"
+    ],
+    [
+      "forwarded headers from known proxies",
+      "untrusted client-supplied forwarding headers"
+    ],
+    [
+      "IIS in-process IISHttpServer",
+      "IIS out-of-process Kestrel"
+    ],
+    [
+      "Kestrel connection limits",
+      "application-level concurrency and rate limits"
+    ],
+    [
+      "ASP.NET Core Module integration",
+      "Linux reverse-proxy integration"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
@@ -186,11 +218,14 @@
       "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
       "items": [
         "Starting in ASP.NET Core 8.0.17 and 9.0.6, forwarded headers from unknown proxies are ignored unless the sender is configured in KnownProxies or KnownNetworks. In ASP.NET Core 10, the framework's custom IPNetwork and KnownNetworks APIs became obsolete in favor of System.Net.IPNetwork and ForwardedHeadersOptions.KnownIPNetworks; teach the current API and label KnownNetworks as migration context.",
+        "ASP.NET Core 11 Kestrel starts processing HTTP/3 requests before waiting for the QUIC control stream and SETTINGS frame, reducing first-request latency on new connections.",
+        "ASP.NET Core 11 adds Kestrel TLS handshake diagnostics through ITlsHandshakeFeature.Exception, replaces the old TlsClientHelloBytesCallback customization shape with ListenOptions.UseTlsClientHelloListener, applies RequestHeadersTimeout to incomplete HTTP/2 and HTTP/3 trailer headers, and exposes TLS channel-binding bytes through ITlsConnectionFeature.TryGetChannelBindingBytes.",
         "In-process IIS hosting uses IISHttpServer, while out-of-process hosting places Kestrel behind ANCM. The `AspNetCoreHostingModel` project property controls the deployment hosting model; don't describe both modes as Kestrel hosting.",
         "Kestrel, IIS/ANCM, and reverse-proxy products have independently updated APIs and limits. Avoid claiming a universal request or connection limit; use the current official reference and deployment-specific configuration."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
         "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer",
         "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module",
         "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/8/forwarded-headers-unknown-proxies",
@@ -205,6 +240,8 @@
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3",
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
       "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer",
       "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module",
       "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting",
@@ -213,7 +250,8 @@
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.connections.httpconnectiondispatcheroptions",
-      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions"
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations"
     ]
   },
   "scopeExclusions": [
