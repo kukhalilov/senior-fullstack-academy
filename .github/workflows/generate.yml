@@ -6,6 +6,7 @@ on:
       - 'curriculum/manifests/**'
       - 'curriculum/prompt-template.json'
       - 'scripts/**'
+      - 'course/drafts/**'
       - '.github/workflows/generate.yml'
   schedule:
     # Six daily runs at four-hour intervals, below the per-model free-tier quotas.
@@ -17,6 +18,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   generate:
+    if: github.event_name != 'push' || github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:

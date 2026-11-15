@@ -10,6 +10,13 @@ test('curriculum updates start automatically without exceeding the reserved Gemi
   assert.match(workflow, /MAX_API_CALLS_PER_RUN: '8'/);
   assert.match(workflow, /UNITS_PER_RUN: '80'/);
   assert.match(workflow, /MAX_API_CALLS_PER_RUN: '160'/);
+  assert.match(workflow, /course\/drafts\/\*\*/);
+  assert.match(workflow, /github\.actor != 'github-actions\[bot\]'/);
   assert.equal((6 * 160 + 8) / 2, 484);
   assert.ok(484 < 500);
+});
+
+test('lesson headings accept valid Markdown heading levels for required sections', () => {
+  const generator = fs.readFileSync('scripts/generate.js', 'utf8');
+  assert.match(generator, /\^#\{1,6\}\\s\+/);
 });

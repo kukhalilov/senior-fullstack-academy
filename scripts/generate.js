@@ -57,7 +57,7 @@ function checkLesson(task, manifest, text) {
   const required=task.problemId&&manifest.track==='track-11'
     ? dsaProblemHeadings
     : template.lessonTypes[phase].requiredSections;
-  const headings=text.split(/\r?\n/).filter(line=>/^#{2,3}\s+/.test(line)).map(line=>line.replace(/^#{2,3}\s+/, '').trim().toLowerCase());
+  const headings=text.split(/\r?\n/).filter(line=>/^#{1,6}\s+/.test(line)).map(line=>line.replace(/^#{1,6}\s+/, '').trim().toLowerCase());
   const missing=required.filter(section=>!headings.includes(section.toLowerCase()));
   if(missing.length) throw new Error(`${task.id}: missing section headings: ${missing.join(', ')}`);
   if(phase==='reference') {
