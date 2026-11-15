@@ -67,7 +67,7 @@ In the TAP model, a `Task` represents an operation outcome that may be pending, 
 * `ValueTask<T>.AsTask()`: Converts a `ValueTask<T>` to a `Task`.
 * `ValueTask<T>.Result`: Gets the result and may block if the operation is incomplete; prefer awaiting it.
 * `ValueTask<T>.IsCompletedSuccessfully`: Checks if the `ValueTask<T>` finished successfully.
-* `ValueTask<T>.Preserve()`: Returns a `ValueTask<T>` that can be awaited multiple times.
+* `ValueTask<T>.Preserve()`: Returns a `ValueTask<T>` whose result can be consumed multiple times by preserving/caching the result; this may allocate and should be used only when repeated consumption is required.
 * `ValueTask<T> single-consumption constraint`: A source-backed `ValueTask<T>` may be single-consumption; follow the specific implementation contract. Do not generalize this to every `ValueTask<T>` instance.
 * `ValueTask<T> source-backed implementation constraint`: Limitations on how `ValueTask` interacts with underlying sources.
 
@@ -108,7 +108,7 @@ tcs.TrySetResult("Done");
 ```
 
 # Common mistakes
-1. **Blocking on Async:** Using `.Result` or `.Wait()` in UI or ASP.NET code often causes deadlocks because the continuation tries to resume on a captured context that is currently blocked by the wait.
+1. **Blocking on async:** Using `.Result` or `.Wait()` can deadlock when the awaited operation needs a captured single-threaded context that is blocked by that wait; blocking can also contribute to thread-pool starvation.
 2. **Ignoring ValueTask consumption rules:** Some source-backed `ValueTask` instances can be consumed only once. Follow the particular API contract; use `Preserve()` when repeated consumption is needed and supported.
 3. **Ignoring Cancellation:** Passing a `CancellationToken` to a method is useless if the method does not check `token.ThrowIfCancellationRequested()`.
 

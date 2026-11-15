@@ -57,7 +57,7 @@ Consider a scenario where a high-throughput service processes incoming text chun
 # When to use it and tradeoffs
 
 * **Use contiguous views (`Span<T>` / `ReadOnlySpan<T>`)** when parsing data, processing network buffers, or writing performance-critical inner loops where avoiding heap allocation matters.
-* **Tradeoffs of Spans:** Because `Span<T>` is a stack-only type (`ref struct`), it cannot cross asynchronous method boundaries (`await`), cannot be boxed, and cannot be stored in ordinary class fields.
+* **Tradeoffs of Spans:** Because `Span<T>` is a stack-only `ref struct`, it cannot escape to the heap, be boxed, or be stored in ordinary class fields. Starting with C# 13 it may be a local in an async method if its lifetime and uses do not cross an `await` boundary; earlier language versions prohibit ref-struct locals in async methods.
 * **Use buffer pooling (`ArrayPool<T>`)** when handling frequent, moderately large temporary arrays that would otherwise thrash Generation 0 or the Large Object Heap (LOH).
 * **Tradeoffs of Pooling:** Rented buffers may contain old data, require strict adherence to single-return rules, and can complicate debugging if a buffer is used after being returned.
 * **Avoid premature optimization:** Do not introduce complex pooling, manual pinning, or unsafe code unless profiling data proves that allocations are an actual bottleneck in your application.

@@ -54,7 +54,7 @@ Optimize memory only after measuring allocation rate, retained heap, GC pause be
 
 The relationship between these features revolves around **ownership, lifetime, and safety**:
 1. **Storage vs. View**: An underlying storage mechanism (heap array, native memory, stack frame, or pool) holds data. `Span<T>` and `Memory<T>` provide zero-copy views into this storage.
-2. **Lifetimes**: `Span<T>` is bound by the stack and cannot outlive its backing data or cross `async`/`await` boundaries. `Memory<T>` can cross asynchronous boundaries, transferring ownership or safe references across execution contexts.
+2. **Lifetimes**: `Span<T>` is a stack-only ref struct and cannot outlive its backing storage. C# 13 permits span locals in async methods when they are not used across an `await` suspension boundary; earlier C# versions prohibit these locals. `Memory<T>` can be retained across asynchronous boundaries but does not transfer ownership of its backing storage.
 3. **Pooling Boundaries**: When object allocation pressure degrades throughput, `ArrayPool<T>.Shared.Rent(Int32)` temporarily lends arrays. Callers wrap them in spans or memory views, process data without allocations, and return buffers to the pool.
 
 # Worked examples
@@ -123,8 +123,8 @@ public class DataProcessor
 - **Gotcha:** Calling `GC.Collect()` manually usually harms application throughput by forcing the runtime to stop threads and disrupt generational heuristics. Rely on adaptive tuning instead.
 
 # Knowledge checks with answers
-1. **Question:** Why can a `Span<T>` not be used across an `async` method boundary (spanning an `await` expression)?  
-   **Answer:** `Span<T>` is a `ref struct` constrained to live on the execution stack. Because asynchronous methods state machines can resume execution on a different thread after an `await`, stack-bound references are forbidden to prevent memory corruption and invalid pointer states.
+1. **Question:** What is the C# 13 rule for using `Span<T>` in an async method?
+   **Answer:** C# 13 allows a `ref struct` local in an async method only when it is not used across an `await` suspension boundary. The restriction protects ref-safe lifetimes; it is not simply about continuations resuming on another thread. Earlier C# versions prohibit these locals in async methods.
 
 2. **Question:** What is the primary hazard when returning an array to `ArrayPool<T>.Shared`?  
    **Answer:** Using the array after it has been returned (use-after-return hazard) or returning the same array multiple times. Rented arrays may be given to other callers, leading to data corruption or security leaks.

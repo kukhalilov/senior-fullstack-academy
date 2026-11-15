@@ -347,6 +347,13 @@
     "Task and ValueTask describe operation outcomes and may be pending, completed, faulted, or canceled; the type alone does not mean execution is currently underway.",
     "A Task can be awaited repeatedly. ValueTask consumption constraints depend on its backing source; some IValueTaskSource-backed instances are single-consumption, but not every ValueTask is inherently single-use.",
     "Task.WaitAsync cancellation cancels the wait operation, not necessarily the underlying task.",
-    "TaskCompletionSource RunContinuationsAsynchronously is often a useful defensive choice for producer APIs, but it is not an absolute requirement for every use."
+    "TaskCompletionSource RunContinuationsAsynchronously is often a useful defensive choice for producer APIs, but it is not an absolute requirement for every use.",
+    "The default Task awaiter captures a non-default SynchronizationContext, or a non-default TaskScheduler when no such SynchronizationContext is present; ExecutionContext flows separately.",
+    "ConfigureAwait(false) opts out of captured SynchronizationContext or non-default TaskScheduler resumption for that await; it does not suppress ExecutionContext or guarantee a thread switch, speedup, or deadlock prevention.",
+    "Task.WhenAll does not start its input tasks. Its returned task retains all faults in its Exception aggregate; awaiting it throws an exception, and callers needing every failure should inspect the aggregate.",
+    "async void exceptions are propagated through the SynchronizationContext active when the method starts; callers cannot catch them through a returned Task, and host behavior determines the outcome.",
+    "CancellationToken.ThrowIfCancellationRequested throws OperationCanceledException carrying that token. TaskCanceledException is a derived subtype and is not guaranteed as the exception subtype from every canceled operation.",
+    "CancellationTokenSource.CancelAsync sets cancellation-requested state and returns a Task that completes when registered callbacks finish; it is not a request that automatically stops the operation.",
+    "Task and ValueTask are reference and value types respectively, but neither type guarantees a fresh allocation per operation; ValueTask can avoid a Task allocation for some synchronous completions and has source-dependent consumption constraints."
   ]
 }

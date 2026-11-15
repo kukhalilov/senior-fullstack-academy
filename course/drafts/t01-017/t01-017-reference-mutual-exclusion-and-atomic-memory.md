@@ -8,7 +8,7 @@ This reference lesson covers the exact named APIs, statements, and patterns in t
 # How this group fits the mental model
 In modern software, concurrency refers to multiple operations making progress during overlapping periods of time, while parallelism means work executes at the exact same instant across multiple processor cores. Threads represent the underlying operating system execution resources, whereas tasks describe units of work assigned to the managed thread pool. When multiple threads access shared mutable state, timing-dependent defects known as race conditions can corrupt data or violate application invariants.
 
-To prevent race conditions, developers use synchronization primitives to protect critical sections or coordinate participants. Mutual exclusion primitives ensure that only one thread executes a designated block of code at a time. In .NET, mutual exclusion ranges from language-level syntax like the `lock` statement down to low-level atomic operations via `Interlocked` and non-caching memory reads/writes via `Volatile`. Understanding how mutual exclusion, memory visibility, and atomicity fit together allows developers to protect shared data without introducing deadlocks, heavy contention, or lock convoys.
+To prevent race conditions, developers use synchronization primitives to protect critical sections or coordinate participants. Mutual exclusion primitives ensure that only one thread executes a designated block of code at a time. In .NET, mutual exclusion ranges from language-level syntax like the `lock` statement down to low-level atomic read-modify-write operations via `Interlocked` and ordered reads/writes via `Volatile`. Volatile semantics do not mean bypassing CPU caches or fetching directly from physical memory. Understanding how mutual exclusion, memory visibility, and atomicity fit together allows developers to protect shared data without introducing deadlocks, heavy contention, or lock convoys.
 
 # Supplied names explained
 This section explains every item in the assigned inventory group, connecting each item to its role in managed threading and mutual exclusion.
@@ -17,7 +17,7 @@ This section explains every item in the assigned inventory group, connecting eac
   A C# language statement that acquires an exclusive mutual-exclusion lock on a given reference object, executes a block of statements, and reliably releases the lock even if exceptions occur.
 
 * `System.Threading.Lock`
-  A dedicated mutual-exclusion lock type introduced in .NET 9 and C# 13 to provide improved performance and clearer semantics compared to traditional object-based monitoring.
+  A dedicated mutual-exclusion lock type introduced in .NET 9 and C# 13 to provide a dedicated lock type; Microsoft recommends it with the C# `lock` statement on .NET 9+ for best performance and to avoid locking on shared objects.
 
 * `Lock.EnterScope()`
   An instance method on `System.Threading.Lock` that enters the lock and returns a ref struct scope whose disposal releases the lock, enabling modern `using` statement patterns.
@@ -124,9 +124,6 @@ This section explains every item in the assigned inventory group, connecting eac
 * `Thread.MemoryBarrier()`
   Establishes a memory barrier that prevents the calling thread's memory operations from being reordered across the barrier. Use the synchronization primitives designed for the shared-state protocol (such as a lock or an appropriate Interlocked operation) instead of treating a barrier alone as a replacement for mutual exclusion.
 
-* `Thread.MemoryBarrier()`
-  Establishes a memory barrier that prevents the calling thread's memory operations from being reordered across the barrier. Use the synchronization primitives designed for the shared-state protocol (such as a lock or an appropriate Interlocked operation) instead of treating a barrier alone as a replacement for mutual exclusion.
-
 * `Interlocked.CompareExchange<T> reference overload`
   A generic reference-type overload of `CompareExchange` that performs atomic reference comparisons and replacements.
 
@@ -208,8 +205,8 @@ This section explains every item in the assigned inventory group, connecting eac
 # Cross-item comparison
 Within this inventory group, several primitives and patterns share overlapping utility for protecting state:
 * `lock statement` versus `System.Threading.Lock` versus `Monitor`: The `lock` statement is compiler sugar. Prior to .NET 9, it lowered to `Monitor.Enter` and `Monitor.Exit` wrapped in a `try-finally` block. In .NET 9 and C# 13, locking on a `System.Threading.Lock` instance lowers to `EnterScope()` and `Dispose()`, offering better performance and explicit lock scoping.
-* `Interlocked` versus `lock`: `Interlocked` provides atomic operations on single scalar values without blocking or context-switching overhead, making it ideal for simple counters and flags. `lock` protects multi-step critical sections that require atomicity across several variables or statements.
-* `Volatile` methods versus `Interlocked` methods: `Volatile.Read` and `Volatile.Write` ensure memory visibility and ordering without atomicity guarantees for compound changes, whereas `Interlocked` methods provide both atomicity and memory barriers.
+* `Interlocked` versus `lock`: `Interlocked` provides atomic operations on single scalar values as one atomic update, suitable for simple state changes; it is not necessarily lock-free at the hardware level and is not a substitute for a lock when invariants span multiple locations. `lock` protects multi-step critical sections that require atomicity across several variables or statements.
+* `Volatile` methods versus `Interlocked` methods: `Volatile.Read` and `Volatile.Write` ensure memory visibility and ordering without atomicity guarantees for compound changes, whereas `Interlocked` methods provide atomic read-modify-write operations and the memory-ordering guarantees of their API contract.
 
 # Examples
 The following example demonstrates a single synchronization protocol: every access to the counter uses the same lock. Do not mix locked writes with unsynchronized or Interlocked writes and assume the lock protects those other accesses.
@@ -278,7 +275,7 @@ Final Counter: 2000
 
 # Knowledge checks with answers
 1. **Question:** What is the primary advantage of using `System.Threading.Lock` over locking on an ordinary `object` in .NET 9 and C# 13?
-   **Answer:** `System.Threading.Lock` provides optimized performance and cleaner compiler lowering to `EnterScope()` and `Dispose()`, avoiding the legacy object-header allocation and monitoring overhead associated with traditional `Monitor` locks.
+   **Answer:** Starting with .NET 9 and C# 13, the compiler recognizes a `System.Threading.Lock` expression in a `lock` statement and lowers it through `EnterScope()` and disposal. Microsoft recommends it for best performance and to reduce mistakes from locking the wrong or shared object; performance depends on the workload, and the API is not described as eliminating object-header allocation.
 
 2. **Question:** Why is locking on `typeof(string)` or a public instance (`this`) considered a hazard?
    **Answer:** It exposes the lock token externally, allowing outside code to acquire the lock unintentionally, which can result in deadlocks and unpredicted thread contention.

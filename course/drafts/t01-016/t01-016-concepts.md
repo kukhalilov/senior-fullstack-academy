@@ -30,9 +30,9 @@ When you `await` an operation, the compiler uses a **TaskAwaiter** to check if t
 1.  **Execution**: The method runs synchronously until it hits an incomplete `await`.
 2.  **State Machine**: The **Async state machine** saves local variables and the current position.
 3.  **Continuation**: Once the task finishes, the runtime resumes the method.
-4.  **Context**: By default, the continuation attempts to marshal back to the original **SynchronizationContext** (like the UI thread) or **ExecutionContext**.
+4.  **Continuation placement**: By default, `await` captures a non-default `SynchronizationContext`; if none is present, it may capture a non-default `TaskScheduler`. `ExecutionContext` (ambient state such as `AsyncLocal<T>`) flows separately and is not disabled by `ConfigureAwait(false)`. If there is no special context or scheduler, an asynchronously completing await normally queues continuation work to the thread pool; an already-completed await continues inline.
 
-To optimize, you can use `ConfigureAwait(Boolean)` (specifically `Task.ConfigureAwait(Boolean)`, `Task<T>.ConfigureAwait(Boolean)`, `ValueTask.ConfigureAwait(Boolean)`, or `ValueTask<T>.ConfigureAwait(Boolean)`) to avoid capturing the context, which is a best practice for library code.
+`ConfigureAwait(false)` opts out of resuming on the captured `SynchronizationContext` or non-default `TaskScheduler` for that await. It does not suppress `ExecutionContext`, guarantee a thread switch, or by itself make code faster or deadlock-proof. Whether library code should use it depends on its target frameworks and whether callers may rely on context affinity; apply it at each relevant await.
 
 # Worked examples
 Here is a basic implementation using `Task.Delay` to simulate an asynchronous operation.
@@ -60,20 +60,20 @@ public async Task RunExample()
 }
 ```
 
-To run multiple tasks concurrently, use `Task.WhenAll(Task[])` or `Task.WhenAny(Task[])`. If you need to create a task manually, use `TaskCompletionSource<T>`. For simple completed tasks, use `Task.CompletedTask` or `Task.FromResult<T>(value)`.
+To wait for already-started independent operations together, use `Task.WhenAll(Task[])`; it does not start them. `Task.WhenAny(Task[])` completes when one supplied task completes and returns that task; it does not cancel the others. If you need to create a task manually, use `TaskCompletionSource<T>`. For simple completed tasks, use `Task.CompletedTask` or `Task.FromResult<T>(value)`.
 
 # Misconceptions and edge cases
-*   **Blocking**: Never use `.Result` or `.Wait()` on an async task, as this can cause deadlocks if the continuation tries to return to a blocked thread.
+*   **Blocking**: Avoid `.Result` and `.Wait()` inside asynchronous call paths. They block a thread and can deadlock when a continuation needs a blocked context, or cause thread-pool starvation. A deliberate synchronous boundary may still block, but should be isolated and reviewed.
 *   **Cancellation**: Cancellation is cooperative. You must check `CancellationToken.IsCancellationRequested` or call `ThrowIfCancellationRequested`. Use `CancellationToken.None` if no cancellation is needed.
-*   **`ConfiguredTaskAwaitable`**: This is the result of calling `ConfigureAwait`. It tells the runtime whether to force the continuation back to the captured context.
-*   **`async void`**: Avoid `async void` except for event handlers. Because the caller cannot await an `async void` method, exceptions cannot be caught by the caller and will crash the process.
+*   **`ConfiguredTaskAwaitable`**: This is an awaitable returned by `Task.ConfigureAwait`. Its configuration controls whether the awaiter requests captured-context resumption; it does not force a thread or scheduler switch.
+*   **`async void`**: Reserve it for event-handler signatures that require `void`. The caller cannot await its completion or catch its exceptions through a returned task; exceptions are posted to the applicable synchronization context and may be unhandled by the host.
 
 # Knowledge checks with answers
 1.  **Question**: Why should you use `ConfigureAwait(false)` in library code?
-    *   **Answer**: It prevents the continuation from attempting to marshal back to the original `SynchronizationContext`, which improves performance and avoids potential deadlocks.
+    *   **Answer**: It opts out of captured `SynchronizationContext` or non-default `TaskScheduler` resumption for that await. It may avoid unnecessary context dispatch when affinity is not needed, but does not guarantee a speedup or prevent all deadlocks.
 2.  **Question**: How do you trigger cancellation?
     *   **Answer**: Call `CancellationTokenSource.Cancel()`. The operation must be designed to observe the `CancellationToken` and throw an `OperationCanceledException` when requested.
 3.  **Question**: What is the difference between `Task` and `ValueTask`?
-    *   **Answer**: `Task` is a reference type (heap-allocated). `ValueTask` is a value type designed to avoid allocations when an operation completes synchronously.
+    *   **Answer**: `Task` is a reference type and is generally the simpler reusable return type; implementations can cache completed tasks. `ValueTask` is a value type that can avoid allocating a `Task` for some synchronous completions, but may add complexity and is not guaranteed allocation-free.
 
 *Sources: [Microsoft C# asynchronous programming guide](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/), [TAP guidance](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)*

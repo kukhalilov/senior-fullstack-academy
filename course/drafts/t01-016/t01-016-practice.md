@@ -60,7 +60,7 @@ class Program
 ### Explanation of the Worked Example
 1. **`CancellationTokenSource`**: Manages the cancellation signal and can be configured with a timeout using `TimeSpan.FromSeconds(2)`.
 2. **`await Task.Delay(...)`**: A naturally asynchronous delay that yields execution back to the caller immediately without blocking a thread. It accepts the `CancellationToken` so it aborts early if canceled.
-3. **`ThrowIfCancellationRequested()`**: Immediately throws an `OperationCanceledException` (or `TaskCanceledException`) if cancellation has been requested.
+3. **`ThrowIfCancellationRequested()`**: Immediately throws an `OperationCanceledException` carrying the token if cancellation has been requested.
 4. **Exception Handling**: Catches `OperationCanceledException` cleanly to handle timeouts or user-driven cancellations without crashing the application.
 
 # Exercises
@@ -151,15 +151,15 @@ public async Task RunWithTimeoutAsync()
 # Tests and edge cases
 
 - **Edge Case 1: Unobserved Task Exceptions**: If a `Task` fails and its exception is never observed via `await` or checking `.Exception`, it can trigger unobserved exception behaviors in older runtimes or require careful handling. Always `await` started tasks or observe their exceptions.
-- **Edge Case 2: `async void` Methods**: Avoid `async void` methods except for top-level event handlers. An `async void` method cannot be awaited, and unhandled exceptions inside it crash the entire process directly because they bypass standard `Task` exception capture.
-- **Edge Case 3: Single-Consumption Rule of `ValueTask`**: Do not await a `ValueTask` or call `AsTask()` multiple times unless the specific backing source explicitly supports multiple consumptions. Doing so leads to undefined behavior.
-- **Edge Case 4: SynchronizationContext Deadlocks**: Awaiting a task without `ConfigureAwait(false)` in a single-threaded environment (such as legacy Windows Forms or WPF UI threads) while synchronously blocking (`.Result`) will cause a permanent deadlock because the continuation tries to post back to the blocked UI thread.
+- **Edge Case 2: `async void` Methods**: Avoid `async void` methods except for top-level event handlers. An `async void` method cannot be awaited, and exceptions are not captured in a returned `Task`; they are posted through the synchronization context active when the method starts and may be unhandled by the host.
+- **Edge Case 3: Single-Consumption Rule of `ValueTask`**: Consumption and conversion constraints depend on the `ValueTask` backing source. Follow its API contract; for source-backed values, repeated or concurrent consumption may be invalid. Do not generalize this to all `ValueTask` instances.
+- **Edge Case 4: SynchronizationContext Deadlocks**: Awaiting a task without `ConfigureAwait(false)` in a single-threaded environment (such as legacy Windows Forms or WPF UI threads) while synchronously blocking (`.Result`) can deadlock when the awaited operation needs to resume on that blocked context. This is a common failure mode, not an unconditional outcome for every await.
 
 # Reflection questions
 
 1. Why does making a method `async` not automatically run its CPU-bound loops on a background thread?
 2. What is the key operational difference between catching `Exception` versus catching `OperationCanceledException` when dealing with canceled tasks?
 3. When should you choose `ValueTask<T>` over `Task<T>`, and what are the strict usage constraints you must follow?
-4. How does `ConfigureAwait(false)` change how continuations are scheduled, and why is it recommended for general-purpose library code?
+4. How does `ConfigureAwait(false)` change how continuations are scheduled, and when can it be appropriate for library code?
 
 Sources: [Topic reference](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/)

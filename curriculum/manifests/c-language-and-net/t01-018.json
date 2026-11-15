@@ -41,6 +41,8 @@
         "Span<T>.EndsWith(ReadOnlySpan<T>)",
         "Span<T>.Overlaps(Span<T>)",
         "ReadOnlySpan<T>.ToArray()",
+        "ReadOnlySpan<T>.CopyTo(Span<T>)",
+        "ReadOnlySpan<T>.TryCopyTo(Span<T>)",
         "ReadOnlySpan<T>.Slice(Int32)",
         "ReadOnlySpan<T>.Slice(Int32,Int32)",
         "Memory<T>.Length",
@@ -49,8 +51,12 @@
         "Memory<T>.Slice(Int32)",
         "Memory<T>.Slice(Int32,Int32)",
         "Memory<T>.Pin()",
+        "Memory<T>.CopyTo(Memory<T>)",
+        "Memory<T>.TryCopyTo(Memory<T>)",
         "Memory<T>.ToArray()",
         "ReadOnlyMemory<T>.Span",
+        "ReadOnlyMemory<T>.CopyTo(Memory<T>)",
+        "ReadOnlyMemory<T>.TryCopyTo(Memory<T>)",
         "ReadOnlyMemory<T>.Slice(Int32)",
         "ReadOnlyMemory<T>.Slice(Int32,Int32)",
         "ReadOnlyMemory<T>.Pin()",
@@ -290,7 +296,7 @@
         "Zero-initialization safety guarantee",
         "Span-based parsing to avoid temporary strings",
         "Memory<T> across async suspension",
-        "Span<T> cannot cross async suspension",
+        "Span<T> cannot be used across an async suspension boundary",
         "Buffer ownership transfer",
         "IMemoryOwner<T> disposal contract",
         "ArraySegment<T> versus Memory<T>",
@@ -368,6 +374,16 @@
   ],
   "versionNotes": [
     {
+      "edition": "C# 12 to C# 13 ref-struct locals in async methods",
+      "items": [
+        "Before C# 13, async methods could not declare ref-struct locals. Starting with C# 13, ref-struct locals are allowed when they are not used across an await suspension boundary. This language relaxation does not make Span<T> heap-storable or allow it to survive suspension."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+      ]
+    },
+    {
       "edition": ".NET 5-11 memory and diagnostics additions",
       "items": [
         "The `pinned` parameter on `GC.AllocateArray<T>` and `GC.AllocateUninitializedArray<T>` enables POH allocation for supported arrays; `GC.AllocateArray<T>(pinned: true)` was added in .NET 5. .NET 11 `dotnet-gcdump` supports blocking buffering to reduce event loss for large heap captures. These additions do not change Span<T> and Memory<T> ownership or lifetime rules."
@@ -412,5 +428,11 @@
     "IDisposable and deterministic resource cleanup patterns are covered in t01-013.",
     "The C# 15 memory-safety feature set remains preview and is excluded from the stable language scope; unmanaged interop fundamentals belong to the interop topic."
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Before C# 13, async methods could not declare ref-struct locals. C# 13 permits them only when they are not used across an await suspension boundary; they remain non-heap-storable.",
+    "Span<T>, ReadOnlySpan<T>, Memory<T>, and ReadOnlyMemory<T> CopyTo operations throw when the destination is shorter than the source, not when lengths merely differ; overlapping ranges are supported.",
+    "The TryCopyTo methods return false without writing when the destination is too short; overlapping ranges are supported.",
+    "Memory<T> and ReadOnlyMemory<T> are views and do not transfer ownership or extend the backing storage lifetime."
+  ]
 }

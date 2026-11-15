@@ -10,7 +10,7 @@ This lesson covers the core concurrency model, managed threads, and the thread p
 # How this group fits the mental model
 In .NET, a **Process** is the container for your application, while a **Thread** is the unit of execution. **Concurrency** is the ability to handle multiple tasks by overlapping their execution, and **Parallelism** is the ability to execute multiple tasks simultaneously on different CPU cores.
 
-The **Thread Pool** is a managed collection of worker threads that the runtime maintains to execute short-lived tasks efficiently, avoiding the overhead of creating and destroying threads repeatedly. You use `Thread` objects for specialized, long-lived, or thread-affine work, and the `ThreadPool` for general-purpose asynchronous work.
+The **Thread Pool** is a managed collection of worker threads that the runtime maintains to execute short-lived tasks efficiently, avoiding the overhead of creating and destroying threads repeatedly. Use `Thread` for specialized cases needing a dedicated thread, stable identity, foreground lifetime, priority, or long blocking. Use the thread pool for queued work such as TPL tasks, callbacks, timers, registered waits, and I/O completion processing. Naturally asynchronous I/O generally does not occupy a worker thread for the entire wait.
 
 # Supplied names explained
 
@@ -29,12 +29,12 @@ The **Thread Pool** is a managed collection of worker threads that the runtime m
 * `Thread.IsAlive`: A boolean indicating if the thread has started and not yet terminated.
 * `Thread.IsBackground`: If true, the thread does not keep the process alive when all foreground threads finish.
 * `Thread.Priority`: Determines the relative scheduling priority of the thread.
-* `Thread.ThreadState`: An enumeration representing the current execution state (e.g., Running, Stopped).
+* `Thread.ThreadState`: A flags enumeration describing an observed thread state (for example, `Running` or `WaitSleepJoin`). It is a snapshot that may already be stale; it is not a synchronization mechanism or a reliable way to control a thread.
 * `Thread.Start()`: Begins the execution of the thread.
 * `Thread.Join()`: Blocks the calling thread until the target thread completes.
 * `Thread.Join(TimeSpan)`: Blocks the calling thread until the target thread completes or the timeout expires.
 * `Thread.Sleep(Int32)`: Suspends the current thread for a specified number of milliseconds.
-* `Thread.Interrupt()`: Interrupts a thread that is in a `WaitSleepJoin` state.
+* `Thread.Interrupt()`: Requests interruption of a target thread blocked in `WaitSleepJoin`; a `ThreadInterruptedException` is thrown when that thread resumes from the wait, or at a later wait if it was not currently waiting. It is not a safe general-purpose cancellation mechanism.
 * `Thread.Yield()`: Causes the calling thread to yield execution to another thread on the same processor.
 * `Thread.BeginCriticalRegion()`: Informs the host that a block of code is about to enter a critical section.
 * `Thread.EndCriticalRegion()`: Informs the host that a block of code has exited a critical section.
@@ -50,9 +50,9 @@ The **Thread Pool** is a managed collection of worker threads that the runtime m
 * `ThreadPool`: The static class used to manage the global pool of worker threads.
 * `ThreadPool.QueueUserWorkItem(WaitCallback)`: Queues a task to the thread pool.
 * `ThreadPool.QueueUserWorkItem<TState>(Action<TState>,TState)`: Queues a task with state to the thread pool.
-* `ThreadPool.UnsafeQueueUserWorkItem`: Queues a task without propagating the calling thread's security context.
+* `ThreadPool.UnsafeQueueUserWorkItem`: Queues work without flowing the caller's `ExecutionContext`; use only when omitting ambient context is intentional.
 * `ThreadPool.RegisterWaitForSingleObject`: Registers a delegate to be called when a wait handle is signaled.
-* `ThreadPool.UnsafeRegisterWaitForSingleObject`: Similar to above, but without security context propagation.
+* `ThreadPool.UnsafeRegisterWaitForSingleObject`: Registers a wait callback without flowing the caller's `ExecutionContext`; use only when omitting ambient context is intentional.
 * `ThreadPool.GetMinThreads`: Gets the minimum number of threads the pool will maintain.
 * `ThreadPool.SetMinThreads`: Sets the minimum number of threads.
 * `ThreadPool.GetMaxThreads`: Gets the maximum number of threads allowed in the pool.
@@ -77,7 +77,7 @@ The **Thread Pool** is a managed collection of worker threads that the runtime m
 * `CPU-bound work scheduling`: The strategy of distributing heavy calculations across available cores.
 
 # Cross-item comparison
-* **`Thread` vs `ThreadPool`**: Use `Thread` for long-running, specialized, or thread-affine tasks. Use `ThreadPool` for short-lived, asynchronous work to minimize resource overhead.
+* **`Thread` vs `ThreadPool`**: Use a dedicated `Thread` when a dedicated execution resource or identity is required, especially for long blocking work. Use TPL/thread-pool work for queued computation and callbacks; asynchronous I/O usually does not require wrapping the wait in `Task.Run`.
 * **`ThreadLocal<T>` vs `ThreadStaticAttribute`**: `ThreadLocal<T>` is a class-based approach that supports lazy initialization and dynamic creation. `ThreadStaticAttribute` is a declarative attribute for static fields, which is simpler but less flexible.
 * **`Thread.Join` vs `Thread.Sleep`**: `Join` waits for a specific thread to finish. `Sleep` pauses the current thread for a fixed duration regardless of other threads.
 
@@ -94,7 +94,7 @@ Console.WriteLine($"Data for this thread: {threadData.Value}");
 ```
 
 # Common mistakes
-1. **Blocking the ThreadPool**: Never use `Thread.Sleep` or `Join` inside a `ThreadPool` task, as this can lead to **ThreadPool starvation**.
+1. **Blocking the ThreadPool**: Avoid blocking pool workers for long periods when possible; many blocked workers can cause starvation. Some blocking may be required, but use async APIs, dedicated threads, or appropriate coordination where the workload warrants it.
 2. **Ignoring Background Threads**: Assuming a background thread will finish its work before the application exits.
 3. **Overusing Dedicated Threads**: Creating a new `Thread` for every small task instead of using the `ThreadPool` or `Task` APIs.
 

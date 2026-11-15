@@ -63,13 +63,13 @@ This section explains every supplied name in the inventory group.
   - Purpose and behavior: A low-level, lightweight mutual exclusion lock structure (`struct`) that tracks thread ownership. Unlike `Monitor` or `System.Threading.Lock`, it uses a spin-based wait loop rather than kernel blocking, making it suitable exclusively for ultra-short critical sections.
 
 * `SpinLock.Enter(Boolean)`
-  - Purpose and behavior: Acquires the lock in a robust manner. The boolean parameter `lockTaken` is passed by reference; upon return, it is set to `true` if the lock was successfully acquired, allowing safe cleanup in try/finally blocks if acquisition throws.
+  - Purpose and behavior: Acquires the lock in a reliable manner. The `lockTaken` Boolean is passed by reference and must be initialized to `false`; it is set to `true` if the lock was acquired so a `finally` block can release it even if acquisition throws.
 
 * `SpinLock.TryEnter(Boolean)`
-  - Purpose and behavior: Attempts to acquire the lock atomically without blocking or spinning indefinitely, setting the passed reference parameter `lockTaken` to `true` on success and `false` if the lock is currently held.
+  - Purpose and behavior: Attempts to acquire the lock and reports acquisition through the by-reference `lockTaken` Boolean, which must be initialized to `false`. It sets the value to `true` if acquired; a false result means this attempt did not acquire it.
 
 * `SpinLock.Exit(Boolean)`
-  - Purpose and behavior: Releases the spin lock. The boolean argument must match whether thread ownership tracking was enabled and whether the lock was successfully acquired during entry.
+  - Purpose and behavior: Releases the spin lock. The Boolean is `useMemoryBarrier`, which controls whether a memory fence is issued when publishing the exit; it is unrelated to thread-ownership tracking. The parameterless `Exit()` uses the `true` behavior.
 
 * `SpinLock.IsHeld`
   - Purpose and behavior: Gets a value indicating whether the spin lock is currently held by any thread.
@@ -84,7 +84,7 @@ This section explains every supplied name in the inventory group.
   - Purpose and behavior: An optional configuration feature of `SpinLock` that records which thread holds the lock to enforce correctness rules and throw exceptions on invalid re-entrancy or cross-thread exits.
 
 * `SpinLock struct-copy hazard`
-  - Purpose and behavior: A critical usage hazard where copying a `SpinLock` instance (because it is a `struct`) duplicates state or creates a distinct lock tracking object, breaking synchronization invariants. `SpinLock` fields should always be treated as read-only or held within reference-type instances (`class`).
+  - Purpose and behavior: A critical usage hazard where copying a `SpinLock` instance (because it is a `struct`) creates an independent lock, breaking synchronization invariants. Do not store it in a `readonly` field; keep one mutable instance and pass it by reference when needed.
 
 * `SpinLock versus Monitor`
   - Purpose and behavior: A conceptual contrast where `SpinLock` avoids kernel transitions via busy-waiting (best for microsecond-scale critical sections under low contention), whereas `Monitor` blocks threads via the operating system (best for longer operations or high contention).
@@ -174,7 +174,7 @@ Condition met via SpinWait.
 ```
 
 # Common mistakes
-- **Treating `SpinLock` as a class**: Because `SpinLock` is a `struct`, passing it by value copies the lock state and breaks mutual exclusion. Always store it as a private readonly field inside a reference class or manage it carefully.
+- **Treating `SpinLock` as a class**: Because `SpinLock` is a `struct`, passing it by value copies the lock state and breaks mutual exclusion. Keep one mutable instance (commonly a private non-readonly field) and pass it by reference when needed. Microsoft specifically warns against storing it in a `readonly` field.
 - **Spinning indefinitely**: Using raw spin loops without a yield or timeout mechanism on single-core or heavily saturated systems burns 100% CPU cycles and can lead to thread starvation.
 - **Ignoring false sharing**: Placing independent mutable fields accessed by different threads adjacent to one another in memory causes cache-line bouncing, degrading performance.
 - **Calling blocking APIs inside spin locks**: Performing I/O or long operations inside a `SpinLock` critical section defeats its purpose and harms system throughput.

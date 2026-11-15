@@ -15,7 +15,7 @@ For background on the broader ecosystem, see the official documentation on [Micr
 In managed languages, objects typically reside on the garbage-collected heap. While this protects developers from manual memory management errors, creating many short-lived buffers or splitting large arrays can put pressure on the garbage collector. 
 
 Contiguous memory views solve this problem by letting you inspect and manipulate subsets of existing arrays, strings, or stack memory without copying data or creating new heap objects. 
-- **Stack-only views (`Span<T>`, `ReadOnlySpan<T>`)**: Fast, lightweight structures restricted to synchronous execution on the stack. They cannot cross asynchronous boundaries or be stored in ordinary class fields.
+- **Stack-only views (`Span<T>`, `ReadOnlySpan<T>`)**: Fast, lightweight `ref struct` views that cannot escape to the heap or be stored in ordinary class fields. Through C# 12, they could not be local variables in async methods. Starting in C# 13, they can be declared and used in async methods when their scope and use do not cross an `await` suspension boundary.
 - **Heap/async-capable views (`Memory<T>`, `ReadOnlyMemory<T>`)**: Wrapper structures that can be stored on the heap, passed across `async/await` boundaries, and converted into spans when synchronous work is needed.
 - **Lifetimes and safety**: Because these types are only windows into underlying storage, they do not own that storage. The backing buffer must remain alive as long as any view references it.
 
@@ -36,8 +36,8 @@ Below is the complete inventory of assigned names for this group. Every item is 
 * `Span<T>.Slice(Int32)`: Overload that forms a slice out of the current span, starting at a specified index to the end of the span.
 * `Span<T>.Slice(Int32,Int32)`: Overload that forms a slice out of the current span, starting at a specified index for a specified length.
 * `Span<T>.ToArray()`: Copies the contents of the span into a newly allocated managed array on the heap.
-* `Span<T>.CopyTo(Span<T>)`: Copies the contents of this span into a destination span, throwing an exception if lengths do not match.
-* `Span<T>.TryCopyTo(Span<T>)`: Attempts to copy the contents of this span into a destination span, returning a boolean indicating success.
+* `Span<T>.CopyTo(Span<T>)`: Copies the contents of this span into a destination span, throwing `ArgumentException` when the destination is shorter than the source. A longer destination is allowed; overlapping source and destination ranges are supported.
+* `Span<T>.TryCopyTo(Span<T>)`: Attempts to copy the entire source into the destination and returns `false` without writing if the destination is too short; overlapping ranges are supported.
 * `Span<T>.Clear()`: Sets the contents of the span to default values (`0` or `null`).
 * `Span<T>.Fill(T)`: Fills every element of the span with the specified value.
 * `Span<T>.IndexOf(T)`: Searches for the specified value and returns the index of its first occurrence.
@@ -47,6 +47,8 @@ Below is the complete inventory of assigned names for this group. Every item is 
 * `Span<T>.StartsWith(ReadOnlySpan<T>)`: Determines whether the span starts with the specified sequence.
 * `Span<T>.EndsWith(ReadOnlySpan<T>)`: Determines whether the span ends with the specified sequence.
 * `Span<T>.Overlaps(Span<T>)`: Determines whether the specified span overlaps with the current span in memory.
+* `ReadOnlySpan<T>.CopyTo(Span<T>)`: Copies the full source into the destination; throws `ArgumentException` if the destination is shorter. Overlap is supported.
+* `ReadOnlySpan<T>.TryCopyTo(Span<T>)`: Attempts the full copy, returning `false` without writing if the destination is shorter; overlap is supported.
 * `ReadOnlySpan<T>.ToArray()`: Copies the read-only span's contents into a new managed array.
 * `ReadOnlySpan<T>.Slice(Int32)`: Forms a slice out of the read-only span from a specified index to the end.
 * `ReadOnlySpan<T>.Slice(Int32,Int32)`: Forms a slice out of the read-only span starting at a specified index for a specified length.
@@ -56,7 +58,11 @@ Below is the complete inventory of assigned names for this group. Every item is 
 * `Memory<T>.Slice(Int32)`: Forms a slice out of the memory region from a specified index to the end.
 * `Memory<T>.Slice(Int32,Int32)`: Forms a slice out of the memory region starting at an index for a specified length.
 * `Memory<T>.Pin()`: Pins the underlying memory buffer so the garbage collector cannot relocate it, returning a `MemoryHandle`.
+* `Memory<T>.CopyTo(Memory<T>)`: Copies the source into the destination; throws `ArgumentException` if the destination is shorter than the source. Overlap is supported.
+* `Memory<T>.TryCopyTo(Memory<T>)`: Attempts to copy into the destination and returns `false` without writing if the destination is shorter; overlap is supported.
 * `Memory<T>.ToArray()`: Copies the memory region's contents into a newly allocated heap array.
+* `ReadOnlyMemory<T>.CopyTo(Memory<T>)`: Copies the read-only source into a writable destination; throws `ArgumentException` if the destination is shorter. Overlap is supported.
+* `ReadOnlyMemory<T>.TryCopyTo(Memory<T>)`: Attempts the copy and returns `false` without writing if the destination is shorter; overlap is supported.
 * `ReadOnlyMemory<T>.Span`: Creates a `ReadOnlySpan<T>` view over the underlying memory region.
 * `ReadOnlyMemory<T>.Slice(Int32)`: Forms a slice out of the read-only memory region from a specified index.
 * `ReadOnlyMemory<T>.Slice(Int32,Int32)`: Forms a slice out of the read-only memory region starting at an index for a length.
@@ -65,7 +71,7 @@ Below is the complete inventory of assigned names for this group. Every item is 
 * `MemoryHandle.Dispose()`: Releases the pin on the memory buffer, allowing the garbage collector to move it again.
 * `IMemoryOwner<T>.Memory`: Retrieves the `Memory<T>` instance owned by this object.
 * `IMemoryOwner<T>.Dispose() ownership transfer`: Disposes the underlying memory resource, often returning pooled buffers to their source pool.
-* `Span<T> ref struct lifetime restriction`: Enforced compiler rule stating that `ref struct` types cannot be boxed, stored on the heap, or used across async boundaries.
+* `Span<T> ref struct lifetime restriction`: A `ref struct` cannot escape to the heap, be boxed, or be captured. Before C# 13, it could not be a local in an async method. C# 13 permits ref-struct locals in async methods provided they are not used across an `await` boundary.
 * `Span<T> cannot be boxed`: Prevents `Span<T>` from being converted into `object`, `ValueType`, or interface types.
 * `Span<T> cannot be captured by lambda`: Prevents `Span<T>` instances from escaping their current stack frame via closures.
 * `Span<T> cannot be stored in ordinary class field`: Prevents `Span<T>` from living inside reference types on the heap, ensuring it remains stack-bound.
@@ -144,7 +150,7 @@ void ProcessNumbers()
 
 # Common mistakes
 
-- **Returning a span from an async method**: Because `Span<T>` is a stack-only structure, it cannot cross `await` boundaries. Attempting to use `Span<T>` across an `async` method results in a compile error. Use `Memory<T>` instead.
+- **Using a span across an await**: C# 13 permits ref-struct locals inside async methods only when they do not cross an `await` boundary. Keep span work in a scope that ends before suspension, or use `Memory<T>` when the view must survive across an await. Older C# versions reject ref-struct locals in async methods.
 - **Using `stackalloc` inside large loops**: Repeatedly allocating stack memory inside a tight loop can quickly exhaust available stack space, leading to a `StackOverflowException`.
 - **Assuming slicing copies data**: Developers sometimes forget that modifying a `Span<T>` slice alters the underlying array or buffer because slicing only creates a window, not a duplicate.
 - **Letting spans outlive their backing storage**: Assigning a span pointing to a temporary buffer or stack variable to a longer-lived context violates safety rules and results in undefined behavior or compiler errors.

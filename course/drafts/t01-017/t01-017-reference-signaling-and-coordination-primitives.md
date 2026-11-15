@@ -36,7 +36,7 @@ This section defines every assigned signaling and coordination primitive accordi
   * **Purpose and Behavior**: Blocks the calling thread until *any* of the objects in the specified array receives a signal, returning the array index of the object that satisfied the wait.
 
 * `WaitHandle.WaitAll(WaitHandle[])`
-  * **Purpose and Behavior**: Blocks the calling thread until *all* the objects in the specified array have received signals. (Note: Not supported on all platforms, such as .NET Core / .NET 5+ on non-Windows environments for STA threads, and generally discouraged due to deadlocks).
+  * **Purpose and Behavior**: Blocks the calling thread until *all* the objects in the specified array have received signals. Note: `WaitAll` is not supported on threads in STA state. As with any blocking wait, deadlock is possible if signaling depends on work that cannot run while the caller is blocked.
 
 * `WaitHandle.SignalAndWait`
   * **Purpose and Behavior**: Signals one wait handle and immediately waits on another in an atomic operation, helping prevent race conditions when handing off coordination between threads.
@@ -295,7 +295,7 @@ All tasks completed successfully.
 2. **Question**: What is the primary difference between `CountdownEvent` and a `Barrier`?
    * **Answer**: A `CountdownEvent` is used for one-shot coordination where threads signal completion until a count reaches zero. A `Barrier` coordinates cyclical phases where multiple threads must repeatedly meet and wait for all participants to arrive before entering the next phase.
 3. **Question**: Why might calling `WaitHandle.WaitAll` on an array of wait handles fail or be discouraged in modern .NET applications?
-   * **Answer**: `WaitAll` has platform restrictions (such as not supporting STA threads on non-Windows platforms) and carries a high risk of thread deadlocks and blocking thread pool efficiency if handles take too long to signal.
+   * **Answer**: `WaitAll` is unsupported on STA threads and blocks the calling thread. Any blocking wait can deadlock if required signaling work depends on the blocked thread; use it only when blocking and handle-count constraints fit the design.
 
 # Sources
 

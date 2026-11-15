@@ -70,7 +70,7 @@ When cancellation is triggered, observing code throws an exception (such as `Ope
 * `OperationCanceledException`
   The base exception class thrown when an operation is canceled in response to a `CancellationToken`.
 * `TaskCanceledException`
-  A derived exception type inheriting from `OperationCanceledException`, specifically used when an awaited `Task` is canceled.
+  A derived exception type inheriting from `OperationCanceledException`, commonly used to represent cancellation of a `Task`. An awaited canceled task can surface an `OperationCanceledException`; callers should usually catch the base type.
 * `OperationCanceledException.CancellationToken`
   Gets the `CancellationToken` associated with the canceled operation that triggered the exception.
 * `ThrowIfCancellationRequested convention`
@@ -82,7 +82,7 @@ When cancellation is triggered, observing code throws an exception (such as `Ope
 * `Linked caller and timeout cancellation`
   Combining multiple tokens (such as user action and timeout timers) using linked token sources.
 * `Cancellation callback exception behavior`
-  The runtime rule dictating how exceptions thrown inside registered cancellation delegates are handled and aggregated.
+  Exceptions thrown by cancellation callbacks are collected and reported by the cancellation call (typically in an `AggregateException`); `Cancel(throwOnFirstException: true)` stops callback processing at the first exception.
 * `Cancellation is cooperative rather than forced termination`
   The fundamental design principle that tokens only request cancellation; running code must inspect them and exit gracefully.
 * `Cancellation versus timeout result distinction`
@@ -95,8 +95,8 @@ When cancellation is triggered, observing code throws an exception (such as `Ope
 # Cross-item comparison
 Within this assigned group, items fall into distinct functional pairs and groups:
 * `CancellationToken` vs `CancellationTokenSource`: The token is an immutable, read-only observer struct distributed to workers, while the source is the mutable controller object that creates the token and invokes cancellation.
-* `OperationCanceledException` vs `TaskCanceledException`: Both represent canceled actions, but `TaskCanceledException` specifically wraps task-based return statuses, whereas `OperationCanceledException` is a general runtime type associated with token checks.
-* `CancellationTokenSource.Cancel()` vs `CancellationTokenSource.CancelAsync()`: Synchronous cancellation immediately runs registered callbacks on the calling thread, whereas `CancelAsync` initiates cancellation asynchronously to reduce blocking on heavy callback execution (see https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync).
+* `OperationCanceledException` vs `TaskCanceledException`: `TaskCanceledException` derives from `OperationCanceledException`. Cancellation may surface as either type, so catch `OperationCanceledException` unless code specifically needs the subtype.
+* `CancellationTokenSource.Cancel()` vs `CancellationTokenSource.CancelAsync()`: Synchronous cancellation immediately runs registered callbacks on the calling thread, whereas `CancelAsync` sets the cancellation-requested state and returns a task representing completion of registered callbacks; callbacks execute asynchronously relative to the caller (see https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync).
 
 # Examples
 
@@ -143,8 +143,8 @@ Operation was canceled cooperatively.
    **Answer:** No. Cancellation is cooperative rather than forced termination. The running code must periodically check `IsCancellationRequested` or call `ThrowIfCancellationRequested`.
 2. **Question:** What is the difference between `CancellationToken` and `CancellationTokenSource` ownership?
    **Answer:** `CancellationTokenSource` owns the control mechanism to trigger cancellation and must be disposed. `CancellationToken` is a lightweight, read-only struct handed out to consumer methods.
-3. **Question:** Which exception type is thrown by default when an awaited task observes cancellation via a token?
-   **Answer:** `TaskCanceledException`, which inherits from `OperationCanceledException`.
+3. **Question:** Which exception base type should general async code catch for cancellation?
+   **Answer:** Usually handle `OperationCanceledException`, the base cancellation exception. Some canceled tasks surface the derived `TaskCanceledException`; the exact subtype is not a safe contract to assume for every API.
 
 *Mark this as an automatically generated draft.*
 

@@ -113,10 +113,10 @@ This reference lesson explains every inventory item assigned to this group. Each
   A property on `ParallelOptions` that specifies the custom `TaskScheduler` used to execute tasks spawned by parallel loops.
 
 - `ParallelLoopState.Stop()`
-  A method called within a parallel loop iteration to signal that no further iterations beyond the current and previously started ones should be executed.
+  A method called within a parallel loop iteration to signal that iterations not yet started need not run; iterations already executing are allowed to finish.
 
 - `ParallelLoopState.Break()`
-  A method called within a parallel loop iteration to signal that iterations beyond the current index should be terminated, ensuring ordered or bounded early exit.
+  A method called within an index-based parallel loop to record a lowest break index; lower-index iterations are allowed to complete, and already-started higher-index iterations may finish.
 
 - `ParallelLoopState.IsStopped`
   A boolean property indicating whether any thread has called `Stop()` on the loop state.
@@ -140,13 +140,13 @@ This reference lesson explains every inventory item assigned to this group. Each
   The performance cost associated with dividing a data source into chunks and distributing them across multiple threads or tasks.
 
 - `Parallel.ForEach ordered versus unordered results`
-  The distinction between processing data in sequence preservation mode versus processing chunks opportunistically as threads become available.
+  `Parallel.ForEach` does not guarantee body execution or output order. Preserve indices and order results afterward when required; ordered PLINQ is a separate API choice.
 
 - `Parallel.ForEachAsync asynchronous body`
   The delegate signature accepted by `Parallel.ForEachAsync` that allows asynchronous I/O operations (`ValueTask`) inside parallel execution loops.
 
 - `Parallel.ForEachAsync default concurrency limit`
-  The default operational constraint applied by `Parallel.ForEachAsync` when no explicit `MaxDegreeOfParallelism` is configured, scaling with processor count and thread pool availability.
+  The default maximum for `Parallel.ForEachAsync` is `Environment.ProcessorCount`; `MaxDegreeOfParallelism = -1` also means `ProcessorCount` for this API. This is a cap, not a promise that that many operations will run.
 
 - `Parallel.ForEachAsync cancellation`
   The mechanism by which cooperative cancellation propagates through `ParallelOptions.CancellationToken` to halt executing asynchronous loop bodies.
@@ -161,7 +161,7 @@ This reference lesson explains every inventory item assigned to this group. Each
   A core best practice stating that updating a shared variable inside a parallel loop using locks or atomic operations on every iteration destroys parallelism due to contention. Use local state instead.
 
 - `Concurrent collections in t01-014`
-  Thread-safe collection types (such as `ConcurrentDictionary<TKey, TValue>`) designed for lock-free or fine-grained lock concurrent producer-consumer scenarios, covered in topic t01-014.
+  Thread-safe collection types (such as `ConcurrentDictionary<TKey, TValue>`) designed for concurrent access using implementation-specific synchronization, covered in topic t01-014.
 
 - `Task and async scheduling in t01-016`
   Asynchronous programming fundamentals, async/await mechanics, and task composition covered in topic t01-016.
@@ -184,12 +184,12 @@ This reference lesson explains every inventory item assigned to this group. Each
 # Cross-item comparison
 Within this inventory group, several related concepts represent contrasting design choices:
 
-- **`LazyThreadSafetyMode.None` vs. `LazyThreadSafetyMode.PublicationOnly` vs. `LazyThreadSafetyMode.ExecutionAndPublication`**: `None` provides zero protection and corrupts state under concurrency. `PublicationOnly` allows multiple threads to execute the factory function concurrently but guarantees only one result is published, discarding redundant work. `ExecutionAndPublication` uses strict mutual exclusion so the factory runs exactly once, blocking all other threads until completion.
-- **`Parallel.For` / `Parallel.ForEach` vs. `Parallel.ForEachAsync`**: The synchronous `Parallel` loops target CPU-bound synchronous bodies, whereas `Parallel.ForEachAsync` accepts asynchronous delegates returning `ValueTask`, enabling concurrent asynchronous I/O loops without blocking thread pool threads on waits.
-- **`ParallelLoopState.Stop()` vs. `ParallelLoopState.Break()`**: `Stop()` abruptly halts all further loop iterations globally regardless of index, while `Break()` ensures that all iterations with indices lower than the current break point are allowed to complete, supporting ordered or deterministic early termination.
+- **`LazyThreadSafetyMode.None` vs. `LazyThreadSafetyMode.PublicationOnly` vs. `LazyThreadSafetyMode.ExecutionAndPublication`**: `None` provides no synchronization; concurrent initialization can run more than once and is unsafe unless callers guarantee single-threaded access. `PublicationOnly` allows multiple threads to execute the factory function concurrently but guarantees only one result is published, discarding redundant work. `ExecutionAndPublication` uses strict mutual exclusion so the factory runs exactly once, blocking all other threads until completion.
+- **`Parallel.For` / `Parallel.ForEach` vs. `Parallel.ForEachAsync`**: The synchronous `Parallel` loops execute synchronous bodies. `Parallel.ForEachAsync` accepts asynchronous delegates returning `ValueTask` and awaits them without occupying a worker thread for the whole asynchronous wait. Its default maximum concurrency is `ProcessorCount`; set `ParallelOptions.MaxDegreeOfParallelism` when the workload needs a different bound. A blocking delegate still ties up an executing worker and concurrency slot.
+- **`ParallelLoopState.Stop()` vs. `ParallelLoopState.Break()`**: `Stop()` asks the loop to cease additional iterations as soon as practical; already-started iterations are not forcibly stopped. `Break()` records a lowest break index and allows iterations with lower indices to complete. These methods cannot be combined in one loop; neither makes side effects from concurrent iterations deterministic.
 
 # Examples
-The following complete, compilable C# console application demonstrates parallel execution using `Parallel.ForEach`, loop control via `ParallelLoopState`, and thread-safe accumulation using local state overloads.
+The following complete, compilable C# console application demonstrates parallel execution using `Parallel.ForEach` and thread-safe accumulation using local state overloads.
 
 ```csharp
 using System;
@@ -216,12 +216,6 @@ class Program
             localInit: () => 0L,
             body: (int number, ParallelLoopState state, long localSum) =>
             {
-                // Example of conditional early stopping using ParallelLoopState
-                if (number > 900)
-                {
-                    state.Stop();
-                }
-
                 return localSum + number;
             },
             localFinally: (long localSum) =>
@@ -230,21 +224,21 @@ class Program
             }
         );
 
-        Console.WriteLine($"Computed Sum (up to early stop limit): {totalSum}");
+        Console.WriteLine($"Computed Sum: {totalSum}");
     }
 }
 ```
 
 ### Expected Output
 ```text
-Computed Sum (up to early stop limit): 405450
+Computed Sum: 500500
 ```
 
 # Common mistakes
 - **Using shared mutable accumulators inside parallel loops**: Updating a shared integer variable via `Interlocked.Increment` or a `lock` on *every* iteration of `Parallel.For` introduces severe lock contention. Always use partition-local accumulation (`Parallel.For<TLocal>`) and combine results only at partition finalization.
 - **Applying parallelism to fine-grained workloads**: Spawning parallel tasks for trivial loop bodies (such as adding two local numbers) incurs more scheduling overhead than executing sequentially. Parallelism requires sufficient work per iteration to amortize task creation.
-- **Forgetting asynchronous boundaries in `Parallel.ForEachAsync`**: Passing a synchronous lambda that performs blocking I/O inside `Parallel.ForEachAsync` exhausts the thread pool. Ensure asynchronous bodies properly await underlying I/O operations.
-- **Confusing `Stop()` and `Break()` semantics**: Using `Stop()` in unordered loops can terminate iterations unpredictably across partitions, whereas `Break()` provides deterministic index termination for bounded parallel searches.
+- **Forgetting asynchronous boundaries in `Parallel.ForEachAsync`**: A blocking body in `Parallel.ForEachAsync` occupies a worker and one concurrency slot while blocked; it does not necessarily exhaust the whole thread pool. Prefer awaiting naturally asynchronous operations, and size the concurrency limit for the resource and workload.
+- **Confusing `Stop()` and `Break()` semantics**: `Stop()` and `Break()` request that additional iterations cease, but iterations already running may finish. Use `Break()` for an index-based lowest-break-point requirement; do not rely on deterministic side effects from parallel iterations.
 
 # Knowledge checks with answers
 1. **Question**: Which `Lazy<T>` thread safety mode ensures that the initialization factory function is executed at most once while blocking concurrent accessor threads until initialization completes?
@@ -254,9 +248,9 @@ Computed Sum (up to early stop limit): 405450
    - **Answer**: It causes extreme contention and cache line bouncing, destroying the performance benefits of parallelism. Partition-local accumulation should be used instead.
 
 3. **Question**: What is the key difference between `Parallel.ForEach` and `Parallel.ForEachAsync`?
-   - **Answer**: `Parallel.ForEach` executes synchronous loop bodies on CPU threads, whereas `Parallel.ForEachAsync` accepts asynchronous delegates returning `ValueTask`, allowing concurrent asynchronous operations without blocking thread pool threads.
+   - **Answer**: `Parallel.ForEach` executes a synchronous body. `Parallel.ForEachAsync` accepts asynchronous delegates returning `ValueTask` and can await asynchronous work without occupying a worker for the full wait; synchronous blocking in its body still occupies a worker and concurrency slot.
 
 4. **Question**: What does calling `ParallelLoopState.Stop()` achieve inside a parallel loop?
-   - **Answer**: It signals that no further iterations beyond current and already started ones should be executed, resulting in `IsCompleted` returning `false` on the returned `ParallelLoopResult`.
+   - **Answer**: It signals that iterations not yet started need not run, while iterations already executing may finish. `IsCompleted` is false when the loop did not complete every iteration.
 
 Sources: [Topic reference](https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-threading-basics)

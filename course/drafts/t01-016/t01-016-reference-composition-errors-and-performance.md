@@ -38,8 +38,8 @@ In the Task-based Asynchronous Pattern (TAP), asynchronous methods represent wor
 * `Async does not guarantee faster execution`: The reality that async code adds overhead; it is designed for scalability and responsiveness, not raw speed.
 * `Async API contagion through caller chain`: The requirement that once a method is `async`, its callers usually must also be `async` to await it properly.
 * `Avoid async method without await`: A warning that async methods without `await` run synchronously and may hide exceptions.
-* `Avoid async void except event-handler boundary`: The rule that `async void` should only be used for event handlers, as it cannot be awaited and exceptions crash the process.
-* `Avoid blocking with Wait and Result`: The core rule to never use synchronous blocking methods in asynchronous code to prevent deadlocks and starvation.
+* `Avoid async void except event-handler boundary`: The rule that `async void` should only be used for event handlers, as it cannot be awaited and its exceptions cannot be caught through a returned task; they are posted to the active synchronization context and may be unhandled by the host.
+* `Avoid blocking with Wait and Result`: Avoid synchronous blocking within asynchronous call chains because it can deadlock or cause starvation; isolate any deliberate synchronous boundary.
 * `Avoid unnecessary Task.Run wrappers`: The advice to avoid wrapping already-asynchronous I/O calls in `Task.Run`, which wastes thread resources.
 * `Task versus ValueTask API return choice`: The decision to use `Task` for general cases and `ValueTask` for performance-critical, synchronous-completion scenarios.
 * `Task caching and repeat await semantics`: A `Task` can be awaited repeatedly; a `ValueTask` may be backed by a reusable result or by a source with a stricter single-consumption contract, so callers must follow its API contract.
@@ -53,7 +53,7 @@ In the Task-based Asynchronous Pattern (TAP), asynchronous methods represent wor
 
 * **`Task` vs `ValueTask`**: `Task` is the default for general APIs and supports repeated awaits. `ValueTask` is a struct that can avoid allocation in some synchronous-completion cases, but may add complexity; consumption constraints depend on its backing source.
 * **`Wait()`/`Result` vs `await`**: `Wait()` and `Result` block the current thread and wrap exceptions in `AggregateException`. `await` suspends the method asynchronously and unwraps the original exception, making it the preferred approach.
-* **`Task.Run` vs I/O-bound calls**: `Task.Run` is for offloading CPU-bound work to the `ThreadPool`. It is unnecessary and harmful for I/O-bound work, which is already asynchronous by design.
+* **`Task.Run` vs I/O-bound calls**: `Task.Run` is for offloading CPU-bound work to the `ThreadPool`. It usually adds needless scheduling overhead for I/O-bound work that already has an asynchronous API.
 
 # Examples
 
@@ -80,14 +80,14 @@ var result = await MyAsyncMethod();
 
 # Common mistakes
 
-1. **Using `async void`**: This prevents the caller from awaiting the task or catching exceptions, often leading to unhandled exceptions that crash the process.
-2. **Blocking on async code**: Using `.Result` or `.Wait()` in a UI or ASP.NET context often leads to deadlocks because the continuation cannot return to the captured context.
+1. **Using `async void`**: This prevents the caller from awaiting the task or catching exceptions, often leaving exceptions unobserved by the caller; unhandled exceptions are delivered through the active synchronization context and may terminate the application depending on the host.
+2. **Blocking on async code**: Using `.Result` or `.Wait()` can deadlock when a continuation needs a captured single-threaded context that is blocked by the wait; blocking can also contribute to thread-pool starvation.
 3. **Ignoring `CancellationToken`**: Failing to pass tokens to methods that accept them prevents the application from responding to shutdown or user-cancellation requests.
 
 # Knowledge checks with answers
 
 1. **Question**: Why should you avoid `async void`?
-   **Answer**: Because it cannot be awaited, and exceptions thrown within it cannot be caught by the caller, leading to process termination.
+   **Answer**: Because it cannot be awaited and exceptions are not captured in a returned task. They are propagated through the active synchronization context and may be unhandled by the host.
 2. **Question**: When should you use `ValueTask`?
    **Answer**: Only when you have measured performance and determined that the allocation of a `Task` object is a bottleneck, and the API contract and callers can honor the particular `ValueTask` source’s consumption requirements.
 3. **Question**: What is the difference between `Task.WhenAll` and `Task.WhenAny`?

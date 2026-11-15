@@ -364,7 +364,14 @@
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlockslim",
       "https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl",
       "https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/data-parallelism-task-parallel-library",
-      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.parallel.foreachasync"
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.parallel.foreachasync",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.paralleloptions.maxdegreeofparallelism",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.parallelloopstate.stop",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.parallelloopstate.break",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.waithandle.waitall",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.spinlock",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.spinlock.exit",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.threadpool.unsafequeueuserworkitem"
     ]
   },
   "scopeExclusions": [
@@ -373,5 +380,16 @@
     "CPU cache, garbage collection, allocation, and memory diagnostics are covered in t01-018.",
     "This topic covers thread-level and data-parallel APIs; distributed coordination across processes or machines is outside the .NET threading surface."
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Volatile.Read and Volatile.Write establish specified acquire/release ordering; they do not fetch directly from physical memory and do not make compound read-modify-write operations atomic.",
+    "System.Threading.Lock is recognized by the C# lock statement starting with C# 13/.NET 9. Microsoft recommends it for best performance and to reduce locking mistakes; do not invent an object-header allocation explanation.",
+    "SpinLock is a mutable value type: do not store it in a readonly field or copy/pass it by value when the same lock identity is required. SpinLock.Exit(bool) takes useMemoryBarrier, not an ownership-tracking flag.",
+    "Parallel.ForEachAsync defaults to at most Environment.ProcessorCount concurrent operations; MaxDegreeOfParallelism = -1 also means ProcessorCount for this API. The limit is a cap, not a guarantee of active concurrency.",
+    "Parallel.ForEachAsync awaits asynchronous bodies without occupying a worker for the entire asynchronous wait. Synchronous blocking inside its body occupies an executing worker and concurrency slot but does not necessarily exhaust the process thread pool.",
+    "ParallelLoopState.Stop prevents not-yet-started iterations from needing to run; already-running iterations may finish. Break records a lowest index and allows lower-index iterations to complete. Stop and Break cannot be combined in one loop.",
+    "WaitHandle.WaitAll blocks the caller, is unsupported on STA threads, and supports at most 64 handles on current .NET. Deadlock depends on the signaling dependencies; it is not automatic.",
+    "ThreadPool UnsafeQueueUserWorkItem and UnsafeRegisterWaitForSingleObject do not flow ExecutionContext; do not describe this only as skipping a security context.",
+    "A thread-pool task, callback, or I/O completion can use a pool thread, but naturally asynchronous I/O does not occupy one worker thread for its entire wait."
+  ]
 }
