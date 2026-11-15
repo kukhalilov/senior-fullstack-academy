@@ -3,10 +3,135 @@
   "id": "t04-005",
   "track": "track-04",
   "title": "LINQ translation server client evaluation and IQueryable",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "An EF LINQ query begins as an expression tree rooted in a provider-backed IQueryable. Operators compose a query description until a terminal operator or enumeration executes it.",
+    "The provider translates the expression to database-specific commands. Not every .NET method or comparer can be translated; unsupported expressions inside filters generally fail rather than silently loading the whole table.",
+    "Client evaluation is explicit when crossing to IEnumerable or asynchronous enumeration, and is permitted in the final projection for some expressions. Materialize only after server-side filtering and projection have reduced data.",
+    "Terminal operators differ in cardinality expectations: First, Single, Any, and Count each express a different result contract. Async variants allow nonblocking I/O but do not make a DbContext safe for concurrent operations.",
+    "ToQueryString and logging help inspect translation, but generated SQL and provider behavior must be tested against the real database engine."
+  ],
+  "inventory": [
+    {
+      "id": "query-composition-and-execution",
+      "title": "IQueryable composition, execution boundaries, and results",
+      "items": [
+        "DbSet<TEntity>",
+        "IQueryable<TEntity>",
+        "IQueryProvider",
+        "Expression tree",
+        "LINQ query operator",
+        "Deferred execution",
+        "Query execution boundary",
+        "ToList",
+        "ToListAsync",
+        "First",
+        "FirstAsync",
+        "Single",
+        "SingleAsync",
+        "Any",
+        "AnyAsync",
+        "Count",
+        "CountAsync",
+        "AsAsyncEnumerable",
+        "AsEnumerable",
+        "ToQueryString",
+        "IAsyncEnumerable<T>",
+        "CancellationToken query overload",
+        "Streaming query",
+        "Buffered result",
+        "Scalar projection",
+        "Anonymous-type projection",
+        "DTO projection"
+      ]
+    },
+    {
+      "id": "translation-and-client-boundaries",
+      "title": "Translation, unsupported expressions, and explicit client evaluation",
+      "items": [
+        "LINQ-to-Entities translation",
+        "Provider translation",
+        "Client evaluation",
+        "Top-level projection client evaluation",
+        "Client evaluation in filter rejection",
+        "AsEnumerable client boundary",
+        "AsAsyncEnumerable client boundary",
+        "Unsupported expression translation exception",
+        "EF.Functions",
+        "Provider-specific function translation",
+        "Value conversion in query expression",
+        "Parameter extraction",
+        "Query parameterization",
+        "Null compensation",
+        "Client-side method call in projection",
+        "Custom method translation",
+        "IMethodCallTranslator plugin boundary",
+        "IQueryExpressionInterceptor",
+        "Query tags",
+        "TagWith",
+        "Compiled query cache",
+        "Query plan cache key",
+        "Provider-specific collation translation"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "IQueryable",
+      "IEnumerable"
+    ],
+    [
+      "Deferred query",
+      "Executed query"
+    ],
+    [
+      "Server evaluation",
+      "Client evaluation"
+    ],
+    [
+      "First",
+      "Single"
+    ],
+    [
+      "ToListAsync",
+      "AsAsyncEnumerable"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/ef/core/querying/",
+    "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
+    "https://learn.microsoft.com/en-us/ef/core/querying/how-query-works",
+    "https://learn.microsoft.com/en-us/ef/core/providers/"
+  ],
+  "versionNotes": [
+    {
+      "edition": "EF Core 10 stable; EF Core 11 development",
+      "items": [
+        "EF Core 10 adds and improves LINQ translations, including named .NET 10 operators; EF Core 11 includes further translation work but remains in development at the checked date."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft EF Core querying and provider translation documentation",
+    "edition": "EF Core 10 stable and EF Core 11 development checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/ef/core/querying/",
+      "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
+      "https://learn.microsoft.com/en-us/ef/core/querying/how-query-works",
+      "https://learn.microsoft.com/en-us/ef/core/providers/"
+    ]
+  },
+  "scopeExclusions": [
+    "Loading related entities and N+1 behavior are in t04-006.",
+    "Query performance and compiled queries are in t04-009.",
+    "Raw SQL and set-based update APIs are in t04-010.",
+    "Exact translation is provider-specific and must not be generalized."
+  ],
+  "generationAllowed": true
 }

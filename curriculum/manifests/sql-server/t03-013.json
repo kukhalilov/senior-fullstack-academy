@@ -3,10 +3,173 @@
   "id": "t03-013",
   "track": "track-03",
   "title": "performance troubleshooting monitoring waits and query tuning",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Troubleshooting begins with a measurable symptom, affected workload, time window, and recent change history; 'slow database' is not yet a diagnosis.",
+    "Waits and resource metrics show where work is queued, while query-level evidence identifies expensive statements. A wait category alone does not prove a root cause.",
+    "Establish a baseline, compare actual versus expected resource use, and validate with representative workload. Fixing CPU, I/O, memory, blocking, or application-pool pressure requires different interventions.",
+    "Use Query Store, DMVs, and Extended Events to collect bounded evidence; minimize diagnostic overhead and protect sensitive query data.",
+    "Tune iteratively and keep a rollback path. A local improvement can regress concurrency, write cost, cache behavior, or tail latency elsewhere."
+  ],
+  "inventory": [
+    {
+      "id": "diagnostic-signals-and-tools",
+      "title": "Waits, DMVs, Query Store, and event collection",
+      "items": [
+        "Wait statistics",
+        "sys.dm_os_wait_stats",
+        "sys.dm_exec_requests",
+        "sys.dm_exec_sessions",
+        "sys.dm_exec_query_stats",
+        "sys.dm_exec_sql_text",
+        "sys.dm_exec_query_plan",
+        "sys.dm_os_waiting_tasks",
+        "sys.dm_io_virtual_file_stats",
+        "sys.dm_db_index_usage_stats",
+        "sys.dm_db_missing_index_details",
+        "Query Store",
+        "Query Store runtime statistics",
+        "Query Store wait statistics",
+        "Query Store plan forcing",
+        "Extended Events",
+        "event session",
+        "event target",
+        "ring_buffer target",
+        "event_file target",
+        "system_health session",
+        "SQL Server Profiler legacy boundary",
+        "Performance Monitor counter",
+        "Database Engine Tuning Advisor boundary"
+      ]
+    },
+    {
+      "id": "bottleneck-analysis",
+      "title": "CPU, I/O, memory, concurrency, and capacity diagnosis",
+      "items": [
+        "CPU saturation",
+        "High logical reads",
+        "Physical read latency",
+        "Transaction-log write latency",
+        "Memory pressure",
+        "Memory grant wait",
+        "RESOURCE_SEMAPHORE",
+        "PAGEIOLATCH wait",
+        "WRITELOG wait",
+        "SOS_SCHEDULER_YIELD wait",
+        "CXPACKET wait",
+        "CXCONSUMER wait",
+        "THREADPOOL wait",
+        "Lock blocking",
+        "Deadlock frequency",
+        "Tempdb contention",
+        "Tempdb spill",
+        "Connection-pool exhaustion",
+        "Compilation storm",
+        "Parameter-sensitive regression",
+        "Long-running transaction",
+        "Storage throughput limit",
+        "Queueing delay",
+        "Little's Law workload estimate",
+        "Tail latency",
+        "Baseline comparison",
+        "Regression detection"
+      ]
+    },
+    {
+      "id": "remediation-and-measurement",
+      "title": "Controlled tuning, regression safety, and verification",
+      "items": [
+        "Reproduce representative workload",
+        "Capture query and plan baseline",
+        "Change one factor at a time",
+        "Query Store plan comparison",
+        "Index change impact",
+        "Statistics update decision",
+        "Parameter-sensitive mitigation",
+        "Query hint rollback plan",
+        "MAXDOP configuration boundary",
+        "Cost threshold for parallelism",
+        "Batch-size reduction",
+        "Application timeout diagnosis",
+        "Connection pooling diagnosis",
+        "Capacity headroom",
+        "Before-and-after measurement",
+        "p50 latency",
+        "p95 latency",
+        "p99 latency",
+        "Throughput per second",
+        "Logical reads per operation",
+        "CPU time per operation",
+        "Rollback and mitigation plan",
+        "Canary validation",
+        "Load test workload realism"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Wait statistics",
+      "Query-level evidence"
+    ],
+    [
+      "Logical reads",
+      "Physical reads"
+    ],
+    [
+      "Query Store",
+      "Plan cache"
+    ],
+    [
+      "Database bottleneck",
+      "Application connection-pool bottleneck"
+    ],
+    [
+      "Average latency",
+      "Tail latency"
+    ],
+    [
+      "Index recommendation",
+      "Measured index change"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitor-and-tune-for-performance?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/system-dynamic-management-views?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-usage-scenarios?view=sql-server-ver17"
+  ],
+  "versionNotes": [
+    {
+      "edition": "SQL Server 2025 query performance features",
+      "items": [
+        "SQL Server 2025 expands Intelligent Query Processing with expression cardinality feedback, optimized locking, and changes to Query Store availability on readable secondaries; validate feature eligibility and workload behavior before attributing a measured improvement."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitor-and-tune-for-performance?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/system-dynamic-management-views?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-usage-scenarios?view=sql-server-ver17"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft SQL Server 2025 performance, Query Store, DMV, and Extended Events documentation",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitor-and-tune-for-performance?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/system-dynamic-management-views?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-usage-scenarios?view=sql-server-ver17"
+    ]
+  },
+  "scopeExclusions": [
+    "How to read individual execution operators is covered in t03-009.",
+    "Index fundamentals and maintenance are covered in t03-008.",
+    "Transaction semantics are in t03-010.",
+    "Azure service-specific monitoring tools and cloud pricing are outside this SQL Server engine topic."
+  ],
+  "generationAllowed": true
 }

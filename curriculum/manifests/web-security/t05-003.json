@@ -3,10 +3,130 @@
   "id": "t05-003",
   "track": "track-05",
   "title": "cookies sessions token and JWT lifecycle tradeoffs",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A browser cookie is a transport mechanism for a value; a server-side session identifier must be unpredictable, protected, rotated, bounded in lifetime, and revocable.",
+    "Bearer tokens grant authority to whoever possesses them. A JWT is a representation with signed claims; decoding it is not validation and a signature does not encrypt its contents.",
+    "JWT validation must constrain algorithms and validate issuer, audience, lifetime, and keys. Token type matters: access tokens, refresh tokens, ID tokens, and session identifiers are not interchangeable.",
+    "Stateless token validation avoids a server lookup but makes immediate revocation and permission changes harder. Short lifetimes, refresh-token rotation, or sender constraints address different parts of this tradeoff.",
+    "Cookie security attributes reduce exposure but do not make XSS safe or eliminate CSRF. Session management and browser threat controls must be designed together."
+  ],
+  "inventory": [
+    {
+      "id": "cookies-and-server-sessions",
+      "title": "Browser cookies, session identifiers, and server-side session controls",
+      "items": [
+        "HTTP cookie",
+        "Set-Cookie",
+        "Cookie request header",
+        "Secure cookie attribute",
+        "HttpOnly cookie attribute",
+        "SameSite=Strict",
+        "SameSite=Lax",
+        "SameSite=None",
+        "Domain cookie attribute",
+        "Path cookie attribute",
+        "Expires cookie attribute",
+        "Max-Age cookie attribute",
+        "Cookie prefixes __Host- and __Secure-",
+        "Session identifier entropy",
+        "Session fixation",
+        "Session hijacking",
+        "Session rotation after authentication",
+        "Idle timeout",
+        "Absolute session lifetime",
+        "Server-side session store",
+        "Session revocation",
+        "Logout invalidation",
+        "Session identifier in URL risk",
+        "localStorage session-token persistence risk",
+        "Session verifier hash"
+      ]
+    },
+    {
+      "id": "bearer-tokens-and-jwt",
+      "title": "Token types, JWT claims, validation, and revocation",
+      "items": [
+        "Bearer access token",
+        "Opaque access token",
+        "Refresh token",
+        "ID token",
+        "JSON Web Token (JWT)",
+        "JWS signed JWT",
+        "JWE encrypted JWT",
+        "JWT header",
+        "JWT claims set",
+        "iss claim",
+        "sub claim",
+        "aud claim",
+        "exp claim",
+        "nbf claim",
+        "iat claim",
+        "jti claim",
+        "JWT signature verification",
+        "Allowed-algorithm validation",
+        "Issuer validation",
+        "Audience validation",
+        "Expiration validation",
+        "Key rotation with kid",
+        "JWT algorithm confusion",
+        "JWT alg=none rejection",
+        "Nested JWT handling",
+        "Token revocation strategy",
+        "Access-token lifetime",
+        "Refresh-token rotation",
+        "Sender-constrained token",
+        "DPoP-bound access token",
+        "Mutual-TLS-bound access token"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Opaque session identifier",
+      "Self-contained JWT"
+    ],
+    [
+      "Access token",
+      "ID token"
+    ],
+    [
+      "Cookie session",
+      "Bearer token"
+    ],
+    [
+      "Short-lived access token",
+      "Long-lived refresh token"
+    ],
+    [
+      "Stateless validation",
+      "Central revocation lookup"
+    ]
+  ],
+  "comparisonSources": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+    "https://datatracker.ietf.org/doc/html/rfc7519",
+    "https://datatracker.ietf.org/doc/html/rfc8725",
+    "https://datatracker.ietf.org/doc/html/rfc9700"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "OWASP Session Management; IETF JWT Best Current Practices and OAuth security RFCs",
+    "edition": "Current OWASP and IETF documents checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://datatracker.ietf.org/doc/html/rfc7519",
+      "https://datatracker.ietf.org/doc/html/rfc8725",
+      "https://datatracker.ietf.org/doc/html/rfc9700"
+    ]
+  },
+  "scopeExclusions": [
+    "OAuth/OIDC authorization grants and PKCE are covered in t05-004.",
+    "Password credentials and MFA are in t05-007.",
+    "ASP.NET Core cookie and bearer handler APIs are in t05-005 and track-02.",
+    "JWT is not assumed to be the correct format for every access token."
+  ],
+  "generationAllowed": true
 }

@@ -3,10 +3,118 @@
   "id": "t05-001",
   "track": "track-05",
   "title": "HTTP HTTPS TLS certificates HSTS and transport security",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "HTTP is an application protocol; TLS protects a transport connection and authenticates the server, while HTTPS is HTTP carried over TLS. Security must cover the whole request path, not only login.",
+    "TLS certificates bind public keys to identities through trust anchors. Expiry, hostname mismatch, incomplete chains, weak settings, and private-key exposure are separate failures.",
+    "HSTS is a browser policy learned from HTTPS that tells future connections to use HTTPS. It complements secure deployment and redirects; it does not protect the first visit unless the domain is preloaded.",
+    "When TLS terminates at a reverse proxy, forwarded scheme and client metadata are trustworthy only from configured proxy addresses."
+  ],
+  "inventory": [
+    {
+      "id": "protocol-and-connection",
+      "title": "HTTP over TLS, handshake, protocol negotiation, and replay boundaries",
+      "items": [
+        "HTTP request and response",
+        "HTTPS",
+        "TLS",
+        "TLS 1.2",
+        "TLS 1.3",
+        "TLS handshake",
+        "Server authentication",
+        "Certificate path validation",
+        "Trust anchor",
+        "Subject Alternative Name (SAN)",
+        "Hostname verification",
+        "Certificate expiration",
+        "Certificate revocation status",
+        "Forward secrecy",
+        "Cipher suite",
+        "ALPN",
+        "SNI",
+        "TLS 1.3 early data (0-RTT) replay risk",
+        "HTTP-to-HTTPS redirect",
+        "Mixed content"
+      ]
+    },
+    {
+      "id": "certificates-and-deployment",
+      "title": "Certificate lifecycle, HSTS, proxy termination, and secure cookies",
+      "items": [
+        "X.509 certificate",
+        "Certificate chain",
+        "Intermediate certificate",
+        "Certificate authority",
+        "Private-key protection",
+        "Certificate renewal",
+        "Certificate pinning risk",
+        "Certificate Transparency",
+        "HSTS",
+        "Strict-Transport-Security response header",
+        "HSTS max-age directive",
+        "HSTS includeSubDomains directive",
+        "HSTS preload list",
+        "Secure cookie attribute",
+        "TLS termination at reverse proxy",
+        "Forwarded scheme",
+        "Trusted proxy boundary",
+        "Certificate renewal automation",
+        "HTTP redirect status code",
+        "API-only HTTPS endpoint behavior"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "TLS 1.2",
+      "TLS 1.3"
+    ],
+    [
+      "HTTP redirect",
+      "HSTS"
+    ],
+    [
+      "TLS termination at edge proxy",
+      "TLS termination in application host"
+    ],
+    [
+      "Certificate expiration",
+      "Hostname mismatch"
+    ]
+  ],
+  "comparisonSources": [
+    "https://datatracker.ietf.org/doc/html/rfc9846",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html",
+    "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html",
+    "https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-11.0"
+  ],
+  "versionNotes": [
+    {
+      "edition": "TLS 1.3 RFC 9846, July 2026",
+      "items": [
+        "RFC 9846 replaces RFC 8446 as the current TLS 1.3 specification and updates implementation requirements; the protocol version remains TLS 1.3."
+      ],
+      "sourceUrls": [
+        "https://datatracker.ietf.org/doc/html/rfc9846"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "IETF TLS 1.3 RFC 9846, OWASP TLS/HSTS guidance, Microsoft ASP.NET Core 11 security docs",
+    "edition": "TLS 1.3 RFC 9846 and ASP.NET Core 11 checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://datatracker.ietf.org/doc/html/rfc9846",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-11.0"
+    ]
+  },
+  "scopeExclusions": [
+    "HTTP/2 and HTTP/3 internals are outside scope except where TLS termination matters.",
+    "Certificate-authority operations and operating-system certificate command lines are not taught here.",
+    "ASP.NET Core forwarded-header APIs and host deployment configuration are in track-02."
+  ],
+  "generationAllowed": true
 }

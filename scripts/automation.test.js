@@ -30,3 +30,31 @@ test('generation queue follows the learning path so DSA starts before web lesson
   assert.ok(dsaStart < webStart);
   assert.ok(intermediateDsa < webStart);
 });
+
+test('the SQL Server, EF Core, and web-security inventories are complete and source-backed', () => {
+  const catalog = JSON.parse(fs.readFileSync('curriculum/catalog.json', 'utf8'));
+  const expected = new Map([['track-03', 14], ['track-04', 11], ['track-05', 10]]);
+  for (const track of catalog.tracks.filter(item => expected.has(item.id))) {
+    const files = fs.readdirSync(track.manifestDirectory).filter(file => file.endsWith('.json'));
+    assert.equal(files.length, expected.get(track.id));
+    for (const file of files) {
+      const manifest = JSON.parse(fs.readFileSync(`${track.manifestDirectory}/${file}`, 'utf8'));
+      assert.equal(manifest.inventoryComplete, true, manifest.id);
+      assert.equal(manifest.generationAllowed, true, manifest.id);
+      assert.ok(manifest.concepts.length >= 4, manifest.id);
+      assert.ok(manifest.scopeExclusions.length > 0, manifest.id);
+      assert.ok(manifest.sourceSnapshot.urls.length > 0, manifest.id);
+      assert.ok(manifest.sourceSnapshot.urls.every(url => url.startsWith('https://')), manifest.id);
+      assert.equal(new Set(manifest.inventory.map(group => group.id)).size, manifest.inventory.length, manifest.id);
+      for (const group of manifest.inventory) {
+        assert.ok(group.items.length > 0, manifest.id);
+        assert.equal(new Set(group.items).size, group.items.length, `${manifest.id}/${group.id}`);
+      }
+    }
+  }
+  const efCore = JSON.parse(fs.readFileSync('curriculum/manifests/ef-core/t04-001.json', 'utf8'));
+  assert.match(JSON.stringify(efCore.versionNotes), /EF Core 10/);
+  assert.match(JSON.stringify(efCore.versionNotes), /development/);
+  const tls = JSON.parse(fs.readFileSync('curriculum/manifests/web-security/t05-001.json', 'utf8'));
+  assert.match(JSON.stringify(tls.versionNotes), /RFC 9846/);
+});

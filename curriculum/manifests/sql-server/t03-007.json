@@ -3,10 +3,157 @@
   "id": "t03-007",
   "track": "track-03",
   "title": "constraints keys defaults identity sequences and computed columns",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Constraints enforce data invariants at the database boundary, including uniqueness, referential integrity, required values, and domain checks.",
+    "Identity and sequence values generate identifiers but do not by themselves guarantee gap-free numbering or business ordering. Their allocation and transaction behavior must be separated from key uniqueness.",
+    "Defaults apply when a column value is omitted or DEFAULT is specified; they do not replace NOT NULL or CHECK constraints.",
+    "Computed columns derive values from expressions and have persistence and indexability rules. Generated values and constraints should be designed with migrations, concurrency, and application expectations in mind."
+  ],
+  "inventory": [
+    {
+      "id": "keys-and-constraints",
+      "title": "Primary, unique, foreign-key, check, and default constraints",
+      "items": [
+        "PRIMARY KEY",
+        "UNIQUE constraint",
+        "FOREIGN KEY",
+        "CHECK constraint",
+        "DEFAULT constraint",
+        "NOT NULL",
+        "Composite primary key",
+        "Composite UNIQUE constraint",
+        "Filtered unique index",
+        "Constraint name",
+        "WITH CHECK",
+        "WITH NOCHECK",
+        "Trusted constraint",
+        "Untrusted constraint",
+        "ON DELETE NO ACTION",
+        "ON DELETE CASCADE",
+        "ON DELETE SET NULL",
+        "ON UPDATE referential action",
+        "Self-referencing foreign key",
+        "Disabled constraint",
+        "Enable constraint with validation",
+        "Constraint violation error",
+        "Unique index backing a constraint",
+        "Constraint versus trigger",
+        "DEFAULT constraint expression",
+        "DEFAULT keyword in INSERT"
+      ]
+    },
+    {
+      "id": "generated-identifiers",
+      "title": "IDENTITY, SEQUENCE, rowversion, and key-generation boundaries",
+      "items": [
+        "IDENTITY(seed,increment)",
+        "IDENTITY property",
+        "IDENTITY_INSERT",
+        "IDENT_CURRENT",
+        "SCOPE_IDENTITY",
+        "@@IDENTITY",
+        "IDENTITY value gaps",
+        "IDENTITY does not guarantee uniqueness",
+        "CREATE SEQUENCE",
+        "NEXT VALUE FOR",
+        "Sequence object",
+        "Sequence cache",
+        "Sequence cycling",
+        "Sequence restart",
+        "Sequence allocated outside transaction rollback",
+        "Sequence gap behavior",
+        "Sequence versus IDENTITY",
+        "rowversion data type",
+        "rowversion is not a date or time",
+        "rowversion optimistic concurrency token",
+        "NEWID",
+        "NEWSEQUENTIALID",
+        "GUID key fragmentation tradeoff",
+        "Application-generated key",
+        "Database-generated key"
+      ]
+    },
+    {
+      "id": "defaults-computed-and-temporal-columns",
+      "title": "Defaults, computed columns, and generated-value configuration",
+      "items": [
+        "DEFAULT expression",
+        "DEFAULT constraint binding",
+        "DEFAULT versus explicit NULL",
+        "Computed column",
+        "Computed column expression",
+        "PERSISTED computed column",
+        "Deterministic computed expression",
+        "Precise computed expression",
+        "Computed-column index requirements",
+        "Virtual versus persisted computed value",
+        "GENERATED ALWAYS AS ROW START",
+        "GENERATED ALWAYS AS ROW END",
+        "PERIOD FOR SYSTEM_TIME",
+        "Temporal period columns",
+        "Hidden generated column",
+        "SPARSE column",
+        "ROWGUIDCOL property",
+        "Column encryption boundary",
+        "Generated value retrieval with OUTPUT",
+        "Metadata default value",
+        "Migration backfill versus default constraint"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "IDENTITY",
+      "SEQUENCE"
+    ],
+    [
+      "PRIMARY KEY",
+      "UNIQUE constraint"
+    ],
+    [
+      "DEFAULT",
+      "explicit input value"
+    ],
+    [
+      "Computed column",
+      "Stored application-maintained value"
+    ],
+    [
+      "rowversion",
+      "Timestamp"
+    ],
+    [
+      "Constraint",
+      "Trigger"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-sequence-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/identity-transact-sql?view=sql-server-ver17"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Microsoft SQL Server 2025 Transact-SQL and relational database documentation",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-sequence-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/identity-transact-sql?view=sql-server-ver17"
+    ]
+  },
+  "scopeExclusions": [
+    "Logical entity modeling and normalization are in t03-002.",
+    "DML behavior is covered in t03-006.",
+    "Index design beyond indexes backing constraints is in t03-008.",
+    "Temporal table querying and history retention are covered in t03-014."
+  ],
+  "generationAllowed": true
 }

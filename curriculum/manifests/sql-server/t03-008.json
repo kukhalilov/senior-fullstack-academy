@@ -3,10 +3,181 @@
   "id": "t03-008",
   "track": "track-03",
   "title": "indexes types covering indexes index maintenance and statistics",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "An index is an access structure the optimizer may choose; it is not a promise that a query will use it or that the query will be faster.",
+    "A clustered rowstore index defines the leaf-level row organization; a nonclustered index stores key entries and a row locator, with included columns available at the leaf level.",
+    "Key order, predicate shape, selectivity, and requested columns determine whether an index can seek, cover, or require lookups. Indexes also add storage, write, logging, and maintenance cost.",
+    "Statistics describe data distribution and inform cardinality estimates. Rebuild and reorganize are different operations; neither is an automatic cure for every slow query.",
+    "Specialized indexes and SQL Server 2025 preview features have distinct workloads and availability boundaries; identify stable versus preview status and edition limitations."
+  ],
+  "inventory": [
+    {
+      "id": "rowstore-index-structures",
+      "title": "Clustered and nonclustered rowstore indexes",
+      "items": [
+        "Clustered index",
+        "Nonclustered index",
+        "Heap",
+        "Index key",
+        "Included column",
+        "Leaf level",
+        "B-tree",
+        "Root page",
+        "Intermediate page",
+        "Leaf page",
+        "Clustered key as row locator",
+        "RID lookup",
+        "Key lookup",
+        "Composite index key order",
+        "Ascending index key",
+        "Descending index key",
+        "Unique index",
+        "Unique clustered index",
+        "Primary-key backing index",
+        "Fill factor",
+        "PAD_INDEX",
+        "Index page split",
+        "Index fragmentation",
+        "Index compression ROW",
+        "Index compression PAGE",
+        "Online index operation",
+        "Resumable index operation"
+      ]
+    },
+    {
+      "id": "specialized-and-filtered-indexes",
+      "title": "Filtered, columnstore, and specialized indexes",
+      "items": [
+        "Filtered index",
+        "Filtered index predicate",
+        "Filtered unique index",
+        "Columnstore index",
+        "Clustered columnstore index",
+        "Nonclustered columnstore index",
+        "Ordered columnstore index",
+        "Columnstore rowgroup",
+        "Delta rowgroup",
+        "Columnstore segment",
+        "Columnstore dictionary",
+        "Columnstore archival compression",
+        "Memory-optimized hash index",
+        "Memory-optimized nonclustered index",
+        "JSON index in SQL Server 2025",
+        "Vector index preview in SQL Server 2025",
+        "XML index",
+        "Spatial index",
+        "Full-text index",
+        "Indexed view index",
+        "Partition-aligned index"
+      ]
+    },
+    {
+      "id": "statistics-maintenance-and-design",
+      "title": "Statistics, workload fit, maintenance, and design decisions",
+      "items": [
+        "Index statistics",
+        "Histogram",
+        "Density vector",
+        "Auto-created statistics",
+        "Filtered statistics",
+        "Statistics update threshold",
+        "AUTO_UPDATE_STATISTICS",
+        "AUTO_UPDATE_STATISTICS_ASYNC",
+        "CREATE STATISTICS",
+        "UPDATE STATISTICS",
+        "sp_updatestats",
+        "Reorganize index",
+        "Rebuild index",
+        "ALTER INDEX REORGANIZE",
+        "ALTER INDEX REBUILD",
+        "Index usage statistics",
+        "sys.dm_db_index_usage_stats",
+        "Index operational statistics",
+        "sys.dm_db_index_operational_stats",
+        "Missing-index DMV recommendation boundary",
+        "Index write amplification",
+        "Over-indexing",
+        "SARGable predicate",
+        "Left-prefix key use",
+        "Covering index",
+        "Lookup avoidance tradeoff",
+        "Parameter-sensitive selectivity",
+        "Index maintenance window"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Clustered index",
+      "Nonclustered index"
+    ],
+    [
+      "Key column",
+      "Included column"
+    ],
+    [
+      "Seek",
+      "Scan"
+    ],
+    [
+      "Index rebuild",
+      "Index reorganize"
+    ],
+    [
+      "Rowstore",
+      "Columnstore"
+    ],
+    [
+      "Filtered index",
+      "Full-table index"
+    ],
+    [
+      "Index usage DMV",
+      "Missing-index recommendation"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/filtered-indexes?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/reorganize-and-rebuild-indexes?view=sql-server-ver17"
+  ],
+  "versionNotes": [
+    {
+      "edition": "SQL Server 2025 (17.x)",
+      "items": [
+        "SQL Server 2025 adds ordered nonclustered columnstore indexes and JSON indexes; approximate vector indexes remain preview and require PREVIEW_FEATURES. Do not describe preview vector indexes as generally available."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/filtered-indexes?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/reorganize-and-rebuild-indexes?view=sql-server-ver17"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft SQL Server 2025 index and statistics documentation",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/filtered-indexes?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/reorganize-and-rebuild-indexes?view=sql-server-ver17"
+    ]
+  },
+  "scopeExclusions": [
+    "Query-plan interpretation is in t03-009.",
+    "Transaction locks and row-versioning behavior are in t03-010.",
+    "Full-text search query syntax and vector search application design are covered elsewhere.",
+    "A missing-index recommendation is not treated as an instruction to add an index without workload validation."
+  ],
+  "generationAllowed": true
 }

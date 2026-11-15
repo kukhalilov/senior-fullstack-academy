@@ -3,10 +3,158 @@
   "id": "t04-010",
   "track": "track-04",
   "title": "raw SQL bulk updates and Dapper comparison",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Raw SQL is useful when the query shape or database feature is not expressible in LINQ, but parameters must remain separate from SQL syntax. Interpolated and raw-string APIs have different safety contracts.",
+    "Entity-returning raw SQL participates in EF tracking according to the query mode and must return the expected mapped columns. Scalar SQL APIs have their own composability constraints.",
+    "ExecuteUpdate and ExecuteDelete issue set-based statements without loading entities or using the change tracker. They do not automatically apply tracked concurrency resolution or combine multiple calls into one transaction.",
+    "Dapper maps SQL results with little ORM behavior, while EF Core provides model mapping, LINQ translation, change tracking, and migrations. The choice depends on query control, mapping complexity, consistency, and team maintenance costs.",
+    "Using multiple data-access tools is possible, but transaction, connection, and mapping boundaries must remain explicit."
+  ],
+  "inventory": [
+    {
+      "id": "raw-sql-and-sql-queries",
+      "title": "Parameterized SQL, entity queries, and command execution",
+      "items": [
+        "FromSql",
+        "FromSql<T>",
+        "FromSqlInterpolated",
+        "FromSqlRaw",
+        "SqlQuery<T>",
+        "SqlQueryRaw<T>",
+        "Database.SqlQuery<T>",
+        "Database.SqlQueryRaw<T>",
+        "ExecuteSql",
+        "ExecuteSqlInterpolated",
+        "ExecuteSqlRaw",
+        "Database.ExecuteSql",
+        "Database.ExecuteSqlRaw",
+        "FormattableString SQL parameterization",
+        "SqlParameter",
+        "Interpolated SQL safety",
+        "Raw SQL identifier injection",
+        "Composable SQL query",
+        "Stored procedure non-composable query",
+        "Keyless entity raw SQL result",
+        "Entity tracking for FromSql results",
+        "Column-name matching requirement",
+        "TagWith raw SQL query",
+        "DbCommand execution boundary"
+      ]
+    },
+    {
+      "id": "set-based-updates-and-bulk",
+      "title": "Set-based update/delete, batching, and change-tracker boundaries",
+      "items": [
+        "ExecuteUpdate",
+        "ExecuteUpdateAsync",
+        "ExecuteDelete",
+        "ExecuteDeleteAsync",
+        "SetProperty",
+        "SetPropertyCalls<TSource>",
+        "ExecuteUpdate does not call SaveChanges",
+        "ExecuteUpdate bypasses change tracker",
+        "ExecuteDelete bypasses tracked entities",
+        "Concurrency token handling for ExecuteUpdate",
+        "Affected row count",
+        "Multiple ExecuteUpdate calls transaction boundary",
+        "SaveChanges batching",
+        "Relational batching",
+        "Provider max batch size",
+        "Third-party bulk extension boundary",
+        "Bulk insert extension comparison",
+        "Bulk update extension comparison",
+        "Bulk delete extension comparison",
+        "Identity retrieval in bulk insert"
+      ]
+    },
+    {
+      "id": "dapper-and-mixed-data-access",
+      "title": "Dapper APIs and choosing micro-ORM versus EF Core",
+      "items": [
+        "Dapper",
+        "Dapper Query<T>",
+        "Dapper QueryAsync<T>",
+        "Dapper QueryFirst<T>",
+        "Dapper QuerySingle<T>",
+        "Dapper Execute",
+        "Dapper ExecuteAsync",
+        "Dapper DynamicParameters",
+        "Dapper multi-mapping",
+        "Dapper buffered query",
+        "Dapper unbuffered query",
+        "Dapper list expansion",
+        "EF Core change tracker versus Dapper mapping",
+        "EF Core LINQ provider versus handwritten SQL",
+        "Shared DbConnection boundary",
+        "Transaction sharing",
+        "Multiple mapping maintenance cost",
+        "Micro-ORM",
+        "Repository boundary for mixed data access"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "FromSqlInterpolated",
+      "FromSqlRaw"
+    ],
+    [
+      "ExecuteUpdate",
+      "Tracked entity update and SaveChanges"
+    ],
+    [
+      "ExecuteDelete",
+      "DbSet.RemoveRange"
+    ],
+    [
+      "EF Core",
+      "Dapper"
+    ],
+    [
+      "LINQ translation",
+      "Handwritten SQL"
+    ],
+    [
+      "EF Core bulk extension",
+      "Built-in ExecuteUpdate"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/ef/core/querying/sql-queries",
+    "https://learn.microsoft.com/en-us/ef/core/saving/execute-insert-update-delete",
+    "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
+    "https://github.com/DapperLib/Dapper"
+  ],
+  "versionNotes": [
+    {
+      "edition": "EF Core 7 through 10 set-based DML",
+      "items": [
+        "ExecuteUpdate and ExecuteDelete were introduced in EF Core 7 and remain the built-in set-based update/delete APIs in EF Core 10; bulk insertion and richer bulk semantics may require provider or third-party libraries."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/ef/core/saving/execute-insert-update-delete",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-7.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft EF Core 10 raw SQL and set-based DML docs; Dapper official project documentation",
+    "edition": "EF Core 10 stable and current Dapper documentation checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/ef/core/querying/sql-queries",
+      "https://learn.microsoft.com/en-us/ef/core/saving/execute-insert-update-delete",
+      "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
+      "https://github.com/DapperLib/Dapper"
+    ]
+  },
+  "scopeExclusions": [
+    "SQL injection prevention concepts are in t05-006 and t03-012.",
+    "Provider-specific bulk-copy APIs are not standardized across providers.",
+    "Detailed performance tuning is in t04-009 and SQL Server topics."
+  ],
+  "generationAllowed": true
 }
