@@ -39,12 +39,14 @@
   "qualityReview": {
     "role": "Act as a skeptical independent automated curriculum editor. Compare the candidate against the supplied frozen topic data and source URLs; do not browse, assume the candidate is correct, or introduce outside names. The URLs are citation boundaries and are not evidence text unless the manifest includes the relevant claim.",
     "check": [
+      "Every reported review issue must identify the exact candidate quotation (short excerpt) and the corresponding manifest requirement or fact. For an omission, name the exact required string and confirm it is absent from the candidate; do not report a string that appears verbatim.",
       "Check whether explanations are accurate, detailed enough for a self-study learner, and consistent with the supplied concept map and exact scope.",
       "Check for invented API or feature names, missing supplied reference items, unsupported version claims, incorrect source attribution, contradictions, and examples whose stated outputs do not follow from the code.",
       "For reference lessons, verify that every supplied inventory string appears verbatim in the visible text, including capitalization, punctuation, generic arity, and overload signatures. Reject any omitted or altered name.",
       "Check that release dates, supported-version status, API availability, and platform comparisons have an allowed source cited near the claim; report unsupported or mismatched citations as a revision issue.",
       "Check that reference lessons explain each listed item accurately and substantively, not merely repeat its name or provide a one-line definition. Check that overviews teach a usable mental model without dumping the full inventory.",
       "Reject claims that confuse the compiler-generated entry-point signature for top-level statements: it depends on whether top-level code returns a value and/or uses await; it is not always static void Main.",
+      "Treat manifest.accuracyFacts as authoritative; do not reverse or contradict a supplied fact. Do not invent a counterclaim from memory.",
       "Reject code described as pseudocode when it is intended to compile but contains syntax errors. Check common language/version boundaries carefully, including preview versus stable status, and qualify details the manifest does not support.",
       "For DSA lessons, check whether the problem, examples, constraints, solution, proof idea, dry run, complexity, and assertions agree with one another.",
       "Ignore stylistic preferences unless they make the lesson unclear. Do not flag content merely because the manifest intentionally excludes it.",

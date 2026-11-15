@@ -8,7 +8,7 @@
 
 When interviewing for C# roles, you will be asked to explain why generics exist and how they differ from older patterns.
 
-*   **Why use generics instead of `object`?** Generics provide compile-time type safety and performance. Using `object` requires boxing (wrapping a value type in an object) and casting, which is slow and error-prone. Generics allow the compiler to verify types at build time.
+*   **Why use generics instead of `object`?** Generics provide compile-time type safety and performance. Using `object` requires boxing (wrapping a value type in an object) and casting, which requires casting and can box value types. Generics allow the compiler to verify types at build time.
 *   **What is a constraint?** A `where constraint clause` restricts the types that can be used as arguments. Without constraints, a `Generic type` can only perform operations available to all objects (like `ToString()`). Constraints allow you to use specific capabilities, such as `new()` for instantiation or `unmanaged` for memory-sensitive operations.
 *   **How does inference work?** `Generic method type inference` allows the compiler to determine the `Type argument` from the arguments passed to the method. Note that inference never uses the return type to determine the argument.
 
@@ -20,8 +20,8 @@ When interviewing for C# roles, you will be asked to explain why generics exist 
 
 # Deep follow-up answers
 
-*   **How do constraints affect runtime?** Constraints are checked at compile time. At runtime, the JIT (Just-In-Time) compiler uses `Reified generic type arguments` to generate specialized code for value types, avoiding boxing. Reference types share code, but the runtime maintains distinct `Generic type identity` for each `Closed constructed type`.
-*   **What is the `allows ref struct` anti-constraint?** Introduced in C# 13, it allows `ref struct` types (which are stack-only) to be used as type arguments, provided the generic code adheres to strict ref-safety rules.
+*   **How do constraints affect runtime?** Constraints are checked at compile time. At runtime, the JIT (Just-In-Time) compiler uses `Reified generic type arguments` to generate specialized code for value types, avoiding object-based boxing in typical generic operations. Reference types share code, but the runtime maintains distinct `Generic type identity` for each `Closed constructed type`.
+*   **What is the `allows ref struct` anti-constraint?** Introduced in C# 13, it allows `ref struct` types to be used as type arguments when the generic declaration uses the `allows ref struct` anti-constraint and obeys ref-safety rules; “ref-safety restricted” describes escape restrictions, not a guaranteed physical stack location.
 *   **Why avoid unnecessary type parameters?** Every `Type parameter` adds complexity to the API. If a parameter is used only once or doesn't define a relationship between inputs and outputs, it is likely an abstraction error.
 
 # Scenario questions

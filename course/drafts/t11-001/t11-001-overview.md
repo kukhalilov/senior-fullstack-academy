@@ -36,7 +36,7 @@ Consider a simple function that finds the maximum value in a list of $n$ items.
 2.  **Resource:** Running time (number of comparisons).
 3.  **Analysis:** We look at every element once. No matter how the data is arranged, we must check all $n$ items.
 4.  **Asymptotic Bound:** Since we perform roughly $n$ operations, we say the growth is linear, or $O(n)$.
-5.  **Recursive alternative:** If we split the list in half to find the max (divide and conquer), we create a **recurrence relation**: $T(n) = 2T(n/2) + O(1)$. We then use the **Master method** to solve this and find the total complexity.
+5. **Recursive alternative:** If we split the list in half, recursively find each half's maximum, and compare the two results, the recurrence is $T(n)=2T(n/2)+\Theta(1)$. The Master theorem gives $\Theta(n)$ total work, so divide and conquer does not improve the asymptotic cost over a scan.
 
 # When to use it and tradeoffs
 *   **Use it when:** You need to justify your choice of algorithm for large-scale systems or performance-critical applications.

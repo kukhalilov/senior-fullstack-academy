@@ -11,7 +11,7 @@
 
 # Worked example
 
-Generics allow you to write a single algorithm that works for many types while maintaining type safety. Instead of using `object` (which requires casting and causes boxing for value types), we use a `Generic type parameter`.
+Generics allow you to write a single algorithm that works for many types while maintaining type safety. Instead of using `object` (which requires casting and may cause boxing for value types), we use a `Generic type parameter`.
 
 Consider a method that needs to create a new instance of a type and return it. We must tell the compiler that the type `T` supports a parameterless constructor.
 
@@ -41,7 +41,7 @@ var myObj = CreateInstance<System.Text.StringBuilder>();
 
 *   **Exercise 1:** Use `where T : class`. If you try to pass an `int` (a value type), the compiler will trigger a `Constraint diagnostic`.
 *   **Exercise 2:** Simply call `Swap(ref x, ref y);`. The compiler looks at the `Input type` of the arguments to determine `T`.
-*   **Exercise 3:** `ref struct` types are stack-only. Standard generics cannot hold them unless you explicitly opt-in using `allows ref struct`.
+*   **Exercise 3:** `ref struct` types have ref-safety restrictions. A generic can accept one only when its type parameter uses `allows ref struct` and its implementation follows ref-safety rules; this does not promise physical ref-safety restricted.
 
 # Complete solutions
 
