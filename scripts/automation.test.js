@@ -20,3 +20,13 @@ test('lesson headings accept valid Markdown heading levels for required sections
   const generator = fs.readFileSync('scripts/generate.js', 'utf8');
   assert.match(generator, /\^#\{1,6\}\\s\+/);
 });
+
+test('generation queue follows the learning path so DSA starts before web lessons', () => {
+  const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
+  const dsaStart = queue.tasks.findIndex(task => task.module === 't11-001');
+  const intermediateDsa = queue.tasks.findIndex(task => task.module === 't11-003');
+  const webStart = queue.tasks.findIndex(task => task.module === 't06-001');
+  assert.ok(dsaStart >= 0 && intermediateDsa >= 0 && webStart >= 0);
+  assert.ok(dsaStart < webStart);
+  assert.ok(intermediateDsa < webStart);
+});

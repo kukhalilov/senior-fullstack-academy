@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const catalog = JSON.parse(fs.readFileSync('curriculum/catalog.json', 'utf8'));
+const learningPath = JSON.parse(fs.readFileSync('curriculum/learning-path.json', 'utf8'));
 const phases = {
   overview: 'Big-picture orientation and mental model',
   concepts: 'Core concepts and how they fit together',
@@ -9,6 +10,7 @@ const phases = {
   interview: 'Interview questions and reasoning',
 };
 const tasks = [];
+const manifestsById = new Map();
 
 for (const track of catalog.tracks) {
   const files = fs.readdirSync(track.manifestDirectory)
@@ -17,7 +19,20 @@ for (const track of catalog.tracks) {
   for (const file of files) {
     const manifestPath = path.join(track.manifestDirectory, file).replaceAll('\\', '/');
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-    const statusFor = phase => manifest.inventoryComplete !== true
+    if (manifestsById.has(manifest.id)) throw new Error(`Duplicate topic ID in manifests: ${manifest.id}`);
+    manifestsById.set(manifest.id, {track, manifest, manifestPath});
+  }
+}
+
+const orderedTopicIds = learningPath.stages.flatMap(stage => stage.topics);
+if (orderedTopicIds.length !== manifestsById.size || new Set(orderedTopicIds).size !== orderedTopicIds.length) {
+  throw new Error('Learning path must list each catalog topic exactly once');
+}
+for (const topicId of orderedTopicIds) {
+  const entry = manifestsById.get(topicId);
+  if (!entry) throw new Error(`Learning path references unknown topic ${topicId}`);
+  const {track, manifest, manifestPath} = entry;
+  const statusFor = phase => manifest.inventoryComplete !== true
       ? 'blocked-on-inventory'
       : manifest.generationAllowed === true || manifest.generationAllowedPhases?.includes(phase)
         ? 'draft-generation-eligible'
@@ -53,7 +68,6 @@ for (const track of catalog.tracks) {
       add('practice', 'practice', phases.practice);
     }
     add('interview', 'interview', phases.interview);
-  }
 }
 
 const queue = {
