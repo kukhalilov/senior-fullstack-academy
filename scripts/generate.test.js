@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import {parseReviewResponse} from './parse-review-response.js';
+import {normalizeDsaSolutionFence} from './normalize-dsa-solution-fence.js';
 import {markDailyQuotaReached,markModelUnavailable,modelRpdLimits,pacificUsageDay,recordModelSuccess,remainingDailyCalls} from './model-usage.js';
 
 test('model usage follows Pacific quota resets and enforces each model daily limit', () => {
@@ -19,6 +20,15 @@ test('model usage follows Pacific quota resets and enforces each model daily lim
   assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),1);
   markModelUnavailable(usage,'gemini-3.5-flash-lite');
   assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),0);
+});
+
+test('DSA solution fence normalization only repairs one unambiguous C# program fence', () => {
+  const plain = '# Complete C# solution\n\n```csharp\nConsole.WriteLine(1);\n```';
+  assert.match(normalizeDsaSolutionFence(plain), /```csharp dsa-solution/);
+  const alreadyTagged = '# Complete C# solution\n\n```csharp dsa-solution\nConsole.WriteLine(1);\n```';
+  assert.equal(normalizeDsaSolutionFence(alreadyTagged), alreadyTagged);
+  const ambiguous = '```csharp\nConsole.WriteLine(1);\n```\n```csharp\nConsole.WriteLine(2);\n```';
+  assert.equal(normalizeDsaSolutionFence(ambiguous), ambiguous);
 });
 
 test('review responses accept schema-shaped JSON with optional Markdown fences', () => {
@@ -220,6 +230,15 @@ test('DSA complexity scope includes enabled analysis practice', () => {
   const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
   assert.equal(queue.tasks.find(task => task.id === 't11-001-overview').status, 'draft-generation-eligible');
   assert.equal(queue.tasks.find(task => task.id === 't11-001-practice').status, 'draft-generation-eligible');
+});
+
+test('the next array DSA practice unit has a frozen statement, constraints, examples, and source', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-002.json', 'utf8'));
+  const problem = manifest.practiceProblems.find(item => item.id === 'stock-one-transaction');
+  assert.ok(problem.statement);
+  assert.ok(problem.constraints.length >= 2);
+  assert.ok(problem.examples.length >= 2);
+  assert.ok(problem.sourceUrls.some(url => url.includes('/best-time-to-buy-and-sell-stock/')));
 });
 
 test('named DSA problems become independent practice units', () => {
@@ -469,7 +488,7 @@ test('the curriculum teaches overview before references and has no forced versio
   const generator = fs.readFileSync('scripts/generate.js', 'utf8');
   assert.match(generator, /REQUIRED DSA OUTPUT CONTRACT/);
   assert.match(generator, /dsaProblemHeadings\.map\(heading => '# ' \+ heading\)/);
-  assert.match(generator, /three backtick characters followed immediately by csharp dsa-solution/);
+  assert.match(generator, /Open its code fence exactly as: ```csharp dsa-solution/);
   const path = JSON.parse(fs.readFileSync('curriculum/learning-path.json', 'utf8'));
   const pathTopicIds = path.stages.flatMap(stage => stage.topics);
   assert.equal(path.topicCount, pathTopicIds.length);
