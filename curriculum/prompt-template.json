@@ -28,7 +28,7 @@
   "closedWorld": {
     "rule": "Do not browse or invent version-specific names. Exact APIs, methods, attributes, language features, alternatives, and release changes may be named only when present in the supplied manifest data or its cited source snapshot.",
     "namedFeatures": "The full topic inventory is supplied for overview, concepts, practice, and interview lessons. Use it as the complete allowed set of named topic features; do not enumerate it in the overview. A reference lesson receives only its assigned inventory group. Use named alternatives only when present in comparisons.",
-    "inventory": "A reference lesson explains the supplied inventory names and may not add names. If the inventory is empty or incomplete, report blocked rather than filling it from model memory.",
+    "inventory": "A reference lesson explains every supplied inventory name and may not add names. Copy each inventory string verbatim, including capitalization, punctuation, generic type parameters, and overload signatures; use one separate bullet or row per string. Put the exact string in inline code before explaining it. If the inventory is empty or incomplete, report blocked rather than filling it from model memory.",
     "concepts": "Teach the supplied concept map. If it is absent, the topic is not ready for generation; do not infer that a title is a complete syllabus.",
     "comparisons": "Include comparisons only when manifest.comparisons contains explicit alternatives and evidence. Empty means omit the comparison section.",
     "versions": "Include release history only when manifest.versionNotes contains named changes, exact affected versions, and source URLs. Empty means omit version-history discussion; never create a versions lesson for a timeless topic.",
@@ -40,6 +40,7 @@
     "check": [
       "Check whether explanations are accurate, detailed enough for a self-study learner, and consistent with the supplied concept map and exact scope.",
       "Check for invented API or feature names, missing supplied reference items, unsupported version claims, incorrect source attribution, contradictions, and examples whose stated outputs do not follow from the code.",
+      "For reference lessons, verify that every supplied inventory string appears verbatim in the visible text, including capitalization, punctuation, generic arity, and overload signatures. Reject any omitted or altered name.",
       "Check that release dates, supported-version status, API availability, and platform comparisons have an allowed source cited near the claim; report unsupported or mismatched citations as a revision issue.",
       "Check that reference lessons explain each listed item accurately and substantively, not merely repeat its name or provide a one-line definition. Check that overviews teach a usable mental model without dumping the full inventory.",
       "Reject claims that confuse the compiler-generated entry-point signature for top-level statements: it depends on whether top-level code returns a value and/or uses await; it is not always static void Main.",
@@ -52,31 +53,85 @@
   "lessonTypes": {
     "overview": {
       "goal": "Give the learner an understandable whole-topic picture before any API catalog.",
-      "requiredSections": ["Problem and purpose", "Plain-language mental model", "How the parts fit together", "Concept map", "End-to-end walkthrough", "When to use it and tradeoffs", "What later lessons cover"],
+      "requiredSections": [
+        "Problem and purpose",
+        "Plain-language mental model",
+        "How the parts fit together",
+        "Concept map",
+        "End-to-end walkthrough",
+        "When to use it and tradeoffs",
+        "What later lessons cover"
+      ],
       "instruction": "Do not turn this into a list of every API. Teach the big picture using manifest.concepts and a simple running example."
     },
     "concepts": {
       "goal": "Build conceptual depth in prerequisite order.",
-      "requiredSections": ["Learning objectives", "Prerequisites", "Core concepts", "Mechanisms and relationships", "Worked examples", "Misconceptions and edge cases", "Knowledge checks with answers"]
+      "requiredSections": [
+        "Learning objectives",
+        "Prerequisites",
+        "Core concepts",
+        "Mechanisms and relationships",
+        "Worked examples",
+        "Misconceptions and edge cases",
+        "Knowledge checks with answers"
+      ]
     },
     "reference": {
       "goal": "Teach one bounded group of exact, pre-enumerated names.",
-      "requiredSections": ["Scope and version", "How this group fits the mental model", "Supplied names explained", "Cross-item comparison", "Examples", "Common mistakes", "Knowledge checks with answers"],
-      "instruction": "Explain every supplied name; do not add names. Keep the reference lesson connected to the overview concepts."
+      "requiredSections": [
+        "Scope and version",
+        "How this group fits the mental model",
+        "Supplied names explained",
+        "Cross-item comparison",
+        "Examples",
+        "Common mistakes",
+        "Knowledge checks with answers"
+      ],
+      "instruction": "Explain every supplied name; do not add names. Reproduce every item string exactly as supplied in its own bullet or table row, including generic type parameters and overload signatures, then explain its purpose and behavior. Keep the reference lesson connected to the overview concepts."
     },
     "practice": {
       "goal": "Develop independent problem-solving and practical fluency.",
-      "requiredSections": ["Goals", "Worked example", "Exercises", "Progressive hints", "Complete solutions", "Tests and edge cases", "Reflection questions"],
+      "requiredSections": [
+        "Goals",
+        "Worked example",
+        "Exercises",
+        "Progressive hints",
+        "Complete solutions",
+        "Tests and edge cases",
+        "Reflection questions"
+      ],
       "instruction": "Use only APIs and features present in the supplied inventory. For DSA, include problem statement, constraints, examples, C# solution, proof idea, dry run, complexity, tests, and alternative approaches where supplied."
     },
     "interview": {
       "goal": "Prepare the learner to explain, compare, and reason under interview conditions.",
-      "requiredSections": ["Core questions", "Concise interview answers", "Deep follow-up answers", "Scenario questions", "Tradeoffs and alternatives", "Common weak answers", "Self-check rubric"]
+      "requiredSections": [
+        "Core questions",
+        "Concise interview answers",
+        "Deep follow-up answers",
+        "Scenario questions",
+        "Tradeoffs and alternatives",
+        "Common weak answers",
+        "Self-check rubric"
+      ]
     }
   },
   "dsaPractice": {
-    "requiredProblemFields": ["Problem statement", "Input constraints", "Examples with expected output", "Clarifying assumptions"],
-    "requiredSolutionFields": ["Progressive hints", "Complete C# solution", "Correctness argument", "Step-by-step dry run", "Time complexity", "Space complexity", "Edge-case tests", "Alternative approach when useful"],
+    "requiredProblemFields": [
+      "Problem statement",
+      "Input constraints",
+      "Examples with expected output",
+      "Clarifying assumptions"
+    ],
+    "requiredSolutionFields": [
+      "Progressive hints",
+      "Complete C# solution",
+      "Correctness argument",
+      "Step-by-step dry run",
+      "Time complexity",
+      "Space complexity",
+      "Edge-case tests",
+      "Alternative approach when useful"
+    ],
     "instruction": "Teach a transferable problem-solving pattern. A named problem in a manifest gets its own lesson; do not replace or combine it with another problem. Do not reveal the full solution before the learner has a chance to try. Every stated constraint, example, assertion, and solution must agree. Supply one standalone C# console program with no external packages; check every displayed example and edge case, and make each failed check throw InvalidOperationException. Explain why the chosen pattern fits and what signals would make it fail."
   },
   "optionalSections": {
