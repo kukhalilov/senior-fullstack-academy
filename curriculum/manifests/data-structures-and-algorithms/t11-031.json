@@ -15,31 +15,363 @@
     "Fixed-width overflow, negative values, sign extension, and shifting by the type width can invalidate informal identities; state the integer representation and constraints."
   ],
   "inventory": [
-    {"id":"bitwise-operators","title":"Operators, truth tables, and shifts","items":["Bitwise AND","Bitwise OR","Bitwise XOR","Bitwise NOT","Left shift","Right shift","Logical versus arithmetic right shift","XOR self-inverse identity","AND/OR truth tables","Two's-complement representation"]},
-    {"id":"single-bit-masks","title":"Testing and changing individual bits","items":["One-bit mask 1 shifted by index","Test bit","Set bit","Clear bit","Toggle bit","Mask low k bits","Extract bit range","Unsigned shift behavior","Shift-count bounds","Bit-width assumptions"]},
-    {"id":"bit-identities-and-counting","title":"Low bits, parity, and population counts","items":["Isolate least significant set bit x AND -x","Clear least significant set bit x AND (x-1)","Population count","Parity bit","Power-of-two test","Power-of-two-of-two boundary","XOR of range pattern","XOR cancellation by even multiplicity","Mask off higher bits"]},
-    {"id":"subset-masks-and-limits","title":"Subset masks and complexity","items":["Subset bit mask","Enumerate all masks from zero to 2^n minus one","Test whether subset contains element","Enumerate submasks of a mask","O(2^n) subset enumeration","O(3^n) all-mask submask enumeration","Bitmask DP connection","Small-universe requirement","Signed overflow hazard"]}
+    {
+      "id": "bitwise-operators",
+      "title": "Operators, truth tables, and shifts",
+      "items": [
+        "Bitwise AND",
+        "Bitwise OR",
+        "Bitwise XOR",
+        "Bitwise NOT",
+        "Left shift",
+        "Right shift",
+        "Logical versus arithmetic right shift",
+        "XOR self-inverse identity",
+        "AND/OR truth tables",
+        "Two's-complement representation"
+      ]
+    },
+    {
+      "id": "single-bit-masks",
+      "title": "Testing and changing individual bits",
+      "items": [
+        "One-bit mask 1 shifted by index",
+        "Test bit",
+        "Set bit",
+        "Clear bit",
+        "Toggle bit",
+        "Mask low k bits",
+        "Extract bit range",
+        "Unsigned shift behavior",
+        "Shift-count bounds",
+        "Bit-width assumptions"
+      ]
+    },
+    {
+      "id": "bit-identities-and-counting",
+      "title": "Low bits, parity, and population counts",
+      "items": [
+        "Isolate least significant set bit x AND -x",
+        "Clear least significant set bit x AND (x-1)",
+        "Population count",
+        "Parity bit",
+        "Power-of-two test",
+        "Power-of-two-of-two boundary",
+        "XOR of range pattern",
+        "XOR cancellation by even multiplicity",
+        "Mask off higher bits"
+      ]
+    },
+    {
+      "id": "subset-masks-and-limits",
+      "title": "Subset masks and complexity",
+      "items": [
+        "Subset bit mask",
+        "Enumerate all masks from zero to 2^n minus one",
+        "Test whether subset contains element",
+        "Enumerate submasks of a mask",
+        "O(2^n) subset enumeration",
+        "O(3^n) all-mask submask enumeration",
+        "Bitmask DP connection",
+        "Small-universe requirement",
+        "Signed overflow hazard"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"single-number","name":"Single Number","difficulty":"introductory","patterns":["XOR paired values away","one value has odd multiplicity"]},
-    {"id":"number-of-1-bits","name":"Number of 1 Bits","difficulty":"introductory","patterns":["clear the least significant set bit","population count loop"]},
-    {"id":"counting-bits","name":"Counting Bits","difficulty":"introductory","patterns":["reuse a smaller number's bit count","lowest-bit recurrence"]},
-    {"id":"reverse-bits","name":"Reverse Bits","difficulty":"introductory","patterns":["extract and append one bit at a time","fixed-width iteration"]},
-    {"id":"sum-two-integers","name":"Sum of Two Integers","difficulty":"intermediate","patterns":["XOR computes sum without carry","AND and shift propagate carry"]},
-    {"id":"single-number-ii","name":"Single Number II","difficulty":"intermediate","patterns":["count each bit modulo multiplicity","reconstruct signed result carefully"]},
-    {"id":"bitwise-and-numbers-range","name":"Bitwise AND of Numbers Range","difficulty":"intermediate","patterns":["shared most-significant prefix","shift until common prefix remains"]},
-    {"id":"subsets-bitmask","name":"Subsets","difficulty":"introductory","patterns":["map each integer mask to a subset","test one mask bit per input element"]}
+    {
+      "id": "single-number",
+      "name": "Single Number",
+      "difficulty": "introductory",
+      "patterns": [
+        "XOR paired values away",
+        "one value has odd multiplicity"
+      ],
+      "statement": "Find the value that occurs once when every other value occurs twice, using linear time and constant extra space.",
+      "constraints": [
+        "1 <= nums.length <= 30000",
+        "-30000 <= nums[i] <= 30000",
+        "Every value occurs twice except one singleton"
+      ],
+      "examples": [
+        {
+          "input": "nums=[2,2,1]",
+          "output": "1"
+        },
+        {
+          "input": "nums=[4,1,2,1,2]",
+          "output": "4"
+        },
+        {
+          "input": "nums=[1]",
+          "output": "1"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/single-number/"
+      ]
+    },
+    {
+      "id": "number-of-1-bits",
+      "name": "Number of 1 Bits",
+      "difficulty": "introductory",
+      "patterns": [
+        "clear the least significant set bit",
+        "population count loop"
+      ],
+      "statement": "Return the Hamming weight, the number of set bits, of a positive integer.",
+      "constraints": [
+        "1 <= n <= 2^31 - 1"
+      ],
+      "examples": [
+        {
+          "input": "n=11",
+          "output": "3"
+        },
+        {
+          "input": "n=128",
+          "output": "1"
+        },
+        {
+          "input": "n=2147483645",
+          "output": "30"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/number-of-1-bits/"
+      ]
+    },
+    {
+      "id": "counting-bits",
+      "name": "Counting Bits",
+      "difficulty": "introductory",
+      "patterns": [
+        "reuse a smaller number's bit count",
+        "lowest-bit recurrence"
+      ],
+      "statement": "Return set-bit counts for every integer from zero through n, without a built-in popcount.",
+      "constraints": [
+        "0 <= n <= 100000",
+        "Follow-up asks for O(n) time"
+      ],
+      "examples": [
+        {
+          "input": "n=2",
+          "output": "[0,1,1]"
+        },
+        {
+          "input": "n=5",
+          "output": "[0,1,1,2,1,2]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/counting-bits/"
+      ]
+    },
+    {
+      "id": "reverse-bits",
+      "name": "Reverse Bits",
+      "difficulty": "introductory",
+      "patterns": [
+        "extract and append one bit at a time",
+        "fixed-width iteration"
+      ],
+      "statement": "Reverse all 32 bit positions of the input value.",
+      "constraints": [
+        "0 <= n <= 2^31 - 2",
+        "n is even",
+        "Operate on exactly 32 bits"
+      ],
+      "examples": [
+        {
+          "input": "n=43261596",
+          "output": "964176192"
+        },
+        {
+          "input": "n=2147483644",
+          "output": "1073741822"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/reverse-bits/"
+      ]
+    },
+    {
+      "id": "sum-two-integers",
+      "name": "Sum of Two Integers",
+      "difficulty": "intermediate",
+      "patterns": [
+        "XOR computes sum without carry",
+        "AND and shift propagate carry"
+      ],
+      "statement": "Return the sum of two integers without using addition or subtraction operators.",
+      "constraints": [
+        "-1000 <= a,b <= 1000"
+      ],
+      "examples": [
+        {
+          "input": "a=1, b=2",
+          "output": "3"
+        },
+        {
+          "input": "a=2, b=3",
+          "output": "5"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/sum-of-two-integers/"
+      ]
+    },
+    {
+      "id": "single-number-ii",
+      "name": "Single Number II",
+      "difficulty": "intermediate",
+      "patterns": [
+        "count each bit modulo multiplicity",
+        "reconstruct signed result carefully"
+      ],
+      "statement": "Find the one value appearing once when every other value appears exactly three times, in linear time and constant extra space.",
+      "constraints": [
+        "1 <= nums.length <= 30000",
+        "-2^31 <= nums[i] <= 2^31-1",
+        "One value occurs once; every other value occurs exactly three times"
+      ],
+      "examples": [
+        {
+          "input": "nums=[2,2,3,2]",
+          "output": "3"
+        },
+        {
+          "input": "nums=[0,1,0,1,0,1,99]",
+          "output": "99"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/single-number-ii/"
+      ]
+    },
+    {
+      "id": "bitwise-and-numbers-range",
+      "name": "Bitwise AND of Numbers Range",
+      "difficulty": "intermediate",
+      "patterns": [
+        "shared most-significant prefix",
+        "shift until common prefix remains"
+      ],
+      "statement": "Return the bitwise AND of every integer in the inclusive range [left,right].",
+      "constraints": [
+        "0 <= left <= right <= 2^31 - 1"
+      ],
+      "examples": [
+        {
+          "input": "left=5, right=7",
+          "output": "4"
+        },
+        {
+          "input": "left=0, right=0",
+          "output": "0"
+        },
+        {
+          "input": "left=1, right=2147483647",
+          "output": "0"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/bitwise-and-numbers-range/"
+      ]
+    },
+    {
+      "id": "subsets-bitmask",
+      "name": "Subsets",
+      "difficulty": "introductory",
+      "patterns": [
+        "map each integer mask to a subset",
+        "test one mask bit per input element"
+      ],
+      "statement": "Return all subsets of unique input values, including the empty subset, in any order.",
+      "constraints": [
+        "1 <= nums.length <= 10",
+        "-10 <= nums[i] <= 10",
+        "All values are unique"
+      ],
+      "examples": [
+        {
+          "input": "nums=[1,2,3]",
+          "output": "all eight subsets"
+        },
+        {
+          "input": "nums=[0]",
+          "output": "[], [0]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/subsets/"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["XOR","OR"],["Set bit","Toggle bit"],["Clear one lowest set bit","Shift through every bit"],["Boolean subset recursion","Integer subset-mask enumeration"],["Bit trick","General arithmetic proof"]],
-  "comparisonSources": ["https://usaco.guide/silver/bitwise?lang=cpp","https://usaco.guide/gold/dp-bitmasks"],
-  "versionNotes": [],
+  "comparisons": [
+    [
+      "XOR",
+      "OR"
+    ],
+    [
+      "Set bit",
+      "Toggle bit"
+    ],
+    [
+      "Clear one lowest set bit",
+      "Shift through every bit"
+    ],
+    [
+      "Boolean subset recursion",
+      "Integer subset-mask enumeration"
+    ],
+    [
+      "Bit trick",
+      "General arithmetic proof"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/silver/bitwise?lang=cpp",
+    "https://usaco.guide/gold/dp-bitmasks"
+  ],
+  "versionNotes": [
+    {
+      "version": "C# 11 and later",
+      "change": "The unsigned right-shift operator >>> was added in C# 11; it provides direct logical right shift for signed operands. C# 15 is current as of 2026-11; this core bitwise behavior is unchanged.",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning"
+      ]
+    }
+  ],
   "sourceSnapshot": {
     "authority": "USACO Guide bitwise-operator and bitmask-DP references; official LeetCode problem statements",
-    "edition": "Timeless bit-level algorithms; canonical problem pages checked 2026-11-14",
-    "checkedAt": "2026-11-14",
-    "urls": ["https://usaco.guide/silver/bitwise?lang=cpp","https://usaco.guide/gold/dp-bitmasks","https://leetcode.com/problems/single-number/","https://leetcode.com/problems/number-of-1-bits/","https://leetcode.com/problems/counting-bits/","https://leetcode.com/problems/reverse-bits/","https://leetcode.com/problems/sum-of-two-integers/","https://leetcode.com/problems/single-number-ii/","https://leetcode.com/problems/bitwise-and-of-numbers-range/","https://leetcode.com/problems/subsets/"]
+    "edition": "Bit-level algorithms with current C# 15 semantics; canonical problem pages checked 2026-11-16",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://usaco.guide/silver/bitwise?lang=cpp",
+      "https://usaco.guide/gold/dp-bitmasks",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator",
+      "https://leetcode.com/problems/single-number/",
+      "https://leetcode.com/problems/number-of-1-bits/",
+      "https://leetcode.com/problems/counting-bits/",
+      "https://leetcode.com/problems/reverse-bits/",
+      "https://leetcode.com/problems/sum-of-two-integers/",
+      "https://leetcode.com/problems/single-number-ii/",
+      "https://leetcode.com/problems/bitwise-and-of-numbers-range/",
+      "https://leetcode.com/problems/subsets/"
+    ]
   },
-  "scopeExclusions": ["Binary trie structure, covered in t11-016","Number theory and modular arithmetic, covered in t11-032","Bitmask dynamic-programming state transitions beyond subset enumeration, covered in focused DP topics","SIMD/vector instruction sets and hardware-level optimization","Cryptography and cryptographic bit operations"],
+  "scopeExclusions": [
+    "Binary trie structure, covered in t11-016",
+    "Number theory and modular arithmetic, covered in t11-032",
+    "Bitmask dynamic-programming state transitions beyond subset enumeration, covered in focused DP topics",
+    "SIMD/vector instruction sets and hardware-level optimization",
+    "Cryptography and cryptographic bit operations"
+  ],
   "generationAllowed": true
 }
