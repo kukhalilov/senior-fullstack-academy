@@ -38,7 +38,7 @@ jobs:
         name: Count eligible drafts
         run: npm run generate -- --dry-run
       - name: Generate bounded lesson drafts
-        if: steps.pending.outputs.pending != '0' && github.event_name == 'schedule'
+        if: steps.pending.outputs.pending != '0' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODELS: gemini-3.5-flash-lite,gemini-3.1-flash-lite
