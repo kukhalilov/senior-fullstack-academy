@@ -205,6 +205,7 @@ let budgetReached=false;
 async function processTask(task) {
   try {
     const {manifest}=ready.get(task.module);
+    const phase=task.phase==='reference'?'reference':task.phase;
     let result=await request(promptFor(task,manifest));
     let lesson,accepted;
     for(let attempt=0;attempt<3;attempt++){
