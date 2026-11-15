@@ -44,7 +44,7 @@ Comparisons from the specification:
 This example uses a traditional project structure, an explicit namespace, and a standard `Main` method signature that returns an exit code.
 
 ```csharp
-// Unverified code example (pseudocode/draft structure)
+// Illustrative C# code; not compiled by this workflow.
 using System;
 
 namespace CalculatorApp
@@ -71,7 +71,7 @@ namespace CalculatorApp
 This example simplifies entry points using top-level statements, leveraging modern file-based application flexibility.
 
 ```csharp
-// Unverified code example (pseudocode/draft structure)
+// Illustrative C# code; not compiled by this workflow.
 using static System.Console;
 
 WriteLine("Starting file-based application...");

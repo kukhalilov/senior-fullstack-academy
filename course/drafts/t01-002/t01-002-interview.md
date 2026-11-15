@@ -24,7 +24,7 @@ In C#, a **compilation unit** is a single source file. Organizing these files ef
 
 ## Deep follow-up answers
 
-*   **On Entry Points:** When using top-level statements, the compiler implicitly creates a `static void Main` method. If you need to return an exit code, you can simply use `return 0;` or `return 1;` at the end of your top-level code.
+*   **On Entry Points:** Top-level statements are compiled into an entry-point method whose signature depends on the statements in the file. It isn't always `static void Main`: the generated method may return `int` to expose an exit code and may return `Task` or `Task<int>` when the code uses `await`. A top-level `return 0;` therefore makes the generated entry point return `int`.
 *   **On Namespaces:** Namespaces are logical groupings, not physical ones. You can have the same namespace spread across multiple files. File-scoped namespaces are preferred in modern C# (C# 15) because they keep the code cleaner by avoiding an extra level of nesting.
 *   **On Aliases:** If you have two classes with the same name in different namespaces, you can use an **alias using directive** (e.g., `using ProjectA = MyCompany.ProjectA;`) to resolve the ambiguity.
 

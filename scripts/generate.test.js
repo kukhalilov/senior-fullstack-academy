@@ -44,6 +44,21 @@ test('the bounded JavaScript Array topic has a named inventory and recent change
   assert.ok(manifest.sourceSnapshot.urls.includes('https://tc39.es/ecma262/2026/multipage/indexed-collections.html'));
 });
 
+test('.NET platform topic separates SDK, runtime, targeting, implementation, and alternatives', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-001.json', 'utf8'));
+  const names = manifest.inventory.flatMap(group => group.items);
+  assert.equal(manifest.inventoryComplete, true);
+  assert.equal(manifest.generationAllowed, true);
+  assert.equal(new Set(names).size, names.length);
+  assert.ok(names.includes('dotnet --list-sdks'));
+  assert.ok(names.includes('dotnet --list-runtimes'));
+  assert.ok(names.includes('Target framework moniker (TFM)'));
+  assert.ok(names.includes('.NET Standard API specification'));
+  assert.ok(manifest.comparisons.some(pair => pair[0] === '.NET SDK' && pair[1] === '.NET runtime'));
+  assert.ok(manifest.versionNotes[0].items[0].includes('.NET 11'));
+  assert.ok(manifest.sourceSnapshot.urls.includes('https://github.com/dotnet/core/releases'));
+});
+
 test('C# program structure has source-backed syntax and current file-based app coverage', () => {
   const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-002.json', 'utf8'));
   const names = manifest.inventory.flatMap(group => group.items);
@@ -57,7 +72,7 @@ test('C# program structure has source-backed syntax and current file-based app c
 });
 
 test('C# inheritance, member, generics, and variance scopes are frozen and source-backed', () => {
-  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010', 't01-011', 't01-012', 't01-013', 't01-014', 't01-015', 't01-016', 't01-017', 't01-018', 't01-019']) {
+  for (const id of ['t01-007', 't01-008', 't01-009', 't01-010', 't01-011', 't01-012', 't01-013', 't01-014', 't01-015', 't01-016', 't01-017', 't01-018', 't01-019', 't01-020', 't01-021']) {
     const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/c-language-and-net/${id}.json`, 'utf8'));
     const names = manifest.inventory.flatMap(group => group.items);
     assert.equal(manifest.inventoryComplete, true, `${id} inventory must be complete`);
@@ -113,7 +128,23 @@ test('C# inheritance, member, generics, and variance scopes are frozen and sourc
   assert.ok(runtimeNames.includes('AssemblyLoadContext'));
   assert.ok(runtimeNames.includes('MetadataLoadContext'));
   assert.ok(runtimeNames.includes('PublishAot MSBuild property'));
-  assert.ok(runtime.scopeExclusions.some(item => item.includes('interop')));  const patterns = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-012.json', 'utf8'));
+  assert.ok(runtime.scopeExclusions.some(item => item.includes('interop')));  const io = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-020.json', 'utf8'));
+  const ioNames = io.inventory.flatMap(group => group.items);
+  assert.ok(ioNames.includes('Stream.ReadExactly(Span<Byte>)'));
+  assert.ok(ioNames.includes('File.ReadLinesAsync(String,CancellationToken)'));
+  assert.ok(ioNames.includes('JsonSerializerContext'));
+  assert.ok(ioNames.includes('HttpClient.SendAsync(HttpRequestMessage,HttpCompletionOption,CancellationToken)'));
+  assert.equal(new Set(ioNames).size, ioNames.length);  const formats = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-021.json', 'utf8'));
+  const formatNames = formats.inventory.flatMap(group => group.items);
+  assert.ok(formatNames.includes('DateOnly'));
+  assert.ok(formatNames.includes('TimeProvider'));
+  assert.ok(formatNames.includes('RegexOptions.NonBacktracking'));
+  assert.ok(formatNames.includes('RegexOptions.AnyNewLine'));
+  assert.ok(formats.versionNotes.some(note => note.items.some(item => item.includes('RegexOptions.AnyNewLine'))));
+  assert.ok(formatNames.includes('Possessive quantifier syntax is not supported by .NET Regex'));
+  assert.ok(formatNames.includes('NonBacktracking \\G anchor restriction'));
+  assert.ok(formatNames.includes('AnyNewLine incompatible with NonBacktracking and ECMAScript'));
+  assert.equal(new Set(formatNames).size, formatNames.length);  const patterns = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-012.json', 'utf8'));
   const patternNames = patterns.inventory.flatMap(group => group.items);
   assert.ok(patternNames.includes('Logical and pattern'));
   assert.ok(patternNames.includes('C# 15 labeled continue statement'));
