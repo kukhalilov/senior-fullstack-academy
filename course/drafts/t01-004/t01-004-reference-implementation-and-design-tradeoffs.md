@@ -19,11 +19,11 @@ In C#, types are categorized by how they are copied and compared. A **value type
 * `Ref struct`: A stack-only struct that cannot be boxed or stored in heap-allocated fields.
 * `Readonly ref struct`: A `ref struct` that enforces immutability of its fields.
 * `InlineArrayAttribute`: Used to define a struct with a fixed-size buffer, often for performance-critical interop.
-* `ref struct interface implementation`: `ref struct` types cannot implement interfaces because interfaces require boxing.
+* `ref struct interface implementation` (C# 13+): a `ref struct` may implement interfaces, but it cannot be boxed or converted to an interface type. It must implement instance members and cannot rely on default interface implementations.
 * `Record class versus record struct`: Records provide built-in value-based equality; classes use reference semantics, while structs use value semantics.
 * `Record class inheritance`: Supported; allows hierarchical data modeling.
 * `Struct inheritance restriction`: Structs cannot inherit from other types (except interfaces).
-* `Interface boxing`: Converting a value type to an interface type forces it onto the heap.
+* `Interface boxing`: A normal value type converted to an interface type is boxed. C# 13 permits ref structs to implement interfaces while preventing boxing and interface conversions.
 * `Generic constrained call`: Calling methods on generic types where constraints ensure specific behavior.
 * `Constrained virtual call`: A JIT optimization that avoids boxing when calling interface methods on value types.
 * `Nullable<T>`: A wrapper that allows a value type to represent `null`.
