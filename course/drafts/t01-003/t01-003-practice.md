@@ -8,24 +8,24 @@
 
 ## Goals
 * Understand that C# keywords are aliases for underlying .NET types.
-* Distinguish between **Value types** (store the actual data) and **Reference types** (store a memory address pointing to the data).
+* Distinguish between **value types** (variables contain values) and **reference types** (variables contain references to objects).
 * Learn to select the appropriate type based on range, precision, and domain requirements.
 
 ## Worked example
-In C#, `int` is a keyword that acts as an alias for `System.Int32`. When you declare a variable, you are telling the compiler how much memory to reserve and how to interpret the bits stored there.
+In C#, `int` is a keyword alias for `System.Int32`. A value-type variable contains its value; the language does not promise that a local is placed on the stack or that a reference is a physical memory address.
 
 ```csharp
-// 'int' is a value type; it holds the number directly.
+// 'int' is a value type; assignment copies its value.
 int count = 10; 
 
-// 'string' is a reference type; it holds a reference to the text in memory.
+// 'string' is a reference type; the variable contains a reference to a string object.
 string message = "Hello"; 
 ```
 
 **Step-by-step behavior:**
-1. **Declaration:** `int count = 10;` reserves 4 bytes of stack memory.
-2. **Assignment:** The value `10` is written into those 4 bytes.
-3. **Reference:** `string message = "Hello";` creates an object on the heap and stores the memory address of that object in the `message` variable.
+1. `count` has type `int` and its value is `10`; the language does not specify a stack slot or fixed physical placement for this local.
+2. Assigning one `int` variable to another copies the value.
+3. `message` contains a reference to a string object. Object placement and physical representation are runtime implementation details.
 
 ## Exercises
 1. You need to store a value that represents a toggle (on/off). Which type from the `other-built-in` category is most appropriate?
@@ -34,12 +34,12 @@ string message = "Hello";
 
 ## Progressive hints
 * **Hint 1 (Exercise 1):** Look at the `other-built-in` list. Is there a type specifically for logical truth values?
-* **Hint 2 (Exercise 2):** `float` and `double` are binary floating-point types (good for scientific calculations). `decimal` is a 128-bit type with higher precision and smaller range, designed specifically for financial calculations to avoid rounding errors.
+* **Hint 2 (Exercise 2):** `float` and `double` are binary floating-point types (good for scientific calculations). `decimal` is a 128-bit type with higher precision and smaller range, often useful for decimal-domain financial calculations because many base-10 fractions are represented exactly; finite precision still means arithmetic can round.
 * **Hint 3 (Exercise 3):** Refer to the `native-integral` category. These types were introduced in C# 9 to match the size of the native pointer on the host machine.
 
 ## Complete solutions
 1. **`bool`**: It is the built-in type for Boolean values.
-2. **`decimal`**: It provides the precision required for financial data, whereas `float` and `double` are prone to rounding errors in base-10 arithmetic.
+2. **`decimal`**: It represents many base-10 fractions exactly and is often suitable for financial rules, but it has finite precision and arithmetic may still round. Choose based on domain rules.
 3. **`nint` and `nuint`**: These are native-sized integers.
 
 ## Tests and edge cases
