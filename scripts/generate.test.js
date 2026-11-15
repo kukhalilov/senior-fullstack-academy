@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import {parseReviewResponse} from './parse-review-response.js';
-import {normalizeDsaSolutionFence} from './normalize-dsa-solution-fence.js';
+import {normalizeDsaOutput} from './normalize-dsa-output.js';
 import {markDailyQuotaReached,markModelUnavailable,modelRpdLimits,pacificUsageDay,recordModelSuccess,remainingDailyCalls} from './model-usage.js';
 
 test('model usage follows Pacific quota resets and enforces each model daily limit', () => {
@@ -22,13 +22,13 @@ test('model usage follows Pacific quota resets and enforces each model daily lim
   assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),0);
 });
 
-test('DSA solution fence normalization only repairs one unambiguous C# program fence', () => {
-  const plain = '# Complete C# solution\n\n```csharp\nConsole.WriteLine(1);\n```';
-  assert.match(normalizeDsaSolutionFence(plain), /```csharp dsa-solution/);
-  const alreadyTagged = '# Complete C# solution\n\n```csharp dsa-solution\nConsole.WriteLine(1);\n```';
-  assert.equal(normalizeDsaSolutionFence(alreadyTagged), alreadyTagged);
+test('DSA output normalization repairs unambiguous conventional headings and C# fences', () => {
+  const plain = '# Problem\n# Constraints\n# Examples\n# Assumptions\n# Solution\n```csharp\nConsole.WriteLine(1);\n```';
+  const normalized=normalizeDsaOutput(plain);
+  for(const heading of ['Problem statement','Input constraints','Examples with expected output','Clarifying assumptions','Complete C# solution']) assert.match(normalized,new RegExp('^# '+heading+'$','m'));
+  assert.match(normalized, /```csharp dsa-solution/);
   const ambiguous = '```csharp\nConsole.WriteLine(1);\n```\n```csharp\nConsole.WriteLine(2);\n```';
-  assert.equal(normalizeDsaSolutionFence(ambiguous), ambiguous);
+  assert.equal(normalizeDsaOutput(ambiguous), ambiguous);
 });
 
 test('review responses accept schema-shaped JSON with optional Markdown fences', () => {
