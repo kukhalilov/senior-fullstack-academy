@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1864,
+  "taskCount": 1867,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -5070,7 +5070,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-003.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-003-concepts",
@@ -5082,20 +5082,59 @@
       "prerequisites": [
         "t03-003-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-003-reference-inventory-pending",
+      "id": "t03-003-reference-select-query-shape-and-projection",
       "track": "track-03",
-      "title": "select filtering sorting and pagination — Reference: awaiting curated names",
+      "title": "select filtering sorting and pagination — Reference: SELECT statement structure, result projection, aliases, and logical processing boundaries",
       "module": "t03-003",
       "manifest": "curriculum/manifests/sql-server/t03-003.json",
       "phase": "reference",
       "prerequisites": [
         "t03-003-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "select-query-shape-and-projection"
+    },
+    {
+      "id": "t03-003-reference-where-predicates-and-search-conditions",
+      "track": "track-03",
+      "title": "select filtering sorting and pagination — Reference: WHERE predicates, comparisons, Boolean logic, NULL semantics, subqueries, and text patterns",
+      "module": "t03-003",
+      "manifest": "curriculum/manifests/sql-server/t03-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-003-reference-select-query-shape-and-projection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "where-predicates-and-search-conditions"
+    },
+    {
+      "id": "t03-003-reference-ordering-and-result-determinism",
+      "track": "track-03",
+      "title": "select filtering sorting and pagination — Reference: ORDER BY expressions, sort direction, collation, aliases, and deterministic result ordering",
+      "module": "t03-003",
+      "manifest": "curriculum/manifests/sql-server/t03-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-003-reference-where-predicates-and-search-conditions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "ordering-and-result-determinism"
+    },
+    {
+      "id": "t03-003-reference-row-limits-and-pagination",
+      "track": "track-03",
+      "title": "select filtering sorting and pagination — Reference: TOP, OFFSET/FETCH, page stability, and row-limiting alternatives",
+      "module": "t03-003",
+      "manifest": "curriculum/manifests/sql-server/t03-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-003-reference-ordering-and-result-determinism"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "row-limits-and-pagination"
     },
     {
       "id": "t03-003-practice",
@@ -5105,9 +5144,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-003.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-003-reference-inventory-pending"
+        "t03-003-reference-row-limits-and-pagination"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-003-interview",
@@ -5119,7 +5158,7 @@
       "prerequisites": [
         "t03-003-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-004-overview",
