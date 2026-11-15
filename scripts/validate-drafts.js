@@ -58,9 +58,12 @@ for (const file of files) {
   }
   if (task.problemTitle && !text.includes(task.problemTitle)) errors.push(`${file}: missing assigned problem title "${task.problemTitle}"`);
   if (task.problemId && manifest.track === 'track-11' && !/```csharp\s+dsa-solution\s*\r?\n[\s\S]*?```/.test(text)) errors.push(`${file}: missing runnable C# dsa-solution block`);
-  const allowed = new Set([...manifest.sourceSnapshot.urls, ...(manifest.comparisonSources ?? []), ...manifest.versionNotes.flatMap(note => note.sourceUrls ?? [])]);
+  const practiceProblem = task.problemId ? manifest.practiceProblems?.find(problem => problem.id === task.problemId) : undefined;
+  const problemSources = practiceProblem?.sourceUrls ?? [];
+  const allowed = new Set([...manifest.sourceSnapshot.urls, ...(manifest.comparisonSources ?? []), ...manifest.versionNotes.flatMap(note => note.sourceUrls ?? []), ...problemSources]);
   const citations = [...text.matchAll(/\]\((https?:\/\/[^)\s]+)\)|<(https?:\/\/[^>]+)>/g)].map(match => (match[1] ?? match[2]).replace(/[.,;]+$/, ''));
   if (!citations.some(url => allowed.has(url))) errors.push(`${file}: no allowed source URL is cited`);
+  if (problemSources.length && !citations.some(url => problemSources.includes(url))) errors.push(`${file}: no problem-specific source URL is cited`);
   for (const url of citations) if (!allowed.has(url)) errors.push(`${file}: cites an unsupplied source URL "${url}"`);
 }
 

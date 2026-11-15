@@ -98,9 +98,11 @@ function checkLesson(task, manifest, text) {
   }
   if(task.problemTitle&&!text.includes(task.problemTitle)) throw new Error(`${task.id}: omitted assigned problem title ${task.problemTitle}`);
   if(task.problemId&&manifest.track==='track-11'&&!/```csharp\s+dsa-solution\s*\r?\n[\s\S]*?```/.test(text)) throw new Error(`${task.id}: missing the runnable C# dsa-solution code block`);
-  const allowedSources=new Set([...manifest.sourceSnapshot.urls,...(manifest.comparisonSources??[]),...manifest.versionNotes.flatMap(note=>note.sourceUrls??[])]);
+  const allowedSources=new Set([...manifest.sourceSnapshot.urls,...(manifest.comparisonSources??[]),...manifest.versionNotes.flatMap(note=>note.sourceUrls??[]),...(lessonDataFor(task,manifest).practiceProblem?.sourceUrls??[])]);
   const cited=[...text.matchAll(/\]\((https?:\/\/[^)\s]+)\)|<(https?:\/\/[^>]+)>/g)].map(match=>(match[1]??match[2]).replace(/[.,;]+$/,''));
   if(!cited.some(source=>allowedSources.has(source))) throw new Error(`${task.id}: no supplied source URL was cited`);
+  const problemSources=lessonDataFor(task,manifest).practiceProblem?.sourceUrls;
+  if(problemSources?.length&&!cited.some(source=>problemSources.includes(source))) throw new Error(`${task.id}: no problem-specific source URL was cited`);
   const unknown=cited.filter(source=>!allowedSources.has(source));
   if(unknown.length) throw new Error(`${task.id}: unsupported source URLs: ${unknown.join(', ')}`);
   const targetRoot=path.resolve(outputRoot);

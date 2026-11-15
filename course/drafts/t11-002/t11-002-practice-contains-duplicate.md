@@ -40,7 +40,7 @@ public class Solution
 {
     public static bool ContainsDuplicate(int[] nums)
     {
-        // Using a HashSet for O(1) average time complexity lookups
+        // HashSet.Add returns false when this value was already present.
         HashSet<int> seen = new HashSet<int>();
         
         foreach (int num in nums)
@@ -69,6 +69,14 @@ public class Solution
         if (ContainsDuplicate(new int[] { 1, 1, 1, 3, 3, 4, 3, 2, 4, 2 }) != true) 
             throw new InvalidOperationException("Failed Test 3");
 
+        // One item cannot contain a duplicate.
+        if (ContainsDuplicate(new int[] { 7 }) != false)
+            throw new InvalidOperationException("Failed single-item test");
+
+        // Distinct values at both stated numeric bounds are not duplicates.
+        if (ContainsDuplicate(new int[] { 1000000000, -1000000000 }) != false)
+            throw new InvalidOperationException("Failed numeric-bound test");
+
         Console.WriteLine("All tests passed successfully.");
     }
 }
@@ -87,21 +95,24 @@ Input: `[1, 2, 3, 1]`
 6.  Return `true`.
 
 # Time complexity
-*   **Time:** O(n), where `n` is the number of elements in the array. We traverse the array once, and `HashSet` operations (Add/Contains) are O(1) on average.
-*   **Space:** O(n), as in the worst case (no duplicates), we store all `n` elements in the `HashSet`.
+*   **Expected time:** `O(n)` across the scan when set membership and insertion are expected `O(1)` under ordinary hash distribution. A single `HashSet<T>.Add` can take `O(n)` when the backing storage must resize; collision-heavy behavior can also degrade lookup performance, so `O(n)` is not a worst-case guarantee for the whole scan.
 
 # Space complexity
-The space complexity is O(n) because we maintain an auxiliary `HashSet` that stores up to `n` unique integers from the input array.
+The auxiliary space complexity is `O(n)` because, in the no-duplicate case, the set stores all `n` distinct values. The method returns as soon as it finds a repeat, so duplicate-heavy inputs may use less space depending on where the first repeat appears.
 
 # Edge-case tests
-*   **Single element:** `[1]` -> `false`.
-*   **Two identical elements:** `[1, 1]` -> `true`.
-*   **Large values:** `[1000000000, -1000000000]` -> `false`.
+*   **Single element:** `[7]` -> `false` (asserted in `Main`).
+*   **Two identical elements:** `[1, 1]` -> `true` (also covered by Example 1).
+*   **Large values:** `[1000000000, -1000000000]` -> `false` (asserted in `Main`).
 
 # Reflection questions
 1.  Why is a `HashSet` more efficient than a nested loop for this problem?
 2.  If the input array was already sorted, could you solve this with O(1) extra space? How?
 3.  What happens to the `HashSet` performance if many elements have the same hash code (a "collision")?
-4.  How does the `HashSet` internal capacity relate to the "Dynamic array" concept discussed in the lesson?
+4.  `HashSet<T>.Add` can resize its backing storage. How does that occasional resize relate to amortized analysis, and why does it not make every insertion linear?
 
-*Source: [https://leetcode.com/problems/two-sum/description/](https://leetcode.com/problems/two-sum/description/), [https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-10.0](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-10.0)*
+## Sources
+
+* [Contains Duplicate problem statement and constraints](https://leetcode.com/problems/contains-duplicate/description/)
+* [HashSet<T>.Add](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add?view=net-10.0)
+* [HashSet<T> API and set behavior](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1?view=net-10.0)

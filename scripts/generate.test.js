@@ -233,6 +233,19 @@ test('named DSA problems become independent practice units', () => {
   assert.equal(tasks[0].problemTitle, 'Two Sum');
 });
 
+test('array DSA practice freezes problem statements, constraints, examples, and source URLs', () => {
+  const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-002.json', 'utf8'));
+  for (const id of ['two-sum', 'contains-duplicate']) {
+    const problem = manifest.practiceProblems.find(item => item.id === id);
+    assert.ok(problem.statement.length > 0);
+    assert.ok(problem.constraints.length > 0);
+    assert.ok(problem.examples.length >= 2);
+    assert.ok(problem.sourceUrls.length > 0);
+  }
+  const validator = fs.readFileSync('scripts/validate-drafts.js', 'utf8');
+  assert.match(validator, /no problem-specific source URL is cited/);
+});
+
 test('two-pointer and sliding-window problems are separate source-backed lessons', () => {
   const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-003.json', 'utf8'));
   const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
