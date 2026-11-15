@@ -11,7 +11,7 @@ This lesson covers C# 15 and .NET 11 (GA, 2026-11-14). It focuses on the fundame
 
 # How this group fits the mental model
 In C#, every variable is either a **Value type** or a **Reference type**. 
-*   **Value types** hold their data directly. When you assign one to another, you perform a **Value copy**, creating an independent duplicate.
+*   **Value types** have variables that contain values. Assigning one variable to another copies the value; if that value contains references, the referenced objects can still be shared.
 *   **Reference types** hold an **object reference**. The language does not define it as a physical memory address. Assigning one to another performs a **Reference copy**, meaning both variables point to the same object, creating an **Alias**.
 
 Understanding this is critical for managing state: changing a shared object (aliasing) affects all references, whereas changing a value type only affects that specific variable.
@@ -19,7 +19,7 @@ Understanding this is critical for managing state: changing a shared object (ali
 # Supplied names explained
 
 ### Type Categories
-*   **Value type**: A type that contains its data directly. Includes **Struct type**, **Enum type**, and **Tuple value type**.
+*   **Value type**: A type whose variable contains a value. Includes **Struct type**, **Enum type**, **Tuple value type**, and **Record struct**.
 *   **Reference type**: A type that stores a reference to an object. Includes **class**, **interface**, **array**, **delegate**, **string**, and **record class** types.
 *   **Unmanaged type**: A type that does not contain references to managed objects.
 *   **Managed type**: A type that requires garbage collection because it contains references.
@@ -44,7 +44,7 @@ Understanding this is critical for managing state: changing a shared object (ali
 *   **in parameter**: Passes a reference but prevents modification.
 *   **ref readonly parameter**: Combines `in` semantics with stricter safety.
 *   **Ref return / Ref local**: Allows returning or storing a reference to a variable rather than its value.
-*   **Alias**: When two variables point to the same memory location.
+*   **Alias**: When two variables refer to the same object instance.
 
 ### Memory and Boxing
 *   **Object allocation**: Creating an instance on the **Managed heap**.

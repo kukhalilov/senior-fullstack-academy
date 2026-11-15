@@ -16,7 +16,7 @@ In C#, types are categorized by how they are copied and compared. A **value type
 * `Struct size and copy cost`: Large structs are expensive to copy; keep them small to maintain performance.
 * `Mutable value type hazard`: Modifying a struct copy does not affect the original, which can lead to bugs if the developer expects reference-like behavior.
 * `Large struct copying`: Frequent passing of large structs by value degrades performance; consider passing by reference.
-* `Ref struct`: A stack-only struct that cannot be boxed or stored in heap-allocated fields.
+* `Ref struct`: A struct with ref-safety restrictions that prevent it from escaping into prohibited heap locations or being boxed; do not treat “stack-only” as a physical placement guarantee.
 * `Readonly ref struct`: A `ref struct` that enforces immutability of its fields.
 * `InlineArrayAttribute`: Used to define a struct with a fixed-size buffer, often for performance-critical interop.
 * `ref struct interface implementation` (C# 13+): a `ref struct` may implement interfaces, but it cannot be boxed or converted to an interface type. It must implement instance members and cannot rely on default interface implementations.
@@ -83,6 +83,6 @@ list2.Add(1); // list1 now also contains 1
 1. **Q: Does assigning a struct variable copy the data?**
    A: Yes, value types copy their data upon assignment.
 2. **Q: Can a `ref struct` be stored in a class field?**
-   A: No, `ref struct` types are restricted to the stack to prevent memory safety issues.
+   A: It cannot be stored in an ordinary class field because that would let it escape its safe context. The restriction is about ref safety, not a guarantee of a physical stack address.
 3. **Q: What is the primary difference between `Record class` and `Record struct`?**
    A: `Record class` uses reference semantics for assignment, while `Record struct` uses value semantics.

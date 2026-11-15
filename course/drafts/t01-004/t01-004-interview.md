@@ -15,15 +15,15 @@ In C#, understanding how data is stored and compared is fundamental. Beginners o
 4. Why is mutability dangerous when using shared objects?
 
 ### Concise interview answers
-*   **Value vs. Reference:** A Value type variable holds the actual data. A Reference type variable holds a pointer (a memory address) to an object on the managed heap.
+*   **Value vs. Reference:** A value-type variable contains a value; a reference-type variable contains a reference to an object. Physical placement and representation are implementation details.
 *   **Assignment:** Assigning a Value type creates a **Value copy** (a bit-for-bit duplicate). Assigning a Reference type creates a **Reference copy** (both variables now point to the exact same object).
-*   **Equality:** `==` checks for value equality (for primitives) or reference equality (for classes). `ReferenceEquals` checks if two variables point to the exact same memory address. `Equals()` is a virtual method intended to check for logical equality.
+*   **Equality:** `==` checks for value equality (for primitives) or reference equality (for classes). `ReferenceEquals` checks whether two references identify the same object instance. `Equals()` is a virtual method intended to check for logical equality.
 *   **Mutability:** If you mutate a shared object (Reference type), all variables pointing to that object see the change. If you mutate a local copy of a Value type, the original remains unchanged.
 
 ### Deep follow-up answers
 *   **"Does a Value type always live on the stack?"** No. That is a common misconception. The language specification defines behavior, not physical storage. A Value type can live on the heap if it is a field of a class, or inside an array.
 *   **"What is Boxing?"** Boxing is the process of wrapping a Value type inside an object on the heap. This allows a Value type to be treated as a Reference type (e.g., when casting an `int` to `object`). This incurs a performance cost due to allocation.
-*   **"How do Records handle equality?"** Records (both `record class` and `record struct`) provide synthesized equality. They automatically implement `Equals` and `GetHashCode` based on the values of their properties, rather than their memory address.
+*   **"How do Records handle equality?"** Records (both `record class` and `record struct`) provide synthesized equality. They automatically implement `Equals` and `GetHashCode` based on their synthesized equality rules and instance state, rather than reference identity.
 
 ### Scenario questions
 *   **Scenario:** You have a `List<MyStruct>` where `MyStruct` is large. What is the performance implication?

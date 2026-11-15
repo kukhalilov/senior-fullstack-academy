@@ -10,7 +10,7 @@
 
 # How this group fits the mental model
 
-In C#, numeric types and characters share a close relationship at the binary representation level. A `char` value represents a 16-bit unsigned Unicode character. Because it holds a numeric code point internally, C# allows certain widening operations to happen automatically without explicit casting. 
+In C#, numeric types and characters share a close relationship at the binary representation level. A `char` value represents a 16-bit UTF-16 code unit. Because a `char` holds a UTF-16 code-unit value, C# allows certain widening operations to happen automatically without explicit casting. 
 
 When you assign or operate on a `char` value alongside wider numeric types, the compiler can widen the 16-bit unsigned value into larger integral or floating-point representations safely, without losing magnitude or precision. This group of implicit conversions ensures that `char` data can flow naturally into mathematical expressions or wider storage types.
 

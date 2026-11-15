@@ -53,7 +53,7 @@ An **implicit conversion** occurs automatically without requiring explicit synta
 
 * **`uint to decimal (implicit numeric conversion)`**
   * *Definition:* Converts a 32-bit unsigned integer to a 128-bit high-precision decimal number (`System.Decimal`).
-  * *Role:* Used heavily in financial or high-accuracy calculations. Because `decimal` has a massive integer-handling capacity, this conversion is completely exact and lossless.
+  * *Role:* Used heavily in financial or high-accuracy calculations. All `uint` values are represented exactly by `decimal`; later arithmetic can still round.
 
 * **`uint to nuint (implicit numeric conversion)`**
   * *Definition:* Converts a 32-bit unsigned integer to a native-sized unsigned integer (`System.UIntPtr`).
@@ -71,7 +71,7 @@ The following table summarizes the target types, safety profiles, and potential 
 | **`ulong`** | Unsigned Integral | None | Fully safe (Destination range strictly larger) |
 | **`float`** | Floating-Point | Possible for values $> 2^{24}$ | Magnitude safe, precision approximation |
 | **`double`** | Floating-Point | None | Fully safe (Exact representation for all `uint`) |
-| **`decimal`** | High-Precision | None | Fully safe (Exact representation for all `uint`) |
+| **`decimal`** | High-Precision | None | Every `uint` value is represented exactly |
 | **`nuint`** | Native Integral | None | Fully safe (At least 32 bits on all runtimes) |
 
 ---

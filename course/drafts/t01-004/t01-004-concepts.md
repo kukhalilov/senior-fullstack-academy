@@ -20,7 +20,7 @@
 The fundamental distinction in C# is how variables store data:
 
 1.  **Value Types**: A variable of a value type contains the actual data. When you assign one value-type variable to another, the system performs a **Value copy**, creating an independent duplicate of the data.
-2.  **Reference Types**: A variable of a reference type contains a reference (a memory address) to an object stored on the **Managed heap**. When you assign one reference-type variable to another, you copy the reference, not the object. Both variables now point to the same **Object identity**.
+2.  **Reference Types**: A variable of a reference type contains a reference to an object; its physical representation is unspecified by the language. When you assign one reference-type variable to another, you copy the reference, not the object. Both variables now point to the same **Object identity**.
 
 **Mental Model**: Think of a value type as a physical box containing an item; if you copy the box, you have two boxes with identical items. Think of a reference type as a piece of paper with an address written on it; if you copy the paper, you have two pieces of paper pointing to the same house.
 
@@ -72,6 +72,6 @@ bool valEq = s1 == s2;                       // True: string overrides == for va
     *   **Answer**: Because structs are copied by value, it is easy to accidentally mutate a copy rather than the intended original, leading to confusing state changes.
 
 3.  **Question**: What is the difference between `==` and `Object.ReferenceEquals`?
-    *   **Answer**: `==` is an operator that can be overloaded to provide value equality (as in `string` or `record`), whereas `ReferenceEquals` strictly checks if two references point to the same memory address.
+    *   **Answer**: `==` is an operator that can be overloaded to provide value equality (as in `string` or `record`), whereas `ReferenceEquals` strictly checks if two references refer to the same object instance.
 
 *Source: [Microsoft Learn C# Type Specification](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types), [Equality Comparisons](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/equality-comparisons)*

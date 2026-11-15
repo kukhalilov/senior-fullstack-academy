@@ -34,13 +34,13 @@ Imagine you are calculating a total:
 1.  **Define:** You write `int count = 10;`. The literal `10` is treated as an `int`.
 2.  **Promote:** You add a `double` value: `var total = count + 5.5;`. Because `double` is more precise, the compiler promotes the `int` to a `double` automatically.
 3.  **Convert:** You need to store the result in a smaller type: `short finalResult = (short)total;`. You must use an explicit cast `(short)` because the compiler won't assume it's safe to lose the decimal part or potentially overflow the `short`.
-4.  **Handle:** If `total` was `40000` and you cast it to a `short` (which maxes at `32767`), the `unchecked` context (default) will truncate the value, while a `checked` context would throw an `OverflowException`.
+4. **Handle:** If `total` is `40000`, an unchecked cast to `short` discards high bits according to integral conversion rules; a checked cast throws `OverflowException`.
 
 ## When to use it and tradeoffs
 *   **Use implicit conversions** whenever possible to keep code clean and safe.
 *   **Use explicit conversions** only when you are certain the value fits or when you intentionally want to truncate data (like removing decimals).
 *   **Tradeoff:** Using `decimal` provides high precision for money but is slower than `float` or `double`. Using `float`/`double` is fast but introduces approximation errors.
-*   **Runtime Changes:** Be aware that recent updates (like .NET 9 and 11) have changed how floating-point numbers convert to integers (e.g., saturating to bounds instead of wrapping), which can change your application's behavior without changing your code.
+*   **Runtime Changes:** Be aware that C# leaves unchecked out-of-range floating-point-to-integral results unspecified; documented .NET runtime versions and target types may saturate, which can change your application's behavior without changing your code.
 
 ## What later lessons cover
 *   **Detailed API Catalog:** A breakdown of every specific conversion path (e.g., `sbyte` to `long`, `float` to `int`).

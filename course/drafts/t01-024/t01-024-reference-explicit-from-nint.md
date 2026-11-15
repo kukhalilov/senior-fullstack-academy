@@ -25,11 +25,11 @@ Consequently, these conversions require an **explicit numeric conversion** [1]. 
 * **nint to uint (explicit numeric conversion):** Converts a native-sized signed integer to a 32-bit unsigned integer (`uint`). Requires an explicit cast to handle potential negative values or 64-bit overflow on 64-bit systems.
 * **nint to ulong (explicit numeric conversion):** Converts a native-sized signed integer to a 64-bit unsigned integer (`ulong`). Requires an explicit cast because `nint` can hold negative numbers (which cannot be represented by unsigned types).
 * **nint to nuint (explicit numeric conversion):** Converts a native-sized signed integer (`nint`) to a native-sized unsigned integer (`nuint`). Requires an explicit cast because `nint` can contain negative values that are invalid for unsigned native integers.
-* **nint to char (explicit numeric conversion):** Converts a native-sized signed integer to a 16-bit Unicode character (`char`). Requires an explicit cast because `nint` can be negative or exceed the `char` range (`0` to `65,535`).
+* **nint to char (explicit numeric conversion):** Converts a native-sized signed integer to a 16-bit UTF-16 code unit (`char`). Requires an explicit cast because `nint` can be negative or exceed the `char` range (`0` to `65,535`).
 
 ## Cross-item comparison
 
-* **Signed to Unsigned (`nint` to `byte`, `ushort`, `uint`, `ulong`, `nuint`, `char`):** These target types cannot represent negative values. If the source `nint` is negative, the conversion handles sign representation according to overflow rules or throws an exception in a checked context.
+* **Signed to Unsigned (`nint` to `byte`, `ushort`, `uint`, `ulong`, `nuint`, `char`):** These target types cannot represent negative values. Checked out-of-range integral conversions throw `OverflowException`; unchecked conversions truncate according to language integral-conversion rules.
 * **Signed to Signed Narrower/Equal (`nint` to `sbyte`, `short`, `int`):** These target types accommodate negative values but have stricter magnitude boundaries. If the source `nint` exceeds the destination bit-width range, high-order bits are discarded or an overflow occurs depending on the compilation context.
 * **Native-Width to Native-Width (`nint` to `nuint`):** Both types share identical memory sizing (pointer-sized), but the destination is unsigned. The explicit conversion is necessary solely to bridge signed and unsigned type domains.
 
@@ -56,7 +56,7 @@ uint ui = (uint)nativeValue;
 
 * **Omitting the explicit cast operator:** Attempting to assign a `nint` variable directly to an `int`, `short`, or `byte` variable without parentheses (e.g., `int x = nativeValue;`) results in a compile-time error because implicit narrowing or sign changes are not permitted for `nint`.
 * **Assuming platform safety:** Forgetting that `nint` is 64-bit on 64-bit platforms and 32-bit on 32-bit platforms. Code that appears safe during testing on a 64-bit machine might truncate data when executed on a 32-bit architecture if bounds are not validated beforehand.
-* **Ignoring negative values in unsigned targets:** Casting a negative `nint` value to `byte`, `ushort`, `uint`, `ulong`, `nuint`, or `char` without checking for sign validity, leading to unexpected wrap-around or overflow behavior.
+* **Ignoring negative values in unsigned targets:** Casting a negative `nint` value to `byte`, `ushort`, `uint`, `ulong`, `nuint`, or `char` without checking for sign validity, checked conversion throws if out of range; unchecked conversion truncates according to language rules.
 
 ## Knowledge checks with answers
 

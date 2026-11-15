@@ -25,16 +25,16 @@ Think of numeric types as containers of different sizes and shapes.
 
 ### Concise interview answers
 *   **How do you define a `decimal` literal?** Use the `M` or `m` suffix (e.g., `1.5m`).
-*   **What happens when you convert a `double` to an `int`?** It truncates toward zero. Since .NET 9, if the value is out of range, it uses saturating behavior (clamping to the min/max of the destination).
+*   **What happens when you convert a `double` to an `int`?** It truncates toward zero. In a checked context, an out-of-range conversion throws. In an unchecked context, the C# result is unspecified; .NET 9 documents saturation for specified runtime targets. NaN maps to zero in that documented behavior.
 *   **Why use digit separators?** The underscore `_` (e.g., `1_000_000`) improves readability without affecting the numeric value.
 
 ### Deep follow-up answers
 *   **Explain numeric promotion.** When performing arithmetic, C# promotes smaller types (like `short` or `byte`) to `int` before calculation to prevent overflow during intermediate steps.
-*   **How has conversion behavior changed in recent versions?** In .NET 9, floating-point to integer conversions use saturating behavior for out-of-range values. In .NET 11, conversions between `decimal` and floating-point types are more accurately rounded, and unchecked conversions to small integers (like `byte` or `short`) saturate to destination bounds on CoreCLR/Native AOT.
+*   **How has conversion behavior changed in recent versions?** For .NET 9, documented runtime targets saturate unchecked conversions to `int`, `uint`, `long`, and `ulong`; .NET 11 adds selected small targets on CoreCLR and Native AOT. Checked out-of-range conversions throw. In .NET 11, conversions between `decimal` and `float`/`double` are correctly rounded from the exact source value, and unchecked conversions to small integers (like `byte` or `short`) saturate to destination bounds on CoreCLR/Native AOT.
 
 ### Scenario questions
 *   **Scenario:** You are calculating financial data. Which type should you use?
-    *   **Answer:** Use `decimal`. It provides higher precision and avoids the rounding errors inherent in binary floating-point types like `float` or `double`.
+    *   **Answer:** Use `decimal` when its base-10 representation fits the domain rules. It exactly represents many decimal fractions, but has finite precision and can still round.
 *   **Scenario:** You need to store a large number that exceeds `int.MaxValue`.
     *   **Answer:** Use a `long` or a `long` literal (e.g., `3_000_000_000L`).
 
@@ -54,7 +54,7 @@ Think of numeric types as containers of different sizes and shapes.
 *   **Can you identify the type of `10U`?** (Answer: `uint`)
 *   **Can you explain why `int` to `long` is implicit?** (Answer: `long` has a larger range; no data loss is possible.)
 *   **What is the purpose of the `_` in `1_000`?** (Answer: Readability; it is ignored by the compiler.)
-*   **What happens to `double.NaN` when converted to an integer in .NET 9?** (Answer: It saturates to the destination's bounds.)
+*   **What happens to `double.NaN` when converted to an integer in .NET 9?** (Answer: In the documented .NET 9 unchecked conversion behavior, NaN converts to zero.)
 
 ***
 

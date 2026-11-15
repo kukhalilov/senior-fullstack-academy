@@ -33,7 +33,8 @@
     "comparisons": "Include comparisons only when manifest.comparisons contains explicit alternatives and evidence. Empty means omit the comparison section.",
     "versions": "Include release history only when manifest.versionNotes contains named changes, exact affected versions, and source URLs. Empty means omit version-history discussion; never create a versions lesson for a timeless topic.",
     "code": "Never claim an example was executed unless a test result is supplied. Mark unexecuted code examples as unverified and pseudocode as pseudocode.",
-    "sources": "Cite at least one relevant URL from sourceSnapshot, comparisonSources, or versionNotes.sourceUrls. Do not cite unsupplied URLs or claim independent verification."
+    "sources": "Cite at least one relevant URL from sourceSnapshot, comparisonSources, or versionNotes.sourceUrls. Do not cite unsupplied URLs or claim independent verification.",
+    "accuracyFacts": "Apply manifest.accuracyFacts as explicit, source-backed guardrails in both lesson generation and review. When facts conflict with model memory or a generic simplification, follow the manifest wording; preserve language guarantees versus runtime-specific behavior. Do not overstate speed, exactness, storage location, or version support."
   },
   "qualityReview": {
     "role": "Act as a skeptical independent automated curriculum editor. Compare the candidate against the supplied frozen topic data and source URLs; do not browse, assume the candidate is correct, or introduce outside names. The URLs are citation boundaries and are not evidence text unless the manifest includes the relevant claim.",
@@ -46,7 +47,8 @@
       "Reject claims that confuse the compiler-generated entry-point signature for top-level statements: it depends on whether top-level code returns a value and/or uses await; it is not always static void Main.",
       "Reject code described as pseudocode when it is intended to compile but contains syntax errors. Check common language/version boundaries carefully, including preview versus stable status, and qualify details the manifest does not support.",
       "For DSA lessons, check whether the problem, examples, constraints, solution, proof idea, dry run, complexity, and assertions agree with one another.",
-      "Ignore stylistic preferences unless they make the lesson unclear. Do not flag content merely because the manifest intentionally excludes it."
+      "Ignore stylistic preferences unless they make the lesson unclear. Do not flag content merely because the manifest intentionally excludes it.",
+      "Check every claim against manifest.accuracyFacts. Reject contradictions, especially overgeneralized memory layout, decimal exactness/performance, equality edge cases, and checked/unchecked or runtime-specific numeric conversions."
     ],
     "output": "Return JSON only with this shape: {\"verdict\":\"pass\"|\"revise\",\"issues\":[\"specific actionable issue\"]}. Use pass and an empty issues array only when no material problem remains."
   },

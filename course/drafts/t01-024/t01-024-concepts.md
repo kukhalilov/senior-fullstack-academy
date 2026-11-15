@@ -83,7 +83,7 @@ checked
    * **Answer:** It is a digit separator used to improve code readability; it has no effect on the actual numeric value.
 
 3. **Question:** What happens in an `unchecked` block if a conversion overflows?
-   * **Answer:** The value will typically wrap around (e.g., a positive number might become negative) rather than throwing an exception.
+   * **Answer:** It depends on source and destination. Unchecked integral casts truncate according to language rules; unchecked out-of-range floating-point results are unspecified at language level; decimal-to-integral out-of-range conversions throw even in unchecked code.
 
 ### Sources
 * [C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)

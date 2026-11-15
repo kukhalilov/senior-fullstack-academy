@@ -239,6 +239,16 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ]
+    },
+    {
+      "edition": "C# 13",
+      "items": [
+        "ref struct types can implement interfaces but cannot be converted to an interface type; they must implement every instance member, including members with default implementations."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+      ]
     }
   ],
   "sourceSnapshot": {
@@ -266,5 +276,11 @@
     "LINQ sequence operators are taught in t01-015",
     "Domain-driven value-object modeling is addressed in the architecture track"
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Value-type variables contain values and normal assignment copies values; reference-type variables contain object references and copying a reference can preserve aliasing. Neither rule promises a physical stack/heap location or says an object reference is a raw address.",
+    "record struct is a value type; record class is a reference type.",
+    "ReferenceEquals tests object identity for reference values and is not a physical address comparison. For double.NaN, the == operator yields false while Double.Equals(double.NaN) yields true.",
+    "Since C# 13, ref structs may implement interfaces but cannot be boxed or converted to an interface type; they must implement instance members and cannot use default interface implementations."
+  ]
 }

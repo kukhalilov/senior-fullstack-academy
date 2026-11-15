@@ -18,7 +18,7 @@ This reference lesson covers the exact group of C# numeric conversions starting 
 
 In C#, numeric types range from single-precision binary floating-point numbers (`float`) to whole numbers of varying sizes (`sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `nint`, `nuint`), character representations (`char`), and high-precision decimal fractions (`decimal`). 
 
-Because a `float` can represent fractional values and much wider or narrower numeric ranges than integer types or `char`, these conversions are **explicit**. They require a cast operator (`(targetType)value`) to signal caller responsibility. When converting, you cross the boundary from an approximate binary floating-point format into fixed-range integers, precise decimals, or UTF-16 code units. Recent runtime updates in .NET 9 and .NET 11 also change how out-of-range floating-point values behave during these conversions by applying saturation rather than unchecked bit truncation on supported platforms.
+Because a `float` can represent fractional values and much wider or narrower numeric ranges than integer types or `char`, these conversions are **explicit**. They require a cast operator (`(targetType)value`) to signal caller responsibility. When converting, you cross the boundary from an approximate binary floating-point format into fixed-range integers, precise decimals, or UTF-16 code units. For floating-point-to-integral conversions, checked out-of-range values throw; unchecked out-of-range results are unspecified by C#. Documented .NET 9 and .NET 11 runtime changes add saturating behavior for specific targets and runtimes.
 
 ---
 
@@ -71,7 +71,7 @@ char cResult = (char)65.9f; // 'A' (65)
 # Common mistakes
 
 * **Expecting automatic rounding**: Explicit conversions to integer types truncate toward zero (`(int)123.9f` becomes `123`, not `124`). Use explicit rounding methods if you need nearest-value rounding.
-* **Assuming identical behavior across all historical runtimes**: Older .NET runtimes exhibited undefined or platform-dependent behavior when casting out-of-range floats to integers. Modern runtimes (.NET 9 and .NET 11) introduce saturating conversion behavior for out-of-range values on supported runtimes ([Microsoft Learn JIT 9.0 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/9.0/fp-to-integer), [Microsoft Learn JIT 11 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/11/fp-to-small-integer)).
+* **Assuming identical behavior across all historical runtimes**: Older .NET runtimes exhibited undefined or platform-dependent behavior when casting out-of-range floats to integers. Modern runtimes (.NET 9 and .NET 11) document saturating unchecked conversion behavior for specific target types and runtimes ([Microsoft Learn JIT 9.0 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/9.0/fp-to-integer), [Microsoft Learn JIT 11 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/11/fp-to-small-integer)).
 
 ---
 

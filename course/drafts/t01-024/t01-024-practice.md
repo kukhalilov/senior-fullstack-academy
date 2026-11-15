@@ -78,8 +78,8 @@ checked {
 This will throw an `OverflowException`. Because 3,000,000,000 exceeds `int.MaxValue` (2,147,483,647), the `checked` block detects the overflow and throws an exception rather than silently truncating the bits.
 
 ## Tests and Edge Cases
-*   **Floating-point to Integer:** In .NET 9+, converting `double` to `int` uses saturating behavior for out-of-range values.
-*   **Small Integer Saturation:** As of .NET 11, `unchecked` conversions from `float`/`double` to `sbyte`, `byte`, `short`, `ushort`, or `char` saturate to the destination bounds instead of wrapping.
+*   **Floating-point to Integer:** C# leaves unchecked out-of-range floating-point-to-integral results unspecified; documented .NET 9 targets saturate unchecked conversions to `int`, `uint`, `long`, and `ulong`. Checked conversions throw.
+*   **Small Integer Saturation:** As of .NET 11, unchecked conversions to those small integral types saturate on CoreCLR and Native AOT; Mono is excluded. Checked conversions still throw on out-of-range inputs.
 *   **Precision:** `decimal` is preferred for financial calculations to avoid the approximation errors inherent in `float` and `double` (binary floating-point).
 
 ## Reflection Questions

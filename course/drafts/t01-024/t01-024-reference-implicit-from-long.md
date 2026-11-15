@@ -16,7 +16,7 @@ In C#, numeric types have different ranges and precision. An "implicit conversio
 
 * **long to float (implicit numeric conversion)**: Converts a 64-bit signed integer to a single-precision 32-bit floating-point number. While the magnitude is preserved, the `float` type has fewer significant digits than a `long`, meaning precision may be lost for very large integers.
 * **long to double (implicit numeric conversion)**: Converts a 64-bit signed integer to a double-precision 64-bit floating-point number. This is generally safer than converting to `float` because `double` provides more significant digits.
-* **long to decimal (implicit numeric conversion)**: Converts a 64-bit signed integer to a 128-bit decimal type. This is the most precise conversion, as `decimal` is designed for financial and scientific calculations where rounding errors must be minimized.
+* **long to decimal (implicit numeric conversion)**: Converts a 64-bit signed integer to a 128-bit decimal type. The conversion preserves the integer value exactly; decimal may be useful where base-10 arithmetic is desired, but finite-precision arithmetic can still round.
 
 # Cross-item comparison
 
@@ -24,7 +24,7 @@ In C#, numeric types have different ranges and precision. An "implicit conversio
 | :--- | :--- | :--- |
 | `long` to `float` | `float` | Lowest precision; potential for rounding large integers. |
 | `long` to `double` | `double` | Higher precision than `float`; standard for general math. |
-| `long` to `decimal` | `decimal` | Highest precision; exact representation of the integer. |
+| `long` to `decimal` | `decimal` | Exact representation of the integer; subsequent decimal arithmetic can still round. |
 
 Source: [Integral numeric types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types), [Floating-point numeric types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types)
 

@@ -10,7 +10,7 @@ This lesson covers the signed integral type keywords in C# 15, running on .NET 1
 # How this group fits the mental model
 In C#, every piece of data must have a type. The language provides "built-in type aliases," which are keywords that act as shorthand for specific types in the .NET type system. 
 
-Signed integral types are **value types**, meaning they store the actual numeric value directly in the memory allocated for the variable. They are "signed," which means they can represent both positive and negative whole numbers. Choosing the right type from this group is a balance between the range of numbers you need to store and the amount of memory you want to consume.
+Signed integral types are **value types**. A variable of one of these types contains its value; the language does not promise that a local occupies a particular physical memory location. They are "signed," which means they can represent both positive and negative whole numbers. Choosing the right type from this group is a balance between the range of numbers you need to store and the amount of memory you want to consume.
 
 # Supplied names explained
 The following keywords are aliases for signed integral types:

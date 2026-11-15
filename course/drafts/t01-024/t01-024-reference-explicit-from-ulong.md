@@ -35,7 +35,7 @@ The inventory group consists of the following ten explicit numeric conversions f
 *   **ulong to long (explicit numeric conversion):** Converts a `ulong` to a signed 64-bit integer (`long`). Because `ulong` allows larger positive magnitudes than `long`, casting a large `ulong` value that exceeds `long.MaxValue` triggers overflow behavior.
 *   **ulong to nint (explicit numeric conversion):** Converts a `ulong` to a native-sized signed integer (`nint`), whose size depends on the execution platform (32-bit or 64-bit).
 *   **ulong to nuint (explicit numeric conversion):** Converts a `ulong` to a native-sized unsigned integer (`nuint`), matching the pointer size of the target architecture.
-*   **ulong to char (explicit numeric conversion):** Converts a `ulong` to a 16-bit Unicode character (`char`). Values outside the valid UTF-16 code point range undergo explicit numeric narrowing.
+*   **ulong to char (explicit numeric conversion):** Converts a `ulong` to a 16-bit UTF-16 code unit (`char`). Values outside `char` range undergo explicit numeric narrowing.
 
 ---
 
@@ -70,7 +70,7 @@ long asLong = (long)largeVal;
 ## Common mistakes
 
 *   **Omitting the Cast Operator:** Attempting to assign a `ulong` variable to an `int` or `ushort` variable without an explicit cast (`(int)`) causes a compile-time error because data loss is possible.
-*   **Assuming Silent Safety:** Forgetting that large `ulong` values can wrap around or throw exceptions depending on `checked` blocks when casting to smaller signed types like `sbyte` or `short`.
+*   **Assuming Silent Safety:** Forgetting that large `ulong` values are truncated in unchecked integral conversions and throw `OverflowException` in checked conversions when casting to smaller signed types like `sbyte` or `short`.
 
 ---
 

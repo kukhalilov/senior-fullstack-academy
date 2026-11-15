@@ -23,14 +23,14 @@ In C#, numeric types form a hierarchy based on their storage size and range. Whe
 * **`nuint` to `ulong` (implicit numeric conversion)**: Allows a native unsigned integer to widen into a 64-bit unsigned integer (`ulong`). On 32-bit platforms, a `nuint` fits entirely inside a 64-bit `ulong`. On 64-bit platforms, both `nuint` and `ulong` are 64 bits wide, making this conversion safe and widening in terms of type representation.
 * **`nuint` to `float` (implicit numeric conversion)**: Converts a native unsigned integer into a 32-bit single-precision floating-point number (`float`). Because `float` uses an exponent and a mantissa, very large native integers may experience a loss of precision, but the C# language specification permits this conversion implicitly.
 * **`nuint` to `double` (implicit numeric conversion)**: Converts a native unsigned integer into a 64-bit double-precision floating-point number (`double`). A `double` provides 53 bits of precision, which safely accommodates 32-bit native integers and most 64-bit native integer values with minimal precision adjustments.
-* **`nuint` to `decimal` (implicit numeric conversion)**: Converts a native unsigned integer into a 128-bit high-precision `decimal` type. Because `decimal` has a large integer range and high precision designed for financial calculations, a `nuint` converts implicitly without loss of exact integer value.
+* **`nuint` to `decimal` (implicit numeric conversion)**: Converts a native unsigned integer into a 128-bit high-precision `decimal` type. All values of `nuint` fit exactly in `decimal` on supported 32/64-bit targets; subsequent decimal arithmetic may still round.
 
 # Cross-item comparison
 
 The supplied items represent the target destinations for implicit widening from `nuint`:
 
 * **`nuint` to `ulong` vs. `nuint` to `float` / `double`**: Converting to `ulong` preserves exact integer arithmetic values bit-for-bit. Converting to `float` or `double` maps the integer into a floating-point format, which can introduce rounding approximations for numbers exceeding the mantissa precision limit.
-* **`nuint` to `decimal` vs. `nuint` to floating-point types (`float`, `double`)**: `decimal` maintains base-10 exact precision, making it suitable where rounding errors are unacceptable, whereas `float` and `double` use binary scientific representation. All four, however, share the ability to be reached implicitly from `nuint` according to the language specification ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+* **`nuint` to `decimal` vs. `nuint` to floating-point types (`float`, `double`)**: `decimal` represents many base-10 fractions exactly, though its finite precision means arithmetic may still round, whereas `float` and `double` use binary scientific representation. All four, however, share the ability to be reached implicitly from `nuint` according to the language specification ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 
 # Examples
 
@@ -75,7 +75,7 @@ class Program
 # Knowledge checks with answers
 
 1. **Question:** Why is converting `nuint` to `ulong` allowed implicitly by the C# compiler?
-   * **Answer:** Because the target type (`ulong`) is guaranteed to be large enough to represent all possible values of `nuint` across supported architectures without overflow or data loss.
+   * **Answer:** The implicit conversion to `ulong` is available on the supported 32/64-bit targets because `nuint`'s range fits within `ulong`.
 2. **Question:** Does converting `nuint` to `float` guarantee exact preservation of every bit pattern for large native integers?
    * **Answer:** No. While the conversion is implicit, `float` uses a finite mantissa (24 bits), which can cause precision loss for large integer values.
 3. **Question:** Which supplied inventory conversion maintains base-10 high precision suitable for financial representations?

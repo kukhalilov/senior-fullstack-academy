@@ -21,7 +21,7 @@ The following list defines the explicit conversions from `ushort` to other types
 *   **ushort to byte (explicit numeric conversion):** Converts a 16-bit unsigned integer to an 8-bit unsigned integer. This may result in data loss if the `ushort` value is greater than 255.
 *   **ushort to short (explicit numeric conversion):** Converts a 16-bit unsigned integer to a 16-bit signed integer. This may result in data loss if the `ushort` value is greater than 32,767.
 *   **ushort to nint (explicit numeric conversion):** Converts a 16-bit unsigned integer to a native-sized signed integer. While `nint` is at least 32 bits, the conversion is explicit because it involves a change in signedness.
-*   **ushort to char (explicit numeric conversion):** Converts a 16-bit unsigned integer to a 16-bit Unicode character. This is explicit because `char` is treated as a distinct type from `ushort` in C#.
+*   **ushort to char (explicit numeric conversion):** Converts a 16-bit unsigned integer to a 16-bit UTF-16 code unit. This is explicit because `char` is treated as a distinct type from `ushort` in C#.
 
 # Cross-item comparison
 | Conversion | Destination Range | Risk |
@@ -50,7 +50,7 @@ char c = (char)source;
 *Note: The code above is unverified.*
 
 # Common mistakes
-1.  **Ignoring Overflow:** Assuming an explicit conversion will automatically "clamp" or "saturate" the value. In an `unchecked` context (the default), the bits are simply truncated, which can lead to unexpected negative numbers or wrapped values.
+1.  **Ignoring Overflow:** Assuming a narrowing integral cast clamps the value. Checked casts throw on overflow; unchecked casts truncate according to language rules.
 2.  **Confusing `nint`:** Forgetting that `nint` is signed, meaning a large `ushort` value might be interpreted as a negative number depending on the platform's architecture.
 3.  **Missing the Cast:** Attempting to assign a `ushort` to a `byte` without the `(byte)` cast will result in a compile-time error.
 

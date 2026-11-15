@@ -39,7 +39,7 @@ The C# compiler maps keywords to the .NET runtime types. For example, the keywor
 ## Worked examples
 
 ### Example 1: Choosing a Numeric Type
-If you are counting items in a list, `int` is usually sufficient. If you are dealing with financial data, `decimal` is preferred because it provides higher precision and avoids rounding errors common with `float` or `double`.
+If you are counting items in a list, `int` is usually sufficient. If you are dealing with financial data, `decimal` often fits decimal-domain financial rules because many base-10 fractions are exact in it; it has finite precision and arithmetic can still round.
 
 ```csharp
 // Unverified example
@@ -56,7 +56,7 @@ string name = "C#"; // Reference type: 'name' holds a reference to the string ob
 
 ## Misconceptions and edge cases
 * **Misconception:** `float`, `double`, and `decimal` are interchangeable. 
-    * **Reality:** They differ significantly in precision and performance. `float` and `double` are binary floating-point types (fast, but can have rounding errors), while `decimal` is a base-10 type (slower, but precise for money).
+    * **Reality:** They differ significantly in precision and performance. `float` and `double` are binary floating-point types (fast, but can have rounding errors), while `decimal` uses a base-10 scaled representation (often useful for decimal-domain amounts, though finite precision can still round); benchmark performance for the actual workload.
 * **Edge Case:** `void` is a special keyword used to indicate that a method does not return a value; it is not a type that can hold data.
 * **Edge Case:** `dynamic` is not a "type" in the traditional sense; it is a directive to the compiler to skip type checking for that variable.
 
@@ -66,7 +66,7 @@ string name = "C#"; // Reference type: 'name' holds a reference to the string ob
    * **Answer:** `int` is a value type.
 
 2. **Question:** Why would you choose `decimal` over `double`?
-   * **Answer:** You choose `decimal` when you need high precision, such as in financial calculations, to avoid the rounding errors inherent in binary floating-point types.
+   * **Answer:** You choose `decimal` when you need high precision, such as in financial calculations, because many base-10 fractions are represented exactly; decimal arithmetic still has finite precision and may round.
 
 3. **Question:** What is the purpose of `nint`?
    * **Answer:** `nint` is a native-sized integer that adjusts its size (32-bit or 64-bit) to match the underlying processor architecture.

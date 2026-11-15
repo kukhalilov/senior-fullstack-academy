@@ -77,7 +77,7 @@ char asChar = (char)65; // Represents 'A'
 
 1. **Assuming same-width types are implicit:** Developers often assume that converting a `uint` to an `int` can be done implicitly because both take 32 bits of memory. However, because `uint` can represent values larger than `int.MaxValue`, the compiler requires an explicit cast (`uint to int (explicit numeric conversion)`).
 2. **Ignoring overflow behavior:** Performing narrowing casts in a `checked` block without verifying bounds can throw an `OverflowException` at runtime if the `uint` value exceeds the target type's maximum limit.
-3. **Confusing sign flags:** Casting a large `uint` value (where the highest bit is `1`) into a signed type like `sbyte` or `int` interprets that high bit as a negative sign, radically altering the numeric value in an unchecked context.
+3. **Confusing sign flags:** Casting a large `uint` value (where the highest bit is `1`) into a signed type like `sbyte` or `int` the result follows integral conversion rules; depending on the target width, high bits are discarded and the destination signed type interprets its own sign bit.
 
 ---
 
@@ -86,6 +86,6 @@ char asChar = (char)65; // Represents 'A'
 1. **Question:** Why does converting a `uint` to an `int` require an explicit cast even though both types use 32 bits of memory?
    * **Answer:** Because `uint` uses its bit pattern to represent larger positive numbers (up to $\approx 4.29$ billion) than a signed `int` can accommodate (which caps at $\approx 2.14$ billion due to reserving a sign bit).
 2. **Question:** What happens conceptually when you execute `uint to byte (explicit numeric conversion)` on the value `300` in an unchecked context?
-   * **Answer:** The value exceeds the maximum `byte` limit (`255`), resulting in truncation/overflow behavior defined by standard binary representation rules.
+   * **Answer:** The value exceeds the maximum `byte` limit (`255`), unchecked conversion discards high-order bits according to the language's integral conversion rules.
 3. **Question:** True or False: Converting `uint` to `nint` requires explicit syntax because target platform bit-widths can vary.
    * **Answer:** True.

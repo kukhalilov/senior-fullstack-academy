@@ -21,19 +21,19 @@ Within the broader topic of numeric conversions, `double` explicit conversions a
 
 Every item in this reference inventory represents a specific cast operation from a `double` source to a distinct numeric destination. Because explicit conversions can lose precision or exceed destination limits, each destination type handles out-of-range values according to C# language rules and recent runtime updates.
 
-* **double to sbyte (explicit numeric conversion):** Casts a `double` to a signed 8-bit integer (`sbyte`). In .NET 11, unchecked conversions of floats and doubles to small integers (including `sbyte`) saturate to destination bounds on CoreCLR and Native AOT ([.NET 11 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/11/fp-to-small-integer)).
-* **double to byte (explicit numeric conversion):** Casts a `double` to an unsigned 8-bit integer (`byte`). Subject to explicit casting syntax (`(byte)d`), saturating to bounds in unchecked contexts on supported runtimes.
+* **double to sbyte (explicit numeric conversion):** Casts a `double` to a signed 8-bit integer (`sbyte`). In .NET 11, unchecked conversions to small integer types (including `sbyte`) saturate on CoreCLR and Native AOT; checked conversions still throw on out-of-range values ([.NET 11 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/11/fp-to-small-integer)).
+* **double to byte (explicit numeric conversion):** Casts a `double` to an unsigned 8-bit integer (`byte`). The fractional part is rounded toward zero. For unchecked out-of-range conversions, behavior is unspecified by C# and runtime-specific; .NET 11 saturates for this small target on CoreCLR and Native AOT. Checked conversion throws.
 * **double to short (explicit numeric conversion):** Casts a `double` to a signed 16-bit integer (`short`). Requires an explicit cast operator.
 * **double to ushort (explicit numeric conversion):** Casts a `double` to an unsigned 16-bit integer (`ushort`). Fractional parts are truncated toward zero.
-* **double to int (explicit numeric conversion):** Casts a `double` to a signed 32-bit integer (`int`). On supported runtimes starting in .NET 9, floating-point conversions to standard integer types use saturating behavior for out-of-range values and `NaN` ([.NET 9 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/9.0/fp-to-integer)).
-* **double to uint (explicit numeric conversion):** Casts a `double` to an unsigned 32-bit integer (`uint`). Truncates fractional digits and clamps or converts according to runtime saturation rules.
+* **double to int (explicit numeric conversion):** Casts a `double` to a signed 32-bit integer (`int`). Starting in .NET 9, documented runtimes use saturating behavior for unchecked conversions to these targets; checked conversions throw on out-of-range values ([.NET 9 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/9.0/fp-to-integer)).
+* **double to uint (explicit numeric conversion):** Casts a `double` to an unsigned 32-bit integer (`uint`). Truncates fractional values toward zero when in range; unchecked out-of-range results are unspecified by C# and may follow documented runtime-specific saturation behavior. Checked conversion throws.
 * **double to long (explicit numeric conversion):** Casts a `double` to a signed 64-bit integer (`long`). Explicitly required because a `double` has a wider exponent range than integer types, even if integer types have more exact precision integers at smaller magnitudes.
-* **double to ulong (explicit numeric conversion):** Casts a `double` to an unsigned 64-bit integer (`ulong`). Negative `double` values cast to unsigned types are governed by overflow/saturation behavior.
+* **double to ulong (explicit numeric conversion):** Casts a `double` to an unsigned 64-bit integer (`ulong`). Negative values are out of range for unsigned targets: checked conversion throws; unchecked behavior is unspecified by C# and runtime-specific.
 * **double to nint (explicit numeric conversion):** Casts a `double` to a native-size signed integer (`nint`), which matches 32-bit or 64-bit pointer sizes depending on the execution platform.
 * **double to nuint (explicit numeric conversion):** Casts a `double` to a native-size unsigned integer (`nuint`). Requires explicit casting syntax.
 * **double to float (explicit numeric conversion):** Casts a `double` (64-bit) down to a `float` (32-bit single-precision floating-point). This conversion can experience precision loss because a `float` has fewer mantissa bits.
 * **double to decimal (explicit numeric conversion):** Casts a `double` to a `decimal` (128-bit high-precision financial type). Starting in .NET 11, conversions between `decimal` and `double` are correctly rounded from the exact source value ([.NET 11 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/11/decimal-biginteger-floating-point-conversions)).
-* **double to char (explicit numeric conversion):** Casts a `double` to a 16-bit Unicode character (`char`). The fractional portion is discarded, and the integer value maps to the corresponding UTF-16 code point.
+* **double to char (explicit numeric conversion):** Casts a `double` to a 16-bit UTF-16 code unit (`char`). The fractional portion is discarded; an in-range numeric result maps to a code-unit value, not necessarily a complete Unicode scalar.
 
 # Cross-item comparison
 
@@ -52,7 +52,7 @@ double originalDouble = 123.45;
 
 // 1. Converting to integer types (truncates fraction)
 int asInt = (int)originalDouble;          // Result: 123
-sbyte asSByte = (sbyte)originalDouble;    // Result: 123 (saturates if out of range)
+sbyte asSByte = (sbyte)originalDouble;    // Result: 123 (truncates toward zero)
 
 // 2. Converting to single-precision float
 float asFloat = (float)originalDouble;    // Result: 123.45f (with potential precision shift)
@@ -77,4 +77,4 @@ char asChar = (char)65.99d;               // Result: 'A' (value 65 after truncat
 2. **Question:** Why does the compiler reject code that assigns a `double` variable directly to a `float` variable without a cast?
    * **Answer:** A `double` has a wider range and greater precision than a `float`, meaning an implicit conversion could cause loss of data or precision, which C# prevents without explicit developer acknowledgment.
 3. **Question:** How has runtime behavior for unchecked conversions from `double` to small integer types (like `sbyte` or `short`) evolved on CoreCLR in recent .NET versions?
-   * **Answer:** Starting in .NET 11, unchecked conversions of doubles to small integer types saturate to destination bounds on CoreCLR and Native AOT.
+   * **Answer:** Starting in .NET 11, unchecked conversions of doubles to small integer types saturate on CoreCLR and Native AOT; checked conversions continue to throw for out-of-range values.

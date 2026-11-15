@@ -28,7 +28,7 @@ Every item in the assigned inventory group represents a specific explicit numeri
 - **int to uint (explicit numeric conversion)**: Converts a 32-bit signed integer (`int`) into a 32-bit unsigned integer (`uint`). Required because an `int` can contain negative numbers, which are invalid in an unsigned `uint`.
 - **int to ulong (explicit numeric conversion)**: Converts a 32-bit signed integer (`int`) into a 64-bit unsigned integer (`ulong`). Required because `ulong` is unsigned and cannot accept negative `int` values, even though its positive upper bound exceeds `int`.
 - **int to nuint (explicit numeric conversion)**: Converts a 32-bit signed integer (`int`) into a native-sized unsigned integer (`nuint`). Required because `nuint` is unsigned.
-- **int to char (explicit numeric conversion)**: Converts a 32-bit signed integer (`int`) into a 16-bit Unicode character (`char`). Required because `char` represents an unsigned UTF-16 code unit (0 to 65,535) and cannot store negative `int` values or values exceeding 16 bits.
+- **int to char (explicit numeric conversion)**: Converts a 32-bit signed integer (`int`) into a 16-bit UTF-16 code unit (`char`). Required because `char` represents an unsigned UTF-16 code unit (0 to 65,535) and cannot store negative `int` values or values exceeding 16 bits.
 
 ---
 
@@ -78,7 +78,7 @@ char asChar = (char)originalValue;
 # Common mistakes
 
 1. **Assuming larger bit-width implies implicit conversion**: Developers often assume converting `int` to `ulong` or `uint` can be implicit since the target can store large numbers. C# requires an explicit cast because `int` can be negative.
-2. **Ignoring runtime context**: Forgetting that explicit narrowing conversions can throw an `OverflowException` inside a `checked` block, whereas they default to silent bit truncation or wrapping in an `unchecked` context.
+2. **Ignoring runtime context**: Forgetting that explicit narrowing conversions can throw an `OverflowException` inside a `checked` block, whereas they in unchecked integral conversions, out-of-range values are truncated according to language rules.
 
 ---
 

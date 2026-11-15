@@ -38,7 +38,7 @@ The inventory for this lesson consists exclusively of the following nine explici
 6. **nuint to uint (explicit numeric conversion)**: Converts a native unsigned integer to a 32-bit unsigned integer (`uint`). Requires an explicit cast because on 64-bit platforms, `nuint` is 64 bits wide and can exceed `uint.MaxValue` ($2^{32}-1$).
 7. **nuint to long (explicit numeric conversion)**: Converts a native unsigned integer to a 64-bit signed integer (`long`). Requires an explicit cast because on a 64-bit architecture, the top bit of a 64-bit `nuint` could be interpreted as a sign bit, making the value appear negative in a signed `long`.
 8. **nuint to nint (explicit numeric conversion)**: Converts a native unsigned integer to a native signed integer (`nint`). Requires an explicit cast because changing sign interpretation across platform-native widths requires explicit programmer intent.
-9. **nuint to char (explicit numeric conversion)**: Converts a native unsigned integer to a 16-bit Unicode character (`char`). Requires an explicit cast because `nuint` can exceed `char.MaxValue` ($U+FFFF$).
+9. **nuint to char (explicit numeric conversion)**: Converts a native unsigned integer to a 16-bit UTF-16 code unit (`char`). Requires an explicit cast because `nuint` can exceed `char.MaxValue` ($U+FFFF$).
 
 ---
 
@@ -47,7 +47,7 @@ The inventory for this lesson consists exclusively of the following nine explici
 To understand how these conversions relate, consider the broader conversion categories and semantics documented in C#:
 
 * **Implicit vs. Explicit Numeric Conversions**: Implicit conversions happen automatically when the target type can safely represent all values of the source type without data loss. Explicit conversions (such as all items in this inventory) require a cast operator `(TargetType)` because value truncation, range overflow, or sign interpretation changes can occur.
-* **Checked vs. Unchecked Contexts**: Under an explicit conversion, you can wrap operations in `checked` or `unchecked` blocks. In a `checked` context, an `OverflowException` is thrown if the `nuint` value falls outside the destination type's bounds. In an `unchecked` context (the default for arithmetic expressions), bits are truncated or reinterpreted without throwing an exception.
+* **Checked vs. Unchecked Contexts**: Under an explicit conversion, you can wrap operations in `checked` or `unchecked` blocks. For integral conversions, `checked` throws `OverflowException` when out of range; `unchecked` discards high-order bits according to the language rules. Floating-point and decimal sources have different rules.
 
 ---
 
@@ -68,7 +68,7 @@ class Program
 
         // 1. nuint to byte (explicit numeric conversion)
         // 300 exceeds byte.MaxValue (255). 
-        // In an unchecked context, this wraps around or truncates bits.
+        // Unchecked integral conversion truncates according to language rules.
         byte b = (byte)nativeVal; 
 
         // 2. nuint to ushort (explicit numeric conversion)
@@ -88,7 +88,7 @@ class Program
 ## Common mistakes
 
 * **Assuming platform safety without checks**: Assuming that because a code snippet runs on a 32-bit machine, a `nuint` to `uint` or `int` conversion will never overflow. On 64-bit systems, `nuint` is 64 bits wide and will overflow standard 32-bit destinations when holding large addresses or numbers.
-* **Forgetting runtime overflow behavior differences**: Expecting an `OverflowException` by default during narrowing casts. Unchecked conversions silently truncate or discard higher-order bits unless explicitly placed inside a `checked` block or compiler flag.
+* **Forgetting runtime overflow behavior differences**: Expecting an `OverflowException` by default during narrowing casts. Unchecked integral conversions truncate according to language rules; checked integral conversions throw on overflow.
 * **Inventing unassigned methods**: Attempting to call non-existent conversion helper methods or extension properties instead of using standard C# explicit cast syntax (e.g., writing `nativeVal.ToInt32()` instead of `(int)nativeVal`).
 
 ---

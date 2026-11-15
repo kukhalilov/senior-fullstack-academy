@@ -41,7 +41,7 @@ When you assign a `struct`, the runtime performs a **Value copy**, duplicating t
 # Progressive hints
 * **Hint 1:** Remember that `struct` types are value types. Modifying a copy does not affect the original.
 * **Hint 2:** `class` types are reference types. If two variables hold the same reference, they are aliases for the same object.
-* **Hint 3:** `ReferenceEquals` checks if two variables point to the exact same memory address (identity), not if their contents are the same.
+* **Hint 3:** `ReferenceEquals` checks whether two references identify the same object instance (identity), not if their contents are the same.
 
 # Complete solutions
 ```csharp
@@ -67,7 +67,7 @@ bool sameSelf = object.ReferenceEquals(a, a); // True
 # Tests and edge cases
 * **Boxing:** If you cast a `struct` to an `object`, it undergoes **Boxing conversion**, moving the value to the heap. Modifying the boxed value does not affect the original `struct`.
 * **Mutable Structs:** A `struct` containing a reference type (like an array) can be dangerous. Copying the `struct` copies the reference, so both `struct` copies will point to the same array.
-* **NaN Equality:** Floating-point types have specific rules where `double.NaN == double.NaN` is false, but `Equals` might behave differently depending on the implementation.
+* **NaN Equality:** Floating-point types have specific rules where `double.NaN == double.NaN` is false, while `Double.Equals(double.NaN)` returns true.
 
 # Reflection questions
 1. Why is it generally safer to make `struct` types immutable?

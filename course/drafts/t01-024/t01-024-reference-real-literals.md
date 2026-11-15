@@ -21,7 +21,7 @@ When writing C#, the literal syntax you choose directly determines the compile-t
 
 * **Real literal without suffix (double):** A numeric literal containing a decimal point or an exponent without any type suffix is automatically treated by the compiler as type `double` (`System.Double`). Because `double` is the default category for unadorned real numbers, assigning such a literal to a smaller floating-point variable without an explicit cast or suffix can cause a compilation error.
 * **Float suffix F or f:** Appending an `F` or `f` character to a real literal instructs the compiler to treat the constant as a `float` (`System.Single`) rather than a `double`. This is useful when targeting single-precision calculations to save memory or match specific API signatures.
-* **Decimal suffix M or m:** Appending an `M` or `m` character designates the literal as a `decimal` (`System.Decimal`). The `decimal` type offers high precision and base-10 representation, making it ideal for financial and currency calculations where binary rounding errors are unacceptable.
+* **Decimal suffix M or m:** Appending an `M` or `m` character designates the literal as a `decimal` (`System.Decimal`). The `decimal` type offers high precision and base-10 representation, making it useful when base-10 representation fits the domain; decimal arithmetic has finite precision and can still round.
 * **Double suffix D or d:** Appending a `D` or `d` character explicitly marks the real literal as a `double`. While unadorned real literals default to `double`, adding the suffix explicitly clarifies intent in complex expressions or overloaded method calls.
 * **Exponent notation E or e:** The `E` or `e` character introduces a scale factor expressed as a power of 10 (e.g., `1.5e2` means $1.5 \times 10^2$). Exponent notation can be combined with suffixes (such as `1.5e2f` or `4.2E-3m`) to define fractional numbers of a specific target type.
 * **Digit separator _ in numeric literals:** The underscore character (`_`) can be placed anywhere between digits within a numeric literal (including real and exponent parts) to improve readability. The compiler ignores underscores completely; they have no effect on the numerical value or compile-time type.
@@ -67,7 +67,7 @@ decimal planetaryDistance = 149_600_000.50m;
 ## Common mistakes
 
 * **Assigning an unadorned literal to a float variable:** Writing `float x = 3.14;` fails to compile because `3.14` is a `double` by default, and implicit conversion from `double` to `float` loses precision. You must use `3.14f` or an explicit cast.
-* **Confusing decimal and binary floating-point ranges:** Using `double` for currency calculations can introduce binary rounding errors. Financial literals must use the `M` or `m` suffix (`decimal`).
+* **Confusing decimal and binary floating-point ranges:** Using `double` for currency calculations can introduce binary rounding errors. Use an `M`/`m` suffix when you intend a decimal literal; whether `decimal` is the right type depends on the domain's rounding and range requirements.
 * **Placing digit separators incorrectly:** While `_` improves readability, placing it adjacent to the decimal point (e.g., `3_.14`) or at the start/end of the literal (e.g., `_3.14`) is invalid syntax and causes a compiler error.
 
 ---

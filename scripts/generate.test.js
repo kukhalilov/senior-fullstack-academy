@@ -1335,3 +1335,14 @@ test('ASP.NET Core deployment inventory covers environment precedence, safe erro
   assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('ASP.NET Core 10 marks the legacy WebHost'))));
   assert.ok(manifest.sourceSnapshot.urls.includes('https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated'));
 });
+
+
+test('high-risk C# semantic guardrails are included in generation and review data', () => {
+  const template = JSON.parse(fs.readFileSync('curriculum/prompt-template.json', 'utf8'));
+  assert.match(template.closedWorld.accuracyFacts, /manifest\.accuracyFacts/);
+  assert.ok(template.qualityReview.check.some(check => check.includes('manifest.accuracyFacts')));
+  for (const id of ['t01-003', 't01-004', 't01-024']) {
+    const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/c-language-and-net/${id}.json`, 'utf8'));
+    assert.ok(manifest.accuracyFacts.length >= 4, `${id} must provide verified accuracy guardrails`);
+  }
+});

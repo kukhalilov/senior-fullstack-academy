@@ -31,7 +31,7 @@ The lifecycle of an object is managed through constructors and initializers:
 
 **Memory and Performance:**
 * `Struct` types are efficient for small data, but copying large structs can be expensive.
-* `ref struct declaration` is a special type of struct that cannot be stored on the heap, ensuring it stays on the stack for performance and safety.
+* `ref struct declaration` is restricted from escaping to heap locations in ways that would violate safety; do not treat it as a guarantee that every instance is physically stack-allocated.
 * `readonly struct declaration` prevents accidental mutation, which is a common source of bugs in value types.
 
 # Worked examples

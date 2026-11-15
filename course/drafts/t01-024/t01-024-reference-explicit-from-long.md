@@ -31,7 +31,7 @@ The following ten explicit conversions define the complete scope of this referen
 7. **long to ulong (explicit numeric conversion)**: Casts a 64-bit signed integer to a 64-bit unsigned integer (`ulong`), shifting sign interpretation.
 8. **long to nint (explicit numeric conversion)**: Casts a 64-bit signed integer to a native-sized signed integer (`nint`), which is 32-bit on 32-bit architectures and 64-bit on 64-bit architectures.
 9. **long to nuint (explicit numeric conversion)**: Casts a 64-bit signed integer to a native-sized unsigned integer (`nuint`).
-10. **long to char (explicit numeric conversion)**: Casts a 64-bit signed integer to a 16-bit Unicode character (`char`), treating the numeric value as a UTF-16 code point.
+10. **long to char (explicit numeric conversion)**: Casts a 64-bit signed integer to a 16-bit UTF-16 code unit (`char`), not necessarily a complete Unicode scalar value.
 
 ---
 
@@ -76,4 +76,4 @@ char asChar = (char)65L; // Represents 'A'
 1. **Question:** Why does assigning a `long` value to a `byte` variable require an explicit cast?
    * **Answer:** Because `long` has a larger size and range than `byte`, meaning an implicit conversion could cause silent data loss. The explicit cast signals caller responsibility.
 2. **Question:** What happens when you perform a `long to char` explicit numeric conversion using a number corresponding to a valid UTF-16 code point?
-   * **Answer:** The `long` value is converted into the corresponding 16-bit Unicode character.
+   * **Answer:** An in-range numeric result becomes a UTF-16 code-unit value; it may be a surrogate and not a standalone Unicode scalar.

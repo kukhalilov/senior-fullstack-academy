@@ -46,7 +46,7 @@ Imagine you are writing a program to track a user's age and their name.
 *   **Use built-in keywords** for standard operations because they are concise and universally understood by C# developers.
 *   **Tradeoffs:** 
     *   **Range vs. Memory:** Using a `long` instead of an `int` allows for larger numbers but uses more memory.
-    *   **Precision:** `float` is faster but less precise than `decimal`, which is critical for financial calculations.
+    *   **Precision:** `float` has less precision than `decimal`; do not assume it is faster without measuring. `decimal` may suit decimal-domain financial calculations, but it too has finite precision.
     *   **Interoperability:** Sometimes you must choose a type based on what an external API expects, even if it isn't your first choice for the domain.
 
 **Common Mistake:** Confusing `object` (which can hold anything but requires "boxing" to convert value types) with `dynamic` (which bypasses compile-time type checking).

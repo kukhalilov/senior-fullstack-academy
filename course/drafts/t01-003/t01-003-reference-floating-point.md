@@ -18,7 +18,7 @@ These types are used to represent numbers with fractional parts. Choosing betwee
 
 *   **`float`**: An alias for `System.Single`. It is a 32-bit single-precision floating-point type. It is useful for graphics or scenarios where memory efficiency is prioritized over high precision.
 *   **`double`**: An alias for `System.Double`. It is a 64-bit double-precision floating-point type. This is the default type for fractional numbers in C# and offers a balance of range and performance.
-*   **`decimal`**: An alias for `System.Decimal`. It is a 128-bit data type. Unlike the others, it is a high-precision, base-10 type. It is designed for financial and monetary calculations where rounding errors common in binary floating-point math are unacceptable.
+*   **`decimal`**: An alias for `System.Decimal`. It is a 128-bit data type. Unlike the others, it is a high-precision, base-10 type. It is often useful for financial and monetary calculations because many base-10 fractions are represented exactly, unlike in binary floating point; its finite precision means arithmetic can still round.
 
 # Cross-item comparison
 
@@ -40,13 +40,13 @@ decimal price = 19.99m;       // Requires 'm' suffix
 ```
 
 # Common mistakes
-1.  **Precision Loss:** Using `float` or `double` for currency. Because these types use binary floating-point representation, they cannot exactly represent base-10 fractions (like 0.1), leading to cumulative rounding errors in financial applications.
+1.  **Precision Loss:** Using `float` or `double` for currency. Because these types use binary floating-point representation, they cannot exactly represent base-10 fractions (like 0.1), which can produce rounding differences; choose a representation and rounding policy that fit the domain.
 2.  **Suffix Omission:** Forgetting the `f` or `m` suffix. Without a suffix, a number with a decimal point is treated as a `double` by the compiler, which may cause compilation errors if you try to assign it directly to a `float` or `decimal` variable.
 
 # Knowledge checks with answers
 
 **1. Which type should you choose for a banking application calculating interest?**
-*   *Answer:* `decimal`. It provides the high precision required for financial calculations and avoids binary rounding errors.
+*   *Answer:* `decimal`. It represents many decimal fractions exactly and may fit financial domain rules, but it has finite precision and arithmetic can still round.
 
 **2. Why does `float` use less memory than `double`?**
 *   *Answer:* `float` is a 32-bit type (4 bytes), whereas `double` is a 64-bit type (8 bytes).

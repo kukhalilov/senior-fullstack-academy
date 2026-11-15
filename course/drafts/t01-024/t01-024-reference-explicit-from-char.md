@@ -15,7 +15,7 @@
 
 # How this group fits the mental model
 
-In C#, numbers can be converted from one type to another either implicitly (automatically, when no data loss is possible) or explicitly (manually using a cast expression, when data loss or truncation might happen). The items in this group (`char` to `sbyte`, `char` to `byte`, and `char` to `short`) represent narrowing, explicit conversions originating from a 16-bit unsigned Unicode character (`char`). Because a `char` can hold values up to `65,535`, converting it into smaller or signed numeric containers (`sbyte`, `byte`, `short`) requires developer intent and an explicit cast because the destination type might not have enough range to hold every possible `char` value.
+In C#, numbers can be converted from one type to another either implicitly (automatically, when no data loss is possible) or explicitly (manually using a cast expression, when data loss or truncation might happen). The items in this group (`char` to `sbyte`, `char` to `byte`, and `char` to `short`) represent narrowing, explicit conversions originating from a 16-bit UTF-16 code unit (`char`). Because a `char` can hold values up to `65,535`, converting it into smaller or signed numeric containers (`sbyte`, `byte`, `short`) requires developer intent and an explicit cast because the destination type might not have enough range to hold every possible `char` value.
 
 ---
 
@@ -23,7 +23,7 @@ In C#, numbers can be converted from one type to another either implicitly (auto
 
 - **char to sbyte (explicit numeric conversion):** Converts a 16-bit unsigned character code into an 8-bit signed integer (`sbyte`). Because an `sbyte` only ranges from `-128` to `127`, this conversion requires an explicit cast and will behave according to current overflow rules if the character code exceeds the `sbyte` range.
 - **char to byte (explicit numeric conversion):** Converts a 16-bit unsigned character code into an 8-bit unsigned integer (`byte`). Because a `byte` ranges from `0` to `255`, characters above `255` exceed the destination range, making an explicit cast mandatory.
-- **char to short (explicit numeric conversion):** Converts a 16-bit unsigned character code into a 16-bit signed integer (`short`). Because `short` ranges from `-32,768` to `32,767`, characters with code points above `32,767` fall into the positive range of `ushort` but appear negative in a signed `short`, requiring an explicit cast to acknowledge potential representation changes.
+- **char to short (explicit numeric conversion):** Converts a 16-bit unsigned character code into a 16-bit signed integer (`short`). Because `short` ranges from `-32,768` to `32,767`, `char` values above `short.MaxValue` are outside the `short` range: checked conversion throws; unchecked integral conversion truncates according to the language's conversion rules.
 
 ---
 

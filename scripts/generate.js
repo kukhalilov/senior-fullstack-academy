@@ -39,7 +39,7 @@ function lessonDataFor(task, manifest) {
   const practiceProblem=phase==='practice'&&task.problemId?manifest.practiceProblems?.find(problem=>problem.id===task.problemId):undefined;
   if(phase==='reference'&&!group) throw new Error(`Missing inventory group ${task.inventoryGroup}`);
   if(phase==='practice'&&task.problemId&&!practiceProblem) throw new Error(`Missing practice problem ${task.problemId}`);
-  return {phase,group,practiceProblem,data:{id:manifest.id,title:manifest.title,edition:manifest.sourceSnapshot.edition,concepts:manifest.concepts,scopeExclusions:manifest.scopeExclusions,sourceSnapshot:manifest.sourceSnapshot,comparisons:manifest.comparisons,comparisonSources:manifest.comparisonSources??[],versionNotes:manifest.versionNotes,...(practiceProblem?{practiceProblem}:{}),...(group?{inventoryGroup:group}:{inventory:manifest.inventory})}};
+  return {phase,group,practiceProblem,data:{id:manifest.id,title:manifest.title,edition:manifest.sourceSnapshot.edition,concepts:manifest.concepts,scopeExclusions:manifest.scopeExclusions,sourceSnapshot:manifest.sourceSnapshot,comparisons:manifest.comparisons,comparisonSources:manifest.comparisonSources??[],versionNotes:manifest.versionNotes,accuracyFacts:manifest.accuracyFacts??[],...(practiceProblem?{practiceProblem}:{}),...(group?{inventoryGroup:group}:{inventory:manifest.inventory})}};
 }
 function promptFor(task, manifest) {
   const {phase,data,practiceProblem}=lessonDataFor(task,manifest);

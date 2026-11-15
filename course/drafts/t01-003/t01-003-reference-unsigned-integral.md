@@ -8,7 +8,7 @@
 This lesson covers the unsigned integral type keywords in C# 15, running on .NET 11 GA. The information is based on the Microsoft Learn C# built-in type reference (checked 2026-11-14).
 
 # How this group fits the mental model
-In C#, "integral" types represent whole numbers. "Unsigned" means these types can only represent zero and positive numbers; they do not have a sign bit to represent negative values. Because they do not need to store a negative sign, they can store a larger positive range than their signed counterparts (e.g., `sbyte` vs `byte`). These are **value types**, meaning they store their actual data directly in the memory location where the variable is declared.
+In C#, "integral" types represent whole numbers. "Unsigned" means these types can only represent zero and positive numbers; they do not have a sign bit to represent negative values. Because they do not need to store a negative sign, they can store a larger positive range than their signed counterparts (e.g., `sbyte` vs `byte`). These are **value types**; a variable contains its value, with physical storage location left to implementation and context.
 
 # Supplied names explained
 *   **`byte`**: An 8-bit unsigned integer. It is the smallest integral type, ranging from 0 to 255.

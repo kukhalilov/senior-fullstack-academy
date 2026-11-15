@@ -16,7 +16,7 @@ In C#, every variable has a type. While numeric types handle calculations, the "
 ## Supplied names explained
 
 *   **`bool`**: Represents a Boolean value, which can only be `true` or `false`. It is used for logical operations and conditional branching.
-*   **`char`**: Represents a single 16-bit Unicode character. It is a value type.
+*   **`char`**: Represents one 16-bit UTF-16 code unit; some Unicode scalar values require a surrogate pair. It is a value type.
 *   **`object`**: The ultimate base type for all other types in the .NET type system. Every type, whether built-in or custom, inherits from `object`.
 *   **`string`**: Represents a sequence of zero or more Unicode characters. Unlike `char`, `string` is a reference type.
 *   **`dynamic`**: A special type that tells the compiler to bypass compile-time type checking. Type resolution happens at runtime.

@@ -23,7 +23,7 @@ In C#, numeric conversions are categorized as either implicit (safe, no data los
 
 # Cross-item comparison
 *   **Implicit vs. Explicit:** Unlike implicit conversions (e.g., `short` to `int`), which happen automatically, all items in this list require an explicit cast (e.g., `(byte)myShort`) because they involve potential range violations or sign mismatches.
-*   **Checked vs. Unchecked:** These conversions are subject to `checked` and `unchecked` contexts. In a `checked` context, an overflow exception is thrown if the value is out of range; in an `unchecked` context, the value is truncated.
+*   **Checked vs. Unchecked:** These conversions are subject to `checked` and `unchecked` contexts. In a `checked` context, an overflow exception is thrown if the value is out of range; in an `unchecked` context, integral conversion follows the language's truncation rules.
 
 # Examples
 ```csharp
@@ -51,7 +51,7 @@ checked
    **Answer:** Because a `short` can contain negative values, which are not representable in a `ushort`.
 
 2. **Question:** What happens if you convert a `short` value of 300 to an `sbyte` in an `unchecked` context?
-   **Answer:** The value will be truncated (the bits will be wrapped), resulting in a different numeric value rather than an exception.
+   **Answer:** The unchecked integral conversion truncates to the destination representation, yielding a different value; a checked conversion throws.
 
 3. **Question:** Are these conversions always safe?
    **Answer:** No. They are explicit precisely because they are not guaranteed to be safe; they may result in data loss or overflow depending on the value of the `short` and the destination type.
