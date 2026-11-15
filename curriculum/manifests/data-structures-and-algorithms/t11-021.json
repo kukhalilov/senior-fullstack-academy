@@ -19,11 +19,11 @@
     {"id":"set-algorithm-patterns","title":"Set patterns and tradeoffs","items":["Seen set","Membership filter","Deduplication","Visited set","Expected constant-time membership","Ordered membership","Equality comparer"]}
   ],
   "practiceProblems": [
-    {"id":"contains-duplicate","name":"Contains Duplicate","difficulty":"introductory","patterns":["seen set","early exit"]},
-    {"id":"intersection-two-arrays","name":"Intersection of Two Arrays","difficulty":"introductory","patterns":["membership set","deduplication"]},
-    {"id":"happy-number","name":"Happy Number","difficulty":"introductory","patterns":["visited set","cycle detection"]},
-    {"id":"jewels-and-stones","name":"Jewels and Stones","difficulty":"introductory","patterns":["membership filter"]},
-    {"id":"unique-number-of-occurrences","name":"Unique Number of Occurrences","difficulty":"introductory","patterns":["frequency map","set uniqueness"]}
+    {"id":"contains-duplicate","name":"Contains Duplicate","difficulty":"introductory","patterns":["seen set","early exit"],"statement":"Return true if any value occurs at least twice in nums; otherwise return false.","constraints":["1 <= nums.Length <= 10^5","-10^9 <= nums[i] <= 10^9"],"examples":[{"input":"[1,2,3,1]","output":"true"},{"input":"[1,2,3,4]","output":"false"},{"input":"[1,1,1,3,3,4,3,2,4,2]","output":"true"}],"sourceUrls":["https://leetcode.com/problems/contains-duplicate/"]},
+    {"id":"intersection-two-arrays","name":"Intersection of Two Arrays","difficulty":"introductory","patterns":["membership set","deduplication"],"statement":"Return the unique values present in both integer arrays. Result order is unrestricted.","constraints":["1 <= nums1.Length, nums2.Length <= 1000","0 <= nums1[i], nums2[i] <= 1000"],"examples":[{"input":"nums1 = [1,2,2,1], nums2 = [2,2]","output":"[2]"},{"input":"nums1 = [4,9,5], nums2 = [9,4,9,8,4]","output":"[4,9] or [9,4]"}],"sourceUrls":["https://leetcode.com/problems/intersection-of-two-arrays/"]},
+    {"id":"happy-number","name":"Happy Number","difficulty":"introductory","patterns":["visited set","cycle detection"],"statement":"Repeatedly replace a positive integer by the sum of the squares of its decimal digits. Return true if the process reaches 1 and false if it enters a cycle that excludes 1.","constraints":["1 <= n <= 2^31 - 1"],"examples":[{"input":"19","output":"true"},{"input":"2","output":"false"}],"sourceUrls":["https://leetcode.com/problems/happy-number/"]},
+    {"id":"jewels-and-stones","name":"Jewels and Stones","difficulty":"introductory","patterns":["membership filter"],"statement":"Count how many characters in stones are also present in jewels. Matching is case-sensitive.","constraints":["1 <= jewels.Length, stones.Length <= 50","Both contain English letters; characters in jewels are unique."],"examples":[{"input":"jewels = \\\"aA\\\", stones = \\\"aAAbbbb\\\"","output":"3"},{"input":"jewels = \\\"z\\\", stones = \\\"ZZ\\\"","output":"0"}],"sourceUrls":["https://leetcode.com/problems/jewels-and-stones/"]},
+    {"id":"unique-number-of-occurrences","name":"Unique Number of Occurrences","difficulty":"introductory","patterns":["frequency map","set uniqueness"],"statement":"Return true if every distinct value in arr has a different occurrence count; otherwise return false.","constraints":["1 <= arr.Length <= 1000","-1000 <= arr[i] <= 1000"],"examples":[{"input":"[1,2,2,1,1,3]","output":"true"},{"input":"[1,2]","output":"false"},{"input":"[-3,0,1,-3,1,1,1,-3,10,0]","output":"true"}],"sourceUrls":["https://leetcode.com/problems/unique-number-of-occurrences/"]}
   ],
   "inventoryComplete": true,
   "comparisons": [["Hash set","Sorted set"],["Set","Multiset"],["Union","Intersection","Difference","Symmetric difference"],["Set equality","Sequence equality"],["Hash-based membership","Ordered membership"]],
@@ -33,7 +33,7 @@
     "authority": "Microsoft Learn HashSet<T> and SortedSet<T> references and USACO Guide set/map introduction",
     "edition": "Timeless set concepts; .NET 11 API references checked 2026-11-14",
     "checkedAt": "2026-11-14",
-    "urls": ["https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1","https://usaco.guide/bronze/intro-sets"]
+    "urls": ["https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1","https://usaco.guide/bronze/intro-sets","https://leetcode.com/problems/contains-duplicate/","https://leetcode.com/problems/intersection-of-two-arrays/","https://leetcode.com/problems/happy-number/","https://leetcode.com/problems/jewels-and-stones/","https://leetcode.com/problems/unique-number-of-occurrences/"]
   },
   "scopeExclusions": ["Map and key/value operations, covered in t11-020","Balanced-tree implementation details, covered in tree topics","Full HashSet<T> and SortedSet<T> method and property catalogs","Probabilistic membership structures such as Bloom filters","Multisets and frequency maps as the main subject"],
   "generationAllowed": true
