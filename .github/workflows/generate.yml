@@ -8,6 +8,7 @@ on:
       - 'scripts/**'
       - 'course/drafts/**'
       - '.github/workflows/generate.yml'
+  workflow_dispatch:
   schedule:
     # Six daily runs at four-hour intervals, below the per-model free-tier quotas.
     - cron: '17 */4 * * *'
