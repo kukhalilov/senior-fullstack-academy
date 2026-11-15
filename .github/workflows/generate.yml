@@ -24,6 +24,10 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+      - name: Sync latest main before generation
+        run: |
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          git reset --hard origin/main
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -61,6 +65,15 @@ jobs:
         id: validate_drafts
         if: always() && steps.pending.outputs.pending != '0'
         run: npm run validate:drafts
+      - name: Preserve generated drafts and quota ledger for audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-drafts-${{ github.run_id }}
+          path: |
+            course/drafts/
+            curriculum/model-usage.json
+          if-no-files-found: ignore
       - name: Commit generated drafts
         if: always() && steps.pending.outputs.pending != '0'
         env:
@@ -78,6 +91,25 @@ jobs:
             git add course/drafts curriculum/queue.json
           fi
           git diff --cached --quiet || git commit -m "Update generated academy drafts and Gemini quota usage"
-          git pull --rebase origin main
-          git push
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then exit 0; fi
+              continue
+            fi
+            conflicts=$(git diff --name-only --diff-filter=U)
+            if [ "$conflicts" != "curriculum/model-usage.json" ]; then
+              echo "Cannot safely reconcile generated commit conflicts: $conflicts" >&2
+              exit 1
+            fi
+            git show :1:curriculum/model-usage.json > /tmp/model-usage-base.json
+            git show :2:curriculum/model-usage.json > /tmp/model-usage-main.json
+            git show :3:curriculum/model-usage.json > /tmp/model-usage-run.json
+            node scripts/merge-model-usage.js /tmp/model-usage-base.json /tmp/model-usage-main.json /tmp/model-usage-run.json > /tmp/model-usage-merged.json
+            cp /tmp/model-usage-merged.json curriculum/model-usage.json
+            git add curriculum/model-usage.json
+            GIT_EDITOR=true git rebase --continue
+          done
+          echo 'Could not push generated drafts after three synchronization attempts.' >&2
+          exit 1
 

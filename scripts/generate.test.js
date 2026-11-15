@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import {parseReviewResponse} from './parse-review-response.js';
 import {normalizeDsaOutput} from './normalize-dsa-output.js';
 import {applicableReviewIssues} from './review-issue-scope.js';
+import {mergeModelUsage} from './merge-model-usage.js';
 import {markDailyQuotaReached,markModelUnavailable,modelRpdLimits,pacificUsageDay,recordModelSuccess,remainingDailyCalls} from './model-usage.js';
 
 test('model usage follows Pacific quota resets and enforces each model daily limit', () => {
@@ -21,6 +22,15 @@ test('model usage follows Pacific quota resets and enforces each model daily lim
   assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),1);
   markModelUnavailable(usage,'gemini-3.5-flash-lite');
   assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),0);
+});
+
+test('concurrent generation merges quota ledger increments without losing either run', () => {
+  const base={schemaVersion:1,dayPacific:'2026-11-15',requests:{'gemini-3.5-flash-lite':100},unavailableModels:[]};
+  const ours={...base,requests:{'gemini-3.5-flash-lite':130},unavailableModels:['gemini-3.8-flash']};
+  const theirs={...base,requests:{'gemini-3.5-flash-lite':120},unavailableModels:['gemini-3.6-flash']};
+  assert.deepEqual(mergeModelUsage(base,ours,theirs),{schemaVersion:1,dayPacific:'2026-11-15',requests:{'gemini-3.5-flash-lite':150},unavailableModels:['gemini-3.6-flash','gemini-3.8-flash']});
+  assert.equal(mergeModelUsage({...base,dayPacific:'2026-11-14'},{...ours,dayPacific:'2026-11-15'},{...theirs,dayPacific:'2026-11-15'}).requests['gemini-3.5-flash-lite'],250);
+  assert.equal(mergeModelUsage(base,{...ours,requests:{'gemini-3.5-flash-lite':499}},{...theirs,requests:{'gemini-3.5-flash-lite':499}}).requests['gemini-3.5-flash-lite'],500);
 });
 
 test('DSA output normalization repairs unambiguous conventional headings and C# fences', () => {
@@ -529,7 +539,10 @@ test('scheduled generation stays below the observed per-model Gemini free-tier d
   assert.match(generator, /remainingDailyCalls\(modelUsage,models\)/);
   assert.match(generator, /saveModelUsage\(usageFile,modelUsage\)/);
   assert.match(workflow, /git add curriculum\/model-usage\.json/);
-  assert.match(workflow, /git pull --rebase origin main/);
+  assert.match(workflow, /git fetch origin main/);
+  assert.match(workflow, /git rebase origin\/main/);
+  assert.match(workflow, /actions\/upload-artifact@v4/);
+  assert.match(workflow, /Sync latest main before generation/);
   assert.match(generator, /nextAvailableModel\(\)/);
   assert.match(generator, /const rpmByModel =/);
   assert.match(generator, /Math\.ceil\(61000\/\(rpmByModel\[model\]\?\?5\)\)/);
