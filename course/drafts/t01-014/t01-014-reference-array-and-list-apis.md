@@ -23,7 +23,7 @@ In .NET, collections are chosen based on access patterns and memory requirements
 *   `Array.GetUpperBound`: Gets the index of the last element in the specified dimension.
 *   `Array.CreateInstance`: Creates a new array of a specified type and length dynamically.
 *   `Array.Copy`: Copies a range of elements from one array to another.
-*   `Array.ConstrainedCopy`: Copies a range of elements with a guarantee that the operation either succeeds completely or leaves the destination unchanged.
+*   `Array.ConstrainedCopy`: Copies a range while guaranteeing that the destination is not partially modified if the copy fails because of a type-safety error; argument and range validation can still fail.
 *   `Array.Clear`: Sets a range of elements in the array to their default values.
 *   `Array.Fill`: Fills a range of elements with a specified value.
 *   `Array.IndexOf`: Searches for the first occurrence of a value and returns its index.
@@ -36,7 +36,7 @@ In .NET, collections are chosen based on access patterns and memory requirements
 *   `Array.Exists`: Determines whether the array contains elements that match a predicate.
 *   `Array.TrueForAll`: Determines whether every element in the array matches a predicate.
 *   `Array.Sort`: Sorts the elements in the array.
-*   `Array.BinarySearch`: Searches for a specific element using a binary search algorithm.
+*   `Array.BinarySearch`: Searches an already-sorted array with binary search using the selected/default comparer; unsorted input or a mismatched comparer can produce an incorrect result.
 *   `Array.Reverse`: Reverses the order of elements in the array.
 *   `Array.Resize`: Changes the number of elements in a one-dimensional array.
 *   `Array.Clone`: Creates a shallow copy of the array.
@@ -75,13 +75,13 @@ In .NET, collections are chosen based on access patterns and memory requirements
 *   `List<T>.EnsureCapacity`: Sets the capacity to at least the specified number of elements.
 *   `List<T>.TrimExcess`: Sets the capacity to the actual number of elements in the list.
 *   `List<T>.GetEnumerator`: Returns an enumerator that iterates through the list.
-*   `List<T>.Capacity growth`: The internal mechanism where the list doubles its capacity when the current capacity is exceeded.
+*   `List<T>.Capacity growth`: When `Count` reaches capacity, the list grows its backing storage to accommodate more items. The precise growth factor is an implementation detail, not a fixed API contract.
 
 ### Comparison
 *   `Array versus List<T>`: A conceptual comparison highlighting that `Array` is fixed-size and `List<T>` is dynamic.
 
 # Cross-item comparison
-The primary distinction is between `Array` and `List<T>`. `Array` is a low-level, fixed-size structure. `List<T>` is a high-level, resizable structure that manages an internal `Array`. Use `Array` when the size is fixed to minimize memory overhead; use `List<T>` when you need to add or remove items frequently.
+The primary distinction is between `Array` and `List<T>`. `Array` is fixed-size; `List<T>` is a resizable indexed sequence backed by an array. Both offer O(1) indexed access. Appending to a list is amortized O(1), but inserting or removing near the front or middle shifts later elements and is O(n). Choose from the actual access and update pattern, not simply because the data changes.
 
 # Examples
 ```csharp
@@ -96,7 +96,7 @@ int index = names.FindIndex(n => n == "Bob"); // List<T>.FindIndex
 ```
 
 # Common mistakes
-1.  **Resizing Arrays:** Calling `Array.Resize` frequently is expensive because it creates a new array and copies all elements. Use `List<T>` if you need to resize often.
+1.  **Resizing Arrays:** `Array.Resize` creates a replacement array and copies the overlapping elements. Use `List<T>` when you need a resizable sequence, while remembering that middle insertions/removals still shift elements.
 2.  **Ignoring Capacity:** For `List<T>`, if you know the number of items in advance, use the constructor that accepts an initial capacity to avoid multiple internal reallocations.
 3.  **Confusing Count and Capacity:** `List<T>.Count` is the number of items currently in the list; `List<T>.Capacity` is the number of items the list *can* hold before it must resize.
 

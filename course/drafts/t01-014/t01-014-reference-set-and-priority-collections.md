@@ -117,6 +117,7 @@ This reference catalog explains every item assigned to the set-and-priority-coll
 
 * `SortedSet<T>.Comparer`
   - Purpose and behavior: Gets the `IComparer<T>` object that is used to order values in the sorted set.
+  - Equality and ordering note: `SortedSet<T>` uses its comparer both to order elements and to decide whether a value is already represented. If the comparer returns zero for two values, the set treats them as equivalent for membership even if `Equals` would say otherwise.
 
 * `PriorityQueue<TElement,TPriority>`
   - Purpose and behavior: A binary heap structure that stores elements with associated priorities, allowing efficient retrieval and removal of the element with the lowest priority value (min-heap behavior by default).
@@ -218,7 +219,7 @@ Priority 10: Generate report
 
 # Common mistakes
 - **Assuming sorted order in `HashSet<T>`**: `HashSet<T>` makes no guarantees about item ordering. Enumerating a hash set yields items in an implementation-dependent hashing order. Use `SortedSet<T>` when sorted iteration is required.
-- **Mutating elements used in hash codes or sorting**: If you modify a field of an object stored inside a `HashSet<T>` or `SortedSet<T>` that affects its hash code or comparison result, the collection becomes corrupt and fails to find or remove the item.
+- **Mutating elements used in hash codes or sorting**: If you change state used by a stored element's hash or ordering comparison, the collection does not rebuild its internal structure. Lookups or removals may fail, or sorted traversal may no longer match the comparer; keep that state stable while the item is stored.
 - **Confusing priority queue ordering semantics**: By default, `PriorityQueue<TElement,TPriority>` treats lower priority numbers as higher priority (min-heap). Developers accustomed to max-heap assumptions sometimes mistakenly assign high integer values expecting them to be dequeued first.
 
 # Knowledge checks with answers

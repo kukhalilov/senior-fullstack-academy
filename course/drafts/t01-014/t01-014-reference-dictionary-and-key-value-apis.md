@@ -38,8 +38,8 @@ Collections are tools for managing data. A dictionary maps a unique key to a spe
 * `CollectionsMarshal.GetValueRefOrNullRef<TKey,TValue>`: Gets a reference to a value or a null reference if missing.
 * `CollectionsMarshal.GetValueRefOrAddDefault<TKey,TValue,TAlternateKey>`: Similar to above, but supports alternate key types.
 * `CollectionsMarshal.GetValueRefOrNullRef<TKey,TValue,TAlternateKey>`: Similar to above, but supports alternate key types.
-* `CollectionsMarshal.AsSpan<T>`: Provides a span view over a collection's internal storage.
-* `CollectionsMarshal.SetCount<T>`: Manually sets the count of a collection.
+* `CollectionsMarshal.AsSpan<T>`: Provides a span view over a `List<T>`'s backing elements. Do not add or remove list items while the returned span is in use [API remarks](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.collectionsmarshal.asspan).
+* `CollectionsMarshal.SetCount<T>`: Sets the `Count` of a `List<T>` directly. This low-level method requires care: after increasing the count, initialize the newly exposed elements before reading them; use only when its documented preconditions are met [CollectionsMarshal API](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.collectionsmarshal).
 * `CollectionsMarshal.AsBytes(BitArray)`: Provides a byte-representation of a `BitArray`.
 * `SortedDictionary<TKey,TValue>`: A tree-based collection that keeps keys sorted.
 * `SortedDictionary<TKey,TValue>.Comparer`: Gets the `IComparer<TKey>` used to sort the keys.
@@ -55,12 +55,12 @@ Collections are tools for managing data. A dictionary maps a unique key to a spe
 * `Dictionary key equality comparer`: The logic used to determine if two keys are the same.
 * `Dictionary duplicate key handling`: Dictionaries do not allow duplicate keys; `Add` throws, `TryAdd` returns false.
 * `Dictionary TryGetValue versus indexer`: Indexers throw if the key is missing; `TryGetValue` returns a boolean.
-* `Dictionary key mutation hazard`: Modifying a key object while it is in a dictionary can corrupt the hash table.
+* `Dictionary key mutation hazard`: If a key object's equality or hash behavior changes while stored, the dictionary does not relocate it; later lookup or removal may fail. Keep hash-relevant key state stable.
 * `Dictionary versus SortedDictionary`: `Dictionary` is faster for lookups; `SortedDictionary` maintains order.
 * `Dictionary versus SortedList`: `SortedList` uses less memory than `SortedDictionary` but is slower for insertions.
 
 # Cross-item comparison
-* **Dictionary vs. SortedDictionary vs. SortedList**: `Dictionary` is optimized for speed (O(1) lookup). `SortedDictionary` is optimized for sorted access and frequent insertions (O(log n)). `SortedList` is optimized for memory usage and sorted access, but insertions are O(n) because it must shift elements in an array.
+* **Dictionary vs. SortedDictionary vs. SortedList**: `Dictionary` has expected O(1) lookup under suitable hashing and makes no ordering promise. `SortedDictionary` maintains comparer order with O(log n) lookup and insertion. `SortedList` stores sorted key/value arrays, offers indexed access, and has O(n) insertion/removal away from the end because entries shift; select based on the full read/update pattern.
 * **Lookup APIs**: `TryGetValue` is safer than the indexer `[]` because it avoids exceptions. `AlternateLookup` (introduced in .NET 9) allows looking up values using a different type (e.g., `ReadOnlySpan<char>` instead of `string`) to avoid unnecessary allocations.
 
 # Examples
@@ -78,7 +78,7 @@ int count = dict.GetValueOrDefault("banana", 0); // Returns 0
 ```
 
 # Common mistakes
-* **Mutating Keys**: Changing a property of an object that acts as a key in a `Dictionary` will break the lookup logic because the hash code will change.
+* **Mutating Keys**: Changing state used by a key's equality or hash implementation while it is stored can make lookup/removal fail. This violates the hash collection's key invariant; it does not mean the runtime's memory is corrupted.
 * **Ignoring Capacity**: For large collections, failing to set `Capacity` or `EnsureCapacity` causes multiple internal array reallocations, hurting performance.
 * **Assuming Thread Safety**: `Dictionary` is not thread-safe. Use `ConcurrentDictionary` for multi-threaded scenarios.
 
@@ -88,4 +88,4 @@ int count = dict.GetValueOrDefault("banana", 0); // Returns 0
 2. **Question**: Why is `TryGetValue` preferred over the indexer `dict[key]`?
    **Answer**: The indexer throws an exception if the key is missing, whereas `TryGetValue` returns `false` safely.
 3. **Question**: What happens if you modify a key object while it is inside a `Dictionary`?
-   **Answer**: The dictionary's internal hash table becomes corrupted, and the key may become unfindable.
+   **Answer**: The dictionary does not rehash or relocate the stored entry. Lookup or removal may fail because the key now compares or hashes differently; keep key equality/hash state stable while stored.

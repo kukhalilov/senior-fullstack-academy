@@ -15,9 +15,10 @@ Imagine you are building a system to track active user sessions. You need to:
 2. Ensure the collection is thread-safe because multiple background threads will update session data.
 3. Occasionally iterate over all sessions to perform maintenance.
 
-**Solution:** `ConcurrentDictionary<TKey,TValue>` is the ideal choice. It provides atomic operations like `TryAdd` and `AddOrUpdate`, which prevent data corruption when multiple threads access the dictionary simultaneously.
+**Solution:** `ConcurrentDictionary<TKey,TValue>` is a suitable choice when threads need concurrent key-based operations. Its individual methods have documented thread-safety guarantees; delegates passed to `GetOrAdd` and `AddOrUpdate` can run more than once, and multi-call session invariants still require coordination. Mutable session objects may need their own synchronization.
 
 ```csharp
+using System;
 using System.Collections.Concurrent;
 
 // Initialize the concurrent dictionary
@@ -34,7 +35,7 @@ if (sessions.TryGetValue(101, out string status))
 ```
 
 # Exercises
-1. **Selection:** You have a list of 1,000,000 items that are loaded once at application startup and never changed. You need to perform millions of lookups. Which collection type should you use?
+1. **Selection:** You have 1,000,000 user IDs loaded once and never changed. You need to test membership for millions of queries. Which collection type could fit, and what should you benchmark?
 2. **Implementation:** Create a `List<string>` and add three names to it using a collection initializer. Then, use `List<T>.Sort` to alphabetize them.
 3. **Concurrency:** You have a shared `Queue<int>` that multiple threads are trying to add items to. Why is `Queue<T>` insufficient here, and which class should you use instead?
 
@@ -44,7 +45,7 @@ if (sessions.TryGetValue(101, out string status))
 * **Hint 3 (Exercise 3):** `Queue<T>` is not thread-safe. Check the `System.Collections.Concurrent` namespace for a thread-safe FIFO (First-In-First-Out) alternative.
 
 # Complete solutions
-1. **Answer:** `FrozenDictionary<TKey,TValue>` or `FrozenSet<T>`. These are optimized for read-heavy lookup after construction.
+1. **Answer:** Consider `FrozenSet<T>` for membership tests, then benchmark lookup speed, construction cost, and memory against `HashSet<T>` for the real data. Use `FrozenDictionary<TKey,TValue>` when each key maps to a value.
 2. **Code:**
    ```csharp
    var names = new List<string> { "Charlie", "Alice", "Bob" };
@@ -54,13 +55,13 @@ if (sessions.TryGetValue(101, out string status))
 3. **Answer:** `Queue<T>` does not synchronize access. Use `ConcurrentQueue<T>` to allow multiple threads to enqueue items safely.
 
 # Tests and edge cases
-* **Mutation during enumeration:** If you modify a `List<T>` while iterating over it with a `foreach` loop, .NET will throw an `InvalidOperationException` due to "Fail-fast enumerator behavior."
+* **Mutation during enumeration:** Structural mutation of a `List<T>` invalidates its enumerator; later enumerator operations throw `InvalidOperationException`. Check each collection's contract rather than assuming all collections behave alike.
 * **Capacity:** When using `List<T>` or `Dictionary<TKey,TValue>`, if you know the number of items in advance, use the constructor that accepts `capacity` to avoid expensive reallocations.
 * **Equality:** `HashSet<T>` and `Dictionary<TKey,TValue>` rely on the `GetHashCode` method. If your key type does not implement equality correctly, lookups will fail even if the key "looks" correct.
 
 # Reflection questions
-* Why is a `ReadOnlyCollection` not the same as an `ImmutableCollection`? (Hint: One is a view, the other is a structural guarantee).
-* When should you choose `LinkedList<T>` over `List<T>`? (Hint: Consider the cost of inserting items in the middle of the collection).
+* Why is a read-only wrapper not the same as an immutable collection? (Hint: One is a view over backing data; the other preserves immutable collection structure.)
+* When should you choose `LinkedList<T>` over `List<T>`? (Hint: Consider whether you already have a node reference; finding a node by value still takes a traversal.)
 * How does the `Collection capacity` affect the memory footprint of your application?
 
 *Source: [https://learn.microsoft.com/en-us/dotnet/standard/collections/](https://learn.microsoft.com/en-us/dotnet/standard/collections/)*

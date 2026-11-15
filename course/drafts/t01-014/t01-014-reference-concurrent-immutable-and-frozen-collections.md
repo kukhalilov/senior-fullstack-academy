@@ -11,20 +11,20 @@ This reference lesson covers the exact API inventory for concurrent collections,
 In modern software design, ordinary collections (like standard lists and dictionaries) are not safe for simultaneous modification by multiple threads without external locks. Furthermore, traditional mutable data structures make it difficult to pass safe data snapshots across application boundaries without defensive copying. 
 
 This inventory addresses advanced data management challenges:
-1. **Concurrent Collections**: Allow multiple threads to read and write safely using fine-grained locking or lock-free atomic primitives, preventing data corruption during multi-threaded execution.
+1. **Concurrent Collections**: Provide thread-safe operations for concurrent access. Implementation strategies and guarantees differ by type and operation; method-level safety does not make a sequence of calls a transaction.
 2. **Immutable Collections**: Provide structural sharing, meaning updates return a *new* version of the collection while leaving the old version intact and untouched. This eliminates unintended side effects in functional pipelines.
-3. **Frozen Collections**: Optimized specifically for read-heavy scenarios (introduced in .NET 8), trading construction time for maximum high-speed lookup performance.
+3. **Frozen Collections**: Designed for read-heavy scenarios (introduced in .NET 8), trading construction work and memory for lookup behavior that may suit a fixed data set. Benchmark the real workload rather than assuming a universal speed advantage.
 
 # Supplied names explained
 Every name in this assigned group is explained below in its role within the broader .NET collection architecture:
 
 * `ConcurrentDictionary<TKey,TValue>`: A thread-safe dictionary implementation designed for multi-threaded environments where keys and values are frequently updated concurrently.
-* `ConcurrentDictionary<TKey,TValue>.GetOrAdd`: An atomic operation that retrieves an existing value for a key or adds a new key-value pair if the key does not already exist.
-* `ConcurrentDictionary<TKey,TValue>.AddOrUpdate`: An atomic operation that adds a key-value pair or updates an existing pair based on a delegate evaluation if the key is already present.
+* `ConcurrentDictionary<TKey,TValue>.GetOrAdd`: Thread-safely gets the value or adds a value for a missing key. Its value factory can run more than once, outside internal locks, so it must not be treated as an exactly-once side-effect hook.
+* `ConcurrentDictionary<TKey,TValue>.AddOrUpdate`: Thread-safely applies the dictionary update and returns the stored result, but its add/update delegates may run multiple times outside internal locks. The method is not atomic with respect to all other dictionary operations, so keep delegates free of non-repeatable side effects and use external synchronization for a wider invariant.
 * `ConcurrentDictionary<TKey,TValue>.TryAdd`: Attempts to add a key and value to the concurrent dictionary, returning a boolean indicating success or failure.
 * `ConcurrentDictionary<TKey,TValue>.TryUpdate`: Updates the value associated with a specific key to a new value only if it currently matches an expected comparison value atomically.
 * `ConcurrentDictionary<TKey,TValue>.TryRemove`: Attempts to remove and return the value with the specified key from the concurrent dictionary in a thread-safe manner.
-* `ConcurrentDictionary<TKey,TValue>.GetEnumerator`: Returns a snapshot-like enumerator that safely iterates over a collection, though items may change concurrently during iteration.
+* `ConcurrentDictionary<TKey,TValue>.GetEnumerator`: Returns an enumerator that is safe to use alongside concurrent reads and writes. It is not a point-in-time snapshot; enumeration can include changes made after it began [Microsoft API remarks](https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2.getenumerator).
 * `ConcurrentQueue<T>`: A thread-safe first-in, first-out (FIFO) data structure supporting multiple concurrent producers and consumers.
 * `ConcurrentQueue<T>.Enqueue`: Adds an item to the tail of the concurrent queue safely across threads.
 * `ConcurrentQueue<T>.TryDequeue`: Attempts to remove and return the object at the beginning of the concurrent queue.
@@ -32,7 +32,7 @@ Every name in this assigned group is explained below in its role within the broa
 * `ConcurrentQueue<T>.IsEmpty`: Gets a value indicating whether the concurrent queue is empty at the moment of inspection.
 * `ConcurrentStack<T>`: A thread-safe last-in, first-out (LIFO) collection.
 * `ConcurrentStack<T>.Push`: Inserts an object at the top of the concurrent stack.
-* `ConcurrentStack<T>.PushRange`: Inserts multiple objects sequentially at the top of the concurrent stack in a single atomic operation boundary.
+* `ConcurrentStack<T>.PushRange`: Inserts a batch at the top atomically according to this API's contract. Do not generalize the batch guarantee to other concurrent collection methods.
 * `ConcurrentStack<T>.TryPop`: Attempts to pop and return the object at the top of the concurrent stack.
 * `ConcurrentStack<T>.TryPopRange`: Attempts to pop and return multiple objects from the top of the concurrent stack into an array.
 * `ConcurrentStack<T>.TryPeek`: Attempts to return an object from the top of the stack without removing it.
@@ -49,7 +49,7 @@ Every name in this assigned group is explained below in its role within the broa
 * `BlockingCollection<T>.GetConsumingEnumerable`: Provides a blocking enumeration over items in the collection, exiting when adding is completed and the collection is empty.
 * `IProducerConsumerCollection<T>`: The base interface implemented by data structures like `ConcurrentQueue<T>` and `ConcurrentStack<T>` to standardize producer-consumer interactions [https://learn.microsoft.com/en-us/dotnet/standard/collections/thread-safe/](https://learn.microsoft.com/en-us/dotnet/standard/collections/thread-safe/).
 * `ImmutableArray<T>`: A high-performance, structurally sound immutable array structure backed by a contiguous block of memory.
-* `ImmutableList<T>`: A sequential list implementation that returns modified copies on updates.
+* `ImmutableList<T>`: An immutable sequence whose update methods return a new logical value while preserving prior versions; implementations can share unchanged structure rather than copying the full collection.
 * `ImmutableDictionary<TKey,TValue>`: An immutable dictionary mapping keys to values.
 * `ImmutableHashSet<T>`: An immutable unordered set ensuring element uniqueness.
 * `ImmutableSortedDictionary<TKey,TValue>`: An immutable dictionary that keeps its keys sorted automatically.
@@ -62,26 +62,26 @@ Every name in this assigned group is explained below in its role within the broa
 * `ImmutableList.CreateRange<T>`: Creates an immutable list initialized with a specified sequence of elements.
 * `ImmutableDictionary.CreateRange<TKey,TValue>`: Creates an immutable dictionary containing elements copied from an existing key-value sequence.
 * `ImmutableHashSet.CreateRange<T>`: Creates an immutable hash set populated from a source collection.
-* `ImmutableList<T>.ToBuilder`: Creates a mutable builder interface from an immutable list to allow efficient batch modifications before finalizing.
+* `ImmutableList<T>.ToBuilder`: Creates a mutable builder from an immutable list for batch modifications before producing an immutable result.
 * `ImmutableDictionary<TKey,TValue>.ToBuilder`: Generates a mutable dictionary builder from an immutable dictionary instance.
 * `ImmutableHashSet<T>.ToBuilder`: Generates a mutable hash set builder from an immutable hash set.
 * `ImmutableList<T>.Builder.ToImmutable`: Converts a list builder back into an optimized, read-only `ImmutableList<T>`.
 * `Immutable collection Builder`: The general concept and pattern of temporary mutable structures used to construct immutable collections efficiently without per-operation copying overhead.
 * `ImmutableArray<T>.Builder`: A dedicated builder class optimized for constructing `ImmutableArray<T>` instances with minimal allocation.
-* `FrozenDictionary<TKey,TValue>`: An optimized dictionary type introduced in .NET 8 designed specifically for read-heavy operations where keys do not change after initial construction [https://learn.microsoft.com/en-us/dotnet/api/system.collections.frozen].
-* `FrozenSet<T>`: An optimized set type introduced in .NET 8 designed for extremely fast read lookups on static data sets [https://learn.microsoft.com/en-us/dotnet/api/system.collections.frozen].
+* `FrozenDictionary<TKey,TValue>`: A read-only dictionary type introduced in .NET 8 for data that is built before a read-heavy phase [Frozen collections API](https://learn.microsoft.com/en-us/dotnet/api/system.collections.frozen). Measure construction time, memory, and lookup behavior for the target workload.
+* `FrozenSet<T>`: A read-only set type introduced in .NET 8 for data that is built before a read-heavy phase [Frozen collections API](https://learn.microsoft.com/en-us/dotnet/api/system.collections.frozen). Do not assume it is faster for every size or key distribution.
 * `ToFrozenDictionary`: Extension method used to convert a standard sequence or dictionary into an optimized `FrozenDictionary<TKey,TValue>`.
 * `ToFrozenSet`: Extension method used to convert a standard sequence into an optimized `FrozenSet<T>`.
-* `Concurrent collection atomic operation boundary`: The execution guarantee where individual methods execute completely without interference from other threads, though compound multi-step workflows still require synchronization.
-* `Thread-safe collection enumeration consistency`: The design guarantee stating that enumerators reflect a snapshot or safe view of the collection and do not throw `InvalidOperationException` if another thread mutates the collection mid-enumeration.
+* `Concurrent collection atomic operation boundary`: A guarantee specific to an API operation, not a general promise that every method is atomic with respect to every other method. For example, `GetOrAdd` and `AddOrUpdate` value factories can run multiple times, and larger multi-call invariants need synchronization.
+* `Thread-safe collection enumeration consistency`: Enumeration guarantees vary by type. `ConcurrentDictionary` enumeration is safe alongside concurrent operations but is not a moment-in-time snapshot; consult the specific collection contract before relying on a particular view.
 * `Concurrent collection versus external lock`: The architectural choice between utilizing specialized lock-free/fine-grained concurrent collection types versus protecting a standard generic collection with explicit locks (`lock` statement).
 * `Immutable update and allocation tradeoff`: The performance balance where immutable collections protect data integrity and avoid locks, but incur memory allocation costs when updating large structures.
-* `Frozen collection construction versus lookup`: The optimization balance where `FrozenDictionary` and `FrozenSet` take extra compute power and time *during* initial construction to lay out data for maximum speed during *subsequent* lookups.
+* `Frozen collection construction versus lookup`: The design tradeoff between up-front construction and a read-heavy lookup phase. The actual benefit depends on workload and should be measured.
 
 # Cross-item comparison
 Within this specific group of concurrent, immutable, and frozen structures, choices depend entirely on data mutability patterns and thread access requirements:
-* **`ConcurrentDictionary<TKey,TValue>` vs `FrozenDictionary<TKey,TValue>`**: Use `ConcurrentDictionary` when data undergoes continuous updates and reads by multiple active threads. Use `FrozenDictionary` when data is loaded *once* at startup and read intensively by multiple threads without further mutations, as frozen collections deliver superior lookup performance.
-* **Immutable Collections vs Builders**: Directly updating immutable collections repeatedly (e.g., adding items in a loop) causes severe memory allocations because a new tree node or array is allocated each time. Using a collection builder (such as `ImmutableList<T>.ToBuilder` or `ImmutableArray<T>.Builder`) allows fast mutations in-place, and calling `.ToImmutable()` converts it safely at the end.
+* **`ConcurrentDictionary<TKey,TValue>` vs `FrozenDictionary<TKey,TValue>`**: Use a concurrent dictionary when its supported operations must update shared mappings. Consider a frozen dictionary when mappings are established before a read-heavy phase. The latter is read-only; compare measured performance and construction/memory costs for the actual data.
+* **Immutable Collections vs Builders**: Immutable updates preserve old values and can share unchanged internal structure; their costs depend on the collection and operation. A builder can be more convenient or efficient for batches, then produce a new immutable value.
 
 # Examples
 
@@ -146,22 +146,19 @@ class Program
 Expected output:
 ```text
 Alpha
--Alpha
 Beta
 Gamma
 ```
 
-*(Note: The expected output above displays the items sequentially).*
-
 # Common mistakes
-* **Assuming compound concurrent operations are atomic**: Methods like `ConcurrentDictionary.TryGetValue` and subsequent updates are separate operations. If two threads check a key and both decide to write, a race condition can occur unless you use atomic methods like `AddOrUpdate` or `GetOrAdd`.
-* **Modifying immutable collections in loops directly**: Calling `.Add()` on an `ImmutableList<T>` inside a `for` loop creates a brand-new collection on every iteration, leading to $O(N^2)$ allocation performance. Always use builders for batch additions.
+* **Assuming a concurrent method is an exactly-once transaction**: Multi-call workflows are separate operations. `GetOrAdd` and `AddOrUpdate` factories can run repeatedly and outside locks; do not place non-repeatable side effects in them. Synchronize a larger invariant explicitly.
+* **Assuming immutable updates copy everything**: Immutable updates preserve old values and can structurally share data; costs differ by collection. Consider a builder for a batch, then measure if performance matters.
 * **Expecting frozen collections to be modifiable**: Attempting to add or remove items from a `FrozenDictionary<TKey,TValue>` or `FrozenSet<T>` will fail because they are strictly designed as read-only, optimized final artifacts.
 
 # Knowledge checks with answers
 1. **Question**: When should you choose `FrozenDictionary<TKey,TValue>` over `ConcurrentDictionary<TKey,TValue>`?
-   * **Answer**: Choose `FrozenDictionary<TKey,TValue>` when the data is initialized once (such as at application startup) and read frequently afterwards, because it offers highly optimized lookup performance. `ConcurrentDictionary<TKey,TValue>` is meant for data that continues to be updated concurrently by multiple threads at runtime.
+   * **Answer**: Consider `FrozenDictionary<TKey,TValue>` for a mapping built before a read-heavy phase, and `ConcurrentDictionary<TKey,TValue>` when supported updates and reads must occur concurrently. Frozen lookup speed is workload-dependent and should be benchmarked.
 2. **Question**: Why is building an `ImmutableList<T>` with a builder preferred over calling `.Add()` repeatedly on the immutable list itself in a loop?
-   * **Answer**: Repeatedly calling `.Add()` on an immutable collection allocates a new collection instance for every single addition, resulting in high memory overhead and poor performance. A builder allows mutations in-place before finalizing into an immutable instance efficiently.
+   * **Answer**: A builder supports a mutable batch-construction phase before producing an immutable value. Immutable updates can share unchanged structure, so the exact allocation and time tradeoff depends on the collection and operation.
 3. **Question**: Does a concurrent collection method like `ConcurrentDictionary<TKey,TValue>.TryAdd` guarantee that two consecutive dependent method calls (like checking existence then adding) are thread-safe together?
    * **Answer**: No. Individual method calls are atomic, but multi-step compound workflows (e.g., "if key exists then update") require specialized atomic APIs like `AddOrUpdate` or `GetOrAdd` to prevent race conditions between threads.
