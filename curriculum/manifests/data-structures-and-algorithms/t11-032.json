@@ -15,29 +15,299 @@
     "Combinatorial formulas using factorials and inverse factorials modulo p require factorial indices below p and a prime modulus; constraints must justify every algebraic shortcut."
   ],
   "inventory": [
-    {"id":"divisibility-and-gcd","title":"Divisibility, GCD, LCM, and Euclid","items":["Divisor and multiple","Greatest common divisor","Euclidean algorithm","Extended Euclidean algorithm","Least common multiple","gcd(0,a) convention","Coprime integers","Reduce before multiply to limit overflow","GCD of array by fold","GCD and linear Diophantine connection"]},
-    {"id":"primes-and-factorization","title":"Primality, sieves, and factorization","items":["Trial-division primality test","Square-root trial bound","Sieve of Eratosthenes","Composite multiple marking from p squared","O(n log log n) sieve bound","Prime factorization","Smallest-prime-factor table","Divisor enumeration from prime exponents","Prime-counting prefix array","Integer multiplication overflow in p squared"]},
-    {"id":"modular-arithmetic","title":"Residues, powers, and inverses","items":["Modulo equivalence class","Normalize negative remainder","Modular addition","Modular subtraction","Modular multiplication","Binary exponentiation","Modular inverse","Extended-Euclid inverse for coprime modulus","Fermat inverse for prime modulus","Modular division preconditions"]},
-    {"id":"combinatorics-and-numeric-limits","title":"Combinations, constraints, and numeric safety","items":["Factorial","Binomial coefficient","Pascal recurrence","Factorial and inverse-factorial tables","Prime-modulus assumption","Index below prime modulus assumption","Overflow-safe multiplication","Signed absolute-value minimum edge case","Integer square-root boundary","Floating-point rounding hazard"]}
+    {
+      "id": "divisibility-and-gcd",
+      "title": "Divisibility, GCD, LCM, and Euclid",
+      "items": [
+        "Divisor and multiple",
+        "Greatest common divisor",
+        "Euclidean algorithm",
+        "Extended Euclidean algorithm",
+        "Least common multiple",
+        "gcd(0,a) convention",
+        "Coprime integers",
+        "Reduce before multiply to limit overflow",
+        "GCD of array by fold",
+        "GCD and linear Diophantine connection"
+      ]
+    },
+    {
+      "id": "primes-and-factorization",
+      "title": "Primality, sieves, and factorization",
+      "items": [
+        "Trial-division primality test",
+        "Square-root trial bound",
+        "Sieve of Eratosthenes",
+        "Composite multiple marking from p squared",
+        "O(n log log n) sieve bound",
+        "Prime factorization",
+        "Smallest-prime-factor table",
+        "Divisor enumeration from prime exponents",
+        "Prime-counting prefix array",
+        "Integer multiplication overflow in p squared"
+      ]
+    },
+    {
+      "id": "modular-arithmetic",
+      "title": "Residues, powers, and inverses",
+      "items": [
+        "Modulo equivalence class",
+        "Normalize negative remainder",
+        "Modular addition",
+        "Modular subtraction",
+        "Modular multiplication",
+        "Binary exponentiation",
+        "Modular inverse",
+        "Extended-Euclid inverse for coprime modulus",
+        "Fermat inverse for prime modulus",
+        "Modular division preconditions"
+      ]
+    },
+    {
+      "id": "combinatorics-and-numeric-limits",
+      "title": "Combinations, constraints, and numeric safety",
+      "items": [
+        "Factorial",
+        "Binomial coefficient",
+        "Pascal recurrence",
+        "Factorial and inverse-factorial tables",
+        "Prime-modulus assumption",
+        "Index below prime modulus assumption",
+        "Overflow-safe multiplication",
+        "Signed absolute-value minimum edge case",
+        "Integer square-root boundary",
+        "Floating-point rounding hazard"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"count-primes","name":"Count Primes","difficulty":"intermediate","patterns":["Sieve of Eratosthenes","begin marking at the square of each prime"]},
-    {"id":"powx-n","name":"Pow(x, n)","difficulty":"intermediate","patterns":["binary exponentiation","negative exponent and minimum-integer handling"]},
-    {"id":"factorial-trailing-zeroes","name":"Factorial Trailing Zeroes","difficulty":"introductory","patterns":["count prime factors of five","repeated integer division"]},
-    {"id":"find-greatest-common-divisor-array","name":"Find Greatest Common Divisor of Array","difficulty":"introductory","patterns":["Euclidean algorithm","fold pairwise GCD"]},
-    {"id":"check-if-it-is-a-good-array","name":"Check If It Is a Good Array","difficulty":"intermediate","patterns":["Bézout identity","array GCD equals one"]},
-    {"id":"super-pow","name":"Super Pow","difficulty":"advanced","patterns":["modular exponentiation","process exponent digits without constructing the full exponent"]}
+    {
+      "id": "count-primes",
+      "name": "Count Primes",
+      "difficulty": "intermediate",
+      "patterns": [
+        "Sieve of Eratosthenes",
+        "begin marking at the square of each prime"
+      ],
+      "statement": "Count primes strictly less than n.",
+      "constraints": [
+        "0 <= n <= 5000000"
+      ],
+      "examples": [
+        {
+          "input": "n=10",
+          "output": "4"
+        },
+        {
+          "input": "n=0",
+          "output": "0"
+        },
+        {
+          "input": "n=1",
+          "output": "0"
+        }
+      ]
+    },
+    {
+      "id": "powx-n",
+      "name": "Pow(x, n)",
+      "difficulty": "intermediate",
+      "patterns": [
+        "binary exponentiation",
+        "negative exponent and minimum-integer handling"
+      ],
+      "statement": "Compute x raised to integer exponent n, including negative exponents.",
+      "constraints": [
+        "-100.0 < x < 100.0",
+        "-2^31 <= n <= 2^31-1",
+        "n is an integer",
+        "Either x is nonzero or n>0",
+        "-10^4 <= x^n <= 10^4"
+      ],
+      "examples": [
+        {
+          "input": "x=2.00000, n=10",
+          "output": "1024.00000"
+        },
+        {
+          "input": "x=2.10000, n=3",
+          "output": "9.26100"
+        },
+        {
+          "input": "x=2.00000, n=-2",
+          "output": "0.25000"
+        }
+      ]
+    },
+    {
+      "id": "factorial-trailing-zeroes",
+      "name": "Factorial Trailing Zeroes",
+      "difficulty": "introductory",
+      "patterns": [
+        "count prime factors of five",
+        "repeated integer division"
+      ],
+      "statement": "Return the number of trailing zeroes in n!.",
+      "constraints": [
+        "0 <= n <= 10000"
+      ],
+      "examples": [
+        {
+          "input": "n=3",
+          "output": "0"
+        },
+        {
+          "input": "n=5",
+          "output": "1"
+        },
+        {
+          "input": "n=0",
+          "output": "0"
+        }
+      ]
+    },
+    {
+      "id": "find-greatest-common-divisor-array",
+      "name": "Find Greatest Common Divisor of Array",
+      "difficulty": "introductory",
+      "patterns": [
+        "Euclidean algorithm",
+        "fold pairwise GCD"
+      ],
+      "statement": "Return the GCD of the smallest and largest elements of nums.",
+      "constraints": [
+        "2 <= nums.length <= 1000",
+        "1 <= nums[i] <= 1000"
+      ],
+      "examples": [
+        {
+          "input": "nums=[2,5,6,9,10]",
+          "output": "2"
+        },
+        {
+          "input": "nums=[7,5,6,8,3]",
+          "output": "1"
+        },
+        {
+          "input": "nums=[3,3]",
+          "output": "3"
+        }
+      ]
+    },
+    {
+      "id": "check-if-it-is-a-good-array",
+      "name": "Check If It Is a Good Array",
+      "difficulty": "intermediate",
+      "patterns": [
+        "Bézout identity",
+        "array GCD equals one"
+      ],
+      "statement": "Return true if an integer linear combination of some array elements can equal 1.",
+      "constraints": [
+        "1 <= nums.length <= 100000",
+        "1 <= nums[i] <= 10^9"
+      ],
+      "examples": [
+        {
+          "input": "nums=[12,5,7,23]",
+          "output": "true"
+        },
+        {
+          "input": "nums=[29,6,10]",
+          "output": "true"
+        },
+        {
+          "input": "nums=[3,6]",
+          "output": "false"
+        }
+      ]
+    },
+    {
+      "id": "super-pow",
+      "name": "Super Pow",
+      "difficulty": "advanced",
+      "patterns": [
+        "modular exponentiation",
+        "process exponent digits without constructing the full exponent"
+      ],
+      "statement": "Compute a^b modulo 1337 where b is supplied as decimal digits in an array.",
+      "constraints": [
+        "1 <= a <= 2^31-1",
+        "1 <= b.length <= 2000",
+        "0 <= b[i] <= 9",
+        "b has no leading zeroes"
+      ],
+      "examples": [
+        {
+          "input": "a=2, b=[3]",
+          "output": "8"
+        },
+        {
+          "input": "a=2, b=[1,0]",
+          "output": "1024"
+        },
+        {
+          "input": "a=1, b=[4,3,3,8,5,2]",
+          "output": "1"
+        }
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Trial division","Sieve of Eratosthenes"],["Euclidean GCD","Extended Euclidean algorithm"],["Ordinary exponentiation","Binary exponentiation"],["Inverse modulo prime","Inverse modulo composite"],["LCM multiply then divide","Divide by GCD before multiply"]],
-  "comparisonSources": ["https://usaco.guide/gold/divisibility","https://usaco.guide/gold/modular","https://cp-algorithms.com/algebra/euclid-algorithm.html","https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html"],
+  "comparisons": [
+    [
+      "Trial division",
+      "Sieve of Eratosthenes"
+    ],
+    [
+      "Euclidean GCD",
+      "Extended Euclidean algorithm"
+    ],
+    [
+      "Ordinary exponentiation",
+      "Binary exponentiation"
+    ],
+    [
+      "Inverse modulo prime",
+      "Inverse modulo composite"
+    ],
+    [
+      "LCM multiply then divide",
+      "Divide by GCD before multiply"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/gold/divisibility",
+    "https://usaco.guide/gold/modular",
+    "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+    "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+    "https://cp-algorithms.com/algebra/module-inverse.html",
+    "https://github.com/cpinitiative/usaco-guide/blob/master/content/4_Gold/Combinatorics.mdx"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "USACO Guide divisibility and modular arithmetic, CP-Algorithms number theory articles, and official LeetCode problem statements",
-    "edition": "Timeless number theory; canonical problem pages checked 2026-11-14",
-    "checkedAt": "2026-11-14",
-    "urls": ["https://usaco.guide/gold/divisibility","https://usaco.guide/gold/modular","https://cp-algorithms.com/algebra/euclid-algorithm.html","https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html","https://leetcode.com/problems/count-primes/","https://leetcode.com/problems/powx-n/","https://leetcode.com/problems/factorial-trailing-zeroes/","https://leetcode.com/problems/find-greatest-common-divisor-of-array/","https://leetcode.com/problems/check-if-it-is-a-good-array/","https://leetcode.com/problems/super-pow/"]
+    "edition": "Timeless number theory; canonical problem pages checked 2026-11-16",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://usaco.guide/gold/divisibility",
+      "https://usaco.guide/gold/modular",
+      "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+      "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+      "https://leetcode.com/problems/count-primes/",
+      "https://leetcode.com/problems/powx-n/",
+      "https://leetcode.com/problems/factorial-trailing-zeroes/",
+      "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+      "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+      "https://leetcode.com/problems/super-pow/"
+    ]
   },
-  "scopeExclusions": ["Bitwise operator identities and masks, covered in t11-031","Floating-point numerical analysis","Cryptographic arithmetic","Advanced combinatorics and generating functions","Arbitrary-precision arithmetic libraries and language APIs"],
+  "scopeExclusions": [
+    "Bitwise operator identities and masks, covered in t11-031",
+    "Floating-point numerical analysis",
+    "Cryptographic arithmetic",
+    "Advanced combinatorics and generating functions",
+    "Arbitrary-precision arithmetic libraries and language APIs"
+  ],
   "generationAllowed": true
 }
