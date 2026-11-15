@@ -28,6 +28,7 @@
         "HttpContext.Abort",
         "HttpContext.RequestAborted",
         "HttpRequest",
+        "HttpRequest.HttpContext",
         "HttpRequest.Method",
         "HttpRequest.Scheme",
         "HttpRequest.IsHttps",
@@ -37,6 +38,12 @@
         "HttpRequest.QueryString",
         "HttpRequest.Query",
         "HttpRequest.Headers",
+        "HttpRequest.GetDeclaredTrailers(HttpRequest)",
+        "HttpRequest.GetDisplayUrl(HttpRequest)",
+        "HttpRequest.GetEncodedPathAndQuery(HttpRequest)",
+        "HttpRequest.GetEncodedUrl(HttpRequest)",
+        "HttpRequest.GetHeaderParsing(HttpRequest)",
+        "HttpRequest.GetMultipartBoundary(HttpRequest)",
         "HttpRequest.ContentLength",
         "HttpRequest.ContentType",
         "HttpRequest.Protocol",
@@ -62,7 +69,8 @@
         "Cookie request header",
         "HttpRequest lifetime",
         "Do not retain HttpContext after request",
-        "IHttpContextAccessor request-flow caveat"
+        "IHttpContextAccessor request-flow caveat",
+        "HttpRequest.GetTypedHeaders(HttpRequest)"
       ]
     },
     {
@@ -96,6 +104,7 @@
         "FormOptions.MultipartBoundaryLengthLimit",
         "RequestBodyPipeFeature",
         "IRequestBodyPipeFeature",
+        "IRequestBodyPipeFeature.Reader",
         "PipeReader.ReadAsync",
         "ReadResult.Buffer",
         "PipeReader.AdvanceTo",
@@ -110,7 +119,14 @@
         "JSON request body content type",
         "Request JSON serializer options",
         "PipeReader-backed JSON parsing",
-        "Microsoft.AspNetCore.UseStreamBasedJsonParsing AppContext switch"
+        "Microsoft.AspNetCore.UseStreamBasedJsonParsing AppContext switch",
+        "ReadFromJsonAsync<TValue>(HttpRequest, CancellationToken)",
+        "ReadFromJsonAsync<TValue>(HttpRequest, JsonSerializerOptions, CancellationToken)",
+        "ReadFromJsonAsync<TValue>(HttpRequest, JsonTypeInfo<TValue>, CancellationToken)",
+        "ReadFromJsonAsync(HttpRequest, JsonTypeInfo, CancellationToken)",
+        "ReadFromJsonAsync(HttpRequest, Type, CancellationToken)",
+        "ReadFromJsonAsync(HttpRequest, Type, JsonSerializerOptions, CancellationToken)",
+        "ReadFromJsonAsync(HttpRequest, Type, JsonSerializerContext, CancellationToken)"
       ]
     },
     {
@@ -180,6 +196,7 @@
       "title": "Response commitment, headers, cookies, body streams, pipelines, and file output",
       "items": [
         "HttpResponse",
+        "HttpResponse.HttpContext",
         "HttpResponse.StatusCode",
         "HttpResponse.ContentType",
         "HttpResponse.ContentLength",
@@ -189,17 +206,37 @@
         "HttpResponse.HasStarted",
         "HttpResponse.Cookies",
         "HttpResponse.OnStarting",
+        "HttpResponse.OnStarting(Func<Task>)",
+        "HttpResponse.OnStarting(Func<object,Task>, object)",
+        "HttpResponse.OnCompleted(Func<Task>)",
+        "HttpResponse.OnCompleted(Func<object,Task>, object)",
         "HttpResponse.OnCompleted",
         "HttpResponse.StartAsync",
         "HttpResponse.CompleteAsync",
+        "WriteAsJsonAsync<TValue>(HttpResponse, TValue, CancellationToken)",
+        "WriteAsJsonAsync<TValue>(HttpResponse, TValue, JsonSerializerOptions, CancellationToken)",
+        "WriteAsJsonAsync<TValue>(HttpResponse, TValue, JsonSerializerOptions, string, CancellationToken)",
+        "WriteAsJsonAsync<TValue>(HttpResponse, TValue, JsonTypeInfo<TValue>, string, CancellationToken)",
+        "WriteAsJsonAsync(HttpResponse, object, Type, JsonSerializerOptions, CancellationToken)",
+        "WriteAsJsonAsync(HttpResponse, object, Type, JsonSerializerOptions, string, CancellationToken)",
+        "WriteAsJsonAsync(HttpResponse, object, Type, JsonSerializerContext, string, CancellationToken)",
+        "WriteAsJsonAsync(HttpResponse, object, JsonTypeInfo, string, CancellationToken)",
         "HttpResponse.WriteAsync",
+        "WriteAsync(HttpResponse, string, CancellationToken)",
+        "WriteAsync(HttpResponse, string, Encoding, CancellationToken)",
         "HttpResponse.Redirect",
+        "HttpResponse.Redirect(string)",
+        "HttpResponse.Redirect(string, bool)",
+        "Redirect(HttpResponse, string, bool, bool)",
         "HttpResponse.RegisterForDispose",
         "HttpResponse.RegisterForDisposeAsync",
         "HttpResponse.Clear",
         "IResponseCookies",
-        "IResponseCookies.Append",
-        "IResponseCookies.Delete",
+        "IResponseCookies.Append(string, string)",
+        "IResponseCookies.Append(string, string, CookieOptions)",
+        "IResponseCookies.Append(ReadOnlySpan<KeyValuePair<string,string>>, CookieOptions)",
+        "IResponseCookies.Delete(string)",
+        "IResponseCookies.Delete(string, CookieOptions)",
         "CookieOptions",
         "CookieOptions.Domain",
         "CookieOptions.Path",
@@ -208,6 +245,7 @@
         "CookieOptions.Secure",
         "CookieOptions.HttpOnly",
         "CookieOptions.IsEssential",
+        "CookieOptions.Extensions",
         "CookieOptions.SameSite",
         "SameSiteMode",
         "Response header immutability after start",
@@ -243,7 +281,17 @@
         "Server-sent events response stream",
         "Response compression interaction",
         "Response cancellation and aborted connection",
-        "ProblemDetails response body boundary"
+        "ProblemDetails response body boundary",
+        "WriteAsJsonAsync(HttpResponse, object, Type, CancellationToken)",
+        "GetTypedHeaders(HttpResponse)",
+        "AppendTrailer(HttpResponse, string, StringValues)",
+        "DeclareTrailer(HttpResponse, string)",
+        "SupportsTrailers(HttpResponse)",
+        "SendFileAsync(HttpResponse, IFileInfo, CancellationToken)",
+        "SendFileAsync(HttpResponse, IFileInfo, long, long?, CancellationToken)",
+        "SendFileAsync(HttpResponse, string, CancellationToken)",
+        "SendFileAsync(HttpResponse, string, long, long?, CancellationToken)",
+        "Clear(HttpResponse)"
       ]
     }
   ],
@@ -284,25 +332,43 @@
     "https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads",
     "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/request-features",
     "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/parameter-binding",
-    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-requests"
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-requests",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httprequest?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpresponse?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iresponsecookies?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iresponsecookies.append?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iresponsecookies.delete?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpresponsejsonextensions.writeasjsonasync?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpresponsewritingextensions.writeasync?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.cookieoptions?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/standard/io/pipelines",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httprequestjsonextensions.readfromjsonasync?view=aspnetcore-11.0",
+    "https://raw.githubusercontent.com/dotnet/aspnetcore/release/11.0/src/Http/Http.Extensions/src/HttpRequestJsonExtensions.cs",
+    "https://raw.githubusercontent.com/dotnet/aspnetcore/release/11.0/src/Http/Http.Extensions/src/HttpResponseJsonExtensions.cs",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/best-practices?view=aspnetcore-11.0"
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
+      "edition": "ASP.NET Core 11 / .NET 11 GA; .NET 10 JSON PipeReader transition checked 2026-11-16",
       "items": [
         "From .NET 10, Minimal API JSON body binding, MVC JSON input formatters, and HttpRequest JSON helpers use PipeReader-based JsonSerializer.DeserializeAsync overloads by default. Apps with converters that mishandle Utf8JsonReader.HasValueSequence can temporarily opt back into stream-based parsing with Microsoft.AspNetCore.UseStreamBasedJsonParsing; fix converters rather than relying on the compatibility switch long term.",
-        "File upload guidance continues to distinguish buffering for smaller uploads from streaming for large uploads. Do not teach the memory threshold or multipart limit as a security guarantee; application, server, proxy, and storage limits must be considered together."
+        "File upload guidance continues to distinguish buffering for smaller uploads from streaming for large uploads. Do not teach the memory threshold or multipart limit as a security guarantee; application, server, proxy, and storage limits must be considered together.",
+        "In .NET 11, OpenAPI generation describes FileStreamResult, FileContentHttpResult, and FileStreamHttpResult as binary string schemas when endpoint metadata declares the file result type. This improves generated client/documentation shape; it does not change authorization, streaming, range, or file-safety requirements."
       ],
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis",
-        "https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://raw.githubusercontent.com/dotnet/aspnetcore/release/11.0/src/Http/Http.Extensions/src/HttpRequestJsonExtensions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.features.irequestbodypipefeature?view=aspnetcore-11.0"
       ]
     }
   ],
   "sourceSnapshot": {
-    "authority": "Microsoft Learn ASP.NET Core request/response, request features, minimal parameter binding, upload guidance, and .NET 10/11 compatibility documentation",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "authority": "Microsoft Learn and ASP.NET Core 11 source for request/response APIs, I/O pipelines, features, minimal APIs, uploads, and release behavior",
+    "edition": "ASP.NET Core 11 / .NET 11 GA; .NET 10 JSON PipeReader transition checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/request-response",
       "https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads",
@@ -310,7 +376,28 @@
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/parameter-binding",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httprequest",
-      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpresponse"
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpresponse",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/use-http-context?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/request-response?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/request-features?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+      "https://learn.microsoft.com/en-us/dotnet/standard/io/pipelines",
+      "https://raw.githubusercontent.com/dotnet/aspnetcore/release/11.0/src/Http/Http.Extensions/src/HttpRequestJsonExtensions.cs",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httprequest?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpresponse?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iresponsecookies?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iresponsecookies.append?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iresponsecookies.delete?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpresponsejsonextensions.writeasjsonasync?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpresponsewritingextensions.writeasync?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.cookieoptions?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httprequestjsonextensions.readfromjsonasync?view=aspnetcore-11.0",
+      "https://raw.githubusercontent.com/dotnet/aspnetcore/release/11.0/src/Http/Http.Extensions/src/HttpResponseJsonExtensions.cs",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/best-practices?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.features.irequestbodypipefeature?view=aspnetcore-11.0"
     ]
   },
   "scopeExclusions": [
