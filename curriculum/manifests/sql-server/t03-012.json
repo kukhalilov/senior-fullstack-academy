@@ -3,10 +3,172 @@
   "id": "t03-012",
   "track": "track-03",
   "title": "injection safety permissions roles and authentication",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Authentication proves a connection identity; authorization maps principals and roles to allowed actions on securable objects. A successful login does not imply broad database access.",
+    "SQL Server permissions can be granted, denied, or revoked at different scopes. Least privilege and role-based assignment reduce the impact of compromised application credentials.",
+    "Parameterized queries separate data from SQL syntax. Dynamic identifiers cannot be value parameters and require allowlists and safe identifier quoting; escaping-only approaches are fragile.",
+    "Stored procedures do not automatically prevent injection if they concatenate untrusted input. Execute context, ownership chaining, cross-database trust, and service identities affect the effective permission boundary.",
+    "Encryption in transit, auditing, secret management, and server-side authorization are separate controls; none substitutes for secure query construction."
+  ],
+  "inventory": [
+    {
+      "id": "authentication-principals-and-roles",
+      "title": "Logins, users, authentication, and role membership",
+      "items": [
+        "Windows authentication",
+        "Microsoft Entra authentication",
+        "SQL Server authentication",
+        "Server login",
+        "Database user",
+        "Contained database user",
+        "Server principal",
+        "Database principal",
+        "Database role",
+        "Fixed server role",
+        "Fixed database role",
+        "User-defined database role",
+        "Application role",
+        "CREATE LOGIN",
+        "CREATE USER",
+        "CREATE ROLE",
+        "ALTER ROLE ADD MEMBER",
+        "DROP USER",
+        "Orphaned database user",
+        "EXECUTE AS USER",
+        "EXECUTE AS LOGIN",
+        "Contained database authentication",
+        "Service account",
+        "Managed identity connection",
+        "Credential",
+        "Certificate login"
+      ]
+    },
+    {
+      "id": "permissions-and-security-boundaries",
+      "title": "Permission hierarchy, grants, ownership, and execution context",
+      "items": [
+        "GRANT",
+        "DENY",
+        "REVOKE",
+        "Permission securable",
+        "Server-level permission",
+        "Database-level permission",
+        "Schema-level permission",
+        "Object-level permission",
+        "Column-level permission",
+        "CONTROL permission",
+        "SELECT permission",
+        "INSERT permission",
+        "UPDATE permission",
+        "DELETE permission",
+        "EXECUTE permission",
+        "ALTER permission",
+        "Ownership chaining",
+        "Cross-database ownership chaining",
+        "EXECUTE AS OWNER",
+        "Certificate-signed module",
+        "Permission inheritance",
+        "Role-based least privilege",
+        "Public database role",
+        "Fixed-role excess privilege",
+        "Row-Level Security predicate",
+        "Dynamic Data Masking",
+        "Always Encrypted boundary",
+        "Audit action group",
+        "SQL Server Audit"
+      ]
+    },
+    {
+      "id": "injection-safe-query-boundary",
+      "title": "Injection prevention, dynamic statements, and data-access controls",
+      "items": [
+        "SQL injection",
+        "Parameterized query",
+        "sp_executesql parameter binding",
+        "Prepared statement",
+        "Dynamic SQL value parameter",
+        "Dynamic SQL identifier quoting",
+        "QUOTENAME",
+        "Allowlist validation",
+        "Escaping-only defense failure",
+        "Second-order SQL injection",
+        "Stored procedure injection risk",
+        "Least-privilege database account",
+        "Read-only database principal",
+        "Error-message information disclosure",
+        "Connection string secret",
+        "TLS-encrypted database connection",
+        "SQL Server Audit specification",
+        "Audit target",
+        "Database-scoped credential",
+        "External data source permission boundary"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Login",
+      "Database user"
+    ],
+    [
+      "GRANT",
+      "DENY"
+    ],
+    [
+      "Role membership",
+      "Direct user grants"
+    ],
+    [
+      "Value parameter",
+      "Identifier quoting"
+    ],
+    [
+      "SQL parameterization",
+      "Escaping-only defense"
+    ],
+    [
+      "Windows or Entra authentication",
+      "SQL authentication"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
+    "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+  ],
+  "versionNotes": [
+    {
+      "edition": "SQL Server 2025 authentication and security",
+      "items": [
+        "SQL Server 2025 adds or expands authentication and permission capabilities across deployment modes; exact Microsoft Entra features depend on instance hosting and cumulative update, so distinguish on-premises, Azure VM, and Arc-enabled requirements."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
+        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft SQL Server 2025 security documentation and OWASP SQL injection prevention guidance",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
+      "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+    ]
+  },
+  "scopeExclusions": [
+    "Web authentication, cookies, OAuth, and authorization policies are covered in t05 and track-02.",
+    "TDE, Always Encrypted design, backup encryption, and key custody are in t03-014 and t05-009.",
+    "Row-level security and dynamic data masking are introduced as boundary examples; detailed policies belong in their dedicated coverage."
+  ],
+  "generationAllowed": true
 }

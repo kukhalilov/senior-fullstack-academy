@@ -3,10 +3,148 @@
   "id": "t04-004",
   "track": "track-04",
   "title": "change tracking identity resolution no tracking and concurrency tokens",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A DbContext state manager tracks entity identity and values so SaveChanges can calculate database changes. Change detection can use snapshots, notifications, or proxies depending on configuration.",
+    "Tracking queries perform identity resolution: a key already present in the context maps to the same object instance. No-tracking queries avoid state-manager work; the identity-resolving no-tracking variant maintains identity only for that query.",
+    "Entity state describes the intended persistence action, but attaching or updating a disconnected graph requires deliberate key and property-state decisions to avoid unintended writes.",
+    "Optimistic concurrency adds a token to the update predicate. If another writer changed the row, SaveChanges throws DbUpdateConcurrencyException; the application must decide whether to reload, merge, retry, or reject.",
+    "A DbContext cannot be used for concurrent operations. Keep its lifetime bounded and await database work before reusing it."
+  ],
+  "inventory": [
+    {
+      "id": "entity-states-and-change-detection",
+      "title": "State manager, snapshots, notifications, and SaveChanges",
+      "items": [
+        "ChangeTracker",
+        "EntityEntry",
+        "EntityState.Detached",
+        "EntityState.Unchanged",
+        "EntityState.Added",
+        "EntityState.Modified",
+        "EntityState.Deleted",
+        "ChangeTracker.Entries",
+        "ChangeTracker.DetectChanges",
+        "AutoDetectChangesEnabled",
+        "Snapshot change tracking",
+        "Notification change tracking",
+        "ChangingAndChangedNotifications strategy",
+        "Change-tracking proxy",
+        "INotifyPropertyChanged",
+        "INotifyPropertyChanging",
+        "DbContext.Add",
+        "DbContext.Attach",
+        "DbContext.Update",
+        "DbContext.Remove",
+        "EntityEntry.State",
+        "EntityEntry.Property",
+        "EntityEntry.Collection",
+        "EntityEntry.Reference",
+        "SaveChanges",
+        "SaveChangesAsync",
+        "AcceptAllChanges",
+        "ChangeTracker.Clear",
+        "OriginalValues",
+        "CurrentValues",
+        "GetDatabaseValues"
+      ]
+    },
+    {
+      "id": "tracking-identity-and-no-tracking",
+      "title": "Tracking queries, identity resolution, and read-only query modes",
+      "items": [
+        "Tracking query",
+        "AsTracking",
+        "AsNoTracking",
+        "AsNoTrackingWithIdentityResolution",
+        "QueryTrackingBehavior.TrackAll",
+        "QueryTrackingBehavior.NoTracking",
+        "Identity resolution",
+        "State manager identity map",
+        "Duplicate entity instance tracking error",
+        "Attach graph",
+        "EntityGraphAttacher",
+        "Navigation fix-up",
+        "No-tracking entity instance duplication",
+        "Projection containing entity instance",
+        "Scalar-only projection tracking boundary",
+        "Keyless entity never tracked",
+        "TrackGraph",
+        "ChangeTracker.TrackGraph"
+      ]
+    },
+    {
+      "id": "concurrency-and-conflict-resolution",
+      "title": "Concurrency tokens, exceptions, and application resolution",
+      "items": [
+        "Optimistic concurrency",
+        "Concurrency token",
+        "IsConcurrencyToken",
+        "IsRowVersion",
+        "rowversion token",
+        "Database-generated concurrency token",
+        "Application-managed concurrency token",
+        "DbUpdateConcurrencyException",
+        "GetDatabaseValues",
+        "GetDatabaseValuesAsync",
+        "Reload",
+        "ReloadAsync",
+        "Resolve concurrency conflict",
+        "Store wins",
+        "Client wins",
+        "Merge original current and database values",
+        "SaveChanges retry after conflict",
+        "Concurrency predicate in UPDATE",
+        "Conflict resolution loop",
+        "Nonconcurrent last-write-wins behavior"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Tracking query",
+      "AsNoTracking"
+    ],
+    [
+      "AsNoTracking",
+      "AsNoTrackingWithIdentityResolution"
+    ],
+    [
+      "Snapshot change detection",
+      "Notification change detection"
+    ],
+    [
+      "Optimistic concurrency",
+      "Pessimistic locking"
+    ],
+    [
+      "Store wins",
+      "Client wins conflict resolution"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
+    "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
+    "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+    "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Microsoft EF Core 10 tracking, change detection, identity resolution, and concurrency documentation",
+    "edition": "EF Core current stable version checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
+      "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
+      "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+      "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection"
+    ]
+  },
+  "scopeExclusions": [
+    "Loading navigation properties is in t04-006.",
+    "Transaction and retry strategies are in t04-008.",
+    "Provider-specific rowversion semantics are not generalized beyond the named SQL Server example."
+  ],
+  "generationAllowed": true
 }

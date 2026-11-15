@@ -3,10 +3,139 @@
   "id": "t05-007",
   "track": "track-05",
   "title": "password storage hashing MFA account recovery and rate limits",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Passwords are low-entropy human secrets, so stored verifiers require deliberately expensive password hashing with a unique salt and configurable work factor. General-purpose fast hashes and reversible encryption are not equivalent.",
+    "MFA adds an authenticator but factor and recovery strength matter. Phishing-resistant public-key authenticators provide stronger resistance to phishing than replayable one-time codes.",
+    "Enrollment, reset, recovery, throttling, credential-stuffing defenses, session revocation, and notification are part of account security; recovery paths need protections comparable to login.",
+    "Sensitive changes should require a current authenticated session and suitable re-authentication. Avoid account-enumeration leaks while keeping legitimate recovery usable."
+  ],
+  "inventory": [
+    {
+      "id": "password-storage-and-verification",
+      "title": "Password lifecycle, storage, and breach defense",
+      "items": [
+        "Password verifier",
+        "Password hashing",
+        "Unique random salt",
+        "Configurable work factor",
+        "Argon2id",
+        "scrypt",
+        "bcrypt",
+        "PBKDF2",
+        "Password pepper",
+        "Password pepper rotation",
+        "Fast hash SHA-256 unsuitable alone for password storage",
+        "Constant-time verifier comparison",
+        "Password length policy",
+        "Common-password blocklist",
+        "Password manager support",
+        "Credential stuffing",
+        "Password spraying",
+        "Brute-force throttling",
+        "Generic authentication error",
+        "Account enumeration",
+        "Password reset token",
+        "Single-use recovery token",
+        "Password reset expiry",
+        "Re-authentication for password change",
+        "Session invalidation after password change",
+        "Compromised-password response"
+      ]
+    },
+    {
+      "id": "mfa-and-account-recovery",
+      "title": "Authenticator types, enrollment, recovery, and abuse controls",
+      "items": [
+        "Multi-factor authentication (MFA)",
+        "Knowledge factor",
+        "Possession factor",
+        "Inherence factor",
+        "Time-based one-time password (TOTP)",
+        "HMAC-based one-time password (HOTP)",
+        "WebAuthn",
+        "FIDO2",
+        "Passkey",
+        "Platform authenticator",
+        "Roaming authenticator",
+        "Relying-party ID (RP ID)",
+        "Origin binding",
+        "Public-key credential challenge",
+        "User verification",
+        "User presence",
+        "Phishing-resistant authentication",
+        "SMS one-time code limitation",
+        "Email one-time code limitation",
+        "Recovery code",
+        "MFA enrollment proofing",
+        "MFA factor replacement",
+        "Step-up authentication",
+        "Risk-based authentication",
+        "Progressive delay",
+        "CAPTCHA tradeoff",
+        "Account lockout denial-of-service risk",
+        "Recovery contact verification",
+        "Security notification",
+        "Sensitive-action reauthentication"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Argon2id",
+      "bcrypt",
+      "PBKDF2"
+    ],
+    [
+      "Password hashing",
+      "Encryption"
+    ],
+    [
+      "TOTP",
+      "Passkey/WebAuthn"
+    ],
+    [
+      "Account lockout",
+      "Progressive throttling"
+    ],
+    [
+      "Password reset",
+      "Authenticated password change"
+    ]
+  ],
+  "comparisonSources": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+    "https://pages.nist.gov/800-63-4/sp800-63b.html"
+  ],
+  "versionNotes": [
+    {
+      "edition": "NIST SP 800-63B Revision 4 (2025)",
+      "items": [
+        "NIST SP 800-63B Revision 4 updates digital identity guidance; normative assurance requirements depend on the system's assurance target. Do not turn one organization-specific requirement into universal compliance advice."
+      ],
+      "sourceUrls": [
+        "https://pages.nist.gov/800-63-4/sp800-63b.html"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "OWASP Password Storage, MFA, Authentication Cheat Sheets and NIST SP 800-63B Revision 4",
+    "edition": "OWASP current guidance; NIST SP 800-63B Rev. 4 checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+      "https://pages.nist.gov/800-63-4/sp800-63b.html"
+    ]
+  },
+  "scopeExclusions": [
+    "ASP.NET Core Identity API mechanics are in t05-005 and track-02.",
+    "OAuth token lifetimes and external identity providers are in t05-004.",
+    "Cryptographic key management beyond password-specific peppers is in t05-009."
+  ],
+  "generationAllowed": true
 }

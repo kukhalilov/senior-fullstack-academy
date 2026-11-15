@@ -143,13 +143,35 @@
   ],
   "inventoryComplete": true,
   "comparisons": [
-    ["Generic type parameter", "object parameter and cast"],
-    ["Generic type", "closed constructed generic type"],
-    ["class constraint", "class? constraint", "notnull constraint"],
-    ["struct constraint", "unmanaged constraint"],
-    ["Base class constraint", "Interface constraint"],
-    ["Explicit type arguments", "Inferred type arguments"],
-    ["Generic method overload", "Non-generic method overload"]
+    [
+      "Generic type parameter",
+      "object parameter and cast"
+    ],
+    [
+      "Generic type",
+      "closed constructed generic type"
+    ],
+    [
+      "class constraint",
+      "class? constraint",
+      "notnull constraint"
+    ],
+    [
+      "struct constraint",
+      "unmanaged constraint"
+    ],
+    [
+      "Base class constraint",
+      "Interface constraint"
+    ],
+    [
+      "Explicit type arguments",
+      "Inferred type arguments"
+    ],
+    [
+      "Generic method overload",
+      "Non-generic method overload"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
@@ -185,7 +207,8 @@
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
-      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
     ]
   },
   "scopeExclusions": [
@@ -195,5 +218,10 @@
     "The complete reflection API for generic type metadata is covered in t01-019.",
     "Closed hierarchy and union declaration syntax is covered in the type-shape and pattern-matching topics."
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Do not describe ref struct values as necessarily residing on a physical stack. Ref safety constrains escape and usage; physical placement is an implementation detail.",
+    "allows ref struct is a C# 13 anti-constraint; generic code must obey ref-safety rules when T may be a ref struct.",
+    "Generic runtime code sharing or specialization is implementation behavior; do not claim every generic method is compiled into a distinct machine-code copy."
+  ]
 }

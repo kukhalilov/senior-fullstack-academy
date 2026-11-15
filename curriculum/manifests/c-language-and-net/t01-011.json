@@ -214,13 +214,34 @@
   ],
   "inventoryComplete": true,
   "comparisons": [
-    ["Delegate", "Event"],
-    ["Multicast delegate", "Event subscription"],
-    ["Lambda converted to delegate", "Lambda converted to expression tree"],
-    ["Expression lambda", "Statement lambda"],
-    ["Captured lambda", "Static lambda"],
-    ["IQueryable<T>", "IEnumerable<T>"],
-    ["Callback", "Observer-style event"]
+    [
+      "Delegate",
+      "Event"
+    ],
+    [
+      "Multicast delegate",
+      "Event subscription"
+    ],
+    [
+      "Lambda converted to delegate",
+      "Lambda converted to expression tree"
+    ],
+    [
+      "Expression lambda",
+      "Statement lambda"
+    ],
+    [
+      "Captured lambda",
+      "Static lambda"
+    ],
+    [
+      "IQueryable<T>",
+      "IEnumerable<T>"
+    ],
+    [
+      "Callback",
+      "Observer-style event"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
@@ -264,7 +285,9 @@
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
-      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14"
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
     ]
   },
   "scopeExclusions": [
@@ -273,5 +296,10 @@
     "Thread synchronization primitives and channel-based messaging are covered in concurrency and infrastructure topics.",
     "The full System.Linq.Expressions node API is larger than this topic; coverage is bounded to the standard node families, visitor model, lambda execution, and provider boundary named here."
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Invoking a null delegate throws NullReferenceException; null-conditional invocation with ?.Invoke() skips the call when the delegate is null.",
+    "For a multicast delegate with a non-void return, invocation returns the final invoked method's return value; intermediate return values are discarded. An exception stops normal progression through the invocation list.",
+    "Expression trees represent supported expression structure for inspection or translation and differ from delegates that execute compiled code."
+  ]
 }

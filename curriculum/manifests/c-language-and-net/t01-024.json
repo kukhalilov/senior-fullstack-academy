@@ -471,5 +471,12 @@
     "Parsing and formatting APIs",
     "Floating-point standards and representation internals beyond the distinctions needed for safe type selection"
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Integral-to-integral explicit conversions in checked context throw OverflowException when out of range; unchecked integral conversions follow language-defined truncation/extension rules.",
+    "Floating-point-to-integral conversions round toward zero for in-range values. In checked context an out-of-range conversion throws; unchecked out-of-range results are unspecified by C# language rules, even where a .NET runtime documents saturation.",
+    "Decimal-to-integral conversions round toward zero and always throw OverflowException for out-of-range results, regardless of checked or unchecked context.",
+    "Do not generalize .NET runtime saturation across targets: .NET 9 documents unchecked float/double-to-int/uint/long/ulong behavior on specified runtimes; .NET 11 adds unchecked conversions to sbyte/byte/short/ushort/char on CoreCLR and Native AOT, excluding Mono. Checked conversions still throw for out-of-range inputs.",
+    "In .NET 11, decimal-to-float/double conversions are correctly rounded from the exact source value; this does not mean they preserve all decimal precision."
+  ]
 }

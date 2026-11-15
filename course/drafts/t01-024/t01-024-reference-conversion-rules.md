@@ -1,0 +1,101 @@
+<!-- GENERATED DRAFT: automated shape and editorial checks passed; independent factual verification is not implied. -->
+
+# C# numeric literals and numeric conversions — Reference: Conversion rules and numeric behavior
+
+## Scope and version
+
+**Scope and Version:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# numeric literal, numeric conversion, and numeric type references](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions), checked 2026-11-14). 
+
+This reference lesson covers the exact set of conversion rules, promotion behaviors, and special numeric outcomes specified in the inventory group. It is designed for self-study learners seeking to understand how C# transforms numbers between types at compile time and runtime.
+
+---
+
+## How this group fits the mental model
+
+In C#, numbers are stored in memory using strict byte sizes and representation formats (such as integers or floating-point approximations). When you move a number from one type to another—or combine different types in an expression—the language must decide how to safely interpret or alter those bits. 
+
+The inventory items in this reference lesson represent the core rules governing that movement:
+- **Conversions** dictate whether a data transformation requires explicit programmer approval or happens automatically.
+- **Promotions** dictate how mixed-type arithmetic expressions agree on a common operand type.
+- **Extensions and Truncation** describe the microscopic bit-level operations that happen when widening or narrowing types.
+- **Exceptions and Special Values** (`OverflowException`, `NaN`, `PositiveInfinity`, `NegativeInfinity`) represent boundary conditions when math or range limits are exceeded.
+
+---
+
+## Supplied names explained
+
+*   **Explicit numeric conversion**: A conversion from one numeric type to another where an explicit cast expression (such as `(int)x`) is required because data loss, precision loss, or overflow is possible. Governed by [Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions).
+*   **Constant-expression conversion**: A special compile-time rule where an explicit numeric conversion is permitted without a cast if the target type can precisely represent the value of the constant expression.
+*   **Checked explicit numeric conversion**: An explicit conversion performed within a `checked` context or operator; for integral conversions, an out-of-range result throws `OverflowException`; for floating-point-to-integral conversions, checked conversions throw. Saturating behavior described for unchecked conversions is runtime- and target-specific. Documented in [Microsoft Learn Checked and Unchecked](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked).
+*   **Unchecked explicit numeric conversion**: An explicit conversion performed within an `unchecked` context where overflow checking is disabled. Integral-to-integral conversions discard bits according to the language rules; floating-point-to-integral out-of-range results are unspecified by the language, with documented runtime-specific behavior. Documented in [Microsoft Learn Checked and Unchecked](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked).
+*   **Integral numeric promotion**: The automatic promotion of smaller integral types (`sbyte`, `byte`, `short`, `ushort`, and `char`) to `int` (or larger types like `uint`, `long`, or `ulong`) before performing unary or binary operations, as detailed in [Microsoft Learn Integral Numeric Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types).
+*   **Floating-point numeric promotion**: The automatic promotion rule in binary operations involving floating-point types, where `float` operands are promoted to `double` if the other operand is a `double` or decimal, as outlined in [Microsoft Learn Floating-Point Numeric Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types).
+*   **Sign extension**: A bit-level operation used when widening a signed integral type (like `sbyte` or `short`) to a larger type, preserving the negative sign by filling the new upper bits with copies of the sign bit.
+*   **Zero extension**: A bit-level operation used when widening an unsigned integral type (or `char`) to a larger type, filling all newly added upper bits with zeros.
+*   **Truncation toward zero**: The standard behavior when casting a floating-point type to an integral type where any fractional part is discarded entirely (e.g., `1.9` becomes `1`, and `-1.9` becomes `-1`).
+*   **OverflowException**: A runtime exception thrown during a checked numeric conversion or arithmetic operation when the result exceeds the boundaries of the destination type.
+*   **NaN**: Stands for "Not a Number," a special IEEE 754 floating-point value resulting from undefined operations (such as `0.0 / 0.0`), referenced in [Microsoft Learn Floating-Point Numeric Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types).
+*   **PositiveInfinity**: An IEEE 754 floating-point value representing numbers greater than `Double.MaxValue`, resulting from operations like dividing a positive number by zero.
+*   **NegativeInfinity**: An IEEE 754 floating-point value representing numbers less than `Double.MinValue`, resulting from operations like dividing a negative number by zero.
+
+---
+
+## Cross-item comparison
+
+| Item A | Item B | Key Difference |
+| :--- | :--- | :--- |
+| **Explicit numeric conversion** | *Constant-expression conversion* | Standard explicit conversions always require a cast syntax in code; constant-expression conversions allow compile-time literal values to convert implicitly if they fit the target range. |
+| **Checked explicit numeric conversion** | **Unchecked explicit numeric conversion** | Checked integral conversions throw on overflow; unchecked integral conversions truncate according to the language rules. Floating-point conversions have distinct rules, including runtime-specific behavior for unchecked out-of-range values. |
+| **Sign extension** | **Zero extension** | Sign extension replicates the most significant bit (preserving negative values for signed types), while zero extension always pads upper bits with `0` (used for unsigned types). |
+| **Integral numeric promotion** | **Floating-point numeric promotion** | Integral promotion lifts small integer types up to at least `int` for safety and CPU word alignment, whereas floating-point promotion aligns precision levels between `float`, `double`, and `decimal`. |
+| **NaN** | **PositiveInfinity / NegativeInfinity** | `NaN` indicates an invalid or unrepresentable numerical result, whereas infinities represent valid mathematical magnitudes that have exceeded finite bounds. |
+
+---
+
+## Examples
+
+The following code blocks illustrate these conversion and promotion rules in valid C#. *(Note: Unexecuted code examples are marked as unverified).*
+
+```csharp
+// Unverified example: Integral numeric promotion and sign vs zero extension
+sbyte smallSigned = -10;
+int promotedSigned = smallSigned; // Uses sign extension; promotedSigned is -10 (all upper bits set to 1)
+
+byte smallUnsigned = 250;
+int promotedUnsigned = smallUnsigned; // Uses zero extension; promotedUnsigned is 250 (upper bits set to 0)
+```
+
+```csharp
+// Unverified example: Floating-point truncation and special values
+double originalValue = 1.99;
+int truncated = (int)originalValue; // Truncation toward zero: truncated equals 1
+
+double invalidDivision = 0.0 / 0.0; // Produces NaN
+bool isNotANumber = double.IsNaN(invalidDivision); // True
+```
+
+---
+
+## Common mistakes
+
+*   **Assuming unchecked conversions always throw:** Developers coming from strict languages sometimes expect a cast like `(byte)1000` to throw an error. In an unchecked context, it wraps around or saturates silently rather than throwing an `OverflowException`.
+*   **Confusing truncation with rounding:** When casting `double` to `int` via **Truncation toward zero**, `3.9` becomes `3`, not `4`. It drops the fractional component rather than rounding to the nearest integer.
+*   **Ignoring runtime version discrepancies in floating-point casts:** 
+    *   Starting in .NET 9, documented .NET runtime changes produce saturating results for unchecked floating-point conversions to `int`, `uint`, `long`, and `ulong` on specified runtime targets; this is not a C# language guarantee ([Microsoft Learn .NET 9 breaking change: FP-to-integer conversions](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/9.0/fp-to-integer)).
+    *   Starting with .NET 11, unchecked `float`/`double` conversions to `sbyte`, `byte`, `short`, `ushort`, and `char` saturate on CoreCLR and Native AOT; the change does not apply to Mono ([Microsoft Learn .NET 11 breaking change: FP to small integer conversions](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/11/fp-to-small-integer)). Assuming uniform behavior across Mono and CoreCLR/Native AOT in .NET 11 for small-integer floating-point casting can introduce platform-dependent bugs.
+
+---
+
+## Knowledge checks with answers
+
+1. **Question:** What bit-level extension strategy is applied when widening an unsigned `byte` to an `int`?
+   * **Answer:** **Zero extension**, because unsigned types pad all newly added upper bits with zeros.
+
+2. **Question:** What is the result of casting `-1.9` to an integer (`int`) in C#?
+   * **Answer:** `-1`. C# uses **Truncation toward zero**, completely discarding the fractional component.
+
+3. **Question:** Under .NET 11 rules on CoreCLR, what happens when you perform an unchecked floating-point conversion to a `byte` with a value far exceeding `Byte.MaxValue`?
+   * **Answer:** The value **saturates to destination bounds** (clamping to the maximum allowable value for `byte`), per the CoreCLR/Native AOT runtime update (note that Mono is excluded from this behavior change) ([Microsoft Learn .NET 11 breaking change: FP to small integer conversions](https://learn.microsoft.com/en-us/dotnet/core/compatibility/jit/11/fp-to-small-integer)).
+
+4. **Question:** Which special floating-point constant represents the result of dividing a non-zero positive number by `0.0`?
+   * **Answer:** `PositiveInfinity`.

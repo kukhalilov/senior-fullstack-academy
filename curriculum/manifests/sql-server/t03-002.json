@@ -3,10 +3,256 @@
   "id": "t03-002",
   "track": "track-03",
   "title": "relational modeling constraints data types null and normalization",
-  "status": "inventory-pending",
-  "inventory": [],
-  "inventoryComplete": false,
-  "concepts": [],
-  "comparisons": [],
-  "versionNotes": []
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A relational model represents facts as relations with declared keys and constraints. Table design begins by identifying entities, candidate identifiers, attributes, and relationships; constraints make invalid states harder to store.",
+    "Normalization separates facts according to functional dependencies to reduce update, insertion, and deletion anomalies. Denormalization is a deliberate read or performance choice that introduces consistency work and should preserve an authoritative source.",
+    "Data types encode domain meaning, range, precision, collation, and storage behavior. Choosing a type that merely accepts a value can silently change comparisons, rounding, sorting, or null semantics.",
+    "NULL represents missing or unknown information and changes predicate logic: comparisons can evaluate to UNKNOWN. It should not be used as a substitute for zero, empty text, or a missing relationship without a clear domain meaning.",
+    "Constraints such as PRIMARY KEY, UNIQUE, FOREIGN KEY, CHECK, and NOT NULL define enforceable invariants. Application validation improves feedback but does not replace constraints at the database boundary."
+  ],
+  "inventory": [
+    {
+      "id": "relational-facts-keys-and-normalization",
+      "title": "Relations, keys, dependencies, normalization, and modeling anomalies",
+      "items": [
+        "Relation (table)",
+        "Tuple (row)",
+        "Attribute (column)",
+        "Entity",
+        "Relationship",
+        "Entity integrity",
+        "Domain integrity",
+        "Candidate key",
+        "Superkey",
+        "Primary key",
+        "Alternate key",
+        "Composite key",
+        "Natural key",
+        "Surrogate key",
+        "Foreign key",
+        "Referential integrity",
+        "Functional dependency",
+        "Full functional dependency",
+        "Partial dependency",
+        "Transitive dependency",
+        "First normal form (1NF)",
+        "Second normal form (2NF)",
+        "Third normal form (3NF)",
+        "Boyce-Codd normal form (BCNF)",
+        "Normalization",
+        "Denormalization",
+        "Update anomaly",
+        "Insertion anomaly",
+        "Deletion anomaly",
+        "Junction (associative) table",
+        "Identifying relationship",
+        "Non-identifying relationship",
+        "One-to-one relationship",
+        "One-to-many relationship",
+        "Many-to-many relationship",
+        "Weak entity",
+        "Temporal data modeling",
+        "Soft-delete column modeling"
+      ]
+    },
+    {
+      "id": "constraints-and-null-semantics",
+      "title": "Declarative constraints, NULL, defaults, and relational integrity rules",
+      "items": [
+        "NOT NULL constraint",
+        "PRIMARY KEY constraint",
+        "UNIQUE constraint",
+        "FOREIGN KEY constraint",
+        "CHECK constraint",
+        "DEFAULT constraint",
+        "Constraint naming",
+        "Composite UNIQUE constraint",
+        "Filtered unique index as partial uniqueness",
+        "ON DELETE NO ACTION",
+        "ON DELETE CASCADE",
+        "ON DELETE SET NULL",
+        "ON UPDATE referential action",
+        "Constraint enforcement",
+        "Trusted constraint",
+        "Untrusted constraint",
+        "WITH CHECK",
+        "WITH NOCHECK",
+        "Nullable column",
+        "NULL marker",
+        "Three-valued predicate logic",
+        "IS NULL predicate",
+        "IS NOT NULL predicate",
+        "NULL is not equal to NULL",
+        "NULL versus zero",
+        "NULL versus empty string",
+        "NULL versus absent relationship",
+        "COALESCE null handling",
+        "NULLIF null handling",
+        "Unique constraint and multiple NULL behavior boundary",
+        "Deferred constraint checking (provider-specific distinction)"
+      ]
+    },
+    {
+      "id": "sql-server-domain-types-and-collations",
+      "title": "SQL Server scalar types, exactness, temporal values, and text comparison",
+      "items": [
+        "bit",
+        "tinyint",
+        "smallint",
+        "int",
+        "bigint",
+        "decimal(p,s)",
+        "numeric(p,s)",
+        "money",
+        "smallmoney",
+        "real",
+        "float(n)",
+        "char(n)",
+        "varchar(n)",
+        "varchar(max)",
+        "nchar(n)",
+        "nvarchar(n)",
+        "nvarchar(max)",
+        "binary(n)",
+        "varbinary(n)",
+        "varbinary(max)",
+        "uniqueidentifier",
+        "date",
+        "time(p)",
+        "smalldatetime",
+        "datetime",
+        "datetime2(p)",
+        "datetimeoffset(p)",
+        "rowversion",
+        "sql_variant",
+        "xml",
+        "json data type in SQL Server 2025",
+        "spatial data types geography and geometry",
+        "Data type precedence",
+        "Implicit conversion",
+        "Explicit CAST conversion",
+        "TRY_CAST",
+        "Collation",
+        "Case sensitivity",
+        "Accent sensitivity",
+        "Unicode string storage",
+        "String length versus byte length",
+        "Precision and scale",
+        "Floating-point approximation",
+        "SARGable type alignment",
+        "datetimeoffset UTC offset preservation boundary"
+      ]
+    },
+    {
+      "id": "modeling-decisions-and-schema-evolution",
+      "title": "Choosing identifiers, optionality, ownership, and evolution strategies",
+      "items": [
+        "Required attribute",
+        "Optional attribute",
+        "Value object",
+        "Entity identity",
+        "Aggregate boundary",
+        "One-to-one foreign-key placement",
+        "One-to-many foreign-key placement",
+        "Many-to-many junction-table design",
+        "Composite foreign key",
+        "Natural-key mutability risk",
+        "Surrogate-key tradeoff",
+        "Cascade delete decision",
+        "Restrict delete decision",
+        "Check constraint versus application validation",
+        "Computed versus stored fact",
+        "Audit columns",
+        "Created-at timestamp",
+        "Updated-at timestamp",
+        "Soft delete versus physical delete",
+        "Schema migration compatibility",
+        "Expand-and-contract schema change",
+        "Backfill existing rows",
+        "Default value during migration",
+        "Data classification",
+        "Retention policy",
+        "Tenant key in relational schema",
+        "Unique constraint scoped by tenant",
+        "Collation choice for identifiers",
+        "Deterministic ordering key modeling",
+        "Temporal table modeling"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Natural key",
+      "Surrogate key"
+    ],
+    [
+      "PRIMARY KEY",
+      "UNIQUE constraint"
+    ],
+    [
+      "NULL",
+      "Zero or empty string"
+    ],
+    [
+      "Normalized schema",
+      "Deliberately denormalized schema"
+    ],
+    [
+      "decimal",
+      "float"
+    ],
+    [
+      "datetime2",
+      "datetimeoffset"
+    ],
+    [
+      "CASCADE delete",
+      "NO ACTION delete"
+    ],
+    [
+      "Database constraint",
+      "Application-only validation"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/precision-scale-and-length-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/null-and-unknown-transact-sql?view=sql-server-ver17"
+  ],
+  "versionNotes": [
+    {
+      "edition": "SQL Server 2025 (17.x)",
+      "items": [
+        "SQL Server 2025 adds a native json data type alongside the established nvarchar-based JSON storage and processing surface; keep the new type distinct from the older JSON functions that operate on text."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft SQL Server 2025 relational design, constraint, type, and T-SQL documentation",
+    "edition": "SQL Server 2025 (17.x) modeling and type surface checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/precision-scale-and-length-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/null-and-unknown-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type?view=sql-server-ver17"
+    ]
+  },
+  "scopeExclusions": [
+    "Query syntax for joins, grouping, and DML is covered in adjacent SQL topics; relationship concepts appear here only as data-modeling structures.",
+    "Index implementation and query-plan behavior are covered in t03-008 and t03-009; filtered unique indexes appear only as an alternate enforcement mechanism.",
+    "Temporal-table querying and operations are covered in a separate SQL Server operations topic; this scope treats temporal modeling as a schema choice.",
+    "Provider-specific PostgreSQL, MySQL, and document-store modeling differences are compared in t03-001, not asserted as SQL Server semantics."
+  ],
+  "generationAllowed": true
 }

@@ -15,6 +15,12 @@ test('dry-run reports eligible units without requiring a key or making network c
   assert.match(result.stdout, /\d+ eligible units pending/);
 });
 
+test('all existing lesson drafts match the queue, citation bounds, required headings, and exact reference inventories', () => {
+  const result = spawnSync(process.execPath, ['scripts/validate-drafts.js'], {encoding: 'utf8'});
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+  assert.match(result.stdout, /Validated \d+ generated lesson drafts/);
+});
+
 test('JavaScript values and types has a bounded inventory without array members', () => {
   const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/javascript-typescript/t06-002.json', 'utf8'));
   assert.equal(manifest.title, 'JavaScript values and types');
@@ -172,19 +178,19 @@ test('C# numeric conversion inventory covers every directed pair once', () => {
   assert.ok(conversions.versionNotes.some(note => note.edition === '.NET 11'));
 });
 
-test('DSA complexity scope is source-backed but held until solution checks exist', () => {
+test('DSA complexity scope includes enabled analysis practice', () => {
   const manifest = JSON.parse(fs.readFileSync('curriculum/manifests/data-structures-and-algorithms/t11-001.json', 'utf8'));
   const names = manifest.inventory.flatMap(group => group.items);
   assert.equal(manifest.inventoryComplete, true);
-  assert.equal(manifest.generationAllowed, false);
+  assert.equal(manifest.generationAllowed, true);
   assert.ok(names.includes('Big O notation'));
   assert.ok(names.includes('Master theorem'));
   assert.ok(names.includes('Potential method'));
   assert.ok(manifest.sourceSnapshot.urls.some(url => url.includes('opendsa-server.cs.vt.edu')));
-  assert.deepEqual(manifest.generationAllowedPhases, ['overview', 'concepts', 'reference', 'interview']);
+  assert.ok(manifest.generationAllowedPhases.includes('practice'));
   const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
   assert.equal(queue.tasks.find(task => task.id === 't11-001-overview').status, 'draft-generation-eligible');
-  assert.equal(queue.tasks.find(task => task.id === 't11-001-practice').status, 'blocked-on-generation-validation');
+  assert.equal(queue.tasks.find(task => task.id === 't11-001-practice').status, 'draft-generation-eligible');
 });
 
 test('named DSA problems become independent practice units', () => {
@@ -429,14 +435,31 @@ test('the curriculum teaches overview before references and has no forced versio
 test('scheduled generation stays below the observed per-model Gemini free-tier daily quotas', () => {
   const workflow = fs.readFileSync('.github/workflows/generate.yml', 'utf8');
   assert.match(workflow, /cron: '17 \*\/4 \* \* \*'/);
-  assert.match(workflow, /GEMINI_MODELS: gemini-3\.5-flash-lite,gemini-3\.1-flash-lite/);
+  assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /UNITS_PER_RUN: '80'/);
   assert.match(workflow, /MAX_API_CALLS_PER_RUN: '160'/);
-  assert.equal(6 * 160 / 2, 480);
-  assert.ok(480 < 500);
+  const pools = [...workflow.matchAll(/GEMINI_MODELS: ([\w.,-]+)/g)].map(match => match[1].split(','));
+  const expectedModels = ['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash','gemini-3.6-flash','gemini-3-flash-preview','gemini-2.5-flash','gemini-2.5-flash-lite','gemini-4-hydrogen'];
+  assert.equal(pools.length, 2);
+  for (const pool of pools) {
+    assert.deepEqual(pool, expectedModels);
+    assert.equal(new Set(pool).size, pool.length, 'model pool must not contain duplicates');
+  }
+  const dailyRequests = 6 * 160;
+  const dailyRequestCapacity = 500 + 500 + 20 + 20 + 20 + 20 + 20 + 20;
+  assert.equal(dailyRequests, 960);
+  assert.ok(dailyRequests <= dailyRequestCapacity);
   const generator = fs.readFileSync('scripts/generate.js', 'utf8');
-  assert.match(generator, /models\[\(apiCalls-1\)%models\.length\]/);
-  assert.match(generator, /Math\.ceil\(4100\/models\.length\)/);
+  assert.match(generator, /nextAvailableModel\(\)/);
+  assert.match(generator, /const rpmByModel =/);
+  assert.match(generator, /Math\.ceil\(61000\/\(rpmByModel\[model\]\?\?5\)\)/);
+  for (const [model,rpm] of [['gemini-3.5-flash-lite',15],['gemini-3.1-flash-lite',15],['gemini-2.5-flash-lite',10],['gemini-4-hydrogen',5]]) {
+    assert.match(generator, new RegExp(`['"]${model}['"]: ${rpm}`));
+  }
+  assert.match(generator, /Gemini daily quota reached; skipping/);
+  assert.match(generator, /keep expected output outside code fences/);
+  assert.match(generator, /do not substitute an unverified-status disclaimer/);
+  assert.match(workflow, /npm run validate:drafts/);
   assert.match(generator, /Math\.min\(requestedCalls, 160\)/);
 });
 
@@ -1072,6 +1095,9 @@ test('C# type, nullability, class, struct, record, and union maps have unique na
   }
   const types = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-004.json', 'utf8'));
   assert.ok(types.inventory.flatMap(group => group.items).includes('EqualityComparer<T>.Default'));
+  const typeNames = types.inventory.flatMap(group => group.items);
+  assert.ok(typeNames.includes('Nullable.GetUnderlyingType(Type)'));
+  assert.ok(!typeNames.includes('Nullable<T>.GetUnderlyingType(Type)'));
   const nullable = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-005.json', 'utf8'));
   assert.ok(nullable.inventory.flatMap(group => group.items).includes('MemberNotNullWhenAttribute'));
   const declarations = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-006.json', 'utf8'));
@@ -1332,3 +1358,23 @@ test('ASP.NET Core deployment inventory covers environment precedence, safe erro
   assert.ok(manifest.versionNotes.some(note => note.items.some(item => item.includes('ASP.NET Core 10 marks the legacy WebHost'))));
   assert.ok(manifest.sourceSnapshot.urls.includes('https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated'));
 });
+
+
+test('high-risk C# semantic guardrails are included in generation and review data', () => {
+  const template = JSON.parse(fs.readFileSync('curriculum/prompt-template.json', 'utf8'));
+  assert.match(template.closedWorld.accuracyFacts, /manifest\.accuracyFacts/);
+  assert.ok(template.qualityReview.check.some(check => check.includes('manifest.accuracyFacts')));
+  for (const id of ['t01-003', 't01-004', 't01-024']) {
+    const manifest = JSON.parse(fs.readFileSync(`curriculum/manifests/c-language-and-net/${id}.json`, 'utf8'));
+    assert.ok(manifest.accuracyFacts.length >= 4, `${id} must provide verified accuracy guardrails`);
+  }
+});
+
+test('model pool and reviewer evidence rules prevent false missing-item reports', () => {
+  const template = JSON.parse(fs.readFileSync('curriculum/prompt-template.json', 'utf8'));
+  assert.ok(template.qualityReview.check.some(check => check.includes('exact candidate quotation')));
+  assert.ok(template.qualityReview.check.some(check => check.includes('do not report a string that appears verbatim')));
+  const workflow = fs.readFileSync('.github/workflows/generate.yml', 'utf8');
+  for (const model of ['gemini-3.8-flash','gemini-3.6-flash','gemini-3-flash-preview','gemini-2.5-flash','gemini-2.5-flash-lite','gemini-4-hydrogen']) assert.ok(workflow.includes(model));
+});
+

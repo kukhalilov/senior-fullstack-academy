@@ -127,5 +127,11 @@
     "Framework types not exposed as C# built-in keywords",
     "Formatting and parsing APIs for values"
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Value-type variables contain values; do not claim the language requires local value data to be stored on the stack or directly inside a physical variable slot. Object references are not specified as physical memory addresses.",
+    "decimal uses a finite-precision base-10 representation. It represents many decimal fractions exactly, but arithmetic can still round; do not claim decimal eliminates rounding errors or is always slower/faster.",
+    "char is a 16-bit UTF-16 code unit, not necessarily one complete Unicode scalar value; supplementary scalars use surrogate pairs.",
+    "Integral literal assignment outside the target type's permitted constant range is generally a compile-time error; distinguish compile-time constant conversions from runtime checked/unchecked casts."
+  ]
 }
