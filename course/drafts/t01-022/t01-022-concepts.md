@@ -60,7 +60,7 @@ In this example:
 # Misconceptions and edge cases
 *   **Statements vs. Expressions**: A common mistake is trying to use a `throw statement` where an expression is required. Remember that a `throw statement` is an action, while a `throw expression` (not covered here) produces a value.
 *   **Labeled Jumps**: In C# 15, you can use `Labeled break statement` and `Labeled continue statement` to target specific outer loops, which is much safer than using a `goto statement` to jump across code blocks.
-*   **Resource Disposal**: Always prefer a `using declaration` over a `using statement` when the resource is needed until the end of the current scope; it reduces nesting and improves readability.
+*   **Resource Disposal**: Choose `using declaration` or `using statement` to match the needed lifetime; a statement is useful when disposal should happen before the enclosing scope ends.
 
 # Knowledge checks with answers
 1. **Question**: What is the primary difference between a `Block statement` and a simple statement?

@@ -11,9 +11,9 @@ This lesson covers iteration statements in C# 15, running on .NET 11 GA. The sco
 In C#, statements perform actions. Iteration statements are a specific category of statements that allow a program to repeat a block of code multiple times. They act as the "engine" for processing collections of data or repeating logic until a specific condition is met. They rely on the concept of blocks to define the scope of the repeated work.
 
 # Supplied names explained
-* `for statement`: A loop that uses a counter or expression to control repetition. It consists of an initializer, a condition, and an iterator.
-* `foreach statement`: A loop that iterates over the elements of a collection (any type that implements `IEnumerable` or `IAsyncEnumerable`).
-* `await foreach statement`: An asynchronous version of the `foreach` loop used to iterate over collections that provide data asynchronously.
+* `for statement`: A loop with optional initializer, condition, and iterator clauses; any clause can be omitted, and initializer/iterator clauses can contain multiple expressions.
+* `foreach statement`: A loop that iterates over an array or type supported by C#'s enumerator pattern; the type need not implement `IEnumerable`.
+* `await foreach statement`: An asynchronous iteration form for types supported by the async-enumerator pattern, commonly `IAsyncEnumerable<T>`.
 * `while statement`: A loop that repeats a block of code as long as a specified boolean expression evaluates to `true`. The condition is checked before the loop body executes.
 * `do statement`: A loop that executes a block of code once, then repeats it as long as a specified boolean expression evaluates to `true`. The condition is checked after the loop body executes.
 * `foreach iteration variable`: The read-only variable that represents the current element being processed during a `foreach` or `await foreach` loop.
@@ -43,7 +43,7 @@ do { x++; } while (x < 5);
 ```
 
 # Common mistakes
-* Modifying the collection inside a `foreach` loop: You cannot add or remove items from a collection while iterating over it with `foreach`, as this will throw an exception.
+* Modifying the collection inside a `foreach` loop: Some enumerators (such as `List<T>`'s) are invalidated by structural changes and throw when advanced; behavior depends on the collection.
 * Off-by-one errors in `for` loops: Using `<=` instead of `<` when the loop condition is intended to run exactly `n` times.
 * Forgetting to update the loop variable in a `while` loop, leading to an infinite loop.
 

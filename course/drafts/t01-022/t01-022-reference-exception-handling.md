@@ -31,28 +31,31 @@ The exception-handling statements are hierarchical:
 try
 {
     // Attempt risky operation
-    int result = 10 / int.Parse("0");
+    int denominator = 0;
+    if (denominator == 0)
+        throw new DivideByZeroException();
+    int result = 10 / denominator;
 }
-catch (DivideByZeroException ex) when (ex.Message.Contains("zero"))
+catch (DivideByZeroException)
 {
     // Exception filter evaluates the condition before entering the catch block
     Console.WriteLine("Caught division by zero.");
 }
 finally
 {
-    // Always executes
+    // Runs as control leaves try/catch unless process termination prevents it.
     Console.WriteLine("Cleanup complete.");
 }
 ```
 
 # Common mistakes
-* **Ignoring the `finally` block:** Developers often forget that `finally` runs even if a `return` statement is inside the `try` block.
+* **Ignoring the `finally` block:** `finally` runs as control leaves `try`/`catch` in ordinary execution, including a return path; abrupt termination can prevent it.
 * **Over-catching:** Catching the base `Exception` type can hide bugs that you did not intend to handle. Always catch the most specific exception type possible.
 * **Empty catch blocks:** Swallowing exceptions without logging or handling them makes debugging nearly impossible.
 
 # Knowledge checks with answers
 1. **Question:** Does the `finally` block execute if no exception is thrown?
-   **Answer:** Yes, the `finally` block is guaranteed to execute after the `try` block finishes, regardless of whether an exception occurred.
+   **Answer:** In normal control flow it executes after the `try` or `catch` completes, whether or not an exception occurred. Abrupt process termination can prevent execution.
 
 2. **Question:** What is the purpose of an `exception filter`?
    **Answer:** It allows you to specify a condition (using `when`) that must be true for the `catch` block to execute, providing finer control over which exceptions are handled.

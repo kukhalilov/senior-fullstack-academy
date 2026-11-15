@@ -8,7 +8,7 @@
 This lesson covers the `unsafe` and `fixed` statement forms in C#. These features are part of the C# 15 language specification running on .NET 11 GA. Note that while these statements are stable, broader memory safety features in C# remain in preview as of the 2026-11-14 snapshot.
 
 # How this group fits the mental model
-In C#, the runtime (CLR) manages memory automatically. However, some performance-critical or low-level tasks require direct memory access, similar to languages like C or C++. The `unsafe` and `fixed` statements provide a "sandbox" where you can bypass standard safety checks to perform pointer arithmetic or interact with unmanaged memory.
+In C#, the runtime (CLR) manages memory automatically. However, some performance-critical or low-level tasks require direct memory access, similar to languages like C or C++. The `unsafe` and `fixed` statements provide a "sandbox" where you can perform operations the compiler cannot fully verify as type-safe to perform pointer arithmetic or interact with unmanaged memory.
 
 *   **`unsafe` statement**: Acts as a container. It tells the compiler that the code inside is allowed to use pointers and perform operations that the runtime cannot verify for safety.
 *   **`fixed` statement**: Acts as a protector. It tells the garbage collector (GC) to "pin" a variable in memory so that its address does not change while you are working with it via a pointer.
@@ -16,7 +16,7 @@ In C#, the runtime (CLR) manages memory automatically. However, some performance
 # Supplied names explained
 
 *   `unsafe statement`: This statement defines a block of code where pointer types and pointer-related operations are permitted. You cannot use pointers outside of an `unsafe` context. The compiler requires the project to be configured to allow unsafe code to compile this block.
-*   `fixed statement`: This statement prevents the garbage collector from relocating a movable variable. It creates a pointer to the variable, which remains valid only for the duration of the `fixed` block. Once the block exits, the variable is "unpinned" and the garbage collector is free to move it again.
+*   `fixed statement`: This statement prevents the garbage collector from relocating a movable variable. It creates a pointer to the variable, which remains valid only for the duration of the `fixed` block. Once the block exits, the variable is unpinned and the garbage collector may move it; a pointer value retained beyond the block no longer has a guaranteed stable address.
 
 # Cross-item comparison
 
@@ -49,7 +49,7 @@ unsafe
 # Common mistakes
 
 1.  **Forgetting to enable unsafe code**: Even if you write the `unsafe` keyword, your project file must have `<AllowUnsafeBlocks>true</AllowUnsafeBlocks>` set, or the compiler will reject the code.
-2.  **Accessing pointers after the `fixed` block**: Once the `fixed` block ends, the pointer variable is no longer valid. Attempting to use the pointer outside the block is a common source of memory corruption or undefined behavior.
+2.  **Accessing pointers after the `fixed` block**: Once the `fixed` block ends, the address is no longer guaranteed to remain stable. Do not use a pointer to movable managed data beyond the pinning lifetime.
 3.  **Overusing `unsafe`**: Because these statements bypass the runtime's memory safety, they should only be used when necessary for performance or interop. Using them unnecessarily increases the risk of bugs that the compiler cannot detect.
 
 # Knowledge checks with answers

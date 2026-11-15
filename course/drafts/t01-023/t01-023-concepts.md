@@ -13,11 +13,11 @@
 - Understanding of basic arithmetic, logical, and assignment operations in programming.
 
 # Core concepts
-C# expressions are constructs built from operands (the data) and operators (the actions performed on the data). Every expression evaluates to a specific static type and produces either a value or a reference. 
+C# expressions are constructs built from operands (the data) and operators (the actions performed on the data). Most runtime expressions have a compile-time type and, when evaluated, produce a value or designate a variable/reference; some expressions (such as method groups and type-related forms) have special rules.
 
 To make sense of how complex statements execute, C# relies on several core concepts:
 - **Expressions combine operands and operators**: From simple literals like `5` to complex statements, expressions compute new states.
-- **Precedence and Associativity**: Precedence determines which operator binds tighter (e.g., multiplication before addition). Associativity determines the direction of evaluation when operators share the same precedence level (e.g., left-to-right for arithmetic).
+- **Precedence and Associativity**: Precedence determines which operator binds tighter (e.g., multiplication before addition). Associativity determines grouping when operators share a precedence level (e.g., `(a + b) + c`), separately from operand evaluation order.
 - **Operand Evaluation Order**: Operands are generally evaluated left-to-right, but conditional structures can skip execution paths.
 - **Static Types and Conversions**: The compiler inspects operand types to select the correct built-in or overloaded operator.
 - **Structured Transformations**: Advanced expressions use patterns, ranges, switch expressions, and `with` statements to handle data safely.
@@ -47,19 +47,18 @@ bool check = false && (++result > 10);
 *Snippet context:* This snippet assumes execution inside a valid method body where variables are local integers.
 *Expected output:* `result` evaluates to `16`, and `check` evaluates to `false`.
 
-For advanced C# 15 features, collection expressions can pass arguments directly into collection factories:
+For advanced C# 15 features, collection expressions can pass arguments directly into collection constructors or factories. The expression must have a target type:
 ```csharp
-// Collection expression with(...) argument element (C# 15)
-// Assumes an underlying collection type or factory accepting a capacity argument.
-// Note: This snippet illustrates syntax structure as supported in C# 15.
+using System.Collections.Generic;
+List<int> values = [with(capacity: 10) 1, 2, 3];
 ```
-*Snippet context:* Demonstrates C# 15 collection expression factory parameter syntax.
+*Snippet context:* Demonstrates C# 15 collection-expression constructor arguments with an explicit `List<int>` target.
 
 # Misconceptions and edge cases
 - **Misconception:** All operands always evaluate from left to right with no exceptions. 
   - *Reality:* Short-circuiting operators (`&&`, `||`, `??`) intentionally skip evaluating their right-hand operands under specific runtime conditions.
 - **Edge Case:** Pointer operations. Using pointer member access (`->`) or pointer indirection (`*`) requires an `unsafe` context and proper memory management, failing which the compiler rejects the code.
-- **Overflow behavior:** Standard arithmetic integer operations do not throw on overflow unless placed inside an explicit `checked` block or compiler flag.
+- **Overflow behavior:** Integral arithmetic and conversions follow the checked/unchecked context and compiler settings; `decimal` overflow throws, while floating-point overflow produces infinity rather than `OverflowException`.
 
 # Knowledge checks with answers
 1. **Question:** What determines whether multiplication or addition happens first in an expression like `a + b * c`?

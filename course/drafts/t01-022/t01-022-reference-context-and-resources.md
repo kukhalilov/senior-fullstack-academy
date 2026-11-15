@@ -23,8 +23,8 @@ Within the broader mental model of C# statements, expressions produce values whi
 - `lock statement`: Acquires a mutual-exclusion lock for a given object, executes a statement block, and ensures the lock is released when execution exits the block, preventing multiple threads from executing the critical section concurrently.
 - `using statement`: Defines a resource scope using a traditional syntax block (`using (var resource = new Resource()) { ... }`). It guarantees that the resource's `Dispose()` method is invoked synchronously when execution exits the statement block, even if an exception occurs.
 - `using declaration`: Declares a disposable local variable without an explicit brace-delimited block (`using var resource = new Resource();`). The resource is disposed automatically when execution leaves the enclosing scope block.
-- `await using statement`: Manages asynchronously disposable resources (`IAsyncDisposable`) within a traditional block syntax (`await using (var resource = new AsyncResource()) { ... }`). It ensures that `DisposeAsync()` is awaited synchronously or asynchronously upon exiting the block scope.
-- `await using declaration`: Declares an asynchronously disposable local variable (`await using var resource = new AsyncResource();`). The runtime awaits its `DisposeAsync()` method when execution leaves the enclosing scope block.
+- `await using statement`: Manages asynchronously disposable resources (`IAsyncDisposable`) within a traditional block syntax (`await using (var resource = new AsyncResource()) { ... }`). On async scope exit, it awaits `DisposeAsync()` before continuing.
+- `await using declaration`: Declares an asynchronously disposable local variable (`await using var resource = new AsyncResource();`). On async scope exit, `DisposeAsync()` is awaited before execution continues.
 
 # Cross-item comparison
 

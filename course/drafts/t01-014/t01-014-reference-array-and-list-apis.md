@@ -9,7 +9,7 @@ This lesson covers the core API surface for `Array` and `List<T>` in .NET 11. Th
 
 # How this group fits the mental model
 In .NET, collections are chosen based on access patterns and memory requirements. 
-*   **`Array`** provides fixed-length, contiguous memory storage. It is the most efficient structure for scenarios where the size is known at creation and does not change.
+*   **`Array`** provides fixed-length, contiguous indexed storage. It can be compact when size is fixed, though the best memory choice depends on element types, layout, and usage.
 *   **`List<T>`** is a wrapper around an array that manages resizing automatically. It provides a dynamic, indexed sequence, making it the default choice for general-purpose, ordered data storage.
 
 # Supplied names explained

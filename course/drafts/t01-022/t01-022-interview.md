@@ -22,7 +22,7 @@ In C#, **statements** are the fundamental building blocks that perform actions, 
 # Deep follow-up answers
 
 *   **How do `break` and `continue` behave in C# 15?**
-    C# 15 introduced **Labeled break statement** and **Labeled continue statement**. These allow you to target a specific outer loop or switch block by name, which is significantly more efficient and readable than using `goto` to escape nested structures.
+    C# 15 introduced **Labeled break statement** and **Labeled continue statement**. These allow you to target a specific outer loop or switch block by name, which can make the target explicit and may be clearer than a flag or `goto`, depending on the surrounding control flow.
 *   **Why use `await using` instead of `using`?**
     `await using` is used for resources that implement `IAsyncDisposable`. It ensures that the cleanup process (which might involve network or disk I/O) is performed asynchronously, preventing the thread from blocking during disposal.
 *   **What is the purpose of the `fixed` statement?**
@@ -37,7 +37,7 @@ In C#, **statements** are the fundamental building blocks that perform actions, 
 
 # Tradeoffs and alternatives
 
-*   **`if statement` vs `switch statement`:** Use `if` for simple boolean conditions or ranges. Use `switch` when comparing a single variable against many discrete values or patterns; it is often more readable and can be optimized by the compiler into a jump table.
+*   **`if statement` vs `switch statement`:** Use `if` for simple boolean conditions or ranges. Use `switch` when comparing a single variable against many discrete values or patterns; it can be clearer; generated code and optimization depend on the expression and compiler.
 *   **`throw statement` vs `throw expression`:** A `throw statement` is a standalone instruction. A `throw expression` allows you to throw an exception inside an expression (like a ternary operator), which is useful for concise validation.
 *   **`using statement` vs `using declaration`:** Use the `using statement` if you need to limit the resource's lifetime to a specific, small block. Use the `using declaration` to keep the resource alive until the end of the current method scope.
 

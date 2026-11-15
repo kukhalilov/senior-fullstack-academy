@@ -27,13 +27,13 @@ These constructs evaluate operands from left to right, binding tighter than arit
   - *Purpose and behavior:* Accesses a member (such as a field, property, or method) of a namespace, type, or instance. It evaluates the left-hand operand first, then accesses the named member on the resulting reference or value.
 
 - `Null-conditional member access operator ?.`
-  - *Purpose and behavior:* Safely accesses a member of an operand only if that operand evaluates to a non-null value. If the left-hand side evaluates to `null`, the entire expression short-circuits and evaluates immediately to `null` instead of throwing a `NullReferenceException`.
+  - *Purpose and behavior:* Accesses a member only when its receiver is non-null. For value-producing members, a null receiver generally lifts a non-nullable value result to its nullable form or yields null for reference results; a conditional call to a `void` method remains a `void` expression.
 
 - `Element access operator []`
   - *Purpose and behavior:* Accesses an element of an array, indexer, or pointer. It evaluates the primary expression followed by the index arguments inside the brackets, returning the referenced element value or reference.
 
 - `Null-conditional element access operator ?[]`
-  - *Purpose and behavior:* Safely accesses an element of a collection or indexer only if the collection operand is non-null. If the collection evaluates to `null`, the expression short-circuits and evaluates to `null`.
+  - *Purpose and behavior:* Accesses an element only when its receiver is non-null. If the receiver is null, evaluation short-circuits; value-type element results are nullable-lifted and reference results can be null.
 
 - `Invocation operator ()`
   - *Purpose and behavior:* Invokes a method, delegate, or function pointer. It evaluates the target expression and any argument expressions from left to right, passing the arguments to the callable target and returning its result.
@@ -48,10 +48,10 @@ These constructs evaluate operands from left to right, binding tighter than arit
   - *Purpose and behavior:* Also known as the null-suppression operator, it suppresses any nullable warning (`CS8600` or similar) on its operand expression at compile time. It has no runtime effect and compiles down to a direct pass-through of the underlying value.
 
 - `new expression`
-  - *Purpose and behavior:* Instantiates a new object, value type instance, delegate, or collection. It allocates memory (on the stack or heap depending on type) and invokes the appropriate constructor.
+  - *Purpose and behavior:* Creates an object, value-type instance, delegate, or collection and performs applicable initialization. A `new` expression does not by itself determine stack-versus-heap storage; storage and lifetime depend on the value's type and use context.
 
 - `typeof expression`
-  - *Purpose and behavior:* Obtains the `System.Type` instance for a given type at runtime. It takes a type name or unbound generic type and resolves it statically.
+  - *Purpose and behavior:* `typeof(T)` obtains the `System.Type` object for a type (including an unbound generic type) at runtime. Its operand is a type, not a runtime value expression.
 
 - `checked expression`
   - *Purpose and behavior:* Explicitly enables overflow checking for integral-type arithmetic operations and conversions performed within its block or sub-expression. If an overflow occurs, it throws an `OverflowException`.
@@ -69,7 +69,7 @@ These constructs evaluate operands from left to right, binding tighter than arit
   - *Purpose and behavior:* Creates an anonymous method or delegate instance inline, allowing statement blocks or expressions to be treated as delegate objects.
 
 - `sizeof expression`
-  - *Purpose and behavior:* Obtains the size in bytes of an unmanaged type. This expression is restricted for use in unsafe code contexts.
+  - *Purpose and behavior:* Obtains the size in bytes of a type. `sizeof` for built-in types is permitted in safe code; for other unmanaged types, it requires an unsafe context.
 
 - `stackalloc expression`
   - *Purpose and behavior:* Allocates a block of memory directly on the execution stack. The allocated memory is automatically discarded when the method returns, and it requires an unsafe context or span-based initialization.
@@ -98,7 +98,7 @@ class Program
     static void Main()
     {
         // new expression and invocation operator ()
-        string text = new string("Hello, C# 15");
+        string text = "Hello, C# 15";
         
         // Member access operator . and length property
         int len = text.Length;

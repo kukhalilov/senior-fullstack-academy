@@ -12,7 +12,7 @@ In C#, expressions are combinations of operands and operators that produce a val
 
 # Supplied names explained
 
-* `with expression`: Creates a copy of an existing record or struct, modifying only the specified members. It is used for non-destructive mutation.
+* `with expression`: Creates a shallow copy of an existing record or struct and applies specified member initializers. Referenced objects are not recursively copied.
 * `Conditional operator ?:`: A ternary operator that evaluates a boolean expression and returns one of two values based on the result. It acts as a compact `if-else` statement.
 * `Lambda expression`: An anonymous function that can contain expressions or statement blocks. It is used extensively for delegates and expression trees.
 * `Lambda operator =>`: The token used to separate the input parameters from the body of a lambda expression.
@@ -23,13 +23,16 @@ In C#, expressions are combinations of operands and operators that produce a val
 
 # Cross-item comparison
 
-* `Lambda expression` vs `Anonymous method expression`: Both define inline functions. Lambda expressions are the modern, preferred syntax, while anonymous methods are an older construct that provides more explicit control over parameter types and capture behavior.
+* `Lambda expression` vs `Anonymous method expression`: Both define inline functions and can capture variables. Anonymous methods can omit the parameter list in supported delegate contexts; lambdas support expression bodies and modern `static` and `async` forms. Neither generally gives exclusive control over capture behavior.
 * `Lambda operator =>`: This is the structural component that enables the `Lambda expression`. It does not exist as a standalone expression but is the defining syntax for the lambda.
 * `Collection expression` vs `Collection expression with(...) argument element`: The former is the base syntax for initializing collections, while the latter is a specific enhancement for advanced scenarios requiring factory or constructor arguments.
 
 # Examples
 
 ```csharp
+using System;
+using System.Collections.Generic;
+
 // with expression
 var point = new Point(1, 2);
 var moved = point with { X = 10 };
@@ -48,14 +51,14 @@ string displayName = name ?? throw new ArgumentNullException(nameof(name));
 int[] numbers = [1, 2, 3];
 
 // Collection expression with(...) argument element (C# 15)
-var list = [with(capacity: 10) 1, 2, 3];
+List<int> list = [with(capacity: 10) 1, 2, 3];
 ```
 
 # Common mistakes
 
 * **Overusing Throw expressions**: While concise, `throw` expressions can make debugging harder if they are nested too deeply within complex logic.
 * **Lambda vs. Anonymous Method**: Beginners often confuse the two; remember that `=>` is exclusive to lambda expressions.
-* **Collection Expression Type**: Ensure the target variable type is compatible with the collection expression; the compiler infers the type, but it must be a supported collection type (like `List<T>` or `Span<T>`).
+* **Collection Expression Type**: Collection expressions are target-typed; provide a compatible target type (such as `int[]`, `List<int>`, or a supported span type). `var values = [1, 2, 3];` has no target type and does not compile.
 
 # Knowledge checks with answers
 

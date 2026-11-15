@@ -107,4 +107,4 @@ $O(1)$, as we only use a few integer variables for pointers and swapping, regard
 1.  Why is `k %= n` necessary before starting the reversals?
 2.  What would happen if we used an `Auxiliary array` instead of the reversal technique? How would the space complexity change?
 3.  How does the `In-place reversal` pattern relate to the `Stable relative order` concept?
-4.  Source reference: [OpenDSA Array-based List](https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html) and [Microsoft C# Arrays](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays).
+4.  Source reference: [LeetCode: Rotate Array](https://leetcode.com/problems/rotate-array/description/), [OpenDSA Array-based List](https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html), and [Microsoft C# Arrays](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays).

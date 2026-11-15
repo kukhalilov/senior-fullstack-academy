@@ -12,7 +12,7 @@ In .NET, a collection is a combination of a storage shape (how data is organized
 
 # Supplied names explained
 
-* `IEnumerable<T>`: The base interface for all generic collections; it allows sequential iteration over a collection.
+* `IEnumerable<T>`: A common contract for generic iteration; many generic collections implement it, but generic types are not required to be collections or implement it.
 * `IEnumerator<T>`: The object that maintains the current position during iteration over an `IEnumerable<T>`.
 * `ICollection<T>`: Extends `IEnumerable<T>` to provide methods for adding, removing, and checking the size of a collection.
 * `IReadOnlyCollection<T>`: A contract that provides access to the number of elements and iteration without allowing modification.
@@ -48,7 +48,7 @@ In .NET, a collection is a combination of a storage shape (how data is organized
 # Cross-item comparison
 * **`ICollection<T>` vs `IReadOnlyCollection<T>`**: `ICollection<T>` allows modification (Add/Remove), while `IReadOnlyCollection<T>` only allows inspection.
 * **`IList<T>` vs `IDictionary<TKey,TValue>`**: `IList<T>` uses integer indices for access; `IDictionary<TKey,TValue>` uses arbitrary keys.
-* **`Read-only view` vs `Immutable collection`**: A read-only view can still change if the underlying object is modified elsewhere. An immutable collection is inherently thread-safe and cannot be modified.
+* **`Read-only view` vs `Immutable collection`**: A read-only view can still change if the underlying object is modified elsewhere. An immutable collection's structure cannot be changed, but mutable elements may still require synchronization.
 
 # Examples
 ```csharp
@@ -60,15 +60,16 @@ void PrintCount(IReadOnlyCollection<int> collection)
     => Console.WriteLine(collection.Count);
 
 // TryGetValue usage
+Dictionary<string, int> myDictionary = new() { ["key"] = 42 };
 if (myDictionary.TryGetValue("key", out var value)) {
     Console.WriteLine(value);
 }
 ```
 
 # Common mistakes
-* **Modifying during iteration**: Adding or removing items from a collection while using a `foreach` loop will trigger `Enumerator invalidation after mutation`, causing a runtime exception.
+* **Modifying during iteration**: Structural changes invalidate some enumerators (for example, `List<T>`); behavior depends on the collection contract and implementation.
 * **Confusing Read-only with Immutable**: Casting a `List<T>` to `IReadOnlyList<T>` does not make the list immutable; the original list can still be modified by other references.
-* **Ignoring Capacity**: For very large collections, failing to set an initial `Collection capacity` can lead to performance degradation due to frequent internal resizing.
+* **Ignoring Capacity**: When approximate size is known, an appropriate initial capacity can reduce reallocations. Excessive preallocation wastes memory; not every collection exposes capacity.
 
 # Knowledge checks with answers
 1. **Q: Can you modify a collection through an `IReadOnlyList<T>` reference?**

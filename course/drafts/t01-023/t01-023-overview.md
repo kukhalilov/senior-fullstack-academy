@@ -14,7 +14,7 @@ Think of evaluating a C# expression like solving a complex mathematical formula 
 
 1. **Operands and Operators**: **Operands** are the raw materials (like numbers, variables, or object instances), and **operators** are the tools (like `+`, `-`, or `.` for member access) that act on those materials to build something new.
 2. **Precedence (The Hierarchy of Tools)**: Just as multiplication takes precedence over addition in standard arithmetic, C# assigns a strict ranking to every operator. High-ranking operators finish their work before lower-ranking operators take over, regardless of where they sit in the text (unless parentheses override them).
-3. **Associativity (The Tie-Breaker)**: When operators of the exact same rank sit side-by-side (like `a + b + c`), **associativity** decides whether the computer groups them from left-to-right or right-to-left.
+3. **Associativity (The Tie-Breaker)**: When operators of the exact same rank sit side-by-side (like `a + b + c`), **associativity** decides how the expression is grouped; operand evaluation order is a separate rule.
 4. **Operand Evaluation Order**: Operands are generally evaluated from left to right, but special **short-circuit** constructs act like safety valves—they conditionally skip work entirely if the final outcome is already known (for instance, if the first part of an `&&` check is false).
 
 # How the parts fit together

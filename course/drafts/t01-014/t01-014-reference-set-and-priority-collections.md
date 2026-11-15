@@ -17,7 +17,7 @@ Within that model:
 This reference catalog explains every item assigned to the set-and-priority-collections inventory group. Each entry corresponds directly to a provided API member or comparison topic.
 
 * `HashSet<T>`
-  - Purpose and behavior: A hash-based, unordered collection that contains unique elements of type `T`. It provides fast O(1) average time complexity for lookups, additions, and removals.
+  - Purpose and behavior: A hash-based, unordered collection that contains unique elements of type `T`. It offers expected O(1) lookup, addition, and removal under well-distributed hashes; pathological collisions can make operations slower.
 
 * `HashSet<T>.Add`
   - Purpose and behavior: Attempts to insert a specified element into the hash set. Returns `true` if the element was added successfully, or `false` if it was already present.

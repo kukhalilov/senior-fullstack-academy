@@ -43,7 +43,8 @@ int xorResult = a ^ b; // 0110 (6)
 
 // Logical and short-circuiting
 bool check = (a > 0) && (b > 0); // Both evaluated
-bool safeCheck = (a != 0) && (10 / a > 1); // Safe: avoids division by zero if a were 0
+int divisor = 0;
+bool safeCheck = (divisor != 0) && (10 / divisor > 1); // Safe: right side is skipped when divisor is 0
 ```
 
 # Common mistakes

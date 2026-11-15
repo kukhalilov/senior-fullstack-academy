@@ -51,16 +51,16 @@ Imagine you are building a system to track user scores in a game.
     }
     ```
 4.  **Scaling:** If you realize you need to share this dictionary across multiple background threads, you would switch to a `ConcurrentDictionary<string, int>` to ensure that adding a score from one thread doesn't crash the program while another thread is reading.
-5.  **Optimization:** If the game ends and the scores are finalized, you might convert the dictionary to a `FrozenDictionary<string, int>` to make all future lookups as fast as possible.
+5.  **Optimization:** If the game ends and scores are finalized, a `FrozenDictionary<string, int>` can suit a fixed, read-heavy workload; account for construction cost and benchmark the actual workload.
 
 # When to use it and tradeoffs
-*   **Use Arrays** when the number of items is known and fixed. They are the most memory-efficient.
+*   **Use Arrays** when the number of items is known and fixed. They provide fixed-length contiguous indexed storage and can be compact, though memory efficiency depends on element types and usage.
 *   **Use `List<T>`** for general-purpose dynamic sequences.
 *   **Use `Dictionary<TKey,TValue>`** for fast lookups. **Tradeoff:** It uses more memory than a list because it stores extra data to make lookups fast.
 *   **Use Concurrent Collections** only when you actually have multiple threads accessing the same collection. **Tradeoff:** They are slower than standard collections due to the overhead of ensuring thread safety.
 *   **Use Immutable/Frozen Collections** for data that shouldn't change. **Tradeoff:** Creating them is "expensive" (takes more time/memory), but reading from them is highly optimized.
 
-**Common Mistake:** Modifying a collection while looping through it (e.g., removing an item from a `List` while using `foreach`). This will throw an exception. Always use a separate list to track items to remove, or use a collection type designed for concurrent modification.
+**Common Mistake:** Modifying a collection while looping through it (e.g., removing an item from a `List` while using `foreach`). Some enumerators (including List<T> enumerators) are invalidated by structural modifications during iteration. Behavior varies by collection; use its documented mutation pattern.
 
 # What later lessons cover
 *   **LINQ:** How to filter, sort, and transform collections using powerful query syntax.

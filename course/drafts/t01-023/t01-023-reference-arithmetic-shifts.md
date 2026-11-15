@@ -48,7 +48,7 @@ int logical = signed >>> 1; // 2147483644 (Binary: 0111 1100)
 # Common mistakes
 
 * **Integer Division**: Beginners often expect `5 / 2` to result in `2.5`. Because both operands are integers, C# performs integer division, resulting in `2`. Use `5.0 / 2` to get a floating-point result.
-* **Shift Overflow**: Shifting by a number of bits greater than or equal to the bit-width of the type (e.g., shifting a 32-bit `int` by 32 or more) results in unexpected behavior; C# uses only the lower 5 bits of the shift count for 32-bit integers.
+* **Shift Overflow**: Shifting by a number of bits greater than or equal to the bit-width of the type (e.g., shifting a 32-bit `int` by 32 or more) uses only the low 5 bits of the shift count for `int`/`uint`, and the low 6 bits for `long`/`ulong` (for example, shifting an `int` by 32 uses an effective count of 0).
 * **Operator Precedence**: Assuming `+` happens before `*`. Multiplication and division have higher precedence than addition and subtraction. Use parentheses `(a + b) * c` to ensure the intended order.
 
 # Knowledge checks with answers
