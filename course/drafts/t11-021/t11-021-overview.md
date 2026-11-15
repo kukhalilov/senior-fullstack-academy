@@ -18,9 +18,9 @@ Imagine a club door policy at a private venue.
 * A **list** is like a sign-in sheet where people can write their names as many times as they want, in the exact order they arrived. If you want to check if "Alice" is inside, you have to read every line from top to bottom.
 * A **set** is like a strict guest list with a single rule: **every person's name appears at most once**. 
 
-When Alice arrives at the door, the bouncer doesn't read the whole book. Because the names are indexed or organized for instant lookup, the bouncer immediately knows whether Alice is on the guest list. 
+When Alice arrives, an efficient set implementation can use its organization to avoid scanning every name. The exact lookup cost depends on the implementation: a hash set offers expected constant-time membership under suitable hashing assumptions, while an ordered set typically takes logarithmic time.
 
-In programming, a set behaves the same way. It guarantees that elements are unique, and it provides fast ways to check if an item belongs to the collection.
+In programming, a set guarantees uniqueness according to its equality rules. It supports membership checks, with performance determined by the concrete implementation.
 
 ---
 

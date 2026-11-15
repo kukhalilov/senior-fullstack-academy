@@ -6,16 +6,16 @@
 
 When writing programs, we frequently need to answer questions like: *"Have I seen this item before?"*, *"How many times did this word appear?"*, or *"Which user ID belongs to this email address?"* 
 
-If we store items in a simple list or array, finding a specific item requires scanning through elements one by one. As the collection grows, this linear search becomes too slow. Hash maps solve this problem by trading memory space for speed, allowing us to find, add, and remove data almost instantly, regardless of how many items are stored.
+If we store items in a simple list or array, finding a specific item may require scanning elements one by one. A hash map uses extra storage to make lookup, insertion, and removal expected constant time when hashes are well distributed and collisions remain controlled; collisions or expensive key comparison can make individual operations slower.
 
 # Plain-language mental model
 
 Imagine an office mailroom with hundreds of labeled mailboxes (pigeonholes) along the wall. 
 * A **key** is the recipient's name (for example, "Alice").
-* A **hash function** is a mathematical rule that takes the name "Alice" and instantly points to mailbox number 42.
+* A **hash function** maps the name "Alice" to a hash code. The table uses that code to select a bucket, but the code does not identify a unique key by itself because different keys can collide.
 * The **value** is the letter placed inside mailbox number 42.
 
-Instead of walking down the hallway and checking every single mailbox from the beginning, you run the name through the rule and walk directly to the correct box. 
+Instead of always walking down the hallway, you use the hash to narrow the search to a bucket and then use key equality to find the exact entry. Different keys can share a bucket, so a collision-resolution strategy is still needed.
 
 A **frequency table** is a specific way of using this mailroom. Imagine reading a book and dropping a tally slip into a mailbox every time a specific word appears. At the end, you open each mailbox to see the total count for each word.
 
@@ -23,8 +23,8 @@ A **frequency table** is a specific way of using this mailroom. Imagine reading 
 
 Behind the scenes, a hash map combines several moving parts:
 1. **The Hash Function and Code:** A formula converts a complex key (like a string) into an integer called a **hash code**.
-2. **The Bucket Array:** An internal array stores the actual key-value pairs. The hash code determines which "bucket" in this array holds the data.
-3. **Collisions and Resolution:** Because there are infinite possible keys but a finite number of buckets, two different keys might point to the same bucket. When this happens, a **collision** occurs, which the data structure must resolve using techniques like **separate chaining** (storing multiple items in a linked list at that bucket) or **open addressing** (searching for the next available bucket).
+2. **Buckets and entries:** A table maps a hash code to a bucket. Depending on the implementation, buckets may contain entries directly, point to a chain, or guide a probe sequence; many implementations also keep entry storage separate from the bucket array.
+3. **Collisions and resolution:** Because keys outnumber the finite bucket locations, different keys can select the same bucket. Implementations resolve collisions with strategies such as **separate chaining** (keeping multiple entries associated with a bucket) or **open addressing** (probing for another slot).
 4. **Resizing:** As the table fills up (measured by the **load factor**), the program creates a larger bucket array and moves all existing items over through **rehashing**.
 
 # Concept map

@@ -471,6 +471,8 @@ test('scheduled generation stays below the observed per-model Gemini free-tier d
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /UNITS_PER_RUN: '80'/);
   assert.match(workflow, /MAX_API_CALLS_PER_RUN: '160'/);
+  assert.match(workflow, /UNITS_PER_RUN: '1'/);
+  assert.match(workflow, /MAX_API_CALLS_PER_RUN: '12'/);
   const pools = [...workflow.matchAll(/GEMINI_MODELS: ([\w.,-]+)/g)].map(match => match[1].split(','));
   const expectedModels = ['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash','gemini-3.6-flash','gemini-3-flash-preview','gemini-4-hydrogen'];
   assert.equal(pools.length, 2);

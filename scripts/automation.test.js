@@ -6,14 +6,15 @@ test('curriculum updates start automatically without exceeding the reserved Gemi
   const workflow = fs.readFileSync('.github/workflows/generate.yml', 'utf8');
   assert.match(workflow, /push:\s+branches: \[main\]/);
   assert.match(workflow, /curriculum\/manifests\/\*\*/);
-  assert.match(workflow, /UNITS_PER_RUN: '4'/);
-  assert.match(workflow, /MAX_API_CALLS_PER_RUN: '8'/);
+  assert.match(workflow, /UNITS_PER_RUN: '1'/);
+  assert.match(workflow, /MAX_API_CALLS_PER_RUN: '12'/);
   assert.match(workflow, /UNITS_PER_RUN: '80'/);
   assert.match(workflow, /MAX_API_CALLS_PER_RUN: '160'/);
   assert.match(workflow, /course\/drafts\/\*\*/);
   assert.match(workflow, /github\.actor != 'github-actions\[bot\]'/);
-  assert.equal((6 * 160 + 8) / 2, 484);
-  assert.ok(484 < 500);
+  const maximumScheduledAndPushRequests = 6 * 160 + 12;
+  assert.equal(maximumScheduledAndPushRequests, 972);
+  assert.ok(maximumScheduledAndPushRequests <= 1000, 'scheduled and single push batch stay below the two Flash-Lite models\' combined capacity');
 });
 
 test('lesson headings accept valid Markdown heading levels for required sections', () => {

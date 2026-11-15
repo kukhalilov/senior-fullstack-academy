@@ -8,7 +8,7 @@
 
 Many algorithmic problems start with a simple need: you have a list of related values—such as daily temperatures, test scores, or cells on a game board—and your program needs to keep them in a specific order. You also need a fast way to read or change any item by its position.
 
-An **array** solves this problem by storing an ordered sequence of elements side by side in memory, where each element is identified by an integer **index** (its numbered position in the sequence). Because items sit in a predictable order, the computer can jump straight to any position using its index.
+An **array** solves this problem by storing an ordered sequence of element slots contiguously in memory, where each element is identified by an integer **index** (its numbered position in the sequence). For reference-type arrays, the slots hold references; the referenced objects can live elsewhere. Because positions are laid out predictably, the computer can access a slot directly by its index.
 
 In real problems, however, data does not always stay the same size. Sometimes you know the exact number of items from the start, so a fixed-size array is enough. Other times, new items arrive one by one while your program runs. A **dynamic array** solves this second problem by automatically managing a larger storage block behind the scenes when the collection grows.
 
@@ -50,7 +50,7 @@ In languages such as C#, arrays use **zero-based indexing**—meaning the first 
 
 * **Direct indexed access** reads or updates one element at a known index `i`. Because memory is contiguous, the computer calculates the exact location directly, so this takes constant time regardless of array length.
 * **Scanning** (also called **traversal**) visits elements one after another, such as checking every score to find the highest one. Its cost grows linearly with the number of elements.
-* **Insertion or deletion in the middle** has a different cost from direct access. Because elements must remain contiguous with no gaps, inserting a new element at index `i` requires shifting elements at `i` and beyond one step to the right. Removing an element at index `i` requires shifting later elements one step to the left to close the gap ([OpenDSA](https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html)).
+* **Insertion or deletion before the end** has a different cost from direct access. Inserting at index `i` shifts the suffix beginning at `i` right; removing at index `i` shifts the later suffix left. The work depends on how many elements move. End insertion needs no shift, and removing the last element needs no shift ([OpenDSA](https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html)).
 
 ### Contiguous storage, logical count, and capacity
 
@@ -214,7 +214,7 @@ Understanding array tradeoffs helps you pick the right tool before writing code.
 
 ### When arrays are not the best fit
 
-Arrays and dynamic arrays are ideal when you need ordered storage, compact memory, fast scanning, or direct access by integer index. They become a poor fit when your program must repeatedly insert or delete elements near the beginning or middle of a large collection (causing constant shifting), or when you frequently need to look up items by a non-integer key or check membership in a large unsorted collection.
+Arrays and dynamic arrays are ideal when you need ordered storage, compact element slots, fast scanning, or direct access by integer index. They become a poor fit when your program repeatedly inserts or deletes before the end of a large collection, because each operation may shift a linear-size suffix, or when you frequently look up items by a non-integer key or check membership in a large unsorted collection.
 
 ### Common mistakes to watch for
 
