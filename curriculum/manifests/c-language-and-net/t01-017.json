@@ -6,7 +6,7 @@
   "status": "source-backed-draft-generation-enabled",
   "concepts": [
     "Concurrency means multiple operations make progress during overlapping periods; parallelism means work runs at the same instant on multiple processors. Threads are execution resources, while tasks describe units of work and usually build on the thread pool.",
-    "Shared mutable state creates race conditions when correctness depends on timing. Prefer ownership, immutability, message passing, and concurrent collections; use locks or atomic operations only to protect a clearly stated invariant.",
+    "Shared mutable state creates race conditions when correctness depends on timing. Prefer ownership, immutability, message passing, and concurrent collections; use locks or atomic operations only to protect a clearly stated invariant. A lock protects state only when every access that participates in that invariant follows the same lock protocol.",
     "A synchronization primitive either protects a critical section or coordinates participants. Monitor and `lock` provide in-process mutual exclusion, events and semaphores coordinate signaling and capacity, and Interlocked performs a narrow set of atomic updates.",
     "Every lock design needs a consistent acquisition order, a short critical section, and exception-safe release. Deadlocks, starvation, contention, priority inversion, and false sharing are different performance or correctness problems and need different remedies.",
     "Use the Task Parallel Library for most parallel work. Dedicated `Thread` instances are for specialized long-lived or thread-affine work; direct thread-pool APIs and low-level spin primitives are specialized tools whose costs need measurement."
@@ -110,6 +110,7 @@
         "Interlocked.Xor",
         "Interlocked.MemoryBarrier",
         "Interlocked.MemoryBarrierProcessWide",
+        "Thread.MemoryBarrier()",
         "Interlocked.CompareExchange<T> reference overload",
         "Interlocked.Exchange<T> reference overload",
         "Interlocked.Increment(Int32)",
@@ -122,6 +123,8 @@
         "Volatile.Write(Int64)",
         "Volatile.Read reference overload",
         "Volatile.Write reference overload",
+        "Volatile does not guarantee direct physical-memory access",
+        "Volatile does not make compound read-modify-write atomic",
         "Volatile memory ordering",
         "Atomicity versus visibility versus ordering",
         "Compare-and-swap loop",
@@ -355,6 +358,7 @@
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.monitor",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.interlocked",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.volatile",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.thread.memorybarrier",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphoreslim",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.manualreseteventslim",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.readerwriterlockslim",

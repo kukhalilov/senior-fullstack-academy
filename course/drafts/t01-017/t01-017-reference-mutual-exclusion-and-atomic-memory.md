@@ -121,6 +121,12 @@ This section explains every item in the assigned inventory group, connecting eac
 * `Interlocked.MemoryBarrierProcessWide`
   A process-wide memory barrier that forces processor-level reordering restrictions across all threads in the current process.
 
+* `Thread.MemoryBarrier()`
+  Establishes a memory barrier that prevents the calling thread's memory operations from being reordered across the barrier. Use the synchronization primitives designed for the shared-state protocol (such as a lock or an appropriate Interlocked operation) instead of treating a barrier alone as a replacement for mutual exclusion.
+
+* `Thread.MemoryBarrier()`
+  Establishes a memory barrier that prevents the calling thread's memory operations from being reordered across the barrier. Use the synchronization primitives designed for the shared-state protocol (such as a lock or an appropriate Interlocked operation) instead of treating a barrier alone as a replacement for mutual exclusion.
+
 * `Interlocked.CompareExchange<T> reference overload`
   A generic reference-type overload of `CompareExchange` that performs atomic reference comparisons and replacements.
 
@@ -134,10 +140,10 @@ This section explains every item in the assigned inventory group, connecting eac
   An explicit 64-bit integer overload of `Interlocked.Increment`.
 
 * `Volatile.Read<T>`
-  Reads a field value as a volatile read, ensuring the CPU does not cache the value in a register across execution steps and preventing memory reordering.
+  Reads a field with volatile ordering semantics. It constrains the ordering of memory operations as specified by .NET; it does not require a physical-memory fetch or make a compound read-modify-write operation atomic.
 
 * `Volatile.Write<T>`
-  Writes a field value as a volatile write, ensuring the write completes immediately in memory without reordering.
+  Writes a field with volatile ordering semantics. It constrains the ordering of memory operations as specified by .NET; it does not promise an immediate write to physical memory.
 
 * `Volatile.Read(Int32)`
   A specialized 32-bit integer overload for `Volatile.Read`.
@@ -157,8 +163,14 @@ This section explains every item in the assigned inventory group, connecting eac
 * `Volatile.Write reference overload`
   A volatile write overload specifically handling reference types.
 
+* `Volatile does not guarantee direct physical-memory access`
+  Volatile ordering semantics do not require the processor to fetch each value from physical memory; the contract describes ordering and visibility between threads, not a specific hardware cache implementation.
+
+* `Volatile does not make compound read-modify-write atomic`
+  Separate volatile reads and writes do not make a compound increment or check-then-act sequence atomic. Use a suitable Interlocked operation or protect the complete invariant with a consistent lock.
+
 * `Volatile memory ordering`
-  The enforcement of read and write ordering rules that prevent optimizing compilers and CPU cores from reordering memory operations across volatile boundaries.
+  The ordering guarantees associated with volatile reads and writes. These operations are not a substitute for a lock when multiple operations must preserve a shared invariant, and they do not make a read-modify-write sequence atomic.
 
 * `Atomicity versus visibility versus ordering`
   The distinction between uninterrupted execution of a single instruction (atomicity), whether other threads can see updated values (visibility), and the sequence in which memory operations execute (ordering).
@@ -200,7 +212,7 @@ Within this inventory group, several primitives and patterns share overlapping u
 * `Volatile` methods versus `Interlocked` methods: `Volatile.Read` and `Volatile.Write` ensure memory visibility and ordering without atomicity guarantees for compound changes, whereas `Interlocked` methods provide both atomicity and memory barriers.
 
 # Examples
-The following examples demonstrate correct usage of the `lock` statement, `System.Threading.Lock`, and `Interlocked` operations in a single-file context.
+The following example demonstrates a single synchronization protocol: every access to the counter uses the same lock. Do not mix locked writes with unsynchronized or Interlocked writes and assume the lock protects those other accesses.
 
 ```csharp
 using System;
@@ -213,24 +225,21 @@ public class ThreadingDemo
     private readonly System.Threading.Lock _lockObj = new();
     private int _sharedCounter = 0;
 
-    public void IncrementWithLockStatement()
+    public void Increment()
     {
-        // Compiler lowers this to EnterScope / Dispose for System.Threading.Lock
+        // The compiler lowers this lock to EnterScope / Dispose for System.Threading.Lock.
         lock (_lockObj)
         {
             _sharedCounter++;
         }
     }
 
-    public void IncrementWithInterlocked()
-    {
-        // Atomic increment without acquiring an explicit monitor lock
-        Interlocked.Increment(ref _sharedCounter);
-    }
-
     public int GetCounter()
     {
-        return Volatile.Read(ref _sharedCounter);
+        lock (_lockObj)
+        {
+            return _sharedCounter;
+        }
     }
 }
 
@@ -240,13 +249,13 @@ public class Program
     {
         var demo = new ThreadingDemo();
 
-        // Run concurrent tasks updating the counter
+        // Run concurrent tasks updating the counter through the same lock protocol.
         Task t1 = Task.Run(() => {
-            for (int i = 0; i < 1000; i++) demo.IncrementWithLockStatement();
+            for (int i = 0; i < 1000; i++) demo.Increment();
         });
 
         Task t2 = Task.Run(() => {
-            for (int i = 0; i < 1000; i++) demo.IncrementWithInterlocked();
+            for (int i = 0; i < 1000; i++) demo.Increment();
         });
 
         await Task.WhenAll(t1, t2);
@@ -264,7 +273,7 @@ Final Counter: 2000
 # Common mistakes
 * **Locking on `this` or public types**: Locking on `this` or `typeof(MyClass)` exposes internal synchronization state to external callers, leading to unexpected deadlocks and denial of service. Always lock on a private, dedicated instance field.
 * **Forgetting `try-finally` with raw `Monitor.Enter`**: If an exception occurs between `Monitor.Enter(obj)` and `Monitor.Exit(obj)` without a `try-finally` block, the lock remains permanently acquired, causing other threads to hang indefinitely.
-* **Confusing atomicity with visibility**: Modifying a standard integer without `Interlocked`, `Volatile`, or a lock does not guarantee that other threads will immediately see the updated value due to CPU caching and reordering.
+* **Confusing atomicity with visibility**: A volatile read or write does not make a compound update atomic. Protect every access that participates in a multi-step invariant with the same lock, or use a suitable atomic operation for a single supported update.
 * **Unbounded critical sections**: Performing blocking I/O or heavy computations inside a locked section starves other threads and creates severe lock contention.
 
 # Knowledge checks with answers
@@ -275,9 +284,9 @@ Final Counter: 2000
    **Answer:** It exposes the lock token externally, allowing outside code to acquire the lock unintentionally, which can result in deadlocks and unpredicted thread contention.
 
 3. **Question:** When should you choose `Interlocked.Increment` instead of a `lock` statement?
-   **Answer:** You should choose `Interlocked.Increment` when updating a single scalar integer atomically, as it avoids thread blocking and context-switching overhead. A `lock` statement is required when protecting multi-step critical sections involving multiple variables.
+   **Answer:** Choose `Interlocked.Increment` for a supported single-variable atomic increment when that operation alone preserves the invariant. Use a lock when the invariant spans multiple operations or state. Do not mix locking and Interlocked operations on the same state unless the complete synchronization protocol is explicitly designed for that combination.
 
 4. **Question:** What does `Volatile.Read` guarantee that a normal field read does not?
-   **Answer:** `Volatile.Read` guarantees that the value is read directly from memory rather than a cached CPU register, and prevents memory instruction reordering across the read boundary.
+   **Answer:** It applies volatile ordering semantics to the read as defined by .NET. It does not promise a physical-memory fetch and does not make a read-modify-write sequence atomic.
 
-Sources: [Topic reference](https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-threading-basics)
+Sources: [Topic reference](https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-threading-basics), [Volatile API reference](https://learn.microsoft.com/en-us/dotnet/api/system.threading.volatile), [Thread.MemoryBarrier API reference](https://learn.microsoft.com/en-us/dotnet/api/system.threading.thread.memorybarrier)
