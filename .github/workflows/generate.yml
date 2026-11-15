@@ -32,6 +32,7 @@ jobs:
       - run: npm run build:queue
       - run: npm test
       - run: npm run validate:structure
+      - run: npm run validate:catalog
       - id: pending
         name: Count eligible drafts
         run: npm run generate -- --dry-run
