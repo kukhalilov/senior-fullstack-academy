@@ -2,13 +2,11 @@
 
 ## Scope and version
 
-ASP.NET Core 10 introduced built-in Identity passkey registration and authentication. ASP.NET Core 11 retains that support and exposes additional passkey configuration through `IdentityPasskeyOptions` as described by the current curriculum manifest. The built-in feature is scoped to Identity authentication scenarios; it is not a general-purpose WebAuthn server. Verify defaults and exact API availability against the targeted framework because the passkey surface is recent. [ASP.NET Core 10 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-10.0) [Passkey guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/) [IdentityPasskeyOptions API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitypasskeyoptions)
+ASP.NET Core Identity's built-in passkey flows target Identity accounts, not every WebAuthn server use case. This lesson covers the Identity options and account-level security flows represented by the supplied inventory. Passkeys arrived in ASP.NET Core 10; check the target framework's API reference for exact availability and defaults. [ASP.NET Core passkey guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/) [ASP.NET Core 10 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-10.0) [IdentityPasskeyOptions](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitypasskeyoptions)
 
 ## How this group fits the mental model
 
-Passkey registration is an attestation ceremony: the server provides a fresh challenge and relying-party context, the authenticator creates a public-key credential, and the server stores public credential data. Sign-in is an assertion ceremony: the server sends a fresh challenge, the authenticator signs it with the private key, and the server verifies the signature against the stored public key and the expected relying-party/origin context. The private key stays with the authenticator. Identity's `UserManager` persists passkey data and its passkey handler participates in verification. [Passkey guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
-
-Two-factor authentication is a separate account flow. Identity can combine a primary sign-in attempt with authenticator or recovery codes, but built-in passkeys are treated as a primary factor and do not automatically become Identity's second factor. Recovery codes are single-use capabilities; secure enrollment and recovery are part of the authentication design, not optional UI details.
+A registration ceremony lets an authenticator create a public-key credential for a relying party. The server supplies fresh challenge and relying-party context; the browser mediates the ceremony; the server validates the response and stores credential information. On sign-in, a fresh assertion is checked against the expected origin, relying-party ID, challenge, credential, and stored public key. The private key remains with the authenticator. Identity's passkey support is a primary sign-in path. Its authenticator-app two-factor and recovery-code flows are separate account workflows.
 
 ## Supplied names explained
 
@@ -16,133 +14,152 @@ Two-factor authentication is a separate account flow. Identity can combine a pri
 
 | Supplied name | Meaning and use |
 |---|---|
-| `IdentityPasskeyOptions` | Options for Identity's WebAuthn/passkey behavior, including relying-party domain, challenge, authenticator, origin, algorithm, and attestation controls. Configure only after understanding the production host/origin topology. |
-| `IdentityPasskeyOptions.AttestationConveyancePreference` | Sets the requested attestation conveyance preference for credential creation. It controls what attestation information the authenticator/browser may provide; it does not force every browser or authenticator to return a particular attestation. |
-| `IdentityPasskeyOptions.AuthenticatorAttachment` | Influences whether creation options prefer a platform authenticator or a cross-platform authenticator. It is a selection hint; availability and user-agent behavior can vary. |
-| `IdentityPasskeyOptions.AuthenticatorTimeout` | Browser-facing time allowance hint for the authenticator ceremony. The browser may ignore it, so server-side challenge expiry and cancellation handling are still necessary. |
-| `IdentityPasskeyOptions.ChallengeSize` | Number of random challenge bytes generated for creation/assertion flows. Challenges must be unpredictable and bound to one operation; the client must not choose them. |
-| `IdentityPasskeyOptions.IsAllowedAlgorithm` | Predicate used to allow or reject credential public-key algorithm identifiers offered by an authenticator. Restrict algorithms to implementations the server can securely verify and maintain. |
-| `IdentityPasskeyOptions.ResidentKeyRequirement` | Controls whether a discoverable credential is discouraged, preferred, or required in the creation request. Discoverable credentials can enable username-less sign-in, but browser/authenticator support and account discovery policy matter. |
-| `IdentityPasskeyOptions.ServerDomain` | Effective relying-party ID/domain used for passkey registration and authentication. Set it deliberately in production; a broad parent domain also broadens subdomain scope, and untrusted content on covered subdomains is dangerous. |
-| `IdentityPasskeyOptions.UserVerificationRequirement` | Requests whether the authenticator should verify the user (for example through a device PIN or biometric) during the ceremony. This requirement is a WebAuthn ceremony setting and does not by itself establish Identity's second factor. |
-| `IdentityPasskeyOptions.ValidateOrigin` | Custom origin-validation callback for passkey ceremonies. Only accept explicit trusted origins; broad acceptance can undermine the origin binding that makes passkeys phishing-resistant. |
-| `IdentityPasskeyOptions.VerifyAttestationStatement` | Custom attestation validation callback. Identity does not validate attestation statements by default; custom verification requires trustworthy metadata/certificate trust management and should be implemented only for a defined authenticator policy. |
-| `UserPasskeyInfo` | Identity model for a user's stored passkey credential and relevant metadata. Persist it through a passkey-capable store and expose management operations only to the authenticated account owner. |
-| `UserPasskeyInfo.CredentialId` | Credential identifier used to select the registered public key during authentication. Treat it as an identifier, not a secret; enforce uniqueness and safe storage. |
-| `UserPasskeyInfo.PublicKey` | Stored public key used to verify a later authenticator assertion. The private key remains with the authenticator and must never be requested or stored by the server. |
-| `UserPasskeyInfo.SignCount` | Authenticator-supplied signature counter metadata that some authenticators increment. A zero or non-monotonic value can occur with synced/multi-device credentials, so interpret it as a risk signal rather than a universal proof of cloning. |
-| `UserPasskeyInfo.IsBackedUp` | Indicates the credential's reported backup state. It may help guide account-security UX, but it is not a guarantee of recovery or a credential-strength verdict. |
-| `UserPasskeyInfo.IsBackupEligible` | Indicates whether a credential is eligible for backup/synchronization according to its WebAuthn flags. It is distinct from whether that credential is currently backed up. |
-| `UserManager<TUser>.AddOrUpdatePasskeyAsync` | Persists a new passkey for a user or updates the associated credential data through a passkey-capable store. Restrict it to a verified registration ceremony and authenticated account-management action. |
-| `UserManager<TUser>.GetPasskeysAsync` | Retrieves a user's registered passkey information from the store. Avoid exposing credential metadata or management actions to another account. |
-| `IUserPasskeyStore<TUser>` | Store capability for reading/writing a user's passkeys. Custom Identity stores must implement it when the configured passkey manager workflow depends on it. |
-| `PasskeyHandler<TUser>` | Default Identity service that creates passkey options and verifies registration/authentication responses. Identity sign-in methods manage protected ceremony state; application code should generally use those workflows rather than manually accepting credentials. |
-| `SignInManager<TUser> passkey integration` | Identity sign-in APIs that coordinate passkey registration/assertion state and turn a verified assertion into a sign-in result. Protect both initiation and completion endpoints against CSRF, replay, and account confusion. |
+| `IdentityPasskeyOptions` | Identity configuration for relying-party domain, challenge, authenticator, origin, algorithms, and attestation behavior. Decide security-critical values from the production host/origin topology. |
+| `IdentityPasskeyOptions.AttestationConveyancePreference` | Requests a WebAuthn attestation conveyance preference during creation. Browser/authenticator behavior and privacy choices affect what is returned; the request is not a guarantee of a verified authenticator identity. |
+| `IdentityPasskeyOptions.AuthenticatorAttachment` | Hints whether a platform or cross-platform authenticator is preferred. The browser may not be able to satisfy the preference. |
+| `IdentityPasskeyOptions.AuthenticatorTimeout` | Browser-facing timeout hint for a ceremony. Do not rely on it as the only server-side challenge expiry or request cancellation control. |
+| `IdentityPasskeyOptions.ChallengeSize` | Size of generated ceremony challenge material. Challenges must be unpredictable, fresh, tied to the correct account and ceremony, and accepted only once. |
+| `IdentityPasskeyOptions.IsAllowedAlgorithm` | Predicate for allowing public-key algorithms offered by authenticators. Allow only algorithms the target runtime can verify and the application is prepared to support. |
+| `IdentityPasskeyOptions.ResidentKeyRequirement` | Sets whether discoverable credentials are discouraged, preferred, or required. Discoverability supports username-less flows but affects account discovery and user experience. |
+| `IdentityPasskeyOptions.ServerDomain` | Relying-party identifier/domain. A parent domain can include subdomains, so select the narrowest domain that supports the app and protect every covered host. |
+| `IdentityPasskeyOptions.UserVerificationRequirement` | Requests authenticator user verification such as a local PIN/biometric. It does not mean Identity's separate second-factor workflow has been completed. |
+| `IdentityPasskeyOptions.ValidateOrigin` | Callback for validating ceremony origin. Use a strict explicit allowlist based on trusted application origins; never accept arbitrary Host or forwarded-host values. |
+| `IdentityPasskeyOptions.VerifyAttestationStatement` | Custom callback for verifying attestation. Identity does not validate attestation statements by default. Custom policy requires a maintained trust source and a clear reason to collect/use provenance. |
+| `UserPasskeyInfo` | Stored Identity representation of a user's passkey credential and metadata. Restrict management to the authenticated account owner. |
+| `UserPasskeyInfo.CredentialId` | Credential identifier used to locate a registered key. It is an identifier rather than a private secret; enforce uniqueness and ownership. |
+| `UserPasskeyInfo.PublicKey` | Key used by the server to verify assertions. The authenticator retains the corresponding private key. |
+| `UserPasskeyInfo.Name` | User-facing display label for distinguishing a user's registered credentials. Treat it as untrusted text, cap its length, and authorize rename operations for the credential owner. |
+| `UserPasskeyInfo.SignCount` | Authenticator-provided counter metadata. Some synced credentials may not expose a simple increasing counter; avoid treating zero/non-increase as conclusive cloning proof. |
+| `UserPasskeyInfo.IsBackedUp` | Reported current backup state. It is not proof that the user can recover the account or that another device will successfully sign in. |
+| `UserPasskeyInfo.IsBackupEligible` | Indicates eligibility for backup/synchronization, distinct from whether the credential is currently reported backed up. |
+| `UserManager<TUser>.AddOrUpdatePasskeyAsync` | Persists passkey data through a passkey-capable user store. Call only after a validated registration ceremony and authorized account-management action. |
+| `UserManager<TUser>.GetPasskeysAsync` | Lists the current user's stored passkeys for management. Do not expose another account's credential metadata or permit cross-account removal/update. |
+| `IUserPasskeyStore<TUser>` | Store contract for Identity passkey persistence. A custom user store must support the capability when the configured passkey flow depends on it. |
+| `IPasskeyHandler<TUser>` | Passkey service contract for creating ceremony options and validating browser attestation/assertion responses. Prefer `SignInManager<TUser>` flows unless a documented customization requires the lower-level interface. |
+| `IPasskeyHandler<TUser>.MakeCreationOptionsAsync` | Produces WebAuthn credential-creation options plus attestation state. The state identifies which account the new credential is being registered to. |
+| `IPasskeyHandler<TUser>.MakeRequestOptionsAsync` | Produces assertion/request options and state for authenticating a passkey. Supplying a user constrains eligible credentials; a null user can support discoverable/username-less scenarios. |
+| `IPasskeyHandler<TUser>.PerformAttestationAsync` | Validates a browser registration response against the supplied state and returns the account/credential result. If called directly, protect state integrity, bind ownership, enforce expiry, and consume it once. |
+| `IPasskeyHandler<TUser>.PerformAssertionAsync` | Validates a browser authentication assertion using the supplied state and stored credential, producing the result without necessarily completing Identity sign-in. Persist updated credential state when required. |
+| `PasskeyHandler<TUser>` | Identity's default `IPasskeyHandler<TUser>` implementation. `SignInManager<TUser>` calls it for the supported high-level ceremony workflows. |
+| `PasskeyCreationOptionsResult` | Result from creation-option generation that carries browser-facing options and server-retained ceremony state. |
+| `PasskeyCreationOptionsResult.CreationOptionsJson` | Serialized options passed to the browser and then to `navigator.credentials.create()`. It is not a substitute for retaining the accompanying server state. |
+| `PasskeyCreationOptionsResult.AttestationState` | State returned alongside creation options and required when validating registration. Do not expose it as editable client state unless it is integrity-protected and bound to the requesting session/user. |
+| `PasskeyAttestationResult` | Result from validating registration, including whether validation succeeded and the validated passkey/account data. Check success before storing. |
+| `PasskeyAssertionResult` | Result from validating authentication, including the resolved user and updated passkey metadata. If using lower-level validation instead of `PasskeySignInAsync`, handle persistence and session establishment deliberately. |
+| `PasskeyUserEntity` | User identity encoded in the passkey ceremony state/result. When directly managing registration state, compare it with the currently authenticated user before persisting the credential. |
+| `SignInManager<TUser>.MakePasskeyCreationOptionsAsync` | High-level API that creates passkey registration options and securely manages temporary ceremony state for the subsequent request. |
+| `SignInManager<TUser>.MakePasskeyRequestOptionsAsync` | High-level API to create authentication options for a named user or discoverable/username-less sign-in. |
+| `SignInManager<TUser>.PerformPasskeyAttestationAsync` | High-level registration validation API using SignInManager-managed state. Check the result and persist through `UserManager<TUser>.AddOrUpdatePasskeyAsync`. |
+| `SignInManager<TUser>.PerformPasskeyAssertionAsync` | High-level assertion validation API for applications that need to inspect the result before session establishment. Updated sign-count/flag data may need to be persisted. |
+| `SignInManager<TUser>.PasskeySignInAsync` | Completes passkey authentication and signs in the resolved user after checking the pending assertion state. Missing or expired ceremony state is a recoverable failed result; calling out of sequence is an application error. |
+| `Passkey ceremony state integrity` | State must not be client-modifiable. SignInManager protects its temporary state; if the app handles it directly, keep it server-side or protect it with Data Protection before returning it. |
+| `Passkey ceremony state account ownership binding` | Bind state to the session/user that initiated registration and compare the returned `PasskeyUserEntity` with the signed-in account before saving. Otherwise an attacker can attach a credential to another user's account. |
+| `Passkey ceremony state single-use expiration` | Consume state once and give it a short lifetime. This prevents replaying an old ceremony or leaving an enrollment request open indefinitely. |
 
-### WebAuthn protocol and deployment boundaries
+### WebAuthn boundaries
 
 | Supplied name | Meaning and use |
 |---|---|
-| `Web Authentication API (WebAuthn)` | Browser API and W3C standard for creating and using public-key credentials. The browser enforces origin and relying-party constraints; the server must still validate ceremony state and the returned credential. |
-| `FIDO2 passkey credential` | Public-key credential in the FIDO2/WebAuthn ecosystem. Modern passkeys may be synced or device-bound; the user experience and metadata depend on authenticator/provider support. |
-| `Relying Party ID` | Domain identifier to which a credential is scoped. A credential cannot normally be used on a different unrelated domain; choosing a parent domain includes its subdomain scope. |
-| `Passkey origin validation` | Check that the assertion/registration came from an expected web origin under the relying-party rules. Host-header and forwarded-host trust must be controlled at the server/proxy boundary. |
-| `Passkey challenge and assertion` | A fresh random challenge prevents replay; the authenticator signs an assertion over ceremony data. Validate the challenge, origin, relying-party context, credential, and signature before sign-in. |
-| `Passkey attestation verification` | Optional validation of attestation data that can provide authenticator provenance. Identity does not do this by default; enterprise allow/deny policies require maintained trust information and careful privacy/security decisions. |
-| `Passkey public key storage` | Store the credential's public key and needed identifiers/metadata, never the private key. Protect integrity, uniqueness, ownership, and backup/restore of this data. |
-| `No default attestation validation` | The Identity implementation accepts registration without validating attestation statements by default. Do not claim that a registered authenticator has been vendor-verified; enable a reviewed custom policy only when required. |
-| `Passkeys do not provide built-in Identity 2FA` | Identity's passkey support treats the credential as a primary sign-in method; it does not automatically feed the separate Identity two-factor-code workflow. Do not claim a passkey alone is both factors. |
-| `IdentityPasskeyOptions defaults` | Framework options have defaults, but browser support, server deployment, and framework version affect behavior. Inspect the exact target framework reference; explicitly set critical domain/origin policy rather than depending on host-derived defaults. |
+| `Web Authentication API (WebAuthn)` | Browser API and W3C protocol for public-key credentials. Browser origin enforcement complements, but does not replace, server validation of state and response. |
+| `FIDO2 passkey credential` | Public-key credential in the WebAuthn/FIDO ecosystem. A passkey may be synced or device-bound depending on the provider; the app should not assume one physical device per credential. |
+| `Relying Party ID` | Domain scope for a credential. Use a stable intended domain and account for all covered subdomains. |
+| `Passkey origin validation` | Ensures ceremony response is bound to a trusted web origin. Configure trusted proxy/host handling to prevent untrusted forwarding headers from influencing origin decisions. |
+| `Passkey challenge and assertion` | The challenge is fresh server state; assertion proves possession of the private key for that challenge. Verify challenge, ceremony type, origin, RP ID, credential ownership, and signature before sign-in. |
+| `Passkey attestation verification` | Optional process for assessing attestation information about an authenticator. It is distinct from verifying the credential's assertion and requires a maintained authenticator trust policy. |
+| `Passkey public key storage` | Persist the public key, credential ID, and required metadata with integrity and account ownership protections. Never store or request the authenticator's private key. |
+| `No default attestation validation` | Identity's default registration path does not establish that the authenticator vendor/model was attested and trusted. Do not present AAGUID or display name as an attestation decision. |
+| `Passkeys do not provide built-in Identity 2FA` | The built-in passkey path is a primary sign-in method, not automatically the separate Identity second-factor challenge. A platform biometric unlock is not itself proof that Identity's 2FA step ran. |
+| `IdentityPasskeyOptions defaults` | Defaults exist and can change with framework versions. Review the target reference, and explicitly set domain/origin policy that must remain fixed across deployment environments. |
 
-### Sign-in requirements, token providers, and recovery
+### Account requirements, token providers, and recovery
 
 | Supplied name | Meaning and use |
 |---|---|
-| `IdentityOptions.SignIn.RequireConfirmedAccount` | Requires account confirmation before ordinary sign-in according to Identity's sign-in flow. Configure the needed confirmation process; a flag without deliverable recovery/confirmation can strand legitimate users. |
-| `IdentityOptions.SignIn.RequireConfirmedEmail` | Requires a confirmed email for sign-in. This is distinct from confirming the account generally and does not itself send the confirmation message. |
-| `IdentityOptions.SignIn.RequireConfirmedPhoneNumber` | Requires a confirmed phone number for sign-in. Ensure the phone-verification channel is secure and do not treat SMS as strong phishing-resistant MFA. |
-| `IdentityOptions.Lockout.MaxFailedAccessAttempts` | Number of failed attempts allowed before the configured lockout behavior applies when the sign-in method counts failures. Choose with rate limits and recovery to avoid lockout abuse. |
-| `IdentityOptions.Lockout.DefaultLockoutTimeSpan` | Duration an account remains locked after the relevant threshold. It governs Identity lockout state; it does not rate-limit distributed attacks by IP/device. |
-| `IdentityOptions.Lockout.AllowedForNewUsers` | Controls whether new accounts are eligible for lockout. Lockout behavior is useful against guessing but may be abused to deny service to a victim. |
-| `IdentityOptions.Password.RequiredLength` | Minimum password length enforced by the password validator. Longer passwords/passphrases and breached-password checks are more useful than assuming a specific character mixture makes a password strong. |
-| `IdentityOptions.Password.RequireDigit` | Requires at least one numeric digit under the configured password validator. This is one composition rule, not an entropy measure. |
-| `IdentityOptions.Password.RequireLowercase` | Requires at least one lowercase character. Consider usability and password-manager support when setting composition policy. |
-| `IdentityOptions.Password.RequireUppercase` | Requires at least one uppercase character. It does not prevent common/reused passwords. |
-| `IdentityOptions.Password.RequireNonAlphanumeric` | Requires a non-letter/digit character under the validator's definition. Treat this as policy configuration rather than proof of password quality. |
-| `IdentityOptions.Password.RequiredUniqueChars` | Requires a minimum number of distinct characters in the password. This can reject repetitive strings but is not a substitute for length and compromised-password defenses. |
-| `IdentityOptions.Tokens.AuthenticatorTokenProvider` | Selects the provider name used for authenticator-app two-factor tokens. It must match a registered provider that can validate the user's authenticator key. |
-| `IdentityOptions.Tokens.EmailConfirmationTokenProvider` | Selects the token provider for email confirmation. Tokens are purpose-specific and should be delivered only to the address being confirmed. |
-| `IdentityOptions.Tokens.PasswordResetTokenProvider` | Selects the provider for password-reset tokens. Use a safe reset workflow with non-enumerating responses and rate limits. |
-| `IdentityOptions.Tokens.ChangeEmailTokenProvider` | Selects the provider for confirmation of email change. The change should be bound to the new address and completed only after its verification token succeeds. |
-| `AddDefaultTokenProviders` | Registers built-in providers for Identity account and two-factor workflows. It does not send email/SMS, and applications should check which providers are appropriate for their threat model. |
-| `IUserTwoFactorTokenProvider<TUser>` | Contract for generating and verifying a token used in a user's two-factor flow. Provider lifetime, replay handling, and delivery channel semantics depend on the implementation. |
-| `TotpSecurityStampBasedTokenProvider<TUser>` | Provider base for time-based tokens tied to a user's security-stamp state. Tokens are short-lived and should be verified with rate limiting and careful clock configuration. |
-| `AuthenticatorTokenProvider<TUser>` | Identity provider that validates authenticator-app one-time codes using the user's authenticator key. The application must protect key enrollment and recovery codes. |
-| `EmailTokenProvider<TUser>` | Provider for short numeric email verification/two-factor codes according to configured Identity behavior. Email is not equivalent to a phishing-resistant possession factor. |
-| `PhoneNumberTokenProvider<TUser>` | Provider for phone-delivered verification codes. SMS/phone channels have interception and account-reassignment risks; avoid relying on them as the only protection for sensitive accounts. |
-| `UserManager<TUser>.GenerateTwoFactorTokenAsync` | Generates a code for the named registered two-factor provider. Send it only through the intended channel and prevent logs/telemetry from capturing it. |
-| `UserManager<TUser>.VerifyTwoFactorTokenAsync` | Validates a supplied two-factor token with the selected provider. Use `SignInManager`'s full sign-in flow so successful verification is connected to the pending user and challenge state. |
-| `UserManager<TUser>.GenerateNewTwoFactorRecoveryCodesAsync` | Replaces/generates a set of recovery codes for a user with two-factor authentication enabled. Show codes once, invalidate prior codes, and tell the user to store them safely. |
-| `UserManager<TUser>.RedeemTwoFactorRecoveryCodeAsync` | Consumes a recovery code when it matches an unused stored code. Treat each code as a bearer secret and ensure it cannot be replayed after redemption. |
-| `Two-factor enabled state` | Identity user state indicating whether the account has completed setup and enabled its two-factor method. It is not proof that the current sign-in has passed the second step. |
-| `Recovery code one-time use` | A recovery code is accepted once and then invalidated. If a code is lost or exposed, regenerate the set and communicate that previous codes no longer work. |
-| `Passkey versus password` | A password is a memorized shared secret vulnerable to phishing and reuse; a passkey uses a site-bound public-key challenge and keeps the private key with the authenticator. Account recovery and device availability remain concerns for both. |
-| `Passkey versus second-factor authenticator` | A passkey is Identity's primary sign-in method in the built-in integration; an authenticator code is a separate one-time factor used in Identity's two-step sign-in. A passkey's local user verification does not make it the built-in Identity 2FA factor. |
-| `Identity MFA limitations` | Identity provides account-level two-factor workflows and token-provider abstractions, but does not automatically solve every risk-based MFA, phishing-resistant step-up, recovery, or enterprise-authenticator policy. Define the required factors and threat model explicitly. |
+| `IdentityOptions.SignIn.RequireConfirmedAccount` | Requires account confirmation under Identity's sign-in checks. A configured flag does not deliver a confirmation message or provide a recovery channel. |
+| `IdentityOptions.SignIn.RequireConfirmedEmail` | Requires confirmed email for sign-in. Keep confirmation bound to the address and do not assume email confirmation alone is strong authentication. |
+| `IdentityOptions.SignIn.RequireConfirmedPhoneNumber` | Requires confirmed phone for sign-in. Phone/SMS verification is vulnerable to interception and reassignment; avoid treating it as phishing-resistant MFA. |
+| `IdentityOptions.Lockout.MaxFailedAccessAttempts` | Failed-access threshold that can trigger lockout where the sign-in workflow records failures. Combine with rate limiting and recovery against lockout denial of service. |
+| `IdentityOptions.Lockout.DefaultLockoutTimeSpan` | Duration for the configured account lockout. It is not a distributed IP/device rate limiter. |
+| `IdentityOptions.Lockout.AllowedForNewUsers` | Determines whether new users may be locked out. Consider operational support and abuse resistance. |
+| `IdentityOptions.Password.RequiredLength` | Minimum length enforced by Identity's validator. Favor usable long passwords and compromised-password defenses over assuming length alone guarantees safety. |
+| `IdentityOptions.Password.RequireDigit` | Requires a digit under the configured validator. This composition rule is not a measure of password entropy or resistance to reuse. |
+| `IdentityOptions.Password.RequireLowercase` | Requires lowercase characters. Balance with usable password-manager-generated secrets. |
+| `IdentityOptions.Password.RequireUppercase` | Requires uppercase characters. This does not prevent common, breached, or reused passwords. |
+| `IdentityOptions.Password.RequireNonAlphanumeric` | Requires a non-alphanumeric character according to the validator. It is one policy rule, not proof of strength. |
+| `IdentityOptions.Password.RequiredUniqueChars` | Requires a minimum number of distinct characters. It may reject repetitive strings but does not replace length or breached-password checks. |
+| `IdentityOptions.Tokens.AuthenticatorTokenProvider` | Provider name used for authenticator-app two-factor tokens. It must resolve to an appropriate registered provider. |
+| `IdentityOptions.Tokens.EmailConfirmationTokenProvider` | Provider selected for email confirmation tokens. Deliver only to the address the user is confirming. |
+| `IdentityOptions.Tokens.PasswordResetTokenProvider` | Provider selected for reset tokens. Pair with non-enumerating responses, rate limits, and short, purpose-bound reset flows. |
+| `IdentityOptions.Tokens.ChangeEmailTokenProvider` | Provider for email-change confirmation. Bind confirmation to the new address before updating account ownership data. |
+| `AddDefaultTokenProviders` | Adds standard Identity token providers. It does not implement email/SMS delivery or make every provider suitable for every threat model. |
+| `IUserTwoFactorTokenProvider<TUser>` | Contract to generate/verify a token for an Identity second-factor flow. Expiry, replay, and delivery behavior depends on its implementation. |
+| `TotpSecurityStampBasedTokenProvider<TUser>` | Base provider for time-based codes associated with security-stamp state. Ensure time and verification-attempt policy are appropriate. |
+| `AuthenticatorTokenProvider<TUser>` | Verifies authenticator-app one-time codes using the registered authenticator key. Protect enrollment, key reset, and recovery code handling. |
+| `EmailTokenProvider<TUser>` | Provider for email-delivered Identity codes. Email account security and recovery become part of the factor's security; it is not phishing-resistant. |
+| `PhoneNumberTokenProvider<TUser>` | Provider for phone-number-delivered codes. SMS has interception/reassignment risks; avoid using it as the sole protection for high-value accounts. |
+| `UserManager<TUser>.GenerateTwoFactorTokenAsync` | Generates a code for a named configured provider. Deliver through the intended channel and redact it from logs, traces, and analytics. |
+| `UserManager<TUser>.VerifyTwoFactorTokenAsync` | Verifies a supplied code for a provider. Use the complete SignInManager flow so the code is tied to the pending user's sign-in. |
+| `UserManager<TUser>.GenerateNewTwoFactorRecoveryCodesAsync` | Replaces/generates recovery codes for enabled 2FA. Display the new set once and invalidate the old set. |
+| `UserManager<TUser>.RedeemTwoFactorRecoveryCodeAsync` | Redeems one matching unused code. Treat it as a bearer secret and prevent re-use after success. |
+| `Two-factor enabled state` | Account setting showing that a second-factor method has been enrolled/enabled. It does not establish that the current login passed the second step. |
+| `Recovery code one-time use` | Each recovery code is consumed once. Regenerate the set if it is exposed or replaced. |
+| `Passkey versus password` | Password is a memorized secret that can be phished/reused; passkey is a domain-scoped public-key ceremony. Both need safe recovery and account lifecycle controls. |
+| `Passkey versus second-factor authenticator` | Identity passkey sign-in and authenticator-app one-time code are distinct primary and second-factor paths. Do not infer Identity MFA from local device unlock. |
+| `Identity MFA limitations` | Identity supplies account-level 2FA primitives, but applications still design step-up policies, enrollment, phishing resistance, recovery, risk signals, and enterprise requirements. |
 
 ## Cross-item comparison
 
-| Mechanism | What the server verifies | Important boundary |
+| Mechanism | Server verifies | Main caution |
 |---|---|---|
-| Passkey assertion | Fresh challenge, credential ID, public-key signature, RP ID/origin and ceremony state | Default Identity attestation validation is absent; built-in support is primary-factor Identity sign-in |
-| Authenticator code | Short-lived code from a registered token provider and the account's authenticator state | Separate Identity two-factor flow; protect enrollment and recovery |
-| Recovery code | One stored, unused recovery capability | Single use; weaker recovery paths can undermine otherwise strong sign-in |
-| Password | Candidate against Identity's stored password hash and policy | Reuse/phishing risk; secure reset and lockout handling are essential |
+| Passkey assertion | Fresh ceremony, expected account/RP/origin, credential and signature | Default attestation is not validated; it is a primary sign-in factor |
+| Authenticator-app code | Provider code and enrolled authenticator state | Protect enrollment and recovery; apply attempt limits |
+| Recovery code | One unused stored recovery secret | Single use; weaker recovery can defeat strong primary authentication |
+| Password | Candidate against stored password hash and policy | Prevent phishing/reuse; support safe reset and lockout |
 
-Passkey `IsBackupEligible` describes whether a credential can be backed up; `IsBackedUp` describes its reported backup state. Neither flag proves the user's account can be recovered. A signature counter can be useful telemetry but may not be monotonic for synchronized credentials, so a simplistic counter rejection rule can lock out legitimate users.
+`IsBackupEligible` and `IsBackedUp` are distinct credential-state flags. Neither guarantees the app's account recovery works. Signature counters can be unreliable for synchronized passkeys and should not be treated as universal clone detection.
 
 ## Examples
 
-### Configure a deliberate relying-party domain and ceremony policy
+### Configure relying-party policy deliberately
 
 ```csharp
 builder.Services.Configure<IdentityPasskeyOptions>(options =>
 {
-    options.ServerDomain = "academy.example.com";
-    options.ChallengeSize = 32;
+    options.ServerDomain = "accounts.example.com";
     options.AuthenticatorTimeout = TimeSpan.FromMinutes(3);
-    options.ValidateOrigin = context =>
-        ValueTask.FromResult(context.Origin == "https://academy.example.com");
+    options.ChallengeSize = 64;
 });
 ```
 
-The allowlisted origin must match the deployed external origin exactly. If the application supports multiple legitimate origins, enumerate them explicitly and validate the forwarded host/scheme at the proxy boundary. Do not copy an example's domain into production without confirming the RP ID scope. [Passkey guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
+These properties are part of the documented options surface. The default origin validation allows subdomains and disallows cross-origin iframes; when strict origin control is needed, use the documented `ValidateOrigin` callback and a deliberate allowlist. If `ServerDomain` is omitted, Identity infers the relying-party ID from the host, so validate Host headers and configure trusted forwarded hosts. Passkey operations require HTTPS. [Passkey security guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
 
-### Build a recoverable account flow
+### Protect registration state if using the lower-level handler
 
-Before enabling passwordless-only registration, decide how a user recovers from device loss, authenticator replacement, or account takeover. Possible design inputs include a second registered passkey, an external provider, carefully protected recovery codes, or a verified contact flow. Rate-limit changes, notify the user about authenticator enrollment/removal, and require recent reauthentication for high-impact changes. A recovery process should not be easier to exploit than primary authentication.
+Most applications should use `SignInManager<TUser>` because it stores the temporary state in a Data Protection-protected authentication cookie, consumes it once, and checks whether it belongs to registration or assertion. If an application calls `IPasskeyHandler<TUser>` directly, it owns those guarantees: keep state server-side or protect it before sending it to the browser, bind it to the authenticated user/session, delete it before use, expire it quickly, and compare the result's `PasskeyUserEntity` to the current account before storing the passkey. The browser response itself does not identify which account should receive the new credential. [Passkey handler and ceremony state](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
+
+### Keep second-factor enrollment and recovery deliberate
+
+When enrolling an authenticator app, require a currently authenticated account, confirm possession by verifying a code, store the key safely, generate recovery codes, show them once, and record the change. Replacing the key should invalidate old enrollment and recovery material. Rate-limit verification attempts and do not log codes.
 
 ## Common mistakes
 
-- Trusting the inbound `Host` or forwarded-host header to establish the RP ID without host validation and explicit trusted proxy configuration.
-- Setting a broad parent `ServerDomain` while allowing untrusted content on subdomains within that scope.
-- Accepting every origin in a custom `ValidateOrigin` callback.
-- Claiming that Identity validates attestation by default or that it is a general-purpose WebAuthn server.
-- Treating passkeys as built-in Identity second factor or ignoring local authenticator user verification semantics.
-- Treating `SignCount` as a universal monotonic security counter for synced credentials.
-- Exposing public-key credential management to another user's account or failing to limit credential count/display-name size.
-- Enabling passkeys without planning recovery or safe credential removal.
-- Confusing email/SMS codes with phishing-resistant passkeys.
-- Displaying recovery codes repeatedly or failing to invalidate replaced codes.
+- Assuming passkey support is a general WebAuthn server or default attestation verifier.
+- Using an overly broad relying-party domain or trusting arbitrary forwarded host values.
+- Treating passkey local biometrics as Identity's configured second factor.
+- Treating `SignCount` as a reliable monotonic clone detector for every synchronized credential.
+- Confusing currently backed-up state with backup eligibility or account recoverability.
+- Logging reset tokens, authenticator codes, or recovery codes.
+- Enabling account lockout without rate limits and a support/recovery design.
+- Requiring email or SMS confirmation and claiming it is equivalent to phishing-resistant MFA.
 
 ## Knowledge checks with answers
 
-1. **Where is the passkey private key?** With the authenticator/provider. The server stores the corresponding public key and credential metadata.
-2. **What does a fresh challenge prevent?** Replaying an old signed assertion as though it were a current ceremony.
-3. **Does default Identity passkey support validate attestation statements?** No. Custom attestation validation is available for applications with a defined authenticator policy.
-4. **Is a passkey the same as Identity's authenticator-app 2FA?** No. Built-in passkeys are treated as a primary sign-in factor; authenticator codes are a separate Identity second-factor workflow.
-5. **Can `SignCount` alone reliably detect a cloned passkey?** No. Some synchronized credentials do not provide a simple monotonically increasing counter; use it as one risk signal, not a universal rule.
-6. **What production security setting must be decided deliberately?** The relying-party domain and allowed origins, together with host/forwarded-header validation and an HTTPS-only deployment.
+1. **Where is the passkey private key?** With the authenticator/provider; the server stores public key material and credential metadata.
+2. **What prevents replay of an old assertion?** A fresh one-time challenge bound to the expected ceremony and account, validated with origin, RP ID, credential and signature.
+3. **Does Identity validate authenticator attestation by default?** No; custom verification is possible when a maintained policy requires it.
+4. **Is a passkey automatically Identity 2FA?** No. Built-in passkey sign-in and Identity's separate second-factor code flow are distinct.
+5. **Does `SignCount` prove a credential was cloned when it does not increase?** No. Synced credentials may not provide a monotonically increasing count.
+6. **Which settings deserve deliberate production review?** RP domain, allowed origins, HTTPS/proxy trust, user verification, recovery, credential management authorization, and rate limits.
 
 ## Sources
 

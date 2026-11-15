@@ -2,102 +2,98 @@
 
 ## Learning objectives
 
-After this lesson, you should be able to distinguish account management from request authentication, explain how an authentication scheme creates a principal, select the appropriate browser or API credential, describe a secure OIDC server-side sign-in, and identify the boundaries of built-in Identity passkey support.
+After this lesson, you should be able to distinguish local account management from OAuth/OIDC authorization-server behavior, choose cookie versus bearer authentication for the client type, explain OIDC code flow with PKCE, identify safe JWT validation rules, and describe what ASP.NET Core Identity passkeys do and do not provide. You should also recognize the .NET 11 Identity time and passkey-display improvements and the experimental status of device-bound sessions.
 
 ## Prerequisites
 
-You should know basic HTTP requests, middleware ordering, dependency injection, claims, and the difference between authentication and authorization. This lesson uses ASP.NET Core's authentication handlers and the Identity framework. The exact APIs and recent-version notes are covered in the references.
+Know the difference between authentication and authorization, what an HTTP cookie and bearer header are, and basic public-key cryptography. OIDC and OAuth are related but distinct protocols: OAuth delegates access; OpenID Connect adds user authentication semantics such as an ID token.
 
 ## Core concepts
 
-### Account, credential, principal, and authorization decision
+### Identity account services are not an identity provider
 
-An **account** is an application's stored representation of a user. Identity's user manager coordinates user operations through store interfaces, which can be implemented by EF Core or another persistence system. A **credential** is evidence presented during sign-in: for example, a password, an external provider result, a one-time authenticator code, or a passkey assertion. A **principal** is the identity and claims the application makes available for the current request after a configured handler validates a credential. An **authorization decision** asks whether that principal may perform a particular operation.
+ASP.NET Core Identity manages local user/role data, credential workflows, claims, confirmation, lockout, two-factor tokens, and passkey credentials through managers and stores. The app controls its account rules and persistence. Built-in Identity API endpoints can register/log in users and issue a proprietary protected bearer token for simple first-party APIs, but the token is not a JWT and the endpoints are not a complete OAuth/OIDC authorization server. Do not infer interoperable OAuth scopes, consent, delegated access, or standard token validation from the word “bearer.”
 
-These are separate stages. A user row does not authenticate a request by itself. A successfully authenticated principal does not automatically satisfy a policy. A role claim is useful only if it came from a trusted issuance path and the application's authorization policy interprets it as intended. For resource-specific actions, the application often needs to check the resource after authentication rather than relying only on a broad role.
+### Authentication tickets, cookies, and Data Protection
 
-### Schemes select credential protocols
+The cookie handler serializes an authentication ticket and protects it with ASP.NET Core Data Protection. The browser stores/sends the cookie; it does not store the server's Data Protection keys. `ExpireTimeSpan`, `ExpiresUtc`, `IsPersistent`, and sliding renewal affect ticket lifetime and browser persistence differently. Cookie attributes control transport and browser sending: `Secure` protects transmission over HTTPS, `HttpOnly` prevents JavaScript access, and `SameSite` constrains some cross-site sending. Cookie authentication still requires antiforgery protection for state-changing browser requests where ambient credentials are sent.
 
-ASP.NET Core authentication schemes name handlers and their options. The default authenticate scheme handles ordinary authentication attempts; the challenge scheme decides how to ask an unauthenticated caller to authenticate; the forbid scheme handles an authenticated caller who lacks permission. Applications may register several schemes, but defaults and policy selection must be explicit enough that a cookie handler is not accidentally used where an API expects bearer validation.
+Replicas must share a protected Data Protection key ring and compatible application discriminator to validate tickets created by another instance. Security stamp validation can reject tickets after important account changes, but its interval is a tradeoff between revocation latency and store work. Cookie size, chunking, and optional server-side ticket stores change where session state lives; they do not remove the need to protect and expire it.
 
-The middleware order matters: `UseAuthentication` populates the request principal before `UseAuthorization` evaluates policies. The handler validates its own credential format. Cookie authentication validates a protected ticket; `JwtBearer` validates a bearer token; the OIDC handler participates in browser redirects and callback processing. Choosing a scheme is choosing a protocol boundary, not just a label. [Cookie authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie)
+### Access tokens and ID tokens have different audiences
 
-### Browser cookies are application sessions
+An API's JWT bearer handler validates an access token: signature, trusted issuer, intended audience, and lifetime. Metadata/key rotation from a trusted issuer supports current signing keys; tokens should not be accepted merely because they parse as JWT text. A 401 means credentials are absent or invalid; a 403 means the authenticated principal is not permitted. A 401 challenge includes `WWW-Authenticate`. An OIDC ID token tells the client that a user authenticated; its audience is the client, so sending it to an API as an access token is a token-confusion vulnerability.
 
-After a browser sign-in, the application typically issues a cookie holding a protected authentication ticket. Data Protection protects the ticket against reading and tampering. The browser returns the cookie automatically according to its domain, path, secure, and same-site rules. The app must therefore handle cross-site request forgery for state-changing cookie-authenticated requests; `SameSite` is a useful browser control, not a universal substitute for antiforgery design.
+Opaque tokens and JWTs are not interchangeable. If an API needs standard access tokens, use a standards-compliant authorization server. `SaveTokens` and retrieving tokens from an authentication session can store sensitive access/refresh values in the authentication ticket; weigh the storage and exposure implications. Never put client secrets in public/browser code.
 
-Ticket expiration and browser persistence are distinct concerns. A persistent browser cookie can survive browser restarts, but the server ticket can still expire. Sliding expiration can renew a ticket during use; it does not guarantee immediate revocation. Identity's security-stamp validation can invalidate sessions after certain account-security changes, but the validation interval and shared Data Protection key deployment matter. If replicas cannot share the appropriate key ring and application discriminator, a ticket issued by one instance may be unreadable by another. [Cookie authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie)
+### OIDC web sign-in and external accounts
 
-### Bearer tokens are validated by the resource API
+For a server-side interactive web app, the recommended shape is a confidential OIDC client using authorization code with PKCE. The OIDC handler issues a challenge, validates the callback, and commonly signs the local principal into a cookie. The external provider proves authentication; the app maps claims, links the external login to a local Identity account, and still authorizes local resources. `ClientSecret` or client assertion belongs on the server and in a protected secret provider. PKCE binds code redemption to the initiating client and mitigates code interception; it does not replace state/nonce, redirect URI validation, TLS, or secure client credential storage.
 
-An API receiving a JWT access token must validate its signature, issuer, audience, and lifetime using trusted metadata or signing keys from the intended token issuer. Decoding base64url text only displays claims; it does not prove the token is authentic. The API then maps claims into a principal and runs authorization. API authentication validates the token; it generally does not need to know which interactive method the client used to obtain it.
+An external provider's subject identifier is issuer-scoped. Do not link accounts solely because email addresses match unless the provider and application have a verified, safe linking process. A signed-in external user may still be unconfirmed or lack local permissions. `GetClaimsFromUserInfoEndpoint` is provider-dependent and should be enabled only with correct scope/claim mapping.
 
-The built-in ASP.NET Core Identity API can issue a proprietary protected bearer token for simple scenarios. That token is not a JWT and is not an OAuth access token from a general authorization server. If consumers require standards-based delegated access, federation, or interoperable scopes, use a purpose-built identity provider and validate its access tokens with `JwtBearer`. Never treat an OIDC ID token as an API access token: an ID token's audience and purpose are the client application, not the resource API. [Identity API guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization) [JWT bearer authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication)
+### MFA, recovery, and passkeys
 
-### OIDC connects an interactive application to an identity provider
+Identity supports password policy, lockout, authenticator-app/TOTP codes, email/phone token providers, and recovery codes. A recovery code is a sensitive one-time credential and must be redeemed once. Password reset or email confirmation tokens are purpose-protected workflows, not access tokens. Built-in Identity passkeys use WebAuthn for adding passkeys to accounts, passwordless account creation, and passwordless sign-in. They are scoped to Identity scenarios, require a correct relying-party ID/origin, and do not provide general WebAuthn or built-in two-factor semantics. By default, Identity does not validate attestation statements; custom attestation validation is complex and should be implemented only when authenticator properties must be constrained.
 
-OpenID Connect builds an authentication layer on OAuth 2.0. For a server-rendered interactive web application, the ASP.NET Core OIDC handler redirects the browser to the provider and handles the callback; the application commonly signs the resulting principal into a local cookie. Use authorization code flow with PKCE. The server can protect its client credential; code plus PKCE binds the authorization response to the initiating client instance and limits the usefulness of an intercepted code.
+### ASP.NET Core 10 and 11 changes
 
-The app must validate the provider response, use registered callback URIs, protect state/correlation and nonce checks, and map only claims it trusts. The provider authenticates the user; the local app still decides which claims it accepts and what those claims authorize. Modern deployments may use pushed authorization requests when the provider supports them; this is a protocol negotiation detail, not a replacement for the authorization-code model. Never embed a confidential client secret in JavaScript delivered to a browser. [OIDC web authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-oidc-web-authentication)
+ASP.NET Core 10 introduced Identity passkey support. ASP.NET Core 11 uses `TimeProvider` for Identity time-based operations, which lets tests deterministically control token expiration, lockout durations, and security-stamp validation. ASP.NET Core 11 also infers friendly passkey names from authenticator AAGUIDs using built-in mappings and a `PasskeyAuthenticators` dictionary; known authenticators get a name automatically, while unknown ones are renamed by the user. This is display metadata, not stronger authentication or proof that an authenticator is safe.
 
-### Passkeys authenticate through public-key challenges
-
-A passkey is a WebAuthn public-key credential. The authenticator holds the private key and signs a fresh server challenge; the server stores the public-key credential and verifies the assertion against the relying-party identity and expected origin. A challenge must be unpredictable, bound to the in-progress operation, and accepted only once. The relying-party ID and allowed origins must match the real deployment; permissive custom origin validation can erase important phishing defenses.
-
-ASP.NET Core Identity's built-in passkey support covers Identity registration and sign-in flows. Its documented scope is narrower than a general WebAuthn implementation: default attestation validation is not performed, passkeys act as a primary sign-in method rather than built-in second-factor support, and templates do not all have the same support. If a product needs more complete protocol control, evaluate a WebAuthn library and its operational requirements. A passkey also does not remove the need for recovery paths, account linking policy, session management, or authorization. [Passkeys](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
+ASP.NET Core 11 adds server-side Device Bound Session Credentials support in a separate package, but the package and browser support remain experimental. DBSC binds session refresh to a device-held key; it is not a replacement for normal cookie protections, passkeys, or MFA. Keep experimental support isolated and do not imply production browser availability.
 
 ## Mechanisms and relationships
 
-| Stage | Example mechanism | What it produces or checks | Mistake to avoid |
-|---|---|---|---|
-| Provision account | Identity user/store and manager operations | Local user record and credential state | Treating account existence as proof of current authentication |
-| Authenticate browser | Password/passkey/external sign-in, then app cookie | Protected session ticket and request principal | Assuming a cookie is an API access token |
-| Authenticate API | `JwtBearer` | Principal after token validation | Checking only a decoded token payload or accepting any issuer |
-| Federate login | OIDC authorization code with PKCE | External identity result for the server-side app | Treating ID token as API credential or shipping client secret to browser |
-| Authorize action | Policy, role, claim, or resource handler | Allow/deny result for this request and resource | Assuming successful authentication grants every action |
-| Recover account | Email/reset/recovery/second-factor workflow | Controlled credential or authenticator recovery | Letting recovery become a weaker takeover path than sign-in |
+```text
+Identity store and managers ── user credentials / roles / claims / recovery
+             │
+             ├─ password or passkey sign-in ── local cookie ticket
+             └─ OIDC external provider ─────── local account link + cookie
+
+OAuth/OIDC provider ── JWT access token ── API validates issuer/audience/signature/lifetime
+        └──────────── ID token ────────── OIDC client validates it; not for API authorization
+```
+
+Scheme selection matters when an app has cookies, OIDC challenge, and JWT APIs together. Default authenticate, challenge, and sign-in schemes can differ. Set them deliberately and apply authorization policies to endpoint groups. Avoid a policy scheme that guesses between token formats without strict issuer and validation boundaries.
 
 ## Worked examples
 
-### Example 1: server-rendered web application
+### Browser app and API use different schemes
 
-1. Configure a cookie as the normal session scheme and OIDC as the challenge scheme.
-2. An unauthenticated browser request to a protected page triggers an OIDC challenge.
-3. The provider authenticates the user and returns an authorization code to a registered server callback.
-4. The handler validates the response, redeems the code with PKCE, and issues the app's protected cookie.
-5. Future requests send that cookie; authentication creates the principal, then authorization checks the requested operation.
+An interactive server-rendered app challenges OIDC and stores its session in a cookie. Its JSON API accepts only an access token from the trusted API issuer. Configure distinct schemes and endpoint authorization so the browser cookie is not mistakenly treated as the API bearer contract and an ID token is never accepted by the API.
 
-This uses OIDC for the cross-organization sign-in protocol and a cookie for the application's session. The tokens used between server and provider need not be exposed to the browser. [OIDC web authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-oidc-web-authentication)
+### Deterministic lockout test in .NET 11
 
-### Example 2: API accepting a JWT access token
+Register a fake `TimeProvider` in the test service collection before resolving Identity managers. Advance fake time to test lockout expiration or token lifetime without sleeping in real time. The fake clock makes time-dependent behavior deterministic; it does not replace integration tests of persistence or provider delivery.
 
-The API registers the JWT bearer handler against the expected authority and audience. A caller sends the token in the `Authorization` header. The handler validates signature, issuer, audience, and lifetime. If validation fails, authentication fails; if validation succeeds, authorization still evaluates scopes, roles, claims, and resource rules. Signature validation alone is insufficient if the token is intended for a different issuer or API. [JWT bearer authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication)
+### Passkey relying party
 
-### Example 3: simple API using Identity endpoints
-
-An application may map Identity API endpoints to provide account registration and login with a protected proprietary token or cookie behavior. This can be convenient when the app owns its user store and needs a bounded first-party scenario. It does not create a standards-based OAuth authorization server, supply arbitrary scopes/clients, or make the resulting token a JWT. The client and API must agree on the built-in scheme and operational limits. [Identity API guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization)
+For `app.example.com`, configure the relying-party domain to the appropriate registrable host and ensure browser origin validation matches the real HTTPS origin. A credential registered for one RP ID cannot simply authenticate a different domain. During registration, server-generated challenge and expected origin/RP ID must be checked; the client response alone is untrusted.
 
 ## Misconceptions and edge cases
 
-- **“A signed token is safe for every API.”** A valid signature says an approved key signed it. Issuer, audience, expiry, algorithm/key policy, and intended token purpose still matter.
-- **“JWT means encrypted.”** JWTs are commonly signed, not encrypted. Their claims are typically readable by the bearer; do not put secrets in them.
-- **“Identity's bearer token is a JWT.”** Built-in Identity API bearer tokens are proprietary protected tokens. Use `JwtBearer` for JWT access-token validation from a trusted issuer.
-- **“The ID token is the API token.”** The ID token is addressed to the OIDC client. A resource API needs an access token intended for that API.
-- **“A successful login implies authorization.”** Authentication establishes a principal. Authorization must still check the requested action and often the target resource.
-- **“A cookie is automatically revoked when a password changes.”** Cookie tickets can remain valid until expiration or validation/revocation mechanisms detect a change. Configure security-stamp validation and session lifetime deliberately.
-- **“Passkeys make account recovery unnecessary.”** Users lose devices, authenticators become unavailable, and accounts may be compromised through recovery. Recovery must be designed with security comparable to primary authentication.
-- **“`SameSite` alone prevents every CSRF attack.”** Browser behavior and cross-origin workflows vary; use the application's antiforgery protections for cookie-authenticated mutations.
-- **“Development HTTPS behavior proves production cookie security.”** Confirm external TLS termination, trusted forwarded headers, secure cookie policy, callback URI registration, and shared Data Protection keys in the deployed topology.
+- Identity API bearer tokens are not JWTs and do not create an OAuth/OIDC server.
+- An OIDC ID token is not an API access token; check intended audience and token purpose.
+- A valid JWT signature alone is insufficient; issuer, audience, lifetime, and signing-key trust matter.
+- 401 is an authentication problem; 403 means an authenticated caller lacks permission (subject to the API's deliberate concealment policy).
+- Cookie ticket expiry and browser cookie expiration are related but distinct; a nonpersistent session cookie may still contain an expiring ticket.
+- Sliding expiration renews under conditions; it does not mean an infinite absolute session.
+- Shared Data Protection keys are required across replicas for tickets protected by one instance to be read by another.
+- External provider authentication does not automatically authorize local resources or safely link accounts by email.
+- Identity passkeys do not supply general-purpose WebAuthn or built-in Identity MFA behavior in current support.
+- Default passkey attestation validation is absent; do not claim Identity establishes authenticator hardware provenance.
+- ASP.NET Core 11 passkey display names are informational metadata from AAGUID mappings, not a trust rating.
+- Device-bound session package/browser support remains experimental, not a stable default.
 
 ## Knowledge checks with answers
 
-1. **Why should an API not accept an ID token just because it is signed?** Its intended audience and protocol purpose are the OIDC client, not necessarily the API. The API should validate an access token issued for its own audience.
-2. **What does a cookie handler validate?** A protected authentication ticket presented by the browser under the configured cookie scheme; it then creates the request principal.
-3. **Does `MapIdentityApi<TUser>` provide a general OAuth server?** No. It maps built-in Identity account endpoints and may issue proprietary protected tokens for simple scenarios.
-4. **What does PKCE add to authorization code flow?** A per-authorization verifier/challenge binding that helps prevent an intercepted code from being redeemed by an attacker.
-5. **After JWT validation succeeds, what security step remains?** Authorization against the endpoint policy and any resource-specific rules.
-6. **What is the passkey verifier proving?** That the credential's private key holder signed the expected fresh challenge for the correct relying-party context and origin, under the server's registered public credential.
+1. **Does `AddBearerToken` issue a standards-based JWT?** No. Identity API bearer tokens are proprietary protected tokens.
+2. **Which token should an API validate?** An access token intended for that API, with issuer, audience, signature, and lifetime validation.
+3. **Can a cookie-only app skip antiforgery because cookies are encrypted?** No. Browser cookies are ambient credentials and state-changing requests need appropriate CSRF protection.
+4. **What does ASP.NET Core 11 `TimeProvider` improve?** Deterministic testing/control of Identity's time-based operations such as token expiry, lockout, and security-stamp validation.
+5. **Does passkey AAGUID naming identify a trusted device?** No. It gives a friendly authenticator display name and is not attestation validation or trust certification.
+6. **Is DBSC stable in ASP.NET Core 11?** No. The package and browser implementation are experimental.
 
-## Recent version changes
+## Sources
 
-ASP.NET Core 10 added built-in ASP.NET Core Identity passkey support. ASP.NET Core 11 retains it and exposes configuration through `IdentityPasskeyOptions`, including domain, challenge, authenticator, origin-validation, algorithm, and attestation-verification behavior. Verify the exact properties against the target framework's documentation because Identity's built-in implementation has a narrower scope than general WebAuthn. [ASP.NET Core 10 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-10.0) [Passkeys](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
+[Identity](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity) · [Identity API](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization) · [Cookies](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie) · [JWT bearer](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication) · [OIDC](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-oidc-web-authentication) · [Passkeys](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/) · [.NET 11 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11)

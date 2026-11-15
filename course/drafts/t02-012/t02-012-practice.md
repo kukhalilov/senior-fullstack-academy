@@ -2,158 +2,125 @@
 
 ## Goals
 
-Practice choosing the right authentication mechanism for the caller and application boundary, tracing the complete sign-in path, and recognizing when Identity's built-in account endpoints or passkey support are not enough. The exercises emphasize protocol purpose and trust boundaries rather than memorizing configuration syntax.
+Practice choosing an authentication mechanism for the caller and application boundary, tracing sign-in and recovery, and detecting token or session confusion. The exercises focus on security properties, not on memorizing configuration syntax. [Identity overview](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity) [Identity API guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization) [JWT bearer guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication) [Passkey guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
 
 ## Worked example
 
-### Scenario
+A company has a server-rendered staff portal, a JSON API, and a mobile client. Local accounts are stored with Identity. The portal needs a familiar redirect-based sign-in. The API needs standard access tokens and delegates authorization to resource scopes. The mobile app is a public client and cannot keep a client secret.
 
-A company has three clients:
+**Design:** The portal uses OIDC authorization-code flow with PKCE through a confidential server-side client, then creates a local cookie session. The API validates access tokens from a trusted authorization server, checking signature, issuer, audience, lifetime, and required permissions. The mobile app uses the provider's supported public-client authorization-code-with-PKCE flow. Identity remains useful for local user management if that matches the account model, but it does not become the OAuth server. Each service stores secrets in protected server configuration, and state-changing cookie-authenticated portal requests use antiforgery defenses.
 
-1. A server-rendered web application where employees sign in with the company's identity provider.
-2. A separate inventory API that serves the web application and a mobile client.
-3. A small first-party account service for a learning portal that stores its own users and needs registration, login, password reset, and optional passkey sign-in.
-
-### Reason through the boundaries
-
-- The server-rendered app is an OIDC confidential client. Use authorization code flow with PKCE. The OIDC handler handles redirects and the callback; an application cookie is the browser session. Store any client credential on the server.
-- The inventory API should validate access tokens intended for that API. With a JWT issuer, configure `JwtBearer` against the trusted authority and audience and validate signature, issuer, audience, and lifetime. It should not receive the web app's ID token or its cookie as an API bearer token.
-- The learning portal can use Identity for local users and its built-in Identity API endpoints if the proprietary token/cookie behavior fits this first-party scope. If the portal needs standard delegated scopes, many independently registered clients, or interoperable access tokens for several services, use an OAuth/OIDC provider instead.
-- Passkeys may be another primary sign-in method for portal accounts. Configure the relying-party domain and accepted origins intentionally, and provide recovery. Built-in Identity passkeys do not turn into Identity's second-factor authenticator flow.
-- Every application still defines authorization. “Authenticated employee” does not mean “may edit every inventory item.”
-
-This design keeps each credential at the boundary that understands it. [OIDC web authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-oidc-web-authentication) [JWT bearer authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication) [Identity API guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization) [Passkey guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
+**Why this design:** It respects each credential's intended audience and holder. The cookie is for the browser session, an access token is for the API, and the OIDC ID token is for the client. A single token should not be accepted by every endpoint just because it is syntactically valid.
 
 ## Exercises
 
-### Exercise 1: classify each credential
+### Exercise 1: choose the token validator
 
-For each artifact below, state which component should normally consume it and one check that must be performed:
+An API receives a compact three-segment token signed by a known identity provider. Which checks are essential, and should the API accept an ID token whose signature is valid?
 
-1. An application authentication cookie sent by an employee's browser.
-2. A JWT access token with an audience for the inventory API.
-3. An OIDC ID token whose audience is the web application's client ID.
-4. An Identity API proprietary refresh token.
-5. A passkey assertion from the browser.
+### Exercise 2: diagnose a logout report
 
-### Exercise 2: diagnose the login/API bug
+A user logs out from an application using a cookie in one browser, but their already-issued proprietary Identity API bearer token still works until later. Explain why and give two ways the design can bound the exposure.
 
-A frontend redirects to its identity provider, receives an ID token, and sends it as `Authorization: Bearer` to an API. The API decodes the payload and checks only that it contains a `role` claim. Identify at least four independent problems and propose a corrected flow.
+### Exercise 3: prevent cross-site account changes
 
-### Exercise 3: design account linking
+A cookie-authenticated browser app has a `POST /profile/email` endpoint. The cookie is `HttpOnly` and `Secure`. Is that enough to prevent a malicious website from causing the browser to submit the request? Specify the missing control and explain why.
 
-A user is signed into a local account and chooses “Connect provider.” The provider returns an external identity with a matching email string. Explain a safe linking sequence. What must the app not assume about the matching email?
+### Exercise 4: choose built-in Identity API or an authorization server
 
-### Exercise 4: select the built-in Identity API or a provider
+Decide whether built-in Identity endpoints or a standards-compliant provider fit these cases:
 
-Choose between built-in Identity endpoints and a standards-compliant OAuth/OIDC provider for each requirement:
+1. A first-party prototype with local accounts and one API, where the application can accept Identity's proprietary protected tokens.
+2. Multiple independent clients require delegated scopes, consent, federation, and interoperable access tokens.
+3. A public SPA would embed a client secret to use a confidential-client flow.
 
-1. A single first-party app needs basic local registration/login/password reset.
-2. Several independently deployed services need interoperable access tokens, multiple client registrations, delegated scopes, and federation.
-3. An API needs to validate access tokens from an external issuer but does not handle browser login itself.
+### Exercise 5: design safe external account linking
 
-Explain the boundary for each choice.
+A new external provider returns a user with the same email address as an existing local user. Should the app automatically merge the accounts? State a safer linking workflow.
 
-### Exercise 5: review the passkey deployment
+### Exercise 6: plan passkey enrollment and recovery
 
-A team sets `ServerDomain = "example.com"`, accepts every origin in `ValidateOrigin`, trusts incoming forwarded-host headers from every proxy, and has no recovery plan. List the risks and a safer deployment plan.
+Design a passkey enrollment flow for an existing local account. Name the ceremony data that must be validated, account controls around credential management, and at least two recovery considerations. Clarify the relationship to Identity MFA.
 
-### Exercise 6: session revocation and cookie behavior
+### Exercise 7: test Identity time boundaries
 
-An employee's role is removed in the database, but an existing browser cookie still contains the role claim. The employee can still access a privileged endpoint for up to 30 minutes. Explain why this can happen and give two ways to reduce the stale-authorization window. State the tradeoff for each.
+Identity lockout lasts 15 minutes. Propose a deterministic test using `TimeProvider` that checks the moment before expiry and after expiry. Why is a sleep-based test inferior?
+
+### Exercise 8: assess DBSC claims
+
+A product owner says, “ASP.NET Core 11 DBSC means we can remove SameSite, antiforgery, and server-side revocation because stolen cookies cannot be reused.” Identify the false assumptions and a safer rollout approach.
 
 ## Progressive hints
 
-1. Ask what protocol each artifact belongs to and who is its intended audience. Do not infer token purpose from its encoding or signature alone.
-2. Separate identity assertion, access authorization, and application session. Check signature/key, issuer, audience, expiration, and the appropriate claim/policy boundaries.
-3. Account linking should begin from a local authenticated session and use the provider's stable subject identifier after a validated callback. Email equality is not automatically proof of same-person ownership.
-4. The built-in Identity API's bearer token is proprietary; an API validating a JWT from a trusted provider has a different job from an interactive OIDC client.
-5. RP ID and origin are security boundaries. Trust only known reverse proxies and explicitly allowed origins; never use permissive validation as a quick deployment fix.
-6. A cookie is a snapshot of claims until renewed/revalidated or expired. Consider security-stamp checks, short session lifetime, or authorization that reads current resource/account state.
+1. Token syntax is not token purpose; ask who issued it, who it is for, and what type the API expects.
+2. Consider whether logout can invalidate a stateless credential without server-side state.
+3. `HttpOnly` limits JavaScript access; ask whether browsers still attach cookies automatically.
+4. Compare first-party simplicity with standardized delegation and multiple-client requirements.
+5. Equal email strings do not prove that the same person controls both identities now.
+6. Treat passkey registration as a server-validated ceremony and plan account recovery separately.
+7. Use the same fake clock instance for Identity and assertions; test boundary conditions.
+8. Check whether DBSC is stable and universally implemented, and identify protections at distinct layers.
 
 ## Complete solutions
 
-### Solution 1: classify each credential
+### Solution 1
 
-1. **Application cookie:** The web application's cookie authentication scheme consumes it, unprotects the ticket with Data Protection, checks ticket validity, and creates the browser request principal. The browser's `Secure`, `HttpOnly`, and SameSite behavior controls transport; authorization still evaluates the principal.
-2. **JWT access token:** The inventory API's JWT bearer handler consumes it. It validates the signature against trusted issuer keys, expected issuer, expected audience, and lifetime before authorizing the request.
-3. **ID token:** The OIDC client validates it as part of the authentication response for its own registered client. The resource API should not treat it as an access token because the audience/purpose is the client.
-4. **Identity API proprietary refresh token:** The built-in Identity API's matching refresh endpoint/handler consumes it. It is a protected Identity token, not an OAuth refresh token for arbitrary clients; store and transmit it as a secret.
-5. **Passkey assertion:** The server-side passkey/Identity ceremony handler consumes it. It validates the fresh challenge, expected RP ID/origin, credential identifier, signature against stored public key, and ceremony state before signing in the user.
+Validate a trusted signature/key, exact trusted issuer, intended API audience, and token lifetime. Enforce required scopes/roles/policies after authentication. Do not accept a validly signed ID token as an API access token: its audience and purpose are the OIDC client, so accepting it creates token confusion. Configure the bearer handler for the expected authority and audience, and test issuer/key rollover behavior.
 
-### Solution 2: diagnose the login/API bug
+### Solution 2
 
-The design has several independent flaws:
+Cookie logout clears the browser's cookie, but a stateless protected bearer token is not necessarily recorded in a revocation list. It can remain usable until its configured expiration. Bound risk by using short access-token lifetimes with protected refresh-token rotation/revocation, or add server-side revocation/security-stamp validation where the framework flow supports it. The exact mechanism depends on the token issuer; do not assume cookie sign-out revokes unrelated API tokens.
 
-- It sends an **ID token** to a resource API; the token's audience is the OIDC client, not the API.
-- It decodes the payload but does not validate the signature against trusted keys.
-- It does not validate the issuer, so a token from an unintended issuer could be accepted.
-- It does not validate audience or expiration.
-- It treats a role claim as authorization without establishing that the claim is trusted, mapped correctly, or sufficient for the specific resource.
-- It may expose a credential through browser storage/logging/replay and confuses authentication with authorization.
+### Solution 3
 
-Correct flow: the client obtains an **access token** intended for the inventory API through the provider's supported flow. The API validates signature/key, issuer, audience, and lifetime with `JwtBearer`, then applies endpoint and resource-specific authorization. The web app's own OIDC ID token is consumed by the OIDC client and can be used to establish the local app cookie; it is not forwarded to the API as its bearer credential. [JWT bearer authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication)
+No. Browsers attach eligible cookies automatically, which is the ambient-authority property behind CSRF. `HttpOnly` prevents script reads and `Secure` restricts transport to HTTPS; neither proves the user intended the cross-site state change. Add antiforgery token validation and an appropriate SameSite policy as defense in depth; validate origin/referer where suitable and avoid state-changing GETs.
 
-### Solution 3: design account linking
+### Solution 4
 
-1. Require the user to be authenticated to the local account and, for high-risk accounts, require recent reauthentication or another step-up check.
-2. Issue a provider challenge using the configured remote OIDC scheme, with protected correlation/state and a registered callback.
-3. Validate the remote response and obtain the provider's stable subject/provider key from the validated external login result.
-4. Show the user which provider/account will be linked and prevent the provider key from already belonging to another local user.
-5. Persist the association through the Identity login store/user manager, then notify the user and audit the action without logging tokens.
-6. Provide safe unlinking only when another viable sign-in/recovery method remains.
+1. Built-in Identity API endpoints may fit a tightly scoped first-party application if its proprietary protected-token/cookie behavior is sufficient and the app supplies delivery, rate-limiting, recovery, and authorization controls.
+2. Use a standards-compliant OAuth/OIDC authorization server. The built-in Identity API is not a full authorization server and does not supply the requested standardized delegation model.
+3. A SPA is a public client and cannot protect an embedded secret. Use a supported public-client authorization-code-with-PKCE flow; keep secrets only in confidential server-side applications.
 
-Do not assume that two identical email strings prove the same person's ownership. The provider may not verify the email, the address may have changed or been reassigned, and local confirmation may be stale. Use the stable external subject and a deliberate account-linking policy. [Identity overview](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity)
+### Solution 5
 
-### Solution 4: choose the token architecture
+Do not merge only because email strings match. Require an authenticated local session or a deliberate reauthentication step, then complete a fresh provider authentication and verify its stable subject. Ensure the provider's email-verification semantics meet policy, notify the user, protect against CSRF/account swapping, audit the link, and offer a safe unlink/recovery path. Persist the external provider key through Identity's login store.
 
-1. **Built-in Identity API can fit** a bounded first-party local-account service if its endpoint behavior and proprietary protected-token/cookie model meet the app's needs. Add secure email delivery, rate limits, authorization, and recovery.
-2. **Use a standards-compliant provider.** Multiple independent clients, delegated scopes, federation, and interoperable access tokens require authorization-server capabilities beyond the built-in Identity API. Each resource API validates access tokens for its own audience.
-3. **Use `JwtBearer` at the API.** The API can validate the external issuer's access tokens without owning browser login. The client/provider handles obtaining the token; the API validates the expected issuer, audience, signature, and lifetime.
+### Solution 6
 
-### Solution 5: fix the passkey deployment
+Require an authenticated account-management session and recent reauthentication for a sensitive account. Generate fresh server-side challenge/state bound to the user and registration ceremony. Validate challenge, origin, relying-party ID, credential identifier, public-key response, and ceremony type before persisting through the passkey-capable store. Do not collect/store the private key. Limit credential count and authorize list/rename/remove operations for the owner. Offer another enrolled credential, verified recovery process, and support escalation; removing the last credential must not lock out the owner. Identity passkeys are a primary sign-in path and do not automatically satisfy its separate authenticator-code 2FA step.
 
-The parent RP ID `example.com` can make credentials usable across its subdomains. If any covered subdomain serves untrusted content or is controlled by another party, the trust boundary is too broad. Accepting every origin defeats origin validation. Trusting forwarded-host values from arbitrary proxies lets an attacker influence the host/origin context. Without recovery, device loss can permanently lock users out.
+### Solution 7
 
-Safer plan: choose the narrowest RP ID that matches the product's intended sharing boundary; configure the host allowlist and trust forwarded headers only from known proxies; validate exact HTTPS origins (or an explicit small allowlist); keep ceremony challenges fresh and short-lived; bound passkey count/display names; require recent authentication for credential removal; and provide well-protected recovery such as a second credential or carefully designed recovery flow. [Passkey guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
+Register a controllable fake `TimeProvider` before building Identity services and inject the same instance into the test. Trigger the configured failed sign-ins until lockout occurs; assert a sign-in remains locked just before the 15-minute boundary, advance beyond the boundary, and assert the expected behavior. Also test exact-boundary semantics according to the framework implementation. A sleep makes tests slow and susceptible to scheduler jitter; a fake clock is fast and repeatable.
 
-### Solution 6: control stale cookie authorization
+### Solution 8
 
-The cookie contains a principal/role claim issued at sign-in. Removing the role from the database does not rewrite an already issued self-contained ticket. The handler can continue accepting it until expiry unless the app revalidates or loads current authorization state.
-
-Options include:
-
-- **Shorter ticket lifetime or more frequent sliding/session reauthentication:** reduces the maximum stale window, but may increase login friction and does not provide immediate revocation by itself.
-- **Security-stamp validation with a shorter interval:** detects relevant account changes and rejects/refreshes stale tickets sooner, at the cost of more store reads and a bounded delay up to the validation interval.
-- **Current policy/resource check during authorization:** evaluate whether the user currently has permission for the requested resource, rather than relying solely on an old role snapshot. This is fresher but can add database/cache cost and requires correct failure behavior during dependency outages.
-
-For sensitive operations, combine current resource authorization with a session-revocation strategy. A role claim remains useful for coarse policy selection, but it should not be the sole source for volatile, high-impact decisions. [Identity configuration](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-configuration) [Cookie authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie)
+The claim overstates DBSC: ASP.NET Core 11 support and browser implementations are experimental; support is not universal. DBSC does not eliminate CSRF (a browser may still make authenticated requests), nor XSS, authorization flaws, or the need for server-side session revocation and account recovery. Retain secure cookie attributes, antiforgery and authorization checks. Evaluate DBSC behind an opt-in/feature flag with a browser matrix, test registration/refresh/logout/revocation/device loss, and provide a safe conventional-session fallback.
 
 ## Tests and edge cases
 
-- Reject a JWT with a valid signature but the wrong audience, wrong issuer, or expired lifetime.
-- Confirm the API accepts an access token for its own audience and rejects the client's ID token.
-- Verify cookie authentication produces a principal before authorization and that an unauthorized authenticated principal gets 403 rather than being misreported as a failed login.
-- Verify account recovery and forgot-password responses do not reveal whether a local account exists.
-- Test external linking with a provider key already associated with another user and with matching but unverified email claims.
-- Test passkey registration/assertion with a wrong origin, wrong RP ID, replayed challenge, and unknown credential.
-- Test a role/security-stamp change while an older cookie remains active; record the configured stale-claim window.
-- Test OIDC callback behavior through the actual TLS-terminating proxy and production host/path configuration.
+- JWT with valid signature but wrong audience: authentication must fail.
+- Expired access token and a token from an untrusted issuer: authentication must fail.
+- Authenticated user lacking a resource permission: authorization returns 403 rather than treating it as invalid authentication.
+- Cookie sign-out followed by replay of a separate bearer token: expected behavior follows that token's own expiration/revocation design.
+- Cross-site POST with ambient cookie but no valid antiforgery token: request is rejected.
+- Passkey assertion with wrong origin, stale challenge, wrong account, or unknown credential: sign-in fails without leaking account-existence detail.
+- External login with a matching but unverified email: no automatic account merge.
+- Unknown AAGUID: user-editable display label remains safely encoded and cannot affect policy.
+- DBSC unavailable browser: fallback retains a secure cookie session and does not silently weaken authentication.
 
 ## Reflection questions
 
-1. Which credential will each client present, and which handler is the only component that should consume it?
-2. What is the intended audience of every token in your design?
-3. What is your maximum tolerated delay between account disablement and rejection of an existing cookie?
-4. Which operations require current resource data instead of a role snapshot in a ticket?
-5. Can any recovery or account-linking path bypass the protections of the normal sign-in path?
-6. What operational secrets, keys, and metadata must be shared across replicas, and how are they rotated?
+1. Which credentials in your design are intended for a browser session, an API, or an OIDC client, and how does each validator enforce that purpose?
+2. What server-side state or expiration policy bounds the lifetime of a stolen session or token?
+3. Which recovery path is weakest, and could it bypass the strongest sign-in factor?
+4. Which assumptions depend on a specific ASP.NET Core version or experimental browser capability?
 
 ## Sources
 
-- [Configure OpenID Connect web authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-oidc-web-authentication)
-- [Configure JWT bearer authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication)
-- [Identity API endpoint guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization)
-- [ASP.NET Core passkey guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
-- [Configure ASP.NET Core Identity](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-configuration)
-- [Configure cookie authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie)
+- [Identity API authorization and token behavior](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-api-authorization)
+- [JWT bearer authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication)
+- [OpenID Connect web authentication](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-oidc-web-authentication)
+- [Cookie authentication and antiforgery context](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie)
+- [Passkeys in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
+- [ASP.NET Core 11 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11)

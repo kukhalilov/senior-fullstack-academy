@@ -308,14 +308,33 @@
         "UserPasskeyInfo",
         "UserPasskeyInfo.CredentialId",
         "UserPasskeyInfo.PublicKey",
+        "UserPasskeyInfo.Name",
         "UserPasskeyInfo.SignCount",
         "UserPasskeyInfo.IsBackedUp",
         "UserPasskeyInfo.IsBackupEligible",
         "UserManager<TUser>.AddOrUpdatePasskeyAsync",
         "UserManager<TUser>.GetPasskeysAsync",
         "IUserPasskeyStore<TUser>",
+        "IPasskeyHandler<TUser>",
+        "IPasskeyHandler<TUser>.MakeCreationOptionsAsync",
+        "IPasskeyHandler<TUser>.MakeRequestOptionsAsync",
+        "IPasskeyHandler<TUser>.PerformAttestationAsync",
+        "IPasskeyHandler<TUser>.PerformAssertionAsync",
         "PasskeyHandler<TUser>",
-        "SignInManager<TUser> passkey integration",
+        "PasskeyCreationOptionsResult",
+        "PasskeyCreationOptionsResult.CreationOptionsJson",
+        "PasskeyCreationOptionsResult.AttestationState",
+        "PasskeyAttestationResult",
+        "PasskeyAssertionResult",
+        "PasskeyUserEntity",
+        "SignInManager<TUser>.MakePasskeyCreationOptionsAsync",
+        "SignInManager<TUser>.MakePasskeyRequestOptionsAsync",
+        "SignInManager<TUser>.PerformPasskeyAttestationAsync",
+        "SignInManager<TUser>.PerformPasskeyAssertionAsync",
+        "SignInManager<TUser>.PasskeySignInAsync",
+        "Passkey ceremony state integrity",
+        "Passkey ceremony state account ownership binding",
+        "Passkey ceremony state single-use expiration",
         "Web Authentication API (WebAuthn)",
         "FIDO2 passkey credential",
         "Relying Party ID",
@@ -357,6 +376,27 @@
         "Passkey versus password",
         "Passkey versus second-factor authenticator",
         "Identity MFA limitations"
+      ]
+    },
+    {
+      "id": "identity-dotnet-11-time-passkeys-and-device-bound-sessions",
+      "title": "ASP.NET Core 11 Identity time testing passkey names and experimental device-bound sessions",
+      "items": [
+        "ASP.NET Core 11 Identity TimeProvider support",
+        "Identity uses TimeProvider for time-related operations",
+        "TimeProvider dependency injection for Identity",
+        "Deterministic Identity tests for token expiration lockout and security stamp validation",
+        "ASP.NET Core 11 passkey display name inference from authenticator AAGUID",
+        "PasskeyAuthenticators dictionary",
+        "AAGUID Authenticator Attestation GUID",
+        "Known passkey authenticator display names assigned automatically",
+        "Unknown passkey authenticator rename page",
+        "ASP.NET Core 11 experimental Device Bound Session Credentials support",
+        "Microsoft.AspNetCore.Authentication.DeviceBoundSessions package",
+        "AddDeviceBoundSession",
+        "ShortLivedCookieExpiration",
+        "DBSC browser implementation is experimental",
+        "Device-bound session registration endpoint and refresh cookie"
       ]
     }
   ],
@@ -406,13 +446,17 @@
       "items": [
         "ASP.NET Core 10 introduced built-in Identity passkey support. ASP.NET Core 11 keeps that support, with explicit IdentityPasskeyOptions for server domain, challenge, authenticator behavior, origin validation, algorithms, and attestation verification.",
         "Identity API bearer tokens are proprietary protected tokens, not JWTs or a complete OAuth/OIDC server. For APIs needing standards-based access tokens, use a standards-compliant identity provider and validate issuer, audience, signature, and lifetime with JwtBearer.",
-        "OpenID Connect web apps should use the authorization-code flow with PKCE. Do not teach public browser clients with embedded secrets as confidential clients; keep client credentials on the server."
+        "OpenID Connect web apps should use the authorization-code flow with PKCE. Do not teach public browser clients with embedded secrets as confidential clients; keep client credentials on the server.",
+        "ASP.NET Core 11 Identity uses TimeProvider for time-related operations, enabling deterministic control of token expiration, lockout, and security stamp validation in tests.",
+        "ASP.NET Core 11 Identity can infer friendly passkey display names from authenticator AAGUIDs using built-in mappings and the PasskeyAuthenticators dictionary; unknown authenticators require the user to rename the passkey.",
+        "ASP.NET Core 11 adds Device Bound Session Credentials support through Microsoft.AspNetCore.Authentication.DeviceBoundSessions, but the package remains experimental and browser support also requires experimental implementation. Keep this separate from stable cookie authentication and passkey features."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-10.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication",
-        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-oidc-web-authentication"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-oidc-web-authentication",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
       ]
     }
   ],
@@ -429,7 +473,8 @@
       "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-oidc-web-authentication",
       "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.usermanager-1",
-      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitypasskeyoptions"
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitypasskeyoptions",
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
     ]
   },
   "scopeExclusions": [
