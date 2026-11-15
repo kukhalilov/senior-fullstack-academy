@@ -80,7 +80,7 @@ Console.WriteLine(a1.SequenceEqual(a2)); // True (structural equality)
 # Common mistakes
 1.  **Mutating a Dictionary Key**: Changing a property of an object after adding it to a `HashSet` or `Dictionary` makes the object "lost" because its hash code changes.
 2.  **Assuming `==` works for all types**: Always check if a type (like an array) uses reference equality before using `==`.
-3.  **Ignoring `NaN`**: Floating-point `NaN` values are never equal to themselves, which can cause bugs in equality checks.
+3.  **Ignoring `NaN`**: For floating-point values, `NaN == NaN` is false, while `Double.Equals(double.NaN)` returns true; choose the comparison API intentionally.
 
 # Knowledge checks with answers
 1.  **Question**: If you have two different array instances with the same elements, does `==` return true?
