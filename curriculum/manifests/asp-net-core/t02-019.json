@@ -6,9 +6,9 @@
   "status": "source-backed-draft-generation-enabled",
   "inventoryComplete": true,
   "concepts": [
-    "SignalR provides server-to-client and bidirectional real-time messaging over a logical connection. A hub is a high-level RPC-like abstraction for client and server method calls; it is not a durable event log or a guarantee that every message is delivered exactly once. Design reconnect, replay, persistence, and acknowledgement behavior explicitly when messages matter.",
+    "SignalR provides server-to-client and bidirectional real-time messaging over a logical connection. A hub is a high-level RPC-like abstraction for client and server method calls; it is not a durable event log or a guarantee that every message is delivered exactly once. Design reconnect, replay, persistence, and acknowledgement behavior explicitly when messages matter. In ASP.NET Core 11, the .NET client can cancel a non-streaming invocation cooperatively, and the JSON Hub Protocol can serialize C# union types through System.Text.Json.",
     "SignalR negotiates a transport and protocol, then maps client invocations to hub methods. WebSockets is generally the preferred transport when available; Server-Sent Events and long polling provide alternatives. A hub instance is transient per invocation, so application state belongs in a scoped or durable service, not in hub fields. Use IHubContext to send to clients outside a hub invocation.",
-    "Connections, users, and groups are distinct: one authenticated user may have multiple connections, and groups are transient routing sets rather than authorization boundaries. Every hub method and group membership change must be authorized against trusted server-side identity and resource data. Treat all client-supplied arguments as untrusted and avoid sending secrets or sensitive information to broad groups.",
+    "Connections, users, and groups are distinct: one authenticated user may have multiple connections, and groups are transient routing sets rather than authorization boundaries. Every hub method and group membership change must be authorized against trusted server-side identity and resource data. Treat all client-supplied arguments as untrusted and avoid sending secrets or sensitive information to broad groups. In ASP.NET Core 11, optional token refresh may replace claims in place only when the refreshed principal retains the same SignalR user identity; the connection ID and user-routing identifier do not change.",
     "Horizontal scale-out requires connection affinity or a managed service and a backplane, depending on transport and hosting topology. The Redis backplane distributes messages but does not persist or replay them after outages; Azure SignalR Service manages client connections and scale-out differently. Stateful reconnect can buffer and replay a limited window after short interruptions, but it is not durable delivery."
   ],
   "inventory": [
@@ -155,12 +155,19 @@
         "Stateful reconnect ACK and bounded message buffers",
         "Stateful reconnect requires opt-in on server endpoint and client",
         "Stateful reconnect versus automatic reconnect",
-        "SignalR connection lifetime is separate from HTTP request lifetime"
+        "SignalR connection lifetime is separate from HTTP request lifetime",
+        "SignalR client cancellation of non-streaming hub invocations in ASP.NET Core 11",
+        "HubConnectionExtensions.InvokeAsync CancellationToken client cancellation",
+        "CancellationToken parameter on non-streaming hub method for client cancellation",
+        "Client invocation task cancels before server method finishes",
+        "Non-streaming hub invocation cancellation supported by .NET client only",
+        "SignalR cancellation differs from SendAsync one-way call",
+        "C# union types supported by SignalR JSON Hub Protocol in ASP.NET Core 11"
       ]
     },
     {
-      "id": "security-authentication-scaling-and-operational-limits",
-      "title": "hub authorization user identity resource checks scale-out affinity and observability",
+      "id": "security-authentication-and-operational-limits",
+      "title": "hub authorization identity claims and invocation protection",
       "items": [
         "AuthorizeAttribute on a hub class",
         "AuthorizeAttribute on an individual hub method",
@@ -180,15 +187,59 @@
         "Cookie authentication for browser SignalR clients",
         "Bearer token authentication for non-browser clients",
         "Connection identity and claims are normally cached for connection lifetime",
-        "ASP.NET Core 11 SignalR authentication refresh",
-        "Hub.OnAuthenticationRefreshedAsync",
-        "Authentication refresh preserves SignalR user identity and routing",
         "Hub filters for invocation logging validation and cross-cutting policy",
         "Hub filters do not replace authorization checks",
         "SignalR message size limit and denial-of-service control",
         "SignalR detailed errors and production information disclosure",
         "SignalR message rate and per-client invocation limits",
-        "SignalR connection count and TCP resource limits",
+        "SignalR connection count and TCP resource limits"
+      ]
+    },
+    {
+      "id": "authentication-refresh-and-client-cancellation",
+      "title": "ASP.NET Core 11 authentication refresh and invocation cancellation",
+      "items": [
+        "ASP.NET Core 11 SignalR authentication refresh",
+        "Hub.OnAuthenticationRefreshedAsync",
+        "Authentication refresh preserves SignalR user identity and routing",
+        "HttpConnectionDispatcherOptions.EnableAuthenticationRefresh",
+        "HttpConnectionDispatcherOptions.OnAuthenticationRefresh",
+        "HttpConnectionDispatcherOptions.MaximumAuthenticationExpiration",
+        "AuthenticationRefreshContext",
+        "AuthenticationRefreshContext.PreviousUser",
+        "AuthenticationRefreshContext.NewUser",
+        "AuthenticationRefreshContext.NewExpiration",
+        "AuthenticationRefreshContext.ConnectionId",
+        "AuthenticationRefreshContext.HttpContext",
+        "HubConnectionBuilderExtensions.WithAuthenticationRefresh",
+        "AuthenticationRefreshOptions",
+        "AuthenticationRefreshOptions.EnableAutoRefresh",
+        "AuthenticationRefreshOptions.RefreshBeforeExpiration",
+        "HubConnection.RefreshAuthenticationAsync",
+        "HubConnection.AuthenticationRefreshed event",
+        "HubConnection.AuthenticationRefreshFailed event",
+        "AuthenticationRefreshFailedContext",
+        "AuthenticationRefreshFailedContext.Exception",
+        "AuthenticationRefreshFailedContext.HubConnection",
+        "HubConnectionBuilder.withAuthenticationRefresh JavaScript client",
+        "HubConnection.refreshAuthentication JavaScript client",
+        "HubConnection.onAuthenticationRefreshed JavaScript client",
+        "HubConnection.onAuthenticationRefreshFailed JavaScript client",
+        "IAuthenticationRefreshOptions.enableAutoRefresh",
+        "IAuthenticationRefreshOptions.refreshBeforeExpirationInMilliseconds",
+        "Authentication refresh requires the refreshed principal to retain the same SignalR user identity",
+        "Authentication refresh callback can reject but cannot override the built-in same-user check",
+        "Authentication refresh automatic scheduling requires server-reported token lifetime",
+        "Authentication refresh failure does not close the connection or automatically retry",
+        "Authentication refresh /refresh route must pass through proxy and firewall configuration",
+        "Hub.OnAuthenticationRefreshedAsync runs after the connection principal is replaced",
+        "In-flight hub invocations retain the principal captured when they began"
+      ]
+    },
+    {
+      "id": "scale-out-affinity-and-observability",
+      "title": "server affinity backplanes cloud scale and operational telemetry",
+      "items": [
         "Sticky sessions and session affinity",
         "Sticky sessions are not required with Azure SignalR Service",
         "Sticky sessions exception for WebSockets-only with SkipNegotiation",
@@ -208,16 +259,53 @@
     }
   ],
   "comparisons": [
-    ["WebSockets", "Server-Sent Events", "Long Polling"],
-    ["JSON Hub Protocol", "MessagePack Hub Protocol"],
-    ["IHubContext", "Hub invocation context"],
-    ["user routing", "group routing", "connection routing"],
-    ["automatic reconnect", "stateful reconnect"],
-    ["at-most-once ephemeral messaging", "durable broker delivery"],
-    ["Redis backplane", "Azure SignalR Service"],
-    ["strongly typed Hub<TClient>", "string-named client methods"],
-    ["Hub filter", "authorization policy"],
-    ["SignalR user identity", "SignalR connection ID"]
+    [
+      "WebSockets",
+      "Server-Sent Events",
+      "Long Polling"
+    ],
+    [
+      "JSON Hub Protocol",
+      "MessagePack Hub Protocol"
+    ],
+    [
+      "IHubContext",
+      "Hub invocation context"
+    ],
+    [
+      "user routing",
+      "group routing",
+      "connection routing"
+    ],
+    [
+      "automatic reconnect",
+      "stateful reconnect"
+    ],
+    [
+      "at-most-once ephemeral messaging",
+      "durable broker delivery"
+    ],
+    [
+      "Redis backplane",
+      "Azure SignalR Service"
+    ],
+    [
+      "strongly typed Hub<TClient>",
+      "string-named client methods"
+    ],
+    [
+      "Hub filter",
+      "authorization policy"
+    ],
+    [
+      "SignalR user identity",
+      "SignalR connection ID"
+    ],
+    [
+      "authentication refresh",
+      "automatic reconnect",
+      "stateful reconnect"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
@@ -226,7 +314,8 @@
     "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client",
     "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz",
     "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale",
-    "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane"
+    "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane",
+    "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
   ],
   "versionNotes": [
     {
@@ -235,13 +324,17 @@
         "Stateful reconnect is available starting in .NET 8 and remains opt-in on both server and client. It acknowledges and buffers a bounded amount of data to smooth short network interruptions; it does not make SignalR a durable delivery system.",
         "ASP.NET Core 11 adds active SignalR authentication refresh support for .NET and TypeScript clients. A refreshed principal updates claims and roles in place while preserving the SignalR user identifier and routing; existing in-flight hub invocations retain the principal they began with.",
         "ASP.NET Core SignalR is not wire/API compatible with classic ASP.NET SignalR. Teach the current ASP.NET Core server and client packages and mention classic SignalR only as migration context.",
-        "Automatic reconnect remains opt-in for ASP.NET Core SignalR clients. It establishes a new connection after reconnect and does not replay messages; use stateful reconnect only for its bounded transient-disconnect behavior."
+        "Automatic reconnect remains opt-in for ASP.NET Core SignalR clients. It establishes a new connection after reconnect and does not replay messages; use stateful reconnect only for its bounded transient-disconnect behavior.",
+        "ASP.NET Core 11 adds server-controlled authentication refresh for SignalR connections. The refresh request reauthenticates through the normal endpoint pipeline; the refreshed principal must map to the same SignalR user. An optional OnAuthenticationRefresh callback can reject additional changes but cannot approve a different user identity. Automatic refresh requires a reported token lifetime; failed refresh is surfaced to the client and does not itself close or retry the connection.",
+        "ASP.NET Core 11 lets the .NET SignalR client cancel non-streaming InvokeAsync calls by sending a cancellation message. The hub method must declare and observe CancellationToken; cancellation is cooperative, the client task cancels before the server necessarily finishes, and older servers only canceled the local wait. This invocation-cancellation feature is .NET-client-only.",
+        "ASP.NET Core 11 supports C# union types through System.Text.Json in the SignalR JSON Hub Protocol. This does not imply support in the MessagePack protocol."
       ],
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/aspnet/core/signalr/release-notes/aspnetcore-11",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz",
-        "https://learn.microsoft.com/en-us/aspnet/core/signalr/version-differences"
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/version-differences",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client"
       ]
     }
   ],
@@ -257,14 +350,14 @@
       "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz",
       "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale",
       "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane",
-      "https://learn.microsoft.com/en-us/aspnet/core/signalr/release-notes/aspnetcore-11",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hub",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext-1",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.ihubfilter",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
-      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions"
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
     ]
   },
   "scopeExclusions": [

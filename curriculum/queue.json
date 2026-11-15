@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1926,
+  "taskCount": 1928,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -15796,9 +15796,9 @@
       "inventoryGroup": "transports-protocols-streaming-and-connection-lifecycle"
     },
     {
-      "id": "t02-019-reference-security-authentication-scaling-and-operational-limits",
+      "id": "t02-019-reference-security-authentication-and-operational-limits",
       "track": "track-02",
-      "title": "SignalR transports hubs connection lifetime groups security scaling — Reference: hub authorization user identity resource checks scale-out affinity and observability",
+      "title": "SignalR transports hubs connection lifetime groups security scaling — Reference: hub authorization identity claims and invocation protection",
       "module": "t02-019",
       "manifest": "curriculum/manifests/asp-net-core/t02-019.json",
       "phase": "reference",
@@ -15806,7 +15806,33 @@
         "t02-019-reference-transports-protocols-streaming-and-connection-lifecycle"
       ],
       "status": "draft-generation-eligible",
-      "inventoryGroup": "security-authentication-scaling-and-operational-limits"
+      "inventoryGroup": "security-authentication-and-operational-limits"
+    },
+    {
+      "id": "t02-019-reference-authentication-refresh-and-client-cancellation",
+      "track": "track-02",
+      "title": "SignalR transports hubs connection lifetime groups security scaling — Reference: ASP.NET Core 11 authentication refresh and invocation cancellation",
+      "module": "t02-019",
+      "manifest": "curriculum/manifests/asp-net-core/t02-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t02-019-reference-security-authentication-and-operational-limits"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "authentication-refresh-and-client-cancellation"
+    },
+    {
+      "id": "t02-019-reference-scale-out-affinity-and-observability",
+      "track": "track-02",
+      "title": "SignalR transports hubs connection lifetime groups security scaling — Reference: server affinity backplanes cloud scale and operational telemetry",
+      "module": "t02-019",
+      "manifest": "curriculum/manifests/asp-net-core/t02-019.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t02-019-reference-authentication-refresh-and-client-cancellation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "scale-out-affinity-and-observability"
     },
     {
       "id": "t02-019-practice",
@@ -15816,7 +15842,7 @@
       "manifest": "curriculum/manifests/asp-net-core/t02-019.json",
       "phase": "practice",
       "prerequisites": [
-        "t02-019-reference-security-authentication-scaling-and-operational-limits"
+        "t02-019-reference-scale-out-affinity-and-observability"
       ],
       "status": "draft-generation-eligible"
     },
