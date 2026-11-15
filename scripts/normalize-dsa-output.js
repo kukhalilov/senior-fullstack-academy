@@ -12,7 +12,7 @@ const headingAliases = new Map([
   ['Reflection questions', ['Reflection']],
 ]);
 
-export function normalizeDsaOutput(markdown) {
+export function normalizeDsaOutput(markdown, assignedTitle) {
   const lines=markdown.split(/\r?\n/);
   const titles=lines.map(line=>line.match(/^(#{1,6})\s+(.+?)\s*$/));
   const present=new Set(titles.filter(Boolean).map(match=>match[2].toLowerCase()));
@@ -32,6 +32,13 @@ export function normalizeDsaOutput(markdown) {
   if(tagged.length===0&&plain.length===1){
     const index=plain[0].index;
     markdown=markdown.slice(0,index)+'```csharp dsa-solution'+markdown.slice(index+plain[0][0].length);
+  }
+  if(assignedTitle&&!markdown.includes(assignedTitle)){
+    const firstHeading=/^#{1,6}\s+[^\r\n]+\r?\n/m.exec(markdown);
+    const label=`\n\n**Assigned problem: ${assignedTitle}**`;
+    markdown=firstHeading
+      ? markdown.slice(0,firstHeading.index+firstHeading[0].length)+label+markdown.slice(firstHeading.index+firstHeading[0].length)
+      : `**Assigned problem: ${assignedTitle}**\n\n${markdown}`;
   }
   return markdown;
 }

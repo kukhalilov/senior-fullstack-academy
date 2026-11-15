@@ -38,6 +38,9 @@ test('DSA output normalization repairs unambiguous conventional headings and C# 
   const normalized=normalizeDsaOutput(plain);
   for(const heading of ['Problem statement','Input constraints','Examples with expected output','Clarifying assumptions','Complete C# solution']) assert.match(normalized,new RegExp('^# '+heading+'$','m'));
   assert.match(normalized, /```csharp dsa-solution/);
+  const titled=normalizeDsaOutput(plain,'Best Time to Buy and Sell Stock');
+  assert.match(titled,/\*\*Assigned problem: Best Time to Buy and Sell Stock\*\*/);
+  assert.equal(normalizeDsaOutput(titled,'Best Time to Buy and Sell Stock'),titled);
   const ambiguous = '```csharp\nConsole.WriteLine(1);\n```\n```csharp\nConsole.WriteLine(2);\n```';
   assert.equal(normalizeDsaOutput(ambiguous), ambiguous);
 });
