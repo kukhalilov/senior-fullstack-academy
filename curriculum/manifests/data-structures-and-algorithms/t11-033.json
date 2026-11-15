@@ -15,31 +15,320 @@
     "Indexing convention, inclusive versus half-open ranges, identity values, and non-power-of-two sizes are common implementation errors; test single-element and full-range queries."
   ],
   "inventory": [
-    {"id":"fenwick-tree","title":"Fenwick tree / binary indexed tree","items":["Fenwick tree","Binary indexed tree (BIT)","Lowest set bit","Point update","Prefix aggregate query","Range sum by prefix subtraction","One-based internal indexing","O(log n) update and prefix query","Build from initial values","Coordinate compression for indexed values"]},
-    {"id":"segment-tree","title":"Segment tree and range aggregates","items":["Segment tree node interval","Build tree","Point update","Range query","Associative combine operation","Identity element","Recursive interval split","Iterative segment tree","Non-power-of-two array size","O(log n) point update and range query"]},
-    {"id":"range-updates-and-lazy","title":"Range updates and lazy propagation","items":["Range update","Lazy tag","Push deferred update","Apply tag to aggregate","Compose lazy tags","Range add and range sum","Range assign and range sum","Segment tree beats boundary (orientation only)","Sparse/dynamic segment tree","O(Q log coordinate range) sparse storage"]},
-    {"id":"static-query-and-selection","title":"Sparse tables and choosing a range structure","items":["Sparse table","Power-of-two interval precomputation","Idempotent operation","O(1) static min/max query","O(log n) disjoint sparse-table query concept","Static versus dynamic data","Prefix sums for static sums","Fenwick versus segment tree","Range minimum query","Inclusive versus half-open indices"]}
+    {
+      "id": "fenwick-tree",
+      "title": "Fenwick tree / binary indexed tree",
+      "items": [
+        "Fenwick tree",
+        "Binary indexed tree (BIT)",
+        "Lowest set bit",
+        "Point update",
+        "Prefix aggregate query",
+        "Range sum by prefix subtraction",
+        "One-based internal indexing",
+        "O(log n) update and prefix query",
+        "Build from initial values",
+        "Coordinate compression for indexed values"
+      ]
+    },
+    {
+      "id": "segment-tree",
+      "title": "Segment tree and range aggregates",
+      "items": [
+        "Segment tree node interval",
+        "Build tree",
+        "Point update",
+        "Range query",
+        "Associative combine operation",
+        "Identity element",
+        "Recursive interval split",
+        "Iterative segment tree",
+        "Non-power-of-two array size",
+        "O(log n) point update and range query"
+      ]
+    },
+    {
+      "id": "range-updates-and-lazy",
+      "title": "Range updates and lazy propagation",
+      "items": [
+        "Range update",
+        "Lazy tag",
+        "Push deferred update",
+        "Apply tag to aggregate",
+        "Compose lazy tags",
+        "Range add and range sum",
+        "Range assign and range sum",
+        "Segment tree beats boundary (orientation only)",
+        "Sparse/dynamic segment tree",
+        "O(Q log coordinate range) sparse storage"
+      ]
+    },
+    {
+      "id": "static-query-and-selection",
+      "title": "Sparse tables and choosing a range structure",
+      "items": [
+        "Sparse table",
+        "Power-of-two interval precomputation",
+        "Idempotent operation",
+        "O(1) static min/max query",
+        "O(log n) non-idempotent query with disjoint sparse-table blocks",
+        "Static versus dynamic data",
+        "Prefix sums for static sums",
+        "Fenwick versus segment tree",
+        "Range minimum query",
+        "Inclusive versus half-open indices"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"range-sum-query-mutable","name":"Range Sum Query - Mutable","difficulty":"intermediate","patterns":["point updates with range aggregate","Fenwick tree or segment tree implementation"]},
-    {"id":"count-smaller-numbers-after-self","name":"Count of Smaller Numbers After Self","difficulty":"advanced","patterns":["coordinate compression","Fenwick prefix counts or segment tree"]},
-    {"id":"range-module","name":"Range Module","difficulty":"advanced","patterns":["range assignment and coverage queries","lazy segment tree or ordered intervals"]},
-    {"id":"my-calendar-iii-range","name":"My Calendar III","difficulty":"advanced","patterns":["dynamic range counts","segment tree or ordered endpoint counts"]},
-    {"id":"count-of-range-sum","name":"Count of Range Sum","difficulty":"advanced","patterns":["prefix-sum coordinate compression","Fenwick range counting"]},
-    {"id":"reverse-pairs","name":"Reverse Pairs","difficulty":"advanced","patterns":["coordinate-compressed counting","Fenwick tree or merge-count alternative"]},
-    {"id":"rmq-static-cses","name":"Static Range Minimum Queries","difficulty":"intermediate","patterns":["sparse table preprocessing","idempotent O(1) range minimum"]},
-    {"id":"create-sorted-array-instructions","name":"Create Sorted Array through Instructions","difficulty":"advanced","patterns":["Fenwick prefix counts","modular accumulation of insertion cost"]}
+    {
+      "id": "range-sum-query-mutable",
+      "name": "Range Sum Query - Mutable",
+      "difficulty": "intermediate",
+      "patterns": [
+        "point updates with range aggregate",
+        "Fenwick tree or segment tree implementation"
+      ],
+      "statement": "Support point replacement and inclusive range sum.",
+      "constraints": [
+        "1 <= nums.length <= 30000",
+        "-100 <= nums[i],val <= 100",
+        "0 <= index < nums.length",
+        "0 <= left <= right < nums.length",
+        "At most 30000 update and sumRange calls"
+      ],
+      "examples": [
+        {
+          "input": "nums=[1,3,5], sumRange(0,2), update(1,2), sumRange(0,2)",
+          "output": "9, 8"
+        }
+      ]
+    },
+    {
+      "id": "count-smaller-numbers-after-self",
+      "name": "Count of Smaller Numbers After Self",
+      "difficulty": "advanced",
+      "patterns": [
+        "coordinate compression",
+        "Fenwick prefix counts or segment tree"
+      ],
+      "statement": "Count strictly smaller values to the right of each index.",
+      "constraints": [
+        "1 <= nums.length <= 100000",
+        "-10000 <= nums[i] <= 10000"
+      ],
+      "examples": [
+        {
+          "input": "nums=[5,2,6,1]",
+          "output": "[2,1,1,0]"
+        },
+        {
+          "input": "nums=[-1]",
+          "output": "[0]"
+        },
+        {
+          "input": "nums=[-1,-1]",
+          "output": "[0,0]"
+        }
+      ]
+    },
+    {
+      "id": "range-module",
+      "name": "Range Module",
+      "difficulty": "advanced",
+      "patterns": [
+        "range assignment and coverage queries",
+        "lazy segment tree or ordered intervals"
+      ],
+      "statement": "Track half-open ranges with add, remove, and full-coverage query operations.",
+      "constraints": [
+        "1 <= left < right <= 10^9",
+        "At most 10000 total calls"
+      ],
+      "examples": [
+        {
+          "input": "add [10,20), remove [14,16), query [10,14), [13,15), [16,17)",
+          "output": "true, false, true"
+        }
+      ]
+    },
+    {
+      "id": "my-calendar-iii-range",
+      "name": "My Calendar III",
+      "difficulty": "advanced",
+      "patterns": [
+        "dynamic range counts",
+        "segment tree or ordered endpoint counts"
+      ],
+      "statement": "After each half-open booking [start,end), return the maximum number of overlapping bookings at any time.",
+      "constraints": [
+        "0 <= startTime < endTime <= 10^9",
+        "At most 400 book calls"
+      ],
+      "examples": [
+        {
+          "input": "book [10,20), [50,60), [10,40), [5,15), [5,10), [25,55)",
+          "output": "1,1,2,3,3,3"
+        }
+      ]
+    },
+    {
+      "id": "count-of-range-sum",
+      "name": "Count of Range Sum",
+      "difficulty": "advanced",
+      "patterns": [
+        "prefix-sum coordinate compression",
+        "Fenwick range counting"
+      ],
+      "statement": "Count nonempty subarrays whose sums lie in the inclusive interval [lower,upper].",
+      "constraints": [
+        "1 <= nums.length <= 100000",
+        "-2^31 <= nums[i] <= 2^31-1",
+        "-100000 <= lower <= upper <= 100000",
+        "Answer fits signed 32-bit integer"
+      ],
+      "examples": [
+        {
+          "input": "nums=[-2,5,-1], lower=-2, upper=2",
+          "output": "3"
+        },
+        {
+          "input": "nums=[0], lower=0, upper=0",
+          "output": "1"
+        }
+      ]
+    },
+    {
+      "id": "reverse-pairs",
+      "name": "Reverse Pairs",
+      "difficulty": "advanced",
+      "patterns": [
+        "coordinate-compressed counting",
+        "Fenwick tree or merge-count alternative"
+      ],
+      "statement": "Count pairs i<j with nums[i] > 2*nums[j].",
+      "constraints": [
+        "1 <= nums.length <= 50000",
+        "-2^31 <= nums[i] <= 2^31-1"
+      ],
+      "examples": [
+        {
+          "input": "nums=[1,3,2,3,1]",
+          "output": "2"
+        },
+        {
+          "input": "nums=[2,4,3,5,1]",
+          "output": "3"
+        }
+      ]
+    },
+    {
+      "id": "rmq-static-cses",
+      "name": "Static Range Minimum Queries",
+      "difficulty": "intermediate",
+      "patterns": [
+        "sparse table preprocessing",
+        "idempotent O(1) range minimum"
+      ],
+      "statement": "Answer static inclusive range-minimum queries from an array.",
+      "constraints": [
+        "1 <= n,q <= 200000",
+        "1 <= x[i] <= 10^9",
+        "1 <= a <= b <= n, one-based in input"
+      ],
+      "examples": [
+        {
+          "input": "values=[3,2,4,5,1,1,5,3], queries=[2,4],[5,6],[1,8],[3,3]",
+          "output": "2,1,1,4"
+        }
+      ]
+    },
+    {
+      "id": "create-sorted-array-instructions",
+      "name": "Create Sorted Array through Instructions",
+      "difficulty": "advanced",
+      "patterns": [
+        "Fenwick prefix counts",
+        "modular accumulation of insertion cost"
+      ],
+      "statement": "Insert values in order; each insertion cost is the smaller prior strict-less or strict-greater count; return total modulo 10^9+7.",
+      "constraints": [
+        "1 <= instructions.length <= 100000",
+        "1 <= instructions[i] <= 100000"
+      ],
+      "examples": [
+        {
+          "input": "instructions=[1,5,6,2]",
+          "output": "1"
+        },
+        {
+          "input": "instructions=[1,2,3,6,5,4]",
+          "output": "3"
+        },
+        {
+          "input": "instructions=[1,3,3,3,2,4,2,1,2]",
+          "output": "4"
+        }
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Prefix sums","Fenwick tree"],["Fenwick tree","Segment tree"],["Segment tree","Sparse table"],["Sparse table for min","Sparse table for sum"],["Point updates","Lazy range updates"],["Dense segment tree","Sparse dynamic segment tree"]],
-  "comparisonSources": ["https://usaco.guide/gold/PURS","https://usaco.guide/CPH.pdf","https://usaco.guide/plat/sparse-segtree?lang=cpp"],
+  "comparisons": [
+    [
+      "Prefix sums",
+      "Fenwick tree"
+    ],
+    [
+      "Fenwick tree",
+      "Segment tree"
+    ],
+    [
+      "Segment tree",
+      "Sparse table"
+    ],
+    [
+      "Sparse table for min",
+      "Sparse table for sum"
+    ],
+    [
+      "Point updates",
+      "Lazy range updates"
+    ],
+    [
+      "Dense segment tree",
+      "Sparse dynamic segment tree"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/gold/PURS",
+    "https://usaco.guide/CPH.pdf",
+    "https://usaco.guide/plat/sparse-segtree?lang=cpp"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "USACO Guide point-update range-sum, Competitive Programmer's Handbook range-query chapters, CSES static RMQ, and official LeetCode problem statements",
-    "edition": "Timeless data structures; canonical problem pages checked 2026-11-14",
-    "checkedAt": "2026-11-14",
-    "urls": ["https://usaco.guide/gold/PURS","https://usaco.guide/CPH.pdf","https://usaco.guide/plat/sparse-segtree?lang=cpp","https://cses.fi/problemset/task/1647/","https://leetcode.com/problems/range-sum-query-mutable/","https://leetcode.com/problems/count-of-smaller-numbers-after-self/","https://leetcode.com/problems/range-module/","https://leetcode.com/problems/my-calendar-iii/","https://leetcode.com/problems/count-of-range-sum/","https://leetcode.com/problems/reverse-pairs/","https://leetcode.com/problems/create-sorted-array-through-instructions/"]
+    "edition": "Timeless range-query structures; canonical problem pages checked 2026-11-16",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://usaco.guide/gold/PURS",
+      "https://usaco.guide/CPH.pdf",
+      "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+      "https://cses.fi/problemset/task/1647/",
+      "https://leetcode.com/problems/range-sum-query-mutable/",
+      "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+      "https://leetcode.com/problems/range-module/",
+      "https://leetcode.com/problems/my-calendar-iii/",
+      "https://leetcode.com/problems/count-of-range-sum/",
+      "https://leetcode.com/problems/reverse-pairs/",
+      "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+    ]
   },
-  "scopeExclusions": ["Static prefix-sum and difference-array fundamentals, covered in t11-004","Monotonic queues and stack boundary patterns, covered in t11-022","Balanced search trees and general ordered maps","Advanced two-dimensional range-query structures","Segment tree beats full implementation and research variants"],
+  "scopeExclusions": [
+    "Static prefix-sum and difference-array fundamentals, covered in t11-004",
+    "Monotonic queues and stack boundary patterns, covered in t11-022",
+    "Balanced search trees and general ordered maps",
+    "Advanced two-dimensional range-query structures",
+    "Segment tree beats full implementation and research variants"
+  ],
   "generationAllowed": true
 }
