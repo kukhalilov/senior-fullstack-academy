@@ -30,7 +30,7 @@
     "namedFeatures": "The full topic inventory is supplied for overview, concepts, practice, and interview lessons. Use it as the complete allowed set of named topic features; do not enumerate it in the overview. A reference lesson receives only its assigned inventory group. Use named alternatives only when present in comparisons.",
     "inventory": "A reference lesson explains every supplied inventory name and may not add names. Copy each inventory string verbatim, including capitalization, punctuation, generic type parameters, and overload signatures; use one separate bullet or row per string. Put the exact string in inline code before explaining it. If the inventory is empty or incomplete, report blocked rather than filling it from model memory.",
     "concepts": "Teach the supplied concept map. If it is absent, the topic is not ready for generation; do not infer that a title is a complete syllabus.",
-    "comparisons": "Include comparisons only when manifest.comparisons contains explicit alternatives and evidence. Empty means omit the comparison section.",
+    "comparisons": "Compare the topic with external alternatives only when manifest.comparisons contains explicit alternatives and evidence. Within a reference lesson, compare only the assigned group's supplied names when useful; if the group has one item, say that no within-group comparison applies.",
     "versions": "Include release history only when manifest.versionNotes contains named changes, exact affected versions, and source URLs. Empty means omit version-history discussion; never create a versions lesson for a timeless topic.",
     "code": "Never claim an example was executed unless a test result is supplied. Do not label ordinary examples as unverified or pseudocode. Use syntactically valid code that matches its fence label; if a fragment intentionally omits surrounding declarations, call it a snippet and state what context it needs. Keep expected output outside code fences. Never put editorial placeholders such as 'emits:' inside a code block.",
     "sources": "Cite at least one relevant URL from sourceSnapshot, comparisonSources, or versionNotes.sourceUrls. Do not cite unsupplied URLs or claim independent verification.",
@@ -92,7 +92,7 @@
         "Common mistakes",
         "Knowledge checks with answers"
       ],
-      "instruction": "Explain every supplied name; do not add names. Reproduce every item string exactly as supplied in its own bullet or table row, including generic type parameters and overload signatures, then explain its purpose and behavior. Keep the reference lesson connected to the overview concepts."
+      "instruction": "Explain every supplied name; do not add names. Reproduce every item string exactly as supplied in its own bullet or table row, including generic type parameters and overload signatures, then explain its purpose and behavior. Keep the reference lesson connected to the overview concepts. Always include every required heading. Under Cross-item comparison, compare only names in this assigned group when useful; if it contains one name or no useful distinction, state that no within-group comparison applies. This is not a comparison with external alternatives."
     },
     "practice": {
       "goal": "Develop independent problem-solving and practical fluency.",

@@ -2,6 +2,18 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
+import {parseReviewResponse} from './parse-review-response.js';
+
+test('review responses accept schema-shaped JSON with optional Markdown fences', () => {
+  assert.deepEqual(parseReviewResponse('{"verdict":"pass","issues":[]}'), {verdict:'pass',issues:[]});
+  assert.deepEqual(parseReviewResponse('```json\n{"verdict":"revise","issues":["Add a missing example."]}\n```'), {verdict:'revise',issues:['Add a missing example.']});
+});
+
+test('review responses reject invalid verdicts and malformed JSON', () => {
+  assert.throws(() => parseReviewResponse('{"verdict":"pass","issues":["issue"]}'), /empty issues array/);
+  assert.throws(() => parseReviewResponse('{"verdict":"pass","issues":["unterminated]}'), /invalid review JSON/);
+  assert.throws(() => parseReviewResponse('{"verdict":"maybe","issues":[]}'), /verdict/);
+});
 
 test('generation entry point requires the repository API secret before network calls', () => {
   const result = spawnSync(process.execPath, ['scripts/generate.js'], {encoding: 'utf8'});

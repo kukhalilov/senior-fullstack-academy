@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import {parseReviewResponse} from './parse-review-response.js';
 
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const template = readJson('curriculum/prompt-template.json');
@@ -107,7 +108,7 @@ function nextAvailableModel(){
   return null;
 }
 class RequestBudgetExhausted extends Error {}
-async function request(prompt,{maxOutputTokens=8192,json=false}={}) {
+async function request(prompt,{maxOutputTokens=16384,json=false}={}) {
   let delay=1500;
   for(let attempt=0;attempt<6;attempt++) {
     if(apiCalls>=maxApiCalls) throw new RequestBudgetExhausted(`Per-run API request budget reached (${maxApiCalls})`);
@@ -119,7 +120,7 @@ async function request(prompt,{maxOutputTokens=8192,json=false}={}) {
     if(wait) await new Promise(resolve=>setTimeout(resolve,wait));
     lastRequestAtByModel.set(model,Date.now());
     apiCalls++;
-    const generationConfig={temperature:json?0:0.25,maxOutputTokens,...(json?{responseMimeType:'application/json'}:{})};
+    const generationConfig={temperature:json?0:0.25,maxOutputTokens,...(json?{responseMimeType:'application/json',responseSchema:{type:'OBJECT',properties:{verdict:{type:'STRING',enum:['pass','revise']},issues:{type:'ARRAY',items:{type:'STRING'}}},required:['verdict','issues'],propertyOrdering:['verdict','issues']}}:{})};
     const response=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':apiKey},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig})});
     const body=await response.json().catch(()=>({}));
     if(response.ok) {
@@ -154,7 +155,20 @@ for(const task of pending) {
     for(let attempt=0;attempt<3;attempt++){
       try{lesson=checkLesson(task,manifest,result);}
       catch(error){if(attempt===2)throw error;result=await request(`${promptFor(task,manifest)}\n\nREVISION REQUIRED: Rewrite the entire lesson to fix these deterministic errors: ${error.message}. Use exact required headings and cite only supplied source URLs.`);continue;}
-      const review=JSON.parse(await request(reviewPromptFor(task,manifest,result),{maxOutputTokens:1200,json:true}));
+      const reviewPrompt=reviewPromptFor(task,manifest,result);
+      let review;
+      let reviewError;
+      for(let reviewAttempt=0;reviewAttempt<2;reviewAttempt++){
+        try{
+          const reviewText=await request(reviewAttempt===0?reviewPrompt:`${reviewPrompt}\n\nYour previous review was not valid JSON. Return only a JSON object matching exactly this schema: {"verdict":"pass"|"revise","issues":["specific actionable issue"]}.`,{maxOutputTokens:1200,json:true});
+          review=parseReviewResponse(reviewText);
+          break;
+        }catch(error){
+          if(error instanceof RequestBudgetExhausted)throw error;
+          reviewError=error;
+        }
+      }
+      if(!review)throw reviewError??new Error('Gemini did not return a valid content review');
       if(review.verdict==='pass'&&Array.isArray(review.issues)&&review.issues.length===0){accepted=lesson;break;}
       const issues=Array.isArray(review.issues)?review.issues:['Reviewer returned no actionable issue list'];
       if(attempt===2)throw new Error(`AI content review still requests changes: ${issues.join('; ')}`);
