@@ -1,0 +1,156 @@
+<!-- GENERATED DRAFT: automated shape and editorial checks passed; independent factual verification is not implied. -->
+
+# LINQ operators deferred execution IEnumerable IQueryable and async sequences — Reference: Queryable operator families, expression trees, provider translation, and execution
+
+# Scope and version
+
+This reference lesson covers the `Queryable` provider operator group under the `.NET 11 GA standard query operator and async-sequence surface checked 2026-11-14` edition [https://learn.microsoft.com/en-us/dotnet/csharp/linq/](https://learn.microsoft.com/en-us/dotnet/csharp/linq/). The focus is on queryable operators, expression trees, provider translation, and execution boundaries. Out of scope for this reference are in-memory `IEnumerable<T>` enumeration, parallel PLINQ execution, database-specific SQL generation details, and asynchronous stream operators.
+
+# How this group fits the mental model
+
+LINQ queries look similar across different data sources, but they execute differently depending on whether they target memory or remote infrastructure [https://learn.microsoft.com/en-us/dotnet/csharp/linq/]. While `Enumerable` methods accept delegates (`Func<T, TResult>`) and run locally over objects, `Queryable` methods accept expression trees (`Expression<Func<T, TResult>>`). 
+
+An expression tree wraps C# code as data structures rather than compiled executable instructions. A query provider inspects these structures to translate them into target systems like relational databases or web APIs [https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider]. Understanding this difference prevents accidental performance traps, such as loading entire remote tables into local memory because an operator or method call forced premature materialization.
+
+# Supplied names explained
+
+* `Queryable.Where` - Filters a sequence based on a predicate represented as an expression tree.
+* `Queryable.Select` - Projects each element of a sequence into a new form using an expression tree.
+* `Queryable.SelectMany` - Projects each element of a sequence to an `IQueryable<T>` and flattens the resulting sequences into one queryable.
+* `Queryable.OfType` - Filters the elements of a sequence based on a specified type.
+* `Queryable.Cast` - Casts the elements of a sequence to a specified type.
+* `Queryable.Distinct` - Returns distinct elements from a sequence by using the default equality comparer.
+* `Queryable.DistinctBy` - Returns distinct elements from a sequence according to a specified key selector function.
+* `Queryable.Union` - Produces the set union of two sequences by using the default equality comparer.
+* `Queryable.UnionBy` - Produces the set union of two sequences according to a specified key selector function.
+* `Queryable.Intersect` - Produces the set intersection of two sequences by using the default equality comparer.
+* `Queryable.IntersectBy` - Produces the set intersection of two sequences according to a specified key selector function by using a specified comparer.
+* `Queryable.Except` - Produces the set difference of two sequences by using the default equality comparer.
+* `Queryable.ExceptBy` - Produces the set difference of two sequences according to a specified key selector function.
+* `Queryable.Concat` - Concatenates two sequences.
+* `Queryable.Append` - Appends a value to the end of the sequence.
+* `Queryable.Prepend` - Adds a value to the beginning of the sequence.
+* `Queryable.Zip` - Applies a specified function to the corresponding elements of two sequences, producing a sequence of the results.
+* `Queryable.Join` - Correlates the elements of two sequences based on matching keys.
+* `Queryable.GroupJoin` - Correlates the elements of two sequences based on key equality and groups the results.
+* `Queryable.LeftJoin` - Performs a left outer join between two queryable sequences [.NET 11 addition, https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries].
+* `Queryable.RightJoin` - Performs a right outer join between two queryable sequences [.NET 11 addition, https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries].
+* `Queryable.FullJoin` - Performs a full outer join between two queryable sequences [.NET 11 addition, https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries].
+* `Queryable.GroupBy` - Groups the elements of a sequence according to a specified key selector function.
+* `Queryable.Order` - Sorts the elements of a sequence in ascending order [.NET 9 addition, https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9].
+* `Queryable.OrderDescending` - Sorts the elements of a sequence in descending order [.NET 9 addition, https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9].
+* `Queryable.OrderBy` - Sorts the elements of a sequence in ascending order by using a key selector.
+* `Queryable.OrderByDescending` - Sorts the elements of a sequence in descending order by using a key selector.
+* `Queryable.ThenBy` - Performs a subsequent ordering of elements in a sequence in ascending order.
+* `Queryable.ThenByDescending` - Performs a subsequent ordering of elements in a sequence in descending order.
+* `Queryable.Skip` - Bypasses a specified number of elements in a sequence and then returns the remaining elements.
+* `Queryable.Take` - Returns a specified number of contiguous elements from the start of a sequence.
+* `Queryable.DefaultIfEmpty` - Returns the elements of the specified sequence, or a default value singleton if the sequence is empty.
+* `Queryable.Aggregate` - Applies an accumulator function over a queryable sequence.
+* `Queryable.AggregateBy` - Computes aggregate values grouped by a generated key [.NET 9 addition, https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9].
+* `Queryable.CountBy` - Computes counts of elements grouped by a generated key [.NET 9 addition, https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9].
+* `Queryable.Count` - Returns the number of elements in a sequence.
+* `Queryable.LongCount` - Returns a 64-bit integer that represents the total number of elements in a sequence.
+* `Queryable.Sum` - Computes the sum of a sequence of numeric values.
+* `Queryable.Average` - Computes the average of a sequence of numeric values.
+* `Queryable.Min` - Returns the minimum value in a sequence.
+* `Queryable.Max` - Returns the maximum value in a sequence.
+* `Queryable.All` - Determines whether all elements of a sequence satisfy a condition.
+* `Queryable.Any` - Determines whether any element of a sequence satisfies a condition.
+* `Queryable.Contains` - Determines whether a sequence contains a specified element.
+* `Queryable.SequenceEqual` - Determines whether two sequences are equal by comparing their elements.
+* `Queryable.First` - Returns the first element of a sequence.
+* `Queryable.FirstOrDefault` - Returns the first element of a sequence, or a default value if the sequence contains no elements.
+* `Queryable.Last` - Returns the last element of a sequence.
+* `Queryable.LastOrDefault` - Returns the last element of a sequence, or a default value if the sequence contains no elements.
+* `Queryable.Single` - Returns the only element of a sequence, and throws an exception if there is not exactly one element.
+* `Queryable.SingleOrDefault` - Returns the only element of a sequence, or a default value if the sequence is empty.
+* `Queryable.ElementAt` - Returns the element at a specified index in a sequence.
+* `Queryable.ElementAtOrDefault` - Returns the element at a specified index, or a default value if the index is out of range.
+* `Queryable.AsQueryable` - Converts an `IEnumerable` to an `IQueryable` by wrapping it with a query provider.
+* `Queryable expression-tree overload signatures` - The internal mechanisms defining how query operators accept `Expression<TDelegate>` instead of standard delegates.
+* `Queryable provider translation failure` - Errors thrown or fallback behaviors triggered when a query provider encounters unsupported expression tree nodes.
+* `Queryable versus Enumerable overload selection` - The compiler resolution rule favoring `Queryable` methods when the receiver implements `IQueryable<T>`.
+* `Expression tree parameter substitution` - The structural rewriting process a query provider uses when composing and nesting query operations.
+* `Expression tree closure capture in provider query` - Local variables captured inside expression trees, which providers must evaluate as constants or parameters.
+* `Query provider parameterization behavior` - How query providers convert closure values into safe query parameters to prevent injection issues.
+* `Provider-specific function translation` - The mapping of C# methods (like `string.Contains`) to underlying database functions (like SQL `LIKE`).
+* `Client evaluation versus server evaluation` - The execution split where parts of a query run on a remote data store versus local client memory.
+* `Explicit materialization using ToList` - Triggering immediate query execution and caching results into a local `List<T>` collection.
+* `AsEnumerable changes subsequent operator binding` - A method call that casts an `IQueryable<T>` back to `IEnumerable<T>`, forcing subsequent operators to bind against local memory execution.
+* `Queryable.ToLookup` - Creates a `Lookup<TKey, TElement>` from an `IQueryable<T>` by executing the query immediately.
+
+# Cross-item comparison
+
+Within this group of queryable and expression-tree execution members, several items contrast directly:
+* `Queryable versus Enumerable overload selection` dictates whether a query compiles to deferred expression trees or immediate delegate execution based on whether the source variable type is `IQueryable<T>` or `IEnumerable<T>` [https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable].
+* `Explicit materialization using ToList` and `AsEnumerable changes subsequent operator binding` represent opposing structural choices: `ToList` executes the query immediately and returns a local list, whereas `AsEnumerable` remains deferred but shifts downstream operator resolution from the remote provider back to local `Enumerable` execution.
+* `Client evaluation versus server evaluation` determines where query logic executes, contrasting with `Queryable provider translation failure` which occurs when a provider cannot execute a given expression tree and refuses to translate it.
+
+# Examples
+
+The following snippet demonstrates how `IQueryable` operators construct an expression tree, how local variables are captured, and how explicit materialization triggers query execution [https://learn.microsoft.com/en-us/dotnet/csharp/linq/]:
+
+```csharp
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Assume context.Products returns an IQueryable<Product>
+        // Here we simulate an IQueryable source using AsQueryable()
+        var localProducts = new[]
+        {
+            new Product { Category = "Electronics", Price = 120.0m },
+            new Product { Category = "Books", Price = 15.0m }
+        };
+
+        IQueryable<Product> queryableSource = localProducts.AsQueryable();
+
+        decimal threshold = 50.0m; // Closure capture in provider query
+
+        // Queryable.Where and Queryable.Select build an expression tree
+        IQueryable<string> filteredQuery = queryableSource
+            .Where(p => p.Price > threshold)
+            .Select(p => p.Category);
+
+        // Explicit materialization using ToList executes the query against the provider
+        var resultList = filteredQuery.ToList();
+
+        foreach (var category in resultList)
+        {
+            Console.WriteLine(category);
+        }
+    }
+}
+
+class Product
+{
+    public string Category { get; set; } = string.Empty;
+    public decimal Price { get; set; }
+}
+```
+
+Expected output:
+```text
+Electronics
+```
+
+# Common mistakes
+
+* **Mixing up delegate and expression parameters**: Passing code that relies on side effects or unsupported runtime calls inside queryable predicates, leading to translation failures.
+* **Accidental client-side evaluation**: Calling methods that the query provider cannot translate without realizing it, which can accidentally pull entire tables into client memory before filtering [https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable].
+* **Forgetting when execution happens**: Assuming queries execute when written rather than when enumerated or when terminal methods like `ToList` are called [https://learn.microsoft.com/en-us/dotnet/csharp/linq/].
+
+# Knowledge checks with answers
+
+1. **Question**: What is the primary structural difference between operators in `System.Linq.Enumerable` and `System.Linq.Queryable`?
+   - **Answer**: `Enumerable` operators accept standard delegates (`Func<T>`), whereas `Queryable` operators accept expression trees (`Expression<Func<T>>`) designed for remote provider translation [https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable].
+
+2. **Question**: What happens when you invoke `AsQueryable` followed by `AsEnumerable` in a query chain?
+   - **Answer**: `AsQueryable` wraps the source for expression-tree translation, but calling `AsEnumerable` casts the sequence back to `IEnumerable<T>`, forcing all subsequent operators to bind against local memory execution rather than remote provider translation.
+
+3. **Question**: Why might a query throw a provider translation failure exception?
+   - **Answer**: It occurs when a query provider encounters expression tree nodes or C# constructs that it does not know how to translate into the target query language (such as SQL) [https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider].
