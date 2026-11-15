@@ -487,7 +487,8 @@ test('the curriculum teaches overview before references and has no forced versio
   assert.ok(template.dsaPractice.requiredSolutionFields.includes('Correctness argument'));
   const generator = fs.readFileSync('scripts/generate.js', 'utf8');
   assert.match(generator, /REQUIRED DSA OUTPUT CONTRACT/);
-  assert.match(generator, /dsaProblemHeadings\.map\(heading => '# ' \+ heading\)/);
+  assert.ok(generator.includes("requiredHeadings.map(section => `# ${section}`)"));
+  assert.match(generator, /const requiredHeadings=practiceProblem&&manifest\.track==='track-11'\?dsaProblemHeadings:spec\.requiredSections/);
   assert.match(generator, /Open its code fence exactly as: ```csharp dsa-solution/);
   const path = JSON.parse(fs.readFileSync('curriculum/learning-path.json', 'utf8'));
   const pathTopicIds = path.stages.flatMap(stage => stage.topics);

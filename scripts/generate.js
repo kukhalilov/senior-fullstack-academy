@@ -33,8 +33,7 @@ const outputRoot = 'course/drafts';
 const dsaProblemHeadings = ['Goals','Problem statement','Input constraints','Examples with expected output','Clarifying assumptions','Progressive hints','Complete C# solution','Correctness argument','Step-by-step dry run','Time complexity','Space complexity','Edge-case tests','Reflection questions'];
 const dsaOutputContract = [
   'REQUIRED DSA OUTPUT CONTRACT:',
-  'Include the exact assigned problem title and copy every required heading below verbatim, in this order:',
-  ...dsaProblemHeadings.map(heading => '# ' + heading),
+  'Include the exact assigned problem title. Use the exact heading lines in the lesson-type heading list above, in that order.',
   'Include one complete, compilable C# console program. Open its code fence exactly as: ```csharp dsa-solution. Close the fence with exactly three backticks. If a language tag is omitted, the repository will normalize one unambiguous C# fence before compiling it.',
   'Implement every sample and edge-case assertion in the program. Each failed assertion must throw InvalidOperationException. Do not use TODOs, ellipses, pseudocode, or prose instead of executable checks.',
   'Return the entire lesson as Markdown and solve only the assigned problem.'
@@ -77,7 +76,8 @@ function promptFor(task, manifest) {
   const spec=template.lessonTypes[phase];
   if(!spec) throw new Error(`No lesson template for ${phase}`);
   const dsaInstruction=practiceProblem&&manifest.track==='track-11'?`${JSON.stringify(template.dsaPractice,null,2)}\nSolve only the exact supplied named problem. Do not add other problem names.`:'';
-  return ['Write one self-contained Markdown lesson for a self-study learner. Output only Markdown.',`LESSON TYPE: ${phase}\nGOAL: ${spec.goal}\nEXACT REQUIRED HEADING LINES (copy verbatim, in this order, as Markdown headings):\n${spec.requiredSections.map(section => `# ${section}`).join('\n')}\nInclude every heading exactly once. Do not rename, combine, omit, or add top-level headings.`,spec.instruction??'',dsaInstruction,practiceProblem&&manifest.track==='track-11'?dsaOutputContract:'',JSON.stringify(template.pedagogy),JSON.stringify(template.closedWorld),'FROZEN TOPIC DATA:',JSON.stringify(data,null,2),'Mark this as an automatically generated draft.'].filter(Boolean).join('\n\n');
+  const requiredHeadings=practiceProblem&&manifest.track==='track-11'?dsaProblemHeadings:spec.requiredSections;
+  return ['Write one self-contained Markdown lesson for a self-study learner. Output only Markdown.',`LESSON TYPE: ${phase}\nGOAL: ${spec.goal}\nEXACT REQUIRED HEADING LINES (copy verbatim, in this order, as Markdown headings):\n${requiredHeadings.map(section => `# ${section}`).join('\n')}\nInclude every heading exactly once. Do not rename, combine, omit, or add top-level headings.`,spec.instruction??'',dsaInstruction,practiceProblem&&manifest.track==='track-11'?dsaOutputContract:'',JSON.stringify(template.pedagogy),JSON.stringify(template.closedWorld),'FROZEN TOPIC DATA:',JSON.stringify(data,null,2),'Mark this as an automatically generated draft.'].filter(Boolean).join('\n\n');
 }
 function reviewPromptFor(task,manifest,lesson) {
   const {data,phase}=lessonDataFor(task,manifest);
