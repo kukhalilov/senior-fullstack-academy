@@ -4,6 +4,7 @@ import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import {parseReviewResponse} from './parse-review-response.js';
 import {normalizeDsaOutput} from './normalize-dsa-output.js';
+import {ensureSourceCitations} from './ensure-source-citations.js';
 import {applicableReviewIssues} from './review-issue-scope.js';
 import {mergeModelUsage} from './merge-model-usage.js';
 import {markDailyQuotaReached,markModelUnavailable,modelRpdLimits,pacificUsageDay,recordModelSuccess,remainingDailyCalls} from './model-usage.js';
@@ -43,6 +44,18 @@ test('DSA output normalization repairs unambiguous conventional headings and C# 
   assert.equal(normalizeDsaOutput(titled,'Best Time to Buy and Sell Stock'),titled);
   const ambiguous = '```csharp\nConsole.WriteLine(1);\n```\n```csharp\nConsole.WriteLine(2);\n```';
   assert.equal(normalizeDsaOutput(ambiguous), ambiguous);
+});
+
+test('source citation guard adds only frozen topic and assigned-problem sources when omitted', () => {
+  const topic='https://example.com/topic';
+  const problem='https://example.com/problem';
+  const options={topicSourceUrls:[topic],problemSourceUrls:[problem]};
+  const result=ensureSourceCitations('# Lesson\nBody',options);
+  assert.match(result,/\[Topic reference\]\(https:\/\/example.com\/topic\)/);
+  assert.match(result,/\[Assigned problem\]\(https:\/\/example.com\/problem\)/);
+  assert.equal(ensureSourceCitations(`# Lesson\n[Docs](${topic})`,options).includes(`[Topic reference](${topic})`),false);
+  assert.match(ensureSourceCitations(`# Lesson\n[Docs](${topic})`,options),new RegExp(`\\[Assigned problem\\]\\(${problem}\\)`));
+  assert.equal(ensureSourceCitations(`# Lesson\n[Docs](${topic})\n[Problem](${problem})`,options),`# Lesson\n[Docs](${topic})\n[Problem](${problem})`);
 });
 
 test('automated review cannot impose reference inventory coverage on overview and concepts', () => {

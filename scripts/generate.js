@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {parseReviewResponse} from './parse-review-response.js';
 import {normalizeDsaOutput} from './normalize-dsa-output.js';
+import {ensureSourceCitations} from './ensure-source-citations.js';
 import {applicableReviewIssues} from './review-issue-scope.js';
 import {loadModelUsage,markDailyQuotaReached,markModelUnavailable,modelRpdLimits,pacificUsageDay,recordModelSuccess,remainingDailyCalls,saveModelUsage} from './model-usage.js';
 
@@ -90,6 +91,8 @@ function reviewPromptFor(task,manifest,lesson) {
 function checkLesson(task, manifest, text) {
   const phase=task.phase==='reference'?'reference':task.phase;
   if(task.problemId&&manifest.track==='track-11') text=normalizeDsaOutput(text,task.problemTitle);
+  const citationData=lessonDataFor(task,manifest);
+  text=ensureSourceCitations(text,{topicSourceUrls:manifest.sourceSnapshot.urls,problemSourceUrls:citationData.practiceProblem?.sourceUrls??[]});
   const required=task.problemId&&manifest.track==='track-11'
     ? dsaProblemHeadings
     : template.lessonTypes[phase].requiredSections;
