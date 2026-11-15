@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1867,
+  "taskCount": 1926,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -11853,7 +11853,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-001.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-001-concepts",
@@ -11865,20 +11865,59 @@
       "prerequisites": [
         "t03-001-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-001-reference-inventory-pending",
+      "id": "t03-001-reference-data-model-and-query-surface",
       "track": "track-03",
-      "title": "database comparisons SQL Server PostgreSQL MySQL document stores and tradeoffs — Reference: awaiting curated names",
+      "title": "database comparisons SQL Server PostgreSQL MySQL document stores and tradeoffs — Reference: Data models, query languages, schema, and indexing boundaries",
       "module": "t03-001",
       "manifest": "curriculum/manifests/sql-server/t03-001.json",
       "phase": "reference",
       "prerequisites": [
         "t03-001-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "data-model-and-query-surface"
+    },
+    {
+      "id": "t03-001-reference-transactions-consistency-and-concurrency",
+      "track": "track-03",
+      "title": "database comparisons SQL Server PostgreSQL MySQL document stores and tradeoffs — Reference: Atomicity, isolation, concurrency, and replication semantics",
+      "module": "t03-001",
+      "manifest": "curriculum/manifests/sql-server/t03-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-001-reference-data-model-and-query-surface"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "transactions-consistency-and-concurrency"
+    },
+    {
+      "id": "t03-001-reference-availability-operations-and-service-models",
+      "track": "track-03",
+      "title": "database comparisons SQL Server PostgreSQL MySQL document stores and tradeoffs — Reference: Deployment, scaling, recovery, and operational ownership",
+      "module": "t03-001",
+      "manifest": "curriculum/manifests/sql-server/t03-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-001-reference-transactions-consistency-and-concurrency"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "availability-operations-and-service-models"
+    },
+    {
+      "id": "t03-001-reference-selection-and-evaluation-method",
+      "track": "track-03",
+      "title": "database comparisons SQL Server PostgreSQL MySQL document stores and tradeoffs — Reference: Decision criteria, workload fit, and fair comparison methodology",
+      "module": "t03-001",
+      "manifest": "curriculum/manifests/sql-server/t03-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-001-reference-availability-operations-and-service-models"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "selection-and-evaluation-method"
     },
     {
       "id": "t03-001-practice",
@@ -11888,9 +11927,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-001.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-001-reference-inventory-pending"
+        "t03-001-reference-selection-and-evaluation-method"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-001-interview",
@@ -11902,7 +11941,7 @@
       "prerequisites": [
         "t03-001-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-002-overview",
@@ -11912,7 +11951,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-002.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-002-concepts",
@@ -11924,20 +11963,59 @@
       "prerequisites": [
         "t03-002-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-002-reference-inventory-pending",
+      "id": "t03-002-reference-relational-facts-keys-and-normalization",
       "track": "track-03",
-      "title": "relational modeling constraints data types null and normalization — Reference: awaiting curated names",
+      "title": "relational modeling constraints data types null and normalization — Reference: Relations, keys, dependencies, normalization, and modeling anomalies",
       "module": "t03-002",
       "manifest": "curriculum/manifests/sql-server/t03-002.json",
       "phase": "reference",
       "prerequisites": [
         "t03-002-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "relational-facts-keys-and-normalization"
+    },
+    {
+      "id": "t03-002-reference-constraints-and-null-semantics",
+      "track": "track-03",
+      "title": "relational modeling constraints data types null and normalization — Reference: Declarative constraints, NULL, defaults, and relational integrity rules",
+      "module": "t03-002",
+      "manifest": "curriculum/manifests/sql-server/t03-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-002-reference-relational-facts-keys-and-normalization"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "constraints-and-null-semantics"
+    },
+    {
+      "id": "t03-002-reference-sql-server-domain-types-and-collations",
+      "track": "track-03",
+      "title": "relational modeling constraints data types null and normalization — Reference: SQL Server scalar types, exactness, temporal values, and text comparison",
+      "module": "t03-002",
+      "manifest": "curriculum/manifests/sql-server/t03-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-002-reference-constraints-and-null-semantics"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "sql-server-domain-types-and-collations"
+    },
+    {
+      "id": "t03-002-reference-modeling-decisions-and-schema-evolution",
+      "track": "track-03",
+      "title": "relational modeling constraints data types null and normalization — Reference: Choosing identifiers, optionality, ownership, and evolution strategies",
+      "module": "t03-002",
+      "manifest": "curriculum/manifests/sql-server/t03-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-002-reference-sql-server-domain-types-and-collations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "modeling-decisions-and-schema-evolution"
     },
     {
       "id": "t03-002-practice",
@@ -11947,9 +12025,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-002.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-002-reference-inventory-pending"
+        "t03-002-reference-modeling-decisions-and-schema-evolution"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-002-interview",
@@ -11961,7 +12039,7 @@
       "prerequisites": [
         "t03-002-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-003-overview",
@@ -12069,7 +12147,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-004.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-004-concepts",
@@ -12081,20 +12159,59 @@
       "prerequisites": [
         "t03-004-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-004-reference-inventory-pending",
+      "id": "t03-004-reference-join-forms-and-row-preservation",
       "track": "track-03",
-      "title": "joins sets subqueries CTEs and recursive queries — Reference: awaiting curated names",
+      "title": "joins sets subqueries CTEs and recursive queries — Reference: Join types, row preservation, and correlated row sources",
       "module": "t03-004",
       "manifest": "curriculum/manifests/sql-server/t03-004.json",
       "phase": "reference",
       "prerequisites": [
         "t03-004-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "join-forms-and-row-preservation"
+    },
+    {
+      "id": "t03-004-reference-set-operators",
+      "track": "track-03",
+      "title": "joins sets subqueries CTEs and recursive queries — Reference: Compatible query results and duplicate semantics",
+      "module": "t03-004",
+      "manifest": "curriculum/manifests/sql-server/t03-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-004-reference-join-forms-and-row-preservation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "set-operators"
+    },
+    {
+      "id": "t03-004-reference-subqueries-and-existence",
+      "track": "track-03",
+      "title": "joins sets subqueries CTEs and recursive queries — Reference: Scalar, correlated, and quantified subqueries",
+      "module": "t03-004",
+      "manifest": "curriculum/manifests/sql-server/t03-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-004-reference-set-operators"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "subqueries-and-existence"
+    },
+    {
+      "id": "t03-004-reference-common-table-expressions",
+      "track": "track-03",
+      "title": "joins sets subqueries CTEs and recursive queries — Reference: CTE syntax, recursion, scope, and alternatives",
+      "module": "t03-004",
+      "manifest": "curriculum/manifests/sql-server/t03-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-004-reference-subqueries-and-existence"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "common-table-expressions"
     },
     {
       "id": "t03-004-practice",
@@ -12104,9 +12221,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-004.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-004-reference-inventory-pending"
+        "t03-004-reference-common-table-expressions"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-004-interview",
@@ -12118,7 +12235,7 @@
       "prerequisites": [
         "t03-004-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-005-overview",
@@ -12128,7 +12245,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-005.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-005-concepts",
@@ -12140,20 +12257,59 @@
       "prerequisites": [
         "t03-005-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-005-reference-inventory-pending",
+      "id": "t03-005-reference-grouped-aggregation",
       "track": "track-03",
-      "title": "aggregation grouping and window functions — Reference: awaiting curated names",
+      "title": "aggregation grouping and window functions — Reference: GROUP BY, aggregates, and HAVING",
       "module": "t03-005",
       "manifest": "curriculum/manifests/sql-server/t03-005.json",
       "phase": "reference",
       "prerequisites": [
         "t03-005-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "grouped-aggregation"
+    },
+    {
+      "id": "t03-005-reference-grouping-subtotals",
+      "track": "track-03",
+      "title": "aggregation grouping and window functions — Reference: Subtotal generation and grouping metadata",
+      "module": "t03-005",
+      "manifest": "curriculum/manifests/sql-server/t03-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-005-reference-grouped-aggregation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "grouping-subtotals"
+    },
+    {
+      "id": "t03-005-reference-window-frames",
+      "track": "track-03",
+      "title": "aggregation grouping and window functions — Reference: OVER clause, partitions, order, and frame behavior",
+      "module": "t03-005",
+      "manifest": "curriculum/manifests/sql-server/t03-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-005-reference-grouping-subtotals"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "window-frames"
+    },
+    {
+      "id": "t03-005-reference-ranking-and-offset-functions",
+      "track": "track-03",
+      "title": "aggregation grouping and window functions — Reference: Ranking, offsets, and distribution functions",
+      "module": "t03-005",
+      "manifest": "curriculum/manifests/sql-server/t03-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-005-reference-window-frames"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "ranking-and-offset-functions"
     },
     {
       "id": "t03-005-practice",
@@ -12163,9 +12319,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-005.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-005-reference-inventory-pending"
+        "t03-005-reference-ranking-and-offset-functions"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-005-interview",
@@ -12177,7 +12333,7 @@
       "prerequisites": [
         "t03-005-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-006-overview",
@@ -12187,7 +12343,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-006.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-006-concepts",
@@ -12199,20 +12355,59 @@
       "prerequisites": [
         "t03-006-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-006-reference-inventory-pending",
+      "id": "t03-006-reference-insert-update-delete-and-output",
       "track": "track-03",
-      "title": "inserts updates deletes merges and bulk operations — Reference: awaiting curated names",
+      "title": "inserts updates deletes merges and bulk operations — Reference: Insert, update, delete, row filters, and returned values",
       "module": "t03-006",
       "manifest": "curriculum/manifests/sql-server/t03-006.json",
       "phase": "reference",
       "prerequisites": [
         "t03-006-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "insert-update-delete-and-output"
+    },
+    {
+      "id": "t03-006-reference-merge-and-upsert",
+      "track": "track-03",
+      "title": "inserts updates deletes merges and bulk operations — Reference: MERGE match actions, upsert alternatives, and concurrency",
+      "module": "t03-006",
+      "manifest": "curriculum/manifests/sql-server/t03-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-006-reference-insert-update-delete-and-output"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "merge-and-upsert"
+    },
+    {
+      "id": "t03-006-reference-bulk-ingestion",
+      "track": "track-03",
+      "title": "inserts updates deletes merges and bulk operations — Reference: Bulk loading, file formats, validation, and operational controls",
+      "module": "t03-006",
+      "manifest": "curriculum/manifests/sql-server/t03-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-006-reference-merge-and-upsert"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "bulk-ingestion"
+    },
+    {
+      "id": "t03-006-reference-safe-write-and-retry",
+      "track": "track-03",
+      "title": "inserts updates deletes merges and bulk operations — Reference: Atomic changes, concurrency checks, and retry behavior",
+      "module": "t03-006",
+      "manifest": "curriculum/manifests/sql-server/t03-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-006-reference-bulk-ingestion"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "safe-write-and-retry"
     },
     {
       "id": "t03-006-practice",
@@ -12222,9 +12417,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-006.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-006-reference-inventory-pending"
+        "t03-006-reference-safe-write-and-retry"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-006-interview",
@@ -12236,7 +12431,7 @@
       "prerequisites": [
         "t03-006-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-007-overview",
@@ -12246,7 +12441,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-007.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-007-concepts",
@@ -12258,20 +12453,46 @@
       "prerequisites": [
         "t03-007-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-007-reference-inventory-pending",
+      "id": "t03-007-reference-keys-and-constraints",
       "track": "track-03",
-      "title": "constraints keys defaults identity sequences and computed columns — Reference: awaiting curated names",
+      "title": "constraints keys defaults identity sequences and computed columns — Reference: Primary, unique, foreign-key, check, and default constraints",
       "module": "t03-007",
       "manifest": "curriculum/manifests/sql-server/t03-007.json",
       "phase": "reference",
       "prerequisites": [
         "t03-007-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "keys-and-constraints"
+    },
+    {
+      "id": "t03-007-reference-generated-identifiers",
+      "track": "track-03",
+      "title": "constraints keys defaults identity sequences and computed columns — Reference: IDENTITY, SEQUENCE, rowversion, and key-generation boundaries",
+      "module": "t03-007",
+      "manifest": "curriculum/manifests/sql-server/t03-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-007-reference-keys-and-constraints"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "generated-identifiers"
+    },
+    {
+      "id": "t03-007-reference-defaults-computed-and-temporal-columns",
+      "track": "track-03",
+      "title": "constraints keys defaults identity sequences and computed columns — Reference: Defaults, computed columns, and generated-value configuration",
+      "module": "t03-007",
+      "manifest": "curriculum/manifests/sql-server/t03-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-007-reference-generated-identifiers"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "defaults-computed-and-temporal-columns"
     },
     {
       "id": "t03-007-practice",
@@ -12281,9 +12502,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-007.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-007-reference-inventory-pending"
+        "t03-007-reference-defaults-computed-and-temporal-columns"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-007-interview",
@@ -12295,7 +12516,7 @@
       "prerequisites": [
         "t03-007-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-008-overview",
@@ -12305,7 +12526,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-008.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-008-concepts",
@@ -12317,20 +12538,46 @@
       "prerequisites": [
         "t03-008-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-008-reference-inventory-pending",
+      "id": "t03-008-reference-rowstore-index-structures",
       "track": "track-03",
-      "title": "indexes types covering indexes index maintenance and statistics — Reference: awaiting curated names",
+      "title": "indexes types covering indexes index maintenance and statistics — Reference: Clustered and nonclustered rowstore indexes",
       "module": "t03-008",
       "manifest": "curriculum/manifests/sql-server/t03-008.json",
       "phase": "reference",
       "prerequisites": [
         "t03-008-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "rowstore-index-structures"
+    },
+    {
+      "id": "t03-008-reference-specialized-and-filtered-indexes",
+      "track": "track-03",
+      "title": "indexes types covering indexes index maintenance and statistics — Reference: Filtered, columnstore, and specialized indexes",
+      "module": "t03-008",
+      "manifest": "curriculum/manifests/sql-server/t03-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-008-reference-rowstore-index-structures"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "specialized-and-filtered-indexes"
+    },
+    {
+      "id": "t03-008-reference-statistics-maintenance-and-design",
+      "track": "track-03",
+      "title": "indexes types covering indexes index maintenance and statistics — Reference: Statistics, workload fit, maintenance, and design decisions",
+      "module": "t03-008",
+      "manifest": "curriculum/manifests/sql-server/t03-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-008-reference-specialized-and-filtered-indexes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "statistics-maintenance-and-design"
     },
     {
       "id": "t03-008-practice",
@@ -12340,9 +12587,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-008.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-008-reference-inventory-pending"
+        "t03-008-reference-statistics-maintenance-and-design"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-008-interview",
@@ -12354,7 +12601,7 @@
       "prerequisites": [
         "t03-008-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-009-overview",
@@ -12364,7 +12611,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-009.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-009-concepts",
@@ -12376,20 +12623,46 @@
       "prerequisites": [
         "t03-009-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-009-reference-inventory-pending",
+      "id": "t03-009-reference-plan-shapes-and-operators",
       "track": "track-03",
-      "title": "query processing execution plans cardinality and parameter sensitivity — Reference: awaiting curated names",
+      "title": "query processing execution plans cardinality and parameter sensitivity — Reference: Estimated and actual plans, operators, and execution properties",
       "module": "t03-009",
       "manifest": "curriculum/manifests/sql-server/t03-009.json",
       "phase": "reference",
       "prerequisites": [
         "t03-009-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "plan-shapes-and-operators"
+    },
+    {
+      "id": "t03-009-reference-cardinality-and-parameter-sensitivity",
+      "track": "track-03",
+      "title": "query processing execution plans cardinality and parameter sensitivity — Reference: Estimation, parameter effects, and adaptive compilation",
+      "module": "t03-009",
+      "manifest": "curriculum/manifests/sql-server/t03-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-009-reference-plan-shapes-and-operators"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cardinality-and-parameter-sensitivity"
+    },
+    {
+      "id": "t03-009-reference-query-store-and-diagnostics",
+      "track": "track-03",
+      "title": "query processing execution plans cardinality and parameter sensitivity — Reference: Plan history, regressions, and repeatable diagnosis",
+      "module": "t03-009",
+      "manifest": "curriculum/manifests/sql-server/t03-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-009-reference-cardinality-and-parameter-sensitivity"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "query-store-and-diagnostics"
     },
     {
       "id": "t03-009-practice",
@@ -12399,9 +12672,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-009.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-009-reference-inventory-pending"
+        "t03-009-reference-query-store-and-diagnostics"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-009-interview",
@@ -12413,7 +12686,7 @@
       "prerequisites": [
         "t03-009-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-010-overview",
@@ -12423,7 +12696,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-010.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-010-concepts",
@@ -12435,20 +12708,46 @@
       "prerequisites": [
         "t03-010-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-010-reference-inventory-pending",
+      "id": "t03-010-reference-transaction-and-isolation",
       "track": "track-03",
-      "title": "transactions isolation levels blocking locks deadlocks and row versioning — Reference: awaiting curated names",
+      "title": "transactions isolation levels blocking locks deadlocks and row versioning — Reference: Transaction lifecycle, isolation, and row-versioning",
       "module": "t03-010",
       "manifest": "curriculum/manifests/sql-server/t03-010.json",
       "phase": "reference",
       "prerequisites": [
         "t03-010-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "transaction-and-isolation"
+    },
+    {
+      "id": "t03-010-reference-locks-blocking-and-deadlocks",
+      "track": "track-03",
+      "title": "transactions isolation levels blocking locks deadlocks and row versioning — Reference: Lock modes, blocking chains, deadlocks, and diagnostics",
+      "module": "t03-010",
+      "manifest": "curriculum/manifests/sql-server/t03-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-010-reference-transaction-and-isolation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "locks-blocking-and-deadlocks"
+    },
+    {
+      "id": "t03-010-reference-row-versioning-and-optimized-locking",
+      "track": "track-03",
+      "title": "transactions isolation levels blocking locks deadlocks and row versioning — Reference: RCSI, snapshot semantics, and SQL Server 2025 locking changes",
+      "module": "t03-010",
+      "manifest": "curriculum/manifests/sql-server/t03-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-010-reference-locks-blocking-and-deadlocks"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "row-versioning-and-optimized-locking"
     },
     {
       "id": "t03-010-practice",
@@ -12458,9 +12757,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-010.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-010-reference-inventory-pending"
+        "t03-010-reference-row-versioning-and-optimized-locking"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-010-interview",
@@ -12472,7 +12771,7 @@
       "prerequisites": [
         "t03-010-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-011-overview",
@@ -12482,7 +12781,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-011.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-011-concepts",
@@ -12494,20 +12793,46 @@
       "prerequisites": [
         "t03-011-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-011-reference-inventory-pending",
+      "id": "t03-011-reference-procedures-parameters-and-dynamic-sql",
       "track": "track-03",
-      "title": "stored procedures views functions triggers and dynamic SQL — Reference: awaiting curated names",
+      "title": "stored procedures views functions triggers and dynamic SQL — Reference: Stored procedures, parameters, execution, and dynamic SQL",
       "module": "t03-011",
       "manifest": "curriculum/manifests/sql-server/t03-011.json",
       "phase": "reference",
       "prerequisites": [
         "t03-011-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "procedures-parameters-and-dynamic-sql"
+    },
+    {
+      "id": "t03-011-reference-views-and-functions",
+      "track": "track-03",
+      "title": "stored procedures views functions triggers and dynamic SQL — Reference: Views, inline functions, and scalar or table-valued functions",
+      "module": "t03-011",
+      "manifest": "curriculum/manifests/sql-server/t03-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-011-reference-procedures-parameters-and-dynamic-sql"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "views-and-functions"
+    },
+    {
+      "id": "t03-011-reference-triggers-and-change-side-effects",
+      "track": "track-03",
+      "title": "stored procedures views functions triggers and dynamic SQL — Reference: DML triggers, inserted/deleted rows, and side-effect control",
+      "module": "t03-011",
+      "manifest": "curriculum/manifests/sql-server/t03-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-011-reference-views-and-functions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "triggers-and-change-side-effects"
     },
     {
       "id": "t03-011-practice",
@@ -12517,9 +12842,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-011.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-011-reference-inventory-pending"
+        "t03-011-reference-triggers-and-change-side-effects"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-011-interview",
@@ -12531,7 +12856,7 @@
       "prerequisites": [
         "t03-011-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-012-overview",
@@ -12541,7 +12866,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-012.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-012-concepts",
@@ -12553,20 +12878,46 @@
       "prerequisites": [
         "t03-012-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-012-reference-inventory-pending",
+      "id": "t03-012-reference-authentication-principals-and-roles",
       "track": "track-03",
-      "title": "injection safety permissions roles and authentication — Reference: awaiting curated names",
+      "title": "injection safety permissions roles and authentication — Reference: Logins, users, authentication, and role membership",
       "module": "t03-012",
       "manifest": "curriculum/manifests/sql-server/t03-012.json",
       "phase": "reference",
       "prerequisites": [
         "t03-012-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "authentication-principals-and-roles"
+    },
+    {
+      "id": "t03-012-reference-permissions-and-security-boundaries",
+      "track": "track-03",
+      "title": "injection safety permissions roles and authentication — Reference: Permission hierarchy, grants, ownership, and execution context",
+      "module": "t03-012",
+      "manifest": "curriculum/manifests/sql-server/t03-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-012-reference-authentication-principals-and-roles"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "permissions-and-security-boundaries"
+    },
+    {
+      "id": "t03-012-reference-injection-safe-query-boundary",
+      "track": "track-03",
+      "title": "injection safety permissions roles and authentication — Reference: Injection prevention, dynamic statements, and data-access controls",
+      "module": "t03-012",
+      "manifest": "curriculum/manifests/sql-server/t03-012.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-012-reference-permissions-and-security-boundaries"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "injection-safe-query-boundary"
     },
     {
       "id": "t03-012-practice",
@@ -12576,9 +12927,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-012.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-012-reference-inventory-pending"
+        "t03-012-reference-injection-safe-query-boundary"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-012-interview",
@@ -12590,7 +12941,7 @@
       "prerequisites": [
         "t03-012-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-013-overview",
@@ -12600,7 +12951,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-013.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-013-concepts",
@@ -12612,20 +12963,46 @@
       "prerequisites": [
         "t03-013-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-013-reference-inventory-pending",
+      "id": "t03-013-reference-diagnostic-signals-and-tools",
       "track": "track-03",
-      "title": "performance troubleshooting monitoring waits and query tuning — Reference: awaiting curated names",
+      "title": "performance troubleshooting monitoring waits and query tuning — Reference: Waits, DMVs, Query Store, and event collection",
       "module": "t03-013",
       "manifest": "curriculum/manifests/sql-server/t03-013.json",
       "phase": "reference",
       "prerequisites": [
         "t03-013-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "diagnostic-signals-and-tools"
+    },
+    {
+      "id": "t03-013-reference-bottleneck-analysis",
+      "track": "track-03",
+      "title": "performance troubleshooting monitoring waits and query tuning — Reference: CPU, I/O, memory, concurrency, and capacity diagnosis",
+      "module": "t03-013",
+      "manifest": "curriculum/manifests/sql-server/t03-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-013-reference-diagnostic-signals-and-tools"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "bottleneck-analysis"
+    },
+    {
+      "id": "t03-013-reference-remediation-and-measurement",
+      "track": "track-03",
+      "title": "performance troubleshooting monitoring waits and query tuning — Reference: Controlled tuning, regression safety, and verification",
+      "module": "t03-013",
+      "manifest": "curriculum/manifests/sql-server/t03-013.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-013-reference-bottleneck-analysis"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "remediation-and-measurement"
     },
     {
       "id": "t03-013-practice",
@@ -12635,9 +13012,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-013.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-013-reference-inventory-pending"
+        "t03-013-reference-remediation-and-measurement"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-013-interview",
@@ -12649,7 +13026,7 @@
       "prerequisites": [
         "t03-013-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-014-overview",
@@ -12659,7 +13036,7 @@
       "manifest": "curriculum/manifests/sql-server/t03-014.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-014-concepts",
@@ -12671,20 +13048,46 @@
       "prerequisites": [
         "t03-014-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t03-014-reference-inventory-pending",
+      "id": "t03-014-reference-backup-restore-and-recovery",
       "track": "track-03",
-      "title": "backups recovery migrations availability and practical operations — Reference: awaiting curated names",
+      "title": "backups recovery migrations availability and practical operations — Reference: Backup types, recovery model, restore chain, and point-in-time recovery",
       "module": "t03-014",
       "manifest": "curriculum/manifests/sql-server/t03-014.json",
       "phase": "reference",
       "prerequisites": [
         "t03-014-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "backup-restore-and-recovery"
+    },
+    {
+      "id": "t03-014-reference-availability-and-replication",
+      "track": "track-03",
+      "title": "backups recovery migrations availability and practical operations — Reference: High availability, replicas, failover, and data movement",
+      "module": "t03-014",
+      "manifest": "curriculum/manifests/sql-server/t03-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-014-reference-backup-restore-and-recovery"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "availability-and-replication"
+    },
+    {
+      "id": "t03-014-reference-schema-evolution-and-temporal-history",
+      "track": "track-03",
+      "title": "backups recovery migrations availability and practical operations — Reference: Migration safety, temporal rows, and operational recovery",
+      "module": "t03-014",
+      "manifest": "curriculum/manifests/sql-server/t03-014.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t03-014-reference-availability-and-replication"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "schema-evolution-and-temporal-history"
     },
     {
       "id": "t03-014-practice",
@@ -12694,9 +13097,9 @@
       "manifest": "curriculum/manifests/sql-server/t03-014.json",
       "phase": "practice",
       "prerequisites": [
-        "t03-014-reference-inventory-pending"
+        "t03-014-reference-schema-evolution-and-temporal-history"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t03-014-interview",
@@ -12708,7 +13111,7 @@
       "prerequisites": [
         "t03-014-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-001-overview",
@@ -12718,7 +13121,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-001.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-001-concepts",
@@ -12730,20 +13133,33 @@
       "prerequisites": [
         "t04-001-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-001-reference-inventory-pending",
+      "id": "t04-001-reference-context-lifetime-and-di",
       "track": "track-04",
-      "title": "DbContext service lifetimes configuration and providers — Reference: awaiting curated names",
+      "title": "DbContext service lifetimes configuration and providers — Reference: DbContext lifetime, factory creation, and dependency injection",
       "module": "t04-001",
       "manifest": "curriculum/manifests/ef-core/t04-001.json",
       "phase": "reference",
       "prerequisites": [
         "t04-001-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "context-lifetime-and-di"
+    },
+    {
+      "id": "t04-001-reference-providers-and-options",
+      "track": "track-04",
+      "title": "DbContext service lifetimes configuration and providers — Reference: Provider selection, configuration, logging, and context initialization",
+      "module": "t04-001",
+      "manifest": "curriculum/manifests/ef-core/t04-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-001-reference-context-lifetime-and-di"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "providers-and-options"
     },
     {
       "id": "t04-001-practice",
@@ -12753,9 +13169,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-001.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-001-reference-inventory-pending"
+        "t04-001-reference-providers-and-options"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-001-interview",
@@ -12767,7 +13183,7 @@
       "prerequisites": [
         "t04-001-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-002-overview",
@@ -12777,7 +13193,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-002.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-002-concepts",
@@ -12789,20 +13205,46 @@
       "prerequisites": [
         "t04-002-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-002-reference-inventory-pending",
+      "id": "t04-002-reference-entity-model-and-conventions",
       "track": "track-04",
-      "title": "model configuration entities properties and keys — Reference: awaiting curated names",
+      "title": "model configuration entities properties and keys — Reference: Entity types, discovery, configurations, and model metadata",
       "module": "t04-002",
       "manifest": "curriculum/manifests/ef-core/t04-002.json",
       "phase": "reference",
       "prerequisites": [
         "t04-002-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "entity-model-and-conventions"
+    },
+    {
+      "id": "t04-002-reference-properties-types-and-column-mapping",
+      "track": "track-04",
+      "title": "model configuration entities properties and keys — Reference: CLR properties, field access, value conversion, and column mapping",
+      "module": "t04-002",
+      "manifest": "curriculum/manifests/ef-core/t04-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-002-reference-entity-model-and-conventions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "properties-types-and-column-mapping"
+    },
+    {
+      "id": "t04-002-reference-keys-indexes-and-concurrency-metadata",
+      "track": "track-04",
+      "title": "model configuration entities properties and keys — Reference: Primary and alternate keys, indexes, generated values, and tokens",
+      "module": "t04-002",
+      "manifest": "curriculum/manifests/ef-core/t04-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-002-reference-properties-types-and-column-mapping"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "keys-indexes-and-concurrency-metadata"
     },
     {
       "id": "t04-002-practice",
@@ -12812,9 +13254,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-002.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-002-reference-inventory-pending"
+        "t04-002-reference-keys-indexes-and-concurrency-metadata"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-002-interview",
@@ -12826,7 +13268,7 @@
       "prerequisites": [
         "t04-002-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-003-overview",
@@ -12836,7 +13278,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-003.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-003-concepts",
@@ -12848,20 +13290,33 @@
       "prerequisites": [
         "t04-003-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-003-reference-inventory-pending",
+      "id": "t04-003-reference-relationship-shape-and-navigation",
       "track": "track-04",
-      "title": "relationships cardinality cascading and owned types — Reference: awaiting curated names",
+      "title": "relationships cardinality cascading and owned types — Reference: Cardinality, navigations, and relationship discovery",
       "module": "t04-003",
       "manifest": "curriculum/manifests/ef-core/t04-003.json",
       "phase": "reference",
       "prerequisites": [
         "t04-003-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "relationship-shape-and-navigation"
+    },
+    {
+      "id": "t04-003-reference-requiredness-delete-and-ownership",
+      "track": "track-04",
+      "title": "relationships cardinality cascading and owned types — Reference: Requiredness, delete behavior, ownership, and complex types",
+      "module": "t04-003",
+      "manifest": "curriculum/manifests/ef-core/t04-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-003-reference-relationship-shape-and-navigation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "requiredness-delete-and-ownership"
     },
     {
       "id": "t04-003-practice",
@@ -12871,9 +13326,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-003.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-003-reference-inventory-pending"
+        "t04-003-reference-requiredness-delete-and-ownership"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-003-interview",
@@ -12885,7 +13340,7 @@
       "prerequisites": [
         "t04-003-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-004-overview",
@@ -12895,7 +13350,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-004.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-004-concepts",
@@ -12907,20 +13362,46 @@
       "prerequisites": [
         "t04-004-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-004-reference-inventory-pending",
+      "id": "t04-004-reference-entity-states-and-change-detection",
       "track": "track-04",
-      "title": "change tracking identity resolution no tracking and concurrency tokens — Reference: awaiting curated names",
+      "title": "change tracking identity resolution no tracking and concurrency tokens — Reference: State manager, snapshots, notifications, and SaveChanges",
       "module": "t04-004",
       "manifest": "curriculum/manifests/ef-core/t04-004.json",
       "phase": "reference",
       "prerequisites": [
         "t04-004-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "entity-states-and-change-detection"
+    },
+    {
+      "id": "t04-004-reference-tracking-identity-and-no-tracking",
+      "track": "track-04",
+      "title": "change tracking identity resolution no tracking and concurrency tokens — Reference: Tracking queries, identity resolution, and read-only query modes",
+      "module": "t04-004",
+      "manifest": "curriculum/manifests/ef-core/t04-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-004-reference-entity-states-and-change-detection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "tracking-identity-and-no-tracking"
+    },
+    {
+      "id": "t04-004-reference-concurrency-and-conflict-resolution",
+      "track": "track-04",
+      "title": "change tracking identity resolution no tracking and concurrency tokens — Reference: Concurrency tokens, exceptions, and application resolution",
+      "module": "t04-004",
+      "manifest": "curriculum/manifests/ef-core/t04-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-004-reference-tracking-identity-and-no-tracking"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "concurrency-and-conflict-resolution"
     },
     {
       "id": "t04-004-practice",
@@ -12930,9 +13411,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-004.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-004-reference-inventory-pending"
+        "t04-004-reference-concurrency-and-conflict-resolution"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-004-interview",
@@ -12944,7 +13425,7 @@
       "prerequisites": [
         "t04-004-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-005-overview",
@@ -12954,7 +13435,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-005.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-005-concepts",
@@ -12966,20 +13447,33 @@
       "prerequisites": [
         "t04-005-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-005-reference-inventory-pending",
+      "id": "t04-005-reference-query-composition-and-execution",
       "track": "track-04",
-      "title": "LINQ translation server client evaluation and IQueryable — Reference: awaiting curated names",
+      "title": "LINQ translation server client evaluation and IQueryable — Reference: IQueryable composition, execution boundaries, and results",
       "module": "t04-005",
       "manifest": "curriculum/manifests/ef-core/t04-005.json",
       "phase": "reference",
       "prerequisites": [
         "t04-005-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "query-composition-and-execution"
+    },
+    {
+      "id": "t04-005-reference-translation-and-client-boundaries",
+      "track": "track-04",
+      "title": "LINQ translation server client evaluation and IQueryable — Reference: Translation, unsupported expressions, and explicit client evaluation",
+      "module": "t04-005",
+      "manifest": "curriculum/manifests/ef-core/t04-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-005-reference-query-composition-and-execution"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "translation-and-client-boundaries"
     },
     {
       "id": "t04-005-practice",
@@ -12989,9 +13483,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-005.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-005-reference-inventory-pending"
+        "t04-005-reference-translation-and-client-boundaries"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-005-interview",
@@ -13003,7 +13497,7 @@
       "prerequisites": [
         "t04-005-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-006-overview",
@@ -13013,7 +13507,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-006.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-006-concepts",
@@ -13025,20 +13519,46 @@
       "prerequisites": [
         "t04-006-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-006-reference-inventory-pending",
+      "id": "t04-006-reference-eager-loading-and-projection",
       "track": "track-04",
-      "title": "loading navigation properties eager explicit lazy and N+1 — Reference: awaiting curated names",
+      "title": "loading navigation properties eager explicit lazy and N+1 — Reference: Include, ThenInclude, filtered include, and projection",
       "module": "t04-006",
       "manifest": "curriculum/manifests/ef-core/t04-006.json",
       "phase": "reference",
       "prerequisites": [
         "t04-006-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "eager-loading-and-projection"
+    },
+    {
+      "id": "t04-006-reference-explicit-and-lazy-loading",
+      "track": "track-04",
+      "title": "loading navigation properties eager explicit lazy and N+1 — Reference: Entry-based explicit loading and proxy or lazy-loader patterns",
+      "module": "t04-006",
+      "manifest": "curriculum/manifests/ef-core/t04-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-006-reference-eager-loading-and-projection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "explicit-and-lazy-loading"
+    },
+    {
+      "id": "t04-006-reference-split-query-and-load-behavior",
+      "track": "track-04",
+      "title": "loading navigation properties eager explicit lazy and N+1 — Reference: Single versus split queries, consistency, and round trips",
+      "module": "t04-006",
+      "manifest": "curriculum/manifests/ef-core/t04-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-006-reference-explicit-and-lazy-loading"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "split-query-and-load-behavior"
     },
     {
       "id": "t04-006-practice",
@@ -13048,9 +13568,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-006.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-006-reference-inventory-pending"
+        "t04-006-reference-split-query-and-load-behavior"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-006-interview",
@@ -13062,7 +13582,7 @@
       "prerequisites": [
         "t04-006-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-007-overview",
@@ -13072,7 +13592,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-007.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-007-concepts",
@@ -13084,20 +13604,46 @@
       "prerequisites": [
         "t04-007-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-007-reference-inventory-pending",
+      "id": "t04-007-reference-migration-authoring-and-model-snapshot",
       "track": "track-04",
-      "title": "migrations schema evolution seeds and deployment — Reference: awaiting curated names",
+      "title": "migrations schema evolution seeds and deployment — Reference: Scaffolding, migration operations, and model snapshots",
       "module": "t04-007",
       "manifest": "curriculum/manifests/ef-core/t04-007.json",
       "phase": "reference",
       "prerequisites": [
         "t04-007-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "migration-authoring-and-model-snapshot"
+    },
+    {
+      "id": "t04-007-reference-migration-application-and-deployment",
+      "track": "track-04",
+      "title": "migrations schema evolution seeds and deployment — Reference: Applying, scripting, bundling, idempotence, and environment safety",
+      "module": "t04-007",
+      "manifest": "curriculum/manifests/ef-core/t04-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-007-reference-migration-authoring-and-model-snapshot"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "migration-application-and-deployment"
+    },
+    {
+      "id": "t04-007-reference-data-seeding-and-schema-evolution",
+      "track": "track-04",
+      "title": "migrations schema evolution seeds and deployment — Reference: Model-managed and runtime seeding, compatibility, and backfill",
+      "module": "t04-007",
+      "manifest": "curriculum/manifests/ef-core/t04-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-007-reference-migration-application-and-deployment"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "data-seeding-and-schema-evolution"
     },
     {
       "id": "t04-007-practice",
@@ -13107,9 +13653,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-007.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-007-reference-inventory-pending"
+        "t04-007-reference-data-seeding-and-schema-evolution"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-007-interview",
@@ -13121,7 +13667,7 @@
       "prerequisites": [
         "t04-007-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-008-overview",
@@ -13131,7 +13677,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-008.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-008-concepts",
@@ -13143,20 +13689,46 @@
       "prerequisites": [
         "t04-008-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-008-reference-inventory-pending",
+      "id": "t04-008-reference-transactions-and-savepoints",
       "track": "track-04",
-      "title": "transactions savepoints retry execution strategies and concurrency — Reference: awaiting curated names",
+      "title": "transactions savepoints retry execution strategies and concurrency — Reference: EF Core transaction APIs, ambient transactions, and savepoints",
       "module": "t04-008",
       "manifest": "curriculum/manifests/ef-core/t04-008.json",
       "phase": "reference",
       "prerequisites": [
         "t04-008-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "transactions-and-savepoints"
+    },
+    {
+      "id": "t04-008-reference-execution-strategies-and-retry",
+      "track": "track-04",
+      "title": "transactions savepoints retry execution strategies and concurrency — Reference: Connection resiliency, retry strategies, and unknown commit outcomes",
+      "module": "t04-008",
+      "manifest": "curriculum/manifests/ef-core/t04-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-008-reference-transactions-and-savepoints"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "execution-strategies-and-retry"
+    },
+    {
+      "id": "t04-008-reference-concurrency-conflicts-and-resolution",
+      "track": "track-04",
+      "title": "transactions savepoints retry execution strategies and concurrency — Reference: Optimistic concurrency exceptions and state resolution",
+      "module": "t04-008",
+      "manifest": "curriculum/manifests/ef-core/t04-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-008-reference-execution-strategies-and-retry"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "concurrency-conflicts-and-resolution"
     },
     {
       "id": "t04-008-practice",
@@ -13166,9 +13738,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-008.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-008-reference-inventory-pending"
+        "t04-008-reference-concurrency-conflicts-and-resolution"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-008-interview",
@@ -13180,7 +13752,7 @@
       "prerequisites": [
         "t04-008-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-009-overview",
@@ -13190,7 +13762,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-009.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-009-concepts",
@@ -13202,20 +13774,46 @@
       "prerequisites": [
         "t04-009-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-009-reference-inventory-pending",
+      "id": "t04-009-reference-projection-batching-and-result-shape",
       "track": "track-04",
-      "title": "query performance indexes projection pagination split queries and compiled queries — Reference: awaiting curated names",
+      "title": "query performance indexes projection pagination split queries and compiled queries — Reference: Projection, row limits, pagination, and result transfer",
       "module": "t04-009",
       "manifest": "curriculum/manifests/ef-core/t04-009.json",
       "phase": "reference",
       "prerequisites": [
         "t04-009-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "projection-batching-and-result-shape"
+    },
+    {
+      "id": "t04-009-reference-index-and-query-plan-alignment",
+      "track": "track-04",
+      "title": "query performance indexes projection pagination split queries and compiled queries — Reference: Database indexes, query shape, and generated SQL",
+      "module": "t04-009",
+      "manifest": "curriculum/manifests/ef-core/t04-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-009-reference-projection-batching-and-result-shape"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "index-and-query-plan-alignment"
+    },
+    {
+      "id": "t04-009-reference-context-and-materialization-costs",
+      "track": "track-04",
+      "title": "query performance indexes projection pagination split queries and compiled queries — Reference: DbContext pooling, tracking costs, and measured optimization",
+      "module": "t04-009",
+      "manifest": "curriculum/manifests/ef-core/t04-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-009-reference-index-and-query-plan-alignment"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "context-and-materialization-costs"
     },
     {
       "id": "t04-009-practice",
@@ -13225,9 +13823,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-009.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-009-reference-inventory-pending"
+        "t04-009-reference-context-and-materialization-costs"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-009-interview",
@@ -13239,7 +13837,7 @@
       "prerequisites": [
         "t04-009-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-010-overview",
@@ -13249,7 +13847,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-010.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-010-concepts",
@@ -13261,20 +13859,46 @@
       "prerequisites": [
         "t04-010-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-010-reference-inventory-pending",
+      "id": "t04-010-reference-raw-sql-and-sql-queries",
       "track": "track-04",
-      "title": "raw SQL bulk updates and Dapper comparison — Reference: awaiting curated names",
+      "title": "raw SQL bulk updates and Dapper comparison — Reference: Parameterized SQL, entity queries, and command execution",
       "module": "t04-010",
       "manifest": "curriculum/manifests/ef-core/t04-010.json",
       "phase": "reference",
       "prerequisites": [
         "t04-010-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "raw-sql-and-sql-queries"
+    },
+    {
+      "id": "t04-010-reference-set-based-updates-and-bulk",
+      "track": "track-04",
+      "title": "raw SQL bulk updates and Dapper comparison — Reference: Set-based update/delete, batching, and change-tracker boundaries",
+      "module": "t04-010",
+      "manifest": "curriculum/manifests/ef-core/t04-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-010-reference-raw-sql-and-sql-queries"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "set-based-updates-and-bulk"
+    },
+    {
+      "id": "t04-010-reference-dapper-and-mixed-data-access",
+      "track": "track-04",
+      "title": "raw SQL bulk updates and Dapper comparison — Reference: Dapper APIs and choosing micro-ORM versus EF Core",
+      "module": "t04-010",
+      "manifest": "curriculum/manifests/ef-core/t04-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-010-reference-set-based-updates-and-bulk"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "dapper-and-mixed-data-access"
     },
     {
       "id": "t04-010-practice",
@@ -13284,9 +13908,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-010.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-010-reference-inventory-pending"
+        "t04-010-reference-dapper-and-mixed-data-access"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-010-interview",
@@ -13298,7 +13922,7 @@
       "prerequisites": [
         "t04-010-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-011-overview",
@@ -13308,7 +13932,7 @@
       "manifest": "curriculum/manifests/ef-core/t04-011.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-011-concepts",
@@ -13320,20 +13944,33 @@
       "prerequisites": [
         "t04-011-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t04-011-reference-inventory-pending",
+      "id": "t04-011-reference-real-database-testing",
       "track": "track-04",
-      "title": "testing EF Core providers database isolation and pitfalls — Reference: awaiting curated names",
+      "title": "testing EF Core providers database isolation and pitfalls — Reference: Production-provider tests, isolation, and repeatability",
       "module": "t04-011",
       "manifest": "curriculum/manifests/ef-core/t04-011.json",
       "phase": "reference",
       "prerequisites": [
         "t04-011-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "real-database-testing"
+    },
+    {
+      "id": "t04-011-reference-test-doubles-and-provider-differences",
+      "track": "track-04",
+      "title": "testing EF Core providers database isolation and pitfalls — Reference: SQLite, EF InMemory, DbContext mocks, and repository boundaries",
+      "module": "t04-011",
+      "manifest": "curriculum/manifests/ef-core/t04-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t04-011-reference-real-database-testing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "test-doubles-and-provider-differences"
     },
     {
       "id": "t04-011-practice",
@@ -13343,9 +13980,9 @@
       "manifest": "curriculum/manifests/ef-core/t04-011.json",
       "phase": "practice",
       "prerequisites": [
-        "t04-011-reference-inventory-pending"
+        "t04-011-reference-test-doubles-and-provider-differences"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t04-011-interview",
@@ -13357,7 +13994,7 @@
       "prerequisites": [
         "t04-011-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t02-001-overview",
@@ -15386,7 +16023,7 @@
       "manifest": "curriculum/manifests/web-security/t05-001.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-001-concepts",
@@ -15398,20 +16035,33 @@
       "prerequisites": [
         "t05-001-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t05-001-reference-inventory-pending",
+      "id": "t05-001-reference-protocol-and-connection",
       "track": "track-05",
-      "title": "HTTP HTTPS TLS certificates HSTS and transport security — Reference: awaiting curated names",
+      "title": "HTTP HTTPS TLS certificates HSTS and transport security — Reference: HTTP over TLS, handshake, protocol negotiation, and replay boundaries",
       "module": "t05-001",
       "manifest": "curriculum/manifests/web-security/t05-001.json",
       "phase": "reference",
       "prerequisites": [
         "t05-001-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "protocol-and-connection"
+    },
+    {
+      "id": "t05-001-reference-certificates-and-deployment",
+      "track": "track-05",
+      "title": "HTTP HTTPS TLS certificates HSTS and transport security — Reference: Certificate lifecycle, HSTS, proxy termination, and secure cookies",
+      "module": "t05-001",
+      "manifest": "curriculum/manifests/web-security/t05-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t05-001-reference-protocol-and-connection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "certificates-and-deployment"
     },
     {
       "id": "t05-001-practice",
@@ -15421,9 +16071,9 @@
       "manifest": "curriculum/manifests/web-security/t05-001.json",
       "phase": "practice",
       "prerequisites": [
-        "t05-001-reference-inventory-pending"
+        "t05-001-reference-certificates-and-deployment"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-001-interview",
@@ -15435,7 +16085,7 @@
       "prerequisites": [
         "t05-001-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-002-overview",
@@ -15445,7 +16095,7 @@
       "manifest": "curriculum/manifests/web-security/t05-002.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-002-concepts",
@@ -15457,20 +16107,33 @@
       "prerequisites": [
         "t05-002-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t05-002-reference-inventory-pending",
+      "id": "t05-002-reference-identity-and-authentication",
       "track": "track-05",
-      "title": "authentication versus authorization identities claims and roles — Reference: awaiting curated names",
+      "title": "authentication versus authorization identities claims and roles — Reference: Credentials, authentication, and principal construction",
       "module": "t05-002",
       "manifest": "curriculum/manifests/web-security/t05-002.json",
       "phase": "reference",
       "prerequisites": [
         "t05-002-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "identity-and-authentication"
+    },
+    {
+      "id": "t05-002-reference-authorization-models",
+      "track": "track-05",
+      "title": "authentication versus authorization identities claims and roles — Reference: Role, policy, resource, and operation authorization",
+      "module": "t05-002",
+      "manifest": "curriculum/manifests/web-security/t05-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t05-002-reference-identity-and-authentication"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "authorization-models"
     },
     {
       "id": "t05-002-practice",
@@ -15480,9 +16143,9 @@
       "manifest": "curriculum/manifests/web-security/t05-002.json",
       "phase": "practice",
       "prerequisites": [
-        "t05-002-reference-inventory-pending"
+        "t05-002-reference-authorization-models"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-002-interview",
@@ -15494,7 +16157,7 @@
       "prerequisites": [
         "t05-002-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-003-overview",
@@ -15504,7 +16167,7 @@
       "manifest": "curriculum/manifests/web-security/t05-003.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-003-concepts",
@@ -15516,20 +16179,33 @@
       "prerequisites": [
         "t05-003-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t05-003-reference-inventory-pending",
+      "id": "t05-003-reference-cookies-and-server-sessions",
       "track": "track-05",
-      "title": "cookies sessions token and JWT lifecycle tradeoffs — Reference: awaiting curated names",
+      "title": "cookies sessions token and JWT lifecycle tradeoffs — Reference: Browser cookies, session identifiers, and server-side session controls",
       "module": "t05-003",
       "manifest": "curriculum/manifests/web-security/t05-003.json",
       "phase": "reference",
       "prerequisites": [
         "t05-003-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cookies-and-server-sessions"
+    },
+    {
+      "id": "t05-003-reference-bearer-tokens-and-jwt",
+      "track": "track-05",
+      "title": "cookies sessions token and JWT lifecycle tradeoffs — Reference: Token types, JWT claims, validation, and revocation",
+      "module": "t05-003",
+      "manifest": "curriculum/manifests/web-security/t05-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t05-003-reference-cookies-and-server-sessions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "bearer-tokens-and-jwt"
     },
     {
       "id": "t05-003-practice",
@@ -15539,9 +16215,9 @@
       "manifest": "curriculum/manifests/web-security/t05-003.json",
       "phase": "practice",
       "prerequisites": [
-        "t05-003-reference-inventory-pending"
+        "t05-003-reference-bearer-tokens-and-jwt"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-003-interview",
@@ -15553,7 +16229,7 @@
       "prerequisites": [
         "t05-003-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-004-overview",
@@ -15563,7 +16239,7 @@
       "manifest": "curriculum/manifests/web-security/t05-004.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-004-concepts",
@@ -15575,20 +16251,33 @@
       "prerequisites": [
         "t05-004-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t05-004-reference-inventory-pending",
+      "id": "t05-004-reference-actors-and-protocol-artifacts",
       "track": "track-05",
-      "title": "OAuth 2.0 OIDC flows scopes PKCE and token storage — Reference: awaiting curated names",
+      "title": "OAuth 2.0 OIDC flows scopes PKCE and token storage — Reference: Actors, endpoints, scopes, and tokens",
       "module": "t05-004",
       "manifest": "curriculum/manifests/web-security/t05-004.json",
       "phase": "reference",
       "prerequisites": [
         "t05-004-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "actors-and-protocol-artifacts"
+    },
+    {
+      "id": "t05-004-reference-flows-and-security",
+      "track": "track-05",
+      "title": "OAuth 2.0 OIDC flows scopes PKCE and token storage — Reference: Authorization Code, PKCE, browser/native clients, and security boundaries",
+      "module": "t05-004",
+      "manifest": "curriculum/manifests/web-security/t05-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t05-004-reference-actors-and-protocol-artifacts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "flows-and-security"
     },
     {
       "id": "t05-004-practice",
@@ -15598,9 +16287,9 @@
       "manifest": "curriculum/manifests/web-security/t05-004.json",
       "phase": "practice",
       "prerequisites": [
-        "t05-004-reference-inventory-pending"
+        "t05-004-reference-flows-and-security"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-004-interview",
@@ -15612,7 +16301,7 @@
       "prerequisites": [
         "t05-004-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-005-overview",
@@ -15622,7 +16311,7 @@
       "manifest": "curriculum/manifests/web-security/t05-005.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-005-concepts",
@@ -15634,20 +16323,33 @@
       "prerequisites": [
         "t05-005-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t05-005-reference-inventory-pending",
+      "id": "t05-005-reference-schemes-and-handlers",
       "track": "track-05",
-      "title": "ASP.NET Core authentication handlers identity and policies — Reference: awaiting curated names",
+      "title": "ASP.NET Core authentication handlers identity and policies — Reference: Scheme registration, cookie/bearer handlers, events, and ticket operations",
       "module": "t05-005",
       "manifest": "curriculum/manifests/web-security/t05-005.json",
       "phase": "reference",
       "prerequisites": [
         "t05-005-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "schemes-and-handlers"
+    },
+    {
+      "id": "t05-005-reference-authorization-and-resource-checks",
+      "track": "track-05",
+      "title": "ASP.NET Core authentication handlers identity and policies — Reference: Policy composition, requirements, handlers, and endpoint application",
+      "module": "t05-005",
+      "manifest": "curriculum/manifests/web-security/t05-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t05-005-reference-schemes-and-handlers"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "authorization-and-resource-checks"
     },
     {
       "id": "t05-005-practice",
@@ -15657,9 +16359,9 @@
       "manifest": "curriculum/manifests/web-security/t05-005.json",
       "phase": "practice",
       "prerequisites": [
-        "t05-005-reference-inventory-pending"
+        "t05-005-reference-authorization-and-resource-checks"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-005-interview",
@@ -15671,7 +16373,7 @@
       "prerequisites": [
         "t05-005-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-006-overview",
@@ -15681,7 +16383,7 @@
       "manifest": "curriculum/manifests/web-security/t05-006.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-006-concepts",
@@ -15693,20 +16395,46 @@
       "prerequisites": [
         "t05-006-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t05-006-reference-inventory-pending",
+      "id": "t05-006-reference-browser-injection-and-forgery",
       "track": "track-05",
-      "title": "CSRF XSS CSP injection SSRF open redirects and clickjacking — Reference: awaiting curated names",
+      "title": "CSRF XSS CSP injection SSRF open redirects and clickjacking — Reference: CSRF, XSS, CSP, and clickjacking",
       "module": "t05-006",
       "manifest": "curriculum/manifests/web-security/t05-006.json",
       "phase": "reference",
       "prerequisites": [
         "t05-006-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "browser-injection-and-forgery"
+    },
+    {
+      "id": "t05-006-reference-server-side-injection-and-ssrf",
+      "track": "track-05",
+      "title": "CSRF XSS CSP injection SSRF open redirects and clickjacking — Reference: Injection classes, URL validation, and server-side request controls",
+      "module": "t05-006",
+      "manifest": "curriculum/manifests/web-security/t05-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t05-006-reference-browser-injection-and-forgery"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "server-side-injection-and-ssrf"
+    },
+    {
+      "id": "t05-006-reference-redirects-and-cross-boundary-controls",
+      "track": "track-05",
+      "title": "CSRF XSS CSP injection SSRF open redirects and clickjacking — Reference: Open redirects, request parsing, and defense in depth",
+      "module": "t05-006",
+      "manifest": "curriculum/manifests/web-security/t05-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t05-006-reference-server-side-injection-and-ssrf"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "redirects-and-cross-boundary-controls"
     },
     {
       "id": "t05-006-practice",
@@ -15716,9 +16444,9 @@
       "manifest": "curriculum/manifests/web-security/t05-006.json",
       "phase": "practice",
       "prerequisites": [
-        "t05-006-reference-inventory-pending"
+        "t05-006-reference-redirects-and-cross-boundary-controls"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-006-interview",
@@ -15730,7 +16458,7 @@
       "prerequisites": [
         "t05-006-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-007-overview",
@@ -15740,7 +16468,7 @@
       "manifest": "curriculum/manifests/web-security/t05-007.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-007-concepts",
@@ -15752,20 +16480,33 @@
       "prerequisites": [
         "t05-007-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t05-007-reference-inventory-pending",
+      "id": "t05-007-reference-password-storage-and-verification",
       "track": "track-05",
-      "title": "password storage hashing MFA account recovery and rate limits — Reference: awaiting curated names",
+      "title": "password storage hashing MFA account recovery and rate limits — Reference: Password lifecycle, storage, and breach defense",
       "module": "t05-007",
       "manifest": "curriculum/manifests/web-security/t05-007.json",
       "phase": "reference",
       "prerequisites": [
         "t05-007-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "password-storage-and-verification"
+    },
+    {
+      "id": "t05-007-reference-mfa-and-account-recovery",
+      "track": "track-05",
+      "title": "password storage hashing MFA account recovery and rate limits — Reference: Authenticator types, enrollment, recovery, and abuse controls",
+      "module": "t05-007",
+      "manifest": "curriculum/manifests/web-security/t05-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t05-007-reference-password-storage-and-verification"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "mfa-and-account-recovery"
     },
     {
       "id": "t05-007-practice",
@@ -15775,9 +16516,9 @@
       "manifest": "curriculum/manifests/web-security/t05-007.json",
       "phase": "practice",
       "prerequisites": [
-        "t05-007-reference-inventory-pending"
+        "t05-007-reference-mfa-and-account-recovery"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-007-interview",
@@ -15789,7 +16530,7 @@
       "prerequisites": [
         "t05-007-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-008-overview",
@@ -15799,7 +16540,7 @@
       "manifest": "curriculum/manifests/web-security/t05-008.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-008-concepts",
@@ -15811,20 +16552,20 @@
       "prerequisites": [
         "t05-008-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t05-008-reference-inventory-pending",
+      "id": "t05-008-reference-cors-protocol",
       "track": "track-05",
-      "title": "CORS browser origins preflight and credential policy — Reference: awaiting curated names",
+      "title": "CORS browser origins preflight and credential policy — Reference: Origins, response headers, preflight, credentials, and failure behavior",
       "module": "t05-008",
       "manifest": "curriculum/manifests/web-security/t05-008.json",
       "phase": "reference",
       "prerequisites": [
         "t05-008-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cors-protocol"
     },
     {
       "id": "t05-008-practice",
@@ -15834,9 +16575,9 @@
       "manifest": "curriculum/manifests/web-security/t05-008.json",
       "phase": "practice",
       "prerequisites": [
-        "t05-008-reference-inventory-pending"
+        "t05-008-reference-cors-protocol"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-008-interview",
@@ -15848,7 +16589,7 @@
       "prerequisites": [
         "t05-008-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-009-overview",
@@ -15858,7 +16599,7 @@
       "manifest": "curriculum/manifests/web-security/t05-009.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-009-concepts",
@@ -15870,20 +16611,33 @@
       "prerequisites": [
         "t05-009-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t05-009-reference-inventory-pending",
+      "id": "t05-009-reference-protection-primitives-and-purpose",
       "track": "track-05",
-      "title": "data protection encryption signing keys secrets and rotation — Reference: awaiting curated names",
+      "title": "data protection encryption signing keys secrets and rotation — Reference: Confidentiality, integrity, signed payloads, and purpose isolation",
       "module": "t05-009",
       "manifest": "curriculum/manifests/web-security/t05-009.json",
       "phase": "reference",
       "prerequisites": [
         "t05-009-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "protection-primitives-and-purpose"
+    },
+    {
+      "id": "t05-009-reference-key-ring-and-secret-lifecycle",
+      "track": "track-05",
+      "title": "data protection encryption signing keys secrets and rotation — Reference: ASP.NET Core key management, storage, rotation, and secret operations",
+      "module": "t05-009",
+      "manifest": "curriculum/manifests/web-security/t05-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t05-009-reference-protection-primitives-and-purpose"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "key-ring-and-secret-lifecycle"
     },
     {
       "id": "t05-009-practice",
@@ -15893,9 +16647,9 @@
       "manifest": "curriculum/manifests/web-security/t05-009.json",
       "phase": "practice",
       "prerequisites": [
-        "t05-009-reference-inventory-pending"
+        "t05-009-reference-key-ring-and-secret-lifecycle"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-009-interview",
@@ -15907,7 +16661,7 @@
       "prerequisites": [
         "t05-009-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-010-overview",
@@ -15917,7 +16671,7 @@
       "manifest": "curriculum/manifests/web-security/t05-010.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-010-concepts",
@@ -15929,20 +16683,33 @@
       "prerequisites": [
         "t05-010-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t05-010-reference-inventory-pending",
+      "id": "t05-010-reference-threat-modeling-and-secure-design",
       "track": "track-05",
-      "title": "threat modeling secure design audit logging and incident response — Reference: awaiting curated names",
+      "title": "threat modeling secure design audit logging and incident response — Reference: Assets, trust boundaries, threat identification, and risk treatment",
       "module": "t05-010",
       "manifest": "curriculum/manifests/web-security/t05-010.json",
       "phase": "reference",
       "prerequisites": [
         "t05-010-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "threat-modeling-and-secure-design"
+    },
+    {
+      "id": "t05-010-reference-audit-and-incident-response",
+      "track": "track-05",
+      "title": "threat modeling secure design audit logging and incident response — Reference: Security events, protected logs, response lifecycle, and recovery",
+      "module": "t05-010",
+      "manifest": "curriculum/manifests/web-security/t05-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t05-010-reference-threat-modeling-and-secure-design"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "audit-and-incident-response"
     },
     {
       "id": "t05-010-practice",
@@ -15952,9 +16719,9 @@
       "manifest": "curriculum/manifests/web-security/t05-010.json",
       "phase": "practice",
       "prerequisites": [
-        "t05-010-reference-inventory-pending"
+        "t05-010-reference-audit-and-incident-response"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t05-010-interview",
@@ -15966,7 +16733,7 @@
       "prerequisites": [
         "t05-010-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t06-007-overview",
