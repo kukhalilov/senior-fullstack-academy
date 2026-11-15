@@ -267,6 +267,10 @@
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckregistration",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckserviceoptions",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.diagnostics.healthchecks.healthcheckoptions",
     "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview",
     "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-aspnetcore",
     "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
@@ -277,9 +281,9 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-16",
       "items": [
-        "Starting in ASP.NET Core 11, built-in HTTP server meters and request activities carry the required OpenTelemetry HTTP semantic-convention data. The OpenTelemetry.Instrumentation.AspNetCore package is optional for these built-in HTTP signals; teach direct MeterProviderBuilder.AddMeter and TracerProviderBuilder.AddSource subscription, and explain when the package remains useful for its additional instrumentation features.",
+        "Starting in ASP.NET Core 11, built-in HTTP server meters and request activities carry the required OpenTelemetry HTTP semantic-convention data. The hosting Activity source adds HTTP attributes by default, resolves conventional-route parameters in http.route, adds error.type to 5xx request-duration measurements, and records unhandled exceptions as standard Activity events without setting StatusDescription. The OpenTelemetry.Instrumentation.AspNetCore package is optional for these built-in HTTP signals; teach direct MeterProviderBuilder.AddMeter and TracerProviderBuilder.AddSource subscription, and explain when the package remains useful for its additional instrumentation features.",
         "ASP.NET Core 10 added built-in authentication and authorization metrics, and ASP.NET Core 10 added built-in Blazor component metrics. Present these as available in .NET 10 and later rather than attributing them to .NET 11.",
         "Use the current System.Diagnostics.Metrics and Activity APIs for new .NET instrumentation. EventCounters and DiagnosticSource remain relevant for existing tools and legacy instrumentations, but are not equivalent replacements for new metrics and ActivitySource traces.",
         "The ASP.NET Core health-check abstractions are framework-provided. Third-party checks such as AspNetCore.Diagnostics.HealthChecks are separate community packages; don't imply that their database or UI registrations are built into ASP.NET Core."
@@ -288,17 +292,26 @@
         "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
         "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-10.0",
         "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-aspnetcore",
-        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/http-activity-otel-semconv",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core health, metrics, diagnostics and .NET diagnostics documentation; OpenTelemetry .NET official documentation",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckregistration",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckserviceoptions",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.diagnostics.healthchecks.healthcheckoptions",
       "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview",
+      "https://learn.microsoft.com/en-us/aspnet/core/metrics/http",
+      "https://learn.microsoft.com/en-us/aspnet/core/log-mon/metrics/metrics?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/http-activity-otel-semconv",
       "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
       "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-10.0",
       "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-aspnetcore",
