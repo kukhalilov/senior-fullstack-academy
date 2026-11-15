@@ -15,29 +15,303 @@
     "A heap is useful for repeatedly selecting the next extremum, but sorted arrays, balanced trees, monotonic deques, or selection algorithms may fit other query patterns better."
   ],
   "inventory": [
-    {"id":"heap-invariant-and-layout","title":"Heap order, tree shape, and array layout","items":["Complete binary tree","Min-heap order","Max-heap order","Array-backed heap","Root index","Parent index","Left-child index","Right-child index","Heap invariant","Duplicate priorities"]},
-    {"id":"priority-queue-operations","title":"Priority queue operations and complexity","items":["Peek minimum or maximum","Insert/enqueue","Remove root/dequeue","Sift up","Sift down","Replace root","Build heap bottom-up","O(1) root lookup","O(log n) insertion and root removal","O(n) arbitrary search"]},
-    {"id":"variants-and-update","title":"Comparers, updates, and deletion strategies","items":["Custom priority comparer","Tuple priority","Stable tie-breaking with sequence number","Decrease-key","Increase-key","Indexed priority queue","Lazy deletion","Stale-entry filtering","Double-ended priority queue"]},
-    {"id":"algorithm-patterns-and-tradeoffs","title":"Heap-based problem patterns and alternatives","items":["Kth largest with size-k min-heap","Top-k selection","Merge k sorted sequences","Two heaps for running median","Repeated extremum extraction","Heap sort relationship","Heap versus sorted array","Heap versus monotonic deque","Expected quickselect alternative"]}
+    {
+      "id": "heap-invariant-and-layout",
+      "title": "Heap order, tree shape, and array layout",
+      "items": [
+        "Complete binary tree",
+        "Min-heap order",
+        "Max-heap order",
+        "Array-backed heap",
+        "Root index",
+        "Parent index",
+        "Left-child index",
+        "Right-child index",
+        "Heap invariant",
+        "Duplicate priorities"
+      ]
+    },
+    {
+      "id": "priority-queue-operations",
+      "title": "Priority queue operations and complexity",
+      "items": [
+        "Peek minimum or maximum",
+        "Insert/enqueue",
+        "Remove root/dequeue",
+        "Sift up",
+        "Sift down",
+        "Replace root",
+        "Build heap bottom-up",
+        "O(1) root lookup",
+        "O(log n) insertion and root removal",
+        "O(n) arbitrary search"
+      ]
+    },
+    {
+      "id": "variants-and-update",
+      "title": "Comparers, updates, and deletion strategies",
+      "items": [
+        "Custom priority comparer",
+        "Tuple priority",
+        "Stable tie-breaking with sequence number",
+        "Decrease-key",
+        "Increase-key",
+        "Indexed priority queue",
+        "Lazy deletion",
+        "Stale-entry filtering",
+        "Double-ended priority queue"
+      ]
+    },
+    {
+      "id": "algorithm-patterns-and-tradeoffs",
+      "title": "Heap-based problem patterns and alternatives",
+      "items": [
+        "Kth largest with size-k min-heap",
+        "Top-k selection",
+        "Merge k sorted sequences",
+        "Two heaps for running median",
+        "Repeated extremum extraction",
+        "Heap sort relationship",
+        "Heap versus sorted array",
+        "Heap versus monotonic deque",
+        "Expected quickselect alternative"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"last-stone-weight","name":"Last Stone Weight","difficulty":"introductory","patterns":["repeated maximum extraction","max-priority queue"]},
-    {"id":"top-k-frequent-elements","name":"Top K Frequent Elements","difficulty":"intermediate","patterns":["bounded-size heap","frequency records and priority"]},
-    {"id":"find-median-data-stream","name":"Find Median from Data Stream","difficulty":"advanced","patterns":["two heaps","maintain balanced lower and upper halves"]},
-    {"id":"merge-k-sorted-lists","name":"Merge k Sorted Lists","difficulty":"advanced","patterns":["min-heap of current list heads","incremental multiway merge"]},
-    {"id":"task-scheduler","name":"Task Scheduler","difficulty":"intermediate","patterns":["max-priority scheduling","frequency and cooldown constraints"]},
-    {"id":"kth-largest-element-stream","name":"Kth Largest Element in a Stream","difficulty":"intermediate","patterns":["size-k min-heap","maintain kth-largest invariant"]}
+    {
+      "id": "last-stone-weight",
+      "name": "Last Stone Weight",
+      "difficulty": "introductory",
+      "patterns": [
+        "repeated maximum extraction",
+        "max-priority queue"
+      ],
+      "statement": "Repeatedly remove the two heaviest stones x<=y. Destroy both if equal; otherwise replace them with y-x. Return the final remaining weight or zero.",
+      "constraints": [
+        "1 <= stones.Length <= 30",
+        "1 <= stones[i] <= 1000"
+      ],
+      "examples": [
+        {
+          "input": "[2,7,4,1,8,1]",
+          "output": "1"
+        },
+        {
+          "input": "[1]",
+          "output": "1"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/last-stone-weight/"
+      ]
+    },
+    {
+      "id": "top-k-frequent-elements",
+      "name": "Top K Frequent Elements",
+      "difficulty": "intermediate",
+      "patterns": [
+        "bounded-size heap",
+        "frequency records and priority"
+      ],
+      "statement": "Return the k most frequent distinct integer values in any order. The answer is unique.",
+      "constraints": [
+        "1 <= nums.Length <= 10^5",
+        "-10^4 <= nums[i] <= 10^4",
+        "1 <= k <= number of distinct values",
+        "The answer is unique."
+      ],
+      "examples": [
+        {
+          "input": "nums = [1,1,1,2,2,3], k = 2",
+          "output": "[1,2]"
+        },
+        {
+          "input": "nums = [1], k = 1",
+          "output": "[1]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/top-k-frequent-elements/"
+      ]
+    },
+    {
+      "id": "find-median-data-stream",
+      "name": "Find Median from Data Stream",
+      "difficulty": "advanced",
+      "patterns": [
+        "two heaps",
+        "maintain balanced lower and upper halves"
+      ],
+      "statement": "Implement a data structure supporting insertion of integers and median lookup; with even size return the mean of the two middle values.",
+      "constraints": [
+        "-10^5 <= num <= 10^5",
+        "At least one value exists before median lookup",
+        "At most 5 * 10^4 addNum and findMedian calls"
+      ],
+      "examples": [
+        {
+          "input": "add 1, add 2, find, add 3, find",
+          "output": "1.5, 2.0"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/find-median-from-data-stream/"
+      ]
+    },
+    {
+      "id": "merge-k-sorted-lists",
+      "name": "Merge k Sorted Lists",
+      "difficulty": "advanced",
+      "patterns": [
+        "min-heap of current list heads",
+        "incremental multiway merge"
+      ],
+      "statement": "Merge k singly linked lists sorted in ascending order into one ascending list.",
+      "constraints": [
+        "0 <= k <= 10^4",
+        "Each list length <= 500",
+        "Total number of nodes <= 10^4",
+        "-10^4 <= node value <= 10^4"
+      ],
+      "examples": [
+        {
+          "input": "[[1,4,5],[1,3,4],[2,6]]",
+          "output": "[1,1,2,3,4,4,5,6]"
+        },
+        {
+          "input": "[]",
+          "output": "[]"
+        },
+        {
+          "input": "[[]]",
+          "output": "[]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/merge-k-sorted-lists/"
+      ]
+    },
+    {
+      "id": "task-scheduler",
+      "name": "Task Scheduler",
+      "difficulty": "intermediate",
+      "patterns": [
+        "max-priority scheduling",
+        "frequency and cooldown constraints"
+      ],
+      "statement": "Given tasks labeled A-Z and cooldown n, return the minimum number of CPU intervals needed to execute every task, with at least n intervals between identical labels; an interval may be idle.",
+      "constraints": [
+        "1 <= tasks.Length <= 10^4",
+        "tasks[i] is an uppercase English letter",
+        "0 <= n <= 100"
+      ],
+      "examples": [
+        {
+          "input": "tasks = [A,A,A,B,B,B], n = 2",
+          "output": "8"
+        },
+        {
+          "input": "tasks = [A,C,A,B,D,B], n = 1",
+          "output": "6"
+        },
+        {
+          "input": "tasks = [A,A,A,B,B,B], n = 3",
+          "output": "10"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/task-scheduler/"
+      ]
+    },
+    {
+      "id": "kth-largest-element-stream",
+      "name": "Kth Largest Element in a Stream",
+      "difficulty": "intermediate",
+      "patterns": [
+        "size-k min-heap",
+        "maintain kth-largest invariant"
+      ],
+      "statement": "Maintain the kth largest value in a stream; initialize from nums and return the kth largest after each added value.",
+      "constraints": [
+        "0 <= nums.Length <= 10^4",
+        "1 <= k <= 10^4",
+        "-10^4 <= nums[i], val <= 10^4",
+        "At most 10^4 add calls",
+        "At least k values exist by each requested answer"
+      ],
+      "examples": [
+        {
+          "output": "4,5,5,8,8",
+          "input": "k=3, nums=[4,5,8,2], add 3,5,10,9,4"
+        },
+        {
+          "output": "7,7,7,8",
+          "input": "k=4, nums=[7,7,7,7,8,3], add 2,10,9,9"
+        },
+        {
+          "output": "-5,2",
+          "input": "k=1, nums=[], add -5,2"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Priority queue ADT","Binary heap implementation"],["Min-heap","Max-heap"],["Repeated insertion build","Bottom-up heapify"],["Lazy deletion","Indexed heap update"],["Heap for kth largest","Quickselect for kth largest"],["Heap window maximum","Monotonic deque window maximum"]],
-  "comparisonSources": ["https://usaco.guide/silver/priority-queues","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2"],
+  "comparisons": [
+    [
+      "Priority queue ADT",
+      "Binary heap implementation"
+    ],
+    [
+      "Min-heap",
+      "Max-heap"
+    ],
+    [
+      "Repeated insertion build",
+      "Bottom-up heapify"
+    ],
+    [
+      "Lazy deletion",
+      "Indexed heap update"
+    ],
+    [
+      "Heap for kth largest",
+      "Quickselect for kth largest"
+    ],
+    [
+      "Heap window maximum",
+      "Monotonic deque window maximum"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/silver/priority-queues",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "USACO Guide priority queues, Microsoft PriorityQueue<TElement,TPriority> API reference, and official LeetCode problem statements",
     "edition": "Timeless heap algorithms; .NET API and canonical problems checked 2026-11-14",
     "checkedAt": "2026-11-14",
-    "urls": ["https://usaco.guide/silver/priority-queues","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2","https://leetcode.com/problems/last-stone-weight/","https://leetcode.com/problems/top-k-frequent-elements/","https://leetcode.com/problems/find-median-from-data-stream/","https://leetcode.com/problems/merge-k-sorted-lists/","https://leetcode.com/problems/task-scheduler/","https://leetcode.com/problems/kth-largest-element-in-a-stream/"]
+    "urls": [
+      "https://usaco.guide/silver/priority-queues",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+      "https://leetcode.com/problems/last-stone-weight/",
+      "https://leetcode.com/problems/top-k-frequent-elements/",
+      "https://leetcode.com/problems/find-median-from-data-stream/",
+      "https://leetcode.com/problems/merge-k-sorted-lists/",
+      "https://leetcode.com/problems/task-scheduler/",
+      "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
+    ]
   },
-  "scopeExclusions": ["Comparison sorting algorithms, covered in t11-009","Monotonic stacks and deques, covered in t11-022","Balanced search trees and sorted sets","Fibonacci, pairing, and binomial heap variants","Concurrent priority queues and synchronization"],
+  "scopeExclusions": [
+    "Comparison sorting algorithms, covered in t11-009",
+    "Monotonic stacks and deques, covered in t11-022",
+    "Balanced search trees and sorted sets",
+    "Fibonacci, pairing, and binomial heap variants",
+    "Concurrent priority queues and synchronization"
+  ],
   "generationAllowed": true
 }
