@@ -1,2 +1,0 @@
-# Course authoring rules
-Write clear, accurate English for a non-native speaker while defining standard terminology. Explain fundamentals, examples, mechanisms, tradeoffs, interview answers, exercises, and solutions. Provide sources only when actually verified. Distinguish drafts, automated checks and independently verified material. Keep generated files independent of a live assistant. Preserve learning notes and existing content.

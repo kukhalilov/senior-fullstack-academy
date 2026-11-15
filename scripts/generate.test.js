@@ -1347,6 +1347,13 @@ test('high-risk C# semantic guardrails are included in generation and review dat
   }
 });
 
+test('rotates through available models and skips daily quota exhaustion', () => {
+  const generator = fs.readFileSync('scripts/generate.js', 'utf8');
+  assert.match(generator, /nextAvailableModel/);
+  assert.match(generator, /unavailableModels\.add\(model\)/);
+  assert.match(generator, /daily quota reached/);
+});
+
 test('model pool and reviewer evidence rules prevent false missing-item reports', () => {
   const template = JSON.parse(fs.readFileSync('curriculum/prompt-template.json', 'utf8'));
   assert.ok(template.qualityReview.check.some(check => check.includes('exact candidate quotation')));
