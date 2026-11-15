@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 4,
+  "id": "t06-013",
+  "track": "track-06",
+  "title": "JavaScript Map and Set collections",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": ["Keyed collections versus object properties", "Key equality and insertion order", "Mutation during iteration", "Weak versus strong key references", "Choosing maps, sets, and objects by access pattern"],
+  "inventory": [
+    {"id":"map-api","title":"Map constructor, properties, methods, and symbols","items":["Map","Map.groupBy","Map[Symbol.species]","Map.prototype.constructor","Map.prototype.size","Map.prototype.clear","Map.prototype.delete","Map.prototype.entries","Map.prototype.forEach","Map.prototype.get","Map.prototype.getOrInsert","Map.prototype.getOrInsertComputed","Map.prototype.has","Map.prototype.keys","Map.prototype.set","Map.prototype.values","Map.prototype[Symbol.iterator]","Map.prototype[Symbol.toStringTag]"]},
+    {"id":"set-api","title":"Set constructor, properties, methods, and symbols","items":["Set","Set[Symbol.species]","Set.prototype.constructor","Set.prototype.size","Set.prototype.add","Set.prototype.clear","Set.prototype.delete","Set.prototype.difference","Set.prototype.entries","Set.prototype.forEach","Set.prototype.intersection","Set.prototype.isDisjointFrom","Set.prototype.isSubsetOf","Set.prototype.isSupersetOf","Set.prototype.symmetricDifference","Set.prototype.union","Set.prototype.has","Set.prototype.keys","Set.prototype.values","Set.prototype[Symbol.iterator]","Set.prototype[Symbol.toStringTag]"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Map","Object"],["Set","Array"],["Map.prototype.get","Map.prototype.getOrInsert"],["Set.prototype.union","Set.prototype.symmetricDifference"]],
+  "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/keyed-collections.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set"],
+  "versionNotes": [{"edition":"ECMAScript 2024","items":["Map.groupBy"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/keyed-collections.html"]},{"edition":"ECMAScript 2025","items":["Set.prototype.difference","Set.prototype.intersection","Set.prototype.isDisjointFrom","Set.prototype.isSubsetOf","Set.prototype.isSupersetOf","Set.prototype.symmetricDifference","Set.prototype.union"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/keyed-collections.html"]},{"edition":"ECMAScript 2026","items":["Map.prototype.getOrInsert","Map.prototype.getOrInsertComputed"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/keyed-collections.html"]}],
+  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript reference","edition":"ECMAScript 2026","checkedAt":"2026-11-14","urls":["https://tc39.es/ecma262/2026/multipage/keyed-collections.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set"]},
+  "scopeExclusions": ["WeakMap and WeakSet APIs (t06-014)","Array methods and typed arrays","Third-party immutable collection libraries"],
+  "generationAllowed": true
+}

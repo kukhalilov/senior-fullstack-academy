@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 4,
+  "id": "t05-006",
+  "track": "track-05",
+  "title": "CSRF XSS CSP injection SSRF open redirects and clickjacking",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Attacks target separate trust boundaries: browser state-changing requests, HTML and script contexts, server queries, outbound network requests, and navigations. Controls must match the boundary.",
+    "Output encoding must match the browser context; sanitization is for intentionally accepted markup. CSP is defense in depth and cannot replace safe rendering or context-aware encoding.",
+    "CSRF exploits ambient browser credentials, while XSS executes attacker-controlled code in the trusted origin. Cookie attributes and antiforgery tokens reduce CSRF exposure but do not neutralize XSS.",
+    "SSRF defense requires destination allowlists, DNS and IP checks, redirect handling, and network egress controls; validating a raw URL string alone is insufficient."
+  ],
+  "inventory": [
+    {
+      "id": "browser-injection-and-forgery",
+      "title": "CSRF, XSS, CSP, and clickjacking",
+      "items": [
+        "Cross-Site Request Forgery (CSRF)",
+        "Same-origin policy",
+        "Ambient browser credentials",
+        "Synchronizer token pattern",
+        "Signed double-submit cookie pattern",
+        "Origin header validation",
+        "Referer header validation",
+        "SameSite cookie attribute",
+        "Cross-Site Scripting (XSS)",
+        "Reflected XSS",
+        "Stored XSS",
+        "DOM-based XSS",
+        "Context-aware output encoding",
+        "HTML text encoding",
+        "HTML attribute encoding",
+        "JavaScript string encoding",
+        "URL component encoding",
+        "CSS context encoding",
+        "HTML sanitization",
+        "Trusted Types",
+        "Content Security Policy (CSP)",
+        "Content-Security-Policy header",
+        "Content-Security-Policy-Report-Only header",
+        "default-src",
+        "script-src",
+        "script-src-elem",
+        "script-src-attr",
+        "style-src",
+        "object-src",
+        "base-uri",
+        "frame-ancestors",
+        "form-action",
+        "connect-src",
+        "img-src",
+        "font-src",
+        "worker-src",
+        "'nonce-' source expression",
+        "'sha256-' hash source expression",
+        "'strict-dynamic' source expression",
+        "'unsafe-inline' source expression",
+        "report-to directive",
+        "report-uri directive",
+        "Clickjacking",
+        "X-Frame-Options",
+        "frame-ancestors CSP directive"
+      ]
+    },
+    {
+      "id": "server-side-injection-and-ssrf",
+      "title": "Injection classes, URL validation, and server-side request controls",
+      "items": [
+        "SQL injection",
+        "Parameterized query",
+        "Command injection",
+        "LDAP injection",
+        "XPath injection",
+        "Template injection",
+        "NoSQL injection",
+        "Unsafe deserialization",
+        "Server-Side Request Forgery (SSRF)",
+        "SSRF allowlist",
+        "DNS rebinding",
+        "DNS pinning/rebinding defense",
+        "Private and link-local address blocking",
+        "Cloud metadata endpoint protection",
+        "Redirect following in outbound HTTP clients",
+        "Outbound network egress policy",
+        "URL parser normalization",
+        "IPv4-mapped IPv6 address",
+        "Canonicalization before validation",
+        "Deny-by-default outbound destination policy"
+      ]
+    },
+    {
+      "id": "redirects-and-cross-boundary-controls",
+      "title": "Open redirects, request parsing, and defense in depth",
+      "items": [
+        "Redirect URI allowlist",
+        "Open redirect",
+        "Unvalidated redirect parameter",
+        "Scheme-relative redirect URL",
+        "Host-header poisoning",
+        "Request smuggling boundary",
+        "Output encoding versus input validation",
+        "Defense-in-depth security header",
+        "CSP report-only rollout",
+        "Content injection",
+        "Origin confusion",
+        "URL suffix allowlist flaw",
+        "Redirect chain validation",
+        "CORS is not CSRF protection",
+        "CSP is not a replacement for safe rendering"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "CSRF",
+      "XSS"
+    ],
+    [
+      "Output encoding",
+      "Input validation"
+    ],
+    [
+      "CSP enforce",
+      "CSP report-only"
+    ],
+    [
+      "Parameterized SQL",
+      "Escaping-only SQL"
+    ],
+    [
+      "SSRF allowlist",
+      "Arbitrary outbound URL"
+    ],
+    [
+      "X-Frame-Options",
+      "CSP frame-ancestors"
+    ]
+  ],
+  "comparisonSources": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+    "https://www.w3.org/TR/CSP3/",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html"
+  ],
+  "versionNotes": [
+    {
+      "edition": "W3C Content Security Policy Level 3 Working Draft, October 2026",
+      "items": [
+        "CSP Level 3 is a Working Draft at this date, not a finalized Recommendation. Treat draft status explicitly; CSP is defense in depth, not the primary XSS prevention control."
+      ],
+      "sourceUrls": [
+        "https://www.w3.org/TR/CSP3/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "OWASP prevention guidance and W3C Content Security Policy Level 3 Working Draft",
+    "edition": "OWASP current cheat sheets; CSP Level 3 Working Draft 2026-10-27; checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+      "https://www.w3.org/TR/CSP3/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html"
+    ]
+  },
+  "scopeExclusions": [
+    "Detailed SQL parameterization APIs are in SQL Server and EF Core tracks.",
+    "Browser session/cookie details are in t05-003; ASP.NET Core antiforgery APIs are in track-02.",
+    "CSP directives are limited to the scoped Level 3 set and status noted in the W3C Working Draft."
+  ],
+  "generationAllowed": true
+}

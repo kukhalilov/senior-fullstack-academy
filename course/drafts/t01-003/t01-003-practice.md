@@ -1,0 +1,59 @@
+<!-- GENERATED DRAFT: automated shape and editorial checks passed; independent factual verification is not implied. -->
+
+# C# built-in type aliases and characteristics — Exercises and worked solutions
+
+*Automatically generated draft.*
+
+# C# Built-in Type Aliases and Characteristics
+
+## Goals
+* Understand that C# keywords are aliases for underlying .NET types.
+* Distinguish between **value types** (variables contain values) and **reference types** (variables contain references to objects).
+* Learn to select the appropriate type based on range, precision, and domain requirements.
+
+## Worked example
+In C#, `int` is a keyword alias for `System.Int32`. A value-type variable contains its value; the language does not promise that a local is placed on the stack or that a reference is a physical memory address.
+
+```csharp
+// 'int' is a value type; assignment copies its value.
+int count = 10; 
+
+// 'string' is a reference type; the variable contains a reference to a string object.
+string message = "Hello"; 
+```
+
+**Step-by-step behavior:**
+1. `count` has type `int` and its value is `10`; the language does not specify a stack slot or fixed physical placement for this local.
+2. Assigning one `int` variable to another copies the value.
+3. `message` contains a reference to a string object. Object placement and physical representation are runtime implementation details.
+
+## Exercises
+1. You need to store a value that represents a toggle (on/off). Which type from the `other-built-in` category is most appropriate?
+2. You are writing a financial application requiring high precision for currency. Compare `float`, `double`, and `decimal`. Which is the safest choice?
+3. You need an integer type that automatically adjusts its size (32-bit or 64-bit) based on the underlying processor architecture. Which keywords should you use?
+
+## Progressive hints
+* **Hint 1 (Exercise 1):** Look at the `other-built-in` list. Is there a type specifically for logical truth values?
+* **Hint 2 (Exercise 2):** `float` and `double` are binary floating-point types (good for scientific calculations). `decimal` is a 128-bit type with higher precision and smaller range, often useful for decimal-domain financial calculations because many base-10 fractions are represented exactly; finite precision still means arithmetic can round.
+* **Hint 3 (Exercise 3):** Refer to the `native-integral` category. These types were introduced in C# 9 to match the size of the native pointer on the host machine.
+
+## Complete solutions
+1. **`bool`**: It is the built-in type for Boolean values.
+2. **`decimal`**: It represents many base-10 fractions exactly and is often suitable for financial rules, but it has finite precision and arithmetic may still round. Choose based on domain rules.
+3. **`nint` and `nuint`**: These are native-sized integers.
+
+## Tests and edge cases
+* **Range overflow:** Assigning a value larger than `int.MaxValue` to an `int` variable will cause a compilation error.
+* **Precision loss:** Assigning a very large number to a `float` may result in a loss of precision compared to a `double`.
+* **Platform dependence:** `nint` and `nuint` will behave differently on 32-bit versus 64-bit systems. Always test your logic on both architectures if you rely on their size.
+
+## Reflection questions
+* Why does C# provide both `int` and `long`? (Consider memory usage vs. range).
+* How does `dynamic` differ from `object`? (Hint: `dynamic` bypasses compile-time type checking).
+* When should you prefer `string` over `char`? (Consider if you are storing a single character or a sequence).
+
+***
+
+**Sources:**
+* [Microsoft Learn: Built-in types table](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table)
+* [C# 9 Native-sized integers](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9)

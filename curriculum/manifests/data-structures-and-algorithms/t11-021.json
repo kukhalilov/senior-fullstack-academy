@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-021",
+  "track": "track-11",
+  "title": "sets and membership algorithms",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A set represents distinct values without attaching a separate value to each key",
+    "Membership queries can replace repeated scans when the data supports efficient lookup",
+    "Set operations combine or compare collections according to mathematical definitions",
+    "Hash-based sets offer expected constant-time membership under suitable hashing assumptions, while ordered sets preserve sorted order at a different cost",
+    "Deduplication changes the representation and may discard order or multiplicity",
+    "The correct equality relation and comparer are part of the problem definition"
+  ],
+  "inventory": [
+    {"id":"set-model","title":"Set model and membership","items":["Set","Element membership","Distinct elements","Duplicate elimination","Set equality","Set cardinality"]},
+    {"id":"set-operations","title":"Mathematical set operations","items":["Union","Intersection","Difference","Symmetric difference","Subset","Proper subset","Superset","Set disjointness"]},
+    {"id":"set-implementations","title":"Set implementation choices","items":["Hash set","Sorted set","Direct-address set","Bit set","HashSet<T>","SortedSet<T>","ISet<T>","IReadOnlySet<T>"]},
+    {"id":"set-algorithm-patterns","title":"Set patterns and tradeoffs","items":["Seen set","Membership filter","Deduplication","Visited set","Expected constant-time membership","Ordered membership","Equality comparer"]}
+  ],
+  "practiceProblems": [
+    {"id":"contains-duplicate","name":"Contains Duplicate","difficulty":"introductory","patterns":["seen set","early exit"]},
+    {"id":"intersection-two-arrays","name":"Intersection of Two Arrays","difficulty":"introductory","patterns":["membership set","deduplication"]},
+    {"id":"happy-number","name":"Happy Number","difficulty":"introductory","patterns":["visited set","cycle detection"]},
+    {"id":"jewels-and-stones","name":"Jewels and Stones","difficulty":"introductory","patterns":["membership filter"]},
+    {"id":"unique-number-of-occurrences","name":"Unique Number of Occurrences","difficulty":"introductory","patterns":["frequency map","set uniqueness"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Hash set","Sorted set"],["Set","Multiset"],["Union","Intersection","Difference","Symmetric difference"],["Set equality","Sequence equality"],["Hash-based membership","Ordered membership"]],
+  "comparisonSources": ["https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1","https://usaco.guide/bronze/intro-sets"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn HashSet<T> and SortedSet<T> references and USACO Guide set/map introduction",
+    "edition": "Timeless set concepts; .NET 11 API references checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1","https://usaco.guide/bronze/intro-sets"]
+  },
+  "scopeExclusions": ["Map and key/value operations, covered in t11-020","Balanced-tree implementation details, covered in tree topics","Full HashSet<T> and SortedSet<T> method and property catalogs","Probabilistic membership structures such as Bloom filters","Multisets and frequency maps as the main subject"],
+  "generationAllowed": true
+}

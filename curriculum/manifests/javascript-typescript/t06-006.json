@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 4,
+  "id": "t06-006",
+  "track": "track-06",
+  "title": "JavaScript errors, exceptions, and error objects",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": ["Throw completions and stack unwinding", "Error construction and subclassing", "Catch binding and finally completion", "Error causes and aggregate failures", "Distinguishing language errors from host-defined diagnostics"],
+  "inventory": [
+    {"id":"error-constructor-hierarchy","title":"Built-in error constructors","items":["Error","AggregateError","EvalError","RangeError","ReferenceError","SyntaxError","TypeError","URIError"]},
+    {"id":"error-properties-and-operations","title":"Error properties and related syntax","items":["Error.isError","Error.prototype.message","Error.prototype.name","Error.prototype.toString","Error instance cause property","AggregateError instance errors property","Error options cause","throw statement","try statement","catch clause","finally clause","Error subclassing"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["throwing an exception","returning an error value"],["Error","AggregateError"],["catch clause","finally clause"],["cause","AggregateError.errors"]],
+  "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"],
+  "versionNotes": [{"edition":"ECMAScript 2022","items":["Error cause option"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html"]},{"edition":"ECMAScript 2026","items":["Error.isError"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html"]}],
+  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript reference","edition":"ECMAScript 2026","checkedAt":"2026-11-14","urls":["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"]},
+  "scopeExclusions": ["Fetch API errors and AbortError handling (t06-020)","Browser console stack formatting, which is host-specific","Third-party error monitoring libraries"],
+  "generationAllowed": true
+}

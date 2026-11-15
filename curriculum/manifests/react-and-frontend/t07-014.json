@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 4,
+  "id": "t07-014",
+  "track": "track-07",
+  "title": "HTML forms controls validation and form submission",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A form control has a type, label, value, form owner, validity state, and serialization behavior.",
+    "The browser constructs an ordered entry list from successful controls and submits it using the selected action, method, and encoding.",
+    "Input type chooses the control and applicable attributes; autocomplete names the data, while inputmode hints the virtual keyboard.",
+    "Constraint validation improves interaction but never replaces server-side validation.",
+    "Native HTML forms work without client JavaScript and can be progressively enhanced."
+  ],
+  "inventory": [
+    {"id":"form-control-elements","title":"Native form and form-associated elements","items":["<button>","<datalist>","<fieldset>","<form>","<input>","<label>","<legend>","<meter>","<optgroup>","<option>","<output>","<progress>","<select>","<selectedcontent>","<textarea>","form-associated custom elements"]},
+    {"id":"input-type-states","title":"All current input type states","items":["type=hidden","type=text","type=search","type=tel","type=url","type=email","type=password","type=date","type=month","type=week","type=time","type=datetime-local","type=number","type=range","type=color","type=checkbox","type=radio","type=file","type=submit","type=image","type=reset","type=button"]},
+    {"id":"input-content-attributes","title":"Input element content attributes","items":["accept","alpha","alt","autocomplete","checked","colorspace","dirname","disabled","form","formaction","formenctype","formmethod","formnovalidate","formtarget","height","list","max","maxlength","min","minlength","multiple","name","pattern","placeholder","popovertarget","popovertargetaction","readonly","required","size","src","step","type","value","width"]},
+    {"id":"form-submission-and-control-attributes","title":"Form, button, select, and textarea attributes","items":["form.accept-charset","form.action","form.autocomplete","form.enctype","form.method","form.name","form.novalidate","form.rel","form.target","form-associated form attribute","button.disabled","button.name","button.type","button.value","button.command","button.commandfor","button.popovertarget","button.popovertargetaction","button.autofocus","select.multiple","select.required","select.size","option.selected","option.label","textarea.dirname","textarea.maxlength","textarea.minlength","textarea.placeholder","textarea.readonly","textarea.rows","textarea.cols","textarea.wrap","textarea.spellcheck","textarea.autocomplete","textarea.inputmode"]},
+    {"id":"native-constraint-validation","title":"Constraint validation flags and APIs","items":["ValidityState.badInput","ValidityState.customError","ValidityState.patternMismatch","ValidityState.rangeOverflow","ValidityState.rangeUnderflow","ValidityState.stepMismatch","ValidityState.tooLong","ValidityState.tooShort","ValidityState.typeMismatch","ValidityState.valid","ValidityState.valueMissing","willValidate","validity","validationMessage","checkValidity()","reportValidity()","setCustomValidity()","required","pattern","min","max","step","minlength","maxlength","novalidate","formnovalidate","invalid event"]},
+    {"id":"form-submission-model","title":"Form submission and entry-list APIs","items":["application/x-www-form-urlencoded","multipart/form-data","text/plain","GET form submission","POST form submission","Submitter override attributes","Successful controls","Entry list construction","FormData","formdata event","submit event","form.elements","form.length","HTMLFormElement.submit()","HTMLFormElement.requestSubmit()","HTMLFormElement.reset()","HTMLFormElement.checkValidity()","HTMLFormElement.reportValidity()"]},
+    {"id":"input-element-apis","title":"HTMLInputElement attributes, methods, and events","items":["accept","alpha","alt","autocomplete","defaultChecked","checked","colorSpace","dirName","disabled","form","files","formAction","formEnctype","formMethod","formNoValidate","formTarget","height","indeterminate","list","max","maxLength","min","minLength","multiple","name","pattern","placeholder","readOnly","required","size","src","step","type","defaultValue","value","valueAsDate","valueAsNumber","width","stepUp()","stepDown()","willValidate","validity","validationMessage","checkValidity()","reportValidity()","setCustomValidity()","labels","select()","selectionStart","selectionEnd","selectionDirection","setRangeText()","setSelectionRange()","showPicker()","input event","change event"]},
+    {"id":"form-labeling-and-autofill","title":"Label association, autocomplete, and input modality","items":["Explicit label association using for and id","Implicit label association by nesting","Labelable elements","Autocomplete on and off","Autocomplete section-* token","Autocomplete shipping and billing sections","Autofill field name tokens","inputmode values","autocapitalize inheritance","autocorrect inheritance","enterkeyhint values","dirname direction submission"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["form submit()","form requestSubmit()"],["type","autocomplete"],["type","inputmode"],["required","aria-required"],["readonly","disabled"],["GET","POST"],["application/x-www-form-urlencoded","multipart/form-data"]],
+  "comparisonSources": ["https://html.spec.whatwg.org/multipage/forms.html","https://html.spec.whatwg.org/multipage/input.html","https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation"],
+  "versionNotes": [{"edition":"Current HTML Living Standard","items":["Current input type states, including color alpha and colorspace attributes","Popover targeting attributes on form controls","Native form-associated custom elements"],"sourceUrls":["https://html.spec.whatwg.org/multipage/input.html","https://html.spec.whatwg.org/multipage/forms.html"]}],
+  "sourceSnapshot": {
+    "authority":"WHATWG HTML Living Standard forms and input sections, plus MDN validation guide",
+    "edition":"HTML Living Standard checked 2026-11-14",
+    "checkedAt":"2026-11-14",
+    "urls":["https://html.spec.whatwg.org/multipage/forms.html","https://html.spec.whatwg.org/multipage/input.html","https://html.spec.whatwg.org/multipage/form-elements.html","https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation"]
+  },
+  "scopeExclusions":["React form Actions and useFormStatus (t07-020)","Application-level validation libraries and server validation implementation (backend and frontend application topics)","ARIA form patterns and accessible naming techniques (t07-002)"],
+  "generationAllowed": true
+}

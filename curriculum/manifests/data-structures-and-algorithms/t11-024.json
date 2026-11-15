@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-024",
+  "track": "track-11",
+  "title": "binary heaps and priority queues",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A priority queue exposes the highest- or lowest-priority element rather than insertion order; a binary heap is a common implementation, not the abstract contract itself.",
+    "A binary heap is a complete binary tree commonly stored in an array, with parent and child indices derived arithmetically and a heap-order invariant between each parent and child.",
+    "Insert restores heap order by sifting the new item upward; removal of the root replaces it with the final item and sifts downward.",
+    "A binary heap supports root peek in O(1) and insertion or root removal in O(log n); finding an arbitrary value is generally O(n) without an auxiliary index.",
+    "Bottom-up heap construction is O(n), which is asymptotically faster than inserting n elements one by one in O(n log n).",
+    "A min-heap and max-heap differ by priority ordering; a custom comparer can represent tuples or reverse priorities while requiring a consistent ordering.",
+    "Lazy deletion can leave stale entries in a heap and discard them when they reach the root; indexed heaps instead track positions to update or remove arbitrary entries.",
+    "A heap is useful for repeatedly selecting the next extremum, but sorted arrays, balanced trees, monotonic deques, or selection algorithms may fit other query patterns better."
+  ],
+  "inventory": [
+    {"id":"heap-invariant-and-layout","title":"Heap order, tree shape, and array layout","items":["Complete binary tree","Min-heap order","Max-heap order","Array-backed heap","Root index","Parent index","Left-child index","Right-child index","Heap invariant","Duplicate priorities"]},
+    {"id":"priority-queue-operations","title":"Priority queue operations and complexity","items":["Peek minimum or maximum","Insert/enqueue","Remove root/dequeue","Sift up","Sift down","Replace root","Build heap bottom-up","O(1) root lookup","O(log n) insertion and root removal","O(n) arbitrary search"]},
+    {"id":"variants-and-update","title":"Comparers, updates, and deletion strategies","items":["Custom priority comparer","Tuple priority","Stable tie-breaking with sequence number","Decrease-key","Increase-key","Indexed priority queue","Lazy deletion","Stale-entry filtering","Double-ended priority queue"]},
+    {"id":"algorithm-patterns-and-tradeoffs","title":"Heap-based problem patterns and alternatives","items":["Kth largest with size-k min-heap","Top-k selection","Merge k sorted sequences","Two heaps for running median","Repeated extremum extraction","Heap sort relationship","Heap versus sorted array","Heap versus monotonic deque","Expected quickselect alternative"]}
+  ],
+  "practiceProblems": [
+    {"id":"last-stone-weight","name":"Last Stone Weight","difficulty":"introductory","patterns":["repeated maximum extraction","max-priority queue"]},
+    {"id":"top-k-frequent-elements","name":"Top K Frequent Elements","difficulty":"intermediate","patterns":["bounded-size heap","frequency records and priority"]},
+    {"id":"find-median-data-stream","name":"Find Median from Data Stream","difficulty":"advanced","patterns":["two heaps","maintain balanced lower and upper halves"]},
+    {"id":"merge-k-sorted-lists","name":"Merge k Sorted Lists","difficulty":"advanced","patterns":["min-heap of current list heads","incremental multiway merge"]},
+    {"id":"task-scheduler","name":"Task Scheduler","difficulty":"intermediate","patterns":["max-priority scheduling","frequency and cooldown constraints"]},
+    {"id":"kth-largest-element-stream","name":"Kth Largest Element in a Stream","difficulty":"intermediate","patterns":["size-k min-heap","maintain kth-largest invariant"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Priority queue ADT","Binary heap implementation"],["Min-heap","Max-heap"],["Repeated insertion build","Bottom-up heapify"],["Lazy deletion","Indexed heap update"],["Heap for kth largest","Quickselect for kth largest"],["Heap window maximum","Monotonic deque window maximum"]],
+  "comparisonSources": ["https://usaco.guide/silver/priority-queues","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide priority queues, Microsoft PriorityQueue<TElement,TPriority> API reference, and official LeetCode problem statements",
+    "edition": "Timeless heap algorithms; .NET API and canonical problems checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/silver/priority-queues","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2","https://leetcode.com/problems/last-stone-weight/","https://leetcode.com/problems/top-k-frequent-elements/","https://leetcode.com/problems/find-median-from-data-stream/","https://leetcode.com/problems/merge-k-sorted-lists/","https://leetcode.com/problems/task-scheduler/","https://leetcode.com/problems/kth-largest-element-in-a-stream/"]
+  },
+  "scopeExclusions": ["Comparison sorting algorithms, covered in t11-009","Monotonic stacks and deques, covered in t11-022","Balanced search trees and sorted sets","Fibonacci, pairing, and binomial heap variants","Concurrent priority queues and synchronization"],
+  "generationAllowed": true
+}

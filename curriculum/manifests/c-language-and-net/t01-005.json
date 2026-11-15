@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 4,
+  "id": "t01-005",
+  "track": "track-01",
+  "title": "C# nullability nullable value types and nullable reference analysis",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Null means no value for a nullable value type or no object reference for a reference type. A nullable value type T? is a distinct Nullable<T> value type; nullable reference type annotations do not create a new runtime type.",
+    "Nullable reference types are a compile-time annotation and static-flow-analysis system. They produce warnings and contracts, not runtime null checks, and the annotation context can differ from the warning context.",
+    "The compiler tracks an expression's null state through assignments, branches, patterns, and recognized attributes. The analysis is useful but not proof: reflection, external code, deserialization, arrays, default structs, and suppressed warnings can violate annotations.",
+    "Use control flow and validation to establish non-null values. The null-forgiving operator suppresses a warning but changes no runtime value; it is an assertion by the programmer, not a check.",
+    "Public APIs communicate nullability as part of their contract. Flow-analysis attributes let libraries express conditional postconditions and input contracts when ordinary annotations cannot describe the relationship."
+  ],
+  "inventory": [
+    {
+      "id": "nullable-value-types",
+      "title": "Nullable<T>, lifted operations, pattern checks, and nullable value APIs",
+      "items": [
+        "Nullable value type",
+        "Nullable<T>",
+        "T? nullable value type syntax",
+        "System.Nullable<T>",
+        "Nullable<T>.HasValue",
+        "Nullable<T>.Value",
+        "Nullable<T>.GetValueOrDefault()",
+        "Nullable<T>.GetValueOrDefault(T)",
+        "Nullable.GetUnderlyingType(Type)",
+        "Nullable<T>.ToString()",
+        "Nullable<T>.Equals(Object?)",
+        "Nullable<T>.GetHashCode()",
+        "Nullable<T>.op_Implicit(T)",
+        "Nullable<T>.op_Explicit(Nullable<T>)",
+        "Nullable<T>.operator true",
+        "Nullable<T>.operator false",
+        "Lifted unary operator",
+        "Lifted binary operator",
+        "Lifted equality operator",
+        "Nullable value type boxing",
+        "HasValue check",
+        "is null pattern on nullable value",
+        "is not null pattern on nullable value",
+        "GetValueOrDefault versus Value",
+        "Nullable<T>.Value InvalidOperationException",
+        "Nullable enum",
+        "Nullable numeric value",
+        "Nullable tuple value",
+        "default nullable value",
+        "Null-coalescing operator (??)",
+        "Null-coalescing assignment operator (??=)",
+        "Null-conditional operator (?.)",
+        "Null-conditional element access (?[])",
+        "Nullable value type conversion",
+        "Nullable value type generic constraint",
+        "where T : struct",
+        "where T : notnull",
+        "Nullable<T> versus optional domain value",
+        "Nullable value type default value"
+      ]
+    },
+    {
+      "id": "nullable-reference-types-and-contexts",
+      "title": "Reference annotations, nullable contexts, null-state flow, and syntax",
+      "items": [
+        "Nullable reference type",
+        "Non-nullable reference type",
+        "Nullable reference annotation (?)",
+        "Nullable-oblivious type",
+        "Nullable context",
+        "Nullable annotation context",
+        "Nullable warning context",
+        "Nullable enable project property",
+        "Nullable disable project property",
+        "#nullable enable directive",
+        "#nullable disable directive",
+        "#nullable restore directive",
+        "#nullable enable annotations",
+        "#nullable enable warnings",
+        "Maybe-null state",
+        "Not-null state",
+        "Null-state analysis",
+        "Nullable warning",
+        "Nullable warning diagnostic",
+        "Null-forgiving operator (!)",
+        "Null-conditional member access",
+        "Null-conditional element access",
+        "Null-coalescing assignment (??=)",
+        "Null check",
+        "is null pattern",
+        "is not null pattern",
+        "Property pattern null check",
+        "Null-state after assignment",
+        "Null-state after return",
+        "Null-state after throw",
+        "Null-state in conditional branch",
+        "Null-state after argument validation",
+        "Nullable array element annotation",
+        "Nullable jagged array annotation",
+        "Nullable generic type argument",
+        "Nullable generic type parameter annotation",
+        "Nullable delegate annotation",
+        "Nullable tuple element annotation",
+        "Nullable event handler annotation",
+        "Nullable array initialization",
+        "default reference value",
+        "default struct null-field pitfall",
+        "NullReferenceException",
+        "Null-suppression risk"
+      ]
+    },
+    {
+      "id": "flow-analysis-contract-attributes",
+      "title": "Public nullability attributes for input and output flow contracts",
+      "items": [
+        "AllowNullAttribute",
+        "DisallowNullAttribute",
+        "MaybeNullAttribute",
+        "NotNullAttribute",
+        "MaybeNullWhenAttribute",
+        "NotNullWhenAttribute",
+        "NotNullIfNotNullAttribute",
+        "MemberNotNullAttribute",
+        "MemberNotNullWhenAttribute",
+        "DoesNotReturnAttribute",
+        "DoesNotReturnIfAttribute",
+        "NotNullWhenAttribute.ReturnValue",
+        "MaybeNullWhenAttribute.ReturnValue",
+        "NotNullIfNotNullAttribute.ParameterName",
+        "MemberNotNullAttribute.Members",
+        "MemberNotNullWhenAttribute.ReturnValue",
+        "MemberNotNullWhenAttribute.Members",
+        "AllowNull on property setter",
+        "DisallowNull on property setter",
+        "MaybeNull on return value",
+        "NotNull on return value",
+        "MaybeNullWhen on out parameter",
+        "NotNullWhen on Boolean return",
+        "NotNullIfNotNull on dependent return",
+        "MemberNotNull after helper call",
+        "DoesNotReturn on throw helper",
+        "DoesNotReturnIf on conditional assertion",
+        "Conditional postcondition",
+        "Conditional precondition",
+        "Nullability metadata",
+        "NullableAttribute (compiler-emitted metadata)",
+        "NullableContextAttribute (compiler-emitted metadata)",
+        "NullablePublicOnlyAttribute (compiler-emitted metadata)"
+      ]
+    },
+    {
+      "id": "safe-validation-and-api-design",
+      "title": "Runtime validation, optional values, generic contracts, and boundary hazards",
+      "items": [
+        "ArgumentNullException.ThrowIfNull(Object?, String?)",
+        "ObjectDisposedException.ThrowIf(Boolean, Object)",
+        "ObjectDisposedException.ThrowIf(Boolean, Type)",
+        "ArgumentNullException",
+        "ArgumentException.ThrowIfNullOrEmpty(String, String?)",
+        "ArgumentException.ThrowIfNullOrWhiteSpace(String, String?)",
+        "ArgumentOutOfRangeException",
+        "Guard clause",
+        "Input validation",
+        "Boundary validation",
+        "Deserialization nullability boundary",
+        "Database nullable column mapping",
+        "Nullable reference annotations are not runtime checks",
+        "Null-forgiving operator has no runtime effect",
+        "Null-safe operator chain",
+        "Optional parameter versus nullable parameter",
+        "Optional<T> domain type",
+        "Maybe type",
+        "Try-pattern nullable output",
+        "out T? result",
+        "Dictionary.TryGetValue nullable annotation",
+        "FirstOrDefault nullable result",
+        "SingleOrDefault nullable result",
+        "Null object pattern",
+        "Sentinel value",
+        "Empty collection instead of null",
+        "Null object versus absent data",
+        "NotNullWhen on TryGetValue",
+        "Nullable flow annotation on external API",
+        "Nullable warning in generated code",
+        "Nullable annotation mismatch",
+        "Oblivious library boundary",
+        "Public API nullability compatibility",
+        "Nullability change as source compatibility issue",
+        "Nullable value type and nullable reference type distinction"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Nullable<T>",
+      "Nullable reference type annotation"
+    ],
+    [
+      "Nullable context disabled",
+      "Annotations enabled",
+      "Warnings enabled",
+      "Annotations and warnings enabled"
+    ],
+    [
+      "null-forgiving operator",
+      "Runtime null check"
+    ],
+    [
+      "T?",
+      "where T : struct",
+      "where T : class",
+      "where T : notnull"
+    ],
+    [
+      "MaybeNull",
+      "NotNull",
+      "MaybeNullWhen",
+      "NotNullWhen"
+    ],
+    [
+      "AllowNull",
+      "DisallowNull"
+    ],
+    [
+      "NotNullIfNotNull",
+      "MemberNotNull",
+      "MemberNotNullWhen"
+    ],
+    [
+      "Nullable<T>.Value",
+      "Nullable<T>.GetValueOrDefault()"
+    ],
+    [
+      "Absent value",
+      "Sentinel value",
+      "Null Object pattern"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace"
+  ],
+  "versionNotes": [
+    {
+      "edition": "C# 15 / .NET 11 GA checked 2026-11-14",
+      "items": [
+        "C# 15 is the default language version for net11.0. .NET 11 adds asynchronous DataAnnotations validation APIs, including AsyncValidationAttribute, IAsyncValidatableObject, Validator.ValidateObjectAsync, and IAsyncStartupValidator; these are separate validation APIs and do not turn nullable annotations into runtime enforcement."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn C# language reference, nullable analysis attribute reference, and .NET 11 API reference",
+    "edition": "C# 15 stable and .NET 11 GA checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/nullable-warnings",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
+      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+    ]
+  },
+  "scopeExclusions": [
+    "Null reference, value/reference, copying and equality foundations are covered in t01-004",
+    "The full DataAnnotations validation API is outside this nullability topic; only .NET 11 release context is noted",
+    "EF Core required/optional column mapping is covered in the EF Core and SQL Server tracks",
+    "ASP.NET Core request validation and Problem Details are covered in t02-013"
+  ],
+  "generationAllowed": true
+}

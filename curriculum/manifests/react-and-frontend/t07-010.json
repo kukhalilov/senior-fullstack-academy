@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 4,
+  "id": "t07-010",
+  "track": "track-07",
+  "title": "React Server Components directives resources and server functions",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "React Server Components render in a separate server or build environment before client bundling. They can access server-side data and keep server-only dependencies out of the client bundle.",
+    "Server Components and Client Components describe execution boundaries, not whether HTML is ever rendered on a server. Client Components can still contribute to server-rendered HTML in frameworks.",
+    "The 'use client' directive marks a module boundary; that module and its transitive dependencies belong to the client module subtree. Add the boundary where interactivity or browser-only capabilities are needed.",
+    "Server Components may be asynchronous and await data during rendering. They cannot use client-only state and Effect Hooks; client components handle interactivity.",
+    "Server Functions are async server-side functions exposed through a framework or bundler reference. Calling one from client code crosses a network boundary and serializes its arguments and result.",
+    "Server Function arguments are untrusted client input. The server must validate data and authorize every operation; a directive does not provide authentication or authorization.",
+    "React documents user-facing Server Components and Server Functions as stable in React 19, while the lower-level bundler/framework implementation APIs remain unstable across React 19 minor versions."
+  ],
+  "inventory": [
+    {"id":"server-component-model","title":"Server Component execution model","items":["React Server Component","Server Component","Client Component","Server Component render environment","Build-time Server Component rendering","Request-time Server Component rendering","Async Server Component","await during Server Component render","Server Component output","Server-only dependency","Server Component versus server-side rendering","Server Component limitations on client Hooks"]},
+    {"id":"client-boundaries","title":"Client module boundaries and serialization","items":["'use client'","Client module boundary","Transitive client module dependency","Server-to-client component boundary","Serializable props across the boundary","Supported serializable value","Server Component rendered as a Client Component child","Browser-only API in a Client Component","Client Component can be server-rendered to HTML"]},
+    {"id":"server-functions","title":"Server Function semantics and directives","items":["Server Function","Server Action (older name for a Server Function used as an Action)","'use server'","Function-level 'use server' directive","Module-level 'use server' directive","Async Server Function","Server Function reference","Server Function call from a Client Component","Serialized arguments","Serialized return value","Server Function as a form action","Server Function inside a Transition"]},
+    {"id":"security-and-stability","title":"Server boundary security and framework responsibilities","items":["Client-controlled Server Function arguments","Server Function input validation","Server Function authorization","Server Function mutation","Server Function is not a data-fetching cache","Server Function network request","Framework or bundler integration requirement","Stable React Server Components semantics in React 19","Unstable lower-level RSC implementation APIs","Pinning React versions for framework RSC integration"]},
+    {"id":"server-components-interoperation","title":"Server and client interoperation","items":["Passing Server Component output to a Client Component","Passing a Server Function to a Client Component","Client context provider in a server-rendered tree","Server Component composition","Client interactivity boundary placement","Server Component data access","Client Component state and event handling"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Server Component","Client Component"],["Server Component","server-side rendering"],["'use client'","'use server'"],["Server Function","ordinary local function"],["React RSC public semantics","framework bundler implementation APIs"]],
+  "comparisonSources": ["https://react.dev/reference/rsc/server-components","https://react.dev/reference/rsc/server-functions","https://react.dev/reference/rsc/use-client","https://react.dev/reference/rsc/use-server"],
+  "versionNotes": [{"edition":"React 19","items":["Server Components and Server Functions are documented as stable user-facing features; underlying framework and bundler integration APIs are not yet semver-stable across React 19 minor releases.","Documentation uses Server Function as the broader term; Server Action refers to a Server Function used as an Action."],"sourceUrls":["https://react.dev/reference/rsc/server-components","https://react.dev/reference/rsc/server-functions"]}],
+  "sourceSnapshot": {"authority":"Official React Server Components and Server Functions documentation","edition":"React 19.3 stable public feature documentation checked 2026-11-14","checkedAt":"2026-11-14","urls":["https://react.dev/reference/rsc/server-components","https://react.dev/reference/rsc/server-functions","https://react.dev/reference/rsc/use-client","https://react.dev/reference/rsc/use-server","https://react.dev/reference/rsc/server-components#async-components-with-server-components"]},
+  "scopeExclusions":["Client and server rendering API signatures (t07-021)","React DOM form Action props and useFormStatus (t07-020)","Framework-specific routing, caching, and deployment (t07-023)","Experimental taint APIs are excluded because they are explicitly under construction in the source snapshot"],
+  "generationAllowed": true
+}

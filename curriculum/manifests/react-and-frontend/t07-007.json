@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 4,
+  "id": "t07-007",
+  "track": "track-07",
+  "title": "React context composition state ownership and component architecture",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Component architecture begins by dividing a UI into components and composing them through explicit inputs and nested content.",
+    "State should be owned by the lowest component that needs to coordinate its consumers. Keep independent state local; lift shared state to the closest common parent.",
+    "Controlled components receive important values and callbacks from a parent; uncontrolled components keep their own local state. Many designs combine both patterns.",
+    "A good state shape groups values that change together while avoiding contradictory, redundant, duplicated, and deeply nested data. Values derivable from props or state should usually be calculated during render.",
+    "Context is an alternative for values needed by distant descendants. It removes pass-through props, but makes data flow less explicit and can broaden the set of consumers affected by updates.",
+    "Composition lets a parent supply JSX as children or named content so intermediate components need not know the details of the content they wrap.",
+    "Reducers can centralize complex transitions, while external state libraries add their own store, subscription, derivation, and side-effect conventions; choose them in response to actual coordination needs."
+  ],
+  "inventory": [
+    {"id":"component-composition","title":"Component boundaries and composition patterns","items":["Component decomposition","Component composition","Parent-child component relationship","Children as a content slot","Named content props","Passing JSX as a prop","Component specialization","Reusable component interface","Avoiding unnecessary wrapper components"]},
+    {"id":"state-ownership","title":"State ownership and sharing","items":["Local component state","Independent state ownership","Shared state","Lifting state up","Closest common parent","Single source of truth","Controlled component","Uncontrolled component","Controlled and uncontrolled component hybrid","State colocation","Prop drilling"]},
+    {"id":"state-shape","title":"Designing maintainable state structures","items":["Group related state","Avoid contradictory state","Avoid redundant state","Avoid duplicated state","Avoid deeply nested state","Store canonical item data once","Store an identifier instead of a selected object copy","Derive values during rendering","State transition modeling","Reducer for coordinated transitions"]},
+    {"id":"context-placement","title":"Context placement and alternatives","items":["Context for distant shared values","Provider placement","Context consumer subscription","Context value update fan-out","Props for explicit data flow","Composition as an alternative to prop drilling","Context versus prop passing","Context versus external state store"]},
+    {"id":"architecture-decisions","title":"Choosing state and composition boundaries","items":["State ownership decision","Local state versus lifted state","State lifetime and component boundary","UI state versus server data","Feature boundary","Presentation component","Behavior-owning component","Avoid premature global state","Traceable unidirectional data flow"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Local state","Lifted shared state"],["Props","Context"],["Context","External state store"],["Controlled component","Uncontrolled component"],["Stored derived value","Render-time derived value"]],
+  "comparisonSources": ["https://react.dev/learn/sharing-state-between-components","https://react.dev/learn/passing-data-deeply-with-context","https://react.dev/learn/choosing-the-state-structure","https://react.dev/learn/managing-state","https://react.dev/learn/passing-props-to-a-component"],
+  "versionNotes": [],
+  "sourceSnapshot": {"authority":"Official React documentation","edition":"React 19.3 stable documentation checked 2026-11-14","checkedAt":"2026-11-14","urls":["https://react.dev/learn/sharing-state-between-components","https://react.dev/learn/passing-data-deeply-with-context","https://react.dev/learn/choosing-the-state-structure","https://react.dev/learn/managing-state","https://react.dev/learn/passing-props-to-a-component","https://react.dev/learn/you-might-not-need-an-effect","https://react.dev/learn/extracting-state-logic-into-a-reducer"]},
+  "scopeExclusions":["Exact built-in state, reducer, and context Hook APIs (t07-005)","Render-tree identity and keys (t07-003)","External state management APIs for Redux Toolkit and MobX (t07-011 and t07-012)","Routing and server-data cache architecture (t07-023)","Effects and external-system synchronization (t07-006)"],
+  "generationAllowed": true
+}

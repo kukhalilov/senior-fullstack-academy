@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-011",
+  "track": "track-11",
+  "title": "graph models, representations, and traversal",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A graph consists of vertices and edges; edges may be directed or undirected, weighted or unweighted, and the problem statement determines which model applies.",
+    "An adjacency list stores each vertex's neighbors and uses O(V+E) space; an adjacency matrix uses O(V²) space and supports constant-time edge lookup.",
+    "Depth-first search explores a path before backtracking and can be implemented recursively or with an explicit stack; breadth-first search explores by distance layers using a queue.",
+    "In an unweighted graph, BFS discovers shortest paths by edge count; DFS does not generally provide shortest paths.",
+    "A visited set prevents repeated work and infinite loops in cyclic graphs; mark timing affects whether duplicate work can enter a traversal frontier.",
+    "Starting a traversal from every still-unvisited vertex labels connected components in an undirected graph; directed reachability requires different notions such as strongly connected components.",
+    "Bipartite testing colors neighbors with opposite colors and detects a conflict when an edge joins same-colored vertices.",
+    "A grid can be modeled as an implicit graph whose edges are valid neighbor moves, avoiding explicit storage of every adjacency list."
+  ],
+  "inventory": [
+    {"id":"graph-models","title":"Graph types, vertices, and edges","items":["Vertex/node","Edge","Directed graph","Undirected graph","Weighted graph","Unweighted graph","Simple graph","Multigraph","Self-loop","Degree","In-degree","Out-degree","Path","Cycle","Connected graph","Disconnected components"]},
+    {"id":"representations","title":"Explicit and implicit graph representations","items":["Adjacency list","Adjacency matrix","Edge list","O(V+E) adjacency-list space","O(V²) matrix space","Constant-time matrix edge lookup","Grid as implicit graph","Neighbor generation","Sparse graph","Dense graph"]},
+    {"id":"dfs-bfs","title":"DFS, BFS, and traversal state","items":["Depth-first search","Recursive DFS","Iterative DFS with stack","Breadth-first search","Queue-based BFS","Visited set","Discovery parent","Traversal forest","Multi-source BFS","O(V+E) traversal bound"]},
+    {"id":"connectivity-and-coloring","title":"Connectivity, cycles, and graph coloring","items":["Connected components","Reachability","Undirected cycle detection","Bipartite graph","Two-coloring","Grid flood fill","Directed versus undirected connectivity","Strong connectivity distinction","Mark-on-enqueue rule","Traversal source selection"]}
+  ],
+  "practiceProblems": [
+    {"id":"number-of-islands","name":"Number of Islands","difficulty":"introductory","patterns":["grid flood fill","connected-component counting"]},
+    {"id":"number-of-provinces","name":"Number of Provinces","difficulty":"introductory","patterns":["adjacency matrix traversal","connected components"]},
+    {"id":"clone-graph","name":"Clone Graph","difficulty":"intermediate","patterns":["visited map by node identity","graph traversal and reconstruction"]},
+    {"id":"is-graph-bipartite","name":"Is Graph Bipartite?","difficulty":"intermediate","patterns":["BFS two-coloring","detect same-color adjacent vertices"]},
+    {"id":"rotting-oranges","name":"Rotting Oranges","difficulty":"intermediate","patterns":["multi-source BFS","layer-counted propagation"]},
+    {"id":"find-if-path-exists","name":"Find if Path Exists in Graph","difficulty":"introductory","patterns":["reachability search","early termination at target"]},
+    {"id":"max-area-of-island","name":"Max Area of Island","difficulty":"introductory","patterns":["component-size aggregation","grid DFS"]},
+    {"id":"keys-and-rooms","name":"Keys and Rooms","difficulty":"introductory","patterns":["directed reachability","visited-room count"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Adjacency list","Adjacency matrix"],["DFS","BFS"],["BFS shortest path by edge count","DFS reachability"],["Explicit graph","Implicit grid graph"],["Connected components","Strongly connected components"],["Mark visited on enqueue","Mark visited on dequeue"]],
+  "comparisonSources": ["https://usaco.guide/silver/graph-traversal","https://usaco.guide/silver/flood-fill"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide graph traversal and flood-fill references; official LeetCode problem statements",
+    "edition": "Timeless graph fundamentals; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/silver/graph-traversal","https://usaco.guide/silver/flood-fill","https://leetcode.com/problems/number-of-islands/","https://leetcode.com/problems/number-of-provinces/","https://leetcode.com/problems/clone-graph/","https://leetcode.com/problems/is-graph-bipartite/","https://leetcode.com/problems/rotting-oranges/","https://leetcode.com/problems/find-if-path-exists-in-graph/","https://leetcode.com/problems/max-area-of-island/","https://leetcode.com/problems/keys-and-rooms/"]
+  },
+  "scopeExclusions": ["Topological sorting and DAG order, covered in t11-026","Weighted shortest-path algorithms, covered in t11-012","Disjoint-set union, covered in t11-027","Strongly connected components and advanced low-link algorithms","Minimum spanning trees and flow networks","Full framework graph-library APIs"],
+  "generationAllowed": true
+}

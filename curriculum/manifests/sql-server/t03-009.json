@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 4,
+  "id": "t03-009",
+  "track": "track-03",
+  "title": "query processing execution plans cardinality and parameter sensitivity",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "The optimizer transforms a declarative query into an execution plan using schema, indexes, statistics, parameter information, and cost estimates; a plan is evidence about one compilation and execution context.",
+    "Estimated plans show the chosen strategy and estimated rows; actual plans add runtime observations. Differences between estimated and actual cardinality often point to stale or insufficient statistics, data skew, parameter sensitivity, or expression selectivity.",
+    "Read plans from data access through joins, filters, sorts, aggregates, and exchanges. Operators are clues, not verdicts: a scan may be correct and cheaper, while a seek can still return too many rows or cause many lookups.",
+    "Query Store preserves query and plan history for regression analysis; runtime and wait evidence should accompany plan inspection. Change one factor at a time and measure representative executions.",
+    "Parameter-sensitive plan optimization and other intelligent query processing features evolve by SQL Server release and configuration; distinguish automatic behavior from deliberate query hints."
+  ],
+  "inventory": [
+    {
+      "id": "plan-shapes-and-operators",
+      "title": "Estimated and actual plans, operators, and execution properties",
+      "items": [
+        "Estimated execution plan",
+        "Actual execution plan",
+        "Graphical plan",
+        "Showplan XML",
+        "Query plan",
+        "Physical operator",
+        "Logical operator",
+        "Table scan",
+        "Index scan",
+        "Index seek",
+        "Key lookup",
+        "RID lookup",
+        "Nested Loops join",
+        "Hash Match join",
+        "Merge Join",
+        "Sort operator",
+        "Stream Aggregate",
+        "Hash Aggregate",
+        "Filter operator",
+        "Compute Scalar",
+        "Spool operator",
+        "Exchange operator",
+        "Parallelism operator",
+        "Actual row count",
+        "Estimated row count",
+        "Actual execution count",
+        "Actual execution time",
+        "Actual logical reads",
+        "Memory grant",
+        "Spill to tempdb",
+        "Residual predicate",
+        "Seek predicate",
+        "Predicate property",
+        "Plan warning"
+      ]
+    },
+    {
+      "id": "cardinality-and-parameter-sensitivity",
+      "title": "Estimation, parameter effects, and adaptive compilation",
+      "items": [
+        "Cardinality estimation",
+        "Statistics histogram",
+        "Data skew",
+        "Parameter sniffing",
+        "Parameter-sensitive query",
+        "Parameter Sensitive Plan optimization (PSPO)",
+        "Query Store plan forcing",
+        "OPTION(RECOMPILE)",
+        "OPTIMIZE FOR query hint",
+        "Local variable estimate",
+        "Parameter embedding optimization",
+        "Optional Parameter Plan Optimization (OPPO)",
+        "Parameter-sensitive plan dispatcher",
+        "Query variant",
+        "Cardinality estimation feedback",
+        "Memory grant feedback",
+        "Degree of parallelism feedback",
+        "Interleaved execution",
+        "Table variable deferred compilation",
+        "Batch mode on rowstore",
+        "Intelligent Query Processing"
+      ]
+    },
+    {
+      "id": "query-store-and-diagnostics",
+      "title": "Plan history, regressions, and repeatable diagnosis",
+      "items": [
+        "Query Store",
+        "Query Store runtime statistics",
+        "Query Store wait statistics",
+        "Query Store plan forcing",
+        "Query Store hints",
+        "Query Store plan regression",
+        "Query Store capture mode",
+        "sys.query_store_query",
+        "sys.query_store_plan",
+        "sys.query_store_runtime_stats",
+        "sys.query_store_wait_stats",
+        "SET STATISTICS IO",
+        "SET STATISTICS TIME",
+        "Live Query Statistics",
+        "Extended Events query monitoring",
+        "Actual versus estimated row comparison",
+        "Plan cache",
+        "Plan cache reuse",
+        "Compilation versus execution time",
+        "Query hash",
+        "Query plan hash",
+        "Query Store for readable secondaries",
+        "ABORT_QUERY_EXECUTION query hint"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Estimated plan",
+      "Actual plan"
+    ],
+    [
+      "Estimated rows",
+      "Actual rows"
+    ],
+    [
+      "Index seek",
+      "Index scan"
+    ],
+    [
+      "Nested Loops",
+      "Hash Match"
+    ],
+    [
+      "Query Store",
+      "Plan cache"
+    ],
+    [
+      "Query Store plan forcing",
+      "OPTION(RECOMPILE)"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+  ],
+  "versionNotes": [
+    {
+      "edition": "SQL Server 2025 (17.x) query processing",
+      "items": [
+        "SQL Server 2025 adds cardinality estimation feedback for expressions and advances optional parameter plan optimization; availability and configuration must be checked for the deployed database compatibility level and release."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft SQL Server 2025 execution plan, Query Store, and intelligent query processing documentation",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+    ]
+  },
+  "scopeExclusions": [
+    "Index design and maintenance are taught in t03-008.",
+    "Wait types, production monitoring, and broad performance troubleshooting are in t03-013.",
+    "Transaction locking and deadlock analysis are in t03-010.",
+    "Specific query-hint syntax beyond named diagnostics is outside this inventory."
+  ],
+  "generationAllowed": true
+}

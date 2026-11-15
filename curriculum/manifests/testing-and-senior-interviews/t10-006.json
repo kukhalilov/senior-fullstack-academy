@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 4,
+  "id": "t10-006",
+  "track": "track-10",
+  "title": "code review refactoring and legacy modernization",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Code review checks whether a change is correct, understandable, maintainable, and appropriate to its users. Reviewers should distinguish must-fix correctness or safety issues from preferences and future improvements.",
+    "Small, coherent changes are easier to reason about, test, review, and revert. A change description should state intent, important tradeoffs, and how it was verified.",
+    "Refactoring changes internal structure while preserving observable behavior. Use a characterization baseline and small safe transformations when tests are incomplete; refactoring is not a synonym for feature work or rewriting.",
+    "Legacy modernization balances delivery risk with long-term change cost. Map dependencies and critical behaviors, create seams and tests, and migrate incrementally where the business cannot pause.",
+    "Review is a collaborative exchange. Ask specific questions, explain impact, separate objective defects from style, and respond to feedback without treating disagreement as personal criticism.",
+    "Automated formatting, static analysis, tests, and security checks can enforce repeatable rules; human reviewers focus on design intent, edge cases, and maintainability."
+  ],
+  "inventory": [
+    {
+      "id": "review-intent-and-change-shape",
+      "title": "Review goals, small diffs, context, and reviewability",
+      "items": [
+        "Code review",
+        "Change list (CL)",
+        "Pull request (PR)",
+        "Review request",
+        "Change description",
+        "Change scope",
+        "Small coherent diff",
+        "Change decomposition",
+        "Review context",
+        "Reviewer assignment",
+        "Review latency",
+        "Review bandwidth",
+        "Author responsibility",
+        "Review readiness",
+        "Change risk",
+        "Behavioral change",
+        "Nonfunctional change",
+        "Breaking change disclosure",
+        "Verification evidence",
+        "Review summary"
+      ]
+    },
+    {
+      "id": "reviewer-reasoning-and-feedback",
+      "title": "Correctness, design, safety, feedback, and resolution",
+      "items": [
+        "Correctness review",
+        "Design review",
+        "Readability review",
+        "Test review",
+        "Security review",
+        "Performance review",
+        "API compatibility review",
+        "Edge-case review",
+        "Failure-mode review",
+        "Maintainability review",
+        "Must-fix comment",
+        "Blocking review comment",
+        "Nonblocking suggestion",
+        "Clarifying question",
+        "Nit comment",
+        "Actionable feedback",
+        "Impact explanation",
+        "Alternative proposal",
+        "Reviewer disagreement",
+        "Comment resolution",
+        "Approval",
+        "Request changes",
+        "Author response",
+        "Review checklist",
+        "Automated check result"
+      ]
+    },
+    {
+      "id": "behavior-preserving-refactoring",
+      "title": "Safe structural transformations and characterization strategies",
+      "items": [
+        "Refactoring",
+        "Behavior-preserving transformation",
+        "Characterization test",
+        "Golden master test",
+        "Refactoring safety net",
+        "Extract Function",
+        "Inline Function",
+        "Rename Variable",
+        "Rename Function",
+        "Move Function",
+        "Extract Variable",
+        "Introduce Parameter Object",
+        "Encapsulate Variable",
+        "Replace Magic Number with Symbolic Constant",
+        "Split Phase",
+        "Separate Query from Modifier",
+        "Extract Class",
+        "Replace Conditional with Polymorphism",
+        "Replace Nested Conditional with Guard Clauses",
+        "Remove Dead Code",
+        "Strangler Fig Application",
+        "Refactoring versus feature change",
+        "Refactoring versus rewrite"
+      ]
+    },
+    {
+      "id": "legacy-modernization-and-risk",
+      "title": "Dependency discovery, seams, migration steps, and rollback planning",
+      "items": [
+        "Legacy system",
+        "Legacy codebase",
+        "Knowledge silo",
+        "Dependency map",
+        "Critical behavior inventory",
+        "System characterization",
+        "Module seam",
+        "Branch by abstraction",
+        "Strangler Fig pattern",
+        "Anti-corruption layer",
+        "Adapter seam",
+        "Incremental migration",
+        "Parallel run",
+        "Shadow traffic",
+        "Data migration checkpoint",
+        "Compatibility layer",
+        "Feature flag rollout",
+        "Rollback plan",
+        "Deprecation path",
+        "Technical debt",
+        "Modernization hypothesis",
+        "Risk register",
+        "Reversibility",
+        "Migration exit criterion"
+      ]
+    },
+    {
+      "id": "review-culture-and-quality-gates",
+      "title": "Team conventions, ownership, automated checks, and learning",
+      "items": [
+        "Code ownership",
+        "Reviewer rotation",
+        "Review service level",
+        "Style guide",
+        "Formatting check",
+        "Static analysis check",
+        "Unit test gate",
+        "Integration test gate",
+        "Security scan gate",
+        "Continuous integration status",
+        "Review checklist maintenance",
+        "Psychological safety in review",
+        "Blameless review",
+        "Review retrospective",
+        "Review culture",
+        "Trust boundary review",
+        "Documentation update",
+        "Release note update",
+        "Follow-up issue",
+        "Architecture Decision Record"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Correctness issue",
+      "Style preference"
+    ],
+    [
+      "Must-fix comment",
+      "Nonblocking suggestion"
+    ],
+    [
+      "Refactoring",
+      "Feature change",
+      "Rewrite"
+    ],
+    [
+      "Large mixed diff",
+      "Small coherent diff"
+    ],
+    [
+      "Big-bang rewrite",
+      "Incremental modernization"
+    ],
+    [
+      "Automated checks",
+      "Human review"
+    ]
+  ],
+  "comparisonSources": [
+    "https://google.github.io/eng-practices/review/reviewer/",
+    "https://google.github.io/eng-practices/review/developer/",
+    "https://learn.microsoft.com/en-us/azure/devops/develop/git/git-pull-requests",
+    "https://martinfowler.com/bliki/DefinitionOfRefactoring.html",
+    "https://martinfowler.com/books/refactoring.html",
+    "https://martinfowler.com/articles/evodb.html"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Google Engineering Practices reviewer and author guides; Microsoft Learn pull request guidance; Martin Fowler's refactoring definition and catalog",
+    "edition": "Timeless engineering practices and current public guidance checked 2026-11-14; language-specific refactoring catalog entries use current names",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://google.github.io/eng-practices/review/reviewer/",
+      "https://google.github.io/eng-practices/review/developer/",
+      "https://google.github.io/eng-practices/",
+      "https://learn.microsoft.com/en-us/azure/devops/develop/git/git-pull-requests",
+      "https://martinfowler.com/bliki/DefinitionOfRefactoring.html",
+      "https://martinfowler.com/books/refactoring.html",
+      "https://martinfowler.com/articles/evodb.html"
+    ]
+  },
+  "scopeExclusions": [
+    "Git branching and merge mechanics are covered in t09-002.",
+    "Detailed test suite architecture and coverage metrics are covered in t10-001 and t10-004.",
+    "Database schema migrations and data backfill implementation are covered by SQL Server and EF Core topics.",
+    "Language-specific compiler refactoring APIs and complete Fowler refactoring catalog are outside this bounded scope.",
+    "Organizational performance review and promotion processes are not code-review practices."
+  ],
+  "generationAllowed": true
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 4,
+  "id": "t06-025",
+  "track": "track-06",
+  "title": "JavaScript package managers, dependency graphs, and lockfiles",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": ["Package manifests declare scripts and dependencies", "Lockfiles record reproducible dependency resolution", "Workspaces compose multiple packages in one repository", "Install and clean-install commands have different lockfile guarantees", "Package manager choice affects dependency layout and runtime integration"],
+  "inventory": [
+    {"id":"package-managers-and-lockfiles","title":"Mainstream package managers and their lockfiles","items":["npm","pnpm","Yarn Classic (v1)","Yarn Berry (v2+)","Bun package manager","Deno package manager","package.json","package-lock.json","npm-shrinkwrap.json","pnpm-lock.yaml","yarn.lock","bun.lock","deno.lock"]},
+    {"id":"dependency-and-install-lifecycle","title":"Dependency declaration and reproducible install commands","items":["dependencies","devDependencies","peerDependencies","optionalDependencies","overrides","resolutions","npm install","npm ci","npm run","npm exec","pnpm install","pnpm add","pnpm --filter","yarn install","yarn workspaces","bun install","bun add","deno install","Frozen lockfile install"]},
+    {"id":"monorepo-and-resolution-models","title":"Workspace layouts, linking, and resolution strategies","items":["npm workspaces","pnpm workspaces","Yarn workspaces","Bun workspaces","Deno workspaces","node_modules linker","Plug'n'Play linker","Content-addressable package store","Symlinked dependency layout","Hoisted dependency layout","Workspace protocol dependency","Semantic version range","Caret range","Tilde range","Exact version pin"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["npm","pnpm"],["Yarn node_modules linker","Yarn Plug'n'Play linker"],["npm ci","npm install"],["package manifest","lockfile"],["package manager","JavaScript runtime"]],
+  "comparisonSources": ["https://docs.npmjs.com/cli/v11/commands/npm-install","https://docs.npmjs.com/cli/v11/commands/npm-ci","https://pnpm.io/cli/install","https://yarnpkg.com/cli/install","https://bun.sh/docs/pm/lockfile","https://docs.deno.com/runtime/getting_started/installation/"],
+  "versionNotes": [],
+  "sourceSnapshot": {"authority":"Official npm, pnpm, Yarn, Bun, and Deno documentation","edition":"Current package manager documentation checked 2026-11-14","checkedAt":"2026-11-14","urls":["https://docs.npmjs.com/cli/v11/commands/npm-install","https://docs.npmjs.com/cli/v11/commands/npm-ci","https://pnpm.io/cli/install","https://pnpm.io/workspaces","https://yarnpkg.com/cli/install","https://yarnpkg.com/features/pnp","https://bun.sh/docs/pm/lockfile","https://docs.deno.com/runtime/getting_started/installation/"]},
+  "scopeExclusions": ["JavaScript runtime API differences between Node.js, browsers, Bun, and Deno","Package registry administration","Framework-specific build tools (t06-026)"],
+  "generationAllowed": true
+}

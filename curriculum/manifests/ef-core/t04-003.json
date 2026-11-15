@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 4,
+  "id": "t04-003",
+  "track": "track-04",
+  "title": "relationships cardinality cascading and owned types",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "An EF relationship maps a principal-to-dependent association using foreign-key values and optional navigations. Cardinality, requiredness, and key choice determine what the model can represent.",
+    "Navigations are object-oriented access paths; the foreign key is the persisted relational link. EF conventions discover common patterns, while fluent API configuration resolves ambiguity and unusual schemas.",
+    "Delete behavior has database and client-side forms. Cascades and orphan deletion can affect more rows than the immediate operation; provider constraints and multiple cascade paths matter.",
+    "Owned entity types share an owner identity and lifecycle; EF Core complex types represent value-like structures without separate entity identity. JSON mapping and table splitting have distinct provider and version support.",
+    "Relationship fix-up keeps tracked navigation and foreign-key values consistent within a context; it does not load missing related rows automatically."
+  ],
+  "inventory": [
+    {
+      "id": "relationship-shape-and-navigation",
+      "title": "Cardinality, navigations, and relationship discovery",
+      "items": [
+        "One-to-many relationship",
+        "One-to-one relationship",
+        "Many-to-many relationship",
+        "Navigation property",
+        "Collection navigation",
+        "Reference navigation",
+        "Inverse navigation",
+        "Unidirectional relationship",
+        "Bidirectional relationship",
+        "Relationship convention",
+        "Relationship discovery",
+        "Shadow foreign key",
+        "Explicit foreign-key property",
+        "HasOne",
+        "HasMany",
+        "WithOne",
+        "WithMany",
+        "HasForeignKey",
+        "HasPrincipalKey",
+        "HasPrincipalKey alternate key",
+        "UsingEntity many-to-many join entity",
+        "Skip navigation",
+        "Join entity type",
+        "Navigation backing field",
+        "Navigation fix-up"
+      ]
+    },
+    {
+      "id": "requiredness-delete-and-ownership",
+      "title": "Requiredness, delete behavior, ownership, and complex types",
+      "items": [
+        "Required relationship",
+        "Optional relationship",
+        "IsRequired relationship builder",
+        "DeleteBehavior.Cascade",
+        "DeleteBehavior.ClientCascade",
+        "DeleteBehavior.Restrict",
+        "DeleteBehavior.NoAction",
+        "DeleteBehavior.SetNull",
+        "OnDelete",
+        "Cascade delete",
+        "Client-side cascade",
+        "Orphan deletion",
+        "Delete orphan timing",
+        "Owned entity type",
+        "OwnsOne",
+        "OwnsMany",
+        "WithOwner",
+        "Ownership foreign key",
+        "Table splitting",
+        "ToTable owned mapping",
+        "ToJson owned mapping",
+        "ComplexProperty",
+        "Complex type",
+        "Complex collection",
+        "Complex type has no key identity",
+        "Optional dependent",
+        "Required dependent",
+        "Relationship cycle delete behavior"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Required relationship",
+      "Optional relationship"
+    ],
+    [
+      "Foreign key",
+      "Navigation property"
+    ],
+    [
+      "Owned entity",
+      "Complex type"
+    ],
+    [
+      "Database cascade",
+      "Client cascade"
+    ],
+    [
+      "Many-to-many skip navigation",
+      "Explicit join entity"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
+    "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
+    "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+    "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
+  ],
+  "versionNotes": [
+    {
+      "edition": "EF Core 10 stable; EF Core 11 in development",
+      "items": [
+        "EF Core 10 supports complex-type JSON mapping. EF Core 11 adds further complex-type and complex-collection support while still in development at the checked date; label those features preview-only."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft EF Core relationships and owned/complex type documentation",
+    "edition": "EF Core 10 stable and EF Core 11 development checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
+      "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
+      "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
+    ]
+  },
+  "scopeExclusions": [
+    "Change tracking state and identity resolution are in t04-004.",
+    "Database constraint DDL and cascade engine semantics are in SQL Server t03-007.",
+    "JSON query translation differs by provider and is not generalized."
+  ],
+  "generationAllowed": true
+}

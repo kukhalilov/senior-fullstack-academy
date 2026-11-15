@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-019",
+  "track": "track-11",
+  "title": "strings and character sequences",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A string algorithm operates on an ordered sequence and must define what one element means",
+    "C# strings are immutable UTF-16 sequences; indexing and Length count UTF-16 code units rather than user-perceived characters",
+    "Unicode scalar values and grapheme clusters differ from UTF-16 code units",
+    "Character equality may be ordinal, culture-sensitive, case-sensitive, or normalized according to the problem definition",
+    "Prefix, suffix, substring, and frequency relationships support common string problem reductions",
+    "Linear scans, two-ended scans, frequency counts, and prefix-function matching solve different string tasks",
+    "Hash-based string matching has collision risk and requires a correctness-aware design"
+  ],
+  "inventory": [
+    {"id":"text-units","title":"Text elements and Unicode units","items":["UTF-16 code unit","Unicode code point","Unicode scalar value","Surrogate pair","Grapheme cluster","char","System.Text.Rune","StringInfo text element"]},
+    {"id":"sequence-relations","title":"String sequence relationships","items":["Prefix","Proper prefix","Suffix","Substring","Subsequence","Palindrome","Anagram","Character frequency"]},
+    {"id":"comparison-and-matching","title":"Comparison and matching concepts","items":["Ordinal comparison","Culture-sensitive comparison","Case-insensitive comparison","Normalization","Naive pattern matching","Prefix function","Knuth-Morris-Pratt matching","Z-function","Rabin-Karp matching","Polynomial rolling hash"]},
+    {"id":"complexity-and-correctness","title":"String algorithm risks and costs","items":["String immutability","Repeated concatenation cost","Substring allocation","Hash collision","Empty pattern","Repeated characters","Unicode-aware iteration"]}
+  ],
+  "practiceProblems": [
+    {"id":"valid-palindrome","name":"Valid Palindrome","difficulty":"introductory","patterns":["two-ended scan","normalization rules"]},
+    {"id":"valid-anagram","name":"Valid Anagram","difficulty":"introductory","patterns":["character frequency"]},
+    {"id":"reverse-string","name":"Reverse String","difficulty":"introductory","patterns":["two pointers","in-place mutation"]},
+    {"id":"first-unique-character","name":"First Unique Character in a String","difficulty":"introductory","patterns":["frequency count","second scan"]},
+    {"id":"longest-palindromic-substring","name":"Longest Palindromic Substring","difficulty":"intermediate","patterns":["expand around center","interval reasoning"]},
+    {"id":"implement-strstr","name":"Implement Substring Search","difficulty":"intermediate","patterns":["naive matching","Knuth-Morris-Pratt"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["UTF-16 code unit","Unicode scalar value","Grapheme cluster"],["Substring","Subsequence"],["Ordinal comparison","Culture-sensitive comparison"],["Naive pattern matching","Knuth-Morris-Pratt matching"],["Polynomial rolling hash","Exact string comparison"]],
+  "comparisonSources": ["https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction","https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/","https://cp-algorithms.com/string/prefix-function.html","https://cp-algorithms.com/string/z-function.html"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn .NET character encoding and C# strings; CP-Algorithms string matching references",
+    "edition": "Timeless algorithms; .NET 11 string and Unicode documentation checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction","https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/","https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0","https://cp-algorithms.com/string/prefix-function.html","https://cp-algorithms.com/string/z-function.html","https://cp-algorithms.com/string/rabin-karp.html","https://cp-algorithms.com/string/string-hashing.html"]
+  },
+  "scopeExclusions": ["Array and dynamic-array data structures, covered in t11-002","Two-pointer and sliding-window templates as general patterns, covered in t11-003","Trie structures, covered in t11-016","Suffix arrays and suffix automata","Locale-specific text collation API catalogs","Full System.String, Rune, and StringInfo member catalogs"],
+  "generationAllowed": true
+}

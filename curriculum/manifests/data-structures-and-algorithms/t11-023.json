@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-023",
+  "track": "track-11",
+  "title": "sweep-line events and active intervals",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A sweep-line algorithm sorts event coordinates and processes them in order while maintaining a compact summary of objects currently active at the sweep position.",
+    "An interval contributes start and end events; event ordering at equal coordinates must match whether endpoints are closed, open, or half-open.",
+    "For maximum simultaneous overlap, a counter is sufficient; when active objects must be identified or ranked, an ordered set, heap, or frequency structure may be required.",
+    "A min-heap of end times can release resources whose intervals have finished before processing a new interval, yielding room or machine counts after sorting starts.",
+    "A sweep is often O(n log n) because events are sorted or active structures perform logarithmic updates; the scan itself is linear.",
+    "Two-dimensional sweeps transform geometric boundaries into events but require a precisely defined active structure and careful tie ordering.",
+    "Coordinate compression maps a finite set of event coordinates to dense indices while preserving order, enabling array or tree data structures over large coordinates.",
+    "The sweep state must be sufficient to answer the query; keeping only an overlap count cannot answer which intervals overlap or compute arbitrary geometric unions."
+  ],
+  "inventory": [
+    {"id":"events-and-order","title":"Events, sorting, and coordinate ties","items":["Start event","End event","Event coordinate","Sort by coordinate","Equal-coordinate event ordering","Closed interval tie rule","Half-open interval tie rule","Stable event tie-break","Sweep direction"]},
+    {"id":"active-state","title":"Maintaining active intervals and resources","items":["Active interval set","Active overlap counter","Maximum simultaneous overlap","Active end-time min-heap","Release finished intervals","Meeting-room allocation count","Resource assignment versus count-only query"]},
+    {"id":"coordinate-and-geometry","title":"Coordinate compression and geometric extension","items":["Coordinate compression","Rank-preserving coordinate mapping","Difference-array event accumulation","One-dimensional sweep","Rectangle edge events","Active coverage structure","Segment tree over compressed coordinates"]},
+    {"id":"correctness-and-cost","title":"Invariants, complexity, and limits","items":["Sweep-state invariant","Event conservation","Sort plus scan complexity","Active structure update cost","Duplicate event handling","Large coordinate ranges","Insufficient aggregate state","Endpoint off-by-one cases"]}
+  ],
+  "practiceProblems": [
+    {"id":"meeting-rooms-ii","name":"Meeting Rooms II","difficulty":"intermediate","patterns":["sorted start events","min-heap of active end times"]},
+    {"id":"car-pooling","name":"Car Pooling","difficulty":"intermediate","patterns":["passenger pickup and drop-off events","capacity prefix scan"]},
+    {"id":"my-calendar-i","name":"My Calendar I","difficulty":"intermediate","patterns":["ordered interval insertion","overlap query"]},
+    {"id":"my-calendar-iii","name":"My Calendar III","difficulty":"advanced","patterns":["endpoint event counts","maximum active overlap"]},
+    {"id":"number-of-flowers-in-full-bloom","name":"Number of Flowers in Full Bloom","difficulty":"intermediate","patterns":["start and end event boundaries","offline sweep over query times"]},
+    {"id":"the-skyline-problem","name":"The Skyline Problem","difficulty":"advanced","patterns":["building edge events","active height multiset"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Interval merge scan","Sweep-line event scan"],["Overlap counter","Active interval structure"],["Event list sorting","Coordinate compression with indexed queries"],["Closed interval event order","Half-open interval event order"],["Sweep-line min-heap","Monotonic deque"]],
+  "comparisonSources": ["https://usaco.guide/plat/sweep-line?lang=cpp","https://usaco.guide/CPH.pdf"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide sweep-line algorithm chapter and official LeetCode problem statements",
+    "edition": "Timeless algorithm patterns; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/plat/sweep-line?lang=cpp","https://usaco.guide/CPH.pdf","https://leetcode.com/problems/meeting-rooms-ii/","https://leetcode.com/problems/car-pooling/","https://leetcode.com/problems/my-calendar-i/","https://leetcode.com/problems/my-calendar-iii/","https://leetcode.com/problems/number-of-flowers-in-full-bloom/","https://leetcode.com/problems/the-skyline-problem/"]
+  },
+  "scopeExclusions": ["General interval merge and scheduling algorithms, covered in t11-008","Heap implementation and priority-queue operation catalog, covered in t11-024","Full computational geometry and line-segment intersection algorithms","Dynamic interval trees and interval skip lists","Continuous-time scheduling, timezones, and calendar standards"],
+  "generationAllowed": true
+}

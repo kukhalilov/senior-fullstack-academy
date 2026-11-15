@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 4,
+  "id": "t10-001",
+  "track": "track-10",
+  "title": "unit tests assertions fixtures mocks stubs fakes and isolation",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A unit test exercises one small behavior through its public contract and makes failures easy to diagnose; a unit is a design boundary, not necessarily one method or class.",
+    "A strong test states expected behavior, supplies necessary inputs, executes the behavior, and checks an observable result. Arrange-Act-Assert and Given-When-Then are organizing conventions rather than framework requirements.",
+    "A fixture is the context needed to run tests. Per-test setup promotes isolation; shared fixtures can save expensive setup but introduce order dependence, races, and hidden coupling.",
+    "Parameterized tests apply one behavior check to deliberate inputs. Test doubles replace collaborators for specific purposes: stubs supply answers, mocks verify interactions, fakes provide lightweight working implementations, and spies record calls.",
+    "Prefer observable state assertions. Verify interactions only when they are part of the contract; excessive interaction checks couple tests to implementation details.",
+    "Tests should run independently in any order and in parallel. Shared mutable state, clocks, real network dependencies, unseeded randomness, and incomplete cleanup weaken repeatability."
+  ],
+  "inventory": [
+    {
+      "id": "test-design-and-assertion-basics",
+      "title": "Behavior-focused test structure, assertion intent, and isolation",
+      "items": [
+        "Unit test",
+        "Test case",
+        "System under test (SUT)",
+        "Arrange-Act-Assert (AAA)",
+        "Given-When-Then (GWT)",
+        "Test name as behavior statement",
+        "Observable outcome",
+        "State-based assertion",
+        "Interaction-based assertion",
+        "Positive case",
+        "Negative case",
+        "Boundary case",
+        "Equivalence partition",
+        "One behavior per test",
+        "Test smell",
+        "Test diagnostic value",
+        "Test isolation",
+        "Order-dependent test",
+        "Parallel test execution",
+        "Deterministic clock seam",
+        "Random seed recording"
+      ]
+    },
+    {
+      "id": "xunit-v3",
+      "title": "xUnit.net v3 test declarations, data, assertions, and fixtures",
+      "items": [
+        "xUnit.net v3",
+        "[Fact]",
+        "[Theory]",
+        "[InlineData]",
+        "[MemberData]",
+        "[ClassData]",
+        "TheoryData<T>",
+        "IClassFixture<TFixture>",
+        "ICollectionFixture<TFixture>",
+        "ICollectionDefinition<TCollectionFixture>",
+        "IAsyncLifetime",
+        "IAsyncLifetime.InitializeAsync",
+        "IAsyncLifetime.DisposeAsync",
+        "IAsyncDisposable",
+        "Assert.Equal",
+        "Assert.NotEqual",
+        "Assert.True",
+        "Assert.False",
+        "Assert.Null",
+        "Assert.NotNull",
+        "Assert.Throws<TException>",
+        "Assert.ThrowsAsync<TException>",
+        "Assert.Contains",
+        "Assert.Collection",
+        "Assert.All",
+        "Assert.Single",
+        "Assert.Empty"
+      ]
+    },
+    {
+      "id": "mstest-nunit-tunit",
+      "title": "Current MSTest, NUnit, and TUnit authoring surfaces",
+      "items": [
+        "MSTest v4",
+        "[TestClass]",
+        "[TestMethod]",
+        "[DataTestMethod]",
+        "[DataRow]",
+        "[DynamicData]",
+        "[TestInitialize]",
+        "[TestCleanup]",
+        "[ClassInitialize]",
+        "[ClassCleanup]",
+        "[DoNotParallelize]",
+        "TestContext",
+        "Assert.AreEqual",
+        "Assert.ThrowsException<T>",
+        "NUnit 4",
+        "[TestFixture]",
+        "[Test]",
+        "[TestCase]",
+        "[TestCaseSource]",
+        "[SetUp]",
+        "[TearDown]",
+        "[OneTimeSetUp]",
+        "[OneTimeTearDown]",
+        "[SetUpFixture]",
+        "[FixtureLifeCycle]",
+        "LifeCycle.InstancePerTestCase",
+        "[Parallelizable]",
+        "Assert.That",
+        "Assert.Multiple",
+        "Is.EqualTo",
+        "Does.Contain",
+        "TUnit",
+        "[Arguments]",
+        "[MethodDataSource]",
+        "[ClassDataSource<TDataSource>]",
+        "[Before(Test)]",
+        "[After(Test)]",
+        "[NotInParallel]",
+        "TUnit TestContext",
+        "Microsoft.Testing.Platform (MTP)"
+      ]
+    },
+    {
+      "id": "test-doubles",
+      "title": "Test doubles, verification tradeoffs, and deterministic fixtures",
+      "items": [
+        "Test double",
+        "Stub",
+        "Mock",
+        "Fake",
+        "Spy",
+        "Dummy object",
+        "Test seam",
+        "Dependency injection seam",
+        "Behavior verification",
+        "Over-specified interaction test",
+        "Moq Mock<T>",
+        "Moq Mock<T>.Setup",
+        "Moq Mock<T>.Verify",
+        "Moq It.IsAny<T>",
+        "Moq Times.Once",
+        "Moq MockBehavior.Strict",
+        "NSubstitute Substitute.For<T>",
+        "NSubstitute Arg.Any<T>",
+        "NSubstitute Received()",
+        "NSubstitute DidNotReceive()",
+        "NSubstitute Returns",
+        "Hermetic test",
+        "Shared mutable fixture state",
+        "Cleanup and disposal"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "xUnit.net v3",
+      "MSTest v4",
+      "NUnit 4",
+      "TUnit"
+    ],
+    [
+      "[Fact]",
+      "[TestMethod]",
+      "[Test]"
+    ],
+    [
+      "[Theory] with [InlineData]",
+      "[DataTestMethod] with [DataRow]",
+      "[TestCase]",
+      "[Test] with [Arguments]"
+    ],
+    [
+      "Per-test setup",
+      "Shared fixture"
+    ],
+    [
+      "State-based assertion",
+      "Interaction-based assertion"
+    ],
+    [
+      "Stub",
+      "Mock",
+      "Fake",
+      "Spy"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/core/testing/",
+    "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices",
+    "https://learn.microsoft.com/en-us/dotnet/core/testing/test-platforms-overview",
+    "https://xunit.net/docs/getting-started/v3/getting-started",
+    "https://docs.nunit.org/articles/nunit/writing-tests/attributes.html",
+    "https://tunit.dev/docs/comparison/attributes/"
+  ],
+  "versionNotes": [
+    {
+      "edition": "Current .NET test-platform guidance and xUnit v3, MSTest v4, NUnit 4, and TUnit references checked 2026-11-14",
+      "items": [
+        "The test platform is distinct from the test framework. MSTest, NUnit, and xUnit can use VSTest and Microsoft.Testing.Platform where documented; TUnit is built on Microsoft.Testing.Platform and does not support VSTest.",
+        "xUnit.net v3 is a major line with updated package and runner boundaries; follow v3-specific setup rather than assuming v2 instructions still apply.",
+        "MSTest v4 removes configurable ClassCleanupLifecycle; EndOfClass is the supported class cleanup behavior."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/testing/test-platforms-overview",
+        "https://xunit.net/docs/getting-started/v3/whats-new",
+        "https://xunit.net/docs/nuget-packages-v3",
+        "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-configure"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn .NET testing platform and MSTest documentation; xUnit.net v3 docs; NUnit 4 docs; TUnit docs",
+    "edition": "Current .NET 11 testing guidance and current stable test framework documentation checked 2026-11-14; API surfaces are package-major-specific",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-writing-tests",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-writing-tests-lifecycle",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/test-platforms-overview",
+      "https://xunit.net/docs/getting-started/v3/getting-started",
+      "https://xunit.net/docs/getting-started/v3/whats-new",
+      "https://xunit.net/docs/nuget-packages-v3",
+      "https://docs.nunit.org/articles/nunit/writing-tests/attributes.html",
+      "https://docs.nunit.org/articles/nunit/writing-tests/setup-and-teardown.html",
+      "https://tunit.dev/docs/comparison/attributes/",
+      "https://tunit.dev/docs/writing-tests/lifecycle/"
+    ]
+  },
+  "scopeExclusions": [
+    "Integration tests, WebApplicationFactory, databases, and contract tests belong to t10-002.",
+    "Frontend component, browser, Playwright, and accessibility tests belong to t10-003.",
+    "Property-based testing, mutation testing, coverage, snapshots, and flaky-test diagnosis belong to t10-004.",
+    "Moq and NSubstitute are represented only by the listed names; their full API surfaces are excluded.",
+    "Runner command-line options, filters, configuration, analyzers, and every assertion overload are excluded."
+  ],
+  "generationAllowed": true
+}

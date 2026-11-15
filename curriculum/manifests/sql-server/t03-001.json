@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 4,
+  "id": "t03-001",
+  "track": "track-03",
+  "title": "database comparisons SQL Server PostgreSQL MySQL document stores and tradeoffs",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A database comparison begins with workload and operating constraints, not a universal ranking. Model shape, transaction boundaries, query patterns, consistency needs, operational skills, availability targets, and managed-service constraints determine fit.",
+    "Relational databases represent data through tables and declared relationships, with SQL queries and transaction guarantees; SQL Server, PostgreSQL, and MySQL share concepts but differ in syntax, extensions, tooling, and behavior.",
+    "Document databases store nested records and are useful when aggregate boundaries and access patterns align with document shape. Flexible representation does not remove the need for schema evolution, indexes, validation, or consistency decisions.",
+    "Compare database engines and hosted services separately. A managed service changes operational responsibility, supported features, extensions, upgrade control, and portability even when the underlying engine has a familiar name.",
+    "Benchmarks are workload-specific. Compare realistic data size, query mix, indexes, concurrency, durability settings, hardware, cache state, and tail latency; do not treat vendor benchmark claims as general rankings."
+  ],
+  "inventory": [
+    {
+      "id": "data-model-and-query-surface",
+      "title": "Data models, query languages, schema, and indexing boundaries",
+      "items": [
+        "Relational database",
+        "SQL Server 2025 (17.x)",
+        "PostgreSQL 18",
+        "MySQL 9.7 LTS",
+        "MySQL 26.10 Innovation release",
+        "Document database",
+        "MongoDB 9.0",
+        "Table",
+        "Row",
+        "Column",
+        "Primary key",
+        "Foreign key",
+        "Unique constraint",
+        "Check constraint",
+        "Normalized relational schema",
+        "Denormalized relational projection",
+        "JSON document",
+        "BSON document",
+        "Nested document",
+        "Embedded document",
+        "Referenced document",
+        "Schema-on-write",
+        "Flexible document schema",
+        "Document validation rule",
+        "SQL query",
+        "Transact-SQL (T-SQL)",
+        "PostgreSQL SQL extensions",
+        "MySQL SQL dialect",
+        "MongoDB Query API",
+        "MongoDB aggregation pipeline",
+        "Secondary index",
+        "Compound index",
+        "Partial index",
+        "Expression index",
+        "Full-text index",
+        "JSON path index",
+        "Index selectivity",
+        "Query planner",
+        "Execution plan",
+        "Prepared statement",
+        "Parameterized query"
+      ]
+    },
+    {
+      "id": "transactions-consistency-and-concurrency",
+      "title": "Atomicity, isolation, concurrency, and replication semantics",
+      "items": [
+        "ACID transaction",
+        "Atomicity",
+        "Consistency",
+        "Isolation",
+        "Durability",
+        "Transaction boundary",
+        "Autocommit",
+        "Explicit transaction",
+        "Isolation level",
+        "Read committed",
+        "Repeatable read",
+        "Serializable isolation",
+        "Snapshot isolation",
+        "Multi-version concurrency control (MVCC)",
+        "Optimistic concurrency control",
+        "Pessimistic locking",
+        "Row-level lock",
+        "Table-level lock",
+        "Deadlock detection",
+        "Write conflict",
+        "Unique-key race",
+        "Read-your-writes consistency",
+        "Linearizability",
+        "Causal consistency",
+        "Eventual consistency",
+        "Primary-replica replication",
+        "Synchronous replication",
+        "Asynchronous replication",
+        "Quorum write",
+        "Read concern",
+        "Write concern",
+        "MongoDB multi-document transaction",
+        "Relational transaction",
+        "Cross-document atomicity boundary"
+      ]
+    },
+    {
+      "id": "availability-operations-and-service-models",
+      "title": "Deployment, scaling, recovery, and operational ownership",
+      "items": [
+        "Self-managed database server",
+        "Managed database service",
+        "SQL Server on premises",
+        "Azure SQL Database",
+        "Azure SQL Managed Instance",
+        "Amazon RDS for SQL Server",
+        "Amazon RDS for PostgreSQL",
+        "Amazon RDS for MySQL",
+        "Amazon DocumentDB compatibility service",
+        "MongoDB Atlas",
+        "Vertical scaling",
+        "Read replica",
+        "High availability replica",
+        "Automatic failover",
+        "Sharding",
+        "Partitioning",
+        "Range partitioning",
+        "Hash partitioning",
+        "Backup and point-in-time recovery",
+        "Logical backup",
+        "Physical backup",
+        "Restore validation",
+        "Major-version upgrade",
+        "Minor-version update",
+        "Extension compatibility",
+        "Database portability",
+        "Vendor lock-in",
+        "Data residency requirement",
+        "RPO (recovery point objective)",
+        "RTO (recovery time objective)",
+        "Connection-pool saturation",
+        "Operational responsibility matrix"
+      ]
+    },
+    {
+      "id": "selection-and-evaluation-method",
+      "title": "Decision criteria, workload fit, and fair comparison methodology",
+      "items": [
+        "Transactional workload",
+        "Analytical workload",
+        "Mixed OLTP and reporting workload",
+        "Write-heavy workload",
+        "Read-heavy workload",
+        "Hot-key workload",
+        "Relational integrity requirement",
+        "Flexible aggregate boundary",
+        "Cross-row transaction requirement",
+        "Multi-tenant isolation requirement",
+        "Data-volume estimate",
+        "Query-shape inventory",
+        "Concurrency profile",
+        "Latency percentile",
+        "Throughput measurement",
+        "Durability configuration",
+        "Cache-warm benchmark",
+        "Cold-start benchmark",
+        "Representative data distribution",
+        "Index-maintenance cost",
+        "Backup and restore time",
+        "Failover test",
+        "Operational expertise",
+        "Application portability",
+        "Managed-service feature gap",
+        "Total cost of ownership",
+        "Capacity headroom",
+        "Migration rehearsal",
+        "Workload-specific benchmark conclusion"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "SQL Server 2025",
+      "PostgreSQL 18",
+      "MySQL 9.7 LTS",
+      "MongoDB 9.0"
+    ],
+    [
+      "Relational schema",
+      "Document schema"
+    ],
+    [
+      "Normalized relational tables",
+      "Embedded document aggregate"
+    ],
+    [
+      "Relational transaction",
+      "Document-level atomic update"
+    ],
+    [
+      "Self-managed deployment",
+      "Managed database service"
+    ],
+    [
+      "Read replica",
+      "Sharding"
+    ],
+    [
+      "RPO",
+      "RTO"
+    ],
+    [
+      "Throughput benchmark",
+      "Tail-latency benchmark"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+    "https://www.postgresql.org/docs/current/",
+    "https://www.postgresql.org/support/versioning/",
+    "https://blogs.oracle.com/mysql/mysql-october-2026-ga-releases-now-available",
+    "https://dev.mysql.com/doc/refman/9.7/en/",
+    "https://www.mongodb.com/docs/manual/release-notes/9.0/",
+    "https://www.mongodb.com/docs/manual/core/transactions/",
+    "https://www.mongodb.com/docs/manual/core/data-modeling-introduction/"
+  ],
+  "versionNotes": [
+    {
+      "edition": "SQL Server 2025, PostgreSQL 18, MySQL 9.7 LTS and 26.10 Innovation, MongoDB 9.0 checked 2026-11-15",
+      "items": [
+        "SQL Server 2025 adds vector data types and functions, preview vector indexes, optimized locking, and other engine updates; keep preview status separate from generally available features.",
+        "PostgreSQL 18 is the current stable major release; PostgreSQL 19 is a release candidate at this check, not stable.",
+        "MySQL uses separate LTS and Innovation release lines; MySQL 26.10 is Innovation while 9.7 is LTS, so do not compare version numbers as one sequential stable line.",
+        "MongoDB 9.0 is the current major stable release; 8.3 is a minor release line with deployment-specific availability and should not be called the newest major."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://www.postgresql.org/docs/",
+        "https://blogs.oracle.com/mysql/mysql-october-2026-ga-releases-now-available",
+        "https://www.mongodb.com/docs/manual/release-notes/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft SQL Server 2025 documentation; PostgreSQL 18 documentation and version policy; Oracle MySQL release and reference documentation; MongoDB 9.0 manual",
+    "edition": "SQL Server 2025 (17.x), PostgreSQL 18, MySQL 9.7 LTS and 26.10 Innovation, MongoDB 9.0 checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17",
+      "https://www.postgresql.org/docs/current/",
+      "https://www.postgresql.org/support/versioning/",
+      "https://blogs.oracle.com/mysql/mysql-october-2026-ga-releases-now-available",
+      "https://dev.mysql.com/doc/refman/9.7/en/",
+      "https://www.mongodb.com/docs/manual/release-notes/9.0/",
+      "https://www.mongodb.com/docs/manual/core/transactions/",
+      "https://www.mongodb.com/docs/manual/core/data-modeling-introduction/"
+    ]
+  },
+  "scopeExclusions": [
+    "SQL syntax and SQL Server-specific feature details are taught in t03-003 through t03-011.",
+    "Detailed MongoDB administration, Atlas configuration, and provider-specific API surfaces are outside this comparison topic.",
+    "Cloud service price lists and benchmark leaderboards are excluded because they change frequently and depend on region, edition, configuration, and workload.",
+    "Database engines and managed hosting products are distinguished; Azure SQL Database, RDS, Atlas, and DocumentDB are not interchangeable with their underlying open-source or licensed engine."
+  ],
+  "generationAllowed": true
+}

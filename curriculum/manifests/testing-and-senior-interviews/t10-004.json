@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 4,
+  "id": "t10-004",
+  "track": "track-10",
+  "title": "test design flaky tests coverage limits and maintainability",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Test quality depends on whether the suite distinguishes correct behavior from plausible defects, not on the number of test files or the percentage of lines executed.",
+    "A test pyramid is a planning heuristic: fast isolated tests are numerous, broader integration tests are fewer, and end-to-end tests focus on critical user journeys. A rigid ratio is not a substitute for architecture and risk analysis.",
+    "A flaky test passes and fails without a relevant code change. Retries can expose flakiness but do not fix its cause; diagnose shared state, timing, concurrency, external dependencies, data collisions, and environment assumptions.",
+    "Line and branch coverage show which code ran, not whether assertions checked meaningful outcomes. Mutation testing introduces realistic code changes and checks whether tests detect them; surviving mutants guide investigation, not automatic test additions.",
+    "Property-based testing generates many inputs against a general invariant and shrinks failures to a smaller counterexample. It complements hand-picked examples, especially for boundary-heavy algorithms and parsers.",
+    "Snapshots are useful when the serialized output itself is the contract and reviewers can understand changes. Large opaque snapshots often hide meaningful regressions and should be replaced with focused assertions.",
+    "Maintainable suites use clear test names, deliberate data, isolated setup, meaningful assertions, and stable abstractions. Tests should be refactored with production code while preserving the intended behavioral contract."
+  ],
+  "inventory": [
+    {
+      "id": "coverage-and-test-effectiveness",
+      "title": "Coverage measures, mutation analysis, and assertion strength",
+      "items": [
+        "Line coverage",
+        "Statement coverage",
+        "Branch coverage",
+        "Method coverage",
+        "Condition coverage",
+        "Code coverage collector",
+        "Microsoft.CodeCoverage",
+        "Microsoft.Testing.Extensions.CodeCoverage",
+        "Coverlet",
+        "coverlet.collector",
+        "XPlat Code Coverage",
+        "Cobertura XML",
+        "ReportGenerator",
+        "Coverage threshold",
+        "Coverage exclusion",
+        "Coverage gap",
+        "Assertion density",
+        "Mutation testing",
+        "Stryker.NET",
+        "dotnet-stryker",
+        "Mutant",
+        "Mutant killed",
+        "Mutant survived",
+        "Mutation score",
+        "Equivalent mutant",
+        "Mutation operator",
+        "Mutation testing baseline",
+        "Test effectiveness",
+        "Test adequacy criterion"
+      ]
+    },
+    {
+      "id": "property-based-and-example-based-tests",
+      "title": "Generated cases, invariants, shrinking, and example-based complements",
+      "items": [
+        "Property-based testing",
+        "Property",
+        "Invariant",
+        "Generator",
+        "Shrinker",
+        "Counterexample",
+        "FsCheck",
+        "FsCheck.Xunit",
+        "PropertyAttribute",
+        "Prop.ForAll",
+        "Arbitrary<T>",
+        "Gen<T>",
+        "Arb.Sized",
+        "Check.Quick",
+        "Check.One",
+        "Seed replay",
+        "State-machine property test",
+        "Metamorphic relation",
+        "Differential testing",
+        "Example-based test",
+        "Boundary-value test",
+        "Combinatorial test",
+        "Pairwise test",
+        "Decision table"
+      ]
+    },
+    {
+      "id": "flaky-tests-and-concurrency",
+      "title": "Nondeterminism, parallel execution, timeout, retry, and quarantine decisions",
+      "items": [
+        "Flaky test",
+        "Nondeterministic test",
+        "Race condition in test",
+        "Shared test state",
+        "Time-dependent test",
+        "Timezone-dependent test",
+        "Network-dependent test",
+        "Resource contention",
+        "Parallel test run",
+        "Test timeout",
+        "Cooperative cancellation",
+        "Retry attempt",
+        "Retry policy for tests",
+        "Flaky-test quarantine",
+        "Flaky-test rate",
+        "Failure reproduction",
+        "Seeded randomized test",
+        "Repeated test run",
+        "Order randomization",
+        "Test isolation boundary",
+        "Test collection serialization",
+        "TestContext.CancellationToken",
+        "MSTest [Retry]",
+        "MSTest [OSCondition]"
+      ]
+    },
+    {
+      "id": "snapshots-and-maintainability",
+      "title": "Snapshot contracts, test clarity, and refactoring resilience",
+      "items": [
+        "Snapshot test",
+        "Approval test",
+        "Golden master test",
+        "Snapshot baseline",
+        "Inline snapshot",
+        "File snapshot",
+        "Snapshot serializer",
+        "Snapshot scrubber",
+        "Snapshot normalization",
+        "Snapshot approval diff",
+        "Snapshot overuse",
+        "Assertion scope",
+        "Over-mocking",
+        "Brittle test",
+        "Behavioral contract",
+        "Test helper",
+        "Test data builder",
+        "Object Mother test fixture",
+        "Test naming convention",
+        "Test duplication",
+        "Test suite feedback time",
+        "Test suite ownership",
+        "Focused regression test",
+        "Risk-based test selection"
+      ]
+    },
+    {
+      "id": "test-strategy-and-pyramid",
+      "title": "Layered test portfolio, risk coverage, and balancing cost",
+      "items": [
+        "Test pyramid",
+        "Test trophy",
+        "Unit test layer",
+        "Integration test layer",
+        "End-to-end test layer",
+        "Contract test layer",
+        "Component test",
+        "Smoke test",
+        "Regression test",
+        "Exploratory test",
+        "Acceptance test",
+        "Risk-based testing",
+        "Critical user journey",
+        "Feedback latency",
+        "Test maintenance cost",
+        "Environment fidelity",
+        "Defect localization",
+        "Test suite signal-to-noise ratio",
+        "Shift-left testing",
+        "Test strategy review"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Line coverage",
+      "Branch coverage",
+      "Mutation score"
+    ],
+    [
+      "Example-based tests",
+      "Property-based tests"
+    ],
+    [
+      "Fixed delay",
+      "Condition-based wait"
+    ],
+    [
+      "Retrying a flaky test",
+      "Diagnosing its root cause"
+    ],
+    [
+      "Snapshot test",
+      "Focused semantic assertions"
+    ],
+    [
+      "Unit test layer",
+      "Integration test layer",
+      "End-to-end test layer"
+    ],
+    [
+      "Code coverage",
+      "Mutation testing"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage",
+    "https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-code-coverage",
+    "https://stryker-mutator.io/docs/",
+    "https://stryker-mutator.io/docs/stryker-net/",
+    "https://fscheck.github.io/FsCheck/",
+    "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices"
+  ],
+  "versionNotes": [
+    {
+      "edition": "Current .NET test-platform and Stryker.NET guidance checked 2026-11-14",
+      "items": [
+        "Microsoft.Testing.Platform code coverage uses Microsoft.Testing.Extensions.CodeCoverage; VSTest and MTP have distinct configuration and command-line surfaces, so examples must match the selected runner.",
+        "MSTest 4.4 reports retry attempts and identifies flaky/retried tests in run summaries; use retries as diagnosis evidence, not as a substitute for fixing nondeterminism.",
+        "Current Stryker.NET requires the .NET 10 runtime or newer to run; the tested application may target an earlier framework. Set up the tool runtime separately from the application target."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-code-coverage",
+        "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-writing-tests-controlling-execution",
+        "https://stryker-mutator.io/docs/stryker-net/getting-started/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn .NET testing, coverage, test platform and MSTest documentation; Stryker.NET official docs; FsCheck official docs",
+    "edition": "Current .NET 11 testing guidance, MSTest 4.4 behavior, Stryker.NET and FsCheck documentation checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-code-coverage",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-writing-tests-controlling-execution",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/test-platforms-overview",
+      "https://stryker-mutator.io/docs/",
+      "https://stryker-mutator.io/docs/stryker-net/",
+      "https://stryker-mutator.io/docs/stryker-net/getting-started/",
+      "https://stryker-mutator.io/docs/stryker-net/configuration/",
+      "https://fscheck.github.io/FsCheck/"
+    ]
+  },
+  "scopeExclusions": [
+    "Framework-specific test declaration APIs are covered in t10-001; integration and frontend test implementations are covered in t10-002 and t10-003.",
+    "Full CLI option references for Coverlet, ReportGenerator, Stryker.NET, and FsCheck are outside this topic.",
+    "Load, stress, soak, and production capacity tests are covered in t09-013.",
+    "Formal verification and proof assistants are outside the practical test-design scope.",
+    "A numeric coverage threshold is not presented as proof that a feature is correct."
+  ],
+  "generationAllowed": true
+}

@@ -1,0 +1,311 @@
+{
+  "schemaVersion": 4,
+  "id": "t02-003",
+  "track": "track-02",
+  "title": "ASP.NET Core middleware pipeline order and branching",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "The request pipeline is an ordered chain of delegates. Middleware can run before and after the next delegate, short-circuit the request, or terminate the pipeline; response processing unwinds in reverse order.",
+    "Exception handling belongs early enough to catch downstream failures. Routing establishes the selected endpoint, and authentication, authorization, CORS, rate limiting, caching, static files, and endpoint execution have ordering constraints.",
+    "WebApplication automatically adds some middleware in certain configurations. Explicit calls and framework defaults together determine the actual pipeline, so developers must understand what is added and avoid assuming every middleware runs in a desired position.",
+    "Branching can isolate paths or predicates. Map changes the path seen within the branch; MapWhen selects by a predicate and does not rejoin; UseWhen selects by a predicate and normally rejoins unless the branch terminates.",
+    "Custom middleware should use the request delegate model, preserve cancellation and exception behavior, avoid capturing scoped services in singleton middleware constructors, and not consume request bodies without restoring or buffering them appropriately."
+  ],
+  "inventory": [
+    {
+      "id": "middleware-contract-and-composition",
+      "title": "Request delegates, next, short-circuiting, response unwind, and custom middleware",
+      "items": [
+        "Middleware",
+        "Request delegate",
+        "RequestDelegate",
+        "HttpContext",
+        "HttpRequest",
+        "HttpResponse",
+        "IApplicationBuilder",
+        "WebApplication.Use",
+        "IApplicationBuilder.Use",
+        "IApplicationBuilder.Run",
+        "IApplicationBuilder.Map",
+        "IApplicationBuilder.MapWhen",
+        "IApplicationBuilder.UseWhen",
+        "UseMiddleware<TMiddleware>",
+        "IMiddleware",
+        "IMiddlewareFactory",
+        "Middleware constructor activation",
+        "Conventional middleware",
+        "Factory-based middleware",
+        "Middleware Invoke method",
+        "Middleware InvokeAsync method",
+        "next RequestDelegate",
+        "Short-circuit middleware",
+        "Terminal middleware",
+        "Response unwind",
+        "Pipeline branch",
+        "PathBase in mapped branch",
+        "Request body buffering",
+        "EnableBuffering",
+        "RequestAborted cancellation token",
+        "OnStarting callback",
+        "OnCompleted callback",
+        "HttpContext.Items",
+        "HttpContext.Features",
+        "Use overload with two arguments",
+        "Use overload with three arguments",
+        "Middleware ordering",
+        "Middleware exception propagation",
+        "Scoped dependency in conventional middleware",
+        "IMiddleware scoped activation",
+        "Middleware per-request allocation",
+        "ApplicationBuilder.Build",
+        "ApplicationBuilder.New",
+        "ApplicationBuilder.Properties",
+        "IApplicationBuilder.ApplicationServices"
+      ]
+    },
+    {
+      "id": "framework-and-routing-middleware-order",
+      "title": "Framework defaults, routing, endpoint execution, and ordering constraints",
+      "items": [
+        "WebApplication automatic middleware",
+        "Developer exception page middleware",
+        "Exception handler middleware",
+        "Status code pages middleware",
+        "HTTPS redirection middleware",
+        "HSTS middleware",
+        "Static file middleware",
+        "Default files middleware",
+        "Directory browsing middleware",
+        "Routing middleware",
+        "Endpoint middleware",
+        "UseRouting",
+        "UseEndpoints",
+        "WebApplication.Map endpoint execution",
+        "UseAuthentication",
+        "UseAuthorization",
+        "UseCors",
+        "UseRateLimiter",
+        "UseResponseCaching",
+        "UseResponseCompression",
+        "UseOutputCache",
+        "UseSession",
+        "UseRequestLocalization",
+        "UseAntiforgery",
+        "UseForwardedHeaders",
+        "UseHostFiltering",
+        "UseWebSockets",
+        "UseHttpLogging",
+        "Use(next) middleware",
+        "UseExceptionHandler",
+        "UseStatusCodePages",
+        "UseHttpsRedirection",
+        "UseHsts",
+        "UseStaticFiles",
+        "UseDefaultFiles",
+        "UseDirectoryBrowser",
+        "MapControllers endpoint execution",
+        "MapRazorPages endpoint execution",
+        "MapFallback endpoint execution",
+        "Authentication before authorization",
+        "CORS relative to endpoint routing",
+        "Endpoint-aware rate limiting after routing",
+        "Request localization before culture-sensitive middleware",
+        "Forwarded headers before HTTPS and remote IP consumers",
+        "Exception handler near pipeline start",
+        "Static files bypass downstream authorization by default",
+        "Static file authorization endpoint pattern",
+        "Middleware order and reverse response order"
+      ]
+    },
+    {
+      "id": "branching-and-routing-helpers",
+      "title": "Path mapping, predicate branches, rejoining, and terminal delegates",
+      "items": [
+        "Map branch extension",
+        "Map path-prefix matching",
+        "MapWhen predicate branch",
+        "UseWhen predicate branch",
+        "UseWhen branch rejoin",
+        "Map branch path trimming",
+        "MapWhen non-rejoining branch",
+        "Branch application builder",
+        "PathString",
+        "PathBase",
+        "Request.Path",
+        "MapGet endpoint mapping",
+        "MapPost endpoint mapping",
+        "MapPut endpoint mapping",
+        "MapDelete endpoint mapping",
+        "MapPatch endpoint mapping",
+        "MapMethods endpoint mapping",
+        "MapGroup endpoint mapping",
+        "MapFallback endpoint mapping",
+        "MapWhen versus UseWhen",
+        "Map versus endpoint route mapping",
+        "Run terminal delegate",
+        "Run extension convention",
+        "Use terminal branch",
+        "Branch-specific middleware",
+        "Branch-specific services",
+        "Branching on request path",
+        "Branching on request header",
+        "Branching on request query",
+        "Branching by endpoint metadata"
+      ]
+    },
+    {
+      "id": "built-in-middleware-catalog",
+      "title": "Built-in middleware families and their exact registration extension names",
+      "items": [
+        "UseDeveloperExceptionPage",
+        "UseStatusCodePagesWithRedirects",
+        "UseStatusCodePagesWithReExecute",
+        "UseFileServer",
+        "UseWhen",
+        "MapWhen",
+        "MapHealthChecks",
+        "UsePathBase",
+        "UseCookiePolicy",
+        "UseExceptionHandler(IApplicationBuilder, Action<IApplicationBuilder>)",
+        "UseExceptionHandler(RequestDelegate)",
+        "UseExceptionHandler(string)",
+        "UseExceptionHandler(ExceptionHandlerOptions)",
+        "UseStatusCodePages(StatusCodePagesOptions)",
+        "UseStatusCodePages(Func<StatusCodeContext, Task>)",
+        "UseStatusCodePagesWithReExecute(string, string?)",
+        "UseStatusCodePagesWithRedirects(string)"
+      ]
+    },
+    {
+      "id": "security-errors-and-ordering-failure-modes",
+      "title": "Security boundaries, error handling, buffering, and ordering diagnostics",
+      "items": [
+        "Middleware exception boundary",
+        "Developer exception page environment restriction",
+        "Production exception handler",
+        "Problem Details middleware",
+        "IExceptionHandler",
+        "ExceptionHandlerOptions",
+        "IExceptionHandlerPathFeature",
+        "StatusCodeSelector",
+        "AllowStatusCode404Response",
+        "Status code page response body",
+        "UseStatusCodePagesWithReExecute path preservation",
+        "Static web asset exposure",
+        "wwwroot public file boundary",
+        "Static file authorization bypass",
+        "Authorization endpoint metadata",
+        "CORS preflight handling",
+        "CORS before response caching",
+        "Authentication scheme selection",
+        "Authorization policy execution",
+        "Forwarded header trust boundary",
+        "KnownProxies",
+        "KnownNetworks",
+        "ForwardLimit",
+        "Host header filtering",
+        "HTTP request body rewind",
+        "Request body stream consumption",
+        "Response already started exception",
+        "Response.OnStarting callback ordering",
+        "Middleware analysis diagnostic",
+        "Microsoft.AspNetCore.MiddlewareAnalysis",
+        "MiddlewareAnalysisStartupFilter",
+        "Developer exception page sensitive data",
+        "Exception handler re-execution",
+        "Re-execution path and endpoint selection",
+        "Middleware ordering integration test",
+        "Application pipeline diagnostic",
+        "Request logging placement",
+        "Response compression and caching order",
+        "Response caching Vary behavior"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Use",
+      "Run"
+    ],
+    [
+      "Map",
+      "MapWhen",
+      "UseWhen"
+    ],
+    [
+      "Conventional middleware",
+      "IMiddleware"
+    ],
+    [
+      "Developer exception page",
+      "Exception handler"
+    ],
+    [
+      "Static file middleware",
+      "Authorized file endpoint"
+    ],
+    [
+      "UseRouting",
+      "UseEndpoints"
+    ],
+    [
+      "Authentication",
+      "Authorization"
+    ],
+    [
+      "UseResponseCaching",
+      "UseOutputCache"
+    ],
+    [
+      "UseExceptionHandler",
+      "UseStatusCodePages"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/write?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/built-in?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/request-response?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0"
+  ],
+  "versionNotes": [
+    {
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
+      "items": [
+        "Current minimal-host templates can insert middleware automatically based on registered services and endpoint metadata. The final ordering is not always identical to historical explicit Startup examples; inspect current .NET 11 documentation and generated diagnostics when order matters. In ASP.NET Core 11, response compression adds Vary: Accept-Encoding to every response when compression is enabled, and Kestrel applies RequestHeadersTimeout to incomplete HTTP/2 and HTTP/3 trailer headers."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/webapplication?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn ASP.NET Core 10 middleware, routing, error handling, security, and API references",
+    "edition": "ASP.NET Core 11 / .NET 11 GA middleware checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/write?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/built-in?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/request-response?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.webapplication?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+    ]
+  },
+  "scopeExclusions": [
+    "Endpoint matching and route-pattern syntax are detailed in t02-004",
+    "Authorization policy and handler implementation are covered in t02-011 and t05",
+    "Exception response formats and validation errors are covered in t02-013",
+    "IIS, Kestrel, proxy forwarding and TLS are covered in t02-020",
+    "Static files are public by default; authenticated file delivery requires an explicitly authorized endpoint design"
+  ],
+  "generationAllowed": true
+}

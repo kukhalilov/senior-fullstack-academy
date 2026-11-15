@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 4,
+  "id": "t01-008",
+  "track": "track-01",
+  "title": "properties indexers fields methods parameters and overloads",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Fields store type state directly; properties expose controlled read/write behavior; methods represent actions; and indexers provide array-like access to an object. Choose the member form that expresses the contract rather than selecting syntax by habit.",
+    "An accessor property may validate, compute, or delegate access. Auto-properties synthesize backing storage; `init` and `required` express different construction rules, and nullable annotations do not replace runtime validation.",
+    "Methods are selected through overload resolution from the compile-time arguments, conversions, generic inference, and candidate signatures. Optional and named arguments affect calls but do not create different runtime method identities.",
+    "Parameter modifiers define how values cross a call boundary. `ref`, `in`, `out`, `ref readonly`, `params`, optional parameters, and `scoped` each impose distinct caller and implementation rules.",
+    "Indexers and extension members let APIs use natural access syntax, but they should remain discoverable and unsurprising. C# 14 extension blocks add extension properties and static members; extension methods remain supported.",
+    "Member modifiers interact with inheritance and dispatch. Static members belong to a type; virtual/override members participate in runtime dispatch; `new` hides; `partial` lets generated code contribute a declaration."
+  ],
+  "inventory": [
+    {
+      "id": "fields-and-constants",
+      "title": "Stored members, initialization, mutability, and fixed storage",
+      "items": [
+        "Instance field",
+        "Static field",
+        "const field",
+        "readonly field",
+        "static readonly field",
+        "volatile field",
+        "fixed-size buffer",
+        "Field initializer",
+        "Field default value",
+        "Field declaration",
+        "Field-like event",
+        "Field keyword in property accessor",
+        "Backing field",
+        "Compiler-generated backing field",
+        "Thread-static field",
+        "ThreadStaticAttribute",
+        "Field-targeted attribute",
+        "Field initializer execution order",
+        "Static field initialization",
+        "Constant value",
+        "Readonly assignment location"
+      ]
+    },
+    {
+      "id": "properties-and-accessors",
+      "title": "Read/write contracts, auto-properties, init-only, required, and partial properties",
+      "items": [
+        "Property",
+        "Instance property",
+        "Static property",
+        "Read-only property",
+        "Write-only property",
+        "Auto-implemented property",
+        "Expression-bodied property",
+        "Computed property",
+        "Property initializer",
+        "get accessor",
+        "set accessor",
+        "init accessor",
+        "Accessor accessibility modifier",
+        "get-only auto-property",
+        "init-only property",
+        "Required member",
+        "required modifier",
+        "SetsRequiredMembersAttribute",
+        "Field-backed property",
+        "field keyword",
+        "Property validation",
+        "Property notification",
+        "Partial property",
+        "Property-targeted attribute",
+        "Ref-returning property",
+        "Ref-readonly property"
+      ]
+    },
+    {
+      "id": "indexers-and-extension-members",
+      "title": "Indexed access and extension syntax on existing receiver types",
+      "items": [
+        "Indexer",
+        "Indexer declaration",
+        "Indexer parameter list",
+        "Indexer get accessor",
+        "Indexer set accessor",
+        "Indexer init accessor",
+        "Indexer overload",
+        "Multi-parameter indexer",
+        "Ref-returning indexer",
+        "Read-only indexer",
+        "Indexer accessibility",
+        "Indexer attribute",
+        "Extension method",
+        "Extension method receiver parameter",
+        "this modifier on extension parameter",
+        "Extension block",
+        "Extension declaration",
+        "Extension property",
+        "Extension static member",
+        "Extension indexer",
+        "Extension operator",
+        "Implicit indexer access in object initializer",
+        "Reduced extension method invocation",
+        "Extension member lookup",
+        "Instance member precedence over extension member"
+      ]
+    },
+    {
+      "id": "methods-and-declarations",
+      "title": "Method forms, member modifiers, returns, and overload groups",
+      "items": [
+        "Method declaration",
+        "Instance method",
+        "Static method",
+        "Local function",
+        "Expression-bodied method",
+        "Partial method",
+        "Partial event",
+        "Extension method declaration",
+        "Generic method declaration",
+        "Method body",
+        "Block body",
+        "Expression body",
+        "Void return",
+        "Value return",
+        "Ref return",
+        "Ref-readonly return",
+        "async method",
+        "Iterator method",
+        "extern method",
+        "unsafe method",
+        "abstract method",
+        "virtual method",
+        "override method",
+        "sealed override",
+        "new hidden method",
+        "Static abstract interface member",
+        "Method overload",
+        "Overload set",
+        "Method signature",
+        "Return type",
+        "Method implementation",
+        "Method group",
+        "Method attribute",
+        "ConditionalAttribute method"
+      ]
+    },
+    {
+      "id": "parameters-and-call-binding",
+      "title": "Parameter passing, optionality, argument names, and overload resolution",
+      "items": [
+        "Value parameter",
+        "ref parameter",
+        "out parameter",
+        "in parameter",
+        "ref readonly parameter",
+        "params parameter array",
+        "params parameter collection",
+        "scoped parameter",
+        "Optional parameter",
+        "Default parameter value",
+        "Named argument",
+        "Positional argument",
+        "Named and positional argument ordering",
+        "Argument evaluation order",
+        "Parameter default constant",
+        "Overload resolution",
+        "Candidate member",
+        "Applicable function member",
+        "Better function member",
+        "Implicit conversion ranking",
+        "Generic type inference",
+        "Method group conversion",
+        "Optional argument overload ambiguity",
+        "Named argument overload ambiguity",
+        "ref versus out signature distinction",
+        "Parameter array expansion",
+        "params collection expansion",
+        "CallerArgumentExpressionAttribute",
+        "CallerMemberNameAttribute",
+        "CallerFilePathAttribute",
+        "CallerLineNumberAttribute",
+        "InterpolatedStringHandlerArgumentAttribute"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Field",
+      "Property",
+      "Method",
+      "Indexer"
+    ],
+    [
+      "Auto-property",
+      "Field-backed property",
+      "Computed property"
+    ],
+    [
+      "get/set",
+      "init",
+      "required"
+    ],
+    [
+      "Value parameter",
+      "ref parameter",
+      "in parameter",
+      "out parameter"
+    ],
+    [
+      "params array",
+      "params collection"
+    ],
+    [
+      "Overload",
+      "Override",
+      "Hidden member"
+    ],
+    [
+      "Extension method",
+      "C# 14 extension block member"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers/",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+  ],
+    "versionNotes": [
+    {
+      "edition": "C# 13 and C# 14",
+      "items": [
+        "C# 13 extended params parameters from arrays to supported collection types and introduced partial properties and indexers for source-generator scenarios.",
+        "C# 14 adds the contextual field keyword for backing-field access in property accessors and extension blocks for extension properties, operators, and static extension members. C# 13 adds implicit indexer access in object initializers.",
+        "C# 15 adds extension indexers. Indexers are instance members, so an extension indexer declaration names its receiver."
+      ],
+      "sourceUrls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft C# language reference, programming guide, compiler reference and current C# release notes",
+    "edition": "C# 15 / .NET 11 stable member declarations with C# 13 and C# 14 release changes checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers/",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+    ]
+  },
+  "scopeExclusions": [
+    "Generic constraints and variance are covered in t01-009 and t01-010.",
+    "Delegate, event, lambda, and expression-tree members are covered in t01-011.",
+    "Operators and pattern matching are covered in t01-012.",
+    "Constructor forms and type shapes are covered in t01-005 and t01-006.",
+    "The complete attribute framework and reflection metadata model are covered in t01-019."
+  ],
+  "generationAllowed": true
+}

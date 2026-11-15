@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 4,
+  "id": "t04-002",
+  "track": "track-04",
+  "title": "model configuration entities properties and keys",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "EF Core builds an IModel from CLR types, conventions, attributes, and fluent configuration. The model is a mapping contract; it is not the database schema itself.",
+    "Entity types represent tracked identity-bearing rows; keyless entity types are query shapes without change-tracking identity. Complex/value objects and owned entities have different identity and mapping semantics.",
+    "Property mapping controls column names, types, nullability, conversion, generated values, and field access. A CLR property type does not automatically guarantee identical database semantics.",
+    "Primary keys identify entities; alternate keys participate in relationships, while unique indexes enforce uniqueness without necessarily creating EF key identity. Provider-specific options must be labeled.",
+    "Fluent configuration is explicit and generally takes precedence over conventions and attributes; model validation and migrations reveal incompatible or ambiguous mappings."
+  ],
+  "inventory": [
+    {
+      "id": "entity-model-and-conventions",
+      "title": "Entity types, discovery, configurations, and model metadata",
+      "items": [
+        "Entity type",
+        "EntityTypeBuilder<TEntity>",
+        "DbSet<TEntity>",
+        "DbContext.Set<TEntity>",
+        "Entity discovery convention",
+        "[EntityTypeConfiguration] attribute",
+        "IEntityTypeConfiguration<TEntity>",
+        "ApplyConfiguration<TEntity>",
+        "ApplyConfigurationsFromAssembly",
+        "modelBuilder.Entity<TEntity>",
+        "ToTable",
+        "ToView",
+        "HasNoKey",
+        "Keyless entity type",
+        "ExcludeFromMigrations",
+        "Ignore<TEntity>",
+        "EntityTypeBuilder.Ignore",
+        "ModelBuilder.Ignore",
+        "Shared-type entity type",
+        "Property-bag entity type",
+        "Model metadata",
+        "Convention-based model configuration",
+        "Fluent API precedence",
+        "Data annotation precedence",
+        "OnModelCreating"
+      ]
+    },
+    {
+      "id": "properties-types-and-column-mapping",
+      "title": "CLR properties, field access, value conversion, and column mapping",
+      "items": [
+        "PropertyBuilder",
+        "PropertyBuilder<TProperty>",
+        "PropertyAccessMode",
+        "UsePropertyAccessMode",
+        "HasField",
+        "HasField access mode",
+        "HasColumnName",
+        "HasColumnType",
+        "HasColumnOrder",
+        "HasMaxLength",
+        "IsRequired",
+        "IsUnicode",
+        "HasPrecision",
+        "HasDefaultValue",
+        "HasDefaultValueSql",
+        "HasComputedColumnSql",
+        "ValueGeneratedOnAdd",
+        "ValueGeneratedOnAddOrUpdate",
+        "ValueGeneratedNever",
+        "ValueConverter",
+        "HasConversion",
+        "ValueComparer",
+        "HasColumnName mapping",
+        "Backing field",
+        "Shadow property",
+        "Indexer property",
+        "Owned property versus complex type",
+        "JSON column mapping via ToJson (EF Core 10)"
+      ]
+    },
+    {
+      "id": "keys-indexes-and-concurrency-metadata",
+      "title": "Primary and alternate keys, indexes, generated values, and tokens",
+      "items": [
+        "HasKey",
+        "HasAlternateKey",
+        "HasIndex",
+        "IsUnique",
+        "HasDatabaseName",
+        "HasFilter",
+        "HasFillFactor",
+        "HasKey composite key",
+        "Primary key convention",
+        "Alternate key",
+        "Unique index",
+        "Foreign-key index convention",
+        "ValueGeneratedOnAdd",
+        "UseIdentityColumn",
+        "UseHiLo",
+        "HasSequence",
+        "HasData model-managed data",
+        "IsConcurrencyToken",
+        "IsRowVersion",
+        "Concurrency token",
+        "Keyless entity type",
+        "Natural key",
+        "Surrogate key",
+        "Index sort order",
+        "Included property provider-specific boundary"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Primary key",
+      "Alternate key"
+    ],
+    [
+      "Unique index",
+      "Alternate key"
+    ],
+    [
+      "Shadow property",
+      "CLR property"
+    ],
+    [
+      "Owned entity",
+      "Complex type"
+    ],
+    [
+      "HasDefaultValue",
+      "HasComputedColumnSql"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/ef/core/modeling/",
+    "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
+    "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
+    "https://learn.microsoft.com/en-us/ef/core/modeling/keys"
+  ],
+  "versionNotes": [
+    {
+      "edition": "EF Core 10 stable",
+      "items": [
+        "EF Core 10 supports mapping complex types to JSON columns; EF Core 11 complex-type refinements remain in development at the date of this source check."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/ef/core/modeling/",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft EF Core 10 model-building documentation",
+    "edition": "EF Core 10 stable; EF Core 11 development status checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/ef/core/modeling/",
+      "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
+      "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
+      "https://learn.microsoft.com/en-us/ef/core/modeling/keys"
+    ]
+  },
+  "scopeExclusions": [
+    "Relationship cardinality and foreign-key navigation setup are in t04-003.",
+    "Runtime change tracking is in t04-004.",
+    "Provider-specific SQL Server identity, index, and temporal options are not generalized across providers."
+  ],
+  "generationAllowed": true
+}

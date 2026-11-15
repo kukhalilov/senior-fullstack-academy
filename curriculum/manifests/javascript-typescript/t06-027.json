@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 4,
+  "id": "t06-027",
+  "track": "track-06",
+  "title": "JavaScript linting, formatting, and source maps",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": ["Lint rules identify suspicious or invalid patterns", "Formatting tools make layout deterministic without changing intended behavior", "TypeScript linting needs parser and project-aware rule integration", "Source maps map generated locations back to authored sources", "Linting, formatting, and type checking solve different problems"],
+  "inventory": [
+    {"id":"lint-and-format-tools","title":"Current JavaScript and TypeScript lint/format tools","items":["ESLint","typescript-eslint","Prettier","Biome","ESLint flat config","eslint.config.js","defineConfig","globalIgnores","languageOptions","linterOptions","plugins","processor","rules","settings","Prettier configuration file","Biome configuration file"]},
+    {"id":"lint-config-surfaces","title":"Core lint configuration and rule controls","items":["ESLint rule severity off","ESLint rule severity warn","ESLint rule severity error","ESLint parser","ESLint parserOptions","ESLint globals","ESLint files matching","ESLint ignores","ESLint shareable config","ESLint plugin","ESLint processor","ESLint inline disable directive","ESLint reportUnusedDisableDirectives","typescript-eslint parser","typescript-eslint.configs.recommendedTypeChecked","typescript-eslint project service"]},
+    {"id":"format-and-source-maps","title":"Formatting and source-map artifacts","items":["Prettier parser","Prettier plugins","Prettier ignore file","Biome formatter","Biome linter","Biome organize imports","Source Map v3","Source map file (.map)","sourceMappingURL directive","sources field","sourcesContent field","names field","mappings field","Indexed source map","Inline source map","External source map","Hidden source map"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["ESLint","Biome linter"],["Prettier","Biome formatter"],["linting","formatting"],["source map","declaration map"],["syntax-only lint rule","type-aware lint rule"]],
+  "comparisonSources": ["https://eslint.org/docs/latest/use/configure/","https://typescript-eslint.io/getting-started/","https://prettier.io/docs/","https://biomejs.dev/guides/getting-started/","https://tc39.es/ecma426/"],
+  "versionNotes": [],
+  "sourceSnapshot": {"authority":"Official ESLint, typescript-eslint, Prettier, Biome, and ECMA-426 documentation","edition":"Current stable tool documentation checked 2026-11-14","checkedAt":"2026-11-14","urls":["https://eslint.org/docs/latest/use/configure/","https://typescript-eslint.io/getting-started/","https://prettier.io/docs/","https://biomejs.dev/guides/getting-started/","https://tc39.es/ecma426/"]},
+  "scopeExclusions": ["Exhaustive per-rule catalogs for individual lint plugins","Editor integrations and IDE-specific settings","Bundler-specific source-map configuration (t06-026)"],
+  "generationAllowed": true
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-008",
+  "track": "track-11",
+  "title": "interval representations, merging, and scheduling",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "An interval is defined by endpoints and an endpoint convention such as closed, open, or half-open; that convention determines whether touching intervals overlap.",
+    "Sorting intervals by start or end endpoint exposes an order that supports merging, selection, and greedy scheduling, but the correct key depends on the objective.",
+    "A merge scan maintains the current merged interval and extends its end only when the next interval overlaps under the chosen endpoint convention.",
+    "Insertion into an already sorted, disjoint interval list can emit earlier intervals, merge the overlap region, then append later intervals in one pass.",
+    "For maximum-cardinality non-overlapping interval scheduling, selecting the compatible interval with the earliest finishing time admits an exchange argument proving optimality.",
+    "Minimum removal to eliminate overlaps is equivalent to retaining a maximum-size compatible subset when every interval has equal removal cost.",
+    "Sorting dominates the typical O(n log n) complexity; a scan after sorting is linear, while already sorted input can permit a linear pass.",
+    "Unbounded integer endpoints, equal endpoints, empty intervals, duplicate intervals, and inclusive versus exclusive boundaries are common correctness hazards."
+  ],
+  "inventory": [
+    {"id":"interval-model","title":"Endpoint models and overlap semantics","items":["Closed interval","Open interval","Half-open interval","Start endpoint","End endpoint","Touching intervals","Overlap predicate","Empty interval","Sorted disjoint interval list","Coordinate endpoint domain"]},
+    {"id":"merge-and-insert","title":"Merging and inserting intervals","items":["Sort by start endpoint","Merge overlapping intervals","Extend merged end","Insert interval into sorted disjoint list","Emit intervals before overlap region","Merge overlap region","Emit intervals after overlap region","In-place output compaction"]},
+    {"id":"scheduling-greedy","title":"Interval scheduling and overlap removal","items":["Maximum-cardinality interval scheduling","Earliest-finish-time greedy rule","Compatibility by endpoint convention","Exchange argument","Minimum removals for non-overlapping intervals","Greedy counterexample testing","Tie-breaking for equal finish endpoints"]},
+    {"id":"complexity-and-failure","title":"Complexity and boundary cases","items":["O(n log n) sort plus O(n) scan","Already-sorted O(n) scan","Duplicate intervals","Equal start endpoints","Equal end endpoints","Inclusive endpoint overlap","Integer endpoint extremes","Stable versus unstable sort relevance"]}
+  ],
+  "practiceProblems": [
+    {"id":"merge-intervals","name":"Merge Intervals","difficulty":"intermediate","patterns":["sort by start","merge overlapping ranges"]},
+    {"id":"insert-interval","name":"Insert Interval","difficulty":"intermediate","patterns":["single-pass insertion into sorted disjoint intervals","merge the overlap run"]},
+    {"id":"non-overlapping-intervals","name":"Non-overlapping Intervals","difficulty":"intermediate","patterns":["earliest finish greedy","maximum compatible subset"]},
+    {"id":"minimum-arrows-balloons","name":"Minimum Number of Arrows to Burst Balloons","difficulty":"intermediate","patterns":["sort by interval end","greedy overlap intersection"]},
+    {"id":"interval-list-intersections","name":"Interval List Intersections","difficulty":"intermediate","patterns":["two sorted interval lists","advance the interval with earlier end"]},
+    {"id":"remove-covered-intervals","name":"Remove Covered Intervals","difficulty":"intermediate","patterns":["sort by start and reverse end tie-break","track the farthest covered end"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Sort by start endpoint","Sort by end endpoint"],["Merge overlapping intervals","Select a non-overlapping subset"],["Closed endpoint semantics","Half-open endpoint semantics"],["Minimum removals","Maximum compatible subset"],["One-pass merge scan","Repeated pairwise merge"]],
+  "comparisonSources": ["https://usaco.guide/silver/greedy-sorting","https://usaco.guide/PAPS.pdf"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "USACO Guide interval scheduling and official LeetCode problem statements",
+    "edition": "Timeless interval algorithms; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/silver/greedy-sorting","https://usaco.guide/PAPS.pdf","https://leetcode.com/problems/merge-intervals/","https://leetcode.com/problems/insert-interval/","https://leetcode.com/problems/non-overlapping-intervals/","https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/","https://leetcode.com/problems/interval-list-intersections/","https://leetcode.com/problems/remove-covered-intervals/"]
+  },
+  "scopeExclusions": ["Sweep-line event processing and active-set queries, covered in t11-023","Priority queues and heaps, covered in t11-024","Weighted interval scheduling and dynamic programming","Computational geometry beyond one-dimensional intervals","Calendar APIs and real-world timezone scheduling"],
+  "generationAllowed": true
+}

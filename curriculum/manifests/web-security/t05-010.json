@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 4,
+  "id": "t05-010",
+  "track": "track-05",
+  "title": "threat modeling secure design audit logging and incident response",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Threat modeling starts with assets, trust boundaries, data flows, attacker goals, and plausible abuse cases. Controls follow from risk, not from an undifferentiated checklist.",
+    "Secure design applies least privilege, defense in depth, fail-safe defaults, explicit trust boundaries, and separation of duties throughout architecture and deployment.",
+    "Security logs support detection and investigation but must exclude passwords, access tokens, session identifiers, and other secrets. Events need consistent context, access control, integrity protection, and retention.",
+    "Incident response prepares teams to detect, contain, eradicate, recover, preserve evidence, and improve controls. Roles, escalation, and recovery responsibilities are defined before an incident."
+  ],
+  "inventory": [
+    {
+      "id": "threat-modeling-and-secure-design",
+      "title": "Assets, trust boundaries, threat identification, and risk treatment",
+      "items": [
+        "Asset",
+        "Security objective",
+        "Threat actor",
+        "Attack surface",
+        "Trust boundary",
+        "Data-flow diagram",
+        "Data-flow process",
+        "Data store",
+        "External entity",
+        "Threat scenario",
+        "Abuse case",
+        "Spoofing",
+        "Tampering",
+        "Repudiation",
+        "Information disclosure",
+        "Denial of service",
+        "Elevation of privilege",
+        "STRIDE threat categories",
+        "Attack tree",
+        "Attack path",
+        "Threat likelihood",
+        "Impact assessment",
+        "Risk treatment",
+        "Security control",
+        "Defense in depth",
+        "Least privilege",
+        "Fail-safe defaults",
+        "Secure by design",
+        "Security requirement",
+        "Misuse case",
+        "Supply-chain threat",
+        "Privacy threat",
+        "Threat-model review trigger"
+      ]
+    },
+    {
+      "id": "audit-and-incident-response",
+      "title": "Security events, protected logs, response lifecycle, and recovery",
+      "items": [
+        "Security audit event",
+        "Authentication success event",
+        "Authentication failure event",
+        "Authorization failure event",
+        "Privileged action event",
+        "Sensitive data access event",
+        "Input validation failure event",
+        "Security log redaction",
+        "Secret and token exclusion",
+        "Correlation identifier",
+        "Clock synchronization",
+        "Log integrity protection",
+        "Log access control",
+        "Log retention period",
+        "Centralized log collection",
+        "Alert threshold",
+        "False-positive tuning",
+        "Incident response plan",
+        "Incident severity classification",
+        "Incident triage",
+        "Containment",
+        "Eradication",
+        "Recovery",
+        "Post-incident review",
+        "Evidence preservation",
+        "Chain of custody",
+        "Breach notification decision",
+        "Credential rotation during response",
+        "Vulnerability disclosure process",
+        "NIST SP 800-61 Rev. 3",
+        "Tabletop exercise"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Threat",
+      "Vulnerability",
+      "Risk"
+    ],
+    [
+      "Preventive control",
+      "Detective control",
+      "Corrective control"
+    ],
+    [
+      "Incident containment",
+      "Incident eradication",
+      "Incident recovery"
+    ]
+  ],
+  "comparisonSources": [
+    "https://owasp.org/www-community/Threat_Modeling",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+    "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+  ],
+  "versionNotes": [
+    {
+      "edition": "NIST SP 800-61 Revision 3 (April 2025)",
+      "items": [
+        "NIST SP 800-61 Rev. 3 integrates incident response into broader cybersecurity risk management and supersedes Rev. 2 as the current revision."
+      ],
+      "sourceUrls": [
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "OWASP threat modeling and logging guidance; NIST SP 800-61 Revision 3",
+    "edition": "NIST SP 800-61 Rev. 3 and current OWASP guidance checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://owasp.org/www-community/Threat_Modeling",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+      "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+    ]
+  },
+  "scopeExclusions": [
+    "Detailed attack mitigations are covered in t05-001 through t05-009.",
+    "Legal breach notification duties vary by jurisdiction and are not summarized as legal advice.",
+    "Provider-specific SIEM query languages and incident tooling are outside scope."
+  ],
+  "generationAllowed": true
+}

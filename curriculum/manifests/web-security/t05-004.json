@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 4,
+  "id": "t05-004",
+  "track": "track-05",
+  "title": "OAuth 2.0 OIDC flows scopes PKCE and token storage",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "OAuth 2.0 is an authorization framework: a client obtains bounded access to a resource server through an authorization server. OpenID Connect adds an authentication layer and ID token for the client.",
+    "Authorization Code with PKCE is the preferred flow for public browser and native clients. The client sends a code challenge and proves possession of its verifier when redeeming the code.",
+    "Redirect URI exactness, state, nonce, issuer, audience, and token storage defend different protocol boundaries and must be checked by the receiving client or server.",
+    "OAuth is not a synonym for login. RFC 9700 is the current OAuth 2.0 Security Best Current Practice; OAuth 2.1 must not be described as finalized unless its standards status is verified."
+  ],
+  "inventory": [
+    {
+      "id": "actors-and-protocol-artifacts",
+      "title": "Actors, endpoints, scopes, and tokens",
+      "items": [
+        "OAuth 2.0 resource owner",
+        "OAuth 2.0 client",
+        "Authorization server",
+        "Resource server",
+        "Authorization endpoint",
+        "Token endpoint",
+        "Redirect URI",
+        "Authorization code",
+        "Access token",
+        "Refresh token",
+        "Scope",
+        "Audience",
+        "Client identifier",
+        "Public client",
+        "Confidential client",
+        "Client secret",
+        "Authorization Code grant",
+        "OpenID Connect (OIDC)",
+        "OpenID Provider (OP)",
+        "Relying Party (RP)",
+        "ID token",
+        "UserInfo endpoint",
+        "Issuer",
+        "OIDC discovery metadata",
+        "JWKS endpoint",
+        "OAuth authorization-server metadata"
+      ]
+    },
+    {
+      "id": "flows-and-security",
+      "title": "Authorization Code, PKCE, browser/native clients, and security boundaries",
+      "items": [
+        "Authorization Code with PKCE",
+        "Code verifier",
+        "Code challenge",
+        "S256 code challenge method",
+        "State parameter",
+        "OIDC nonce",
+        "Exact redirect URI matching",
+        "Authorization code interception",
+        "PKCE required for public clients",
+        "Authorization response issuer parameter",
+        "Issuer mix-up defense",
+        "Open redirector abuse",
+        "Refresh-token rotation",
+        "Refresh-token reuse detection",
+        "Refresh-token binding to client",
+        "Token audience restriction",
+        "Least-privilege scope",
+        "Bearer token possession risk",
+        "Native-app external user-agent",
+        "Loopback redirect URI",
+        "App-claimed HTTPS redirect URI",
+        "Browser-based app public-client boundary",
+        "Front-channel token delivery (implicit pattern)",
+        "Resource Owner Password Credentials grant",
+        "DPoP sender-constrained token",
+        "Mutual-TLS-bound access token",
+        "OAuth 2.0 Security Best Current Practice RFC 9700"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "OAuth 2.0",
+      "OpenID Connect"
+    ],
+    [
+      "Access token",
+      "ID token"
+    ],
+    [
+      "Authorization Code without PKCE",
+      "Authorization Code with PKCE"
+    ],
+    [
+      "Public client",
+      "Confidential client"
+    ],
+    [
+      "Front-channel token delivery",
+      "Authorization Code flow"
+    ]
+  ],
+  "comparisonSources": [
+    "https://datatracker.ietf.org/doc/html/rfc9700",
+    "https://datatracker.ietf.org/doc/html/rfc7636",
+    "https://openid.net/specs/openid-connect-core-1_0.html",
+    "https://openid.net/specs/openid-connect-discovery-1_0.html"
+  ],
+  "versionNotes": [
+    {
+      "edition": "OAuth 2.0 Security BCP RFC 9700 (January 2025)",
+      "items": [
+        "RFC 9700 updates RFCs 6749, 6750, and 6819 and consolidates current OAuth 2.0 security recommendations; it does not change OAuth into an authentication protocol."
+      ],
+      "sourceUrls": [
+        "https://datatracker.ietf.org/doc/html/rfc9700"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "IETF OAuth 2.0 Security BCP and PKCE specifications; OpenID Foundation OIDC Core and Discovery",
+    "edition": "RFC 9700, RFC 7636, OIDC Core 1.0 checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://datatracker.ietf.org/doc/html/rfc9700",
+      "https://datatracker.ietf.org/doc/html/rfc7636",
+      "https://openid.net/specs/openid-connect-core-1_0.html",
+      "https://openid.net/specs/openid-connect-discovery-1_0.html"
+    ]
+  },
+  "scopeExclusions": [
+    "Provider-specific SDKs, registration screens, and proprietary extensions are not enumerated.",
+    "OAuth 2.1 is not presented as a finalized standard.",
+    "Token validation and browser session storage details are covered in t05-003."
+  ],
+  "generationAllowed": true
+}

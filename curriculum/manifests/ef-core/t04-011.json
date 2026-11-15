@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 4,
+  "id": "t04-011",
+  "track": "track-04",
+  "title": "testing EF Core providers database isolation and pitfalls",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A test should verify the behavior that matters. Queries, provider translation, constraints, transactions, and collation need tests against the production database engine for reliable confidence.",
+    "Real database tests can be fast and isolated with controlled database lifecycle, fixtures, and parallel-worker separation. They catch provider-specific behaviors that fakes cannot reproduce.",
+    "SQLite in-memory is a relational test double but differs from SQL Server and other providers; keep its connection open for the test lifetime. EF Core InMemory is nonrelational, does not support transactions or raw SQL, and is discouraged for general application testing.",
+    "Mocking DbSet queries executes LINQ in memory rather than translating it. A repository abstraction allows query results to be stubbed, but adds design and maintenance cost.",
+    "Use test doubles for application orchestration or hard-to-trigger failures; use the actual provider for persistence semantics and query correctness."
+  ],
+  "inventory": [
+    {
+      "id": "real-database-testing",
+      "title": "Production-provider tests, isolation, and repeatability",
+      "items": [
+        "Test against production database system",
+        "Database integration test",
+        "Database fixture",
+        "Test database lifecycle",
+        "Test isolation",
+        "Transaction rollback test strategy",
+        "Respawn database reset pattern",
+        "Unique database per test worker",
+        "Database container fixture",
+        "Testcontainers",
+        "Migration application test",
+        "Provider-specific LINQ translation test",
+        "Collation behavior test",
+        "Transaction behavior test",
+        "Concurrency conflict test",
+        "Connection string from test configuration",
+        "Test data builder",
+        "Deterministic seed data",
+        "Parallel test database isolation"
+      ]
+    },
+    {
+      "id": "test-doubles-and-provider-differences",
+      "title": "SQLite, EF InMemory, DbContext mocks, and repository boundaries",
+      "items": [
+        "SQLite in-memory provider",
+        "SQLite open-connection lifetime",
+        "SQLite database per test",
+        "EF Core InMemory provider",
+        "InMemory provider transaction limitation",
+        "InMemory provider raw SQL limitation",
+        "SQLite provider translation difference",
+        "Provider collation difference",
+        "Provider-specific EF.Functions limitation",
+        "Mock DbContext",
+        "Mock DbSet",
+        "DbSet IQueryable fake",
+        "Repository abstraction",
+        "Stub repository result",
+        "Test double",
+        "Fake database provider",
+        "Production-provider test versus fake-provider test",
+        "Fake provider query divergence",
+        "Testing non-query orchestration with DbContext mock"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Production database test",
+      "SQLite in-memory fake"
+    ],
+    [
+      "SQLite in-memory",
+      "EF Core InMemory provider"
+    ],
+    [
+      "Mock DbSet query",
+      "Stub repository"
+    ],
+    [
+      "Test transaction rollback",
+      "Database reset fixture"
+    ],
+    [
+      "Unit test",
+      "Database integration test"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/ef/core/testing/",
+    "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
+    "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
+    "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Microsoft EF Core 10 official testing guidance",
+    "edition": "EF Core testing documentation checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/ef/core/testing/",
+      "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
+      "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
+      "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database"
+    ]
+  },
+  "scopeExclusions": [
+    "Specific xUnit, NUnit, or MSTest APIs are covered in track-10.",
+    "SQL Server test database setup and container operations are in database/operations topics.",
+    "Testcontainers API methods are version-specific and must be checked against its current project documentation before naming."
+  ],
+  "generationAllowed": true
+}

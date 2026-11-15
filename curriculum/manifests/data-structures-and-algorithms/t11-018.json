@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-018",
+  "track": "track-11",
+  "title": "timed mock interviews and spaced problem rehearsal",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A mock interview simulates the full task cycle: clarify the contract, propose an approach, compare alternatives, implement, test, analyze complexity, and communicate tradeoffs.",
+    "Timed practice should allocate time for understanding and planning as well as coding; rushing directly to implementation often hides a wrong interpretation.",
+    "During implementation, narrate meaningful decisions and invariants while keeping the explanation concise enough to leave time for validation.",
+    "When stuck, make uncertainty explicit, reduce the problem, construct a tiny example, or return to a correct baseline before attempting an optimization.",
+    "A post-session review records what was misunderstood, which invariant or pattern was missed, which tests were absent, and one concrete correction for the next attempt.",
+    "Spaced re-solving schedules a problem again after a delay and requires reconstructing the method from memory rather than rereading a solution immediately.",
+    "Practice difficulty should increase gradually across patterns and constraints; repeating only familiar easy problems can create false confidence.",
+    "A progress log tracks solve time, hint dependence, correctness, explanation quality, and re-solve success, but the measurements guide practice rather than define ability."
+  ],
+  "inventory": [
+    {"id":"mock-session-structure","title":"A complete timed interview session","items":["Read and restate problem","Clarify constraints","Propose baseline","Compare candidate approaches","Select data structure","State invariant","Implement in small steps","Dry run an example","Test boundary cases","Analyze time and space","Communicate tradeoffs","Reserve time for review"]},
+    {"id":"communication-and-recovery","title":"Reason aloud, handle uncertainty, and recover","items":["Concise reasoning narration","Explain decision before code detail","State uncertainty precisely","Ask a targeted clarification","Reduce to smaller subproblem","Construct a counterexample","Return to a correct baseline","Avoid silent long pauses","Respond to interviewer feedback","Summarize proof and complexity"]},
+    {"id":"review-and-spaced-practice","title":"Post-session review and spaced re-solving","items":["Record misunderstanding","Record missing invariant","Record omitted edge test","Classify pattern gap","Schedule delayed re-solve","Attempt without notes","Compare after independent attempt","Increase interval after successful recall","Shorten interval after failure","Maintain a mistake log"]},
+    {"id":"progress-and-calibration","title":"Measure progress and calibrate difficulty","items":["Time to correct approach","Time to accepted implementation","Hint dependence","Correctness across edge cases","Explanation clarity","Re-solve success","Pattern breadth","Difficulty progression","Distinguish speed from understanding","Periodic mixed-pattern session"]}
+  ],
+  "practiceProblems": [
+    {"id":"trapping-rain-water-mock","name":"Trapping Rain Water","difficulty":"advanced","patterns":["explain prefix/suffix maxima, two-pointer, and monotonic-stack approaches","prove the selected boundary invariant and compare space costs"]},
+    {"id":"lru-cache-mock","name":"LRU Cache","difficulty":"advanced","patterns":["clarify O(1) operation requirement","combine key lookup with recency-order mutation"]},
+    {"id":"median-two-sorted-arrays-mock","name":"Median of Two Sorted Arrays","difficulty":"advanced","patterns":["start with merge baseline","derive a binary-search partition and prove boundary conditions"]},
+    {"id":"word-ladder-mock","name":"Word Ladder","difficulty":"advanced","patterns":["model words as an implicit unweighted graph","compare single-source and bidirectional BFS state"]},
+    {"id":"jump-game-ii-mock","name":"Jump Game II","difficulty":"intermediate","patterns":["explain reachable frontier and jump-layer invariant","compare greedy frontier scan with dynamic programming"]},
+    {"id":"find-duplicate-number-mock","name":"Find the Duplicate Number","difficulty":"advanced","patterns":["compare binary-search counting with Floyd cycle detection","show why constraints enable an array-as-function model"]},
+    {"id":"spiral-matrix-mock","name":"Spiral Matrix","difficulty":"intermediate","patterns":["define shrinking-boundary invariant","dry run single-row and single-column matrices"]},
+    {"id":"combination-sum-iii-mock","name":"Combination Sum III","difficulty":"intermediate","patterns":["state candidate-order invariant","prune using remaining-count and minimum/maximum achievable sums"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Solve once","Delayed independent re-solve"],["Read a solution","Reconstruct from memory"],["Coding-only practice","Full explain/test/analyze cycle"],["Hint-dependent completion","Unaided pattern recall"],["Time pressure without review","Timed session with post-mortem"]],
+  "comparisonSources": ["https://usaco.guide/CP2.pdf","https://leetcode.com/problems/trapping-rain-water/","https://leetcode.com/problems/lru-cache/","https://leetcode.com/problems/median-of-two-sorted-arrays/","https://leetcode.com/problems/word-ladder/","https://leetcode.com/problems/jump-game-ii/","https://leetcode.com/problems/find-the-duplicate-number/","https://leetcode.com/problems/spiral-matrix/","https://leetcode.com/problems/combination-sum-iii/"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Competitive Programming 2 contest problem-solving and complexity advice; official LeetCode problem statements",
+    "edition": "Timeless practice method; canonical problem pages checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://usaco.guide/CP2.pdf","https://leetcode.com/problems/trapping-rain-water/","https://leetcode.com/problems/lru-cache/","https://leetcode.com/problems/median-of-two-sorted-arrays/","https://leetcode.com/problems/word-ladder/","https://leetcode.com/problems/jump-game-ii/","https://leetcode.com/problems/find-the-duplicate-number/","https://leetcode.com/problems/spiral-matrix/","https://leetcode.com/problems/combination-sum-iii/"]
+  },
+  "scopeExclusions": ["One canonical implementation lesson per DSA problem, stored under its algorithm topic","Employer-specific interview question frequency and proprietary question banks","System design and behavioral interviews","Guaranteed interview performance claims"],
+  "generationAllowed": true
+}

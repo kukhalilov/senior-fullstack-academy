@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 4,
+  "id": "t06-009",
+  "track": "track-06",
+  "title": "TypeScript structural compatibility, interfaces, classes, and variance",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": ["Type compatibility is primarily structural", "A target type can accept a source value with the required members", "Interfaces and classes describe instance and static shapes differently", "Private and protected members affect compatibility through declaration origin", "Function parameter variance has a method-syntax exception", "Variance annotations document but do not arbitrarily redefine compatibility"],
+  "inventory": [
+    {"id":"structural-compatibility","title":"Assignment compatibility and structural typing rules","items":["Structural type system","Assignment compatibility","Excess property check","Fresh object literal check","Optional property compatibility","Index signature compatibility","Function parameter compatibility","Return type compatibility","Bivariance hack for method parameters","Private member origin compatibility","Protected member origin compatibility","Class static side","Class instance side"]},
+    {"id":"interfaces-and-merging","title":"Interface declarations and structural members","items":["Interface declaration","Interface extends clause","Interface call signature","Interface construct signature","Interface index signature","Interface method signature","Interface property signature","Multiple interface heritage"]},
+    {"id":"class-types-and-variance","title":"Class relationships, implementation, and variance","items":["Class declaration","Abstract class","Abstract property","Abstract method","extends class clause","implements interface clause","Override modifier","public member","protected member","private member","readonly member","Parameter property","Generic class variance","StrictFunctionTypes compatibility","Covariant relationship","Contravariant relationship","Invariant relationship"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["structural typing","nominal typing"],["interface extends","class implements"],["class static side","class instance side"],["method parameter bivariance","function parameter contravariance"],["abstract class","interface"]],
+  "comparisonSources": ["https://www.typescriptlang.org/docs/handbook/type-compatibility.html","https://www.typescriptlang.org/docs/handbook/2/objects.html","https://www.typescriptlang.org/docs/handbook/2/classes.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html"],
+  "versionNotes": [{"edition":"TypeScript 4.3","items":["override modifier"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html"]}],
+  "sourceSnapshot": {"authority":"TypeScript Handbook and official release notes","edition":"TypeScript 6.0 stable","checkedAt":"2026-11-14","urls":["https://www.typescriptlang.org/docs/handbook/type-compatibility.html","https://www.typescriptlang.org/docs/handbook/2/objects.html","https://www.typescriptlang.org/docs/handbook/2/classes.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html"]},
+  "scopeExclusions": ["Generic declaration syntax (t06-008)","Function call and overload signatures (t06-023)","JavaScript runtime prototype inheritance (t06-018)"],
+  "generationAllowed": true
+}

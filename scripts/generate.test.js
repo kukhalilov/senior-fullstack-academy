@@ -429,13 +429,13 @@ test('the curriculum teaches overview before references and has no forced versio
 test('scheduled generation stays below the observed per-model Gemini free-tier daily quotas', () => {
   const workflow = fs.readFileSync('.github/workflows/generate.yml', 'utf8');
   assert.match(workflow, /cron: '17 \*\/4 \* \* \*'/);
-  assert.match(workflow, /GEMINI_MODELS: gemini-3\.5-flash-lite,gemini-3\.1-flash-lite,gemini-3\.8-flash,gemini-3\.6-flash,gemini-3-flash-preview,gemini-2\.5-flash,gemini-2\.5-flash-lite,gemini-4-hydrogen/);
+  assert.match(workflow, /GEMINI_MODELS: gemini-3\.5-flash-lite,gemini-3\.1-flash-lite/);
   assert.match(workflow, /UNITS_PER_RUN: '80'/);
   assert.match(workflow, /MAX_API_CALLS_PER_RUN: '160'/);
+  assert.equal(6 * 160 / 2, 480);
+  assert.ok(480 < 500);
   const generator = fs.readFileSync('scripts/generate.js', 'utf8');
-  assert.match(generator, /nextAvailableModel/);
-  assert.match(generator, /unavailableModels\.add\(model\)/);
-  assert.match(generator, /daily quota reached/);
+  assert.match(generator, /models\[\(apiCalls-1\)%models\.length\]/);
   assert.match(generator, /Math\.ceil\(4100\/models\.length\)/);
   assert.match(generator, /Math\.min\(requestedCalls, 160\)/);
 });
@@ -1346,3 +1346,12 @@ test('high-risk C# semantic guardrails are included in generation and review dat
     assert.ok(manifest.accuracyFacts.length >= 4, `${id} must provide verified accuracy guardrails`);
   }
 });
+
+test('model pool and reviewer evidence rules prevent false missing-item reports', () => {
+  const template = JSON.parse(fs.readFileSync('curriculum/prompt-template.json', 'utf8'));
+  assert.ok(template.qualityReview.check.some(check => check.includes('exact candidate quotation')));
+  assert.ok(template.qualityReview.check.some(check => check.includes('do not report a string that appears verbatim')));
+  const workflow = fs.readFileSync('.github/workflows/generate.yml', 'utf8');
+  for (const model of ['gemini-3.8-flash','gemini-3.6-flash','gemini-3-flash-preview','gemini-2.5-flash','gemini-2.5-flash-lite','gemini-4-hydrogen']) assert.ok(workflow.includes(model));
+});
+

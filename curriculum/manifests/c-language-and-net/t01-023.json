@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 4,
+  "id": "t01-023",
+  "track": "track-01",
+  "title": "C# operators, precedence, and operand evaluation",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Expressions combine operands and operators to produce values or references",
+    "Precedence groups operators and associativity resolves operators at the same precedence",
+    "Operands are generally evaluated left to right, but short-circuit constructs conditionally skip work",
+    "Static types and conversions determine which built-in or overloaded operator applies",
+    "Pattern tests, ranges, switch expressions, and with expressions express structured transformations",
+    "Checked context affects overflow behavior for applicable integral operations"
+  ],
+  "inventory": [
+    {
+      "id": "primary-and-access",
+      "title": "Primary, access, and invocation operators",
+      "items": [
+        "Member access operator .",
+        "Null-conditional member access operator ?.",
+        "Element access operator []",
+        "Null-conditional element access operator ?[]",
+        "Invocation operator ()",
+        "Post-increment operator ++",
+        "Post-decrement operator --",
+        "Null-forgiving operator !",
+        "new expression",
+        "typeof expression",
+        "checked expression",
+        "unchecked expression",
+        "default expression",
+        "nameof expression",
+        "delegate expression",
+        "sizeof expression",
+        "stackalloc expression",
+        "Pointer member access operator ->"
+      ]
+    },
+    {
+      "id": "unary-range",
+      "title": "Unary and range operators",
+      "items": [
+        "Unary plus operator +",
+        "Unary minus operator -",
+        "Logical negation operator !",
+        "Bitwise complement operator ~",
+        "Prefix increment operator ++",
+        "Prefix decrement operator --",
+        "Index-from-end operator ^",
+        "Cast expression (T)",
+        "await expression",
+        "Address-of operator &",
+        "Pointer indirection operator *",
+        "true operator",
+        "false operator",
+        "Range operator .."
+      ]
+    },
+    {
+      "id": "structured-expressions",
+      "title": "Selected composed expression forms",
+      "items": [
+        "with expression",
+        "Conditional operator ?:",
+        "Lambda expression",
+        "Lambda operator =>",
+        "Anonymous method expression",
+        "Throw expression",
+        "Collection expression",
+        "Collection expression with(...) argument element"
+      ]
+    },
+    {
+      "id": "arithmetic-shifts",
+      "title": "Arithmetic and shift operators",
+      "items": [
+        "Multiplication operator *",
+        "Division operator /",
+        "Remainder operator %",
+        "Addition operator +",
+        "Subtraction operator -",
+        "Left-shift operator <<",
+        "Right-shift operator >>",
+        "Unsigned right-shift operator >>>"
+      ]
+    },
+    {
+      "id": "relational-type",
+      "title": "Relational and type-testing operators",
+      "items": [
+        "Less-than operator <",
+        "Greater-than operator >",
+        "Less-than-or-equal operator <=",
+        "Greater-than-or-equal operator >=",
+        "is operator",
+        "as operator"
+      ]
+    },
+    {
+      "id": "equality-logical-bitwise",
+      "title": "Equality, logical, and bitwise operators",
+      "items": [
+        "Equality operator ==",
+        "Inequality operator !=",
+        "Boolean and bitwise AND operator &",
+        "Boolean and bitwise XOR operator ^",
+        "Boolean and bitwise OR operator |",
+        "Conditional AND operator &&",
+        "Conditional OR operator ||"
+      ]
+    },
+    {
+      "id": "assignment-null",
+      "title": "Assignment and null-coalescing operators",
+      "items": [
+        "Simple assignment operator =",
+        "Compound addition assignment operator +=",
+        "Compound subtraction assignment operator -=",
+        "Compound multiplication assignment operator *=",
+        "Compound division assignment operator /=",
+        "Compound remainder assignment operator %=",
+        "Compound bitwise AND assignment operator &=",
+        "Compound bitwise XOR assignment operator ^=",
+        "Compound bitwise OR assignment operator |=",
+        "Compound left-shift assignment operator <<=",
+        "Compound right-shift assignment operator >>=",
+        "Compound unsigned right-shift assignment operator >>>=",
+        "Null-coalescing operator ??",
+        "Null-coalescing assignment operator ??=",
+        "Conditional access assignment",
+        "Conditional ref expression"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Logical negation operator !",
+      "Bitwise complement operator ~"
+    ],
+    [
+      "Boolean and bitwise AND operator &",
+      "Conditional AND operator &&"
+    ],
+    [
+      "Equality operator ==",
+      "is operator",
+      "as operator"
+    ],
+    [
+      "Null-conditional member access operator ?.",
+      "Null-coalescing operator ??"
+    ],
+    [
+      "switch statement",
+      "switch expression"
+    ],
+    [
+      "checked expression",
+      "unchecked expression"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+  ],
+  "versionNotes": [
+    {
+      "edition": "C# 15",
+      "items": [
+        "Collection expressions can begin with a with(...) element to pass arguments to the underlying collection constructor or factory."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+      ]
+    },
+    {
+      "edition": "C# 14",
+      "items": [
+        "Assignment through conditional access, such as receiver?.Property = value; conditional access itself predates C# 14"
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14"
+      ]
+    },
+    {
+      "edition": "C# 11",
+      "items": [
+        "Unsigned right-shift operator >>> and its compound assignment form >>>="
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn C# operators and expressions reference and language specification",
+    "edition": "C# 15 stable on .NET 11 GA; Memory safety remains preview-only; checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+    ]
+  },
+  "scopeExclusions": [
+    "User-defined operator declaration syntax and overload resolution in depth",
+    "Pattern forms, switch expressions, and exhaustive matching are covered in t01-012.",
+    "Query-expression syntax and LINQ operators",
+    "Statement forms such as if, switch, and try",
+    "Every expression grammar production not named in the supplied inventory"
+  ],
+  "generationAllowed": true
+}

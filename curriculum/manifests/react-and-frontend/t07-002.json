@@ -1,0 +1,553 @@
+{
+  "schemaVersion": 4,
+  "id": "t07-002",
+  "track": "track-07",
+  "title": "Web accessibility WCAG semantics keyboard focus ARIA and testing",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Accessibility is a product quality that supports people with diverse sensory, motor, cognitive, speech, and learning needs across devices and assistive technologies.",
+    "Semantic HTML supplies browser and accessibility-tree meaning natively; ARIA supplements semantics when native HTML does not express the needed role or state.",
+    "WCAG gives testable technology-independent success criteria organized under four principles; conformance level and scope determine which criteria apply.",
+    "Keyboard focus, accessible naming, and predictable interaction are behavior contracts shared by sighted keyboard users and assistive technology users.",
+    "A robust accessibility review combines automated checks with keyboard, zoom, visual, screen-reader, and task-based manual evaluation."
+  ],
+  "inventoryComplete": true,
+  "inventory": [
+    {
+      "id": "accessibility-model-and-principles",
+      "title": "Accessibility model, POUR principles, and WCAG guidelines",
+      "items": [
+        "Accessibility as support for diverse user needs",
+        "Perceivable",
+        "Operable",
+        "Understandable",
+        "Robust",
+        "1.1 Text Alternatives",
+        "1.2 Time-based Media",
+        "1.3 Adaptable",
+        "1.4 Distinguishable",
+        "2.1 Keyboard Accessible",
+        "2.2 Enough Time",
+        "2.3 Seizures and Physical Reactions",
+        "2.4 Navigable",
+        "2.5 Input Modalities",
+        "3.1 Readable",
+        "3.2 Predictable",
+        "3.3 Input Assistance",
+        "4.1 Compatible",
+        "Semantic HTML before ARIA",
+        "Native controls before custom widgets",
+        "Accessibility tree",
+        "Accessible name",
+        "Accessible description",
+        "Keyboard focus order",
+        "Visible focus",
+        "Keyboard operability",
+        "Input modality independence",
+        "Reduced motion",
+        "Text alternatives",
+        "Error prevention and recovery"
+      ]
+    },
+    {
+      "id": "perceivable-text-alternatives",
+      "title": "WCAG 2.2 success criteria: perceivable text alternatives",
+      "items": [
+        "1.1.1 Non-text Content (A)"
+      ]
+    },
+    {
+      "id": "perceivable-time-based-media",
+      "title": "WCAG 2.2 success criteria: perceivable time based media",
+      "items": [
+        "1.2.1 Audio-only and Video-only (Prerecorded) (A)",
+        "1.2.2 Captions (Prerecorded) (A)",
+        "1.2.3 Audio Description or Media Alternative (Prerecorded) (A)",
+        "1.2.4 Captions (Live) (AA)",
+        "1.2.5 Audio Description (Prerecorded) (AA)",
+        "1.2.6 Sign Language (Prerecorded) (AAA)",
+        "1.2.7 Extended Audio Description (Prerecorded) (AAA)",
+        "1.2.8 Media Alternative (Prerecorded) (AAA)",
+        "1.2.9 Audio-only (Live) (AAA)"
+      ]
+    },
+    {
+      "id": "perceivable-adaptable",
+      "title": "WCAG 2.2 success criteria: perceivable adaptable",
+      "items": [
+        "1.3.1 Info and Relationships (A)",
+        "1.3.2 Meaningful Sequence (A)",
+        "1.3.3 Sensory Characteristics (A)",
+        "1.3.4 Orientation (AA)",
+        "1.3.5 Identify Input Purpose (AA)",
+        "1.3.6 Identify Purpose (AAA)"
+      ]
+    },
+    {
+      "id": "perceivable-distinguishable",
+      "title": "WCAG 2.2 success criteria: perceivable distinguishable",
+      "items": [
+        "1.4.1 Use of Color (A)",
+        "1.4.2 Audio Control (A)",
+        "1.4.3 Contrast (Minimum) (AA)",
+        "1.4.4 Resize Text (AA)",
+        "1.4.5 Images of Text (AA)",
+        "1.4.6 Contrast (Enhanced) (AAA)",
+        "1.4.7 Low or No Background Audio (AAA)",
+        "1.4.8 Visual Presentation (AAA)",
+        "1.4.9 Images of Text (No Exception) (AAA)",
+        "1.4.10 Reflow (AA)",
+        "1.4.11 Non-text Contrast (AA)",
+        "1.4.12 Text Spacing (AA)",
+        "1.4.13 Content on Hover or Focus (AA)"
+      ]
+    },
+    {
+      "id": "operable-keyboard-accessible",
+      "title": "WCAG 2.2 success criteria: operable keyboard accessible",
+      "items": [
+        "2.1.1 Keyboard (A)",
+        "2.1.2 No Keyboard Trap (A)",
+        "2.1.3 Keyboard (No Exception) (AAA)",
+        "2.1.4 Character Key Shortcuts (A)"
+      ]
+    },
+    {
+      "id": "operable-enough-time",
+      "title": "WCAG 2.2 success criteria: operable enough time",
+      "items": [
+        "2.2.1 Timing Adjustable (A)",
+        "2.2.2 Pause, Stop, Hide (A)",
+        "2.2.3 No Timing (AAA)",
+        "2.2.4 Interruptions (AAA)",
+        "2.2.5 Re-authenticating (AAA)",
+        "2.2.6 Timeouts (AAA)"
+      ]
+    },
+    {
+      "id": "operable-seizures-and-reactions",
+      "title": "WCAG 2.2 success criteria: operable seizures and reactions",
+      "items": [
+        "2.3.1 Three Flashes or Below Threshold (A)",
+        "2.3.2 Three Flashes (AAA)",
+        "2.3.3 Animation from Interactions (AAA)"
+      ]
+    },
+    {
+      "id": "operable-navigable",
+      "title": "WCAG 2.2 success criteria: operable navigable",
+      "items": [
+        "2.4.1 Bypass Blocks (A)",
+        "2.4.2 Page Titled (A)",
+        "2.4.3 Focus Order (A)",
+        "2.4.4 Link Purpose (In Context) (A)",
+        "2.4.5 Multiple Ways (AA)",
+        "2.4.6 Headings and Labels (AA)",
+        "2.4.7 Focus Visible (AA)",
+        "2.4.8 Location (AAA)",
+        "2.4.9 Link Purpose (Link Only) (AAA)",
+        "2.4.10 Section Headings (AAA)",
+        "2.4.11 Focus Not Obscured (Minimum) (AA)",
+        "2.4.12 Focus Not Obscured (Enhanced) (AAA)",
+        "2.4.13 Focus Appearance (AAA)"
+      ]
+    },
+    {
+      "id": "operable-input-modalities",
+      "title": "WCAG 2.2 success criteria: operable input modalities",
+      "items": [
+        "2.5.1 Pointer Gestures (A)",
+        "2.5.2 Pointer Cancellation (A)",
+        "2.5.3 Label in Name (A)",
+        "2.5.4 Motion Actuation (A)",
+        "2.5.5 Target Size (Enhanced) (AAA)",
+        "2.5.6 Concurrent Input Mechanisms (AAA)",
+        "2.5.7 Dragging Movements (AA)",
+        "2.5.8 Target Size (Minimum) (AA)"
+      ]
+    },
+    {
+      "id": "understandable-readable",
+      "title": "WCAG 2.2 success criteria: understandable readable",
+      "items": [
+        "3.1.1 Language of Page (A)",
+        "3.1.2 Language of Parts (AA)",
+        "3.1.3 Unusual Words (AAA)",
+        "3.1.4 Abbreviations (AAA)",
+        "3.1.5 Reading Level (AAA)",
+        "3.1.6 Pronunciation (AAA)"
+      ]
+    },
+    {
+      "id": "understandable-predictable",
+      "title": "WCAG 2.2 success criteria: understandable predictable",
+      "items": [
+        "3.2.1 On Focus (A)",
+        "3.2.2 On Input (A)",
+        "3.2.3 Consistent Navigation (AA)",
+        "3.2.4 Consistent Identification (AA)",
+        "3.2.5 Change on Request (AAA)",
+        "3.2.6 Consistent Help (A)"
+      ]
+    },
+    {
+      "id": "understandable-input-assistance",
+      "title": "WCAG 2.2 success criteria: understandable input assistance",
+      "items": [
+        "3.3.1 Error Identification (A)",
+        "3.3.2 Labels or Instructions (A)",
+        "3.3.3 Error Suggestion (AA)",
+        "3.3.4 Error Prevention (Legal, Financial, Data) (AA)",
+        "3.3.5 Help (AAA)",
+        "3.3.6 Error Prevention (All) (AAA)",
+        "3.3.7 Redundant Entry (A)",
+        "3.3.8 Accessible Authentication (Minimum) (AA)",
+        "3.3.9 Accessible Authentication (Enhanced) (AAA)"
+      ]
+    },
+    {
+      "id": "robust-compatible",
+      "title": "WCAG 2.2 success criteria: robust compatible",
+      "items": [
+        "4.1.2 Name, Role, Value (A)",
+        "4.1.3 Status Messages (AA)"
+      ]
+    },
+    {
+      "id": "aria-concrete-roles",
+      "title": "Concrete WAI-ARIA 1.3 draft roles",
+      "items": [
+        "alert",
+        "alertdialog",
+        "application",
+        "article",
+        "banner",
+        "blockquote",
+        "button",
+        "caption",
+        "cell",
+        "checkbox",
+        "code",
+        "columnheader",
+        "combobox",
+        "comment",
+        "complementary",
+        "contentinfo",
+        "definition",
+        "deletion",
+        "dialog",
+        "directory",
+        "document",
+        "emphasis",
+        "feed",
+        "figure",
+        "form",
+        "generic",
+        "grid",
+        "gridcell",
+        "group",
+        "heading",
+        "image",
+        "img",
+        "insertion",
+        "link",
+        "list",
+        "listbox",
+        "listitem",
+        "log",
+        "main",
+        "mark",
+        "marquee",
+        "math",
+        "menu",
+        "menubar",
+        "menuitem",
+        "menuitemcheckbox",
+        "menuitemradio",
+        "meter",
+        "navigation",
+        "none",
+        "note",
+        "option",
+        "paragraph",
+        "presentation",
+        "progressbar",
+        "radio",
+        "radiogroup",
+        "region",
+        "row",
+        "rowgroup",
+        "rowheader",
+        "scrollbar",
+        "search",
+        "searchbox",
+        "sectionfooter",
+        "sectionheader",
+        "separator",
+        "slider",
+        "spinbutton",
+        "status",
+        "strong",
+        "subscript",
+        "suggestion",
+        "superscript",
+        "switch",
+        "tab",
+        "table",
+        "tablist",
+        "tabpanel",
+        "term",
+        "textbox",
+        "time",
+        "timer",
+        "toolbar",
+        "tooltip",
+        "tree",
+        "treegrid",
+        "treeitem"
+      ]
+    },
+    {
+      "id": "aria-abstract-roles",
+      "title": "Abstract WAI-ARIA role model (not author-assigned)",
+      "items": [
+        "command",
+        "composite",
+        "input",
+        "landmark",
+        "range",
+        "roletype",
+        "section",
+        "sectionhead",
+        "select",
+        "structure",
+        "widget",
+        "window"
+      ]
+    },
+    {
+      "id": "aria-states-and-properties",
+      "title": "WAI-ARIA 1.3 draft states and properties",
+      "items": [
+        "aria-activedescendant",
+        "aria-atomic",
+        "aria-autocomplete",
+        "aria-braillelabel",
+        "aria-brailleroledescription",
+        "aria-busy",
+        "aria-checked",
+        "aria-colcount",
+        "aria-colindex",
+        "aria-colindextext",
+        "aria-colspan",
+        "aria-controls",
+        "aria-current",
+        "aria-describedby",
+        "aria-description",
+        "aria-details",
+        "aria-disabled",
+        "aria-dropeffect",
+        "aria-errormessage",
+        "aria-expanded",
+        "aria-flowto",
+        "aria-grabbed",
+        "aria-haspopup",
+        "aria-hidden",
+        "aria-invalid",
+        "aria-keyshortcuts",
+        "aria-label",
+        "aria-labelledby",
+        "aria-level",
+        "aria-live",
+        "aria-modal",
+        "aria-multiline",
+        "aria-multiselectable",
+        "aria-orientation",
+        "aria-owns",
+        "aria-placeholder",
+        "aria-posinset",
+        "aria-pressed",
+        "aria-readonly",
+        "aria-relevant",
+        "aria-required",
+        "aria-roledescription",
+        "aria-rowcount",
+        "aria-rowindex",
+        "aria-rowindextext",
+        "aria-rowspan",
+        "aria-selected",
+        "aria-setsize",
+        "aria-sort",
+        "aria-valuemax",
+        "aria-valuemin",
+        "aria-valuenow",
+        "aria-valuetext"
+      ]
+    },
+    {
+      "id": "apg-interaction-patterns",
+      "title": "Current ARIA Authoring Practices Guide patterns",
+      "items": [
+        "Accordion",
+        "Alert",
+        "Alert and Message Dialogs",
+        "Breadcrumb",
+        "Button",
+        "Carousel",
+        "Checkbox",
+        "Combobox",
+        "Dialog (Modal)",
+        "Disclosure (Show/Hide)",
+        "Feed",
+        "Grid",
+        "Landmarks",
+        "Link",
+        "Listbox",
+        "Menu and Menubar",
+        "Menu Button",
+        "Meter",
+        "Radio Group",
+        "Slider",
+        "Slider (Multi-Thumb)",
+        "Spinbutton",
+        "Switch",
+        "Table",
+        "Tabs",
+        "Toolbar",
+        "Tooltip",
+        "Tree View",
+        "Treegrid",
+        "Window Splitter"
+      ]
+    },
+    {
+      "id": "keyboard-focus-and-widget-behaviors",
+      "title": "Keyboard and focus design concepts",
+      "items": [
+        "Roving tabindex",
+        "aria-activedescendant focus management",
+        "Tab sequence",
+        "Arrow-key navigation",
+        "Home and End navigation",
+        "Escape dismissal",
+        "Enter and Space activation",
+        "Focus entry and return",
+        "Modal dialog focus containment",
+        "Focus restoration",
+        "Disabled versus unavailable controls",
+        "Pointer cancellation and drag alternatives",
+        "Live-region announcement timing",
+        "Accessible name and description computation",
+        "Role-state-property support",
+        "Required states and properties",
+        "Allowed accessibility child roles",
+        "Required accessibility parent roles",
+        "Presentational children",
+        "Name From author",
+        "Name From content",
+        "Name prohibited"
+      ]
+    },
+    {
+      "id": "accessibility-test-methods-and-tools",
+      "title": "Accessibility evaluation methods and tools",
+      "items": [
+        "Automated rule-based scans",
+        "Keyboard-only testing",
+        "Screen-reader testing",
+        "Zoom and text resizing",
+        "Reflow testing",
+        "Contrast testing",
+        "Reduced-motion testing",
+        "Caption and transcript review",
+        "Accessibility tree inspection",
+        "Manual review against WCAG success criteria",
+        "axe-core",
+        "WAVE",
+        "Lighthouse accessibility audit",
+        "Accessibility Insights",
+        "Browser DevTools accessibility tree",
+        "NVDA",
+        "JAWS",
+        "VoiceOver",
+        "TalkBack",
+        "Orca"
+      ]
+    }
+  ],
+  "comparisons": [
+    [
+      "native semantic element",
+      "custom ARIA widget"
+    ],
+    [
+      "accessible name",
+      "accessible description"
+    ],
+    [
+      "aria-label",
+      "aria-labelledby"
+    ],
+    [
+      "roving tabindex",
+      "aria-activedescendant"
+    ],
+    [
+      "automated scan",
+      "manual assistive-technology review"
+    ]
+  ],
+  "comparisonSources": [
+    "https://www.w3.org/TR/WCAG22/",
+    "https://www.w3.org/TR/wai-aria-1.3/",
+    "https://www.w3.org/TR/wai-aria-1.2/",
+    "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "https://www.w3.org/WAI/WCAG22/quickref/",
+    "https://www.w3.org/WAI/ARIA/apg/"
+  ],
+  "versionNotes": [
+    {
+      "edition": "WCAG 2.2",
+      "items": [
+        "Added nine success criteria: 2.4.11 Focus Not Obscured (Minimum), 2.4.12 Focus Not Obscured (Enhanced), 2.4.13 Focus Appearance, 2.5.7 Dragging Movements, 2.5.8 Target Size (Minimum), 3.2.6 Consistent Help, 3.3.7 Redundant Entry, 3.3.8 Accessible Authentication (Minimum), and 3.3.9 Accessible Authentication (Enhanced).",
+        "Removed 4.1.1 Parsing from the active success criteria; it remains only for legacy policy interpretation."
+      ],
+      "sourceUrls": [
+        "https://www.w3.org/TR/WCAG22/",
+        "https://www.w3.org/WAI/WCAG22/quickref/"
+      ]
+    },
+    {
+      "edition": "WAI-ARIA 1.3 Working Draft",
+      "items": [
+        "Adds the image role as a synonym of img and adds comment, mark, and suggestion roles.",
+        "Adds aria-braillelabel, aria-brailleroledescription, aria-colindextext, aria-description, aria-rowindextext and other draft vocabulary changes; draft status means implementations can vary."
+      ],
+      "sourceUrls": [
+        "https://www.w3.org/TR/wai-aria-1.3/",
+        "https://www.w3.org/WAI/standards-guidelines/aria/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "W3C WCAG 2.2 Recommendation, WAI-ARIA 1.2 Recommendation and 1.3 Working Draft, and current W3C ARIA APG",
+    "edition": "WCAG 2.2 and ARIA 1.3 draft references checked 2026-11-14; W3C role data commit 2263442a76fffe5887af5ae76a9a8281836c5ab0",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://www.w3.org/TR/WCAG22/",
+      "https://www.w3.org/TR/wai-aria-1.3/",
+      "https://www.w3.org/TR/wai-aria-1.2/",
+      "https://www.w3.org/WAI/ARIA/apg/patterns/",
+      "https://www.w3.org/WAI/WCAG22/quickref/",
+      "https://www.w3.org/WAI/ARIA/apg/",
+      "https://github.com/w3c/aria/blob/2263442a76fffe5887af5ae76a9a8281836c5ab0/common/script/roleInfo.js"
+    ]
+  },
+  "scopeExclusions": [
+    "Detailed HTML element and forms reference inventories are covered by t07-001 and t07-014",
+    "CSS property techniques and design tokens are covered by t07-016 through t07-018",
+    "Framework-specific accessible component APIs are covered by React component and testing topics t07-004 through t07-025",
+    "WCAG techniques and failures are informative implementation guidance and remain source-linked for lesson examples; this manifest freezes all normative WCAG 2.2 success criteria"
+  ],
+  "generationAllowed": true
+}

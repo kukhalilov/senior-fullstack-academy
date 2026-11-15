@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 4,
+  "id": "t03-003",
+  "track": "track-03",
+  "title": "select filtering sorting and pagination",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A SELECT query describes which rows and columns belong in a result. The written clause order is not the same as logical query processing order, so aliases and predicates are visible only at specific stages; filtering, projection, sorting, and row limiting should be reasoned about separately.",
+    "A WHERE search condition is evaluated using SQL's three-valued logic: TRUE, FALSE, and UNKNOWN. NULL is not an ordinary value, so equality with NULL does not test for missing data; use IS NULL or the null-safe IS [NOT] DISTINCT FROM predicate where appropriate.",
+    "ORDER BY is the only guarantee of result ordering. TOP limits rows before a client receives them, while OFFSET/FETCH expresses a page range within ORDER BY. Pagination needs a deterministic ordering key and a strategy for concurrent data changes; large offsets can be more costly than a continuation-key approach.",
+    "Pattern matching has different tools: LIKE handles a compact wildcard grammar and collation-sensitive comparisons, while SQL Server 2025 REGEXP_LIKE provides regular-expression matching at database compatibility level 170 or higher. Their semantics and indexability differ.",
+    "SQL Server syntax is not identical to every T-SQL host. Features documented only for Microsoft Fabric, such as ORDER BY ALL and QUALIFY, must not be taught as SQL Server syntax."
+  ],
+  "inventory": [
+    {
+      "id": "select-query-shape-and-projection",
+      "title": "SELECT statement structure, result projection, aliases, and logical processing boundaries",
+      "items": [
+        "SELECT statement",
+        "SELECT query expression",
+        "SELECT query specification",
+        "SELECT [ALL]",
+        "SELECT DISTINCT",
+        "Select list",
+        "Select-list column expression",
+        "Select-list scalar expression",
+        "Select-list alias",
+        "AS column-alias syntax",
+        "Delimited identifier alias",
+        "Duplicate projected values versus duplicate source rows",
+        "SELECT * wildcard",
+        "Qualified wildcard table-alias.*",
+        "FROM clause table source",
+        "Table alias in FROM",
+        "WHERE clause",
+        "Logical SELECT clause processing order",
+        "SELECT alias visibility in ORDER BY",
+        "SELECT alias not visible in WHERE",
+        "SELECT result-set order is unspecified without ORDER BY",
+        "UNION-compatible result projection boundary",
+        "ORDER BY ALL is Microsoft Fabric syntax, not SQL Server syntax",
+        "QUALIFY is Fabric Data Warehouse syntax, not SQL Server syntax"
+      ]
+    },
+    {
+      "id": "where-predicates-and-search-conditions",
+      "title": "WHERE predicates, comparisons, Boolean logic, NULL semantics, subqueries, and text patterns",
+      "items": [
+        "Search condition",
+        "Boolean TRUE",
+        "Boolean FALSE",
+        "Boolean UNKNOWN",
+        "Three-valued logic",
+        "Comparison operator =",
+        "Comparison operator >",
+        "Comparison operator <",
+        "Comparison operator >=",
+        "Comparison operator <=",
+        "Comparison operator <> (not equal)",
+        "Comparison operator != (non-ISO not equal)",
+        "Comparison operator !< (non-ISO not less than)",
+        "Comparison operator !> (non-ISO not greater than)",
+        "Logical operator NOT",
+        "Logical operator AND",
+        "Logical operator OR",
+        "AND before OR operator precedence",
+        "Parenthesized search condition",
+        "BETWEEN and NOT BETWEEN",
+        "IN and NOT IN value-list predicate",
+        "IN and NOT IN subquery predicate",
+        "EXISTS and NOT EXISTS subquery predicate",
+        "ANY and SOME quantified comparison",
+        "ALL quantified comparison",
+        "IS NULL and IS NOT NULL",
+        "IS DISTINCT FROM and IS NOT DISTINCT FROM",
+        "NULL in NOT IN subquery result",
+        "LIKE and NOT LIKE predicate",
+        "LIKE percent wildcard (%)",
+        "LIKE underscore wildcard (_)",
+        "LIKE bracket character class ([...])",
+        "LIKE negated bracket character class ([^...])",
+        "LIKE ESCAPE character",
+        "LIKE collation-sensitive matching",
+        "REGEXP_LIKE(string_expression,pattern_expression[,flags])",
+        "REGEXP_LIKE case-sensitive flag c",
+        "REGEXP_LIKE case-insensitive flag i",
+        "REGEXP_LIKE multiline flag m",
+        "REGEXP_LIKE dot-newline flag s",
+        "REGEXP_LIKE database compatibility level 170 requirement",
+        "REGEXP_LIKE ignores collation rules",
+        "REGEXP_LIKE SARGable anchored-pattern boundary",
+        "Predicate versus scalar expression"
+      ]
+    },
+    {
+      "id": "ordering-and-result-determinism",
+      "title": "ORDER BY expressions, sort direction, collation, aliases, and deterministic result ordering",
+      "items": [
+        "ORDER BY clause",
+        "ORDER BY expression list",
+        "ORDER BY column name",
+        "ORDER BY select-list alias",
+        "ORDER BY ordinal position",
+        "ORDER BY expression not in select list",
+        "ORDER BY ASC",
+        "ORDER BY DESC",
+        "ASC default sort direction",
+        "ORDER BY multiple sort keys",
+        "ORDER BY COLLATE collation_name",
+        "Collation-specific string sort order",
+        "NULL sorts before non-NULL values in SQL Server",
+        "ORDER BY does not guarantee order among equal sort keys",
+        "Unique tie-breaker for deterministic paging",
+        "ORDER BY inside a view or derived table does not order its outer query",
+        "ORDER BY with UNION, EXCEPT, and INTERSECT scope",
+        "ORDER BY with SELECT INTO limitation",
+        "ORDER BY ALL is Fabric-only"
+      ]
+    },
+    {
+      "id": "row-limits-and-pagination",
+      "title": "TOP, OFFSET/FETCH, page stability, and row-limiting alternatives",
+      "items": [
+        "TOP (expression)",
+        "TOP (expression) PERCENT",
+        "TOP (expression) WITH TIES",
+        "TOP parentheses compatibility rule",
+        "TOP requires ORDER BY for predictable row selection",
+        "WITH TIES requires ORDER BY",
+        "TOP cannot share a query scope with OFFSET/FETCH",
+        "ORDER BY OFFSET integer_constant ROWS",
+        "ORDER BY OFFSET offset_row_count_expression ROWS",
+        "FETCH FIRST row_count ROW ONLY",
+        "FETCH NEXT row_count ROWS ONLY",
+        "OFFSET/FETCH requires ORDER BY",
+        "OFFSET/FETCH SQL Server 2012 and later availability",
+        "OFFSET/FETCH variables and expressions",
+        "Offset pagination",
+        "Keyset (seek) pagination",
+        "Deterministic pagination needs a unique ordering key",
+        "Pagination consistency under concurrent writes",
+        "Snapshot or serializable transaction for stable multi-page reads",
+        "Large-offset scan cost",
+        "SET ROWCOUNT legacy row-limit alternative",
+        "TOP and FETCH preferred over SET ROWCOUNT for SELECT limits",
+        "FETCH row-count and offset must be nonnegative"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    ["SELECT ALL", "SELECT DISTINCT"],
+    ["WHERE", "HAVING"],
+    ["LIKE", "REGEXP_LIKE"],
+    ["= NULL", "IS NULL"],
+    ["= and <>", "IS [NOT] DISTINCT FROM"],
+    ["TOP", "OFFSET/FETCH"],
+    ["Offset pagination", "Keyset pagination"],
+    ["Unordered SELECT", "SELECT with ORDER BY"]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17"
+  ],
+  "versionNotes": [
+    {
+      "edition": "SQL Server 2022 and SQL Server 2025 SELECT predicate additions",
+      "items": [
+        "SQL Server 2022 added IS [NOT] DISTINCT FROM for equality comparisons that always return TRUE or FALSE even when either operand is NULL. SQL Server 2025 added REGEXP_LIKE for regular-expression filtering; it requires database compatibility level 170 and does not follow collation rules. These are focused additions: the core SELECT, WHERE, ORDER BY, TOP, and OFFSET/FETCH clause forms remain the basis of the topic."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft SQL Server 2025 (17.x) Transact-SQL SELECT, search-condition, ordering, TOP, and regular-expression references",
+    "edition": "SQL Server 2025 (17.x), current T-SQL SELECT surface checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/exists-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
+    ]
+  },
+  "scopeExclusions": [
+    "FROM joins, APPLY, and PIVOT are taught in t03-004; this topic includes only the FROM and table-alias context needed to teach projection and filtering.",
+    "GROUP BY, HAVING, aggregate functions, and window functions belong to t03-005; HAVING appears here only as a comparison with row-level WHERE filtering.",
+    "INSERT, UPDATE, DELETE, MERGE, and bulk operations are taught in t03-006. TOP on data-modification statements is out of scope.",
+    "Index design and access paths, SARGability analysis, execution plans, and query tuning are taught in t03-008, t03-009, and t03-013; REGEXP_LIKE indexability is mentioned only as a predicate boundary.",
+    "SQL Server 2025 regular-expression scalar and table-valued functions other than the REGEXP_LIKE predicate are outside this selection/filtering topic.",
+    "ORDER BY ALL and QUALIFY are named only to mark their Microsoft Fabric boundary; they are not SQL Server syntax and must not be taught as available SQL Server features.",
+    "Keyset pagination is introduced as a design alternative; indexing and application cursor-token implementation details are covered in their own topics."
+  ],
+  "generationAllowed": true
+}

@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 4,
+  "id": "t06-012",
+  "track": "track-06",
+  "title": "JavaScript arrays",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Array exotic objects",
+    "Indexed properties",
+    "length property",
+    "Array literals and Array constructor",
+    "Sparse arrays and empty slots",
+    "Array-like objects",
+    "Iterables",
+    "Array iterators",
+    "Shallow copies",
+    "Mutating methods and copying methods",
+    "Generic array methods",
+    "Callback iteration methods",
+    "Array subclassing and species constructors"
+  ],
+  "inventory": [
+    {
+      "id": "constructor-and-static",
+      "title": "Array constructor, static methods and static property",
+      "items": [
+        "Array",
+        "Array[Symbol.species]",
+        "Array.from",
+        "Array.fromAsync",
+        "Array.isArray",
+        "Array.of"
+      ]
+    },
+    {
+      "id": "prototype-properties",
+      "title": "Array prototype properties",
+      "items": [
+        "Array.prototype.constructor",
+        "Array.prototype.length",
+        "Array.prototype[Symbol.unscopables]"
+      ]
+    },
+    {
+      "id": "indexing-and-iteration",
+      "title": "Indexing and iterator methods",
+      "items": [
+        "Array.prototype.at",
+        "Array.prototype.entries",
+        "Array.prototype.keys",
+        "Array.prototype.values",
+        "Array.prototype[Symbol.iterator]"
+      ]
+    },
+    {
+      "id": "search-and-predicates",
+      "title": "Searching and predicate methods",
+      "items": [
+        "Array.prototype.every",
+        "Array.prototype.find",
+        "Array.prototype.findIndex",
+        "Array.prototype.findLast",
+        "Array.prototype.findLastIndex",
+        "Array.prototype.includes",
+        "Array.prototype.indexOf",
+        "Array.prototype.lastIndexOf",
+        "Array.prototype.some"
+      ]
+    },
+    {
+      "id": "mapping-and-flattening",
+      "title": "Mapping and flattening methods",
+      "items": [
+        "Array.prototype.filter",
+        "Array.prototype.flat",
+        "Array.prototype.flatMap",
+        "Array.prototype.map"
+      ]
+    },
+    {
+      "id": "copying-and-copy-by-change",
+      "title": "Copying and copy-by-change methods",
+      "items": [
+        "Array.prototype.concat",
+        "Array.prototype.slice",
+        "Array.prototype.toReversed",
+        "Array.prototype.toSorted",
+        "Array.prototype.toSpliced",
+        "Array.prototype.with"
+      ]
+    },
+    {
+      "id": "add-remove-and-size-mutations",
+      "title": "Adding and removing elements",
+      "items": [
+        "Array.prototype.pop",
+        "Array.prototype.push",
+        "Array.prototype.shift",
+        "Array.prototype.splice",
+        "Array.prototype.unshift"
+      ]
+    },
+    {
+      "id": "in-place-rearrangement",
+      "title": "In-place rearrangement and fill methods",
+      "items": [
+        "Array.prototype.copyWithin",
+        "Array.prototype.fill",
+        "Array.prototype.reverse",
+        "Array.prototype.sort"
+      ]
+    },
+    {
+      "id": "callback-iteration-and-aggregation",
+      "title": "Callback iteration and aggregation",
+      "items": [
+        "Array.prototype.forEach",
+        "Array.prototype.reduce",
+        "Array.prototype.reduceRight"
+      ]
+    },
+    {
+      "id": "string-conversion",
+      "title": "String conversion methods",
+      "items": [
+        "Array.prototype.join",
+        "Array.prototype.toLocaleString",
+        "Array.prototype.toString"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Array",
+      "Array.of"
+    ],
+    [
+      "Array.from",
+      "Array.fromAsync"
+    ],
+    [
+      "Array.prototype.reverse",
+      "Array.prototype.toReversed"
+    ],
+    [
+      "Array.prototype.sort",
+      "Array.prototype.toSorted"
+    ],
+    [
+      "Array.prototype.splice",
+      "Array.prototype.toSpliced"
+    ],
+    [
+      "Array.prototype.map",
+      "Array.prototype.flatMap"
+    ],
+    [
+      "Array.prototype.indexOf",
+      "Array.prototype.includes"
+    ],
+    [
+      "Array.prototype.find",
+      "Array.prototype.findLast"
+    ]
+  ],
+  "versionNotes": [
+    {
+      "edition": "ECMAScript 2026",
+      "items": [
+        "Array.fromAsync"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+        "https://github.com/tc39/proposal-array-from-async"
+      ]
+    },
+    {
+      "edition": "ECMAScript 2023",
+      "items": [
+        "Array.prototype.findLast",
+        "Array.prototype.findLastIndex",
+        "Array.prototype.toReversed",
+        "Array.prototype.toSorted",
+        "Array.prototype.toSpliced",
+        "Array.prototype.with"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+        "https://github.com/tc39/proposal-change-array-by-copy"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "ECMA-262 and MDN JavaScript reference",
+    "edition": "ECMAScript 2026",
+    "checkedAt": "2026-11-13",
+    "urls": [
+      "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+      "https://tc39.es/ecma262/2026/",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+      "https://github.com/tc39/proposal-array-from-async",
+      "https://github.com/tc39/proposal-change-array-by-copy"
+    ]
+  },
+  "scopeExclusions": [
+    "TypedArray and its subclasses",
+    "Array-like objects not inheriting from Array",
+    "Inherited Object.prototype properties",
+    "User-defined subclass properties",
+    "Third-party libraries"
+  ],
+  "generationAllowed": true,
+  "comparisonSources": [
+    "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+  ]
+}

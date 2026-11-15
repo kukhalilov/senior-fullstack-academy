@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 4,
+  "id": "t11-002",
+  "track": "track-11",
+  "title": "arrays and dynamic arrays for algorithmic problem solving",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "An array stores an ordered sequence accessed by integer index",
+    "Direct indexed access and scanning have different costs from insertion and deletion in the middle",
+    "A dynamic array combines contiguous storage with a separate logical count and allocated capacity",
+    "Resizing copies elements and makes append constant-time amortized rather than worst-case constant-time",
+    "In-place algorithms trade extra storage for mutation and careful index management",
+    "Rectangular and jagged arrays represent different multidimensional shapes",
+    "Choose arrays and dynamic arrays when order, indexed access, or compact sequential storage fit the task"
+  ],
+  "inventory": [
+    {"id":"array-structure","title":"Array structure and access","items":["Fixed-size array","Zero-based indexing","Array length","Contiguous sequence","Indexed element access","Array traversal","Empty array"]},
+    {"id":"dynamic-array","title":"Dynamic-array structure and resizing","items":["Dynamic array","Logical count","Capacity","Capacity growth","Resize and copy","Append","Amortized append cost","Insertion at index","Removal at index"]},
+    {"id":"multidimensional-arrays","title":"Multidimensional array shapes","items":["Rectangular multidimensional array","Jagged array","Row-major traversal","Row and column bounds"]},
+    {"id":"array-algorithm-techniques","title":"Array algorithm techniques and pitfalls","items":["Linear scan","In-place update","Auxiliary array","Index boundary","Off-by-one error","Stable relative order","Mutation versus copy"]}
+  ],
+  "practiceProblems": [
+    {"id":"two-sum","name":"Two Sum","difficulty":"introductory","patterns":["complement lookup","one-pass scan"]},
+    {"id":"contains-duplicate","name":"Contains Duplicate","difficulty":"introductory","patterns":["membership tracking","early exit"]},
+    {"id":"stock-one-transaction","name":"Best Time to Buy and Sell Stock","difficulty":"introductory","patterns":["running minimum","single pass"]},
+    {"id":"maximum-subarray","name":"Maximum Subarray","difficulty":"intermediate","patterns":["running best","Kadane recurrence"]},
+    {"id":"product-except-self","name":"Product of Array Except Self","difficulty":"intermediate","patterns":["prefix products","suffix products"]},
+    {"id":"move-zeroes","name":"Move Zeroes","difficulty":"introductory","patterns":["write pointer","stable in-place compaction"]},
+    {"id":"rotate-array","name":"Rotate Array","difficulty":"intermediate","patterns":["modular index","in-place reversal"]}
+  ],
+  "inventoryComplete": true,
+  "comparisons": [["Fixed-size array","Dynamic array"],["In-place update","Auxiliary array"],["Rectangular multidimensional array","Jagged array"],["Worst-case append cost","Amortized append cost"]],
+  "comparisonSources": ["https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays"],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "OpenDSA array-based list material and Microsoft Learn C# arrays and List<T> references",
+    "edition": "Timeless array algorithms; current C# and .NET collection references checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": ["https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html","https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.add?view=net-10.0"]
+  },
+  "scopeExclusions": ["String sequence and Unicode details, covered in t11-019","Hash maps and sets, covered in t11-020 and t11-021","Two-pointer and sliding-window templates, covered in t11-003","Prefix and difference arrays, covered in t11-004","Sorting algorithms and heaps, covered in t11-009","Full C# Array and List<T> member catalogs, covered in the C# collections track"],
+  "generationAllowed": true
+}

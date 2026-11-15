@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 4,
+  "id": "t01-004",
+  "track": "track-01",
+  "title": "C# value types reference types copying identity and equality",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A value-type variable contains its value; assigning it normally copies that value. A reference-type variable contains a reference; copying the variable copies the reference, so two variables can refer to the same object.",
+    "The distinction is about language semantics, not a promise that every value lives on the stack or every object on the heap. Storage location is affected by context, optimization, boxing, and implementation.",
+    "Equality is a separate design question from copying. The == operator, Equals, ReferenceEquals, and EqualityComparer<T>.Default can express different relationships; default behavior differs across built-in types, structs, classes, and records.",
+    "Mutability makes aliasing visible: changing a shared object can affect every reference to it, while mutating a local copy of a value type doesn't mutate the original variable. A struct can still contain references to shared objects.",
+    "Choose value types for small values with value semantics and reference types for identity, inheritance, or shared mutable state. Size, copying cost, lifetime, and API semantics matter more than simplistic stack-versus-heap rules."
+  ],
+  "inventory": [
+    {
+      "id": "value-reference-and-copy-semantics",
+      "title": "Language categories, assignment, parameter passing, boxing, and aliasing",
+      "items": [
+        "Value type",
+        "Reference type",
+        "Variable value",
+        "Object reference",
+        "Value copy",
+        "Reference copy",
+        "Assignment conversion",
+        "Value parameter passing",
+        "Reference parameter passing",
+        "ref parameter",
+        "out parameter",
+        "in parameter",
+        "ref readonly parameter",
+        "Ref return",
+        "Ref local",
+        "Alias",
+        "Object identity",
+        "Object allocation",
+        "Managed heap",
+        "Stack allocation (implementation choice)",
+        "Boxing conversion",
+        "Unboxing conversion",
+        "Boxing allocation",
+        "Nullable value type boxing",
+        "Boxing interface conversion",
+        "Unboxing cast failure",
+        "Unmanaged type",
+        "Managed type",
+        "Struct type",
+        "Enum type",
+        "Class type",
+        "Interface type",
+        "Array type",
+        "Delegate type",
+        "String reference type",
+        "Tuple value type",
+        "Record class",
+        "Record struct",
+        "Shallow copy",
+        "Deep copy",
+        "MemberwiseClone",
+        "Copy constructor pattern",
+        "with expression",
+        "Mutable struct copy",
+        "Readonly struct",
+        "Reference field inside a struct",
+        "Defensive copy",
+        "Ref safety",
+        "Escape analysis",
+        "Scoped ref safety context",
+        "Default value",
+        "default literal",
+        "default operator"
+      ]
+    },
+    {
+      "id": "equality-contracts-and-operators",
+      "title": "Value equality, object identity, hash contracts, and equality customization",
+      "items": [
+        "Value equality",
+        "Reference equality",
+        "Object identity comparison",
+        "Equality operator (==)",
+        "Inequality operator (!=)",
+        "Object.Equals(Object?)",
+        "Object.GetHashCode()",
+        "Object.ReferenceEquals(Object?, Object?)",
+        "ValueType.Equals(Object?)",
+        "ValueType.GetHashCode()",
+        "IEquatable<T>.Equals(T?)",
+        "EqualityComparer<T>.Default",
+        "EqualityComparer<T>.Equals(T?, T?)",
+        "EqualityComparer<T>.GetHashCode(T)",
+        "Structural equality",
+        "IStructuralEquatable",
+        "IStructuralComparable",
+        "StructuralComparisons.StructuralEqualityComparer",
+        "StructuralComparisons.StructuralComparer",
+        "ITuple",
+        "ValueTuple.Equals",
+        "ValueTuple equality operators",
+        "Record synthesized equality",
+        "Record equality contract",
+        "EqualityContract property",
+        "Record class equality",
+        "Record struct equality",
+        "Record with-expression copy semantics",
+        "Anonymous type equality",
+        "Array reference equality",
+        "SequenceEqual extension method",
+        "MemoryExtensions.SequenceEqual",
+        "Span<T>.SequenceEqual",
+        "SequenceEqual comparer overload",
+        "Custom IEqualityComparer<T>",
+        "EqualityComparer<T>.Create",
+        "Hash code consistency contract",
+        "Equal objects same hash code",
+        "Unequal objects may share hash code",
+        "Mutable hash key hazard",
+        "Dictionary key equality",
+        "HashSet equality semantics",
+        "Null equality behavior",
+        "NaN equality behavior",
+        "String ordinal equality",
+        "String culture-sensitive equality",
+        "Floating-point equality",
+        "Decimal equality",
+        "User-defined operator overload",
+        "Operator true and false",
+        "Operator equals overload",
+        "Operator hash-code consistency"
+      ]
+    },
+    {
+      "id": "implementation-and-design-tradeoffs",
+      "title": "Type choice, mutability, identity, generics, and runtime representation cautions",
+      "items": [
+        "Class versus struct design guideline",
+        "Struct size and copy cost",
+        "Mutable value type hazard",
+        "Large struct copying",
+        "Ref struct",
+        "Readonly ref struct",
+        "InlineArrayAttribute",
+        "ref struct interface implementation",
+        "Record class versus record struct",
+        "Record class inheritance",
+        "Struct inheritance restriction",
+        "Interface boxing",
+        "Generic constrained call",
+        "Constrained virtual call",
+        "Nullable<T>",
+        "Nullable<T>.HasValue",
+        "Nullable<T>.Value",
+        "Nullable<T>.GetValueOrDefault()",
+        "Nullable<T>.GetValueOrDefault(T)",
+        "Nullable.GetUnderlyingType(Type)",
+        "Nullable<T> lifted operators",
+        "Nullable<T> null comparison",
+        "Nullable<T> equality semantics",
+        "Null-coalescing operator",
+        "Null-conditional operator",
+        "Identity conversion",
+        "Implicit reference conversion",
+        "Explicit reference conversion",
+        "User-defined equality semantics",
+        "Identity-based entity",
+        "Value object",
+        "Immutability",
+        "Copy-on-write design",
+        "Aliasing risk",
+        "Defensive copy risk",
+        "Equality comparer selection",
+        "Equality in generic algorithms",
+        "Equality in dictionary lookup",
+        "Equality in LINQ distinct operations",
+        "Runtime representation versus language guarantee",
+        "JIT optimization and local storage",
+        "Stack versus heap misconception"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Value type",
+      "Reference type"
+    ],
+    [
+      "Value copy",
+      "Reference copy"
+    ],
+    [
+      "Value equality",
+      "Reference equality"
+    ],
+    [
+      "==",
+      "Equals",
+      "ReferenceEquals"
+    ],
+    [
+      "IEquatable<T>",
+      "IEqualityComparer<T>",
+      "EqualityComparer<T>.Default"
+    ],
+    [
+      "Class",
+      "Struct",
+      "Record class",
+      "Record struct"
+    ],
+    [
+      "Shallow copy",
+      "Deep copy"
+    ],
+    [
+      "Mutable value type",
+      "Immutable value type"
+    ],
+    [
+      "Object identity",
+      "Value object equality"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/equality-comparisons",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1"
+  ],
+  "versionNotes": [
+    {
+      "edition": "C# 15 / .NET 11 GA checked 2026-11-14",
+      "items": [
+        "C# 15 adds union types and closed class hierarchies, which build on type and pattern concepts; their syntax is included in the separate inheritance and pattern-matching scopes. C# 15 is the default language version for net11.0; Memory safety remains a preview feature."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+      ]
+    },
+    {
+      "edition": "C# 13",
+      "items": [
+        "ref struct types can implement interfaces but cannot be converted to an interface type; they must implement every instance member, including members with default implementations."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn C# 15 language reference and .NET 11 API reference",
+    "edition": "C# 15 stable and .NET 11 GA checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/equality-comparisons",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.object.equals",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iequatable-1",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+    ]
+  },
+  "scopeExclusions": [
+    "Nullable value and reference type annotation design is taught in t01-005",
+    "Class, struct, record, and constructor member inventories are taught in t01-006",
+    "Generic type variance and delegate variance are taught in t01-009 and t01-010",
+    "LINQ sequence operators are taught in t01-015",
+    "Domain-driven value-object modeling is addressed in the architecture track"
+  ],
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Value-type variables contain values and normal assignment copies values; reference-type variables contain object references and copying a reference can preserve aliasing. Neither rule promises a physical stack/heap location or says an object reference is a raw address.",
+    "record struct is a value type; record class is a reference type.",
+    "ReferenceEquals tests object identity for reference values and is not a physical address comparison. For double.NaN, the == operator yields false while Double.Equals(double.NaN) yields true.",
+    "Since C# 13, ref structs may implement interfaces but cannot be boxed or converted to an interface type; they must implement instance members and cannot use default interface implementations."
+  ]
+}

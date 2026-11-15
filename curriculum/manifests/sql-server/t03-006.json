@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 4,
+  "id": "t03-006",
+  "track": "track-03",
+  "title": "inserts updates deletes merges and bulk operations",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "DML changes persistent state, so explicit predicates, stable keys, transactions, and concurrency assumptions are essential. A missing filter can alter or remove every row.",
+    "INSERT adds rows, UPDATE changes matching rows, and DELETE removes them; OUTPUT and row counts can help verify affected data but must be interpreted with trigger and transaction behavior in mind.",
+    "MERGE combines match-based actions but can have concurrency and duplicate-source hazards. Separate DML with unique constraints may be easier to reason about.",
+    "Bulk loading trades per-row flexibility for throughput and has important format, validation, locking, logging, permission, and recovery considerations.",
+    "Retries after a timeout can repeat a committed operation unless the operation is idempotent or its outcome is checked."
+  ],
+  "inventory": [
+    {
+      "id": "insert-update-delete-and-output",
+      "title": "Insert, update, delete, row filters, and returned values",
+      "items": [
+        "INSERT statement",
+        "INSERT ... VALUES",
+        "INSERT multiple rows",
+        "INSERT ... SELECT",
+        "INSERT ... DEFAULT VALUES",
+        "Explicit INSERT column list",
+        "SET IDENTITY_INSERT",
+        "UPDATE statement",
+        "UPDATE with FROM",
+        "UPDATE joined source",
+        "DELETE statement",
+        "DELETE with FROM",
+        "DELETE joined source",
+        "TRUNCATE TABLE boundary",
+        "DML without WHERE risk",
+        "OUTPUT clause",
+        "INSERTED pseudo-table",
+        "DELETED pseudo-table",
+        "OUTPUT INTO",
+        "OUTPUT with MERGE",
+        "TOP in DML",
+        "@@ROWCOUNT",
+        "DML trigger interaction"
+      ]
+    },
+    {
+      "id": "merge-and-upsert",
+      "title": "MERGE match actions, upsert alternatives, and concurrency",
+      "items": [
+        "MERGE statement",
+        "MERGE source",
+        "MERGE target",
+        "MERGE ON predicate",
+        "WHEN MATCHED",
+        "WHEN NOT MATCHED BY TARGET",
+        "WHEN NOT MATCHED BY SOURCE",
+        "MERGE UPDATE action",
+        "MERGE INSERT action",
+        "MERGE DELETE action",
+        "MERGE OUTPUT",
+        "MERGE semicolon terminator",
+        "Duplicate source match error",
+        "MERGE trigger action ordering",
+        "MERGE concurrency race",
+        "HOLDLOCK merge pattern",
+        "Separate UPDATE then INSERT upsert",
+        "Unique constraint-backed upsert",
+        "Idempotent retry-safe write",
+        "MERGE defect and version verification"
+      ]
+    },
+    {
+      "id": "bulk-ingestion",
+      "title": "Bulk loading, file formats, validation, and operational controls",
+      "items": [
+        "BULK INSERT",
+        "OPENROWSET(BULK...)",
+        "bcp utility",
+        "FORMATFILE",
+        "FIELDTERMINATOR",
+        "ROWTERMINATOR",
+        "FIRSTROW",
+        "LASTROW",
+        "ERRORFILE",
+        "MAXERRORS",
+        "TABLOCK bulk-load hint",
+        "BATCHSIZE",
+        "KEEPIDENTITY",
+        "KEEPNULLS",
+        "CHECK_CONSTRAINTS",
+        "FIRE_TRIGGERS",
+        "ROWS_PER_BATCH",
+        "ORDER bulk-load hint",
+        "CODEPAGE",
+        "DATAFILETYPE",
+        "FORMAT='CSV'",
+        "Bulk-load transaction scope",
+        "Minimal logging prerequisites",
+        "Staging table",
+        "Validate then promote",
+        "External data source permission boundary"
+      ]
+    },
+    {
+      "id": "safe-write-and-retry",
+      "title": "Atomic changes, concurrency checks, and retry behavior",
+      "items": [
+        "Explicit transaction around DML",
+        "XACT_ABORT",
+        "TRY...CATCH around DML",
+        "SET NOCOUNT ON",
+        "@@ROWCOUNT validation",
+        "Unique constraint duplicate guard",
+        "rowversion concurrency predicate",
+        "Compare-and-swap update",
+        "Idempotency key",
+        "Retry after deadlock",
+        "Retry after timeout with unknown commit outcome",
+        "Partial batch commit",
+        "Savepoint partial rollback",
+        "Bulk-load recovery-model interaction"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "INSERT ... VALUES",
+      "INSERT ... SELECT"
+    ],
+    [
+      "UPDATE",
+      "MERGE"
+    ],
+    [
+      "DELETE",
+      "TRUNCATE TABLE"
+    ],
+    [
+      "Row-by-row inserts",
+      "Bulk load"
+    ],
+    [
+      "Blind retry",
+      "Idempotent retry"
+    ],
+    [
+      "OUTPUT",
+      "@@ROWCOUNT"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/insert-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/update-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/delete-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/bulk-insert-transact-sql?view=sql-server-ver17"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Microsoft SQL Server 2025 Transact-SQL documentation",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/insert-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/update-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/delete-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/bulk-insert-transact-sql?view=sql-server-ver17"
+    ]
+  },
+  "scopeExclusions": [
+    "Transaction isolation and lock semantics are covered in t03-010.",
+    "Stored procedures, triggers, and dynamic SQL are covered in t03-011.",
+    "Constraints and generated values are covered in t03-007.",
+    "Bulk ingestion examples do not imply that input files are trustworthy."
+  ],
+  "generationAllowed": true
+}

@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 4,
+  "id": "t01-001",
+  "track": "track-01",
+  "title": ".NET platform vs runtime vs SDK vs framework and alternatives",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A programming language, its compiler, the runtime that executes compiled programs, reusable libraries, developer tools, and application frameworks solve related but different problems. The .NET platform brings these parts together; understanding the boundaries helps explain build, run, deploy, and compatibility behavior.",
+    "The .NET SDK contains build and development tools and includes runtime components, while a runtime installation is intended to execute applications. An installed SDK can target multiple frameworks; the runtime selected at execution is a separate decision from the target framework recorded by a project.",
+    "A target framework moniker (TFM) selects the API contract used at build and package-compatibility time. It does not by itself guarantee that every operating system or device can run the application; platform-specific target frameworks and runtime identifiers add different constraints.",
+    "Modern .NET is Microsoft's primary, open-source, cross-platform implementation. .NET Framework remains a Windows implementation in maintenance for existing applications. .NET Standard is an API specification for library compatibility, not a runtime or a replacement for modern .NET.",
+    "Comparable platforms such as Java, Node.js, Python, Go, and Rust package languages, tooling, runtime behavior, libraries, deployment, and support differently. Choose by workload, hosting environment, ecosystem, performance needs, team skills, interoperability, and lifecycle rather than by language syntax alone."
+  ],
+  "inventory": [
+    {
+      "id": "platform-components-and-build-chain",
+      "title": ".NET platform parts and the source-to-running-process chain",
+      "items": [
+        ".NET platform",
+        "Programming language",
+        "C# compiler",
+        "Intermediate Language (IL)",
+        "Common Language Runtime (CLR)",
+        ".NET runtime",
+        "Base Class Library (BCL)",
+        ".NET runtime libraries",
+        ".NET SDK",
+        ".NET CLI",
+        "MSBuild",
+        "NuGet package manager",
+        "Application framework",
+        "ASP.NET Core shared framework",
+        "Microsoft.NETCore.App shared framework",
+        "dotnet executable",
+        "dotnet --info",
+        "dotnet --version",
+        "dotnet --list-sdks",
+        "dotnet --list-runtimes",
+        "SDK-style project",
+        "Solution file",
+        "Project file (.csproj)",
+        "Restore",
+        "Build",
+        "Run",
+        "Publish",
+        "Compile-time versus runtime",
+        "Build-time tools versus runtime components",
+        "Language version versus target framework",
+        "SDK version versus runtime version",
+        "Installed runtime versus target framework",
+        "Reference assembly versus implementation assembly"
+      ]
+    },
+    {
+      "id": "implementations-frameworks-and-targets",
+      "title": ".NET implementations, framework families, target frameworks, and compatibility",
+      "items": [
+        ".NET (modern .NET, formerly .NET Core)",
+        ".NET Framework",
+        ".NET Core 1.0 through 3.1",
+        "Mono runtime",
+        "CoreCLR",
+        "Target framework",
+        "Target framework moniker (TFM)",
+        "net11.0 TFM",
+        "net10.0 TFM",
+        "netstandard2.1 TFM",
+        "netstandard2.0 TFM",
+        "net481 TFM",
+        "TargetFramework MSBuild property",
+        "TargetFrameworks MSBuild property",
+        "TargetPlatformVersion",
+        "OS-specific TFM",
+        "Runtime Identifier (RID)",
+        "Target framework versus Runtime Identifier",
+        ".NET Standard API specification",
+        ".NET Standard 2.0 support boundary",
+        ".NET Standard 2.1 support boundary",
+        "NuGet asset selection by target framework",
+        "Compile-time API availability versus runtime support",
+        "Platform-specific API annotations",
+        "Framework-dependent deployment",
+        "Self-contained deployment",
+        "Roll-forward policy",
+        "Long Term Support (LTS) release",
+        "Standard Term Support (STS) release",
+        ".NET release support lifecycle"
+      ]
+    },
+    {
+      "id": "app-stacks-and-deployment-shapes",
+      "title": ".NET application stacks, workloads, operating systems, and deployment choices",
+      "items": [
+        "ASP.NET Core",
+        "Windows Forms",
+        "Windows Presentation Foundation (WPF)",
+        ".NET MAUI",
+        "Worker Service",
+        "Console application",
+        "Class library",
+        "WebAssembly workload",
+        "Optional SDK workload",
+        "Cross-platform application",
+        "Windows-only application framework",
+        "Architecture target: x64",
+        "Architecture target: Arm64",
+        "Single-file deployment",
+        "ReadyToRun publishing",
+        "Native AOT publishing",
+        "RID-specific deployment",
+        "Runtime roll-forward",
+        "SDK roll-forward",
+        "Global.json SDK selection",
+        "Container-based .NET deployment",
+        "Operating system support versus API support",
+        "Application stack versus base runtime"
+      ]
+    },
+    {
+      "id": "comparable-platforms-and-decision-criteria",
+      "title": "Comparable language and platform ecosystems and selection criteria",
+      "items": [
+        "Java and the Java Virtual Machine (JVM)",
+        "Kotlin on the JVM",
+        "Node.js and the V8 JavaScript engine",
+        "Python and CPython",
+        "Go toolchain and runtime",
+        "Rust compiler and standard library",
+        "Managed runtime versus native compilation",
+        "Garbage-collected versus explicitly managed memory",
+        "Single-language versus multi-language runtime",
+        "Cross-platform capability versus application-framework portability",
+        "Package ecosystem and dependency distribution",
+        "Long-term support and release cadence",
+        "Startup time versus steady-state throughput",
+        "Deployment artifact size versus runtime self-containment",
+        "Native interoperability and platform API access",
+        "Workload fit: web, cloud, desktop, mobile, command-line, and systems programming"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [".NET SDK", ".NET runtime"],
+    ["modern .NET", ".NET Framework"],
+    [".NET", ".NET Standard"],
+    ["TargetFramework", "Runtime Identifier"],
+    ["Framework-dependent deployment", "Self-contained deployment"],
+    ["LTS", "STS"],
+    [".NET", "Java/JVM"],
+    [".NET", "Node.js"],
+    [".NET", "Python/CPython"],
+    [".NET", "Go"],
+    [".NET", "Rust"]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+    "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+    "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+    "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+    "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+    "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+    "https://docs.oracle.com/en/java/",
+    "https://nodejs.org/en/about",
+    "https://docs.python.org/3/",
+    "https://go.dev/doc/",
+    "https://doc.rust-lang.org/book/"
+  ],
+  "versionNotes": [
+    {
+      "edition": ".NET 5-11 platform naming and current support",
+      "items": [
+        ".NET 5 unified the product naming after .NET Core 3.1: modern cross-platform releases use the simple .NET name, while .NET Framework remains a distinct Windows implementation. As checked on 2026-11-15, .NET 11 is the current STS release and .NET 10 is the current LTS release; .NET 8 and .NET 9 reached end of support on November 10, 2026. .NET Standard remains relevant mainly when a library needs a shared API contract across implementation families; new applications generally target a specific modern .NET release."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+        "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+        "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+        "https://github.com/dotnet/core/releases"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft .NET architecture, framework targeting, deployment, and lifecycle documentation; official platform documentation for ecosystem comparisons",
+    "edition": ".NET 11 GA and .NET 10 LTS checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+      "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+      "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+      "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+      "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+      "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+      "https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations",
+      "https://github.com/dotnet/core/releases",
+      "https://docs.oracle.com/en/java/",
+      "https://nodejs.org/en/about",
+      "https://docs.python.org/3/",
+      "https://go.dev/doc/",
+      "https://doc.rust-lang.org/book/"
+    ]
+  },
+  "scopeExclusions": [
+    "C# syntax, source-file structure, and entry points are taught in t01-002; this topic only names the compiler and build chain to show platform boundaries.",
+    "The exact .NET CLI command and MSBuild property inventories belong to a dedicated tooling topic; this overview introduces only the major roles and selection decisions.",
+    "ASP.NET Core, Windows desktop, mobile, and web-framework APIs have dedicated topics; this manifest compares application stacks without duplicating their API inventories.",
+    "Runtime internals, JIT and AOT details, assembly loading, and reflection are covered in t01-019.",
+    "This is a decision-oriented comparison, not a complete tutorial for Java, JavaScript, Python, Go, or Rust APIs."
+  ],
+  "generationAllowed": true
+}
