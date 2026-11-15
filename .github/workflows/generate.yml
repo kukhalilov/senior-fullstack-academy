@@ -1,5 +1,12 @@
 name: Generate academy drafts
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'curriculum/manifests/**'
+      - 'curriculum/prompt-template.json'
+      - 'scripts/**'
+      - '.github/workflows/generate.yml'
   schedule:
     # Six daily runs at four-hour intervals, below the per-model free-tier quotas.
     - cron: '17 */4 * * *'
@@ -27,12 +34,20 @@ jobs:
         name: Count eligible drafts
         run: npm run generate -- --dry-run
       - name: Generate bounded lesson drafts
-        if: steps.pending.outputs.pending != '0'
+        if: steps.pending.outputs.pending != '0' && github.event_name == 'schedule'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODELS: gemini-3.5-flash-lite,gemini-3.1-flash-lite
           UNITS_PER_RUN: '80'
           MAX_API_CALLS_PER_RUN: '160'
+        run: npm run generate
+      - name: Generate a small batch after a curriculum update
+        if: steps.pending.outputs.pending != '0' && github.event_name == 'push'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODELS: gemini-3.5-flash-lite,gemini-3.1-flash-lite
+          UNITS_PER_RUN: '4'
+          MAX_API_CALLS_PER_RUN: '8'
         run: npm run generate
       - name: Compile and run DSA solution checks
         id: validate_dsa
