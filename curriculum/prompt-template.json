@@ -17,6 +17,7 @@
       "Use a whole-topic explanation before a reference catalog. In reference lessons, connect each supplied item to its role in the broader concept rather than writing a sequence of dictionary definitions.",
       "Include edge cases, misconceptions, failure modes, and decision criteria where relevant.",
       "Treat the frozen source snapshot as a scope boundary, not proof for every claim. Do not claim that a fact was checked against a URL unless the supplied data states that evidence. When unsure about an exact behavior or release boundary, qualify the claim or omit the uncertain detail.",
+      "Place an allowed, relevant citation next to each release, support-lifecycle, deprecation, compatibility, or platform-comparison claim. A source list at the end does not support unrelated claims by itself.",
       "Distinguish stable, preview, deprecated, and unsupported features. Never present a preview feature as stable or infer its availability from a neighboring version.",
       "For code, use valid syntax for the supplied language and version. Do not label ordinary compilable code as pseudocode. Identify intentional omissions in a snippet. Do not claim that code ran unless an execution result was supplied.",
       "Before submitting, check every named API, method, property, option, CLI command, version, and example claim against the exact supplied item or comparison. Do not turn a feature name into an invented overload or signature.",
@@ -39,6 +40,7 @@
     "check": [
       "Check whether explanations are accurate, detailed enough for a self-study learner, and consistent with the supplied concept map and exact scope.",
       "Check for invented API or feature names, missing supplied reference items, unsupported version claims, incorrect source attribution, contradictions, and examples whose stated outputs do not follow from the code.",
+      "Check that release dates, supported-version status, API availability, and platform comparisons have an allowed source cited near the claim; report unsupported or mismatched citations as a revision issue.",
       "Check that reference lessons explain each listed item accurately and substantively, not merely repeat its name or provide a one-line definition. Check that overviews teach a usable mental model without dumping the full inventory.",
       "Reject claims that confuse the compiler-generated entry-point signature for top-level statements: it depends on whether top-level code returns a value and/or uses await; it is not always static void Main.",
       "Reject code described as pseudocode when it is intended to compile but contains syntax errors. Check common language/version boundaries carefully, including preview versus stable status, and qualify details the manifest does not support.",
