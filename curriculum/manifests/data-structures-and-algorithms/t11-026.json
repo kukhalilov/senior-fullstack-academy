@@ -15,29 +15,316 @@
     "The standard adjacency-list algorithms run in O(V+E), with indegree storage or traversal state requiring O(V) additional space."
   ],
   "inventory": [
-    {"id":"dag-and-order","title":"DAG properties and partial orders","items":["Directed acyclic graph","Directed cycle","Topological ordering","Edge points forward in valid order","Prerequisite dependency","Partial order","Multiple valid topological orders","DAG dynamic programming"]},
-    {"id":"kahns-algorithm","title":"Indegree queue algorithm","items":["Indegree count","Zero-indegree frontier","Kahn's algorithm","Remove outgoing edges conceptually","Decrement neighbor indegrees","Processed-vertex cycle test","FIFO frontier","Lexicographically smallest order with min-priority queue"]},
-    {"id":"dfs-order","title":"DFS postorder algorithm and cycle detection","items":["DFS postorder","Reverse postorder","Unvisited/active/finished states","Recursion-stack cycle detection","Back edge","Directed-cycle detection","Iterative DFS alternative"]},
-    {"id":"correctness-and-cost","title":"Correctness, complexity, and applications","items":["Every emitted vertex has no remaining prerequisite","O(V+E) time","O(V) auxiliary storage","Cycle means no complete ordering","Build-system dependency order","Course prerequisite order","DAG shortest or longest path processing","Partial output is not a valid complete schedule"]}
+    {
+      "id": "dag-and-order",
+      "title": "DAG properties and partial orders",
+      "items": [
+        "Directed acyclic graph",
+        "Directed cycle",
+        "Topological ordering",
+        "Edge points forward in valid order",
+        "Prerequisite dependency",
+        "Partial order",
+        "Multiple valid topological orders",
+        "DAG dynamic programming"
+      ]
+    },
+    {
+      "id": "kahns-algorithm",
+      "title": "Indegree queue algorithm",
+      "items": [
+        "Indegree count",
+        "Zero-indegree frontier",
+        "Kahn's algorithm",
+        "Remove outgoing edges conceptually",
+        "Decrement neighbor indegrees",
+        "Processed-vertex cycle test",
+        "FIFO frontier",
+        "Lexicographically smallest order with min-priority queue"
+      ]
+    },
+    {
+      "id": "dfs-order",
+      "title": "DFS postorder algorithm and cycle detection",
+      "items": [
+        "DFS postorder",
+        "Reverse postorder",
+        "Unvisited/active/finished states",
+        "Recursion-stack cycle detection",
+        "Back edge",
+        "Directed-cycle detection",
+        "Iterative DFS alternative"
+      ]
+    },
+    {
+      "id": "correctness-and-cost",
+      "title": "Correctness, complexity, and applications",
+      "items": [
+        "Every emitted vertex has no remaining prerequisite",
+        "O(V+E) time",
+        "O(V) auxiliary storage",
+        "Cycle means no complete ordering",
+        "Build-system dependency order",
+        "Course prerequisite order",
+        "DAG shortest or longest path processing",
+        "Partial output is not a valid complete schedule"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"course-schedule","name":"Course Schedule","difficulty":"intermediate","patterns":["indegree-based Kahn algorithm","cycle detection by incomplete processing"]},
-    {"id":"course-schedule-ii","name":"Course Schedule II","difficulty":"intermediate","patterns":["construct a topological order","return empty order on cycle"]},
-    {"id":"alien-dictionary","name":"Alien Dictionary","difficulty":"advanced","patterns":["derive precedence edges from adjacent words","topological ordering and invalid-prefix detection"]},
-    {"id":"find-eventual-safe-states","name":"Find Eventual Safe States","difficulty":"intermediate","patterns":["reverse graph and outdegree elimination","remove cycle-dependent vertices"]},
-    {"id":"parallel-courses","name":"Parallel Courses","difficulty":"intermediate","patterns":["topological levels","longest prerequisite-chain depth"]},
-    {"id":"minimum-height-trees","name":"Minimum Height Trees","difficulty":"intermediate","patterns":["iteratively remove leaves","topological-style frontier on a tree"]}
+    {
+      "id": "course-schedule",
+      "name": "Course Schedule",
+      "difficulty": "intermediate",
+      "patterns": [
+        "indegree-based Kahn algorithm",
+        "cycle detection by incomplete processing"
+      ],
+      "statement": "Given numCourses and pairs [course, prerequisite], determine whether every course can be completed.",
+      "constraints": [
+        "1 <= numCourses <= 2000",
+        "0 <= prerequisites.Length <= 5000",
+        "Each pair has length 2",
+        "0 <= course, prerequisite < numCourses",
+        "All pairs are unique"
+      ],
+      "examples": [
+        {
+          "output": "true",
+          "input": "numCourses=2, prerequisites=[[1,0]]"
+        },
+        {
+          "output": "false",
+          "input": "numCourses=2, prerequisites=[[1,0],[0,1]]"
+        },
+        {
+          "output": "true",
+          "input": "numCourses=1, prerequisites=[]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/course-schedule/"
+      ]
+    },
+    {
+      "id": "course-schedule-ii",
+      "name": "Course Schedule II",
+      "difficulty": "intermediate",
+      "patterns": [
+        "construct a topological order",
+        "return empty order on cycle"
+      ],
+      "statement": "Given numCourses and pairs [course, prerequisite], return any ordering in which every prerequisite precedes its course; return an empty array when no complete ordering exists.",
+      "constraints": [
+        "1 <= numCourses <= 2000",
+        "0 <= prerequisites.Length <= numCourses * (numCourses - 1)",
+        "Each pair has length 2",
+        "0 <= course, prerequisite < numCourses",
+        "course != prerequisite",
+        "All prerequisite pairs are distinct"
+      ],
+      "examples": [
+        {
+          "output": "[0,1]",
+          "input": "numCourses=2, prerequisites=[[1,0]]"
+        },
+        {
+          "output": "[0,2,1,3] (one valid order)",
+          "input": "numCourses=4, prerequisites=[[1,0],[2,0],[3,1],[3,2]]"
+        },
+        {
+          "output": "[0]",
+          "input": "numCourses=1, prerequisites=[]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/course-schedule-ii/"
+      ]
+    },
+    {
+      "id": "alien-dictionary",
+      "name": "Alien Dictionary",
+      "difficulty": "advanced",
+      "patterns": [
+        "derive precedence edges from adjacent words",
+        "topological ordering and invalid-prefix detection"
+      ],
+      "statement": "Given words claimed to be sorted in an unknown lowercase English alphabet, return one ordering of every distinct character that satisfies the evidence, or an empty string if the evidence is inconsistent.",
+      "constraints": [
+        "1 <= words.Length <= 100",
+        "1 <= words[i].Length <= 100",
+        "Each word contains only lowercase English letters"
+      ],
+      "examples": [
+        {
+          "output": "\"wertf\" (one valid order)",
+          "input": "[\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]"
+        },
+        {
+          "output": "\"\"",
+          "input": "[\"z\",\"x\",\"z\"]"
+        },
+        {
+          "output": "\"\"",
+          "input": "[\"abc\",\"ab\"]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/alien-dictionary/",
+        "https://neetcode.io/solutions/alien-dictionary"
+      ]
+    },
+    {
+      "id": "find-eventual-safe-states",
+      "name": "Find Eventual Safe States",
+      "difficulty": "intermediate",
+      "patterns": [
+        "reverse graph and outdegree elimination",
+        "remove cycle-dependent vertices"
+      ],
+      "statement": "In a directed graph, return all vertices from which every possible path eventually ends at a terminal vertex (a vertex with no outgoing edges), in ascending order.",
+      "constraints": [
+        "n == graph.Length",
+        "1 <= n <= 10^4",
+        "0 <= graph[i].Length <= n",
+        "0 <= graph[i][j] < n",
+        "Each adjacency list is strictly increasing",
+        "Self-loops are allowed",
+        "1 <= number of edges <= 4 * 10^4"
+      ],
+      "examples": [
+        {
+          "output": "[2,4,5,6]",
+          "input": "[[1,2],[2,3],[5],[0],[5],[],[]]"
+        },
+        {
+          "output": "[4]",
+          "input": "[[1,2,3,4],[1,2],[3,4],[0,4],[]]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/find-eventual-safe-states/"
+      ]
+    },
+    {
+      "id": "parallel-courses",
+      "name": "Parallel Courses",
+      "difficulty": "intermediate",
+      "patterns": [
+        "topological levels",
+        "longest prerequisite-chain depth"
+      ],
+      "statement": "There are n courses labeled 1 through n and prerequisite edges [before, after]. In each semester any number of courses may be taken if all prerequisites were completed in earlier semesters. Return the minimum semesters to finish all courses, or -1 if a cycle makes completion impossible.",
+      "constraints": [
+        "1 <= n <= 5000",
+        "1 <= relations.Length <= 5000",
+        "Each relation has length 2",
+        "1 <= before, after <= n",
+        "before != after",
+        "All directed pairs are unique"
+      ],
+      "examples": [
+        {
+          "output": "2",
+          "input": "n=3, relations=[[1,3],[2,3]]"
+        },
+        {
+          "output": "-1",
+          "input": "n=3, relations=[[1,2],[2,3],[3,1]]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/parallel-courses/",
+        "https://leetcode.doocs.org/en/lc/1136/"
+      ]
+    },
+    {
+      "id": "minimum-height-trees",
+      "name": "Minimum Height Trees",
+      "difficulty": "intermediate",
+      "patterns": [
+        "iteratively remove leaves",
+        "topological-style frontier on a tree"
+      ],
+      "statement": "Given an undirected tree on labels 0 through n-1, return every vertex that can be chosen as root to minimize the rooted tree height.",
+      "constraints": [
+        "1 <= n <= 2 * 10^4",
+        "edges.Length == n - 1",
+        "0 <= edge endpoint < n",
+        "No self-edges",
+        "All undirected edges are distinct",
+        "Input is guaranteed to be a tree"
+      ],
+      "examples": [
+        {
+          "output": "[1]",
+          "input": "n=4, edges=[[1,0],[1,2],[1,3]]"
+        },
+        {
+          "output": "[3,4]",
+          "input": "n=6, edges=[[3,0],[3,1],[3,2],[3,4],[5,4]]"
+        },
+        {
+          "output": "[0]",
+          "input": "n=1, edges=[]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/minimum-height-trees/"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Kahn's algorithm","DFS reverse postorder"],["Any valid order","Lexicographically smallest valid order"],["DAG","Directed graph with cycles"],["Queue frontier","Priority-queue frontier"],["Topological cycle detection","Undirected DFS cycle detection"]],
-  "comparisonSources": ["https://usaco.guide/gold/toposort?lang=cpp","https://usaco.guide/CP2.pdf"],
+  "comparisons": [
+    [
+      "Kahn's algorithm",
+      "DFS reverse postorder"
+    ],
+    [
+      "Any valid order",
+      "Lexicographically smallest valid order"
+    ],
+    [
+      "DAG",
+      "Directed graph with cycles"
+    ],
+    [
+      "Queue frontier",
+      "Priority-queue frontier"
+    ],
+    [
+      "Topological cycle detection",
+      "Undirected DFS cycle detection"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/gold/toposort?lang=cpp",
+    "https://usaco.guide/CP2.pdf"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
-    "authority": "USACO Guide topological sort and Competitive Programming 2; official LeetCode problem statements",
-    "edition": "Timeless DAG algorithms; canonical problem pages checked 2026-11-14",
-    "checkedAt": "2026-11-14",
-    "urls": ["https://usaco.guide/gold/toposort?lang=cpp","https://usaco.guide/CP2.pdf","https://leetcode.com/problems/course-schedule/","https://leetcode.com/problems/course-schedule-ii/","https://leetcode.com/problems/alien-dictionary/","https://leetcode.com/problems/find-eventual-safe-states/","https://leetcode.com/problems/parallel-courses/","https://leetcode.com/problems/minimum-height-trees/"]
+    "authority": "USACO Guide topological sort, official LeetCode statements, LeetCode Wiki for premium Parallel Courses constraint details, and NeetCode Alien Dictionary page for premium constraint details",
+    "edition": "Timeless DAG algorithms; official and named secondary problem sources checked 2026-11-15",
+    "checkedAt": "2026-11-15",
+    "urls": [
+      "https://usaco.guide/gold/toposort?lang=cpp",
+      "https://usaco.guide/CP2.pdf",
+      "https://leetcode.com/problems/course-schedule/",
+      "https://leetcode.com/problems/course-schedule-ii/",
+      "https://leetcode.com/problems/alien-dictionary/",
+      "https://neetcode.io/solutions/alien-dictionary",
+      "https://leetcode.com/problems/find-eventual-safe-states/",
+      "https://leetcode.com/problems/parallel-courses/",
+      "https://leetcode.doocs.org/en/lc/1136/",
+      "https://leetcode.com/problems/minimum-height-trees/"
+    ]
   },
-  "scopeExclusions": ["General DFS/BFS and graph representations, covered in t11-011","Weighted shortest paths, covered in t11-012","Strongly connected components","Minimum spanning trees and union-find","Dynamic programming beyond DAG-specific ordering use"],
+  "scopeExclusions": [
+    "General DFS/BFS and graph representations, covered in t11-011",
+    "Weighted shortest paths, covered in t11-012",
+    "Strongly connected components",
+    "Minimum spanning trees and union-find",
+    "Dynamic programming beyond DAG-specific ordering use"
+  ],
   "generationAllowed": true
 }
