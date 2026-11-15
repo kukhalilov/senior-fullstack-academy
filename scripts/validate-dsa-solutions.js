@@ -3,20 +3,43 @@ import os from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 
-const draftsRoot = path.resolve('course/drafts/data-structures-and-algorithms');
+const draftsRoot = path.resolve('course/drafts');
 if (!fs.existsSync(draftsRoot)) {
   console.log('No DSA practice drafts found; validation passed.');
   process.exit(0);
 }
 
 const markdownFiles = fs.readdirSync(draftsRoot, {recursive: true})
-  .filter(file => file.endsWith('.md') && /-practice-/.test(file));
+  .filter(file => file.endsWith('.md') && /^t11-\d{3}.*-practice-/.test(path.basename(file)));
 const failures = [];
 let validated = 0;
+
+const requiredHeadings = [
+  'Goals',
+  'Problem statement',
+  'Input constraints',
+  'Examples with expected output',
+  'Clarifying assumptions',
+  'Progressive hints',
+  'Complete C# solution',
+  'Correctness argument',
+  'Step-by-step dry run',
+  'Time complexity',
+  'Space complexity',
+  'Edge-case tests',
+  'Reflection questions',
+];
+const targetFramework = process.env.DSA_TARGET_FRAMEWORK ?? 'net11.0';
 
 for (const relativeFile of markdownFiles) {
   const file = path.join(draftsRoot, relativeFile);
   const text = fs.readFileSync(file, 'utf8');
+  const missingHeadings = requiredHeadings.filter(heading => !new RegExp(`^#{1,6}\\s+${heading.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&')}\\s*$`, 'mi').test(text));
+  if (missingHeadings.length) {
+    failures.push(`${file}: missing required heading(s): ${missingHeadings.join(', ')}`);
+    continue;
+  }
+
   const solutions = [...text.matchAll(/```csharp\s+dsa-solution\s*\r?\n([\s\S]*?)```/g)];
   if (solutions.length !== 1) {
     failures.push(`${file}: expected exactly one fenced C# dsa-solution program, found ${solutions.length}`);
@@ -37,7 +60,7 @@ for (const relativeFile of markdownFiles) {
       '<Project Sdk="Microsoft.NET.Sdk">',
       '  <PropertyGroup>',
       '    <OutputType>Exe</OutputType>',
-      '    <TargetFramework>net11.0</TargetFramework>',
+      `    <TargetFramework>${targetFramework}</TargetFramework>`,
       '    <ImplicitUsings>enable</ImplicitUsings>',
       '    <Nullable>enable</Nullable>',
       '  </PropertyGroup>',

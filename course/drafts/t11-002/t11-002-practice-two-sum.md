@@ -16,6 +16,7 @@ Given an array of integers `nums` and an integer `target`, return the indices of
 * `-10^9 <= nums[i] <= 10^9`
 * `-10^9 <= target <= 10^9`
 * Exactly one valid solution exists.
+* The input values fit in C# `int`. The complement range is `[-2 * 10^9, 2 * 10^9]`, which also fits in `int` (`int.MinValue` to `int.MaxValue`). If a different problem uses wider bounds, compute the sum and complement with `long`.
 
 # Examples with expected output
 * Input: `nums = [2, 7, 11, 15]`, `target = 9` -> Output: `[0, 1]`
@@ -24,7 +25,7 @@ Given an array of integers `nums` and an integer `target`, return the indices of
 
 # Clarifying assumptions
 * The output indices can be returned in any order.
-* The solution must be efficient; a brute-force approach checking every pair is acceptable for small inputs but we aim for a one-pass scan using a dictionary (complement lookup).
+* The solution must be efficient; a brute-force approach checks every pair in `O(n^2)` time and `O(1)` auxiliary space. We aim for a one-pass scan using a dictionary (complement lookup), which uses `O(n)` extra space.
 
 # Progressive hints
 1. **Brute Force:** Can you use two nested loops to check every possible pair `(i, j)` where `i != j`?
@@ -38,18 +39,19 @@ using System.Collections.Generic;
 
 public class Solution {
     public static int[] TwoSum(int[] nums, int target) {
-        // We use a Dictionary to store the value as the key and its index as the value.
-        // This allows O(1) average time complexity for lookups.
+        // Map each previously seen value to one index where it occurred.
+        // Dictionary lookup is expected O(1), not a worst-case guarantee.
         Dictionary<int, int> seen = new Dictionary<int, int>();
         
         for (int i = 0; i < nums.Length; i++) {
             int complement = target - nums[i];
             
-            if (seen.ContainsKey(complement)) {
-                return new int[] { seen[complement], i };
+            if (seen.TryGetValue(complement, out int previousIndex)) {
+                return new int[] { previousIndex, i };
             }
             
-            // Only add if not present to handle cases like [3, 3] with target 6
+            // Preserve the first index for a value. The current element is added
+            // only after lookup, so it cannot pair with itself.
             if (!seen.ContainsKey(nums[i])) {
                 seen.Add(nums[i], i);
             }
@@ -70,6 +72,14 @@ public class Solution {
         int[] res3 = TwoSum(new int[] { 3, 3 }, 6);
         if (res3[0] != 0 || res3[1] != 1) throw new InvalidOperationException("Test 3 failed");
 
+        // Negative values and zero target
+        int[] res4 = TwoSum(new int[] { -3, 4, 3, 90 }, 0);
+        if (res4[0] != 0 || res4[1] != 2) throw new InvalidOperationException("Test 4 failed");
+
+        // Maximum complement magnitude permitted by the stated bounds
+        int[] res5 = TwoSum(new int[] { -1000000000, 1000000000 }, 0);
+        if (res5[0] != 0 || res5[1] != 1) throw new InvalidOperationException("Test 5 failed");
+
         Console.WriteLine("All tests passed!");
     }
 }
@@ -86,20 +96,26 @@ Input: `nums = [3, 2, 4]`, `target = 6`
 4. Return `[1, 2]`.
 
 # Time complexity
-* **O(n)**: We traverse the array exactly once, and dictionary lookups/insertions are O(1) on average.
+* **Expected O(n)**: We traverse the array once. Dictionary lookups and insertions are expected `O(1)` each under ordinary hash distribution, so the total expected time is `O(n)`. Hash tables can have worse collision cases; `O(n)` is not a worst-case guarantee for every dictionary operation.
 
 # Space complexity
-* **O(n)**: In the worst case, we store nearly all elements of the array in the dictionary.
+* **O(n)** auxiliary space: In the worst case, we store all but the final element in the dictionary.
 
 # Edge-case tests
 * **Two elements:** `[3, 3]` with target `6` is handled correctly by checking the dictionary before adding the current element.
 * **Negative numbers:** The logic `target - nums[i]` works correctly with negative integers.
-* **Large values:** The use of `int` is sufficient given the constraints.
+* **Large values:** The complement can reach `2,000,000,000`, still within `int`. Wider input bounds would require `long` arithmetic.
 
 # Reflection questions
 1. Why is a `Dictionary` (hash map) preferred over a nested loop for this problem?
 2. How would the space complexity change if we used a brute-force approach?
 3. What happens if the input array is empty? Does the current code handle it, or does it violate the constraints?
-4. Reference: [OpenDSA ListArray](https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html) and [Microsoft List<T> Capacity](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity). How do these concepts of contiguous storage relate to the efficiency of the array traversal used here?
+4. A dictionary uses extra storage to avoid rescanning the earlier prefix. How would the tradeoff change if you used a sorted copy and a two-pointer search, given that the required output is original indices?
 
-*Automatically generated draft.*
+## Sources
+
+* [Two Sum problem statement and constraints](https://leetcode.com/problems/two-sum/description/)
+* [Dictionary<TKey,TValue>.TryGetValue](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.trygetvalue?view=net-10.0)
+* [Dictionary<TKey,TValue> hash-table behavior](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-10.0)
+
+*Automatically generated draft; reviewed and corrected locally.*
