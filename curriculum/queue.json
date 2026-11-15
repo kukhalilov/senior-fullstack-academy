@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1855,
+  "taskCount": 1864,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -22,7 +22,7 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-001.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-001-concepts",
@@ -34,20 +34,59 @@
       "prerequisites": [
         "t01-001-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-001-reference-inventory-pending",
+      "id": "t01-001-reference-platform-components-and-build-chain",
       "track": "track-01",
-      "title": ".NET platform vs runtime vs SDK vs framework and alternatives — Reference: awaiting curated names",
+      "title": ".NET platform vs runtime vs SDK vs framework and alternatives — Reference: .NET platform parts and the source-to-running-process chain",
       "module": "t01-001",
       "manifest": "curriculum/manifests/c-language-and-net/t01-001.json",
       "phase": "reference",
       "prerequisites": [
         "t01-001-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "platform-components-and-build-chain"
+    },
+    {
+      "id": "t01-001-reference-implementations-frameworks-and-targets",
+      "track": "track-01",
+      "title": ".NET platform vs runtime vs SDK vs framework and alternatives — Reference: .NET implementations, framework families, target frameworks, and compatibility",
+      "module": "t01-001",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-001-reference-platform-components-and-build-chain"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "implementations-frameworks-and-targets"
+    },
+    {
+      "id": "t01-001-reference-app-stacks-and-deployment-shapes",
+      "track": "track-01",
+      "title": ".NET platform vs runtime vs SDK vs framework and alternatives — Reference: .NET application stacks, workloads, operating systems, and deployment choices",
+      "module": "t01-001",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-001-reference-implementations-frameworks-and-targets"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "app-stacks-and-deployment-shapes"
+    },
+    {
+      "id": "t01-001-reference-comparable-platforms-and-decision-criteria",
+      "track": "track-01",
+      "title": ".NET platform vs runtime vs SDK vs framework and alternatives — Reference: Comparable language and platform ecosystems and selection criteria",
+      "module": "t01-001",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-001-reference-app-stacks-and-deployment-shapes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "comparable-platforms-and-decision-criteria"
     },
     {
       "id": "t01-001-practice",
@@ -57,9 +96,9 @@
       "manifest": "curriculum/manifests/c-language-and-net/t01-001.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-001-reference-inventory-pending"
+        "t01-001-reference-comparable-platforms-and-decision-criteria"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-001-interview",
@@ -71,7 +110,7 @@
       "prerequisites": [
         "t01-001-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-002-overview",
@@ -1996,120 +2035,198 @@
     {
       "id": "t01-020-overview",
       "track": "track-01",
-      "title": "streams file system serialization networking and HTTP clients — Big-picture orientation and mental model",
+      "title": "streams file system serialization sockets and HTTP clients — Big-picture orientation and mental model",
       "module": "t01-020",
       "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-020-concepts",
       "track": "track-01",
-      "title": "streams file system serialization networking and HTTP clients — Core concepts and how they fit together",
+      "title": "streams file system serialization sockets and HTTP clients — Core concepts and how they fit together",
       "module": "t01-020",
       "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
       "phase": "concepts",
       "prerequisites": [
         "t01-020-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-020-reference-inventory-pending",
+      "id": "t01-020-reference-stream-abstractions-and-implementations",
       "track": "track-01",
-      "title": "streams file system serialization networking and HTTP clients — Reference: awaiting curated names",
+      "title": "streams file system serialization sockets and HTTP clients — Reference: Stream capabilities, memory and file streams, wrappers, readers, writers, and async I/O",
       "module": "t01-020",
       "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
       "phase": "reference",
       "prerequisites": [
         "t01-020-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "stream-abstractions-and-implementations"
+    },
+    {
+      "id": "t01-020-reference-file-directory-and-path-apis",
+      "track": "track-01",
+      "title": "streams file system serialization sockets and HTTP clients — Reference: File, Directory, FileInfo, DirectoryInfo, Path, globbing, filesystem metadata, and safety",
+      "module": "t01-020",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-020-reference-stream-abstractions-and-implementations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "file-directory-and-path-apis"
+    },
+    {
+      "id": "t01-020-reference-serialization-and-compression",
+      "track": "track-01",
+      "title": "streams file system serialization sockets and HTTP clients — Reference: System.Text.Json serializer, DOM, converters, source generation, and compression streams",
+      "module": "t01-020",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-020-reference-file-directory-and-path-apis"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "serialization-and-compression"
+    },
+    {
+      "id": "t01-020-reference-network-socket-and-http-client",
+      "track": "track-01",
+      "title": "streams file system serialization sockets and HTTP clients — Reference: DNS endpoints, sockets, TCP and UDP helpers, HttpClient request/response, and safe transport use",
+      "module": "t01-020",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-020-reference-serialization-and-compression"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "network-socket-and-http-client"
     },
     {
       "id": "t01-020-practice",
       "track": "track-01",
-      "title": "streams file system serialization networking and HTTP clients — Exercises and worked solutions",
+      "title": "streams file system serialization sockets and HTTP clients — Exercises and worked solutions",
       "module": "t01-020",
       "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-020-reference-inventory-pending"
+        "t01-020-reference-network-socket-and-http-client"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-020-interview",
       "track": "track-01",
-      "title": "streams file system serialization networking and HTTP clients — Interview questions and reasoning",
+      "title": "streams file system serialization sockets and HTTP clients — Interview questions and reasoning",
       "module": "t01-020",
       "manifest": "curriculum/manifests/c-language-and-net/t01-020.json",
       "phase": "interview",
       "prerequisites": [
         "t01-020-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-021-overview",
       "track": "track-01",
-      "title": "date time globalization regular expressions and formatting — Big-picture orientation and mental model",
+      "title": "dates times globalization formatting and regular expressions — Big-picture orientation and mental model",
       "module": "t01-021",
       "manifest": "curriculum/manifests/c-language-and-net/t01-021.json",
       "phase": "overview",
       "prerequisites": [],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-021-concepts",
       "track": "track-01",
-      "title": "date time globalization regular expressions and formatting — Core concepts and how they fit together",
+      "title": "dates times globalization formatting and regular expressions — Core concepts and how they fit together",
       "module": "t01-021",
       "manifest": "curriculum/manifests/c-language-and-net/t01-021.json",
       "phase": "concepts",
       "prerequisites": [
         "t01-021-overview"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
-      "id": "t01-021-reference-inventory-pending",
+      "id": "t01-021-reference-date-time-and-time-zone-types",
       "track": "track-01",
-      "title": "date time globalization regular expressions and formatting — Reference: awaiting curated names",
+      "title": "dates times globalization formatting and regular expressions — Reference: DateOnly, TimeOnly, DateTime, DateTimeOffset, TimeSpan, TimeProvider, calendars, and zones",
       "module": "t01-021",
       "manifest": "curriculum/manifests/c-language-and-net/t01-021.json",
       "phase": "reference",
       "prerequisites": [
         "t01-021-concepts"
       ],
-      "status": "blocked-on-inventory",
-      "inventoryGroup": "inventory-pending"
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "date-time-and-time-zone-types"
+    },
+    {
+      "id": "t01-021-reference-culture-number-date-and-string-globalization",
+      "track": "track-01",
+      "title": "dates times globalization formatting and regular expressions — Reference: CultureInfo, NumberFormatInfo, DateTimeFormatInfo, calendars, Unicode, comparison, and ICU",
+      "module": "t01-021",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-021.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-021-reference-date-time-and-time-zone-types"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "culture-number-date-and-string-globalization"
+    },
+    {
+      "id": "t01-021-reference-formatting-and-parsing-contracts",
+      "track": "track-01",
+      "title": "dates times globalization formatting and regular expressions — Reference: IFormattable, format strings, Parse and TryParse, exact parsing, interpolated handlers, and spans",
+      "module": "t01-021",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-021.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-021-reference-culture-number-date-and-string-globalization"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "formatting-and-parsing-contracts"
+    },
+    {
+      "id": "t01-021-reference-regular-expression-engine-and-patterns",
+      "track": "track-01",
+      "title": "dates times globalization formatting and regular expressions — Reference: Regex APIs, options, pattern language, captures, replacement, timeouts, and source generation",
+      "module": "t01-021",
+      "manifest": "curriculum/manifests/c-language-and-net/t01-021.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t01-021-reference-formatting-and-parsing-contracts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "regular-expression-engine-and-patterns"
     },
     {
       "id": "t01-021-practice",
       "track": "track-01",
-      "title": "date time globalization regular expressions and formatting — Exercises and worked solutions",
+      "title": "dates times globalization formatting and regular expressions — Exercises and worked solutions",
       "module": "t01-021",
       "manifest": "curriculum/manifests/c-language-and-net/t01-021.json",
       "phase": "practice",
       "prerequisites": [
-        "t01-021-reference-inventory-pending"
+        "t01-021-reference-regular-expression-engine-and-patterns"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-021-interview",
       "track": "track-01",
-      "title": "date time globalization regular expressions and formatting — Interview questions and reasoning",
+      "title": "dates times globalization formatting and regular expressions — Interview questions and reasoning",
       "module": "t01-021",
       "manifest": "curriculum/manifests/c-language-and-net/t01-021.json",
       "phase": "interview",
       "prerequisites": [
         "t01-021-practice"
       ],
-      "status": "blocked-on-inventory"
+      "status": "draft-generation-eligible"
     },
     {
       "id": "t01-022-overview",
