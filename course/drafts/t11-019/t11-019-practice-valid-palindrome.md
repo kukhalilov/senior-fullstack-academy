@@ -69,6 +69,10 @@ public static class Program
             while (left < right && !IsAsciiLetterOrDigit(s[right]))
                 right--;
 
+            // Skipping can make an all-ignored interior collapse to one position.
+            if (left >= right)
+                return true;
+
             if (ToAsciiLower(s[left]) != ToAsciiLower(s[right]))
                 return false;
 
