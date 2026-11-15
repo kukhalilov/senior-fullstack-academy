@@ -12,7 +12,7 @@ This lesson covers C# 15 and .NET 11 (GA, 2026-11-14). It focuses on the fundame
 # How this group fits the mental model
 In C#, every variable is either a **Value type** or a **Reference type**. 
 *   **Value types** hold their data directly. When you assign one to another, you perform a **Value copy**, creating an independent duplicate.
-*   **Reference types** hold an **Object reference** (a memory address) to data stored on the **Managed heap**. Assigning one to another performs a **Reference copy**, meaning both variables point to the same object, creating an **Alias**.
+*   **Reference types** hold an **object reference**. The language does not define it as a physical memory address. Assigning one to another performs a **Reference copy**, meaning both variables point to the same object, creating an **Alias**.
 
 Understanding this is critical for managing state: changing a shared object (aliasing) affects all references, whereas changing a value type only affects that specific variable.
 
@@ -20,15 +20,15 @@ Understanding this is critical for managing state: changing a shared object (ali
 
 ### Type Categories
 *   **Value type**: A type that contains its data directly. Includes **Struct type**, **Enum type**, and **Tuple value type**.
-*   **Reference type**: A type that stores a reference to an object. Includes **Class type**, **Interface type**, **Array type**, **Delegate type**, **String reference type**, **Record class**, and **Record struct**.
+*   **Reference type**: A type that stores a reference to an object. Includes **class**, **interface**, **array**, **delegate**, **string**, and **record class** types.
 *   **Unmanaged type**: A type that does not contain references to managed objects.
 *   **Managed type**: A type that requires garbage collection because it contains references.
 
 ### Assignment and Copying
 *   **Variable value**: The actual data stored in a value-type variable.
-*   **Object reference**: The memory address stored in a reference-type variable.
+*   **Object reference**: A reference to an object; its physical representation is an implementation detail.
 *   **Value copy**: Duplicating the actual data.
-*   **Reference copy**: Duplicating the memory address.
+*   **Reference copy**: Copying a reference value, so both variables can refer to the same object.
 *   **Assignment conversion**: The process of moving data or a reference during an `=` operation.
 *   **Shallow copy**: Copying only the top-level fields (default behavior).
 *   **Deep copy**: Manually copying nested objects to ensure total independence.
@@ -66,7 +66,7 @@ Understanding this is critical for managing state: changing a shared object (ali
 | Feature | Value Type | Reference Type |
 | :--- | :--- | :--- |
 | **Copying** | Value copy (independent) | Reference copy (aliasing) |
-| **Storage** | Often stack (context-dependent) | Managed heap |
+| **Variable contents** | A value of the value type | A reference to an object |
 | **Identity** | Value equality | Object identity |
 
 *   **Mutable struct copy** vs. **Readonly struct**: A mutable struct allows changes to its fields after creation; a `readonly struct` enforces immutability, preventing accidental modification during copies.
