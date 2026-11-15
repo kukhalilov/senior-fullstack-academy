@@ -20,13 +20,14 @@ export function loadModelUsage(filePath,day=pacificUsageDay()) {
   const saved=JSON.parse(fs.readFileSync(filePath,'utf8'));
   if(saved.schemaVersion!==1||saved.dayPacific!==day||!saved.requests||typeof saved.requests!=='object'||Array.isArray(saved.requests))return {schemaVersion:1,dayPacific:day,requests:{},unavailableModels:[]};
   const requests={};
-  for(const [model,count] of Object.entries(saved.requests))if(Number.isInteger(count)&&count>=0)requests[model]=count;
+  for(const [model,count] of Object.entries(saved.requests))if(Number.isInteger(count)&&count>=0)requests[model]=Math.min(count,modelRpdLimits[model]??count);
   const unavailableModels=Array.isArray(saved.unavailableModels)?[...new Set(saved.unavailableModels.filter(model=>typeof model==='string'))]:[];
   return {schemaVersion:1,dayPacific:day,requests,unavailableModels};
 }
 
 export function recordModelSuccess(usage,model) {
-  usage.requests[model]=(usage.requests[model]??0)+1;
+  const limit=modelRpdLimits[model];
+  usage.requests[model]=Math.min(limit??Number.MAX_SAFE_INTEGER,(usage.requests[model]??0)+1);
 }
 
 export function markDailyQuotaReached(usage,model) {

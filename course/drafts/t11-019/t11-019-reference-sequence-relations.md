@@ -11,13 +11,13 @@ This lesson covers the fundamental definitions of string sequence relationships 
 In string algorithms, we treat a string as an ordered sequence of elements. To solve problems efficiently, we must categorize how one string relates to another or how parts of a string relate to the whole. These relationships—such as whether one string is a "prefix" or a "subsequence" of another—determine which algorithmic strategy (e.g., linear scan, hashing, or dynamic programming) is appropriate for the task.
 
 # Supplied names explained
-* `Prefix`: A sequence of characters that appears at the very beginning of a string. For a string $S$ of length $n$, a prefix is any substring $S[0..i]$ where $0 \le i < n$.
-* `Proper prefix`: Any prefix of a string that is not equal to the string itself. For a string of length $n$, this includes all prefixes of length $0$ to $n-1$.
-* `Suffix`: A sequence of characters that appears at the very end of a string. For a string $S$ of length $n$, a suffix is any substring $S[i..n-1]$ where $0 \le i < n$.
-* `Substring`: A contiguous sequence of characters within a string. If you "cut" a piece out of a string without changing the order or skipping characters, the result is a substring.
-* `Subsequence`: A sequence derived from another string by deleting zero or more characters without changing the order of the remaining characters. Unlike a substring, the characters do not need to be contiguous.
-* `Palindrome`: A string that reads the same forwards and backwards. It is defined by the relationship $S[i] == S[n-1-i]$ for all valid indices $i$.
-* `Anagram`: A string formed by rearranging the letters of another string. Two strings are anagrams if they contain the exact same characters with the exact same frequencies.
+* `Prefix`: An initial segment of a string. For a sequence $S$ of length $n$, prefixes are $S[0..k)$ for $0 \le k \le n$, including the empty sequence and the whole string. In C#, state whether positions refer to UTF-16 code units, scalar values, or grapheme text elements.
+* `Proper prefix`: A prefix that is not equal to the whole string; its length $k$ satisfies $0 \le k < n$.
+* `Suffix`: A final segment of $S$, written $S[k..n)$ for $0 \le k \le n$, including the empty sequence and the whole string.
+* `Substring`: A contiguous interval $S[i..j)$ with $0 \le i \le j \le n$. For strings, the sequence unit must be specified.
+* `Subsequence`: A sequence derived by deleting zero or more elements without changing the order of the remaining elements. Unlike a substring, its elements need not be contiguous.
+* `Palindrome`: A sequence that reads the same forwards and backwards under the chosen element and equality rules. For a sequence $S$ of length $n$, this requires $S[i] = S[n-1-i]$ for every $0 \le i < n$.
+* `Anagram`: A sequence formed by rearranging another sequence's elements. Two inputs are anagrams only relative to a chosen element unit, equality rule, and any case or normalization policy.
 * `Character frequency`: The count of occurrences of each distinct character within a string. This is the primary metric used to determine if two strings are anagrams.
 
 # Cross-item comparison
@@ -39,7 +39,7 @@ Consider the string $S = \text{"abc"}$:
 # Common mistakes
 * **Confusing Substring and Subsequence**: Remember that "substring" implies a continuous slice. If you can skip characters, it is a "subsequence."
 * **Ignoring the Empty String**: In many algorithms, the empty string is considered a valid prefix, suffix, and subsequence of any string. Failing to account for the empty case often leads to "off-by-one" errors.
-* **Case Sensitivity**: When calculating `Character frequency` or checking for `Anagram` status, remember that 'A' and 'a' are distinct UTF-16 code units. Unless specified, assume these relationships are case-sensitive.
+* **Sequence and equality rules**: When calculating `Character frequency` or checking for `Anagram` status, state whether elements are UTF-16 code units, Unicode scalar values, or grapheme text elements, and whether comparison is case-sensitive or normalized. Under ordinal code-unit comparison, 'A' and 'a' are distinct.
 
 # Knowledge checks with answers
 1. **Question**: Is "ace" a substring of "abcde"?

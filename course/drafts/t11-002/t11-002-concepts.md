@@ -26,8 +26,8 @@ Source: [https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html](https
 # Mechanisms and relationships
 The primary trade-off in array-based design is between access speed and flexibility.
 
-1.  **Access vs. Mutation**: While reading an element by index is fast, **Insertion at index** or **Removal at index** in the middle of an array requires shifting all subsequent elements to maintain the **Stable relative order**.
-2.  **Append Performance**: While a single **Append** might trigger a resize (worst-case), the **Amortized append cost** is constant because resizes happen infrequently.
+1.  **Access vs. Mutation**: Reading an element by index is constant time. Inserting or removing at index `i` in an ordered array shifts the suffix after that index, so the work is proportional to the number of elements shifted. An insertion or removal at the end needs no shift; append may still resize when capacity is full.
+2.  **Append Performance**: A single **Append** might trigger a resize and copy (linear worst case). With geometric capacity growth, the **Amortized append cost** across a sequence is constant because those resizes happen infrequently.
 3.  **Space Management**: You must choose between an **In-place update** (modifying the existing array to save memory) or using an **Auxiliary array** (creating a new array to store results, which is safer but uses more memory).
 
 Source: [https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity)

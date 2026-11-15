@@ -23,8 +23,9 @@ The inventory of growth families provides standard rate categories (also known a
 
 1. **Sub-linear growth:** Resource consumption grows far slower than input size (`Constant growth`, `Logarithmic growth`).
 2. **Linear growth:** Resource consumption grows in direct proportion to input size (`Linear growth`).
-3. **Super-linear / Polynomial growth:** Resource consumption grows by a fixed power of the input size (`Linearithmic growth`, `Quadratic growth`, `Cubic growth`, `Polynomial growth`).
-4. **Intractable / Exponential growth:** Resource consumption grows multiplicatively with each addition to input size (`Exponential growth`, `Factorial growth`).
+3. **Linearithmic growth:** A near-linear superlinear family, typically expressed as $n \log n$.
+4. **Polynomial growth:** A fixed power of the input size, such as quadratic, cubic, or a higher-degree polynomial. Linearithmic growth is superlinear but is not itself a polynomial function.
+5. **Exponential and factorial growth:** These grow multiplicatively with input size and eventually outgrow every fixed-degree polynomial.
 
 Understanding these families allows you to predict whether an algorithm will scale effectively to large datasets or quickly become unusable.
 
@@ -32,10 +33,10 @@ Understanding these families allows you to predict whether an algorithm will sca
 
 The items below represent the pre-enumerated growth families used in standard asymptotic analysis.
 
-* `Constant growth`: Denoted asymptotically as $O(1)$. Execution cost does not depend on the input size $n$. Performing a single array lookup by index or pushing an item onto a stack runs in constant cost regardless of whether the structure holds 10 elements or 1,000,000 elements ([OpenDSA Asymptotic Analysis](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html)).
+* `Constant growth`: Denoted asymptotically as $O(1)$. The modeled cost does not depend on input size $n$. Array lookup by index is constant time; a linked-node stack push is constant time, while a dynamic-array stack push is amortized constant time and can take linear time during a resize ([OpenDSA Asymptotic Analysis](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html)).
 * `Logarithmic growth`: Denoted asymptotically as $O(\log n)$. Execution cost grows proportionally to the logarithm of the input size $n$. This pattern occurs when an algorithm repeatedly cuts the remaining input scope by a fixed fraction (typically halved) at each step, such as binary search on a sorted array. Doubling the input size adds only a constant number of operations.
 * `Linear growth`: Denoted asymptotically as $O(n)$. Execution cost increases in direct linear proportion to input size $n$. Scanning an unsorted array to find a maximum value or iterating over a list once are classic examples. If the input size doubles, the operations performed double as well.
-* `Linearithmic growth`: Denoted asymptotically as $O(n \log n)$. Execution cost grows as the product of linear and logarithmic terms. This is the optimal worst-case time bound for comparison-based sorting algorithms such as Merge Sort. It grows slightly faster than linear rate, remaining highly scalable for massive datasets.
+* `Linearithmic growth`: Denoted asymptotically as $O(n \log n)$. Execution cost grows as the product of linear and logarithmic terms. Merge sort achieves this worst-case bound, matching the comparison-sorting lower bound up to constant factors. It grows faster than linear but slower than every fixed-degree polynomial of degree greater than 1.
 * `Quadratic growth`: Denoted asymptotically as $O(n^2)$. Execution cost increases proportionally to the square of input size $n$. This growth commonly arises from nested loops processing all pairs of input elements, such as naive Bubble Sort or checking every pair in a collection for duplicates. Doubling $n$ increases operations by approximately four times.
 * `Cubic growth`: Denoted asymptotically as $O(n^3)$. Execution cost increases proportionally to the cube of input size $n$. This pattern frequently appears in algorithms that process all triples of input elements, such as standard three-loop matrix multiplication or the Floyd-Warshall all-pairs shortest path algorithm. Doubling $n$ increases operations by approximately eight times.
 * `Polynomial growth`: Denoted asymptotically as $O(n^k)$ for a fixed constant power $k \ge 0$. This general family encompasses constant ($k=0$), linear ($k=1$), quadratic ($k=2$), cubic ($k=3$), and higher fixed-power rates. Polynomial algorithms are generally considered "feasible" or "tractable" in theoretical Computer Science compared to non-polynomial alternatives ([MIT OCW Lecture 2](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html)).
@@ -44,9 +45,11 @@ The items below represent the pre-enumerated growth families used in standard as
 
 # Cross-item comparison
 
-Within this assigned inventory group, we can rank all nine growth families in strictly increasing order of growth rate as $n \to \infty$:
+For individual representative functions, a standard asymptotic ordering is:
 
-$$\text{Constant} < \text{Logarithmic} < \text{Linear} < \text{Linearithmic} < \text{Quadratic} < \text{Cubic} \subseteq \text{Polynomial} < \text{Exponential} < \text{Factorial}$$
+$$1 < \log n < n < n\log n < n^2 < n^3 < c^n < n!$$
+
+`Polynomial growth` is an umbrella family containing $n^2$, $n^3$, and higher fixed powers; it is not a single growth rate to place in this chain. For any fixed $k$ and constant $c>1$, $n^k$ eventually grows more slowly than $c^n$.
 
 ### Key distinctions within the group:
 
@@ -102,7 +105,7 @@ def demo_exponential(n: int) -> int:
 | Growth Family | Formal Notation | $n = 10$ | $n = 100$ | $n = 1,000$ |
 | :--- | :--- | :--- | :--- | :--- |
 | `Constant growth` | $O(1)$ | $1$ step | $1$ step | $1$ step |
-| `Logarithmic growth` | $O(\log_2 n)$ | $\approx 3.3$ steps | $\approx 6.6$ steps | $\approx 10$ steps |
+| `Logarithmic growth` | $O(\log_2 n)$ | $\approx 3.3$ scale units | $\approx 6.6$ scale units | $\approx 10$ scale units |
 | `Linear growth` | $O(n)$ | $10$ steps | $100$ steps | $1,000$ steps |
 | `Linearithmic growth` | $O(n \log_2 n)$ | $\approx 33$ steps | $\approx 664$ steps | $\approx 9,966$ steps |
 | `Quadratic growth` | $O(n^2)$ | $100$ steps | $10,000$ steps | $1,000,000$ steps |
@@ -139,5 +142,5 @@ def demo_exponential(n: int) -> int:
 1. **Answer:** `Logarithmic growth` ($O(\log n)$). Repeatedly halving the problem space generates a logarithmic tree depth.
 2. **Answer:** `Exponential growth` ($O(2^n)$). Adding a constant $1$ to input size multiplies work by a fixed base factor (in this case, 2).
 3. **Answer:** Both are specific instances of `Polynomial growth` where the fixed power $k$ is $2$ (`Quadratic growth`) and $3$ (`Cubic growth`).
-4. **Answer:** True. For any $n > 1$, $n < n \log n < n^2$.
+4. **Answer:** True for $n>2$ when the logarithm is base 2: $n < n\log_2 n < n^2$. As an asymptotic comparison, linearithmic growth is strictly between linear and quadratic growth.
 5. **Answer:** Because $n! = n \times (n-1) \times \dots \times 1$. As $n$ grows, every added term multiplies by a factor equal to $n$, which exceeds any constant base exponent $c^n$ as $n \to \infty$.

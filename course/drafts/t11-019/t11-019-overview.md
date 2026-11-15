@@ -13,7 +13,7 @@ Imagine a string as a train.
 *   **The passengers (Unicode scalar values):** Sometimes, one passenger fits in one car. Sometimes, a passenger is too large and needs two cars (a "surrogate pair").
 *   **The groups (Grapheme clusters):** A "user-perceived character" might be a single passenger, or it might be a group of passengers holding hands (like a base letter plus an accent mark).
 
-When you write an algorithm, you must decide if you are counting the **cars** (fast, but potentially wrong for text) or the **passengers/groups** (slower, but correct for human language).
+When you write an algorithm, choose the unit it needs: code units for UTF-16-level work, scalar values for Unicode-scalar processing, or grapheme text elements for user-perceived characters. These units answer different questions; none is universally correct for every text task.
 
 # How the parts fit together
 String algorithms rely on three layers of logic:
@@ -37,15 +37,15 @@ Consider searching for the pattern "ABA" in the text "ABABA".
 4.  **Result:** We find all occurrences in linear time, avoiding redundant work.
 
 # When to use it and tradeoffs
-*   **Use Ordinal comparison** for internal identifiers, file paths, or protocol data where speed is critical and language rules don't apply.
+*   **Use Ordinal comparison** for internal identifiers or protocol data where language rules don't apply; path comparison should follow the target platform's path rules.
 *   **Use Culture-sensitive comparison** for user-facing text (e.g., sorting names in a list).
 *   **Tradeoff:** String immutability in C# means every modification (like `+` concatenation) creates a new string in memory. For heavy manipulation, use `StringBuilder` or span-based techniques to avoid excessive allocations.
-*   **Risk:** When using *Polynomial rolling hash* for matching, always account for *hash collisions*—where two different strings produce the same hash value.
+*   **Risk:** When using *Polynomial rolling hash* for matching, account for *hash collisions*—where different strings produce the same hash—and verify candidate matches when correctness requires exact equality.
 
 # What later lessons cover
 *   Deep dives into `System.Text.Rune` for Unicode-aware iteration.
 *   Implementation details of the *Knuth-Morris-Pratt* and *Z-function* algorithms.
 *   Strategies for minimizing *substring allocation* in high-performance scenarios.
-*   Handling *normalization* when comparing strings that look the same but are encoded differently.
+*   Applying *normalization* when the application's equality policy requires canonically equivalent sequences to compare alike; string comparison does not normalize automatically.
 
 *Source: [Microsoft Learn .NET character encoding](https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction), [C# Strings](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/), [CP-Algorithms](https://cp-algorithms.com/string/prefix-function.html).*

@@ -12,7 +12,7 @@ Arrays are the building blocks of efficient algorithms because they provide cont
 
 # Supplied names explained
 
-* `Linear scan`: The process of visiting every element in an array exactly once, usually from index `0` to `n-1`. This is the foundational technique for searching or aggregating data in an unsorted array.
+* `Linear scan`: The process of visiting successive array elements, usually from index `0` toward `n-1`, until the scan finishes or its stopping condition is met. A full scan visits each element once; a search can stop early when it finds a match.
 * `In-place update`: A technique where you modify the original array to store results rather than creating a new one. This is highly memory-efficient (O(1) auxiliary space) but requires careful management to avoid overwriting data you still need.
 * `Auxiliary array`: A secondary array created to hold intermediate results or to simplify logic. While it consumes extra memory (O(n) space), it often makes algorithms easier to implement and less prone to logic errors compared to in-place updates.
 * `Index boundary`: The valid range of indices for an array, typically `0` to `length - 1`. Algorithms must explicitly check these boundaries to prevent "out of bounds" exceptions.
@@ -22,7 +22,7 @@ Arrays are the building blocks of efficient algorithms because they provide cont
 
 # Cross-item comparison
 
-* **Mutation versus copy** vs. **In-place update** vs. **Auxiliary array**: These three concepts define your memory strategy. An *in-place update* is a specific form of *mutation* that avoids an *auxiliary array*. Choosing between them depends on whether you have strict memory limits or need to preserve the original input.
+* **Mutation versus copy** vs. **In-place update** vs. **Auxiliary array**: These concepts define your memory strategy. An *in-place update* modifies the input while using only a small amount of extra storage; an *auxiliary array* uses additional storage and can preserve the original input. Choose based on memory limits, required behavior, and implementation clarity; mutation is not automatically faster.
 * **Linear scan** vs. **Index boundary**: A *linear scan* is the action, while the *index boundary* is the constraint that defines the scan's limits. Failing to respect the boundary during a scan is the primary cause of an *off-by-one error*.
 
 # Examples

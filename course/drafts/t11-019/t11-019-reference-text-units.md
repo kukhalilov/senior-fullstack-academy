@@ -18,11 +18,11 @@ The mental model for string processing is:
 # Supplied names explained
 
 * `UTF-16 code unit`: A 16-bit value used by .NET to represent text. Most common characters fit into one unit, but some require two.
-* `Unicode code point`: An integer value assigned to every character in the Unicode standard.
+* `Unicode code point`: An integer in Unicode's code space, from U+0000 through U+10FFFF. Some code points are unassigned; code points in the surrogate range aren't Unicode scalar values.
 * `Unicode scalar value`: Any Unicode code point except for those reserved for surrogate pairs (the range U+D800 through U+DFFF).
 * `Surrogate pair`: A sequence of two `UTF-16 code units` used to represent a single character that falls outside the Basic Multilingual Plane (such as many emojis).
 * `Grapheme cluster`: A sequence of one or more Unicode scalar values that should be treated as a single user-perceived character.
-* `char`: The C# primitive type representing a single `UTF-16 code unit`.
+* `char`: The C# primitive type representing a single `UTF-16 code unit`. A `char` can hold a surrogate half and therefore doesn't always represent a complete Unicode scalar value.
 * `System.Text.Rune`: A .NET type that represents a single `Unicode scalar value`, ensuring you do not accidentally split a surrogate pair.
 * `StringInfo text element`: A unit of text as identified by the `System.Globalization.StringInfo` class, which helps identify `grapheme clusters`.
 
@@ -30,7 +30,7 @@ The mental model for string processing is:
 
 When working with these units, the primary distinction is the level of abstraction:
 
-* **`char` vs `System.Text.Rune`**: A `char` is a fixed-size 16-bit container. A `System.Text.Rune` is a safe wrapper for a full Unicode scalar value. Use `Rune` when iterating over strings to avoid breaking surrogate pairs.
+* **`char` vs `System.Text.Rune`**: A `char` is a fixed-size 16-bit container. A `System.Text.Rune` represents one valid Unicode scalar value. Use `Rune` to iterate by scalar without splitting a valid surrogate pair; use `StringInfo` text elements when an operation must follow grapheme-cluster boundaries.
 * **`UTF-16 code unit` vs `Unicode scalar value`**: A scalar value may be represented by one or two code units.
 * **`Grapheme cluster` vs `Unicode scalar value`**: A single grapheme cluster may consist of multiple scalar values (e.g., a base letter plus a combining accent mark).
 
@@ -51,7 +51,7 @@ foreach (var rune in emoji.EnumerateRunes())
 # Common mistakes
 
 1. **Assuming `string.Length` equals character count:** `string.Length` returns the number of `char` (UTF-16 code units). If your string contains emojis or complex scripts, the length will be higher than the number of visible characters.
-2. **Indexing strings directly:** Using `str[i]` accesses a `char`. If `str[i]` is part of a surrogate pair, you are accessing half of a character, which is usually invalid.
+2. **Indexing strings directly:** Using `str[i]` accesses one UTF-16 code unit. If that unit is part of a surrogate pair, it is only half of the pair and can't be treated as a complete scalar value; it can still be processed as a code unit when the algorithm explicitly works at that level.
 3. **Ignoring normalization:** Different sequences of scalar values can represent the same visual character. Always consider if your algorithm needs to normalize text before comparison.
 
 # Knowledge checks with answers

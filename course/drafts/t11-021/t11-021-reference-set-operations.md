@@ -27,7 +27,7 @@ These operations are typically implemented as methods on collection types like `
 # Cross-item comparison
 When working with these operations, it is helpful to categorize them by their output type:
 
-* **Transformative operations** (`Union`, `Intersection`, `Difference`, `Symmetric difference`): These return a new collection containing the result of the operation. They are used when you need to create a new set based on the relationship between two others.
+* **Set-transforming operations** (`Union`, `Intersection`, `Difference`, `Symmetric difference`): These describe the mathematical result set; the API determines whether it is materialized, lazy, or applied by mutation. LINQ `Union` returns a deferred `IEnumerable<T>` query, while `HashSet<T>.UnionWith` mutates the receiver. Use the matching `HashSet<T>` methods `IntersectWith`, `ExceptWith`, and `SymmetricExceptWith` when you want to mutate a hash set. Choose a query/operator when you need a separate result and materialize it explicitly when necessary.
 * **Predicate operations** (`Subset`, `Proper subset`, `Superset`, `Set disjointness`): These return a boolean (`true` or `false`). They are used for validation or logic branching (e.g., "Do these two groups have any overlap?").
 
 No other within-group comparisons apply.

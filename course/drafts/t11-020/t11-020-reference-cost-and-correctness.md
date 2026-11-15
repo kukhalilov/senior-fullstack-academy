@@ -12,11 +12,11 @@ A hash map functions by using a hash function to convert a key into an index. Be
 
 # Supplied names explained
 
-* `Expected constant-time lookup`: The performance goal of a hash map. On average, finding an item takes the same amount of time regardless of how many items are in the map, because the hash function jumps directly to the relevant bucket.
+* `Expected constant-time lookup`: The performance goal under assumptions such as a well-distributed hash function and a controlled load factor. Hashing selects a bucket, but equality checks and collisions still contribute work; this is an expected bound, not a per-operation guarantee.
 * `Worst-case linear lookup`: The performance failure mode. If many keys collide (map to the same bucket) or the hash table becomes overloaded, the structure may be forced to scan through a long list of items, resulting in $O(n)$ time complexity.
-* `Amortized insertion`: The strategy of spreading the cost of expensive operations (like resizing the internal array and rehashing all keys) over many cheap insertions. While one specific insertion might be slow, the average cost over time remains low.
+* `Amortized insertion`: The analysis that spreads occasional resize and rehash work over a sequence of insertions. With suitable growth and hash-distribution assumptions, the resize contribution is amortized constant per insertion; collisions or expensive user hash/equality code add their own costs.
 * `Key equality contract`: The requirement that if two keys are considered equal, they must return the same hash code. If this contract is broken, the map cannot reliably find or retrieve the values associated with those keys.
-* `Mutable-key hazard`: A critical bug where a key's value is changed after it has been inserted into the map. Because the hash code of the key changes, the map can no longer find the entry at its original location, effectively "leaking" the data.
+* `Mutable-key hazard`: A correctness bug where equality-relevant key state changes after insertion. The stored entry remains in the location chosen using its earlier hash, so a later lookup can fail or the collection's behavior can otherwise violate its key assumptions.
 * `Hash collision attack`: A security vulnerability where an attacker provides specifically crafted keys that all result in the same hash code. This forces the map into `Worst-case linear lookup` behavior, potentially causing a Denial of Service (DoS) by exhausting CPU resources.
 
 # Cross-item comparison
@@ -28,22 +28,36 @@ A hash map functions by using a hash function to convert a key into an index. Be
 # Examples
 
 ```csharp
-// Example of a Mutable-key hazard
-var map = new Dictionary<Point, string>();
-var p = new Point(1, 1);
-map[p] = "Origin";
+using System;
+using System.Collections.Generic;
 
-// Changing the key after insertion
-p.X = 5; 
+public static class Program
+{
+    public static void Main()
+    {
+        var map = new Dictionary<MutablePoint, string>();
+        var point = new MutablePoint { X = 1, Y = 1 };
+        map[point] = "Origin";
+        point.X = 5; // The key's equality-relevant state changed after insertion.
+        bool found = map.TryGetValue(point, out string? value); // May fail: lookup hashes the mutated key.
+        Console.WriteLine($"Found after mutation: {found}");
+    }
+}
 
-// This lookup will likely fail because the hash code of 'p' has changed
-// and the map is looking in the wrong bucket.
-bool found = map.TryGetValue(p, out string value);
+// A reference-type key whose equality and hash code depend on mutable state.
+public sealed class MutablePoint : IEquatable<MutablePoint>
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+    public bool Equals(MutablePoint? other) => other is not null && X == other.X && Y == other.Y;
+    public override bool Equals(object? obj) => obj is MutablePoint other && Equals(other);
+    public override int GetHashCode() => HashCode.Combine(X, Y);
+}
 ```
 
 # Common mistakes
 
-1. **Using mutable objects as keys**: As shown above, changing a property of an object used as a key will make that entry unreachable.
+1. **Using mutable objects as keys**: Changing equality-relevant state after insertion can make lookup fail because the collection stored the key using its earlier hash. Use immutable keys or remove and reinsert after a change.
 2. **Ignoring the hash code**: Implementing a custom `Equals` method without overriding `GetHashCode` is a common violation of the `Key equality contract`.
 3. **Assuming constant time**: In performance-critical systems, developers often forget that `Worst-case linear lookup` can occur if the hash function is poor or the table is too full.
 

@@ -13,12 +13,12 @@ In C#, strings are immutable sequences of UTF-16 code units. Because they cannot
 # Supplied names explained
 
 * `String immutability`: The property that a `string` object cannot be modified after creation. Any "change" to a string actually creates a new string object in memory, leaving the original unchanged.
-* `Repeated concatenation cost`: The performance penalty incurred when using the `+` operator or `+=` in a loop. Because of immutability, each concatenation creates a new string, leading to $O(n^2)$ time complexity for building a string of length $n$.
+* `Repeated concatenation cost`: The performance penalty incurred when repeatedly appending similarly sized pieces in a loop. Because strings are immutable, each result contains the accumulated text; building a length-$n$ string this way can copy a total of $O(n^2)$ characters. Other piece sizes have costs based on the sum of intermediate result lengths.
 * `Substring allocation`: The process of creating a new `string` object when extracting a portion of an existing string. This consumes additional memory and can trigger frequent garbage collection if performed inside tight loops.
 * `Hash collision`: A scenario where two different strings produce the same hash value. When using hash-based matching (like Rabin-Karp), algorithms must be designed to verify the actual string content if a hash match occurs to avoid incorrect results.
 * `Empty pattern`: A common edge case in string searching algorithms. An empty pattern is technically present at every position in a string; failing to handle this explicitly can lead to infinite loops or off-by-one errors.
 * `Repeated characters`: A structural property of strings that can degrade the performance of naive pattern-matching algorithms to $O(n \times m)$. Advanced algorithms (like KMP) use this property to skip unnecessary comparisons.
-* `Unicode-aware iteration`: The practice of iterating over a string by `Rune` (Unicode scalar value) or grapheme cluster rather than by UTF-16 code unit. This ensures that multi-unit characters (like emojis or accented letters) are treated as single logical elements.
+* `Unicode-aware iteration`: The practice of choosing an iteration unit deliberately: UTF-16 code units, `Rune` scalar values, or `StringInfo` text elements for grapheme-aware processing. A `Rune` avoids splitting a valid surrogate pair, but combining sequences can still contain multiple scalars.
 
 # Cross-item comparison
 
@@ -45,9 +45,10 @@ for (int i = 0; i < 1000; i++) {
 ```csharp
 string text = "a\u0301"; // 'a' + combining acute accent
 // Iterating by index treats this as two units (Length 2)
-// Unicode-aware iteration treats this as one logical character
+// Rune iteration sees two scalar values; StringInfo text-element
+// enumeration treats the sequence as one grapheme text element.
 ```
-*Result:* If your algorithm assumes `Length` equals the number of characters, it will fail on strings containing combining marks or surrogate pairs.
+*Result:* `Length` is 2 UTF-16 code units here. There are also two Unicode scalar values, but one grapheme text element; the count depends on the unit the algorithm needs.
 
 # Common mistakes
 

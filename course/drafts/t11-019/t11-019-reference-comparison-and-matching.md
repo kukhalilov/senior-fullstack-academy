@@ -12,10 +12,10 @@ String algorithms rely on defining what constitutes an "element" and how to dete
 
 # Supplied names explained
 
-* `Ordinal comparison`: Compares strings by examining the numeric values of the underlying UTF-16 code units. It is the fastest comparison method and is culture-invariant, making it ideal for internal identifiers or file paths.
-* `Culture-sensitive comparison`: Compares strings based on the linguistic rules of a specific culture (e.g., how "a" and "ä" are sorted in Swedish versus German). This is necessary for user-facing text.
-* `Case-insensitive comparison`: A comparison mode that ignores the casing of characters. It can be applied as either an ordinal or culture-sensitive operation.
-* `Normalization`: The process of converting strings into a standard binary representation. This ensures that characters that look identical but are encoded differently (e.g., a precomposed character versus a base character plus a combining mark) are treated as equal.
+* `Ordinal comparison`: Compares strings according to their UTF-16 code-unit values, without linguistic tailoring. Use it for machine-oriented identifiers when that is the intended policy; path comparison must also follow the target platform's path rules.
+* `Culture-sensitive comparison`: Compares strings using linguistic rules for a selected culture. Use it when language-aware sorting or matching is part of the user-facing requirement; results can differ between cultures.
+* `Case-insensitive comparison`: A comparison policy that treats certain case variants as equivalent. It can be ordinal or culture-sensitive, and the choice affects its rules.
+* `Normalization`: A Unicode transformation that maps text into a selected normalization form. It can make canonically equivalent sequences compare alike when the application's equality policy requires that; .NET string comparison does not automatically normalize every string.
 * `Naive pattern matching`: A brute-force approach that checks for a pattern by sliding it across the text one position at a time. It has a worst-case time complexity of O(n*m).
 * `Prefix function`: A core component of the Knuth-Morris-Pratt algorithm; it computes the length of the longest proper prefix of a substring that is also a suffix of that same substring.
 * `Knuth-Morris-Pratt matching`: An efficient pattern-matching algorithm that uses the prefix function to skip unnecessary comparisons, achieving O(n+m) time complexity.
@@ -24,7 +24,7 @@ String algorithms rely on defining what constitutes an "element" and how to dete
 * `Polynomial rolling hash`: A hashing technique used in Rabin-Karp where the hash value is updated in constant time as the window slides across the text, reducing the cost of recomputing hashes.
 
 # Cross-item comparison
-* **Comparison Methods**: `Ordinal comparison` is binary and fast, whereas `Culture-sensitive comparison` is linguistic and slower. `Normalization` acts as a prerequisite for both to ensure consistent equality checks.
+* **Comparison Methods**: `Ordinal comparison` follows code-unit values and `Culture-sensitive comparison` follows language-specific collation rules. Apply `Normalization` only when the chosen text-equivalence policy requires it; it is not a prerequisite for every comparison.
 * **Matching Algorithms**: `Naive pattern matching` is simple but inefficient. `Knuth-Morris-Pratt matching` and `Rabin-Karp matching` are optimized alternatives. `Knuth-Morris-Pratt matching` relies on the `Prefix function` to avoid re-scanning, while `Rabin-Karp matching` relies on `Polynomial rolling hash` to compare blocks of text via numeric signatures. The `Z-function` provides a different structural analysis of the string, useful for identifying repeated patterns.
 
 # Examples
@@ -42,7 +42,7 @@ bool isEqual = string.Equals(a, b, StringComparison.Ordinal); // false
 ```
 
 # Common mistakes
-* **Ignoring Normalization**: Assuming two strings are equal because they look the same, even if they are encoded differently (e.g., different Unicode normalization forms).
+* **Assuming automatic normalization**: Two canonically equivalent strings can have different code-unit sequences. Normalize only when the application's equality policy requires canonical equivalence; ordinal comparison otherwise keeps them distinct.
 * **Culture Assumptions**: Using culture-sensitive comparisons for machine-generated keys, which can lead to unexpected behavior when the system locale changes.
 * **Hash Collisions**: Relying on `Polynomial rolling hash` without handling potential collisions, which can lead to false positives in pattern matching.
 
@@ -51,8 +51,8 @@ bool isEqual = string.Equals(a, b, StringComparison.Ordinal); // false
    **Answer**: `Ordinal comparison`, because it is culture-invariant and provides consistent, high-performance results.
 2. **Question**: What is the primary difference between `Knuth-Morris-Pratt matching` and `Naive pattern matching`?
    **Answer**: `Knuth-Morris-Pratt matching` uses a `Prefix function` to skip redundant comparisons, resulting in O(n+m) complexity, whereas `Naive pattern matching` re-scans characters, resulting in O(n*m) complexity.
-3. **Question**: Why is `Normalization` important before comparing strings?
-   **Answer**: It ensures that different binary representations of the same logical character are treated as equal.
+3. **Question**: When might `Normalization` be needed before comparing strings?
+   **Answer**: When the application's equality policy treats canonically equivalent Unicode sequences as equal. Normalize using the chosen form as part of that policy; ordinary string comparison does not do this automatically.
 
 *Sources*:
 - [Microsoft Learn: Character encoding](https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction)

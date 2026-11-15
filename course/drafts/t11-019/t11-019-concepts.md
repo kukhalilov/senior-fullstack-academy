@@ -18,15 +18,15 @@ String algorithms treat text as an ordered sequence of elements. In C#, a `strin
 
 A critical distinction exists between how computers store text and how humans perceive it:
 * `UTF-16 code unit`: The fundamental unit of storage in a C# `char`.
-* `Unicode scalar value`: A value representing a character, which may require one or two `UTF-16 code unit` values (a `Surrogate pair`).
-* `Grapheme cluster`: A user-perceived character (e.g., an 'e' with an accent mark) that may consist of multiple code points.
+* `Unicode scalar value`: A Unicode code point outside the surrogate range. A scalar uses one UTF-16 code unit in the Basic Multilingual Plane or a surrogate pair outside it.
+* `Grapheme cluster`: A user-perceived text element (for example, a base letter with a combining accent) that can contain multiple Unicode scalar values.
 
-When comparing strings, you must choose between `Ordinal comparison` (comparing raw numeric values) and `Culture-sensitive comparison` (respecting linguistic rules).
+When comparing strings, choose an equality and ordering policy deliberately. `Ordinal comparison` compares UTF-16 code units; `Culture-sensitive comparison` applies linguistic rules for a selected culture. Neither choice automatically normalizes text.
 
 # Mechanisms and relationships
 String problems are often solved by identifying specific relationships within the sequence:
 * **Prefix/Suffix**: A `Prefix` is a sequence starting at the beginning; a `Suffix` ends at the end. A `Proper prefix` is a prefix that is not the entire string.
-* **Substring vs. Subsequence**: A `Substring` is a contiguous block of characters. A `Subsequence` is derived by deleting zero or more characters without changing the order of the remaining elements.
+* **Substring vs. Subsequence**: A `Substring` is a contiguous interval in the chosen logical sequence; for a .NET `string`, algorithms must say whether positions mean UTF-16 code units, Unicode scalar values, or grapheme text elements. A `Subsequence` is derived by deleting zero or more elements without changing the order of the remaining elements.
 * **Matching Algorithms**:
     * `Naive pattern matching`: Compares the pattern at every possible position.
     * `Knuth-Morris-Pratt matching`: Uses a `Prefix function` to skip unnecessary comparisons by remembering information about previously matched characters.
@@ -41,7 +41,9 @@ To find if a pattern exists in a text, we often use a sliding window approach.
 **Example: Naive Matching**
 ```csharp
 bool Contains(string text, string pattern) {
-    if (string.IsNullOrEmpty(pattern)) return true;
+    ArgumentNullException.ThrowIfNull(text);
+    ArgumentNullException.ThrowIfNull(pattern);
+    if (pattern.Length == 0) return true;
     for (int i = 0; i <= text.Length - pattern.Length; i++) {
         int j = 0;
         while (j < pattern.Length && text[i + j] == pattern[j]) {
@@ -54,7 +56,7 @@ bool Contains(string text, string pattern) {
 ```
 *Step-by-step*:
 1. The loop iterates through the `text` until the remaining length is shorter than the `pattern`.
-2. For each position `i`, it checks if the `Substring` starting at `i` matches the `pattern`.
+2. For each UTF-16 code-unit position `i`, it compares the candidate interval directly with the pattern; it doesn't allocate a `Substring`.
 3. If `j` reaches the length of the pattern, a match is found.
 
 Source: [https://cp-algorithms.com/string/string-hashing.html](https://cp-algorithms.com/string/string-hashing.html)
@@ -69,7 +71,7 @@ Source: [https://cp-algorithms.com/string/string-hashing.html](https://cp-algori
    **Answer**: It counts `UTF-16 code unit` values, not user-perceived characters. A single `Grapheme cluster` might consist of multiple code units.
 
 2. **Question**: What is the primary difference between a `Substring` and a `Subsequence`?
-   **Answer**: A `Substring` must be contiguous (adjacent in memory), while a `Subsequence` maintains relative order but does not need to be contiguous.
+   **Answer**: A `Substring` occupies consecutive positions in the chosen logical sequence, while a `Subsequence` only preserves order. For strings, state whether those positions are code units, scalar values, or grapheme text elements; logical contiguity doesn't mean adjacent memory addresses.
 
 3. **Question**: Why is `Knuth-Morris-Pratt matching` generally faster than `Naive pattern matching`?
    **Answer**: It uses a `Prefix function` to avoid re-scanning characters that have already been matched, reducing the number of unnecessary comparisons.

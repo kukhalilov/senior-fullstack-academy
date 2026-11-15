@@ -10,7 +10,10 @@ test('model usage follows Pacific quota resets and enforces each model daily lim
   const usage={requests:{'gemini-3.5-flash-lite':498,'gemini-3.1-flash-lite':500}};
   recordModelSuccess(usage,'gemini-3.5-flash-lite');
   assert.equal(usage.requests['gemini-3.5-flash-lite'],499);
-  assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),21);
+  usage.requests['gemini-3.8-flash']=20;
+  recordModelSuccess(usage,'gemini-3.8-flash');
+  assert.equal(usage.requests['gemini-3.8-flash'],20);
+  assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),1);
   markDailyQuotaReached(usage,'gemini-3.8-flash');
   assert.equal(usage.requests['gemini-3.8-flash'],modelRpdLimits['gemini-3.8-flash']);
   assert.equal(remainingDailyCalls(usage,['gemini-3.5-flash-lite','gemini-3.1-flash-lite','gemini-3.8-flash']),1);
@@ -450,6 +453,10 @@ test('the curriculum teaches overview before references and has no forced versio
   assert.match(template.qualityReview.output, /Return JSON only/i);
   assert.ok(template.dsaPractice.requiredSolutionFields.includes('Complete C# solution'));
   assert.ok(template.dsaPractice.requiredSolutionFields.includes('Correctness argument'));
+  const generator = fs.readFileSync('scripts/generate.js', 'utf8');
+  assert.match(generator, /REQUIRED DSA OUTPUT CONTRACT/);
+  assert.match(generator, /dsaProblemHeadings\.map\(heading => '# ' \+ heading\)/);
+  assert.match(generator, /three backtick characters followed immediately by csharp dsa-solution/);
   const path = JSON.parse(fs.readFileSync('curriculum/learning-path.json', 'utf8'));
   const pathTopicIds = path.stages.flatMap(stage => stage.topics);
   assert.equal(path.topicCount, pathTopicIds.length);

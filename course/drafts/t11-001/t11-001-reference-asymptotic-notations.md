@@ -45,7 +45,7 @@ Below is the complete inventory of assigned items for this reference lesson, rep
 
 Within this assigned group of asymptotic notations, the items pair into loose versus tight relationships, mirroring real numbers comparisons ($O$ is like $\le$, $\Omega$ is like $\ge$, $\Theta$ is like $=$):
 
-* **`Big O notation` vs `Big Omega notation` vs `Big Theta notation`:** `Big O` provides an upper ceiling, `Big Omega` provides a lower floor, and `Big Theta` provides both simultaneously (an exact asymptotic match). If an algorithm's worst-case time is $O(n^2)$ and its best-case time is $\Omega(n^2)$, its tight bound is $\Theta(n^2)$.
+* **`Big O notation` vs `Big Omega notation` vs `Big Theta notation`:** `Big O` provides an asymptotic upper bound and `Big Omega` a lower bound. If the same cost function is both $O(n^2)$ and $\Omega(n^2)$, it is $\Theta(n^2)$. Bounds for different cases (such as best case and worst case) do not by themselves establish a tight bound for either one.
 * **`Big O notation` vs `Little o notation`:** `Big O` allows the function to grow at the exact same rate as the reference function (up to a constant factor, like $2n^2 = O(n^2)$). `Little o` requires the function to grow *strictly slower* than the reference function ($n = o(n^2)$, but $n^2 \neq o(n^2)$).
 * **`Big Omega notation` vs `Little omega notation`:** Analogously, `Big Omega` allows equal asymptotic growth, whereas `Little omega` requires strict outgrowth ($n^2 = \omega(n)$, but $n^2 \neq \omega(n^2)$).
 
@@ -55,7 +55,7 @@ To see how asymptotic notations apply, consider a concrete function representing
 
 1. **Upper Bound Check (`Big O notation`):**
    * We claim $T(n) = O(n^2)$.
-   * Choose $c = 4$ and $n_0 = 5$. For all $n \ge 5$, $3n^2 + 5n + 2 \le 4n^2$ holds true because $5n + 2 \le n^2$ when $n \ge 6$. Thus, the upper bound is verified.
+   * Choose $c = 4$ and $n_0 = 6$. For all $n \ge 6$, $3n^2 + 5n + 2 \le 4n^2$ because $5n + 2 \le n^2$. Thus, the upper bound is verified.
 
 2. **Tight Bound Check (`Big Theta notation`):**
    * We claim $T(n) = \Theta(n^2)$.

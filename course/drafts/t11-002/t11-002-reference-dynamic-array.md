@@ -18,13 +18,13 @@ In algorithmic problem solving, an array is a contiguous block of memory. A **fi
 * `Resize and copy`: The internal process triggered when the `Logical count` reaches the `Capacity`. The structure allocates a new, larger memory block and copies all existing elements from the old block to the new one.
 * `Append`: The operation of adding an element to the end of the dynamic array. If space exists, it is a simple assignment; if not, it triggers a resize.
 * `Amortized append cost`: The average time complexity of an `Append` operation over a long sequence of additions. While a single `Append` might be slow due to a resize, the cost is spread out, resulting in constant-time performance on average.
-* `Insertion at index`: The operation of placing an element at a specific position. This requires shifting all subsequent elements to the right to maintain the contiguous order, which is an expensive operation.
-* `Removal at index`: The operation of deleting an element at a specific position. This requires shifting all subsequent elements to the left to fill the gap, which is also an expensive operation.
+* `Insertion at index`: The operation of placing an element at a specific position. Inserting before the end shifts the suffix to the right to preserve order, so the work is proportional to the number of elements shifted; insertion at the end needs no shift and is append.
+* `Removal at index`: The operation of deleting an element at a specific position. Removing before the end shifts the suffix left to fill the gap, so the work is proportional to the number of elements shifted; removing the last element needs no shift.
 
 # Cross-item comparison
 Within the dynamic array structure, there is a critical distinction between the `Logical count` and the `Capacity`. The `Logical count` represents the user's data, while the `Capacity` represents the system's reserved memory. 
 
-Regarding performance, `Append` is generally efficient because of its `Amortized append cost`. In contrast, `Insertion at index` and `Removal at index` do not share this efficiency; they are inherently slower because they require shifting elements, regardless of the available `Capacity`.
+Regarding performance, `Append` is amortized constant time when capacity grows geometrically, though one append can resize and copy the buffer. Insertion or removal before the end shifts the affected suffix, with work proportional to the number of moved elements; insertion at the end needs no shift, and removing the last element needs no shift.
 
 # Examples
 The following conceptual example demonstrates how a dynamic array handles growth:
@@ -35,7 +35,7 @@ The following conceptual example demonstrates how a dynamic array handles growth
 4. **Final state**: `Logical count` = 3, `Capacity` = 4. Array: `[A, B, C, _]` (where `_` is empty space).
 
 # Common mistakes
-* **Confusing Count and Capacity**: Attempting to access an index based on the `Capacity` rather than the `Logical count` will lead to reading uninitialized or "garbage" data.
+* **Confusing Count and Capacity**: `Capacity` describes reserved storage, not accessible elements. Public collections such as .NET `List<T>` reject an index at or beyond `Count`, even when that index is below `Capacity`; unused storage isn't part of the collection's logical contents.
 * **Ignoring Shift Costs**: Beginners often assume that because `Append` is fast, all modifications (like inserting at index 0) are also fast. Always remember that inserting or removing from the middle of a dynamic array requires shifting elements, which is an $O(n)$ operation.
 * **Frequent Resizing**: Manually setting a very small initial capacity when you know you will have thousands of elements causes unnecessary `Resize and copy` operations, which degrades performance.
 

@@ -13,6 +13,8 @@ Variance annotations (`out` and `in`) establish a contract about how a generic t
 - **Consumers** (input-only) can be **contravariant** using `in`.
 - **Read/write abstractions** must remain **invariant** (neither `out` nor `in`) to prevent type safety violations at runtime.
 
+Variance conversions apply only when the type arguments are reference types. For example, `IEnumerable<string>` can convert to `IEnumerable<object>`, but `IEnumerable<int>` cannot convert to `IEnumerable<object>` even though `int` can be boxed as `object`.
+
 # Supplied names explained
 This section explains every item in the assigned reference inventory exactly as supplied.
 
@@ -56,10 +58,10 @@ This section explains every item in the assigned reference inventory exactly as 
   The ability of a variant interface to inherit from another interface, provided that the variance safety rules across the inheritance chain are strictly respected by the compiler.
 
 * `Variant interface implementation`
-  The realization of a variant interface by a concrete class. While the interface supports variance conversions, the implementing class itself remains invariant.
+  The realization of a variant interface by a concrete class. Variance conversions apply to compatible interface references; they do not make the implementing class type itself variant. For example, `List<string>` is not convertible to `List<object>`.
 
 * `Variance conversion from implementing class`
-  An implicit reference conversion that permits an instance of a class implementing a variant interface to be assigned directly to a variable typed with a broader or narrower compatible generic interface type argument.
+  An implicit reference conversion from an implementing class instance to a compatible constructed interface. For example, an object implementing `IProducer<string>` can be used through `IProducer<object>` when `IProducer<out T>` declares `T` covariant. The conversion is available only for reference-type arguments.
 
 * `IEnumerable<T> covariance`
   The built-in covariance behavior of `System.Collections.Generic.IEnumerable<T>` [https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance], where `T` is marked with `out`, allowing `IEnumerable<String>` to be implicitly converted to `IEnumerable<Object>`.
@@ -80,7 +82,7 @@ This section explains every item in the assigned reference inventory exactly as 
   The covariance behavior of `System.Linq.IOrderedEnumerable<TElement>`, representing sorted sequences whose element type parameter is covariant.
 
 * `IGrouping<TKey,TElement> covariance`
-  The covariance behavior of `System.Linq.IGrouping<TKey,TElement>`, where both key and element groupings can participate in covariance rules depending on their declaration structure.
+  The covariance behavior of `System.Linq.IGrouping<TKey,TElement>`; both `TKey` and `TElement` are declared covariant.
 
 * `IComparer<T> contravariance`
   The contravariant behavior of `System.Collections.Generic.IComparer<T>` [https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance], where `T` is marked with `in`. An `IComparer<Object>` can be used where an `IComparer<String>` is required because an object comparer can compare strings safely.

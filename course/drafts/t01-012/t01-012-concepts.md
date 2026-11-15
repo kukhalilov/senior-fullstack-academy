@@ -76,14 +76,14 @@ A conversion transforms an expression of one type into a target type.
 - **User-Defined Conversions**: Methods declared with `operator` syntax on a custom class or struct that allow converting between custom types or between a custom type and a built-in type.
 
 ### Implicit vs. Explicit Conversions
-- **Implicit Conversion**: Performed automatically by the compiler when the conversion is guaranteed to succeed without losing data or throwing runtime exceptions (e.g., converting a 32-bit integer to a 64-bit integer).
-- **Explicit Conversion**: Requires an explicit cast operator `(TargetType)value` because the transformation may lose information (such as truncating fractional digits), change domain semantics, or throw an exception if the input value falls outside the valid target range.
+- **Implicit Conversion**: Applied automatically when the language defines a conversion for the source and target types. The compiler doesn't guarantee that every implicit conversion preserves information or cannot throw: converting a sufficiently large `long` to `double` can lose integer precision, and a user-defined conversion can execute code that throws. Keep implicit conversions unsurprising and safe for the values the type permits.
+- **Explicit Conversion**: Written with a cast such as `(TargetType)value` so the caller acknowledges a conversion that may lose information, change domain meaning, or fail for some values. An explicit conversion can still succeed or fail according to its implementation and the active checked context.
 
 ### Checked vs. Unchecked Conversions and Arithmetic
-In C#, integral operations and conversions evaluate in either a `checked` or `unchecked` context:
-- In a **checked** context, operations that overflow the memory boundary of the target type throw an `OverflowException`.
-- In an **unchecked** context, overflow truncates the high-order bits without throwing an exception.
-- User-defined operators and explicit conversion operators can declare separate `checked` versions to enforce explicit overflow checking when invoked inside a `checked` block or compiler option.
+In C#, integral arithmetic and numeric conversions evaluate in either a `checked` or `unchecked` context:
+- For integral arithmetic and narrowing integral conversions, a **checked** context throws `OverflowException` when the result is outside the target type's range. In an **unchecked** context, integral overflow wraps or discards high-order bits according to the operation.
+- Floating-point-to-integral conversions have different rules: a checked conversion throws when the value is outside the target range, while the result of an out-of-range unchecked conversion is unspecified. Don't generalize integral wraparound behavior to floating-point conversions.
+- Since C# 11, the arithmetic operators `+`, `-`, `*`, `++`, and `--`, plus explicit conversion operators, can declare separate checked variants. Other user-defined operators don't gain checked variants merely by being called inside a `checked` block.
 
 ```
                   Conversion Classification
@@ -111,7 +111,7 @@ User-defined operators let custom types participate in expressions using operato
 - **Named Method**: Preferred when an operation is asymmetric, computationally expensive, has side effects, or lacks an universally accepted operator meaning (for example, `CalculateDistanceTo()` instead of overloading an operator).
 
 ### Operator Rules and Semantics
-- Operators must be declared as `public static`.
+- Operators declared in classes and structs must be `public static`; interfaces can declare static abstract or virtual operator contracts for implementing types.
 - At least one operand must be of the type declaring the operator.
 - Logical and comparison operators must be declared in pairs (e.g., overloading `==` requires overloading `!=`; overloading `<` requires overloading `>`).
 - Overloading `==` should always be kept consistent with an override of `Object.Equals`.
@@ -152,11 +152,11 @@ Pattern matching tests whether an expression matches a given pattern form and op
 - **Switch Expression**: A functional syntax construct introduced in C# 8 that evaluates arms and returns a single value.
 
 ### Open vs. Closed Hierarchy Exhaustiveness
-- **Open Hierarchy**: A general class hierarchy where new derived types can be added anywhere. Switch expressions over open hierarchies require a discard arm (`_`) to guarantee exhaustiveness at compile time.
-- **Closed Hierarchy**: A finite type set (such as enum types, union types, or closed hierarchies added in C# 15) where all possible subtype alternatives are known to the compiler ([C# 15 Features](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15)). When matching against a closed hierarchy, the compiler can verify exhaustiveness without requiring a fallback discard arm.
+- **Open Hierarchy**: A general class hierarchy where new derived types can be added. The compiler can't prove that a switch expression handles every possible runtime type, so it reports a non-exhaustive-switch warning; the expression can still compile, but an unmatched value throws `SwitchExpressionException`. A discard arm (`_`) supplies a fallback.
+- **Closed Hierarchy**: A finite alternative set, such as a C# 15 closed hierarchy or union type, can let the compiler check that every declared alternative is handled ([C# 15 Features](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15)). Enums also support checks against their declared members, but an enum variable can contain an unnamed underlying value, so a fallback may still be needed for runtime safety.
 
 ### Pattern Guards
-A pattern arm can include a `when` guard clause: `pattern when condition`. The arm selects only if the pattern matches **and** the Boolean guard evaluates to `true`. Guards must be side-effect free because the compiler does not guarantee a fixed evaluation count or order for guard checks across branches.
+A pattern arm can include a `when` guard clause: `pattern when condition`. The arm selects only if the pattern matches **and** the Boolean guard evaluates to `true`. Switch-expression arms are evaluated in text order. For switch statements, C# doesn't specify the runtime order in which patterns are matched. Keep guards free of side effects so branch selection doesn't depend on mutating state while patterns are considered.
 
 ---
 
@@ -166,7 +166,7 @@ Let's build a complete example demonstrating custom operators, conversions, and 
 
 ### Step 1: Defining a Custom Type with Conversions and Operators
 
-The following code declares a `Distance` value type with implicit/explicit conversions and checked operator support.
+The following code declares a `Distance` value type with user-defined conversions and checked operator support.
 
 ```csharp
 using System;
@@ -177,15 +177,15 @@ public readonly struct Distance : IEquatable<Distance>
 
     public Distance(double meters)
     {
-        if (double.IsNaN(meters) || meters < 0)
+        if (!double.IsFinite(meters) || meters < 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(meters), "Distance cannot be negative or NaN.");
+            throw new ArgumentOutOfRangeException(nameof(meters), "Distance must be finite and nonnegative.");
         }
         Meters = meters;
     }
 
-    // Implicit conversion from int (meters) to Distance: Safe and non-lossy
-    public static implicit operator Distance(int meters) => new Distance(meters);
+    // Explicit because negative values are rejected by the constructor.
+    public static explicit operator Distance(int meters) => new Distance(meters);
 
     // Explicit conversion from Distance to int: Potentially lossy (truncates double)
     public static explicit operator int(Distance d) => (int)d.Meters;
@@ -267,9 +267,9 @@ public class OrderProcessor
 
 ### Step 3: Walkthrough of Execution
 
-Let's trace what happens when we evaluate `OrderProcessor.ClassifyPackage(25, new double[] { 15.0, 20.0 })`:
+Let's trace what happens when we evaluate `OrderProcessor.ClassifyPackage(new Distance(25), new double[] { 15.0, 20.0 })`:
 
-1. **Implicit Conversion**: Passing integer `25` to `Distance` implicitly invokes `Distance.operator implicit(int)`, creating a `Distance` instance with `Meters = 25.0`.
+1. **Explicit Construction**: `new Distance(25)` constructs the value directly. The user-defined conversion from `int` is explicit because the constructor rejects negative values, so callers would otherwise face a hidden exception during an implicit conversion.
 2. **Switch Expression on `distance`**:
    - `{ Meters: 0 }` is checked -> `25.0 == 0` is `false`.
    - `{ Meters: > 0 and <= 50 }` is checked -> `25.0 > 0` is `true` and `25.0 <= 50` is `true`.
@@ -293,27 +293,28 @@ Learners often assume that if a user-defined implicit conversion exists from `Ty
 ```csharp
 // Snippet context: Assumes Distance struct defined above
 Distance dist = new Distance(10);
+object boxed = dist;
 
-// WRONG ASSUMPTION: Expecting this to return true via implicit conversion to int
-if (dist is int number) 
+// WRONG ASSUMPTION: expecting a type pattern to execute the user-defined conversion
+if (boxed is int number)
 {
-    // This code line is NEVER reached because dist is a Distance struct at runtime, not an int.
+    // Not reached: boxed contains a Distance, not an int.
 }
 
-// CORRECT APPROACH: Use explicit casting when invoking user-defined conversions
+// CORRECT APPROACH: use an explicit cast to invoke the user-defined conversion
 int integerMeters = (int)dist;
 ```
 
 ## 2. Misconception: Pattern Guards (`when`) Are Deterministic Side-Effect Containers
 Putting code that modifies state inside a `when` guard creates severe bugs.
 
-**Fact**: The compiler reserves the right to evaluate or skip `when` guards depending on arm ordering and pattern optimization. If a guard changes program state, outcome depends on compiler internal behavior. **Guards must always be side-effect free.**
+**Fact**: A switch expression considers arms in text order and chooses the first arm whose pattern matches and whose guard is true. A switch statement doesn't define the runtime pattern-matching order. Side effects in a guard make selection harder to reason about, so keep guards pure; don't attribute source-order behavior to switch statements where the specification doesn't promise it.
 
 ## 3. Edge Case: Null Handling in Property Patterns
 A property pattern like `{ Meters: > 0 }` automatically performs a non-null check when applied to a reference type or nullable value type. If the governing input is `null`, the property pattern evaluates to `false` without throwing a `NullReferenceException`.
 
 ## 4. Edge Case: Checked vs. Unchecked Integral Operations
-When overloading binary operators or conversion operators for arithmetic types, integer overflow in an `unchecked` context wraps around silently without throwing. If domain logic mandates safe bounds, provide explicit `checked` operator overloads.
+For integral operations, overflow in an `unchecked` context wraps or discards high-order bits without throwing. Floating-point-to-integral conversions follow different rules, and out-of-range unchecked results are unspecified. If domain logic needs checked integral behavior, use a checked context or a supported checked operator/conversion overload.
 
 ---
 
@@ -323,15 +324,15 @@ When overloading binary operators or conversion operators for arithmetic types, 
 What is the primary difference between an implicit conversion operator and an explicit conversion operator in C# design guidelines?
 
 **Answer**:
-Implicit conversions must be safe, non-lossy, and guaranteed not to throw exceptions under normal runtime operations. Explicit conversions are used when a transformation might lose precision or data (such as truncating floating-point numbers to integers) or throw an exception when values exceed target type boundaries.
+The language applies an available implicit conversion without requiring a cast, but it doesn't guarantee that every such conversion is lossless or cannot throw. Explicit conversions require a cast to make a potentially lossy or failing conversion visible at the call site. Type authors should avoid surprising implicit conversions, especially when they can reject values.
 
 ---
 
 ### Question 2
-Consider a user-defined type `Currency` that defines an implicit conversion operator to `decimal`. If an instance `Currency c = new Currency(100)` is evaluated in the expression `c is decimal d`, what will occur?
+If an object-valued expression contains a boxed `Currency` value, what happens when it is tested with `value is decimal d`?
 
 **Answer**:
-The pattern match evaluates to `false`. Pattern matching checks actual runtime types according to compiler specification rules ([User-Defined Conversion Operators Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators)). It does not execute user-defined implicit or explicit conversion operators. To perform the conversion, an explicit cast or method call must be used instead of a type pattern.
+The pattern match evaluates to `false`: the boxed object contains a `Currency`, not a `decimal`. A type pattern doesn't execute user-defined implicit or explicit conversion operators. To perform the conversion, use an explicit cast such as `(decimal)currency` or call a named conversion method.
 
 ---
 
@@ -339,12 +340,12 @@ The pattern match evaluates to `false`. Pattern matching checks actual runtime t
 Why should pattern match guards (`when` clauses) remain side-effect free?
 
 **Answer**:
-Pattern guards should remain side-effect free because pattern evaluation order is determined by compiler optimization logic. If a guard contains side effects (such as modifying a field or mutating global state), the number of times or the order in which the guard executes cannot be guaranteed, leading to non-deterministic program behavior.
+Keep pattern guards side-effect free because their role is to decide whether an otherwise matching pattern selects an arm. Switch expressions consider arms in text order; switch statements don't specify the runtime order in which patterns are matched. Side effects in guards make the selection harder to understand and can make switch-statement behavior depend on an unspecified match order.
 
 ---
 
 ### Question 4
-When matching a variable against a switch expression over an open class hierarchy, why does the compiler require a discard arm (`_`) or fallback arm?
+When a switch expression over an open class hierarchy has no fallback arm, what can happen if no arm matches?
 
 **Answer**:
-An open class hierarchy allows new derived classes to be declared anywhere in external code or assemblies. Because the compiler cannot know every possible subtype that might exist at runtime, a discard arm (`_`) is required to guarantee exhaustiveness and prevent unhandled runtime exceptions. Closed hierarchies (such as enums or finite closed types) allow the compiler to verify complete coverage without requiring a fallback discard arm ([Selection Statements Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements)).
+The compiler warns when it can't prove that every runtime subtype is handled, but the switch expression can still compile. If evaluation reaches a value that matches no arm, it throws `SwitchExpressionException`. A discard arm provides a fallback. Closed hierarchies let the compiler check their declared alternatives, although an enum can still contain an unnamed underlying value.

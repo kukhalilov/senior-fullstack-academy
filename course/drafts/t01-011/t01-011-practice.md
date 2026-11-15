@@ -19,23 +19,29 @@ Imagine a system that processes a list of numbers. We want to filter them and no
 using System;
 using System.Collections.Generic;
 
-public class Processor {
-    // Event: Notification mechanism
-    public event EventHandler<int> NumberProcessed;
+public sealed class Processor
+{
+    public event EventHandler<int>? NumberProcessed;
 
-    public void Process(List<int> numbers, Predicate<int> filter) {
-        foreach (var n in numbers) {
-            if (filter(n)) { // Delegate usage
-                NumberProcessed?.Invoke(this, n); // Null-conditional event invocation
-            }
+    public void Process(List<int> numbers, Predicate<int> filter)
+    {
+        foreach (int number in numbers)
+        {
+            if (filter(number))
+                NumberProcessed?.Invoke(this, number);
         }
     }
 }
 
-// Usage
-var proc = new Processor();
-proc.NumberProcessed += (sender, n) => Console.WriteLine($"Processed: {n}");
-proc.Process(new List<int> { 1, 2, 3 }, n => n > 1); // Lambda expression
+public static class Program
+{
+    public static void Main()
+    {
+        var proc = new Processor();
+        proc.NumberProcessed += (_, number) => Console.WriteLine($"Processed: {number}");
+        proc.Process(new List<int> { 1, 2, 3 }, number => number > 1);
+    }
+}
 ```
 
 **Step-by-step:**
@@ -61,38 +67,58 @@ proc.Process(new List<int> { 1, 2, 3 }, n => n > 1); // Lambda expression
 # Complete solutions
 
 ```csharp
-// 1. Delegate
-Func<int, int, int> multiply = (a, b) => a * b;
-int result = multiply(5, 10);
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
-// 2. Event
-public class Counter {
-    public event EventHandler ThresholdReached;
-    public void Add() { ThresholdReached?.Invoke(this, EventArgs.Empty); }
+public sealed class Counter
+{
+    private int count;
+    public event EventHandler? ThresholdReached;
+
+    public void Increment()
+    {
+        count++;
+        if (count == 11)
+            ThresholdReached?.Invoke(this, EventArgs.Empty);
+    }
 }
 
-// 3. Lambda
-var words = new List<string> { "apple", "banana", "kiwi" };
-var longWords = words.FindAll(w => w.Length > 5);
+public static class Program
+{
+    public static void Main()
+    {
+        Func<int, int, int> multiply = (a, b) => a * b;
+        int result = multiply(5, 10);
 
-// 4. Expression Tree
-Expression<Func<int, bool>> expr = x => x > 5;
-var compiled = expr.Compile();
-bool check = compiled(10); // true
+        var counter = new Counter();
+        counter.ThresholdReached += (_, _) => Console.WriteLine("Threshold crossed");
+        for (int i = 0; i < 11; i++) counter.Increment();
+
+        var words = new List<string> { "apple", "banana", "kiwi" };
+        List<string> longWords = words.FindAll(word => word.Length > 5);
+
+        Expression<Func<int, bool>> expression = value => value > 5;
+        Func<int, bool> predicate = expression.Compile();
+        bool check = predicate(10);
+
+        Console.WriteLine($"Product: {result}; long words: {longWords.Count}; predicate(10): {check}");
+    }
+}
 ```
 
 # Tests and edge cases
 
 * **Null Delegates**: Always use `?.Invoke()` or check for `null` before calling a delegate to prevent `NullReferenceException`.
 * **Multicast Exceptions**: If a multicast delegate (a delegate with multiple methods in its invocation list) throws an exception, subsequent methods in the list will not execute.
-* **Closure Lifetime**: Be careful with closures in loops. In older C# versions, capturing a loop variable could lead to unexpected behavior; always capture a local copy inside the loop if needed.
-* **Expression Trees**: Not all C# syntax is supported in expression trees (e.g., `async` lambdas or complex blocks). Attempting to convert unsupported code to an expression tree will cause a compile-time error.
+* **Closure lifetime**: A captured `for` loop variable is one variable shared across iterations, so delegates invoked later can all observe its final value. Create a per-iteration local when each delegate must keep that iteration's value; `foreach` iteration-variable capture semantics differ in modern C#.
+* **Expression trees**: The compiler cannot convert `async` or statement-bodied lambdas into `Expression<TDelegate>`. Expression trees represent supported expression-bodied lambda syntax; the expression-tree API can construct additional node shapes manually.
 
 # Reflection questions
 
-1. When should you choose an `event` over a simple `delegate`? (Consider: Who should be allowed to invoke the behavior?)
-2. Why does an `Expression<T>` behave differently than a `Func<T>` even if they look the same in code?
-3. What is the performance impact of creating a `closure`? (Consider: Does it create an object on the heap?)
-4. How does `Delegate.GetInvocationList` help you debug multicast delegates?
+1. When should you choose an `event` over a simple `delegate`? (Consider: Who should be allowed to invoke the behavior?) **Suggested answer:** Use an event for publisher-owned notifications when external code may subscribe or unsubscribe but only the declaring type should raise the notification. Use a delegate property or parameter when callers are intended to control or invoke the callback directly.
+2. Why does an `Expression<T>` behave differently than a `Func<T>` even if they look the same in code? **Suggested answer:** A `Func<T>` is executable behavior; an `Expression<TDelegate>` is a data structure describing supported code that can be inspected, transformed, or compiled into a delegate.
+3. What is the performance impact of creating a `closure`? (Consider: Does it create an object on the heap?) **Suggested answer:** Capturing local state commonly requires a compiler-generated object that keeps the captured variables alive, but allocation depends on the code and compiler optimization; non-capturing lambdas can often be cached or represented without a per-call closure allocation.
+4. How does `Delegate.GetInvocationList` help you debug multicast delegates? **Suggested answer:** It returns the individual handlers in invocation order so you can inspect their methods and targets, or invoke them separately when diagnosing which handler fails.
 
 *Source: [Microsoft C# Language Reference](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas)*
