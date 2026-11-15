@@ -18,9 +18,9 @@
 # Core concepts
 LINQ (Language Integrated Query) provides a unified vocabulary for data manipulation. The core of LINQ is the separation between **query definition** and **query execution**.
 
-*   **`IEnumerable<T>` (Local):** Represents data in memory. Operators in the `Enumerable` class use standard C# delegates to process items.
-*   **`IQueryable<T>` (Remote):** Represents a query that can be translated into another language (like SQL). Instead of delegates, it uses `Expression<TDelegate>` (expression trees) to describe *what* to do, allowing a provider to translate the logic into a remote query.
-*   **`IAsyncEnumerable<T>` (Asynchronous):** Represents a stream of data that arrives asynchronously. It allows you to process items as they arrive without blocking the thread.
+*   **`IEnumerable<T>`:** Represents synchronous enumeration. `Enumerable` operators use delegates when enumerated; the interface does not guarantee the source is in memory.
+*   **`IQueryable<T>`:** Represents a query expression plus a provider. Operators use expression trees that the provider may translate, for example to SQL. The provider may be remote or in-memory; translation and execution are provider-specific.
+*   **`IAsyncEnumerable<T>`:** Represents asynchronous iteration. The source controls how values arrive; this contract does not promise I/O or parallelism.
 
 # Mechanisms and relationships
 The behavior of a LINQ query depends on the type of the source and the operator used:
@@ -28,8 +28,8 @@ The behavior of a LINQ query depends on the type of the source and the operator 
 1.  **Deferred Execution:** Most LINQ operators (like `Where` or `Select`) do not run when called. They simply build a "recipe" for the query. The query only executes when you iterate over it (e.g., in a `foreach` loop) or call a **terminal operator** (e.g., `ToList`, `First`, `Count`).
 2.  **Streaming vs. Buffering:**
     *   **Streaming operators** (e.g., `Where`, `Select`) process items one by one. They are memory-efficient.
-    *   **Buffering operators** (e.g., `OrderBy`, `GroupBy`, `Distinct`) must see all items before they can produce the first result. These consume more memory and are "blocking" in nature.
-3.  **The Execution Boundary:** You should keep queries in their "remote" state (`IQueryable`) as long as possible to allow the provider to optimize the query (e.g., filtering on the database server). Using `ToList` or `AsEnumerable` forces the query to execute, moving the remaining work to your local machine.
+    *   **Buffering operators** in LINQ to Objects (e.g., `OrderBy`, `GroupBy`) consume the input before yielding the first result. `Distinct` is deferred and streaming: it retains a set of previously seen keys and can yield each new unique item as it goes. Provider-backed behavior may differ.
+3.  **The Execution Boundary:** You should keep queries in their "remote" state (`IQueryable`) as long as possible to allow the provider to optimize the query (e.g., filtering on the database server). Calling `ToList` enumerates and materializes the query. `AsEnumerable` itself does not execute or materialize; it changes the compile-time type so subsequent operators bind to `Enumerable`. For a provider-backed query, enumeration still invokes that provider for the upstream portion.
 
 # Worked examples
 Consider a scenario where you have a list of users and want to find the names of active users.
@@ -48,7 +48,7 @@ IQueryable<User> query = dbContext.Users;
 var activeNames = query.Where(u => u.IsActive).Select(u => u.Name);
 // The query is translated to SQL (e.g., SELECT Name FROM Users WHERE IsActive = 1)
 // and executed only when we call ToList() or iterate.
-var result = activeNames.ToList(); 
+var result = activeNames.ToList();
 ```
 
 **Async (IAsyncEnumerable):**
@@ -60,8 +60,8 @@ await foreach (var user in stream.Where(u => u.IsActive)) {
 ```
 
 # Misconceptions and edge cases
-*   **Multiple Enumeration:** If you iterate over a deferred `IEnumerable` query twice, the query logic runs twice. If the source is a database, this results in two separate database round-trips. Always use `ToList` or `ToArray` if you need to reuse the results.
-*   **Async is not Parallel:** Using `AsyncEnumerable` does not make your code run in parallel. It simply allows your thread to do other work while waiting for I/O (like a network response).
+*   **Multiple Enumeration:** Re-enumerating re-runs the sequence according to its source. A provider-backed query may issue another database request; this is provider-specific. Materialize only when you need a stable reusable snapshot and can afford storing it.
+*   **Async is not Parallel:** Async iteration does not automatically run operations concurrently or imply I/O. The source and any awaited operations determine what work is asynchronous.
 *   **Provider Limitations:** Not every C# method can be translated into SQL. If you use a complex custom method inside a `Where` clause on an `IQueryable`, the provider may throw an exception or be forced to pull all data into memory to evaluate it locally.
 
 # Knowledge checks with answers
@@ -69,7 +69,7 @@ await foreach (var user in stream.Where(u => u.IsActive)) {
    * **Answer:** No. `Where` uses deferred execution; it only filters when the sequence is iterated.
 
 2. **Question:** Why is `OrderBy` considered a buffering operator?
-   * **Answer:** Because it cannot know which item comes first until it has inspected every single item in the collection.
+   * **Answer:** For LINQ to Objects, sorting must inspect the full input before it can yield the first sorted item; provider-backed implementations may differ.
 
 3. **Question:** What is the primary difference between `Func<T, TResult>` and `Expression<Func<T, TResult>>`?
    * **Answer:** `Func` is a compiled delegate used for local execution. `Expression` is an object tree that describes the code, allowing `IQueryable` providers to translate it into other languages like SQL.

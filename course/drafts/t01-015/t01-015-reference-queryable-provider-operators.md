@@ -8,9 +8,9 @@ This reference lesson covers the `Queryable` provider operator group under the `
 
 # How this group fits the mental model
 
-LINQ queries look similar across different data sources, but they execute differently depending on whether they target memory or remote infrastructure [https://learn.microsoft.com/en-us/dotnet/csharp/linq/]. While `Enumerable` methods accept delegates (`Func<T, TResult>`) and run locally over objects, `Queryable` methods accept expression trees (`Expression<Func<T, TResult>>`). 
+LINQ queries can target different sources with different execution semantics [https://learn.microsoft.com/en-us/dotnet/csharp/linq/]. `Enumerable` methods accept delegates (`Func<T, TResult>`) and invoke them during synchronous enumeration. `Queryable` methods accept expression trees (`Expression<Func<T, TResult>>`) and pass them to an `IQueryProvider`; the provider may be remote or in-memory.
 
-An expression tree wraps C# code as data structures rather than compiled executable instructions. A query provider inspects these structures to translate them into target systems like relational databases or web APIs [https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider]. Understanding this difference prevents accidental performance traps, such as loading entire remote tables into local memory because an operator or method call forced premature materialization.
+An expression tree wraps C# code as data structures rather than compiled executable instructions. A query provider may inspect these structures and translate them into a target system such as a relational database, or may execute them in another way [https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider]. Understanding this difference prevents accidental performance traps, such as loading entire remote tables into local memory because an operator or method call forced premature materialization.
 
 # Supplied names explained
 
@@ -67,7 +67,7 @@ An expression tree wraps C# code as data structures rather than compiled executa
 * `Queryable.SingleOrDefault` - Returns the only element of a sequence, or a default value if the sequence is empty.
 * `Queryable.ElementAt` - Returns the element at a specified index in a sequence.
 * `Queryable.ElementAtOrDefault` - Returns the element at a specified index, or a default value if the index is out of range.
-* `Queryable.AsQueryable` - Converts an `IEnumerable` to an `IQueryable` by wrapping it with a query provider.
+* `Queryable.AsQueryable` - Returns an `IQueryable`; for an ordinary enumerable, this uses an in-memory queryable wrapper and does not create a remote provider.
 * `Queryable expression-tree overload signatures` - The internal mechanisms defining how query operators accept `Expression<TDelegate>` instead of standard delegates.
 * `Queryable provider translation failure` - Errors thrown or fallback behaviors triggered when a query provider encounters unsupported expression tree nodes.
 * `Queryable versus Enumerable overload selection` - The compiler resolution rule favoring `Queryable` methods when the receiver implements `IQueryable<T>`.
@@ -77,19 +77,19 @@ An expression tree wraps C# code as data structures rather than compiled executa
 * `Provider-specific function translation` - The mapping of C# methods (like `string.Contains`) to underlying database functions (like SQL `LIKE`).
 * `Client evaluation versus server evaluation` - The execution split where parts of a query run on a remote data store versus local client memory.
 * `Explicit materialization using ToList` - Triggering immediate query execution and caching results into a local `List<T>` collection.
-* `AsEnumerable changes subsequent operator binding` - A method call that casts an `IQueryable<T>` back to `IEnumerable<T>`, forcing subsequent operators to bind against local memory execution.
+* `AsEnumerable changes subsequent operator binding` - Exposes the sequence as `IEnumerable<T>`, so subsequent extension calls bind to `Enumerable`; it is deferred and does not itself execute/materialize the upstream source.
 * `Queryable.ToLookup` - Creates a `Lookup<TKey, TElement>` from an `IQueryable<T>` by executing the query immediately.
 
 # Cross-item comparison
 
 Within this group of queryable and expression-tree execution members, several items contrast directly:
 * `Queryable versus Enumerable overload selection` dictates whether a query compiles to deferred expression trees or immediate delegate execution based on whether the source variable type is `IQueryable<T>` or `IEnumerable<T>` [https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable].
-* `Explicit materialization using ToList` and `AsEnumerable changes subsequent operator binding` represent opposing structural choices: `ToList` executes the query immediately and returns a local list, whereas `AsEnumerable` remains deferred but shifts downstream operator resolution from the remote provider back to local `Enumerable` execution.
+* `ToList` and `AsEnumerable` have different effects: `ToList` enumerates and stores results immediately, while `AsEnumerable` remains deferred and changes downstream operator binding. Upstream provider execution still occurs when enumeration begins.
 * `Client evaluation versus server evaluation` determines where query logic executes, contrasting with `Queryable provider translation failure` which occurs when a provider cannot execute a given expression tree and refuses to translate it.
 
 # Examples
 
-The following snippet demonstrates how `IQueryable` operators construct an expression tree, how local variables are captured, and how explicit materialization triggers query execution [https://learn.microsoft.com/en-us/dotnet/csharp/linq/]:
+The following snippet demonstrates expression-tree composition and materialization using an in-memory query provider; it does not demonstrate database translation [https://learn.microsoft.com/en-us/dotnet/csharp/linq/]:
 
 ```csharp
 using System;
@@ -100,7 +100,7 @@ class Program
     static void Main()
     {
         // Assume context.Products returns an IQueryable<Product>
-        // Here we simulate an IQueryable source using AsQueryable()
+        // This creates an in-memory IQueryable wrapper, not a remote provider.
         var localProducts = new[]
         {
             new Product { Category = "Electronics", Price = 120.0m },
@@ -111,12 +111,12 @@ class Program
 
         decimal threshold = 50.0m; // Closure capture in provider query
 
-        // Queryable.Where and Queryable.Select build an expression tree
+        // Queryable.Where and Queryable.Select build an expression tree for this in-memory provider
         IQueryable<string> filteredQuery = queryableSource
             .Where(p => p.Price > threshold)
             .Select(p => p.Category);
 
-        // Explicit materialization using ToList executes the query against the provider
+        // ToList enumerates and materializes results from this in-memory provider
         var resultList = filteredQuery.ToList();
 
         foreach (var category in resultList)
@@ -150,7 +150,7 @@ Electronics
    - **Answer**: `Enumerable` operators accept standard delegates (`Func<T>`), whereas `Queryable` operators accept expression trees (`Expression<Func<T>>`) designed for remote provider translation [https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable].
 
 2. **Question**: What happens when you invoke `AsQueryable` followed by `AsEnumerable` in a query chain?
-   - **Answer**: `AsQueryable` wraps the source for expression-tree translation, but calling `AsEnumerable` casts the sequence back to `IEnumerable<T>`, forcing all subsequent operators to bind against local memory execution rather than remote provider translation.
+   - **Answer**: On this ordinary array, `AsQueryable` supplies an in-memory queryable wrapper. `AsEnumerable` changes subsequent overload binding to `Enumerable` but remains deferred; enumeration later runs the upstream in-memory query and the downstream operators.
 
 3. **Question**: Why might a query throw a provider translation failure exception?
    - **Answer**: It occurs when a query provider encounters expression tree nodes or C# constructs that it does not know how to translate into the target query language (such as SQL) [https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider].

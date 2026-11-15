@@ -21,12 +21,12 @@ Understanding these items helps you avoid "N+1" query problems, excessive memory
 * `Enumeration triggers deferred query execution`: The act of iterating (e.g., `foreach`) or calling a terminal operator that forces the query to run.
 * `Immediate scalar query execution`: Operators like `Count()` or `First()` that run the query immediately to return a single value.
 * `Deferred versus immediate operator classification`: The distinction between operators that return a query (deferred) and those that return a result (immediate).
-* `Streaming versus buffering operator behavior`: Streaming operators (e.g., `Where`) process items one by one; buffering operators (e.g., `OrderBy`) must see all items before yielding the first result.
+* `Streaming versus buffering operator behavior`: In LINQ to Objects, `Where` streams, `OrderBy` buffers all input, and `Distinct` can stream unique results while retaining a set of seen keys. Provider implementations can differ.
 * `OrderBy buffering behavior`: Because sorting requires knowing the entire set, `OrderBy` must buffer all input elements before it can return the first sorted item.
 * `GroupBy buffering behavior`: `GroupBy` must process the entire input to build the internal dictionary of keys before it can yield the first group.
-* `Distinct set memory behavior`: `Distinct` maintains an internal set of seen elements to filter duplicates, which consumes memory proportional to the number of unique items.
+* `Distinct set memory behavior`: LINQ to Objects `Distinct` is deferred and streams each first-seen value, retaining a set proportional to unique items; it does not wait for the complete input before yielding.
 * `ToList and ToArray materialization cost`: These operators force immediate execution and allocate memory for the entire result set, which can be expensive for large sequences.
-* `Multiple enumeration and repeated database query risk`: Re-iterating a deferred query against a database can trigger a new SQL query for every iteration.
+* `Multiple enumeration and repeated database query risk`: Re-enumerating a provider-backed deferred query can issue another request, depending on the provider and query; an `IEnumerable` source may instead repeat other work.
 * `Single-pass aggregation with Aggregate`: A flexible operator used to reduce a sequence to a single value using a custom accumulator function.
 * `Count versus LongCount`: `Count` returns an `int` (max ~2 billion), while `LongCount` returns a `long` for sequences exceeding that limit.
 * `TryGetNonEnumeratedCount use`: A performance optimization that attempts to get the count of a sequence without iterating it, if the underlying collection supports it.
@@ -72,7 +72,7 @@ var everySecondItem = myData.Where((item, index) => index % 2 == 0);
 ```
 
 # Common mistakes
-* **Multiple Enumeration:** Iterating over a database-backed `IQueryable` multiple times, causing the database to be queried repeatedly.
+* **Multiple Enumeration:** Reiterating a database-backed query commonly causes another provider execution; confirm behavior for the particular provider.
 * **Premature Materialization:** Calling `.ToList()` too early, which forces the entire dataset into memory instead of streaming it.
 * **Ignoring Provider Limits:** Assuming that all LINQ methods will work against a database; if a method cannot be translated to the provider's language, it may throw an exception or force the entire table to be pulled into memory.
 

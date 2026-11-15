@@ -40,7 +40,7 @@ public async Task<string> FetchDataAsync()
     // 1. Start the I/O operation
     // 2. 'await' yields control until the task completes
     string result = await DownloadStringAsync("https://example.com");
-    
+
     // 3. Execution resumes here after the download finishes
     return result.ToUpper();
 }
@@ -54,10 +54,10 @@ public async Task<string> FetchDataAsync()
 # When to use it and tradeoffs
 *   **Use it for:** I/O-bound work (network requests, file system access, database queries). It is highly efficient because it releases threads while waiting.
 *   **Avoid it for:** CPU-bound work (heavy calculations). Async does not make math run faster; it only makes the thread available for other tasks. For heavy CPU work, use `Task.Run` to offload to a background thread.
-*   **Tradeoffs:** 
+*   **Tradeoffs:**
     *   **Complexity:** Async code is "contagious"—once you start using it, the callers of your methods usually need to become `async` as well.
     *   **Debugging:** Stack traces in async code can be harder to follow because the execution is split across multiple points in time.
-    *   **Performance:** `Task` is an object (a reference type) and creates a small amount of memory pressure. `ValueTask` is a performance optimization for scenarios where the operation often completes synchronously, but it has strict usage rules (e.g., it cannot be awaited multiple times).
+    *   **Performance:** `Task` is an object (a reference type) and creates a small amount of memory pressure. `ValueTask` is a performance optimization for scenarios where the operation often completes synchronously, but its usage constraints depend on the particular `ValueTask` source. General-purpose APIs should normally return `Task`; callers must follow the documented consumption contract for a `ValueTask`.
 
 # What later lessons cover
 *   **Cancellation:** How to stop an operation gracefully using `CancellationToken`.

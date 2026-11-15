@@ -20,7 +20,7 @@ LINQ is a unified way to process data. The mental model relies on three pillars:
 * `Method query syntax`: A style of writing queries using standard C# method calls.
 * `Query expression syntax`: A declarative, SQL-like style of writing queries that the compiler translates into method calls.
 * `Query expression translation`: The process where the C# compiler converts query expression syntax into method calls.
-* `IEnumerable<T>`: The interface for local, synchronous collections that can be iterated.
+* `IEnumerable<T>`: The interface for synchronous enumeration; it does not guarantee that the source is local or in-memory.
 * `IEnumerator<T>`: The object that maintains the current position during synchronous iteration.
 * `IQueryable<T>`: The interface for data sources that support translation into expression trees (e.g., database providers).
 * `IQueryProvider`: The engine that translates an `IQueryable` expression tree into a specific format (like SQL).
@@ -57,13 +57,13 @@ LINQ is a unified way to process data. The mental model relies on three pillars:
 * `Side effect during enumeration`: Unintended changes to state that occur when a query is executed.
 * `Provider translation boundary`: The point where the query is handed off to an `IQueryProvider`.
 * `Client-side evaluation boundary`: The point where the query stops being translated and starts running locally.
-* `AsEnumerable`: A method that casts a source to `IEnumerable<T>`, forcing subsequent operators to run locally.
-* `AsQueryable`: A method that wraps a source as `IQueryable<T>`, enabling expression tree translation.
-* `Local query versus remote query`: The distinction between processing data in memory versus translating it for a database.
+* `AsEnumerable`: A method that exposes a source as `IEnumerable<T>`, changing subsequent extension-method binding; it is deferred and does not itself run the source.
+* `AsQueryable`: Returns an `IQueryable<T>`; for an existing queryable it may return that queryable, while for an enumerable it provides an in-memory queryable wrapper. It does not turn an in-memory source into a remote provider.
+* `Local query versus remote query`: A distinction in a particular query pipeline; `IEnumerable`/`IQueryable` types alone do not prove where a source resides or executes.
 
 # Cross-item comparison
-* **`IEnumerable<T>` vs `IQueryable<T>` vs `IAsyncEnumerable<T>`**: `IEnumerable` is for local, synchronous data. `IQueryable` is for remote, translatable data (like databases). `IAsyncEnumerable` is for asynchronous, non-blocking streams.
-* **`Enumerable` vs `Queryable` vs `AsyncEnumerable`**: These static classes provide the extension methods for their respective interfaces. Using the wrong one (e.g., `Enumerable` on a database query) may force the entire database table into memory.
+* **`IEnumerable<T>` vs `IQueryable<T>` vs `IAsyncEnumerable<T>`**: They represent synchronous enumeration, provider-backed expression queries, and asynchronous enumeration respectively. None alone guarantees remote storage, and async iteration does not imply parallelism.
+* **`Enumerable` vs `Queryable` vs `AsyncEnumerable`**: These classes provide extension methods for their respective sequence contracts. Calling `AsEnumerable` on a provider-backed query changes downstream operator binding; it does not by itself materialize the entire source. Enumeration can still invoke the provider for upstream operators.
 * **`Deferred execution` vs `Immediate execution`**: Deferred operators (like `Where`) build a plan; immediate operators (like `ToList`) execute the plan and store the results.
 
 # Examples
@@ -79,7 +79,7 @@ var result = query.ToList(); // Execution happens here
 # Common mistakes
 1. **Over-fetching:** Using `IEnumerable` methods on an `IQueryable` source, which pulls all data into memory before filtering.
 2. **Multiple Enumeration:** Re-running a complex database query multiple times because the result was not materialized into a list.
-3. **Async Misconception:** Assuming `IAsyncEnumerable` makes CPU-bound work parallel; it only enables asynchronous, non-blocking I/O.
+3. **Async Misconception:** Assuming `IAsyncEnumerable` makes CPU-bound work parallel; it represents asynchronous iteration, and the source determines the work and I/O behavior.
 
 # Knowledge checks with answers
 1. **Question:** Does `Where` execute immediately?

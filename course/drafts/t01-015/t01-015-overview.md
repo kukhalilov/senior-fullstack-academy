@@ -5,25 +5,25 @@
 *Draft: Automatically generated.*
 
 # Problem and purpose
-LINQ (Language Integrated Query) solves the problem of querying disparate data sources—such as in-memory collections, databases, or asynchronous streams—using a unified, readable syntax. Without LINQ, developers must write unique, imperative code for every data source type. LINQ provides a consistent vocabulary for filtering, projection, ordering, and aggregation, allowing you to focus on *what* data you need rather than *how* to retrieve it.
+LINQ (Language Integrated Query) provides a family of query patterns and operators for filtering, projection, ordering, and aggregation. The same vocabulary can be used with in-memory sequences, provider-backed queries, and asynchronous streams, but those sources can have different execution and translation semantics.
 
 # Plain-language mental model
-Think of LINQ as a "query pipeline." You start with a source of data, attach a series of "operators" (like filters or sorters) to describe the transformation, and finally "materialize" the result. 
+Think of LINQ as a "query pipeline." You start with a source of data, attach a series of "operators" (like filters or sorters) to describe the transformation, and finally "materialize" the result.
 
-Crucially, most LINQ operators use **deferred execution**. This means that when you define a query, it does not run immediately. Instead, it builds a "recipe" for the query. The actual work only happens when you iterate over the result (e.g., in a `foreach` loop) or call a terminal operator like `ToList`.
+Many sequence-returning LINQ operators use **deferred execution**: they build a query that runs when enumerated. Some operators return scalar results immediately, while materializers such as `ToList` enumerate and store results. Exact behavior depends on the operator and source/provider.
 
 # How the parts fit together
-LINQ is organized into three primary execution models based on the data source:
+These three interfaces describe different query or iteration contracts; they do not by themselves guarantee where data is stored or how work is executed:
 
-1.  **`IEnumerable<T>`**: Used for local, in-memory data. Operators in the `Enumerable` class execute locally on the CPU.
-2.  **`IQueryable<T>`**: Used for remote data sources (like databases). It uses `IQueryable.Expression` and `IQueryable.Provider` to translate your C# code into a query language (like SQL). The `IQueryProvider.CreateQuery` and `IQueryProvider.Execute` methods handle this translation and execution.
-3.  **`IAsyncEnumerable<T>`**: Used for asynchronous streams. Operators in the `AsyncEnumerable` class allow you to process data as it arrives without blocking the thread.
+1.  **`IEnumerable<T>`**: Represents synchronous enumeration. `Enumerable` operators invoke delegates as the sequence is enumerated; a custom source may obtain data from elsewhere.
+2.  **`IQueryable<T>`**: Carries an expression tree and an `IQueryProvider`. A provider may translate that tree to another query language or execute it in another way; remote databases are common, but not guaranteed. `AsQueryable` over an ordinary enumerable does not create a remote provider.
+3.  **`IAsyncEnumerable<T>`**: Represents asynchronous iteration. Its source controls how values are produced; asynchronous iteration does not itself imply I/O or parallel execution.
 
 # Concept map
 *   **Query Syntax**: Uses keywords like `from`, `where`, and `select` to define queries.
 *   **Method Syntax**: Uses extension methods like `Where` and `Select` to chain operations.
 *   **Materialization**: The point where a deferred query is forced to execute (e.g., `ToList`, `ToArray`, `First`).
-*   **Translation Boundary**: The point where `IQueryable` stops building an expression tree and sends the request to the provider.
+*   **Translation Boundary**: The point where provider-backed query composition ends and enumeration or scalar execution invokes the provider. The provider determines translation, execution, and any client-side behavior.
 
 # End-to-end walkthrough
 Consider a list of products. We want to find the names of expensive products.
@@ -34,9 +34,9 @@ Consider a list of products. We want to find the names of expensive products.
 
 # When to use it and tradeoffs
 *   **Use it for**: Readability, maintainability, and consistent data manipulation across different types of collections.
-*   **Tradeoffs**: 
+*   **Tradeoffs**:
     *   **Performance**: Repeatedly enumerating a deferred query can cause redundant work.
-    *   **Complexity**: `IQueryable` can sometimes fail to translate complex C# expressions into SQL, leading to runtime errors or unexpected client-side evaluation.
+    *   **Complexity**: Provider translation support differs. Unsupported expressions may fail or be evaluated locally only where that provider explicitly supports client evaluation.
     *   **Side Effects**: Avoid modifying the source data while a query is deferred, as this can lead to unpredictable results.
 
 # What later lessons cover

@@ -247,16 +247,46 @@
   ],
   "inventoryComplete": true,
   "comparisons": [
-    ["Task", "ValueTask"],
-    ["Task<T>", "ValueTask<T>"],
-    ["CPU-bound work", "I/O-bound work"],
-    ["CancellationToken", "CancellationTokenSource"],
-    ["SynchronizationContext", "ExecutionContext"],
-    ["ConfigureAwait(true)", "ConfigureAwait(false)"],
-    ["Task.WhenAll", "Task.WhenAny"],
-    ["await", "Wait and Result"],
-    ["async void", "async Task"],
-    ["Task.Run", "direct asynchronous I/O call"]
+    [
+      "Task",
+      "ValueTask"
+    ],
+    [
+      "Task<T>",
+      "ValueTask<T>"
+    ],
+    [
+      "CPU-bound work",
+      "I/O-bound work"
+    ],
+    [
+      "CancellationToken",
+      "CancellationTokenSource"
+    ],
+    [
+      "SynchronizationContext",
+      "ExecutionContext"
+    ],
+    [
+      "ConfigureAwait(true)",
+      "ConfigureAwait(false)"
+    ],
+    [
+      "Task.WhenAll",
+      "Task.WhenAny"
+    ],
+    [
+      "await",
+      "Wait and Result"
+    ],
+    [
+      "async void",
+      "async Task"
+    ],
+    [
+      "Task.Run",
+      "direct asynchronous I/O call"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
@@ -264,7 +294,11 @@
     "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task",
     "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask",
     "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource"
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.yield",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskcreationoptions",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskcontinuationoptions",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
   ],
   "versionNotes": [
     {
@@ -305,5 +339,14 @@
     "HttpClient and ASP.NET Core request cancellation are applied in their dedicated platform topics.",
     "The task builder implementation and runtime scheduler internals are introduced only as needed; CLR/JIT details belong to t01-019."
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Task.Yield returns YieldAwaitable. Awaiting it posts continuation to the current SynchronizationContext or, absent one, the current TaskScheduler; it does not guarantee UI responsiveness or a particular thread.",
+    "TaskCreationOptions.RunContinuationsAsynchronously causes continuations registered to the task to run asynchronously; it does not promise they run on the thread pool.",
+    "TaskContinuationOptions.ExecuteSynchronously requests inline continuation execution; the scheduler may schedule it instead, and RunContinuationsAsynchronously takes precedence.",
+    "Task and ValueTask describe operation outcomes and may be pending, completed, faulted, or canceled; the type alone does not mean execution is currently underway.",
+    "A Task can be awaited repeatedly. ValueTask consumption constraints depend on its backing source; some IValueTaskSource-backed instances are single-consumption, but not every ValueTask is inherently single-use.",
+    "Task.WaitAsync cancellation cancels the wait operation, not necessarily the underlying task.",
+    "TaskCompletionSource RunContinuationsAsynchronously is often a useful defensive choice for producer APIs, but it is not an absolute requirement for every use."
+  ]
 }

@@ -42,7 +42,7 @@ In the Task-based Asynchronous Pattern (TAP), asynchronous methods represent wor
 * `Avoid blocking with Wait and Result`: The core rule to never use synchronous blocking methods in asynchronous code to prevent deadlocks and starvation.
 * `Avoid unnecessary Task.Run wrappers`: The advice to avoid wrapping already-asynchronous I/O calls in `Task.Run`, which wastes thread resources.
 * `Task versus ValueTask API return choice`: The decision to use `Task` for general cases and `ValueTask` for performance-critical, synchronous-completion scenarios.
-* `Task caching and repeat await semantics`: The behavior where a `Task` can be awaited multiple times, returning the same result, whereas a `ValueTask` generally cannot.
+* `Task caching and repeat await semantics`: A `Task` can be awaited repeatedly; a `ValueTask` may be backed by a reusable result or by a source with a stricter single-consumption contract, so callers must follow its API contract.
 * `ValueTask conversion and allocation tradeoff`: The consideration that `ValueTask` avoids allocations for synchronous results but incurs overhead if converted to a `Task`.
 * `Async disposal with await using`: The pattern for disposing of objects asynchronously using `await using`.
 * `IAsyncDisposable.DisposeAsync`: The interface method for performing cleanup operations asynchronously.
@@ -51,7 +51,7 @@ In the Task-based Asynchronous Pattern (TAP), asynchronous methods represent wor
 
 # Cross-item comparison
 
-* **`Task` vs `ValueTask`**: `Task` is a class (reference type) suitable for most scenarios and supports multiple awaits. `ValueTask` is a struct (value type) designed to reduce heap allocations when an operation completes synchronously, but it should not be awaited multiple times.
+* **`Task` vs `ValueTask`**: `Task` is the default for general APIs and supports repeated awaits. `ValueTask` is a struct that can avoid allocation in some synchronous-completion cases, but may add complexity; consumption constraints depend on its backing source.
 * **`Wait()`/`Result` vs `await`**: `Wait()` and `Result` block the current thread and wrap exceptions in `AggregateException`. `await` suspends the method asynchronously and unwraps the original exception, making it the preferred approach.
 * **`Task.Run` vs I/O-bound calls**: `Task.Run` is for offloading CPU-bound work to the `ThreadPool`. It is unnecessary and harmful for I/O-bound work, which is already asynchronous by design.
 
@@ -89,7 +89,7 @@ var result = await MyAsyncMethod();
 1. **Question**: Why should you avoid `async void`?
    **Answer**: Because it cannot be awaited, and exceptions thrown within it cannot be caught by the caller, leading to process termination.
 2. **Question**: When should you use `ValueTask`?
-   **Answer**: Only when you have measured performance and determined that the allocation of a `Task` object is a bottleneck, and you can guarantee the `ValueTask` will only be awaited once.
+   **Answer**: Only when you have measured performance and determined that the allocation of a `Task` object is a bottleneck, and the API contract and callers can honor the particular `ValueTask` source’s consumption requirements.
 3. **Question**: What is the difference between `Task.WhenAll` and `Task.WhenAny`?
    **Answer**: `Task.WhenAll` waits for all provided tasks to complete, while `Task.WhenAny` completes as soon as any one of the tasks finishes.
 

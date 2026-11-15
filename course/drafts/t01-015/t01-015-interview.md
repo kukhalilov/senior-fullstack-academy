@@ -7,13 +7,13 @@
 # Core questions
 LINQ (Language Integrated Query) is a unified programming model for querying data. The mental model is a pipeline: you define a query (the "what"), and the system executes it (the "how") based on the data source.
 
-*   **What is the difference between `IEnumerable<T>` and `IQueryable<T>`?** `IEnumerable<T>` represents local, in-memory collections where operators execute locally using delegates (`Func<T,TResult>`). `IQueryable<T>` represents remote data sources (like databases) where operators build an expression tree (`Expression<TDelegate>`) that a provider translates into a query language like SQL.
+*   **What is the difference between `IEnumerable<T>` and `IQueryable<T>`?** `IEnumerable<T>` exposes synchronous enumeration and its operators use delegates; it does not guarantee an in-memory source. `IQueryable<T>` carries an expression tree and provider, which may translate or execute it; remote databases are common, but not required.
 *   **What is deferred execution?** It is the principle where a query is not executed when it is defined, but only when the results are iterated (e.g., via `foreach` or `ToList`).
-*   **How does `IAsyncEnumerable<T>` differ?** It enables asynchronous streaming of data, allowing the application to remain responsive while waiting for I/O-bound operations, using `MoveNextAsync` to fetch elements.
+*   **How does `IAsyncEnumerable<T>` differ?** It represents asynchronous iteration via `MoveNextAsync`; the source determines whether it involves I/O, and asynchronous iteration alone does not guarantee parallelism.
 
 # Concise interview answers
 *   **Deferred vs. Immediate:** Deferred operators (e.g., `Where`, `Select`) return a query object that executes upon enumeration. Immediate operators (e.g., `ToList`, `Count`, `First`) force execution immediately.
-*   **Streaming vs. Buffering:** Streaming operators (e.g., `Where`, `Select`) process elements one by one. Buffering operators (e.g., `OrderBy`, `GroupBy`) must consume the entire sequence before yielding the first result.
+*   **Streaming vs. Buffering:** In LINQ to Objects, `Where` and `Select` stream, while `OrderBy` and `GroupBy` consume the input before yielding. Provider-backed operators may use different execution strategies.
 *   **First vs. Single:** `First` returns the first element found; `Single` throws an exception if the sequence contains more than one element.
 
 # Deep follow-up answers
@@ -29,15 +29,15 @@ LINQ (Language Integrated Query) is a unified programming model for querying dat
 
 # Tradeoffs and alternatives
 *   **Method vs. Query Syntax:** Method syntax is more powerful and supports all operators; query syntax is often more readable for complex joins and groupings.
-*   **Client vs. Server Evaluation:** Keeping logic on the server (via `IQueryable`) minimizes data transfer. However, if the provider cannot translate a specific C# construct, you must use `AsEnumerable` to switch to client-side evaluation, which carries the cost of transferring all data to the application memory.
+*   **Client vs. Server Evaluation:** Keeping logic on the server (via `IQueryable`) minimizes data transfer. However, if the provider cannot translate a specific C# construct, `AsEnumerable` changes downstream overload binding but is deferred: it does not itself execute or transfer data. When enumeration begins, the upstream provider query executes and downstream `Enumerable` operators run locally; the transferred amount depends on the composed upstream query.
 
 # Common weak answers
 *   **"LINQ is always fast."** Incorrect. LINQ is a tool for abstraction. Performance depends on the provider's ability to translate queries and the volume of data materialized.
-*   **"Async LINQ makes code run in parallel."** Incorrect. `AsyncEnumerable` operators handle asynchronous I/O, not CPU-bound parallelism.
+*   **"Async LINQ makes code run in parallel."** Incorrect. Asynchronous iteration does not itself imply I/O or concurrency; parallelism requires a separate strategy.
 *   **"I can use any C# code inside a `Queryable` expression."** Incorrect. `IQueryable` providers can only translate expressions that fit their internal logic; complex local methods or unsupported types will cause runtime translation failures.
 
 # Self-check rubric
-*   **Did I identify the execution boundary?** Ensure you know if your query is running locally (`Enumerable`) or remotely (`Queryable`).
+*   **Did I identify the execution boundary?** Identify which operators bind to `Enumerable` or `Queryable`, what provider is involved, and where enumeration or scalar execution crosses into provider execution.
 *   **Did I consider materialization?** Check if you are calling `ToList` or `ToArray` too early, which forces unnecessary memory allocation.
 *   **Did I handle async correctly?** Ensure you are using `await` and `IAsyncEnumerable` patterns for I/O-bound tasks to avoid blocking threads.
 

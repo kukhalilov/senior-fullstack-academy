@@ -3,10 +3,10 @@
 # LINQ operators deferred execution IEnumerable IQueryable and async sequences — Reference: Built-in .NET 10 and .NET 11 AsyncEnumerable operators and asynchronous enumeration
 
 # Scope and version
-This reference lesson covers the built-in .NET 10 and .NET 11 `AsyncEnumerable` operators and asynchronous enumeration surface, checked against the .NET 11 GA release per the Microsoft C# LINQ guide and API reference [https://learn.microsoft.com/en-us/dotnet/csharp/linq/](https://learn.microsoft.com/en-us/dotnet/csharp/linq/). 
+This reference lesson covers the built-in .NET 10 and .NET 11 `AsyncEnumerable` operators and asynchronous enumeration surface, checked against the .NET 11 GA release per the Microsoft C# LINQ guide and API reference [https://learn.microsoft.com/en-us/dotnet/csharp/linq/](https://learn.microsoft.com/en-us/dotnet/csharp/linq/).
 
 # How this group fits the mental model
-In modern C#, Language Integrated Query (LINQ) provides a uniform vocabulary for filtering, transforming, joining, and aggregating sequences. While standard `Enumerable` operators process in-memory collections (`IEnumerable<T>`) and `Queryable` operators build expression trees for remote execution (`IQueryable<T>`), asynchronous sequences (`IAsyncEnumerable<T>`) allow you to pull data streams asynchronously using `await foreach`. 
+In modern C#, Language Integrated Query (LINQ) provides a uniform vocabulary for filtering, transforming, joining, and aggregating sequences. `Enumerable` operators process synchronous enumeration, while `Queryable` operators pass expression trees to a provider that may translate or execute them. `IAsyncEnumerable<T>` supports asynchronous iteration with `await foreach`; the interface does not guarantee remote I/O or parallel work.
 
 The supplied group of `AsyncEnumerable` operators and enumeration mechanics bridges asynchronous programming with LINQ composition. Instead of blocking a thread while waiting for network packets, file reads, or paginated database responses, async sequence operators compose transformations lazily. They evaluate asynchronously as items flow through the pipeline, supporting cooperative cancellation via `CancellationToken` and asynchronous resource cleanup via `IAsyncDisposable`.
 
@@ -39,7 +39,8 @@ This reference catalog explains every assigned item in the `async-enumerable-ope
 * `AsyncEnumerable.Order`: Sorts the elements of an asynchronous sequence in ascending order using default comparers.
 * `AsyncEnumerable.OrderDescending`: Sorts the elements of an asynchronous sequence in descending order.
 * `AsyncEnumerable.OrderBy`: Sorts elements of an asynchronous sequence in ascending order by a key selector.
-* `AsyncEnumerable.OrderByDescending`: Sorts elements of an asynchronous sequence in descending order by a key selector.
+* `AsyncEnumerable.OrderByDescending`: Sorts elements of an asynchronous sequence in descending order by a key selector. This requires consuming the input before yielding the ordered output.
+* `AsyncEnumerable.GroupBy`: Groups elements of an asynchronous sequence by key; producing groups requires consuming the input to determine their members.
 * `AsyncEnumerable.ThenBy`: Performs a secondary ascending sort on an already ordered asynchronous sequence.
 * `AsyncEnumerable.ThenByDescending`: Performs a secondary descending sort on an already ordered asynchronous sequence.
 * `AsyncEnumerable.Reverse`: Reverses the order of elements in an asynchronous sequence (requires buffering elements).
@@ -95,7 +96,7 @@ This reference catalog explains every assigned item in the `async-enumerable-ope
 
 # Cross-item comparison
 Within this assigned group of async operators, operations fall into distinct behavioral categories:
-* **Streaming vs. Buffering Operators:** Operators like `AsyncEnumerable.Where` and `AsyncEnumerable.Select` yield items immediately as they arrive asynchronously (streaming). In contrast, operators like `AsyncEnumerable.Reverse`, `AsyncEnumerable.OrderBy`, and `AsyncEnumerable.GroupBy` must consume the entire upstream sequence before yielding the first output element (buffering).
+* **Streaming vs. Buffering Operators:** `Where` and `Select` can yield incrementally. Operations that require global ordering, such as `Reverse` and `OrderBy`, must consume the input before yielding results. Confirm buffering details for each operator and implementation.
 * **Terminal Materialization vs. Deferred Composition:** Methods returning `IAsyncEnumerable<T>` (such as `AsyncEnumerable.Where` or `AsyncEnumerable.Skip`) use deferred execution and perform no work until iterated. Methods ending in `Async` or `ToList` (such as `AsyncEnumerable.ToListAsync` or `AsyncEnumerable.CountAsync`) are terminal operators that execute immediately when invoked.
 
 # Examples
@@ -154,7 +155,7 @@ Total materialized items: 10
 
 # Knowledge checks with answers
 1. **Question:** What is the primary operational difference between `AsyncEnumerable.Where` and `AsyncEnumerable.ToListAsync`?
-   **Answer:** `AsyncEnumerable.Where` returns a deferred `IAsyncEnumerable<T>` stream that evaluates lazily during iteration, whereas `AsyncEnumerable.ToListAsync` is a terminal operator that immediately executes iteration and returns a `Task<List<T>>`.
+   **Answer:** `AsyncEnumerable.Where` returns a deferred `IAsyncEnumerable<T>` stream; `ToListAsync` starts consuming the source and returns `ValueTask<List<T>>`.
 2. **Question:** Why do operators like `AsyncEnumerable.OrderBy` break pure streaming execution?
    **Answer:** Sorting requires examining all incoming elements to determine their relative ordering before the first element can be safely emitted, necessitating internal buffering.
 3. **Question:** How do you bind a `CancellationToken` to an asynchronous sequence iteration in C#?
