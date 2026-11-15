@@ -1072,6 +1072,9 @@ test('C# type, nullability, class, struct, record, and union maps have unique na
   }
   const types = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-004.json', 'utf8'));
   assert.ok(types.inventory.flatMap(group => group.items).includes('EqualityComparer<T>.Default'));
+  const typeNames = types.inventory.flatMap(group => group.items);
+  assert.ok(typeNames.includes('Nullable.GetUnderlyingType(Type)'));
+  assert.ok(!typeNames.includes('Nullable<T>.GetUnderlyingType(Type)'));
   const nullable = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-005.json', 'utf8'));
   assert.ok(nullable.inventory.flatMap(group => group.items).includes('MemberNotNullWhenAttribute'));
   const declarations = JSON.parse(fs.readFileSync('curriculum/manifests/c-language-and-net/t01-006.json', 'utf8'));
