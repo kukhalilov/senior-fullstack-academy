@@ -209,7 +209,7 @@
   ],
   "versionNotes": [
     {
-      "edition": "Current .NET test-platform and Stryker.NET guidance checked 2026-11-14",
+      "edition": "Current .NET test-platform and Stryker.NET guidance checked 2026-11-17",
       "items": [
         "Microsoft.Testing.Platform code coverage uses Microsoft.Testing.Extensions.CodeCoverage; VSTest and MTP have distinct configuration and command-line surfaces, so examples must match the selected runner.",
         "MSTest 4.4 reports retry attempts and identifies flaky/retried tests in run summaries; use retries as diagnosis evidence, not as a substitute for fixing nondeterminism.",
@@ -218,27 +218,51 @@
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-code-coverage",
         "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-writing-tests-controlling-execution",
+        "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-writing-tests-testcontext",
         "https://stryker-mutator.io/docs/stryker-net/getting-started/"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn .NET testing, coverage, test platform and MSTest documentation; Stryker.NET official docs; FsCheck official docs",
-    "edition": "Current .NET 11 testing guidance, MSTest 4.4 behavior, Stryker.NET and FsCheck documentation checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "Current .NET 11 testing guidance, MSTest 4.4 behavior, Stryker.NET and FsCheck documentation checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage",
       "https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-code-coverage",
       "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices",
       "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-writing-tests-controlling-execution",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-writing-tests",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-writing-tests-testcontext",
       "https://learn.microsoft.com/en-us/dotnet/core/testing/test-platforms-overview",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/",
+      "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0",
       "https://stryker-mutator.io/docs/",
       "https://stryker-mutator.io/docs/stryker-net/",
       "https://stryker-mutator.io/docs/stryker-net/getting-started/",
       "https://stryker-mutator.io/docs/stryker-net/configuration/",
-      "https://fscheck.github.io/FsCheck/"
+      "https://stryker-mutator.io/docs/General/faq/",
+      "https://stryker-mutator.io/docs/mutation-testing-elements/equivalent-mutants/",
+      "https://fscheck.github.io/FsCheck/",
+      "https://fscheck.github.io/FsCheck/QuickStart.html",
+      "https://fscheck.github.io/FsCheck/RunningTests.html",
+      "https://fscheck.github.io/FsCheck/TestData.html",
+      "https://fscheck.github.io/FsCheck/TipsAndTricks.html"
     ]
   },
+  "accuracyFacts": [
+    "Code coverage measures executed code such as lines, branches, or methods; it does not establish that assertions detect incorrect behavior.",
+    "Microsoft.Testing.Extensions.CodeCoverage with Microsoft.Testing.Platform excludes the test assembly by default. VSTest and Microsoft.Testing.Platform have different coverage setup and command-line surfaces.",
+    "A fixed coverage output path can overwrite per-module reports in a flat results layout. Preserve distinct reports before merging; a later merge cannot recover files already overwritten.",
+    "Stryker.NET's mutation score denominator includes killed, timed-out, survived, and no-coverage mutants; mutants that error are excluded from the score. A survivor is a prompt to investigate whether behavior is asserted or the mutant is equivalent/unreachable, not an automatic instruction to add a test.",
+    "Equivalent mutants produce no observable behavior change for the relevant program context and cannot be reliably identified automatically in every case; investigate survivors rather than assuming they expose a missing assertion.",
+    "FsCheck properties use generators and shrinkers; the failing input is reduced while it continues to falsify the property. Default test counts/configuration can be changed, and failures can report a seed for replay.",
+    "A custom FsCheck shrinker may re-run a property multiple times. Properties over mutable generated state must rebuild/reset that state so shrinking does not observe prior mutations.",
+    "MSTest TestContext.CancellationToken is available starting with MSTest 3.11 and is signaled on timeout or test-run abort. Cooperative cancellation requires test code to observe/pass the token; otherwise timed-out work may continue.",
+    "MSTest 4.4 and Microsoft.Testing.Platform report retry attempts and identify retried/flaky tests in the run summary; process-level retries and method-level retries can multiply executions.",
+    "Retries, quarantine, and numeric quality gates can improve diagnostics or manage risk temporarily, but they do not repair nondeterministic tests or prove behavior by themselves.",
+    "Test pyramids and test trophies are planning metaphors, not universally correct test-count ratios. Select layers based on behavior, failure risk, fidelity, diagnostic value, and maintenance cost."
+  ],
   "scopeExclusions": [
     "Framework-specific test declaration APIs are covered in t10-001; integration and frontend test implementations are covered in t10-002 and t10-003.",
     "Full CLI option references for Coverlet, ReportGenerator, Stryker.NET, and FsCheck are outside this topic.",
