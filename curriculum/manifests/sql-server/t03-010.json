@@ -44,7 +44,22 @@
         "Long-running transaction",
         "Nested BEGIN TRANSACTION counter behavior",
         "Snapshot update conflict",
-        "Transaction retry boundary"
+        "Transaction retry boundary",
+        "SET TRANSACTION ISOLATION LEVEL syntax",
+        "RCSI statement-level snapshot",
+        "Snapshot transaction-level snapshot",
+        "Snapshot update conflict error 3960",
+        "Snapshot isolation across multiple databases",
+        "SET IMPLICIT_TRANSACTIONS",
+        "XACT_ABORT and uncommittable transaction",
+        "TRY/CATCH rollback with XACT_STATE",
+        "Savepoint rollback does not end transaction",
+        "NOLOCK still takes schema stability locks",
+        "Lock timeout is not deadlock detection",
+        "RCSI does not eliminate writer conflicts",
+        "Serializable requires usable range index for key-range locks",
+        "Version store retention from oldest active snapshot",
+        "ADR persistent version store placement"
       ]
     },
     {
@@ -76,7 +91,27 @@
         "sp_releaseapplock",
         "sys.dm_tran_locks",
         "sys.dm_os_waiting_tasks",
-        "Extended Events deadlock report"
+        "Extended Events deadlock report",
+        "Lock compatibility matrix",
+        "Lock conversion deadlock",
+        "Update lock conversion purpose",
+        "Intent locks communicate lower-level locks",
+        "Lock escalation threshold and table-level target",
+        "ROWLOCK does not prevent escalation",
+        "Lock escalation extended event",
+        "Blocking versus deadlock distinction",
+        "Deadlock error 1205 victim rollback",
+        "Deadlock victim cost and priority selection",
+        "Deadlock retry must restart whole transaction",
+        "xml_deadlock_report Extended Event",
+        "system_health captures deadlock reports by default",
+        "Deadlock graph victim/process/resource lists",
+        "Deadlocks can involve workers memory and exchanges",
+        "Application lock resource case sensitivity",
+        "Application lock owner transaction versus session",
+        "sp_getapplock return codes",
+        "Application lock acquisition order",
+        "sys.dm_exec_requests blocking_session_id"
       ]
     },
     {
@@ -97,7 +132,30 @@
         "NOLOCK hint dirty-read risk",
         "Row-version retention",
         "Version-store cleanup",
-        "Optimized-locking eligibility boundary"
+        "Optimized-locking eligibility boundary",
+        "Optimized locking availability by SQL platform",
+        "OPTIMIZED_LOCKING database option",
+        "Accelerated database recovery prerequisite",
+        "Optimized locking disabled by default on SQL Server 2025",
+        "TID XACT lock lifetime",
+        "TID row/page lock release behavior",
+        "LAQ requires RCSI and READ COMMITTED",
+        "LAQ evaluates latest committed version",
+        "LAQ predicate requalification after concurrent update",
+        "LAQ statement restart event lock_after_qual_stmt_abort",
+        "LAQ disabled by conflicting lock hints",
+        "LAQ unsupported for MERGE",
+        "LAQ unsupported with OUTPUT or variable assignment",
+        "LAQ unsupported on columnstore updates",
+        "Skip Index Locks optimization",
+        "Optimized locking does not remove schema locks",
+        "Optimized locking tempdb and temporary table boundary",
+        "Optimized locking XACT wait types",
+        "READCOMMITTEDLOCK forces locking under RCSI",
+        "UPDLOCK and HOLDLOCK reduce optimized locking benefits",
+        "RCSI optimized locking strict-order behavior change",
+        "sys.databases is_optimized_locking_on",
+        "DATABASEPROPERTYEX IsOptimizedLockingOn"
       ]
     }
   ],
@@ -131,36 +189,64 @@
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
-    "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-locks-transact-sql?view=sql-server-ver17"
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-locks-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optimized-locking?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-deadlocks-guide?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-tran-locks-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-os-waiting-tasks-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-version-store-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-active-snapshot-database-transactions-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-releaseapplock-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/xact-state-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/trancount-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
   ],
   "versionNotes": [
     {
       "edition": "SQL Server 2025 optimized locking",
       "items": [
-        "SQL Server 2025 introduces optimized locking capabilities including transaction-ID locking and Lock After Qualification in eligible configurations; do not imply that all workloads or settings automatically use every behavior."
+        "SQL Server 2025 supports optimized locking but leaves it disabled by default per database; ADR is required first. Azure availability/defaults differ.",
+        "TID locking shortens row/page lock lifetimes. LAQ requires RCSI and READ COMMITTED; incompatible hints, isolation, statements, and table types can disable it.",
+        "Optimized locking reduces DML lock pressure but not schema locks, writer conflicts, all deadlocks, or application correctness requirements."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optimized-locking?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-locks-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17"
       ]
     }
   ],
   "sourceSnapshot": {
-    "authority": "Microsoft SQL Server 2025 locking, row versioning, and transaction documentation",
-    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "authority": "Microsoft SQL Server transactions, locking, row versioning, deadlock, and optimized-locking documentation",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
-      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-locks-transact-sql?view=sql-server-ver17"
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-locks-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optimized-locking?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-deadlocks-guide?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-tran-locks-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-os-waiting-tasks-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-version-store-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-active-snapshot-database-transactions-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-releaseapplock-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/xact-state-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/trancount-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
     ]
   },
   "scopeExclusions": [
     "DML syntax and idempotency are in t03-006.",
     "Execution plan analysis and broad wait statistics are in t03-009 and t03-013.",
-    "Distributed transaction protocols and outbox patterns are taught in track-08."
+    "Distributed transaction protocols and outbox patterns are taught in track-08.",
+    "This lesson focuses on transaction and concurrency semantics; detailed DML syntax remains in t03-006.",
+    "Optimized-locking platform availability and default settings differ; verify actual per-database settings."
   ],
   "generationAllowed": true
 }
