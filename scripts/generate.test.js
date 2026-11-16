@@ -1072,8 +1072,8 @@ test('RabbitMQ and Kafka inventory keeps acknowledgement, ordering, retention, a
   assert.equal(manifest.generationAllowed, true);
   const all = manifest.inventory.flatMap(group => group.items);
   assert.equal(new Set(all).size, all.length);
-  for (const item of ['RabbitMQ publisher confirm', 'RabbitMQ consumer delivery acknowledgement', 'Queue durability versus message persistence', 'RabbitMQ federation', 'Kafka per-partition order', 'Kafka consumer group rebalance', 'Kafka log compaction', 'Exactly-once processing scope']) assert.ok(all.includes(item), item);
-  assert.ok(manifest.versionNotes.some(note => note.edition.includes('RabbitMQ 4.2') && note.items.some(item => item.includes('RabbitMQ 4.3.0'))));
+  for (const item of ['RabbitMQ publisher confirm', 'RabbitMQ consumer delivery acknowledgement', 'Queue durability versus message persistence', 'RabbitMQ federation', 'Kafka per-partition order', 'Kafka consumer group rebalance', 'Kafka log compaction', 'Exactly-once processing scope', 'RabbitMQ classic queue replication status in RabbitMQ 4.4']) assert.ok(all.includes(item), item);
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('RabbitMQ 4.4') && note.items.some(item => item.includes('RabbitMQ 4.3.0'))));
   assert.ok(manifest.scopeExclusions.some(item => item.includes('no global total order')));
 });
 
