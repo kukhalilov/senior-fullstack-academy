@@ -658,7 +658,7 @@ test('TypeScript scopes freeze compiler options, type operators, and current too
     assert.ok(manifest.concepts.length > 0, id);
     assert.ok(manifest.inventory.every(group => group.items.length > 0), id);
     for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${id}/${group.id}`);
-    if (id === 't06-008' || id === 't06-010' || id === 't06-021' || id === 't06-022') assert.equal(manifest.sourceSnapshot.edition, 'TypeScript 7.0 stable; 7.1 beta as of 2026-11-16', id);
+    if (id === 't06-008' || id === 't06-010' || id === 't06-021' || id === 't06-022' || id === 't06-023') assert.equal(manifest.sourceSnapshot.edition, 'TypeScript 7.0 stable; 7.1 beta as of 2026-11-16', id);
     else if (id <= 't06-024') assert.equal(manifest.sourceSnapshot.edition, 'TypeScript 6.0 stable', id);
     else assert.match(manifest.sourceSnapshot.edition, /^Current .*documentation checked 2026-11-14$/, id);
   }
