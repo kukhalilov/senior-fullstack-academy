@@ -834,12 +834,16 @@ test('accessibility inventory freezes all WCAG 2.2 criteria, current WAI-ARIA ro
   assert.equal(group('aria-concrete-roles').length, 88);
   assert.equal(group('aria-abstract-roles').length, 12);
   assert.equal(group('aria-states-and-properties').length, 53);
+  assert.equal(group('aria-draft-api').length, 6);
   assert.equal(group('apg-interaction-patterns').length, 30);
   for (const item of ['2.4.11 Focus Not Obscured (Minimum) (AA)', '2.5.7 Dragging Movements (AA)', '3.3.8 Accessible Authentication (Minimum) (AA)', '4.1.3 Status Messages (AA)']) assert.ok(criteria.includes(item), item);
   for (const item of ['image', 'comment', 'mark', 'suggestion']) assert.ok(group('aria-concrete-roles').includes(item), item);
   for (const item of ['aria-colindextext', 'aria-description', 'aria-rowindextext', 'aria-braillelabel']) assert.ok(group('aria-states-and-properties').includes(item), item);
   assert.ok(manifest.versionNotes.some(note => note.edition === 'WAI-ARIA 1.3 Working Draft'));
   assert.ok(manifest.versionNotes.some(note => note.items.some(change => change.includes('Removed 4.1.1 Parsing'))));
+  assert.ok(manifest.accuracyFacts.some(fact => fact.includes('removes 4.1.1 Parsing from active 2.2 conformance criteria')));
+  assert.ok(manifest.accuracyFacts.some(fact => fact.includes('is a Working Draft')));
+  assert.ok(manifest.accuracyFacts.some(fact => fact.includes('ariaNotify()')));
 });
 
 test('React rendering inventory covers element descriptions, render phases, purity, identity, and keys', () => {

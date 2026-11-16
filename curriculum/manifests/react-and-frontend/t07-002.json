@@ -385,6 +385,18 @@
       ]
     },
     {
+      "id": "aria-draft-api",
+      "title": "WAI-ARIA 1.3 draft notification API and document constraints",
+      "items": [
+        "Element.ariaNotify() (WAI-ARIA 1.3 draft)",
+        "Document.ariaNotify() (WAI-ARIA 1.3 draft)",
+        "AriaNotificationOptions (WAI-ARIA 1.3 draft)",
+        "AriaNotifyPriority normal and high (WAI-ARIA 1.3 draft)",
+        "aria-notify Permissions Policy feature (WAI-ARIA 1.3 draft)",
+        "aria-hidden document-root restriction (WAI-ARIA 1.3 draft)"
+      ]
+    },
+    {
       "id": "apg-interaction-patterns",
       "title": "Current ARIA Authoring Practices Guide patterns",
       "items": [
@@ -521,28 +533,51 @@
       "edition": "WAI-ARIA 1.3 Working Draft",
       "items": [
         "Adds the image role as a synonym of img and adds comment, mark, and suggestion roles.",
-        "Adds aria-braillelabel, aria-brailleroledescription, aria-colindextext, aria-description, aria-rowindextext and other draft vocabulary changes; draft status means implementations can vary."
+        "Adds image, comment, mark, suggestion, sectionfooter, and sectionheader roles; draft status means implementations can vary.",
+        "Adds aria-braillelabel, aria-brailleroledescription, aria-colindextext, aria-description, aria-rowindextext and other draft vocabulary changes; draft status means implementations can vary.",
+        "Adds the ariaNotify API with normal/high priority and a permissions-policy-controlled aria-notify feature; this is draft and not a stable baseline API.",
+        "Prohibits aria-hidden=true on document root elements in the draft; do not treat this draft-only constraint as a WAI-ARIA 1.2 Recommendation requirement."
       ],
       "sourceUrls": [
-        "https://www.w3.org/TR/wai-aria-1.3/",
+        "https://www.w3.org/TR/2026/WD-wai-aria-1.3-20260604/",
         "https://www.w3.org/WAI/standards-guidelines/aria/"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "W3C WCAG 2.2 Recommendation, WAI-ARIA 1.2 Recommendation and 1.3 Working Draft, and current W3C ARIA APG",
-    "edition": "WCAG 2.2 and ARIA 1.3 draft references checked 2026-11-14; W3C role data commit 2263442a76fffe5887af5ae76a9a8281836c5ab0",
-    "checkedAt": "2026-11-14",
+    "edition": "WCAG 2.2 and WAI-ARIA 1.3 Working Draft references checked 2026-11-16; W3C role data commit 2263442a76fffe5887af5ae76a9a8281836c5ab0",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://www.w3.org/TR/WCAG22/",
       "https://www.w3.org/TR/wai-aria-1.3/",
+      "https://www.w3.org/TR/2026/WD-wai-aria-1.3-20260604/",
       "https://www.w3.org/TR/wai-aria-1.2/",
       "https://www.w3.org/WAI/ARIA/apg/patterns/",
       "https://www.w3.org/WAI/WCAG22/quickref/",
       "https://www.w3.org/WAI/ARIA/apg/",
+      "https://www.w3.org/WAI/test-evaluate/tools/",
+      "https://www.w3.org/WAI/tutorials/images/",
+      "https://www.w3.org/WAI/media/av/captions/",
+      "https://www.w3.org/WAI/media/av/description/",
+      "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/",
+      "https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/",
       "https://github.com/w3c/aria/blob/2263442a76fffe5887af5ae76a9a8281836c5ab0/common/script/roleInfo.js"
     ]
   },
+  "accuracyFacts": [
+    "WCAG 2.2 is a W3C Recommendation and extends WCAG 2.1 with nine success criteria; it removes 4.1.1 Parsing from active 2.2 conformance criteria. For policies, conformance level and scope still determine applicability.",
+    "The WCAG principles are Perceivable, Operable, Understandable, and Robust. WCAG success criteria are technology-independent and testable statements; techniques and understanding documents are informative guidance, not the normative criteria themselves.",
+    "WCAG 2.2 criterion 2.4.11 requires focused components not be entirely hidden by author-created content; 2.4.12 requires no part be hidden at AAA. 2.4.13 Focus Appearance is AAA and has specific size/contrast rules, not merely a visible-focus recommendation.",
+    "WCAG 2.2 criterion 2.5.8 Target Size (Minimum) is AA with a 24 by 24 CSS pixel minimum subject to defined exceptions; 2.5.5 Target Size (Enhanced) is AAA with a 44 by 44 CSS pixel target subject to different exceptions.",
+    "WCAG 2.2 criterion 1.4.12 Text Spacing requires no loss of content/function when users apply specified spacing overrides; it does not require authors to use those exact values as the default design.",
+    "WCAG 2.2 conformance is not established by an automated scan alone. Evaluation needs all applicable criteria at the claimed level and scope, representative pages/states, and manual checks where context or interaction determines compliance.",
+    "WAI-ARIA 1.2 is a Recommendation; WAI-ARIA 1.3 in the snapshot is a Working Draft. Draft-only roles, states, methods, and constraints must be labeled experimental and must not be presented as stable interoperable baseline features.",
+    "The WAI-ARIA 1.3 June 2026 draft adds sectionfooter/sectionheader roles, ariaNotify() on Element and Document with normal/high priority, an aria-notify Permissions Policy feature, and a restriction on aria-hidden=true at document roots. Support and draft text can change.",
+    "ARIA roles do not supply native keyboard interaction or repair poor semantics automatically. Prefer native HTML controls and semantics; custom ARIA widgets must implement their interaction, focus, states, and accessible names.",
+    "Abstract WAI-ARIA roles are part of the role inheritance model and are not author-assigned roles. Deprecated roles such as directory should not be taught as recommended replacements for native semantics.",
+    "Automated tools detect only some accessibility failures and can report false positives or miss contextual failures. Combine automation with keyboard, zoom/reflow, contrast, motion, screen-reader, accessibility-tree, and task-based manual review."
+  ],
   "scopeExclusions": [
     "Detailed HTML element and forms reference inventories are covered by t07-001 and t07-014",
     "CSS property techniques and design tokens are covered by t07-016 through t07-018",
