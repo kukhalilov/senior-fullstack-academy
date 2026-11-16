@@ -1,6 +1,10 @@
 {
-  "schemaVersion":4,"id":"t09-004","track":"track-09","title":"Kestrel reverse proxies TLS networking and load balancing","status":"source-backed-draft-generation-enabled",
-  "concepts":[
+  "schemaVersion": 4,
+  "id": "t09-004",
+  "track": "track-09",
+  "title": "Kestrel reverse proxies TLS networking and load balancing",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
     "Kestrel is ASP.NET Core's cross-platform HTTP server and can run directly at the edge or behind a reverse proxy. The topology decides which component terminates TLS, validates the Host header, limits connections, and supplies the original client context.",
     "An endpoint binds an address and port and selects permitted HTTP protocols. TLS configuration includes certificates, protocol negotiation, SNI, client-certificate requirements, and trust-chain validation; TLS pass-through and TLS termination are different network flows.",
     "A reverse proxy commonly terminates TLS and forwards to Kestrel over a private connection. Forwarded headers can restore the external scheme, host, prefix, and client address only when received from a trusted proxy; accepting forged headers changes authentication, redirects, rate limits, and audit identity.",
@@ -8,18 +12,391 @@
     "YARP implements reverse proxying in ASP.NET Core using routes, clusters, destinations, transforms, load balancing, session affinity, and active or passive health checks. A destination being configured does not mean it is healthy or eligible for every request.",
     "A secure deployment assigns each responsibility to a clear trust boundary: public TLS and host validation at the edge or Kestrel, narrowly trusted forwarding headers at the application, and private backend reachability. Misordered middleware or broad proxy trust can create security and redirect failures."
   ],
-  "inventory":[
-    {"id":"kestrel-endpoints-and-protocols","title":"Listener endpoints, address binding, HTTP versions, and server limits","items":["Kestrel","KestrelServerOptions","Listen endpoint","ListenAnyIP","ListenLocalhost","ListenUnixSocket","ListenNamedPipe","Kestrel endpoint configuration","Kestrel endpoint name","Kestrel endpoint Defaults","Kestrel endpoint configuration reload","ASPNETCORE_URLS","HTTP_PORTS","HTTPS_PORTS","UseUrls","ListenOptions","ListenOptions.Protocols","HttpProtocols.Http1","HttpProtocols.Http2","HttpProtocols.Http3","HttpProtocols.Http1AndHttp2","HTTP/2 ALPN negotiation","HTTP/3 QUIC transport","TLS endpoint","KestrelServerLimits","MaxConcurrentConnections","MaxConcurrentUpgradedConnections","MaxRequestBodySize","IHttpMaxRequestBodySizeFeature","RequestHeadersTimeout","KeepAliveTimeout","MinRequestBodyDataRate","MinResponseDataRate","Kestrel Http2 limits","Kestrel Http3 limits","Kestrel request body limit behind IIS","IIS endpoint binding override"]},
-    {"id":"tls-certificates-and-transport","title":"HTTPS certificates, TLS versions, SNI, mTLS, ALPN, and trust","items":["Transport Layer Security (TLS)","TLS termination","TLS pass-through","HTTPS endpoint","X.509 server certificate","Server Authentication EKU","Certificate private key","Certificate chain","Certificate trust validation","ServerCertificate","ServerCertificateSelector","ServerCertificateChain","SNI (Server Name Indication)","Dynamic certificate selection","Mutual TLS (mTLS)","Client certificate validation","Client certificate forwarding","TLS 1.2","TLS 1.3","SslProtocols","Application-Layer Protocol Negotiation (ALPN)","HTTP/2 over TLS","QUIC","Certificate file change reload","Certificate rotation","HSTS","HTTP-to-HTTPS redirect","TLS handshake timeout","ClientHello timeout","Cipher-suite policy","Certificate revocation checking","TLS termination at edge proxy versus Kestrel"]},
-    {"id":"reverse-proxy-forwarded-context","title":"Proxy topologies, trusted forwarding, middleware order, and host protection","items":["Reverse proxy","Forward proxy","Edge proxy","Upstream proxy","Backend server","TLS-terminating reverse proxy","TCP/TLS pass-through proxy","Proxy hop","Forwarded Headers Middleware","ForwardedHeadersOptions","ForwardedHeaders.XForwardedFor","ForwardedHeaders.XForwardedProto","ForwardedHeaders.XForwardedHost","ForwardedHeaders.XForwardedPrefix","X-Forwarded-For","X-Forwarded-Proto","X-Forwarded-Host","X-Forwarded-Prefix","X-Original-For","X-Original-Proto","X-Original-Host","X-Original-Prefix","KnownProxies","KnownIPNetworks","ForwardLimit","AllowedHosts","RequireHeaderSymmetry","ForwardedHeaders.None default","Trusted proxy boundary","Forwarded header spoofing","ASPNETCORE_FORWARDEDHEADERS_ENABLED","DOTNET_FORWARDEDHEADERS_ENABLED","UseForwardedHeaders middleware ordering","Forwarded headers before HTTPS redirection","Forwarded headers before HSTS","Host header validation","AllowedHosts configuration","Host header spoofing","PROXY protocol","IIS integration forwarded headers","Proxy TLS offload","Backend HTTP over private network","Original client IP restoration"]},
-    {"id":"yarp-routes-clusters-and-transforms","title":"YARP route matching, cluster selection, destinations, and request/response transforms","items":["YARP (Yet Another Reverse Proxy)","YARP reverse proxy package","AddReverseProxy","MapReverseProxy","RouteConfig","ClusterConfig","DestinationConfig","Route match Path","Route match Hosts","Route match Methods","Route match Headers","Route match QueryParameters","Route order","Route transforms","Request transform","Response transform","Response trailer transform","PathRemovePrefix transform","PathPrefix transform","PathPattern transform","QueryValueParameter transform","RequestHeader transform","ResponseHeader transform","X-Forwarded transform","HttpRequest transform","HttpResponse transform","Route authorization policy","Cluster destination selection","Destination address","Destination metadata","IProxyConfigProvider","IProxyConfig","YARP configuration file","Reloadable YARP configuration","YARP transform builder","YARP proxy pipeline middleware","Direct forwarding","Proxy HttpClient configuration"]},
-    {"id":"proxy-health-load-balancing-and-operations","title":"Destination eligibility, affinity, health policy, timeout, and diagnostics","items":["YARP load balancing policy","PowerOfTwoChoices load balancing","FirstAlphabetical load balancing","LeastRequests load balancing","RoundRobin load balancing","Random load balancing","Session affinity","Cookie-based session affinity","Destination health state","Active health check","Passive health check","Active health check policy","TransportFailureRateHealthPolicy","ConsecutiveFailuresHealthPolicy","Destination probing","Health check interval","Health check timeout","Health check path","Health check policy selection","Destination unhealthy state","Destination draining","YARP circuit breaker policy","YARP request timeout policy","YARP rate limiting integration","Proxy cluster resilience","Request cancellation propagation","Proxy WebSocket forwarding","Proxy HTTP/2 forwarding","Proxy TLS certificate validation","Kestrel connection diagnostics","Kestrel EventSource","Kestrel logging category","YARP telemetry","Proxy access log correlation","Load balancer versus reverse proxy"]}
+  "inventory": [
+    {
+      "id": "kestrel-endpoints-and-protocols",
+      "title": "Listener endpoints, address binding, HTTP versions, and server limits",
+      "items": [
+        "Kestrel",
+        "KestrelServerOptions",
+        "Listen endpoint",
+        "ListenAnyIP",
+        "ListenLocalhost",
+        "ListenUnixSocket",
+        "ListenNamedPipe",
+        "Kestrel endpoint configuration",
+        "Kestrel endpoint name",
+        "Kestrel endpoint Defaults",
+        "Kestrel endpoint configuration reload",
+        "ASPNETCORE_URLS",
+        "HTTP_PORTS",
+        "HTTPS_PORTS",
+        "UseUrls",
+        "ListenOptions",
+        "ListenOptions.Protocols",
+        "HttpProtocols.Http1",
+        "HttpProtocols.Http2",
+        "HttpProtocols.Http3",
+        "HttpProtocols.Http1AndHttp2",
+        "HTTP/2 ALPN negotiation",
+        "HTTP/3 QUIC transport",
+        "TLS endpoint",
+        "KestrelServerLimits",
+        "MaxConcurrentConnections",
+        "MaxConcurrentUpgradedConnections",
+        "MaxRequestBodySize",
+        "IHttpMaxRequestBodySizeFeature",
+        "RequestHeadersTimeout",
+        "KeepAliveTimeout",
+        "MinRequestBodyDataRate",
+        "MinResponseDataRate",
+        "Kestrel Http2 limits",
+        "Kestrel Http3 limits",
+        "Kestrel request body limit behind IIS",
+        "IIS endpoint binding override"
+      ]
+    },
+    {
+      "id": "tls-certificates-and-transport",
+      "title": "HTTPS certificates, TLS versions, SNI, mTLS, ALPN, and trust",
+      "items": [
+        "Transport Layer Security (TLS)",
+        "TLS termination",
+        "TLS pass-through",
+        "HTTPS endpoint",
+        "X.509 server certificate",
+        "Server Authentication EKU",
+        "Certificate private key",
+        "Certificate chain",
+        "Certificate trust validation",
+        "ServerCertificate",
+        "ServerCertificateSelector",
+        "ServerCertificateChain",
+        "SNI (Server Name Indication)",
+        "Dynamic certificate selection",
+        "Mutual TLS (mTLS)",
+        "Client certificate validation",
+        "Client certificate forwarding",
+        "TLS 1.2",
+        "TLS 1.3",
+        "SslProtocols",
+        "Application-Layer Protocol Negotiation (ALPN)",
+        "HTTP/2 over TLS",
+        "QUIC",
+        "Certificate file change reload",
+        "Certificate rotation",
+        "HSTS",
+        "HTTP-to-HTTPS redirect",
+        "TLS handshake timeout",
+        "ClientHello timeout",
+        "Cipher-suite policy",
+        "Certificate revocation checking",
+        "TLS termination at edge proxy versus Kestrel",
+        "ListenOptions.UseTlsClientHelloListener",
+        "TlsClientHelloBytesCallback (obsolete in .NET 11)",
+        "ITlsHandshakeFeature.Exception",
+        "DisableCertificateFileWatching AppContext switch",
+        "ClientCertificateMode.NoCertificate",
+        "ClientCertificateMode.AllowCertificate",
+        "ClientCertificateMode.RequireCertificate",
+        "ClientCertificateMode.DelayCertificate",
+        "ClientCertificateValidation callback",
+        "AllowAnyClientCertificate",
+        "CheckCertificateRevocation",
+        "HandshakeTimeout",
+        "AllowAlternateSchemes",
+        "AllowHostHeaderOverride",
+        "AllowSynchronousIO",
+        "Kestrel HTTP/3 early request processing"
+      ]
+    },
+    {
+      "id": "reverse-proxy-forwarded-context",
+      "title": "Proxy topologies, trusted forwarding, middleware order, and host protection",
+      "items": [
+        "Reverse proxy",
+        "Forward proxy",
+        "Edge proxy",
+        "Upstream proxy",
+        "Backend server",
+        "TLS-terminating reverse proxy",
+        "TCP/TLS pass-through proxy",
+        "Proxy hop",
+        "Forwarded Headers Middleware",
+        "ForwardedHeadersOptions",
+        "ForwardedHeaders.XForwardedFor",
+        "ForwardedHeaders.XForwardedProto",
+        "ForwardedHeaders.XForwardedHost",
+        "ForwardedHeaders.XForwardedPrefix",
+        "X-Forwarded-For",
+        "X-Forwarded-Proto",
+        "X-Forwarded-Host",
+        "X-Forwarded-Prefix",
+        "X-Original-For",
+        "X-Original-Proto",
+        "X-Original-Host",
+        "X-Original-Prefix",
+        "KnownProxies",
+        "KnownIPNetworks",
+        "ForwardLimit",
+        "AllowedHosts",
+        "RequireHeaderSymmetry",
+        "ForwardedHeaders.None default",
+        "Trusted proxy boundary",
+        "Forwarded header spoofing",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED",
+        "DOTNET_FORWARDEDHEADERS_ENABLED",
+        "UseForwardedHeaders middleware ordering",
+        "Forwarded headers before HTTPS redirection",
+        "Forwarded headers before HSTS",
+        "Host header validation",
+        "AllowedHosts configuration",
+        "Host header spoofing",
+        "PROXY protocol",
+        "IIS integration forwarded headers",
+        "Proxy TLS offload",
+        "Backend HTTP over private network",
+        "Original client IP restoration",
+        "ForwardedHeaders_Enabled configuration key",
+        "Forwarded header trust reset by environment configuration"
+      ]
+    },
+    {
+      "id": "yarp-routes-clusters-and-transforms",
+      "title": "YARP route matching, cluster selection, destinations, and request/response transforms",
+      "items": [
+        "YARP (Yet Another Reverse Proxy)",
+        "YARP reverse proxy package",
+        "AddReverseProxy",
+        "MapReverseProxy",
+        "RouteConfig",
+        "ClusterConfig",
+        "DestinationConfig",
+        "Route match Path",
+        "Route match Hosts",
+        "Route match Methods",
+        "Route match Headers",
+        "Route match QueryParameters",
+        "Route order",
+        "Route transforms",
+        "Request transform",
+        "Response transform",
+        "Response trailer transform",
+        "PathRemovePrefix transform",
+        "PathPrefix transform",
+        "PathPattern transform",
+        "QueryValueParameter transform",
+        "RequestHeader transform",
+        "ResponseHeader transform",
+        "X-Forwarded transform",
+        "HttpRequest transform",
+        "HttpResponse transform",
+        "Route authorization policy",
+        "Cluster destination selection",
+        "Destination address",
+        "Destination metadata",
+        "IProxyConfigProvider",
+        "IProxyConfig",
+        "YARP configuration file",
+        "Reloadable YARP configuration",
+        "YARP transform builder",
+        "YARP proxy pipeline middleware",
+        "Direct forwarding",
+        "Proxy HttpClient configuration"
+      ]
+    },
+    {
+      "id": "proxy-health-load-balancing-and-operations",
+      "title": "Destination eligibility, affinity, health policy, timeout, and diagnostics",
+      "items": [
+        "YARP load balancing policy",
+        "PowerOfTwoChoices load balancing",
+        "FirstAlphabetical load balancing",
+        "LeastRequests load balancing",
+        "RoundRobin load balancing",
+        "Random load balancing",
+        "Session affinity",
+        "Cookie-based session affinity",
+        "Destination health state",
+        "Active health check",
+        "Passive health check",
+        "Active health check policy",
+        "TransportFailureRateHealthPolicy",
+        "ConsecutiveFailuresHealthPolicy",
+        "Destination probing",
+        "Health check interval",
+        "Health check timeout",
+        "Health check path",
+        "Health check policy selection",
+        "Destination unhealthy state",
+        "Destination draining",
+        "YARP circuit breaker policy",
+        "YARP request timeout policy",
+        "YARP rate limiting integration",
+        "Proxy cluster resilience",
+        "Request cancellation propagation",
+        "Proxy WebSocket forwarding",
+        "Proxy HTTP/2 forwarding",
+        "Proxy TLS certificate validation",
+        "Kestrel connection diagnostics",
+        "Kestrel EventSource",
+        "Kestrel logging category",
+        "YARP telemetry",
+        "Proxy access log correlation",
+        "Load balancer versus reverse proxy"
+      ]
+    }
   ],
-  "inventoryComplete":true,
-  "comparisons":[["Kestrel edge server","Kestrel behind reverse proxy"],["TLS termination","TLS pass-through"],["HTTP/1.1","HTTP/2","HTTP/3"],["TLS server certificate","mTLS client certificate"],["X-Forwarded-For","PROXY protocol"],["KnownProxies","KnownIPNetworks","Trust all forwarded headers"],["Kestrel connection limit","Proxy connection limit","Application concurrency limit"],["YARP route","YARP cluster","YARP destination"],["Active health checks","Passive health checks"],["RoundRobin","LeastRequests","PowerOfTwoChoices"],["Load balancer","Reverse proxy","API gateway"]],
-  "comparisonSources":["https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/config-files?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/dests-health-checks?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/load-balancing?view=aspnetcore-10.0"],
-  "versionNotes":[{"edition":"ASP.NET Core 8.0.17/9.0.6 forwarded-header security change and ASP.NET Core 10 docs, checked 2026-11-14","items":["Starting with ASP.NET Core 8.0.17 and 9.0.6, forwarded headers from unconfigured proxies are ignored by default. Trust proxies explicitly; clearing KnownProxies and KnownNetworks allows arbitrary peers to supply identity and scheme headers. Current Kestrel HTTP/3 support depends on platform and QUIC requirements."],"sourceUrls":["https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/8/forwarded-headers-unknown-proxies?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0"]}],
-  "sourceSnapshot":{"authority":"Microsoft Learn ASP.NET Core 10 Kestrel, proxy/load-balancer, security, and YARP references","edition":"ASP.NET Core 10 docs and forwarded-header servicing change checked 2026-11-14","checkedAt":"2026-11-14","urls":["https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/8/forwarded-headers-unknown-proxies?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/config-files?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/dests-health-checks?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/load-balancing?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/transforms?view=aspnetcore-10.0"]},
-  "scopeExclusions":["IIS site, app-pool, ANCM, and Windows hosting configuration are t09-003","Azure Application Gateway, AWS ALB, nginx, and Apache syntax is vendor/server-specific and excluded from this ASP.NET Core implementation inventory","HTTP method semantics, HTTP caching, HTTP/2 framing, HTTP/3 protocol internals, and general TLS cryptography are covered by protocol and security topics","ASP.NET Core middleware APIs unrelated to proxying are in framework topics","Do not enable forwarded-header processing for untrusted direct-edge traffic; do not treat X-Forwarded headers as authenticated merely because they are present","YARP extension points beyond the named public configuration abstractions require version-specific API documentation and aren't exhaustively enumerated here"],
-  "generationAllowed":true
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Kestrel edge server",
+      "Kestrel behind reverse proxy"
+    ],
+    [
+      "TLS termination",
+      "TLS pass-through"
+    ],
+    [
+      "HTTP/1.1",
+      "HTTP/2",
+      "HTTP/3"
+    ],
+    [
+      "TLS server certificate",
+      "mTLS client certificate"
+    ],
+    [
+      "X-Forwarded-For",
+      "PROXY protocol"
+    ],
+    [
+      "KnownProxies",
+      "KnownIPNetworks",
+      "Trust all forwarded headers"
+    ],
+    [
+      "Kestrel connection limit",
+      "Proxy connection limit",
+      "Application concurrency limit"
+    ],
+    [
+      "YARP route",
+      "YARP cluster",
+      "YARP destination"
+    ],
+    [
+      "Active health checks",
+      "Passive health checks"
+    ],
+    [
+      "RoundRobin",
+      "LeastRequests",
+      "PowerOfTwoChoices"
+    ],
+    [
+      "Load balancer",
+      "Reverse proxy",
+      "API gateway"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/config-files?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/dests-health-checks?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/load-balancing?view=aspnetcore-10.0",
+    "https://dotnet.microsoft.com/en-us/platform/support/policy",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/getting-started",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/config-files",
+    "https://github.com/dotnet/yarp/blob/main/docs/roadmap.md",
+    "https://github.com/dotnet/yarp/releases",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+    "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.connections.features.itlshandshakefeature",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/timeouts",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/https-tls?view=aspnetcore-10.0"
+  ],
+  "versionNotes": [
+    {
+      "edition": "ASP.NET Core 8.0.17/9.0.6 forwarded-header security change and ASP.NET Core 10 docs, checked 2026-11-14",
+      "items": [
+        "Starting with ASP.NET Core 8.0.17 and 9.0.6, forwarded headers from unconfigured proxies are ignored by default. Trust proxies explicitly; current code uses KnownIPNetworks (KnownNetworks is obsolete). Clearing KnownProxies/KnownIPNetworks or enabling the forwarded-header environment switch can allow arbitrary peers to supply client identity and scheme headers. Current Kestrel HTTP/3 support depends on platform and QUIC requirements."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/8/forwarded-headers-unknown-proxies?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0"
+      ]
+    },
+    {
+      "edition": "ASP.NET Core 11 GA and current YARP release state, checked 2026-11-16",
+      "items": [
+        ".NET 11 GA was released November 10, 2026 (STS). Current Microsoft Learn Kestrel HTTP/3 guidance documents early request processing, removing the wait for QUIC control-stream SETTINGS before processing request streams; HTTP/3 still depends on MsQuic/platform requirements and is not enabled by default. YARP 2.3.0 is the latest listed stable release and supports .NET 8 or later, so it is compatible with .NET 11; do not confuse the .NET runtime release number with YARP package version. The source set preserves Microsoft Learn 10.0 selector URLs for pages where a separate 11.0 view was not verifiable during this snapshot."
+      ],
+      "sourceUrls": [
+        "https://dotnet.microsoft.com/en-us/platform/support/policy",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/getting-started",
+        "https://github.com/dotnet/yarp/blob/main/docs/roadmap.md",
+        "https://github.com/dotnet/yarp/releases"
+      ]
+    },
+    {
+      "edition": "Kestrel TLS observability and ClientHello APIs in ASP.NET Core 11, checked 2026-11-16",
+      "items": [
+        "ASP.NET Core 11 adds ListenOptions.UseTlsClientHelloListener for connection middleware that inspects ClientHello before UseHttps, and ITlsHandshakeFeature.Exception exposes the handshake exception to appropriately ordered connection middleware. TlsClientHelloBytesCallback is obsolete in .NET 11 in favor of the listener API. The ClientHello listener timeout adds to handshake timeout; bound the combined time. Certificate file watching can be disabled with the named AppContext switch. Keep the default OS-selected TLS protocols unless policy requires an explicit supported restriction."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.connections.features.itlshandshakefeature",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn Kestrel, HTTP/3, proxy/load-balancer and YARP docs; official .NET support policy; official YARP release record",
+    "edition": "ASP.NET Core 11 GA with latest published Kestrel/YARP references checked 2026-11-16; YARP 2.3.0 is the latest stable release listed",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/8/forwarded-headers-unknown-proxies?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/config-files?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/dests-health-checks?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/load-balancing?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/transforms?view=aspnetcore-10.0",
+      "https://dotnet.microsoft.com/en-us/platform/support/policy",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/getting-started",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/config-files",
+      "https://github.com/dotnet/yarp/blob/main/docs/roadmap.md",
+      "https://github.com/dotnet/yarp/releases",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.connections.features.itlshandshakefeature",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/timeouts",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/https-tls?view=aspnetcore-10.0"
+    ]
+  },
+  "scopeExclusions": [
+    "IIS site, app-pool, ANCM, and Windows hosting configuration are t09-003",
+    "Azure Application Gateway, AWS ALB, nginx, and Apache syntax is vendor/server-specific and excluded from this ASP.NET Core implementation inventory",
+    "HTTP method semantics, HTTP caching, HTTP/2 framing, HTTP/3 protocol internals, and general TLS cryptography are covered by protocol and security topics",
+    "ASP.NET Core middleware APIs unrelated to proxying are in framework topics",
+    "Do not enable forwarded-header processing for untrusted direct-edge traffic; do not treat X-Forwarded headers as authenticated merely because they are present",
+    "YARP extension points beyond the named public configuration abstractions require version-specific API documentation and aren't exhaustively enumerated here"
+  ],
+  "generationAllowed": true
 }
