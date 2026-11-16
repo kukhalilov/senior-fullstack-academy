@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1952,
+  "taskCount": 1954,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -22326,9 +22326,9 @@
       "inventoryGroup": "runtime-network-and-storage"
     },
     {
-      "id": "t09-006-reference-compose-model-and-cli",
+      "id": "t09-006-reference-compose-project-resources-and-cli",
       "track": "track-09",
-      "title": "Docker images Dockerfiles compose networks volumes and security — Reference: Compose specification, services, dependency conditions, profiles, and develop mode",
+      "title": "Docker images Dockerfiles compose networks volumes and security — Reference: Compose project structure, resources, merge behavior, and operator commands",
       "module": "t09-006",
       "manifest": "curriculum/manifests/infrastructure-and-operations/t09-006.json",
       "phase": "reference",
@@ -22336,7 +22336,7 @@
         "t09-006-reference-runtime-network-and-storage"
       ],
       "status": "draft-generation-eligible",
-      "inventoryGroup": "compose-model-and-cli"
+      "inventoryGroup": "compose-project-resources-and-cli"
     },
     {
       "id": "t09-006-reference-container-security-and-image-quality",
@@ -22346,10 +22346,36 @@
       "manifest": "curriculum/manifests/infrastructure-and-operations/t09-006.json",
       "phase": "reference",
       "prerequisites": [
-        "t09-006-reference-compose-model-and-cli"
+        "t09-006-reference-compose-project-resources-and-cli"
       ],
       "status": "draft-generation-eligible",
       "inventoryGroup": "container-security-and-image-quality"
+    },
+    {
+      "id": "t09-006-reference-compose-service-runtime-fields",
+      "track": "track-09",
+      "title": "Docker images Dockerfiles compose networks volumes and security — Reference: Compose service attributes for process, network, storage, resources, and security",
+      "module": "t09-006",
+      "manifest": "curriculum/manifests/infrastructure-and-operations/t09-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t09-006-reference-container-security-and-image-quality"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "compose-service-runtime-fields"
+    },
+    {
+      "id": "t09-006-reference-compose-dependencies-lifecycle-and-develop",
+      "track": "track-09",
+      "title": "Docker images Dockerfiles compose networks volumes and security — Reference: Compose dependency readiness, lifecycle hooks, profiles, jobs, and file watch",
+      "module": "t09-006",
+      "manifest": "curriculum/manifests/infrastructure-and-operations/t09-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t09-006-reference-compose-service-runtime-fields"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "compose-dependencies-lifecycle-and-develop"
     },
     {
       "id": "t09-006-practice",
@@ -22359,7 +22385,7 @@
       "manifest": "curriculum/manifests/infrastructure-and-operations/t09-006.json",
       "phase": "practice",
       "prerequisites": [
-        "t09-006-reference-container-security-and-image-quality"
+        "t09-006-reference-compose-dependencies-lifecycle-and-develop"
       ],
       "status": "draft-generation-eligible"
     },
