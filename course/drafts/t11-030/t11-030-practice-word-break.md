@@ -1,172 +1,160 @@
-<!-- GENERATED DRAFT: automated shape and editorial checks passed; independent factual verification is not implied. -->
-
 # sequence and string dynamic programming — Problem: Word Break
 
 # Goals
-- Learn how to solve sequence and string dynamic programming problems independently.
-- Master the **Word Break** problem using a reachable prefix state pattern and dictionary boundary checks.
-- Practice writing fully working, self-contained C# code with rigorous assertion checks.
+
+- Model a prefix as reachable when it can be segmented entirely into dictionary words.
+- Derive the transition from a prior reachable boundary and one dictionary word.
+- Implement the Boolean DP in C# and state its cost in terms of input and dictionary size.
 
 # Problem statement
-Given a string `s` and a dictionary of strings `wordDict`, return `true` if `s` can be segmented into a space-separated sequence of one or more dictionary words. Dictionary words may be reused multiple times.
+
+Given a string `s` and a dictionary of words, return `true` if `s` can be segmented into one or more dictionary words. A dictionary word may be reused any number of times. The complete string must be covered; unused characters at either end are not allowed.
 
 # Input constraints
-- `1 <= s.length <= 300`
-- `1 <= wordDict.length <= 1000`
-- `1 <= wordDict[i].length <= 20`
+
+- `1 <= s.Length <= 300`
+- `1 <= wordDict.Count <= 1000`
+- `1 <= wordDict[i].Length <= 20`
 - `s` and dictionary words contain lowercase English letters.
 - Dictionary words are unique.
 
 # Examples with expected output
-- Input: `s = "leetcode"`, `wordDict = ["leet", "code"]`
-  - Expected output: `true`
-- Input: `s = "applepenapple"`, `wordDict = ["apple", "pen"]`
-  - Expected output: `true`
-- Input: `s = "catsandog"`, `wordDict = ["cats", "dog", "sand", "and", "cat"]`
-  - Expected output: `false`
+
+- `s = "leetcode"`, `wordDict = ["leet", "code"]` → `true` because `leet + code` covers the full string.
+- `s = "applepenapple"`, `wordDict = ["apple", "pen"]` → `true`; dictionary entries can be reused.
+- `s = "catsandog"`, `wordDict = ["cats", "dog", "sand", "and", "cat"]` → `false`; the apparent prefixes leave an unsegmentable ending.
 
 # Clarifying assumptions
-- An empty prefix before the start of the string (index `0`) is always reachable as a valid base case.
-- Multiple dictionary words can be matched back-to-back to form valid segmentations.
-- Order matters in the sense that segments must reconstruct the original string `s` continuously from left to right.
+
+- Segments must be contiguous substrings of `s`, and their concatenation must equal `s`.
+- The order of dictionary entries does not matter.
+- Empty `s` is outside the supplied constraints; the implementation below returns true for it because the empty prefix needs zero words.
+- Equality is ordinal and case-sensitive; the supplied input is lowercase ASCII.
 
 # Progressive hints
-1. **Hint 1 (State definition):** Think about whether a prefix of length `i` can be segmented. Define a boolean array `dp` of size `s.Length + 1`, where `dp[i]` indicates whether the substring `s[0..i-1]` can be segmented using dictionary words.
-2. **Hint 2 (Base case):** What is the truth value for an empty prefix (`dp[0]`)? Setting `dp[0] = true` gives your dynamic programming recurrence a solid foundation.
-3. **Hint 3 (Transitions):** To determine if `dp[i]` is true, look back at all possible split points `j` from `0` to `i-1`. If `dp[j]` is true and the substring from index `j` to `i-1` exists in the dictionary, then `dp[i]` becomes true.
-4. **Hint 4 (Optimization for lookups):** Searching the `wordDict` list repeatedly is slow. Convert `wordDict` into a hash set for $O(1)$ dictionary word membership checks.
+
+1. Define `reachable[i]` to mean the first `i` characters can be segmented.
+2. The empty prefix is reachable. To reach `i`, find a word of length `L` whose occurrence ends at `i` and whose starting prefix `i-L` is reachable.
+3. Check only word lengths no longer than the current prefix. Since every word has length at most 20, each state has a small bounded set of candidate lengths.
+4. Return the state for the full length, not whether any prefix was reachable.
 
 # Complete C# solution
+
 ```csharp dsa-solution
 using System;
 using System.Collections.Generic;
 
-namespace SequenceDpLesson
+public static class WordBreakSolution
 {
-    public class Program
+    public static bool WordBreak(string s, IList<string> wordDict)
     {
-        public static bool WordBreak(string s, IList<string> wordDict)
+        var wordsByLength = new Dictionary<int, HashSet<string>>();
+        int maxWordLength = 0;
+
+        foreach (string word in wordDict)
         {
-            if (string.IsNullOrEmpty(s))
+            if (!wordsByLength.TryGetValue(word.Length, out HashSet<string>? words))
             {
-                return true;
+                words = new HashSet<string>(StringComparer.Ordinal);
+                wordsByLength.Add(word.Length, words);
             }
 
-            HashSet<string> wordSet = new HashSet<string>(wordDict);
-            int n = s.Length;
-            bool[] dp = new bool[n + 1];
-            dp[0] = true;
-
-            for (int i = 1; i <= n; i++)
-            {
-                for (int j = 0; j < i; j++)
-                {
-                    if (dp[j])
-                    {
-                        string word = s.Substring(j, i - j);
-                        if (wordSet.Contains(word))
-                        {
-                            dp[i] = true;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            return dp[n];
+            words.Add(word);
+            maxWordLength = Math.Max(maxWordLength, word.Length);
         }
 
-        public static void Main(string[] args)
+        var reachable = new bool[s.Length + 1];
+        reachable[0] = true;
+
+        for (int end = 1; end <= s.Length; end++)
         {
-            // Example 1
-            string s1 = "leetcode";
-            IList<string> dict1 = new List<string> { "leet", "code" };
-            bool res1 = WordBreak(s1, dict1);
-            if (res1 != true)
-            {
-                throw new InvalidOperationException("Example 1 failed: expected true, got false.");
-            }
+            int firstStart = Math.Max(0, end - maxWordLength);
 
-            // Example 2
-            string s2 = "applepenapple";
-            IList<string> dict2 = new List<string> { "apple", "pen" };
-            bool res2 = WordBreak(s2, dict2);
-            if (res2 != true)
+            for (int start = firstStart; start < end; start++)
             {
-                throw new InvalidOperationException("Example 2 failed: expected true, got false.");
-            }
+                if (!reachable[start])
+                {
+                    continue;
+                }
 
-            // Example 3
-            string s3 = "catsandog";
-            IList<string> dict3 = new List<string> { "cats", "dog", "sand", "and", "cat" };
-            bool res3 = WordBreak(s3, dict3);
-            if (res3 != false)
-            {
-                throw new InvalidOperationException("Example 3 failed: expected false, got true.");
+                int length = end - start;
+                if (wordsByLength.TryGetValue(length, out HashSet<string>? words) &&
+                    words.Contains(s.Substring(start, length)))
+                {
+                    reachable[end] = true;
+                    break;
+                }
             }
+        }
 
-            // Edge Case: Single character matching dictionary
-            string s4 = "a";
-            IList<string> dict4 = new List<string> { "a" };
-            if (WordBreak(s4, dict4) != true)
-            {
-                throw new InvalidOperationException("Edge Case 1 failed.");
-            }
+        return reachable[s.Length];
+    }
 
-            // Edge Case: Single character missing from dictionary
-            string s5 = "x";
-            IList<string> dict5 = new List<string> { "a" };
-            if (WordBreak(s5, dict5) != false)
-            {
-                throw new InvalidOperationException("Edge Case 2 failed.");
-            }
-
-            Console.WriteLine("All test cases passed successfully.");
+    public static void Main()
+    {
+        if (!WordBreak("leetcode", new[] { "leet", "code" }) ||
+            !WordBreak("applepenapple", new[] { "apple", "pen" }) ||
+            WordBreak("catsandog", new[] { "cats", "dog", "sand", "and", "cat" }) ||
+            !WordBreak("", new[] { "a" }) ||
+            !WordBreak("aaaa", new[] { "a", "aa" }) ||
+            WordBreak("b", new[] { "a", "aa" }))
+        {
+            throw new InvalidOperationException("A Word Break check failed.");
         }
     }
 }
 ```
 
 # Correctness argument
-The algorithm uses dynamic programming over prefix reachability. By setting `dp[0] = true`, we establish that an empty prefix is validly segmentable. For each index `i` from `1` to `n`, we test all possible prior boundary indices `j`. If a prefix of length `j` is reachable (`dp[j] == true`) and the remaining slice `s[j..i-1]` is present in the dictionary, then the prefix of length `i` is also reachable (`dp[i] = true`). Because we check every possible split point for each prefix in increasing order of length, no valid segmentation path is missed.
+
+For every index `i`, `reachable[i]` is true exactly when the prefix `s[0..i)` can be segmented into dictionary words.
+
+- **Base:** `reachable[0]` is true because the empty prefix requires no word. Every nonempty prefix starts false.
+- **Soundness:** The algorithm sets `reachable[end]` only if some `start < end` has `reachable[start]` true and `s[start..end)` is in the dictionary. Appending that word to a valid segmentation of the earlier prefix gives a valid segmentation through `end`.
+- **Completeness:** If a prefix ending at `end` has a valid segmentation, its final word begins at some `start`. The preceding prefix is reachable, and the final word length is at most `maxWordLength`, so the loop examines that boundary and recognizes the word. It therefore sets `reachable[end]` true.
+
+Thus the returned `reachable[s.Length]` is true if and only if the full string is segmentable.
 
 # Step-by-step dry run
-Consider `s = "leet"`, `wordDict = ["leet", "code"]`.
-1. Initialize `dp` array of size `5`: `[true, false, false, false, false]`.
-2. `i = 1` (`s[0] = 'l'`):
-   - `j = 0`: `dp[0]` is `true`. Substring `s[0..0] = "l"`. Not in dictionary.
-   - `dp[1]` remains `false`.
-3. `i = 2` (`s[0..1] = "le"`):
-   - `j = 0`: Substring `"le"` not in dict.
-   - `j = 1`: `dp[1]` is `false`.
-   - `dp[2]` remains `false`.
-4. `i = 3` (`s[0..2] = "lee"`):
-   - Substring `"lee"` not in dict. `dp[3]` remains `false`.
-5. `i = 4` (`s[0..3] = "leet"`):
-   - `j = 0`: `dp[0]` is `true`. Substring `s[0..3] = "leet"`. Found in dictionary! Set `dp[4] = true`, break inner loop.
-6. Return `dp[4]`, which is `true`.
+
+Use `s = "applepenapple"` and words `apple`, `pen`. The only lengths are 3 and 5; the set begins with `reachable[0] = true`.
+
+- End 1 and 2: no reachable starting boundary plus a dictionary word matches, so both remain false.
+- End 3: the length-3 suffix `app` is not a word; false.
+- End 5: start 0 is reachable and `apple` is present, so `reachable[5] = true`.
+- End 8: start 5 is reachable and `pen` is present, so `reachable[8] = true`.
+- End 13: start 8 is reachable and `apple` is present, so `reachable[13] = true`.
+
+Intermediate ends without a matching word from a reachable start remain false. The final state is true.
 
 # Time complexity
-- Converting the dictionary to a hash set takes $O(W \cdot M)$ time, where $W$ is the number of words and $M$ is the maximum word length.
-- The outer loop runs $n$ times (where $n$ is `s.Length`).
-- The inner loop runs $i$ times, resulting in $O(n^2)$ substring checks.
-- Each substring extraction and hash set lookup takes $O(M)$ time.
-- Total time complexity is $O(n^2 \cdot M + W \cdot M)$, which is well within acceptable limits for $n \le 300$.
+
+Let `n = s.Length`, `D` be the number of distinct word lengths, and `L` be the maximum word length. There are at most `min(D, L)` candidate boundaries per end. Creating a substring and hashing/comparing it costs up to `O(L)`, so the conservative bound is `O(n × D × L)`. With `L <= 20`, this is bounded and small for the supplied constraints. Building the length-indexed sets takes `O(total dictionary characters)` expected time.
 
 # Space complexity
-- The `dp` boolean array takes $O(n)$ space.
-- The `wordSet` hash set stores $W$ words, taking $O(W \cdot M)$ space.
-- Total space complexity is $O(n + W \cdot M)$.
+
+The reachability array uses `O(n)` space. The sets store the dictionary in `O(total dictionary characters)` space. Candidate substrings create temporary allocations during the scan; they are not retained by the DP. A trie or span-aware lookup can reduce allocations if a larger constraint set makes them material.
 
 # Edge-case tests
-- **Minimum length string matching:** `s = "a"`, `wordDict = ["a"]` -> returns `true`.
-- **Minimum length string mismatch:** `s = "x"`, `wordDict = ["a"]` -> returns `false`.
-- **Repeated word usage:** `s = "aaaaaaa"`, `wordDict = ["aaaa", "aa"]` -> checks sub-segmentations successfully.
-- **Unreachable suffix:** `s = "catsandog"`, where `"sand"` matches but leaves `"og"`, which cannot be segmented.
+
+- A word equal to the entire string.
+- A valid segmentation that reuses one dictionary word.
+- A reachable prefix followed by an impossible suffix.
+- No dictionary word begins at index 0.
+- Several candidate boundaries exist but only a shorter one leads to a complete solution.
+- Empty string if the API is intended to accept it (the supplied constraints exclude it; this implementation returns true).
+- Maximum input length with maximum word length.
 
 # Reflection questions
-1. How would the state definition and transitions change if you needed to return the actual list of strings instead of just a boolean?
-2. What signal indicates that a greedy approach (e.g., always picking the longest matching dictionary prefix from the left) would fail on this problem?
-3. How does converting `wordDict` to a `HashSet` affect performance compared to searching a raw list linearly inside the inner loop?
 
-Sources: [Topic reference](https://usaco.guide/gold/intro-dp); [Assigned problem](https://leetcode.com/problems/word-break/)
+1. Why is checking that *any* prefix is reachable insufficient?
+2. How does `reachable[0] = true` make a word beginning at index zero fit the same transition as later words?
+3. Why is this a prefix-reachability DP instead of a greedy longest-word-first scan?
+4. If the dictionary allowed non-ASCII text, what string indexing assumption in this C# implementation would need revisiting?
+
+**Answers:** (1) The requirement is to cover the whole string. (2) A word from index zero extends the empty valid segmentation. (3) A longer locally valid word can block a valid later split; all reachable boundaries must be considered. (4) .NET `string.Length` and indexing use UTF-16 code units; Unicode scalar/grapheme semantics may require a different representation, though the frozen problem is lowercase English.
+
+# Sources
+
+- [Assigned problem: Word Break](https://leetcode.com/problems/word-break/)
+- [USACO Guide: Introduction to DP](https://usaco.guide/gold/intro-dp)
