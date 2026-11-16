@@ -658,6 +658,10 @@ test('JavaScript language inventories use current standard names without duplica
   assert.ok(errors.inventory.flatMap(group => group.items).includes('Error.isError'));
   assert.ok(errors.versionNotes.some(note => note.edition === 'ECMAScript 2026' && note.items.includes('Error.isError')));
   assert.ok(errors.accuracyFacts.some(fact => fact.includes('Proxy wrapping an Error')));
+  const functionForms = JSON.parse(fs.readFileSync(`${base}/t06-003.json`, 'utf8'));
+  assert.ok(functionForms.accuracyFacts.some(fact => fact.includes('only when the argument is absent or explicitly undefined')));
+  assert.ok(functionForms.accuracyFacts.some(fact => fact.includes('mapped arguments object only with a simple parameter list')));
+  assert.ok(functionForms.accuracyFacts.some(fact => fact.includes('global environment rather than the local lexical scope')));
   const thisAndFunctions = JSON.parse(fs.readFileSync(`${base}/t06-017.json`, 'utf8'));
   const thisAndFunctionNames = thisAndFunctions.inventory.flatMap(group => group.items);
   assert.ok(thisAndFunctionNames.includes('Function tag fallback in Object.prototype.toString'));
