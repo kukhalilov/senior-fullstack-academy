@@ -23,10 +23,10 @@ function parsePacket(buffer) {
 
 const packet = new Uint8Array([3, 0, 65, 66, 67]);
 const payload = parsePacket(packet.buffer);
-console.log(new TextDecoder().decode(payload)); // "ABC"
+console.log([...payload]); // [65, 66, 67]
 ```
 
-The parser checks the header before reading it and checks the declared extent before constructing the view. The payload is a view over the same bytes; it is not copied.
+The parser checks the header before reading it and checks the declared extent before constructing the view. The payload is a view over the same bytes; it is not copied. Its three byte values are 65, 66, and 67.
 
 # Exercises
 

@@ -16,8 +16,8 @@ These methods convert between byte sequences and textual encodings. They operate
 - `Uint8Array.fromBase64` — Parses base64 text into a new byte array. Options can choose the standard `base64` or URL-safe `base64url` alphabet and how to handle an incomplete final chunk (`loose`, `strict`, or `stop-before-partial`).
 - `Uint8Array.prototype.toHex` — Serializes each byte as two lowercase hexadecimal digits. The result uses exactly two characters per byte.
 - `Uint8Array.prototype.toBase64` — Serializes bytes to base64 text. Options choose standard or URL-safe alphabet and whether padding is included.
-- `Uint8Array.prototype.setFromHex` — Parses hex into the receiver starting at element zero, stopping when the receiver fills; returns `{ read, written }`. Input validation still requires a valid hex shape; excess input behavior should not be used as a substitute for validating application protocols.
-- `Uint8Array.prototype.setFromBase64` — Decodes as much base64 as fits into the existing receiver and returns `{ read, written }`. It processes complete four-character chunks; the selected `lastChunkHandling` controls treatment of a final partial chunk. Use the counts to resume safely or detect truncation.
+- `Uint8Array.prototype.setFromHex` — Parses hex into the receiver starting at element zero, stopping when the receiver fills; returns `{ read, written }`. The input must have even total length, but characters after the destination is full are not parsed and may be ignored. Validate the complete external protocol yourself when that distinction matters.
+- `Uint8Array.prototype.setFromBase64` — Decodes as much base64 as fits into the existing receiver and returns `{ read, written }`. It processes complete four-character chunks; the selected `lastChunkHandling` controls treatment of a final partial chunk. ASCII whitespace is ignored. Once the destination is full, later input is not parsed and may contain invalid syntax. Use the counts to detect truncation and validate the entire external input when required.
 
 # Cross-item comparison
 
@@ -43,18 +43,18 @@ console.log(Uint8Array.fromBase64("SGk=").toHex()); // "4869"
 const destination = new Uint8Array(2);
 const result = destination.setFromBase64("SGk=");
 console.log(result); // { read: 4, written: 2 }
-console.log(new TextDecoder().decode(destination)); // "Hi"
+console.log([...destination]); // [72, 105]
 ```
 
 # Common mistakes
 
 - Treating base64 or hex as confidentiality; either is an encoding and can be decoded by anyone.
 - Confusing base64url with standard base64 in URL/query contexts.
-- Assuming every decoder accepts whitespace, missing padding, mixed alphabets, or malformed partial chunks identically; set explicit options and validate the protocol.
+- Assuming every decoder accepts the same alphabet or malformed partial chunks; these APIs have explicit `alphabet` and `lastChunkHandling` options. Base64 APIs ignore ASCII whitespace; hex APIs do not.
 - Forgetting that hex requires pairs of digits and produces two characters per byte.
 - Ignoring `{ read, written }` from `setFrom...` and silently accepting truncated output.
 - Passing a typed array other than Uint8Array and assuming these APIs serialize its logical values rather than its bytes.
-- Using text conversion as a replacement for `TextEncoder`/`TextDecoder`; these APIs encode binary bytes in textual radix formats, not Unicode text.
+- Confusing byte encoding with character encoding: these methods convert bytes to hex/base64 text; a separate character-encoding step is needed when bytes represent human-readable text.
 - Assuming standardized means present in every older browser or runtime; feature-detect when supporting older environments.
 
 # Knowledge checks with answers

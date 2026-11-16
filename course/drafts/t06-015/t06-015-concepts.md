@@ -36,7 +36,7 @@ For a data format, start with its byte layout rather than a JavaScript type name
 
 Float16 has a smaller exponent/mantissa range and precision than Float32; values round to binary16, which can overflow to infinity or underflow to zero/subnormal values. `Math.f16round()` rounds a Number to the nearest representable binary16 and returns it as a Number. Integer array conversion is not equivalent to range validation: a value outside the target range can wrap. Validate application constraints before storing it.
 
-Hex and base64 encode bytes as text; they do not define character encoding. Decode base64 to a `Uint8Array`, then use `TextDecoder` only if those bytes represent text in the chosen encoding. Base64url uses different alphabet characters. Do not confuse `atob()`'s legacy binary string with UTF-8 decoded text.
+Hex and base64 encode bytes as text; they do not define character encoding. Decode base64 to a `Uint8Array`; interpret the resulting bytes according to the data format. Base64url uses different alphabet characters. Base64 itself does not tell you whether the bytes represent text or which character encoding applies.
 
 # Worked examples
 

@@ -31,7 +31,7 @@ A buffer owns storage; views describe how to look at it. That distinction explai
 | Mixed binary record | `DataView` | Per-access type, offset, and endianness |
 | Move memory ownership | `ArrayBuffer.transfer()` | New buffer; old one becomes detached |
 | Grow a view of memory | Resizable/growable buffer | Existing views may track size or become out-of-bounds |
-| Convert textual encoding | `Uint8Array` hex/base64 methods | Byte encoding/decoding without `atob`'s binary-string intermediate |
+| Convert byte data to readable text | `Uint8Array` hex/base64 methods | Make byte values easier to store or transmit as text |
 
 # End-to-end walkthrough
 

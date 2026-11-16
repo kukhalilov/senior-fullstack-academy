@@ -25,7 +25,7 @@
 6. Integer conversion uses fixed-width semantics, including truncation/modulo and signed interpretation; clamped arrays instead clamp and round.
 7. Resizing can change the extent of tracking views or make fixed views out of bounds. Transferring detaches the original buffer and moves its bytes to the destination.
 8. ArrayBuffer is ordinary owned storage; SharedArrayBuffer can be shared between agents and requires separate synchronization reasoning.
-9. Hex/base64 APIs map bytes to textual radix encodings. TextEncoder/TextDecoder handle character encoding, a different layer.
+9. Hex/base64 methods map bytes to textual radix encodings; character encoding is a separate concern.
 10. Check the header exists, validate lengths and offsets against available bytes, apply specified endianness, and avoid excessive allocations.
 
 # Deep follow-up answers
