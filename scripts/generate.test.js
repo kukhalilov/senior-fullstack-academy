@@ -660,6 +660,7 @@ test('TypeScript scopes freeze compiler options, type operators, and current too
     for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${id}/${group.id}`);
     if (id === 't06-007' || id === 't06-008' || id === 't06-009' || id === 't06-010' || id === 't06-021' || id === 't06-022' || id === 't06-023' || id === 't06-024') assert.equal(manifest.sourceSnapshot.edition, 'TypeScript 7.0 stable; 7.1 beta as of 2026-11-16', id);
     else if (id <= 't06-024') assert.equal(manifest.sourceSnapshot.edition, 'TypeScript 6.0 stable', id);
+    else if (id === 't06-026') assert.equal(manifest.sourceSnapshot.edition, 'Current stable tool documentation checked 2026-11-16; Parcel 3 alpha labeled separately', id);
     else assert.match(manifest.sourceSnapshot.edition, /^Current .*documentation checked 2026-11-14$/, id);
   }
   const types = JSON.parse(fs.readFileSync(`${base}/t06-022.json`, 'utf8'));
