@@ -7,7 +7,7 @@
   "concepts": [
     "Migrations record the difference between an EF model and a relational schema. Scaffolding creates proposed operations and a model snapshot; developers must inspect data impact and provider-specific SQL.",
     "Migration files form ordered history. Up applies changes and Down attempts reversal, but destructive or lossy transformations may not be safely reversible.",
-    "Applying migrations at application startup can create races, privilege problems, long locks, and deployment coupling. Production deployment often uses reviewed SQL scripts or migration bundles with a controlled identity.",
+    "EF Core 9+ migration locking coordinates EF migration execution, but applying schema changes at application startup still couples availability to DDL, requires elevated credentials, and can cause long startup delays/locks. Production deployment often uses reviewed SQL scripts or migration bundles with a controlled identity.",
     "Idempotent scripts support databases at different migration states, but do not make every operation harmless or guarantee cross-version app compatibility.",
     "Model-managed seed data is part of the model snapshot; runtime seeding is designed for database initialization logic. Data backfills and expand-contract sequences need explicit operational plans."
   ],
@@ -39,6 +39,8 @@
         "Custom migration operation",
         "PendingModelChangesWarning",
         "Model changes check",
+        "dotnet ef migrations has-pending-model-changes",
+        "Database.HasPendingModelChanges",
         "Migration versus database schema state"
       ]
     },
@@ -47,6 +49,7 @@
       "title": "Applying, scripting, bundling, idempotence, and environment safety",
       "items": [
         "dotnet ef database update",
+        "dotnet ef database update --add (EF Core 11)",
         "Update-Database",
         "Database.Migrate",
         "Database.MigrateAsync",
@@ -132,26 +135,32 @@
   ],
   "versionNotes": [
     {
-      "edition": "EF Core 9 and 10 seeding APIs",
+        "edition": "EF Core 11.0.0 released 2026-11-10; migrations and seeding checked 2026-11-16",
       "items": [
-        "EF Core 9 introduced UseSeeding and UseAsyncSeeding for runtime initialization; EF Core 10 is the current stable release. EF Core 11 remains in development at the checked date."
+          "EF Core 9 introduced migration locking and UseSeeding/UseAsyncSeeding. EF Core CLI tools and migration bundles invoke the synchronous UseSeeding delegate, so configure both sync and async forms. EF Core 11.0.0 shipped 2026-11-10 and adds `dotnet ef database update --add` to scaffold and apply a migration in one step. The EF Core 11 What's New page may retain a stale development banner; use final release notes for release status."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft EF Core 10 migrations and data-seeding documentation",
-    "edition": "EF Core 10 stable; EF Core 11 development checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "EF Core 11.0.0; migration and seeding behavior checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
       "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
       "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
-      "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding"
+      "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
     ]
   },
   "scopeExclusions": [
