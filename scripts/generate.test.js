@@ -716,7 +716,9 @@ test('HTML document and forms inventories are based on the current Living Standa
   for (const manifest of [html, forms]) {
     assert.equal(manifest.inventoryComplete, true, manifest.id);
     assert.equal(manifest.generationAllowed, true, manifest.id);
-    assert.equal(manifest.sourceSnapshot.edition, 'HTML Living Standard checked 2026-11-14');
+    assert.match(manifest.sourceSnapshot.edition, /HTML Living Standard/);
+    assert.match(manifest.sourceSnapshot.edition, /2026-11-14/);
+    assert.match(manifest.sourceSnapshot.checkedAt, /^2026-11-\d{2}$/);
     for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${manifest.id}/${group.id}`);
   }
   const htmlItems = html.inventory.flatMap(group => group.items);
