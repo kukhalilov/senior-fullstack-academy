@@ -13,16 +13,276 @@
     "Warm-up, preload, idle timeout, recycling, overlapped rotation, startup limits, and rapid-fail protection affect availability. Changing recycling settings without understanding state, graceful shutdown, and deployment overlap can turn routine maintenance into request loss."
   ],
   "inventory": [
-    {"id":"iis-request-routing-and-configuration","title":"HTTP.sys, sites, bindings, applications, paths, modules, and handlers","items":["Internet Information Services (IIS)","Windows Process Activation Service (WAS)","World Wide Web Publishing Service (W3SVC)","HTTP.sys","HTTP.sys request queue","IIS site","IIS site binding","Binding protocol","Binding IP address","Binding port","Host header binding","Server Name Indication (SNI) binding","IIS application","IIS root application","IIS virtual directory","Physical path","Application path","Application pool assignment","ApplicationHost.config","web.config","IIS configuration inheritance","<location> element","inheritInChildApplications","IIS module","IIS handler mapping","AspNetCoreModuleV2 handler","IIS Integrated pipeline mode","IIS Classic pipeline mode","IIS request filtering","IIS URL Rewrite module","IIS Failed Request Tracing (FREB)","IIS access log","HTTPERR log","IIS Manager","AppCmd.exe","Microsoft.Web.Administration.ServerManager"]},
-    {"id":"application-pool-identity-and-process-model","title":"Worker-process isolation, identity, lifecycle, health, and recycling controls","items":["IIS application pool","Worker process (w3wp.exe)","ApplicationPoolIdentity","IIS AppPool\\<PoolName> identity","NetworkService identity","LocalService identity","LocalSystem identity","SpecificUser identity","Least-privilege application-pool ACL","Managed runtime version (No Managed Code)","Integrated managed pipeline mode","Classic managed pipeline mode","Maximum worker processes","Web garden","NUMA worker process configuration","Application pool startMode","AlwaysRunning start mode","OnDemand start mode","Application preloadEnabled","Application Initialization module","Idle timeout","Idle timeout action Terminate","Idle timeout action Suspend","Worker process ping","Ping interval","Ping response time","Startup time limit","Shutdown time limit","Application pool recycling","Periodic recycling","Scheduled recycling","Private-memory recycling threshold","Request-count recycling threshold","Overlapped recycling","Rapid-fail protection","rapidFailProtectionInterval","rapidFailProtectionMaxCrashes","Application pool disabled state","Application pool queueLength","503 due to application pool queue overflow","Application pool environmentVariables","Enable 32-bit applications","Worker process bitness"]},
-    {"id":"aspnet-core-module-and-hosting-modes","title":"ANCM, in-process/out-of-process request paths, deployment, and configuration","items":["ASP.NET Core Module (ANCM)","AspNetCoreModuleV2",".NET Hosting Bundle","IIS Integration","IISHttpServer","In-process hosting model","Out-of-process hosting model","Kestrel behind IIS","ANCM process management","ANCM request forwarding","ASPNETCORE_HOSTINGSTARTUPASSEMBLIES","<AspNetCoreHostingModel>","hostingModel web.config attribute","processPath web.config attribute","arguments web.config attribute","stdoutLogEnabled web.config attribute","stdoutLogFile web.config attribute","requestTimeout web.config attribute","rapidFailsPerMinute web.config attribute","forwardWindowsAuthToken web.config attribute","ANCM environmentVariables element","In-process app-pool isolation requirement","Single-file publish compatibility with in-process IIS","Framework-dependent deployment","Self-contained deployment","Runtime-dependent app startup",".NET shared framework","Application architecture versus app-pool architecture","web.config publish output","app_offline.htm deployment shutdown","IIS Express versus full IIS"]},
-    {"id":"iis-troubleshooting-and-operations","title":"Failure status boundaries, log sources, permissions, warm-up, and safe deployment","items":["HTTP 500.0 ANCM handler load failure","HTTP 500.30 in-process startup failure","HTTP 500.31 ANCM failed to find native dependencies","HTTP 500.32 ANCM failed to load DLL","HTTP 500.33 ANCM request handler load failure","HTTP 500.34 ANCM mixed hosting models not supported","HTTP 500.35 ANCM multiple in-process applications in same process","HTTP 500.36 ANCM out-of-process handler load failure","HTTP 500.37 ANCM startup time limit exceeded","HTTP 500.38 ANCM application DLL not found","HTTP 502.5 out-of-process process failure","HTTP 503 application pool unavailable","Windows Application Event Log","ASP.NET Core Module stdout log","IIS stdout log folder write ACL","Temporary stdout logging","Disable stdout logging after diagnosis","IIS Failed Request Tracing rule","ANCM startup error page","Missing Hosting Bundle diagnosis","Missing shared runtime diagnosis","Native dependency architecture mismatch","web.config malformed configuration","Application pool identity filesystem permission","IIS environment variable scope","IIS startup warm-up request","Preload and AlwaysRunning coordination","Application pool recycle overlap","Graceful shutdown and request drain","IIS configuration backup","appcmd list apppool","appcmd list site","appcmd list wp","IIS log time zone and UTC interpretation"]}
+    {
+      "id": "iis-request-routing-and-configuration",
+      "title": "HTTP.sys, sites, bindings, applications, paths, modules, and handlers",
+      "items": [
+        "Internet Information Services (IIS)",
+        "Windows Process Activation Service (WAS)",
+        "World Wide Web Publishing Service (W3SVC)",
+        "HTTP.sys",
+        "HTTP.sys request queue",
+        "IIS site",
+        "IIS site binding",
+        "Binding protocol",
+        "Binding IP address",
+        "Binding port",
+        "Host header binding",
+        "Server Name Indication (SNI) binding",
+        "IIS application",
+        "IIS root application",
+        "IIS virtual directory",
+        "Physical path",
+        "Application path",
+        "Application pool assignment",
+        "ApplicationHost.config",
+        "web.config",
+        "IIS configuration inheritance",
+        "<location> element",
+        "inheritInChildApplications",
+        "IIS module",
+        "IIS handler mapping",
+        "AspNetCoreModuleV2 handler",
+        "IIS Integrated pipeline mode",
+        "IIS Classic pipeline mode",
+        "IIS request filtering",
+        "IIS URL Rewrite module",
+        "IIS Failed Request Tracing (FREB)",
+        "IIS access log",
+        "HTTPERR log",
+        "IIS Manager",
+        "AppCmd.exe",
+        "Microsoft.Web.Administration.ServerManager"
+      ]
+    },
+    {
+      "id": "application-pool-identity-and-process-model",
+      "title": "Worker-process isolation, identity, lifecycle, health, and recycling controls",
+      "items": [
+        "IIS application pool",
+        "Worker process (w3wp.exe)",
+        "ApplicationPoolIdentity",
+        "IIS AppPool\\<PoolName> identity",
+        "NetworkService identity",
+        "LocalService identity",
+        "LocalSystem identity",
+        "SpecificUser identity",
+        "Least-privilege application-pool ACL",
+        "Managed runtime version (No Managed Code)",
+        "Integrated managed pipeline mode",
+        "Classic managed pipeline mode",
+        "Maximum worker processes",
+        "Web garden",
+        "NUMA worker process configuration",
+        "Application pool startMode",
+        "AlwaysRunning start mode",
+        "OnDemand start mode",
+        "Application preloadEnabled",
+        "Application Initialization module",
+        "Idle timeout",
+        "Idle timeout action Terminate",
+        "Idle timeout action Suspend",
+        "Worker process ping",
+        "Ping interval",
+        "Ping response time",
+        "Startup time limit",
+        "Shutdown time limit",
+        "Application pool recycling",
+        "Periodic recycling",
+        "Scheduled recycling",
+        "Private-memory recycling threshold",
+        "Request-count recycling threshold",
+        "Overlapped recycling",
+        "Rapid-fail protection",
+        "rapidFailProtectionInterval",
+        "rapidFailProtectionMaxCrashes",
+        "Application pool disabled state",
+        "Application pool queueLength",
+        "503 due to application pool queue overflow",
+        "Application pool environmentVariables",
+        "Enable 32-bit applications",
+        "Worker process bitness"
+      ]
+    },
+    {
+      "id": "aspnet-core-module-and-hosting-modes",
+      "title": "ANCM, in-process/out-of-process request paths, deployment, and configuration",
+      "items": [
+        "ASP.NET Core Module (ANCM)",
+        "AspNetCoreModuleV2",
+        ".NET Hosting Bundle",
+        "IIS Integration",
+        "IISHttpServer",
+        "In-process hosting model",
+        "Out-of-process hosting model",
+        "Kestrel behind IIS",
+        "ANCM process management",
+        "ANCM request forwarding",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES",
+        "<AspNetCoreHostingModel>",
+        "hostingModel web.config attribute",
+        "processPath web.config attribute",
+        "arguments web.config attribute",
+        "stdoutLogEnabled web.config attribute",
+        "stdoutLogFile web.config attribute",
+        "requestTimeout web.config attribute",
+        "rapidFailsPerMinute web.config attribute",
+        "forwardWindowsAuthToken web.config attribute",
+        "ANCM environmentVariables element",
+        "In-process app-pool isolation requirement",
+        "Single-file publish compatibility with in-process IIS",
+        "Framework-dependent deployment",
+        "Self-contained deployment",
+        "Runtime-dependent app startup",
+        ".NET shared framework",
+        "Application architecture versus app-pool architecture",
+        "web.config publish output",
+        "app_offline.htm deployment shutdown",
+        "IIS Express versus full IIS"
+      ]
+    },
+    {
+      "id": "iis-troubleshooting-and-operations",
+      "title": "Failure status boundaries, log sources, permissions, warm-up, and safe deployment",
+      "items": [
+        "HTTP 500.0 ANCM handler load failure",
+        "HTTP 500.30 in-process startup failure",
+        "HTTP 500.31 ANCM failed to find native dependencies",
+        "HTTP 500.32 ANCM failed to load DLL",
+        "HTTP 500.33 ANCM request handler load failure",
+        "HTTP 500.34 ANCM mixed hosting models not supported",
+        "HTTP 500.35 ANCM multiple in-process applications in same process",
+        "HTTP 500.36 ANCM out-of-process handler load failure",
+        "HTTP 500.37 ANCM startup time limit exceeded",
+        "HTTP 500.38 ANCM application DLL not found",
+        "HTTP 502.5 out-of-process process failure",
+        "HTTP 503 application pool unavailable",
+        "Windows Application Event Log",
+        "ASP.NET Core Module stdout log",
+        "IIS stdout log folder write ACL",
+        "Temporary stdout logging",
+        "Disable stdout logging after diagnosis",
+        "IIS Failed Request Tracing rule",
+        "ANCM startup error page",
+        "Missing Hosting Bundle diagnosis",
+        "Missing shared runtime diagnosis",
+        "Native dependency architecture mismatch",
+        "web.config malformed configuration",
+        "Application pool identity filesystem permission",
+        "IIS environment variable scope",
+        "IIS startup warm-up request",
+        "Preload and AlwaysRunning coordination",
+        "Application pool recycle overlap",
+        "Graceful shutdown and request drain",
+        "IIS configuration backup",
+        "appcmd list apppool",
+        "appcmd list site",
+        "appcmd list wp",
+        "IIS log time zone and UTC interpretation"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons":[["IIS site","IIS application","IIS virtual directory","Application pool"],["HTTP.sys request queue","IIS worker-process request handling"],["ApplicationPoolIdentity","NetworkService","LocalSystem"],["Integrated pipeline","Classic pipeline"],["AlwaysRunning","OnDemand"],["In-process hosting","Out-of-process hosting"],["IISHttpServer","Kestrel behind ANCM"],["Framework-dependent deployment","Self-contained deployment"],["IIS access log","HTTPERR log","ANCM stdout log","Application Event Log"],["HTTP 500.30","HTTP 500.31","HTTP 500.32","HTTP 502.5"],["Idle timeout","Periodic recycle","Rapid-fail protection"]],
-  "comparisonSources":["https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/test/troubleshoot-azure-iis?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/","https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/processmodel","https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/"],
-  "versionNotes":[{"edition":"ASP.NET Core 10 and IIS current documentation, checked 2026-11-14","items":["ASP.NET Core templates use in-process hosting by default, while generated deployment configuration and app type can affect effective hosting behavior; always inspect the published web.config and target runtime. ANCM status-code troubleshooting names version-specific failure distinctions; do not collapse 500.31-500.36 into a generic app exception."],"sourceUrls":["https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/test/troubleshoot-azure-iis?view=aspnetcore-10.0"]}],
-  "sourceSnapshot":{"authority":"Microsoft Learn ASP.NET Core 10 hosting and troubleshooting documentation plus IIS configuration schema references","edition":"ASP.NET Core 10.0 and current IIS documentation checked 2026-11-14","checkedAt":"2026-11-14","urls":["https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/aspnet/core/test/troubleshoot-azure-iis?view=aspnetcore-10.0","https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/","https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/processmodel","https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/failure","https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/","https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/application/","https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/bindings/binding"]},
-  "scopeExclusions":["Classic ASP.NET Framework HttpModules, HttpHandlers, System.Web, and IIS-integrated CLR configuration are legacy technologies outside the ASP.NET Core hosting path; include only where needed to explain Classic pipeline compatibility","Kestrel tuning, TLS endpoint API, and trusted-proxy security are covered in t09-004","Application logging API and application exception handling are covered in ASP.NET Core and observability topics","Azure App Service Windows-specific deployment slots and platform management are covered with cloud hosting in t09-007","IIS FTP hosting is excluded","Do not recommend leaving ANCM stdout logging enabled in routine production operation because files do not rotate automatically and can exhaust disk"],
-  "generationAllowed":true
+  "comparisons": [
+    [
+      "IIS site",
+      "IIS application",
+      "IIS virtual directory",
+      "Application pool"
+    ],
+    [
+      "HTTP.sys request queue",
+      "IIS worker-process request handling"
+    ],
+    [
+      "ApplicationPoolIdentity",
+      "NetworkService",
+      "LocalSystem"
+    ],
+    [
+      "Integrated pipeline",
+      "Classic pipeline"
+    ],
+    [
+      "AlwaysRunning",
+      "OnDemand"
+    ],
+    [
+      "In-process hosting",
+      "Out-of-process hosting"
+    ],
+    [
+      "IISHttpServer",
+      "Kestrel behind ANCM"
+    ],
+    [
+      "Framework-dependent deployment",
+      "Self-contained deployment"
+    ],
+    [
+      "IIS access log",
+      "HTTPERR log",
+      "ANCM stdout log",
+      "Application Event Log"
+    ],
+    [
+      "HTTP 500.30",
+      "HTTP 500.31",
+      "HTTP 500.32",
+      "HTTP 502.5"
+    ],
+    [
+      "Idle timeout",
+      "Periodic recycle",
+      "Rapid-fail protection"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?preserve-view=true&view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?preserve-view=true&view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/test/troubleshoot-azure-iis?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/",
+    "https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/processmodel",
+    "https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/failure"
+  ],
+  "versionNotes": [
+    {
+      "edition": "ASP.NET Core 11 GA and IIS, checked 2026-11-16",
+      "items": [
+        ".NET 11 became the current GA release on November 10, 2026. Current IIS and ANCM documentation is available for ASP.NET Core 11; the current troubleshooting status-code article still resolves to its ASP.NET Core 10 edition, so interpret those code mappings as the latest documented mapping and verify against the installed ANCM version. The .NET 11 IIS guide says in-process hosting is opt-in for existing apps while templates use it; inspect published web.config and app type rather than assuming project property alone determines deployed behavior."
+      ],
+      "sourceUrls": [
+        "https://dotnet.microsoft.com/en-us/platform/support/policy",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?preserve-view=true&view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?preserve-view=true&view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/test/troubleshoot-azure-iis?view=aspnetcore-10.0"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Microsoft Learn ASP.NET Core 11 IIS/ANCM documentation, latest available ANCM troubleshooting status-code reference, official .NET support policy, and IIS configuration schema references",
+    "edition": "ASP.NET Core 11 GA IIS and ANCM docs and .NET support policy checked 2026-11-16; ANCM error-code reference remains on ASP.NET Core 10 edition",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?preserve-view=true&view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?preserve-view=true&view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/test/troubleshoot-azure-iis?view=aspnetcore-10.0",
+      "https://dotnet.microsoft.com/en-us/platform/support/policy",
+      "https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/",
+      "https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/processmodel",
+      "https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/failure",
+      "https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/",
+      "https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/application/",
+      "https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/bindings/binding"
+    ]
+  },
+  "scopeExclusions": [
+    "Classic ASP.NET Framework HttpModules, HttpHandlers, System.Web, and IIS-integrated CLR configuration are legacy technologies outside the ASP.NET Core hosting path; include only where needed to explain Classic pipeline compatibility",
+    "Kestrel tuning, TLS endpoint API, and trusted-proxy security are covered in t09-004",
+    "Application logging API and application exception handling are covered in ASP.NET Core and observability topics",
+    "Azure App Service Windows-specific deployment slots and platform management are covered with cloud hosting in t09-007",
+    "IIS FTP hosting is excluded",
+    "Do not recommend leaving ANCM stdout logging enabled in routine production operation because files do not rotate automatically and can exhaust disk"
+  ],
+  "generationAllowed": true
 }
