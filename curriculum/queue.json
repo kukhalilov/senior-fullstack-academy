@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1950,
+  "taskCount": 1952,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -21386,6 +21386,32 @@
       "inventoryGroup": "redis-performance-atomicity-and-boundaries"
     },
     {
+      "id": "t08-011-reference-redis-current-8-10-data-type-additions",
+      "track": "track-08",
+      "title": "caching Redis invalidation eviction and stampede — Reference: Redis 8.10 hash, list, set, JSONPath, stream, and time-series additions",
+      "module": "t08-011",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-011-reference-redis-performance-atomicity-and-boundaries"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "redis-current-8-10-data-type-additions"
+    },
+    {
+      "id": "t08-011-reference-redis-programmability-and-client-side-caching",
+      "track": "track-08",
+      "title": "caching Redis invalidation eviction and stampede — Reference: Redis Lua scripts, Functions, and server-assisted client-side cache tracking",
+      "module": "t08-011",
+      "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-011.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t08-011-reference-redis-current-8-10-data-type-additions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "redis-programmability-and-client-side-caching"
+    },
+    {
       "id": "t08-011-practice",
       "track": "track-08",
       "title": "caching Redis invalidation eviction and stampede — Exercises and worked solutions",
@@ -21393,7 +21419,7 @@
       "manifest": "curriculum/manifests/architecture-and-distributed-systems/t08-011.json",
       "phase": "practice",
       "prerequisites": [
-        "t08-011-reference-redis-performance-atomicity-and-boundaries"
+        "t08-011-reference-redis-programmability-and-client-side-caching"
       ],
       "status": "draft-generation-eligible"
     },

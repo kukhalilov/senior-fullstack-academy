@@ -1104,8 +1104,10 @@ test('Redis cache inventory includes current data types, cache failure modes, an
   assert.equal(manifest.generationAllowed, true);
   const all = manifest.inventory.flatMap(group => group.items);
   assert.equal(new Set(all).size, all.length);
-  for (const item of ['Cache-aside (lazy loading)', 'SET IFEQ', 'MSETEX', 'Redis allkeys-lrm', 'Redis volatile-lrm', 'Cache stampede', 'Single-flight request coalescing', 'Redis MULTI', 'Redis Functions']) assert.ok(all.includes(item), item);
+  for (const item of ['Cache-aside (lazy loading)', 'SET IFEQ', 'DELEX', 'DIGEST', 'MSETEX', 'INCREX', 'Redis Array', 'ARCOUNT', 'ARGREP', 'ARRING', 'HIMPORT', 'LMOVEM', 'BLMOVEM', 'SUNIONCARD', 'SDIFFCARD', 'TS.NRANGE', 'TS.NREVRANGE', 'TS.READ', 'TS.QUERYLABELS', 'JSONPath projection expression', 'Redis allkeys-lrm', 'Redis volatile-lrm', 'Cache stampede', 'Single-flight request coalescing', 'Redis MULTI', 'Redis Functions']) assert.ok(all.includes(item), item);
   assert.ok(manifest.versionNotes.some(note => note.edition.includes('8.6') && note.items.some(item => item.includes('LRM'))));
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('8.8') && note.items.some(item => item.includes('Redis Array'))));
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('8.10') && note.items.some(item => item.includes('HIMPORT'))));
   assert.ok(manifest.versionNotes.some(note => note.edition.includes('8.4') && note.items.some(item => item.includes('DELEX'))));
 });
 
