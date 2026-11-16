@@ -38,7 +38,26 @@
         "WITH EXECUTE AS clause",
         "Recompile option",
         "Temporary procedure",
-        "Schema-bound procedure"
+        "Procedure batch boundary",
+        "Procedure parameter default and NULL",
+        "Named parameter invocation",
+        "Output parameter caller binding",
+        "RETURN status versus result set",
+        "Table-valued parameter READONLY",
+        "sp_executesql parameter definition string",
+        "sp_executesql variable scope",
+        "Dynamic SQL plan reuse",
+        "Dynamic SQL identifier allow-list",
+        "QUOTENAME 128-character limit",
+        "Dynamic SQL buffer truncation risk",
+        "Dynamic SQL permission context",
+        "WITH ENCRYPTION is not source-code security",
+        "Procedure recompilation scopes",
+        "Deferred name resolution for stored procedures",
+        "Natively compiled procedure SCHEMABINDING",
+        "EXECUTE WITH RECOMPILE",
+        "T-SQL procedure parameter default catalog limitation",
+        "Dynamic SQL parameter type and length contract"
       ]
     },
     {
@@ -62,7 +81,31 @@
         "Function inlining",
         "Table-valued function estimate",
         "View versus stored procedure",
-        "View is not automatically ordered"
+        "View is not automatically ordered",
+        "View column list and SELECT * risk",
+        "View CHECK OPTION",
+        "View updatability boundary",
+        "View expansion and optimizer substitution",
+        "View metadata refresh sp_refreshview",
+        "Indexed view unique clustered index prerequisite",
+        "Indexed view required SET options",
+        "Indexed view determinism and precision",
+        "Indexed view DML maintenance cost",
+        "Inline TVF relational expansion",
+        "MSTVF return table variable",
+        "MSTVF interleaved execution",
+        "Scalar UDF inlining compatibility level 150",
+        "Scalar UDF is_inlineable metadata",
+        "Scalar UDF inlining not guaranteed",
+        "INLINE function option",
+        "UDF dynamic SQL restriction",
+        "UDF temporary table restriction",
+        "Indexed view COUNT_BIG grouped aggregate requirement",
+        "Indexed view unsupported syntax boundary",
+        "Indexed view base owner and two-part names",
+        "Indexed view IGNORE_DUP_KEY OFF",
+        "Scalar UDF inlining disable scopes",
+        "DISABLE_TSQL_SCALAR_UDF_INLINING hint"
       ]
     },
     {
@@ -93,7 +136,26 @@
         "Trigger recursion",
         "Trigger transaction context",
         "Trigger side-effect hazard",
-        "NOT FOR REPLICATION trigger"
+        "NOT FOR REPLICATION trigger",
+        "Trigger fires once per statement",
+        "inserted and deleted are sets",
+        "UPDATE() means column targeted",
+        "COLUMNS_UPDATED bitmask interpretation",
+        "TRUNCATE TABLE does not fire DML trigger",
+        "Multiple triggers firing order undefined",
+        "One first and one last trigger per action",
+        "Nested trigger maximum depth 32",
+        "RECURSIVE_TRIGGERS direct recursion only",
+        "nested triggers server option indirect recursion",
+        "Trigger ROLLBACK stops remaining trigger chain",
+        "Trigger runs in caller transaction",
+        "DDL trigger EVENTDATA",
+        "LOGON trigger failed-login consequence",
+        "NOT FOR REPLICATION trigger boundary",
+        "Trigger pseudo tables lack ordinary indexes/statistics",
+        "INSTEAD OF trigger one per action",
+        "DDL trigger database and server scope",
+        "AFTER trigger versus INSTEAD OF timing"
       ]
     }
   ],
@@ -125,26 +187,65 @@
     "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-trigger-transact-sql?view=sql-server-ver17",
-    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql?view=sql-server-ver17"
+    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/views/create-views?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/views/create-indexed-views?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/user-defined-functions?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/scalar-udf-inlining?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/create-user-defined-functions-database-engine?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/create-dml-triggers-to-handle-multiple-rows-of-data?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
   ],
-  "versionNotes": [],
+  "versionNotes": [
+    {
+      "edition": "SQL Server 2019+ behavior in SQL Server 2025",
+      "items": [
+        "Scalar UDF inlining requires compatibility level 150+ and eligible definition/use; is_inlineable does not prove a particular query inlined.",
+        "MSTVF interleaved execution can use observed cardinality at first compilation for eligible queries; it does not inline the function.",
+        "Ordinary stored procedures have no SCHEMABINDING option; natively compiled procedures are a specific exception."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/scalar-udf-inlining?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/create-user-defined-functions-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver17"
+      ]
+    }
+  ],
   "sourceSnapshot": {
-    "authority": "Microsoft SQL Server 2025 Transact-SQL module and execution documentation",
-    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "authority": "Microsoft SQL Server 2025 module and trigger documentation",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-trigger-transact-sql?view=sql-server-ver17",
-      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql?view=sql-server-ver17"
+      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/views/create-views?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/views/create-indexed-views?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/user-defined-functions?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/scalar-udf-inlining?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/create-user-defined-functions-database-engine?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/create-dml-triggers-to-handle-multiple-rows-of-data?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
     ]
   },
   "scopeExclusions": [
     "DML basics are taught in t03-006.",
     "Database principals, role grants, and permission minimization are in t03-012.",
     "Execution plan and function performance analysis are in t03-009 and t03-013.",
-    "CLR assemblies and external language runtimes are outside this module."
+    "CLR assemblies and external language runtimes are outside this module.",
+    "Execution-plan analysis is detailed in t03-009 and t03-013; this module explains module-specific behavior.",
+    "Permission model design is in t03-012; this module covers dynamic-SQL execution-context boundaries."
   ],
   "generationAllowed": true
 }
