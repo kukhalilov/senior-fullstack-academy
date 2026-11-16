@@ -4,17 +4,139 @@
   "track": "track-06",
   "title": "JavaScript promises, async functions, and event-loop scheduling",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Promise state, settlement, and thenable assimilation", "How chaining propagates values and errors", "How async functions connect await to promises", "How ECMAScript jobs interact with host task and microtask queues", "How ordering differs between synchronous code, promise reactions, and host tasks"],
+  "concepts": [
+    "Promise state, settlement, and thenable assimilation",
+    "How chaining propagates values and errors",
+    "How async functions connect await to promises",
+    "How ECMAScript jobs interact with host task and microtask queues",
+    "How ordering differs between synchronous code, promise reactions, and host tasks"
+  ],
   "inventory": [
-    {"id":"promise-construction-and-composition","title":"Promise APIs and chaining","items":["Promise constructor","Promise.prototype.then","Promise.prototype.catch","Promise.prototype.finally","Promise.prototype[Symbol.toStringTag]","Promise.all","Promise.allSettled","Promise.any","Promise.race","Promise.reject","Promise.resolve","Promise.try","Promise.withResolvers","Promise[Symbol.species]","Promise.prototype.constructor"]},
-    {"id":"async-functions-and-await","title":"Async function and await syntax","items":["Async function declaration","Async function expression","Async arrow function","Async method","Await expression","Async function return promise","Await thenable assimilation","Unhandled promise rejection"]},
-    {"id":"jobs-and-host-scheduling","title":"Jobs, microtasks, and host event-loop queues","items":["Promise reaction job","HostEnqueuePromiseJob","HTML event loop","Task","Microtask","Microtask queue","Microtask checkpoint","Task queue","Timer task source","Queue a microtask","Rendering opportunity"]}
+    {
+      "id": "promise-construction-and-composition",
+      "title": "Promise APIs and chaining",
+      "items": [
+        "Promise constructor",
+        "Promise.prototype.then",
+        "Promise.prototype.catch",
+        "Promise.prototype.finally",
+        "Promise.prototype[Symbol.toStringTag]",
+        "Promise.all",
+        "Promise.allSettled",
+        "Promise.any",
+        "Promise.race",
+        "Promise.reject",
+        "Promise.resolve",
+        "Promise.try",
+        "Promise.withResolvers",
+        "Promise[Symbol.species]",
+        "Promise.prototype.constructor"
+      ]
+    },
+    {
+      "id": "async-functions-and-await",
+      "title": "Async function and await syntax",
+      "items": [
+        "Async function declaration",
+        "Async function expression",
+        "Async arrow function",
+        "Async method",
+        "Await expression",
+        "Async function return promise",
+        "Await thenable assimilation",
+        "Unhandled promise rejection"
+      ]
+    },
+    {
+      "id": "jobs-and-host-scheduling",
+      "title": "Jobs, microtasks, and host event-loop queues",
+      "items": [
+        "Promise reaction job",
+        "HostEnqueuePromiseJob",
+        "HTML event loop",
+        "Task",
+        "Microtask",
+        "Microtask queue",
+        "Microtask checkpoint",
+        "Task queue",
+        "Timer task source",
+        "Queue a microtask",
+        "Rendering opportunity",
+        "queueMicrotask()",
+        "setTimeout()",
+        "clearTimeout()",
+        "setInterval()",
+        "clearInterval()"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Promise.all","Promise.allSettled"],["Promise.race","Promise.any"],["then","catch"],["async function","ordinary function"],["ECMAScript job","HTML task"]],
-  "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html","https://html.spec.whatwg.org/multipage/webappapis.html#event-loops","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"],
-  "versionNotes": [{"edition":"ECMAScript 2024","items":["Promise.withResolvers"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html"]},{"edition":"ECMAScript 2025","items":["Promise.try"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html"]}],
-  "sourceSnapshot": {"authority":"ECMA-262, WHATWG HTML Standard, and MDN","edition":"ECMAScript 2026","checkedAt":"2026-11-14","urls":["https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html","https://html.spec.whatwg.org/multipage/webappapis.html#event-loops","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function"]},
-  "scopeExclusions": ["Fetch and abortable requests (t06-020)","Node.js event-loop phases","Web workers and cross-agent messaging"],
+  "comparisons": [
+    [
+      "Promise.all",
+      "Promise.allSettled"
+    ],
+    [
+      "Promise.race",
+      "Promise.any"
+    ],
+    [
+      "then",
+      "catch"
+    ],
+    [
+      "async function",
+      "ordinary function"
+    ],
+    [
+      "ECMAScript job",
+      "HTML task"
+    ]
+  ],
+  "comparisonSources": [
+    "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+    "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html"
+  ],
+  "versionNotes": [
+    {
+      "edition": "ECMAScript 2024",
+      "items": [
+        "Promise.withResolvers"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html"
+      ]
+    },
+    {
+      "edition": "ECMAScript 2025",
+      "items": [
+        "Promise.try"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "ECMA-262, WHATWG HTML Standard, and MDN",
+    "edition": "ECMAScript 2026",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+      "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+      "https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html",
+      "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+      "https://tc39.es/ecma262/2026/"
+    ]
+  },
+  "scopeExclusions": [
+    "Fetch and abortable requests (t06-020)",
+    "Node.js event-loop phases",
+    "Web workers and cross-agent messaging"
+  ],
   "generationAllowed": true
 }
