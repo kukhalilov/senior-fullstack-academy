@@ -53,6 +53,8 @@
         "Field manager",
         "Managed fields",
         "kubectl diff",
+        "KYAML",
+        "kubectl get -o kyaml",
         "kubectl delete",
         "Kubernetes manifest",
         "Kustomize",
@@ -91,6 +93,11 @@
         "Pod readiness gate",
         "Pod sandbox",
         "Pod restartPolicy",
+        "Pod-level resources",
+        "Pod user namespace",
+        "hostUsers",
+        "runtimeClassName",
+        "shareProcessNamespace",
         "Container",
         "Application container",
         "Init container",
@@ -291,11 +298,24 @@
         "VolumeSnapshot",
         "VolumeSnapshotClass",
         "VolumeSnapshotContent",
+        "VolumeGroupSnapshot",
+        "VolumeGroupSnapshotClass",
+        "VolumeGroupSnapshotContent",
         "CSI driver",
         "Container Storage Interface (CSI)",
+        "VolumeAttributesClass",
+        "volumeAttributesClassName",
+        "CSI ModifyVolume API",
+        "VolumeAttributesClass driverName",
+        "VolumeAttributesClass parameters",
         "emptyDir volume",
         "hostPath volume",
         "Projected volume",
+        "OCI image volume source",
+        "Image volume",
+        "Pod spec volumes[].image",
+        "ImageVolumeSource reference",
+        "ImageVolumeSource pullPolicy",
         "SubPath volume mount",
         "Persistent volume mount",
         "Container resource request",
@@ -305,6 +325,7 @@
         "Memory request",
         "Memory limit",
         "Extended resource request",
+        "allocatedResourcesStatus",
         "Container resource QoS class",
         "Guaranteed QoS class",
         "Burstable QoS class",
@@ -313,6 +334,9 @@
         "Ephemeral storage request",
         "Ephemeral storage limit",
         "In-place Pod vertical scaling",
+        "Pod resize subresource",
+        "Container resizePolicy",
+        "Deferred Pod resize",
         "Vertical Pod Autoscaler (VPA)"
       ]
     },
@@ -358,14 +382,37 @@
         "HPA behavior scaleUp",
         "HPA behavior scaleDown",
         "HPA stabilization window",
+        "HPA scaling to zero",
+        "HPA minReplicas zero",
+        "HPA object metric",
         "metrics.k8s.io",
+        "metrics.k8s.io/v1",
+        "metrics.k8s.io/v1beta1",
         "Metrics Server",
         "Custom Metrics API",
         "External Metrics API",
         "Cluster Autoscaler",
         "Pod scheduling gates",
         "Node-pressure eviction",
-        "Pod topology and zone failure domain"
+        "Pod topology and zone failure domain",
+        "Dynamic Resource Allocation (DRA)",
+        "DeviceClass",
+        "ResourceClaim",
+        "ResourceClaimTemplate",
+        "ResourceSlice",
+        "DRA driver",
+        "DRA extended resource support",
+        "DeviceTaintRule",
+        "Device taint",
+        "Device toleration",
+        "resource.kubernetes.io/numaNode",
+        "ResourceClaim status devices",
+        "Gang scheduling",
+        "Workload API",
+        "Workload",
+        "PodGroup",
+        "PodGroup queueing",
+        "Workload-aware preemption"
       ]
     },
     {
@@ -533,6 +580,60 @@
   ],
   "versionNotes": [
     {
+      "edition": "Kubernetes v1.34 Pod-level resources",
+      "items": [
+        "Pod-level CPU, memory, and hugepage requests/limits are Beta since Kubernetes v1.34 and enabled by default upstream in v1.37; support remains feature- and resource-type-specific. They define a Pod budget and can let containers share unused resources. Do not describe this API as Stable."
+      ],
+      "sourceUrls": [
+        "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+      ]
+    },
+    {
+      "edition": "Kubernetes v1.37 current stable release",
+      "items": [
+        "The official release page lists v1.37.1 (released 2026-09-15) as the latest release as checked 2026-11-16. Notable workload-facing changes: metrics.k8s.io graduates to the stable v1 API (v1beta1 remains usable during migration); HPA scale-to-zero for suitable object/external metrics is Beta and enabled by default; gang scheduling and workload-aware preemption graduate to Beta; Dynamic Resource Allocation (DRA) adds stable extended-resource support, device taints/tolerations, and standardized device status/NUMA information. Verify the cluster version, feature status, and component support before relying on a feature."
+      ],
+      "sourceUrls": [
+        "https://kubernetes.io/releases/",
+        "https://kubernetes.io/blog/2026/08/26/kubernetes-v1-37-release/",
+        "https://kubernetes.io/blog/2026/09/02/kubernetes-v1-37-hpa-scale-to-zero-beta/",
+        "https://kubernetes.io/blog/2026/09/03/kubernetes-v1-37-dra-updates/"
+      ]
+    },
+    {
+      "edition": "Kubernetes v1.35 in-place Pod resize",
+      "items": [
+        "In-place CPU and memory resize became stable in v1.35. The Pod /resize subresource adjusts a running Pod's container requests and limits; resizePolicy determines whether a container restart is required. This changes an existing Pod and should not be confused with editing a workload template, which triggers replacement Pods."
+      ],
+      "sourceUrls": [
+        "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+        "https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/"
+      ]
+    },
+    {
+      "edition": "Kubernetes v1.36 user namespaces",
+      "items": [
+        "Pod user namespaces became Stable in Kubernetes v1.36. A Linux Pod opts in with spec.hostUsers=false, mapping container identities to distinct host identities; runtime, filesystem, host namespace, and storage limitations still apply."
+      ],
+      "sourceUrls": [
+        "https://kubernetes.io/blog/2026/04/23/kubernetes-v1-36-userns-ga/",
+        "https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/"
+      ]
+    },
+    {
+      "edition": "Kubernetes v1.34 and v1.36 storage APIs",
+      "items": [
+        "VolumeAttributesClass reached GA in Kubernetes v1.34 and its feature gate was locked in v1.36. Kubernetes v1.36 also made OCI image volume sources and VolumeGroupSnapshot support Stable. These features still depend on CSI drivers, the snapshot controller, compatible storage APIs, and backend support; group snapshots are crash-consistent rather than automatically application-consistent."
+      ],
+      "sourceUrls": [
+        "https://kubernetes.io/blog/2025/09/08/kubernetes-v1-34-volume-attributes-class/",
+        "https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
+        "https://kubernetes.io/docs/concepts/storage/volumes/",
+        "https://kubernetes.io/blog/2026/04/22/kubernetes-v1-36-release/",
+        "https://kubernetes.io/blog/2026/05/08/kubernetes-v1-36-volume-group-snapshot-ga/"
+      ]
+    },
+    {
       "edition": "Kubernetes v1.33 sidecar containers",
       "items": [
         "SidecarContainers became stable in Kubernetes v1.33; restartable sidecars are represented as init containers with container-level restartPolicy Always. The sidecar feature gate had been enabled by default since v1.29, so distinguish default availability from stable status."
@@ -555,14 +656,17 @@
   ],
   "sourceSnapshot": {
     "authority": "Official Kubernetes documentation and reference API",
-    "edition": "Current Kubernetes documentation checked 2026-11-14; API feature states and Ingress/Gateway recommendations are recorded explicitly where they affect learning",
-    "checkedAt": "2026-11-14",
+    "edition": "Current Kubernetes v1.37 documentation checked 2026-11-16; release maturity, feature gates, and implementation requirements are recorded where they affect learning",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://kubernetes.io/docs/concepts/overview/working-with-objects/",
+      "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+      "https://kubernetes.io/docs/concepts/architecture/controller/",
       "https://kubernetes.io/docs/reference/kubectl/",
       "https://kubernetes.io/docs/concepts/workloads/pods/",
       "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/",
       "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/",
       "https://kubernetes.io/docs/concepts/workloads/controllers/",
       "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
       "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/",
@@ -576,13 +680,40 @@
       "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
       "https://kubernetes.io/docs/concepts/configuration/configmap/",
       "https://kubernetes.io/docs/concepts/configuration/secret/",
+      "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
       "https://kubernetes.io/docs/concepts/storage/persistent-volumes/",
       "https://kubernetes.io/docs/concepts/storage/storage-classes/",
       "https://kubernetes.io/docs/concepts/scheduling-eviction/",
       "https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/",
       "https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/",
-      "https://kubernetes.io/docs/concepts/policy/pod-security-standards/",
-      "https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/"
+      "https://kubernetes.io/docs/concepts/workloads/autoscaling/",
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/pod-scheduling-readiness/",
+      "https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/",
+      "https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/",
+      "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/",
+      "https://kubernetes.io/docs/concepts/workloads/pods/pod-scheduling-readiness/",
+      "https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
+      "https://kubernetes.io/docs/concepts/storage/volume-snapshots/",
+      "https://kubernetes.io/docs/concepts/storage/volumes/",
+      "https://kubernetes.io/blog/2025/09/08/kubernetes-v1-34-volume-attributes-class/",
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/",
+      "https://kubernetes.io/docs/concepts/security/controlling-access/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "https://kubernetes.io/docs/concepts/security/service-accounts/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/",
+      "https://kubernetes.io/docs/reference/using-api/deprecation-policy/",
+      "https://kubernetes.io/docs/tasks/run-application/configure-pdb/",
+      "https://kubernetes.io/docs/concepts/policy/pod-security-admission/",
+      "https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/",
+      "https://kubernetes.io/blog/2026/08/26/kubernetes-v1-37-release/",
+      "https://kubernetes.io/blog/2026/04/22/kubernetes-v1-36-release/",
+      "https://kubernetes.io/blog/2026/04/23/kubernetes-v1-36-userns-ga/",
+      "https://kubernetes.io/blog/2026/05/08/kubernetes-v1-36-volume-group-snapshot-ga/",
+      "https://kubernetes.io/blog/2026/09/02/kubernetes-v1-37-hpa-scale-to-zero-beta/",
+      "https://kubernetes.io/blog/2026/09/03/kubernetes-v1-37-dra-updates/",
+      "https://kubernetes.io/releases/",
+      "https://kubernetes.io/docs/concepts/policy/pod-security-standards/"
     ]
   },
   "scopeExclusions": [
