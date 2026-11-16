@@ -1,87 +1,95 @@
 # sequence and string dynamic programming — Problem: Longest Palindromic Subsequence
 
+Source: [Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/).
+
 ## Goals
 
-Define an interval recurrence for palindromic subsequences, handle length-two inner intervals, and distinguish subsequence from substring.
+Use an inclusive interval state, evaluate by increasing interval length, and distinguish a subsequence palindrome from a contiguous substring.
 
 ## Problem statement
 
-Given `s`, return the length of its longest palindromic subsequence. A subsequence may omit characters while preserving order. [Official problem statement](https://leetcode.com/problems/longest-palindromic-subsequence/)
+Given a string `s`, return the length of its longest palindromic subsequence. A subsequence preserves order but may omit characters.
 
 ## Input constraints
 
-- `1 <= s.Length <= 1000`.
-- `s` contains lowercase English letters.
+- `1 <= s.length <= 1000`.
+- `s` consists of lowercase English letters.
 
 ## Examples with expected output
 
-1. `"bbbab"` → `4`.
-2. `"cbbd"` → `2`.
-3. `"a"` → `1`.
-4. `"abca"` → `3` (`"aca"` is not contiguous).
+- `"bbbab"` → `4` (`"bbbb"`).
+- `"cbbd"` → `2` (`"bb"`).
 
 ## Clarifying assumptions
 
-Return length only. `[left,right]` uses inclusive endpoints. An empty inner interval contributes zero; a single-character interval has value one.
+Return the length only; an actual palindrome is not required. The implementation also handles an empty string as a generalized case.
 
 ## Progressive hints
 
-1. Compare the two endpoint characters of each interval.
-2. Equal endpoints can surround an inner palindrome; unequal endpoints require dropping one side.
-3. Fill by increasing interval length or in a nested order that ensures the inner values exist.
+1. Let `dp[left,right]` be the best length within the inclusive interval.
+2. A single character is a palindrome of length one.
+3. Equal endpoints can both be included around the best inner palindrome.
+4. If endpoints differ, an optimum discards the left endpoint or the right endpoint.
 
 ## Complete C# solution
 
 ```csharp dsa-solution
 using System;
-static int Lps(string s)
+
+static int LongestPalindromeSubsequence(string s)
 {
     int n = s.Length;
+    if (n == 0) return 0;
     int[,] dp = new int[n, n];
     for (int left = n - 1; left >= 0; left--)
     {
         dp[left, left] = 1;
         for (int right = left + 1; right < n; right++)
-            dp[left, right] = s[left] == s[right]
-                ? 2 + (right == left + 1 ? 0 : dp[left + 1, right - 1])
-                : Math.Max(dp[left + 1, right], dp[left, right - 1]);
+        {
+            if (s[left] == s[right])
+                dp[left, right] = 2 + (right == left + 1 ? 0 : dp[left + 1, right - 1]);
+            else
+                dp[left, right] = Math.Max(dp[left + 1, right], dp[left, right - 1]);
+        }
     }
     return dp[0, n - 1];
 }
-static void Check(int x, int y, string label)
+
+static void Check(int expected, int actual)
 {
-    if (x != y) throw new InvalidOperationException($"{label}: expected {y}, got {x}");
+    if (expected != actual) throw new InvalidOperationException($"Expected {expected}, got {actual}.");
 }
-Check(Lps("bbbab"), 4, "example 1");
-Check(Lps("cbbd"), 2, "example 2");
-Check(Lps("a"), 1, "singleton");
-Check(Lps("abca"), 3, "noncontiguous palindrome");
-Check(Lps("abc"), 1, "distinct characters");
-Console.WriteLine("All LPS checks passed.");
+
+Check(4, LongestPalindromeSubsequence("bbbab"));
+Check(2, LongestPalindromeSubsequence("cbbd"));
+Check(0, LongestPalindromeSubsequence(""));
+Check(1, LongestPalindromeSubsequence("a"));
+Check(3, LongestPalindromeSubsequence("abcda"));
+Check(4, LongestPalindromeSubsequence("aaaa"));
 ```
 
 ## Correctness argument
 
-A singleton interval has optimum one. For equal endpoints, including both around an optimal inner palindrome gives `2 + inner`; any palindrome using both has such an inner palindrome. For unequal endpoints, a palindrome cannot use both as matching outer characters, so it must omit at least one; taking the maximum of the two shorter intervals covers all options. Induction on interval length proves the recurrence. The loops compute shorter dependencies before longer states, ending with the full interval.
+For a one-character interval, that character is a palindrome of length one. For a longer interval with equal endpoints, there is an optimal palindrome containing both: surrounding an optimal palindrome from the interior adds two; for adjacent endpoints the interior is empty and contributes zero. With unequal endpoints, no palindrome can use both as its matching outer pair, so every optimum omits at least one endpoint and is contained in one of the two smaller intervals. Taking the maximum covers both choices. The loop order computes wider intervals only after their needed subintervals, so induction on interval length proves every state and the returned full interval are optimal.
 
 ## Step-by-step dry run
 
-For `"cbbd"`, the inner `"bb"` has value two; the outer `c` and `d` differ, so discard one endpoint and retain the better interval with value two. For equal endpoints on a length-two interval, the empty inner value is explicitly zero.
+For `"cbbd"`, single-character intervals have value 1. The interval `"bb"` has equal endpoints and value 2. Intervals `"cbb"` and `"bbd"` have values 2 by discarding one endpoint. The complete `"cbbd"` interval also has value 2. The palindrome is a subsequence even though it is not required to be a contiguous range in all cases.
 
 ## Time complexity
 
-`O(n²)`.
+`O(n²)`, with one constant-work computation for each interval.
 
 ## Space complexity
 
-`O(n²)` integers; one million cells at length 1000.
+`O(n²)` for the interval table.
 
 ## Edge-case tests
 
-Tests cover official examples, one character, a noncontiguous palindrome, all-distinct characters, and equal endpoints around an empty inner interval.
+Assertions cover official examples, empty generalized input, singleton, equal endpoints with a nonempty interior, and repeated characters.
 
 ## Reflection questions
 
-1. Why must the length-two equal-endpoint case avoid reading an invalid cell?
-2. What changes if a palindrome must be contiguous?
-3. How would you backtrack to construct one optimum?
+- How does the recurrence change when the task asks for a palindromic substring?
+- Why is the empty interior value zero for two adjacent equal endpoints?
+- How could one reconstruct a palindrome from this table?

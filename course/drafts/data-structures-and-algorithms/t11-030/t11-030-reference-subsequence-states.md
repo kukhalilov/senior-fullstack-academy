@@ -1,44 +1,58 @@
 # sequence and string dynamic programming — Reference: Subsequence and alignment states
 
+Sources: [USACO Guide: Introduction to DP](https://usaco.guide/gold/intro-dp), [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf), [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/), and [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/).
+
 ## Scope and version
 
-This lesson covers the exact states and transitions listed below for classic sequence DP. The mathematics is language-independent; indexing examples use zero-based arrays and prefix lengths. Problem-specific constraints belong to their practice lessons. Source: [USACO Guide: Introduction to DP](https://usaco.guide/gold/intro-dp).
+These are general sequence-DP recurrences, not APIs tied to a runtime. Problem statements linked here were checked November 16, 2026. This group defines the fixed inventory of endpoint, prefix-pair, and alignment concepts; it does not claim every possible DP state can be listed for every problem.
 
 ## How this group fits the mental model
 
-Endpoint states answer a question constrained to finish at one item. Prefix-pair states answer a question over two prefixes. Both reduce the original problem to smaller answers, but their state meanings dictate distinct transitions. A reconstruction step is a second pass that follows choices after the optimum value is known.
+Subsequence algorithms preserve order but allow gaps. A state may end at one element, cover a prefix, or align two prefixes. Its wording determines whether a transition can skip one sequence, match both, or extend an earlier endpoint. Use prefix lengths for two sequences so zero cleanly means an empty prefix.
 
 ## Supplied names explained
 
-- **Longest increasing subsequence endpoint state** — `dp[i]` is the longest strictly increasing subsequence that ends at `i`. Requiring the endpoint prevents losing the information needed to test whether a later value can extend this candidate.
-- **LIS O(n²) recurrence** — Initialize every endpoint to one. For each `j < i` with `a[j] < a[i]`, consider `dp[j] + 1`; retain the largest. The final answer is `max(dp)`, with empty input handled separately if the surrounding problem permits it.
-- **LIS tails array optimization** — Maintain `tails[k]` as the smallest tail value found for a subsequence of length `k+1`. For strict increase, replace the first tail `>= x`, or append if none exists. Its length is the LIS length. Replacements improve future extension potential; they do not assert that `tails` itself is a subsequence.
-- **Longest common subsequence two-prefix state** — `dp[i,j]` is the LCS length of prefixes of lengths `i` and `j`. Empty prefixes give zero, enabling uniform loops from one through each input length.
-- **Match-character transition** — If the two final prefix characters are equal, pairing them gives `dp[i-1,j-1] + 1`. For LCS, an optimal common subsequence can include this matching pair; the recurrence can be proved by the standard prefix decomposition.
-- **Skip-left transition** — `dp[i-1,j]` ignores the final character of the first prefix. It is one candidate when final characters differ.
-- **Skip-right transition** — `dp[i,j-1]` ignores the final character of the second prefix. When final characters differ, the optimum is the larger of the two skip candidates.
-- **Subsequence reconstruction** — Starting from `(n,m)`, move diagonally and emit a character when equal characters take the match transition; otherwise move to a predecessor that preserves the current optimum. Reverse emitted characters. On ties, either valid optimal predecessor may be chosen.
-- **Edit distance prefix-pair state** — `dp[i,j]` is the minimum number of insertions, deletions, and replacements to transform the first `i` characters into the first `j`. Empty-prefix costs are `i` and `j`; equal final characters inherit the diagonal, while unequal ones add one to the minimum delete, insert, or replace predecessor.
-- **Insert/delete/replace transitions** — Delete the last source character from `dp[i-1,j]`; insert the last target character from `dp[i,j-1]`; replace source final with target final from `dp[i-1,j-1]`. Each unequal-character operation contributes one. Do not confuse this unit-count cost with ASCII-weighted deletion cost.
+- `Longest increasing subsequence endpoint state` — Define `dp[i]` as the longest strictly increasing subsequence ending exactly at index `i`. This local state is not yet the answer for the whole array.
+- `LIS O(n²) recurrence` — Initialize each endpoint to 1, then for every `j<i` with `a[j]<a[i]`, set `dp[i]=max(dp[i],dp[j]+1)`. The answer is `max(dp)`, with `O(n²)` time and `O(n)` memory.
+- `LIS tails array optimization` — Maintain the smallest possible tail value for each subsequence length and binary-search the first tail `>= x` for strict LIS. It yields length in `O(n log n)`; tails do not themselves necessarily form an actual subsequence.
+- `Longest common subsequence two-prefix state` — Let `dp[i][j]` be LCS length for prefixes of lengths `i,j`. The answer is `dp[n][m]`; empty-prefix row/column are zero.
+- `Match-character transition` — When the final characters of the two prefixes match, an LCS may append that shared character to `dp[i-1][j-1]`, giving `+1`. This is the match case of the standard recurrence.
+- `Skip-left transition` — `dp[i-1][j]` represents ignoring the last character from the first sequence. It is a candidate when the terminal characters differ; matching characters can still be handled by the diagonal transition.
+- `Skip-right transition` — `dp[i][j-1]` represents ignoring the last character from the second sequence. On mismatch, LCS takes the maximum of this and skip-left.
+- `Subsequence reconstruction` — Walk backward from the final prefix pair: collect matching characters on a diagonal match, otherwise move to a predecessor preserving the current score. Reverse collected characters. Tie choices may produce different valid optimal answers.
+- `Edit distance prefix-pair state` — `dp[i][j]` is minimum edits to transform the first `i` source characters into the first `j` target characters. Empty-prefix boundaries cost `i` deletions and `j` insertions.
+- `Insert/delete/replace transitions` — The final operation considers insertion from `dp[i][j-1]+1`, deletion from `dp[i-1][j]+1`, and match/replace from `dp[i-1][j-1]` plus zero/one according to character equality. Take the minimum; verify source/target direction in implementation.
 
 ## Cross-item comparison
 
-The quadratic LIS recurrence explicitly tracks each ending position and runs in `O(n²)`. The tails optimization runs in `O(n log n)` by summarizing extension potential; it cannot directly return the path without predecessor metadata. LCS and edit distance both use prefix pairs and `O(nm)` cells, but LCS maximizes retained matches whereas edit distance minimizes operations. LCS reconstruction records matched characters; edit reconstruction records operations.
+| Method | State keeps | Complexity | Reconstructs by default? |
+|---|---|---:|---|
+| LIS endpoint DP | Best length for each exact ending position | `O(n²)` time, `O(n)` space | No; store predecessors |
+| LIS tails | Minimum tail for each achievable length | `O(n log n)` time, `O(n)` space | No; track tail indices/predecessors |
+| LCS full table | Best score for every pair of prefixes | `O(nm)` time and space | Yes, by backtracking |
+| LCS rolling rows | Scores for adjacent prefix rows | `O(nm)` time, `O(min(n,m))` space | Not without extra strategy/data |
+
+The LCS “skip” transitions are legal because a subsequence may omit a character. They are not valid for a longest common substring state, where mismatch resets a contiguous suffix run.
 
 ## Examples
 
-For `[3,1,2]`, endpoint LIS values are `[1,1,2]`; the result is 2. The tails method evolves from `[3]` to `[1]` to `[1,2]`, also yielding 2. For prefixes `"ab"` and `"ac"`, their LCS is `"a"` of length 1. An edit alignment can instead replace `b` with `c` at cost 1.
+For `[10,9,2,5,3,7,101,18]`, LIS tails evolve in sorted minimal-end values; the resulting length is 4, although the tails array’s intermediate values are not a claim that each update chose a single consistent subsequence. For LCS of `"abcde"` and `"ace"`, matching `a`, `c`, and `e` yields length 3. For edit distance, transforming `"horse"` into `"ros"` uses a prefix-pair minimum over insert/delete/replace choices; transposing source and target preserves the usual unit-cost distance, but not necessarily if operation costs are asymmetric.
 
 ## Common mistakes
 
-- Using `<=` in a strictly increasing LIS recurrence or tails binary search.
-- Returning a random LCS string without following predecessor choices.
-- Claiming the tails values form the LIS.
-- Forgetting empty-prefix costs in edit distance.
-- Treating deletion cost by character value as the same problem as a unit-cost edit operation.
+- Returning the last LIS endpoint state instead of the maximum over all endpoints.
+- Using `<=` when strict increase requires `<`, or using the wrong binary-search bound in tails.
+- Claiming the tails array is the actual increasing subsequence.
+- Forgetting LCS zero-prefix row/column or using character indices where prefix lengths are expected.
+- Taking both skip transitions unconditionally on a matching character without a proof; the standard recurrence uses the diagonal match case.
+- Reconstructing by arbitrary predecessor movement that changes the score or omits a chosen match.
+- Reversing insert and delete meaning when defining edit distance direction.
+- Applying LCS skip recurrence to substring matching.
 
 ## Knowledge checks with answers
 
-1. **Why maximize over all LIS endpoint states?** The optimal sequence has some final index, not necessarily the last input index.
-2. **What is the LCS base row?** Zero for every second-prefix length when the first prefix is empty; likewise the base column.
-3. **What does an edit transition cost?** One for a selected insertion, deletion, or replacement; a matching final character costs zero.
+1. **What does LIS endpoint state mean?** The best strictly increasing subsequence whose final element is exactly at that index.
+2. **Why are tails minimal?** A smaller tail leaves at least as many future values able to extend a sequence of that length.
+3. **Can the tails values always be returned as an LIS?** No. Store predecessor and index information if an actual sequence is required.
+4. **What does an empty-prefix edit-distance base mean?** Deleting all source characters costs `i`; inserting all target characters costs `j`.
+5. **Why are two skip choices needed in LCS?** An optimal alignment on mismatch may omit the last character from either side.

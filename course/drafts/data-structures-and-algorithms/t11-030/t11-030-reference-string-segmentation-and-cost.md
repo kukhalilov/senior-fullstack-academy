@@ -1,44 +1,59 @@
 # sequence and string dynamic programming — Reference: Segmentation and string transformation
 
+Sources: [USACO Guide: Introduction to DP](https://usaco.guide/gold/intro-dp), [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf), [Word Break](https://leetcode.com/problems/word-break/), [Minimum ASCII Delete Sum for Two Strings](https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/), and [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/).
+
 ## Scope and version
 
-This lesson explains the supplied segmentation and matching state names. The regex lesson uses only the restricted grammar in its problem statement; it is not a complete programming-language regex engine. Problem-specific bounds appear in their cited statements.
-
-The general state and recurrence framing follows the [USACO Guide DP introduction](https://usaco.guide/gold/intro-dp).
+This group covers the specified prefix reachability, minimum-cost alignment, and two pattern-matching DP problems. The linked problem constraints/statements were checked November 16, 2026. This is not a complete formal specification of every regular-expression or glob syntax; the supplied problem defines a deliberately small grammar.
 
 ## How this group fits the mental model
 
-Segmentation asks which boundaries can be reached by valid words. Transformation asks for the least cost among ways to align prefixes. Pattern matching asks whether two prefixes can match under a grammar. Their table shapes may look alike, but their value domains—boolean, minimum cost, or matching truth—are different.
+Segmentation asks whether a prefix is reachable by joining valid pieces; transformation asks for the least cost to align two prefixes; pattern matching asks whether a pattern prefix can consume a text prefix. In each case, define prefix length rather than last character index, then derive transitions from the final word, operation, or pattern token.
 
 ## Supplied names explained
 
-- **Word break prefix reachability** — `dp[i]` is true exactly when the first `i` characters can be segmented into dictionary words. The answer is `dp[n]`.
-- **Dictionary word boundary transition** — A candidate final word spans `[j,i)`. It can extend a valid construction only if `dp[j]` is true and that substring is in the dictionary. A dictionary word may be reused; this is not a one-use resource.
-- **Minimum palindrome cuts** — A separate palindrome-partitioning optimization: for each prefix endpoint, minimize cuts over earlier boundaries whose intervening substring is a palindrome. A prefix already palindromic needs zero cuts. This inventory item describes the recurrence family; it is not one of this module's assigned practice problems.
-- **Regular-expression matching state** — For the restricted `.` and `*` grammar, `dp[i,j]` says whether the first `i` text characters match the first `j` pattern characters. `.` consumes one arbitrary permitted character. `*` applies to the preceding atom and means zero or more repetitions of that atom; it is not a free-standing wildcard.
-- **Wildcard matching state** — A distinct grammar family commonly gives `?` a one-character role and `*` an arbitrary-sequence role. Its star transition and meaning differ from regex repetition. A wildcard star does not mean “repeat the previous token.”
-- **Edit operation cost** — The objective defines each operation's weight. Unit edit distance charges one per insertion, deletion, or replacement. Minimum ASCII delete sum charges the deleted character value and allows only deletions; equal retained characters cost nothing.
-- **Impossible-prefix state** — A boolean prefix DP starts unreachable except at the empty prefix. For optimization, impossible states need a safe sentinel or separate reachability marker so adding costs cannot overflow or turn impossibility into a valid answer.
-- **Empty-string initialization** — Empty prefixes are real states. Word Break sets the empty prefix reachable. Minimum deletion cost accumulates the cost of deleting the nonempty side. Regex matching allows an empty text prefix to match patterns made from zero-or-more atoms, by repeatedly removing an atom-star pair.
+- `Word break prefix reachability` — Let `reachable[i]` mean the first `i` characters can be segmented into dictionary entries. Start with `reachable[0]=true`; the answer is `reachable[n]`.
+- `Dictionary word boundary transition` — For an earlier reachable boundary `j`, mark `i` reachable when `s[j..i)` is a dictionary word. Hash-set lookup is convenient; checking all boundaries and substrings costs depend on string copying/hashing strategy.
+- `Minimum palindrome cuts` — Minimum cuts splitting a string into palindromic substrings. A common prefix DP uses `cuts[i]` for the first `i` characters and a precomputed palindrome table or center expansion to test candidate final pieces. Empty/single-character conventions need careful handling.
+- `Regular-expression matching state` — For the supplied grammar, `dp[i][j]` asks whether the first `i` text characters match the first `j` pattern characters. The entire text and pattern must match; this is not a general backtracking regex engine.
+- `Wildcard matching state` — A separate grammar where `?` typically matches one character and `*` can match any sequence. This differs from regex `*`, which repeats the preceding token; do not transfer transitions between grammars without stating semantics.
+- `Edit operation cost` — Cost added for an insertion, deletion, replacement, or match transition. Unit-cost edit distance assigns one to each edit and zero to match; weighted variants change the recurrence but not the need for a precise operation definition.
+- `Impossible-prefix state` — A state with no valid construction/path. Use a safe sentinel or boolean false and guard arithmetic; adding a cost to `int.MaxValue` can overflow.
+- `Empty-string initialization` — Empty source/target/pattern prefixes still have defined results. For edit distance, empty-to-length-`j` costs `j` inserts; for Word Break, empty prefix is reachable; for regex, a pattern made of valid `x*` pairs can match empty text.
 
 ## Cross-item comparison
 
-Word Break combines boolean reachability with word boundaries. Minimum deletion sum combines prefix alignment with weighted costs. Restricted regex matching combines prefix pairs with a token that can consume zero or more characters. In wildcard matching, `*` commonly consumes any-length text directly, so carrying over the regex recurrence would be wrong. Always derive a transition from the exact grammar and objective.
+| Problem | State type | Final choice |
+|---|---|---|
+| Word Break | Boolean reachable prefix | Pick a dictionary word ending at this boundary |
+| Minimum edit cost | Integer minimum for prefix pair | Insert, delete, match or replace |
+| Regex full match | Boolean prefix pair | Consume one token or let `x*` consume zero/more |
+| Wildcard match | Boolean prefix pair | `?` consumes one; `*` consumes zero or more arbitrary chars |
+| Minimum palindrome cuts | Integer best prefix partition | Pick the last palindromic piece |
+
+The word “star” is overloaded. In the supplied regular-expression problem, `*` repeats the preceding element (`a*`); in common wildcard matching, `*` represents any sequence. They are different languages and have different base cases.
 
 ## Examples
 
-`"applepenapple"` is segmentable using `apple`, `pen`, `apple`; reuse is allowed. In `"a*"`, `*` repeats the preceding `a`, so it can match empty text or any positive run of `a` characters. The same star meaning cannot be assumed in a wildcard grammar. For deletion cost, turning `"sea"` and `"eat"` into `"ea"` deletes `s` and `t`; cost is their character-value sum under the problem's stated ASCII convention.
+For `s="applepenapple"` with words `apple, pen`, reachable prefix lengths progress through 5, 8, and 13. For regex `s="aa"`, `p="a*"`, the star branch can consume one more `a` while remaining at the pattern position, then eventually move past the `a*` token. For `s="ab"`, `p=".*"`, dot matches each character and star repeats dot. A pattern like `*a` is invalid under the supplied constraints because star must have a preceding element.
+
+For an ASCII deletion-only alignment, matching equal characters keeps the diagonal cost; deleting from one string adds that character’s code-point/ASCII value to the appropriate predecessor. When constraints specify lowercase English letters, the values are ASCII-compatible; for Unicode generalization, define whether cost is UTF-16 code unit, Unicode scalar value, or another weight.
 
 ## Common mistakes
 
-- Allowing a word transition from an unreachable boundary.
-- Treating the regex star as an arbitrary sequence or letting it stand alone.
-- Initializing only the all-empty state when empty text can match zero-or-more pattern atoms.
-- Using a unit operation cost for a character-weighted deletion problem.
-- Adding to an infinity sentinel without guarding overflow.
+- Leaving `reachable[0]` false, which prevents every segmentation from starting.
+- Treating the full pattern as a substring match instead of requiring the entire string.
+- Implementing wildcard `*` semantics for regex `*` or vice versa.
+- Allowing a leading `*` despite the supplied valid-pattern constraint.
+- Forgetting that `x*` can represent zero characters; skipping two pattern positions handles this case.
+- Using an “infinity” sentinel and then overflowing when adding a cost.
+- Counting cuts as pieces or mishandling the zero/one-character case.
+- Comparing Unicode characters but claiming ASCII costs outside ASCII constraints.
 
 ## Knowledge checks with answers
 
-1. **Can Word Break reuse a dictionary word?** Yes.
-2. **What does regex `*` repeat?** The immediately preceding valid atom, zero or more times.
-3. **Why is an empty-prefix state useful?** It makes construction from nothing and deletion/matching of empty prefixes explicit.
+1. **Why is the empty prefix reachable in Word Break?** It is the valid starting boundary before the first dictionary word.
+2. **What does regex `a*` mean here?** Zero or more repetitions of the immediately preceding `a` token.
+3. **How does wildcard `*` differ?** In the common wildcard grammar it can consume any sequence, not repetitions of a preceding token.
+4. **What is the edit-distance cost to transform empty text into a length-`j` target under unit insertions?** `j`.
+5. **Why guard impossible states before adding costs?** A large sentinel plus a positive cost can overflow and become a falsely small value.

@@ -1,42 +1,58 @@
 # sequence and string dynamic programming — Reference: Contiguous substring and interval recurrences
 
+Sources: [USACO Guide: Introduction to DP](https://usaco.guide/gold/intro-dp), [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf), [Maximum Length of Repeated Subarray](https://leetcode.com/problems/maximum-length-of-repeated-subarray/), [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/), and [Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/).
+
 ## Scope and version
 
-This lesson covers the supplied contiguous and interval concepts. The recurrence details are stable; see [USACO Guide: Introduction to DP](https://usaco.guide/gold/intro-dp) for DP state and transition fundamentals.
+This reference covers contiguous-match and palindrome interval patterns plus named problem scopes checked November 16, 2026. It does not cover advanced suffix structures or all possible range-DP problems.
 
 ## How this group fits the mental model
 
-Contiguous-match states remember a run that must reach the current endpoints. Interval states instead summarize an entire bounded range. The key design question is whether a mismatch breaks the candidate or whether an optimum can skip an endpoint.
+Contiguity restricts transitions: a mismatch cannot skip over characters inside a matching run. Palindrome intervals instead ask about a bounded range and reduce the problem by comparing endpoints. The state must say whether it represents a suffix ending at a pair of positions, a boolean range, a count, or an optimal subsequence length.
 
 ## Supplied names explained
 
-- **Substring contiguity condition** — Every character occupies consecutive positions. A solution cannot jump over a mismatch or omit an interior character while still calling the result a substring.
-- **Longest common substring** — Let `dp[i,j]` be the length of the common contiguous suffix ending at positions `i-1` and `j-1`. Equal characters extend the previous diagonal by one; unequal characters set the state to zero. Track the maximum over all cells; the last cell need not contain the maximum.
-- **Longest palindromic substring** — Find the longest contiguous range equal to its reverse. Every palindrome has an odd center or an even gap-center, so expanding around all `2n-1` centers checks every candidate. A two-dimensional interval table is another method.
-- **Longest palindromic subsequence** — Find the longest order-preserving selection that reads the same forward and backward, allowing omissions. For a range `[l,r]`, equal endpoints contribute two plus the inner-range result; otherwise discard one endpoint and retain the better range result.
-- **Interval DP state [left,right]** — `dp[l,r]` summarizes the inclusive range. Process increasing range length so shorter intervals used by a transition are already computed. Define length-one and empty-inner-range behavior explicitly.
-- **Expand around center comparison** — Center expansion uses `O(n²)` worst-case time and `O(1)` auxiliary space for a longest palindromic substring. Interval DP also takes `O(n²)` time and usually `O(n²)` space, but stores whether or how well every range behaves and can support related computations.
-- **Palindrome endpoint match** — In the longest palindromic subsequence recurrence, if `s[l] == s[r]`, include both and use `2 + dp[l+1,r-1]`. When `r-l==1`, the inner range is empty and contributes zero.
-- **Empty and single-character intervals** — An empty interval contributes zero for length computations; a one-character range is a palindrome and has subsequence length one. Empty intervals can be conceptual boundary values even when input strings are nonempty.
+- `Substring contiguity condition` — Every selected character position in a substring is adjacent; a gap ends the current matching run. This is the key difference from a subsequence.
+- `Longest common substring` — The longest contiguous sequence shared by two strings/arrays. For matching end values, extend the diagonal run; on mismatch, set the suffix-ending state to zero; track the maximum over all states.
+- `Longest palindromic substring` — A contiguous range equal to its reverse. Expand around every odd/even center in `O(n²)` time and `O(1)` extra space, or use interval DP; track the longest range.
+- `Longest palindromic subsequence` — Longest order-preserving palindrome that may skip characters. An interval recurrence takes inner length plus two for matching endpoints, otherwise the maximum after discarding either endpoint.
+- `Interval DP state [left,right]` — A state about the inclusive range from index `left` through `right`. Define its value and empty/singleton behavior exactly; compute by increasing interval length so smaller dependent intervals exist.
+- `Expand around center comparison` — A direct palindrome method that expands while both endpoints are in bounds and equal. Each palindrome has an odd center at a character or even center between characters; it does not directly solve the longest palindromic subsequence problem.
+- `Palindrome endpoint match` — For a boolean substring table, matching endpoints require the inner range to be palindromic (with lengths 0/1 as bases). For subsequence length, matching endpoints permit `2 + inner`; these are different state meanings.
+- `Empty and single-character intervals` — Empty ranges are palindromic and often have length zero; a single character is a palindrome of length one. Explicit bases prevent invalid access to `dp[l+1][r-1]`.
 
 ## Cross-item comparison
 
-Longest common substring resets on a mismatch because contiguity requires an uninterrupted run. Longest common subsequence can preserve an earlier optimum by skipping a character. Longest palindromic substring optimizes a contiguous range; longest palindromic subsequence may skip interior characters. Center expansion is a compact method for substring detection, whereas the interval recurrence directly solves the subsequence objective.
+| Question | State behavior on mismatch | May skip interior characters? |
+|---|---|---|
+| Longest common substring | Reset suffix run to zero | No |
+| Longest common subsequence | Compare skipping a terminal character from either prefix | Yes |
+| Palindromic substring | Endpoints mismatch means range is not a palindrome | No |
+| Palindromic subsequence | Discard one endpoint and retain the better interval | Yes |
+
+Center expansion is often simpler for palindromic substring enumeration. Interval DP is useful when the problem needs an answer per range or combines subinterval results. For longest palindromic subsequence, interval DP or LCS against the reversed string can compute the length; reconstruction and repeated-character alignment require care if an actual palindrome is needed.
 
 ## Examples
 
-For `"abca"`, the entire range is not a palindrome, but a palindromic subsequence `"aca"` has length 3. The longest palindromic substring has length 1. For arrays `[1,2,3,2,1]` and `[3,2,1,4,7]`, the longest common contiguous run is `[3,2,1]`, length 3; the mismatching next pair ends that run.
+For arrays `[1,2,3,2,1]` and `[3,2,1,4,7]`, the common contiguous suffix states reach length 3 for `[3,2,1]`. A later mismatch resets the run rather than preserving the earlier score.
+
+For `"babad"`, odd/even center expansion finds a longest palindromic substring of length 3 (either `"bab"` or `"aba"`). For `"bbbab"`, the longest palindromic subsequence has length 4 (`"bbbb"`) even though those four characters are not all contiguous.
 
 ## Common mistakes
 
-- Keeping a nonzero substring state after a mismatch.
-- Returning the bottom-right longest-common-substring cell instead of the global maximum.
-- Confusing a palindromic subsequence with a contiguous palindrome.
-- Reading the inner interval of a two-character range without defining it as empty.
-- Counting distinct palindrome texts when the task asks for occurrences by position.
+- Carrying a previous common-substring score across a mismatch.
+- Calling any subsequence a substring.
+- Updating substring length from a subsequence recurrence that can drop endpoints.
+- Computing interval states in an order that reads unfinished shorter ranges.
+- Accessing an empty inner interval without defining its value.
+- Counting palindrome occurrences by distinct text instead of positions when the problem counts occurrences.
+- Forgetting both odd and even centers.
+- Assuming the longest palindromic subsequence itself is contiguous.
 
 ## Knowledge checks with answers
 
-1. **Why does longest common substring reset?** Any gap would violate contiguity.
-2. **When is an interval palindrome state length one?** Every single character is a palindrome.
-3. **What is the longest palindromic subsequence of `"abca"`?** Length 3, for example `"aca"`.
+1. **What happens to a common-substring suffix state on mismatch?** It resets to zero because the suffix ending at that pair is not a contiguous match.
+2. **Why does longest palindromic subsequence allow endpoint discard?** The selected sequence may skip characters, unlike a substring.
+3. **How many center types must be checked?** Odd centers on characters and even centers between characters.
+4. **What is a useful base for an empty palindrome interval?** It is a palindrome of length zero, enabling the one-character inner case.
+5. **Which value is aggregated for longest common substring?** The maximum over every suffix-ending pair state, not necessarily the final cell.

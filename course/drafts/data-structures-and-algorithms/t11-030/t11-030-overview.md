@@ -1,49 +1,54 @@
 # sequence and string dynamic programming — Big-picture orientation and mental model
 
+Sources: [USACO Guide: Introduction to DP](https://usaco.guide/gold/intro-dp), [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf), [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/), and [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/).
+
 ## Problem and purpose
 
-Dynamic programming (DP) is useful when a problem asks for an optimum, a count, or whether a construction is possible, and many candidate solutions share smaller subproblems. Sequence and string DP makes those smaller problems precise by describing prefixes, ending positions, or intervals.
+Dynamic programming (DP) solves a problem by defining smaller states, relating them with transitions, and reusing results instead of recomputing the same subproblems. Sequence and string problems often ask for a longest match, minimum edit cost, number of valid segments, or whether a prefix can be constructed.
 
-The state-and-transition approach is summarized in the [USACO Guide DP introduction](https://usaco.guide/gold/intro-dp).
-
-Typical questions include: how long can two strings agree in order, what is the longest increasing subsequence, can a string be split into dictionary words, and what is the minimum cost to make two strings equal by deletions? The goal is not to memorize a table shape. It is to decide what a table cell promises and which smaller promises are enough to derive it.
+The main difficulty is modeling: decide exactly what a state means, which earlier states can lead to it, and what the boundary states mean. A recurrence that sounds plausible can solve a different problem if it confuses a contiguous substring with a subsequence that may skip characters.
 
 ## Plain-language mental model
 
-Imagine reading two strings from left to right. At each pair of positions, ask a small question such as “what is the best answer using these prefixes?” Once that answer is known, a later answer can reuse it. A DP state is a carefully worded question; a transition is a reason one or more smaller answers determine the current one.
+Imagine examining two strings one character at a time. At each point, ask what is the best answer for the prefixes already seen. For longest common subsequence, keep one prefix position from each string: equal final characters extend a shared sequence; otherwise skip one side and retain the better result. For word segmentation, mark each prefix as reachable if some dictionary word ends there and begins at an already reachable prefix.
 
-For a single sequence, a state might describe the best increasing subsequence that must end at position `i`. For two sequences, it might describe prefixes of lengths `i` and `j`. For a contiguous range, it might describe characters from `left` through `right`. These meanings are different, so their recurrences are different too.
+The table is not the algorithm’s meaning; the state definition is. A row/column is just a way to store the answers. Once state and transitions are correct, an evaluation order ensures prerequisites are ready before each state is computed.
 
 ## How the parts fit together
 
-First identify whether order alone matters or whether contiguity is required. A subsequence can skip positions while preserving order; a substring cannot skip. Then choose a state whose value directly answers a smaller version of the question. Write the boundary values for empty prefixes or one-character ranges. Derive transitions from the final character or endpoints. Finally choose a safe evaluation order, prove that every dependency is already available, and decide whether previous values can be discarded.
-
-This yields a reusable workflow: model the state, establish base cases, derive transitions, evaluate in dependency order, read the requested cell or aggregate, then check complexity and reconstruction needs.
+1. Choose a state whose value answers a smaller version of the question: a prefix, an ending index, a pair of prefixes, or an interval `[left,right]`.
+2. Write a plain-language invariant, such as “`dp[i]` is the length of the longest strictly increasing subsequence ending exactly at index `i`.”
+3. Derive transitions by considering the final choice: match or skip a character, extend a previous increasing sequence, delete a character, or split before a dictionary word.
+4. Define base states for empty prefixes, single characters, impossible states, and valid zero-length results.
+5. Choose an iteration order consistent with dependencies. A prefix-pair table usually grows from smaller prefixes; an interval table usually grows by interval length.
+6. Read the requested answer from the correct state or aggregate. A state that ends exactly at `i` often needs a maximum over all `i`.
+7. Optimize memory only after validating the full recurrence. Rolling rows preserve a length/cost but can discard information needed to reconstruct a solution.
 
 ## Concept map
 
-| Question shape | Typical state | Representative pattern |
+| Shape of question | Typical state | Key distinction |
 |---|---|---|
-| Best subsequence ending at one item | endpoint index | LIS quadratic recurrence |
-| Best result for two prefixes | `(i, j)` prefix lengths | LCS, edit cost, regular-expression matching |
-| Whether a prefix can be built | prefix length / boundary | Word Break |
-| Best result on a contiguous range | `[left, right]` | palindromic subsequence |
-| Count or optimum over many local matches | state plus global aggregate | palindromic substrings, repeated subarray |
+| Best subsequence ending here | One index or prefix | May skip between chosen elements |
+| Best alignment of two sequences | Pair of prefix lengths | Match, skip left, skip right |
+| Best common contiguous run | Pair of ending positions | Mismatch resets to zero |
+| Best palindrome inside a range | `[left,right]` interval | Endpoints and interval length govern recurrence |
+| Can a prefix be formed? | Reachable prefix | Try every valid final word boundary |
+| Minimum transformation cost | Pair of prefixes plus cost | Insert/delete/replace costs and empty-prefix bases |
 
-These are families, not interchangeable templates. The state definition determines the meaning of every base case and transition.
+LIS’s `O(n log n)` tails method is an optimization with a different stored invariant: for each length it keeps the smallest possible tail value. It does not store the actual best subsequence for every endpoint. That distinction explains why predecessor data is needed to reconstruct a sequence.
 
 ## End-to-end walkthrough
 
-For `LCS("abcde", "ace")`, let `dp[i,j]` be the longest common subsequence length among the first `i` and first `j` characters. Empty prefixes have answer zero. Matching final characters extend the diagonal result by one; otherwise an optimum must skip the final character from one side, so take the better of the upper and left cells. Filling the table gives 3 (`ace`). The two strings are not required to match contiguously.
+For `text1 = "abcde"` and `text2 = "ace"`, define `dp[i][j]` as the LCS length of the first `i` and first `j` characters. Empty prefixes have answer zero. If the last characters match, add one to the state for both shorter prefixes. Otherwise take the better of skipping the last character from the first or second prefix. The bottom-right state is 3, corresponding to `"ace"`.
 
-Compare `Maximum Length of Repeated Subarray`: here a match must be contiguous. A matching pair extends only the previous diagonal run; a mismatch resets that cell to zero. The answer is the largest cell, not the bottom-right cell. This single modeling change—from “best subsequence in prefixes” to “matching run ending here”—changes the recurrence and the answer extraction.
+Now compare longest common substring. It also compares two strings, but characters must be adjacent. If the last characters match, extend the diagonal; if they differ, the state ending at that pair is zero. Taking the maximum over the table finds the longest contiguous run. Reusing LCS’s skip recurrence would silently change the problem.
 
 ## When to use it and tradeoffs
 
-Use a prefix-pair table when two prefixes interact, an endpoint table when the ending item is part of the state, an interval table when the endpoints govern a range, and a reachable-prefix table for segmentation. These choices often produce polynomial time from an exponential search because equivalent smaller questions are solved once.
+Use DP when the problem has a manageable set of states, each can be computed from previously solved states, and the same subproblems recur. A full two-string table often costs `O(nm)` time and memory. Rolling rows can reduce memory to `O(min(n,m))` when only the optimal value is needed. For a single sequence, quadratic endpoint DP may be clearer; a specialized `O(n log n)` method can improve time when its invariant matches the requirement.
 
-Tables are easy to reason about and reconstruct from but may consume quadratic memory. Rolling rows can reduce memory when only adjacent rows are needed; they usually discard the history required to reconstruct an answer unless extra decisions are stored. Faster variants such as LIS tails improve asymptotic time but summarize a different property than the full DP states, so they require a separate correctness argument.
+DP is not automatically better than greedy, graph search, or a direct data structure. A large state space can be too slow or memory-heavy. A compressed recurrence may complicate reconstruction. First prove the state and transition; optimize only against real constraints.
 
 ## What later lessons cover
 
-The concepts lesson derives state and boundary choices. Reference lessons compare subsequence and alignment states, substring and interval recurrences, segmentation and transformation costs, then space compression and reconstruction. Practice lessons develop LCS, LIS, repeated subarray, palindrome counting and optimization, Word Break, minimum ASCII deletion cost, and the restricted regular-expression matcher. Each practice specifies its own constraints and proof.
+The concepts lesson derives common state shapes and boundary rules. Reference lessons explain subsequence/alignment, contiguous and interval recurrences, segmentation/cost, and memory/reconstruction. Practice includes LCS, LIS, repeated subarray, palindrome counting and subsequence, word break, ASCII delete sum, and regular-expression matching. The interview lesson focuses on choosing and defending a state, recurrence, complexity, and reconstruction strategy.
