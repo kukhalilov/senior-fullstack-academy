@@ -4,17 +4,148 @@
   "track": "track-06",
   "title": "ECMAScript modules, imports, exports, and module loading semantics",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["How modules differ from classic scripts", "How static imports and exports form a dependency graph", "How live bindings and cycles behave", "How module linking and evaluation work", "How host loaders determine resolution and caching"],
+  "concepts": [
+    "How modules differ from classic scripts",
+    "How static imports and exports form a dependency graph",
+    "How live bindings and cycles behave",
+    "How module linking and evaluation work",
+    "How host loaders determine resolution and caching"
+  ],
   "inventory": [
-    {"id":"static-import-forms","title":"Static imports and import attributes","items":["Import declaration","Side-effect import","Default import","Named import","Namespace import","Combined default and namespace import","Combined default and named import","Import alias","Import attributes clause (with)","JSON module type attribute"]},
-    {"id":"export-forms","title":"Export declarations and re-exports","items":["Named export declaration","Default export declaration","Exported variable declaration","Exported function declaration","Exported class declaration","Export list","Export alias","Re-export from another module","Namespace re-export","Export all declaration"]},
-    {"id":"module-meta-dynamic-loading","title":"Module metadata and asynchronous loading","items":["import.meta","import.meta.url","Dynamic import()","Top-level await","Module namespace exotic object","Live import binding","Cyclic module dependency","Module linking","Module evaluation","Module specifier","HostResolveImportedModule"]}
+    {
+      "id": "static-import-forms",
+      "title": "Static imports and import attributes",
+      "items": [
+        "Import declaration",
+        "Side-effect import",
+        "Default import",
+        "Named import",
+        "Namespace import",
+        "Combined default and namespace import",
+        "Combined default and named import",
+        "Import alias",
+        "Import attributes clause (with)",
+        "JSON module type attribute"
+      ]
+    },
+    {
+      "id": "export-forms",
+      "title": "Export declarations and re-exports",
+      "items": [
+        "Named export declaration",
+        "Default export declaration",
+        "Exported variable declaration",
+        "Exported function declaration",
+        "Exported class declaration",
+        "Export list",
+        "Export alias",
+        "Re-export from another module",
+        "Namespace re-export",
+        "Export all declaration"
+      ]
+    },
+    {
+      "id": "module-meta-dynamic-loading",
+      "title": "Module metadata and asynchronous loading",
+      "items": [
+        "import.meta",
+        "import.meta.url",
+        "Dynamic import()",
+        "Top-level await",
+        "Module namespace exotic object",
+        "Live import binding",
+        "Cyclic module dependency",
+        "Module linking",
+        "Module evaluation",
+        "Module specifier",
+        "HostLoadImportedModule",
+        "import.meta.resolve()",
+        "HostGetImportMetaProperties",
+        "HostFinalizeImportMeta",
+        "HostGetSupportedImportAttributes"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["ECMAScript module","classic script"],["static import","dynamic import()"],["named export","default export"],["live binding","copied value"],["module resolution","module evaluation"]],
-  "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"],
-  "versionNotes": [{"edition":"ECMAScript 2022","items":["Top-level await"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html"]},{"edition":"ECMAScript 2025","items":["Import attributes clause (with)"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html"]}],
-  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript guide","edition":"ECMAScript 2026","checkedAt":"2026-11-14","urls":["https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"]},
-  "scopeExclusions": ["Node.js package exports and CommonJS, which are host-specific (tooling topic)","Import maps, which are a host/browser feature","Deferred imports proposal, not included in the ECMAScript 2026 standard edition"],
+  "comparisons": [
+    [
+      "ECMAScript module",
+      "classic script"
+    ],
+    [
+      "static import",
+      "dynamic import()"
+    ],
+    [
+      "named export",
+      "default export"
+    ],
+    [
+      "live binding",
+      "copied value"
+    ],
+    [
+      "module resolution",
+      "module evaluation"
+    ]
+  ],
+  "comparisonSources": [
+    "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+    "https://html.spec.whatwg.org/multipage/webappapis.html",
+    "https://nodejs.org/api/esm.html"
+  ],
+  "versionNotes": [
+    {
+      "edition": "ECMAScript 2022 to ECMAScript 2023",
+      "items": [
+        "The host module-loading hook moved from the HostResolveImportedModule model to HostLoadImportedModule"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
+        "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
+      ]
+    },
+    {
+      "edition": "ECMAScript 2022",
+      "items": [
+        "Top-level await"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html"
+      ]
+    },
+    {
+      "edition": "ECMAScript 2025",
+      "items": [
+        "Import attributes clause (with)"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "ECMA-262 and MDN JavaScript guide",
+    "edition": "ECMAScript 2026",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+      "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+      "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
+      "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+      "https://html.spec.whatwg.org/multipage/webappapis.html",
+      "https://nodejs.org/api/esm.html",
+      "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
+      "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
+    ]
+  },
+  "scopeExclusions": [
+    "Node.js package exports and CommonJS, which are host-specific (tooling topic)",
+    "Import maps, which are a host/browser feature",
+    "Deferred imports proposal, not included in the ECMAScript 2026 standard edition"
+  ],
   "generationAllowed": true
 }
