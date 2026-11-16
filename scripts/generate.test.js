@@ -769,12 +769,12 @@ test('HTML document and forms inventories are based on the current Living Standa
     assert.equal(manifest.inventoryComplete, true, manifest.id);
     assert.equal(manifest.generationAllowed, true, manifest.id);
     assert.match(manifest.sourceSnapshot.edition, /HTML Living Standard/);
-    assert.match(manifest.sourceSnapshot.edition, /2026-11-14/);
+    assert.match(manifest.sourceSnapshot.edition, /2026-11-16/);
     assert.match(manifest.sourceSnapshot.checkedAt, /^2026-11-\d{2}$/);
     for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${manifest.id}/${group.id}`);
   }
   const htmlItems = html.inventory.flatMap(group => group.items);
-  for (const item of ['<search>', 'headingoffset', 'headingreset', 'writingsuggestions', 'HTML parser error recovery']) assert.ok(htmlItems.includes(item), item);
+  for (const item of ['<search>', '<selectedcontent>', 'headingoffset', 'headingreset', 'writingsuggestions', 'HTML parser error recovery']) assert.ok(htmlItems.includes(item), item);
   const formItems = forms.inventory.flatMap(group => group.items);
   for (const item of ['<selectedcontent>', 'type=datetime-local', 'type=color', 'type=image', 'HTMLFormElement.requestSubmit()', 'showPicker()', 'ValidityState.valueMissing', 'formdata event']) assert.ok(formItems.includes(item), item);
   assert.equal(htmlItems.includes('<font>'), false);

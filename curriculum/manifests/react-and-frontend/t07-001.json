@@ -18,20 +18,32 @@
     {"id":"inline-text-semantics","title":"Inline text and ruby annotation elements","items":["<a>","<abbr>","<b>","<bdi>","<bdo>","<br>","<cite>","<code>","<data>","<dfn>","<em>","<i>","<kbd>","<mark>","<q>","<rp>","<rt>","<ruby>","<s>","<samp>","<small>","<span>","<strong>","<sub>","<sup>","<time>","<u>","<var>","<wbr>","<rb>","<rtc>"]},
     {"id":"media-and-embedded-content","title":"Image, media, embedded, SVG, and MathML elements","items":["<area>","<audio>","<img>","<map>","<track>","<video>","<embed>","<iframe>","<object>","<picture>","<source>","<svg>","<math>"]},
     {"id":"scripting-edit-and-table-elements","title":"Scripting, edit, and table elements","items":["<canvas>","<noscript>","<script>","<del>","<ins>","<caption>","<col>","<colgroup>","<table>","<tbody>","<td>","<tfoot>","<th>","<thead>","<tr>"]},
-    {"id":"interactive-and-web-component-elements","title":"Interactive and Web Component elements","items":["<details>","<dialog>","<summary>","<slot>","<template>"]},
+    {"id":"interactive-and-web-component-elements","title":"Interactive, customizable-select, and Web Component elements","items":["<details>","<dialog>","<selectedcontent>","<summary>","<slot>","<template>"]},
     {"id":"global-attributes","title":"HTML global content attributes","items":["accesskey","autocapitalize","autocorrect","autofocus","class","contenteditable","data-*","dir","draggable","enterkeyhint","headingoffset","headingreset","hidden","id","inert","inputmode","is","itemid","itemprop","itemref","itemscope","itemtype","lang","nonce","popover","spellcheck","style","tabindex","title","translate","writingsuggestions","part","slot","exportparts"]},
     {"id":"document-syntax-and-content-models","title":"Document syntax, content categories, and parsing concepts","items":["HTML document skeleton","Character encoding declaration","Void elements","Raw text elements","Escapable raw text elements","Optional start tags","Optional end tags","Boolean attributes","Quoted attribute values","Unquoted attribute values","Character references","Comments","DOCTYPE and standards mode","Metadata content","Flow content","Sectioning content","Heading content","Phrasing content","Embedded content","Interactive content","Palpable content","Script-supporting elements","Transparent content model","Foreign content for SVG and MathML","HTML parser error recovery","DOM tree construction","Custom data attributes and HTMLElement.dataset"]}
   ],
   "inventoryComplete": true,
   "comparisons": [["<article>","<section>"],["<strong>","<b>"],["<em>","<i>"],["<div>","<span>"],["<ol>","<ul>"],["<picture>","<img>"],["HTML source markup","browser-parsed DOM"]],
   "comparisonSources": ["https://html.spec.whatwg.org/multipage/semantics.html","https://html.spec.whatwg.org/multipage/dom.html","https://html.spec.whatwg.org/multipage/syntax.html","https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"],
-  "versionNotes": [],
+  "versionNotes": [
+    {
+      "edition": "HTML Living Standard checked 2026-11-16",
+      "items": [
+        "Added <selectedcontent>, the customizable-select element that mirrors the currently selected option inside the first child button of a select. The element is standardized in the current WHATWG index, while MDN marks browser support as limited availability; feature-detect and test supported browsers before relying on it.",
+        "Detailed form-control APIs remain in t07-014; this topic covers selectedcontent only as part of the current HTML element inventory and its semantic placement."
+      ],
+      "sourceUrls": [
+        "https://html.spec.whatwg.org/multipage/form-elements.html",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/selectedcontent"
+      ]
+    }
+  ],
   "sourceSnapshot": {
     "authority":"WHATWG HTML Living Standard, current HTML element reference, and MDN reference index",
-    "edition":"HTML Living Standard checked 2026-11-14",
-    "checkedAt":"2026-11-14",
-    "urls":["https://html.spec.whatwg.org/multipage/semantics.html","https://html.spec.whatwg.org/multipage/dom.html","https://html.spec.whatwg.org/multipage/syntax.html","https://html.spec.whatwg.org/multipage/obsolete.html","https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"]
+    "edition":"HTML Living Standard checked 2026-11-16",
+    "checkedAt":"2026-11-16",
+    "urls":["https://html.spec.whatwg.org/multipage/","https://html.spec.whatwg.org/multipage/semantics.html","https://html.spec.whatwg.org/multipage/dom.html","https://html.spec.whatwg.org/multipage/dom.html#global-attributes","https://html.spec.whatwg.org/multipage/syntax.html","https://html.spec.whatwg.org/multipage/indices.html","https://html.spec.whatwg.org/multipage/sections.html","https://html.spec.whatwg.org/multipage/grouping-content.html","https://html.spec.whatwg.org/multipage/text-level-semantics.html","https://html.spec.whatwg.org/multipage/embedded-content.html","https://html.spec.whatwg.org/multipage/scripting.html","https://html.spec.whatwg.org/multipage/edits.html","https://html.spec.whatwg.org/multipage/tables.html","https://html.spec.whatwg.org/multipage/interactive-elements.html","https://html.spec.whatwg.org/multipage/obsolete.html","https://html.spec.whatwg.org/multipage/form-elements.html","https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements","https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/selectedcontent","https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes"]
   },
-  "scopeExclusions":["Form controls, input type states, validation, and submission attributes (t07-014)","Browser DOM interfaces and browser APIs (t07-015)","Accessibility and ARIA authoring practices (t07-002)","CSS language and layout (t07-016 through t07-018)","Obsolete and non-standard elements are explicitly excluded from the current element inventory; selected historical features may appear only in brief comparison notes"],
+  "scopeExclusions":["Detailed form controls, input type states, validation, and submission attributes (t07-014); <selectedcontent> is included here only as a current HTML element and customizable-select boundary","Browser DOM interfaces and browser APIs (t07-015)","Accessibility and ARIA authoring practices (t07-002)","CSS language and layout (t07-016 through t07-018)","Obsolete and non-standard elements are explicitly excluded from the current element inventory; selected historical features may appear only in brief comparison notes"],
   "generationAllowed": true
 }
