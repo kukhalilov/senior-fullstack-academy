@@ -20,10 +20,20 @@
         "Database.BeginTransactionAsync",
         "IDbContextTransaction",
         "IDbContextTransaction.Commit",
+        "IDbContextTransaction.CommitAsync",
         "IDbContextTransaction.Rollback",
-        "IDbContextTransaction.Save",
+        "IDbContextTransaction.RollbackAsync",
+        "IDbContextTransaction.CreateSavepoint",
+        "IDbContextTransaction.CreateSavepointAsync",
         "IDbContextTransaction.RollbackToSavepoint",
+        "IDbContextTransaction.RollbackToSavepointAsync",
         "IDbContextTransaction.ReleaseSavepoint",
+        "IDbContextTransaction.ReleaseSavepointAsync",
+        "IDbContextTransaction.DisposeAsync",
+        "IDbContextTransaction.GetDbTransaction",
+        "AutoTransactionBehavior.WhenNeeded",
+        "AutoTransactionBehavior.Always",
+        "AutoTransactionBehavior.Never",
         "UseTransaction",
         "UseTransactionAsync",
         "TransactionScope",
@@ -33,7 +43,7 @@
         "Savepoint",
         "Multiple Active Result Sets (MARS) savepoint incompatibility",
         "Cross-context shared transaction",
-        "RelationalTransaction",
+        "RelationalTransaction (provider implementation detail; not application API)",
         "Transaction isolation level",
         "Transaction lifetime",
         "Nested transaction boundary"
@@ -120,12 +130,13 @@
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "Microsoft EF Core transaction, connection resiliency, and concurrency documentation",
-    "edition": "EF Core 10 stable transaction APIs checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+        "edition": "EF Core 11.0.0 shipped; transaction, resiliency, and concurrency APIs checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
       "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
-      "https://learn.microsoft.com/en-us/ef/core/saving/concurrency"
+      "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
     ]
   },
   "scopeExclusions": [
