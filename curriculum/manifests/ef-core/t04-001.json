@@ -21,6 +21,7 @@
         "DbContextOptions<TContext>",
         "DbContext constructor",
         "AddDbContext<TContext>",
+        "ConfigureDbContext<TContext>",
         "AddDbContextPool<TContext>",
         "AddDbContextFactory<TContext>",
         "AddPooledDbContextFactory<TContext>",
@@ -105,24 +106,31 @@
   ],
   "versionNotes": [
     {
-      "edition": "EF Core 10 stable; EF Core 11 in development checked 2026-11-15",
+      "edition": "EF Core 11.0.0 released 2026-11-10; verified against .NET 11 release notes and EF Core docs 2026-11-16",
       "items": [
-        "EF Core 10 is the current stable release and targets .NET 10. EF Core 11 is planned for November 2026 but remains in development in the official release-planning source at this check; do not describe EF11-only APIs as stable."
+        "Microsoft's EF Core release-planning page still labels EF Core 11 as upcoming, but the official .NET 11 final release notes dated November 10 list Microsoft.EntityFrameworkCore 11.0.0. Treat EF Core 11 as released; use the release artifact/release notes over the stale planning-page status. EF Core 10 remains the previous LTS release targeting .NET 10."
       ],
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics"
       ]
     }
   ],
   "sourceSnapshot": {
-    "authority": "Microsoft EF Core 10 documentation and official EF Core release planning",
-    "edition": "EF Core 10 stable; EF Core 11 development status checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "authority": "Microsoft EF Core documentation and .NET 11 final release notes",
+    "edition": "EF Core 11.0.0 released 2026-11-10; checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
       "https://learn.microsoft.com/en-us/ef/core/providers/",
       "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core",
-      "https://learn.microsoft.com/en-us/ef/core/what-is-new/"
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+      "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics"
     ]
   },
   "scopeExclusions": [
