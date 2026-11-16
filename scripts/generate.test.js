@@ -654,6 +654,10 @@ test('JavaScript language inventories use current standard names without duplica
   const iteration = JSON.parse(fs.readFileSync(`${base}/t06-016.json`, 'utf8'));
   assert.ok(iteration.inventory.flatMap(group => group.items).includes('Iterator.concat'));
   assert.equal(iteration.inventory.flatMap(group => group.items).some(name => name.startsWith('AsyncIterator.prototype.')), false);
+  const errors = JSON.parse(fs.readFileSync(`${base}/t06-006.json`, 'utf8'));
+  assert.ok(errors.inventory.flatMap(group => group.items).includes('Error.isError'));
+  assert.ok(errors.versionNotes.some(note => note.edition === 'ECMAScript 2026' && note.items.includes('Error.isError')));
+  assert.ok(errors.accuracyFacts.some(fact => fact.includes('Proxy wrapping an Error')));
   const thisAndFunctions = JSON.parse(fs.readFileSync(`${base}/t06-017.json`, 'utf8'));
   const thisAndFunctionNames = thisAndFunctions.inventory.flatMap(group => group.items);
   assert.ok(thisAndFunctionNames.includes('Function tag fallback in Object.prototype.toString'));

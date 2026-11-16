@@ -13,7 +13,19 @@
   "comparisons": [["throwing an exception","returning an error value"],["Error","AggregateError"],["catch clause","finally clause"],["cause","AggregateError.errors"]],
   "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"],
   "versionNotes": [{"edition":"ECMAScript 2022","items":["Error cause option"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html"]},{"edition":"ECMAScript 2026","items":["Error.isError"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html"]}],
-  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript reference","edition":"ECMAScript 2026","checkedAt":"2026-11-14","urls":["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"]},
+  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript reference","edition":"ECMAScript 2026","checkedAt":"2026-11-16","urls":["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/isError"]},
+  "accuracyFacts": [
+    "ECMAScript 2026 adds Error.isError. It checks the internal ErrorData brand, so it accepts genuine cross-realm ECMAScript errors and rejects objects that only inherit Error.prototype; a Proxy wrapping an Error does not itself carry the target's internal slot.",
+    "Error.isError is a current standard API but MDN marks it as limited availability; separate language-standard status from support in a particular browser/runtime and feature-detect when targeting unpinned engines.",
+    "Error, NativeError, and AggregateError constructors can be called without new. Error options cause creates an own non-enumerable data property only when options has a cause property, even when its value is undefined.",
+    "AggregateError consumes its errors argument as a synchronous iterable during construction and stores a new array on a writable, non-enumerable, configurable own errors property. Its message and optional cause have their own error-property rules.",
+    "The standard EvalError type remains for compatibility but is not currently produced by the ECMAScript specification. Runtime messages, stack formatting, and stack properties are host-specific rather than portable ECMA-262 guarantees.",
+    "The throw statement throws any ECMAScript value, not only Error instances. Catch receives that exact value; robust boundaries may normalize non-Error thrown values while preserving them as cause or metadata.",
+    "A finally block always runs as control leaves try/catch. A normal completion preserves the prior completion, while an abrupt completion in finally (return, throw, break, or continue) replaces it and can suppress a pending exception or return.",
+    "A synchronous try/catch does not catch a Promise rejection that occurs after control leaves the try. In async code, await the promise inside the try to catch its rejection there.",
+    "Error.prototype.toString dynamically reads name and message, stringifies them, uses defaults only for undefined, returns only the message when name is empty, and otherwise combines name and message with colon-space.",
+    "Error subclass constructors should call super(message, options) to initialize the ECMAScript Error brand and cause behavior before using the instance; runtime stack capture and formatting remain host-specific."
+  ],
   "scopeExclusions": ["Fetch API errors and AbortError handling (t06-020)","Browser console stack formatting, which is host-specific","Third-party error monitoring libraries"],
   "generationAllowed": true
 }
