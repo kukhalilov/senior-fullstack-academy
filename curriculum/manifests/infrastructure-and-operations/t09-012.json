@@ -284,8 +284,8 @@
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "Google SRE books and workbook; incident-management concepts are vendor-neutral operational practices",
-    "edition": "Current published SRE guidance checked 2026-11-14; severity numbering and role names must be adapted to the organization",
-    "checkedAt": "2026-11-14",
+    "edition": "Google SRE incident management, on-call and postmortem guidance; NIST SP 800-61 Rev. 3 final (April 2025) and CISA playbooks checked 2026-11-17; severity and roles remain organization-specific",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://sre.google/sre-book/managing-incidents/",
       "https://sre.google/sre-book/postmortem-culture/",
@@ -294,7 +294,13 @@
       "https://sre.google/workbook/incident-investigation/",
       "https://sre.google/workbook/on-call/",
       "https://sre.google/workbook/alerting-on-slos/",
-      "https://www.cisa.gov/resources-tools/resources/incident-response-playbooks"
+      "https://www.cisa.gov/resources-tools/resources/incident-response-playbooks",
+      "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+      "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+      "https://csrc.nist.gov/Projects/incident-response/publications",
+      "https://www.cisa.gov/sites/default/files/2024-08/Federal_Government_Cybersecurity_Incident_and_Vulnerability_Response_Playbooks_508C.pdf",
+      "https://sre.google/resources/practices-and-processes/incident-management-guide/",
+      "https://sre.google/workbook/postmortem-culture/"
     ]
   },
   "scopeExclusions": [
@@ -302,5 +308,35 @@
     "Vendor-specific paging product configuration is intentionally excluded",
     "Detailed business continuity regulatory requirements depend on jurisdiction and organization; use applicable policy and legal guidance"
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    {
+      "fact": "NIST SP 800-61 Rev. 3 is the final current revision, published April 3, 2025, and supersedes SP 800-61 Rev. 2, which was withdrawn on April 3, 2025. Rev. 3 integrates incident response recommendations throughout CSF 2.0 risk management; do not cite Rev. 2 as current guidance.",
+      "sourceUrls": [
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+        "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
+      ]
+    },
+    {
+      "fact": "Incident severity labels, numerical scales, command roles, and declaration thresholds are organization-specific. Google SRE examples of incident commander, operations lead, and communications lead are useful patterns, not a universal required role taxonomy.",
+      "sourceUrls": [
+        "https://sre.google/sre-book/managing-incidents/",
+        "https://sre.google/workbook/incident-response/"
+      ]
+    },
+    {
+      "fact": "CISA Federal Government Cybersecurity Incident and Vulnerability Response Playbooks are scoped to U.S. federal civilian executive branch agencies; organizations outside that scope may adapt ideas but must use their applicable policy and reporting obligations.",
+      "sourceUrls": [
+        "https://www.cisa.gov/resources-tools/resources/incident-response-playbooks",
+        "https://www.cisa.gov/sites/default/files/2024-08/Federal_Government_Cybersecurity_Incident_and_Vulnerability_Response_Playbooks_508C.pdf"
+      ]
+    },
+    {
+      "fact": "Preserve evidence and coordinate security/legal/privacy decisions under the organization’s incident plan. Notification deadlines and legal holds depend on jurisdiction, data, contracts, and counsel; do not state a universal deadline or give legal advice.",
+      "sourceUrls": [
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+        "https://www.cisa.gov/resources-tools/resources/incident-response-playbooks"
+      ]
+    }
+  ]
 }
