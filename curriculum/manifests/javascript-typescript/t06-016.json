@@ -4,17 +4,156 @@
   "track": "track-06",
   "title": "JavaScript iterables, iterators, and generator protocols",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Iterable versus iterator roles", "Iterator protocol and completion records", "Sync and async iteration protocols", "How for-of and for-await-of consume iterators", "Iterator closing and delegation", "How generators suspend and resume execution"],
+  "concepts": [
+    "Iterable versus iterator roles",
+    "Iterator protocol and completion records",
+    "Sync and async iteration protocols",
+    "How for-of and for-await-of consume iterators",
+    "Iterator closing and delegation",
+    "How generators suspend and resume execution"
+  ],
   "inventory": [
-    {"id":"synchronous-iteration","title":"Synchronous iterable and iterator protocol","items":["Iterable protocol","Iterator protocol","IteratorResult object","Iterator protocol next method","Iterator protocol optional return method","Iterator protocol optional throw method","Iterator global constructor","Iterator.prototype","Iterator.prototype.constructor","Iterator.from","Iterator.concat","Iterator.prototype.map","Iterator.prototype.filter","Iterator.prototype.take","Iterator.prototype.drop","Iterator.prototype.flatMap","Iterator.prototype.reduce","Iterator.prototype.toArray","Iterator.prototype.forEach","Iterator.prototype.some","Iterator.prototype.every","Iterator.prototype.find","Iterator.prototype[Symbol.iterator]","Iterator.prototype[Symbol.toStringTag]","Symbol.iterator","for-of statement","Array destructuring iteration","Spread syntax iteration","Iterator closing","IteratorClose"]},
-    {"id":"generators-and-delegation","title":"Generator functions, objects, and delegation","items":["Generator function","Generator function expression","Generator method","Generator object","Generator.prototype.next","Generator.prototype.return","Generator.prototype.throw","yield expression","yield* delegation","GeneratorFunction","GeneratorFunction.prototype","Generator.prototype[Symbol.iterator]"]},
-    {"id":"async-iteration","title":"Async iteration and async generators","items":["Async iterable protocol","Async iterator protocol","%AsyncIteratorPrototype%[Symbol.asyncIterator]","Symbol.asyncIterator","for-await-of statement","Async generator function","Async generator method","Async generator object","AsyncGenerator.prototype.next","AsyncGenerator.prototype.return","AsyncGenerator.prototype.throw","AsyncGeneratorFunction","AsyncGeneratorFunction.prototype","Async-from-sync iterator","AsyncIteratorClose"]}
+    {
+      "id": "synchronous-iteration",
+      "title": "Synchronous iterable and iterator protocol",
+      "items": [
+        "Iterable protocol",
+        "Iterator protocol",
+        "IteratorResult object",
+        "Iterator protocol next method",
+        "Iterator protocol optional return method",
+        "Iterator protocol optional throw method",
+        "Iterator global constructor",
+        "Iterator.prototype",
+        "Iterator.prototype.constructor",
+        "Iterator.from",
+        "Iterator.concat",
+        "Iterator.prototype.map",
+        "Iterator.prototype.filter",
+        "Iterator.prototype.take",
+        "Iterator.prototype.drop",
+        "Iterator.prototype.flatMap",
+        "Iterator.prototype.reduce",
+        "Iterator.prototype.toArray",
+        "Iterator.prototype.forEach",
+        "Iterator.prototype.some",
+        "Iterator.prototype.every",
+        "Iterator.prototype.find",
+        "Iterator.prototype[Symbol.iterator]",
+        "Iterator.prototype[Symbol.toStringTag]",
+        "Symbol.iterator",
+        "for-of statement",
+        "Array destructuring iteration",
+        "Spread syntax iteration",
+        "Iterator closing",
+        "IteratorClose"
+      ]
+    },
+    {
+      "id": "generators-and-delegation",
+      "title": "Generator functions, objects, and delegation",
+      "items": [
+        "Generator function",
+        "Generator function expression",
+        "Generator method",
+        "Generator object",
+        "Generator.prototype.next",
+        "Generator.prototype.return",
+        "Generator.prototype.throw",
+        "yield expression",
+        "yield* delegation",
+        "GeneratorFunction",
+        "GeneratorFunction.prototype",
+        "Generator.prototype[Symbol.iterator]"
+      ]
+    },
+    {
+      "id": "async-iteration",
+      "title": "Async iteration and async generators",
+      "items": [
+        "Async iterable protocol",
+        "Async iterator protocol",
+        "%AsyncIteratorPrototype%[Symbol.asyncIterator]",
+        "Symbol.asyncIterator",
+        "for-await-of statement",
+        "Async generator function",
+        "Async generator method",
+        "Async generator object",
+        "AsyncGenerator.prototype.next",
+        "AsyncGenerator.prototype.return",
+        "AsyncGenerator.prototype.throw",
+        "AsyncGeneratorFunction",
+        "AsyncGeneratorFunction.prototype",
+        "Async-from-sync iterator",
+        "AsyncIteratorClose"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["iterable","iterator"],["for-of","for-await-of"],["generator","async generator"],["yield","yield*"],["Iterator.prototype.map","Array.prototype.map"]],
-  "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators"],
-  "versionNotes": [{"edition":"ECMAScript 2025","items":["Iterator","Iterator.from","Iterator helper methods"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html"]},{"edition":"ECMAScript 2026","items":["Iterator.concat"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html"]}],
-  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript guide","edition":"ECMAScript 2026","checkedAt":"2026-11-14","urls":["https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators"]},
-  "scopeExclusions": ["Array.prototype iteration APIs (t06-012)","Map, Set, and weak collection APIs (t06-013, t06-014)","DOM event iteration and streams-specific reader APIs"],
+  "comparisons": [
+    [
+      "iterable",
+      "iterator"
+    ],
+    [
+      "for-of",
+      "for-await-of"
+    ],
+    [
+      "generator",
+      "async generator"
+    ],
+    [
+      "yield",
+      "yield*"
+    ],
+    [
+      "Iterator.prototype.map",
+      "Array.prototype.map"
+    ]
+  ],
+  "comparisonSources": [
+    "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+    "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators"
+  ],
+  "versionNotes": [
+    {
+      "edition": "ECMAScript 2025",
+      "items": [
+        "Iterator",
+        "Iterator.from",
+        "Iterator helper methods"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html"
+      ]
+    },
+    {
+      "edition": "ECMAScript 2026",
+      "items": [
+        "Iterator.concat"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "ECMA-262 and MDN JavaScript guide",
+    "edition": "ECMAScript 2026",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+      "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
+      "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html"
+    ]
+  },
+  "scopeExclusions": [
+    "Array.prototype iteration APIs (t06-012)",
+    "Map, Set, and weak collection APIs (t06-013, t06-014)",
+    "DOM event iteration and streams-specific reader APIs"
+  ],
   "generationAllowed": true
 }
