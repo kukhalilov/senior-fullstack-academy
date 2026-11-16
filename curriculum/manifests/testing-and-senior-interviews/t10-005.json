@@ -172,23 +172,35 @@
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "Google Site Reliability Engineering Workbook incident response chapter and SRE Book guidance on incidents, emergency response, troubleshooting, and postmortems",
-    "edition": "Timeless incident-management practices and current public Google SRE guidance checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "Timeless incident-management practices and current public Google SRE guidance checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://sre.google/workbook/incident-response/",
       "https://sre.google/sre-book/managing-incidents/",
       "https://sre.google/sre-book/emergency-response/",
       "https://sre.google/sre-book/effective-troubleshooting/",
       "https://sre.google/sre-book/postmortem-culture/",
+      "https://sre.google/workbook/postmortem-culture/",
       "https://sre.google/sre-book/example-postmortem/"
     ]
   },
   "scopeExclusions": [
+    "The incident command system, on-call rotations, alert design, security/governance, operational playbooks, and detailed restoration options are covered in t09-012. This senior-interview topic applies incident reasoning to technical diagnosis, response narrative, causal analysis, and interview scenarios; do not reproduce the full operations reference.",
+    "Specific production diagnostic commands and profiler tools are covered in t09-013; this topic uses observable evidence generically and does not duplicate that tooling reference.",
     "Tool-specific incident management automation and Azure SRE Agent integration belong to infrastructure operations.",
     "Routine application debugging and .NET profiling belong to t09-013.",
     "Reliability design patterns and service-level objectives are covered in architecture and operations topics.",
     "Detailed organization-wide crisis communications, legal disclosure, and regulatory reporting vary by employer and jurisdiction.",
     "Incident response focuses on service reliability, not security breach forensics or law-enforcement procedures."
+  ],
+  "accuracyFacts": [
+    "Google SRE's incident-command role model uses an incident commander, operations lead, and communications lead as one documented pattern. Organizations adapt role names and assignments; severity scales, declaration thresholds, and response procedures are local policy rather than universal standards.",
+    "During a major outage, prioritize limiting user harm and restoring service while preserving evidence for later diagnosis. Root-cause investigation should not delay a safe mitigation when service or data is at risk.",
+    "A useful troubleshooting test should distinguish competing hypotheses while accounting for its own side effects and confounding conditions. Record the expected behavior, observed behavior, reproduction conditions, test performed, and result.",
+    "Postmortems should describe impact, actions, contributing causes, and follow-up work without indicting individuals. Systems thinking examines the information, tools, incentives, and constraints that made actions locally reasonable.",
+    "A single 'root cause' label can oversimplify a complex incident. Explain triggers, contributing factors, detection/response conditions, and defenses; use causal language only where evidence supports it.",
+    "Recovery is verified through user-facing service indicators and critical workflows, not inferred solely from a successful deploy or a quiet alert stream.",
+    "Time-to-detect, acknowledge, mitigate, and restore metrics require consistent event definitions and start/stop points; organization-specific incident policies may define them differently."
   ],
   "generationAllowed": true
 }
