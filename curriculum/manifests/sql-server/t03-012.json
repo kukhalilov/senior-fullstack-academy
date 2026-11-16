@@ -41,7 +41,19 @@
         "Service account",
         "Managed identity connection",
         "Credential",
-        "Certificate login"
+        "Certificate login",
+        "Windows group login",
+        "Login-to-user SID mapping",
+        "Contained database user without login",
+        "Application role activation sp_setapprole",
+        "REVERT execution-context reset",
+        "ORIGINAL_LOGIN and SUSER_SNAME identity functions",
+        "sysadmin permission-bypass boundary",
+        "Microsoft Entra WITH OBJECT_ID for duplicate display names",
+        "SQL Server 2025 PBKDF2 password hashing",
+        "Azure Arc and Azure VM Entra authentication boundary",
+        "SQL Server 2022 least-privilege ##MS_ server roles",
+        "CREATE SERVER ROLE"
       ]
     },
     {
@@ -76,7 +88,24 @@
         "Dynamic Data Masking",
         "Always Encrypted boundary",
         "Audit action group",
-        "SQL Server Audit"
+        "SQL Server Audit",
+        "GRANT WITH GRANT OPTION",
+        "Permission aggregation across role and group memberships",
+        "Column-level GRANT exception to table DENY",
+        "sysadmin and dbo permission bypass",
+        "Fixed database role broad permissions",
+        "Fixed server role broad permissions",
+        "CONTROL SERVER is not sysadmin membership",
+        "sys.database_permissions catalog view",
+        "fn_my_permissions effective permission check",
+        "Cross-database ownership chaining instance risk",
+        "Ownership chaining does not cover dynamic SQL",
+        "Certificate module signature dropped on ALTER",
+        "RLS filter predicate versus block predicate",
+        "SESSION_CONTEXT tenant predicate trust boundary",
+        "Dynamic Data Masking UNMASK permission",
+        "SQL Server Audit server audit versus database specification",
+        "SQL Server Audit writes are not tamper-proof by default"
       ]
     },
     {
@@ -102,7 +131,21 @@
         "SQL Server Audit specification",
         "Audit target",
         "Database-scoped credential",
-        "External data source permission boundary"
+        "External data source permission boundary",
+        "Stored procedure call parameterization boundary",
+        "Dynamic identifiers cannot be SQL parameters",
+        "QUOTENAME syntax protection is not authorization",
+        "Input validation does not replace parameterization",
+        "Dynamic SQL truncation injection",
+        "Blind SQL injection",
+        "SQL injection from second-order stored data",
+        "Minimum EXECUTE-only application permission pattern",
+        "Encrypt Strict and TDS 8.0 certificate validation",
+        "TrustServerCertificate bypasses server identity validation",
+        "Managed identity avoids stored app passwords",
+        "Database-scoped credential is not a database login",
+        "External data source credential permission boundary",
+        "Microsoft.Data.SqlClient Encrypt default and TrustServerCertificate behavior"
       ]
     }
   ],
@@ -137,38 +180,90 @@
     "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
-    "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+    "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-string-syntax?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
   ],
   "versionNotes": [
     {
-      "edition": "SQL Server 2025 authentication and security",
+      "edition": "SQL Server 2025 (17.x) security updates",
       "items": [
-        "SQL Server 2025 adds or expands authentication and permission capabilities across deployment modes; exact Microsoft Entra features depend on instance hosting and cumulative update, so distinguish on-premises, Azure VM, and Arc-enabled requirements."
+        "SQL authentication password hashes use PBKDF2/RFC2898 with SHA-512 iterated 100,000 times by default; login validation may cost more CPU/latency.",
+        "Microsoft Entra authentication hosting support depends on SQL Server edition and integration path; SQL Server 2025 supports Azure Arc-enabled instances and supported Azure VM configurations starting with CU3.",
+        "CREATE LOGIN/USER WITH OBJECT_ID supports nonunique Entra principal display names in SQL Server 2025; use it only for the documented collision case.",
+        "SQL Server 2025 supports TLS 1.3 with TDS 8.0 for listed components; driver and server support are required."
       ],
       "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
-        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17"
       ]
     }
   ],
   "sourceSnapshot": {
-    "authority": "Microsoft SQL Server 2025 security documentation and OWASP SQL injection prevention guidance",
-    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "authority": "Microsoft SQL Server 2025 security and authentication documentation with OWASP SQL injection guidance",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
-      "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+      "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-string-syntax?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
     ]
   },
   "scopeExclusions": [
     "Web authentication, cookies, OAuth, and authorization policies are covered in t05 and track-02.",
     "TDE, Always Encrypted design, backup encryption, and key custody are in t03-014 and t05-009.",
-    "Row-level security and dynamic data masking are introduced as boundary examples; detailed policies belong in their dedicated coverage."
+    "Row-level security and dynamic data masking are introduced as boundary examples; detailed policies belong in their dedicated coverage.",
+    "Always Encrypted key provisioning, enclave attestation, TDE, and backup key custody are covered in t03-014.",
+    "RLS and DDM are introduced as authorization-boundary examples; detailed policy design belongs in dedicated coverage."
   ],
   "generationAllowed": true
 }
