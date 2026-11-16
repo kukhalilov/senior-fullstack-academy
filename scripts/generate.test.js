@@ -641,6 +641,13 @@ test('JavaScript language inventories use current standard names without duplica
   const collectionNames = collections.inventory.flatMap(group => group.items);
   assert.ok(collectionNames.includes('Map.prototype.getOrInsert'));
   assert.ok(collectionNames.includes('Set.prototype.symmetricDifference'));
+  const weakCollections = JSON.parse(fs.readFileSync(`${base}/t06-014.json`, 'utf8'));
+  const weakCollectionNames = weakCollections.inventory.flatMap(group => group.items);
+  assert.ok(weakCollectionNames.includes('WeakMap.prototype.getOrInsertComputed'));
+  assert.ok(weakCollectionNames.includes('Non-registered Symbol weak key'));
+  assert.ok(weakCollectionNames.includes('Symbol.for()'));
+  assert.equal(weakCollectionNames.includes('WeakMap[Symbol.species]'), false);
+  assert.equal(weakCollectionNames.includes('WeakSet[Symbol.species]'), false);
   const iteration = JSON.parse(fs.readFileSync(`${base}/t06-016.json`, 'utf8'));
   assert.ok(iteration.inventory.flatMap(group => group.items).includes('Iterator.concat'));
   assert.equal(iteration.inventory.flatMap(group => group.items).some(name => name.startsWith('AsyncIterator.prototype.')), false);
