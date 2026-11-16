@@ -635,7 +635,7 @@ test('JavaScript language inventories use current standard names without duplica
     assert.ok(manifest.concepts.length > 0, id);
     assert.ok(manifest.inventory.every(group => group.items.length > 0), id);
     for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${id}/${group.id}`);
-    assert.match(manifest.sourceSnapshot.edition, /^(ECMAScript 2026|Living standard checked 2026-11-14)$/, id);
+    assert.match(manifest.sourceSnapshot.edition, /^(ECMAScript 2026|Living standard checked 2026-11-(14|16))$/, id);
   }
   const collections = JSON.parse(fs.readFileSync(`${base}/t06-013.json`, 'utf8'));
   const collectionNames = collections.inventory.flatMap(group => group.items);
