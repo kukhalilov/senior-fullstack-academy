@@ -639,8 +639,11 @@ test('JavaScript language inventories use current standard names without duplica
   }
   const collections = JSON.parse(fs.readFileSync(`${base}/t06-013.json`, 'utf8'));
   const collectionNames = collections.inventory.flatMap(group => group.items);
-  assert.ok(collectionNames.includes('Map.prototype.getOrInsert'));
-  assert.ok(collectionNames.includes('Set.prototype.symmetricDifference'));
+  for (const name of ['Map.groupBy', 'Map[Symbol.species]', 'Map.prototype.getOrInsert', 'Map.prototype.getOrInsertComputed']) assert.ok(collectionNames.includes(name), name);
+  for (const name of ['Set[Symbol.species]', 'Set.prototype.difference', 'Set.prototype.intersection', 'Set.prototype.isDisjointFrom', 'Set.prototype.isSubsetOf', 'Set.prototype.isSupersetOf', 'Set.prototype.symmetricDifference', 'Set.prototype.union']) assert.ok(collectionNames.includes(name), name);
+  assert.ok(collections.versionNotes.some(note => note.edition === 'ECMAScript 2024' && note.items.includes('Map.groupBy')));
+  assert.ok(collections.versionNotes.some(note => note.edition === 'ECMAScript 2025' && note.items.includes('Set.prototype.union')));
+  assert.ok(collections.versionNotes.some(note => note.edition === 'ECMAScript 2026' && note.items.includes('Map.prototype.getOrInsertComputed')));
   const weakCollections = JSON.parse(fs.readFileSync(`${base}/t06-014.json`, 'utf8'));
   const weakCollectionNames = weakCollections.inventory.flatMap(group => group.items);
   assert.ok(weakCollectionNames.includes('WeakMap.prototype.getOrInsertComputed'));
