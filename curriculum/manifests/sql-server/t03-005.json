@@ -18,7 +18,7 @@
         "GROUP BY clause",
         "GROUP BY expression",
         "Multiple grouping columns",
-        "GROUP BY column ordinal",
+        "GROUP BY ordinal unsupported boundary",
         "GROUP BY ALL legacy syntax",
         "WHERE before grouping",
         "HAVING after grouping",
@@ -26,17 +26,32 @@
         "COUNT(*)",
         "COUNT(expression)",
         "COUNT(DISTINCT expression)",
+        "Aggregate ALL and DISTINCT modifiers",
+        "COUNT_BIG",
         "SUM",
         "AVG",
         "MIN",
         "MAX",
         "STRING_AGG",
+        "STRING_AGG WITHIN GROUP ordering",
+        "STRING_AGG DISTINCT unsupported boundary",
         "APPROX_COUNT_DISTINCT",
+        "APPROX_COUNT_DISTINCT accuracy and collation boundary",
+        "PRODUCT",
+        "PRODUCT DISTINCT",
+        "PRODUCT return type",
         "STDEV",
+        "STDEVP",
         "VAR",
+        "VARP",
+        "ANY_VALUE unsupported in SQL Server",
+        "MEDIAN unsupported in SQL Server",
+        "APPROX_MEDIAN unsupported in SQL Server",
+        "APPROX_QUANTILE unsupported in SQL Server",
         "CHECKSUM_AGG",
         "Aggregate NULL exclusion",
         "Aggregate over empty input",
+        "Aggregate result type and overflow",
         "GROUP BY with NULL"
       ]
     },
@@ -56,7 +71,9 @@
         "GROUPING_ID bitmask",
         "Explicit UNION ALL subtotal",
         "ROLLUP hierarchy",
-        "CUBE combination count"
+        "CUBE combination count",
+        "GROUPING SETS output limit",
+        "Legacy WITH CUBE and WITH ROLLUP"
       ]
     },
     {
@@ -64,11 +81,14 @@
       "title": "OVER clause, partitions, order, and frame behavior",
       "items": [
         "OVER clause",
+        "WINDOW named-window clause",
+        "WINDOW inheritance and extension",
         "PARTITION BY",
         "Window ORDER BY",
         "ROWS frame",
         "RANGE frame",
-        "GROUPS frame",
+        "RANGE offset unsupported boundary",
+        "GROUPS frame unsupported in SQL Server",
         "UNBOUNDED PRECEDING",
         "n PRECEDING",
         "CURRENT ROW",
@@ -78,6 +98,7 @@
         "RANGE BETWEEN frame",
         "Default window frame",
         "Window aggregate",
+        "DISTINCT aggregate OVER unsupported boundary",
         "Running total",
         "Moving average",
         "Partition boundary",
@@ -87,7 +108,7 @@
     },
     {
       "id": "ranking-and-offset-functions",
-      "title": "Ranking, offsets, and distribution functions",
+      "title": "Ranking, offsets, distribution, and percentile functions",
       "items": [
         "ROW_NUMBER",
         "RANK",
@@ -99,6 +120,11 @@
         "LAST_VALUE",
         "PERCENT_RANK",
         "CUME_DIST",
+        "PERCENTILE_CONT",
+        "PERCENTILE_DISC",
+        "APPROX_PERCENTILE_CONT",
+        "APPROX_PERCENTILE_DISC",
+        "Approximate percentile rank-error guarantee",
         "RANK tie gaps",
         "DENSE_RANK no tie gaps",
         "Nondeterministic ROW_NUMBER without unique order",
@@ -108,6 +134,13 @@
         "LEAD IGNORE NULLS",
         "FIRST_VALUE IGNORE NULLS",
         "LAST_VALUE IGNORE NULLS",
+        "LAG RESPECT NULLS",
+        "LEAD RESPECT NULLS",
+        "FIRST_VALUE RESPECT NULLS",
+        "LAST_VALUE RESPECT NULLS",
+        "NTILE bucket count",
+        "LAG and LEAD offset rules",
+        "SQL Server 2022 IGNORE NULLS availability and CU4 fix",
         "Window function versus grouped aggregate"
       ]
     }
@@ -143,17 +176,112 @@
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-group-by-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/functions/aggregate-functions-transact-sql?view=sql-server-ver17",
-    "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql?view=sql-server-ver17"
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-window-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/product-aggregate-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/count-big-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-count-distinct-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/string-agg-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/lag-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/lead-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/first-value-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/last-value-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/ntile-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-id-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/percentile-cont-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/percentile-disc-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/rank-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/row-number-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/dense-rank-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/percent-rank-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/cume-dist-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-having-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-percentile-cont-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-percentile-disc-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/any-value-transact-sql?view=fabric",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/median-transact-sql?view=fabric",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-median-transact-sql?view=fabric",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=sql-server-ver17"
   ],
-  "versionNotes": [],
+  "versionNotes": [
+    {
+      "edition": "SQL Server 2017 (14.x), SQL Server 2019 (15.x), SQL Server 2022 (16.x), and SQL Server 2025 (17.x)",
+      "items": [
+        "SQL Server 2017 added STRING_AGG; WITHIN GROUP ordering requires compatibility level 110 or higher."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/string-agg-transact-sql?view=sql-server-ver17"
+      ]
+    },
+    {
+      "edition": "SQL Server 2019 (15.x)",
+      "items": [
+        "SQL Server 2019 added APPROX_COUNT_DISTINCT for approximate unique non-NULL counts."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-count-distinct-transact-sql?view=sql-server-ver17"
+      ]
+    },
+    {
+      "edition": "SQL Server 2022 (16.x)",
+      "items": [
+        "SQL Server 2022 added the named WINDOW clause, which requires compatibility level 160. It also added IGNORE NULLS and RESPECT NULLS to LAG, LEAD, FIRST_VALUE, and LAST_VALUE; CU4 fixes a documented LAG/LEAD IGNORE NULLS issue. SQL Server 2022 added APPROX_PERCENTILE_CONT and APPROX_PERCENTILE_DISC, whose error guarantees are rank-based rather than value-based."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-window-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/lag-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/lead-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/first-value-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/last-value-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-percentile-cont-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-percentile-disc-transact-sql?view=sql-server-ver17"
+      ]
+    },
+    {
+      "edition": "SQL Server 2025 (17.x)",
+      "items": [
+        "SQL Server 2025 added PRODUCT as an aggregate and analytic function."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/product-aggregate-transact-sql?view=sql-server-ver17"
+      ]
+    }
+  ],
   "sourceSnapshot": {
     "authority": "Microsoft SQL Server 2025 Transact-SQL documentation",
-    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "SQL Server 2025 (17.x) aggregation, grouping sets, named windows, and analytic functions checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-group-by-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/functions/aggregate-functions-transact-sql?view=sql-server-ver17",
-      "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql?view=sql-server-ver17"
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-window-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/product-aggregate-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/count-big-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-count-distinct-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/string-agg-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/lag-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/lead-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/first-value-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/last-value-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/ntile-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-id-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/percentile-cont-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/percentile-disc-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/rank-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/row-number-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/dense-rank-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/percent-rank-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/cume-dist-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-having-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-percentile-cont-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-percentile-disc-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/any-value-transact-sql?view=fabric",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/median-transact-sql?view=fabric",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-median-transact-sql?view=fabric",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=sql-server-ver17"
     ]
   },
   "scopeExclusions": [
