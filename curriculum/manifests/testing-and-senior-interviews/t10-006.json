@@ -190,13 +190,15 @@
     "https://learn.microsoft.com/en-us/azure/devops/develop/git/git-pull-requests",
     "https://martinfowler.com/bliki/DefinitionOfRefactoring.html",
     "https://martinfowler.com/books/refactoring.html",
-    "https://martinfowler.com/articles/evodb.html"
+    "https://martinfowler.com/articles/evodb.html",
+    "https://martinfowler.com/bliki/IsChangingInterfacesRefactoring.html",
+    "https://refactoring.com/catalog/"
   ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "Google Engineering Practices reviewer and author guides; Microsoft Learn pull request guidance; Martin Fowler's refactoring definition and catalog",
-    "edition": "Timeless engineering practices and current public guidance checked 2026-11-14; language-specific refactoring catalog entries use current names",
-    "checkedAt": "2026-11-14",
+    "edition": "Timeless engineering practices and current public guidance checked 2026-11-17; Fowler refactoring and modernization articles checked on that date.",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://google.github.io/eng-practices/review/reviewer/",
       "https://google.github.io/eng-practices/review/developer/",
@@ -204,7 +206,14 @@
       "https://learn.microsoft.com/en-us/azure/devops/develop/git/git-pull-requests",
       "https://martinfowler.com/bliki/DefinitionOfRefactoring.html",
       "https://martinfowler.com/books/refactoring.html",
-      "https://martinfowler.com/articles/evodb.html"
+      "https://martinfowler.com/articles/evodb.html",
+      "https://martinfowler.com/bliki/IsChangingInterfacesRefactoring.html",
+      "https://refactoring.com/catalog/",
+      "https://martinfowler.com/bliki/StranglerFigApplication.html",
+      "https://sre.google/sre-book/postmortem-culture/",
+      "https://learn.microsoft.com/en-us/devops/develop/git/git-pull-requests",
+      "https://google.github.io/eng-practices/review/reviewer/looking-for.html",
+      "https://google.github.io/eng-practices/review/reviewer/comments.html"
     ]
   },
   "scopeExclusions": [
@@ -214,5 +223,12 @@
     "Language-specific compiler refactoring APIs and complete Fowler refactoring catalog are outside this bounded scope.",
     "Organizational performance review and promotion processes are not code-review practices."
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Refactoring is intended to preserve observable behavior; tests provide evidence but do not prove equivalence for unobserved behavior.",
+    "A change to a published interface may be behavior breaking even if internal callers were updated; unknown external consumers and serialized/runtime-discovered names expand the observable contract.",
+    "Incremental migrations may be irreversible after new writes or external side effects; a feature flag does not reverse persisted data.",
+    "Google code review terminology and workflow recommendations are organization-specific examples, not universal approval policy.",
+    "Shadow requests must not cause duplicate side effects; parallel-run and dual-write safety depends on explicit ownership and reconciliation."
+  ]
 }
