@@ -53,7 +53,18 @@
         "Many-to-many relationship",
         "Weak entity",
         "Temporal data modeling",
-        "Soft-delete column modeling"
+        "Soft-delete column modeling",
+        "Prime attribute",
+        "Nontrivial functional dependency",
+        "Lossless decomposition",
+        "Dependency preservation",
+        "Multivalued dependency",
+        "Fourth normal form (4NF)",
+        "Join dependency",
+        "Fifth normal form (5NF / project-join normal form)",
+        "Surrogate identifier generation with IDENTITY and SEQUENCE",
+        "Sixth normal form (6NF)",
+        "Domain-key normal form (DKNF)"
       ]
     },
     {
@@ -90,7 +101,12 @@
         "COALESCE null handling",
         "NULLIF null handling",
         "Unique constraint and multiple NULL behavior boundary",
-        "Deferred constraint checking (provider-specific distinction)"
+        "Deferred constraint checking (provider-specific distinction)",
+        "ON DELETE SET DEFAULT",
+        "ON UPDATE NO ACTION",
+        "ON UPDATE CASCADE",
+        "ON UPDATE SET NULL",
+        "ON UPDATE SET DEFAULT"
       ]
     },
     {
@@ -141,7 +157,15 @@
         "Precision and scale",
         "Floating-point approximation",
         "SARGable type alignment",
-        "datetimeoffset UTC offset preservation boundary"
+        "datetimeoffset UTC offset preservation boundary",
+        "hierarchyid",
+        "vector(n, base_type)",
+        "text, ntext, and image legacy types",
+        "sysname",
+        "table type and table-valued parameter boundary",
+        "cursor type and column-storage boundary",
+        "Alias data type and CLR user-defined type",
+        "timestamp deprecated synonym for rowversion"
       ]
     },
     {
@@ -177,7 +201,11 @@
         "Unique constraint scoped by tenant",
         "Collation choice for identifiers",
         "Deterministic ordering key modeling",
-        "Temporal table modeling"
+        "Temporal table modeling",
+        "IDENTITY property",
+        "SEQUENCE object",
+        "ON DELETE SET DEFAULT decision",
+        "ON UPDATE CASCADE versus immutable key"
       ]
     }
   ],
@@ -221,31 +249,94 @@
     "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/data-types/precision-scale-and-length-transact-sql?view=sql-server-ver17",
-    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/null-and-unknown-transact-sql?view=sql-server-ver17"
+    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/null-and-unknown-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-table-constraint-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-unique-indexes?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/decimal-and-numeric-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/money-and-smallmoney-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/date-and-time-types?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/datetime2-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/datetimeoffset-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-type-precedence-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/try-cast-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/collations?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/spatial/spatial-data-types-overview?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/azure/architecture/patterns/expand-contract",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-functions-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/hierarchical-data-sql-server?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/data-types/string-and-binary-types?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-sequence-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/tables/use-table-valued-parameters-database-engine?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-types/create-user-defined-data-types-database-engine?view=sql-server-ver17"
   ],
   "versionNotes": [
     {
       "edition": "SQL Server 2025 (17.x)",
       "items": [
-        "SQL Server 2025 adds a native json data type alongside the established nvarchar-based JSON storage and processing surface; keep the new type distinct from the older JSON functions that operate on text."
+        "The SQL Server 2025 (17.x) native json data type and JSON indexes are generally available in SQL Server 2025; JSON functions predate this type and can also operate on text columns. The json type stores documents in a binary format, is available under all compatibility levels, and has explicit conversion and index-key limitations.",
+        "A varchar(n) declaration counts bytes, not characters. SQL Server 2019 and later UTF-8 collations allow varchar/char to represent Unicode using UTF-8, so the number of characters that fit can vary by encoded byte length.",
+        "SQL Server 2025 vector data type and vector functions are generally available. Vector indexes and VECTOR_SEARCH are preview in the SQL Server 2025 Database Engine; float16 vectors also remain preview for boxed SQL Server 2025. Do not carry Azure SQL availability status over to boxed SQL Server."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-functions-transact-sql?view=sql-server-ver17"
       ]
     }
   ],
   "sourceSnapshot": {
-    "authority": "Microsoft SQL Server 2025 relational design, constraint, type, and T-SQL documentation",
-    "edition": "SQL Server 2025 (17.x) modeling and type surface checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "authority": "Microsoft SQL Server 2025 relational design, constraints, data types, temporal modeling, and T-SQL documentation",
+    "edition": "SQL Server 2025 (17.x) relational modeling and type surface checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
-      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver17",
-      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/precision-scale-and-length-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-table-constraint-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/null-and-unknown-transact-sql?view=sql-server-ver17",
-      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type?view=sql-server-ver17"
+      "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-unique-indexes?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/decimal-and-numeric-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/money-and-smallmoney-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/date-and-time-types?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/datetime2-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/datetimeoffset-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-type-precedence-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/try-cast-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/collations?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-functions-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/hierarchical-data-sql-server?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/data-types/string-and-binary-types?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-sequence-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/tables/use-table-valued-parameters-database-engine?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-types/create-user-defined-data-types-database-engine?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/spatial/spatial-data-types-overview?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/azure/architecture/patterns/expand-contract",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description"
     ]
   },
   "scopeExclusions": [
@@ -254,5 +345,23 @@
     "Temporal-table querying and operations are covered in a separate SQL Server operations topic; this scope treats temporal modeling as a schema choice.",
     "Provider-specific PostgreSQL, MySQL, and document-store modeling differences are compared in t03-001, not asserted as SQL Server semantics."
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "In SQL Server, CHECK rejects FALSE but accepts UNKNOWN, so a nullable column can pass a CHECK; add NOT NULL when requiredness is part of the rule.",
+    "SQL Server UNIQUE treats NULL as a key value and permits at most one NULL in a single-column nullable unique key; a filtered unique index can enforce uniqueness only for present values.",
+    "SQL Server foreign-key and CHECK constraints are not deferred until transaction commit; WITH NOCHECK can leave an enabled constraint untrusted for existing rows.",
+    "SQL Server 2025 native json type and JSON indexes are generally available. JSON functions predate the native type; a JSON column is not a standard index key and conversion out to character/binary types must be explicit.",
+    "SQL Server 2025 vector data type and vector functions are GA, while vector indexes and VECTOR_SEARCH remain Preview in the boxed SQL Server 2025 engine; float16 vectors are also Preview there.",
+    "SQL Server varchar(n) capacity is measured in bytes; UTF-8 collations allow Unicode in varchar, but multibyte characters consume more than one byte.",
+    "datetimeoffset stores and preserves a numeric offset while SQL Server compares values in UTC; it does not preserve a named time zone or its DST rule history.",
+    "rowversion is an automatically generated 8-byte database counter for change detection, not a date or time.",
+    "IDENTITY and SEQUENCE values can have gaps and do not guarantee business chronology or commit order; IDENTITY does not enforce uniqueness without a key/unique constraint.",
+    "float and real are approximate numeric types; decimal/numeric are exact fixed-precision types with precision/scale arithmetic and overflow considerations.",
+    "SQL Server documentation warns that money/smallmoney calculations can encounter rounding or truncation issues; decimal is recommended when used in calculations.",
+    "System-versioned temporal history records database system-time row versions and is not automatically business-valid-time history or a tamper-proof audit trail.",
+    "An enabled but untrusted foreign-key or CHECK constraint may enforce future writes while old data has not been verified; trust requires validation of existing rows.",
+    "The hierarchyid type encodes a node position but does not automatically enforce a valid tree or parent-child existence.",
+    "Legacy text, ntext, and image types are deprecated and documented for removal in a future SQL Server version; new development should use max types as appropriate.",
+    "A table-valued parameter uses a user-defined table type and is READONLY; table and cursor types are not ordinary scalar column types."
+  ]
 }
