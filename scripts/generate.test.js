@@ -1084,7 +1084,7 @@ test('resilience inventory treats retries, circuit breakers, concurrency limits,
   const all = manifest.inventory.flatMap(group => group.items);
   assert.equal(new Set(all).size, all.length);
   for (const item of ['Full jitter', 'Retry budget', 'Closed circuit state', 'Half-open probe request', 'Token bucket algorithm', 'Concurrency limiter', 'HTTP 429 Too Many Requests', 'Hedging strategy']) assert.ok(all.includes(item), item);
-  assert.ok(manifest.versionNotes.some(note => note.edition.includes('.NET 10 resilience libraries')));
+  assert.ok(manifest.versionNotes.some(note => note.edition.includes('.NET 11 current resilience guidance')));
 });
 
 test('distributed transaction inventory does not conflate compensation with rollback or claim global exactly-once', () => {
