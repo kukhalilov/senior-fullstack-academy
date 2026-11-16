@@ -82,6 +82,7 @@
       "title": "Copying and copy-by-change methods",
       "items": [
         "Array.prototype.concat",
+        "Symbol.isConcatSpreadable",
         "Array.prototype.slice",
         "Array.prototype.toReversed",
         "Array.prototype.toSorted",
@@ -166,13 +167,26 @@
   ],
   "versionNotes": [
     {
-      "edition": "ECMAScript 2026",
+      "edition": "ECMAScript 2019",
       "items": [
-        "Array.fromAsync"
+        "Array.prototype.flat",
+        "Array.prototype.flatMap",
+        "Stable Array.prototype.sort"
       ],
       "sourceUrls": [
+        "https://tc39.es/ecma262/2019/",
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
-        "https://github.com/tc39/proposal-array-from-async"
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort"
+      ]
+    },
+    {
+      "edition": "ECMAScript 2022",
+      "items": [
+        "Array.prototype.at"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2022/",
+        "https://tc39.es/ecma262/2026/multipage/indexed-collections.html"
       ]
     },
     {
@@ -186,19 +200,42 @@
         "Array.prototype.with"
       ],
       "sourceUrls": [
+        "https://tc39.es/ecma262/2023/",
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://github.com/tc39/proposal-change-array-by-copy"
+      ]
+    },
+    {
+      "edition": "ECMAScript 2024",
+      "items": [
+        "Array.fromAsync"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+        "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+        "https://github.com/tc39/proposal-array-from-async"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "ECMA-262 and MDN JavaScript reference",
     "edition": "ECMAScript 2026",
-    "checkedAt": "2026-11-13",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+      "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
       "https://tc39.es/ecma262/2026/",
+      "https://tc39.es/ecma262/2019/",
+      "https://tc39.es/ecma262/2022/",
+      "https://tc39.es/ecma262/2023/",
+      "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+      "https://tc39.es/ecma402/2026/",
       "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findLast",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
       "https://github.com/tc39/proposal-array-from-async",
       "https://github.com/tc39/proposal-change-array-by-copy"
     ]
@@ -211,6 +248,22 @@
     "Third-party libraries"
   ],
   "generationAllowed": true,
+  "accuracyFacts": [
+    "An Array is an exotic object with special handling for array-index property keys. Its length is a non-enumerable, non-configurable data property with an integer value from 0 through 2^32 - 1; reducing length deletes configurable indexed properties at or above the new length.",
+    "An array index is not the same as every canonical-looking numeric string; 2^32 - 1 is not an array index. Adding an own array-index property at or above length updates length to index + 1.",
+    "Array(n) with one Number argument creates an array with that length and holes, while Array.of(n) creates a one-element array containing n. Array.from prefers an iterable and otherwise reads an array-like length and indexed values.",
+    "Array.fromAsync is standardized in ECMAScript 2024. It prefers an async iterator, then adapts a synchronous iterator, and otherwise consumes array-like indexed values. Its mapper is awaited sequentially as values are consumed; it does not map all elements concurrently.",
+    "A hole is an absent indexed property, not a stored undefined value. Whether a method skips holes, visits them as undefined, or preserves/creates holes differs by method and must be explained per operation.",
+    "Methods such as forEach, map, filter, some, every, reduce, and indexOf test property presence before reading an index; inherited indexed properties can count as present. Methods such as find/findIndex/findLast/findLastIndex and includes read each index; when neither the array nor its prototype chain has that index, the read produces undefined.",
+    "Array.from over a sparse Array uses its iterator, whose values at holes are undefined, so the result is dense. Array-like Array.from and Array.fromAsync read each index up to length and likewise produce values for absent indices.",
+    "Array iterators are live with respect to the iterated Array: each next step uses the current length and gets the current indexed value, so mutations during iteration can affect later results.",
+    "concat, slice, splice, map, filter, flat, and flatMap use species-related construction where specified; the ECMAScript 2023 copying methods toReversed, toSorted, toSpliced, and with create ordinary Arrays rather than consulting Array species.",
+    "The default sort order compares string representations by UTF-16 code units. A comparator must define a consistent ordering for predictable results; sort is stable in current ECMAScript, while its time and space complexity are not specified. Comparator results are converted to Number and NaN is treated like zero.",
+    "The copying methods toReversed, toSorted, toSpliced, and with do not mutate the receiver and create dense results by reading indexed positions; holes therefore become undefined values. Their names describe the changed copy, while reverse, sort, and splice mutate the receiver.",
+    "Array.prototype methods are generally generic over array-like receivers unless their algorithm requires otherwise; generic use requires a length and indexed properties, but the full design of standalone array-like objects is outside this topic.",
+    "Array.prototype[Symbol.unscopables] excludes listed names from with-statement binding resolution for legacy compatibility; it does not affect ordinary property lookup.",
+    "Array.prototype.toLocaleString forwards locale/options to element conversions, while the separator between elements is implementation-defined and locale-sensitive; those arguments do not select that separator."
+  ],
   "comparisonSources": [
     "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"

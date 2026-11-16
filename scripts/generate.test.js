@@ -112,14 +112,14 @@ test('the bounded JavaScript Array topic has a named inventory and recent change
   assert.equal(manifest.inventoryComplete, true);
   assert.equal(manifest.concepts.length > 0, true);
   assert.equal(manifest.inventory.length, 10);
-  assert.equal(names.length, 48);
+  assert.equal(names.length, 49);
   assert.equal(manifest.generationAllowed, true);
   assert.ok(manifest.scopeExclusions.length > 0);
   assert.ok(manifest.comparisonSources.length > 0);
   assert.ok(manifest.versionNotes.every(note => note.sourceUrls.length > 0));
   assert.ok(names.includes('Array.fromAsync'));
   assert.ok(names.includes('Array.prototype[Symbol.iterator]'));
-  assert.ok(manifest.versionNotes.some(note => note.edition === 'ECMAScript 2026' && note.items.includes('Array.fromAsync')));
+  assert.ok(manifest.versionNotes.some(note => note.edition === 'ECMAScript 2024' && note.items.includes('Array.fromAsync')));
   assert.ok(manifest.sourceSnapshot.urls.includes('https://tc39.es/ecma262/2026/multipage/indexed-collections.html'));
 });
 
