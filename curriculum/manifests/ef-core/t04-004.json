@@ -24,12 +24,18 @@
         "EntityState.Modified",
         "EntityState.Deleted",
         "ChangeTracker.Entries",
+        "ChangeTracker.HasChanges",
+        "ChangeTracker.DebugView",
         "ChangeTracker.DetectChanges",
         "AutoDetectChangesEnabled",
         "Snapshot change tracking",
         "Notification change tracking",
+        "ChangeTrackingStrategy.Snapshot",
+        "ChangeTrackingStrategy.ChangedNotifications",
         "ChangingAndChangedNotifications strategy",
+        "ChangeTrackingStrategy.ChangingAndChangedNotificationsWithOriginalValues",
         "Change-tracking proxy",
+        "UseChangeTrackingProxies",
         "INotifyPropertyChanged",
         "INotifyPropertyChanging",
         "DbContext.Add",
@@ -37,12 +43,15 @@
         "DbContext.Update",
         "DbContext.Remove",
         "EntityEntry.State",
+        "EntityEntry.DebugView",
+        "EntityEntry.IsKeySet",
         "EntityEntry.Property",
         "EntityEntry.Collection",
         "EntityEntry.Reference",
         "SaveChanges",
         "SaveChangesAsync",
         "AcceptAllChanges",
+        "SaveChanges(acceptAllChangesOnSuccess)",
         "ChangeTracker.Clear",
         "OriginalValues",
         "CurrentValues",
@@ -124,21 +133,30 @@
     ]
   ],
   "comparisonSources": [
+    "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
     "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
     "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
     "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
-    "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection"
+    "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection",
+    "https://learn.microsoft.com/en-us/ef/core/change-tracking/debug-views",
+    "https://learn.microsoft.com/en-us/ef/core/change-tracking/explicit-tracking"
+    ,"https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes"
   ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "Microsoft EF Core 10 tracking, change detection, identity resolution, and concurrency documentation",
-    "edition": "EF Core current stable version checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "EF Core 11.0.0 shipped; change tracking docs checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
+      "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
       "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
       "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
       "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
-      "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection"
+      "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection",
+      "https://learn.microsoft.com/en-us/ef/core/change-tracking/debug-views",
+      "https://learn.microsoft.com/en-us/ef/core/change-tracking/explicit-tracking",
+      "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
     ]
   },
   "scopeExclusions": [
