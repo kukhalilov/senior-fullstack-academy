@@ -658,6 +658,10 @@ test('JavaScript language inventories use current standard names without duplica
   assert.ok(errors.inventory.flatMap(group => group.items).includes('Error.isError'));
   assert.ok(errors.versionNotes.some(note => note.edition === 'ECMAScript 2026' && note.items.includes('Error.isError')));
   assert.ok(errors.accuracyFacts.some(fact => fact.includes('Proxy wrapping an Error')));
+  const declarations = JSON.parse(fs.readFileSync(`${base}/t06-001.json`, 'utf8'));
+  assert.ok(declarations.accuracyFacts.some(fact => fact.includes('including typeof on the binding')));
+  assert.ok(declarations.accuracyFacts.some(fact => fact.includes('are not properties of globalThis')));
+  assert.ok(declarations.accuracyFacts.some(fact => fact.includes('observes captured bindings')));
   const functionForms = JSON.parse(fs.readFileSync(`${base}/t06-003.json`, 'utf8'));
   assert.ok(functionForms.accuracyFacts.some(fact => fact.includes('only when the argument is absent or explicitly undefined')));
   assert.ok(functionForms.accuracyFacts.some(fact => fact.includes('mapped arguments object only with a simple parameter list')));
