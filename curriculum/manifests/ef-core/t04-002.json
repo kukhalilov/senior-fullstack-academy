@@ -40,7 +40,8 @@
         "Convention-based model configuration",
         "Fluent API precedence",
         "Data annotation precedence",
-        "OnModelCreating"
+        "OnModelCreating",
+        "UseNamedDefaultConstraints (EF Core 10 SQL Server)"
       ]
     },
     {
@@ -61,11 +62,14 @@
         "IsUnicode",
         "HasPrecision",
         "HasDefaultValue",
+        "HasDefaultValue (named constraint overload)",
         "HasDefaultValueSql",
+        "HasDefaultValueSql (named constraint overload)",
         "HasComputedColumnSql",
         "ValueGeneratedOnAdd",
         "ValueGeneratedOnAddOrUpdate",
         "ValueGeneratedNever",
+        "HasSentinel",
         "ValueConverter",
         "HasConversion",
         "ValueComparer",
@@ -74,7 +78,9 @@
         "Shadow property",
         "Indexer property",
         "Owned property versus complex type",
-        "JSON column mapping via ToJson (EF Core 10)"
+        "JSON column mapping via ToJson (EF Core 10)",
+        "ComplexCollection",
+        "Complex type property path configuration"
       ]
     },
     {
@@ -105,7 +111,8 @@
         "Natural key",
         "Surrogate key",
         "Index sort order",
-        "Included property provider-specific boundary"
+        "Included property provider-specific boundary",
+        "Keys and indexes on complex type properties (EF Core 11)"
       ]
     }
   ],
@@ -140,25 +147,32 @@
   ],
   "versionNotes": [
     {
-      "edition": "EF Core 10 stable",
+      "edition": "EF Core 11.0.0 released 2026-11-10; model-building features cross-checked 2026-11-16",
       "items": [
-        "EF Core 10 supports mapping complex types to JSON columns; EF Core 11 complex-type refinements remain in development at the date of this source check."
+        "EF Core 10 added complex types mapped to JSON with ToJson. EF Core 11.0.0 is released and adds complex types/JSON columns with TPT/TPC, complex types in Cosmos, chained nested property configuration, complex collections, and keys/indexes on nested complex-type paths (including applicable JSON paths). Do not describe these shipped EF Core 11 capabilities as preview-only."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ]
     }
   ],
   "sourceSnapshot": {
-    "authority": "Microsoft EF Core 10 model-building documentation",
-    "edition": "EF Core 10 stable; EF Core 11 development status checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "authority": "Microsoft EF Core model-building documentation and .NET 11 final release notes",
+    "edition": "EF Core 11.0.0 released 2026-11-10; checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/ef/core/modeling/",
       "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
       "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
-      "https://learn.microsoft.com/en-us/ef/core/modeling/keys"
+      "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+      "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
     ]
   },
   "scopeExclusions": [
