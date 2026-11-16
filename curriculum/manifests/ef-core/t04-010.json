@@ -129,26 +129,30 @@
   ],
   "versionNotes": [
     {
-      "edition": "EF Core 7 through 10 set-based DML",
+      "edition": "EF Core 7 through 11 set-based DML; EF Core 11.0.0 stable",
       "items": [
-        "ExecuteUpdate and ExecuteDelete were introduced in EF Core 7 and remain the built-in set-based update/delete APIs in EF Core 10; bulk insertion and richer bulk semantics may require provider or third-party libraries."
+        "ExecuteUpdate and ExecuteDelete were introduced in EF Core 7 and remain the built-in set-based update/delete APIs in EF Core 11. EF Core 11.0.0 shipped on 2026-11-10 and requires .NET 11. These APIs are relational-provider dependent, execute immediately, and do not use or synchronize the change tracker; EF Core does not provide a matching built-in ExecuteInsert API in this scope. Bulk insertion and richer bulk semantics may require provider or third-party libraries."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/saving/execute-insert-update-delete",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-7.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft EF Core 10 raw SQL and set-based DML docs; Dapper official project documentation",
-    "edition": "EF Core 10 stable and current Dapper documentation checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "EF Core 11.0.0 stable and current Dapper documentation checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/ef/core/querying/sql-queries",
       "https://learn.microsoft.com/en-us/ef/core/saving/execute-insert-update-delete",
       "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
-      "https://github.com/DapperLib/Dapper"
+      "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
+      "https://github.com/DapperLib/Dapper",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
     ]
   },
   "scopeExclusions": [
