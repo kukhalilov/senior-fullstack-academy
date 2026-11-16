@@ -805,20 +805,24 @@ test('CSS property manifests cover the complete pinned standard and experimental
   const base = 'curriculum/manifests/react-and-frontend';
   const manifests = ['t07-016.json', 't07-017.json', 't07-018.json'].map(file => JSON.parse(fs.readFileSync(`${base}/${file}`, 'utf8')));
   const propertyGroups = manifests.flatMap(manifest => manifest.inventory.filter(group => /properties/i.test(group.title)));
-  const standard = propertyGroups.filter(group => !group.title.startsWith('Experimental')).flatMap(group => group.items);
-  const experimental = propertyGroups.filter(group => group.title.startsWith('Experimental')).flatMap(group => group.items);
-  assert.equal(standard.length, 498);
-  assert.equal(new Set(standard).size, 498, 'standard properties have no omissions caused by duplicates');
-  assert.equal(experimental.length, 40);
-  assert.equal(new Set(experimental).size, 40, 'experimental properties have no omissions caused by duplicates');
+  const allProperties = propertyGroups.flatMap(group => group.items);
+  assert.equal(allProperties.length, 538);
+  assert.equal(new Set(allProperties).size, 538, 'property names have no omissions caused by duplicates');
   for (const manifest of manifests) {
     assert.equal(manifest.inventoryComplete, true, manifest.id);
     assert.equal(manifest.generationAllowed, true, manifest.id);
     assert.ok(manifest.sourceSnapshot.urls.some(url => url.endsWith('/css/properties.json')));
     for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${manifest.id}/${group.id}`);
   }
-  for (const item of ['container-type', 'display', 'font-palette', 'line-clamp', 'scrollbar-width', 'text-wrap', 'view-transition-name', 'background-color', 'fill']) assert.ok(standard.includes(item), item);
-  assert.ok(experimental.includes('anchor-name'));
+  for (const item of ['container-type', 'display', 'font-palette', 'line-clamp', 'scrollbar-width', 'text-wrap', 'view-transition-name', 'background-color', 'fill', 'anchor-name']) assert.ok(allProperties.includes(item), item);
+  const cssProperties = JSON.parse(fs.readFileSync('curriculum/manifests/react-and-frontend/t07-018.json', 'utf8'));
+  const cssInventory = cssProperties.inventory.flatMap(group => group.items);
+  const sourceSnapshot = JSON.parse(fs.readFileSync('curriculum/source-snapshots/css-properties-mdn-2026-11-16.json', 'utf8'));
+  assert.equal(cssInventory.length, 322);
+  assert.deepEqual(new Set(sourceSnapshot.records.map(record => record.name)), new Set(cssInventory));
+  assert.ok(sourceSnapshot.records.every(record => record.description && record.canonicalUrl && typeof record.supportLabel === 'string'));
+  assert.equal(sourceSnapshot.records.find(record => record.name === 'scroll-timeline').supportLabel, 'Baseline 2026');
+  assert.equal(sourceSnapshot.records.find(record => record.name === 'timeline-trigger').experimental, true);
 });
 
 test('accessibility inventory freezes all WCAG 2.2 criteria, current WAI-ARIA roles, attributes, and APG patterns', () => {
