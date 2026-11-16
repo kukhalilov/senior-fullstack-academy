@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1944,
+  "taskCount": 1946,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -24011,16 +24011,46 @@
       "inventoryGroup": "tradeoff-communication-and-case-practice"
     },
     {
-      "id": "t10-009-practice",
+      "id": "t10-009-practice-critical-rendering-path",
       "track": "track-10",
-      "title": "architecture interviews tradeoffs requirements and constraints — Exercises and worked solutions",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Explain the browser critical rendering path",
       "module": "t10-009",
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
       "phase": "practice",
       "prerequisites": [
         "t10-009-reference-tradeoff-communication-and-case-practice"
       ],
-      "status": "draft-generation-eligible"
+      "status": "draft-generation-eligible",
+      "problemId": "critical-rendering-path",
+      "problemTitle": "Explain the browser critical rendering path"
+    },
+    {
+      "id": "t10-009-practice-search-typeahead-request-lifecycle",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Trace a search-as-you-type request end to end",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t10-009-practice-critical-rendering-path"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "search-typeahead-request-lifecycle",
+      "problemTitle": "Trace a search-as-you-type request end to end"
+    },
+    {
+      "id": "t10-009-practice-deploy-fullstack-service-safely",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Plan a safe full-stack deployment and rollback",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t10-009-practice-search-typeahead-request-lifecycle"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "deploy-fullstack-service-safely",
+      "problemTitle": "Plan a safe full-stack deployment and rollback"
     },
     {
       "id": "t10-009-interview",
@@ -24030,7 +24060,7 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
       "phase": "interview",
       "prerequisites": [
-        "t10-009-practice"
+        "t10-009-practice-deploy-fullstack-service-safely"
       ],
       "status": "draft-generation-eligible"
     },

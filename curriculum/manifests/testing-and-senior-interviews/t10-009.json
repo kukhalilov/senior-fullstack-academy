@@ -176,6 +176,85 @@
       ]
     }
   ],
+  "practiceProblems": [
+    {
+      "id": "critical-rendering-path",
+      "name": "Explain the browser critical rendering path",
+      "difficulty": "intermediate",
+      "patterns": [
+        "trace HTML, CSS, JavaScript, and image dependencies to first render",
+        "identify render-blocking resources and connect user-visible outcomes to performance metrics"
+      ],
+      "statement": "In an interview, explain what happens from navigation to the first useful pixels, then diagnose a page whose largest above-the-fold heading appears late. Distinguish network loading, parsing, DOM/CSSOM construction, script execution, style, layout, paint, and compositing; recommend changes tied to evidence.",
+      "constraints": [
+        "The page contains HTML, an external stylesheet, a classic script, a web font, and a hero image.",
+        "The explanation must distinguish the initial rendering path from later interaction-driven rendering.",
+        "Recommendations must preserve required behavior and be verified with browser performance evidence."
+      ],
+      "examples": [
+        {
+          "input": "A stylesheet is slow, a classic script in the head reads and changes the DOM, and the hero image is discovered late in a large CSS background.",
+          "output": "Explain which dependencies delay first render, how script placement or loading strategy changes the dependency graph, and how to make the hero discoverable earlier without blindly deferring required code."
+        }
+      ],
+      "sourceUrls": [
+        "https://web.dev/learn/performance/understanding-the-critical-path",
+        "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path"
+      ]
+    },
+    {
+      "id": "search-typeahead-request-lifecycle",
+      "name": "Trace a search-as-you-type request end to end",
+      "difficulty": "advanced",
+      "patterns": [
+        "trace input events through client state, network, API, search storage, and response rendering",
+        "handle debounce, cancellation, out-of-order results, accessibility, and server-side safeguards"
+      ],
+      "statement": "Design and explain a search suggestion box from the user's keystroke through the displayed results. Cover input semantics, request timing, stale-response protection, API and database responsibilities, loading/empty/error states, keyboard and assistive-technology behavior, and abuse/privacy boundaries.",
+      "constraints": [
+        "Users can type rapidly, erase the query, navigate suggestions by keyboard, and select a result.",
+        "Network requests can finish out of order or fail; cancelling client work does not guarantee that server work never began.",
+        "Suggestions are untrusted data and the backend must enforce authorization and resource limits."
+      ],
+      "examples": [
+        {
+          "input": "The user types `ca`, then `cat`; the `cat` response returns first and the older `ca` response returns later.",
+          "output": "Only suggestions for the current query are shown; explain debounce, AbortController or a request-generation guard, and the accessible combobox interaction."
+        }
+      ],
+      "sourceUrls": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort",
+        "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/combobox_role",
+        "https://react.dev/learn/synchronizing-with-effects"
+      ]
+    },
+    {
+      "id": "deploy-fullstack-service-safely",
+      "name": "Plan a safe full-stack deployment and rollback",
+      "difficulty": "advanced",
+      "patterns": [
+        "trace commit to verified artifact to staged production rollout",
+        "preserve backward compatibility across application, database, configuration, and traffic changes"
+      ],
+      "statement": "Describe how you would take a reviewed full-stack change from source control to production, verify it, detect failure, and recover. Include frontend assets, an ASP.NET Core API, database schema changes, secrets/configuration, health checks, observability, traffic strategy, and rollback or roll-forward decisions.",
+      "constraints": [
+        "The deployment must use a reproducible artifact built and tested once, then promoted between environments.",
+        "Old and new application instances may overlap during rollout; schema changes must remain compatible during that period.",
+        "Production secrets must not be committed to the repository or exposed to untrusted pull-request workflows."
+      ],
+      "examples": [
+        {
+          "input": "A release adds a non-null database field and a new API response property while old instances may still serve traffic.",
+          "output": "Use an expand/backfill/contract sequence, deploy compatible code and schema in stages, verify readiness and user-facing signals, then remove compatibility only after old instances and clients no longer depend on it."
+        }
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+        "https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments"
+      ]
+    }
+  ],
   "inventoryComplete": true,
   "comparisons": [
     [
@@ -228,7 +307,17 @@
       "https://docs.cloud.google.com/architecture/framework",
       "https://docs.cloud.google.com/architecture/framework/reliability",
       "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework",
-      "https://sre.google/sre-book/service-level-objectives/"
+      "https://sre.google/sre-book/service-level-objectives/",
+      "https://web.dev/learn/performance/understanding-the-critical-path",
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+      "https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort",
+      "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/combobox_role",
+      "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-activedescendant",
+      "https://react.dev/learn/synchronizing-with-effects",
+      "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments",
+      "https://docs.github.com/en/actions/reference/security/secure-use"
     ]
   },
   "scopeExclusions": [

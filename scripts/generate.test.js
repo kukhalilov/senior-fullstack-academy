@@ -624,6 +624,12 @@ test('the remaining senior practice topics have explicit closed, source-backed c
     for(const name of required) assert.ok(names.includes(name),`${id}: ${name}`);
     assert.ok(manifest.sourceSnapshot.urls.length>=3,id);
   }
+  const architecture=JSON.parse(fs.readFileSync(`${base}/t10-009.json`,'utf8'));
+  const scenarios=new Map(architecture.practiceProblems.map(problem=>[problem.id,problem]));
+  for(const id of ['critical-rendering-path','search-typeahead-request-lifecycle','deploy-fullstack-service-safely']) {
+    assert.ok(scenarios.has(id),`t10-009 scenario: ${id}`);
+    assert.ok(scenarios.get(id).sourceUrls.length>=2,`t10-009 scenario sources: ${id}`);
+  }
 });
 
 test('JavaScript language inventories use current standard names without duplicate entries', () => {
