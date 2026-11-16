@@ -25,14 +25,37 @@
         "Query execution boundary",
         "ToList",
         "ToListAsync",
+        "ToArray",
+        "ToArrayAsync",
+        "ToDictionary",
+        "ToDictionaryAsync",
+        "AsQueryable",
         "First",
         "FirstAsync",
+        "FirstOrDefault",
+        "FirstOrDefaultAsync",
         "Single",
         "SingleAsync",
+        "SingleOrDefault",
+        "SingleOrDefaultAsync",
+        "Last",
+        "LastAsync",
+        "LastOrDefault",
+        "LastOrDefaultAsync",
         "Any",
         "AnyAsync",
+        "All",
+        "AllAsync",
         "Count",
         "CountAsync",
+        "LongCount",
+        "LongCountAsync",
+        "Min and MinAsync",
+        "Max and MaxAsync",
+        "Sum and SumAsync",
+        "Average and AverageAsync",
+        "MaxBy and MaxByAsync",
+        "MinBy and MinByAsync",
         "AsAsyncEnumerable",
         "AsEnumerable",
         "ToQueryString",
@@ -43,6 +66,17 @@
         "Scalar projection",
         "Anonymous-type projection",
         "DTO projection"
+        ,"Where and Select translation",
+        "OrderBy and ThenBy",
+        "Skip and Take",
+        "Distinct",
+        "Contains",
+        "Join and GroupJoin",
+        "LeftJoin (.NET 10)",
+        "RightJoin (.NET 10)",
+        "FullJoin (.NET 11)",
+        "GroupBy and aggregate translation",
+        "Set operators (Concat, Union, Intersect, Except)"
       ]
     },
     {
@@ -72,6 +106,10 @@
         "Compiled query cache",
         "Query plan cache key",
         "Provider-specific collation translation"
+        ,"EF Core query compilation cache",
+        "Dynamic query expression shape",
+        "Query plan cache pollution",
+        "DbFunction mapping"
       ]
     }
   ],
@@ -106,25 +144,29 @@
   ],
   "versionNotes": [
     {
-      "edition": "EF Core 10 stable; EF Core 11 development",
+        "edition": "EF Core 11.0.0 released 2026-11-10; LINQ translations checked 2026-11-16",
       "items": [
-        "EF Core 10 adds and improves LINQ translations, including named .NET 10 operators; EF Core 11 includes further translation work but remains in development at the checked date."
+          "EF Core 10.0 is an LTS release and supports .NET 10 LeftJoin and RightJoin translation. EF Core 11.0.0 shipped 2026-11-10 and supports .NET 11 FullJoin translation, MaxBy/MinBy translation, GroupBy enhancements, removal of redundant joins/order keys, and no-op cast stripping. The Microsoft EF11 What's New page retains a stale development banner; use the final .NET 11 release notes for release status. Provider translation remains provider-specific."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew"
+        ,"https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft EF Core querying and provider translation documentation",
-    "edition": "EF Core 10 stable and EF Core 11 development checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "EF Core 11.0.0 shipped; LINQ translation docs checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/ef/core/querying/",
       "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
       "https://learn.microsoft.com/en-us/ef/core/querying/how-query-works",
-      "https://learn.microsoft.com/en-us/ef/core/providers/"
+      "https://learn.microsoft.com/en-us/ef/core/providers/",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
     ]
   },
   "scopeExclusions": [
