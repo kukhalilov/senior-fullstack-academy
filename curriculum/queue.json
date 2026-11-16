@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1935,
+  "taskCount": 1939,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -10553,6 +10553,32 @@
       "status": "draft-generation-eligible"
     },
     {
+      "id": "t07-015-reference-tree-traversal-and-live-collections",
+      "track": "track-07",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: DOM traversal, filters, and live collection interfaces",
+      "module": "t07-015",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-015-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "tree-traversal-and-live-collections"
+    },
+    {
+      "id": "t07-015-reference-shadow-root-and-shadow-tree-apis",
+      "track": "track-07",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: ShadowRoot state, encapsulation, selection, and stylesheets",
+      "module": "t07-015",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-015-reference-tree-traversal-and-live-collections"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "shadow-root-and-shadow-tree-apis"
+    },
+    {
       "id": "t07-015-reference-document-and-tree-interfaces",
       "track": "track-07",
       "title": "Browser DOM events storage observers and navigation APIs — Reference: Document and node tree interfaces",
@@ -10560,7 +10586,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
       "phase": "reference",
       "prerequisites": [
-        "t07-015-concepts"
+        "t07-015-reference-shadow-root-and-shadow-tree-apis"
       ],
       "status": "draft-generation-eligible",
       "inventoryGroup": "document-and-tree-interfaces"
@@ -10592,6 +10618,19 @@
       "inventoryGroup": "content-and-serialization-apis"
     },
     {
+      "id": "t07-015-reference-html-sanitizer-api",
+      "track": "track-07",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: Current HTML Sanitizer and safe markup insertion API",
+      "module": "t07-015",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-015-reference-content-and-serialization-apis"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "html-sanitizer-api"
+    },
+    {
       "id": "t07-015-reference-events-and-dispatch",
       "track": "track-07",
       "title": "Browser DOM events storage observers and navigation APIs — Reference: DOM event targets, event objects, and dispatch methods",
@@ -10599,7 +10638,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
       "phase": "reference",
       "prerequisites": [
-        "t07-015-reference-content-and-serialization-apis"
+        "t07-015-reference-html-sanitizer-api"
       ],
       "status": "draft-generation-eligible",
       "inventoryGroup": "events-and-dispatch"
@@ -10620,7 +10659,7 @@
     {
       "id": "t07-015-reference-browser-storage-and-history",
       "track": "track-07",
-      "title": "Browser DOM events storage observers and navigation APIs — Reference: Web storage and session history APIs",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: Web storage and classic session history APIs",
       "module": "t07-015",
       "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
       "phase": "reference",
@@ -10631,6 +10670,19 @@
       "inventoryGroup": "browser-storage-and-history"
     },
     {
+      "id": "t07-015-reference-navigation-api",
+      "track": "track-07",
+      "title": "Browser DOM events storage observers and navigation APIs — Reference: Modern Navigation API and history entries",
+      "module": "t07-015",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-015-reference-browser-storage-and-history"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "navigation-api"
+    },
+    {
       "id": "t07-015-reference-observer-apis",
       "track": "track-07",
       "title": "Browser DOM events storage observers and navigation APIs — Reference: Viewport and element size observer interfaces",
@@ -10638,7 +10690,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-015.json",
       "phase": "reference",
       "prerequisites": [
-        "t07-015-reference-browser-storage-and-history"
+        "t07-015-reference-navigation-api"
       ],
       "status": "draft-generation-eligible",
       "inventoryGroup": "observer-apis"
