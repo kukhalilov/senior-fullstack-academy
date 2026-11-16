@@ -149,14 +149,38 @@
   ],
   "inventoryComplete": true,
   "comparisons": [
-    ["SELECT ALL", "SELECT DISTINCT"],
-    ["WHERE", "HAVING"],
-    ["LIKE", "REGEXP_LIKE"],
-    ["= NULL", "IS NULL"],
-    ["= and <>", "IS [NOT] DISTINCT FROM"],
-    ["TOP", "OFFSET/FETCH"],
-    ["Offset pagination", "Keyset pagination"],
-    ["Unordered SELECT", "SELECT with ORDER BY"]
+    [
+      "SELECT ALL",
+      "SELECT DISTINCT"
+    ],
+    [
+      "WHERE",
+      "HAVING"
+    ],
+    [
+      "LIKE",
+      "REGEXP_LIKE"
+    ],
+    [
+      "= NULL",
+      "IS NULL"
+    ],
+    [
+      "= and <>",
+      "IS [NOT] DISTINCT FROM"
+    ],
+    [
+      "TOP",
+      "OFFSET/FETCH"
+    ],
+    [
+      "Offset pagination",
+      "Keyset pagination"
+    ],
+    [
+      "Unordered SELECT",
+      "SELECT with ORDER BY"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
@@ -166,7 +190,13 @@
     "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
-    "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17"
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/operator-precedence-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver17"
   ],
   "versionNotes": [
     {
@@ -183,8 +213,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft SQL Server 2025 (17.x) Transact-SQL SELECT, search-condition, ordering, TOP, and regular-expression references",
-    "edition": "SQL Server 2025 (17.x), current T-SQL SELECT surface checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "SQL Server 2025 (17.x), current Transact-SQL SELECT surface checked 2026-11-16; SQL Server 2022 and 2025 predicate additions verified against current Microsoft Learn references",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
@@ -196,7 +226,12 @@
       "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/exists-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
-      "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
+      "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/operator-precedence-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17"
     ]
   },
   "scopeExclusions": [
