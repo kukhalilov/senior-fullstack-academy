@@ -668,6 +668,11 @@ test('JavaScript language inventories use current standard names without duplica
   assert.ok(valuesAndTypes.accuracyFacts.some(fact => fact.includes('Symbol primitives have unique identity')));
   assert.ok(valuesAndTypes.accuracyFacts.some(fact => fact.includes('typeof null is the historical string object')));
   assert.ok(valuesAndTypes.accuracyFacts.some(fact => fact.includes('specification-defined set of strings')));
+  const lintAndMaps = JSON.parse(fs.readFileSync(`${base}/t06-027.json`, 'utf8'));
+  assert.ok(lintAndMaps.accuracyFacts.some(fact => fact.includes('flat config has been the default since ESLint 9.0.0')));
+  assert.ok(lintAndMaps.accuracyFacts.some(fact => fact.includes('Biome v2 organizes imports through the assist source action')));
+  assert.ok(lintAndMaps.accuracyFacts.some(fact => fact.includes('map version field to integer 3')));
+  assert.ok(lintAndMaps.accuracyFacts.some(fact => fact.includes('header takes precedence when both are present')));
   const functionForms = JSON.parse(fs.readFileSync(`${base}/t06-003.json`, 'utf8'));
   assert.ok(functionForms.accuracyFacts.some(fact => fact.includes('only when the argument is absent or explicitly undefined')));
   assert.ok(functionForms.accuracyFacts.some(fact => fact.includes('mapped arguments object only with a simple parameter list')));
@@ -695,6 +700,7 @@ test('TypeScript scopes freeze compiler options, type operators, and current too
     else if (id <= 't06-024') assert.equal(manifest.sourceSnapshot.edition, 'TypeScript 6.0 stable', id);
     else if (id === 't06-026') assert.equal(manifest.sourceSnapshot.edition, 'Current stable tool documentation checked 2026-11-16; Parcel 3 alpha labeled separately', id);
     else if (id === 't06-025') assert.equal(manifest.sourceSnapshot.edition, 'Current package manager documentation checked 2026-11-16; npm 12, pnpm 12, Bun 1.4, and Deno 2.8 changes included', id);
+    else if (id === 't06-027') assert.equal(manifest.sourceSnapshot.edition, 'Current stable tool documentation checked 2026-11-16', id);
     else assert.match(manifest.sourceSnapshot.edition, /^Current .*documentation checked 2026-11-14$/, id);
   }
   const types = JSON.parse(fs.readFileSync(`${base}/t06-022.json`, 'utf8'));
