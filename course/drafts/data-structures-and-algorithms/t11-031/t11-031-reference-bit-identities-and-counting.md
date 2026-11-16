@@ -1,43 +1,69 @@
 # bitwise operations, masks, and subset enumeration — Reference: Low bits, parity, and population counts
 
-## Scope and version
+# Scope and version
 
-These identities apply to fixed-width two's-complement values; examples clarify signed boundaries. C# shift and bitwise behavior is specified in the [Microsoft operator reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators).
+The language-specific notes are for current C# 15, checked 2026-11-16. C# 11 introduced the unsigned right-shift operator `>>>`. All other names below are the exact supplied inventory items.
 
-## How this group fits the mental model
+# How this group fits the mental model
 
-The lowest set bit is the rightmost one in a binary pattern. Arithmetic on a two's-complement value interacts with that bit in a predictable way, enabling compact extraction, clearing, and counting. The proof depends on a fixed representation and careful zero/negative handling.
+This group provides the bit-level building blocks for masks and subset state. Begin with fixed-width bit patterns, then reason about an operator’s truth table and the type of its operands. Signedness does not alter AND/OR/XOR truth tables, but it matters for shifts, overflow, casts, and displaying a result.
 
-## Supplied names explained
+# Supplied names explained
 
-- **Isolate least significant set bit x AND -x** — For nonzero fixed-width two's-complement `x`, `x & -x` leaves only its lowest set bit. It also works for the minimum signed value at the bit-pattern level in unchecked two's-complement contexts, but avoid treating `-x` as a representable mathematical positive magnitude.
-- **Clear least significant set bit x AND (x-1)** — `x & (x-1)` turns off the lowest one bit. Repeating on a nonnegative value eventually reaches zero; each iteration removes exactly one set bit.
-- **Population count** — The number of one bits. Kernighan's loop repeatedly applies `x &= x-1` and runs once per set bit. A fixed-width loop checks every bit. Modern .NET also exposes `BitOperations.PopCount`, but a problem may prohibit built-ins; inspect the assigned contract.
-- **Parity bit** — XORing all bits gives parity: one if the count of one bits is odd, zero if even. XORing values similarly tracks parity per bit.
-- **Power-of-two test** — For positive `x`, `(x & (x-1)) == 0` exactly when one bit is set. Include `x > 0`; without it, zero also satisfies the bit expression.
-- **Power-of-two-of-two boundary** — The highest representable power of two is type-specific. For signed 32-bit positive `int`, `1<<30` is the largest positive power; `1<<31` is the negative sign-bit pattern. For `uint`, `1u<<31` is valid; do not shift by 32 to represent `2^32`.
-- **XOR of range pattern** — XOR from zero through `n` repeats every four: `n`, `1`, `n+1`, `0` when `n mod 4` is 0,1,2,3 respectively. XOR over `[l,r]` is `prefix(r) ^ prefix(l-1)` with a separate `l==0` case.
-- **XOR cancellation by even multiplicity** — If every value occurs an even number of times except one value with odd multiplicity, XOR of all values returns that odd-multiplicity value. The common single-number problem specializes this to pairs and one singleton.
-- **Mask off higher bits** — AND with a low-bit mask retains only selected lower positions. Construct the mask without shifting by the full type width; unsigned types make intended bit patterns clearer.
+- `Isolate least significant set bit x AND -x` — For nonzero two’s-complement x, `x & -x` retains only its lowest 1 bit. For signed minimum value, negation wraps to itself in unchecked arithmetic, so the expression still yields that bit pattern; unsigned reasoning is often clearer.
 
-## Cross-item comparison
+- `Clear least significant set bit x AND (x-1)` — For nonzero x, `x & (x - 1)` clears its lowest 1 bit. Repeating it reaches zero after exactly the number of set bits.
 
-Kernighan population count loops only over set bits (`O(popcount(x))`), while a fixed-width scan always checks all bits. The power-of-two test is the same lowest-bit-clearing identity plus a positive-value guard. XOR parity and XOR cancellation use the same self-inverse operation at different levels: individual bits versus whole values.
+- `Population count` — Counts 1 bits in a fixed-width representation. Brian Kernighan’s loop clears one set bit each iteration; hardware/library popcount may be faster but may be disallowed by a problem.
 
-## Examples
+- `Parity bit` — The parity is the population count modulo two. XORing each bit/value accumulates parity because pairs cancel.
 
-For `x=12` (`1100`), `x & -x` isolates `0100`, and `x & (x-1)` gives `1000`. Kernighan's loop takes two iterations, so the population count is two. For `[4,1,2,1,2]`, XOR cancels pairs and returns 4.
+- `Power-of-two test` — A positive unsigned x is a power of two exactly when `x & (x - 1)` is zero. Also require x != 0; zero has no set bit.
 
-## Common mistakes
+- `Power-of-two shift-width boundary` — A positive power of two has one set bit, but constructing `2^n` as `1 << n` requires n below the integer width. In C#, a width-sized shift wraps the count; choose a wider unsigned type or represent the boundary differently.
 
-- Applying the positive power-of-two predicate to zero without a guard.
-- Assuming signed bit tricks are arbitrary-precision arithmetic identities.
-- Negating the minimum signed integer to obtain a positive magnitude.
-- Forgetting XOR cancellation requires even multiplicity for every other value.
-- Using a full-width low-bit mask expression that shifts by the type width.
+- `XOR of range pattern` — The XOR from 0 through n repeats a four-case pattern based on n modulo 4: n, 1, n+1, 0. XOR of [L,R] is prefixXor(R) XOR prefixXor(L-1), with a special case when L=0.
 
-## Knowledge checks with answers
+- `XOR cancellation by even multiplicity` — A value XORed an even number of times cancels to zero; an odd multiplicity leaves one copy. The singleton solution additionally requires every non-singleton value to occur exactly twice.
 
-1. **How many iterations does Kernighan's loop take?** One per set bit.
-2. **Why must a power-of-two predicate check `x>0`?** Zero has no set bits but satisfies `x & (x-1) == 0`.
-3. **What assumption lets XOR find one exceptional value?** Every other value has even multiplicity and the exceptional value has odd multiplicity.
+- `Mask off higher bits` — AND with a low-bit mask to discard higher positions. Construct the mask using a type and edge-case branch that handles zero bits and the full width safely.
+
+# Cross-item comparison
+
+AND inspects/intersects selected 1-bits; OR sets selected 1-bits; XOR toggles and cancels equal operands. Arithmetic right shift preserves sign; logical right shift fills with zero. Set and toggle differ because setting an already-set bit leaves it set while toggling clears it. `x & (x-1)` removes one low set bit, whereas a fixed-width scan examines every position regardless of how many are set. Subset masks compactly encode a set, but recursion can be clearer and works beyond a machine word; neither representation changes the exponential output size.
+
+# Examples
+
+With a 32-bit unsigned value `0b1010`, mask bit 1 is `1u << 1`. AND tests it, OR sets it, `value & ~mask` clears it, and XOR toggles it. For extraction, first validate the requested bit interval, then shift and mask; special-case a range spanning the entire width rather than shifting by the width.
+
+# Common mistakes
+
+- Failing to state whether bit 0 is least significant.
+- Applying a signed shift to a raw bit pattern and expecting zero fill.
+- Constructing a signed mask at the highest bit without considering the sign.
+- Forgetting C# masks the shift count to the operand width.
+- Using a fixed-width trick where the universe exceeds that width.
+- Quoting O(2^n) while omitting the extra O(n) work to output each subset.
+
+# Knowledge checks with answers
+
+1. What happens when a set bit is toggled twice? **It returns to its original state.**
+2. How many submask pairs exist over all masks of n bits? **3^n.**
+3. Why does a signed negative number count need an explicit interpretation? **It may mean mathematical magnitude or the full fixed-width two’s-complement pattern.**
+4. When is a full-width mask special? **The usual `(1 << width)-1` shifts by zero in C# rather than producing all ones; use an explicit all-ones value or branch.**
+
+# Sources
+
+- [Reference](https://usaco.guide/silver/bitwise?lang=cpp)
+- [Reference](https://usaco.guide/gold/dp-bitmasks)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator)
+- [Reference](https://leetcode.com/problems/single-number/)
+- [Reference](https://leetcode.com/problems/number-of-1-bits/)
+- [Reference](https://leetcode.com/problems/counting-bits/)
+- [Reference](https://leetcode.com/problems/reverse-bits/)
+- [Reference](https://leetcode.com/problems/sum-of-two-integers/)
+- [Reference](https://leetcode.com/problems/single-number-ii/)
+- [Reference](https://leetcode.com/problems/bitwise-and-of-numbers-range/)
+- [Reference](https://leetcode.com/problems/subsets/)

@@ -1,44 +1,71 @@
 # bitwise operations, masks, and subset enumeration — Reference: Operators, truth tables, and shifts
 
-## Scope and version
+# Scope and version
 
-This lesson gives exact C# behavior for the listed operators as documented in the current [Microsoft C# reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators). Integral types and operand promotions matter; mathematical infinite-bit integers are not the execution model.
+The language-specific notes are for current C# 15, checked 2026-11-16. C# 11 introduced the unsigned right-shift operator `>>>`. All other names below are the exact supplied inventory items.
 
-## How this group fits the mental model
+# How this group fits the mental model
 
-Each operator transforms corresponding positions in a fixed-width value, except shifts which move positions. A truth table describes one position; applying it across the type's bits gives the result.
+This group provides the bit-level building blocks for masks and subset state. Begin with fixed-width bit patterns, then reason about an operator’s truth table and the type of its operands. Signedness does not alter AND/OR/XOR truth tables, but it matters for shifts, overflow, casts, and displaying a result.
 
-## Supplied names explained
+# Supplied names explained
 
-- **Bitwise AND** — `x & y` sets a result bit only when both corresponding bits are one. Use it to test selected bits or keep only a mask's positions.
-- **Bitwise OR** — `x | y` sets a result bit when either corresponding bit is one. OR with a mask sets those mask positions.
-- **Bitwise XOR** — `x ^ y` sets a bit when corresponding bits differ. Equal operands cancel; XOR is also used to toggle mask positions.
-- **Bitwise NOT** — `~x` flips every bit of the operand's promoted integral type. A short positive value can become negative because high bits are flipped in a signed type.
-- **Left shift** — `x << count` moves bits toward higher positions, discards high bits leaving the type, and fills low positions with zero. For `int`/`uint`, the count uses its low five bits; `long`/`ulong` use six. A left shift is not checked arithmetic multiplication.
-- **Right shift** — `x >> count` discards low bits. Signed `int`/`long` shifts are arithmetic and copy the sign bit into new high positions; unsigned `uint`/`ulong` shifts are logical and insert zeros.
-- **Logical versus arithmetic right shift** — Arithmetic right shift preserves a signed value's sign; logical right shift inserts zeros regardless of sign. In modern C#, `>>>` requests logical right shift, including for a signed operand.
-- **XOR self-inverse identity** — `x ^ x == 0` and `x ^ 0 == x`; applying the same XOR twice restores the original value. These identities support pair cancellation and toggling.
-- **AND/OR truth tables** — Per bit: AND outputs 1 only for `(1,1)`; OR outputs 0 only for `(0,0)`. XOR is 1 for `(0,1)` and `(1,0)`; NOT maps 0 to 1 and 1 to 0.
-- **Two's-complement representation** — C# signed integer values use fixed-width two's-complement patterns. The high bit represents negative values, so `~x`, arithmetic shifts, and negation must be interpreted at the type width, not as unbounded binary strings.
+- `Bitwise AND` — For each bit position, the result is 1 only when both operands have 1. It is commonly used to test or clear selected bits.
 
-## Cross-item comparison
+- `Bitwise OR` — For each position, the result is 1 when either operand has 1. OR with a mask sets the mask’s selected bits.
 
-AND filters positions; OR combines or sets them; XOR toggles and cancels equal patterns. For positive integers, arithmetic and logical right shift often appear identical because the sign bit is zero. They diverge for negative signed values. `>>>` makes the logical intent explicit. Left shift discards bits at the type boundary, so it cannot safely stand in for arbitrary-precision multiplication.
+- `Bitwise XOR` — For each position, the result is 1 when the operand bits differ. XOR toggles selected bits and cancels equal values in pairs.
 
-## Examples
+- `Bitwise NOT` — Flips every bit in the fixed-width representation. In C#, `~x` includes the sign bit and is not a logical Boolean negation.
 
-With four-bit patterns `x=1010` and `y=1100`, AND is `1000`, OR is `1110`, and XOR is `0110`. For 32-bit C# `int x=-8`, arithmetic `x >> 2` is `-2`; logical `x >>> 2` is the positive bit pattern `0x3ffffffe` (1073741822).
+- `Left shift` — Moves bit positions toward more significant positions and fills low positions with zero. Bits shifted out are discarded; C# bitwise and shift operations never throw for overflow and behave identically in checked and unchecked contexts. The resulting signed value may have a changed sign bit. [C# shift semantics](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
 
-## Common mistakes
+- `Right shift` — Moves bits toward less significant positions. C# signed `>>` is arithmetic and copies the sign bit; unsigned `>>` fills high positions with zero.
 
-- Forgetting precedence: parenthesize expressions such as `(x & mask) != 0` and mixed shifts/AND.
-- Assuming `~5` is a positive bit string with only the displayed bits inverted.
-- Assuming a shift count of 32 clears a 32-bit `int`; C# masks that count to zero.
-- Describing `>>` as always filling with zeros.
-- Assuming checked context detects discarded shift bits.
+- `Logical versus arithmetic right shift` — A logical shift fills high bits with zero; an arithmetic shift of a signed value replicates the sign bit. C# 11 added `>>>` for logical right shift; unsigned operands also shift logically.
 
-## Knowledge checks with answers
+- `XOR self-inverse identity` — `x ^ x` is zero, `x ^ 0` is x, and `(x ^ y) ^ y` is x. Parentheses are unnecessary mathematically, but precedence and casts matter in code.
 
-1. **Which shift inserts zeros for negative `int`?** `>>>`.
-2. **What is the effective `int` shift count for 32?** `32 & 31`, which is zero.
-3. **Does checked mode throw when left shift discards high bits?** No; bitwise and shift operations do not throw overflow.
+- `AND/OR truth tables` — AND outputs 1 only for (1,1); OR outputs 0 only for (0,0). These per-bit truth tables explain mask set/test/clear operations.
+
+- `Two's-complement representation` — C# signed integer types use fixed-width two’s-complement representation. Negation is bitwise complement plus one modulo the width; the most significant bit is the sign bit.
+
+# Cross-item comparison
+
+AND inspects/intersects selected 1-bits; OR sets selected 1-bits; XOR toggles and cancels equal operands. Arithmetic right shift preserves sign; logical right shift fills with zero. Set and toggle differ because setting an already-set bit leaves it set while toggling clears it. `x & (x-1)` removes one low set bit, whereas a fixed-width scan examines every position regardless of how many are set. Subset masks compactly encode a set, but recursion can be clearer and works beyond a machine word; neither representation changes the exponential output size.
+
+# Examples
+
+With a 32-bit unsigned value `0b1010`, mask bit 1 is `1u << 1`. AND tests it, OR sets it, `value & ~mask` clears it, and XOR toggles it. For extraction, first validate the requested bit interval, then shift and mask; special-case a range spanning the entire width rather than shifting by the width.
+
+# Common mistakes
+
+- Failing to state whether bit 0 is least significant.
+- Applying a signed shift to a raw bit pattern and expecting zero fill.
+- Constructing a signed mask at the highest bit without considering the sign.
+- Forgetting C# masks the shift count to the operand width.
+- Using a fixed-width trick where the universe exceeds that width.
+- Quoting O(2^n) while omitting the extra O(n) work to output each subset.
+
+# Knowledge checks with answers
+
+1. What happens when a set bit is toggled twice? **It returns to its original state.**
+2. How many submask pairs exist over all masks of n bits? **3^n.**
+3. Why does a signed negative number count need an explicit interpretation? **It may mean mathematical magnitude or the full fixed-width two’s-complement pattern.**
+4. When is a full-width mask special? **The usual `(1 << width)-1` shifts by zero in C# rather than producing all ones; use an explicit all-ones value or branch.**
+
+# Sources
+
+- [Reference](https://usaco.guide/silver/bitwise?lang=cpp)
+- [Reference](https://usaco.guide/gold/dp-bitmasks)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator)
+- [Reference](https://leetcode.com/problems/single-number/)
+- [Reference](https://leetcode.com/problems/number-of-1-bits/)
+- [Reference](https://leetcode.com/problems/counting-bits/)
+- [Reference](https://leetcode.com/problems/reverse-bits/)
+- [Reference](https://leetcode.com/problems/sum-of-two-integers/)
+- [Reference](https://leetcode.com/problems/single-number-ii/)
+- [Reference](https://leetcode.com/problems/bitwise-and-of-numbers-range/)
+- [Reference](https://leetcode.com/problems/subsets/)

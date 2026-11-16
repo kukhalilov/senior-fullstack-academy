@@ -1,84 +1,100 @@
 # bitwise operations, masks, and subset enumeration — Problem: Sum of Two Integers
 
-## Goals
+# Goals
 
-Derive binary addition from XOR sum bits and shifted AND carry bits while handling signed C# values at a fixed width.
+- Recognize the bit pattern invariant behind Sum of Two Integers.
+- Implement the algorithm in C# with an explicit 32-bit interpretation.
+- Prove correctness and account for fixed-width and boundary cases.
 
-## Problem statement
+# Problem statement
 
-Return `a+b` without using the `+` or `-` operators. [Official problem statement](https://leetcode.com/problems/sum-of-two-integers/)
+Return the sum of two integers without using addition or subtraction operators.
 
-## Input constraints
+# Input constraints
 
-- `-1000 <= a,b <= 1000`.
+- -1000 <= a,b <= 1000
 
-## Examples with expected output
+# Examples with expected output
 
-1. `a=1`, `b=2` → `3`.
-2. `a=2`, `b=3` → `5`.
-3. `a=-2`, `b=3` → `1`.
-4. `a=-4`, `b=-5` → `-9`.
+- `a=1, b=2` → `3`
+- `a=2, b=3` → `5`
 
-## Clarifying assumptions
+# Clarifying assumptions
 
-The required result is the ordinary sum, and these bounds guarantee it fits a 32-bit signed integer. The implementation uses unsigned 32-bit bit patterns internally, then reinterprets the final pattern as `int`.
+Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
 
-## Progressive hints
+# Progressive hints
 
-1. XOR adds each column without carrying.
-2. AND identifies columns where both bits are one; shift this carry one position left.
-3. Repeat: add the partial sum to the carry until no carry remains.
+1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
+2. State exactly how every bit or mask contributes to the answer.
+3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
+4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
 
-## Complete C# solution
+# Complete C# solution
 
 ```csharp dsa-solution
 using System;
-static int GetSum(int a, int b)
+
+public static class SumTwoIntegersSolution
 {
-    uint sum = unchecked((uint)a);
-    uint carry = unchecked((uint)b);
-    while (carry != 0)
+    public static int GetSum(int a, int b)
     {
-        uint nextCarry = (sum & carry) << 1;
-        sum ^= carry;
-        carry = nextCarry;
+        uint x = unchecked((uint)a);
+        uint y = unchecked((uint)b);
+
+        while (y != 0)
+        {
+            uint carry = (x & y) << 1;
+            x ^= y;
+            y = carry;
+        }
+
+        return unchecked((int)x);
     }
-    return unchecked((int)sum);
+
+    public static void Main()
+    {
+        if (GetSum(1, 2) != 3 || GetSum(2, 3) != 5 ||
+            GetSum(-4, 1) != -3 ||
+            GetSum(int.MaxValue, 1) != int.MinValue)
+        {
+            throw new InvalidOperationException("Sum Two Integers check failed.");
+        }
+    }
 }
-static void Check(int actual, int expected, string label)
-{
-    if (actual != expected) throw new InvalidOperationException($"{label}: expected {expected}, got {actual}");
-}
-Check(GetSum(1, 2), 3, "example 1");
-Check(GetSum(2, 3), 5, "example 2");
-Check(GetSum(-2, 3), 1, "negative and positive");
-Check(GetSum(-4, -5), -9, "two negatives");
-Check(GetSum(0, 0), 0, "zeros");
-Console.WriteLine("All Sum Two Integers checks passed.");
 ```
 
-## Correctness argument
+# Correctness argument
 
-For each bit position, `sum ^ carry` computes addition without propagating a carry, while `(sum & carry) << 1` computes the carry into the next position. Thus one iteration replaces the operands with an equivalent partial sum and remaining carry. Repeating propagates carries until none remain, leaving the exact 32-bit sum pattern. The stated input bounds ensure its signed interpretation fits `int`.
+At each bit, XOR gives the addition result assuming no carry-in. A carry is generated exactly where both current bits are 1, represented by `x & y`, and affects the next more significant bit, represented by shifting left. Thus each loop replaces the pair by an equivalent partial sum and pending carry. Carry propagation terminates within the fixed 32-bit word; the final uint-to-int unchecked cast gives the two’s-complement 32-bit result. Official input bounds avoid mathematical overflow; the extra boundary test demonstrates modulo-2^32 behavior.
 
-## Step-by-step dry run
+# Step-by-step dry run
 
-For `2 (0010)` and `3 (0011)`, XOR gives `0001`; AND then shift gives carry `0100`. Next XOR gives `0101`, while the new carry is zero. The result is 5.
+For 1+2: x=`0001`, y=`0010`; carry=`0000`, xor=`0011`; y=0, return 3. For 3+1: carry=`0010`, xor=`0010`; next carry=`0100`, xor=`0000`; next carry=`0000`, xor=`0110`, return 4.
 
-## Time complexity
+# Time complexity
 
-At most 32 carry-propagation iterations for a 32-bit word, so `O(1)` under fixed-width arithmetic.
+O(32) worst case for a fixed-width word; each round propagates at least one carry toward higher positions.
 
-## Space complexity
+# Space complexity
 
-`O(1)`.
+O(1) auxiliary space.
 
-## Edge-case tests
+# Edge-case tests
 
-Checks cover official examples, mixed signs, two negative values, and zeros. No overflow case is needed under the supplied bounds.
+Both official examples; positive plus negative; zero operand; a carry across several adjacent ones; int.MaxValue+1 outside official bounds to confirm explicitly chosen unchecked wraparound.
 
-## Reflection questions
+# Reflection questions
 
-1. Why is XOR the sum-without-carry operation?
-2. Why does AND followed by left shift represent carry?
-3. Why use `uint` for the shifting carry state?
+1. Which exact assumption makes the central bit identity valid?
+2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
+3. Which constraints ensure the mask/shift or enumeration count fits?
+4. Can a shorter code path preserve the same invariant more clearly?
+
+**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+
+# Sources
+
+- [Assigned problem](https://leetcode.com/problems/sum-of-two-integers/)
+- [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)

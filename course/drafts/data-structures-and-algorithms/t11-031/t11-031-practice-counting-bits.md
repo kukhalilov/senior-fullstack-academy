@@ -1,78 +1,98 @@
 # bitwise operations, masks, and subset enumeration — Problem: Counting Bits
 
-## Goals
+# Goals
 
-Build all population counts through `n` with a recurrence using a previously computed smaller value.
+- Recognize the bit pattern invariant behind Counting Bits.
+- Implement the algorithm in C# with an explicit 32-bit interpretation.
+- Prove correctness and account for fixed-width and boundary cases.
 
-## Problem statement
+# Problem statement
 
-Return an array `ans` of length `n+1` where `ans[i]` is the number of one bits in the binary representation of `i`. Do not use a built-in population-count function. [Official problem statement](https://leetcode.com/problems/counting-bits/)
+Return set-bit counts for every integer from zero through n, without a built-in popcount.
 
-## Input constraints
+# Input constraints
 
-- `0 <= n <= 100,000`.
-- The requested follow-up asks for `O(n)` time.
+- 0 <= n <= 100000
+- Follow-up asks for O(n) time
 
-## Examples with expected output
+# Examples with expected output
 
-1. `n=2` → `[0,1,1]`.
-2. `n=5` → `[0,1,1,2,1,2]`.
-3. `n=0` → `[0]`.
+- `n=2` → `[0,1,1]`
+- `n=5` → `[0,1,1,2,1,2]`
 
-## Clarifying assumptions
+# Clarifying assumptions
 
-Values range only from zero through `n`; the zero value has zero set bits. The output order is increasing index order.
+Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
 
-## Progressive hints
+# Progressive hints
 
-1. Removing the lowest set bit produces a smaller number.
-2. `bits[i] = bits[i & (i-1)] + 1` is one recurrence.
-3. Alternatively, remove the highest power-of-two boundary using `i >> 1` and its low bit.
+1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
+2. State exactly how every bit or mask contributes to the answer.
+3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
+4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
 
-## Complete C# solution
+# Complete C# solution
 
 ```csharp dsa-solution
 using System;
-using System.Linq;
-static int[] CountBits(int n)
+
+public static class CountingBitsSolution
 {
-    int[] bits = new int[n + 1];
-    for (int i = 1; i <= n; i++) bits[i] = bits[i & (i - 1)] + 1;
-    return bits;
+    public static int[] CountBits(int n)
+    {
+        var counts = new int[n + 1];
+
+        for (int value = 1; value <= n; value++)
+        {
+            counts[value] = counts[value & (value - 1)] + 1;
+        }
+
+        return counts;
+    }
+
+    public static void Main()
+    {
+        if (string.Join(",", CountBits(2)) != "0,1,1" ||
+            string.Join(",", CountBits(5)) != "0,1,1,2,1,2" ||
+            string.Join(",", CountBits(0)) != "0")
+        {
+            throw new InvalidOperationException("Counting Bits check failed.");
+        }
+    }
 }
-static void Check(int[] actual, int[] expected, string label)
-{
-    if (!actual.SequenceEqual(expected)) throw new InvalidOperationException("Failed: " + label);
-}
-Check(CountBits(2), new[] {0,1,1}, "example 1");
-Check(CountBits(5), new[] {0,1,1,2,1,2}, "example 2");
-Check(CountBits(0), new[] {0}, "zero");
-Check(CountBits(8), new[] {0,1,1,2,1,2,2,3,1}, "power-of-two boundary");
-Console.WriteLine("All Counting Bits checks passed.");
 ```
 
-## Correctness argument
+# Correctness argument
 
-The base `bits[0]=0` is correct. For every positive `i`, `i & (i-1)` is a smaller nonnegative number formed by clearing one set bit. Therefore its count is exactly one less than the count of `i`. Since the loop visits increasing `i`, the smaller result is already computed, and induction proves each output entry.
+The base value 0 has no set bits. For any positive value i, `i & (i-1)` is a smaller nonnegative integer with exactly one fewer set bit. By induction, its stored count is correct, and adding one yields the count for i.
 
-## Step-by-step dry run
+# Step-by-step dry run
 
-At `i=5` (`101`), `i&(i-1)=4` (`100`), whose count is one. Set `bits[5]=2`. For `i=8`, clearing the only set bit yields zero, so its count is one.
+For n=5: counts[0]=0; 1→0+1=1; 2→0+1=1; 3→2+1=2; 4→0+1=1; 5→4+1=2.
 
-## Time complexity
+# Time complexity
 
-`O(n)`.
+O(n), one constant-time recurrence per value.
 
-## Space complexity
+# Space complexity
 
-`O(n)` for the required output.
+O(n) for the required result array.
 
-## Edge-case tests
+# Edge-case tests
 
-Checks cover both official examples, `n=0`, and values around a power-of-two boundary.
+n=0, n=1, powers of two, one below and above a power of two, and n=100000. The loop intentionally avoids built-in popcount.
 
-## Reflection questions
+# Reflection questions
 
-1. Why does the recurrence depend only on an already computed index?
-2. How does `bits[i] = bits[i/2] + (i%2)` express the same idea?
-3. Why is output storage not counted as avoidable auxiliary memory here?
+1. Which exact assumption makes the central bit identity valid?
+2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
+3. Which constraints ensure the mask/shift or enumeration count fits?
+4. Can a shorter code path preserve the same invariant more clearly?
+
+**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+
+# Sources
+
+- [Assigned problem](https://leetcode.com/problems/counting-bits/)
+- [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)

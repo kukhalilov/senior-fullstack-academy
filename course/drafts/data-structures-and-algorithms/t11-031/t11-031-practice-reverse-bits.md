@@ -1,83 +1,102 @@
 # bitwise operations, masks, and subset enumeration — Problem: Reverse Bits
 
-## Goals
+# Goals
 
-Reverse exactly 32 bit positions and preserve the intended unsigned bit pattern through C# shifts.
+- Recognize the bit pattern invariant behind Reverse Bits.
+- Implement the algorithm in C# with an explicit 32-bit interpretation.
+- Prove correctness and account for fixed-width and boundary cases.
 
-## Problem statement
+# Problem statement
 
-Reverse the bits of a 32-bit input value and return the resulting 32-bit pattern. [Official problem statement](https://leetcode.com/problems/reverse-bits/)
+Reverse all 32 bit positions of the input value.
 
-## Input constraints
+# Input constraints
 
-- `0 <= n <= 2^31 - 2`.
-- `n` is even.
-- The algorithm processes the fixed 32-bit representation, including leading zero bits.
+- 0 <= n <= 2^31 - 2
+- n is even
+- Operate on exactly 32 bits
 
-## Examples with expected output
+# Examples with expected output
 
-1. `43261596` → `964176192`.
-2. `2147483644` → `1073741822`.
-3. `0` → `0`.
+- `n=43261596` → `964176192`
+- `n=2147483644` → `1073741822`
 
-## Clarifying assumptions
+# Clarifying assumptions
 
-The C# implementation uses `uint` to represent all 32 output bits. Convert to signed `int` only when adapting to an interface that requires the signed interpretation; the bit pattern remains the same.
+Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
 
-## Progressive hints
+# Progressive hints
 
-1. Repeat exactly 32 times, not until the source becomes zero.
-2. Extract the source low bit, shift the result left, append the bit.
-3. Shift the source right logically so high bits do not sign-extend.
+1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
+2. State exactly how every bit or mask contributes to the answer.
+3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
+4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
 
-## Complete C# solution
+# Complete C# solution
 
 ```csharp dsa-solution
 using System;
-static uint ReverseBits(uint n)
+
+public static class ReverseBitsSolution
 {
-    uint result = 0;
-    for (int i = 0; i < 32; i++)
+    public static int ReverseBits(int n)
     {
-        result = (result << 1) | (n & 1u);
-        n >>= 1;
+        uint remaining = unchecked((uint)n);
+        uint reversed = 0;
+
+        for (int bit = 0; bit < 32; bit++)
+        {
+            reversed = (reversed << 1) | (remaining & 1u);
+            remaining >>= 1;
+        }
+
+        return unchecked((int)reversed);
     }
-    return result;
+
+    public static void Main()
+    {
+        if (ReverseBits(43261596) != 964176192 ||
+            ReverseBits(2147483644) != 1073741822 ||
+            ReverseBits(0) != 0 ||
+            ReverseBits(unchecked((int)0x80000000u)) != 1)
+        {
+            throw new InvalidOperationException("Reverse Bits check failed.");
+        }
+    }
 }
-static void Check(uint actual, uint expected, string label)
-{
-    if (actual != expected) throw new InvalidOperationException($"{label}: expected {expected}, got {actual}");
-}
-Check(ReverseBits(43261596u), 964176192u, "example 1");
-Check(ReverseBits(2147483644u), 1073741822u, "example 2");
-Check(ReverseBits(0u), 0u, "zero");
-Check(ReverseBits(1u), 2147483648u, "lowest input bit reaches sign position");
-Check(ReverseBits(uint.MaxValue), uint.MaxValue, "all bits set");
-Console.WriteLine("All Reverse Bits checks passed.");
 ```
 
-## Correctness argument
+# Correctness argument
 
-After `k` iterations, the result contains the first `k` source bits in reverse order in its low `k` positions: shifting the partial result left opens the next low position, and OR appends the source's current low bit. Logical right shift exposes the next source bit and fills with zero. After exactly 32 iterations, every input position has been consumed and placed at its mirrored position. Leading zeros must be processed, which is why a fixed count is necessary.
+Before iteration t, `reversed` contains the reverse of the t low input bits in its t low positions, and `remaining` has shifted right t times. Appending the next low bit maintains this invariant. After 32 iterations every original bit has been consumed and occupies its mirrored position. The final unchecked cast preserves the 32-bit pattern in the required int return type.
 
-## Step-by-step dry run
+# Step-by-step dry run
 
-For a four-bit illustration `1101`, extract bits in order `1,0,1,1`; append them to an initially zero result, yielding `1`, `10`, `101`, `1011`. For the actual 32-bit problem, the same process continues through all positions, including leading zeros.
+For a small illustration, process low bits `1,0,1`: output evolves `0→1→2→5` (binary `1→10→101`). The real algorithm continues with zeroes for all remaining positions until exactly 32 bits have been processed.
 
-## Time complexity
+# Time complexity
 
-`O(32) = O(1)` for a fixed-width value.
+O(32), hence O(1) for a fixed 32-bit input.
 
-## Space complexity
+# Space complexity
 
-`O(1)`.
+O(1) auxiliary space.
 
-## Edge-case tests
+# Edge-case tests
 
-Checks cover both official examples, zero, one low bit, and all bits set. The `1u` test verifies correct movement into the top position.
+Official examples; zero; input with only bit 31 set (outside official nonnegative constraints) to verify unsigned handling; a pattern with leading zeroes to confirm they become trailing zeroes.
 
-## Reflection questions
+# Reflection questions
 
-1. What would go wrong if the loop stopped when `n` became zero?
-2. Why use `uint` instead of arithmetic `int >>`?
-3. How could a lookup table accelerate repeated reversals, and what would it cost?
+1. Which exact assumption makes the central bit identity valid?
+2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
+3. Which constraints ensure the mask/shift or enumeration count fits?
+4. Can a shorter code path preserve the same invariant more clearly?
+
+**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+
+# Sources
+
+- [Assigned problem](https://leetcode.com/problems/reverse-bits/)
+- [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)

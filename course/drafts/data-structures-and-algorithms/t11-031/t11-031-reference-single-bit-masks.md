@@ -1,44 +1,71 @@
 # bitwise operations, masks, and subset enumeration — Reference: Testing and changing individual bits
 
-## Scope and version
+# Scope and version
 
-This lesson covers the exact named mask operations using C# `int`/`uint` examples. Shift behavior follows the [current C# operator reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators).
+The language-specific notes are for current C# 15, checked 2026-11-16. C# 11 introduced the unsigned right-shift operator `>>>`. All other names below are the exact supplied inventory items.
 
-## How this group fits the mental model
+# How this group fits the mental model
 
-A one-bit mask isolates one position in a fixed-width word. AND observes it, OR forces it on, AND with a complemented mask forces it off, and XOR flips it. Every formula assumes a valid bit index and a type wide enough for the intended universe.
+This group provides the bit-level building blocks for masks and subset state. Begin with fixed-width bit patterns, then reason about an operator’s truth table and the type of its operands. Signedness does not alter AND/OR/XOR truth tables, but it matters for shifts, overflow, casts, and displaying a result.
 
-## Supplied names explained
+# Supplied names explained
 
-- **One-bit mask 1 shifted by index** — `1u << i` constructs the mask for bit `i` in a 32-bit `uint` when `0 <= i < 32`. Prefer `1UL << i` for a 64-bit mask and ensure `i < 64`.
-- **Test bit** — `(value & mask) != 0` means the selected position is set; equality to zero means it is clear.
-- **Set bit** — `value | mask` turns the selected position on and leaves all other positions unchanged.
-- **Clear bit** — `value & ~mask` turns the selected position off and preserves all others.
-- **Toggle bit** — `value ^ mask` flips the selected position; applying it twice restores the value.
-- **Mask low k bits** — For `uint`, `(1u << k) - 1` works for `0 <= k < 32`; for `k==32`, use `uint.MaxValue` separately because the shift count wraps to zero. A wider unsigned type can simplify boundary handling, but still guard its full width.
-- **Extract bit range** — Shift the desired low endpoint to bit zero, then AND with a mask of the range width. For unsigned `x`, `(x >> start) & ((1u << width)-1)` works when width is 1..31 and `start+width <= 32`; handle width 32 separately.
-- **Unsigned shift behavior** — C# `>>>` shifts in zero bits even when the operand is signed. For unsigned values, `>>` is already logical.
-- **Shift-count bounds** — C# masks shift counts: five low bits for `int`/`uint`, six for `long`/`ulong`. Algorithms should explicitly validate indices instead of relying on this wrapping behavior.
-- **Bit-width assumptions** — The mask type must have enough positions for the set universe; document signed interpretation, valid indices, and any reserved sign bit.
+- `One-bit mask 1 shifted by index` — For a valid bit index i, `1u << i` selects that bit in a 32-bit unsigned word. Use `1UL` for 64-bit masks; signed `1 << 31` produces the sign bit.
 
-## Cross-item comparison
+- `Test bit` — A bit is set when `(value & mask) != 0`. Ensure mask and value use compatible widths and intended signed/unsigned interpretation.
 
-Set and toggle differ when the bit is already one: set leaves it one; toggle clears it. Test is observational, while the other operations mutate the represented value. Low-bit masks have width boundary cases because shifting by the width does not produce a representable `2^width` in the same type.
+- `Set bit` — Use `value | mask` to make every selected bit 1 without changing other bits.
 
-## Examples
+- `Clear bit` — Use `value & ~mask` to make selected bits 0 and preserve all others.
 
-For `value=10` (`1010`) and `mask=1u<<1` (`0010`), test is true, set keeps 1010, clear produces 1000, and toggle produces 1000. Applying toggle again returns 1010.
+- `Toggle bit` — Use `value ^ mask` to flip selected bits; applying the same mask again restores the original value.
 
-## Common mistakes
+- `Mask low k bits` — For a width-safe unsigned type, `(1u << k) - 1` selects the lowest k bits only when k is in range and below the word width. Handle k=0 and k=width separately to avoid shift-count wrap.
 
-- Using `1 << 31` as a positive signed mask.
-- Failing to parenthesize `(value & mask) != 0`.
-- Building a full-width mask with a shift equal to the type width.
-- Accepting out-of-range bit indexes and silently getting a wrapped shift count.
-- Assuming a mask type is large enough because the input currently uses small values.
+- `Extract bit range` — Shift the desired low endpoint to bit zero, then AND with a mask of the range width. Validate start, length, and end against the type width; avoid constructing a mask with an invalid full-width shift.
 
-## Knowledge checks with answers
+- `Unsigned shift behavior` — Unsigned right shift fills vacated high bits with zero, which is useful for treating a signed int’s bit pattern as raw bits after an explicit unchecked cast to uint.
 
-1. **Which operation is idempotent for an already-set bit: set or toggle?** Set.
-2. **How do you test bit 5 in a `uint x`?** `(x & (1u << 5)) != 0`.
-3. **How should an implementation handle `k==32` when masking all low `uint` bits?** Return `uint.MaxValue` in a separate branch.
+- `Shift-count bounds` — C# masks shift counts: for int/uint only the low 5 bits are used, and for long/ulong the low 6 bits are used. A shift by the type width therefore behaves like shift by zero; guard counts explicitly.
+
+- `Bit-width assumptions` — A bit trick is meaningful only with a stated fixed width and interpretation. In C#, int/uint have 32 bits and long/ulong have 64; casts, overflow context, and signed shifts affect behavior.
+
+# Cross-item comparison
+
+AND inspects/intersects selected 1-bits; OR sets selected 1-bits; XOR toggles and cancels equal operands. Arithmetic right shift preserves sign; logical right shift fills with zero. Set and toggle differ because setting an already-set bit leaves it set while toggling clears it. `x & (x-1)` removes one low set bit, whereas a fixed-width scan examines every position regardless of how many are set. Subset masks compactly encode a set, but recursion can be clearer and works beyond a machine word; neither representation changes the exponential output size.
+
+# Examples
+
+With a 32-bit unsigned value `0b1010`, mask bit 1 is `1u << 1`. AND tests it, OR sets it, `value & ~mask` clears it, and XOR toggles it. For extraction, first validate the requested bit interval, then shift and mask; special-case a range spanning the entire width rather than shifting by the width.
+
+# Common mistakes
+
+- Failing to state whether bit 0 is least significant.
+- Applying a signed shift to a raw bit pattern and expecting zero fill.
+- Constructing a signed mask at the highest bit without considering the sign.
+- Forgetting C# masks the shift count to the operand width.
+- Using a fixed-width trick where the universe exceeds that width.
+- Quoting O(2^n) while omitting the extra O(n) work to output each subset.
+
+# Knowledge checks with answers
+
+1. What happens when a set bit is toggled twice? **It returns to its original state.**
+2. How many submask pairs exist over all masks of n bits? **3^n.**
+3. Why does a signed negative number count need an explicit interpretation? **It may mean mathematical magnitude or the full fixed-width two’s-complement pattern.**
+4. When is a full-width mask special? **The usual `(1 << width)-1` shifts by zero in C# rather than producing all ones; use an explicit all-ones value or branch.**
+
+# Sources
+
+- [Reference](https://usaco.guide/silver/bitwise?lang=cpp)
+- [Reference](https://usaco.guide/gold/dp-bitmasks)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator)
+- [Reference](https://leetcode.com/problems/single-number/)
+- [Reference](https://leetcode.com/problems/number-of-1-bits/)
+- [Reference](https://leetcode.com/problems/counting-bits/)
+- [Reference](https://leetcode.com/problems/reverse-bits/)
+- [Reference](https://leetcode.com/problems/sum-of-two-integers/)
+- [Reference](https://leetcode.com/problems/single-number-ii/)
+- [Reference](https://leetcode.com/problems/bitwise-and-of-numbers-range/)
+- [Reference](https://leetcode.com/problems/subsets/)

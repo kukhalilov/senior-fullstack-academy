@@ -1,79 +1,100 @@
 # bitwise operations, masks, and subset enumeration — Problem: Single Number
 
-## Goals
+# Goals
 
-Use XOR cancellation to find the unique value and state precisely which multiplicity contract makes it correct.
+- Recognize the bit pattern invariant behind Single Number.
+- Implement the algorithm in C# with an explicit 32-bit interpretation.
+- Prove correctness and account for fixed-width and boundary cases.
 
-## Problem statement
+# Problem statement
 
-Given a nonempty integer array where every value occurs twice except one, return that single value in linear time and constant extra space. [Official problem statement](https://leetcode.com/problems/single-number/)
+Find the value that occurs once when every other value occurs twice, using linear time and constant extra space.
 
-## Input constraints
+# Input constraints
 
-- `1 <= nums.Length <= 30,000`.
-- `-30,000 <= nums[i] <= 30,000`.
-- Every value occurs twice except one value that occurs once.
+- 1 <= nums.length <= 30000
+- -30000 <= nums[i] <= 30000
+- Every value occurs twice except one singleton
 
-## Examples with expected output
+# Examples with expected output
 
-1. `[2,2,1]` → `1`.
-2. `[4,1,2,1,2]` → `4`.
-3. `[1]` → `1`.
+- `nums=[2,2,1]` → `1`
+- `nums=[4,1,2,1,2]` → `4`
+- `nums=[1]` → `1`
 
-## Clarifying assumptions
+# Clarifying assumptions
 
-Exactly one value is a singleton; all other values occur exactly twice. XOR works for signed `int` values because it operates on their fixed-width bit patterns and the same pattern cancels itself.
+Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
 
-## Progressive hints
+# Progressive hints
 
-1. Which operation is its own inverse?
-2. Pair equal values in any order; what does each pair contribute?
-3. Start the accumulator at zero and XOR every value.
+1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
+2. State exactly how every bit or mask contributes to the answer.
+3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
+4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
 
-## Complete C# solution
+# Complete C# solution
 
 ```csharp dsa-solution
 using System;
-static int SingleNumber(int[] nums)
+
+public static class SingleNumberSolution
 {
-    int answer = 0;
-    foreach (int value in nums) answer ^= value;
-    return answer;
+    public static int SingleNumber(int[] nums)
+    {
+        int answer = 0;
+        foreach (int value in nums)
+        {
+            answer ^= value;
+        }
+
+        return answer;
+    }
+
+    public static void Main()
+    {
+        if (SingleNumber(new[] { 2, 2, 1 }) != 1 ||
+            SingleNumber(new[] { 4, 1, 2, 1, 2 }) != 4 ||
+            SingleNumber(new[] { 1 }) != 1 ||
+            SingleNumber(new[] { -7, 5, 5 }) != -7)
+        {
+            throw new InvalidOperationException("Single Number check failed.");
+        }
+    }
 }
-static void Check(int actual, int expected, string label)
-{
-    if (actual != expected) throw new InvalidOperationException($"{label}: expected {expected}, got {actual}");
-}
-Check(SingleNumber(new[] {2,2,1}), 1, "example 1");
-Check(SingleNumber(new[] {4,1,2,1,2}), 4, "example 2");
-Check(SingleNumber(new[] {1}), 1, "example 3");
-Check(SingleNumber(new[] {-7,5,-7}), 5, "negative pair");
-Check(SingleNumber(new[] {0,0,-3}), -3, "zero pair");
-Console.WriteLine("All Single Number checks passed.");
 ```
 
-## Correctness argument
+# Correctness argument
 
-XOR is associative and commutative, so the input can be regrouped into equal pairs and the singleton. Each pair contributes `x^x=0`; zero contributes nothing because `0^y=y`. The final accumulator is therefore exactly the single value. The loop processes each input once and uses one accumulator.
+XOR is associative/commutative, x XOR x is zero, and x XOR zero is x. Reordering the fold into pairs plus the singleton leaves exactly the singleton. The result depends on every other value occurring an even number of times; the problem’s pair guarantee is sufficient.
 
-## Step-by-step dry run
+# Step-by-step dry run
 
-For `[4,1,2,1,2]`: `0^4=4`; `^1=5`; `^2=7`; `^1=6`; `^2=4`. The repeated values cancel and the result is 4.
+For [4,1,2,1,2], start at 0: 0^4=4, 4^1=5, 5^2=7, 7^1=6, 6^2=4. Each 1 and 2 pair cancels.
 
-## Time complexity
+# Time complexity
 
-`O(n)`.
+O(n), one XOR per value.
 
-## Space complexity
+# Space complexity
 
-`O(1)` extra space.
+O(1) auxiliary space.
 
-## Edge-case tests
+# Edge-case tests
 
-Assertions cover every official example, a negative repeated value, and a zero pair. XOR is over integer bit patterns, so negative values are supported under the same equality contract.
+Use one element; singleton at either end; negative singleton; duplicate pairs in different orders. A triple-occurrence variant is not covered by this proof.
 
-## Reflection questions
+# Reflection questions
 
-1. Why does XOR not work if another value occurs three times?
-2. How would the approach change if two values occur once and all others twice?
-3. Does input order affect the result?
+1. Which exact assumption makes the central bit identity valid?
+2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
+3. Which constraints ensure the mask/shift or enumeration count fits?
+4. Can a shorter code path preserve the same invariant more clearly?
+
+**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+
+# Sources
+
+- [Assigned problem](https://leetcode.com/problems/single-number/)
+- [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)

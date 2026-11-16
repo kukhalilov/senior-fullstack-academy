@@ -1,55 +1,70 @@
 # bitwise operations, masks, and subset enumeration — Interview questions and reasoning
 
-## Core questions
+# Core questions
 
-For C# shift and signedness details, see the [Microsoft operator reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators).
+1. Explain AND, OR, XOR, and NOT at the per-bit level.
+2. How do you test, set, clear, and toggle a bit?
+3. What is the difference between arithmetic and logical right shift in C#?
+4. Why does XOR find one singleton among pairs, and when does it fail?
+5. Prove the `x & (x-1)` population-count loop.
+6. How many subsets exist for n elements? Why is subset DP limited to small n?
+7. Why is `1 << 32` not an all-ones 32-bit mask in C#?
+8. How can you sum two integers with bitwise operations and no plus/minus?
 
-1. What do AND, OR, and XOR mean per bit?
-2. Why does XOR find one value among pairs?
-3. How do you test, set, clear, and toggle a bit?
-4. What does `x & (x-1)` do?
-5. What are C# signed and unsigned right shifts?
-6. Why is subset enumeration exponential, and when are masks appropriate?
+# Concise interview answers
 
-## Concise interview answers
+1. AND yields 1 only for two set bits; OR yields 1 if either is set; XOR yields 1 if they differ; NOT flips the fixed-width pattern.
+2. Build a one-bit mask: AND tests, OR sets, AND with complement clears, XOR toggles.
+3. Signed `>>` copies the sign bit; `>>>` shifts in zeros (available since C# 11), and unsigned `>>` also shifts logically.
+4. Each duplicate pair XORs to zero. It fails if the assumed even-multiplicity grouping does not hold.
+5. Subtracting one clears the rightmost set bit and sets lower trailing zeroes; AND with original removes those newly set lower positions, leaving exactly one fewer 1.
+6. 2^n. Any algorithm that enumerates all subsets is exponential; scanning n bits to materialize each subset is O(n·2^n).
+7. C# masks a 32-bit shift count to five low bits, so 32 becomes zero. Use an explicit uint all-ones mask or a full-width branch.
+8. XOR computes sum bits without carry; `(a & b) << 1` computes carry bits. Repeat until carry is zero, with fixed-width overflow semantics stated.
 
-1. AND needs both bits set, OR needs either, and XOR needs the bits to differ.
-2. Equal pairs cancel because `x^x=0`; the identity contributes zero.
-3. With `mask=1<<i`, test `x&mask`, set `x|mask`, clear `x&~mask`, toggle `x^mask`.
-4. It clears the lowest set bit in the fixed-width integer representation.
-5. C# `>>` sign-extends signed operands; `>>>` inserts zeros. Shift counts use five low bits for 32-bit and six for 64-bit operands.
-6. Each of `n` elements independently has two choices, giving `2^n`. Masks are compact for small universes that fit the chosen type.
+# Deep follow-up answers
 
-## Deep follow-up answers
+For bitwise reasoning, annotate the width and signedness before algebra. Algebraic identities such as `x & -x` use modular two’s-complement behavior; in checked code or at the minimum signed value, avoid silently assuming ordinary unbounded integers. For C# shifts, counts are masked, not rejected, so validate them. A mask’s universe size is a complexity issue as well as a width issue: 30 elements already means over a billion subsets, even though the mask still fits in 32 bits.
 
-**Why does `x & -x` isolate the low bit?** In two's complement, `-x` is the bitwise complement of `x` plus one. Trailing zeros become zeros in both operands until the lowest one, where AND retains that one; higher positions are cleared by the differing carry pattern. State the fixed width and avoid interpreting minimum signed negation as a representable positive magnitude.
+Constant-space does not mean the same as “no bit-width state”: an O(1) loop may still make 32 passes. If a problem changes multiplicities from two to three, use modulo-three per-bit counts or a finite-state bit counter rather than the pair-XOR proof. State each guarantee that makes the solution correct.
 
-**How do you count every submask of every mask?** For each outer mask, repeatedly set `sub=(sub-1)&mask`, taking care to include zero exactly once. Across all pairs, each element has three statuses, giving `3^n` total pairs.
+# Scenario questions
 
-**What is the difference between set and toggle?** Set is idempotent: applying it repeatedly leaves the bit on. Toggle changes the bit each time, so a second toggle restores its prior state.
+1. **A population-count loop never terminates for negative n.** Check whether it uses signed arithmetic shift; cast the intended raw pattern to uint or use the low-set-bit clearing loop.
+2. **A mask for bit 31 becomes negative.** The sign is the int interpretation, not a lost bit. Use uint when unsigned mask arithmetic is clearer.
+3. **A program shifts by 32 expecting zero.** C# treats the shift as a shift by zero; branch on full width.
+4. **A subset enumeration is slow at n=25.** 2^25 masks already exceed 33 million; count the states and output volume before choosing the representation.
+5. **XOR returns the wrong answer when repeated values occur three times.** Its cancellation guarantee only handles even multiplicity; use bit counts modulo three.
 
-**How do language rules change portable explanations?** Shift semantics differ across languages for negative values, oversized counts, and signed overflow. State the target language, type width, and whether the algorithm reasons about signed values or raw bit patterns. For C#, shifts mask counts and checked context does not detect discarded bits.
+# Tradeoffs and alternatives
 
-## Scenario questions
+Bitmasks are compact and fast for small fixed universes; sets and Boolean arrays are clearer and unbounded. A low-set-bit loop depends on the number of set bits, while a fixed scan costs the word width. XOR is elegant for exact pair cancellation; a frequency map is more general but uses extra space. Subset recursion and masks both enumerate 2^n results; masks are useful when subset itself must be a compact DP key.
 
-1. A power-of-two test accepts zero. Add the missing positive-value condition.
-2. A loop counts negative `int` with `x &= x-1` and never terminates. Explain sign extension and switch to unsigned bits or a fixed-width scan.
-3. A subset loop uses `1<<n` when `n==32`. Identify the masked-count issue and select a wider or alternative representation.
-4. A candidate applies XOR cancellation to values that occur three times. Ask them to state the needed parity/multiplicity contract.
+# Common weak answers
 
-## Tradeoffs and alternatives
+- “XOR finds the number that appears once” without stating the other multiplicities.
+- “Right shift always fills with zero.”
+- “A negative integer has infinitely many leading one bits” when the algorithm actually uses a fixed-width word.
+- “Shifting by the type width clears the value.”
+- “Bitmask DP is polynomial because each transition is constant time.”
+- “The tails or mask is the answer” without explaining what it represents.
 
-Bit masks make small-set membership and state keys compact, but arrays, `HashSet<T>`, or bit arrays are clearer for large or sparse universes. Kernighan's population count takes time proportional to the number of set bits; fixed-width scanning has predictable width cost. Per-bit modulo counting is simple and robust for one exceptional value among triples; finite-state bit counters can reduce repeated scans. Recursive subset generation avoids width limits but retains exponential output size.
+# Self-check rubric
 
-## Common weak answers
+Score 0–2 for: correct truth table; explicit width/signedness; valid mask boundaries; proof of multiplicity assumptions; C# shift/overflow behavior; complexity including exponential state/output; and edge-case tests for zero, sign bit, and maximum index. Strong answers justify the bit invariant rather than relying on memorized identities.
 
-- Treating integers as unbounded binary strings.
-- Saying all right shifts insert zeros.
-- Using XOR without stating multiplicity assumptions.
-- Ignoring zero in a power-of-two predicate.
-- Calling an exponential bitmask DP polynomial because bitwise operations are constant time.
-- Claiming a shift by the word width clears the value in C#.
+# Sources
 
-## Self-check rubric
-
-Score 0 (missing), 1 (partial), or 2 (clear and correct): truth-table reasoning; mask construction and boundaries; signedness/width; identity proof; multiplicity assumptions; complexity; subset feasibility. A strong answer scores at least 11/14 and can explain a failure case for every shortcut.
+- [Reference](https://usaco.guide/silver/bitwise?lang=cpp)
+- [Reference](https://usaco.guide/gold/dp-bitmasks)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning)
+- [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator)
+- [Reference](https://leetcode.com/problems/single-number/)
+- [Reference](https://leetcode.com/problems/number-of-1-bits/)
+- [Reference](https://leetcode.com/problems/counting-bits/)
+- [Reference](https://leetcode.com/problems/reverse-bits/)
+- [Reference](https://leetcode.com/problems/sum-of-two-integers/)
+- [Reference](https://leetcode.com/problems/single-number-ii/)
+- [Reference](https://leetcode.com/problems/bitwise-and-of-numbers-range/)
+- [Reference](https://leetcode.com/problems/subsets/)

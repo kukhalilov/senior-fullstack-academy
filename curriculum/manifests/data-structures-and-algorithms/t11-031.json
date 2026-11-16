@@ -56,7 +56,7 @@
         "Population count",
         "Parity bit",
         "Power-of-two test",
-        "Power-of-two-of-two boundary",
+        "Power-of-two shift-width boundary",
         "XOR of range pattern",
         "XOR cancellation by even multiplicity",
         "Mask off higher bits"
@@ -377,5 +377,15 @@
     "SIMD/vector instruction sets and hardware-level optimization",
     "Cryptography and cryptographic bit operations"
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "C# int and uint are 32-bit fixed-width types; long and ulong are 64-bit. For int/uint shifts only five low count bits are used; for long/ulong six low count bits are used.",
+    "C# signed right shift >> is arithmetic; C# 11 introduced >>> for logical right shift. Unsigned right shift fills high bits with zero.",
+    "C# bitwise and shift operations never cause overflow and produce the same results in checked and unchecked contexts; shift counts are masked to the width-specific low bits.",
+    "The one-bit mask expression 1 << 31 selects the sign bit in a 32-bit signed int; 1 << 32 shifts by zero in C# because the count is masked, so width-sized masks need explicit handling.",
+    "XOR cancellation solves the single-pair problem only when all other values have even multiplicity; XOR alone does not identify one singleton among arbitrary multiplicities.",
+    "For positive unsigned x, x & (x-1) clears the least significant 1 bit; x & -x isolates it in fixed-width two’s-complement arithmetic, but signed overflow context and minimum values require care.",
+    "Enumerating all subsets is exponential: 2^n masks; visiting all submask pairs over every mask is 3^n.",
+    "The C# unsigned right-shift operator >>> was introduced in C# 11; C# 15 is the current language version checked 2026-11-16."
+  ]
 }

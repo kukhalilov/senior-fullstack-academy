@@ -1,92 +1,111 @@
 # bitwise operations, masks, and subset enumeration — Problem: Subsets
 
-## Goals
+# Goals
 
-Map each integer mask to a unique subset and understand why output size makes exponential enumeration unavoidable.
+- Recognize the bit pattern invariant behind Subsets.
+- Implement the algorithm in C# with an explicit 32-bit interpretation.
+- Prove correctness and account for fixed-width and boundary cases.
 
-## Problem statement
+# Problem statement
 
-Given an array of unique integers, return every possible subset (the power set), without duplicate subsets. Output order does not matter. [Official problem statement](https://leetcode.com/problems/subsets/)
+Return all subsets of unique input values, including the empty subset, in any order.
 
-## Input constraints
+# Input constraints
 
-- `1 <= nums.Length <= 10`.
-- `-10 <= nums[i] <= 10`.
-- All input values are unique.
+- 1 <= nums.length <= 10
+- -10 <= nums[i] <= 10
+- All values are unique
 
-## Examples with expected output
+# Examples with expected output
 
-1. `[1,2,3]` → eight subsets: `[]`, `[1]`, `[2]`, `[1,2]`, `[3]`, `[1,3]`, `[2,3]`, `[1,2,3]` (any order).
-2. `[0]` → `[]`, `[0]`.
-3. `[-1,2]` → `[]`, `[-1]`, `[2]`, `[-1,2]`.
+- `nums=[1,2,3]` → `all eight subsets`
+- `nums=[0]` → `[], [0]`
 
-## Clarifying assumptions
+# Clarifying assumptions
 
-Distinct values mean each subset corresponds to one membership mask. The empty subset is included. The output itself has `2^n` subsets, so exponential output is part of the contract.
+Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
 
-## Progressive hints
+# Progressive hints
 
-1. There are two choices for each input position: absent or present.
-2. An `n`-bit mask encodes those choices.
-3. For each mask from zero to `(1<<n)-1`, inspect bits and copy selected values into a subset.
+1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
+2. State exactly how every bit or mask contributes to the answer.
+3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
+4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
 
-## Complete C# solution
+# Complete C# solution
 
 ```csharp dsa-solution
 using System;
 using System.Collections.Generic;
-using System.Linq;
-static IList<IList<int>> Subsets(int[] nums)
+
+public static class SubsetsBitmaskSolution
 {
-    int count = 1 << nums.Length;
-    var result = new List<IList<int>>(count);
-    for (int mask = 0; mask < count; mask++)
+    public static IList<IList<int>> Subsets(int[] nums)
     {
-        var subset = new List<int>();
-        for (int i = 0; i < nums.Length; i++)
-            if ((mask & (1 << i)) != 0) subset.Add(nums[i]);
-        result.Add(subset);
+        int subsetCount = 1 << nums.Length;
+        var result = new List<IList<int>>(subsetCount);
+
+        for (int mask = 0; mask < subsetCount; mask++)
+        {
+            var subset = new List<int>();
+
+            for (int index = 0; index < nums.Length; index++)
+            {
+                if ((mask & (1 << index)) != 0)
+                {
+                    subset.Add(nums[index]);
+                }
+            }
+
+            result.Add(subset);
+        }
+
+        return result;
     }
-    return result;
+
+    public static void Main()
+    {
+        IList<IList<int>> result = Subsets(new[] { 1, 2, 3 });
+        if (result.Count != 8 || result[0].Count != 0 ||
+            Subsets(new[] { 0 }).Count != 2 || Subsets(new[] { 0 })[0].Count != 0)
+        {
+            throw new InvalidOperationException("Subsets check failed.");
+        }
+    }
 }
-static string Normalize(IEnumerable<int> values) => string.Join(",", values.OrderBy(x => x));
-static void Check(bool condition, string label)
-{
-    if (!condition) throw new InvalidOperationException("Failed: " + label);
-}
-var first = Subsets(new[] {1,2,3});
-Check(first.Count == 8, "example 1 count");
-Check(first.Select(Normalize).Distinct().Count() == 8, "example 1 unique subsets");
-Check(first.Any(x => x.Count == 0), "empty subset included");
-var second = Subsets(new[] {0});
-Check(second.Count == 2 && second.Any(x => x.SequenceEqual(new[] {0})), "example 2");
-var third = Subsets(new[] {-1,2});
-Check(third.Count == 4 && third.Any(x => x.SequenceEqual(new[] {-1,2})), "negative values");
-Console.WriteLine("All Subsets checks passed.");
 ```
 
-## Correctness argument
+# Correctness argument
 
-Every mask from zero through `2^n-1` has one unique pattern of `n` membership bits, and every subset has exactly one such membership pattern. For a mask, the inner loop adds precisely those elements whose bit is set, so it constructs the represented subset. Since each mask is visited once and the mask-subset mapping is bijective, every subset including empty and full is emitted exactly once.
+Every subset uniquely determines one bit per input position: 1 means included and 0 means excluded. The range `[0,2^n)` contains every n-bit pattern exactly once, and the inner loop includes exactly the positions marked 1. Therefore each possible subset is emitted once, including mask zero for the empty subset.
 
-## Step-by-step dry run
+# Step-by-step dry run
 
-For `[a,b,c]`, mask `000` yields empty; `001` yields `{a}`; `010` yields `{b}`; `011` yields `{a,b}`; and `101` yields `{a,c}`. All eight three-bit masks are visited.
+For nums=[1,2,3]: mask 000 emits []; 001 emits [1]; 010 emits [2]; 011 emits [1,2]; continuing through 111 emits [1,2,3]. Eight masks produce all 2^3 subsets.
 
-## Time complexity
+# Time complexity
 
-`O(n2^n)` element checks and worst-case output copying. The output contains `2^n` subset lists and `n2^(n-1)` total element entries.
+O(n·2^n): there are 2^n masks and each scans n positions. Constructing output itself is exponential.
 
-## Space complexity
+# Space complexity
 
-`O(n2^n)` for the required output, plus at most `O(n)` temporary subset storage while constructing each entry.
+O(n·2^n) for all emitted element references in the worst case, plus per-subset list overhead. Auxiliary working space excluding output is O(n).
 
-## Edge-case tests
+# Edge-case tests
 
-Tests verify the count and uniqueness for the first official example, the empty subset, the zero-valued item, and negative input values.
+n=1; n=10 maximum constraint gives 1024 subsets; empty subset included; zero is treated as a value, not as an empty marker; unique values assumed by the prompt.
 
-## Reflection questions
+# Reflection questions
 
-1. Why can't an algorithm return the complete power set in polynomial output space?
-2. How would you enumerate subsets recursively without bit masks?
-3. What mask width issue appears if the input size equals the integer width?
+1. Which exact assumption makes the central bit identity valid?
+2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
+3. Which constraints ensure the mask/shift or enumeration count fits?
+4. Can a shorter code path preserve the same invariant more clearly?
+
+**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+
+# Sources
+
+- [Assigned problem](https://leetcode.com/problems/subsets/)
+- [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
