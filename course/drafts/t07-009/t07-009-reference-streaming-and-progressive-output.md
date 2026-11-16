@@ -1,0 +1,102 @@
+# React DOM rendering modes hydration and host integration — Reference: Streaming, Suspense boundaries, and progressive response
+
+Sources: React 19.3 [React DOM server APIs](https://react.dev/reference/react-dom/server) and [Suspense](https://react.dev/reference/react/Suspense).
+
+## Scope and version
+
+This lesson explains incremental server output and the role of Suspense boundaries. Exact stream API names and runtime-specific method signatures are in the rendering API reference module.
+
+## How this group fits the mental model
+
+Streaming sends ready markup while slower parts continue. Suspense boundaries make portions of the UI independently representable with fallback content and later completion, while hydration attaches client behavior to the delivered markup.
+
+## Supplied names explained
+
+### Streaming server rendering
+
+The server renderer writes HTML to a response progressively instead of waiting for the entire tree. The framework/runtime must keep the response open, handle errors and aborts, and deliver the appropriate scripts/metadata. Streaming does not imply that every data source is non-blocking or that the browser can hydrate code it has not received.
+
+### Incremental HTML delivery
+
+Available chunks reach the browser as the response proceeds. The browser can parse and display them before the full response finishes. Proxies, compression, buffering, and deployment infrastructure can alter when chunks become visible, so validate the deployed path.
+
+### Suspense boundary during server rendering
+
+A Suspense boundary divides content that may not be ready from surrounding content. The server can emit the fallback and complete the boundary later when supported by the renderer. Boundary placement affects perceived progress and UX; overly broad boundaries hide ready content, while tiny boundaries can produce noisy transitions.
+
+### Fallback content in server response
+
+The fallback is the temporary markup for a suspended region. It should communicate what is missing without misleading users and should preserve useful page structure. A fallback must be compatible with later client rendering and accessible to assistive technology.
+
+### Progressive content reveal
+
+As additional boundary content completes, the browser can reveal it without waiting for all other regions. This can improve time to useful content but may shift layout; reserve space or design stable fallbacks where layout movement matters.
+
+### Progressive enhancement before client JavaScript
+
+Useful server HTML and native browser semantics can provide content before the client bundle loads. Forms and links should retain meaningful behavior where the application architecture permits. Hydration later adds richer client interactions. HTML alone does not guarantee every client workflow works without JavaScript.
+
+### Streaming response completion
+
+The server closes the stream after all work completes, the request is aborted, or an error path terminates output. Handle disconnects, timeouts, and errors through framework-supported mechanisms. Do not leave a response open indefinitely for a suspended dependency.
+
+### Client hydration of streamed content
+
+The client hydrates server-delivered boundaries as their markup and code become available. Hydration needs compatible component code and initial data. A streamed chunk is not automatically interactive before its boundary is hydrated.
+
+## Cross-item comparison
+
+| Behavior | Streaming | Whole response rendering |
+|---|---|---|
+| First bytes | Can arrive as parts become ready | Waits for full output before sending |
+| Boundary fallback | May reveal while content completes | Usually included in completed result if suspended |
+| Infrastructure sensitivity | Buffering can erase incremental benefit | Less dependent on chunk flush behavior |
+
+## Examples
+
+```jsx
+<main>
+  <ProductSummary product={product} />
+  <Suspense fallback={<ReviewsSkeleton />}>
+    <Reviews productId={product.id} />
+  </Suspense>
+</main>
+```
+
+If reviews are slower, the summary can be made available earlier while the fallback occupies the review boundary. The framework must support the data/rendering integration; arbitrary asynchronous fetching inside a component is not made production-ready solely by adding Suspense.
+
+## Common mistakes
+
+- Expecting streaming benefit when a proxy buffers the whole response.
+- Putting most of a page behind one boundary and hiding ready content.
+- Treating a fallback as an error message or as final content.
+- Assuming streamed HTML is hydrated as soon as bytes arrive.
+- Ignoring abort, error, timeout, or stable-layout behavior.
+
+## Knowledge checks with answers
+
+1. **What controls reveal units?** Suspense boundary placement and renderer/framework behavior.
+2. **Can deployment buffering hide streaming?** Yes.
+3. **Is received HTML immediately interactive?** No; client hydration and code availability are still required.
+
+### Exact terms covered
+
+- `Streaming server rendering`
+- `Incremental HTML delivery`
+- `Suspense boundary during server rendering`
+- `Fallback content in server response`
+- `Progressive content reveal`
+- `Progressive enhancement before client JavaScript`
+- `Streaming response completion`
+- `Client hydration of streamed content`
+
+### Exact terms covered
+
+- `Streaming server rendering`
+- `Incremental HTML delivery`
+- `Suspense boundary during server rendering`
+- `Fallback content in server response`
+- `Progressive content reveal`
+- `Progressive enhancement before client JavaScript`
+- `Streaming response completion`
+- `Client hydration of streamed content`
