@@ -4,17 +4,155 @@
   "track": "track-06",
   "title": "TypeScript generics, inference, constraints, and variance",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Type parameters preserve relationships between input and output types", "Generic inference can remove redundant type arguments", "Constraints expose only members guaranteed by the constraint", "Defaults and variance control generic reuse and compatibility", "Generic code should preserve type information rather than erase it to any"],
+  "concepts": [
+    "Type parameters preserve relationships between input and output types",
+    "Generic inference can remove redundant type arguments",
+    "Constraints expose only members guaranteed by the constraint",
+    "Defaults and variance control generic reuse and compatibility",
+    "Generic code should preserve type information rather than erase it to any"
+  ],
   "inventory": [
-    {"id":"generic-declarations","title":"Generic types, functions, classes, and interfaces","items":["Generic type parameter","Generic function","Generic call signature","Generic construct signature","Generic interface","Generic type alias","Generic class","Generic method","Generic default type argument","Generic type argument","Generic inference","Explicit type argument list","Const type parameter"]},
-    {"id":"constraints-and-inference","title":"Constraints, inference controls, and variance annotations","items":["Generic constraint (extends)","Constraint using keyof","Constraint using another type parameter","Generic parameter default","Contextual generic inference","Type parameter inference site","Variance annotation (in)","Variance annotation (out)","Covariant type parameter","Contravariant type parameter","Invariant type parameter","Bivariant method parameter compatibility"]},
-    {"id":"generic-use-cases","title":"Generic composition and common patterns","items":["Identity function generic","Generic collection type","Generic factory function","Generic higher-order function","Generic promise-returning function","Generic constraint with keyof and indexed access","Generic class static-side restriction","Generic type parameter scope"]}
+    {
+      "id": "generic-declarations",
+      "title": "Generic types, functions, classes, and interfaces",
+      "items": [
+        "Generic type parameter",
+        "Generic function",
+        "Generic call signature",
+        "Generic construct signature",
+        "Generic interface",
+        "Generic type alias",
+        "Generic class",
+        "Generic method",
+        "Generic default type argument",
+        "Generic type argument",
+        "Generic inference",
+        "Explicit type argument list",
+        "Const type parameter"
+      ]
+    },
+    {
+      "id": "constraints-and-inference",
+      "title": "Constraints, inference controls, and variance annotations",
+      "items": [
+        "Generic constraint (extends)",
+        "Constraint using keyof",
+        "Constraint using another type parameter",
+        "Generic parameter default",
+        "Contextual generic inference",
+        "Type parameter inference site",
+        "Variance annotation (in)",
+        "Variance annotation (out)",
+        "Covariant type parameter",
+        "Contravariant type parameter",
+        "Invariant type parameter",
+        "Bivariant method parameter compatibility",
+        "Stricter type parameter relationships in distributive conditional branches"
+      ]
+    },
+    {
+      "id": "generic-use-cases",
+      "title": "Generic composition and common patterns",
+      "items": [
+        "Identity function generic",
+        "Generic collection type",
+        "Generic factory function",
+        "Generic higher-order function",
+        "Generic promise-returning function",
+        "Generic constraint with keyof and indexed access",
+        "Generic class static-side restriction",
+        "Generic type parameter scope"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["generic constraint","generic default"],["inference","explicit type argument"],["covariance","contravariance"],["generic type parameter","any"],["const type parameter","as const assertion"]],
-  "comparisonSources": ["https://www.typescriptlang.org/docs/handbook/2/generics.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html"],
-  "versionNotes": [{"edition":"TypeScript 4.7","items":["Variance annotations (in and out)"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html"]},{"edition":"TypeScript 5.0","items":["Const type parameters"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html"]}],
-  "sourceSnapshot": {"authority":"TypeScript Handbook and official release notes","edition":"TypeScript 6.0 stable","checkedAt":"2026-11-14","urls":["https://www.typescriptlang.org/docs/handbook/2/generics.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html"]},
-  "scopeExclusions": ["Conditional and mapped type construction (t06-022)","Function overload and type-predicate signatures (t06-023)","Structural compatibility and class declarations (t06-009)"],
+  "comparisons": [
+    [
+      "generic constraint",
+      "generic default"
+    ],
+    [
+      "inference",
+      "explicit type argument"
+    ],
+    [
+      "covariance",
+      "contravariance"
+    ],
+    [
+      "generic type parameter",
+      "any"
+    ],
+    [
+      "const type parameter",
+      "as const assertion"
+    ],
+    [
+      "TypeScript 7.0 distributive branch assumptions",
+      "TypeScript 7.1 beta branch checking"
+    ]
+  ],
+  "comparisonSources": [
+    "https://www.typescriptlang.org/docs/handbook/2/generics.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+  ],
+  "versionNotes": [
+    {
+      "edition": "TypeScript 4.7",
+      "items": [
+        "Variance annotations using in and out; advanced and should match structurally inferred variance."
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 5.0",
+      "items": [
+        "Const type parameters preserve const-like inference at generic call sites."
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 6.0",
+      "items": [
+        "Less context-sensitivity for functions that do not use this can improve generic inference independent of property order."
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 7.1 beta",
+      "items": [
+        "Stronger checking of type-parameter relationships inside distributive conditional branches can reject generic code that TypeScript 7.0 accepted unsafely."
+      ],
+      "sourceUrls": [
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Official TypeScript Handbook and release notes",
+    "edition": "TypeScript 7.0 stable; 7.1 beta as of 2026-11-16",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://www.typescriptlang.org/docs/handbook/2/generics.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+    ]
+  },
+  "scopeExclusions": [
+    "Conditional and mapped type construction (t06-022)",
+    "Function overload and type-predicate signatures (t06-023)",
+    "Structural compatibility and class declarations (t06-009)"
+  ],
   "generationAllowed": true
 }
