@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1940,
+  "taskCount": 1943,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -17210,7 +17210,7 @@
     {
       "id": "t06-010-reference-projects-and-watch-options",
       "track": "track-06",
-      "title": "TypeScript compiler, TSConfig options, project references, and build modes — Reference: Build, incremental, and watch compiler options",
+      "title": "TypeScript compiler, TSConfig options, project references, and build modes — Reference: Incremental project and watch compiler options",
       "module": "t06-010",
       "manifest": "curriculum/manifests/javascript-typescript/t06-010.json",
       "phase": "reference",
@@ -17223,7 +17223,7 @@
     {
       "id": "t06-010-reference-legacy-config-options",
       "track": "track-06",
-      "title": "TypeScript compiler, TSConfig options, project references, and build modes — Reference: Removed, deprecated, and backwards-compatibility TSConfig options",
+      "title": "TypeScript compiler, TSConfig options, project references, and build modes — Reference: Historical and unsupported TSConfig option names",
       "module": "t06-010",
       "manifest": "curriculum/manifests/javascript-typescript/t06-010.json",
       "phase": "reference",
@@ -17234,6 +17234,45 @@
       "inventoryGroup": "legacy-config-options"
     },
     {
+      "id": "t06-010-reference-compiler-cli-options",
+      "track": "track-06",
+      "title": "TypeScript compiler, TSConfig options, project references, and build modes — Reference: Compiler command-line actions and diagnostics",
+      "module": "t06-010",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-010-reference-legacy-config-options"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "compiler-cli-options"
+    },
+    {
+      "id": "t06-010-reference-build-cli-options",
+      "track": "track-06",
+      "title": "TypeScript compiler, TSConfig options, project references, and build modes — Reference: Build orchestration and parallelism command-line options",
+      "module": "t06-010",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-010-reference-compiler-cli-options"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "build-cli-options"
+    },
+    {
+      "id": "t06-010-reference-typescript-71-content-mappers",
+      "track": "track-06",
+      "title": "TypeScript compiler, TSConfig options, project references, and build modes — Reference: TypeScript 7.1 beta embedded-content mapper support",
+      "module": "t06-010",
+      "manifest": "curriculum/manifests/javascript-typescript/t06-010.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t06-010-reference-build-cli-options"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "typescript-71-content-mappers"
+    },
+    {
       "id": "t06-010-practice",
       "track": "track-06",
       "title": "TypeScript compiler, TSConfig options, project references, and build modes — Exercises and worked solutions",
@@ -17241,7 +17280,7 @@
       "manifest": "curriculum/manifests/javascript-typescript/t06-010.json",
       "phase": "practice",
       "prerequisites": [
-        "t06-010-reference-legacy-config-options"
+        "t06-010-reference-typescript-71-content-mappers"
       ],
       "status": "draft-generation-eligible"
     },

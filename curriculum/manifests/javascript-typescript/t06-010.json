@@ -4,22 +4,368 @@
   "track": "track-06",
   "title": "TypeScript compiler, TSConfig options, project references, and build modes",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["The compiler parses, checks, and optionally emits JavaScript or declarations", "Project inputs and inherited configuration determine the program", "Compiler options control type checking, module resolution, output, and environment libraries", "Project references split large codebases into buildable units", "Incremental builds cache work and require correct project boundaries", "Watch options tune filesystem observation while diagnostics explain compiler decisions"],
+  "concepts": [
+    "A compiler project is a graph of source files, declarations, libraries, and resolved dependencies.",
+    "TSConfig determines project inputs, inherited settings, module behavior, checking, and output.",
+    "Project references and build mode make boundaries, dependency order, incremental state, and parallelism explicit.",
+    "Compiler diagnostics, file tracing, watch mode, and profiling help explain and tune compiler work.",
+    "TypeScript 7.0 is a native compiler transition from TypeScript 6.0; current defaults and removed settings are version-dependent."
+  ],
   "inventory": [
-    {"id":"project-inputs-and-inheritance","title":"TSConfig project inputs and inheritance","items":["tsconfig.json","files","include","exclude","extends","references","compilerOptions","watchOptions","Project reference","Solution-style tsconfig","Referenced project redirect"]},
-    {"id":"type-checking-options","title":"Type-checking and strictness compiler options","items":["allowUnreachableCode","allowUnusedLabels","alwaysStrict","exactOptionalPropertyTypes","noFallthroughCasesInSwitch","noImplicitAny","noImplicitOverride","noImplicitReturns","noImplicitThis","noPropertyAccessFromIndexSignature","noUncheckedIndexedAccess","noUnusedLocals","noUnusedParameters","strict","strictBindCallApply","strictBuiltinIteratorReturn","strictFunctionTypes","strictNullChecks","strictPropertyInitialization","useUnknownInCatchVariables"]},
-    {"id":"module-resolution-options","title":"Module resolution, paths, and package metadata options","items":["allowArbitraryExtensions","allowImportingTsExtensions","allowUmdGlobalAccess","baseUrl","customConditions","module","moduleResolution","moduleSuffixes","noResolve","noUncheckedSideEffectImports","paths","resolveJsonModule","resolvePackageJsonExports","resolvePackageJsonImports","rewriteRelativeImportExtensions","rootDir","rootDirs","typeRoots","types"]},
-    {"id":"emit-options","title":"JavaScript, declaration, and source-map emit options","items":["declaration","declarationDir","declarationMap","downlevelIteration","emitBOM","emitDeclarationOnly","importHelpers","inlineSourceMap","inlineSources","mapRoot","newLine","noEmit","noEmitHelpers","noEmitOnError","outDir","preserveConstEnums","removeComments","sourceMap","sourceRoot","stripInternal"]},
-    {"id":"javascript-jsx-interop-options","title":"JavaScript support, JSX, interoperability, and decorators options","items":["allowJs","checkJs","maxNodeModuleJsDepth","disableSizeLimit","plugins","allowSyntheticDefaultImports","erasableSyntaxOnly","esModuleInterop","forceConsistentCasingInFileNames","isolatedDeclarations","isolatedModules","preserveSymlinks","verbatimModuleSyntax","emitDecoratorMetadata","experimentalDecorators","jsx","jsxFactory","jsxFragmentFactory","jsxImportSource","lib","libReplacement","moduleDetection","noLib","reactNamespace","target","useDefineForClassFields"]},
-    {"id":"diagnostic-and-output-options","title":"Diagnostics, output formatting, and library checking options","items":["diagnostics","explainFiles","extendedDiagnostics","generateCpuProfile","generateTrace","listEmittedFiles","listFiles","noCheck","traceResolution","noErrorTruncation","preserveWatchOutput","pretty","skipDefaultLibCheck","skipLibCheck"]},
-    {"id":"projects-and-watch-options","title":"Build, incremental, and watch compiler options","items":["composite","disableReferencedProjectLoad","disableSolutionSearching","disableSourceOfProjectReferenceRedirect","incremental","tsBuildInfoFile","assumeChangesOnlyAffectDirectDependencies","watchFile","watchDirectory","fallbackPolling","synchronousWatchDirectory","excludeDirectories","excludeFiles","tsc --build","tsc --watch","tsc --project","tsc --showConfig"]},
-    {"id":"legacy-config-options","title":"Removed, deprecated, and backwards-compatibility TSConfig options","items":["charset (deprecated)","importsNotUsedAsValues (deprecated)","keyofStringsOnly (deprecated)","noImplicitUseStrict (deprecated)","noStrictGenericChecks (deprecated)","out (deprecated)","outFile (removed in TypeScript 6.0)","preserveValueImports (deprecated)","suppressExcessPropertyErrors (deprecated)","suppressImplicitAnyIndexErrors (deprecated)","ignoreDeprecations"]}
+    {
+      "id": "project-inputs-and-inheritance",
+      "title": "TSConfig project inputs and inheritance",
+      "items": [
+        "tsconfig.json",
+        "files",
+        "include",
+        "exclude",
+        "extends",
+        "references",
+        "compilerOptions",
+        "watchOptions",
+        "Project reference",
+        "Solution-style tsconfig",
+        "Referenced project redirect"
+      ]
+    },
+    {
+      "id": "type-checking-options",
+      "title": "Type-checking and strictness compiler options",
+      "items": [
+        "allowUnreachableCode",
+        "allowUnusedLabels",
+        "alwaysStrict",
+        "exactOptionalPropertyTypes",
+        "noFallthroughCasesInSwitch",
+        "noImplicitAny",
+        "noImplicitOverride",
+        "noImplicitReturns",
+        "noImplicitThis",
+        "noPropertyAccessFromIndexSignature",
+        "noUncheckedIndexedAccess",
+        "noUnusedLocals",
+        "noUnusedParameters",
+        "stableTypeOrdering",
+        "strict",
+        "strictBindCallApply",
+        "strictBuiltinIteratorReturn",
+        "strictFunctionTypes",
+        "strictNullChecks",
+        "strictPropertyInitialization",
+        "useUnknownInCatchVariables"
+      ]
+    },
+    {
+      "id": "module-resolution-options",
+      "title": "Module resolution, paths, and package metadata options",
+      "items": [
+        "allowArbitraryExtensions",
+        "allowImportingTsExtensions",
+        "allowUmdGlobalAccess",
+        "baseUrl",
+        "customConditions",
+        "deduplicatePackages",
+        "module",
+        "moduleResolution",
+        "moduleSuffixes",
+        "noResolve",
+        "noUncheckedSideEffectImports",
+        "paths",
+        "resolveJsonModule",
+        "resolvePackageJsonExports",
+        "resolvePackageJsonImports",
+        "rewriteRelativeImportExtensions",
+        "rootDir",
+        "rootDirs",
+        "typeRoots",
+        "types"
+      ]
+    },
+    {
+      "id": "emit-options",
+      "title": "JavaScript, declaration, and source-map emit options",
+      "items": [
+        "declaration",
+        "declarationDir",
+        "declarationMap",
+        "downlevelIteration",
+        "emitBOM",
+        "emitDeclarationOnly",
+        "importHelpers",
+        "inlineSourceMap",
+        "inlineSources",
+        "mapRoot",
+        "newLine",
+        "noEmit",
+        "noEmitHelpers",
+        "noEmitOnError",
+        "outDir",
+        "preserveConstEnums",
+        "removeComments",
+        "sourceMap",
+        "sourceRoot",
+        "stripInternal"
+      ]
+    },
+    {
+      "id": "javascript-jsx-interop-options",
+      "title": "JavaScript support, JSX, interoperability, and decorators options",
+      "items": [
+        "allowJs",
+        "checkJs",
+        "maxNodeModuleJsDepth",
+        "disableSizeLimit",
+        "plugins",
+        "allowSyntheticDefaultImports",
+        "erasableSyntaxOnly",
+        "esModuleInterop",
+        "forceConsistentCasingInFileNames",
+        "isolatedDeclarations",
+        "isolatedModules",
+        "preserveSymlinks",
+        "verbatimModuleSyntax",
+        "emitDecoratorMetadata",
+        "experimentalDecorators",
+        "jsx",
+        "jsxFactory",
+        "jsxFragmentFactory",
+        "jsxImportSource",
+        "lib",
+        "libReplacement",
+        "moduleDetection",
+        "noLib",
+        "reactNamespace",
+        "target",
+        "useDefineForClassFields"
+      ]
+    },
+    {
+      "id": "diagnostic-and-output-options",
+      "title": "Diagnostics, output formatting, and library checking options",
+      "items": [
+        "diagnostics",
+        "explainFiles",
+        "extendedDiagnostics",
+        "generateCpuProfile",
+        "generateTrace",
+        "listEmittedFiles",
+        "listFiles",
+        "noCheck",
+        "traceResolution",
+        "noErrorTruncation",
+        "preserveWatchOutput",
+        "pretty",
+        "skipDefaultLibCheck",
+        "skipLibCheck"
+      ]
+    },
+    {
+      "id": "projects-and-watch-options",
+      "title": "Incremental project and watch compiler options",
+      "items": [
+        "composite",
+        "disableReferencedProjectLoad",
+        "disableSolutionSearching",
+        "disableSourceOfProjectReferenceRedirect",
+        "incremental",
+        "tsBuildInfoFile",
+        "assumeChangesOnlyAffectDirectDependencies",
+        "watchFile",
+        "watchDirectory",
+        "fallbackPolling",
+        "synchronousWatchDirectory",
+        "excludeDirectories",
+        "excludeFiles"
+      ]
+    },
+    {
+      "id": "legacy-config-options",
+      "title": "Historical and unsupported TSConfig option names",
+      "items": [
+        "charset",
+        "importsNotUsedAsValues",
+        "keyofStringsOnly",
+        "noImplicitUseStrict",
+        "noStrictGenericChecks",
+        "out",
+        "outFile (removed in TypeScript 6.0)",
+        "preserveValueImports",
+        "suppressExcessPropertyErrors",
+        "suppressImplicitAnyIndexErrors",
+        "ignoreDeprecations"
+      ]
+    },
+    {
+      "id": "compiler-cli-options",
+      "title": "Compiler command-line actions and diagnostics",
+      "items": [
+        "tsc --all",
+        "tsc --help",
+        "tsc --init",
+        "tsc --version",
+        "tsc --ignoreConfig",
+        "tsc --project",
+        "tsc --showConfig",
+        "tsc --watch",
+        "tsc --listFilesOnly",
+        "tsc --locale",
+        "tsc --pprofDir",
+        "tsc --quiet"
+      ]
+    },
+    {
+      "id": "build-cli-options",
+      "title": "Build orchestration and parallelism command-line options",
+      "items": [
+        "tsc --build",
+        "tsc --force",
+        "tsc --dry",
+        "tsc --clean",
+        "tsc --verbose",
+        "tsc --checkers",
+        "tsc --builders",
+        "tsc --singleThreaded",
+        "tsc --stopBuildOnErrors"
+      ]
+    },
+    {
+      "id": "typescript-71-content-mappers",
+      "title": "TypeScript 7.1 beta embedded-content mapper support",
+      "items": [
+        "contentMappers",
+        "tsc --runExternalCode"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["noEmit","noEmitOnError"],["moduleResolution node16","moduleResolution nodenext"],["moduleResolution bundler","moduleResolution nodenext"],["incremental build","composite project build"],["sourceMap","declarationMap"]],
-  "comparisonSources": ["https://www.typescriptlang.org/tsconfig/","https://www.typescriptlang.org/docs/handbook/project-references.html","https://www.typescriptlang.org/docs/handbook/compiler-options.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html"],
-  "versionNotes": [{"edition":"TypeScript 5.9","items":["Minimal and updated tsc --init configuration"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-9.html"]},{"edition":"TypeScript 6.0","items":["es2025 target and lib","stableTypeOrdering","Deprecated options scheduled for removal in TypeScript 7.0","outFile removed"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html"]}],
-  "sourceSnapshot": {"authority":"Official TypeScript TSConfig Reference and Handbook","edition":"TypeScript 6.0 stable","checkedAt":"2026-11-14","urls":["https://www.typescriptlang.org/tsconfig/","https://www.typescriptlang.org/docs/handbook/project-references.html","https://www.typescriptlang.org/docs/handbook/compiler-options.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-9.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html"]},
-  "scopeExclusions": ["All command-line flags outside the listed config and project-build modes","Runtime package-manager and bundler configuration (t06-025, t06-026)","Editor language-service API surface and compiler plugin APIs"],
-  "generationAllowed": true
+  "comparisons": [
+    [
+      "tsc --project",
+      "tsc --ignoreConfig"
+    ],
+    [
+      "noEmit",
+      "noEmitOnError"
+    ],
+    [
+      "moduleResolution node16",
+      "moduleResolution nodenext"
+    ],
+    [
+      "moduleResolution bundler",
+      "moduleResolution nodenext"
+    ],
+    [
+      "incremental build",
+      "composite project build"
+    ],
+    [
+      "sourceMap",
+      "declarationMap"
+    ],
+    [
+      "tsc --checkers",
+      "tsc --builders"
+    ]
+  ],
+  "comparisonSources": [
+    "https://www.typescriptlang.org/tsconfig/",
+    "https://www.typescriptlang.org/docs/handbook/project-references.html",
+    "https://www.typescriptlang.org/docs/handbook/compiler-options.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+    "https://www.npmjs.com/package/typescript/v/7.1.0-beta"
+  ],
+  "versionNotes": [
+    {
+      "edition": "TypeScript 5.9",
+      "items": [
+        "tsc --init emits a smaller, modern starter configuration."
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-9.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 6.0",
+      "items": [
+        "es2025 target and lib",
+        "stableTypeOrdering is enabled by default in 6.0 and cannot be disabled in 7.0.",
+        "Deprecated settings become errors/no-op behavior in TypeScript 7; outFile was removed in TypeScript 6.0.",
+        "types defaults to an empty list and rootDir defaults to the project directory."
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 7.0 stable",
+      "items": [
+        "Native Go compiler and language server, parallelized compiler work, rebuilt watch mode, and adopted TypeScript 6 defaults.",
+        "Notable defaults include strict true, module esnext, noUncheckedSideEffectImports true, libReplacement false, rootDir ./, and types []; the target default is the stable ECMAScript edition before esnext (ES2025 in 7.0).",
+        "Deprecated TypeScript 6 options and constructs now produce hard errors; migration is required.",
+        "TypeScript 7.0 does not expose a programmatic compiler API; TypeScript 6 remains necessary for tooling integrations that depend on it."
+      ],
+      "sourceUrls": [
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+      ]
+    },
+    {
+      "edition": "TypeScript 7.1 beta",
+      "items": [
+        "Introduces the replacement programmatic API with sync, async, filesystem, and AST entry points.",
+        "Adds stable ES2026 target and lib; the 7.1 beta compiler reports ES2026 as its target default.",
+        "The API and content mapper support are beta as of 2026-11-16; do not present them as stable.",
+        "The 7.1 beta CLI also exposes deduplicatePackages; verify the beta-specific contract before production use.",
+        "Introduces content mappers for embedded languages and a required --runExternalCode opt-in for running them."
+      ],
+      "sourceUrls": [
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Official TypeScript CLI output, TSConfig Reference, Handbook, and release announcements",
+    "edition": "TypeScript 7.0 stable; 7.1 beta as of 2026-11-16",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://www.typescriptlang.org/",
+      "https://www.typescriptlang.org/tsconfig/",
+      "https://www.typescriptlang.org/docs/handbook/project-references.html",
+      "https://www.typescriptlang.org/docs/handbook/compiler-options.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-9.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+      "https://www.npmjs.com/package/typescript/v/7.1.0-beta",
+      "https://www.typescriptlang.org/tsconfig/watchFile.html",
+      "https://www.typescriptlang.org/tsconfig/watchDirectory.html",
+      "https://www.typescriptlang.org/tsconfig/fallbackPolling.html",
+      "https://www.typescriptlang.org/tsconfig/synchronousWatchDirectory.html",
+      "https://www.typescriptlang.org/tsconfig/excludeDirectories.html",
+      "https://www.typescriptlang.org/tsconfig/excludeFiles.html"
+    ]
+  },
+  "scopeExclusions": [
+    "Editor language-service features and editor-specific commands/settings.",
+    "Runtime package-manager and bundler configuration (t06-025, t06-026).",
+    "Command-line flags unrelated to compiling, configuring, diagnosing, watching, or building TypeScript projects.",
+    "Unstable internal implementation symbols that are not exported from the TypeScript 7.1 beta package.",
+    "The TypeScript 7.1 beta programmatic compiler, language-service, and generated AST factory APIs; these are beta and require a separate exhaustive inventory."
+  ],
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "The source snapshot is TypeScript 7.0 stable and TypeScript 7.1 beta. Exact CLI/API names added for 7.1 are beta and must not be presented as stable 7.0 capabilities.",
+    "TypeScript 7.0 adopts TypeScript 6.0 defaults. Its target default is the current stable ECMAScript edition immediately before esnext; TypeScript 7.0 uses ES2025, while TypeScript 7.1 beta adds ES2026 and reports that as the default. Name the compiler version whenever stating this default.",
+    "TypeScript 7.0 defaults strict to true, module to esnext, target to the stable ECMAScript edition immediately preceding esnext, alwaysStrict to true, noUncheckedSideEffectImports to true, libReplacement to false, stableTypeOrdering to true and non-disableable, rootDir to ./, and types to [].",
+    "TypeScript 6.0 removed outFile. TypeScript 7.1 beta may still display the legacy spelling in --all output, but using it reports TS5102 and is unsupported.",
+    "TypeScript 7.0 rejects ES5 target, downlevelIteration, node/node10 and classic module resolution, AMD/UMD/SystemJS/none module kinds, baseUrl, false values for esModuleInterop and allowSyntheticDefaultImports, alwaysStrict false, legacy module namespace declarations, import asserts syntax, and no-default-lib directives in the documented cases. Do not imply every old option is still accepted.",
+    "TypeScript 7.0 introduces --checkers, --builders, and --singleThreaded for compiler and project-build parallelism controls. TypeScript 7.1 beta adds content mappers and requires --runExternalCode to execute third-party mapper code. Treat this as explicit code execution, not ordinary passive config.",
+    "TypeScript 7.1 beta adds deduplicatePackages; do not state its semantics beyond its supplied name and official compiler option text.",
+    "TypeScript 7.1 beta introduces a redesigned programmatic API, but its broad API/AST export surface is outside this TSConfig and build-options inventory; do not imply this topic exhaustively teaches those exports.",
+    "TypeScript 7.1 beta contentMappers are a separate preview feature: they map embedded source regions and require --runExternalCode to execute the configured package. Editors add workspace trust/permission controls.",
+    "TypeScript 7.1.0-beta differs from the TypeScript 7.0 rootDir guidance: the beta compiler help reports a computed rootDir, and a no-rootDir project with a common ./src source directory produced TS5011 requesting an explicit rootDir. Set rootDir deliberately and verify this beta behavior before relying on it."
+  ]
 }

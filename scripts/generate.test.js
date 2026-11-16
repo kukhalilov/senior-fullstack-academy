@@ -649,7 +649,7 @@ test('JavaScript language inventories use current standard names without duplica
   assert.ok(typedArrays.versionNotes.some(note => note.edition === 'ECMAScript 2026' && note.items.includes('Uint8Array.fromBase64')));
 });
 
-test('TypeScript 6 scopes freeze the compiler options, type operators, and current tooling choices', () => {
+test('TypeScript scopes freeze compiler options, type operators, and current tooling choices', () => {
   const base = 'curriculum/manifests/javascript-typescript';
   for (const id of ['t06-007', 't06-008', 't06-009', 't06-010', 't06-021', 't06-022', 't06-023', 't06-024', 't06-025', 't06-026', 't06-027']) {
     const manifest = JSON.parse(fs.readFileSync(`${base}/${id}.json`, 'utf8'));
@@ -658,7 +658,8 @@ test('TypeScript 6 scopes freeze the compiler options, type operators, and curre
     assert.ok(manifest.concepts.length > 0, id);
     assert.ok(manifest.inventory.every(group => group.items.length > 0), id);
     for (const group of manifest.inventory) assert.equal(new Set(group.items).size, group.items.length, `${id}/${group.id}`);
-    if (id <= 't06-024') assert.equal(manifest.sourceSnapshot.edition, 'TypeScript 6.0 stable', id);
+    if (id === 't06-010') assert.equal(manifest.sourceSnapshot.edition, 'TypeScript 7.0 stable; 7.1 beta as of 2026-11-16', id);
+    else if (id <= 't06-024') assert.equal(manifest.sourceSnapshot.edition, 'TypeScript 6.0 stable', id);
     else assert.match(manifest.sourceSnapshot.edition, /^Current .*documentation checked 2026-11-14$/, id);
   }
   const types = JSON.parse(fs.readFileSync(`${base}/t06-022.json`, 'utf8'));
@@ -666,9 +667,13 @@ test('TypeScript 6 scopes freeze the compiler options, type operators, and curre
   for (const name of ['NoInfer<Type>', 'Awaited<Type>', 'Uppercase<StringType>', 'Mapped type key remapping (as)']) assert.ok(typeNames.includes(name), name);
   const compiler = JSON.parse(fs.readFileSync(`${base}/t06-010.json`, 'utf8'));
   const compilerNames = compiler.inventory.flatMap(group => group.items);
+  assert.equal(new Set(compilerNames).size, compilerNames.length);
   assert.ok(compilerNames.includes('moduleResolution'));
   assert.ok(compilerNames.includes('outFile (removed in TypeScript 6.0)'));
+  assert.ok(compilerNames.includes('tsc --runExternalCode'));
+  assert.ok(compilerNames.includes('contentMappers'));
   assert.ok(compiler.versionNotes.some(note => note.edition === 'TypeScript 6.0' && note.items.includes('es2025 target and lib')));
+  assert.ok(compiler.versionNotes.some(note => note.edition === 'TypeScript 7.1 beta'));
   const build = JSON.parse(fs.readFileSync(`${base}/t06-026.json`, 'utf8'));
   assert.ok(build.inventory.flatMap(group => group.items).includes('Rolldown'));
   assert.ok(build.versionNotes.some(note => note.edition === 'Vite 8.0 stable (2026)'));
@@ -1493,4 +1498,3 @@ test('model pool and reviewer evidence rules prevent false missing-item reports'
   for (const model of ['gemini-3.8-flash','gemini-3.6-flash','gemini-3-flash-preview','gemini-4-hydrogen']) assert.ok(workflow.includes(model));
   assert.equal(workflow.includes('gemini-2.5-flash'),false,'models unavailable to this project should not be retried every run');
 });
-
