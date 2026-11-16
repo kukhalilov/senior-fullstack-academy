@@ -26,9 +26,13 @@ function markdownFiles(directory) {
 const dsaHeadings = ['Goals','Problem statement','Input constraints','Examples with expected output','Clarifying assumptions','Progressive hints','Complete C# solution','Correctness argument','Step-by-step dry run','Time complexity','Space complexity','Edge-case tests','Reflection questions'];
 const errors = [];
 const files = markdownFiles(root);
+const filesByTaskId = new Map();
 for (const file of files) {
   const text = fs.readFileSync(file, 'utf8');
   const taskId = path.basename(file, '.md');
+  const previousFile = filesByTaskId.get(taskId);
+  if (previousFile) errors.push(`${file}: duplicate lesson task ID also appears at "${previousFile}"`);
+  else filesByTaskId.set(taskId, file);
   const task = tasks.get(taskId);
   if (!task) {
     errors.push(`${file}: file does not match a queue task`);
