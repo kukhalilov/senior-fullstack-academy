@@ -134,25 +134,29 @@
   ],
   "versionNotes": [
     {
-      "edition": "EF Core 10 stable; EF Core 11 in development",
+      "edition": "EF Core 11.0.0 stable; EF Core 10.0 recent major release",
       "items": [
-        "EF Core 10 adds JSON mapping and query translation improvements; performance results remain provider- and workload-dependent. EF Core 11 query enhancements are preview/development-only at the checked date."
+        "EF Core 11.0.0 was released on 2026-11-10 and requires .NET 11. Its relational query improvements include pruning unnecessary reference joins and redundant ordering keys in Include queries, improved GroupBy translation/materialization, support for .NET 11 FullJoin, removal of certain no-op SQL casts, and MaxBy/MinBy translation. SQL Server-specific EF11 additions include vector search, vector-index support, and avoiding implicit projection of vector columns. These are release facts, not a guarantee that every provider or workload is faster; benchmark the deployed provider and data. EF Core 10 remains a recent major release, and its performance behavior is still provider- and workload-dependent."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft EF Core performance, querying, pagination, and split-query documentation",
-    "edition": "EF Core 10 stable checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "EF Core 11.0.0 stable checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
+      "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
       "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
       "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
-      "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries"
+      "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
     ]
   },
   "scopeExclusions": [
