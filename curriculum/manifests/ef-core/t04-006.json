@@ -21,7 +21,10 @@
         "ThenInclude",
         "Filtered Include",
         "Include<TEntity,TProperty>",
+        "Include(string navigationPath)",
+        "Include on derived entity navigation",
         "ThenInclude navigation chain",
+        "ThenInclude generic overload shapes",
         "Include reference navigation",
         "Include collection navigation",
         "Multiple collection Include",
@@ -29,6 +32,8 @@
         "Select projection",
         "AutoInclude",
         "IgnoreAutoIncludes",
+        "Owned navigation auto-inclusion convention",
+        "IgnoreAutoIncludes owned-navigation limitation",
         "Navigation auto-inclusion",
         "Cartesian explosion",
         "Single query loading",
@@ -53,6 +58,7 @@
         "UseLazyLoadingProxies",
         "ILazyLoader",
         "ILazyLoader.Load",
+        "Lazy-loader delegate injection",
         "Virtual navigation requirement",
         "Lazy-loading proxy package",
         "N+1 query problem",
@@ -60,6 +66,7 @@
         "Lazy loading serialization hazard",
         "Navigation not loaded state",
         "IsLoaded flag",
+        "NavigationEntry.IsLoaded",
         "Explicit query aggregate"
       ]
     },
@@ -117,17 +124,30 @@
     "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
     "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries"
   ],
-  "versionNotes": [],
+  "versionNotes": [
+    {
+      "edition": "EF Core 11.0.0 released 2026-11-10; related-data behavior checked 2026-11-16",
+      "items": [
+        "EF Core 11 improves SQL for reference-navigation includes: it prunes redundant to-one joins in split collection queries and removes redundant reference keys from ORDER BY clauses. This does not remove split-query round trips, consistency, or buffering tradeoffs. EF Core 11 What's New currently carries a stale development banner; use final release notes for release status."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+      ]
+    }
+  ],
   "sourceSnapshot": {
     "authority": "Microsoft EF Core 10 related-data and split-query documentation",
-    "edition": "EF Core stable loading APIs checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "EF Core 11.0.0; related-data behavior checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/ef/core/querying/related-data/",
       "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
       "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
       "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
-      "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries"
+      "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
     ]
   },
   "scopeExclusions": [
