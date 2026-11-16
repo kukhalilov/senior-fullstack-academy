@@ -157,7 +157,7 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core integration testing references checked 2026-11-14",
+      "edition": "ASP.NET Core integration testing references checked 2026-11-17",
       "items": [
         "Current ASP.NET Core API reference includes WebApplicationFactory<TEntryPoint> for ASP.NET Core 11. Keep examples aligned to the application target and the matching Microsoft.AspNetCore.Mvc.Testing package version."
       ],
@@ -169,8 +169,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core integration testing, minimal API testing, .NET testing and EF Core testing documentation; PactNet and Testcontainers for .NET official docs",
-    "edition": "ASP.NET Core 11 / .NET 11 stable API boundary and current integration-testing guidance checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "ASP.NET Core 11 / .NET 11 stable API boundary and current integration-testing guidance checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/test-min-api?view=aspnetcore-10.0",
@@ -178,11 +178,30 @@
       "https://learn.microsoft.com/en-us/dotnet/core/testing/",
       "https://learn.microsoft.com/en-us/ef/core/testing/",
       "https://github.com/pact-foundation/pact-net",
+      "https://docs.pact.io/",
+      "https://docs.pact.io/faq",
       "https://dotnet.testcontainers.org/",
+      "https://dotnet.testcontainers.org/api/wait_strategies/",
       "https://github.com/WireMock-Net/WireMock.Net",
-      "https://github.com/jbogard/Respawn"
+      "https://github.com/jbogard/Respawn",
+      "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
+      "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+      "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
+      "https://xunit.net/docs/shared-context"
     ]
   },
+  "accuracyFacts": [
+    "WebApplicationFactory<TEntryPoint> typically creates an in-process TestServer. This exercises application hosting and middleware behavior without proving real socket, TLS, reverse-proxy, DNS, or deployment behavior; use an appropriate real-process environment for those boundaries.",
+    "The ASP.NET Core integration-testing guidance commonly uses Development as the test host environment when no environment is set. Tests should set the intended environment explicitly when environment-specific configuration matters.",
+    "EF Core InMemory is non-relational: it does not support transactions or raw SQL and can differ from production query behavior. Microsoft discourages it as a general database fake. SQLite in-memory is relational but still differs from the production provider; provider-specific queries and semantics require tests against the production database engine.",
+    "EF Core recommends testing against the production database system for database behavior where practical. Test doubles remain useful for narrowly controlled scenarios, but passing against a double does not prove production-provider behavior.",
+    "An in-memory SQLite database is tied to an open connection; closing the connection deletes the database. Tests that need multiple contexts to share it must keep the connection open for the test lifetime.",
+    "Testcontainers wait strategies establish a readiness condition; a running container or open mapped port alone does not prove that the application inside is ready to serve the tested behavior.",
+    "Pact-style consumer/provider contract tests use a simulated provider during consumer verification and provider verification against the provider implementation. They test interactions captured in contracts, not every behavior of the whole distributed system.",
+    "A loopback HTTP server such as WireMock.Net exercises real HTTP serialization and request handling from the client perspective; an HttpMessageHandler stub is narrower and does not exercise sockets, HTTP framing, or server behavior.",
+    "Database isolation strategy must account for all connections, background work, transactions, parallel tests, and cleanup. A transaction around the test is insufficient when application code uses an independent connection or commits outside that transaction.",
+    "Logs, dumps, request bodies, database snapshots, and container output can contain secrets or personal data. Capture only what is needed and apply the repository's artifact-access and retention policy."
+  ],
   "scopeExclusions": [
     "Unit test design and xUnit/MSTest/NUnit/TUnit authoring are covered in t10-001.",
     "Frontend component and real-browser tests are covered in t10-003.",
