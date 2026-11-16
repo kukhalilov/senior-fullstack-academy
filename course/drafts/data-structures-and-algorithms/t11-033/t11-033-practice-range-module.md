@@ -36,7 +36,7 @@ class Program
 {
 sealed class RangeModule
 {
-    private sealed class Node { public Node Left, Right; public int State; public Node(int state = 0) { State = state; } }
+    private sealed class Node { public Node? Left, Right; public int State; public Node(int state = 0) { State = state; } }
     private readonly Node root = new Node();
     private const int Lo = 1, Hi = 1_000_000_001;
     public void AddRange(int left, int right) => Update(root, Lo, Hi, left, right, 1);

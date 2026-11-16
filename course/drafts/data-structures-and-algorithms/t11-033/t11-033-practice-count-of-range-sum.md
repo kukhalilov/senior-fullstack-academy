@@ -19,7 +19,7 @@ Count nonempty subarrays whose sum lies in the inclusive interval `[lower,upper]
 
 1. `nums=[-2,5,-1]`, `lower=-2`, `upper=2` → `3`.
 2. `nums=[0]`, `lower=0`, `upper=0` → `1`.
-3. `nums=[1,-1,1]`, `lower=0`, `upper=0` → `1`.
+3. `nums=[1,-1,1]`, `lower=0`, `upper=0` → `2` (`[1,-1]` and `[-1,1]`).
 
 ## Clarifying assumptions
 

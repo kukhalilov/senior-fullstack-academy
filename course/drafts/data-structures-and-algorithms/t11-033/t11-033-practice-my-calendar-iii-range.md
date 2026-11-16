@@ -36,7 +36,7 @@ class Program
 {
 sealed class MyCalendarThree
 {
-    private sealed class Node { public Node Left, Right; public int Max, Lazy; }
+    private sealed class Node { public Node? Left, Right; public int Max, Lazy; }
     private readonly Node root = new Node();
     private const int Lo = 0, Hi = 1_000_000_001;
     public int Book(int startTime, int endTime)
@@ -49,8 +49,8 @@ sealed class MyCalendarThree
         n.Left ??= new Node(); n.Right ??= new Node();
         if (n.Lazy != 0)
         {
-            n.Left.Max += n.Lazy; n.Left.Lazy += n.Lazy;
-            n.Right.Max += n.Lazy; n.Right.Lazy += n.Lazy;
+            n.Left!.Max += n.Lazy; n.Left.Lazy += n.Lazy;
+            n.Right!.Max += n.Lazy; n.Right.Lazy += n.Lazy;
             n.Lazy = 0;
         }
     }
@@ -59,9 +59,9 @@ sealed class MyCalendarThree
         if (ql <= lo && hi <= qr) { n.Max += value; n.Lazy += value; return; }
         Push(n);
         int mid = lo + (hi - lo) / 2;
-        if (ql < mid) Add(n.Left, lo, mid, ql, qr, value);
-        if (qr > mid) Add(n.Right, mid, hi, ql, qr, value);
-        n.Max = Math.Max(n.Left.Max, n.Right.Max);
+        if (ql < mid) Add(n.Left!, lo, mid, ql, qr, value);
+        if (qr > mid) Add(n.Right!, mid, hi, ql, qr, value);
+        n.Max = Math.Max(n.Left!.Max, n.Right!.Max);
     }
 }
 static void Check(int actual, int expected, string label)
