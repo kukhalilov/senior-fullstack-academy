@@ -1,0 +1,103 @@
+# query processing execution plans cardinality and parameter sensitivity — Reference: Plan history, regressions, and repeatable diagnosis
+
+# Scope and version
+
+Targets SQL Server 2025 (17.x), with compatibility and eligibility boundaries called out separately. Azure SQL products can expose different release/update policies. These are the exact names frozen for this reference group; consult the cited Microsoft reference for operators and options outside this curated list.
+
+# Supplied names explained
+
+| Exact inventory item | Meaning and important edge |
+| --- | --- |
+| `Query Store` | Database-level persisted history of queries, plans, runtime statistics, and optionally wait statistics. It survives plan-cache eviction and helps compare behavior over time. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store runtime statistics` | Aggregated execution metrics grouped into configured time intervals; averages and totals can hide skew, outliers, and execution count changes. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store wait statistics` | Wait categories associated with query execution intervals when collection is enabled. A category narrows diagnosis but does not prove the root cause. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store plan forcing` | Requests reuse of a previously captured plan to mitigate a regression. Forcing can fail or become inappropriate after schema/data changes; monitor forcing status and reevaluate. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store hints` | Persisted query-level hints applied without changing application SQL. Use only after addressing stats/index/compatibility causes; hints may fail or be ignored and require lifecycle ownership. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17)) |
+| `Query Store plan regression` | A performance deterioration associated with a plan choice change. Compare same query/parameter/workload windows and distinguish plan effect from data, concurrency, or infrastructure changes. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store capture mode` | Controls which queries Query Store captures (for example AUTO, ALL, or CUSTOM where supported). Capture policy balances completeness, storage, and overhead. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `sys.query_store_query` | One row per captured query in Query Store. Join query_id to plan and runtime views; capture policy and retention determine what is present. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `sys.query_store_plan` | Captured plan metadata and Showplan XML for a Query Store query. Newer versions distinguish dispatcher and query-variant plans; use relationship metadata when examining adaptive plans. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `sys.query_store_runtime_stats` | Aggregated runtime metrics per plan and interval, including execution counts and CPU/duration/I/O. In-progress intervals can be partial; compare equivalent time windows. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `sys.query_store_wait_stats` | Query Store wait-category aggregates when wait capture is enabled. This narrows query-level diagnosis but does not replace instance-level resource analysis. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `SET STATISTICS IO` | Reports logical/physical/read-ahead reads by object for executed statements. Use it to compare work; it does not explain wait time or prove the plan is best. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)) |
+| `SET STATISTICS TIME` | Reports parse/compile and execution CPU/elapsed measurements. Separate compile from runtime and compare repeated, controlled executions. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)) |
+| `Live Query Statistics` | Shows runtime row flow and estimated progress for an in-flight query, refreshed periodically. Instrumentation has overhead and displayed progress is not a precise completion forecast. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)) |
+| `Extended Events query monitoring` | Targeted event sessions can capture query, plan, and optimizer diagnostics. Prefer narrowly filtered sessions and inspect event semantics/overhead before production collection. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide?view=sql-server-ver17)) |
+| `Actual versus estimated row comparison` | Compare at the earliest operator where actual and estimated cardinality diverge; downstream symptoms often originate upstream. A mismatch is a clue, not proof statistics alone are wrong. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide?view=sql-server-ver17)) |
+| `Plan cache` | Memory cache of compiled plans. It holds recent/reusable plans but can evict them and does not provide durable plan history. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide?view=sql-server-ver17)) |
+| `Plan cache reuse` | Reuses a compiled plan when statement identity and relevant context match. Reuse reduces compilation but may expose parameter sensitivity; settings/schema/metadata can cause separate cache entries. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide?view=sql-server-ver17)) |
+| `Compilation versus execution time` | Compilation optimizes and builds a plan; execution runs it. Compilation storms and repeated recompiles are distinct from expensive execution and should be measured separately. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17)) |
+| `Query hash` | Identifier derived from normalized query text for grouping similar statements. It is not a collision-free business identity and does not prove two statements have identical runtime behavior. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query plan hash` | Hash of a plan shape useful for identifying plan changes. Same hash does not guarantee identical runtime performance under different parameters/data/resources. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store for readable secondaries` | Query Store for readable secondary replicas is preview across Database Engine platforms. It is available starting with SQL Server 2025, but is not enabled by default there; configure primary and secondary capture with an Always On availability group. SQL Server 2022 support is limited preview and requires trace flag 12606, which Microsoft says is not intended for production. Azure availability differs by service/update policy. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17)) |
+| `ABORT_QUERY_EXECUTION query hint` | A SQL Server 2025 Query Store hint that causes a targeted query to fail rather than execute. It is an operational block control requiring careful query identification and rollback handling. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17)) |
+| `SET SHOWPLAN_XML` | Returns estimated Showplan XML without executing the batch. It has compile-time estimates but no runtime row counts, warnings, or resource measurements. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)) |
+| `SET STATISTICS XML` | Executes statements and returns actual Showplan XML with runtime information. Use controlled runs because collecting and returning detailed XML has overhead. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)) |
+| `SET STATISTICS PROFILE` | Executes statements and returns tabular plan/operator runtime profile data for estimated-versus-actual comparisons. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)) |
+| `SET STATISTICS IO ON` | Reports logical, physical, and read-ahead reads by object after execution. Logical reads measure buffer pages accessed, not storage latency. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)) |
+| `SET STATISTICS TIME ON` | Reports parse/compile and execution CPU/elapsed measurements. Separate compile work from runtime; elapsed time can include waits and scheduling. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)) |
+| `Actual plan runtime context` | An actual plan combines the compiled strategy with runtime observations from that execution, such as actual rows and supported warning/time properties. It represents only the captured execution context. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)) |
+| `Live Query Statistics refresh behavior` | Displays in-flight row flow and estimated progress, refreshed periodically (about once per second in the documented interface). Instrumentation adds overhead, and progress is not an ETA. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)) |
+| `sys.query_store_query_variant` | SQL Server 2022+ catalog view exposing parent/child relationships among original queries, dispatcher plans, and query variants produced by PSP. Join its query/plan identifiers to Query Store metadata and account for SQL Server 2025 PSP extensions. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17)) |
+| `sys.query_store_query_hints` | Catalog view for Query Store hints and their application/failure status. Use it to verify the persisted hint and diagnosis rather than assuming sys.sp_query_store_set_hints succeeded as intended. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17)) |
+| `sys.sp_query_store_set_hints` | System stored procedure that creates or replaces Query Store hints for a query_id. It accepts an OPTION(...) string; a later call replaces prior hint text for that query. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17)) |
+| `sys.sp_query_store_clear_hints` | System stored procedure that removes Query Store hints for a query_id. Clearing a hint returns plan generation to the remaining query/database/plan-guide controls; verify the subsequent plan. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17)) |
+| `Query Store READ_WRITE mode` | Records Query Store data and accepts management operations. Size limits can change the actual mode; monitor it to detect gaps in recent history. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store READ_ONLY mode` | Retains existing Query Store data but stops recording new data. Inspect mode and reason before interpreting missing recent plans as absence of workload. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store wait-statistics capture` | Configurable collection of query-associated wait categories by runtime interval. It is query-level evidence, not a complete instance wait diagnosis. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store size quota and cleanup` | Configured storage quota and cleanup policy bound retained Query Store history. At capacity, capture can stop or the store can transition modes; monitor cleanup and actual status. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Plan forcing versus Query Store hints` | Forcing requests a captured plan; a Query Store hint changes supported compilation behavior. Hints can override in-text/plan-guide hints, while forcing can fail; both need monitoring and revalidation. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17)) |
+| `Query Store hint failure/ignored status` | Unsupported or contradictory hints might be ignored rather than block execution (except ABORT_QUERY_EXECUTION). Check Query Store hint status and applied Showplan attributes. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17)) |
+| `Query Store hint re-evaluation after data change` | Reassess hints and forced plans after data distribution, schema, compatibility, or workload changes; the intervention can become suboptimal as assumptions age. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17)) |
+| `ABORT_QUERY_EXECUTION query hint effect` | SQL Server 2025 Query Store hint that deliberately aborts a targeted query rather than execute it. Treat it as a containment/deny control; verify exact query identity, alerting, and clear-hint recovery. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17)) |
+| `Query Store DML statement capture` | Query Store captures plans for DML such as SELECT, INSERT, UPDATE, DELETE, MERGE, and BULK INSERT. It does not mean each internal operation is stored separately. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store excludes DDL plans` | Query Store does not capture DDL plans such as CREATE INDEX as query plans, though it can capture underlying DML statements performed by the workload. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+| `Query Store capture mode AUTO` | AUTO uses engine heuristics to limit low-value/noisy capture. It can omit statements, so inspect capture policy before concluding a query never ran. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)) |
+
+# How to use this reference
+
+Read the plan from data-producing leaves toward the root, then trace what drives repeated work from root toward leaves. Compare estimated and actual rows at the first divergence; check executions, rows read versus returned, memory grant/spills, and runtime evidence. A seek, scan, warning, or high estimated cost is a clue, not a verdict.
+
+# How this group fits the mental model
+
+This inventory names the plan, estimate, or diagnostic surface needed to explain a query's behavior. Connect each property to a question: what did the optimizer predict, what happened at runtime, and where did the difference begin?
+
+# Cross-item comparison
+
+Estimated rows describe the forecast; actual rows describe one execution. A seek predicate navigates a key range; a residual predicate filters rows after access. A plan hash describes a shape; Query Store runtime intervals describe observed workload behavior. Use pairs together instead of treating any one as a score.
+
+# Examples
+
+If a Nested Loops inner seek executes 80,000 times, inspect Actual Executions and rows per execution even if the icon looks selective. If estimated rows at an upstream filter are 5 but actual rows are 40,000, trace statistics, parameter values, and predicates before blaming the downstream Hash Match spill.
+
+# Common mistakes
+
+- Calling every scan bad or every seek good.
+- Comparing estimated subtree cost to elapsed milliseconds.
+- Reading plan arrows as invocation direction; graphical flow and pull execution direction differ.
+- Treating a warning as proof of a fix without checking the operator and runtime impact.
+
+# Knowledge checks with answers
+
+1. What is the earliest useful location for an estimate diagnosis? The first consequential estimated/actual row divergence.
+2. Does an actual plan generalize to all values? No; it records one execution context.
+3. What does a residual predicate imply? Rows can be read before the predicate rejects them; compare rows read and returned.
+
+# Sources
+
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/performance/cardinality-estimation-sql-server?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-usage-scenarios?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17)
+- [Microsoft Learn](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17)

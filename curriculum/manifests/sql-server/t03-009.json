@@ -49,7 +49,33 @@
         "Residual predicate",
         "Seek predicate",
         "Predicate property",
-        "Plan warning"
+        "Plan warning",
+        "Adaptive Join",
+        "Bitmap operator",
+        "Concatenation operator",
+        "Constant Scan",
+        "Top operator",
+        "Sequence Project",
+        "Window Aggregate",
+        "Index Spool",
+        "Table Spool",
+        "Eager Spool",
+        "Lazy Spool",
+        "Distribute Streams",
+        "Repartition Streams",
+        "Gather Streams",
+        "Row mode execution",
+        "Batch mode execution",
+        "Actual Rebinds",
+        "Actual Rewinds",
+        "Actual EndOfScans",
+        "Estimated subtree cost",
+        "CardinalityEstimationModelVersion property",
+        "StatementOptmLevel property",
+        "StatementOptmEarlyAbortReason property",
+        "Plan-affecting convert warning",
+        "Operator execution mode",
+        "Actual rows per execution"
       ]
     },
     {
@@ -76,7 +102,26 @@
         "Interleaved execution",
         "Table variable deferred compilation",
         "Batch mode on rowstore",
-        "Intelligent Query Processing"
+        "Intelligent Query Processing",
+        "Cardinality Estimator model version",
+        "Legacy CE model 70",
+        "Modern CE model 120 and later",
+        "Simple containment assumption",
+        "Base containment assumption",
+        "Parameter Sensitive Plan predicate limit",
+        "PSP equality-predicate eligibility boundary",
+        "PSP support for DML at compatibility 170",
+        "OPTIONAL_PARAMETER_OPTIMIZATION configuration",
+        "OPPO compatibility level 170 requirement",
+        "DISABLE_OPTIONAL_PARAMETER_OPTIMIZATION hint",
+        "OPPO eligible NULL optional predicate",
+        "PSP and OPPO dispatcher/variant distinction",
+        "CE feedback for expressions in SQL Server 2025",
+        "OPTIMIZED_SP_EXECUTESQL",
+        "DOP feedback Query Store requirement",
+        "DISABLE_PARAMETER_SNIFFING hint",
+        "Parameter Sensitive Plan recompile boundary",
+        "Memory grant feedback persistence"
       ]
     },
     {
@@ -105,7 +150,29 @@
         "Query hash",
         "Query plan hash",
         "Query Store for readable secondaries",
-        "ABORT_QUERY_EXECUTION query hint"
+        "ABORT_QUERY_EXECUTION query hint",
+        "SET SHOWPLAN_XML",
+        "SET STATISTICS XML",
+        "SET STATISTICS PROFILE",
+        "SET STATISTICS IO ON",
+        "SET STATISTICS TIME ON",
+        "Actual plan runtime context",
+        "Live Query Statistics refresh behavior",
+        "sys.query_store_query_variant",
+        "sys.query_store_query_hints",
+        "sys.sp_query_store_set_hints",
+        "sys.sp_query_store_clear_hints",
+        "Query Store READ_WRITE mode",
+        "Query Store READ_ONLY mode",
+        "Query Store wait-statistics capture",
+        "Query Store size quota and cleanup",
+        "Plan forcing versus Query Store hints",
+        "Query Store hint failure/ignored status",
+        "Query Store hint re-evaluation after data change",
+        "ABORT_QUERY_EXECUTION query hint effect",
+        "Query Store DML statement capture",
+        "Query Store excludes DDL plans",
+        "Query Store capture mode AUTO"
       ]
     }
   ],
@@ -140,39 +207,68 @@
     "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17",
-    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/cardinality-estimation-sql-server?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-usage-scenarios?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
   ],
   "versionNotes": [
     {
-      "edition": "SQL Server 2025 (17.x) query processing",
+      "edition": "SQL Server 2025 (17.x) and compatibility level 170",
       "items": [
-        "SQL Server 2025 adds cardinality estimation feedback for expressions and advances optional parameter plan optimization; availability and configuration must be checked for the deployed database compatibility level and release."
+        "SQL Server 2025 adds PSP optimization for eligible DML statements and can select multiple eligible predicates from the same table; PSP remains equality-predicate-focused and selects at most three predicates per query.",
+        "OPPO requires compatibility level 170 and OPTIONAL_PARAMETER_OPTIMIZATION; SQL Server 2025 enables the database-scoped setting by default. OPPO creates variants for eligible optional NULL predicates, not arbitrary dynamic filtering logic.",
+        "SQL Server 2025 introduces CE feedback for expressions at compatibility level 160 on SQL Server (170 on Azure SQL Database), and OPTIMIZED_SP_EXECUTESQL is available to reduce concurrent compilation storms.",
+        "Compatibility level enables feature eligibility; it does not guarantee that every query qualifies or that the resulting plan is faster. Evaluate workload regressions in Query Store before rollout."
       ],
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17"
       ]
     }
   ],
   "sourceSnapshot": {
-    "authority": "Microsoft SQL Server 2025 execution plan, Query Store, and intelligent query processing documentation",
-    "edition": "SQL Server 2025 (17.x), checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "authority": "Microsoft SQL Server 2025 query processing, Showplan, Query Store, and intelligent query processing documentation",
+    "edition": "SQL Server 2025 (17.x), compatibility level 170 boundaries checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17",
-      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/cardinality-estimation-sql-server?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-usage-scenarios?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
     ]
   },
   "scopeExclusions": [
     "Index design and maintenance are taught in t03-008.",
     "Wait types, production monitoring, and broad performance troubleshooting are in t03-013.",
     "Transaction locking and deadlock analysis are in t03-010.",
-    "Specific query-hint syntax beyond named diagnostics is outside this inventory."
+    "Specific query-hint syntax beyond named diagnostics is outside this inventory.",
+    "Detailed index design, join syntax, and wait-type diagnosis are taught in adjacent SQL Server topics; this lesson explains how to interpret their plan evidence.",
+    "The Showplan operator inventory is a curated common set, not every operator in the engine; consult the live Microsoft operator reference for operators outside the named scope."
   ],
   "generationAllowed": true
 }
