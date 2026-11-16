@@ -57,10 +57,12 @@
   "sourceSnapshot": {
     "authority": "ECMA-262 and MDN JavaScript reference",
     "edition": "ECMAScript 2026",
-    "checkedAt": "2026-11-13",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://tc39.es/ecma262/2026/multipage/ecmascript-data-types-and-values.html",
-      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures"
+      "https://tc39.es/ecma262/2026/multipage/ecmascript-expressions.html",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Data_structures",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof"
     ]
   },
   "scopeExclusions": [
@@ -68,9 +70,21 @@
     "Methods belonging to individual built-in constructors",
     "Type coercion and equality algorithms (separate topic)"
   ],
+  "accuracyFacts": [
+    "ECMAScript has eight language types: Undefined, Null, Boolean, String, Symbol, Number, BigInt, and Object. Function is not a ninth language type; callable values are objects with call behavior.",
+    "Primitive values are immutable and equality follows type-specific rules; Symbol primitives have unique identity, while objects have identity and may be mutable. Assigning or passing an object copies its reference value, so aliases can observe mutations to the same object.",
+    "Number is IEEE 754 binary64 and includes positive and negative zero, NaN, and infinities. Integer values are not all exactly representable outside the safe-integer range; BigInt represents arbitrary-precision integers separately.",
+    "Number and BigInt do not implicitly mix in most arithmetic operators. BigInt conversion from a Number requires a finite integral Number and throws RangeError for fractional values, NaN, or infinities; conversion can still preserve an already-rounded Number rather than the programmer's intended integer.",
+    "Symbol() creates a unique Symbol each time, even with the same description. Symbol.for uses a registry and can return the same registered Symbol for the same key; descriptions are diagnostic text, not identity.",
+    "typeof returns a specification-defined set of strings for broad classification; typeof null is the historical string object. Functions produce function because they are callable objects, and browser HTMLDDA objects such as document.all have a legacy exception.",
+    "Primitive wrapper objects such as new Number(1) are Objects and differ from the primitive 1. Property access on many primitives uses temporary boxing, but explicit wrappers are rarely appropriate; wrapper objects are truthy even when wrapping false or zero.",
+    "null and undefined are distinct primitive values and distinct language types. Optional chaining treats a nullish base as absent, but property access directly on either value throws TypeError.",
+    "A value's language type is distinct from the current type of a variable binding: a binding can be reassigned to values of different types because JavaScript is dynamically typed.",
+    "ECMAScript specification types such as Reference, List, Record, and Completion are abstract algorithm machinery, not additional values that ordinary JavaScript programs can create or inspect."
+  ],
   "generationAllowed": true,
   "comparisonSources": [
     "https://tc39.es/ecma262/2026/multipage/ecmascript-data-types-and-values.html",
-    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures"
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Data_structures"
   ]
 }

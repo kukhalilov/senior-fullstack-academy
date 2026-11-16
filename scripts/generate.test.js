@@ -662,6 +662,12 @@ test('JavaScript language inventories use current standard names without duplica
   assert.ok(declarations.accuracyFacts.some(fact => fact.includes('including typeof on the binding')));
   assert.ok(declarations.accuracyFacts.some(fact => fact.includes('are not properties of globalThis')));
   assert.ok(declarations.accuracyFacts.some(fact => fact.includes('observes captured bindings')));
+  const valuesAndTypes = JSON.parse(fs.readFileSync(`${base}/t06-002.json`, 'utf8'));
+  assert.ok(valuesAndTypes.accuracyFacts.some(fact => fact.includes('eight language types')));
+  assert.ok(valuesAndTypes.accuracyFacts.some(fact => fact.includes('throws RangeError for fractional values')));
+  assert.ok(valuesAndTypes.accuracyFacts.some(fact => fact.includes('Symbol primitives have unique identity')));
+  assert.ok(valuesAndTypes.accuracyFacts.some(fact => fact.includes('typeof null is the historical string object')));
+  assert.ok(valuesAndTypes.accuracyFacts.some(fact => fact.includes('specification-defined set of strings')));
   const functionForms = JSON.parse(fs.readFileSync(`${base}/t06-003.json`, 'utf8'));
   assert.ok(functionForms.accuracyFacts.some(fact => fact.includes('only when the argument is absent or explicitly undefined')));
   assert.ok(functionForms.accuracyFacts.some(fact => fact.includes('mapped arguments object only with a simple parameter list')));
