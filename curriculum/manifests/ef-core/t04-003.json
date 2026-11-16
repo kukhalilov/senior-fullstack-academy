@@ -20,6 +20,8 @@
         "One-to-one relationship",
         "Many-to-many relationship",
         "Navigation property",
+        "[ForeignKey] attribute",
+        "[InverseProperty] attribute",
         "Collection navigation",
         "Reference navigation",
         "Inverse navigation",
@@ -40,7 +42,8 @@
         "Skip navigation",
         "Join entity type",
         "Navigation backing field",
-        "Navigation fix-up"
+        "Navigation fix-up",
+        "Change-tracking relationship fix-up"
       ]
     },
     {
@@ -55,11 +58,15 @@
         "DeleteBehavior.Restrict",
         "DeleteBehavior.NoAction",
         "DeleteBehavior.SetNull",
+        "DeleteBehavior.ClientSetNull",
+        "DeleteBehavior.ClientNoAction",
         "OnDelete",
         "Cascade delete",
         "Client-side cascade",
         "Orphan deletion",
         "Delete orphan timing",
+        "ChangeTracker.CascadeDeleteTiming",
+        "ChangeTracker.DeleteOrphansTiming",
         "Owned entity type",
         "OwnsOne",
         "OwnsMany",
@@ -74,6 +81,9 @@
         "Complex type has no key identity",
         "Optional dependent",
         "Required dependent",
+        "IsRequiredDependent",
+        "[Owned] attribute",
+        "[ComplexType] attribute",
         "Relationship cycle delete behavior"
       ]
     }
@@ -104,30 +114,39 @@
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
     "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
+    "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
+    "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
     "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
     "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
   ],
   "versionNotes": [
     {
-      "edition": "EF Core 10 stable; EF Core 11 in development",
+        "edition": "EF Core 11.0.0 released 2026-11-10; relationship and complex-type features checked 2026-11-16",
       "items": [
-        "EF Core 10 supports complex-type JSON mapping. EF Core 11 adds further complex-type and complex-collection support while still in development at the checked date; label those features preview-only."
+          "EF Core 11.0.0 shipped on 2026-11-10. Its complex-type features are released, not preview-only: complex/JSON mappings with TPT/TPC, Cosmos complex types, chained nested property configuration, keys/indexes on nested complex paths, and complex collections including JSON path indexes where supported."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft EF Core relationships and owned/complex type documentation",
-    "edition": "EF Core 10 stable and EF Core 11 development checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "EF Core 11.0.0 shipped; relationship and complex-type docs checked 2026-11-16",
+    "checkedAt": "2026-11-16",
     "urls": [
       "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
       "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
+      "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
+      "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
       "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
-      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
+      "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+      "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+      "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+      "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
     ]
   },
   "scopeExclusions": [
