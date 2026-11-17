@@ -3,6 +3,10 @@ import path from 'node:path';
 
 const queue = JSON.parse(fs.readFileSync('curriculum/queue.json', 'utf8'));
 const catalog = JSON.parse(fs.readFileSync('curriculum/catalog.json', 'utf8'));
+const existingLedger = fs.existsSync('curriculum/factual-review-ledger.json')
+  ? JSON.parse(fs.readFileSync('curriculum/factual-review-ledger.json', 'utf8'))
+  : undefined;
+const previousReviews = new Map((existingLedger?.lessons ?? []).map(lesson => [lesson.taskId, lesson]));
 const manifestById = new Map();
 for (const track of catalog.tracks) {
   for (const file of fs.readdirSync(track.manifestDirectory).filter(name => name.endsWith('.json'))) {
@@ -17,25 +21,32 @@ const lessons = queue.tasks.map(task => {
   const directDraft = path.posix.join('course/drafts', task.module, `${task.id}.md`);
   const groupedDraft = path.posix.join('course/drafts', path.basename(entry?.track.manifestDirectory ?? ''), task.module, `${task.id}.md`);
   const draft = fs.existsSync(directDraft) ? directDraft : groupedDraft;
+  const previous = previousReviews.get(task.id);
   return {
+    ...(previous ?? {}),
     taskId: task.id,
     topicId: task.module,
     phase: task.phase,
     draft,
-    status: 'not-reviewed',
-    claimInventory: 'not-yet-extracted',
-    claimsChecked: 0,
-    claimsCorrected: 0,
-    evidence: [],
-    issues: [],
-    reviewedAt: null,
-    sourceUrls: manifest?.sourceSnapshot?.urls ?? [],
-    reviewNote: 'A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed.'
+    status: previous?.status ?? 'not-reviewed',
+    claimInventory: previous?.claimInventory ?? 'not-yet-extracted',
+    claimsChecked: previous?.claimsChecked ?? 0,
+    claimsCorrected: previous?.claimsCorrected ?? 0,
+    evidence: previous?.evidence ?? [],
+    issues: previous?.issues ?? [],
+    reviewedAt: previous?.reviewedAt ?? null,
+    sourceUrls: [...new Set([...(previous?.sourceUrls ?? []), ...(manifest?.sourceSnapshot?.urls ?? [])])],
+    reviewNote: previous?.status === 'reviewed' && previous.reviewNote
+      ? previous.reviewNote
+      : 'A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed.'
   };
 });
 
 const missingDrafts = lessons.filter(lesson => !fs.existsSync(lesson.draft));
 if (missingDrafts.length) throw new Error(`Cannot build factual ledger: ${missingDrafts.length} queued lesson files are missing (first: ${missingDrafts[0].taskId})`);
+const reviewed = lessons.filter(lesson => lesson.status === 'reviewed').length;
+const claimsChecked = lessons.reduce((sum, lesson) => sum + lesson.claimsChecked, 0);
+const claimsCorrected = lessons.reduce((sum, lesson) => sum + lesson.claimsCorrected, 0);
 
 const ledger = {
   schemaVersion: 1,
@@ -44,11 +55,11 @@ const ledger = {
   status: 'in-progress',
   summary: {
     lessons: lessons.length,
-    reviewed: 0,
-    pending: lessons.length,
-    claimsChecked: 0,
-    claimsCorrected: 0,
-    draftsMayBePromoted: false
+    reviewed,
+    pending: lessons.length - reviewed,
+    claimsChecked,
+    claimsCorrected,
+    draftsMayBePromoted: reviewed === lessons.length && lessons.every(lesson => lesson.claimInventory === 'complete' && lesson.issues.length === 0)
   },
   reviewRequirements: [
     'Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.',
@@ -93,8 +104,8 @@ const ledger = {
       status: 'primary-paper sources added; lesson claim review pending',
       sources: ['https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf', 'https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf'],
       findings: ['The lesson now distinguishes CAP’s atomic-consistency/availability tension during partitions from PACELC’s latency/consistency decision in the else case. Claim-level review is still pending.']
-    }
-    ,{
+    },
+    {
       scope: 'Selected system-design standards in the added Handbook references',
       status: 'source-checked; full lesson reviews pending',
       sources: ['https://www.rfc-editor.org/rfc/rfc9309', 'https://www.rfc-editor.org/rfc/rfc8216', 'https://csrc.nist.gov/pubs/fips/203/final', 'https://csrc.nist.gov/pubs/fips/204/final'],
@@ -104,4 +115,4 @@ const ledger = {
   lessons
 };
 fs.writeFileSync('curriculum/factual-review-ledger.json', `${JSON.stringify(ledger, null, 2)}\n`);
-console.log(`Created factual-review ledger for ${lessons.length} lessons; no lesson is marked reviewed.`);
+console.log(`Updated factual-review ledger for ${lessons.length} lessons: ${reviewed} reviewed, ${lessons.length - reviewed} pending, ${claimsChecked} claims checked.`);
