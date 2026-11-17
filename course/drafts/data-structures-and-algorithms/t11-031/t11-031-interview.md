@@ -10,6 +10,7 @@
 6. How many subsets exist for n elements? Why is subset DP limited to small n?
 7. Why is `1 << 32` not an all-ones 32-bit mask in C#?
 8. How can you sum two integers with bitwise operations and no plus/minus?
+9. Which `System.Numerics.BitOperations` helpers replace common manual bit loops, and which boundary behaviors matter?
 
 # Concise interview answers
 
@@ -21,6 +22,7 @@
 6. 2^n. Any algorithm that enumerates all subsets is exponential; scanning n bits to materialize each subset is O(n·2^n).
 7. C# masks a 32-bit shift count to five low bits, so 32 becomes zero. Use an explicit uint all-ones mask or a full-width branch.
 8. XOR computes sum bits without carry; `(a & b) << 1` computes carry bits. Repeat until carry is zero, with fixed-width overflow semantics stated.
+9. `PopCount`, `LeadingZeroCount`, `TrailingZeroCount`, `Log2`, `IsPow2`, rotations, and `RoundUpToPowerOf2` cover common operations. Guard zero-width counts, remember `Log2(0)` returns 0 by convention, and distinguish zero input from overflow in round-up results.
 
 # Deep follow-up answers
 
@@ -58,6 +60,7 @@ Score 0–2 for: correct truth table; explicit width/signedness; valid mask boun
 - [Reference](https://usaco.guide/silver/bitwise?lang=cpp)
 - [Reference](https://usaco.guide/gold/dp-bitmasks)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [.NET `BitOperations` API](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator)
 - [Reference](https://leetcode.com/problems/single-number/)

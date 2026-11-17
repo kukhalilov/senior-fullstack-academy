@@ -2,10 +2,9 @@
 
 # Goals
 
-- Recognize the bit pattern invariant behind Number of 1 Bits.
-- Implement the algorithm in C# with an explicit 32-bit interpretation.
-- Prove correctness and account for fixed-width and boundary cases.
-
+- Count the set bits of the input word, including its leading zero positions conceptually.
+- Compare a fixed-width scan with clearing one low set bit per iteration.
+- Preserve the 32-bit pattern when working with signed C# values.
 # Problem statement
 
 Return the Hamming weight, the number of set bits, of a positive integer.
@@ -22,15 +21,13 @@ Return the Hamming weight, the number of set bits, of a positive integer.
 
 # Clarifying assumptions
 
-Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
+The platform input is a positive signed 32-bit integer. The solution converts to `uint` so the same loop also has a clear full-32-bit-pattern interpretation for defensive tests such as -1.
 
 # Progressive hints
 
-1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
-2. State exactly how every bit or mask contributes to the answer.
-3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
-4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
-
+1. Does the task count the numeric magnitude or the set bits of the given word?
+2. Compare scanning all 32 positions with repeatedly clearing the lowest set bit.
+3. Which unsigned conversion preserves a negative int’s raw 32-bit pattern?
 # Complete C# solution
 
 ```csharp dsa-solution
@@ -86,16 +83,14 @@ O(1) auxiliary space.
 One set bit; alternating bits; maximum positive int; zero if supporting it; -1 as the all-ones 32-bit pattern. The official input constraints are positive.
 
 # Reflection questions
+1. How many iterations can the clearing loop perform for a 32-bit word?
+2. Why can arithmetic right-shifting a negative signed value fail to terminate?
+3. When would a built-in population-count API be preferable?
 
-1. Which exact assumption makes the central bit identity valid?
-2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
-3. Which constraints ensure the mask/shift or enumeration count fits?
-4. Can a shorter code path preserve the same invariant more clearly?
-
-**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+**Answers:** 1. At most 32 iterations, with exactly one iteration for each set bit. 2. Arithmetic right shift keeps inserting ones for negative values, so it may never reach zero. 3. When built-ins are allowed, BitOperations.PopCount directly expresses the operation; compare real workloads before assuming a speedup.
 
 # Sources
 
 - [Assigned problem](https://leetcode.com/problems/number-of-1-bits/)
 - [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
-- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators); [.NET `BitOperations`](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)

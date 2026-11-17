@@ -2,10 +2,9 @@
 
 # Goals
 
-- Recognize the bit pattern invariant behind Counting Bits.
-- Implement the algorithm in C# with an explicit 32-bit interpretation.
-- Prove correctness and account for fixed-width and boundary cases.
-
+- Derive the recurrence from the number with its lowest set bit removed.
+- Initialize the count for zero and fill answers in dependency order.
+- Return exactly one count for each integer in the inclusive range [0,n].
 # Problem statement
 
 Return set-bit counts for every integer from zero through n, without a built-in popcount.
@@ -22,15 +21,13 @@ Return set-bit counts for every integer from zero through n, without a built-in 
 
 # Clarifying assumptions
 
-Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
+The input is an integer from zero through 100000. Each count fits an `int`, and the output array has one slot for each inclusive value.
 
 # Progressive hints
 
-1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
-2. State exactly how every bit or mask contributes to the answer.
-3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
-4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
-
+1. Relate an integer to the value obtained by clearing its lowest set bit.
+2. What is the base count for zero?
+3. How many output entries are required for input n?
 # Complete C# solution
 
 ```csharp dsa-solution
@@ -83,16 +80,14 @@ O(n) for the required result array.
 n=0, n=1, powers of two, one below and above a power of two, and n=100000. The loop intentionally avoids built-in popcount.
 
 # Reflection questions
+1. Prove the recurrence from the one-fewer-set-bit identity.
+2. Why is the total work O(n), not O(n log n)?
+3. Which allocation size is required when n is zero?
 
-1. Which exact assumption makes the central bit identity valid?
-2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
-3. Which constraints ensure the mask/shift or enumeration count fits?
-4. Can a shorter code path preserve the same invariant more clearly?
-
-**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+**Answers:** 1. Clearing the lowest set bit removes exactly one 1, so the smaller value count plus one is the current count. 2. There are n iterations after initializing the base; each recurrence step does constant work. 3. Allocate n+1 entries so index zero through index n are represented, including when n is zero.
 
 # Sources
 
 - [Assigned problem](https://leetcode.com/problems/counting-bits/)
 - [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
-- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators); [.NET `BitOperations`](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)

@@ -41,6 +41,10 @@ To test index i, build `1u << i` and AND it with the value. OR sets, AND with co
 
 For nonzero two’s-complement x, `x & (x - 1)` removes its least significant set bit, so the loop count equals the population count. `x & -x` isolates that bit. XOR cancels pairs because it is associative, commutative, and self-inverse; a singleton among pairs is the XOR of all inputs. If other multiplicities are odd, the XOR result contains their combined contribution and the singleton argument fails.
 
+## .NET helper APIs
+
+`System.Numerics.BitOperations` supplies `IsPow2`, leading/trailing-zero counts, `Log2`, `PopCount`, rotations, and round-up-to-power-of-two helpers. Their overloads and zero/overflow conventions are covered in the dedicated API reference; do not infer edge behavior from a helper’s name alone.
+
 ## Subsets and complexity
 
 With n indexed elements, an n-bit mask defines one subset and there are 2^n masks. Scanning all n bits to emit each subset costs O(n·2^n). For every mask, iterating its submasks takes 3^n total mask/submask pairs. These approaches target small n even though a single bit operation is constant time.
@@ -82,6 +86,7 @@ For mask `1010₂`, start `sub = mask` and repeat `(sub - 1) & mask`, yielding `
 - [Reference](https://usaco.guide/silver/bitwise?lang=cpp)
 - [Reference](https://usaco.guide/gold/dp-bitmasks)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [.NET `BitOperations` API](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator)
 - [Reference](https://leetcode.com/problems/single-number/)

@@ -2,10 +2,9 @@
 
 # Goals
 
-- Recognize the bit pattern invariant behind Reverse Bits.
-- Implement the algorithm in C# with an explicit 32-bit interpretation.
-- Prove correctness and account for fixed-width and boundary cases.
-
+- Reverse a fixed 32-bit word, not just the significant prefix.
+- Extract one low bit and append it to the accumulated result on every iteration.
+- Use an unsigned working value so right shifts fill with zero.
 # Problem statement
 
 Reverse all 32 bit positions of the input value.
@@ -23,15 +22,13 @@ Reverse all 32 bit positions of the input value.
 
 # Clarifying assumptions
 
-Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
+The online judge supplies a nonnegative signed 32-bit integer but asks to reverse all 32 positions. The unchecked `int` return preserves the resulting bit pattern even if the reversed sign bit is set.
 
 # Progressive hints
 
-1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
-2. State exactly how every bit or mask contributes to the answer.
-3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
-4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
-
+1. How many iterations are required even when leading input bits are zero?
+2. After one step, where should the next extracted low bit go in the result?
+3. Why should the working representation be unsigned?
 # Complete C# solution
 
 ```csharp dsa-solution
@@ -87,16 +84,14 @@ O(1) auxiliary space.
 Official examples; zero; input with only bit 31 set (outside official nonnegative constraints) to verify unsigned handling; a pattern with leading zeroes to confirm they become trailing zeroes.
 
 # Reflection questions
+1. State an invariant relating consumed input bits and populated output bits.
+2. What does reversing a word do to its leading zeroes?
+3. Why is a loop over only significant bits incorrect for fixed-width reversal?
 
-1. Which exact assumption makes the central bit identity valid?
-2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
-3. Which constraints ensure the mask/shift or enumeration count fits?
-4. Can a shorter code path preserve the same invariant more clearly?
-
-**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+**Answers:** 1. Before iteration t, the result contains the reversal of the t input bits already consumed. 2. Leading zeroes move to trailing positions; all 32 positions must be processed. 3. It would skip the zero bits that must be appended after the significant input bits.
 
 # Sources
 
 - [Assigned problem](https://leetcode.com/problems/reverse-bits/)
 - [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
-- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators); [.NET `BitOperations`](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)

@@ -12,7 +12,8 @@
     "The expression x AND -x isolates the least significant set bit in two's-complement integer arithmetic; clearing it with x AND (x-1) supports population-count loops.",
     "Enumerating all subsets takes O(2^n) masks; enumerating all submasks across every mask takes O(3^n) total pairs, which is useful only for small n.",
     "Bit tricks can reduce constants or encode state compactly, but they do not remove exponential complexity when all subsets must be considered.",
-    "Fixed-width overflow, negative values, sign extension, and shifting by the type width can invalidate informal identities; state the integer representation and constraints."
+    "Fixed-width overflow, negative values, sign extension, and shifting by the type width can invalidate informal identities; state the integer representation and constraints.",
+    "In .NET, System.Numerics.BitOperations provides current fixed-width helpers for population counts, zero counts, integer log2, power-of-two checks, rotations, and rounding up to a power of two; each API has width-specific overloads and documented zero/overflow behavior."
   ],
   "inventory": [
     {
@@ -75,6 +76,40 @@
         "Bitmask DP connection",
         "Small-universe requirement",
         "Signed overflow hazard"
+      ]
+    },
+    {
+      "id": "dotnet-bit-utility-apis",
+      "title": "Relevant .NET bit and integer APIs",
+      "items": [
+        "System.Numerics.BitOperations",
+        "BitOperations.IsPow2",
+        "BitOperations.LeadingZeroCount",
+        "BitOperations.TrailingZeroCount",
+        "BitOperations.Log2",
+        "BitOperations.PopCount",
+        "BitOperations.RotateLeft",
+        "BitOperations.RotateRight",
+        "BitOperations.RoundUpToPowerOf2",
+        "Hardware-intrinsic and software-fallback behavior",
+        "System.Numerics.IBinaryInteger<TSelf>",
+        "System.Numerics.IBinaryNumber<TSelf>",
+        "IBinaryInteger<TSelf>.GetShortestBitLength",
+        "BigInteger.GetBitLength",
+        "BigInteger bitwise operators: &, |, ^, ~, <<, >>, >>>",
+        "BigInteger two's-complement virtual sign extension",
+        "IBinaryInteger<TSelf>.LeadingZeroCount",
+        "IBinaryInteger<TSelf>.PopCount",
+        "IBinaryInteger<TSelf>.RotateLeft",
+        "IBinaryInteger<TSelf>.RotateRight",
+        "IBinaryInteger<TSelf>.TrailingZeroCount",
+        "IBinaryNumber<TSelf>.IsPow2",
+        "IBinaryNumber<TSelf>.Log2",
+        "IBinaryNumber<TSelf>.AllBitsSet",
+        ".NET 7 generic-math introduction",
+        "C# 11 generic-math introduction",
+        "BigInteger.IsPowerOfTwo",
+        "BigInteger.IsEven"
       ]
     }
   ],
@@ -330,35 +365,76 @@
     [
       "Bit trick",
       "General arithmetic proof"
+    ],
+    [
+      "Manual population-count and mask loops",
+      "System.Numerics.BitOperations helpers"
+    ],
+    [
+      "Fixed-width BitOperations overloads",
+      "Generic IBinaryInteger and IBinaryNumber contracts",
+      "Arbitrary-precision BigInteger semantics"
     ]
   ],
   "comparisonSources": [
     "https://usaco.guide/silver/bitwise?lang=cpp",
-    "https://usaco.guide/gold/dp-bitmasks"
+    "https://usaco.guide/gold/dp-bitmasks",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.ispow2?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.leadingzerocount?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.log2?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.popcount?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.rotateleft?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.rotateright?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.rounduptopowerof2?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.trailingzerocount?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/standard/generics/math",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.ibinaryinteger-1?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.ibinarynumber-1?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger.getbitlength?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger.op_bitwiseand?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger.op_unsignedrightshift?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-7/",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger.ispoweroftwo?view=net-10.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger.iseven?view=net-10.0"
   ],
   "versionNotes": [
     {
       "version": "C# 11 and later",
-      "change": "The unsigned right-shift operator >>> was added in C# 11; it provides direct logical right shift for signed operands. C# 15 is current as of 2026-11; this core bitwise behavior is unchanged.",
+      "change": "The unsigned right-shift operator >>> was added in C# 11; it provides direct logical right shift for signed operands. C# 15 is the current language version as documented 2026-11-17 and targets .NET 11 or newer; the core bitwise operators discussed here are unchanged.",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning"
       ],
       "edition": "C# 11 and later",
       "items": [
-        "The unsigned right-shift operator >>> was added in C# 11; it provides direct logical right shift for signed operands. C# 15 is current as of 2026-11; this core bitwise behavior is unchanged."
+        "The unsigned right-shift operator >>> was added in C# 11; it provides direct logical right shift for signed operands. C# 15 is the current language version as documented 2026-11-17 and targets .NET 11 or newer; the core bitwise operators discussed here are unchanged."
+      ]
+    },
+    {
+      "version": "C# 11 and .NET 7",
+      "change": "Generic-math interfaces added static numeric contracts, including binary-integer operations used by generic bit algorithms. BigInteger and primitive integer types implement the relevant interfaces.",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/math",
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-7/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11"
+      ],
+      "edition": "Generic math introduced in .NET 7 and C# 11",
+      "items": [
+        "System.Numerics.IBinaryInteger<TSelf> and IBinaryNumber<TSelf> generic bit/numeric contracts"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "USACO Guide bitwise-operator and bitmask-DP references; official LeetCode problem statements",
-    "edition": "Bit-level algorithms with current C# 15 semantics; canonical problem pages checked 2026-11-16",
-    "checkedAt": "2026-11-16",
+    "edition": "Bit-level algorithms with C# 15, .NET 10 BitOperations, .NET 7/C# 11 generic math, and BigInteger semantics checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://usaco.guide/silver/bitwise?lang=cpp",
       "https://usaco.guide/gold/dp-bitmasks",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
-      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator",
       "https://leetcode.com/problems/single-number/",
       "https://leetcode.com/problems/number-of-1-bits/",
@@ -367,7 +443,28 @@
       "https://leetcode.com/problems/sum-of-two-integers/",
       "https://leetcode.com/problems/single-number-ii/",
       "https://leetcode.com/problems/bitwise-and-of-numbers-range/",
-      "https://leetcode.com/problems/subsets/"
+      "https://leetcode.com/problems/subsets/",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.ispow2?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.leadingzerocount?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.log2?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.popcount?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.rotateleft?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.rotateright?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.rounduptopowerof2?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations.trailingzerocount?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/standard/generics/math",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.ibinaryinteger-1?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.ibinarynumber-1?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger.getbitlength?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger.op_bitwiseand?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger.op_unsignedrightshift?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-7/",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger.ispoweroftwo?view=net-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.biginteger.iseven?view=net-10.0"
     ]
   },
   "scopeExclusions": [
@@ -386,6 +483,14 @@
     "XOR cancellation solves the single-pair problem only when all other values have even multiplicity; XOR alone does not identify one singleton among arbitrary multiplicities.",
     "For positive unsigned x, x & (x-1) clears the least significant 1 bit; x & -x isolates it in fixed-width two’s-complement arithmetic, but signed overflow context and minimum values require care.",
     "Enumerating all subsets is exponential: 2^n masks; visiting all submask pairs over every mask is 3^n.",
-    "The C# unsigned right-shift operator >>> was introduced in C# 11; C# 15 is the current language version checked 2026-11-16."
+    "The C# unsigned right-shift operator >>> was introduced in C# 11; C# 15 is the current language version checked 2026-11-16.",
+    "The .NET 10 System.Numerics.BitOperations class includes IsPow2, LeadingZeroCount, TrailingZeroCount, Log2, PopCount, RotateLeft, RotateRight, and RoundUpToPowerOf2 overloads; it uses hardware intrinsics when available and optimized software fallbacks otherwise. Its Crc32C methods are checksum APIs and excluded from this bit-manipulation lesson.",
+    "BitOperations.LeadingZeroCount returns the fixed operand-width count when its input is zero; TrailingZeroCount does likewise for signed and unsigned overloads. Guard zero before using a count as an array/bit index.",
+    "BitOperations.Log2 returns floor(log2(value)) for positive inputs and returns 0 by convention for input 0.",
+    "BitOperations.RoundUpToPowerOf2 returns the least representable power of two greater than or equal to the input; zero input or overflow returns zero.",
+    "BigInteger bitwise operations are defined as if values use two's-complement representation with virtual sign extension; BigInteger has no fixed word width. Apply a width mask when a finite-width algorithm requires one.",
+    "BigInteger.GetBitLength returns the minimum number of bits in shortest two's-complement notation without the sign bit; it returns zero for Zero and MinusOne.",
+    "The .NET 7 generic-math interfaces IBinaryInteger<TSelf> and IBinaryNumber<TSelf> expose reusable static binary-integer operations; BigInteger implements both.",
+    "BigInteger supports the unsigned right-shift operator via its IShiftOperators implementation; its no-fixed-width representation differs from ordinary uint/ulong word semantics."
   ]
 }

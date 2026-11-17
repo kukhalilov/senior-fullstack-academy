@@ -2,10 +2,9 @@
 
 # Goals
 
-- Recognize the bit pattern invariant behind Single Number.
-- Implement the algorithm in C# with an explicit 32-bit interpretation.
-- Prove correctness and account for fixed-width and boundary cases.
-
+- Use XOR to isolate the singleton when every other value appears twice.
+- Prove the cancellation independently of input order and signed value.
+- State the multiplicity condition that makes this solution valid.
 # Problem statement
 
 Find the value that occurs once when every other value occurs twice, using linear time and constant extra space.
@@ -24,15 +23,13 @@ Find the value that occurs once when every other value occurs twice, using linea
 
 # Clarifying assumptions
 
-Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
+Inputs follow the frozen problem guarantee. XOR on C# `int` values preserves and combines their bit patterns directly; this solution does not need a uint conversion.
 
 # Progressive hints
 
-1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
-2. State exactly how every bit or mask contributes to the answer.
-3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
-4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
-
+1. What does XOR do when the same value is processed twice?
+2. Which multiplicity guarantee lets all non-singleton values cancel?
+3. Does the proof depend on values being nonnegative?
 # Complete C# solution
 
 ```csharp dsa-solution
@@ -85,16 +82,14 @@ O(1) auxiliary space.
 Use one element; singleton at either end; negative singleton; duplicate pairs in different orders. A triple-occurrence variant is not covered by this proof.
 
 # Reflection questions
+1. Why is XOR associative and commutative useful when input order is arbitrary?
+2. Give a multiplicity pattern where the algorithm is not guaranteed to return the unique value.
+3. Why does the negative-value test still work for signed integers?
 
-1. Which exact assumption makes the central bit identity valid?
-2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
-3. Which constraints ensure the mask/shift or enumeration count fits?
-4. Can a shorter code path preserve the same invariant more clearly?
-
-**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+**Answers:** 1. Associativity and commutativity permit regrouping the fold into equal-value pairs and the singleton, regardless of order. 2. For instance, if another value occurs three times rather than twice, the XOR fold includes that value instead of canceling it. 3. A negative value has one fixed int bit pattern, and XORing that identical pattern twice still yields zero.
 
 # Sources
 
 - [Assigned problem](https://leetcode.com/problems/single-number/)
 - [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
-- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators); [.NET `BitOperations`](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)

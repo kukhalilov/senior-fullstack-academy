@@ -2,10 +2,9 @@
 
 # Goals
 
-- Recognize the bit pattern invariant behind Subsets.
-- Implement the algorithm in C# with an explicit 32-bit interpretation.
-- Prove correctness and account for fixed-width and boundary cases.
-
+- Associate one bit with each input position and enumerate every mask from zero to 2^n-1.
+- Emit an element exactly when its corresponding bit is set.
+- Account for both the exponential number of subsets and the work to materialize them.
 # Problem statement
 
 Return all subsets of unique input values, including the empty subset, in any order.
@@ -23,15 +22,13 @@ Return all subsets of unique input values, including the empty subset, in any or
 
 # Clarifying assumptions
 
-Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
+Input values are unique and n is at most 10, so `1 << n` and each position mask fit safely in a 32-bit signed `int`.
 
 # Progressive hints
 
-1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
-2. State exactly how every bit or mask contributes to the answer.
-3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
-4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
-
+1. How does one mask bit correspond to an input position?
+2. Which mask represents the empty subset?
+3. How many masks must be visited for n distinct indexed elements?
 # Complete C# solution
 
 ```csharp dsa-solution
@@ -96,16 +93,14 @@ O(n·2^n) for all emitted element references in the worst case, plus per-subset 
 n=1; n=10 maximum constraint gives 1024 subsets; empty subset included; zero is treated as a value, not as an empty marker; unique values assumed by the prompt.
 
 # Reflection questions
+1. Prove every subset maps to exactly one mask and every mask emits one subset.
+2. Why is total work O(n·2^n) when each subset is materialized?
+3. How does the unique-value guarantee affect treating positions as distinct?
 
-1. Which exact assumption makes the central bit identity valid?
-2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
-3. Which constraints ensure the mask/shift or enumeration count fits?
-4. Can a shorter code path preserve the same invariant more clearly?
-
-**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+**Answers:** 1. Bit i records whether position i is included, so each subset has exactly one mask and every mask specifies exactly one subset. 2. There are 2^n masks and each scans n positions, giving O(n*2^n) work to emit all subsets. 3. Unique values ensure different position subsets also have different value subsets; duplicates could produce duplicate value lists.
 
 # Sources
 
 - [Assigned problem](https://leetcode.com/problems/subsets/)
 - [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
-- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators); [.NET `BitOperations`](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)

@@ -2,10 +2,9 @@
 
 # Goals
 
-- Recognize the bit pattern invariant behind Bitwise AND of Numbers Range.
-- Implement the algorithm in C# with an explicit 32-bit interpretation.
-- Prove correctness and account for fixed-width and boundary cases.
-
+- Find the common leading bit prefix of the inclusive endpoints.
+- Remove differing suffix positions by shifting both endpoints together.
+- Restore the shared prefix to its original bit positions.
 # Problem statement
 
 Return the bitwise AND of every integer in the inclusive range [left,right].
@@ -22,15 +21,13 @@ Return the bitwise AND of every integer in the inclusive range [left,right].
 
 # Clarifying assumptions
 
-Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
+The endpoints are nonnegative and fit in signed 32-bit `int`. Casting to `uint` makes the right shifts logical; the shared-prefix result remains in the valid nonnegative range.
 
 # Progressive hints
 
-1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
-2. State exactly how every bit or mask contributes to the answer.
-3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
-4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
-
+1. Which bit positions can remain 1 in every number from left through right?
+2. What happens to the endpoints’ common prefix as they are shifted right together?
+3. Why does the inclusive range crossing a power of two clear lower bits?
 # Complete C# solution
 
 ```csharp dsa-solution
@@ -88,16 +85,14 @@ O(1) auxiliary space.
 Single-element range; ranges sharing all but a low suffix; crossing a power-of-two boundary; [0,int.MaxValue]; endpoints equal and maximum.
 
 # Reflection questions
+1. Prove every differing suffix position is zeroed by some value in the interval.
+2. How many iterations can the endpoint-shifting loop perform?
+3. Why is the unsigned working type compatible with the nonnegative constraints?
 
-1. Which exact assumption makes the central bit identity valid?
-2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
-3. Which constraints ensure the mask/shift or enumeration count fits?
-4. Can a shorter code path preserve the same invariant more clearly?
-
-**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+**Answers:** 1. Consider the highest bit where left and right differ. Every lower bit takes both 0 and 1 somewhere in the inclusive range, so AND clears the whole suffix. 2. At most 32 iterations, because each shift removes one bit from both endpoints. 3. The endpoints are nonnegative and fit in int; uint right shift fills with zero and preserves the same endpoint bit patterns.
 
 # Sources
 
 - [Assigned problem](https://leetcode.com/problems/bitwise-and-numbers-range/)
 - [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
-- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators); [.NET `BitOperations`](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)

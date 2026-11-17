@@ -39,17 +39,18 @@ Use bit operations for compact flags, fixed-width representations, parity, popul
 
 # What later lessons cover
 
-The references explain operators and shifts, single-bit masks, low-bit identities/counting, and subset enumeration/complexity. The practice problems apply XOR, population count, bit reversal, carry propagation, and masks. Bitmask DP beyond subset enumeration, binary tries, number theory, SIMD, and cryptography are outside this topic.
+The references explain operators and shifts, single-bit masks, low-bit identities/counting, subset enumeration/complexity, and relevant .NET `System.Numerics.BitOperations` APIs and boundary behavior. The practice problems apply XOR, population count, bit reversal, carry propagation, and masks. Bitmask DP beyond subset enumeration, binary tries, number theory, SIMD, and cryptography are outside this topic.
 
 # Recent language change
 
-C# 11 added `>>>`, a direct logical right shift for signed operands. Earlier C# code can cast to an unsigned type before shifting; `>>` on signed values remains arithmetic. Current language version is C# 15 as checked 2026-11-16. [C# 11 unsigned right shift](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator) [C# language versions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning)
+C# 11 added `>>>`, a direct logical right shift for signed operands. Earlier C# code can cast to an unsigned type before shifting; `>>` on signed values remains arithmetic. Current language version is C# 15 as checked 2026-11-17. [C# 11 unsigned right shift](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator) [C# language versions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning)
 
 # Sources
 
 - [Reference](https://usaco.guide/silver/bitwise?lang=cpp)
 - [Reference](https://usaco.guide/gold/dp-bitmasks)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [.NET `BitOperations` API](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator)
 - [Reference](https://leetcode.com/problems/single-number/)

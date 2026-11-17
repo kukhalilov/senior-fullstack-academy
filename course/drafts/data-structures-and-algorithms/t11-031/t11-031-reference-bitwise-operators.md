@@ -2,7 +2,7 @@
 
 # Scope and version
 
-The language-specific notes are for current C# 15, checked 2026-11-16. C# 11 introduced the unsigned right-shift operator `>>>`. All other names below are the exact supplied inventory items.
+The language-specific notes are for current C# 15, checked 2026-11-17. C# 11 introduced the unsigned right-shift operator `>>>`. All other names below are the exact supplied inventory items.
 
 # How this group fits the mental model
 
@@ -59,6 +59,7 @@ With a 32-bit unsigned value `0b1010`, mask bit 1 is `1u << 1`. AND tests it, OR
 - [Reference](https://usaco.guide/silver/bitwise?lang=cpp)
 - [Reference](https://usaco.guide/gold/dp-bitmasks)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [.NET `BitOperations` API](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-versioning)
 - [Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/whats-new/csharp-11#unsigned-right-shift-operator)
 - [Reference](https://leetcode.com/problems/single-number/)

@@ -2,10 +2,9 @@
 
 # Goals
 
-- Recognize the bit pattern invariant behind Single Number II.
-- Implement the algorithm in C# with an explicit 32-bit interpretation.
-- Prove correctness and account for fixed-width and boundary cases.
-
+- Count set bits independently at all 32 positions.
+- Reduce each position’s count modulo three to remove triply occurring values.
+- Reassemble the singleton’s complete signed 32-bit pattern.
 # Problem statement
 
 Find the one value appearing once when every other value appears exactly three times, in linear time and constant extra space.
@@ -23,15 +22,13 @@ Find the one value appearing once when every other value appears exactly three t
 
 # Clarifying assumptions
 
-Inputs follow the frozen problem guarantee. C# `int` is 32-bit signed; the solutions that manipulate raw patterns cast to `uint` and cast back unchecked when needed. This makes the intended two’s-complement word operation explicit.
+Each input is a signed 32-bit integer. The implementation counts all 32 positions as unsigned patterns and reinterprets the reconstructed word as `int`.
 
 # Progressive hints
 
-1. Identify the invariant each bit represents: parity, membership, population, or shared prefix.
-2. State exactly how every bit or mask contributes to the answer.
-3. Use the fixed 32-bit width and handle the sign bit without losing its bit pattern.
-4. Check the stated multiplicity/range guarantee; bit tricks depend on it.
-
+1. For one bit position, what does counting set bits modulo three remove?
+2. Why must the signed input be viewed as a 32-bit pattern?
+3. How is the reconstructed sign bit converted back to int?
 # Complete C# solution
 
 ```csharp dsa-solution
@@ -98,16 +95,14 @@ O(1) auxiliary space (32 counters are a constant).
 Official examples; singleton zero; negative singleton including sign bit; repeated negative values; permutations of the input. The exact multiplicity-three guarantee is essential.
 
 # Reflection questions
+1. Prove the per-bit count modulo three isolates the singleton’s bit.
+2. Why does the approach still work when the singleton is negative?
+3. Give its time bound as a function of both input count and word width.
 
-1. Which exact assumption makes the central bit identity valid?
-2. Does a negative `int` mean a negative mathematical value here, or a 32-bit pattern?
-3. Which constraints ensure the mask/shift or enumeration count fits?
-4. Can a shorter code path preserve the same invariant more clearly?
-
-**Answers:** The problem-specific proof names the required multiplicity/range assumption. Interpret negatives according to the stated problem and the code’s uint conversion. Validate every index and width boundary before shifting. Prefer the form whose invariant is easiest to verify.
+**Answers:** 1. At each position, every triply occurring value contributes zero or three set bits, both zero modulo three; only the singleton remainder remains. 2. The per-bit process reconstructs the singleton word including its sign bit, so negative values work too. 3. O(32n), which is O(n) for a fixed 32-bit word.
 
 # Sources
 
 - [Assigned problem](https://leetcode.com/problems/single-number-ii/)
 - [Bitwise reference](https://usaco.guide/silver/bitwise?lang=cpp)
-- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+- [C# bitwise and shift operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators); [.NET `BitOperations`](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.bitoperations?view=net-10.0)
