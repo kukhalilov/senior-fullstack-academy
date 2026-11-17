@@ -16,6 +16,7 @@ Content attributes configure initial/default state and behavior in markup. DOM I
 - `alpha` — Current color-state attribute allowing alpha/transparency to be set where supported. Browser UI support may lag the standard.
 - `alt` — Alternative text for `type=image`, describing the submit image/action for users who cannot see it. It is not a tooltip substitute.
 - `autocomplete` — Autofill token list that can enable/disable autofill and identify the semantic data field. Tokens may include section and shipping/billing context; correct tokens improve browser/password-manager assistance.
+- `capture` — HTML Media Capture extension for file inputs; with a suitable `accept` value it hints that new media may be captured using a user-facing (`user`) or outward-facing (`environment`) camera/microphone. It is a hint, not a guarantee, has limited browser support, and does not replace the user's ability to choose or the server's file checks.
 - `checked` — For checkbox/radio, markup default checkedness. The live `checked` property tracks current checkedness; the `defaultChecked` property reflects the default. Changing the attribute after interaction does not necessarily change current state.
 - `colorspace` — Current color-state attribute selecting the serialized color space (such as the defined standard color spaces). Do not assume the picker exposes every color space consistently across browsers.
 - `dirname` — Adds a companion submitted entry containing the directionality (`ltr`/`rtl`) of the control's value. Useful when preserving text direction for user-entered text.
@@ -81,5 +82,6 @@ The first chooser hint does not guarantee the uploaded file is an image; the ser
 3. What does `dirname` submit? **A companion direction value for the text.**
 4. Which attribute selects the input state? **`type`.**
 5. Can a client script set an arbitrary local file path using `value`? **No.**
+6. Does `capture="environment"` guarantee that a rear-camera capture UI opens? **No. It is a user-agent hint from HTML Media Capture; device support and picker behavior vary.**
 
 Sources: [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input), [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html).

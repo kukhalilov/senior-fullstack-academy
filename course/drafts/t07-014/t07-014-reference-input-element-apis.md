@@ -16,6 +16,7 @@ The DOM interface exposes live control state and operations. Reflected propertie
 - `alpha` — Current color input property reflecting alpha-channel selection. Browser support for the associated feature can vary.
 - `alt` — Alternative text for image submit inputs.
 - `autocomplete` — Reflected autofill hint/token string for the input.
+- `capture` — Reflected HTML Media Capture hint, relevant to file inputs; `user` and `environment` request front- or outward-facing media capture when supported. It does not itself access a camera or guarantee a capture UI.
 - `defaultChecked` — Reflects the input's default checkedness from markup/attribute; distinct from current `checked` after interaction.
 - `checked` — Current checkbox/radio checkedness. Setting it changes the live state; it does not necessarily rewrite default checkedness.
 - `colorSpace` — Current color input property for color-space behavior/serialization where supported.
