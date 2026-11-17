@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Problem: Design a large subscription video platform
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [Google SRE](https://sre.google/sre-book/table-of-contents/), [Azure architecture guidance](https://learn.microsoft.com/en-us/azure/architecture/guide/).
+Sources: [HLD Handbook Netflix case](https://hld.handbook.academy/curriculum/case-studies/), [Netflix Open Connect](https://openconnect.netflix.com/en/), [Netflix Open Connect overview](https://openconnect.netflix.com/Open-Connect-Overview.pdf), [AWS streaming delivery guidance](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/on-demand-streaming-video.html), [Netflix video encoding engineering](https://netflixtechblog.com/optimized-shot-based-encodes-now-streaming-4b9464204830).
 
 ## Goals
 
@@ -10,7 +10,11 @@ Practice content delivery, personalization, resilience, and multi-service operat
 
 Design a global subscription streaming experience from catalog browsing through playback and recommendations.
 
-**Worked design.** Keep entitlement and account state authoritative; isolate catalog, playback orchestration, and recommendation workloads. Video bytes are pre-positioned or cached near viewers, with origin shielding and measured regional capacity. Encode content into multiple formats and select delivery based on device/network. Degrade recommendations and artwork before blocking playback. Use explicit service objectives, bulkheads, and tested regional recovery; do not assume service decomposition guarantees resilience. Observe playback startup/rebuffer metrics at the client and correlate with server/CDN traces.
+**Worked design.** Treat the exact Netflix implementation as a public case study, not a template that can be inferred from product names. Separate account/entitlement, catalog/discovery, playback authorization and steering, media encoding/packaging, client playback, recommendations, and delivery operations. Keep entitlement authoritative and evaluate it before returning playback URLs. Use client/device capabilities and network conditions to choose supported media files and a suitable delivery path.
+
+Netflix describes Open Connect as part of its delivery network: purpose-built appliances cache playable media, embedded appliances and IXP/private peering localize traffic with ISP partners, and a control plane steers clients based on file availability, health, and network proximity. Its public overview describes proactive fills as well as delivery on request. A generic service can instead use one or more commercial CDNs, a pull cache, origin shielding, multi-CDN steering, or negotiated ISP arrangements; these have different cost, control, and operational requirements. Do not infer that Open Connect appliances or Netflix’s topology are available to another company.
+
+Encode and package device-compatible renditions in HLS, DASH, or compatible CMAF workflows after testing codec, DRM, and player support. For high-value catalog video, content-aware/per-title encoding may improve quality or bitrate efficiency but increases analysis/encoding complexity and must be measured. Keep media objects cacheable and immutable where possible; handle changing manifests and authorization separately. Degrade recommendations, artwork, and nonessential browse features before blocking a valid playback session. Set service objectives for authorization, startup, playback continuity, and recovery; exercise CDN, region, control-plane, and origin failures. Correlate client startup/rebuffer/rendition telemetry with playback decisions, encoding, manifest, and CDN traces.
 
 ## Exercises
 

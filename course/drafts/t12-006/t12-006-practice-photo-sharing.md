@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Problem: Design a photo-sharing service
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [Google SRE](https://sre.google/sre-book/table-of-contents/), [Azure architecture guidance](https://learn.microsoft.com/en-us/azure/architecture/guide/).
+Sources: [HLD Handbook photo-sharing case](https://hld.handbook.academy/curriculum/case-studies/), [CloudFront cache invalidation and versioning](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html), [CloudFront Origin Shield](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html), [Netflix Open Connect](https://openconnect.netflix.com/en/).
 
 ## Goals
 
@@ -10,7 +10,7 @@ Practice upload workflow, media derivatives, object storage, CDN, and feed integ
 
 Design photo upload and viewing for a social application with multiple resolutions, private accounts, and a feed.
 
-**Worked design.** Upload directly or through a bounded API using short-lived authorized upload credentials, then verify object completion and metadata. Store immutable originals and generate derivatives asynchronously with idempotent jobs. Keep privacy and ownership in authoritative metadata; CDN cache keys and purge behavior must respect visibility changes. The feed references media IDs rather than copying bytes. Use responsive formats and image dimensions for clients. Monitor upload completion, transcode backlog, origin load, CDN hit rate, and access denials.
+**Worked design.** Upload directly or through a bounded API using short-lived authorized upload credentials, then verify object completion and metadata. Store immutable originals and generate derivatives asynchronously with idempotent jobs. Keep privacy and ownership in authoritative metadata; CDN cache keys and purge behavior must respect visibility changes. The feed references media IDs rather than copying bytes. Use responsive formats and image dimensions for clients. A CDN edge cache and optional origin-shield tier reduce eligible repeated origin requests; at a different scale, some content providers negotiate ISP-local caches or peering, as Netflix documents for Open Connect. These operate at different layers and require provider-specific design. Monitor upload completion, derivative backlog, origin and cache-tier errors, CDN hit rate, stale/private-object denials, and cost.
 
 ## Exercises
 

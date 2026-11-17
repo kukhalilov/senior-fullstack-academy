@@ -1,36 +1,52 @@
 # end-to-end system design case studies — Reference: ISP peering
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [HLD Handbook case studies](https://hld.handbook.academy/curriculum/case-studies/), [Cloudflare peering overview](https://www.cloudflare.com/learning/network-layer/what-is-peering/), [Netflix Open Connect](https://openconnect.netflix.com/en/).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Internet peering is a network interconnection between autonomous systems. It affects routing and traffic exchange below the application layer; it does not guarantee application availability, latency, or end-to-end route selection. Commercial terms and routing policies are network-specific.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Two networks can exchange traffic directly at a shared Internet Exchange Point (public peering) or through a private network interconnect (PNI). They use BGP to announce reachable IP prefixes and apply routing policy to select paths. Peering may shorten paths and reduce use of upstream transit for the exchanged routes, but operators still need transit or other reachability for destinations outside the peering relationship.
+
+“Settlement-free” describes the commercial arrangement, not a protocol property or promise that no party incurs infrastructure costs. Peering eligibility and terms can depend on traffic balance, capacity, location, and each network’s policy. A peer can withdraw routes or end the relationship, so alternate paths and capacity matter.
 
 ## Supplied names explained
 
-- `ISP peering` — Network interconnection arrangement that can affect content-delivery paths and cost; routing and commercial agreements are outside application-level guarantees.
+- `ISP peering` — Direct traffic exchange between networks, commonly at an IXP or via PNI, using BGP route announcements and each network’s routing policy. It can improve path efficiency and offload transit for the exchanged traffic; it is not a substitute for a complete routing and failure plan.
+
+## Architecture and operational choices
+
+1. Identify the traffic volume, destinations, geographic paths, and congestion or transit costs that justify interconnection.
+2. Compare public peering at an IXP with private interconnection. Public exchange can provide access to many peers over an exchange fabric; a PNI is a direct interconnect whose capacity and redundancy are planned with one peer.
+3. Establish route filters, prefix limits, max-prefix behavior, RPKI/IRR validation where used, BGP session protection, and clear escalation contacts. Review the peer’s routing and operational requirements.
+4. Maintain independent upstream/transit or alternate peer paths where required. A direct route can fail because of a link, exchange, router, policy error, or remote withdrawal.
+5. Monitor route visibility, path changes, packet loss, latency, utilization, and traffic shifts. Test capacity after a peer or link is withdrawn.
+
+Netflix Open Connect is one specific example: Netflix documents both IXP-based settlement-free interconnection and private interconnection to its appliances. Its program also offers embedded cache appliances to qualifying ISPs. Those details are not universal requirements of peering.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+- **Peering vs IP transit:** Peering exchanges routes between the parties and their downstream networks under their agreement; transit is a paid service that provides broader reachability through the provider. An ISP may need both.
+- **Public peering vs PNI:** Public peering uses an IXP fabric shared by multiple networks; a PNI is a dedicated interconnection between two networks. Capacity, cost, redundancy, and commercial terms differ by deployment.
+- **Peering vs CDN cache deployment:** Peering changes network paths for traffic; a cache stores content closer to consumers. A provider may use either or both.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+An ISP sees evening video traffic saturating a costly transit link while traffic from a large content provider is concentrated in one metro. It evaluates direct peering at a local IXP, verifies route policy and port capacity, and keeps transit as a fallback. If the peering session disappears, alternate paths must carry the shifted traffic without exceeding their capacity. If the dominant issue is repeated long-distance content delivery rather than route cost, a local cache appliance or provider CDN arrangement may help more than peering alone.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating peering as a guarantee of lower latency for every flow.
+- Assuming settlement-free means cost-free to deploy or operate.
+- Advertising or accepting overly broad routes without filtering and limits.
+- Removing transit before checking reachability to networks outside the peer.
+- Ignoring failure capacity when all traffic shifts to the remaining paths.
+- Confusing a CDN cache with a routing interconnection.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Does peering provide access to the whole Internet?** No. It exchanges routes covered by that relationship; transit or other peers may be needed for other destinations.
+2. **How do networks exchange reachability information?** Commonly through BGP sessions that announce prefixes, subject to each network’s policies and filters.
+3. **Does a direct peer guarantee a faster path?** No. It can shorten some routes, but real performance depends on routing, congestion, geography, and the end-to-end path.
