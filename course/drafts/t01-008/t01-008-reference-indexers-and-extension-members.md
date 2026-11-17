@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers the syntax and behavior of indexers and extension members in C# 15 / .NET 11. It reflects language features current as of November 2026, including specific enhancements from C# 13, 14, and 15.
+This lesson covers indexers and extension members in C# 15 / .NET 11, checked 2026-11-17, including C# 13, 14, and 15 changes.
 
 # How this group fits the mental model
 In C#, members define how data is stored and accessed. While fields and properties handle internal state, **Indexers** allow objects to be accessed using array-like syntax (`obj[i]`). **Extension members** allow you to add functionality to existing types without modifying their source code. Together, these features provide "natural" access patterns, making APIs easier to read and use.
@@ -33,16 +33,16 @@ In C#, members define how data is stored and accessed. While fields and properti
 * `Extension static member`: A static member added to an existing type via an extension block (C# 14).
 * `Extension indexer`: An indexer added to an existing type via an extension block (C# 15).
 * `Extension operator`: An operator (like `+` or `==`) added to an existing type via an extension block (C# 14).
-* `Implicit indexer access in object initializer`: A C# 13 feature allowing indexers to be used within object initializer syntax.
+* `Implicit indexer access in object initializer`: C# 13 implicit index access in an object initializer allows the ^ from-end index operator to be used there, for example new Buffer { [^1] = value } when the target supports that indexer. Ordinary indexer member initializers predate C# 13.
 * `Reduced extension method invocation`: The process where the compiler transforms an extension method call into a static method call.
 * `Extension member lookup`: The process the compiler uses to find applicable extension members for a given type.
-* `Instance member precedence over extension member`: The rule that if an instance member and an extension member have the same signature, the instance member is always chosen.
+* `Instance member precedence over extension member`: Ordinary member lookup is tried before extension lookup; if it produces an applicable instance member, extension lookup is not used. An inapplicable instance overload does not always prevent extension lookup, and static extension members have different lookup rules.
 
 # Cross-item comparison
 
-* **Indexers vs. Properties**: Properties access a single named value; indexers access a collection of values using a key or index.
+* **Indexers vs. Properties**: Properties access a named value; indexers access a value by one or more keys. The target may represent a collection, map, or other keyed abstraction.
 * **Extension Method vs. Extension Block**: Extension methods are individual static methods; extension blocks allow grouping multiple members (properties, indexers, operators) to extend a type collectively.
-* **Instance vs. Extension**: Instance members are defined inside the type; extension members are defined outside. If both exist, the **Instance member precedence over extension member** rule ensures the instance version is used.
+* **Instance vs. Extension**: A suitable applicable instance member found by ordinary member lookup is selected before extension lookup.
 
 # Examples
 
@@ -59,23 +59,25 @@ public class MyList {
 
 **Extension Block (C# 14):**
 ```csharp
-extension MyExtension for string {
-    public int WordCount => this.Split(' ').Length; // Extension property
+public static class StringExtensions {
+    extension(string text) {
+        public int WordCount => text.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length;
+    }
 }
 ```
 
 # Common mistakes
 
-1. **Ignoring Precedence**: Trying to "override" an existing instance method with an extension method. The compiler will always prefer the instance method.
+1. **Ignoring Precedence**: Expecting an extension method to override or add virtual dispatch to the receiver type. Extensions do not alter the type; ordinary member lookup gets precedence when it finds a suitable applicable member.
 2. **Overusing Indexers**: Creating indexers for types that are not logically collections. This can make code confusing.
-3. **Missing `this`**: Forgetting the `this` modifier on the receiver parameter of an extension method, which prevents it from being recognized as an extension.
+3. **Missing `this`**: Confusing legacy extension-method syntax (this on the first parameter) with C# 14 extension-block syntax (extension(Type receiver)).
 
 # Knowledge checks with answers
 
 1. **Q: If a class has an instance method `ToString()` and you create an extension method `ToString()`, which one is called?**
-   * A: The instance method, due to the rule of instance member precedence.
+   * A: The instance method if ordinary member lookup finds an applicable candidate; extension lookup is considered only when that lookup does not provide a suitable applicable instance member.
 2. **Q: What is the purpose of the `init` accessor in an indexer?**
-   * A: It allows the indexer to be set only during the object's initialization phase.
+   * A: It limits setting through the indexer to the language-defined construction phase, similar to init on a property.
 3. **Q: Which C# version introduced extension indexers?**
    * A: C# 15.
 

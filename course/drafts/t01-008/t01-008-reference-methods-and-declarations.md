@@ -5,23 +5,23 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers method declarations, modifiers, and overload resolution in C# 15 / .NET 11. It focuses on how methods are defined, how they behave under different modifiers, and how the compiler selects the correct implementation. This content is based on the C# language reference and release notes current as of 2026-11-14.
+This lesson covers method declarations, modifiers, and overload resolution in C# 15 / .NET 11. It focuses on how methods are defined, how they behave under different modifiers, and how the compiler selects the correct implementation. This content is based on the C# language reference and release notes checked on 2026-11-17.
 
 # How this group fits the mental model
-In C#, methods represent the "verbs" of your code—the actions an object or type can perform. While fields store data and properties manage access to that data, methods encapsulate logic. 
+In C#, methods represent the "verbs" of your code—the actions an object or type can perform. While fields store data and properties manage access to that data, methods encapsulate logic.
 
 The members listed here define the contract for these actions. Modifiers (like `virtual` or `static`) determine how these methods interact with inheritance and memory, while signatures and overloads allow you to provide multiple versions of an action that adapt to different input types.
 
 # Supplied names explained
 
-* `Method declaration`: The complete definition of a method, including its signature (name, parameters, return type) and its implementation block.
+* `Method declaration`: The declaration of a method, including its name, type parameters, return type, parameters, modifiers, attributes, and either a body or a semicolon where permitted. A method signature excludes the return type.
 * `Instance method`: A method associated with a specific object instance; it has access to the `this` reference.
-* `Static method`: A method associated with the type itself rather than an instance; it cannot access instance members.
+* `Static method`: A method associated with the type rather than a particular instance. It has no implicit this and cannot use instance members by simple name, but it can access an instance through an explicit object reference.
 * `Local function`: A method defined inside another method or block, useful for encapsulating helper logic that is only relevant to the parent scope.
 * `Expression-bodied method`: A shorthand syntax using `=>` for methods that consist of a single expression.
-* `Partial method`: A method declaration split across multiple files, typically used by source generators to provide hooks for custom logic.
-* `Partial event`: A declaration allowing an event to be defined in parts, similar to partial methods.
-* `Extension method declaration`: A static method that appears to be an instance method on a specific type, defined by the `this` keyword on the first parameter.
+* `Partial method`: A declaration/implementation pair in parts of a partial type. Some legacy private void forms may omit implementation and are erased; modern forms with accessibility modifiers, non-void returns, or out parameters require an implementation. C# 9 expanded partial-method forms.
+* `Partial event`: A C# 14 partial member with defining and implementing declarations. Its implementing declaration must provide add and remove bodies.
+* `Extension method declaration`: A static method in a top-level, nongeneric static class whose first parameter has the `this` modifier; C# 14 also supports extension-block declarations.
 * `Generic method declaration`: A method that includes type parameters (e.g., `<T>`), allowing it to operate on various types while maintaining type safety.
 * `Method body`: The code block containing the logic executed when the method is called.
 * `Block body`: A traditional method body enclosed in curly braces `{}`.
@@ -30,8 +30,8 @@ The members listed here define the contract for these actions. Modifiers (like `
 * `Value return`: The method returns a copy of the data (or a reference to an object).
 * `Ref return`: The method returns a reference to a variable, allowing the caller to modify the original storage location.
 * `Ref-readonly return`: The method returns a reference that cannot be modified by the caller.
-* `async method`: A method marked with the `async` modifier, enabling asynchronous operations using `await`.
-* `Iterator method`: A method that uses `yield return` to produce a sequence of values lazily.
+* `async method`: A method marked async, which permits await and uses an async return contract. It runs synchronously until its first incomplete await (or completes synchronously if no suspension occurs); async alone does not start a background thread.
+* `Iterator method`: A method with yield statements that implements an iterator state machine; enumeration executes its body incrementally. Iterators cannot declare ref, in, out, or ref readonly parameters.
 * `extern method`: A method implemented externally, typically in unmanaged code (e.g., C++ DLLs).
 * `unsafe method`: A method that allows the use of pointers and direct memory access.
 * `abstract method`: A method without an implementation, required to be overridden by derived classes.
@@ -42,12 +42,12 @@ The members listed here define the contract for these actions. Modifiers (like `
 * `Static abstract interface member`: A member defined in an interface that must be implemented by a static member in the implementing type.
 * `Method overload`: Multiple methods in the same scope with the same name but different parameter signatures.
 * `Overload set`: The collection of all methods sharing the same name that the compiler considers during resolution.
-* `Method signature`: The combination of the method name and the number, types, and order of its parameters.
+* `Method signature`: The method name, generic arity, and parameter types and passing modes in order. Return type, parameter names, optionality, params, and scoped are not part of the signature.
 * `Return type`: The type of data the method sends back to the caller.
 * `Method implementation`: The actual code logic defined within the method body.
-* `Method group`: A set of overloaded methods that can be treated as a single entity during assignment or invocation.
+* `Method group`: A set of methods with the same name found by lookup. Context determines whether a method group is converted to a delegate/function pointer or invoked, and overload selection applies appropriate rules.
 * `Method attribute`: Metadata applied to a method to provide instructions to the compiler or runtime.
-* `ConditionalAttribute method`: A method that is only included in the compiled output if a specific preprocessor symbol is defined.
+* `ConditionalAttribute method`: A void method whose call sites are included or omitted by the compiler according to its Conditional symbols. The method itself is still compiled; omitted calls do not evaluate argument expressions.
 
 # Cross-item comparison
 * **Method vs. Property**: Methods perform actions; properties represent state access. Use properties for simple data retrieval/assignment and methods for complex logic or side effects.
@@ -71,8 +71,8 @@ public override void Display() => Console.WriteLine("Derived");
 
 # Common mistakes
 * **Signature confusion**: Adding a `ref` or `out` modifier to a parameter changes the method signature, but changing the return type alone does not create a valid overload.
-* **Overusing `virtual`**: Making every method `virtual` can lead to performance overhead and fragile base classes. Only use it when you intend for the method to be extended.
-* **Ignoring `async`**: Calling an `async` method without `await` (or `Task.Wait()`) will cause the method to run in the background without the caller waiting for completion, often leading to race conditions.
+* **Overusing `virtual`**: Make a member virtual when the inheritance contract intends runtime overriding. Avoid claiming a universal performance penalty; consider substitutability and long-term base-class behavior.
+* **Ignoring `async`**: async does not itself move work to a background thread. A task-returning call runs until its first incomplete await; if not awaited, the caller loses structured completion and error handling and may race with later work.
 
 # Knowledge checks with answers
 1. **Question**: Can you have two methods with the same name and the same parameter types, but different return types?

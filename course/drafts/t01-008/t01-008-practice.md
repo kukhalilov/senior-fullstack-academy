@@ -17,14 +17,11 @@ Consider a `Library` class that manages a collection of books. We use different 
 ```csharp
 public class Library
 {
-    // Field: Direct state storage
-    private int _bookCount = 0;
-
     // Property: Controlled access with the C# 14 'field' keyword
-    public int BookCount 
-    { 
-        get => field; 
-        set => field = value >= 0 ? value : 0; 
+    public int BookCount
+    {
+        get => field;
+        set => field = value >= 0 ? value : throw new ArgumentOutOfRangeException(nameof(value));
     }
 
     // Indexer: Array-like access
@@ -51,13 +48,13 @@ public class Library
 
 # Exercises
 
-1. **Property Validation**: Create a `Temperature` class with a `Celsius` property. Use a `field`-backed property to ensure the value never drops below -273.15.
-2. **Params Collection**: Write a method `SumValues` that accepts a `params ReadOnlySpan<int>` and returns the total sum.
+1. **Property Validation**: Create a `Temperature` class with a `Celsius` property. Use a `field`-backed property to reject values below -273.15.
+2. **Params Collection**: Write a C# 13 method `static int SumValues(params ReadOnlySpan<int> numbers)` and return the total sum.
 3. **Overload Resolution**: Define two methods: `void Process(int x)` and `void Process(double x)`. Call `Process(10)`. Explain which is chosen and why.
 
 # Progressive hints
 
-* **Exercise 1**: Use `set => field = value < -273.15 ? -273.15 : value;`.
+* **Exercise 1**: In a C# 14 property accessor, throw `ArgumentOutOfRangeException` when the incoming value is below -273.15; reject invalid values instead of silently clamping unless clamping is the intended contract.
 * **Exercise 2**: `ReadOnlySpan<int>` is a valid `params` collection type in C# 13+. Iterate using a `foreach` loop.
 * **Exercise 3**: C# `Overload resolution` prefers the most specific type. An `int` can be implicitly converted to a `double`, but `int` to `int` is an exact match.
 
@@ -66,7 +63,10 @@ public class Library
 **Exercise 1:**
 ```csharp
 public class Temperature {
-    public double Celsius { get; set => field = value < -273.15 ? -273.15 : value; }
+    public double Celsius {
+        get;
+        set => field = value >= -273.15 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+    }
 }
 ```
 
@@ -83,15 +83,15 @@ public int SumValues(params ReadOnlySpan<int> numbers) {
 ```csharp
 void Process(int x) { } // Exact match
 void Process(double x) { } // Requires conversion
-// Process(10) calls Process(int) because it is a "Better function member" 
+// Process(10) calls Process(int) because it is a "Better function member"
 // due to the exact match.
 ```
 
 # Tests and edge cases
 
 * **Overload Ambiguity**: If you define `void M(int x, double y)` and `void M(double x, int y)`, calling `M(1, 1)` causes a compile-time error because neither is "better" than the other.
-* **Required Members**: If a property is marked `required`, the compiler forces initialization in the constructor or object initializer.
-* **Extension Members**: If an `Extension method` has the same signature as an instance method, the `Instance member precedence` rule ensures the instance method is called.
+* **Required Members**: The compiler requires an object initializer to set required members unless the invoked constructor is marked `[SetsRequiredMembers]`; that annotation is trusted, not verified, and `required` is not runtime validation.
+* **Extension Members**: If normal member lookup finds a suitable applicable instance method, it wins before extension lookup; an inapplicable instance overload does not necessarily block extension lookup.
 
 # Reflection questions
 

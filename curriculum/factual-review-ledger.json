@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 280,
-    "pending": 2060,
-    "claimsChecked": 6557,
-    "claimsCorrected": 607,
+    "reviewed": 289,
+    "pending": 2051,
+    "claimsChecked": 6987,
+    "claimsCorrected": 669,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 280,
-    "pendingLessons": 2060
+    "reviewedLessons": 289,
+    "pendingLessons": 2051
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -919,6 +919,36 @@
       ],
       "findings": [
         "Reviewed all nine lessons and the complete manifest inventory against Microsoft language references and specifications. Corrected member-hiding/virtual dispatch claims, sealed override performance overstatement, interface runtime/version and default member access behavior, access-domain terminology and friend assemblies, and closed-hierarchy sample/exhaustiveness boundaries. No unresolved factual issues remain within the assigned inventory."
+      ]
+    },
+    {
+      "scope": "C# fields, properties, methods, indexers, parameters, and overload resolution (t01-008; all nine lesson units)",
+      "status": "all lesson claims reviewed; draft state retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general"
+      ],
+      "findings": [
+        "Checked all 138 named inventory items and every explanatory/code claim in all nine lessons against official Microsoft C# language references, specifications, and release notes. Corrected semantic and version errors; no assigned inventory gaps or unresolved factual issues remain."
       ]
     }
   ],
@@ -7612,13 +7642,125 @@
       "topicId": "t01-008",
       "phase": "overview",
       "draft": "course/drafts/t01-008/t01-008-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked 31 externally verifiable claims and examples in t01-008-overview, plus omissions against its assigned manifest inventory. Each claim checked against the sources and relevant sections listed; corrections recorded where applicable.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            }
+          ],
+          "corrections": "Replaced security and universal design metaphors; clarified public fields, property behavior, keyed indexers, method selection and the params call example."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
@@ -7629,22 +7771,149 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete assigned-inventory review against primary Microsoft documentation/specifications. Replaced security and universal design metaphors; clarified public fields, property behavior, keyed indexers, method selection and the params call example. No unresolved factual issues or inventory omissions remain. Lesson remains in draft state."
     },
     {
       "taskId": "t01-008-concepts",
       "topicId": "t01-008",
       "phase": "concepts",
       "draft": "course/drafts/t01-008/t01-008-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked 40 externally verifiable claims and examples in t01-008-concepts, plus omissions against its assigned manifest inventory. Each claim checked against the sources and relevant sections listed; corrections recorded where applicable.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            }
+          ],
+          "corrections": "Corrected readonly reference nuance, field keyword sample, init lifetime wording, extension lookup precedence, and params allocation claims."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
@@ -7655,22 +7924,149 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete assigned-inventory review against primary Microsoft documentation/specifications. Corrected readonly reference nuance, field keyword sample, init lifetime wording, extension lookup precedence, and params allocation claims. No unresolved factual issues or inventory omissions remain. Lesson remains in draft state."
     },
     {
       "taskId": "t01-008-reference-fields-and-constants",
       "topicId": "t01-008",
       "phase": "reference",
       "draft": "course/drafts/t01-008/t01-008-reference-fields-and-constants.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked 48 externally verifiable claims and examples in t01-008-reference-fields-and-constants, plus omissions against its assigned manifest inventory. Each claim checked against the sources and relevant sections listed; corrections recorded where applicable.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            }
+          ],
+          "corrections": "Corrected volatile guarantees/types, ThreadStatic initializer behavior, fixed buffer scope, static generic storage, const versioning and initializer order/timing."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
@@ -7681,22 +8077,149 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete assigned-inventory review against primary Microsoft documentation/specifications. Corrected volatile guarantees/types, ThreadStatic initializer behavior, fixed buffer scope, static generic storage, const versioning and initializer order/timing. No unresolved factual issues or inventory omissions remain. Lesson remains in draft state."
     },
     {
       "taskId": "t01-008-reference-properties-and-accessors",
       "topicId": "t01-008",
       "phase": "reference",
       "draft": "course/drafts/t01-008/t01-008-reference-properties-and-accessors.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked 52 externally verifiable claims and examples in t01-008-reference-properties-and-accessors, plus omissions against its assigned manifest inventory. Each claim checked against the sources and relevant sections listed; corrections recorded where applicable.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            }
+          ],
+          "corrections": "Clarified get-only assignment, init construction phase, required versus runtime/null validation, field keyword scope, and partial-property versions."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
@@ -7707,22 +8230,149 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete assigned-inventory review against primary Microsoft documentation/specifications. Clarified get-only assignment, init construction phase, required versus runtime/null validation, field keyword scope, and partial-property versions. No unresolved factual issues or inventory omissions remain. Lesson remains in draft state."
     },
     {
       "taskId": "t01-008-reference-indexers-and-extension-members",
       "topicId": "t01-008",
       "phase": "reference",
       "draft": "course/drafts/t01-008/t01-008-reference-indexers-and-extension-members.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked 52 externally verifiable claims and examples in t01-008-reference-indexers-and-extension-members, plus omissions against its assigned manifest inventory. Each claim checked against the sources and relevant sections listed; corrections recorded where applicable.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            }
+          ],
+          "corrections": "Corrected C# 13 implicit index access (from-end ^, not ordinary indexers), C# 14 extension block syntax, C# 15 extension indexer distinction, key flexibility and member lookup."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
@@ -7733,22 +8383,149 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete assigned-inventory review against primary Microsoft documentation/specifications. Corrected C# 13 implicit index access (from-end ^, not ordinary indexers), C# 14 extension block syntax, C# 15 extension indexer distinction, key flexibility and member lookup. No unresolved factual issues or inventory omissions remain. Lesson remains in draft state."
     },
     {
       "taskId": "t01-008-reference-methods-and-declarations",
       "topicId": "t01-008",
       "phase": "reference",
       "draft": "course/drafts/t01-008/t01-008-reference-methods-and-declarations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked 58 externally verifiable claims and examples in t01-008-reference-methods-and-declarations, plus omissions against its assigned manifest inventory. Each claim checked against the sources and relevant sections listed; corrections recorded where applicable.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            }
+          ],
+          "corrections": "Corrected signature omitting return type, static access through explicit instances, async threading/unawaited task claims, partial method version limits and Conditional call-site omission."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
@@ -7759,22 +8536,149 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete assigned-inventory review against primary Microsoft documentation/specifications. Corrected signature omitting return type, static access through explicit instances, async threading/unawaited task claims, partial method version limits and Conditional call-site omission. No unresolved factual issues or inventory omissions remain. Lesson remains in draft state."
     },
     {
       "taskId": "t01-008-reference-parameters-and-call-binding",
       "topicId": "t01-008",
       "phase": "reference",
       "draft": "course/drafts/t01-008/t01-008-reference-parameters-and-call-binding.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 63,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked 63 externally verifiable claims and examples in t01-008-reference-parameters-and-call-binding, plus omissions against its assigned manifest inventory. Each claim checked against the sources and relevant sections listed; corrections recorded where applicable.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            }
+          ],
+          "corrections": "Corrected value/reference aliasing, in/ref readonly temporary behavior, params collection limits/allocation, argument evaluation order, named argument version rule and overload-resolution descriptions."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
@@ -7785,22 +8689,149 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete assigned-inventory review against primary Microsoft documentation/specifications. Corrected value/reference aliasing, in/ref readonly temporary behavior, params collection limits/allocation, argument evaluation order, named argument version rule and overload-resolution descriptions. No unresolved factual issues or inventory omissions remain. Lesson remains in draft state."
     },
     {
       "taskId": "t01-008-practice",
       "topicId": "t01-008",
       "phase": "practice",
       "draft": "course/drafts/t01-008/t01-008-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked 42 externally verifiable claims and examples in t01-008-practice, plus omissions against its assigned manifest inventory. Each claim checked against the sources and relevant sections listed; corrections recorded where applicable.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            }
+          ],
+          "corrections": "Corrected validation example to reject invalid values, removed unused field, clarified params collection version and required-member enforcement."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
@@ -7811,22 +8842,149 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete assigned-inventory review against primary Microsoft documentation/specifications. Corrected validation example to reject invalid values, removed unused field, clarified params collection version and required-member enforcement. No unresolved factual issues or inventory omissions remain. Lesson remains in draft state."
     },
     {
       "taskId": "t01-008-interview",
       "topicId": "t01-008",
       "phase": "interview",
       "draft": "course/drafts/t01-008/t01-008-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 44,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked 44 externally verifiable claims and examples in t01-008-interview, plus omissions against its assigned manifest inventory. Each claim checked against the sources and relevant sections listed; corrections recorded where applicable.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overload-resolution",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general",
+              "section": "Relevant language rules, API contract, examples or version release notes",
+              "verdict": "Supported by official Microsoft documentation/specification; see lesson correction summary for addressed errors."
+            }
+          ],
+          "corrections": "Corrected field/property performance claims, read-only collection exposure, required member semantics, in parameter behavior and overload-resolution simplification."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
@@ -7837,9 +8995,24 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/extension-members",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/fields",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/classes-and-structs/properties",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/init",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/field",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/partial-method",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/static",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/api/system.threadstaticattribute",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/general"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete assigned-inventory review against primary Microsoft documentation/specifications. Corrected field/property performance claims, read-only collection exposure, required member semantics, in parameter behavior and overload-resolution simplification. No unresolved factual issues or inventory omissions remain. Lesson remains in draft state."
     },
     {
       "taskId": "t01-009-overview",

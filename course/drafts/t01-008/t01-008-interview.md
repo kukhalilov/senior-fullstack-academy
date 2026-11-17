@@ -16,25 +16,25 @@ In an interview, you will be asked to justify your choice of member type. The co
 
 # Concise interview answers
 *   **Why use a property instead of a field?**
-    Properties provide an abstraction layer. They allow you to change the internal implementation (e.g., adding logging, validation, or lazy loading) without breaking the code that consumes the class.
+    Properties provide an accessor-based abstraction and can permit implementation changes without changing source-level property syntax. They are not interchangeable with fields in every binary, serialization, or interop scenario, and should not hide surprising or expensive work.
 *   **What is the difference between `ref`, `in`, and `out` parameters?**
     *   `ref` allows a method to read and modify the caller's variable.
-    *   `in` ensures the method cannot modify the variable (read-only).
+    *   `in` passes a readonly reference (or compiler-created temporary); the parameter cannot be reassigned, but a referenced object can still be mutated.
     *   `out` forces the method to assign a value to the variable before returning.
 *   **What is an auto-implemented property?**
-    It is a shorthand syntax where the compiler automatically generates a private backing field for you, reducing boilerplate code.
+    It is shorthand where the compiler supplies backing storage and accessor implementations.
 
 # Deep follow-up answers
 *   **How does overload resolution work?**
-    The compiler looks at the method name and the provided arguments. It identifies "candidate members" and uses "implicit conversion ranking" to determine the "better function member." If multiple methods are equally applicable, it results in an ambiguity error.
+    The compiler performs member lookup, determines applicable function members (including argument mapping, generic inference, and conversions), and compares them using the language better-member rules. If no unique best applicable member exists, the call is ambiguous; these rules are more than a simple conversion ranking.
 *   **What are `required` members?**
-    Introduced to ensure that specific properties are initialized during object creation. This prevents objects from existing in an invalid "partially initialized" state.
+    `required` asks the compiler to enforce that an object-creation expression initializes a member (or trusts a `[SetsRequiredMembers]` constructor). It does not validate business invariants or guarantee non-null values at runtime.
 *   **Explain the `field` keyword (C# 14).**
     It allows you to access the compiler-generated backing field directly within a property's `get` or `set` accessor, eliminating the need to declare a private field manually when you only need simple logic.
 
 # Scenario questions
 *   **Scenario:** You need to expose a list of items but don't want external code to clear the list.
-    *   **Answer:** Expose a `get`-only property that returns an `IEnumerable<T>` or `IReadOnlyList<T>`. Keep the actual `List<T>` as a private field.
+    *   **Answer:** Expose a read-only view or immutable/copying API whose contract prevents callers from mutating the underlying list. Returning `IEnumerable<T>` or `IReadOnlyList<T>` alone does not ensure the underlying object cannot be cast or otherwise changed.
 *   **Scenario:** You have a class that represents a coordinate system. How do you allow access to points via `[x, y]`?
     *   **Answer:** Implement an `Indexer` with two parameters.
 *   **Scenario:** You have a method that needs to return two values.
@@ -43,14 +43,14 @@ In an interview, you will be asked to justify your choice of member type. The co
 # Tradeoffs and alternatives
 | Feature | Tradeoff |
 | :--- | :--- |
-| **Field** | Fast, but exposes internal state; no validation. |
-| **Property** | Encapsulated, but slightly more verbose than a field. |
+| **Field** | Direct storage access; offers no accessor hook and can expose state if public. |
+| **Property** | Accessor-based API; can store, compute, or validate, with behavior callers should find unsurprising. |
 | **Extension Method** | Adds functionality without modifying the original class, but can be harder to discover than instance methods. |
 | **C# 14 Extension Block** | Allows adding properties and static members to existing types, but requires careful management of "instance member precedence." |
 
 # Common weak answers
 *   **"I always use public fields because they are faster."**
-    *   *Correction:* While fields are technically faster, the performance difference is negligible in most applications. The cost of losing encapsulation (the ability to change logic later) is much higher.
+    *   *Correction:* Do not assume fields are materially faster without measuring the workload. A public field exposes direct storage and has different API evolution and metadata characteristics from a property.
 *   **"I don't use indexers because they are confusing."**
     *   *Correction:* Indexers are standard in .NET for collection-like types. Using them makes your API feel "native" to C# developers.
 *   **"I use `ref` for everything to save memory."**
