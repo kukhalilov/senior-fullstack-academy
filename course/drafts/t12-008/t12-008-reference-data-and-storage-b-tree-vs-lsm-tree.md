@@ -1,36 +1,40 @@
 # system design tradeoffs and decision methods — Reference: B-tree vs LSM-tree
 
-Sources: [HLD Handbook](https://hld.handbook.academy/trade-offs/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [reference 5](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [PostgreSQL 18 B-tree indexes](https://www.postgresql.org/docs/current/btree.html), [RocksDB compaction guide](https://github.com/facebook/rocksdb/wiki/Compaction), [RocksDB tuning guide](https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide), [O’Neil et al., LSM-tree](https://doi.org/10.1007/s002360050048).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+These are storage/index structures, not mutually exclusive database brands. Engines often combine them with logs, buffers, caches, filters, and other structures. Compare the measured workload and full engine behavior, not just the tree name.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Imagine maintaining a sorted paper index. A B-tree keeps the index organized in pages and updates the relevant page on a write; an LSM-tree first records changes in a sequential log and memory buffer, then writes sorted files and merges them in the background. Both support ordered keys, but they place work at different points: B-trees update the organized structure as writes arrive; LSM-trees defer and batch organization, then pay for compaction.
 
 ## Supplied names explained
 
-- `B-tree vs LSM-tree` — B-trees support ordered lookup and updates through page-oriented structures; LSM designs buffer and merge writes across sorted runs, trading write behavior against compaction, read amplification, and space amplification. Actual engines combine techniques.
+**B-tree path:** a database typically records changes in a write-ahead log for recovery, updates pages in a buffer pool, and later flushes dirty pages. Tree pages keep keys ordered and support point and range scans. Page splits, random page writes, concurrency control, WAL volume, and cache behavior affect write cost. PostgreSQL documents its B-tree as a multilevel page structure whose levels support ordered traversal.
+
+**LSM path:** a write is normally appended to a log and placed in a memtable. When full, the memtable is flushed into an immutable sorted run (SSTable). Reads may check the memtable and several runs, using indexes and filters to avoid unnecessary reads. Compaction merges runs, removes obsolete versions/tombstones when safe, and changes read, write, and space amplification. If compaction cannot keep up, storage grows and engines may slow or stall writes.
+
+Neither family has one universal performance winner. LSM behavior depends strongly on compaction strategy, filters, cache, value size, write/read mix, range scans, and deletion patterns. B-tree engines also buffer and log writes, and modern storage can change the tradeoff. Transactional semantics, durability, isolation, replication, and query planner are separate dimensions.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+For write-heavy workloads, LSM batching can turn many small updates into sequential writes, but compaction rewrites data and consumes background I/O. For read-heavy point lookups, a B-tree may offer a direct organized path; an LSM can need checks across levels unless filters and compaction keep that cost low. For range scans, both preserve key ordering, but actual latency depends on pages/runs touched and cache locality. Benchmark point reads, range scans, updates, deletes, recovery, and compaction under production-like size and concurrency.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+An event store receives 80% inserts and 20% recent-key reads. An LSM engine accepts bursts into its log/memtable and flushes sorted runs; measure compaction debt, read amplification, and write stalls during peaks. A B-tree engine updates indexed pages and WAL; measure random-write I/O, page splits, cache hit rate, and WAL/checkpoint behavior. Then add a deletion-heavy phase: in an LSM, tombstones must survive until old values cannot reappear; in either design, verify recovery and cleanup behavior under the actual engine.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating “LSM means faster writes” as a guarantee independent of compaction, sync durability, value size, and workload.
+- Ignoring compaction debt, write stalls, read amplification, or space amplification in an LSM engine.
+- Assuming every relational database uses only B-trees or every key-value engine uses only LSM structures.
+- Comparing the structures while ignoring WAL, cache, filters, transaction semantics, and background maintenance.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Where does an LSM defer substantial organization work?** In background compaction after log/memtable flushes create sorted runs.
+2. **Name three LSM amplification costs.** Read amplification, write amplification, and space amplification.
+3. **What should a benchmark include?** The real read/write mix, key and value distribution, data size, range scans, deletes, concurrency, recovery, and maintenance under peak load.

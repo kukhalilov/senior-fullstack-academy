@@ -1,36 +1,47 @@
 # system design tradeoffs and decision methods — Reference: REST vs gRPC vs GraphQL
 
-Sources: [HLD Handbook](https://hld.handbook.academy/trade-offs/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [reference 5](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [HTTP Semantics, RFC 9110](https://www.rfc-editor.org/rfc/rfc9110), [gRPC core concepts](https://grpc.io/docs/what-is-grpc/core-concepts/), [GraphQL specification](https://spec.graphql.org/October2021/), [gRPC-Web](https://github.com/grpc/grpc-web).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+REST, gRPC, and GraphQL are different abstractions. REST is an architectural style commonly implemented over HTTP; gRPC is an RPC framework with generated contracts and a common HTTP/2 transport; GraphQL is a query language and execution model exposed through a schema. A system can use more than one at different boundaries.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Start from the caller's job. A browser loading a public resource benefits from standard HTTP caching and links. A service-to-service caller may benefit from typed generated clients and streaming RPC. A UI that needs different combinations of fields across screens may benefit from a graph query. Ask how clients discover operations, how payload shape evolves, what intermediaries can cache, how failures and retries behave, and how access is authorized.
 
 ## Supplied names explained
 
-- `REST vs gRPC vs GraphQL` — REST is an architectural style; HTTP APIs commonly use resource-oriented semantics. gRPC defines service contracts and its mainstream RPC protocol uses HTTP/2. GraphQL lets clients select fields through a schema and server execution. Evaluate browser/client constraints, evolution, caching, tooling, streaming, and operational policy.
+**REST-style HTTP:** model resources and use HTTP methods/status codes/cache semantics. It fits browsers, public APIs, CDN/proxy caching, and linkable resources well when the resource model is natural. REST does not require JSON, and “REST API” labels often describe only a subset of Fielding's constraints. Clients can still suffer from multiple round trips or over/under-fetching.
+
+**gRPC:** define services and messages in Protocol Buffers, generate clients/servers, and use unary or streaming calls. The common gRPC protocol uses HTTP/2; native browser use may require a proxy/translation layer such as gRPC-Web. Schema evolution requires compatible field-number practices. Streaming, deadlines, cancellation, status codes, metadata, and retry policy must be designed deliberately.
+
+**GraphQL:** define a schema and let a request select fields; the server resolves those fields. This can reduce UI-specific round trips and payload overfetching, but introduces resolver planning, authorization at field boundaries, query-cost/depth controls, caching complexity, and potential N+1 backend calls. GraphQL can run over HTTP and is not a replacement for every internal RPC.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Need | Good starting point | Main design cost |
+|---|---|---|
+| Cacheable, resource-oriented public interface | HTTP/REST style | Resource/API evolution and round trips |
+| Typed internal calls, generated clients, streaming | gRPC | Browser/intermediary support and RPC operations |
+| Flexible UI-selected data graph | GraphQL | Resolver efficiency, field authorization, query cost, caching |
+
+All three need authentication, authorization, observability, version/evolution rules, idempotency where needed, and explicit timeout/retry behavior. No style guarantees performance or security by itself.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+For a product page, a browser may call a cacheable GET /products/42; a mobile app may query product, seller, and availability through one GraphQL operation; an internal checkout service may call typed ReserveInventory and AuthorizePayment gRPC methods. For each, trace an expired credential, a timeout after the server applied a mutation, a retry, and a slow downstream service. Decide how the caller determines whether the mutation committed and how sensitive fields are authorized.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Calling every JSON-over-HTTP API RESTful without checking resource semantics and HTTP behavior.
+- Assuming gRPC works directly in every browser or that HTTP/2 removes network failure modes.
+- Assuming GraphQL avoids backend fan-out; poorly batched resolvers can create N+1 requests.
+- Applying retries to non-idempotent mutations without an idempotency or outcome-reconciliation design.
+- Assuming client-selected GraphQL fields make field-level authorization optional.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Which option offers a schema-driven query where callers select fields?** GraphQL.
+2. **What makes a timed-out mutation retry dangerous in any of these styles?** The server may have applied it even though the response was lost; use idempotency or reconcile outcome.
+3. **Why may browser gRPC need an adaptation layer?** Browser APIs do not expose all native HTTP/2 behavior required by the standard gRPC transport; gRPC-Web/proxies address that boundary.

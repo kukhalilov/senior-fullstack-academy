@@ -121,6 +121,24 @@
       ]
     },
     {
+      "scope": "t12-008 B-tree/LSM and REST/gRPC/GraphQL comparisons",
+      "status": "content expanded and primary-source spot checks performed; lesson audits remain pending",
+      "sources": [
+        "https://www.postgresql.org/docs/current/btree.html",
+        "https://github.com/facebook/rocksdb/wiki/Compaction",
+        "https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide",
+        "https://doi.org/10.1007/s002360050048",
+        "https://www.rfc-editor.org/rfc/rfc9110",
+        "https://grpc.io/docs/what-is-grpc/core-concepts/",
+        "https://spec.graphql.org/October2021/",
+        "https://github.com/grpc/grpc-web"
+      ],
+      "findings": [
+        "Replaced generic comparison/example/check filler with workload-specific operating models, trade-offs, failure scenarios, and decision criteria in the B-tree vs LSM-tree and REST vs gRPC vs GraphQL lessons.",
+        "Official PostgreSQL/RocksDB documentation and the LSM-tree paper support the storage-structure descriptions and amplification discussion. RFC 9110, gRPC documentation, GraphQL specification, and gRPC-Web project documentation support the API-boundary distinctions. Full claim extraction, all-case checks, and omission audits remain outstanding."
+      ]
+    },
+    {
       "scope": "TLS and HTTP transport edition check in t12-001",
       "status": "partial claim audit; lesson remains draft",
       "sources": [
