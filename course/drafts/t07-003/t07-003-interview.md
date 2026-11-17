@@ -1,6 +1,6 @@
 # React elements render purity reconciliation identity and keys — Interview questions and reasoning
 
-Sources: React 19.3 [Render and Commit](https://react.dev/learn/render-and-commit), [Keeping Components Pure](https://react.dev/learn/keeping-components-pure), [Understanding Your UI as a Tree](https://react.dev/learn/understanding-your-ui-as-a-tree), [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state), and [`StrictMode`](https://react.dev/reference/react/StrictMode).
+Sources: React 19.3 [Render and Commit](https://react.dev/learn/render-and-commit), [Keeping Components Pure](https://react.dev/learn/keeping-components-pure), [Understanding Your UI as a Tree](https://react.dev/learn/understanding-your-ui-as-a-tree), [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state), [`StrictMode`](https://react.dev/reference/react/StrictMode), [Fragment reference](https://react.dev/reference/react/Fragment), [React 19 release notes](https://react.dev/blog/2024/12/05/react-19), [React 19 upgrade guide](https://react.dev/blog/2024/04/25/react-19-upgrade-guide), and [React 19.3 release notes](https://react.dev/blog/2026/09/09/react-19-3).
 
 ## Core questions
 
@@ -16,6 +16,9 @@ Sources: React 19.3 [Render and Commit](https://react.dev/learn/render-and-commi
 10. When is an index key acceptable?
 11. Why is a key unavailable as a child prop?
 12. How can a key deliberately reset a form/editor?
+13. What does React 19.3 Fragment refs add, and what does their ref point to?
+14. How should current React lessons distinguish `key`, function-component `ref`, and `element.ref`?
+15. Is replacing a child with a Fragment always state-preserving, regardless of nesting depth?
 
 ## Concise interview answers
 
@@ -31,6 +34,9 @@ Sources: React 19.3 [Render and Commit](https://react.dev/learn/render-and-commi
 10. Only for stable lists where index and entity identity cannot diverge; otherwise use data IDs.
 11. Key is reconciliation metadata; pass a separate prop if component code needs that value.
 12. Change key based on the entity ID so a new entity mounts a fresh subtree.
+13. An explicit `<Fragment ref={...}>` yields a `FragmentInstance` that supports group operations over its DOM children without a wrapper; shorthand fragments cannot take a ref.
+14. `key` remains reconciliation metadata not passed as a component prop. Since React 19, function components can receive `ref` as a prop. Direct `element.ref` access is deprecated; class refs still target class instances.
+15. No. React preserves state for a narrow set of one-level Fragment/array-to-child transitions; adding or removing nested Fragment layers can reset it. Consult the precise Fragment caveat rather than treating wrappers as universally transparent to identity.
 
 ## Deep follow-up answers
 
@@ -53,6 +59,8 @@ No. Keys determine sibling identity and therefore which state/DOM may be preserv
 3. **Changing a prop does not reset component state.** State is preserved for same identity; use controlled state or an intentional key boundary depending on desired ownership.
 4. **Strict Mode repeats an API call from render.** The request is an impure render side effect; move it into the proper data/Effect/event mechanism and ensure cleanup/cancellation.
 5. **A developer expects `props.key`.** Pass the identifier through another explicit prop.
+6. **A developer wants to observe several sibling nodes without a wrapper.** In React 19.3 use explicit Fragment refs and a `FragmentInstance` method such as `observeUsing`, checking renderer support and cleanup.
+7. **A refactor adds a nested Fragment around a stateful child and resets it.** Check the Fragment nesting depth: only specific one-level transitions preserve state; deeper structural changes can change identity.
 
 ## Tradeoffs and alternatives
 

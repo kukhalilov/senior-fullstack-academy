@@ -60,8 +60,6 @@ The list example shows safe derived allocation. Replace any in-place sorting/mut
 
 ## Exact terms covered
 
-### Exact terms covered
-
 - `Pure component calculation`
 - `Same inputs produce the same output`
 - `Read-only props during render`

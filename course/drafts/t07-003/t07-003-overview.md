@@ -4,7 +4,7 @@ Sources: React 19.3 [Render and Commit](https://react.dev/learn/render-and-commi
 
 ## Problem and purpose
 
-React's UI model is easier to reason about once you distinguish the descriptions your code creates from the screen React updates. Rendering is a calculation; commit is the renderer applying necessary host changes. Component identity and keys determine whether state follows a component through updates or is reset.
+React's UI model is easier to reason about once you distinguish the descriptions your code creates from the screen React updates. Rendering is a calculation; commit is the renderer applying necessary host changes. Component identity and keys determine whether state follows a component through updates or is reset. Current version notes also matter: React 19 passes refs to function components as props, and React 19.3 stabilizes Fragment refs for working with sibling DOM nodes without a wrapper.
 
 ## Plain-language mental model
 
@@ -21,7 +21,7 @@ The render tree describes component relationships. The host DOM tree contains br
 
 ## Concept map
 
-JSX and `createElement` create elements. A parent render may call child components again, but that does not imply a DOM mutation. React's render phase must be pure because work can be repeated or abandoned. The commit phase applies changes and is where the host renderer updates nodes. Keys help React match sibling elements across list changes; the key is special reconciliation metadata and is not passed as an ordinary component prop.
+JSX and `createElement` create elements. A parent render may call child components again, but that does not imply a DOM mutation. React's render phase must be pure because work can be repeated or abandoned. The commit phase applies changes and is where the host renderer updates nodes. Keys help React match sibling elements across list changes; the key is special reconciliation metadata and is not passed as an ordinary component prop. React 19 function components may receive `ref` as a prop; React 19.3 explicit Fragment refs provide a `FragmentInstance` that can work across a group of DOM children.
 
 ## End-to-end walkthrough
 
@@ -33,4 +33,4 @@ Use stable data-derived keys for lists whose items may be inserted, removed, or 
 
 ## What later lessons cover
 
-The reference chapters explain element values, render triggers and phases, purity/Strict Mode, UI trees/reconciliation, and state preservation/keys. Practice and interview lessons analyze render logs, state movement, and deliberate reset behavior.
+The reference chapters explain element values, React 19 ref semantics and React 19.3 Fragment refs, render triggers and phases, purity/Strict Mode, UI trees/reconciliation, and state preservation/keys. Practice and interview lessons analyze render logs, state movement, ref version changes, and deliberate reset behavior.

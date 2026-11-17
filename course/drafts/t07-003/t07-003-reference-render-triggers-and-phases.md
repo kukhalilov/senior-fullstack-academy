@@ -55,8 +55,6 @@ The exact inventory below lists the render triggers/phases and host-update outco
 
 ## Exact terms covered
 
-### Exact terms covered
-
 - `Initial render`
 - `Update render`
 - `State update render trigger`

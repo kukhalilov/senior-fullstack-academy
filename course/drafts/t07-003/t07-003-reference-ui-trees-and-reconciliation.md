@@ -53,8 +53,6 @@ The ProductList example above shows how one render component can emit host nodes
 
 ## Exact terms covered
 
-### Exact terms covered
-
 - `Render tree`
 - `Host DOM tree`
 - `Module dependency tree`

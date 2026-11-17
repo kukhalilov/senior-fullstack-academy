@@ -1,6 +1,6 @@
 # React elements render purity reconciliation identity and keys — Exercises and worked solutions
 
-Sources: React 19.3 [Render and Commit](https://react.dev/learn/render-and-commit), [Keeping Components Pure](https://react.dev/learn/keeping-components-pure), and [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state).
+Sources: React 19.3 [Render and Commit](https://react.dev/learn/render-and-commit), [Keeping Components Pure](https://react.dev/learn/keeping-components-pure), [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state), [React 19 release notes](https://react.dev/blog/2024/12/05/react-19), and [Fragment reference](https://react.dev/reference/react/Fragment).
 
 ## Goals
 
@@ -65,9 +65,21 @@ An engineer increments a module-level counter in the component body and sees it 
 
 **Solution:** JavaScript's `&&` returns the left falsy operand; React renders numeric zero. Write `{unreadCount > 0 && <Badge/>}` or a ternary returning `null`.
 
+### 9. Share behavior across fragment children
+
+A component returns several sibling elements with no common wrapper. In React 19.3, the parent needs to observe their visibility without changing layout by adding a wrapper. Which API fits? Does `<>...</>` accept the ref, and what object does the ref expose?
+
+**Solution:** Use an explicitly imported `Fragment` with a ref, for example `<Fragment ref={groupRef}>...</Fragment>`. React 19.3 provides a `FragmentInstance`, whose `observeUsing` can connect an `IntersectionObserver` or `ResizeObserver` to its first-level DOM children. The shorthand `<>...</>` cannot accept a ref. This is a DOM renderer capability; verify the React version/renderer and clean up observers.
+
+### 10. React 19 ref access
+
+An old utility reads `element.ref` and says `props.ref` can never exist. What is outdated, and what should be used?
+
+**Solution:** Since React 19, function components can receive `ref` as a regular prop; accessing `element.ref` is deprecated in favor of `element.props.ref`. A `key` remains special and is not a normal prop. Class-component refs still refer to the instance.
+
 ## Progressive hints
 
-For each case ask: is the issue element creation, render calculation, reconciliation, commit, or identity? Is a value pre-existing/shared? Does the key represent the entity or current position?
+For each case ask: is the issue element creation, render calculation, reconciliation, commit, or identity? Is a value pre-existing/shared? Does the key represent the entity or current position? For the version-specific cases, distinguish shorthand from explicit Fragment and `key` from React 19's function-component `ref` prop. Treat Fragment nesting as state-neutral only for the documented one-level cases; do not extrapolate to arbitrary depth.
 
 ## Complete solutions
 
