@@ -13,18 +13,325 @@
     "MobX favors mutable observable models and automatic dependency tracking, while Redux favors explicit action and reducer transitions with immutable state history."
   ],
   "inventory": [
-    {"id":"observable-state","title":"Observable creation and annotations","items":["observable annotation","observable(value)","observable.object(value, annotations?, options?)","observable.array(initialValues?, options?)","observable.map(initialValues?, options?)","observable.set(initialValues?, options?)","makeObservable(target, annotations, options?)","makeAutoObservable(target, overrides?, options?)","extendObservable(target, properties, overrides?, options?)","observable.ref","observable.shallow","observable.struct","observable.box(value, options?)","isObservable(value)","isObservableProp(value, property)","toJS(value)"]},
-    {"id":"computed-derivations","title":"Computed values and derivation annotations","items":["computed annotation","computed(options)","computed(fn, options?)","@computed getter","computed.struct","Computed getter caching","Computed value suspends when unobserved","Computed values cannot have side effects","Keep derivable values out of stored state"]},
-    {"id":"actions-and-transactions","title":"State-changing actions and transactional boundaries","items":["action annotation","action(fn)","action(name, fn)","@action method decorator","@action.bound method decorator","@observable accessor property decorator","@computed getter decorator","runInAction(fn)","transaction(action)","flow(generatorFunction)","flow.bound annotation","flowResult(promise)","makeObservable action annotation","makeAutoObservable action inference","makeAutoObservable flow inference","enforceActions configuration","Action transaction boundary","State mutation outside an action","MobX 7 removal of legacy decorators"]},
-    {"id":"reactions-and-disposal","title":"Reactive side-effect APIs","items":["autorun(effect, options?)","reaction(expression, effect, options?)","when(predicate, effect?, options?)","IReactionDisposer","IReactionDisposer[Symbol.dispose]()","Reaction AbortSignal option","Reaction dependency tracking","Reaction cleanup and disposal","Reaction equals option","Reaction delay option","Reaction fireImmediately option","Reaction scheduler option","Reaction effects only for external synchronization"]},
-    {"id":"react-observation","title":"React component observation integration","items":["observer(Component)","observer from mobx-react-lite","observer from mobx-react","useLocalObservable (mobx-react-lite)","mobx-react-plugin","mobxReactPlugin() Vite integration","mobxReactPlugin Babel integration","React Compiler use no memo directive for observed components","MobX 7 mobx-react-lite 5 React bindings","MobX 7 mobx-react 10 class component bindings","Observable reads during React render","Observed component re-render","React Strict Mode compatibility"]},
-    {"id":"reactivity-model-and-configuration","title":"Dependency tracking and behavior configuration","items":["Observable dependency graph","Tracked observable read","Tracked function execution","Dynamic dependency tracking","Reaction scheduling after action completion","Proxy requirement in MobX 7","No MobX 7 ES5 proxy fallback","configure(options)","configure.enforceActions","configure.computedRequiresReaction","configure.reactionRequiresObservable","configure.observableRequiresReaction","configure.safeDescriptors","Removed configure.useProxies option in MobX 7","Removed observable option proxy: false in MobX 7","MobX transaction","MobX versus Redux state transition model"]}
+    {
+      "id": "observable-state",
+      "title": "Observable creation and annotations",
+      "items": [
+        "observable annotation",
+        "observable(value)",
+        "observable.object(value, annotations?, options?)",
+        "observable.array(initialValues?, options?)",
+        "observable.map(initialValues?, options?)",
+        "observable.set(initialValues?, options?)",
+        "makeObservable(target, annotations, options?)",
+        "makeAutoObservable(target, overrides?, options?)",
+        "extendObservable(target, properties, overrides?, options?)",
+        "observableRef annotation",
+        "observableShallow annotation",
+        "observableStruct annotation",
+        "observable.box(value, options?)",
+        "isObservable(value)",
+        "isObservableProp(value, property)",
+        "toJS(value)",
+        "MobX 6-to-7 replacement of namespaced annotation exports",
+        "observableDeep named annotation current export",
+        "extendObservable existing fields",
+        "makeObservable class and inheritance limitations",
+        "observable.array.clear()",
+        "observable.array.replace(newItems)",
+        "observable.array.remove(value)",
+        "observable.map.toJSON()",
+        "observable.map.merge(values)",
+        "observable.map.replace(values)",
+        "observableDeep annotation alias"
+      ]
+    },
+    {
+      "id": "computed-derivations",
+      "title": "Computed values and derivation annotations",
+      "items": [
+        "computed annotation",
+        "computed(options)",
+        "computed(fn, options?)",
+        "@computed getter",
+        "computedStruct annotation",
+        "Computed getter caching",
+        "Computed value suspends when unobserved",
+        "Computed values cannot have side effects",
+        "Keep derivable values out of stored state",
+        "MobX 6-to-7 replacement of namespaced annotation exports",
+        "computed options equals",
+        "computed options keepAlive",
+        "computed options requiresReaction",
+        "computed options name"
+      ]
+    },
+    {
+      "id": "actions-and-transactions",
+      "title": "State-changing actions and transactional boundaries",
+      "items": [
+        "action annotation",
+        "action(fn)",
+        "action(name, fn)",
+        "@action method decorator",
+        "@action.bound legacy decorator (removed in MobX 7)",
+        "@observable accessor property decorator",
+        "@computed getter decorator",
+        "runInAction(fn)",
+        "transaction(action)",
+        "flow(generatorFunction)",
+        "flowBound annotation/decorator",
+        "flowResult(promise)",
+        "makeObservable action annotation",
+        "makeAutoObservable action inference",
+        "makeAutoObservable flow inference",
+        "enforceActions configuration",
+        "Action transaction boundary",
+        "State mutation outside an action",
+        "MobX 7 removal of legacy decorators",
+        "actionBound annotation/decorator",
+        "@flow.bound legacy decorator (removed in MobX 7)",
+        "MobX 6-to-7 replacement of namespaced annotation exports"
+      ]
+    },
+    {
+      "id": "reactions-and-disposal",
+      "title": "Reactive side-effect APIs",
+      "items": [
+        "autorun(effect, options?)",
+        "reaction(expression, effect, options?)",
+        "when(predicate, effect?, options?)",
+        "IReactionDisposer",
+        "IReactionDisposer[Symbol.dispose]()",
+        "Reaction AbortSignal option",
+        "Reaction dependency tracking",
+        "Reaction cleanup and disposal",
+        "Reaction equals option",
+        "Reaction delay option",
+        "Reaction fireImmediately option",
+        "Reaction scheduler option",
+        "Reaction effects only for external synchronization",
+        "Reaction options name",
+        "Reaction options onError",
+        "Reaction options requiresObservable",
+        "when options timeout",
+        "when promise cancel()",
+        "MobX reaction error handling and disposer semantics"
+      ]
+    },
+    {
+      "id": "react-observation",
+      "title": "React component observation integration",
+      "items": [
+        "observer(Component)",
+        "observer from mobx-react-lite",
+        "observer from mobx-react",
+        "useLocalObservable (mobx-react-lite)",
+        "mobx-react-plugin",
+        "mobxReactPlugin() Vite integration",
+        "mobxReactPlugin Babel integration",
+        "React Compiler use no memo directive for observed components",
+        "MobX 7 mobx-react-lite 5 React bindings",
+        "MobX 7 mobx-react 10 class component bindings",
+        "Observable reads during React render",
+        "Observed component re-render",
+        "React Strict Mode compatibility",
+        "Observer render-prop component",
+        "enableStaticRendering(true) for SSR",
+        "isUsingStaticRendering()",
+        "MobX 7 removed Provider, inject, and MobXProviderContext",
+        "MobX 7 replaced useLocalStore with useLocalObservable",
+        "MobX 7 removed useAsObservableSource",
+        "MobX 7 removed useObserver",
+        "MobX 7 removed useStaticRendering",
+        "MobX 7 removed disposeOnUnmount",
+        "MobX 7 removed observerBatching helpers",
+        "MobX 7 removed trace API"
+      ]
+    },
+    {
+      "id": "reactivity-model-and-configuration",
+      "title": "Dependency tracking and behavior configuration",
+      "items": [
+        "Observable dependency graph",
+        "Tracked observable read",
+        "Tracked function execution",
+        "Dynamic dependency tracking",
+        "Reaction scheduling after action completion",
+        "Proxy requirement in MobX 7",
+        "No MobX 7 ES5 proxy fallback",
+        "configure(options)",
+        "configure.enforceActions",
+        "configure.computedRequiresReaction",
+        "configure.reactionRequiresObservable",
+        "configure.observableRequiresReaction",
+        "configure.safeDescriptors",
+        "Removed configure.useProxies option in MobX 7",
+        "Removed observable option proxy: false in MobX 7",
+        "MobX transaction",
+        "MobX versus Redux state transition model",
+        "configure.disableErrorBoundaries",
+        "configure.isolateGlobalState",
+        "configure.reactionScheduler",
+        "configure observableRequiresReaction React 19.2 development caveat",
+        "MobX 7.1 Proxy requirement",
+        "MobX 7.1 Proxy requirement"
+      ]
+    },
+    {
+      "id": "advanced-api-surface",
+      "title": "Advanced core APIs, diagnostics, and observable interoperation",
+      "items": [
+        "onReactionError(handler)",
+        "intercept(target, listener)",
+        "observe(target, listener)",
+        "onBecomeObserved(observable, property?, listener)",
+        "onBecomeUnobserved(observable, property?, listener)",
+        "MobX collection utilities values(collection)",
+        "MobX collection utilities keys(collection)",
+        "MobX collection utilities entries(collection)",
+        "MobX collection utilities set(collection, key, value)",
+        "MobX collection utilities remove(collection, key)",
+        "MobX collection utilities has(collection, key)",
+        "MobX collection utilities get(collection, key)",
+        "isObservable(value)",
+        "isObservableProp(object, propertyName)",
+        "isObservableArray(array)",
+        "isObservableObject(object)",
+        "isObservableSet(set)",
+        "isObservableMap(map)",
+        "isBoxedObservable(value)",
+        "isAction(function)",
+        "isComputed(boxedComputed)",
+        "isComputedProp(object, propertyName)",
+        "spy(eventListener)",
+        "getDebugName(value, property?)",
+        "getDependencyTree(value, property?)",
+        "getObserverTree(value, property?)",
+        "createAtom(name, onBecomeObserved?, onBecomeUnobserved?)",
+        "Atom.reportObserved()",
+        "Atom.reportChanged()",
+        "getAtom(value, property?)",
+        "untracked(worker)",
+        "transaction(worker)",
+        "MobX advanced APIs are low-level and rarely needed"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Observable","Plain mutable value"],["Computed value","Stored derived state"],["Action","Untracked arbitrary mutation"],["autorun","reaction"],["MobX observable tracking","Redux explicit selector and action flow"],["observer","React-Redux useSelector"]],
-  "comparisonSources": ["https://mobx.js.org/observable-state.html","https://mobx.js.org/actions.html","https://mobx.js.org/computeds.html","https://mobx.js.org/reactions.html","https://mobx.js.org/react-integration.html","https://mobx.js.org/api.html","https://redux.js.org/toolkit/usage/usage-guide"],
-  "versionNotes": [{"edition":"MobX 6 to MobX 7 major transition; latest package snapshot MobX 7.1.7 checked 2026-11-16","items":["MobX 7 requires Proxy support and removes the ES5 fallback, configure({ useProxies }), and proxy:false observable options; use MobX 6 when legacy no-Proxy environments must be supported.","MobX 7 removes legacy decorator support; use standard decorators with the required modern transpiler configuration, or use makeObservable/makeAutoObservable without decorators.","MobX 7 is a cleanup major release; the observable/computed/action/reaction mental model remains, while deprecated compatibility APIs and old React binding paths are removed.","MobX 7.1 adds current patch-level behavior changes; check its changelog for small fixes before relying on implementation edge cases."],"sourceUrls":["https://mobx.js.org/configuration.html","https://mobx.js.org/enabling-decorators.html","https://github.com/mobxjs/mobx/releases","https://www.npmjs.com/package/mobx"]},{"edition":"MobX React bindings 5/10 and React Compiler integration (2026)","items":["Current React bindings are mobx-react-lite for function components and mobx-react for class components; MobX 7 release line pairs them with mobx-react-lite 5 and mobx-react 10.","mobx-react-plugin can automatically wrap eligible components with observer and insert the use no memo directive to prevent React Compiler from caching observable reads as stale JSX; its build transform must run before React Compiler."],"sourceUrls":["https://mobx.js.org/react-integration.html","https://mobx.js.org/react-compiler.html","https://mobx.js.org/installation.html","https://github.com/mobxjs/mobx/releases"]}],
-  "sourceSnapshot": {"authority":"Official MobX docs, MobX GitHub releases, and npm package metadata","edition":"MobX 7.1.7 latest package snapshot and MobX React integration checked 2026-11-16","checkedAt":"2026-11-16","urls":["https://mobx.js.org/observable-state.html","https://mobx.js.org/actions.html","https://mobx.js.org/computeds.html","https://mobx.js.org/reactions.html","https://mobx.js.org/react-integration.html","https://mobx.js.org/understanding-reactivity.html","https://mobx.js.org/api.html","https://mobx.js.org/configuration.html","https://mobx.js.org/enabling-decorators.html","https://mobx.js.org/installation.html","https://mobx.js.org/react-compiler.html","https://github.com/mobxjs/mobx/releases","https://www.npmjs.com/package/mobx"]},
-  "scopeExclusions":["MobX advanced APIs marked experimental/advanced in the API index, including intercept/observe, custom observables, lazy observables, and collection utilities","mobx-utils package helpers","Redux Toolkit APIs in detail (t07-011)","Broad Redux versus MobX decision matrix (t07-024)","React rendering and Hooks core (t07-003 through t07-006)"],
+  "comparisons": [
+    [
+      "Observable",
+      "Plain mutable value"
+    ],
+    [
+      "Computed value",
+      "Stored derived state"
+    ],
+    [
+      "Action",
+      "Untracked arbitrary mutation"
+    ],
+    [
+      "autorun",
+      "reaction"
+    ],
+    [
+      "MobX observable tracking",
+      "Redux explicit selector and action flow"
+    ],
+    [
+      "observer",
+      "React-Redux useSelector"
+    ]
+  ],
+  "comparisonSources": [
+    "https://mobx.js.org/observable-state.html",
+    "https://mobx.js.org/actions.html",
+    "https://mobx.js.org/computeds.html",
+    "https://mobx.js.org/reactions.html",
+    "https://mobx.js.org/react-integration.html",
+    "https://mobx.js.org/api.html",
+    "https://redux.js.org/toolkit/usage/usage-guide"
+  ],
+  "versionNotes": [
+    {
+      "edition": "MobX 6 to MobX 7 major transition; latest package snapshot MobX 7.1.7 checked 2026-11-17",
+      "items": [
+        "MobX 7 requires Proxy support and removes the ES5 fallback, configure({ useProxies }), and proxy:false observable options; use MobX 6 when legacy no-Proxy environments must be supported.",
+        "MobX 7 removes legacy decorator support; use standard decorators with the required modern transpiler configuration, or use makeObservable/makeAutoObservable without decorators.",
+        "MobX 7 replaces namespaced annotation/comparer exports such as observable.ref, computed.struct, action.bound, flow.bound and comparer.structural with named exports including observableRef, computedStruct, actionBound, flowBound, and compareStructural.",
+        "MobX 7 removes deprecated React bindings including Provider/inject and useLocalStore; use React context, useLocalObservable, and supported observer bindings.",
+        "MobX 7 is a cleanup major release; the observable/computed/action/reaction mental model remains, while deprecated compatibility APIs and old React binding paths are removed."
+      ],
+      "sourceUrls": [
+        "https://mobx.js.org/migrating-from-6-to-7.html",
+        "https://mobx.js.org/configuration.html",
+        "https://mobx.js.org/enabling-decorators.html",
+        "https://github.com/mobxjs/mobx/releases",
+        "https://www.npmjs.com/package/mobx"
+      ]
+    },
+    {
+      "edition": "MobX React bindings 5/10 and React Compiler integration (2026)",
+      "items": [
+        "Current React bindings are mobx-react-lite for function components and mobx-react for class components; MobX 7 release line pairs them with mobx-react-lite 5 and mobx-react 10.",
+        "mobx-react-plugin can automatically wrap eligible components with observer and insert the use no memo directive to prevent React Compiler from caching observable reads as stale JSX; its build transform must run before React Compiler."
+      ],
+      "sourceUrls": [
+        "https://mobx.js.org/react-integration.html",
+        "https://mobx.js.org/react-compiler.html",
+        "https://mobx.js.org/installation.html",
+        "https://github.com/mobxjs/mobx/releases"
+      ]
+    },
+    {
+      "edition": "React binding package snapshot checked 2026-11-17",
+      "items": [
+        "mobx-react-lite 5.1.3, mobx-react 10.0.4, and mobx-react-plugin 1.0.3 publish peer ranges for MobX 7 and React 18 or 19. mobx-react adds class support; mobx-react-lite is the function-component binding."
+      ],
+      "sourceUrls": [
+        "https://www.npmjs.com/package/mobx-react-lite",
+        "https://www.npmjs.com/package/mobx-react",
+        "https://www.npmjs.com/package/mobx-react-plugin",
+        "https://mobx.js.org/installation.html"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Official MobX documentation, React documentation, MobX GitHub releases, and npm package metadata",
+    "edition": "MobX 7.1.7 latest package snapshot and MobX React integration checked 2026-11-17",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://mobx.js.org/observable-state.html",
+      "https://mobx.js.org/actions.html",
+      "https://mobx.js.org/computeds.html",
+      "https://mobx.js.org/reactions.html",
+      "https://mobx.js.org/react-integration.html",
+      "https://mobx.js.org/understanding-reactivity.html",
+      "https://mobx.js.org/api.html",
+      "https://mobx.js.org/configuration.html",
+      "https://mobx.js.org/enabling-decorators.html",
+      "https://mobx.js.org/installation.html",
+      "https://mobx.js.org/react-compiler.html",
+      "https://github.com/mobxjs/mobx/releases",
+      "https://www.npmjs.com/package/mobx",
+      "https://mobx.js.org/migrating-from-6-to-7.html",
+      "https://www.npmjs.com/package/mobx-react-lite",
+      "https://www.npmjs.com/package/mobx-react",
+      "https://www.npmjs.com/package/mobx-react-plugin",
+      "https://mobx.js.org/intercept-and-observe.html",
+      "https://mobx.js.org/custom-observables.html",
+      "https://mobx.js.org/collection-utilities.html",
+      "https://mobx.js.org/defining-data-stores.html",
+      "https://mobx.js.org/react-optimizations.html",
+      "https://react.dev/reference/react/StrictMode"
+    ]
+  },
+  "scopeExclusions": [
+    "mobx-utils package APIs (separate package; not MobX core exports)",
+    "React core Hooks and rendering APIs (covered by React track lessons)",
+    "Redux Toolkit implementation APIs (covered in t07-011)"
+  ],
   "generationAllowed": true
 }

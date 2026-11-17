@@ -6,7 +6,7 @@
 
 MobX is a state-management system for JavaScript and TypeScript that makes state reactive. You mark values observable, define computations from them, and let MobX track which computation reads which values. When relevant state changes, only dependent computed values, reactions, and observed React components are scheduled to update. The dependency graph is discovered at runtime from actual reads rather than declared in a selector map.
 
-This topic covers MobX 7's core model and React integration. MobX 7.1.7 is the package version shown by npm as latest on the checked date. The concepts remain familiar from MobX 6, but the major release removed the no-Proxy fallback and legacy decorators. If a project must run in an environment without Proxy, MobX 6 is the documented compatibility branch.
+This topic covers MobX 7's core model and React integration. MobX 7.1.7 is the latest core package checked on 2026-11-17. The concepts remain familiar from MobX 6, but the major release removed the no-Proxy fallback, legacy decorators, namespaced modifier exports, `trace`, and older React binding APIs including `Provider`/`inject`, `useLocalStore`, and renderer-specific batching helpers. If a project must run in an environment without Proxy, MobX 6 is the documented compatibility branch.
 
 # Plain-language mental model
 
@@ -52,4 +52,6 @@ Compared with Redux, MobX uses mutable observable objects and dynamic read track
 
 The concepts lesson explains tracking and transactions. References cover observable creation, computeds, actions and async flows, reactions and disposal, React observation, and configuration/version constraints. Practice builds a reactive model and UI; interview questions focus on implicit versus explicit dependencies and lifecycle tradeoffs.
 
-Sources: [MobX observable state](https://mobx.js.org/observable-state.html), [MobX actions](https://mobx.js.org/actions.html), [MobX React integration](https://mobx.js.org/react-integration.html), [MobX configuration](https://mobx.js.org/configuration.html), [MobX package metadata](https://www.npmjs.com/package/mobx).
+For larger applications, MobX's official guidance also discusses separating domain stores from UI state, sharing stores through a root store and React context, preserving one in-memory instance per domain entity, and keeping transport concerns testable. These are opinionated architectural patterns, not required framework APIs.
+
+Sources: [MobX observable state](https://mobx.js.org/observable-state.html), [MobX actions](https://mobx.js.org/actions.html), [MobX React integration](https://mobx.js.org/react-integration.html), [MobX configuration](https://mobx.js.org/configuration.html), [MobX 6-to-7 migration](https://mobx.js.org/migrating-from-6-to-7.html), [MobX package metadata](https://www.npmjs.com/package/mobx).

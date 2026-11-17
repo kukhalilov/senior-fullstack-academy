@@ -25,6 +25,12 @@ A reaction observes selected observable reads and causes an effect. Use it to sy
 - `Reaction fireImmediately option` — For `reaction`, runs the effect after the initial expression evaluation as well as later changes. Default is false. It is distinct from autorun, whose effect runs initially.
 - `Reaction scheduler option` — Custom scheduler controls when a rerun is invoked, for example by enqueueing it later. The scheduler must eventually call the supplied run function and should not create uncontrolled duplicate scheduling.
 - `Reaction effects only for external synchronization` — Design guideline: reactions should cause side effects at the boundary of the observable model. If the result is another value derived from observable state, define a computed. If the cause is a specific user event, invoke the effect directly from that event.
+- `Reaction options name` — Names the reaction for diagnostic output and debugging; it does not change scheduling or dependencies.
+- `Reaction options onError` — Handles errors thrown by this reaction's effect or tracked function, allowing local logging or recovery. Use `onReactionError` only when a global diagnostic hook is intended.
+- `Reaction options requiresObservable` — When enabled on a reaction, warns if its tracked function reads no observables; useful for catching accidentally inert reactions.
+- `when options timeout` — `when` accepts a timeout in milliseconds. If the predicate does not become true before the deadline, its promise form rejects with a timeout error; provide explicit cancellation/handling for that failure.
+- `when promise cancel()` — The promise returned by promise-form `when` has a `cancel()` method that stops waiting and rejects with MobX's cancellation error. Retain the promise if the wait must be cancelled programmatically.
+- `MobX reaction error handling and disposer semantics` — A reaction's returned disposer stops future tracking/execution but does not undo effects already performed. Handle errors locally with `onError` or centrally with `onReactionError`; avoid swallowing failures without observability.
 
 # Cross-item comparison
 

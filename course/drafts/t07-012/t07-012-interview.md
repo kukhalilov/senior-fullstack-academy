@@ -10,7 +10,7 @@
 4. Why are actions useful beyond enforcing style?
 5. How should async methods update MobX state after an await?
 6. Compare `makeObservable` and `makeAutoObservable`.
-7. What are the differences between `observable`, `observable.ref`, and `observable.shallow`?
+7. What are the differences between `observable`, `observableRef`, and `observableShallow` in current MobX 7?
 8. When should a reaction be disposed, and what leaks if it is not?
 9. How does `observer` integrate with React rendering?
 10. What changed in MobX 7 that can affect older applications?
@@ -25,10 +25,10 @@
 4. Actions batch intermediate writes from reactions, identify mutation boundaries, and support strict enforcement.
 5. Each post-await continuation is a new tick; wrap writes in `runInAction`, action handlers, or use `flow`.
 6. `makeObservable` explicitly annotates the target in place; `makeAutoObservable` infers common annotations but does not support inheritance.
-7. `observable` deeply enhances convertible values; `observable.ref` tracks field replacement only; `observable.shallow` observes collection changes without recursively observing members.
+7. `observable` deeply enhances convertible values; `observableRef` tracks field replacement only; `observableShallow` observes collection changes without recursively observing members. MobX 7 replaced the MobX 6 namespaced spellings.
 8. Dispose when the owner ends; otherwise a reaction may retain closures, continue external effects, and keep state alive.
 9. `observer` tracks observable property reads during component render and schedules that component when a dependency changes.
-10. MobX 7 requires Proxy, removes the ES5 fallback/configuration, and removes legacy decorator support; it retains the core reactive model.
+10. MobX 7 requires Proxy, removes the ES5 fallback/configuration and legacy decorators, replaces namespaced modifier exports with named exports, removes `trace` and several deprecated React binding helpers, and retains the core reactive model.
 11. Compiler memoization uses static dependencies and stable object identity, which can reuse stale JSX while MobX mutates observable contents in place.
 12. MobX infers dependencies from reads and supports action-bounded mutation; Redux dispatches explicit actions through pure reducers and components read through selectors.
 
