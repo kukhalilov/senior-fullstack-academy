@@ -585,6 +585,18 @@
       "findings": [
         "Checked the average-items = effective flow rate × average residence time relationship against Little’s original 1961 paper. Linux NUMA documentation supports the distinction between memory locality domains used in the illustrative system discussion. Full claim extraction and completeness audit remain outstanding; lesson is not promoted."
       ]
+    },
+    {
+      "scope": "GraphQL N+1 query reference",
+      "status": "partial primary-source checks; full lesson audit pending",
+      "sources": [
+        "https://graphql.org/learn/performance/",
+        "https://www.graphql.org/faq/general/",
+        "https://www.apollographql.com/docs/apollo-server/data/fetching-data"
+      ],
+      "findings": [
+        "Checked the resolver-driven 1+N pattern and batching/caching mitigations against GraphQL.org documentation and request data-loader behavior against Apollo Server docs. Specific resolver implementation semantics vary; all claims and completeness checks remain pending. Lesson is not promoted."
+      ]
     }
   ],
   "lessons": [
@@ -77422,29 +77434,9 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://graphql.org/learn/performance/",
+        "https://www.graphql.org/faq/general/",
+        "https://www.apollographql.com/docs/apollo-server/data/fetching-data"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99931,7 +99923,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 182 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 181 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
@@ -100118,6 +100110,14 @@
       "status": "expanded; selected primary-source checks; full audit pending",
       "findings": [
         "Replaced generic filler with boundary-consistent variables, queue-versus-system applications, overload interpretation, capacity/memory examples, limitations, diagnostics, and exercises. Core formula was checked against the original paper; full claim and omission audits remain outstanding."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "GraphQL N+1 query reference",
+      "status": "expanded; selected primary-source checks; full audit pending",
+      "findings": [
+        "Replaced generic filler with concrete amplification walkthrough, batching/DataLoader/join/bulk API trade-offs, authorization and cache scope, complexity controls, observability, and a nested-pagination exercise. Selected claims were checked against GraphQL.org and Apollo docs; full factual and omission audits remain outstanding."
       ]
     }
   ]
