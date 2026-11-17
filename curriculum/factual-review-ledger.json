@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 492,
-    "pending": 1848,
-    "claimsChecked": 16428,
+    "reviewed": 505,
+    "pending": 1835,
+    "claimsChecked": 16864,
     "claimsCorrected": 1392,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 492,
-    "pendingLessons": 1848
+    "reviewedLessons": 505,
+    "pendingLessons": 1835
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -34724,16 +34724,66 @@
       "topicId": "t11-026",
       "phase": "overview",
       "draft": "course/drafts/t11-026/t11-026-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -34743,23 +34793,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-concepts",
       "topicId": "t11-026",
       "phase": "concepts",
       "draft": "course/drafts/t11-026/t11-026-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -34769,23 +34869,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-reference-dag-and-order",
       "topicId": "t11-026",
       "phase": "reference",
       "draft": "course/drafts/t11-026/t11-026-reference-dag-and-order.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -34795,23 +34945,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-reference-kahns-algorithm",
       "topicId": "t11-026",
       "phase": "reference",
       "draft": "course/drafts/t11-026/t11-026-reference-kahns-algorithm.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -34821,23 +35021,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-reference-dfs-order",
       "topicId": "t11-026",
       "phase": "reference",
       "draft": "course/drafts/t11-026/t11-026-reference-dfs-order.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -34847,23 +35097,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-reference-correctness-and-cost",
       "topicId": "t11-026",
       "phase": "reference",
       "draft": "course/drafts/t11-026/t11-026-reference-correctness-and-cost.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -34873,23 +35173,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-practice-course-schedule",
       "topicId": "t11-026",
       "phase": "practice",
       "draft": "course/drafts/t11-026/t11-026-practice-course-schedule.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -34899,23 +35249,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-practice-course-schedule-ii",
       "topicId": "t11-026",
       "phase": "practice",
       "draft": "course/drafts/t11-026/t11-026-practice-course-schedule-ii.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -34925,23 +35325,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-practice-alien-dictionary",
       "topicId": "t11-026",
       "phase": "practice",
       "draft": "course/drafts/t11-026/t11-026-practice-alien-dictionary.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -34951,23 +35401,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-practice-find-eventual-safe-states",
       "topicId": "t11-026",
       "phase": "practice",
       "draft": "course/drafts/t11-026/t11-026-practice-find-eventual-safe-states.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -34977,23 +35477,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-practice-parallel-courses",
       "topicId": "t11-026",
       "phase": "practice",
       "draft": "course/drafts/t11-026/t11-026-practice-parallel-courses.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -35003,23 +35553,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-practice-minimum-height-trees",
       "topicId": "t11-026",
       "phase": "practice",
       "draft": "course/drafts/t11-026/t11-026-practice-minimum-height-trees.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -35029,23 +35629,73 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-026-interview",
       "topicId": "t11-026",
       "phase": "interview",
       "draft": "course/drafts/t11-026/t11-026-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually audited the DAG and partial-order definitions, Kahn and DFS invariants, cycle tests, frontier tie behavior, DAG layers/DP, edge direction, complexity and space accounting, special graph transformations, examples, and exact frozen manifest inventory against the algorithm reference and canonical problem sources. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. No unresolved factual or scope omissions remain.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/gold/toposort?lang=cpp",
+              "section": "DAG definition, Kahn and DFS topological orders, cycle detection, lexicographic order, and DAG dynamic programming",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule/",
+              "section": "Canonical prerequisite direction, constraints, examples, and completion result",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/course-schedule-ii/",
+              "section": "Canonical complete-order and cycle behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/alien-dictionary/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://neetcode.io/solutions/alien-dictionary",
+              "section": "Alien Dictionary constraints, examples, first-mismatch and invalid-prefix behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/",
+              "section": "Canonical safe-state definition, graph constraints, examples, and ascending output",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/parallel-courses/",
+              "section": "Premium problem scope and canonical title",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.doocs.org/en/lc/1136/",
+              "section": "Parallel Courses statement, constraints, examples, and unlimited-semester model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/minimum-height-trees/",
+              "section": "Canonical undirected-tree input, height definition, constraints, and center results",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/toposort?lang=cpp",
-        "https://usaco.guide/CP2.pdf",
         "https://leetcode.com/problems/course-schedule/",
         "https://leetcode.com/problems/course-schedule-ii/",
         "https://leetcode.com/problems/alien-dictionary/",
@@ -35055,7 +35705,7 @@
         "https://leetcode.doocs.org/en/lc/1136/",
         "https://leetcode.com/problems/minimum-height-trees/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified Kahn and DFS cycle/order logic, DAG frontier and dynamic-programming behavior, lexicographic order, edge direction and special-case transformations, semester levels, and all problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-012-overview",
