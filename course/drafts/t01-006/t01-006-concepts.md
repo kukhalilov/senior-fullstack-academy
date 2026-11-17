@@ -19,18 +19,18 @@
 # Core concepts
 In C#, a `type declaration` defines a blueprint for data. 
 * **Classes** are reference types. They have identity; if you pass a class instance to a method, you are passing a reference to the same object in memory.
-* **Structs** are value types. They are copied by value. When you pass a struct, the entire object is copied.
-* **Records** are specialized types designed for data. They provide built-in `Synthesized record equality` and a concise syntax for creating copies using the `with expression`.
+* **Structs** are value types. Assignment and value passing copy their fields; reference-valued fields copy references and can still point to shared objects. The language does not promise a stack location or a performance win.
+* **Records** are class or struct declarations with synthesized data-oriented members such as value equality and concise `with` copying. Their class-versus-struct assignment behavior remains unchanged, and copies are shallow.
 
 # Mechanisms and relationships
 The lifecycle of an object is managed through constructors and initializers:
 1. **Primary constructor**: A concise way to declare parameters directly on the type header. These parameters are often used to initialize fields or properties.
 2. **Instance constructor**: The traditional method for setting up an object. You can use `this constructor initializer` to chain multiple constructors together.
 3. **Object initializer**: A syntax (`new Type { Property = value }`) that allows you to set properties immediately after construction.
-4. **Required member**: A feature that forces the caller to provide a value for a specific property during initialization, ensuring the object is never in an invalid state.
+4. **Required member**: A compile-time initialization requirement: creation expressions must initialize the member, unless a constructor is marked with `SetsRequiredMembers`. It does not guarantee a non-null or domain-valid value at runtime; for example, null can still be assigned with a nullable warning.
 
 **Memory and Performance:**
-* `Struct` types are efficient for small data, but copying large structs can be expensive.
+* Structs can suit small value-like data, but neither efficiency nor stack allocation is guaranteed; large copies and boxing can be costly, so measure.
 * `ref struct declaration` is restricted from escaping to heap locations in ways that would violate safety; do not treat it as a guarantee that every instance is physically stack-allocated.
 * `readonly struct declaration` prevents accidental mutation, which is a common source of bugs in value types.
 
@@ -59,9 +59,9 @@ var u = new User { Username = "Dev1" }; // Valid
 ```
 
 # Misconceptions and edge cases
-* **Misconception:** "Structs are always on the stack." **Fact:** Structs are stored wherever their container is. If a struct is a field in a class, it lives on the heap.
+* **Misconception:** "Structs are always on the stack." **Fact:** Structs have value semantics, not a guaranteed storage location. A struct field is part of its containing object/value; runtime optimizations may affect physical placement.
 * **Misconception:** "Records are deeply immutable." **Fact:** Records provide shallow equality and shallow copying. If a record contains a reference to a mutable list, the list itself can still be changed.
-* **Edge Case:** `readonly struct` defensive copies. If you call a non-readonly method on a `readonly struct`, the compiler may create a hidden copy to prevent mutation, which can hurt performance.
+* **Edge Case:** Calling a non-readonly member through a readonly receiver can require a defensive copy so the call cannot mutate the original struct. Mark non-mutating members `readonly` when appropriate; referenced objects can still mutate.
 
 # Knowledge checks with answers
 
@@ -74,7 +74,7 @@ var u = new User { Username = "Dev1" }; // Valid
 3. **Question:** What does the `with` expression do in a record?
    * **Answer:** It creates a shallow copy of the record with specific properties modified, leaving the original record unchanged.
 
-4. **Question:** What is the purpose of a `closed class hierarchy`?
-   * **Answer:** It limits direct derivation to the current assembly, allowing the compiler to perform exhaustive checks (like in `switch` expressions) because it knows all possible subtypes.
+4. **Question:** What is the purpose and boundary of a `closed class hierarchy`?
+   * **Answer:** A `closed` class restricts direct derivation to its declaring assembly and is implicitly abstract. Exhaustiveness applies to known direct descendants; a non-closed descendant can still be extended elsewhere, so mark intermediate descendants `closed` when deeper exhaustiveness is needed.
 
 *Sources: [Microsoft Learn C# Classes](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes), [Microsoft Learn C# Records](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records), [C# 15 What's New](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15)*

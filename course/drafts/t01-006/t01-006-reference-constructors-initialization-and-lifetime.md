@@ -7,24 +7,24 @@
 # Scope and version
 This lesson covers the mechanisms for object creation, initialization, and lifetime management in C# 15. It focuses on how constructors, initializers, and required members ensure that objects reach a valid state.
 
-*   **Version:** C# 15 / .NET 11 (Stable, checked 2026-11-14).
+*   **Version:** C# 15 / .NET 11 (Stable, checked 2026-11-17).
 *   **Source:** [Microsoft Learn C# Language Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/constructor).
 
 # How this group fits the mental model
-In C#, a type declaration defines a contract. To use that contract, you must instantiate it. The "Constructor/Initialization" group ensures that when an object is created, it is not left in an invalid or "garbage" state. 
+In C#, constructors and initializers provide ways to establish an instance's initial state, but they don't automatically guarantee domain validity. Their code and any required runtime checks determine whether the invariants actually hold.
 
 Think of this as a two-phase process:
-1.  **Allocation:** Memory is reserved for the object.
-2.  **Initialization:** Constructors and initializers run to set the object's fields and properties to their intended starting values.
+1.  **Creation:** A class instance or value is created according to its type and context; `new` doesn't imply a separate heap allocation for every value.
+2.  **Initialization:** Applicable field/property initializers, constructor chaining, and constructor bodies run according to C# ordering rules. `default(S)` differs from `new S()` when a struct declares a parameterless constructor.
 
 # Supplied names explained
 
 ### Construction and Chaining
 *   `Instance constructor`: A special method that runs when an object is created to initialize instance state.
-*   `Static constructor`: A method that runs once per type, before any instance is created or static members are accessed.
+*   `Static constructor`: A runtime type initializer that runs at most once per closed constructed type. With an explicit static constructor, initialization is triggered before the first instance or static member declared on the type is used; types marked `beforefieldinit` have looser timing.
 *   `Parameterless constructor`: A constructor that takes no arguments.
 *   `Explicit parameterless struct constructor`: A user-defined constructor in a struct that takes no parameters.
-*   `Implicit parameterless struct constructor`: The default constructor provided by the compiler for structs if none is defined.
+*   `Implicit parameterless struct constructor`: The implicit zero-initializing parameterless construction behavior when no user-defined parameterless struct constructor is declared. `default(S)` always produces the default value and doesn't run a user-defined parameterless constructor.
 *   `Primary constructor on class`: A concise syntax to declare constructor parameters directly in the class header.
 *   `Primary constructor on struct`: Similar to class, but applies to struct initialization logic.
 *   `Constructor overload`: Defining multiple constructors with different parameter signatures.
@@ -33,16 +33,16 @@ Think of this as a two-phase process:
 *   `base constructor initializer`: Calls a constructor in the parent class.
 *   `Constructor chaining`: The process of calling one constructor from another to reduce code duplication.
 *   `Constructor overload resolution`: The compiler's process of choosing the best constructor based on provided arguments.
-*   `Static constructor execution`: The runtime guarantee that static constructors run before any instance or static member access.
-*   `Static constructor exception`: If a static constructor fails, the type becomes unusable for the life of the application domain.
+*   `Static constructor execution`: Explicit type initializer timing differs from `beforefieldinit` timing. An explicit static constructor prevents the compiler from marking the type `beforefieldinit`; absent that explicit constructor, static initialization can occur at an implementation-chosen time before static fields are first accessed.
+*   `Static constructor exception`: If a type initializer throws, it isn't retried and the type remains uninitialized for the lifetime of its load context; later attempts typically surface `TypeInitializationException`.
 *   `Constructor body`: The block of code `{ ... }` that executes after initializers.
 *   `Constructor accessibility`: Modifiers (public, private, etc.) that control who can instantiate the type.
-*   `Private constructor`: Restricts instantiation to within the class itself (often used for static utility classes).
+*   `Private constructor`: Restricts ordinary constructor calls to permitted code in the containing type; it can support controlled creation patterns. Static classes cannot declare instance constructors.
 *   `Protected constructor`: Allows instantiation only by derived classes.
 *   `Copy constructor pattern`: A manual constructor that creates a new object based on an existing one.
 *   `Record copy constructor`: A compiler-generated constructor used by records to facilitate cloning.
-*   `Constructor definite assignment`: The compiler requirement that all fields must be assigned a value before the constructor finishes.
-*   `Constructor exception safety`: The principle that if a constructor throws, the object is not considered "created," and the finalizer will not run.
+*   `Constructor definite assignment`: Definite-assignment rules apply to variables and certain struct construction paths, but fields receive default values; constructors need not explicitly assign every field.
+*   `Constructor exception safety`: If a constructor throws, the caller doesn't receive a successfully constructed instance. A finalizer may nevertheless run later for an allocated finalizable object, so finalizers must tolerate partially initialized state.
 
 ### Initialization and Creation
 *   `Instance field initializer`: Assigning a value to a field at its declaration.
@@ -53,21 +53,21 @@ Think of this as a two-phase process:
 *   `Collection initializer`: Syntax `{ val1, val2 }` to populate collections during creation.
 *   `With initializer`: Used within a `with` expression to modify specific properties during a copy.
 *   `Target-typed new`: Using `new()` without a type name when the type is inferred from the context.
-*   `new expression`: The primary keyword used to allocate memory and invoke a constructor.
+*   `new expression`: Creates a class instance or constructs a value according to the target type; it doesn't imply every value type is separately heap allocated.
 *   `new() target-typed object creation`: A shorthand for `new Type()` when the type is known.
-*   `default expression`: Returns the default value for a type (null for classes, zeroed memory for structs).
+*   `default expression`: Returns the language-defined default value for a type (null for reference types; default field values for value types), without invoking a user-defined struct parameterless constructor.
 *   `default literal`: The `default` keyword used as a value.
 *   `Default class instance state`: A reference type initialized to `null`.
 *   `Default struct value`: All fields set to their bitwise zero representation.
-*   `Struct value initialization`: The process of zeroing memory for a struct before the constructor runs.
-*   `Struct default constructor invocation`: The process of running the parameterless constructor on a struct.
+*   `Struct value initialization`: A struct's fields begin with their default values; constructor and field-initializer rules then apply according to the construction form.
+*   `Struct default constructor invocation`: `new S()` invokes a user-defined parameterless struct constructor when present; `default(S)` and `default` do not.
 *   `Object construction failure`: Occurs when a constructor throws an exception.
 
 ### Required Members and Lifetime
-*   `Required member initialization`: The enforcement that specific properties must be set by the caller.
-*   `required modifier`: A keyword applied to properties/fields that forces them to be initialized.
+*   `Required member initialization`: A compile-time requirement that creation expressions initialize required fields/properties unless a constructor asserts `SetsRequiredMembers`; it doesn't ensure non-null or valid domain data at runtime.
+*   `required modifier`: A keyword applied to fields/properties that requires assignment during initialization. Null can still be assigned (with a nullable warning for a non-nullable reference), and a constructor annotated `SetsRequiredMembers` opts out of caller checks.
 *   `SetsRequiredMembersAttribute`: An attribute applied to a constructor to tell the compiler that this constructor handles all required members.
-*   `SetsRequiredMembers constructor contract`: The promise that a constructor satisfies all `required` members.
+*   `SetsRequiredMembers constructor contract`: An assertion to the compiler that the constructor sets all required members; the compiler doesn't verify the implementation actually does so.
 *   `Required-member compiler diagnostic`: The error generated if a `required` member is not set.
 *   `MemberNotNull attribute on constructor`: Tells the compiler that a constructor ensures specific members are not null.
 *   `with expression`: Creates a copy of a record with modified values.
@@ -75,13 +75,13 @@ Think of this as a two-phase process:
 *   `Finalizer declaration`: Syntax `~ClassName()` to define cleanup logic.
 *   `Destructor syntax`: The C# syntax for finalizers.
 *   `IDisposable lifetime pattern`: The standard interface-based approach for deterministic cleanup.
-*   `Static constructor before first instance`: The timing rule for static initialization.
-*   `BeforeFieldInit metadata behavior`: A performance optimization where static constructors run lazily.
+*   `Static constructor before first instance`: Explicit type initializers run before instance construction, subject to the special case where a static field initializer itself creates an instance. `beforefieldinit` permits earlier or later timing within its specified bounds.
+*   `BeforeFieldInit metadata behavior`: A CLI type flag that allows type initialization at an implementation-chosen time before first access to a static field; it does not simply mean "lazy" initialization.
 
 # Cross-item comparison
 *   **`Instance constructor` vs `Primary constructor`**: Traditional constructors are explicit blocks; primary constructors are declarative and integrate with the class/struct header.
 *   **`Object initializer` vs `Required member`**: Object initializers are optional; `required` members are mandatory for the code to compile.
-*   **`Class` vs `Struct` initialization**: Classes are initialized via `new` (heap allocation); structs are initialized by zeroing memory, then optionally running a constructor.
+*   **`Class` vs `Struct` initialization**: `new` creates a class instance with reference semantics; struct construction produces a value and runs applicable constructor logic. `default(S)` produces the default value without running a user-defined parameterless constructor.
 
 # Examples
 ```csharp
@@ -102,8 +102,8 @@ var user = new User("Alice") { Age = 30 }; // Object initializer
 
 # Knowledge checks with answers
 1.  **Question:** What happens if a constructor throws an exception?
-    *   **Answer:** The object is not successfully created, and the finalizer will not be called.
+    *   **Answer:** The caller doesn't receive a successfully constructed instance. If storage for a finalizable object was allocated, its finalizer can still run later; write it to tolerate partially initialized state.
 2.  **Question:** How do you force a caller to provide a value for a property?
     *   **Answer:** Use the `required` modifier on the property.
 3.  **Question:** What is the difference between `new()` and `default`?
-    *   **Answer:** `new()` invokes a constructor; `default` returns the zeroed-out state of the type without calling a constructor.
+    *   **Answer:** `new S()` invokes the applicable constructor (including a user-defined parameterless struct constructor); `default(S)` yields the default value without running that constructor. For classes, `new C()` invokes a constructor and creates an instance.

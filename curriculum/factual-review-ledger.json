@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 263,
-    "pending": 2077,
-    "claimsChecked": 5797,
-    "claimsCorrected": 512,
+    "reviewed": 271,
+    "pending": 2069,
+    "claimsChecked": 6256,
+    "claimsCorrected": 563,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 263,
-    "pendingLessons": 2077
+    "reviewedLessons": 271,
+    "pendingLessons": 2069
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -868,6 +868,33 @@
       ],
       "findings": [
         "Reviewed all eight lessons and the complete supplied manifest inventory against current Microsoft C# and .NET 11 documentation. Corrected a substantive nullable relational-operator error: <, >, <=, and >= return false when either nullable operand is null, unlike most lifted arithmetic operators. Also refined compiler/runtime wording and an attribute code example. No unresolved factual issues remain within this topic inventory."
+      ]
+    },
+    {
+      "scope": "C# classes, structs, records, constructors, C# 15 unions/closed hierarchies (t01-006; all eight units)",
+      "status": "all lesson claims reviewed; draft state retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/primary-constructors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-constructors",
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1810",
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/readonly-struct-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/interfaces"
+      ],
+      "findings": [
+        "Audited all eight lessons and checked assigned inventory coverage. Corrected storage/performance myths for structs, shallow reference-field copying, custom class equality, required-member limitations, primary constructor parameter semantics, field initializer ordering, static initialization/BeforeFieldInit distinctions, constructor-failure finalization, record equality boundaries, C# 15 union representation/null behavior, closed-hierarchy direct-descendant rules, and preview status for memory-safety changes. No unresolved claims remain within the assigned inventory."
       ]
     }
   ],
@@ -6305,13 +6332,69 @@
       "topicId": "t01-006",
       "phase": "overview",
       "draft": "course/drafts/t01-006/t01-006-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Type categories, assignment, and equality distinctions",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
+              "section": "Reference semantics, constructors, object initializers, and class design",
+              "verdict": "Supported; corrected identity and physical-allocation overstatements."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
+              "section": "Value semantics, construction forms, default values, and readonly members",
+              "verdict": "Supported; corrected shallow copying, storage guarantees, and performance heuristics."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+              "section": "Record types, synthesized members, equality, copy constructors, with expressions",
+              "verdict": "Supported; qualified equality and EqualityContract to record class hierarchies."
+            }
+          ]
+        },
+        {
+          "claims": "Tradeoff and storage claims",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
+              "section": "Value semantics, construction forms, default values, and readonly members",
+              "verdict": "Supported; corrected shallow copying, storage guarantees, and performance heuristics."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+              "section": "Record types, synthesized members, equality, copy constructors, with expressions",
+              "verdict": "Supported; qualified equality and EqualityContract to record class hierarchies."
+            }
+          ]
+        },
+        {
+          "claims": "C# 15 language feature scope",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "C# 15 unions, closed hierarchies, collection expression arguments, extension indexers, older-runtime static interface members, preview memory safety",
+              "verdict": "Supported; identified memory safety as preview-only and distinguished language support from .NET 11 GA."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Union representation, generated API, conversions, patterns, nullability, exhaustiveness",
+              "verdict": "Supported; documented struct/object? representation, boxing, default-null behavior, and pattern/null caveats."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Direct descendants, assembly/module restriction, modifier rules, exhaustiveness",
+              "verdict": "Supported; clarified descendants are not transitively closed and nullable switches may require null."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
@@ -6323,20 +6406,71 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of every externally verifiable claim and the frozen manifest inventory against current official Microsoft C# and .NET documentation. Corrected identified inaccuracies and omissions; draft status is retained."
     },
     {
       "taskId": "t01-006-concepts",
       "topicId": "t01-006",
       "phase": "concepts",
       "draft": "course/drafts/t01-006/t01-006-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 37,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Class/struct/record semantics and initialization model",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
+              "section": "Reference semantics, constructors, object initializers, and class design",
+              "verdict": "Supported; corrected identity and physical-allocation overstatements."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
+              "section": "Value semantics, construction forms, default values, and readonly members",
+              "verdict": "Supported; corrected shallow copying, storage guarantees, and performance heuristics."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+              "section": "Record types, synthesized members, equality, copy constructors, with expressions",
+              "verdict": "Supported; qualified equality and EqualityContract to record class hierarchies."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/primary-constructors",
+              "section": "Class/struct primary constructor parameter scope, storage, and record distinction",
+              "verdict": "Supported; clarified class/struct parameters are not automatically properties or necessarily stored."
+            }
+          ]
+        },
+        {
+          "claims": "Required and readonly behavior",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Required members, null assignment, SetsRequiredMembers, compiler diagnostics",
+              "verdict": "Supported; corrected that required is not runtime/domain validation and the attribute is trusted, not verified."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/readonly-struct-errors",
+              "section": "Readonly struct state guarantees and defensive copies",
+              "verdict": "Supported; qualified defensive-copy behavior."
+            }
+          ]
+        },
+        {
+          "claims": "Ref-safety boundaries",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Ref safety, escape restrictions, interface/disposable changes",
+              "verdict": "Supported; removed guaranteed-stack wording."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
@@ -6348,20 +6482,76 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of every externally verifiable claim and the frozen manifest inventory against current official Microsoft C# and .NET documentation. Corrected identified inaccuracies and omissions; draft status is retained."
     },
     {
       "taskId": "t01-006-reference-type-declarations-and-instance-structure",
       "topicId": "t01-006",
       "phase": "reference",
       "draft": "course/drafts/t01-006/t01-006-reference-type-declarations-and-instance-structure.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 76,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Type/member forms, inheritance, and accessibility",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
+              "section": "Reference semantics, constructors, object initializers, and class design",
+              "verdict": "Supported; corrected identity and physical-allocation overstatements."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
+              "section": "Value semantics, construction forms, default values, and readonly members",
+              "verdict": "Supported; corrected shallow copying, storage guarantees, and performance heuristics."
+            }
+          ]
+        },
+        {
+          "claims": "Primary constructors, constraints, records, and ref structs",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/primary-constructors",
+              "section": "Class/struct primary constructor parameter scope, storage, and record distinction",
+              "verdict": "Supported; clarified class/struct parameters are not automatically properties or necessarily stored."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+              "section": "Record types, synthesized members, equality, copy constructors, with expressions",
+              "verdict": "Supported; qualified equality and EqualityContract to record class hierarchies."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Ref safety, escape restrictions, interface/disposable changes",
+              "verdict": "Supported; removed guaranteed-stack wording."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/readonly-struct-errors",
+              "section": "Readonly struct state guarantees and defensive copies",
+              "verdict": "Supported; qualified defensive-copy behavior."
+            }
+          ]
+        },
+        {
+          "claims": "C# initialization order and language-version features",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Class field initialization and base constructor ordering",
+              "verdict": "Supported; corrected initializer/body order."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "C# 15 unions, closed hierarchies, collection expression arguments, extension indexers, older-runtime static interface members, preview memory safety",
+              "verdict": "Supported; identified memory safety as preview-only and distinguished language support from .NET 11 GA."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
@@ -6373,20 +6563,76 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of every externally verifiable claim and the frozen manifest inventory against current official Microsoft C# and .NET documentation. Corrected identified inaccuracies and omissions; draft status is retained."
     },
     {
       "taskId": "t01-006-reference-constructors-initialization-and-lifetime",
       "topicId": "t01-006",
       "phase": "reference",
       "draft": "course/drafts/t01-006/t01-006-reference-constructors-initialization-and-lifetime.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 83,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "Constructors, default struct creation, field initializers, and ordering",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Class field initialization and base constructor ordering",
+              "verdict": "Supported; corrected initializer/body order."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
+              "section": "Value semantics, construction forms, default values, and readonly members",
+              "verdict": "Supported; corrected shallow copying, storage guarantees, and performance heuristics."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/primary-constructors",
+              "section": "Class/struct primary constructor parameter scope, storage, and record distinction",
+              "verdict": "Supported; clarified class/struct parameters are not automatically properties or necessarily stored."
+            }
+          ]
+        },
+        {
+          "claims": "Required members and SetsRequiredMembers contract",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Required members, null assignment, SetsRequiredMembers, compiler diagnostics",
+              "verdict": "Supported; corrected that required is not runtime/domain validation and the attribute is trusted, not verified."
+            }
+          ]
+        },
+        {
+          "claims": "Static constructor timing, beforefieldinit, and failure",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-constructors",
+              "section": "Static initialization, explicit initializer, exception behavior, and ordering",
+              "verdict": "Supported; qualified initialization timing and failure behavior."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1810",
+              "section": "beforefieldinit initialization guarantees",
+              "verdict": "Supported; clarified that beforefieldinit is not simply lazy initialization."
+            }
+          ]
+        },
+        {
+          "claims": "Constructor failure and finalization safety",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+              "section": "Finalizer safety when constructor throws before full initialization",
+              "verdict": "Supported; corrected claim that finalizers never run after constructor failure."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
@@ -6398,20 +6644,81 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of every externally verifiable claim and the frozen manifest inventory against current official Microsoft C# and .NET documentation. Corrected identified inaccuracies and omissions; draft status is retained."
     },
     {
       "taskId": "t01-006-reference-records-unions-and-modern-data-types",
       "topicId": "t01-006",
       "phase": "reference",
       "draft": "course/drafts/t01-006/t01-006-reference-records-unions-and-modern-data-types.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Record synthesis, equality, inheritance, and shallow copying",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+              "section": "Record types, synthesized members, equality, copy constructors, with expressions",
+              "verdict": "Supported; qualified equality and EqualityContract to record class hierarchies."
+            }
+          ]
+        },
+        {
+          "claims": "Union declaration representation, conversions, matching, and null behavior",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Union representation, generated API, conversions, patterns, nullability, exhaustiveness",
+              "verdict": "Supported; documented struct/object? representation, boxing, default-null behavior, and pattern/null caveats."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+              "section": "C# 15 default language version and .NET 11 union support types",
+              "verdict": "Supported."
+            }
+          ]
+        },
+        {
+          "claims": "Closed hierarchies and exhaustiveness",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Direct descendants, assembly/module restriction, modifier rules, exhaustiveness",
+              "verdict": "Supported; clarified descendants are not transitively closed and nullable switches may require null."
+            }
+          ]
+        },
+        {
+          "claims": "Additional C# 15 feature/version claims",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "C# 15 unions, closed hierarchies, collection expression arguments, extension indexers, older-runtime static interface members, preview memory safety",
+              "verdict": "Supported; identified memory safety as preview-only and distinguished language support from .NET 11 GA."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+              "section": "C# 15 collection expression arguments",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extension",
+              "section": "Extension blocks and extension indexers",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/interfaces",
+              "section": "Static interface members and target runtime requirements",
+              "verdict": "Supported."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
@@ -6423,20 +6730,71 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of every externally verifiable claim and the frozen manifest inventory against current official Microsoft C# and .NET documentation. Corrected identified inaccuracies and omissions; draft status is retained."
     },
     {
       "taskId": "t01-006-reference-structural-and-performance-tradeoffs",
       "topicId": "t01-006",
       "phase": "reference",
       "draft": "course/drafts/t01-006/t01-006-reference-structural-and-performance-tradeoffs.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 70,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Struct copying, layout, boxing, and storage claims",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
+              "section": "Value semantics, construction forms, default values, and readonly members",
+              "verdict": "Supported; corrected shallow copying, storage guarantees, and performance heuristics."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/readonly-struct-errors",
+              "section": "Readonly struct state guarantees and defensive copies",
+              "verdict": "Supported; qualified defensive-copy behavior."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Ref safety, escape restrictions, interface/disposable changes",
+              "verdict": "Supported; removed guaranteed-stack wording."
+            }
+          ]
+        },
+        {
+          "claims": "Class/record identity and equality",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
+              "section": "Reference semantics, constructors, object initializers, and class design",
+              "verdict": "Supported; corrected identity and physical-allocation overstatements."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+              "section": "Record types, synthesized members, equality, copy constructors, with expressions",
+              "verdict": "Supported; qualified equality and EqualityContract to record class hierarchies."
+            }
+          ]
+        },
+        {
+          "claims": "Required, primary constructor, and design tradeoffs",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Required members, null assignment, SetsRequiredMembers, compiler diagnostics",
+              "verdict": "Supported; corrected that required is not runtime/domain validation and the attribute is trusted, not verified."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/primary-constructors",
+              "section": "Class/struct primary constructor parameter scope, storage, and record distinction",
+              "verdict": "Supported; clarified class/struct parameters are not automatically properties or necessarily stored."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
@@ -6448,20 +6806,61 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of every externally verifiable claim and the frozen manifest inventory against current official Microsoft C# and .NET documentation. Corrected identified inaccuracies and omissions; draft status is retained."
     },
     {
       "taskId": "t01-006-practice",
       "topicId": "t01-006",
       "phase": "practice",
       "draft": "course/drafts/t01-006/t01-006-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Worked record, object creation, equality, and with examples",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+              "section": "Record types, synthesized members, equality, copy constructors, with expressions",
+              "verdict": "Supported; qualified equality and EqualityContract to record class hierarchies."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Required members, null assignment, SetsRequiredMembers, compiler diagnostics",
+              "verdict": "Supported; corrected that required is not runtime/domain validation and the attribute is trusted, not verified."
+            }
+          ]
+        },
+        {
+          "claims": "Struct default construction and readonly/value semantics",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
+              "section": "Value semantics, construction forms, default values, and readonly members",
+              "verdict": "Supported; corrected shallow copying, storage guarantees, and performance heuristics."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/readonly-struct-errors",
+              "section": "Readonly struct state guarantees and defensive copies",
+              "verdict": "Supported; qualified defensive-copy behavior."
+            }
+          ]
+        },
+        {
+          "claims": "Required member/constructor annotation example",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Required members, null assignment, SetsRequiredMembers, compiler diagnostics",
+              "verdict": "Supported; corrected that required is not runtime/domain validation and the attribute is trusted, not verified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
@@ -6473,20 +6872,76 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of every externally verifiable claim and the frozen manifest inventory against current official Microsoft C# and .NET documentation. Corrected identified inaccuracies and omissions; draft status is retained."
     },
     {
       "taskId": "t01-006-interview",
       "topicId": "t01-006",
       "phase": "interview",
       "draft": "course/drafts/t01-006/t01-006-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 36,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Class/struct/record decisions and copying",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
+              "section": "Reference semantics, constructors, object initializers, and class design",
+              "verdict": "Supported; corrected identity and physical-allocation overstatements."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
+              "section": "Value semantics, construction forms, default values, and readonly members",
+              "verdict": "Supported; corrected shallow copying, storage guarantees, and performance heuristics."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+              "section": "Record types, synthesized members, equality, copy constructors, with expressions",
+              "verdict": "Supported; qualified equality and EqualityContract to record class hierarchies."
+            }
+          ]
+        },
+        {
+          "claims": "Required member contract and constructor semantics",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required",
+              "section": "Required members, null assignment, SetsRequiredMembers, compiler diagnostics",
+              "verdict": "Supported; corrected that required is not runtime/domain validation and the attribute is trusted, not verified."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/primary-constructors",
+              "section": "Class/struct primary constructor parameter scope, storage, and record distinction",
+              "verdict": "Supported; clarified class/struct parameters are not automatically properties or necessarily stored."
+            }
+          ]
+        },
+        {
+          "claims": "Union and closed hierarchy tradeoffs",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Union representation, generated API, conversions, patterns, nullability, exhaustiveness",
+              "verdict": "Supported; documented struct/object? representation, boxing, default-null behavior, and pattern/null caveats."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Direct descendants, assembly/module restriction, modifier rules, exhaustiveness",
+              "verdict": "Supported; clarified descendants are not transitively closed and nullable switches may require null."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "C# 15 unions, closed hierarchies, collection expression arguments, extension indexers, older-runtime static interface members, preview memory safety",
+              "verdict": "Supported; identified memory safety as preview-only and distinguished language support from .NET 11 GA."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs",
@@ -6498,7 +6953,7 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of every externally verifiable claim and the frozen manifest inventory against current official Microsoft C# and .NET documentation. Corrected identified inaccuracies and omissions; draft status is retained."
     },
     {
       "taskId": "t01-007-overview",

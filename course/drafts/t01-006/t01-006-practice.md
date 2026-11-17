@@ -29,7 +29,7 @@ var user2 = user1 with { Email = "new@example.com" }; // Nondestructive mutation
 
 1.  **`record class`**: Provides value-based equality (two users with the same data are "equal").
 2.  **`primary constructor`**: The `(string Username)` syntax defines a constructor and a property automatically.
-3.  **`required member`**: The `required` keyword forces the object initializer to set `Email`, preventing invalid states.
+3.  **`required member`**: The `required` keyword makes the compiler require `Email` in the creation expression (unless a constructor asserts `SetsRequiredMembers`); it does not guarantee the assigned value is non-null or valid.
 
 # Exercises
 1.  **Struct vs Class**: Create a `Point` type that stores `X` and `Y` coordinates. Should it be a `struct` or a `class`? Why?
@@ -37,7 +37,7 @@ var user2 = user1 with { Email = "new@example.com" }; // Nondestructive mutation
 3.  **Records**: Create two instances of a `record struct` with identical data. Use `==` to compare them. What is the result?
 
 # Progressive hints
-*   **Exercise 1**: A `Point` is small and represents a coordinate. If you pass it around, do you want a copy (value) or a reference to the same object? Use `struct` for small, immutable data.
+*   **Exercise 1**: A `Point` is small and represents a coordinate. Decide whether value-copy semantics fit the API; size alone is not a performance guarantee. A `readonly record struct` can express immutable value semantics.
 *   **Exercise 2**: The `required` modifier forces the use of an `object initializer` (e.g., `new Product("Item") { Price = 10.0 }`).
 *   **Exercise 3**: Records synthesize equality members. `record struct` instances are compared by their field values, not their memory address.
 
@@ -46,15 +46,14 @@ var user2 = user1 with { Email = "new@example.com" }; // Nondestructive mutation
 2.  **Product**: 
     ```csharp
     public record Product(string Name) { public required decimal Price { get; init; } }
-    // Error: 'Product' does not contain a constructor that takes 0 arguments... 
-    // and 'Price' must be initialized.
+    // new Product("Item"); // Compile-time error: required member Price is not initialized.
     ```
 3.  **Comparison**: `record struct` uses value equality. `p1 == p2` will return `true` if `X` and `Y` are the same.
 
 # Tests and edge cases
-*   **Default Structs**: A `struct` always has a parameterless constructor that sets fields to their default values (e.g., `0` for `int`). This can lead to "partially initialized" objects.
+*   **Default Structs**: `default(S)` produces a value whose fields have their default values and does not run a user-defined parameterless constructor. `new S()` invokes that constructor when one is defined.
 *   **Shallow Copy**: Remember that `with` expressions and record equality are **shallow**. If your record contains a `List<T>`, the list reference is copied, not the contents of the list.
-*   **Required Members**: If you define a custom constructor, you must use the `[SetsRequiredMembers]` attribute if that constructor does not initialize all `required` members.
+*   **Required Members**: A constructor can use `[SetsRequiredMembers]` to assert that it initializes every required member; the compiler trusts the assertion and does not verify the implementation. Use it only when the constructor establishes that contract.
 
 # Reflection questions
 1.  Why might you choose a `readonly struct` over a standard `struct`?

@@ -14,9 +14,9 @@ Classes, structs, and records exist to solve this. They allow you to define cust
 
 Think of these types as different ways to package information:
 
-*   **Classes** are like **blueprints for unique entities**. If you have two "Person" classes, they are distinct individuals even if they have the same name. They live on the "heap" (a large area of memory) and are managed by reference.
-*   **Structs** are like **simple containers for values**. They are like numbers or coordinates. If you copy a struct, you get a completely independent duplicate. They are often stored directly where they are used, making them efficient for small data.
-*   **Records** are like **snapshots of data**. They are designed to represent "what" something is, rather than "who" it is. If two records have the same data, C# considers them equal.
+*   **Classes** are reference types: assigning a class variable copies the reference, so two variables can refer to the same object. A class can also define value equality by overriding equality members.
+*   **Structs** are value types: assignment copies the struct's fields. If a field is itself a reference, that reference is copied too, so the copies can still share referenced objects. Avoid relying on a fixed stack-versus-heap placement.
+*   **Records** add synthesized value-oriented equality and `with` copying to either a class or struct. A record class remains a reference type; a record struct remains a value type. Copying is shallow for referenced members.
 
 # How the parts fit together
 
@@ -29,8 +29,8 @@ The C# type system is built on a hierarchy of declarations and initialization ru
 # Concept map
 
 *   **Type Categories**:
-    *   **Reference Types** (`class`, `record class`): Managed by reference; identity matters.
-    *   **Value Types** (`struct`, `record struct`): Copied by value; data content matters.
+    *   **Reference Types** (`class`, `record class`): Variables hold references; assignment copies the reference. Equality may be customized.
+    *   **Value Types** (`struct`, `record struct`): Assignment copies the value's fields; reference-valued fields remain references to shared objects.
 *   **Initialization**:
     *   **Primary Constructors**: A concise way to define parameters directly in the type declaration.
     *   **Object Initializers**: A syntax to set properties immediately after creation.
@@ -67,9 +67,9 @@ Imagine you are building a system to track points on a map.
 # When to use it and tradeoffs
 
 *   **Use Classes** when you need identity (e.g., a `DatabaseConnection` or a `Customer` entity).
-*   **Use Structs** for small, immutable data types (usually under 16 bytes) to reduce memory pressure. Avoid mutable structs, as they can lead to confusing bugs where you accidentally modify a copy instead of the original.
-*   **Use Records** when you want value-based equality (e.g., Data Transfer Objects). They save you from writing boilerplate code like `Equals` or `GetHashCode`.
-*   **Tradeoff**: Records and classes involve heap allocation, which is generally fine but can impact performance in high-frequency loops. Structs avoid this but are copied every time they are passed to a method, which is expensive if the struct is large.
+*   **Consider Structs** for small, data-centric values with value semantics. Size is only one factor; copying cost, boxing, mutability, and API semantics also matter. There is no language rule that makes structs faster or guarantees stack storage.
+*   **Use Records** when synthesized value equality and data-oriented formatting/copy syntax match the domain. Records can still be mutable and their equality/copy behavior is shallow for referenced members.
+*   **Tradeoff**: Class instances use reference semantics; struct assignment copies fields. Performance depends on lifetime, allocation, copying, boxing, layout, and runtime optimization, so measure representative workloads.
 
 # What later lessons cover
 

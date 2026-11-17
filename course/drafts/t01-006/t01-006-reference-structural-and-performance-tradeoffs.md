@@ -8,7 +8,7 @@
 This lesson covers structural and performance considerations for C# types, including memory layout, copying behavior, and construction patterns. It is based on C# 15 stable / .NET 11 GA as of 2026-11-14. Source: [https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/structs), [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/constructor](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/constructor), and [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/required).
 
 # How this group fits the mental model
-In C#, types are either reference types (classes, record classes) or value types (structs, record structs). Classes provide identity and heap allocation, while structs provide value semantics and local storage. Performance tuning involves managing how these types are laid out in memory, how they are copied, and how they are initialized.
+In C#, classes and record classes are reference types; structs and record structs are value types. Assignments copy a reference or copy struct fields respectively, while actual storage placement and optimization depend on context and runtime. Performance decisions should account for allocation, copying, boxing, layout requirements, and measured workload.
 
 # Supplied names explained
 
@@ -26,9 +26,9 @@ In C#, types are either reference types (classes, record classes) or value types
 * `Scoped ref safety context`: The rules governing the lifetime of references to ensure they do not outlive the data they point to.
 * `Escape analysis`: The compiler process of determining if a reference or value can safely exist outside its current scope.
 * `Boxing a struct`: The process of wrapping a value type in an object on the heap.
-* `Struct copied on assignment`: The default behavior where assigning one struct to another creates a bitwise copy.
-* `Struct copied on return`: The behavior where a struct returned from a method is copied to the caller.
-* `Struct copied as parameter`: The behavior where a struct passed to a method is copied into the parameter.
+* `Struct copied on assignment`: Assignment creates a value copy of the struct's fields. Reference fields copy the references, so the copied structs can still refer to the same mutable object.
+* `Struct copied on return`: Value semantics apply to returned structs, though the compiler/runtime may optimize physical copies when observable behavior is unchanged.
+* `Struct copied as parameter`: A by-value parameter has value semantics; the compiler/runtime may optimize physical copies. `ref`, `in`, and `ref readonly` alter parameter passing and aliasing rules.
 * `Readonly struct defensive copy`: A copy created by the compiler to prevent mutation of a `readonly struct` when calling non-readonly members.
 * `Readonly member`: A member that does not modify the state of the struct.
 * `readonly ref return`: A method return that provides a read-only reference to a value.
@@ -39,9 +39,9 @@ In C#, types are either reference types (classes, record classes) or value types
 * `Struct containing reference field`: A struct that holds a reference type, which complicates copying and lifetime management.
 * `Default struct initialization`: The process where all fields are set to their default values (e.g., 0, null).
 * `Struct field zero initialization`: The guarantee that fields are initialized to zero bits by default.
-* `Class object identity`: The concept that two class instances are distinct even if their data is identical.
+* `Class object identity`: Reference types can represent distinct object instances, but `==`/`Equals` behavior can be overloaded; reference identity can be tested with `ReferenceEquals`.
 * `Class shared mutation`: The risk that multiple references to the same class instance can modify its state.
-* `Class allocation`: The process of creating an instance on the managed heap.
+* `Class allocation`: Creating a class instance uses managed reference semantics; source code shouldn't assume a particular physical allocation when runtime optimizations can remove it.
 * `Record allocation`: The process of creating a record instance, which follows reference or value semantics based on the declaration.
 * `Struct allocation does not imply stack storage`: A reminder that structs can be stored on the heap (e.g., inside a class).
 * `Stack versus heap implementation detail`: The distinction between where data resides, which is often managed by the runtime.
@@ -57,8 +57,8 @@ In C#, types are either reference types (classes, record classes) or value types
 * `Factory method versus constructor`: Using static methods to control instance creation instead of direct construction.
 
 # Cross-item comparison
-* **Class vs. Struct**: Classes use reference semantics and heap allocation; structs use value semantics and are copied on assignment.
-* **Record class vs. Record struct**: Record classes provide reference-based equality with value-like syntax; record structs provide value-based equality and value semantics.
+* **Class vs. Struct**: Classes use reference semantics and struct values use value semantics. Assignment copies a reference for a class variable and copies fields for a struct; physical placement isn't the deciding rule.
+* **Record class vs. Record struct**: Both provide synthesized value equality. A record class has reference semantics; a record struct has value semantics.
 * **Required member vs. Constructor parameter**: `required` members force the caller to set properties during initialization, whereas constructor parameters force values at the moment of creation.
 
 # Examples
@@ -73,13 +73,13 @@ p2.X = 10;     // p1.X remains 1
 
 # Common mistakes
 * Assuming a struct is always on the stack; it is stored wherever its container is stored.
-* Creating large structs, which leads to performance degradation due to frequent copying.
-* Modifying a `readonly struct` or `in` parameter, which triggers defensive copies and hurts performance.
+* Assuming every large struct copy is physically materialized or automatically slow; measure representative code and use `in`/`ref readonly` only when appropriate for the API.
+* Assuming `readonly struct` makes referenced mutable objects immutable; readonly protects the struct's own state, not objects reached through references.
 
 # Knowledge checks with answers
 1. **Question**: Why does a `readonly struct` sometimes trigger a defensive copy?
    **Answer**: If a non-readonly member is called on a `readonly` instance, the compiler creates a copy to ensure the original instance remains unchanged.
-2. **Question**: What is the primary difference between `Class object identity` and `Reference equality versus record equality`?
-   **Answer**: Class identity relies on the memory address, while record equality compares the values of the properties.
+2. **Question**: What is the primary difference between reference identity and record value equality?
+   **Answer**: Reference identity asks whether two references point to the same object; synthesized record equality compares member values using their equality semantics. A record's referenced members aren't recursively deep-compared by default.
 3. **Question**: When should you use `Allows ref struct anti-constraint`?
    **Answer**: When you need to pass a `ref struct` into a generic method or type that is designed to handle it safely.
