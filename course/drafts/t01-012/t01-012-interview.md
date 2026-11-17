@@ -7,18 +7,18 @@ This is an automatically generated draft.
 # Core questions
 In an interview, you may be asked how C# manages data transformation and decision-making. Key questions include:
 *   **How do you decide between an operator overload and a named method?** (Focus on semantic expectation; operators should feel natural, like math, while named methods are better for expensive or asymmetric operations.)
-*   **What is the difference between `Implicit conversion` and `Explicit conversion`?** (Implicit is for safe, loss-less transformations; explicit is for potentially lossy or expensive ones.)
+*   **What is the difference between `Implicit conversion` and `Explicit conversion`?** (Predefined implicit conversions do not require cast syntax and always succeed but can lose precision; user-defined implicit conversions should be unsurprising and non-throwing. Explicit conversions signal possible loss or failure.)
 *   **How does `Pattern matching` improve code over traditional `if-else` chains?** (It allows for declarative, readable checks of data structure and type, often with built-in exhaustiveness checking.)
 
 # Concise interview answers
 *   **Pattern matching:** A way to test a value's shape and extract data simultaneously. It replaces complex type-casting and conditional logic with clear, branch-based expressions.
-*   **User-defined conversion:** A way to define how a custom type transforms into another type. Use `Implicit conversion operator` for safe changes and `Explicit conversion operator` for lossy ones.
+*   **User-defined conversion:** A way to define how a custom type transforms into another type. Use `Implicit conversion operator` only for unsurprising non-throwing changes; use `Explicit conversion operator` when loss or failure should be visible.
 *   **Switch expression:** A concise, result-producing decision structure. Unlike a `switch statement`, it returns a value and enforces `Switch expression exhaustiveness` at compile time.
 
 # Deep follow-up answers
-*   **Why avoid surprising operator overloads?** Operators like `+` or `==` carry strong mathematical or logical expectations. If an operation is expensive, side-effect-heavy, or non-associative, a `Named method` is safer because it doesn't mislead the developer about the operation's cost or behavior.
-*   **How do `Checked user-defined conversion operator` and `Unchecked integral overflow behavior` interact?** C# allows you to define how types behave during arithmetic. In a `Checked integral arithmetic context`, the compiler ensures that overflows throw exceptions, which is critical for financial or safety-sensitive data.
-*   **What is the role of `Switch expression exhaustiveness`?** It ensures that every possible input is handled. If you use a `Switch expression` on a `closed hierarchy`, the compiler verifies that all cases are covered, preventing runtime errors.
+*   **Why avoid surprising operator overloads?** Operators like `+` or `==` carry established expectations. Use a named method when semantics or cost would surprise callers.
+*   **How do `Checked user-defined conversion operator` and `Unchecked integral overflow behavior` interact?** C# allows you to define how types behave during arithmetic. For applicable built-in integral operations, checked context throws on overflow; user-defined checked conversions/operators need a declared checked overload, and the body controls its own overflow behavior.
+*   **What is the role of `Switch expression exhaustiveness`?** It analyzes recognized cases. C# 15 unions and closed classes enable exhaustiveness diagnostics under their rules; an unmatched value in a switch expression without fallback still throws `SwitchExpressionException`.
 
 # Scenario questions
 *   **Scenario:** You have a list of objects and need to process them based on their type and properties.
@@ -28,7 +28,7 @@ In an interview, you may be asked how C# manages data transformation and decisio
 
 # Tradeoffs and alternatives
 *   **`Switch expression` vs. `Switch statement`:** Use expressions for returning values and ensuring exhaustiveness. Use statements for side-effect-heavy logic or when you need to perform actions rather than return a result.
-*   **`Implicit conversion` vs. `Explicit conversion`:** Always prefer implicit for safe, lossless data movement. Use explicit when the conversion might lose precision or throw an error, as it forces the caller to acknowledge the risk.
+*   **`Implicit conversion` vs. `Explicit conversion`:** Use user-defined implicit conversions only when they are unsurprising and non-throwing; use explicit conversions when possible loss/failure should be visible. Predefined implicit numeric conversions can lose precision.
 *   **`Pattern matching` vs. `Cast and branch`:** Pattern matching is generally preferred because it is more readable, handles `null` values gracefully, and reduces the risk of `InvalidCastException`.
 
 # Common weak answers

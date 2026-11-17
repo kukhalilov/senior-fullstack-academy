@@ -25,7 +25,7 @@ Before studying this topic, you should be familiar with the following concepts:
 ### Key Terms Defined
 - **Overload Resolution**: The compile-time process where the compiler selects the best-matching method or operator declaration for a given invocation based on argument types.
 - **Pattern Matching**: A language mechanism that tests whether an input expression matches a specific shape, type, or value criteria, and optionally extracts bound variables from it.
-- **Exhaustiveness**: A property of a decision structure (such as a switch expression) where every possible value of the governing input type is handled by at least one pattern arm.
+- **Exhaustiveness**: Compiler analysis that checks whether recognized alternatives are covered by a decision structure; open runtime domains can still contain unmatched values.
 
 ---
 
@@ -44,7 +44,7 @@ Think of your program logic as divided into two separate systems:
 1. **Transformations and Algebra (Conversions & Operators)**:
    You explicitly define how types convert into one another or combine with operators. These rules are applied at compile time based on static types.
 2. **Shape and Inspection (Pattern Matching)**:
-   You define rules to inspect data values at runtime. Pattern matching evaluates the structural shape of a value (its runtime type, property values, elements, or constants). Crucially, **pattern matching uses built-in language rules and does not call user-defined conversion operators**.
+   You define rules to inspect data values at runtime. Pattern matching evaluates type, property, element, or constant conditions under language rules. User-defined conversions do not affect `is` or `as`; user-defined conversion operators do not create pattern compatibility.
 
 ```
 +-----------------------------------------------------------------------+
@@ -114,7 +114,7 @@ User-defined operators let custom types participate in expressions using operato
 - Operators declared in classes and structs must be `public static`; interfaces can declare static abstract or virtual operator contracts for implementing types.
 - At least one operand must be of the type declaring the operator.
 - Logical and comparison operators must be declared in pairs (e.g., overloading `==` requires overloading `!=`; overloading `<` requires overloading `>`).
-- Overloading `==` should always be kept consistent with an override of `Object.Equals`.
+- Keep `==`, `!=`, and `Object.Equals` behavior coherent as a design guideline; the compiler requires `==` and `!=` as a pair but does not require identical implementations.
 
 ---
 

@@ -30,10 +30,10 @@ Together, they allow you to write code that reads more like a business rule than
 
 # Concept map
 
-1.  **Conversions:** Define how one type becomes another. Use `implicit` for safe, loss-free changes and `explicit` for potentially lossy or expensive ones.
+1.  **Conversions:** Define how one type becomes another. Use user-defined `implicit` conversions only when unsurprising and non-throwing; `explicit` conversions signal possible loss or failure. Predefined implicit conversions can lose precision.
 2.  **Operators:** Define how types interact. Use these to support math (`+`, `-`) or comparisons (`==`, `>`) so your types feel native to C#.
 3.  **Patterns:** Use these to inspect data. You can check for specific values (`Constant pattern`), types (`Type pattern`), or internal structure (`Property` or `List patterns`).
-4.  **Decision Logic:** Use `switch` expressions to combine patterns. The compiler ensures you have covered all possibilities (exhaustiveness), preventing runtime errors.
+4.  **Decision Logic:** Use `switch` expressions to combine patterns. The compiler analyzes exhaustiveness and may warn for non-exhaustive switch expressions; an unmatched runtime value can still throw `SwitchExpressionException`.
 
 # End-to-end walkthrough
 
@@ -67,6 +67,6 @@ The compiler checks the `Value` property against the relational patterns (`< 0`,
 *   **Standard and user-defined conversions:** Deep dive into how the compiler chooses between different conversion paths.
 *   **Operator declarations:** How to implement specific math and equality contracts.
 *   **Pattern forms:** Detailed syntax for property, positional, and list patterns.
-*   **Exhaustiveness:** How the compiler proves that your `switch` expressions cover every possible input.
+*   **Exhaustiveness:** How the compiler analyzes recognized alternatives and identifies non-exhaustive switch expressions; unmatched runtime values can still require a fallback.
 
 *Source: [Microsoft C# Language Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns)*

@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 315,
-    "pending": 2025,
-    "claimsChecked": 8092,
-    "claimsCorrected": 866,
+    "reviewed": 324,
+    "pending": 2016,
+    "claimsChecked": 8541,
+    "claimsCorrected": 960,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 315,
-    "pendingLessons": 2025
+    "reviewedLessons": 324,
+    "pendingLessons": 2016
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1012,6 +1012,31 @@
       ],
       "findings": [
         "Reviewed all nine lessons against the topic inventory and current Microsoft specifications/API/release documentation. Corrected captured-variable lifetime/allocation claims, field-like event concurrency nuance, lambda feature versions, `EventHandler<TEventArgs>` target-framework differences, multicast delegate behavior, expression-tree syntax limits/provider boundaries, and Native AOT interpretation behavior. Added C# 14 modifier inference for lambda parameters. No unresolved factual or scope issues remain."
+      ]
+    },
+    {
+      "scope": "C# conversions, checked operators, generic math, patterns, switch exhaustiveness, unions, and closed hierarchies (t01-012; nine lesson units)",
+      "status": "full claim and frozen-inventory audit complete; draft states retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3"
+      ],
+      "findings": [
+        "Reviewed all nine lessons against the complete topic manifest and current Microsoft C# specification, API docs, and C# 14/15 release notes. Corrected numeric and nullable conversion semantics, one-user-defined-conversion chaining boundaries, checked operator pairing, C# operator declaration pairs, IEqualityOperators arity, C# 14 explicit compound assignment signatures, relational/list pattern rules, unspecified member evaluation order, and non-exhaustive switch behavior. Confirmed C# 15 unions, closed hierarchies, and labeled jumps against current references. No unresolved issues remain."
       ]
     }
   ],
@@ -12923,252 +12948,1737 @@
       "topicId": "t01-012",
       "phase": "overview",
       "draft": "course/drafts/t01-012/t01-012-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.inumber-1",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 36,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-inventory review completed against current Microsoft C# specifications, official API docs, and release notes. Corrected implicit/explicit conversion absolutes, checked overflow and conversion rules, operator pair/signature requirements, generic-math API arity, list-pattern/slice claims, pattern evaluation order, and switch exhaustiveness/fallback behavior. Added missing C# 14 explicit compound-assignment operator concepts and verified C# 15 union/closed hierarchy/labeled jump scope. No unresolved factual or inventory-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-012-concepts",
       "topicId": "t01-012",
       "phase": "concepts",
       "draft": "course/drafts/t01-012/t01-012-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.inumber-1",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 72,
+      "claimsCorrected": 10,
+      "evidence": [
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-inventory review completed against current Microsoft C# specifications, official API docs, and release notes. Corrected implicit/explicit conversion absolutes, checked overflow and conversion rules, operator pair/signature requirements, generic-math API arity, list-pattern/slice claims, pattern evaluation order, and switch exhaustiveness/fallback behavior. Added missing C# 14 explicit compound-assignment operator concepts and verified C# 15 union/closed hierarchy/labeled jump scope. No unresolved factual or inventory-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-012-reference-standard-and-user-defined-conversions",
       "topicId": "t01-012",
       "phase": "reference",
       "draft": "course/drafts/t01-012/t01-012-reference-standard-and-user-defined-conversions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.inumber-1",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
+      "claimsCorrected": 13,
+      "evidence": [
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-inventory review completed against current Microsoft C# specifications, official API docs, and release notes. Corrected implicit/explicit conversion absolutes, checked overflow and conversion rules, operator pair/signature requirements, generic-math API arity, list-pattern/slice claims, pattern evaluation order, and switch exhaustiveness/fallback behavior. Added missing C# 14 explicit compound-assignment operator concepts and verified C# 15 union/closed hierarchy/labeled jump scope. No unresolved factual or inventory-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-012-reference-overloaded-operators",
       "topicId": "t01-012",
       "phase": "reference",
       "draft": "course/drafts/t01-012/t01-012-reference-overloaded-operators.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.inumber-1",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 54,
+      "claimsCorrected": 15,
+      "evidence": [
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-inventory review completed against current Microsoft C# specifications, official API docs, and release notes. Corrected implicit/explicit conversion absolutes, checked overflow and conversion rules, operator pair/signature requirements, generic-math API arity, list-pattern/slice claims, pattern evaluation order, and switch exhaustiveness/fallback behavior. Added missing C# 14 explicit compound-assignment operator concepts and verified C# 15 union/closed hierarchy/labeled jump scope. No unresolved factual or inventory-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-012-reference-pattern-forms-and-composition",
       "topicId": "t01-012",
       "phase": "reference",
       "draft": "course/drafts/t01-012/t01-012-reference-pattern-forms-and-composition.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.inumber-1",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 57,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-inventory review completed against current Microsoft C# specifications, official API docs, and release notes. Corrected implicit/explicit conversion absolutes, checked overflow and conversion rules, operator pair/signature requirements, generic-math API arity, list-pattern/slice claims, pattern evaluation order, and switch exhaustiveness/fallback behavior. Added missing C# 14 explicit compound-assignment operator concepts and verified C# 15 union/closed hierarchy/labeled jump scope. No unresolved factual or inventory-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-012-reference-is-switch-and-exhaustiveness",
       "topicId": "t01-012",
       "phase": "reference",
       "draft": "course/drafts/t01-012/t01-012-reference-is-switch-and-exhaustiveness.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.inumber-1",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 46,
+      "claimsCorrected": 10,
+      "evidence": [
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-inventory review completed against current Microsoft C# specifications, official API docs, and release notes. Corrected implicit/explicit conversion absolutes, checked overflow and conversion rules, operator pair/signature requirements, generic-math API arity, list-pattern/slice claims, pattern evaluation order, and switch exhaustiveness/fallback behavior. Added missing C# 14 explicit compound-assignment operator concepts and verified C# 15 union/closed hierarchy/labeled jump scope. No unresolved factual or inventory-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-012-reference-operator-and-pattern-design",
       "topicId": "t01-012",
       "phase": "reference",
       "draft": "course/drafts/t01-012/t01-012-reference-operator-and-pattern-design.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.inumber-1",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 44,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-inventory review completed against current Microsoft C# specifications, official API docs, and release notes. Corrected implicit/explicit conversion absolutes, checked overflow and conversion rules, operator pair/signature requirements, generic-math API arity, list-pattern/slice claims, pattern evaluation order, and switch exhaustiveness/fallback behavior. Added missing C# 14 explicit compound-assignment operator concepts and verified C# 15 union/closed hierarchy/labeled jump scope. No unresolved factual or inventory-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-012-practice",
       "topicId": "t01-012",
       "phase": "practice",
       "draft": "course/drafts/t01-012/t01-012-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.inumber-1",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-inventory review completed against current Microsoft C# specifications, official API docs, and release notes. Corrected implicit/explicit conversion absolutes, checked overflow and conversion rules, operator pair/signature requirements, generic-math API arity, list-pattern/slice claims, pattern evaluation order, and switch exhaustiveness/fallback behavior. Added missing C# 14 explicit compound-assignment operator concepts and verified C# 15 union/closed hierarchy/labeled jump scope. No unresolved factual or inventory-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-012-interview",
       "topicId": "t01-012",
       "phase": "interview",
       "draft": "course/drafts/t01-012/t01-012-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.inumber-1",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable syntax, conversion/operator/pattern behavior, version notes, diagnostic examples, and claims against relevant official specification/API sections; corrections recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3",
+              "section": "Applicable conversions, checked operators, patterns, unions/closed types, generic-math contracts, or C# release notes",
+              "verdict": "Supported by primary Microsoft specification/documentation; scope and wording corrected where needed."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/conversions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/relational-patterns",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/pattern-matching-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iadditionoperators-3"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-inventory review completed against current Microsoft C# specifications, official API docs, and release notes. Corrected implicit/explicit conversion absolutes, checked overflow and conversion rules, operator pair/signature requirements, generic-math API arity, list-pattern/slice claims, pattern evaluation order, and switch exhaustiveness/fallback behavior. Added missing C# 14 explicit compound-assignment operator concepts and verified C# 15 union/closed hierarchy/labeled jump scope. No unresolved factual or inventory-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-013-overview",

@@ -19,7 +19,7 @@ using System.Numerics;
 public record struct Temperature(double Celsius) : IAdditionOperators<Temperature, Temperature, Temperature>
 {
     // Operator overload
-    public static Temperature operator +(Temperature left, Temperature right) 
+    public static Temperature operator +(Temperature left, Temperature right)
         => new(left.Celsius + right.Celsius);
 
     // Categorization using switch expression and relational patterns
@@ -60,18 +60,22 @@ public record struct Temperature(double Celsius) : IAdditionOperators<Temperatur
    ```
 3. **Operators:**
    ```csharp
-   public record struct Point(double X, double Y) : IComparisonOperators<Point, Point, bool> {
-       public static bool operator <(Point left, Point right) => 
-           (left.X*left.X + left.Y*left.Y) < (right.X*right.X + right.Y*right.Y);
-       // ... implement other required comparison operators
+   using System.Numerics;
+
+public readonly record struct Point(double X, double Y) : IComparisonOperators<Point, Point, bool> {
+       private static double SquaredDistance(Point p) => p.X * p.X + p.Y * p.Y;
+       public static bool operator <(Point left, Point right) => SquaredDistance(left) < SquaredDistance(right);
+       public static bool operator >(Point left, Point right) => SquaredDistance(left) > SquaredDistance(right);
+       public static bool operator <=(Point left, Point right) => SquaredDistance(left) <= SquaredDistance(right);
+       public static bool operator >=(Point left, Point right) => SquaredDistance(left) >= SquaredDistance(right);
    }
    ```
 
 # Tests and edge cases
-* **Exhaustiveness:** Always include a `Switch expression discard arm` (`_`) unless the input is a `closed hierarchy` or `union type` where the compiler can prove all cases are covered.
+* **Exhaustiveness:** Use a fallback arm when runtime values may exist outside the recognized patterns. C# 15 unions and closed hierarchies can support exhaustiveness analysis, but an unmatched non-exhaustive switch expression still throws.
 * **Nullability:** `Pattern matching` handles nulls gracefully. A `Type pattern` like `x is string s` will return `false` if `x` is null.
-* **Overflow:** When performing `Numeric conversion`, consider if you need a `Checked integral arithmetic context` to prevent silent data loss.
-* **Consistency:** Ensure `Equality operator paired declaration` matches the logic in `Object.Equals` to avoid confusing behavior.
+* **Overflow:** Use checked context for applicable integral overflow; it does not prevent floating-point precision loss or all conversion loss.
+* **Consistency:** Keep `==`, `!=`, and `Object.Equals` behavior coherent as a design guideline; C# requires `==` and `!=` to be paired.
 
 # Reflection questions
 1. Why is it often better to use a `Named method` instead of an `Operator overload` if the operation is expensive or asymmetric?

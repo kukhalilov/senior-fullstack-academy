@@ -72,27 +72,30 @@
         "Overloadable false operator",
         "Overloadable increment operator",
         "Overloadable decrement operator",
-        "Overloadable logical operators",
+        "User-defined conditional logical operators via true false and bitwise operators",
         "Overloadable shift operators",
         "Unsigned right shift overload",
         "Operator overload declaration restrictions",
-        "Operator must be public and static",
+        "Ordinary user-defined operators must be public and static",
         "At least one operator operand type must contain declaring type",
         "Equality operator paired declaration",
         "Equality and Object.Equals consistency",
-        "Comparison operator consistency",
+        "Required relational operator pairs and comparison consistency",
         "Operator overload semantic expectation",
         "IAdditionOperators<TSelf,TOther,TResult>",
         "ISubtractionOperators<TSelf,TOther,TResult>",
         "IMultiplyOperators<TSelf,TOther,TResult>",
         "IDivisionOperators<TSelf,TOther,TResult>",
         "IComparisonOperators<TSelf,TOther,TResult>",
-        "IEqualityOperators<TSelf,TOther>",
+        "IEqualityOperators<TSelf,TOther,TResult>",
         "IUnaryNegationOperators<TSelf,TResult>",
         "IBinaryInteger<TSelf>",
         "INumber<TSelf>",
         "Generic math static abstract operator contract",
-        "Named method versus operator overload"
+        "Named method versus operator overload",
+        "C# 14 explicit compound assignment operator overload",
+        "C# 14 compound assignment operator instance signature",
+        "Compound assignment operator fallback to binary operator"
       ]
     },
     {
@@ -257,12 +260,22 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ]
+    },
+    {
+      "edition": "C# 14 and C# 15 operator/pattern changes",
+      "items": [
+        "C# 14 supports explicit user-defined compound assignment operators and lambda/method changes are scoped elsewhere. C# 15 adds unions, closed hierarchies, and labeled break/continue."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft C# language reference, specification, programming guide, generic math API reference, and current release notes",
-    "edition": "C# 15 / .NET 11 stable patterns and user-defined operators checked 2026-11-14; memory safety preview excluded",
-    "checkedAt": "2026-11-14",
+    "edition": "C# 15 / .NET 11 stable conversions, pattern matching, operators, and generic math checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
       "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/patterns/",
@@ -275,7 +288,14 @@
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/overloaded-operator-errors",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.numerics.iequalityoperators-3",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed"
     ]
   },
   "scopeExclusions": [
@@ -285,5 +305,11 @@
     "Generic math implementation and numeric APIs are covered in numeric and generic-math topics; this manifest names the contracts used for operator abstractions.",
     "The C# 15 memory-safety preview is excluded from this stable-language scope."
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Do not equate implicit conversions with lossless conversions; predefined implicit numeric conversions can lose precision, and user-defined implicit conversion quality is a design guideline.",
+    "A non-exhaustive switch expression can warn and can throw SwitchExpressionException at runtime; exhaustiveness is limited to compiler-recognized closed alternatives.",
+    "C# 14 explicit compound assignment operators are instance void operators; ordinary operator overloads remain static.",
+    "User-defined conversions do not change is/as behavior; a conversion operation applies at most one user-defined conversion operator with possible surrounding standard conversions."
+  ]
 }
