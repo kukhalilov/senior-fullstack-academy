@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This reference lesson covers the exact inventory group of .NET implementations, framework families, target frameworks, and compatibility mechanisms as defined in `.NET 11 GA and .NET 10 LTS checked 2026-11-15` [https://learn.microsoft.com/en-us/dotnet/core/introduction](https://learn.microsoft.com/en-us/dotnet/core/introduction). 
+This reference lesson covers the exact inventory group of .NET implementations, framework families, target frameworks, and compatibility mechanisms. The current-release snapshot was checked against Microsoft documentation on 2026-11-17: .NET 11 is STS and .NET 10 is LTS, both supported until November 2028 [https://learn.microsoft.com/en-us/dotnet/core/releases-and-support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support).
 
 This is a reference lesson. It examines a bounded set of terms that describe how .NET code targets specific platforms, how compilers select APIs, how runtimes execute binaries, and how support lifecycles govern software stability. It does not cover C# language syntax, exact command-line interface (CLI) execution flags, or internal memory management.
 
@@ -29,12 +29,12 @@ Understanding these terms ensures you do not confuse compile-time API availabili
 ## .NET implementations, runtimes, and legacy editions
 
 - **.NET (modern .NET, formerly .NET Core)**: Microsoft's primary, open-source, cross-platform implementation used for building cloud services, web applications, microservices, and desktop/mobile apps. Since .NET 5, it uses the simple ".NET" product name [https://learn.microsoft.com/en-us/dotnet/core/introduction](https://learn.microsoft.com/en-us/dotnet/core/introduction).
-- **.NET Framework**: A mature, Windows-only implementation of .NET used primarily for maintaining existing enterprise applications. It is in maintenance mode [https://learn.microsoft.com/en-us/dotnet/core/introduction](https://learn.microsoft.com/en-us/dotnet/core/introduction).
+- **.NET Framework**: The original Windows-only implementation of .NET. It remains supported under the .NET Framework lifecycle; it does not receive the feature cadence of modern .NET, and is important for existing applications and Windows-specific workloads [https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations](https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations).
 - **.NET Core 1.0 through 3.1**: The historical precursor versions of modern cross-platform .NET. They established the foundation for modern .NET before the product name was simplified to ".NET" starting with .NET 5 [https://github.com/dotnet/core/releases](https://github.com/dotnet/core/releases).
-- **Mono runtime**: An open-source, cross-platform implementation of the .NET Framework historically used for mobile (Xamarin), gaming, and Linux environments.
-- **CoreCLR**: The execution engine (runtime) for modern .NET, responsible for garbage collection, assembly loading, and compiling Intermediate Language (IL) to native machine code via Just-In-Time (JIT) compilation.
+- **Mono runtime**: An open-source .NET implementation used in contexts including Unity and workloads that need a smaller runtime; historical Xamarin product status and current platform arrangements should be checked separately.
+- **CoreCLR**: A runtime implementation used by modern .NET in many deployments, providing services including garbage collection and JIT. Mono is another .NET runtime implementation; Native AOT execution does not use runtime JIT.
 - **.NET Standard API specification**: A formal specification of .NET APIs that establish consistent contract boundaries across different .NET implementations, enabling code reuse across modern .NET, .NET Framework, and Mono [https://learn.microsoft.com/en-us/dotnet/standard/glossary](https://learn.microsoft.com/en-us/dotnet/standard/glossary).
-- **.NET Standard 2.0 support boundary**: A compatibility line guaranteeing that libraries targeting this specification can run on .NET Framework 4.6.1+, modern .NET, and other compliant runtimes [https://learn.microsoft.com/en-us/dotnet/standard/glossary](https://learn.microsoft.com/en-us/dotnet/standard/glossary).
+- **.NET Standard 2.0 support boundary**: A compatibility contract implemented by modern .NET and multiple earlier implementations. Microsoft notes that although NuGet considers .NET Framework 4.6.1 compatible, projects consuming such libraries have issues; .NET Framework 4.7.2 or later is recommended for this use [https://learn.microsoft.com/en-us/dotnet/standard/frameworks](https://learn.microsoft.com/en-us/dotnet/standard/frameworks).
 - **.NET Standard 2.1 support boundary**: An advanced API specification boundary supported by modern .NET and Mono, but *not* supported by .NET Framework [https://learn.microsoft.com/en-us/dotnet/standard/glossary](https://learn.microsoft.com/en-us/dotnet/standard/glossary).
 
 ## Target frameworks and build-property naming
@@ -47,7 +47,7 @@ Understanding these terms ensures you do not confuse compile-time API availabili
 - **netstandard2.0 TFM**: The target framework moniker for libraries implementing .NET Standard version 2.0 [https://learn.microsoft.com/en-us/dotnet/standard/frameworks](https://learn.microsoft.com/en-us/dotnet/standard/frameworks).
 - **net481 TFM**: The target framework moniker targeting the final version of .NET Framework (4.8.1) [https://learn.microsoft.com/en-us/dotnet/standard/frameworks](https://learn.microsoft.com/en-us/dotnet/standard/frameworks).
 - **TargetFramework MSBuild property**: An MSBuild project file setting used to specify a single TFM for a project (e.g., `<TargetFramework>net10.0</TargetFramework>`) [https://learn.microsoft.com/en-us/dotnet/standard/frameworks](https://learn.microsoft.com/en-us/dotnet/standard/frameworks).
-- **TargetFrameworks MSBuild property**: An MSBuild project file setting used to build a project for multiple target frameworks concurrently (multi-targeting, e.g., `<TargetFrameworks>net10.0;netstandard2.0</TargetFrameworks>`) [https://learn.microsoft.com/en-us/dotnet/standard/frameworks](https://learn.microsoft.com/en-us/dotnet/standard/frameworks).
+- **TargetFrameworks MSBuild property**: An MSBuild project file setting used to build a project for multiple target frameworks (multi-targeting, e.g., `<TargetFrameworks>net11.0;netstandard2.0</TargetFrameworks>`). The build creates outputs per target; it does not produce one assembly compatible with all targets [https://learn.microsoft.com/en-us/dotnet/standard/frameworks](https://learn.microsoft.com/en-us/dotnet/standard/frameworks).
 - **TargetPlatformVersion**: An MSBuild property used alongside OS-specific TFMs to specify the minimum OS version requirement (such as a specific Windows or iOS SDK version).
 - **OS-specific TFM**: A TFM that includes an operating system specifier suffix (e.g., `net11.0-windows` or `net11.0-android`) to unlock platform-specific APIs.
 - **Runtime Identifier (RID)**: A string token (such as `win-x64` or `linux-x64`) that identifies the target operating system and hardware architecture where an application runs [https://learn.microsoft.com/en-us/dotnet/core/deploying/](https://learn.microsoft.com/en-us/dotnet/core/deploying/).
@@ -56,16 +56,16 @@ Understanding these terms ensures you do not confuse compile-time API availabili
 ## Compatibility, dependency resolution, and annotations
 
 - **NuGet asset selection by target framework**: The mechanism by which the NuGet package manager inspects a package's compiled folders and picks the most compatible binary asset matching the consuming project's TFM [https://learn.microsoft.com/en-us/dotnet/standard/frameworks](https://learn.microsoft.com/en-us/dotnet/standard/frameworks).
-- **Compile-time API availability versus runtime support**: The operational reality that code might compile successfully against an abstract target framework contract, but fail or throw platform exceptions if executed on an underlying host runtime that lacks the necessary OS drivers or subsystem features.
+- **Compile-time API availability versus runtime support**: A TFM and package selection define compile-time APIs, but successful compilation alone does not prove the target OS, runtime, native dependencies, or platform-specific APIs will be available when the app executes.
 - **Platform-specific API annotations**: Attributes (such as `[SupportedOSPlatform]`) used in modern .NET code to warn developers or trigger compiler errors if an API is invoked on an incompatible operating system.
 
 ## Deployment styles, versioning policies, and lifecycle management
 
 - **Framework-dependent deployment**: A deployment model where the application relies on a shared, globally installed .NET runtime present on the host machine [https://learn.microsoft.com/en-us/dotnet/core/deploying/](https://learn.microsoft.com/en-us/dotnet/core/deploying/).
 - **Self-contained deployment**: A deployment model where the application bundles its own copy of the .NET runtime and core libraries, removing the need for a pre-installed runtime on the target host [https://learn.microsoft.com/en-us/dotnet/core/deploying/](https://learn.microsoft.com/en-us/dotnet/core/deploying/).
-- **Roll-forward policy**: The behavior configuration that dictates whether an application can automatically upgrade to a newer patch or major runtime version if the exact targeted runtime is missing on the host [https://learn.microsoft.com/en-us/dotnet/core/versions/selection](https://learn.microsoft.com/en-us/dotnet/core/versions/selection).
-- **Long Term Support (LTS) release**: A .NET release version supported for extended enterprise stability (typically 3 years), ideal for production environments requiring fewer breaking changes [https://learn.microsoft.com/en-us/dotnet/core/releases-and-support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support).
-- **Standard Term Support (STS) release**: A .NET release version supported for 18 months, featuring newer capabilities delivered more frequently (such as .NET 11) [https://learn.microsoft.com/en-us/dotnet/core/releases-and-support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support).
+- **Roll-forward policy**: Runtime selection behavior for framework-dependent applications when an exact compatible runtime is not installed. Patch updates normally roll forward automatically; minor/major behavior is configurable. This is distinct from SDK selection via `global.json` [https://learn.microsoft.com/en-us/dotnet/core/versions/selection](https://learn.microsoft.com/en-us/dotnet/core/versions/selection).
+- **Long Term Support (LTS) release**: A .NET release track supported for at least three years or until one year after the next LTS release, whichever is later. As checked 2026-11-17, .NET 10 is LTS and supported through November 2028 [https://learn.microsoft.com/en-us/dotnet/core/releases-and-support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support).
+- **Standard Term Support (STS) release**: A .NET release track supported for two years (24 months). As checked 2026-11-17, .NET 11 is STS and supported through November 2028 [https://learn.microsoft.com/en-us/dotnet/core/releases-and-support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support).
 - **.NET release support lifecycle**: The official Microsoft policy timeline dictating when releases become Generally Available (GA), when they receive patches, and when they reach end-of-support status [https://learn.microsoft.com/en-us/dotnet/core/releases-and-support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support).
 
 ---
@@ -75,9 +75,9 @@ Understanding these terms ensures you do not confuse compile-time API availabili
 To understand how these concepts operate together, examine these key contrasts:
 
 - **Target framework vs. Runtime Identifier (RID)**: `TargetFramework` controls the API shape visible to the compiler (e.g., `net11.0`), whereas `Runtime Identifier` controls the native platform binaries included during publishing (e.g., `linux-x64`).
-- **Framework-dependent vs. Self-contained deployment**: Framework-dependent applications result in smaller download sizes because they require an external runtime install; self-contained applications bundle the runtime, increasing file size but guaranteeing execution environment independence.
-- **LTS vs. STS releases**: Long Term Support (LTS) releases like .NET 10 prioritize stability over several years, while Standard Term Support (STS) releases like .NET 11 deliver cutting-edge features with a shorter 18-month lifecycle [https://learn.microsoft.com/en-us/dotnet/core/releases-and-support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support).
-- **.NET Standard vs. Modern .NET**: `.NET Standard` is a specification contract for library reuse across distinct families, whereas modern `.NET` is a concrete, cross-platform runtime implementation [https://learn.microsoft.com/en-us/dotnet/standard/glossary](https://learn.microsoft.com/en-us/dotnet/standard/glossary).
+- **Framework-dependent vs. Self-contained deployment**: Framework-dependent applications require a compatible shared runtime on the host. Self-contained applications include the runtime and are generally larger, but still depend on compatible OS/architecture and native dependencies; neither is universally smaller in every packaging scenario.
+- **LTS vs. STS releases**: LTS and STS describe support tracks, not a guarantee that a particular application is more stable or that STS lasts 18 months. Check the current policy and release dates; .NET 10 LTS and .NET 11 STS both run through November 2028 as checked 2026-11-17 [https://learn.microsoft.com/en-us/dotnet/core/releases-and-support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support).
+- **.NET Standard vs. Modern .NET**: `.NET Standard` is a frozen API specification useful for libraries that must span implementation families; modern `.NET` is an implementation. .NET 5+ reduces the need for .NET Standard in many new scenarios [https://learn.microsoft.com/en-us/dotnet/standard/frameworks](https://learn.microsoft.com/en-us/dotnet/standard/frameworks).
 
 ---
 
@@ -111,15 +111,15 @@ For a library that needs to support both modern runtimes and older specification
 </Project>
 ```
 
-*Expected Result*: The compiler builds separate assemblies for each specified moniker, allowing NuGet asset selection to pick the optimal binary for any consumer.
+*Expected Result*: The project builds target-specific outputs. A consuming NuGet project selects compatible package assets according to its own target framework and package rules; no single output is automatically compatible with every consumer.
 
 ---
 
 # Common mistakes
 
 - **Confusing compile-time TFMs with runtime installs**: Assuming that if your project uses `net10.0 TFM`, the host machine does not need a compatible runtime installed (unless using a self-contained deployment).
-- **Expecting .NET Framework to run .NET Standard 2.1 code**: Attempting to consume a library built for `netstandard2.1` in an old .NET Framework application. .NET Framework only supports up to `.NET Standard 2.0` [https://learn.microsoft.com/en-us/dotnet/standard/glossary](https://learn.microsoft.com/en-us/dotnet/standard/glossary).
-- **Ignoring roll-forward behavior**: Deploying an app to a server where the exact minor patch version is missing, causing execution failure because the roll-forward policy was overly strict or misconfigured [https://learn.microsoft.com/en-us/dotnet/core/versions/selection](https://learn.microsoft.com/en-us/dotnet/core/versions/selection).
+- **Expecting .NET Framework to run .NET Standard 2.1 code**: Attempting to consume a library built for `netstandard2.1` in a .NET Framework application. .NET Framework does not support .NET Standard 2.1 [https://learn.microsoft.com/en-us/dotnet/standard/frameworks](https://learn.microsoft.com/en-us/dotnet/standard/frameworks).
+- **Ignoring roll-forward behavior**: Runtime selection differs from SDK selection. Patch roll-forward is normally automatic for framework-dependent apps; runtime configuration can alter behavior. Inspect the actual app deployment mode and configuration [https://learn.microsoft.com/en-us/dotnet/core/versions/selection](https://learn.microsoft.com/en-us/dotnet/core/versions/selection).
 
 ---
 

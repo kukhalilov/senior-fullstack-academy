@@ -5,7 +5,7 @@
 # Scope and version
 
 **Scope:** This reference lesson covers the inventory group `.NET application stacks, workloads, operating systems, and deployment choices` within the broader `.NET platform vs runtime vs SDK vs framework and alternatives` topic.  
-**Version & Authority:** Checked against Microsoft .NET documentation as of .NET 11 GA and .NET 10 LTS (.NET 11 STS and .NET 10 LTS checked 2026-11-15) [https://learn.microsoft.com/en-us/dotnet/core/introduction](https://learn.microsoft.com/en-us/dotnet/core/introduction).  
+**Version & Authority:** Current product lifecycle and publishing behavior checked against Microsoft documentation on 2026-11-17. .NET 11 is STS and .NET 10 is LTS, each supported until November 2028.
 **Draft Notice:** This is an automatically generated draft.
 
 ---
@@ -24,7 +24,7 @@ The supplied items in this inventory group represent the concrete choices you ma
 * **Windows Forms**: A graphical user interface (GUI) class library used exclusively on Windows for creating rich desktop applications.
 * **Windows Presentation Foundation (WPF)**: A Windows-only UI framework based on DirectX, used for building desktop client applications with separated UI markup and business logic.
 * **.NET MAUI (Multi-platform App UI)**: A cross-platform framework for building native mobile and desktop apps (iOS, Android, macOS, and Windows) from a single codebase.
-* **Worker Service**: A template and framework pattern for writing long-running, background background tasks or daemons (such as message queue processors).
+* **Worker Service**: A project template and hosting pattern for long-running background tasks or services, such as message queue processors.
 * **Console application**: A command-line text input/output program used for utilities, scripts, batch processing, or entry-level tests.
 * **Class library**: A reusable project type containing compiled types and logic intended to be consumed by other applications rather than run directly.
 * **WebAssembly workload**: An optional SDK workload that compiles .NET code to run client-side in web browsers via WebAssembly (Blazor WebAssembly).
@@ -34,13 +34,13 @@ The supplied items in this inventory group represent the concrete choices you ma
 * **Architecture target: x64**: A compilation and deployment target for 64-bit Intel and AMD processor architectures.
 * **Architecture target: Arm64**: A compilation and deployment target for 64-bit ARM processor architectures (such as Apple Silicon or ARM64 servers).
 * **Single-file deployment**: A publishing option that bundles the application and its dependencies into a single binary file to ease distribution.
-* **ReadyToRun publishing**: A compilation mode that translates intermediate language (IL) code into native machine code ahead-of-time to reduce startup latency.
-* **Native AOT publishing**: Ahead-of-time compilation that compiles .NET code directly to native machine code without relying on a JIT compiler at runtime, removing the managed runtime startup overhead.
+* **ReadyToRun publishing**: A publish option that stores precompiled native code alongside IL. The runtime can use that code and tiered compilation may later replace frequently used methods with JIT-compiled code; it is not equivalent to removing the JIT.
+* **Native AOT publishing**: A self-contained publish mode that compiles application code to native code without runtime JIT and includes required runtime libraries. Startup/memory benefits and artifact size depend on the app; dynamic loading, code generation, trimming, and reflection compatibility have limitations.
 * **RID-specific deployment**: A Runtime Identifier-specific deployment that targets a precise operating system and architecture combination (e.g., `linux-x64`).
-* **Runtime roll-forward**: The policy that allows an application to execute on a newer patch or major version of the .NET runtime if the exact target version is missing.
-* **SDK roll-forward**: The behavior where the .NET SDK automatically selects a newer patch or feature band SDK version to build a project.
+* **Runtime roll-forward**: Runtime selection rules for a framework-dependent app when choosing installed runtimes. Patch roll-forward is normally automatic; minor/major behavior can be configured and should be checked against current runtime documentation.
+* **SDK roll-forward**: The behavior configured by SDK resolution rules (including `global.json`) to select an installed SDK when the requested version is missing or later versions are permitted.
 * **Global.json SDK selection**: A configuration file mechanism (`global.json`) used to lock down a specific .NET SDK version for a repository or directory.
-* **Container-based .NET deployment**: Packaging a .NET application, its dependencies, and runtime inside an isolated container image (such as Docker) for deployment.
+* **Container-based .NET deployment**: Packaging an app and its dependencies in a container image. Depending on the selected base image and deployment mode, the runtime can be in the image or bundled with the app.
 * **Operating system support versus API support**: The boundary between whether an OS can host the runtime versus whether a specific framework API (like Windows UI APIs) is available.
 * **Application stack versus base runtime**: The distinction between the specialized domain libraries you write against (web, desktop) and the foundational virtual machine execution environment.
 
@@ -48,9 +48,9 @@ The supplied items in this inventory group represent the concrete choices you ma
 
 # Cross-item comparison
 
-* **Single-file deployment** vs **Native AOT publishing**: Single-file packages your assemblies and sometimes the runtime into one container file, but it still relies on the standard JIT runtime to execute. Native AOT strips out the JIT compiler entirely and compiles straight to native code, resulting in fast startup and smaller footprints, but with limitations on dynamic reflection and runtime code generation.
-* **Runtime roll-forward** vs **SDK roll-forward**: Runtime roll-forward controls *execution* (allowing a deployed app to run on a newer installed runtime patch/version), whereas SDK roll-forward controls *building* (allowing the CLI to use a newer installed SDK version than requested).
-* **Windows-only application framework** (e.g., Windows Forms, WPF) vs **Cross-platform application** (e.g., Console application, Worker Service, .NET MAUI): Windows-only frameworks are hard-tied to Win32/DirectX APIs and cannot target Linux or macOS. Cross-platform application stacks abstract away the OS layer to compile and run across various host environments.
+* **Single-file deployment** vs **Native AOT publishing**: Single-file bundles application-dependent files into one file and can be framework-dependent or self-contained; it does not by itself remove the JIT runtime. Native AOT produces self-contained native code without runtime JIT, with limitations including dynamic loading, code generation, and trimming-sensitive reflection. Size and startup effects depend on the app and configuration.
+* **Runtime roll-forward** vs **SDK roll-forward**: Runtime selection controls execution of framework-dependent apps (patch roll-forward is normally automatic); SDK selection controls the CLI/toolchain and may be configured in `global.json`. They are separate policies.
+* **Windows-only application framework** (e.g., Windows Forms, WPF) vs **Cross-platform application** (e.g., Console application, Worker Service, .NET MAUI): Windows Forms and WPF target Windows. Cross-platform support still depends on the selected workload, TFM, dependencies, native components, and host environment; an application type is not automatically portable merely because the base runtime is cross-platform.
 * **Application stack versus base runtime**: The base runtime provides memory management, type safety, and JIT compilation common to all programs. An application stack builds on top of this runtime to provide specific patterns, like HTTP routing for ASP.NET Core or window management for WPF.
 
 ---
@@ -64,13 +64,13 @@ The supplied items in this inventory group represent the concrete choices you ma
 <Project Sdk="Microsoft.NET.Sdk">
   <!-- This project defines an ASP.NET Core Web API cross-platform application stack -->
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>net11.0</TargetFramework>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <SelfContained>true</SelfContained>
   </PropertyGroup>
 </Project>
 ```
-*Expected result:* Configures the build process to target .NET 10.0 (`net10.0`), produce a self-contained deployment package, and lock the output specifically to the `linux-x64` Runtime Identifier (RID).
+*Expected result:* Configures the project to target the `net11.0` API surface and publish for `linux-x64` with the runtime included. The output requires a compatible Linux x64 host and native dependencies; it is not host-independent.
 
 ### Example 2: Forcing an Exact SDK Version with global.json
 *(Unverified snippet)*
@@ -83,7 +83,7 @@ The supplied items in this inventory group represent the concrete choices you ma
   }
 }
 ```
-*Expected result:* Prevents SDK roll-forward behavior. If version `11.0.100` of the .NET SDK is missing on the machine, the build fails rather than automatically picking up a newer patch release.
+*Expected result:* Requires the exact SDK version `11.0.100` under the `disable` policy; if that version is unavailable, SDK resolution fails rather than selecting another installed SDK.
 
 ---
 
@@ -91,7 +91,7 @@ The supplied items in this inventory group represent the concrete choices you ma
 
 * **Confusing Operating System Support with API Support:** Assuming that because a machine can install the .NET runtime, a Windows-only application framework (like Windows Forms) will execute on Linux. The runtime works cross-platform, but UI frameworks may rely on OS-specific subsystems [https://learn.microsoft.com/en-us/dotnet/core/introduction](https://learn.microsoft.com/en-us/dotnet/core/introduction).
 * **Misunderstanding Native AOT Reflection Limits:** Assuming Native AOT publishing works out-of-the-box with heavy dynamic assembly generation or complex reflection frameworks without configuration. Native AOT requires trimming compatibility and explicit code annotations.
-* **Ignoring Roll-Forward Risks in Production:** Relying completely on default runtime roll-forward behaviors in strict production environments without pinning versions or containers, leading to unverified runtime updates during deployments.
+* **Ignoring Roll-Forward Configuration:** Confusing SDK pinning with runtime selection, or assuming a framework-dependent app requires an exact patch version. Check deployment mode and runtime configuration before diagnosing version compatibility.
 
 ---
 
@@ -107,4 +107,4 @@ The supplied items in this inventory group represent the concrete choices you ma
    **Answer:** It locks down or guides **SDK roll-forward** and exact version selection, forcing the .NET CLI to use a specified SDK version when building code in that directory tree.
 
 4. **Question:** Why would you choose a Worker Service instead of a Console application?  
-   **Answer:** A Worker Service provides a built-in hosting framework pattern (including dependency injection, logging, and graceful shutdown handling out-of-the-box) optimized for long-running background tasks, whereas a basic Console application runs linearly and exits unless explicitly structured otherwise.
+   **Answer:** The Worker Service template provides a Generic Host-based starting point for a long-running background process. A console application can also use the Generic Host and run background work; the distinction is project setup and conventions, not an inability of console apps to host services.

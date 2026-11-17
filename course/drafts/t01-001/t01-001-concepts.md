@@ -17,7 +17,7 @@
 * Understanding that software needs an environment (a "runtime") to execute instructions on a computer.
 
 ## Core concepts
-The .NET platform is a collection of tools, libraries, and runtime environments that allow you to build and run applications. Think of it like a kitchen:
+The .NET platform brings together languages, compilers, libraries, runtimes, developer tools, and application stacks for building and running applications. Think of it like a kitchen:
 * **The Language (C#):** The recipe.
 * **The SDK (Software Development Kit):** The collection of tools (knives, pans, oven) used to prepare the meal.
 * **The Runtime:** The actual environment where the meal is cooked and served.
@@ -50,7 +50,7 @@ The relationship between these parts is defined by the build-to-run lifecycle:
     * **Correction:** You only need the **Runtime** to run an app. The SDK is only for developers.
 * **Misconception:** ".NET Standard is a runtime."
     * **Correction:** .NET Standard is just an API specification. It ensures that libraries can be shared across different .NET implementations (like modern .NET and .NET Framework).
-* **Edge Case:** **Runtime Identifiers (RID).** While the TFM handles API compatibility, the RID handles platform-specific details (e.g., `linux-x64` vs `win-arm64`). You need an RID if you are doing a "Self-contained" deployment.
+* **Runtime Identifier (RID):** A RID identifies a target platform and selects platform-specific package assets. Self-contained deployment commonly uses a RID, but RID usage is not limited to that mode and exact publishing requirements depend on SDK version and publish settings.
 
 ## Knowledge checks with answers
 
@@ -64,6 +64,6 @@ The relationship between these parts is defined by the build-to-run lifecycle:
 *Answer:* False. .NET Standard is an API specification for library compatibility, not a runtime or a replacement for modern .NET.
 
 **4. What is the difference between an LTS and an STS release?**
-*Answer:* LTS (Long Term Support) releases are supported for a longer duration (typically 3 years), making them ideal for stable, long-term projects. STS (Standard Term Support) releases have a shorter support lifecycle and are for users who want the latest features quickly.
+*Answer:* As of 2026-11-17, .NET 10 LTS and .NET 11 STS are both supported until November 2028. Under Microsoft's current policy, STS lasts 24 months; LTS lasts at least three years or until one year after the next LTS release, whichever is later. Choose based on lifecycle and upgrade constraints.
 
 *Source: [Microsoft .NET Architecture and Lifecycle Documentation](https://learn.microsoft.com/en-us/dotnet/core/introduction)*

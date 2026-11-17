@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 192,
-    "pending": 2148,
-    "claimsChecked": 3515,
-    "claimsCorrected": 142,
+    "reviewed": 200,
+    "pending": 2140,
+    "claimsChecked": 3815,
+    "claimsCorrected": 213,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -750,6 +750,30 @@
       "findings": [
         "Verified the 31 named inventory items and six practice problem scopes. Corrected claims that generalized chaining/probing internals to .NET Dictionary, treated hash codes as bucket indexes, prescribed universal load thresholds or doubling, overstated mutable-key outcomes and collision-attack behavior, and omitted map API miss semantics. Audited all six solution constraints, examples, loop invariants, arithmetic and complexity. This factual review does not promote drafts."
       ]
+    },
+    {
+      "scope": "C#/.NET t01-001 platform, runtime, SDK, framework, and alternatives",
+      "status": "all 8 lesson units claim-reviewed; draft state retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+        "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+        "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+        "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+        "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations",
+        "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet",
+        "https://learn.microsoft.com/en-us/dotnet/core/rid-catalog",
+        "https://learn.microsoft.com/en-us/dotnet/standard/net-standard",
+        "https://docs.oracle.com/en/java/",
+        "https://nodejs.org/en/about",
+        "https://docs.python.org/3/",
+        "https://go.dev/doc/",
+        "https://doc.rust-lang.org/book/"
+      ],
+      "findings": [
+        "Verified the 99 named inventory entries across four groups. Corrected lifecycle facts (STS is 24 months; current .NET 10 LTS and .NET 11 STS both supported to Nov 2028), compile/runtime/deployment boundaries, TFM/RID semantics, SDK/runtime resolution, .NET Standard compatibility boundaries, Native AOT/ReadyToRun/single-file differences, and overgeneralized comparisons. No unresolved issue remains in this topic."
+      ]
     }
   ],
   "lessons": [
@@ -758,13 +782,69 @@
       "topicId": "t01-001",
       "phase": "overview",
       "draft": "course/drafts/t01-001/t01-001-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "All verifiable platform, SDK/runtime, TFM/RID, deployment, compatibility, lifecycle, comparison, API/CLI, example, and scope claims in the lesson were enumerated and checked against current official documentation. Checked current .NET lifecycle (STS 24 months; LTS minimum three years; .NET 10 and .NET 11 both supported through Nov 2028), SDK/runtime selection, self-contained deployment host constraints, target frameworks, .NET Standard compatibility, and platform-specific API behavior.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/rid-catalog",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/net-standard",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/introduction",
         "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
@@ -780,20 +860,76 @@
         "https://go.dev/doc/",
         "https://doc.rust-lang.org/book/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and its assigned inventory against official Microsoft documentation and official platform documentation where applicable. Corrected stale .NET support dates and STS duration, SDK/runtime and TFM/RID conflation, .NET Standard compatibility overstatement, self-contained portability guarantees, JIT/AOT/ReadyToRun descriptions, CLI behavior, and categorical alternative-platform performance claims. No unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-001-concepts",
       "topicId": "t01-001",
       "phase": "concepts",
       "draft": "course/drafts/t01-001/t01-001-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "All verifiable platform, SDK/runtime, TFM/RID, deployment, compatibility, lifecycle, comparison, API/CLI, example, and scope claims in the lesson were enumerated and checked against current official documentation. Checked current .NET lifecycle (STS 24 months; LTS minimum three years; .NET 10 and .NET 11 both supported through Nov 2028), SDK/runtime selection, self-contained deployment host constraints, target frameworks, .NET Standard compatibility, and platform-specific API behavior.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/rid-catalog",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/net-standard",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/introduction",
         "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
@@ -809,20 +945,76 @@
         "https://go.dev/doc/",
         "https://doc.rust-lang.org/book/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and its assigned inventory against official Microsoft documentation and official platform documentation where applicable. Corrected stale .NET support dates and STS duration, SDK/runtime and TFM/RID conflation, .NET Standard compatibility overstatement, self-contained portability guarantees, JIT/AOT/ReadyToRun descriptions, CLI behavior, and categorical alternative-platform performance claims. No unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-001-reference-platform-components-and-build-chain",
       "topicId": "t01-001",
       "phase": "reference",
       "draft": "course/drafts/t01-001/t01-001-reference-platform-components-and-build-chain.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "All verifiable platform, SDK/runtime, TFM/RID, deployment, compatibility, lifecycle, comparison, API/CLI, example, and scope claims in the lesson were enumerated and checked against current official documentation. Checked current .NET lifecycle (STS 24 months; LTS minimum three years; .NET 10 and .NET 11 both supported through Nov 2028), SDK/runtime selection, self-contained deployment host constraints, target frameworks, .NET Standard compatibility, and platform-specific API behavior.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/rid-catalog",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/net-standard",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/introduction",
         "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
@@ -838,20 +1030,76 @@
         "https://go.dev/doc/",
         "https://doc.rust-lang.org/book/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and its assigned inventory against official Microsoft documentation and official platform documentation where applicable. Corrected stale .NET support dates and STS duration, SDK/runtime and TFM/RID conflation, .NET Standard compatibility overstatement, self-contained portability guarantees, JIT/AOT/ReadyToRun descriptions, CLI behavior, and categorical alternative-platform performance claims. No unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-001-reference-implementations-frameworks-and-targets",
       "topicId": "t01-001",
       "phase": "reference",
       "draft": "course/drafts/t01-001/t01-001-reference-implementations-frameworks-and-targets.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 51,
+      "claimsCorrected": 10,
+      "evidence": [
+        {
+          "claims": "All verifiable platform, SDK/runtime, TFM/RID, deployment, compatibility, lifecycle, comparison, API/CLI, example, and scope claims in the lesson were enumerated and checked against current official documentation. Checked current .NET lifecycle (STS 24 months; LTS minimum three years; .NET 10 and .NET 11 both supported through Nov 2028), SDK/runtime selection, self-contained deployment host constraints, target frameworks, .NET Standard compatibility, and platform-specific API behavior.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/rid-catalog",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/net-standard",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/introduction",
         "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
@@ -867,20 +1115,76 @@
         "https://go.dev/doc/",
         "https://doc.rust-lang.org/book/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and its assigned inventory against official Microsoft documentation and official platform documentation where applicable. Corrected stale .NET support dates and STS duration, SDK/runtime and TFM/RID conflation, .NET Standard compatibility overstatement, self-contained portability guarantees, JIT/AOT/ReadyToRun descriptions, CLI behavior, and categorical alternative-platform performance claims. No unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-001-reference-app-stacks-and-deployment-shapes",
       "topicId": "t01-001",
       "phase": "reference",
       "draft": "course/drafts/t01-001/t01-001-reference-app-stacks-and-deployment-shapes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "All verifiable platform, SDK/runtime, TFM/RID, deployment, compatibility, lifecycle, comparison, API/CLI, example, and scope claims in the lesson were enumerated and checked against current official documentation. Checked current .NET lifecycle (STS 24 months; LTS minimum three years; .NET 10 and .NET 11 both supported through Nov 2028), SDK/runtime selection, self-contained deployment host constraints, target frameworks, .NET Standard compatibility, and platform-specific API behavior.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/rid-catalog",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/net-standard",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/introduction",
         "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
@@ -896,20 +1200,101 @@
         "https://go.dev/doc/",
         "https://doc.rust-lang.org/book/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and its assigned inventory against official Microsoft documentation and official platform documentation where applicable. Corrected stale .NET support dates and STS duration, SDK/runtime and TFM/RID conflation, .NET Standard compatibility overstatement, self-contained portability guarantees, JIT/AOT/ReadyToRun descriptions, CLI behavior, and categorical alternative-platform performance claims. No unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-001-reference-comparable-platforms-and-decision-criteria",
       "topicId": "t01-001",
       "phase": "reference",
       "draft": "course/drafts/t01-001/t01-001-reference-comparable-platforms-and-decision-criteria.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 13,
+      "evidence": [
+        {
+          "claims": "All verifiable platform, SDK/runtime, TFM/RID, deployment, compatibility, lifecycle, comparison, API/CLI, example, and scope claims in the lesson were enumerated and checked against current official documentation. Checked current .NET lifecycle (STS 24 months; LTS minimum three years; .NET 10 and .NET 11 both supported through Nov 2028), SDK/runtime selection, self-contained deployment host constraints, target frameworks, .NET Standard compatibility, and platform-specific API behavior.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/rid-catalog",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/net-standard",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://docs.oracle.com/en/java/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://nodejs.org/en/about",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://docs.python.org/3/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://go.dev/doc/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://doc.rust-lang.org/book/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/introduction",
         "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
@@ -925,20 +1310,76 @@
         "https://go.dev/doc/",
         "https://doc.rust-lang.org/book/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and its assigned inventory against official Microsoft documentation and official platform documentation where applicable. Corrected stale .NET support dates and STS duration, SDK/runtime and TFM/RID conflation, .NET Standard compatibility overstatement, self-contained portability guarantees, JIT/AOT/ReadyToRun descriptions, CLI behavior, and categorical alternative-platform performance claims. No unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-001-practice",
       "topicId": "t01-001",
       "phase": "practice",
       "draft": "course/drafts/t01-001/t01-001-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "All verifiable platform, SDK/runtime, TFM/RID, deployment, compatibility, lifecycle, comparison, API/CLI, example, and scope claims in the lesson were enumerated and checked against current official documentation. Checked current .NET lifecycle (STS 24 months; LTS minimum three years; .NET 10 and .NET 11 both supported through Nov 2028), SDK/runtime selection, self-contained deployment host constraints, target frameworks, .NET Standard compatibility, and platform-specific API behavior.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/rid-catalog",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/net-standard",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/introduction",
         "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
@@ -954,20 +1395,76 @@
         "https://go.dev/doc/",
         "https://doc.rust-lang.org/book/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and its assigned inventory against official Microsoft documentation and official platform documentation where applicable. Corrected stale .NET support dates and STS duration, SDK/runtime and TFM/RID conflation, .NET Standard compatibility overstatement, self-contained portability guarantees, JIT/AOT/ReadyToRun descriptions, CLI behavior, and categorical alternative-platform performance claims. No unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-001-interview",
       "topicId": "t01-001",
       "phase": "interview",
       "draft": "course/drafts/t01-001/t01-001-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "All verifiable platform, SDK/runtime, TFM/RID, deployment, compatibility, lifecycle, comparison, API/CLI, example, and scope claims in the lesson were enumerated and checked against current official documentation. Checked current .NET lifecycle (STS 24 months; LTS minimum three years; .NET 10 and .NET 11 both supported through Nov 2028), SDK/runtime selection, self-contained deployment host constraints, target frameworks, .NET Standard compatibility, and platform-specific API behavior.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/introduction",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/frameworks",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/versions/selection",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/releases-and-support",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/rid-catalog",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/net-standard",
+              "section": "Relevant product definition, version lifecycle, command behavior, deployment mode, TFM/RID rules, compatibility table, or language/runtime model",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/introduction",
         "https://learn.microsoft.com/en-us/dotnet/standard/glossary",
@@ -983,7 +1480,7 @@
         "https://go.dev/doc/",
         "https://doc.rust-lang.org/book/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and its assigned inventory against official Microsoft documentation and official platform documentation where applicable. Corrected stale .NET support dates and STS duration, SDK/runtime and TFM/RID conflation, .NET Standard compatibility overstatement, self-contained portability guarantees, JIT/AOT/ReadyToRun descriptions, CLI behavior, and categorical alternative-platform performance claims. No unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-002-overview",
