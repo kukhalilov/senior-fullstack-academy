@@ -4,7 +4,7 @@
 
 Modern applications import many modules and assets. A build tool resolves that dependency graph, transforms source syntax and assets, and creates output that the chosen runtime or browser can load. During development, tools also watch files and serve fast feedback. Those capabilities overlap, but the tools are not interchangeable.
 
-As of 2026-11-16, Vite 8 is stable and uses Rolldown as its unified bundler; Rspack 2 is stable; Turbopack is integrated into Next.js; and TypeScript's `tsc` remains a type checker/emitter rather than an application bundler. This lesson reflects current official docs and explains major tool changes without treating benchmark claims as universal. [Vite 8](https://vite.dev/blog/announcing-vite8.html) · [Rspack 2](https://rspack.rs/blog/announcing-2-0) · [Next.js Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack)
+As of 2026-11-17, Vite 8.1 is current in the checked release notes and uses Rolldown as its unified bundler; its 8.1 bundled development mode is experimental. Rspack 2.3 is stable; Next.js 16 makes Turbopack the default bundler for development and builds (with `--webpack` opt-out); and TypeScript's `tsc` remains a type checker/emitter rather than an application bundler. [Vite 8.1](https://vite.dev/blog/announcing-vite8-1) · [Rspack 2.3](https://rspack.rs/blog/announcing-2-3) · [Next.js Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack)
 
 ## Plain-language mental model
 
@@ -51,7 +51,7 @@ The entry point imports executable code and CSS. The selected tool must resolve 
 
 ## When to use it and tradeoffs
 
-Use Vite when its integrated app workflow and plugin ecosystem fit; understand that Vite 8 now uses Rolldown and migration notes call out incompatibilities. Use Webpack when its loader/plugin flexibility or existing ecosystem is a core requirement. Rollup suits statically analyzable module/library outputs. esbuild is excellent for fast transforms and builds but does not provide HMR. Parcel favors integrated, low-configuration asset handling. Rspack helps migrate webpack-shaped projects toward native performance. Turbopack is a Next.js-integrated choice. Rolldown is a standalone Rollup-compatible bundler. Bun.build is a runtime-coupled API/CLI.
+Use Vite when its integrated app workflow and plugin ecosystem fit; understand that Vite 8 uses Rolldown and migration notes call out incompatibilities. Evaluate Vite 8.1 experimental bundled dev mode separately from the default workflow. Use Webpack when its loader/plugin flexibility or existing ecosystem is a core requirement. Rollup suits statically analyzable module/library outputs. esbuild is excellent for fast transforms and builds but does not provide HMR. Parcel favors integrated, low-configuration asset handling. Rspack helps migrate webpack-shaped projects toward native performance. Turbopack is a Next.js-integrated choice. Rolldown is a standalone Rollup-compatible bundler. Bun.build is a runtime-coupled API/CLI.
 
 Choose by required behavior and compatibility, not only speed. Compare the same workload, cold/warm cache state, source maps, plugins, targets, and optimization settings. Never place private credentials in client-side environment replacement.
 

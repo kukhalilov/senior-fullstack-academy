@@ -161,6 +161,16 @@
       ]
     },
     {
+      "edition": "Vite 8.1 (2026-06)",
+      "items": [
+        "Experimental bundled development mode is available for very large applications; default unbundled development remains distinct",
+        "Vite 8.1 is a minor release on the Rolldown/Oxc architecture; verify exact feature maturity before relying on experimental mode"
+      ],
+      "sourceUrls": [
+        "https://vite.dev/blog/announcing-vite8-1"
+      ]
+    },
+    {
       "edition": "Webpack 5 versus 4",
       "items": [
         "Persistent filesystem caching",
@@ -195,23 +205,26 @@
       ]
     },
     {
-      "edition": "Turbopack in current Next.js documentation (checked 2026-11-16)",
+      "edition": "Next.js 16 Turbopack default (2026)",
       "items": [
-        "Default Next.js bundler for development and available for production build; it is framework-integrated, not a general webpack-plugin-compatible standalone replacement"
+        "Turbopack becomes the default bundler for Next.js 16 development and builds; --webpack opts out",
+        "It is framework-integrated, not a general webpack-plugin-compatible standalone replacement"
       ],
       "sourceUrls": [
         "https://nextjs.org/docs/pages/api-reference/turbopack",
-        "https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack"
+        "https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack",
+        "https://nextjs.org/docs/app/api-reference/cli/next"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Official Vite, Webpack, Rollup, esbuild, Parcel, Rspack, Next.js/Turbopack, Rolldown, Bun, and TypeScript documentation",
-    "edition": "Current stable tool documentation checked 2026-11-16; Parcel 3 alpha labeled separately",
-    "checkedAt": "2026-11-16",
+    "edition": "Current stable tool documentation checked 2026-11-17; Parcel 3 alpha labeled separately",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://vite.dev/guide/",
       "https://vite.dev/blog/announcing-vite8.html",
+      "https://vite.dev/blog/announcing-vite8-1",
       "https://vite.dev/guide/migration",
       "https://v8.vite.dev/guide/api-plugin",
       "https://webpack.js.org/concepts/",
@@ -231,6 +244,7 @@
       "https://rspack.rs/guide/migration/rspack_1.x",
       "https://nextjs.org/docs/pages/api-reference/turbopack",
       "https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack",
+      "https://nextjs.org/docs/app/api-reference/cli/next",
       "https://rolldown.rs/guide/introduction",
       "https://rolldown.rs/guide/",
       "https://bun.sh/docs/bundler",
@@ -244,13 +258,13 @@
     ]
   },
   "accuracyFacts": [
-    "Vite 8 stable was released March 12, 2026. It uses Rolldown as its unified bundler and Oxc-based transforms instead of the previous esbuild dependency optimization/Rollup production split; migration documentation lists unsupported hooks/options and behavior changes, so plugin compatibility is not absolute.",
+    "Vite 8 stable was released March 12, 2026. It uses Rolldown as its unified bundler and Oxc-based transforms instead of the previous esbuild dependency optimization/Rollup production split; migration documentation lists unsupported hooks/options and behavior changes, so plugin compatibility is not absolute. Vite 8.1 (June 23, 2026) adds experimental bundled development mode for very large applications; do not imply this experimental mode is the default.",
     "Webpack 5 is a configurable application bundler with loader-based module transforms and a broad plugin ecosystem; webpack-dev-server is a separate companion package and HMR behavior depends on accepted updates/runtime integration. Compared with v4, major changes included persistent filesystem caching, Module Federation, improved tree shaking, native asset modules, and removal of automatic Node core polyfills for browser targets.",
     "Rollup emphasizes ES module graph analysis and tree shaking and commonly serves libraries; CommonJS support is supplied through plugins rather than being equivalent to Node's full resolver by default.",
     "esbuild offers fast transform/build APIs plus watch, serve, rebuild contexts, and plugins in its asynchronous JS API; its documented code splitting supports ESM output only, and its serve/watch feature is not HMR.",
     "Parcel 2 (v2.15.0) is the stable line in this snapshot; it emphasizes automatic discovery, integrated asset processing, dev server/hot reload, caching, and targets. Parcel 3 alpha was announced 2026-11-04 as a Rust rewrite with native plugin ABI and centralized configuration; alpha docs list .d.ts generation, custom bundler plugins, and a programmatic JavaScript API as incomplete. Do not teach Parcel 3 alpha as production stable.",
     "Rspack 2.3 is the latest stable minor documented on 2026-10-29. Rspack 2.0 modernized defaults and ESM/output while retaining broad webpack compatibility; 2.3 integrates the SWC Next parser and adds memory/build, split-chunk, and experimental-cache changes. Compatibility is substantial rather than perfect; some webpack plugins/loaders may need alternatives or adaptation. Rsbuild is the higher-level out-of-box tool built on Rspack.",
-    "Turbopack is integrated with Next.js and is the default bundler in current Next.js development and available for builds; it is not a general standalone webpack replacement. It supports webpack loaders through loader-runner but does not support webpack plugins, and Next docs list behavioral gaps.",
+    "Turbopack is integrated with Next.js and became the default bundler for development and builds in Next.js 16; --webpack opts out. It is not a general standalone webpack replacement. It supports selected webpack loaders through loader-runner but does not support webpack plugins, and Next docs list behavioral gaps.",
     "Rolldown is a standalone Rust bundler with a Rollup-compatible plugin interface and additional features; compatibility is not identical to Rollup, and some features remain experimental or work in progress. Vite 8 embeds it as its bundler.",
     "Bun.build is Bun's native bundler API/CLI and is integrated with the Bun runtime and plugins. Some options/features have maturity/target-specific caveats; its docs should be checked before using it as a browser or Node deployment pipeline.",
     "The TypeScript compiler (tsc) type-checks and emits JavaScript/declarations but is not an application bundler: it does not bundle an imported dependency graph into application chunks. Pair it with a bundler when bundling is required.",
@@ -262,7 +276,7 @@
     "Development proxy/server behavior is for local development; preview serves a built output locally and does not necessarily reproduce production hosting/CDN/server behavior.",
     "Source transformation such as TypeScript/JSX transpilation is not the same as static type checking. Bundlers often strip TS syntax without reporting all type errors; use tsc or another checker separately.",
     "Build speed and size claims are workload-dependent. Compare cold/warm cache behavior, identical targets, plugins, source maps, minification, and output requirements rather than treating vendor benchmarks as universal.",
-    "Turbopack is integrated with Next.js and is the default bundler in current Next.js docs, with dev and build commands. It is not a general standalone webpack replacement. It supports webpack loaders through loader-runner with documented missing features, but does not support webpack plugins."
+    "Turbopack is integrated with Next.js and is the default bundler in Next.js 16 docs for dev and build commands, with --webpack as opt-out. It is not a general standalone webpack replacement. It supports webpack loaders through loader-runner with documented missing features, but does not support webpack plugins."
   ],
   "scopeExclusions": [
     "Exhaustive per-product configuration option references; each selected tool's official options reference is cited for follow-on detail",

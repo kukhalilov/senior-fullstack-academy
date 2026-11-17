@@ -22,7 +22,7 @@ An entry point anchors graph traversal. Imports create edges; assets such as CSS
 
 A development server serves application resources and may proxy API requests. Watch mode notices changes. Incremental rebuild reuses prior work. Lazy compilation builds resources when requested. HMR attempts to replace modules while retaining page/application state; it only works when the changed module and its import chain accept the update. A failed/unaccepted update can cause a full reload. A tool that serves rebuilt files is not automatically an HMR implementation.
 
-Vite traditionally serves native ESM during development and pre-bundles dependencies to reduce many-file/network overhead. Vite 8 unifies bundling with Rolldown and uses Oxc-based transforms; its migration guide documents changed options and unsupported hooks. Webpack HMR is mediated by its runtime and dev-server companion. Parcel integrates dev serving/hot reload. esbuild supplies serve/watch contexts but not HMR. Turbopack incrementally and lazily bundles within Next.js. [Vite 8 migration](https://vite.dev/guide/migration) · [Webpack HMR](https://webpack.js.org/concepts/hot-module-replacement) · [esbuild API](https://esbuild.github.io/api/)
+Vite traditionally serves native ESM during development and pre-bundles dependencies to reduce many-file/network overhead. Vite 8 unifies bundling with Rolldown and uses Oxc-based transforms; its migration guide documents changed options and unsupported hooks. Vite 8.1 adds experimental bundled development for very large applications; this is not the default workflow. Webpack HMR is mediated by its runtime and dev-server companion. Parcel integrates dev serving/hot reload. esbuild supplies serve/watch contexts but not HMR. Turbopack incrementally and lazily bundles within Next.js; in Next.js 16 it is the default for dev and build, with `--webpack` as opt-out. [Vite 8 migration](https://vite.dev/guide/migration) · [Webpack HMR](https://webpack.js.org/concepts/hot-module-replacement) · [esbuild API](https://esbuild.github.io/api/)
 
 ### Production output
 
@@ -36,7 +36,7 @@ Production builds choose output targets and formats, transform syntax/assets, sp
 - **esbuild** focuses on speed and combines transform/build APIs. Its code splitting is ESM-only in current docs; serve/watch is not HMR.
 - **Parcel 2** emphasizes automatic discovery and integrated processing for HTML/apps/libraries.
 - **Rspack 2** aims at webpack API compatibility with a Rust implementation, but compatibility and migration still need checks; Rsbuild is its higher-level counterpart.
-- **Turbopack** is built into Next.js. It supports webpack loaders through a compatibility layer but not webpack plugins.
+- **Turbopack** is built into Next.js and is the default bundler starting in Next.js 16 (dev and build; `--webpack` opts out). It supports selected webpack loaders through a compatibility layer but not webpack plugins.
 - **Rolldown** is a standalone Rust bundler with a largely Rollup-compatible plugin API and its own additional features/maturity caveats.
 - **Bun.build** is Bun's API/CLI, with target-specific and evolving runtime-coupled features.
 - **`tsc`** parses, type-checks, and emits source/declarations; it does not bundle an application dependency graph into chunks. [TypeScript modules](https://www.typescriptlang.org/docs/handbook/modules/reference.html)
@@ -102,4 +102,4 @@ The bundler transforms TypeScript syntax for output; `tsc --noEmit` checks types
 3. **Why can tree shaking remove required CSS?** Incorrect side-effect metadata can tell the optimizer that CSS imports are safe to drop.
 4. **Does a bundler's TS transform prove the code type-checks?** Not necessarily; run `tsc` or another checker separately.
 5. **Is Turbopack a standalone Webpack replacement?** No; it is integrated with Next.js and lacks webpack plugin support.
-6. **What changed in Vite 8?** Rolldown became its unified bundler, replacing the prior esbuild/Rollup split; migration exceptions remain.
+6. **What changed in Vite 8 and 8.1?** Vite 8 unified bundling on Rolldown with Oxc-based transforms; Vite 8.1 added experimental bundled dev mode, which is not the default.
