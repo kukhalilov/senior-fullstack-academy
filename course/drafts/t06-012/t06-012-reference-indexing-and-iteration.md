@@ -49,6 +49,8 @@ console.log([...iterator]); // [2, 3]
 
 The iterator sees the appended item because it checks the current length as it continues.
 
+This live-length rule contrasts with callback traversals such as `map`, `forEach`, and `reduce`, which capture the starting length once and do not visit newly appended indexes beyond that boundary.
+
 ## Common mistakes
 
 - Assuming `keys()` yields only indexes with present properties; it yields each position below length.

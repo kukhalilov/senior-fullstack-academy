@@ -18,6 +18,8 @@ These methods invoke a callback for present indexed properties while traversing 
 
 These methods capture the initial length, but a callback can mutate values and properties that have not yet been visited. Appended indexes beyond the initial length are not visited; deleted indexes that are absent when reached are skipped.
 
+This differs from Array iterators, which consult the receiver's current length as each `next()` call advances. Appending during a callback traversal does not extend that pass, while appending before a live iterator is exhausted can produce an additional value.
+
 ## Cross-item comparison
 
 | Method | Direction | Result | Empty traversal |

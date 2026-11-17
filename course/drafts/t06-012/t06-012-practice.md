@@ -205,11 +205,13 @@ console.log(events); // ["start 2", "end 2", "start 4", "end 4"]
 
 ## Reflection questions
 
-1. Why should a method choice be based on hole behavior as well as return value?
-2. When is `includes` a better choice than `indexOf`?
-3. Which operations in the exercise mutate, and how can aliases reveal it?
-4. Why is `Array.fromAsync` sequential rather than a concurrent mapper?
-5. What kinds of bugs can a custom species constructor introduce?
+Answers follow each question.
+
+1. **Why should a method choice be based on hole behavior as well as return value?** Sparse slots can be skipped, read as `undefined`, preserved, or materialized depending on the method, which can change callbacks, search results, and output shape.
+2. **When is `includes` a better choice than `indexOf`?** When a Boolean answer is enough, especially when searching for `NaN` or treating holes read as `undefined` as matches; use `indexOf` when the matching index is required.
+3. **Which operations in the exercise mutate, and how can aliases reveal it?** `splice`, `sort`, and other in-place methods mutate the same object, so a second variable referencing that Array observes the change; copy-by-change methods leave the original unchanged.
+4. **Why is `Array.fromAsync` sequential rather than a concurrent mapper?** Its algorithm awaits each iterator value and mapper result before advancing to the next element, preserving ordered consumption and backpressure; concurrency requires an explicit separate strategy.
+5. **What kinds of bugs can a custom species constructor introduce?** It can return an unexpected result type, violate assumptions made by a method, throw during result creation, or execute surprising constructor code when legacy methods create outputs.
 
 ## Sources
 

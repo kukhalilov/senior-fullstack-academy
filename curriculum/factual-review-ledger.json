@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 760,
-    "pending": 1581,
-    "claimsChecked": 26687,
-    "claimsCorrected": 1451,
+    "reviewed": 774,
+    "pending": 1567,
+    "claimsChecked": 27784,
+    "claimsCorrected": 1456,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 760,
-    "pendingLessons": 1581
+    "reviewedLessons": 774,
+    "pendingLessons": 1567
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1289,6 +1289,28 @@
       ],
       "findings": [
         "Reviewed all 35 manifest inventory entries and all seven lesson files against ECMA-262 2026, WHATWG HTML Living Standard, current Node ESM docs, and MDN. Verified import/export forms, live bindings, namespace objects, graph/link/evaluation behavior, cycles, dynamic import, top-level await, import.meta host hooks, HostLoadImportedModule, and import-attribute rules. Corrected an overstatement that the ES2026 host hook requires a JSON parse module record universally; clarified that hosts declare supported attribute keys and control supported-key semantics/resource loading. Completed missing answers to five practice reflection questions. No unresolved scope omissions remain; lessons stay drafts pending full-curriculum audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "JavaScript Arrays full inventory and lesson audit (t06-012)",
+      "status": "full claim and frozen-inventory audit complete for all 14 lessons",
+      "sources": [
+        "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+        "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+        "https://tc39.es/ecma402/2026/",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+        "https://github.com/tc39/proposal-array-from-async",
+        "https://github.com/tc39/proposal-change-array-by-copy",
+        "https://tc39.es/ecma262/2019/",
+        "https://tc39.es/ecma262/2022/",
+        "https://tc39.es/ecma262/2023/",
+        "https://tc39.es/ecma262/2024/multipage/indexed-collections.html"
+      ],
+      "findings": [
+        "Checked all 59 frozen inventory entries and all 14 lesson files against ECMA-262 2026 indexed collections/Array exotic semantics, ECMA-402, MDN Array references, and TC39 proposals/history. Covered array-index boundary and length range, constructors, Array.from/fromAsync, sparse holes and inherited indexes, iterator and callback traversal, every supplied method, sort stability/order, species, and locale conversion. Added exact length validation and explicit iterator-versus-callback traversal comparison. Added answers to all five previously unanswered practice reflection questions. Parsed all 35 self-contained JavaScript examples, including async syntax in async wrappers, and directly checked Array length/index boundary behavior on Node. No unresolved scope omissions remain; lessons stay drafts pending full-curriculum audit."
       ]
     }
   ],
@@ -51008,13 +51030,80 @@
       "topicId": "t06-012",
       "phase": "overview",
       "draft": "course/drafts/t06-012/t06-012-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all conceptual claims on exotic length/index behavior, hole semantics, mutation/copy distinction, genericity, equality, species, and ES2019–2024 highlights against current standards and MDN. Overview model is accurate and application-oriented.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51033,20 +51122,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-concepts",
       "topicId": "t06-012",
       "phase": "concepts",
       "draft": "course/drafts/t06-012/t06-012-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 100,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked index bounds, length transitions, hole/inherited index behavior, method-family sparse semantics, iterator liveness, callback length capture, sorting, species, and examples. Added exact valid length range and explicit callback-versus-iterator comparison.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51065,20 +51221,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-reference-constructor-and-static",
       "topicId": "t06-012",
       "phase": "reference",
       "draft": "course/drafts/t06-012/t06-012-reference-constructor-and-static.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked six supplied entries and construction boundaries, iterator precedence, array-like behavior, mapper/thisArg, async iterator and await sequencing, realm-safe Array.isArray, and species. No remaining discrepancies.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51097,20 +51320,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-reference-prototype-properties",
       "topicId": "t06-012",
       "phase": "reference",
       "draft": "course/drafts/t06-012/t06-012-reference-prototype-properties.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 59,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all three prototype entries, descriptor behavior and [Symbol.unscopables]. Added exact length bounds and RangeError behavior; directly verified maximum length and index boundary in Node.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51129,20 +51419,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-reference-indexing-and-iteration",
       "topicId": "t06-012",
       "phase": "reference",
       "draft": "course/drafts/t06-012/t06-012-reference-indexing-and-iteration.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 65,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked five entries, negative-index conversion, yielded holes, iterator aliasing and live length behavior. Added comparison with callback methods’ captured initial length.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51161,20 +51518,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-reference-search-and-predicates",
       "topicId": "t06-012",
       "phase": "reference",
       "draft": "course/drafts/t06-012/t06-012-reference-search-and-predicates.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 98,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked nine methods for equality algorithms, direction, holes/inherited properties, fromIndex, captured range, short-circuiting, and empty identities against ECMA-262; examples match.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51193,20 +51617,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-reference-mapping-and-flattening",
       "topicId": "t06-012",
       "phase": "reference",
       "draft": "course/drafts/t06-012/t06-012-reference-mapping-and-flattening.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked four methods for callback order/arguments, holes, species, flattening depth, generic receivers, captured length, and result shape. Examples match.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51225,20 +51716,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-reference-copying-and-copy-by-change",
       "topicId": "t06-012",
       "phase": "reference",
       "draft": "course/drafts/t06-012/t06-012-reference-copying-and-copy-by-change.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 86,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked seven entries, species distinctions, hole preservation/densification, splice-style argument normalization, out-of-range with errors, shallow copies, stable sorting, and output types.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51257,20 +51815,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-reference-add-remove-and-size-mutations",
       "topicId": "t06-012",
       "phase": "reference",
       "draft": "course/drafts/t06-012/t06-012-reference-add-remove-and-size-mutations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 71,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all five mutation methods, return values, sparse movement, generic receivers, omitted versus explicit undefined deleteCount, and mutation alias examples.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51289,20 +51914,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-reference-in-place-rearrangement",
       "topicId": "t06-012",
       "phase": "reference",
       "draft": "course/drafts/t06-012/t06-012-reference-in-place-rearrangement.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 74,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked four supplied methods including overlap handling in copyWithin, fill reference behavior, reverse hole placement, comparator conversion, undefined/hole ordering, sort stability, and unspecified algorithm complexity.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51321,20 +52013,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-reference-callback-iteration-and-aggregation",
       "topicId": "t06-012",
       "phase": "reference",
       "draft": "course/drafts/t06-012/t06-012-reference-callback-iteration-and-aggregation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 70,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked three methods including receiver/callback arguments, captured initial length, inherited indexed properties, accumulator selection, empty/all-hole errors, short circuit and async callback non-awaiting.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51353,20 +52112,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-reference-string-conversion",
       "topicId": "t06-012",
       "phase": "reference",
       "draft": "course/drafts/t06-012/t06-012-reference-string-conversion.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 61,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked join nullish/hole behavior, toString fallback/call semantics, and ECMA-402 element formatting versus implementation-defined list separator. No unsupported serialization claim.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51385,20 +52211,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-practice",
       "topicId": "t06-012",
       "phase": "practice",
       "draft": "course/drafts/t06-012/t06-012-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 120,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all seven solutions and test statements; added complete answers to five reflection questions. Parsed all JavaScript fences; async blocks were syntax-checked in async wrappers.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51417,20 +52310,87 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-012-interview",
       "topicId": "t06-012",
       "phase": "interview",
       "draft": "course/drafts/t06-012/t06-012-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 105,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked 12 core answers, follow-ups, seven scenarios, comparison alternatives, weak-answer section, and rubric against current Array standard semantics. Answers are self-consistent.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma402/2026/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-array-from-async",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-change-array-by-copy",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2019/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/multipage/indexed-collections.html",
+              "section": "ECMA-262 current Indexed Collections algorithms and Array exotic-object definitions; ECMA-402 locale conversion; MDN/TC39 proposal history where relevant",
+              "verdict": "supported; exact-boundary and traversal clarifications incorporated"
+            }
+          ],
+          "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -51449,7 +52409,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-overview",

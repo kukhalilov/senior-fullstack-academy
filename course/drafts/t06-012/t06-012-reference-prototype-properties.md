@@ -47,6 +47,8 @@ console.log(Array.prototype.length);       // 0
 
 The constructor comparison is illustrative only; use `Array.isArray` when checking Array identity.
 
+`length` accepts only an integer in the inclusive range `0` through `2 ** 32 - 1`. Assignment of a negative, fractional, or larger value throws `RangeError`; the largest element index is one less than the maximum length.
+
 ## Common mistakes
 
 - Treating `constructor` as an unforgeable type tag.

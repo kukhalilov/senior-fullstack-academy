@@ -20,7 +20,7 @@ You should understand objects, properties, prototypes, callbacks, iterables, equ
 
 An Array is an object whose special internal property-definition behavior coordinates array-index properties with its `length`. Its `length` is a non-enumerable, non-configurable data property and is writable unless changed by property descriptors. Adding an own array-index property at or above the current length raises `length` to one more than that index. Reducing `length` deletes configurable own index properties at or beyond the new end; a non-configurable index can prevent the requested reduction from fully succeeding.
 
-The highest valid array index is `2 ** 32 - 2`; the string `"4294967295"` is not an array index. `length` may be `2 ** 32 - 1`. A property like `array[-1]` is a string-keyed ordinary property, not an element and not a reason to change `length`.
+The highest valid array index is `2 ** 32 - 2`; the string `"4294967295"` is not an array index. `length` may be `2 ** 32 - 1` and only accepts integer values in the inclusive range from 0 to that maximum; invalid assignments throw `RangeError`. A property like `array[-1]` is a string-keyed ordinary property, not an element and not a reason to change `length`.
 
 ### A hole is absent, not an explicit undefined value
 
@@ -43,7 +43,7 @@ This is a rule-of-thumb table; consult each reference item for exact behavior. I
 
 ### Iterators expose a traversal, not a snapshot
 
-`keys()`, `values()`, `entries()`, and `[Symbol.iterator]()` return iterator objects. `for...of` over an Array uses its values iterator. Array iterators consult the current length as they advance and read current indexed values, so mutation during iteration can affect future results. `at(index)` reads one position and treats negative indexes as offsets from the end; it returns `undefined` outside the range.
+`keys()`, `values()`, `entries()`, and `[Symbol.iterator]()` return iterator objects. `for...of` over an Array uses its values iterator. Array iterators consult the current length as they advance and read current indexed values, so mutation during iteration can affect future results. This differs from callback traversal methods such as `map` and `forEach`, which capture the initial length and do not visit appended indexes beyond it. `at(index)` reads one position and treats negative indexes as offsets from the end; it returns `undefined` outside the range.
 
 ### Methods vary by mutation and equality
 
