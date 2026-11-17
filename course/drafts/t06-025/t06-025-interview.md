@@ -56,6 +56,16 @@ Identify the exact old/new manager versions; translate workspace patterns, proto
 6. A published CLI must retain an exact dependency graph for its consumers. Which npm lockfile mechanism might be relevant, and what is its tradeoff?
 7. A native optional dependency is missing on one CI platform. Is that necessarily a lockfile failure? How should behavior be tested?
 
+## Scenario answer outlines
+
+1. **`npm ci` fails after a dependency edit.** Ask whether `package.json` and `package-lock.json` were both committed and whether CI uses the same tree-shaping npm configuration. Expect the contributor to run `npm install` intentionally, inspect the full lockfile diff, run project checks, and commit the updated manifest and lock together; do not replace the CI clean install with a lock-mutating command.
+2. **A React plugin loads two React copies.** Confirm React is a `peerDependency` of the plugin (often also a `devDependency` for plugin tests), inspect the application and plugin lock resolution, workspace links, aliases, and bundler deduplication. Check that peer ranges overlap and that only the host supplies the runtime singleton. A peer declaration communicates compatibility but does not itself guarantee one physical copy.
+3. **PnP exposes an undeclared package.** Check whether source imports the package directly. If so, declare it in the importing workspace; if a tool internally expects undeclared filesystem paths, use a supported Yarn SDK/compatibility configuration or select a linker the tool supports. Do not add accidental dependencies just to silence a resolution error.
+4. **Deno wrote dependencies to the wrong manifest.** Use `deno install --package-json <package>` (or the corresponding `deno add --package-json`) to force `package.json`; otherwise Deno chooses based on nearby configuration and preference settings. Review the changed manifest and `deno.lock`, then run `deno ci` to confirm the checked-in lock can be installed without changes.
+5. **Exact pins everywhere.** Exact direct pins narrow the allowed direct version but do not pin transitive dependencies, manager/runtime/compiler versions, platform-specific optional packages, lifecycle-script effects, or build inputs. Keep a lockfile and controlled update/CI workflow.
+6. **A published CLI needs a locked dependency tree.** Historically `npm-shrinkwrap.json` could be published and took precedence, but npm 12 no longer loads it. For current npm, reassess whether `bundleDependencies` or another packaging/distribution design meets the need; this bundles selected packages and increases artifact size/maintenance, and must be verified against the actual published archive.
+7. **An optional native package is missing on one CI platform.** Not necessarily: optional dependencies may be skipped or fail on unsupported OS/CPU/libc, and a lockfile does not make native builds identical. Confirm platform metadata, install logs, script approval, and fallback behavior; test each supported platform and ensure missing optional functionality is handled deliberately.
+
 ## Tradeoffs and alternatives
 
 - **npm versus pnpm:** npm's conventional layout is widely expected; pnpm emphasizes store reuse and declared dependency visibility. Decide based on ecosystem/tool compatibility and team policy, not a universal speed claim.

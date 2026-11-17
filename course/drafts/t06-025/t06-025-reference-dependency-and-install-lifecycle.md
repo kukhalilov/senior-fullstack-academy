@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This reference explains all 19 supplied declarations and commands, using current manager docs checked 2026-11-17. Commands are manager-specific. Examples use the ordinary shell; when passing flags through a package script, argument separator rules can differ. [npm package.json](https://docs.npmjs.com/cli/v12/configuring-npm/package-json/) · [npm run](https://docs.npmjs.com/cli/v12/commands/npm-run/) · [Deno dependency management](https://docs.deno.com/runtime/packages/)
+This reference explains all 22 supplied declarations and commands, using current manager docs checked 2026-11-18. Commands are manager-specific. Examples use the ordinary shell; when passing flags through a package script, argument separator rules can differ. [npm package.json](https://docs.npmjs.com/cli/v12/configuring-npm/package-json/) · [npm run](https://docs.npmjs.com/cli/v12/commands/npm-run/) · [Deno dependency management](https://docs.deno.com/runtime/packages/)
 
 ## How this group fits the mental model
 

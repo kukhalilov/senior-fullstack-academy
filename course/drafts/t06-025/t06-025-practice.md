@@ -34,6 +34,7 @@ A team changes `"date-fns": "^4.1.0"` to `"date-fns": "^4.2.0"`, runs a normal i
 8. `deno install`/`deno add` changes config; `deno ci` is the strict CI install.
 9. Locking pins package resolution, not every native binary/build output or script environment.
 10. Check the parent package's supported API range, patch behavior, peer contexts, and test coverage.
+11. Confirm which exact package-manager version owns the manifest/lockfile, because lock formats, flags, and lifecycle policies are not fully portable.
 
 ## Complete solutions
 
@@ -63,8 +64,10 @@ A team changes `"date-fns": "^4.1.0"` to `"date-fns": "^4.2.0"`, runs a normal i
 
 ## Reflection questions
 
-- Which packages in your current app are runtime dependencies, build tools, peers, or optional integrations?
-- Which exact command in your CI rejects a stale lockfile, and which manifest/manager does it read?
-- Has a hoisted dependency ever hidden an undeclared import in your project?
-- What parts of your installation may vary by operating system or install scripts even with a committed lock?
-- What review evidence would convince you that a manager migration preserved workspace boundaries?
+Sample answers:
+
+- **Which packages are runtime dependencies, build tools, peers, or optional integrations?** Classify from actual use: deployed imports are runtime dependencies, build/test tools are development dependencies, shared host libraries are peer dependencies, and optional dependencies need a fallback path.
+- **Which CI command rejects stale lock state?** Name the selected manager and its exact strict command, then confirm the workflow invokes it with the expected manifest, lockfile, manager version, and relevant tree-shaping settings.
+- **Has hoisting hidden an undeclared import?** Compare each workspace's source imports with its own manifest; a directly imported package belongs in that workspace's dependency declarations, even if a root hoist currently makes it resolve.
+- **What can vary with a committed lock?** Platform-specific optional packages, native compilation, blocked/approved lifecycle scripts, registry artifact availability, environment, and manager/runtime/toolchain versions.
+- **What evidence shows a manager migration preserved workspace boundaries?** A fresh clean install, reviewed manifests/workspace config and complete lock diff, tests/builds scoped to each workspace, plus consumer packaging checks under the intended linker and platforms.
