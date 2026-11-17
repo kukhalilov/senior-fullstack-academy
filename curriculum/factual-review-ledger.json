@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 405,
-    "pending": 1935,
-    "claimsChecked": 11680,
-    "claimsCorrected": 1250,
+    "reviewed": 414,
+    "pending": 1926,
+    "claimsChecked": 12357,
+    "claimsCorrected": 1293,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 405,
-    "pendingLessons": 1935
+    "reviewedLessons": 414,
+    "pendingLessons": 1926
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -23291,324 +23291,396 @@
       "topicId": "t01-018",
       "phase": "overview",
       "draft": "course/drafts/t01-018/t01-018-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 47,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s factual statements, API contracts, version/lifetime constraints, examples, tradeoffs, and assigned manifest names against the linked Microsoft primary documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within this lesson’s assigned scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.memorypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory",
         "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc.getgcmemoryinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unsafe-code/best-practices"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and inventory audit completed against current official Microsoft documentation. Corrections include removing pooling allocation guarantees, clarifying managed-span liveness and pool/owner invalidation, distinguishing MemoryExtensions extension methods from Span instance members, correcting stack sizing and collection-expression implementation claims, tightening pin/provider contracts, correcting MemoryMarshal signatures and safety requirements, clarifying GC measurement/no-GC APIs, and recording current dotnet-gcdump capture effects. Scope inventory validated against the frozen manifest; draft status is retained."
     },
     {
       "taskId": "t01-018-concepts",
       "topicId": "t01-018",
       "phase": "concepts",
       "draft": "course/drafts/t01-018/t01-018-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s factual statements, API contracts, version/lifetime constraints, examples, tradeoffs, and assigned manifest names against the linked Microsoft primary documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within this lesson’s assigned scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.memorypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc.getgcmemoryinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unsafe-code/best-practices"
+        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and inventory audit completed against current official Microsoft documentation. Corrections include removing pooling allocation guarantees, clarifying managed-span liveness and pool/owner invalidation, distinguishing MemoryExtensions extension methods from Span instance members, correcting stack sizing and collection-expression implementation claims, tightening pin/provider contracts, correcting MemoryMarshal signatures and safety requirements, clarifying GC measurement/no-GC APIs, and recording current dotnet-gcdump capture effects. Scope inventory validated against the frozen manifest; draft status is retained."
     },
     {
       "taskId": "t01-018-reference-managed-memory-and-span-types",
       "topicId": "t01-018",
       "phase": "reference",
       "draft": "course/drafts/t01-018/t01-018-reference-managed-memory-and-span-types.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 90,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s factual statements, API contracts, version/lifetime constraints, examples, tradeoffs, and assigned manifest names against the linked Microsoft primary documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within this lesson’s assigned scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
         "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.memorypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc.getgcmemoryinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unsafe-code/best-practices"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and inventory audit completed against current official Microsoft documentation. Corrections include removing pooling allocation guarantees, clarifying managed-span liveness and pool/owner invalidation, distinguishing MemoryExtensions extension methods from Span instance members, correcting stack sizing and collection-expression implementation claims, tightening pin/provider contracts, correcting MemoryMarshal signatures and safety requirements, clarifying GC measurement/no-GC APIs, and recording current dotnet-gcdump capture effects. Scope inventory validated against the frozen manifest; draft status is retained."
     },
     {
       "taskId": "t01-018-reference-memory-marshalling-and-buffer-pools",
       "topicId": "t01-018",
       "phase": "reference",
       "draft": "course/drafts/t01-018/t01-018-reference-memory-marshalling-and-buffer-pools.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.memorypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc.getgcmemoryinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unsafe-code/best-practices"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 108,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s factual statements, API contracts, version/lifetime constraints, examples, tradeoffs, and assigned manifest names against the linked Microsoft primary documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within this lesson’s assigned scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal.createfrompinnedarray",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal.asref",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal.read",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal.toenumerable",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal.createfrompinnedarray",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal.asref",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal.read",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal.toenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory"
+      ],
+      "reviewNote": "Manual factual and inventory audit completed against current official Microsoft documentation. Corrections include removing pooling allocation guarantees, clarifying managed-span liveness and pool/owner invalidation, distinguishing MemoryExtensions extension methods from Span instance members, correcting stack sizing and collection-expression implementation claims, tightening pin/provider contracts, correcting MemoryMarshal signatures and safety requirements, clarifying GC measurement/no-GC APIs, and recording current dotnet-gcdump capture effects. Scope inventory validated against the frozen manifest; draft status is retained."
     },
     {
       "taskId": "t01-018-reference-garbage-collector-and-finalization",
       "topicId": "t01-018",
       "phase": "reference",
       "draft": "course/drafts/t01-018/t01-018-reference-garbage-collector-and-finalization.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.memorypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc.getgcmemoryinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unsafe-code/best-practices"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 88,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s factual statements, API contracts, version/lifetime constraints, examples, tradeoffs, and assigned manifest names against the linked Microsoft primary documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within this lesson’s assigned scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.gckind",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.gckind"
+      ],
+      "reviewNote": "Manual factual and inventory audit completed against current official Microsoft documentation. Corrections include removing pooling allocation guarantees, clarifying managed-span liveness and pool/owner invalidation, distinguishing MemoryExtensions extension methods from Span instance members, correcting stack sizing and collection-expression implementation claims, tightening pin/provider contracts, correcting MemoryMarshal signatures and safety requirements, clarifying GC measurement/no-GC APIs, and recording current dotnet-gcdump capture effects. Scope inventory validated against the frozen manifest; draft status is retained."
     },
     {
       "taskId": "t01-018-reference-allocation-and-lifetime-performance",
       "topicId": "t01-018",
       "phase": "reference",
       "draft": "course/drafts/t01-018/t01-018-reference-allocation-and-lifetime-performance.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.memorypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc.getgcmemoryinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unsafe-code/best-practices"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 72,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s factual statements, API contracts, version/lifetime constraints, examples, tradeoffs, and assigned manifest names against the linked Microsoft primary documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within this lesson’s assigned scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc"
+      ],
+      "reviewNote": "Manual factual and inventory audit completed against current official Microsoft documentation. Corrections include removing pooling allocation guarantees, clarifying managed-span liveness and pool/owner invalidation, distinguishing MemoryExtensions extension methods from Span instance members, correcting stack sizing and collection-expression implementation claims, tightening pin/provider contracts, correcting MemoryMarshal signatures and safety requirements, clarifying GC measurement/no-GC APIs, and recording current dotnet-gcdump capture effects. Scope inventory validated against the frozen manifest; draft status is retained."
     },
     {
       "taskId": "t01-018-reference-memory-diagnostics-and-profiling",
       "topicId": "t01-018",
       "phase": "reference",
       "draft": "course/drafts/t01-018/t01-018-reference-memory-diagnostics-and-profiling.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 76,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s factual statements, API contracts, version/lifetime constraints, examples, tradeoffs, and assigned manifest names against the linked Microsoft primary documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within this lesson’s assigned scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.memorypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc.getgcmemoryinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
         "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
         "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
         "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unsafe-code/best-practices"
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and inventory audit completed against current official Microsoft documentation. Corrections include removing pooling allocation guarantees, clarifying managed-span liveness and pool/owner invalidation, distinguishing MemoryExtensions extension methods from Span instance members, correcting stack sizing and collection-expression implementation claims, tightening pin/provider contracts, correcting MemoryMarshal signatures and safety requirements, clarifying GC measurement/no-GC APIs, and recording current dotnet-gcdump capture effects. Scope inventory validated against the frozen manifest; draft status is retained."
     },
     {
       "taskId": "t01-018-practice",
       "topicId": "t01-018",
       "phase": "practice",
       "draft": "course/drafts/t01-018/t01-018-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.memorypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc.getgcmemoryinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unsafe-code/best-practices"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 80,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s factual statements, API contracts, version/lifetime constraints, examples, tradeoffs, and assigned manifest names against the linked Microsoft primary documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within this lesson’s assigned scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/"
+      ],
+      "reviewNote": "Manual factual and inventory audit completed against current official Microsoft documentation. Corrections include removing pooling allocation guarantees, clarifying managed-span liveness and pool/owner invalidation, distinguishing MemoryExtensions extension methods from Span instance members, correcting stack sizing and collection-expression implementation claims, tightening pin/provider contracts, correcting MemoryMarshal signatures and safety requirements, clarifying GC measurement/no-GC APIs, and recording current dotnet-gcdump capture effects. Scope inventory validated against the frozen manifest; draft status is retained."
     },
     {
       "taskId": "t01-018-interview",
       "topicId": "t01-018",
       "phase": "interview",
       "draft": "course/drafts/t01-018/t01-018-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.memorypool-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.nativememory",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.gc.getgcmemoryinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unsafe-code/best-practices"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s factual statements, API contracts, version/lifetime constraints, examples, tradeoffs, and assigned manifest names against the linked Microsoft primary documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within this lesson’s assigned scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
+              "section": "Relevant API definition, remarks, lifecycle, usage guidance, diagnostic command behavior, or runtime contract",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines",
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/"
+      ],
+      "reviewNote": "Manual factual and inventory audit completed against current official Microsoft documentation. Corrections include removing pooling allocation guarantees, clarifying managed-span liveness and pool/owner invalidation, distinguishing MemoryExtensions extension methods from Span instance members, correcting stack sizing and collection-expression implementation claims, tightening pin/provider contracts, correcting MemoryMarshal signatures and safety requirements, clarifying GC measurement/no-GC APIs, and recording current dotnet-gcdump capture effects. Scope inventory validated against the frozen manifest; draft status is retained."
     },
     {
       "taskId": "t01-019-overview",

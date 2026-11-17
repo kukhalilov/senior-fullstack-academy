@@ -113,11 +113,11 @@ public class DataProcessor
     }
 }
 ```
-*Expected Result:* Zero bytes are permanently allocated on the managed heap during steady-state execution of `ProcessData`, preventing generational GC pressure.
+*Expected Result:* Reusing a rented array can reduce array allocations on pool hits. The pool may allocate on a miss and retain returned capacity, so measure allocation rate and retained memory rather than assuming zero allocation or zero GC pressure.
 
 # Misconceptions and edge cases
 - **Misconception:** "`Span<T>` extends the lifetime of the object it wraps."  
-  *Correction:* `Span<T>` is strictly a view. If the underlying array or memory owner is garbage-collected or re-rented, the span points to invalid or mutating data.
+  *Correction:* `Span<T>` is a non-owning view. A span over a managed array participates in GC lifetime tracking, so the backing array is kept alive while needed. The invalidation cases are ending a stack/native buffer's lifetime or returning/disposing storage whose owner controls its reuse; a span cannot extend those ownership contracts.
 - **Edge Case:** `ArrayPool<T>.Rent(Int32)` returns a buffer whose length is **greater than or equal to** the requested count. Always slice the resulting span to your exact working length.
 - **Failure Mode:** Storing a `Span<T>` inside a class field or capturing it inside a lambda expression will cause compiler errors because `ref struct` instances cannot escape their local stack frame.
 - **Gotcha:** Calling `GC.Collect()` manually usually harms application throughput by forcing the runtime to stop threads and disrupt generational heuristics. Rely on adaptive tuning instead.

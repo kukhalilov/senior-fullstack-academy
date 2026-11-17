@@ -6,7 +6,7 @@
 
 *Automatically generated draft.*
 
-This reference lesson covers contiguous memory views, slicing, stack allocation, and lifetime constraints in .NET 11 GA and C# 15 stable memory APIs (checked 2026-11-14). The inventory focuses strictly on types like `Span<T>`, `Memory<T>`, and related slicing, pinning, and helper APIs used to manage memory efficiently without unnecessary heap allocations.
+This reference lesson covers contiguous memory views, slicing, stack allocation, and lifetime constraints in .NET 11 GA and C# 15 stable memory APIs (checked 2026-11-17). The inventory focuses strictly on types like `Span<T>`, `Memory<T>`, and related slicing, pinning, and helper APIs used to manage memory efficiently without unnecessary heap allocations.
 
 For background on the broader ecosystem, see the official documentation on [Microsoft .NET memory and spans](https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/) and [GC fundamentals](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals).
 
@@ -29,7 +29,7 @@ Below is the complete inventory of assigned names for this group. Every item is 
 * `System.ReadOnlyMemory<T>`: A read-only, heap-capable structure representing a contiguous region of memory, safe for asynchronous and long-lived storage scenarios.
 * `System.Buffers.MemoryHandle`: A handle that pins the underlying memory of a `Memory<T>` or `ReadOnlyMemory<T>`, preventing the garbage collector from moving it until the handle is disposed.
 * `System.Buffers.IMemoryOwner<T>`: An interface representing the owner of a block of memory, responsible for disposing of the memory buffer when it is no longer needed.
-* `Span<T>.Empty`: A static property returning a zero-length `Span<T>` with a null pointer.
+* `Span<T>.Empty`: A static property returning a span whose `Length` is zero. Its internal representation is not a public contract.
 * `Span<T>.Length`: A property returning the number of items contained within the span.
 * `Span<T>.IsEmpty`: A property returning a boolean value indicating whether the span's length is zero.
 * `Span<T>.this[Int32]`: An indexer that returns a reference to the element at the specified zero-based index.
@@ -40,13 +40,13 @@ Below is the complete inventory of assigned names for this group. Every item is 
 * `Span<T>.TryCopyTo(Span<T>)`: Attempts to copy the entire source into the destination and returns `false` without writing if the destination is too short; overlapping ranges are supported.
 * `Span<T>.Clear()`: Sets the contents of the span to default values (`0` or `null`).
 * `Span<T>.Fill(T)`: Fills every element of the span with the specified value.
-* `Span<T>.IndexOf(T)`: Searches for the specified value and returns the index of its first occurrence.
-* `Span<T>.IndexOfAny`: Searches the span for any of the specified items, returning the first matching index.
-* `Span<T>.LastIndexOf(T)`: Searches for the specified value and returns the index of its last occurrence.
-* `Span<T>.SequenceEqual(ReadOnlySpan<T>)`: Determines whether two sequences are equal by comparing their elements item by item.
-* `Span<T>.StartsWith(ReadOnlySpan<T>)`: Determines whether the span starts with the specified sequence.
-* `Span<T>.EndsWith(ReadOnlySpan<T>)`: Determines whether the span ends with the specified sequence.
-* `Span<T>.Overlaps(Span<T>)`: Determines whether the specified span overlaps with the current span in memory.
+* `Span<T>.IndexOf(T)`: `MemoryExtensions` extension-method syntax searches for the value and returns its first index, or -1.
+* `Span<T>.IndexOfAny`: `MemoryExtensions` extension-method overloads search for supplied values and return the first matching index, or -1.
+* `Span<T>.LastIndexOf(T)`: `MemoryExtensions` extension-method syntax searches backward for the value and returns its last index, or -1.
+* `Span<T>.SequenceEqual(ReadOnlySpan<T>)`: `MemoryExtensions` extension-method syntax compares the sequences element by element for equality.
+* `Span<T>.StartsWith(ReadOnlySpan<T>)`: `MemoryExtensions` extension-method syntax checks whether the span begins with the supplied sequence.
+* `Span<T>.EndsWith(ReadOnlySpan<T>)`: `MemoryExtensions` extension-method syntax checks whether the span ends with the supplied sequence.
+* `Span<T>.Overlaps(Span<T>)`: `MemoryExtensions` extension-method syntax checks whether two spans refer to overlapping locations in the same memory.
 * `ReadOnlySpan<T>.CopyTo(Span<T>)`: Copies the full source into the destination; throws `ArgumentException` if the destination is shorter. Overlap is supported.
 * `ReadOnlySpan<T>.TryCopyTo(Span<T>)`: Attempts the full copy, returning `false` without writing if the destination is shorter; overlap is supported.
 * `ReadOnlySpan<T>.ToArray()`: Copies the read-only span's contents into a new managed array.
@@ -57,7 +57,7 @@ Below is the complete inventory of assigned names for this group. Every item is 
 * `Memory<T>.Span`: Creates a `Span<T>` view over the underlying memory region for synchronous operations.
 * `Memory<T>.Slice(Int32)`: Forms a slice out of the memory region from a specified index to the end.
 * `Memory<T>.Slice(Int32,Int32)`: Forms a slice out of the memory region starting at an index for a specified length.
-* `Memory<T>.Pin()`: Pins the underlying memory buffer so the garbage collector cannot relocate it, returning a `MemoryHandle`.
+* `Memory<T>.Pin()`: Requests a `MemoryHandle` from the backing memory provider. For movable managed storage this pins the relevant storage; other providers define their pin behavior. Keep the handle alive while using its pointer and dispose it afterward.
 * `Memory<T>.CopyTo(Memory<T>)`: Copies the source into the destination; throws `ArgumentException` if the destination is shorter than the source. Overlap is supported.
 * `Memory<T>.TryCopyTo(Memory<T>)`: Attempts to copy into the destination and returns `false` without writing if the destination is shorter; overlap is supported.
 * `Memory<T>.ToArray()`: Copies the memory region's contents into a newly allocated heap array.
@@ -66,7 +66,7 @@ Below is the complete inventory of assigned names for this group. Every item is 
 * `ReadOnlyMemory<T>.Span`: Creates a `ReadOnlySpan<T>` view over the underlying memory region.
 * `ReadOnlyMemory<T>.Slice(Int32)`: Forms a slice out of the read-only memory region from a specified index.
 * `ReadOnlyMemory<T>.Slice(Int32,Int32)`: Forms a slice out of the read-only memory region starting at an index for a length.
-* `ReadOnlyMemory<T>.Pin()`: Pins the read-only memory buffer and returns a `MemoryHandle`.
+* `ReadOnlyMemory<T>.Pin()`: Requests a `MemoryHandle` from the backing memory provider. For movable managed storage this pins the relevant storage; other providers define their pin behavior. Keep the handle alive while using its pointer and dispose it afterward.
 * `MemoryHandle.Pointer`: Retrieves a pointer to the pinned memory buffer (unsafe context).
 * `MemoryHandle.Dispose()`: Releases the pin on the memory buffer, allowing the garbage collector to move it again.
 * `IMemoryOwner<T>.Memory`: Retrieves the `Memory<T>` instance owned by this object.
@@ -84,9 +84,9 @@ Below is the complete inventory of assigned names for this group. Every item is 
 * `stackalloc expression`: Allocates memory directly on the execution stack.
 * `stackalloc Span<T> in safe context`: Allocates stack memory and assigns it directly to a `Span<T>` in safe code without requiring `unsafe` blocks.
 * `stackalloc pointer in unsafe context`: Allocates stack memory as a raw pointer in an `unsafe` context.
-* `Stack allocation size limits`: Excessive stack allocation risks `StackOverflowException`; keep sizes small (typically under a few kilobytes).
+* `Stack allocation size limits`: Stack capacity depends on the environment and execution context; there is no universally safe byte limit. Keep allocations conservatively small and bounded, and use heap storage for larger or input-controlled sizes.
 * `stackalloc inside loop risk`: Allocating stack memory repeatedly inside a loop can exhaust stack space quickly.
-* `Collection expression to Span<T>`: Allows collection expressions (like `[1, 2, 3]`) to initialize a stack-allocated span directly.
+* `Collection expression to Span<T>`: Allows a target-typed collection expression such as `[1, 2, 3]` to initialize a span. The compiler may use stack storage where ref safety permits; the chosen lowering/storage strategy is not a source-level guarantee.
 * `Array.AsSpan()`: Extension method or helper returning a span wrapping an entire array.
 * `String.AsSpan()`: Returns a `ReadOnlySpan<char>` wrapping the characters of a string without allocation.
 * `String.AsMemory()`: Returns a `ReadOnlyMemory<char>` wrapping the characters of a string.
@@ -106,6 +106,8 @@ Below is the complete inventory of assigned names for this group. Every item is 
 * `Span<T> lifetime cannot outlive backing storage`: The span view must not persist longer than the array, stack frame, or native buffer that backs it.
 
 # Cross-item comparison
+
+`IndexOf`, `IndexOfAny`, `LastIndexOf`, `SequenceEqual`, `StartsWith`, `EndsWith`, and `Overlaps` are declared as `MemoryExtensions` methods and are normally invoked with extension syntax. The call syntax does not make them declared instance members of `Span<T>`.
 
 Within this assigned group, items differ primarily in their lifetime restrictions, storage locations, and mutability:
 - **`Span<T>` vs `Memory<T>`**: `Span<T>` is a stack-only `ref struct` optimized for high-speed, synchronous operations. `Memory<T>` can be stored on the heap and passed across `async/await` boundaries, at the cost of slight overhead.

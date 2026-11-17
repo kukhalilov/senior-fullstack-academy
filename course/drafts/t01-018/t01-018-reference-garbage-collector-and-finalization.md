@@ -43,8 +43,8 @@ Every manifest item is listed verbatim. Runtime policies and thresholds are impl
 | `GC.Collect(Int32,GCCollectionMode,Boolean)` | Adds a blocking/nonblocking preference for the requested collection. Runtime support and result remain policy-dependent. |
 | `GC.Collect(Int32,GCCollectionMode,Boolean,Boolean)` | Adds compaction control for applicable collection behavior; compaction can cost time and is not a general fragmentation fix. |
 | `GC.GetGeneration(Object)` | Reports the object's current generation; it is a momentary diagnostic observation, not a lifetime guarantee. |
-| `GC.GetTotalMemory(Boolean)` | Estimates bytes allocated on the managed heap, optionally requesting a collection first; not a precise total process-memory measure. |
-| `GC.GetTotalAllocatedBytes(Boolean)` | Reports cumulative managed allocation volume, optionally requesting a collection; allocation volume differs from retained heap. |
+| `GC.GetTotalMemory(Boolean)` | Returns an estimate of bytes currently allocated on the managed heap excluding fragmentation. With `forceFullCollection: true`, it waits for a short interval to allow collection and finalization; it is neither allocation volume nor total process memory. |
+| `GC.GetTotalAllocatedBytes(Boolean)` | Reports cumulative managed allocation volume since process start. With `precise: false`, the runtime may return a less precise but faster result; this does not request a collection. Allocation volume differs from retained heap. |
 | `GC.CollectionCount(Int32)` | Returns the number of collections observed for a generation since process start. |
 | `GC.GetGCMemoryInfo()` | Returns a snapshot of GC memory/collection information; interpret fields in the context of its collection index and kind. |
 | `GC.GetGCMemoryInfo(GCKind)` | Requests information for a selected collection kind when available. |
@@ -59,8 +59,8 @@ Every manifest item is listed verbatim. Runtime policies and thresholds are impl
 | `GCMemoryInfo.Compacted` | Indicates whether the represented collection compacted the heap as reported by the API. |
 | `GC.GetAllocatedBytesForCurrentThread()` | Reports managed bytes allocated by the current thread; it excludes allocations by other threads and is useful for scoped measurements. |
 | `GC.TryStartNoGCRegion(Int64)` | Attempts to start a no-GC region with a total allocation budget; returns false if it cannot be established. |
-| `GC.TryStartNoGCRegion(Int64,Boolean)` | Also expresses whether a full blocking collection is allowed when preparing the region; still requires respecting the budget and ending the region. |
-| `GC.EndNoGCRegion()` | Ends the active no-GC region; throws if the region was not successfully started or its conditions were violated. |
+| `GC.TryStartNoGCRegion(Int64,Boolean)` | The Boolean is `disallowFullBlockingGC`: `true` forbids that preparatory full blocking collection; `false` allows it if needed. A successful region is still bounded by its budget and must be ended. |
+| `GC.EndNoGCRegion()` | Ends the active no-GC region; it throws if no region is active or a GC occurred because the allocation budget/region conditions were violated. Calls cannot be nested, and call it only after a successful start. |
 | `GC.RegisterForFullGCNotification` | Registers thresholds for receiving full-GC approach/completion notifications; not supported by all GC configurations. |
 | `GC.WaitForFullGCApproach` | Waits for a registered notification that a full collection is approaching; returns a status and may time out. |
 | `GC.WaitForFullGCComplete` | Waits for a registered full collection to complete; not a substitute for controlling allocation. |

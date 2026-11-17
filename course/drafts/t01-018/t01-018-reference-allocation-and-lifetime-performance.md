@@ -51,7 +51,7 @@ Allocation asks how much new managed data is created; retention asks which objec
 | `ArraySegment<T> versus Span<T>` | `ArraySegment<T>` is heap-storable metadata over an array; `Span<T>` is a stack-only view over broader contiguous memory. |
 | `Memory<T> versus Span<T>` | `Memory<T>` can cross async/heap boundaries; `Span<T>` is a stack-only synchronous view and can expose ref access efficiently. |
 | `Safe memory access versus unsafe pointer access` | Safe views enforce bounds/lifetime constraints; pointers enable interop/performance cases but transfer proof obligations to the programmer. |
-| `stackalloc versus ArrayPool<T>` | `stackalloc` offers small, bounded stack storage with strict size/lifetime limits; pool rent serves larger/reusable buffers but needs return discipline. |
+| `stackalloc versus ArrayPool<T>` | `stackalloc` offers conservatively small, bounded stack storage with strict lifetime limits; available stack size is environment-dependent. Pool rent serves reusable buffers but needs return discipline. |
 | `Optimize allocations after measurement` | Profile representative workload and fix a demonstrated bottleneck; avoid speculative micro-optimization that obscures ownership. |
 | `Avoid pooling tiny or infrequent allocations without evidence` | Pool bookkeeping, clearing, retained capacity, and complexity can exceed the cost of ordinary allocation. |
 | `Avoid manual GC.Collect in normal application flow` | Explicit collection usually adds pauses without fixing reachable retention; use diagnostics and correct ownership instead. |

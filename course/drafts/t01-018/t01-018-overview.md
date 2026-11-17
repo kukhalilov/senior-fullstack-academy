@@ -49,8 +49,8 @@ Consider a scenario where a high-throughput service processes incoming text chun
 1. **Step 1: Avoid temporary allocations with spans.** Instead of calling string manipulation methods that allocate intermediate objects, the application uses `ReadOnlySpan<char>` views and methods like `MemoryExtensions.IndexOf` to inspect incoming text in place.
 2. **Step 2: Rent a temporary working buffer.** When a temporary working array is needed for processing, the code rents a buffer from the shared pool using `ArrayPool<T>.Shared.Rent(minimumLength)`.
 3. **Step 3: Perform deterministic processing.** The code writes data into the rented buffer, processes it safely using span slicing, and avoids boxing or closure allocations.
-4. **Step 4: Return the buffer safely.** In a `finally` block, the buffer is returned to the pool via `ArrayPool<T>.Shared.Return(buffer, clearArray: true)` to prevent data leakage and resource retention.
-5. **Step 5: Measure under load.** The team runs `dotnet-counters` and BenchmarkDotNet with `MemoryDiagnoser` to verify that the allocation rate drops to near zero for the hot path.
+4. **Step 4: Return the buffer safely.** In a `finally` block, return the buffer. If it contains secrets, clear the used region explicitly before return; `clearArray: true` clears only when the pool retains the array.
+5. **Step 5: Measure under load.** Use `dotnet-counters` and BenchmarkDotNet with `MemoryDiagnoser` to compare allocation rate and end-to-end latency. A pool hit can avoid an array allocation, but a pool miss can allocate and the pool retains capacity, so zero allocation is not guaranteed.
 
 ---
 
@@ -58,7 +58,7 @@ Consider a scenario where a high-throughput service processes incoming text chun
 
 * **Use contiguous views (`Span<T>` / `ReadOnlySpan<T>`)** when parsing data, processing network buffers, or writing performance-critical inner loops where avoiding heap allocation matters.
 * **Tradeoffs of Spans:** Because `Span<T>` is a stack-only `ref struct`, it cannot escape to the heap, be boxed, or be stored in ordinary class fields. Starting with C# 13 it may be a local in an async method if its lifetime and uses do not cross an `await` boundary; earlier language versions prohibit ref-struct locals in async methods.
-* **Use buffer pooling (`ArrayPool<T>`)** when handling frequent, moderately large temporary arrays that would otherwise thrash Generation 0 or the Large Object Heap (LOH).
+* **Use buffer pooling (`ArrayPool<T>`)** when measurements show repeated temporary arrays materially affect the workload and lease/retention costs are acceptable.
 * **Tradeoffs of Pooling:** Rented buffers may contain old data, require strict adherence to single-return rules, and can complicate debugging if a buffer is used after being returned.
 * **Avoid premature optimization:** Do not introduce complex pooling, manual pinning, or unsafe code unless profiling data proves that allocations are an actual bottleneck in your application.
 
