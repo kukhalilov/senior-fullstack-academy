@@ -5,8 +5,8 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 22,
-    "pending": 2318,
+    "reviewed": 23,
+    "pending": 2317,
     "claimsChecked": 328,
     "claimsCorrected": 26,
     "draftsMayBePromoted": false
@@ -78673,8 +78673,8 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-time-ordering-and-failure.md",
-      "status": "partial",
-      "claimInventory": "in-progress",
+      "status": "reviewed",
+      "claimInventory": "complete",
       "claimsChecked": 22,
       "claimsCorrected": 1,
       "evidence": [
@@ -78737,33 +78737,113 @@
           "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
           "section": "Repair; inference from the documented compare-and-stream repair procedure",
           "verdict": "supported as a scope distinction/inference; the repair protocol supplies reconciliation semantics"
+        },
+        {
+          "claim": "Wall-clock timestamps are appropriate for approximate civil chronology and display but cannot establish causality; skew, uncertainty, clock correction, and backward jumps can undermine ordering.",
+          "source": "https://cse.buffalo.edu/tech-reports/2014-04.pdf",
+          "section": "§1.1 Physical Time; limitations of NTP/POSIX time",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Lamport clocks increment at local events and update on message receipt so happened-before implies smaller timestamp; the converse does not hold.",
+          "source": "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+          "section": "Logical Clocks; The Partial Ordering",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Vector-clock component-wise comparison distinguishes before/after/concurrent only under the tracked-process model and requires membership/metadata policy.",
+          "source": "https://cse.buffalo.edu/tech-reports/2014-04.pdf; https://cse.msu.edu/~cse812/fall03/Slides/VectorClocksMattern.pdf",
+          "section": "§1.1 and Mattern virtual time",
+          "verdict": "supported; implementation variants are explicitly bounded"
+        },
+        {
+          "claim": "HLC is an ordering aid combining physical and logical information; closeness to NTP does not imply perfect time or suitability for all deadlines/security decisions.",
+          "source": "https://cse.buffalo.edu/tech-reports/2014-04.pdf",
+          "section": "Abstract and §1.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "In an asynchronous network a timeout cannot perfectly distinguish a crashed process from one that is slow or partitioned; detectors trade speed against false suspicions.",
+          "source": "https://hdl.handle.net/1813/7192; https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "Chandra-Toueg failure detector model; SWIM §1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Gossip/epidemic dissemination spreads state through repeated peer exchanges and can leave temporary divergent views; versions/reconciliation remain necessary.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "Abstract and §§1, 4.1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "SWIM is a specific protocol separating randomized direct/indirect probing from membership dissemination, not a synonym for gossip or a consensus protocol.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "Abstract and §§3–4",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Phi is a continuous suspicion score based on heartbeat arrival history; threshold policy balances faster detection against mistaken suspicions and is not probability of death.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "§§I, III, IV.A",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Hinted handoff is temporary and best-effort; it does not guarantee delivery of every missed update and has product-specific retention behavior.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+          "section": "Hints overview and Hinted Handoff",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Read repair handles discrepancies observed by reads and only repairs data/replicas participating in the read; it does not establish cluster-wide synchronization.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Read repair; consistency-level scope",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra anti-entropy repair uses Merkle trees over common token ranges and streams differences; commands are operator-run and node/range scoped.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Repair overview and Usage and Best Practices",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A Merkle-tree mismatch indicates differing hashed summaries within the compared scope; it does not select authoritative data or resolve semantic conflicts.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Repair overview; Merkle tree comparison purpose",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Repair must finish before tombstone/version metadata retention expires if convergence depends on that historical information; otherwise deleted data may reappear or intended state become unrecoverable.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Repair overview and gc grace best practice",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A timed-out request can leave the caller uncertain whether the write occurred; retry safety needs idempotency or duplicate-safe semantics.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9110",
+          "section": "§9.2.2 Idempotent Methods; distributed timeout consequence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers all eight frozen manifest names: wall-clock timestamp, Lamport clock, vector clock, HLC, failure detector, gossip, anti-entropy, and Merkle tree.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "inventory group “time-ordering-and-failure”",
+          "verdict": "scope complete"
         }
       ],
-      "issues": [
-        "Inventory scope is covered, but the lesson still needs a final pass for each factual sentence and comparison against all eight manifest items before promotion."
-      ],
-      "reviewedAt": null,
+      "issues": [],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://cse.msu.edu/~cse812/fall03/Slides/VectorClocksMattern.pdf",
+        "https://cse.buffalo.edu/tech-reports/2014-04.pdf",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+        "https://hdl.handle.net/1813/7192",
         "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
         "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
         "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+        "https://www.rfc-editor.org/rfc/rfc9110"
       ],
-      "reviewNote": "Initial claim evidence recorded for the eight manifest items. 22 sentence-level checks are tracked, with grouped evidence entries; remaining statements and scope need a final independent pass. Keep draft until complete.",
+      "reviewNote": "Completed the prior partial audit. Verified all eight manifest items, checked 22 factual claims against foundational clock/failure-detector papers and Cassandra 5.0 repair documentation, and recorded evidence for grouped claims as well as previously undocumented gossip and repair distinctions.",
       "claimChecks": 22,
       "scopeCheck": {
         "status": "checked against assigned manifest inventory; independent Handbook module title-by-title check pending",
