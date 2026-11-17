@@ -16,7 +16,7 @@
 - Lomuto often returns the pivot's final index; Hoare returns a partition boundary.
 - Random pivots provide expected balance, while three-way partition avoids repeated work on equal keys; neither makes quicksort's worst case better than O(n²).
 - Quickselect is expected O(n) for one rank; full sorting supports all ranks and has deterministic O(n log n) with merge sort.
-- A comparator needs a coherent transitive ordering; test equality, reversed argument pairs, and triples for cycles.
+- A comparator needs to satisfy its sorting API's ordering contract, commonly strict weak ordering; test equivalent values, reversed pairs, and triples for transitivity violations.
 
 ## Deep follow-up answers
 
@@ -64,4 +64,4 @@ Convert rank to index n-k, copy input if mutation is not allowed, select randomi
 
 Can you state the exact postcondition of a partition routine; account for duplicates; distinguish average, expected, and worst-case bounds; include buffers and recursion in space analysis; translate rank correctly; and justify comparator transitivity?
 
-Sources: [USACO Guide: Problem-Analysis Paradigms](https://usaco.guide/PAPS.pdf), [USACO Guide: Custom Comparators](https://usaco.guide/silver/sorting-custom?lang=cpp).
+Sources: [OpenDSA: Lower Bounds for Sorting](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/SortingLowerBound.html), [Quicksort](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/Quicksort.html), [USACO Guide: Custom Comparators](https://usaco.guide/silver/sorting-custom).

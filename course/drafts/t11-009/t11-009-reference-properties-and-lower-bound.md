@@ -17,7 +17,7 @@ An algorithm's useful guarantees are independent dimensions. A problem may requi
 - Best-case complexity — Least work over inputs of size n.
 - Average-case complexity — Expected/average work under an explicitly stated input or randomness model.
 - Worst-case complexity — Maximum work over inputs of size n.
-- Comparison-sort lower bound — General comparison sorting has worst-case Ω(n log n) comparisons for distinct arbitrary keys, derived from the n! possible orders.
+- Comparison-sort lower bound — Comparison sorting arbitrary distinct keys needs Ω(n log n) comparisons in the worst case; the decision-tree proof counts n! possible input orders. This does not rule out algorithms that exploit stronger key assumptions, such as bounded-key counting methods.
 - Nearly sorted input — Few elements are far from their correct positions; insertion sort can exploit this shape.
 - Adversarial input — Input arranged to trigger poor partitions or other worst-case behavior.
 
@@ -44,4 +44,4 @@ Suppose records have keys [2a,1x,2b]. A stable ascending sort returns [1x,2a,2b]
 3. **What does Ω(n log n) apply to?** Worst-case comparison sorting of arbitrary distinct keys.
 4. **Why can insertion sort be fast on nearly sorted data?** Each item moves only a small distance.
 
-Source: [USACO Guide: Problem-Analysis Paradigms](https://usaco.guide/PAPS.pdf).
+Source: [OpenDSA: Lower Bounds for Sorting](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/SortingLowerBound.html).

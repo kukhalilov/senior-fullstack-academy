@@ -15,7 +15,7 @@ Know arrays, recursion, logarithms, asymptotic bounds, and comparator-based orde
 
 ### Comparison lower bound
 
-A comparison sort can be modeled as a decision tree. With n distinct elements, there are n! possible input orders; a correct leaf must distinguish each ordering. A binary comparison tree of height h has at most 2^h leaves, so 2^h >= n!, giving h >= log2(n!) = Ω(n log n). This is a worst-case lower bound for general comparison sorting, not a claim that every instance costs n log n. Duplicate keys reduce distinguishable arrangements, and presorted/adaptive input can help some algorithms.
+A comparison sort can be modeled as a decision tree. With n distinct elements, there are n! possible input orders; a correct leaf must distinguish each ordering. A binary comparison tree of height h has at most 2^h leaves, so 2^h >= n!, giving h >= log2(n!) = Ω(n log n). This is a worst-case comparison lower bound for general comparison sorting, not a claim that every instance costs n log n. Duplicate keys reduce distinguishable arrangements, and presorted/adaptive input can help some algorithms. Non-comparison methods can exploit bounded or structured keys, at the cost of assumptions and often additional storage.
 
 ### Stability and auxiliary storage
 
@@ -43,7 +43,7 @@ For the kth largest among n values, target ascending index n-k. Partition as in 
 
 ### Comparator consistency
 
-A comparator should define a coherent ordering: sign antisymmetry, transitivity, and consistent equality. Never compare by integer subtraction when overflow is possible. For largest-number concatenation, order strings a and b by comparing ab with ba; this relation is transitive for this construction, unlike numeric magnitude or length alone. Equal concatenations may be ordered either way. If all input values are zero, normalize the output to the single string 0.
+A comparator must satisfy the target sorting API's ordering contract (commonly a strict weak ordering). Never compare by integer subtraction when overflow is possible. For largest-number concatenation, order strings a and b by comparing ab with ba; this relation is transitive for this construction, unlike numeric magnitude or length alone. Equal concatenations may be ordered either way. If all input values are zero, normalize the output to the single string 0.
 
 ## Mechanisms and relationships
 
@@ -71,4 +71,4 @@ For quickselect with [3,2,1,5,6,4], k=2 targets ascending index 4. A partition t
 3. **What is quickselect's target index for kth largest?** n-k in zero-based ascending order.
 4. **Why does three-way partition help duplicate-heavy data?** It excludes the equal band from further recursion.
 
-Sources: [USACO Guide: Problem-Analysis Paradigms](https://usaco.guide/PAPS.pdf), [USACO Guide: Custom Comparators](https://usaco.guide/silver/sorting-custom?lang=cpp).
+Sources: [OpenDSA: Lower Bounds for Sorting](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/SortingLowerBound.html), [Quicksort](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/Quicksort.html), [Heapsort](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/Heapsort.html), [USACO Guide: Custom Comparators](https://usaco.guide/silver/sorting-custom).

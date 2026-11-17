@@ -44,4 +44,4 @@ Merge [1,4,7] and [2,4,8] by taking 1,2, then left 4 before right 4 to preserve 
 3. **What is the common array merge buffer cost?** O(n) auxiliary elements.
 4. **What changes in bottom-up merge sort?** Run widths grow iteratively instead of recursive splitting.
 
-Source: [USACO Guide: Problem-Analysis Paradigms](https://usaco.guide/PAPS.pdf).
+Sources: [OpenDSA: Insertion Sort](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/InsertionSort.html), [Bubble Sort](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BubbleSort.html), [Selection Sort](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/SelectionSort.html), [Implementing Mergesort](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/MergesortImpl.html).

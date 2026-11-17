@@ -44,4 +44,4 @@ For three-way partition around 4 in [4,2,4,7,1,4], finish with a prefix below 4,
 3. **What is bottom-up build-heap complexity?** O(n).
 4. **Is in-place heap sort stable?** No, the swaps can reorder equal keys.
 
-Source: [USACO Guide: Problem-Analysis Paradigms](https://usaco.guide/PAPS.pdf).
+Sources: [OpenDSA: Quicksort](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/Quicksort.html), [Heapsort](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/Heapsort.html).

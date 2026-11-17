@@ -3,12 +3,12 @@
 ## Goals
 
 - Implement a comparison sort without using a built-in sort.
-- Use bottom-up merge sort for deterministic O(n log n) time.
+- Use in-place heap sort for deterministic O(n log n) time and O(1) auxiliary space.
 - Preserve duplicates and handle negative values.
 
 ## Problem statement
 
-Return the input integers in ascending order without calling a library sort; the required time is O(n log n) with the smallest practical space.
+Sort the input integers in ascending order without calling a library sort. The required time is O(n log n); among standard comparison sorts, in-place heap sort meets this bound with O(1) auxiliary space.
 
 ## Input constraints
 
@@ -24,16 +24,16 @@ Return the input integers in ascending order without calling a library sort; the
 
 ## Clarifying assumptions
 
-- The method returns a new sorted array and leaves the input unchanged.
-- Bottom-up merge sort uses O(n) auxiliary storage; it is stable.
-- Width doubling is bounded to avoid integer overflow in a generalized implementation.
+- The method sorts `nums` in place and returns the same array reference, as permitted by the problem.
+- Heap sort is not stable, but stability is not required for integer values in this task.
+- Bottom-up merge sort is a valid O(n log n) alternative when O(n) auxiliary storage is acceptable.
 
 ## Progressive hints
 
-1. Merge sort always has predictable O(n log n) comparisons.
-2. Begin with sorted runs of width one.
-3. Merge adjacent pairs into a separate buffer, then swap source and destination.
-4. Double width until one run spans the array.
+1. Build a max-heap so the largest value is at the root.
+2. Swap the root with the last element in the active heap.
+3. Shrink the active heap and sift its new root down.
+4. Repeat until the remaining prefix has one element.
 
 ## Complete C# solution
 
@@ -46,26 +46,31 @@ public static class Program
     {
         if (nums is null) throw new ArgumentNullException(nameof(nums));
         int n = nums.Length;
-        int[] source = (int[])nums.Clone();
-        int[] destination = new int[n];
 
-        for (int width = 1; width < n;)
+        // Bottom-up heap construction is O(n).
+        for (int root = n / 2 - 1; root >= 0; root--)
+            SiftDown(nums, root, n);
+
+        // Move each maximum to its final position, then restore the heap prefix.
+        for (int end = n - 1; end > 0; end--)
         {
-            for (int left = 0; left < n; left += width <= n - left ? width * 2 : n)
-            {
-                int mid = Math.Min(left + width, n);
-                int right = Math.Min(left + 2 * width, n);
-                int i = left, j = mid, write = left;
-                while (i < mid && j < right)
-                    destination[write++] = source[i] <= source[j] ? source[i++] : source[j++];
-                while (i < mid) destination[write++] = source[i++];
-                while (j < right) destination[write++] = source[j++];
-            }
-            (source, destination) = (destination, source);
-            if (width > n / 2) break;
-            width *= 2;
+            (nums[0], nums[end]) = (nums[end], nums[0]);
+            SiftDown(nums, 0, end);
         }
-        return source;
+        return nums;
+    }
+
+    // The active heap occupies nums[0..size).
+    private static void SiftDown(int[] nums, int root, int size)
+    {
+        while (root < size / 2) // Only internal nodes have children.
+        {
+            int child = 2 * root + 1;
+            if (child + 1 < size && nums[child + 1] > nums[child]) child++;
+            if (nums[root] >= nums[child]) return;
+            (nums[root], nums[child]) = (nums[child], nums[root]);
+            root = child;
+        }
     }
 
     private static void Equal(int[] actual, int[] expected, string label)
@@ -89,46 +94,46 @@ public static class Program
 
 ## Correctness argument
 
-Before each width pass, source consists of sorted runs of length at most width. Each adjacent pair of runs is merged into destination by repeatedly selecting the smaller next element; the remaining tail is copied once one run empties. Thus destination contains sorted runs of length at most 2*width and preserves every input occurrence. Swapping buffers establishes the invariant for the next pass. Width eventually reaches n, leaving the whole array sorted. Choosing from source's left run on equality preserves stability.
+After bottom-up construction, every parent is at least as large as its children, so the root contains the maximum of the active prefix. Each extraction swaps that maximum into the next final suffix position and reduces the active heap by one. SiftDown restores the max-heap property within the prefix. The sorted suffix contains the largest values in order, and the prefix contains all remaining values; induction proves the final array is ascending. Every element occurrence is retained, and the algorithm mutates only the input array.
 
 ## Step-by-step dry run
 
-For [5,2,3,1], width 1 merges [5] with [2] and [3] with [1] to get [2,5,1,3]. Width 2 merges [2,5] with [1,3], producing [1,2,3,5].
+For [5,2,3,1], heap construction places 5 at the root. Swap it to the last slot, restore a heap over the first three values, and repeat. Each extracted maximum extends the sorted suffix on the right until the array is [1,2,3,5].
 
 ## Time complexity
 
-O(n log n), with one linear merge pass per doubling of run width.
+O(n log n): heap construction is O(n), followed by n-1 extractions with O(log n) sift-down each.
 
 ## Space complexity
 
-O(n) auxiliary buffer, plus O(n) returned storage. The returned array is the final source buffer.
+O(1) auxiliary space; the input array is sorted in place.
 
 ## Alternatives and tradeoffs
 
-- Top-down merge sort expresses recursion directly but uses O(log n) call stack in addition to the merge buffer.
-- Heap sort can achieve O(n log n) worst-case with O(1) auxiliary storage but is unstable and less intuitive.
-- Quicksort is often fast but has quadratic worst case unless mitigated; it may still be adversarially vulnerable.
+- Merge sort is stable and predictably O(n log n), but its usual array implementation uses O(n) auxiliary storage.
+- Quicksort often has good practical locality and expected O(n log n) behavior with randomized pivots, but its worst case remains O(n²).
+- Heap sort is a strong fit when this task's O(1) auxiliary-space constraint matters more than stability or cache locality.
 
 ## Common mistakes and gotchas
 
-- Overwriting a source run before its values have been read.
-- Forgetting to copy one run's remainder.
+- Sifting a node that has no children or reading a child outside the active heap.
+- Advancing the root after swapping with the larger child before the displaced value is restored.
 - Losing duplicates by using a set-like representation.
-- Claiming O(1) extra memory for merge sort.
-- Letting loop width arithmetic overflow in general-purpose code.
+- Assuming heap sort is stable; its swaps can reorder equal records.
 
 ## Edge-case tests
 
 - Duplicates and negative values.
 - Already sorted and reverse sorted input.
-- Odd length causing an unmatched final run.
+- Two-element ascending and descending inputs.
+- All-equal values and repeated maxima/minima.
 - Singleton and empty generalization.
 
 ## Reflection questions
 
-1. What is the sorted-run invariant before a pass?
-2. Why does choosing left on equality preserve stability?
-3. Why does bottom-up merge sort avoid recursive stack?
-4. Which guarantee does merge sort provide that quicksort does not?
+1. What invariant must hold in the active max-heap?
+2. Why does placing each maximum at the right produce ascending order?
+3. Why is bottom-up heap construction O(n), not O(n log n)?
+4. What space and stability tradeoff distinguishes heap sort from merge sort?
 
 Source: [LeetCode: Sort an Array](https://leetcode.com/problems/sort-an-array/).

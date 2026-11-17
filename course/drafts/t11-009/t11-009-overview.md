@@ -39,4 +39,4 @@ Choose based on constraints and required guarantees, not a single universal winn
 
 The concepts lesson proves the main invariants and lower bound. References enumerate the supplied algorithms, partition schemes, properties, and comparator rules. Practice implements a general sort, a Dutch-national-flag partition, linked-list merge sort, backward array merge, quickselect, and a transitive concatenation comparator.
 
-Source: [USACO Guide: Problem-Analysis Paradigms](https://usaco.guide/PAPS.pdf), [USACO Guide: Custom Comparators](https://usaco.guide/silver/sorting-custom?lang=cpp).
+Sources: [OpenDSA: CPSC 270 Sorting](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html), [USACO Guide: Custom Comparators](https://usaco.guide/silver/sorting-custom).

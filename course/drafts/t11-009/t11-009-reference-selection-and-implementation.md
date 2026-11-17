@@ -14,7 +14,7 @@ Sorting determines every rank; selection determines only a target rank. A compar
 - Kth order statistic — The value at a specified rank in sorted order; duplicates occupy separate ranks.
 - Expected linear selection — Randomized quickselect has expected O(n) work under the random-pivot model.
 - Worst-case quadratic selection — Repeatedly poor partitions can reduce one element at a time, causing O(n²).
-- Comparator consistency — Comparison outcomes must be transitive and mutually coherent; nontransitive comparators invalidate sorting assumptions.
+- Comparator consistency — Comparison outcomes must form a strict weak ordering (including transitivity of both “comes before” and equivalence); violating a sorting API's comparator contract can make results invalid or behavior undefined, depending on the API.
 - Descending order — Reverse the comparator's sign safely or compare operands in reversed argument order; do not negate arbitrary Int32 values because MinValue cannot be negated.
 - Sort stability requirement — Decide whether equal-key records must retain prior order; if so, select a stable algorithm or encode a unique tie key.
 - Partial sorting — Arrange enough of a range to answer a limited rank/query without fully ordering all elements.
@@ -43,4 +43,4 @@ In [3,2,3,1,2,4,5,5,6], the fourth largest is 4. Sorting and indexing uses ascen
 3. **What if many ranks are needed?** Full sorting may be simpler and competitive.
 4. **Why must comparators be transitive?** Sorting algorithms rely on a coherent strict ordering.
 
-Source: [USACO Guide: Custom Comparators](https://usaco.guide/silver/sorting-custom?lang=cpp).
+Source: [USACO Guide: Custom Comparators and Coordinate Compression](https://usaco.guide/silver/sorting-custom).
