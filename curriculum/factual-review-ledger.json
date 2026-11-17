@@ -78352,31 +78352,49 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://firebase.google.com/docs/cloud-messaging",
+        "https://firebase.google.com/docs/cloud-messaging/customize-messages/set-message-type",
+        "https://firebase.google.com/docs/cloud-messaging/customize-messages/setting-message-lifespan",
+        "https://firebase.google.com/docs/cloud-messaging/customize-messages/collapsible-message-types",
+        "https://firebase.google.com/docs/cloud-messaging/customize-messages/setting-message-priority",
+        "https://firebase.google.com/docs/cloud-messaging/understand-delivery",
+        "https://firebase.google.com/docs/cloud-messaging/manage-tokens"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed.",
+      "partialSourceChecks": [
+        {
+          "status": "partial primary-source checks; full lesson audit pending",
+          "checks": [
+            {
+              "claim": "FCM supports notification and data message types with differing client handling in foreground/background.",
+              "source": "https://firebase.google.com/docs/cloud-messaging/customize-messages/set-message-type",
+              "verdict": "verified in current Firebase docs"
+            },
+            {
+              "claim": "FCM message ID means acceptance for delivery; TTL, device connectivity and collapse behavior affect queued delivery, and order is not guaranteed.",
+              "source": "https://firebase.google.com/docs/cloud-messaging/customize-messages/setting-message-lifespan",
+              "also": "https://firebase.google.com/docs/cloud-messaging/customize-messages/collapsible-message-types",
+              "verdict": "verified"
+            },
+            {
+              "claim": "Priority semantics differ by platform; high priority is for time-sensitive user-visible work, and Apple data messages require normal priority per FCM docs.",
+              "source": "https://firebase.google.com/docs/cloud-messaging/customize-messages/setting-message-priority",
+              "verdict": "verified; exact platform-specific priority matrix not reproduced"
+            },
+            {
+              "claim": "Registration token lifecycle requires storing refreshed tokens and cleaning stale/invalid registrations.",
+              "source": "https://firebase.google.com/docs/cloud-messaging/manage-tokens",
+              "verdict": "verified for token management guidance"
+            },
+            {
+              "claim": "Outbox, event IDs, idempotency, and server sync are architecture guidance to recover from push transport limitations.",
+              "source": "https://firebase.google.com/docs/cloud-messaging/understand-delivery",
+              "verdict": "partial; application-level reliability recommendation"
+            }
+          ],
+          "remaining": "Full platform-specific payload/API matrix, all quota/error conditions, every factual sentence, and completeness audit remain pending."
+        }
+      ]
     },
     {
       "taskId": "t12-001-practice",
@@ -100004,7 +100022,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 161 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 160 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits.",
         "Replaced generic GCS reference filler with object-storage mental model, consistency boundaries, generation preconditions, resumable upload and signed-URL security, deletion/recovery distinctions, application flows, and design exercises. Selected claims checked against Google Cloud documentation; complete factual and feature-omission audits remain pending.",
@@ -100016,7 +100034,8 @@
         "Replaced generic edge database filler with write ownership, consistency, replica, quorum, offline conflict, and failover models grounded in Aurora and Spanner documentation. Selected claims checked; complete factual and category-wide completeness audits remain pending.",
         "Replaced generic LRU filler with exact policy invariants, map/list implementation, qualified complexity, scan pollution, admission-versus-eviction distinction, and alternatives grounded in research and implementation documentation. Selected claims checked; full factual and completeness audit remains pending.",
         "Replaced generic TinyLFU filler with admission-versus-eviction distinction, compact frequency sketch and aging, Window TinyLFU cold-start behavior, scan/burst examples, and benchmark guidance. Selected claims checked against original research and Caffeine docs; full audit remains pending.",
-        "Replaced generic APNs reference filler with provider/device flow, best-effort semantics, token lifecycle, collapse/expiration choices, durable outbox guidance, and operational retry examples. Selected claims checked against Apple docs; full factual and completeness audit remains pending."
+        "Replaced generic APNs reference filler with provider/device flow, best-effort semantics, token lifecycle, collapse/expiration choices, durable outbox guidance, and operational retry examples. Selected claims checked against Apple docs; full factual and completeness audit remains pending.",
+        "Replaced generic FCM reference filler with notification/data message handling, TTL/priority/collapse semantics, token management, durable event ownership, and cross-platform recovery design. Selected claims checked against Firebase docs; full factual and completeness audit remains pending."
       ]
     },
     {
