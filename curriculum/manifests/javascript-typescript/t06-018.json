@@ -4,16 +4,129 @@
   "track": "track-06",
   "title": "JavaScript classes, inheritance, and private elements",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Class syntax as a structured form over prototype-based behavior", "Class declarations, expressions, strict mode, and class-name scope", "Construction order in base and derived classes", "Static versus instance members", "Method forms and computed element names", "Private names, lexical privacy, and brand checks", "Field and static-block initialization order", "Class fields use define-own-property semantics"],
+  "concepts": [
+    "Class syntax as a structured form over prototype-based behavior",
+    "Class declarations, expressions, strict mode, and class-name scope",
+    "Construction order in base and derived classes",
+    "Static versus instance members",
+    "Method forms and computed element names",
+    "Private names, lexical privacy, and brand checks",
+    "Field and static-block initialization order",
+    "Class fields use define-own-property semantics"
+  ],
   "inventory": [
-    {"id":"class-forms-and-inheritance","title":"Class declarations, expressions, methods, and inheritance","items":["Class declaration","Class declaration temporal dead zone","Class expression","Class expression inner name binding","Class strict mode","Class cannot be called without new","extends clause","Base class","Derived class","Class heritage expression","constructor method","Default base constructor","Default derived constructor","super() call","super property access","new.target in constructor","Computed class element name","Instance method","Static method","Generator method","Async method","Async generator method","Instance getter","Instance setter","Static getter","Static setter"]},
-    {"id":"fields-and-private-elements","title":"Fields, private elements, and initialization","items":["Public instance field","Public static field","Private instance field","Private static field","Private instance method","Private static method","Private getter","Private setter","Private static getter","Private static setter","Private-name brand check (#name in object)","Class static initialization block","Field initializer","Public field define-own-property semantics","Base and derived instance field initialization order","Static field and static block evaluation order"]}
+    {
+      "id": "class-forms-and-inheritance",
+      "title": "Class declarations, expressions, methods, and inheritance",
+      "items": [
+        "Class declaration",
+        "Class declaration temporal dead zone",
+        "Class expression",
+        "Class expression inner name binding",
+        "Class strict mode",
+        "Class cannot be called without new",
+        "extends clause",
+        "Base class",
+        "Derived class",
+        "Class heritage expression",
+        "constructor method",
+        "Default base constructor",
+        "Default derived constructor",
+        "super() call",
+        "super property access",
+        "new.target in constructor",
+        "Computed class element name",
+        "Instance method",
+        "Static method",
+        "Generator method",
+        "Async method",
+        "Async generator method",
+        "Instance getter",
+        "Instance setter",
+        "Static getter",
+        "Static setter"
+      ]
+    },
+    {
+      "id": "fields-and-private-elements",
+      "title": "Fields, private elements, and initialization",
+      "items": [
+        "Public instance field",
+        "Public static field",
+        "Private instance field",
+        "Private static field",
+        "Private instance method",
+        "Private static method",
+        "Private getter",
+        "Private setter",
+        "Private static getter",
+        "Private static setter",
+        "Private-name brand check (#name in object)",
+        "Class static initialization block",
+        "Field initializer",
+        "Public field define-own-property semantics",
+        "Base and derived instance field initialization order",
+        "Static field and static block evaluation order"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["class declaration","class expression"],["instance method","static method"],["public field","private field"],["base constructor","derived constructor"],["prototype method","class field"]],
-  "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes"],
-  "versionNotes": [{"edition":"ECMAScript 2022","items":["Public instance fields","Public static fields","Private methods and accessors","Class static initialization blocks"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html","https://github.com/tc39/proposal-class-fields"]}],
-  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript reference","edition":"ECMAScript 2026","checkedAt":"2026-11-16","urls":["https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks","https://github.com/tc39/proposal-class-fields"]},
+  "comparisons": [
+    [
+      "class declaration",
+      "class expression"
+    ],
+    [
+      "instance method",
+      "static method"
+    ],
+    [
+      "public field",
+      "private field"
+    ],
+    [
+      "base constructor",
+      "derived constructor"
+    ],
+    [
+      "prototype method",
+      "class field"
+    ]
+  ],
+  "comparisonSources": [
+    "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes"
+  ],
+  "versionNotes": [
+    {
+      "edition": "ECMAScript 2022",
+      "items": [
+        "Public instance fields",
+        "Public static fields",
+        "Private methods and accessors",
+        "Class static initialization blocks"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+        "https://github.com/tc39/proposal-class-fields"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "ECMA-262 and MDN JavaScript reference",
+    "edition": "ECMAScript 2026",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+      "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+      "https://github.com/tc39/proposal-class-fields"
+    ]
+  },
   "accuracyFacts": [
     "Class declarations and expressions execute in strict mode; class declarations have lexical binding initialization and a temporal dead zone.",
     "Class constructors cannot be called without new.",
@@ -26,6 +139,10 @@
     "Methods and accessors are installed on the relevant prototype or constructor; fields are per-instance or per-class own properties and their initializer runs at the specified construction/evaluation time.",
     "Decorators are outside this lesson's scope because they are not part of the ECMAScript 2026 standard edition."
   ],
-  "scopeExclusions": ["Plain object literal semantics (t06-004)","Function call binding methods (t06-017)","Decorators proposal, which is not in the ECMAScript 2026 standard edition"],
+  "scopeExclusions": [
+    "Plain object literal semantics (t06-004)",
+    "Function call binding methods (t06-017)",
+    "Decorators proposal, which is not in the ECMAScript 2026 standard edition"
+  ],
   "generationAllowed": true
 }

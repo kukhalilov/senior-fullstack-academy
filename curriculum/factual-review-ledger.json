@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 747,
-    "pending": 1594,
-    "claimsChecked": 25631,
-    "claimsCorrected": 1442,
+    "reviewed": 753,
+    "pending": 1588,
+    "claimsChecked": 26146,
+    "claimsCorrected": 1447,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 747,
-    "pendingLessons": 1594
+    "reviewedLessons": 753,
+    "pendingLessons": 1588
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1252,6 +1252,24 @@
       ],
       "findings": [
         "Checked all seven lesson files against ECMA-262 2026 normative object and Object algorithms and corresponding MDN reference pages. Verified creation and key conversion, own/inherited lookup, descriptor defaults/transitions, property enumeration/order, grouping, copying/write semantics, prototype operations, legacy compatibility methods, and integrity limits. Corrected the Exercise 5 explanation to specify JSON.parse preserves __proto__ as an own data key and Object.assign changes the target prototype only because this value is an object; the legacy setter ignores primitive values other than null. All seven lessons contain answers to their included tutorial/interview questions. No unresolved omissions found in the frozen inventory; drafts remain unpromoted pending full curriculum audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "JavaScript classes, inheritance and private elements (t06-018)",
+      "status": "full claim and frozen-inventory audit complete for all 6 lessons",
+      "sources": [
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+        "https://github.com/tc39/proposal-class-fields"
+      ],
+      "findings": [
+        "Checked all 42 frozen inventory entries and all six lesson files against ECMA-262 2026, MDN class references, and the TC39 class-fields proposal. Verified class declaration/expression scope, constructor and heritage semantics, super/new.target, methods/accessors, field define-own-property behavior, initialization order, private elements/brand checks, static initialization, and ES2022 additions. Corrected imprecise framing that equated private brand presence with ordinary instanceof ancestry; a base constructor can return an unrelated object that receives derived private elements. Added an executable counterexample, clarified extends null constructor behavior, and answered all practice reflection prompts. No unresolved scope omissions found; lessons remain drafts pending full-curriculum audit."
       ]
     }
   ],
@@ -49999,13 +50017,60 @@
       "topicId": "t06-018",
       "phase": "overview",
       "draft": "course/drafts/t06-018/t06-018-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked all factual statements in the class mental model, construction walkthrough, tradeoffs, ES2022 summary, and examples. Clarified that private brand checks prove possession, not ordinary instanceof ancestry.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-class-fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
@@ -50016,20 +50081,67 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
     },
     {
       "taskId": "t06-018-concepts",
       "topicId": "t06-018",
       "phase": "concepts",
       "draft": "course/drafts/t06-018/t06-018-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 68,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked class creation and TDZ, constructor and heritage rules, method/home-object lookup, field define semantics and ordering, private lexical names, static initialization, and examples. Added the returned-base-object/private-brand distinction.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-class-fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
@@ -50040,20 +50152,67 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
     },
     {
       "taskId": "t06-018-reference-class-forms-and-inheritance",
       "topicId": "t06-018",
       "phase": "reference",
       "draft": "course/drafts/t06-018/t06-018-reference-class-forms-and-inheritance.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 101,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 26 supplied class forms and inheritance terms, constructor restrictions, default constructors, super/new.target, computed names, method/accessor placement and strictness against ECMA-262 2026 and MDN.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-class-fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
@@ -50064,20 +50223,67 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
     },
     {
       "taskId": "t06-018-reference-fields-and-private-elements",
       "topicId": "t06-018",
       "phase": "reference",
       "draft": "course/drafts/t06-018/t06-018-reference-fields-and-private-elements.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 96,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all 16 inventory entries, field and private initialization, brand-check operand requirements, static block order/scope, and ES2022 version notes. Clarified brand possession does not imply ordinary prototype ancestry.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-class-fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
@@ -50088,20 +50294,67 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
     },
     {
       "taskId": "t06-018-practice",
       "topicId": "t06-018",
       "phase": "practice",
       "draft": "course/drafts/t06-018/t06-018-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 127,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all six exercise prompts/solutions and execution order. Added a working unrelated-prototype object/private-brand counterexample, explained extends null construction, and supplied answers to all five reflection questions.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-class-fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
@@ -50112,20 +50365,67 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
     },
     {
       "taskId": "t06-018-interview",
       "topicId": "t06-018",
       "phase": "interview",
       "draft": "course/drafts/t06-018/t06-018-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 92,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked 11 core prompts, six scenarios, follow-ups, comparison table, and self-check against current class semantics. Clarified private brand versus instanceof in the brand-check answer and private field follow-up.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            },
+            {
+              "url": "https://github.com/tc39/proposal-class-fields",
+              "section": "ECMA-262 2026 class definition/construction/private element algorithms; MDN explanatory reference and ES2022 class-fields proposal where relevant",
+              "verdict": "supported; corrections and clarifications recorded where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
@@ -50136,7 +50436,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
     },
     {
       "taskId": "t06-019-overview",

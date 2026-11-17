@@ -42,7 +42,7 @@ For a base class, instance fields initialize before the base constructor body. F
 
 A private name such as `#secret` is not a string property and is not accessible through bracket notation, reflection, or code outside the lexical class scope that declares it. Private instance elements are installed on instances during class initialization; private static elements belong to the declaring class constructor. They are not inherited as if they were public fields: a subclass method cannot directly use a base class's private name unless that code is lexically inside the base class.
 
-`#secret in object` is a private brand check. It tests whether the object has the private element associated with that lexical name; it can safely guard a later private access, and unlike `instanceof`, it does not consult a public `Symbol.hasInstance` customization or merely follow a prototype chain. For a private static member, the brand is the declaring class object, not every subclass constructor.
+`#secret in object` is a private brand check. It tests whether the object has the private element associated with that lexical name; it can safely guard a later private access, and unlike `instanceof`, it does not consult a public `Symbol.hasInstance` customization or merely follow a prototype chain. It is not a general proof of `instanceof` ancestry: a base constructor can return an unrelated object which then receives the derived class's fields and private brand. For a private static member, the brand is the declaring class object, not every subclass constructor.
 
 ### Static elements run during class evaluation
 

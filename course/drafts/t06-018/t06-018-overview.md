@@ -12,7 +12,7 @@ The main source of bugs is initialization order. A base constructor runs as part
 
 Think of a class as a blueprint plus a constructor object. The blueprint's instance methods go on the prototype shared by instances; each instance receives its own fields. Static methods and fields belong to the class constructor itself. A derived class links both its instance prototype chain and its constructor inheritance to the base class.
 
-Construction is a sequence of steps. A base instance initializes its fields before the base constructor body. A derived constructor must call `super()` before using `this`; the base construction runs, then the derived fields initialize, then the remaining derived constructor body continues. A private name acts like a class-scoped capability: only code in the declaring lexical class scope can use that name.
+Construction is a sequence of steps. A base instance initializes its fields before the base constructor body. A derived constructor must call `super()` before using `this`; the base construction runs, then the derived fields initialize, then the remaining derived constructor body continues. A private name acts like a class-scoped capability: only code in the declaring lexical class scope can use that name. A private brand check tests possession of that private element, not ordinary `instanceof` ancestry.
 
 ## How the parts fit together
 

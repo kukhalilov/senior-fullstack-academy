@@ -52,7 +52,7 @@ Create a base class with a setter named `value`, then a derived class with a pub
 
 ### 3. Private data and brand check
 
-Implement a class `Vault` with a private instance field `#secret`, a constructor that stores a value, a method that reads it, and a static method that safely reports whether an object is a `Vault` instance using `#secret in object`. Ensure null and primitive inputs do not cause a brand-check TypeError.
+Implement a class `Vault` with a private instance field `#secret`, a constructor that stores a value, a method that reads it, and a static method that safely reports whether an object carries this class's `#secret` private element using `#secret in object`. Ensure null and primitive inputs do not cause a brand-check TypeError. Explain why this is a brand test rather than a universal `instanceof Vault` replacement.
 
 ### 4. Static initialization order
 
@@ -64,13 +64,13 @@ Create two instances of a class with an instance method and a public field. Use 
 
 ### 6. Derived constructor return
 
-Write one derived constructor that returns a replacement object without calling `super()`. Write another that tries to return a primitive without calling `super()`. Explain which can complete and why.
+Write one derived constructor that returns a replacement object without calling `super()`. Write another that tries to return a primitive without calling `super()`. Explain which can complete and why. Also explain why `class A extends null {}` needs a custom constructor that returns an object without trying to call `super()`.
 
 ## Progressive hints
 
 1. Put the first derived log before `super()` but do not read `this` until afterward.
 2. A public field defines an own property; ordinary assignment performs property-set behavior and can find the inherited setter.
-3. Check that the input is non-null and has object or function type before using `#secret in object`.
+3. Check that the input is non-null and has object or function type before using `#secret in object`; describe the result as possession of this private brand, not proof of ordinary prototype ancestry.
 4. Static fields and blocks are interleaved by source order, and the base class completes before the derived class.
 5. Methods are defined on the prototype. Fields are own properties on each instance.
 6. A derived constructor can return an object directly, which becomes the constructed value. A primitive return is invalid while `this` is uninitialized.
@@ -140,7 +140,15 @@ console.log(Vault.hasSecret(null));     // false
 console.log(Vault.hasSecret(3));        // false
 ```
 
-The type guard prevents applying the private brand check to a primitive or null. A successful check means this exact class's private name is present; it does not compare public properties.
+The type guard prevents applying the private brand check to a primitive or null. A successful check means this exact class's private name is present; it does not prove ordinary prototype ancestry. For example, a base constructor can return an unrelated object, after which derived fields (including private fields) are initialized on that replacement object:
+
+```js
+class Base { constructor() { return {}; } }
+class Branded extends Base { #secret = true; static has(value) { return #secret in value; } }
+const value = new Branded();
+console.log(Branded.has(value)); // true
+console.log(value instanceof Branded); // false
+```
 
 ### 4. Static initialization order
 
@@ -197,7 +205,7 @@ try {
 }
 ```
 
-A derived constructor may return an object directly without calling `super()`. Returning a primitive before `this` has been initialized is an error. The replacement object does not receive the class's instance fields because `super()` never initialized that class's `this`.
+A derived constructor may return an object directly without calling `super()`. Returning a primitive before `this` has been initialized is an error. The replacement object does not receive the derived class's instance fields because `super()` never initialized that class's `this`. When the heritage is `null`, the default derived constructor cannot construct a base from null; a custom constructor may return an object directly without calling `super()`.
 
 ## Tests and edge cases
 
@@ -208,15 +216,17 @@ A derived constructor may return an object directly without calling `super()`. R
 - Private static access through a subclass receiver can fail the brand check even though the static method was inherited.
 - `#name in null` and `#name in 1` throw `TypeError`; perform an object/function type guard first.
 - Static block declarations are scoped to the block; `await`, `yield`, `arguments`, and `super()` are not available there.
-- `class A extends null {}` has a null instance-prototype parent; construction requires a custom derived constructor that returns an object without trying to call null as a constructor.
+- `class A extends null {}` has a null instance-prototype parent; construction requires a custom derived constructor that returns an object without trying to call null as a constructor. For example, `constructor() { return Object.create(new.target.prototype); }` creates an instance with the intended prototype without calling `super()`.
 
 ## Reflection questions
 
-1. Why are fields initialized in declaration order instead of as a batch after construction?
-2. Which observable behavior differs between a field and an assignment in a constructor?
-3. Why is a private brand check more specific than a prototype check?
-4. What can go wrong when a base constructor calls an overridable method?
-5. What class-level work belongs in a static block rather than a per-instance field?
+Answers follow each question.
+
+1. **Why are fields initialized in declaration order instead of as a batch after construction?** Initializers can depend on earlier fields and their side effects are observable; the specified order makes construction deterministic and ensures each field exists at its defined point.
+2. **Which observable behavior differs between a field and an assignment in a constructor?** A field defines an own property without invoking an inherited setter; `this.name = value` performs ordinary assignment and may call one.
+3. **Why is a private brand check more specific than a prototype check?** It tests possession of one lexically identified private element and cannot be spoofed by changing the public prototype chain. It also is not identical to `instanceof`: an unrelated replacement object can receive the class's private elements during derived initialization.
+4. **What can go wrong when a base constructor calls an overridable method?** Dynamic dispatch may run a child override before child fields initialize, exposing `undefined` state or causing access to an uninitialized private field to throw.
+5. **What class-level work belongs in a static block rather than a per-instance field?** One-time synchronous initialization that needs ordered class-level setup, including access to private static state; a field on the instance would repeat for each object.
 
 ## Sources
 

@@ -26,7 +26,7 @@
 6. A field defines an own property without invoking an inherited setter; ordinary assignment can invoke one.
 7. Base fields initialize before the base constructor body. Derived fields initialize after `super()` returns and before the rest of the derived body.
 8. Private names are lexically scoped and use private-element access checks; they are not string keys and cannot be accessed through ordinary reflection.
-9. It checks for the specific private element/brand associated with the lexically resolved private name.
+9. It checks for the specific private element/brand associated with the lexically resolved private name. It is not a general substitute for `instanceof`: a base constructor can return an unrelated object that then receives derived fields and private elements.
 10. During class evaluation, interleaved in source order; a base class finishes static initialization before a derived class.
 11. Public class fields, private methods/accessors, and static initialization blocks became standard in ES2022.
 
@@ -42,7 +42,7 @@ For a method, `super.name` begins property lookup at the prototype of that metho
 
 ### Are private fields inherited?
 
-An instance of a derived class contains private elements initialized by each constructor that runs, but private-name access is lexical. A derived class body cannot write `this.#baseSecret` unless that private name is declared in the derived lexical class scope; the base class can use its own name in its methods. Private static elements are branded to the declaring constructor, so an inherited static method using `this.#field` may fail when called with a subclass as `this`.
+An instance of a derived class contains private elements initialized by each constructor that runs, but private-name access is lexical. A derived class body cannot write `this.#baseSecret` unless that private name is declared in the derived lexical class scope; the base class can use its own name in its methods. Private static elements are branded to the declaring constructor, so an inherited static method using `this.#field` may fail when called with a subclass as `this`. Private brand possession is not exactly `instanceof` ancestry: a base constructor can return an unrelated object which then receives a derived class's fields and private elements.
 
 ### Why are public fields not ordinary assignments?
 
