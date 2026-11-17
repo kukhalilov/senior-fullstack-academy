@@ -7,7 +7,7 @@
     "lessons": 2340,
     "reviewed": 7,
     "pending": 2333,
-    "claimsChecked": 132,
+    "claimsChecked": 136,
     "claimsCorrected": 4,
     "draftsMayBePromoted": false
   },
@@ -88839,75 +88839,45 @@
       "phase": "reference",
       "draft": "course/drafts/t12-006/t12-006-reference-handbook-case-study-specific-techniques-openrouter.md",
       "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "claimInventory": "partial; remaining claims and scope omissions pending",
+      "claimsChecked": 4,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "OpenRouter provider-selection controls can constrain candidate providers and use explicit ordering or sorting; default routing behavior is documented separately and can change.",
+          "source": "https://openrouter.ai/docs/guides/routing/provider-selection; https://openrouter.ai/blog/announcements/how-we-rebuilt-provider-routing/",
+          "section": "Provider Routing; 2026-10-28 routing announcement",
+          "verdict": "supported"
+        },
+        {
+          "claim": "OpenRouter distinguishes provider selection/failover from model-level fallbacks configured with a model list.",
+          "source": "https://openrouter.ai/docs/guides/routing/model-fallbacks",
+          "section": "Model Fallbacks; How it works",
+          "verdict": "supported"
+        },
+        {
+          "claim": "OpenRouter guardrails can set spending limits, restrict model/provider access, and enforce data-retention requirements.",
+          "source": "https://openrouter.ai/docs/guides/features/guardrails",
+          "section": "Guardrails; settings",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The announced 2026-10-28 default provider-routing update considers multiple performance/value signals and leaves explicit sort/order controls with documented behavior.",
+          "source": "https://openrouter.ai/blog/announcements/how-we-rebuilt-provider-routing/",
+          "section": "Announcement; What stays the same",
+          "verdict": "supported; routing behavior is time-sensitive"
+        }
+      ],
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
         "https://hld.handbook.academy/",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework",
-        "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
-        "https://hld.handbook.academy/curriculum/case-studies/",
-        "https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/",
-        "https://www.rfc-editor.org/rfc/rfc9309",
-        "https://www.rfc-editor.org/rfc/rfc5322",
-        "https://www.rfc-editor.org/rfc/rfc8216",
-        "https://redis.io/docs/latest/develop/programmability/",
-        "https://redis.io/docs/latest/interact/programmability/eval-intro/",
-        "https://redis.io/docs/latest/develop/programmability/functions-intro/",
-        "https://redis.io/docs/latest/commands/eval/",
-        "https://redis.io/docs/latest/interact/transactions/",
-        "https://redis.io/docs/latest/management/scaling/",
-        "https://redis.io/docs/latest/develop/reference/errors/common/busy/",
-        "https://gateway.envoyproxy.io/docs/concepts/rate-limiting/",
-        "https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/other_features/local_rate_limiting",
-        "https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/other_features/global_rate_limiting",
-        "https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
-        "https://www.rfc-editor.org/rfc/rfc6585",
-        "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html",
-        "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/troubleshooting-dlq-redrive.html",
-        "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dead-letter-queues",
-        "https://docs.cloud.google.com/pubsub/docs/dead-letter-topics",
-        "https://docs.cloud.google.com/storage/docs/retry-strategy",
-        "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_prevent_interaction_failure_idempotent.html",
-        "https://signal.org/docs/",
-        "https://signal.org/docs/specifications/pqxdh/",
-        "https://signal.org/docs/specifications/doubleratchet/",
-        "https://support.signal.org/hc/en-us/articles/360007060632-What-is-a-safety-number-and-why-do-I-see-that-it-changed",
-        "https://support.signal.org/hc/en-us/articles/10223569377562-Automatic-Key-Verification",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://developer.apple.com/documentation/http-live-streaming",
-        "https://developer.apple.com/streaming/hls-authoring-specification-for-apple-devices.html",
-        "https://developer.apple.com/documentation/http-live-streaming/enabling-low-latency-http-live-streaming-hls",
-        "https://www.rfc-editor.org/info/rfc8216",
-        "https://www.mpeg.org/standards/MPEG-DASH/",
-        "https://docs.cloud.google.com/spanner/docs/queues/queues-at-most-once",
-        "https://learn.microsoft.com/en-us/azure/architecture/best-practices/caching",
-        "https://learn.microsoft.com/en-us/azure/architecture/microservices/design/data-considerations",
-        "https://engineering.fb.com/2021/01/26/ml-applications/news-feed-ranking/",
-        "https://engineering.fb.com/2013/06/25/core-infra/tao-the-power-of-the-graph/",
-        "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html",
-        "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html",
-        "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-the-cache-key.html",
-        "https://redis.io/docs/latest/commands/zrange/",
-        "https://redis.io/docs/latest/develop/use-cases/leaderboard/",
-        "https://www.mpeg.org/standards/MPEG-A/19/",
-        "https://developer.apple.com/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls",
-        "https://dashif.org/Guidelines-TimingModel/Timing-Model.pdf",
-        "https://openconnect.netflix.com/en/",
-        "https://openconnect.netflix.com/Open-Connect-Overview.pdf",
-        "https://www.cloudflare.com/learning/network-layer/what-is-peering/",
-        "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/on-demand-streaming-video.html",
-        "https://docs.aws.amazon.com/solutions/latest/video-on-demand-on-aws/architecture-details.html",
-        "https://netflixtechblog.com/optimized-shot-based-encodes-now-streaming-4b9464204830"
+        "https://openrouter.ai/docs/guides/routing/provider-selection",
+        "https://openrouter.ai/docs/guides/routing/model-fallbacks",
+        "https://openrouter.ai/docs/guides/features/guardrails",
+        "https://openrouter.ai/blog/announcements/how-we-rebuilt-provider-routing/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Partial source verification only. Four routing, fallback, and control claims checked against current OpenRouter documentation and its dated routing announcement; remaining claims and inventory omissions require full audit. Do not promote."
     },
     {
       "taskId": "t12-006-reference-handbook-case-study-specific-techniques-litellm",
@@ -100299,7 +100269,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 198 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 197 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
@@ -100350,6 +100320,14 @@
       "status": "expanded; partial claim verification; full audit pending",
       "findings": [
         "Rebuilt the lesson around the request path and policy boundary, deployment routing, retry versus fallback, provider differences, tenant budget races, prompt data security, state sharing, and operational failures. Three routing/gateway claims were checked against official LiteLLM documentation; the full claim inventory and manifest omission review remain pending."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "OpenRouter system design case study",
+      "status": "expanded; partial claim verification; full audit pending",
+      "findings": [
+        "Rebuilt the lesson around model-vs-provider selection, provider failover vs model fallback, changing default route selection, data policy constraints, streaming failures, spend/security, and output validation. Four current behaviors were checked against official docs, including the 2026-10-28 routing announcement; the full claim inventory and manifest omission review remain pending."
       ]
     }
   ]
