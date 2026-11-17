@@ -31,7 +31,7 @@ After a correct recurrence exists, ask how many states it visits, how much each 
 | Score + predecessor indices | `O(n)` for LIS | Yes | Yes, reverse predecessor chain |
 | Score + choice table | `O(nm)` | Yes | Yes, with stored decisions |
 
-Hirschberg’s LCS method can reconstruct an LCS in linear auxiliary space by dividing the problem and combining forward/backward rows, at the cost of additional implementation complexity. It is an advanced alternative, not a reason to discard full-table reconstruction when constraints are small.
+Hirschberg’s LCS method can reconstruct an LCS in `O(nm)` time and `O(min(n,m))` auxiliary space by dividing the problem and combining forward/backward rows, at the cost of additional implementation complexity. It is an advanced alternative, not a reason to discard full-table reconstruction when constraints are small.
 
 ## Examples
 

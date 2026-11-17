@@ -23,6 +23,10 @@ Segmentation asks whether a prefix is reachable by joining valid pieces; transfo
 
 ## Cross-item comparison
 
+### Minimum palindrome cuts recurrence
+
+Let `pieces[i]` be the minimum number of palindromic pieces covering the first `i` characters. Set `pieces[0] = 0`. For each `end` from 1 through `n`, consider every `start < end`; when `s[start..end)` is a palindrome, update `pieces[end] = min(pieces[end], pieces[start] + 1)`. For a nonempty input, the answer is `pieces[n] - 1`; the empty string can be handled separately as zero cuts. Precomputing palindrome membership for all intervals takes `O(n²)` time and space, and the transition scan is `O(n²)`, for `O(n²)` total time.
+
 | Problem | State type | Final choice |
 |---|---|---|
 | Word Break | Boolean reachable prefix | Pick a dictionary word ending at this boundary |
@@ -38,6 +42,8 @@ The word “star” is overloaded. In the supplied regular-expression problem, `
 For `s="applepenapple"` with words `apple, pen`, reachable prefix lengths progress through 5, 8, and 13. For regex `s="aa"`, `p="a*"`, the star branch can consume one more `a` while remaining at the pattern position, then eventually move past the `a*` token. For `s="ab"`, `p=".*"`, dot matches each character and star repeats dot. A pattern like `*a` is invalid under the supplied constraints because star must have a preceding element.
 
 For an ASCII deletion-only alignment, matching equal characters keeps the diagonal cost; deleting from one string adds that character’s code-point/ASCII value to the appropriate predecessor. When constraints specify lowercase English letters, the values are ASCII-compatible; for Unicode generalization, define whether cost is UTF-16 code unit, Unicode scalar value, or another weight.
+
+For palindrome cuts on `"aab"`, `pieces[1]=1` for `"a"`, `pieces[2]=1` for `"aa"`, and the final `"b"` gives `pieces[3]=2`; subtract one to obtain one cut: `"aa" | "b"`.
 
 ## Common mistakes
 

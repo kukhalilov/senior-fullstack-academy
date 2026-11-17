@@ -16,7 +16,7 @@
 - Allocate time explicitly, then adapt it to the task. Reserve time for tests and explanation rather than using all available minutes to code.
 - Narrate decisions, invariants, uncertainties, and tradeoffs. Avoid reading syntax aloud.
 - State the uncertainty, create a small counterexample, simplify the problem, or return to a correct baseline that can expose what the optimization must preserve.
-- Independent recall reveals whether the method can be reconstructed. Reading first can create familiarity that feels like recall.
+- Independent recall reveals whether the method can be reconstructed. Repeatedly studying can increase confidence without matching delayed recall, so try the problem before reading its solution; research supports retrieval practice generally, not a guaranteed coding-interview outcome or a fixed retry interval.
 - Track approach time, implementation time, hints, correctness on edge cases, explanation clarity, delayed re-solve success, and pattern breadth.
 - Identify the missing concept, review it, shorten the next interval, and retry without notes. One failure is information about the next practice action, not a general judgment.
 
@@ -73,4 +73,4 @@ Rate each item as **not yet**, **with a prompt**, or **independently**:
 
 Review several sessions together. A single fast solve may reflect a familiar prompt; a single slow solve may reflect an unusual constraint. Read metrics with their context and choose one concrete skill for the next session.
 
-Sources: [Competitive Programmer's Handbook](https://usaco.guide/CP2.pdf).
+Sources: [Roediger and Karpicke, “Test-Enhanced Learning”](https://doi.org/10.1111/j.1467-9280.2006.01693.x), [Dunlosky et al., “Improving Students’ Learning With Effective Learning Techniques”](https://doi.org/10.1177/1529100612453266), [The Science of Effective Learning With Spacing and Retrieval Practice](https://doi.org/10.1038/s44159-022-00089-1), [Competitive Programmer's Handbook](https://usaco.guide/CP2.pdf).

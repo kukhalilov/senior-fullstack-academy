@@ -39,7 +39,7 @@ After missing the invariant for a two-pointer solution, log the missing boundary
 3. **Compare after independent attempt.** Only then inspect notes or a reference solution; distinguish a different but valid method from a real gap.
 4. **Adjust the next interval.** Increase interval after successful recall with a sound explanation; Shorten interval after failure and target the missing concept.
 
-Spaced timing is a practical scheduling heuristic. A fixed sequence is not a guarantee of retention and should adapt to observed recall, workload, and problem importance.
+Retrieval practice and spacing have research support for improving later retention across studied learning tasks. One classic experiment compared repeated study with retrieval tests on prose passages; it found better delayed retention after testing despite higher confidence after repeated study. That result supports trying to reconstruct a solution before rereading it, but it does not establish a guaranteed improvement for coding interviews or identify one universally optimal retry interval. Spaced timing is a practical scheduling heuristic; adapt it to observed recall, workload, and problem importance.
 
 ### Avoid false recall
 
@@ -65,4 +65,4 @@ Recognizing a solution while reading is easier than deriving it. Change names or
 - Did I test the proof and edge case, not just reproduce code?
 - Should the next review happen sooner or later based on actual recall?
 
-Sources: [Competitive Programmer's Handbook](https://usaco.guide/CP2.pdf).
+Sources: [Roediger and Karpicke, “Test-Enhanced Learning”](https://doi.org/10.1111/j.1467-9280.2006.01693.x), [Dunlosky et al., “Improving Students’ Learning With Effective Learning Techniques”](https://doi.org/10.1177/1529100612453266), [The Science of Effective Learning With Spacing and Retrieval Practice](https://doi.org/10.1038/s44159-022-00089-1), [Competitive Programmer's Handbook](https://usaco.guide/CP2.pdf).

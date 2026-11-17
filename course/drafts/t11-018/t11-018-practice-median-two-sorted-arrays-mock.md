@@ -17,7 +17,6 @@ Given two individually sorted integer arrays whose combined length is nonzero, r
 - `[1,3]`, `[2]` -> `2.0`.
 - `[1,2]`, `[3,4]` -> `2.5`.
 - `[]`, `[5]` -> `5.0`.
-- `[-2,0]`, `[int.MinValue,int.MaxValue]` -> `-1.0`.
 
 ## Clarifying assumptions
 - Duplicate values are permitted and count with multiplicity.
@@ -78,6 +77,7 @@ static class Program
         Check(2.0, new[] { 1, 3 }, new[] { 2 });
         Check(2.5, new[] { 1, 2 }, new[] { 3, 4 });
         Check(5.0, Array.Empty<int>(), new[] { 5 });
+        // Defensive robustness check outside the official value constraints.
         Check(-1.0, new[] { -2, 0 }, new[] { int.MinValue, int.MaxValue });
         Check(1.0, new[] { 1, 1 }, new[] { 1, 1 });
         Check(1.5, new[] { 1 }, new[] { 2 });
@@ -115,7 +115,7 @@ O(1) auxiliary space.
 - Odd and even total lengths.
 - All values equal.
 - One array entirely below the other.
-- Integer extremes in the even median.
+- Integer extremes in the even median as a defensive robustness check outside the official input-value constraints.
 
 ## Reflection questions
 1. Why does searching the shorter array keep the other cut within bounds?

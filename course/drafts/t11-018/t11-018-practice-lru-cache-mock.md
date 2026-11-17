@@ -136,3 +136,5 @@ O(capacity) entries in the dictionary and list.
 
 ## Source
 - [LRU Cache](https://leetcode.com/problems/lru-cache/)
+- [.NET `LinkedList<T>.Remove(LinkedListNode<T>)`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1.remove?view=net-10.0)
+- [.NET `Dictionary<TKey,TValue>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-10.0)

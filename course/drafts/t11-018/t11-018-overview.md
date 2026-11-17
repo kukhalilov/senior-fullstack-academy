@@ -36,4 +36,4 @@ Timed sessions help practice prioritization and explanation, but speed alone is 
 
 References define the session sequence, communication and recovery moves, spaced review, and progress calibration. Eight advanced and intermediate problems provide mock prompts whose canonical algorithm lessons live in their own topics.
 
-Sources: [Competitive Programmer's Handbook](https://usaco.guide/CP2.pdf), [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/), [LRU Cache](https://leetcode.com/problems/lru-cache/).
+Sources: [Roediger and Karpicke, “Test-Enhanced Learning”](https://doi.org/10.1111/j.1467-9280.2006.01693.x), [The Science of Effective Learning With Spacing and Retrieval Practice](https://doi.org/10.1038/s44159-022-00089-1), [Competitive Programmer's Handbook](https://usaco.guide/CP2.pdf), [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/), [LRU Cache](https://leetcode.com/problems/lru-cache/).

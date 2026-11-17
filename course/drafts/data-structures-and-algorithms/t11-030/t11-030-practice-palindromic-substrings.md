@@ -78,7 +78,7 @@ Every nonempty palindrome has exactly one center: a character for odd length or 
 
 ## Step-by-step dry run
 
-For `"aaa"`, the three odd centers contribute 1, 1, and 1. The even center between the first and second characters expands twice (`"aa"`, `"aaa"` range centered there), and the even center between the second and third also expands once. Total: 6. The middle `"aaa"` is centered on the middle character, while each length-two substring has its own gap center.
+For `"aaa"`, the odd centers contribute 1, 2, and 1: the middle character is the center of both its one-character palindrome and the full `"aaa"`. The two even centers, each a gap between adjacent characters, contribute one `"aa"` apiece. Total: 6. Each positional substring has exactly one character or gap center.
 
 ## Time complexity
 

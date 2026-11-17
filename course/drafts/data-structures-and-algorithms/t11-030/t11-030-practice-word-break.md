@@ -87,11 +87,11 @@ For `"applepenapple"`, words `apple` and `pen`, begin with `reachable[0]=true`. 
 
 ## Time complexity
 
-Let `n` be string length and `L` the maximum word length. There are at most `nL` boundary checks. In .NET, `Substring` creates a string and hashing/comparison examines characters, so a simple upper bound is `O(nL²)` character work; constraints make this practical. A trie or span-based lookup can reduce allocation or repeated comparisons.
+Let `n` be string length, `L` the maximum word length, and `T` the total number of characters across dictionary words. Building the hash set takes expected `O(T)` character work. There are at most `nL` boundary checks; obtaining each candidate substring and hashing/comparing up to `L` characters gives expected `O(nL²)` character work overall, plus `O(T)` construction. A full-range `Substring` call may return the original string; partial ranges return substring strings. A trie or span-based lookup can reduce temporary allocations or repeated comparisons.
 
 ## Space complexity
 
-`O(n + D)` for reachability and the dictionary representation, excluding string storage already supplied. Temporary substring allocations are short-lived.
+`O(n + D)` auxiliary entries for reachability and the hash set, where `D` is dictionary word count, excluding the input words' character storage. At most `O(L)` candidate characters are needed by one substring operation at a time, while cumulative substring allocation over all checks can reach `O(nL²)` characters. Building a trie instead uses space proportional to its distinct prefix nodes.
 
 ## Edge-case tests
 
@@ -102,3 +102,5 @@ Assertions cover all examples, an empty generalized input, an empty dictionary, 
 - How would you modify the state to count the number of segmentations?
 - When could a trie improve the boundary search?
 - Why does a greedy longest-word-first choice fail in general?
+
+Sources: [Word Break](https://leetcode.com/problems/word-break/), [.NET `String.Substring`](https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0), [.NET `HashSet<T>.Contains`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.contains?view=net-10.0).

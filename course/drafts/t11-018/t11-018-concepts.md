@@ -59,4 +59,4 @@ After the mock, note whether the difficulty was proving that all indices within 
 3. **When should you inspect the reference solution after a re-solve?** After the independent attempt and its tests.
 4. **What should progress tracking include besides time?** Correctness, hints, explanation clarity, re-solve success, and pattern breadth.
 
-Sources: [Competitive Programmer's Handbook](https://usaco.guide/CP2.pdf), [Jump Game II](https://leetcode.com/problems/jump-game-ii/).
+Sources: [Roediger and Karpicke, “Test-Enhanced Learning”](https://doi.org/10.1111/j.1467-9280.2006.01693.x), [Dunlosky et al., “Improving Students’ Learning With Effective Learning Techniques”](https://doi.org/10.1177/1529100612453266), [The Science of Effective Learning With Spacing and Retrieval Practice](https://doi.org/10.1038/s44159-022-00089-1), [Competitive Programmer's Handbook](https://usaco.guide/CP2.pdf), [Jump Game II](https://leetcode.com/problems/jump-game-ii/).
