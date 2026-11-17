@@ -1,36 +1,61 @@
 # end-to-end system design case studies — Reference: Content-based recommendation
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [Google ML: candidate generation overview](https://developers.google.com/machine-learning/recommendation/overview/candidate-generation), [Google ML: recommendation system stages](https://developers.google.com/machine-learning/recommendation/overview/types), [Google ML: collaborative filtering basics](https://developers.google.com/machine-learning/recommendation/collaborative/basics), [Google ML: retrieval](https://developers.google.com/machine-learning/recommendation/dnn/retrieval).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson covers recommendations derived from item attributes and a user’s expressed or inferred preferences. It is a general design pattern; feature representations, similarity functions, serving systems, and evaluation methods vary. Metadata and behavioral signals should be governed by privacy, safety, and product policies.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Content-based recommendation asks: “Given properties of items a user liked or selected, which other items have relevant properties?” Represent items with features such as category, language, tags, creator, text embedding, or price range. Build a user profile from selected, consumed, or explicitly preferred features, retrieve similar items, score them in context, and apply availability, safety, and diversity rules.
+
+Because the method uses item features, it can recommend a new item before users have interacted with it, as long as its metadata is available. It can also over-focus on items similar to the user’s history, limiting discovery. It does not automatically understand feature quality, context, or whether similarity means the user will enjoy an item.
 
 ## Supplied names explained
 
-- `Content-based recommendation` — Uses item and user attributes to recommend similar content; feature quality, diversity, and filter bubbles should be measured.
+- **Item feature vector:** structured or learned representation of an item’s attributes. Normalize categorical/numeric fields and handle missing/noisy metadata intentionally.
+- **User profile:** aggregation of item features weighted by explicit preferences or interactions, potentially with recency/negative-feedback rules. It is a model of preference, not a full identity or fixed truth about the person.
+- **Similarity measure:** method such as cosine similarity or a learned compatibility score to compare item/user representations; scaling and feature weighting affect outcomes.
+- **Content-based candidate retrieval:** search or nearest-neighbor step that returns items close to a profile/item representation.
+- **Re-ranking and diversity:** later stage adjusts candidate order or removes duplicates to incorporate context, freshness, policy, and broader discovery goals.
+- **Cold start:** new users may still lack a profile; ask preferences, use current-session context, or offer broad choices. New items can be handled with metadata-derived features.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Method | Primary evidence | Strength | Typical limitation |
+| --- | --- | --- | --- |
+| Content-based | Item attributes and user/item profile | Can recommend new items with features and explain shared attributes | Can create a narrow “more of the same” loop and depends on metadata quality |
+| Collaborative filtering | User-item interaction patterns | Finds relationships beyond hand-authored metadata | Sparse data, exposure bias, and new-user/new-item cold start |
+| Hybrid | Both content and interaction signals | Can combine cold-start coverage with learned behavioral affinity | More features, data pipelines, evaluation, and explanation complexity |
+| Popularity baseline | Aggregate consumption/popularity | Strong, simple fallback and candidate source | Tends to favor already-popular items and can reduce personalized discovery |
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+A reader repeatedly selects beginner guides about database indexes. A content model can build a profile over “database,” “beginner,” and related concepts, then retrieve an introductory query-planning guide even if it was just published. The UI can explain the shared topics. If the profile only matches previous categories, however, it may never offer adjacent material; reserve some slots for diverse or exploratory candidates and measure whether users find them useful.
+
+For cold-start visitors, ask for a few interests or use the current page/session context without constructing an invasive long-term profile. For a new item, validate metadata, generate its feature representation, put it into the retrieval index, and monitor candidate coverage. If its tags are wrong or incomplete, the ranking may systematically misrepresent it; provide correction and editorial pathways.
+
+An end-to-end pipeline versions feature schemas and model/index versions, refreshes item vectors after catalog changes, retrieves candidates under a latency budget, scores them with current context, removes ineligible items, applies diversity constraints, and logs eligible impressions and outcomes. Evaluate relevance and novelty, catalog coverage, freshness, latency, and user-level guardrails; do not infer success from similarity scores alone.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating item similarity as a guarantee that the user will like or benefit from an item.
+- Building profiles from noisy clicks without separating accidental/low-intent interactions from explicit preference.
+- Leaving outdated, missing, or biased item metadata unchecked.
+- Recommending only near-duplicates and creating a filter bubble.
+- Assuming content-based models solve new-user cold start; they still need a profile or context.
+- Using sensitive user attributes without necessity, safeguards, and a clear policy.
+- Updating the catalog without refreshing feature vectors or retrieval indexes.
+- Evaluating only offline similarity or click-through while ignoring diversity, coverage, safety, and exposure effects.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Can content-based retrieval recommend a brand-new item?** Yes, if its item features are available and indexed; it does not require interaction history for that item.
+2. **Does that solve the new-user problem?** No. A user profile may still be absent; use explicit preferences, session context, broad candidates, or exploration.
+3. **Why add diversity after similarity retrieval?** Similarity tends to return near-neighbors, so re-ranking can broaden discovery and avoid repetitive recommendations.
+4. **What breaks when item metadata changes?** Stale vectors/index entries can make retrieval wrong until the feature and index pipeline refreshes them.
+
+## Review status
+
+Recommendation pipeline distinctions are checked against Google ML documentation. This lesson remains pending full claim-by-claim audit and manifest omission check.
