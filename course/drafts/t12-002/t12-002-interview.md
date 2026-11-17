@@ -29,11 +29,13 @@ A strong design starts with a concise requirements summary and states assumption
 
 ## Tradeoffs and alternatives
 
-- Linearizability vs Sequential consistency vs Eventual consistency: select based on the workload, correctness guarantee, and operating cost rather than treating either choice as universally superior.
-- Lamport clock vs Vector clock vs Hybrid logical clock: select based on the workload, correctness guarantee, and operating cost rather than treating either choice as universally superior.
-- State-based CRDT vs Operation-based CRDT: select based on the workload, correctness guarantee, and operating cost rather than treating either choice as universally superior.
-- Consistent hashing vs Rendezvous hashing: select based on the workload, correctness guarantee, and operating cost rather than treating either choice as universally superior.
-- Consensus vs Two-phase commit (2PC): select based on the workload, correctness guarantee, and operating cost rather than treating either choice as universally superior.
+- **Linearizability vs sequential consistency vs eventual consistency:** Linearizability respects real-time precedence across completed operations; sequential consistency preserves each process’s program order but not cross-process real-time order; eventual consistency promises convergence only if updates stop and communication/reconciliation continue. State the exact stale-read or ordering rule the user needs before selecting one.
+- **Lamport clock vs vector clock vs hybrid logical clock:** Lamport clocks cheaply preserve happened-before in one direction but cannot detect concurrency from scalar order. Vector clocks can distinguish causality from concurrency for tracked replicas, at metadata and membership cost. HLC combines logical ordering with a value near physical time under stated assumptions, but is neither consensus nor a perfect wall clock.
+- **State-based CRDT vs operation-based CRDT:** State-based designs merge semilattice states and tolerate duplicate/reordered state exchange when merge is correct, often at higher payload cost. Operation-based designs disseminate operations and can be more compact, but need delivery/commutativity assumptions such as causal delivery. Compare the library’s actual transport and metadata contract.
+- **Consistent hashing vs rendezvous hashing:** A ring maps keys to token positions and supports successor walks/virtual nodes; rendezvous (highest-random-weight) scores candidate nodes per key and chooses the highest score. Both can limit remapping when membership changes, but differ in lookup cost, weights, replication selection, and operational membership data. Neither solves hot-key skew by itself.
+- **Consensus vs two-phase commit (2PC):** Consensus safely replicates a decision or log among a fault-tolerant group; classic 2PC coordinates one atomic commit decision across transaction participants and can block prepared participants when the coordinator fails. They solve different problems. Consensus can be used to replicate a commit decision (Paxos Commit), but ordinary 2PC is not consensus and local consensus in each service does not make a cross-service transaction atomic.
+
+In an interview, compare the guarantee first, then name the assumptions and cost that matter for the scenario. Avoid presenting a mechanism as a universal substitute for another.
 
 ## Common weak answers
 

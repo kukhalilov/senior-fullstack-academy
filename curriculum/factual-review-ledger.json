@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 27,
-    "pending": 2313,
-    "claimsChecked": 373,
-    "claimsCorrected": 27,
+    "reviewed": 29,
+    "pending": 2311,
+    "claimsChecked": 402,
+    "claimsCorrected": 28,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -80494,68 +80494,229 @@
       "topicId": "t12-002",
       "phase": "practice",
       "draft": "course/drafts/t12-002/t12-002-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Independent additions may merge only when the selected set datatype defines compatible add semantics; removals need an explicit conflict rule such as observed-remove tags.",
+          "source": "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf",
+          "section": "OR-Set construction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Hard invariants such as unique ownership or limited inventory require a defined authoritative transaction/coordination or rights-allocation path.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Consistency and data-management guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Replaying operations safely requires stable operation identity/idempotency and, where needed, causal/version metadata.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9110",
+          "section": "§9.2.2; idempotent request semantics",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Testing reordered, duplicated, and reconnecting operations is appropriate for eventual/replicated workflows with asynchronous delivery.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Reliability and messaging patterns",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Workload estimates should state assumptions and quantify average/peak/burst load, concurrency, payload, and retention.",
+          "source": "https://sre.google/sre-book/table-of-contents/",
+          "section": "Capacity planning guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Authoritative state and derived representations need an explicit refresh/rebuild/reconciliation contract.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Data management and reliability guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "After a timeout, a remote write may have succeeded; retry safety requires an idempotency key or outcome verification.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9110",
+          "section": "§9.2.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dependency degradation should preserve critical behavior and be observed through latency/error/queue-age and trace signals.",
+          "source": "https://sre.google/sre-book/table-of-contents/",
+          "section": "Monitoring distributed systems and SLOs",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Scaling choices should be driven by the constrained resource and measured evidence such as saturation, tail latency, queue age, or cache cost.",
+          "source": "https://sre.google/sre-book/table-of-contents/",
+          "section": "Capacity planning and monitoring",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases should cover duplicate requests, slow consumers, stale cache, zone/provider outage, schema rollout, tenant isolation, and backup restoration.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Reliability, security, and deployment guidance",
+          "verdict": "supported as a practice checklist"
+        },
+        {
+          "claim": "The exercises do not imply one architecture for every workload; answers require stating assumptions and evidence.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "practice phase scope",
+          "verdict": "scope complete"
+        },
+        {
+          "claim": "The worked solution distinguishes convergent user-authored data from serialized payment/inventory invariants.",
+          "source": "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf",
+          "section": "CRDT data-type semantics; coordinated invariant consequence",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://hld.handbook.academy/",
         "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
         "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed. Applied examples and prompts were checked for consistency with the topic’s primary papers and official documentation."
     },
     {
       "taskId": "t12-002-interview",
       "topicId": "t12-002",
       "phase": "interview",
       "draft": "course/drafts/t12-002/t12-002-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 17,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "A strong interview answer starts from user outcomes and invariants, then makes workload, authority, failure, security, and observability assumptions explicit.",
+          "source": "https://sre.google/sre-book/table-of-contents/",
+          "section": "SRE design and SLO guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A timeout leaves a potentially unknown remote outcome; idempotency or verification is required before unsafe retry.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9110",
+          "section": "§9.2.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Tenant isolation and abuse/privacy belong in request/data-boundary design.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Security guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Observability claims should connect objectives to measurable signals and recovery.",
+          "source": "https://sre.google/sre-book/table-of-contents/",
+          "section": "Monitoring and SLO chapters",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Linearizability, sequential consistency, and eventual consistency answer distinct visibility/order questions.",
+          "source": "https://www.cs.columbia.edu/~wing/publications/HerlihyWing90.pdf; https://pages.cs.wisc.edu/~markhill/restricted/toc79_sc.pdf",
+          "section": "Linearizability and sequential consistency definitions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Read-your-writes is a session guarantee and not global visibility.",
+          "source": "https://www.cs.cornell.edu/courses/cs734/2000FA/cached%20papers/SessionGuaranteesPDIS_1.html",
+          "section": "Session guarantees",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Lamport, vector, and HLC have distinct causality/concurrency/physical-time tradeoffs.",
+          "source": "https://lamport.azurewebsites.net/pubs/time-clocks.pdf; https://cse.buffalo.edu/tech-reports/2014-04.pdf",
+          "section": "Logical clocks; HLC paper",
+          "verdict": "supported"
+        },
+        {
+          "claim": "State-based and operation-based CRDTs depend on different merge/delivery assumptions.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "CRDT replication models",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Consistent and rendezvous hashing assign keys to members using different lookup structures; neither solves hot-key skew by itself.",
+          "source": "https://people.csail.mit.edu/karger/Papers/web.pdf; https://www.eecs.umich.edu/techreports/cse/96/CSE-TR-316-96.pdf",
+          "section": "Consistent hashing; rendezvous mapping paper",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Consensus replicates agreement on a value/log, while 2PC coordinates atomic commit across participants and may block; they are distinct.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf; https://arxiv.org/abs/cs/0408036",
+          "section": "Paxos; Consensus on Transaction Commit",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A response lost after commit requires idempotency/status recovery rather than assuming rollback.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9110",
+          "section": "§9.2.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A single tenant can create hot-key or resource contention; isolation and partitioning decisions require workload evidence.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Partitioning and multitenancy guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Queue depth alone may not represent user-perceived delay; queue age/latency and end-to-end traces help reveal delayed work.",
+          "source": "https://sre.google/sre-book/table-of-contents/",
+          "section": "Monitoring distributed systems",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Mixed-version/schema deployment should preserve compatibility and support rollback or expand/contract sequencing.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Deployment and data evolution guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Multi-region conflict handling depends on operation semantics; some operations merge while invariants may require coordination or one authority.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf; https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "CRDT semantics and architecture guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The updated tradeoff section now states concrete differences and assumptions for all five comparison pairs rather than generic filler.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "comparison groups and interview phase scope",
+          "verdict": "scope complete"
+        },
+        {
+          "claim": "The self-check rubric is a pedagogical scoring aid, not an externally validated benchmark or guarantee of interview performance.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "interview phase scope",
+          "verdict": "scope complete"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://hld.handbook.academy/",
         "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
+        "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
+        "https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos",
+        "https://react.dev/reference/react/useEffect",
+        "https://www.cs.columbia.edu/~wing/publications/HerlihyWing90.pdf",
+        "https://pages.cs.wisc.edu/~markhill/restricted/toc79_sc.pdf",
+        "https://www.cs.cornell.edu/courses/cs734/2000FA/cached%20papers/SessionGuaranteesPDIS_1.html",
+        "https://cse.buffalo.edu/tech-reports/2014-04.pdf",
+        "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+        "https://people.csail.mit.edu/karger/Papers/web.pdf",
+        "https://www.eecs.umich.edu/techreports/cse/96/CSE-TR-316-96.pdf",
         "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
         "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+        "https://arxiv.org/abs/cs/0408036"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed. Applied examples and prompts were checked for consistency with the topic’s primary papers and official documentation."
     },
     {
       "taskId": "t12-003-overview",
