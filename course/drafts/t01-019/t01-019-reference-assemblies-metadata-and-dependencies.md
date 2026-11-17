@@ -23,7 +23,7 @@ An assembly is both metadata identity and a unit used by the loader/deployment g
 | `Assembly identity` | Structured identity usually including simple name, version, culture, and public key token; actual type identity also depends on the loaded assembly instance/context. |
 | `Simple assembly name` | The name portion excluding version/culture/key; used as a cache key in an `AssemblyLoadContext`. |
 | `Versioned assembly reference` | Metadata reference to an assembly with identity constraints; runtime resolution policy and load context determine the actual result. |
-| `Strong-named assembly` | Assembly signed with a strong-name key for identity/integrity scenarios; strong naming alone is not a security or publisher-trust guarantee. |
+| `Strong-named assembly` | Assembly carrying a strong-name identity/signature. In modern .NET, the runtime doesn't validate that signature for binding; strong names alone are not integrity enforcement, publisher authentication, or a security boundary. |
 | `Public key token` | Short identifier derived from the public key and commonly shown in assembly identity strings. |
 | `AssemblyVersionAttribute` | Sets assembly version identity recorded in manifest; library authors often manage it separately from file/product version. |
 | `AssemblyFileVersionAttribute` | Sets informational file version metadata, typically used by file/version tools; it does not define assembly binding identity. |
@@ -64,7 +64,7 @@ An assembly is both metadata identity and a unit used by the loader/deployment g
 | `Assembly probing and dependency resolution` | Runtime/host uses configured probing and load-context rules to locate dependencies; do not assume arbitrary current-directory search. |
 | `Assembly version binding in .NET Core` | Modern .NET uses dependency/load-context rules and does not apply .NET Framework app-config binding redirects in the same manner. |
 | `Assembly identity versus file name` | Multiple files can share a name, and file name need not match full assembly identity; inspect metadata and actual load context. |
-| `Strong name versus code signing` | Strong-name signing provides assembly identity/integrity semantics within .NET; Authenticode or package signing serves different publisher/distribution trust goals. |
+| `Strong name versus code signing` | Strong names primarily provide assembly identity (and compatibility uses such as .NET Framework binding); Authenticode/package signing provides a separate publisher/distribution signature that can be validated by trust tooling. Neither should be conflated with application authorization. |
 | `Global Assembly Cache applies to .NET Framework only` | GAC is a .NET Framework deployment facility; modern .NET uses application/package/runtime asset resolution instead. |
 | `Application domains unavailable in modern .NET` | Modern .NET does not support creating/unloading multiple AppDomains as a plugin isolation mechanism; use `AssemblyLoadContext` for load/unload scenarios. |
 | `Single-file assembly location behavior` | Bundled managed assemblies may have no standalone location, so code that assumes `Assembly.Location` points to a physical file can fail. |

@@ -15,7 +15,7 @@ The CLR is the execution environment and service provider. A compiler emits IL a
 | Supplied name | Meaning and practical boundary |
 |---|---|
 | `Common Language Runtime (CLR)` | The .NET execution environment that loads managed code and provides services such as GC, exceptions, type loading, and threading. |
-| `CoreCLR` | The open-source runtime implementation used by modern .NET for general-purpose managed execution; it is not the SDK or host executable. |
+| `CoreCLR` | The open-source runtime implementation used by modern .NET for general-purpose managed execution on many platforms; .NET also uses the Mono runtime in some environments. CoreCLR is neither the SDK nor the host executable. |
 | `Managed execution` | Execution under CLR services and managed type/lifetime rules; unsafe code and native interop can still violate memory or contract assumptions. |
 | `Managed code` | Code compiled for and executed by a managed runtime, commonly IL plus metadata before native compilation. |
 | `Unmanaged code` | Native code not governed by CLR-managed execution rules; interop boundaries require explicit ABI, ownership, and error handling. |

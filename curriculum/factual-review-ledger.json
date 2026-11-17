@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 414,
-    "pending": 1926,
-    "claimsChecked": 12357,
-    "claimsCorrected": 1293,
+    "reviewed": 423,
+    "pending": 1917,
+    "claimsChecked": 13031,
+    "claimsCorrected": 1325,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 414,
-    "pendingLessons": 1926
+    "reviewedLessons": 423,
+    "pendingLessons": 1917
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -23687,270 +23687,426 @@
       "topicId": "t01-019",
       "phase": "overview",
       "draft": "course/drafts/t01-019/t01-019-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s runtime, language, API, metadata, loader, deployment, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
         "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unmanaged-code/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/load-unload",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.type",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.loader.assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata"
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections distinguish modern .NET strong-name identity from signature/trust validation and CoreCLR from Mono, alongside versioned JIT/ReadyToRun/Native AOT, assembly/load-context identity, trimming, reflection, attribute consumption, single-file behavior, and unload constraints. The frozen inventory validates in the lesson; draft status is retained."
     },
     {
       "taskId": "t01-019-concepts",
       "topicId": "t01-019",
       "phase": "concepts",
       "draft": "course/drafts/t01-019/t01-019-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 78,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s runtime, language, API, metadata, loader, deployment, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
         "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unmanaged-code/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/load-unload",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.type",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.loader.assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata"
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections distinguish modern .NET strong-name identity from signature/trust validation and CoreCLR from Mono, alongside versioned JIT/ReadyToRun/Native AOT, assembly/load-context identity, trimming, reflection, attribute consumption, single-file behavior, and unload constraints. The frozen inventory validates in the lesson; draft status is retained."
     },
     {
       "taskId": "t01-019-reference-clr-and-managed-execution",
       "topicId": "t01-019",
       "phase": "reference",
       "draft": "course/drafts/t01-019/t01-019-reference-clr-and-managed-execution.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 86,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s runtime, language, API, metadata, loader, deployment, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
         "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
         "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unmanaged-code/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/load-unload",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.type",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.loader.assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata"
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+        "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections distinguish modern .NET strong-name identity from signature/trust validation and CoreCLR from Mono, alongside versioned JIT/ReadyToRun/Native AOT, assembly/load-context identity, trimming, reflection, attribute consumption, single-file behavior, and unload constraints. The frozen inventory validates in the lesson; draft status is retained."
     },
     {
       "taskId": "t01-019-reference-assemblies-metadata-and-dependencies",
       "topicId": "t01-019",
       "phase": "reference",
       "draft": "course/drafts/t01-019/t01-019-reference-assemblies-metadata-and-dependencies.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unmanaged-code/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/load-unload",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.type",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.loader.assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 83,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s runtime, language, API, metadata, loader, deployment, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/default-probing",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/strong-named",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
+        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
+        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/default-probing",
+        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/strong-named"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections distinguish modern .NET strong-name identity from signature/trust validation and CoreCLR from Mono, alongside versioned JIT/ReadyToRun/Native AOT, assembly/load-context identity, trimming, reflection, attribute consumption, single-file behavior, and unload constraints. The frozen inventory validates in the lesson; draft status is retained."
     },
     {
       "taskId": "t01-019-reference-reflection-and-type-inspection",
       "topicId": "t01-019",
       "phase": "reference",
       "draft": "course/drafts/t01-019/t01-019-reference-reflection-and-type-inspection.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unmanaged-code/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/load-unload",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.type",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.loader.assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 96,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s runtime, language, API, metadata, loader, deployment, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata",
+        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections distinguish modern .NET strong-name identity from signature/trust validation and CoreCLR from Mono, alongside versioned JIT/ReadyToRun/Native AOT, assembly/load-context identity, trimming, reflection, attribute consumption, single-file behavior, and unload constraints. The frozen inventory validates in the lesson; draft status is retained."
     },
     {
       "taskId": "t01-019-reference-attributes-and-metadata-consumers",
       "topicId": "t01-019",
       "phase": "reference",
       "draft": "course/drafts/t01-019/t01-019-reference-attributes-and-metadata-consumers.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unmanaged-code/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/load-unload",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.type",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.loader.assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 74,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s runtime, language, API, metadata, loader, deployment, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/reflection-and-attributes/",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.attributeusageattribute",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/fixing-warnings",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/fixing-warnings",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/reflection-and-attributes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.attributeusageattribute",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/fixing-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/fixing-warnings"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections distinguish modern .NET strong-name identity from signature/trust validation and CoreCLR from Mono, alongside versioned JIT/ReadyToRun/Native AOT, assembly/load-context identity, trimming, reflection, attribute consumption, single-file behavior, and unload constraints. The frozen inventory validates in the lesson; draft status is retained."
     },
     {
       "taskId": "t01-019-reference-loading-contexts-and-deployment-modes",
       "topicId": "t01-019",
       "phase": "reference",
       "draft": "course/drafts/t01-019/t01-019-reference-loading-contexts-and-deployment-modes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unmanaged-code/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/load-unload",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.type",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.loader.assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s runtime, language, API, metadata, loader, deployment, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/loading-managed",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
+        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/loading-managed",
+        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections distinguish modern .NET strong-name identity from signature/trust validation and CoreCLR from Mono, alongside versioned JIT/ReadyToRun/Native AOT, assembly/load-context identity, trimming, reflection, attribute consumption, single-file behavior, and unload constraints. The frozen inventory validates in the lesson; draft status is retained."
     },
     {
       "taskId": "t01-019-practice",
       "topicId": "t01-019",
       "phase": "practice",
       "draft": "course/drafts/t01-019/t01-019-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unmanaged-code/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/load-unload",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.type",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.loader.assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 59,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s runtime, language, API, metadata, loader, deployment, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections distinguish modern .NET strong-name identity from signature/trust validation and CoreCLR from Mono, alongside versioned JIT/ReadyToRun/Native AOT, assembly/load-context identity, trimming, reflection, attribute consumption, single-file behavior, and unload constraints. The frozen inventory validates in the lesson; draft status is retained."
     },
     {
       "taskId": "t01-019-interview",
       "topicId": "t01-019",
       "phase": "interview",
       "draft": "course/drafts/t01-019/t01-019-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/compilation",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
-        "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
-        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/unmanaged-code/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/load-unload",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.type",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.loader.assemblyloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.metadataloadcontext",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.reflection.customattributedata"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 64,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s runtime, language, API, metadata, loader, deployment, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Relevant API definition, loader algorithm, runtime/deployment behavior, language contract, or official compatibility guidance",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext",
+        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/inspect-contents-using-metadataloadcontext",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections distinguish modern .NET strong-name identity from signature/trust validation and CoreCLR from Mono, alongside versioned JIT/ReadyToRun/Native AOT, assembly/load-context identity, trimming, reflection, attribute consumption, single-file behavior, and unload constraints. The frozen inventory validates in the lesson; draft status is retained."
     },
     {
       "taskId": "t01-020-overview",
