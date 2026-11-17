@@ -47,7 +47,22 @@
         "Fail-fast enumerator behavior",
         "Generic versus non-generic collection",
         "Read-only view versus immutable collection",
-        "Collection selection by access pattern"
+        "Collection selection by access pattern",
+        "Collection expression introduced in C# 12",
+        "Collection expression target typing",
+        "Collection expression spread element (..)",
+        "Collection expression conversion targets",
+        "CollectionBuilderAttribute",
+        "Collection expression with(...) arguments in C# 15",
+        "Collection expression evaluation and materialization",
+        "System.Collections.ObjectModel.Collection<T>",
+        "ReadOnlyCollection<T> live wrapper",
+        "ReadOnlyDictionary<TKey,TValue> live wrapper",
+        "ObservableCollection<T> change notifications",
+        "ReadOnlyObservableCollection<T>",
+        "Array.Empty<T>",
+        "Array.AsReadOnly<T>",
+        "C# 15 collection expression with(...) argument feature"
       ]
     },
     {
@@ -113,7 +128,11 @@
         "List<T>.TrimExcess",
         "List<T>.GetEnumerator",
         "List<T>.Capacity growth",
-        "Array versus List<T>"
+        "Array versus List<T>",
+        "Array.Empty<T>",
+        "Array.AsReadOnly<T>",
+        "List<T>.ConvertAll<TOutput>",
+        "List<T>.ForEach mutation behavior"
       ]
     },
     {
@@ -159,13 +178,52 @@
         "SortedList<TKey,TValue>.IndexOfValue",
         "SortedList<TKey,TValue>.RemoveAt",
         "SortedList<TKey,TValue>.TrimExcess",
-        "HashSet<TKey> hash code requirement",
+        "HashSet<T> hash code requirement",
         "Dictionary key equality comparer",
         "Dictionary duplicate key handling",
         "Dictionary TryGetValue versus indexer",
         "Dictionary key mutation hazard",
         "Dictionary versus SortedDictionary",
-        "Dictionary versus SortedList"
+        "Dictionary versus SortedList",
+        "ConcurrentDictionary<TKey,TValue>.AlternateLookup<TAlternateKey>",
+        "ConcurrentDictionary<TKey,TValue>.GetAlternateLookup<TAlternateKey>",
+        "ConcurrentDictionary<TKey,TValue>.TryGetAlternateLookup<TAlternateKey>",
+        "ConcurrentDictionary<TKey,TValue>.AlternateLookup<TAlternateKey>.TryGetValue",
+        "ConcurrentDictionary<TKey,TValue>.AlternateLookup<TAlternateKey>.TryAdd",
+        "ConcurrentDictionary<TKey,TValue>.AlternateLookup<TAlternateKey>.TryRemove",
+        "SortedDictionary<TKey,TValue>.Add",
+        "SortedDictionary<TKey,TValue>.TryGetValue",
+        "SortedDictionary<TKey,TValue>.Remove",
+        "SortedDictionary<TKey,TValue>.ContainsKey",
+        "SortedDictionary<TKey,TValue>.Keys",
+        "SortedDictionary<TKey,TValue>.Values",
+        "SortedList<TKey,TValue>.Add",
+        "SortedList<TKey,TValue>.TryGetValue",
+        "SortedList<TKey,TValue>.Remove",
+        "SortedList<TKey,TValue>.ContainsKey",
+        "CollectionExtensions.TryAdd<TKey,TValue>(IDictionary<TKey,TValue>)",
+        "OrderedDictionary<TKey,TValue>",
+        "OrderedDictionary<TKey,TValue>.Count",
+        "OrderedDictionary<TKey,TValue>.Capacity",
+        "OrderedDictionary<TKey,TValue>.Comparer",
+        "OrderedDictionary<TKey,TValue>.Add",
+        "OrderedDictionary<TKey,TValue>.TryAdd",
+        "OrderedDictionary<TKey,TValue>.TryGetValue",
+        "OrderedDictionary<TKey,TValue>.ContainsKey",
+        "OrderedDictionary<TKey,TValue>.ContainsValue",
+        "OrderedDictionary<TKey,TValue>.GetAt",
+        "OrderedDictionary<TKey,TValue>.SetAt",
+        "OrderedDictionary<TKey,TValue>.Insert",
+        "OrderedDictionary<TKey,TValue>.Remove",
+        "OrderedDictionary<TKey,TValue>.RemoveAt",
+        "OrderedDictionary<TKey,TValue>.IndexOf",
+        "OrderedDictionary<TKey,TValue>.EnsureCapacity",
+        "OrderedDictionary<TKey,TValue>.TrimExcess",
+        "OrderedDictionary<TKey,TValue>.Keys",
+        "OrderedDictionary<TKey,TValue>.Values",
+        "OrderedDictionary<TKey,TValue> insertion order contract",
+        "OrderedDictionary<TKey,TValue>.TryAdd(TKey,TValue,out index)",
+        "OrderedDictionary<TKey,TValue>.TryGetValue(TKey,out TValue,out index)"
       ]
     },
     {
@@ -265,7 +323,19 @@
         "BitArray.Length",
         "Queue<T> versus ConcurrentQueue<T>",
         "Stack<T> versus ConcurrentStack<T>",
-        "LinkedList<T> versus List<T>"
+        "LinkedList<T> versus List<T>",
+        "Queue<T>.Count",
+        "Queue<T>.Clear",
+        "Queue<T>.ToArray",
+        "Stack<T>.Count",
+        "Stack<T>.Clear",
+        "Stack<T>.ToArray",
+        "LinkedList<T>.Count",
+        "LinkedList<T>.First",
+        "LinkedList<T>.Last",
+        "LinkedList<T>.Contains",
+        "LinkedList<T>.Remove(LinkedListNode<T>)",
+        "LinkedList<T>.CopyTo"
       ]
     },
     {
@@ -359,7 +429,14 @@
         "Snapshot enumeration",
         "Collection thread-safety is not implied by read-only interface",
         "Collection versus memory-oriented span",
-        "CollectionsMarshal ref-returning access and safety boundary"
+        "CollectionsMarshal ref-returning access and safety boundary",
+        "Queue<T>.Enqueue and Dequeue amortized complexity",
+        "Stack<T>.Push and Pop amortized complexity",
+        "LinkedList<T> known-node insertion and removal complexity",
+        "LinkedList<T> search complexity",
+        "PriorityQueue<TElement,TPriority> enqueue and dequeue complexity",
+        "OrderedDictionary<TKey,TValue> key lookup and indexed operation tradeoffs",
+        "SortedList<TKey,TValue> lookup and update tradeoffs"
       ]
     }
   ],
@@ -413,20 +490,50 @@
     {
       "edition": ".NET 8 through .NET 11 selected collection additions",
       "items": [
-        ".NET 8 added FrozenDictionary<TKey,TValue> and FrozenSet<T> for collections created infrequently and read frequently. .NET 9 added alternate-key lookup support to Dictionary<TKey,TValue> and HashSet<T> for compatible alternate key types. Confirm the target framework before using these APIs."
+        ".NET 8 added FrozenDictionary<TKey,TValue> and FrozenSet<T> for collections created infrequently and read frequently. .NET 9 added alternate-key lookup support to Dictionary<TKey,TValue> and HashSet<T> for compatible alternate key types. Confirm the target framework before using these APIs.",
+        "ConcurrentDictionary alternate-key lookup APIs are available starting in .NET 9 when its comparer supports IAlternateEqualityComparer<TAlternateKey,TKey>."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.frozen",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
-        "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
+        "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2.getalternatelookup"
+      ]
+    },
+    {
+      "edition": "C# 12 and C# 15",
+      "items": [
+        "C# 12 introduced target-typed collection expressions, spread elements, and collection-builder support. C# 15 added the leading with(...) element to pass arguments to a collection constructor or builder. The with(...) arguments do not select the target type during overload resolution; verify compiler language version separately from target framework."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      ]
+    },
+    {
+      "edition": ".NET 9 through .NET 11",
+      "items": [
+        "The generic OrderedDictionary<TKey,TValue> provides key lookup plus explicit insertion-order/index operations; it is available from .NET 9. Use it when insertion order and key lookup are both required, not when keys must be sorted."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2"
+      ]
+    },
+    {
+      "edition": ".NET 11",
+      "items": [
+        "OrderedDictionary<TKey,TValue> adds indexed TryAdd and TryGetValue overloads that report or use the insertion-order index."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": ".NET API reference and official collection design, concurrency, and immutable collection guidance",
-    "edition": ".NET 11 stable collection API surface checked 2026-11-14; package-specific immutable collection APIs noted",
-    "checkedAt": "2026-11-14",
+    "edition": ".NET 11 stable collection APIs and C# 12/15 collection-expression features checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
       "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -450,7 +557,19 @@
       "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1",
       "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
       "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
-      "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
+      "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2.getalternatelookup",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.objectmodel.collection-1",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.objectmodel.readonlycollection-1",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.objectmodel.readonlydictionary-2",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.objectmodel.observablecollection-1",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.array.empty",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.array.asreadOnly",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1.trimexcess",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2"
     ]
   },
   "accuracyFacts": [

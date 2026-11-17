@@ -26,12 +26,18 @@ Collections are tools for managing data. A dictionary maps a unique key to a spe
 * `Dictionary<TKey,TValue>.Clear`: Removes all keys and values from the dictionary.
 * `Dictionary<TKey,TValue>.EnsureCapacity`: Sets the capacity to a specified value to minimize reallocations.
 * `Dictionary<TKey,TValue>.TrimExcess`: Sets the capacity to the actual number of elements to save memory.
-* `Dictionary<TKey,TValue>.GetEnumerator`: Returns an enumerator that iterates through the dictionary.
+* `Dictionary<TKey,TValue>.GetEnumerator`: Returns an enumerator that iterates through the dictionary. Do not depend on a particular order; mutation invalidates it, with the documented .NET Core 3+ `Remove`/`Clear` exceptions.
 * `Dictionary<TKey,TValue>.Keys`: Gets a collection containing the keys in the dictionary.
 * `Dictionary<TKey,TValue>.Values`: Gets a collection containing the values in the dictionary.
 * `Dictionary<TKey,TValue>.AlternateLookup<TAlternateKey>`: A struct used for performing lookups with a different type than the key type.
 * `Dictionary<TKey,TValue>.GetAlternateLookup<TAlternateKey>`: Returns an `AlternateLookup` instance for the dictionary.
-* `Dictionary<TKey,TValue>.TryGetAlternateLookup<TAlternateKey>`: Attempts to return an `AlternateLookup` instance.
+* `Dictionary<TKey,TValue>.TryGetAlternateLookup<TAlternateKey>`: Attempts to return an alternate lookup when the comparer supports the alternate key type.
+* `ConcurrentDictionary<TKey,TValue>.AlternateLookup<TAlternateKey>`: A view for operations using a compatible alternate key type, available from .NET 9 when the comparer supports `IAlternateEqualityComparer<TAlternateKey,TKey>`.
+* `ConcurrentDictionary<TKey,TValue>.GetAlternateLookup<TAlternateKey>`: Returns a compatible alternate-key view or throws when unsupported.
+* `ConcurrentDictionary<TKey,TValue>.TryGetAlternateLookup<TAlternateKey>`: Tries to obtain an alternate-key view without throwing when unsupported.
+* `ConcurrentDictionary<TKey,TValue>.AlternateLookup<TAlternateKey>.TryGetValue`: Looks up a value with an alternate key.
+* `ConcurrentDictionary<TKey,TValue>.AlternateLookup<TAlternateKey>.TryAdd`: Attempts to add using an alternate key.
+* `ConcurrentDictionary<TKey,TValue>.AlternateLookup<TAlternateKey>.TryRemove`: Attempts to remove by alternate key.
 * `CollectionExtensions.GetValueOrDefault<TKey,TValue>`: Returns the value for a key or a default value if the key is missing.
 * `CollectionExtensions.GetValueOrDefault<TKey,TValue>(key, defaultValue)`: Returns the value for a key or a provided default value if the key is missing.
 * `CollectionsMarshal.GetValueRefOrAddDefault<TKey,TValue>`: Gets a reference to a value, adding it if missing.
@@ -43,6 +49,35 @@ Collections are tools for managing data. A dictionary maps a unique key to a spe
 * `CollectionsMarshal.AsBytes(BitArray)`: Provides a byte-representation of a `BitArray`.
 * `SortedDictionary<TKey,TValue>`: A tree-based collection that keeps keys sorted.
 * `SortedDictionary<TKey,TValue>.Comparer`: Gets the `IComparer<TKey>` used to sort the keys.
+* `SortedDictionary<TKey,TValue>.Add`: Adds a key/value pair; a duplicate key throws.
+* `CollectionExtensions.TryAdd<TKey,TValue>(IDictionary<TKey,TValue>)`: An extension helper that checks for an existing key and then adds to an `IDictionary`; this is not an atomic concurrent operation. Prefer a collection's own `TryAdd` method when it has one.
+* `OrderedDictionary<TKey,TValue>`: A .NET 9+ generic dictionary that combines key lookup with insertion-order and indexed operations. It preserves insertion order, not sorted key order.
+* `OrderedDictionary<TKey,TValue>.Count`: Gets the number of pairs.
+* `OrderedDictionary<TKey,TValue>.Capacity`: Gets the number of pairs it can hold before resize.
+* `OrderedDictionary<TKey,TValue>.Comparer`: Gets the key equality comparer.
+* `OrderedDictionary<TKey,TValue>.Add`: Adds a unique key/value pair.
+* `OrderedDictionary<TKey,TValue>.TryAdd`: Adds a pair only if its key is absent.
+* `OrderedDictionary<TKey,TValue>.TryAdd(TKey,TValue,out index)`: .NET 11 overload that attempts to add the pair and reports the added or existing key's index through `out index`.
+* `OrderedDictionary<TKey,TValue>.TryGetValue(TKey,out TValue,out index)`: .NET 11 overload that retrieves by key and reports its index, or -1 when absent.
+* `OrderedDictionary<TKey,TValue>.TryGetValue`: Retrieves a value by key without throwing when absent.
+* `OrderedDictionary<TKey,TValue>.ContainsKey`: Tests key membership.
+* `OrderedDictionary<TKey,TValue>.ContainsValue`: Tests value membership.
+* `OrderedDictionary<TKey,TValue>.GetAt`: Gets a key/value pair by insertion-order index.
+* `OrderedDictionary<TKey,TValue>.SetAt`: Replaces the pair or value at an existing index.
+* `OrderedDictionary<TKey,TValue>.Insert`: Inserts a key/value pair at an index.
+* `OrderedDictionary<TKey,TValue>.Remove`: Removes a pair by key.
+* `OrderedDictionary<TKey,TValue>.RemoveAt`: Removes the pair at an index.
+* `OrderedDictionary<TKey,TValue>.IndexOf`: Finds a key's index.
+* `OrderedDictionary<TKey,TValue>.EnsureCapacity`: Reserves capacity for a minimum number of entries.
+* `OrderedDictionary<TKey,TValue>.TrimExcess`: Reduces excess internal capacity.
+* `OrderedDictionary<TKey,TValue>.Keys`: Enumerates keys in insertion order.
+* `OrderedDictionary<TKey,TValue>.Values`: Enumerates values in corresponding insertion order.
+* `OrderedDictionary<TKey,TValue> insertion order contract`: Reordering through index APIs changes position; ordinary dictionary key order is not a substitute for this explicit contract.
+* `SortedDictionary<TKey,TValue>.TryGetValue`: Retrieves a value by key without throwing when absent.
+* `SortedDictionary<TKey,TValue>.Remove`: Removes a key and associated value.
+* `SortedDictionary<TKey,TValue>.ContainsKey`: Checks for a key.
+* `SortedDictionary<TKey,TValue>.Keys`: Enumerates keys in comparer order.
+* `SortedDictionary<TKey,TValue>.Values`: Enumerates values in corresponding key order.
 * `SortedList<TKey,TValue>`: A sorted array-based collection; memory-efficient but slower for insertions than `SortedDictionary`.
 * `SortedList<TKey,TValue>.Capacity`: Gets or sets the capacity of the sorted list.
 * `SortedList<TKey,TValue>.GetKeyAtIndex`: Gets the key at a specific index.
@@ -50,8 +85,12 @@ Collections are tools for managing data. A dictionary maps a unique key to a spe
 * `SortedList<TKey,TValue>.IndexOfKey`: Returns the index of a specific key.
 * `SortedList<TKey,TValue>.IndexOfValue`: Returns the index of a specific value.
 * `SortedList<TKey,TValue>.RemoveAt`: Removes the element at a specific index.
-* `SortedList<TKey,TValue>.TrimExcess`: Reduces capacity to the current count.
-* `HashSet<TKey> hash code requirement`: Keys must implement `GetHashCode` and `Equals` correctly to function in hash-based collections.
+* `SortedList<TKey,TValue>.TrimExcess`: Reduces excess storage when beneficial. Insertions/removals in its sorted arrays can shift entries.
+* `SortedList<TKey,TValue>.Add`: Adds a pair at its comparer-sorted position; duplicate keys throw.
+* `SortedList<TKey,TValue>.TryGetValue`: Looks up a value without throwing for an absent key.
+* `SortedList<TKey,TValue>.Remove`: Removes a key/value pair by key.
+* `SortedList<TKey,TValue>.ContainsKey`: Checks whether a key exists.
+* `HashSet<T> hash code requirement`: Elements must obey consistent equality/hash-code semantics. Supply a custom `IEqualityComparer<T>` when equality differs from the type default.
 * `Dictionary key equality comparer`: The logic used to determine if two keys are the same.
 * `Dictionary duplicate key handling`: Dictionaries do not allow duplicate keys; `Add` throws, `TryAdd` returns false.
 * `Dictionary TryGetValue versus indexer`: Indexers throw if the key is missing; `TryGetValue` returns a boolean.
@@ -60,7 +99,7 @@ Collections are tools for managing data. A dictionary maps a unique key to a spe
 * `Dictionary versus SortedList`: `SortedList` uses less memory than `SortedDictionary` but is slower for insertions.
 
 # Cross-item comparison
-* **Dictionary vs. SortedDictionary vs. SortedList**: `Dictionary` has expected O(1) lookup under suitable hashing and makes no ordering promise. `SortedDictionary` maintains comparer order with O(log n) lookup and insertion. `SortedList` stores sorted key/value arrays, offers indexed access, and has O(n) insertion/removal away from the end because entries shift; select based on the full read/update pattern.
+* **Dictionary vs. OrderedDictionary vs. SortedDictionary vs. SortedList**: `OrderedDictionary` supports insertion-order enumeration plus key/index operations; it does not sort keys. `Dictionary` has expected O(1) lookup under suitable hashing and makes no ordering promise. `SortedDictionary` maintains comparer order with O(log n) lookup and insertion. `SortedList` stores sorted key/value arrays, offers indexed access, and has O(n) insertion/removal away from the end because entries shift; select based on the full read/update pattern.
 * **Lookup APIs**: `TryGetValue` is safer than the indexer `[]` because it avoids exceptions. `AlternateLookup` (introduced in .NET 9) allows looking up values using a different type (e.g., `ReadOnlySpan<char>` instead of `string`) to avoid unnecessary allocations.
 
 # Examples

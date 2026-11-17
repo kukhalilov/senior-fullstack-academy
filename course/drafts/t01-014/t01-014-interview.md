@@ -8,7 +8,7 @@
 When preparing for an interview, you must be able to explain why you chose a specific collection over another. The core of this topic is matching the **access pattern** (how you read/write data) to the **storage shape** (how the data is organized).
 
 *   **Why does .NET have so many collection types?** Different structures optimize for different operations. An `Array` is fast for indexed access but fixed in size; a `List<T>` is resizable but has overhead; a `Dictionary<TKey,TValue>` provides near-instant lookups but consumes more memory.
-*   **What is the difference between a read-only interface and an immutable collection?** A read-only interface (like `IReadOnlyList<T>`) is just a "view" that hides write methods; the underlying data can still change if someone else holds a mutable reference. An **immutable collection** (e.g., `ImmutableList<T>`) is truly unchangeable; any "update" returns a new version of the collection.
+*   **What is the difference between a read-only interface and an immutable collection?** A read-only interface (like `IReadOnlyList<T>`) is just a "view" that hides write methods; the underlying data can still change if someone else holds a mutable reference. An **immutable collection** (e.g., `ImmutableList<T>`) does not change its collection structure; any "update" returns a new version. Mutable objects stored inside are not deeply immutable.
 
 # Concise interview answers
 *   **When should you use a `List<T>` vs. an `Array`?** Use an `Array` when the size is known and fixed. Use `List<T>` when you need to add or remove items dynamically.
@@ -31,7 +31,7 @@ When preparing for an interview, you must be able to explain why you chose a spe
 # Tradeoffs and alternatives
 *   **`List<T>` vs. `LinkedList<T>`:** `List<T>` supports indexed access and usually has better locality. A linked list can insert or remove in O(1) when you already hold the node reference; finding that node by value remains O(n).
 *   **`HashSet<T>` vs. `SortedSet<T>`:** `HashSet<T>` provides O(1) average lookup time. `SortedSet<T>` provides O(log n) lookup but maintains the items in a sorted order, allowing for range queries (e.g., `GetViewBetween`).
-*   **`Dictionary<TKey,TValue>` vs. `ConcurrentDictionary<TKey,TValue>`:** The concurrent version is thread-safe but has higher overhead. Only use it when multiple threads are actively modifying the collection.
+*   **`Dictionary<TKey,TValue>` vs. `ConcurrentDictionary<TKey,TValue>`:** The concurrent version supports documented operations across concurrent access, with synchronization costs that depend on contention and workload. Choose it when its operation guarantees fit; a shared lock can be better when a larger invariant must be atomic.
 
 # Common weak answers
 *   **"I always use `List<T>` for everything."** This ignores memory efficiency and performance requirements for specific lookup or ordering patterns.

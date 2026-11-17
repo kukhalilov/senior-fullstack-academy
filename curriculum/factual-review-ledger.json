@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 333,
-    "pending": 2007,
-    "claimsChecked": 8910,
-    "claimsCorrected": 1037,
+    "reviewed": 344,
+    "pending": 1996,
+    "claimsChecked": 9295,
+    "claimsCorrected": 1070,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 333,
-    "pendingLessons": 2007
+    "reviewedLessons": 344,
+    "pendingLessons": 1996
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1069,6 +1069,24 @@
       ],
       "findings": [
         "Audited all nine lesson files and all 175 named inventory entries plus their examples, version statements, exercises, and interview claims against current official Microsoft specifications/API references and .NET documentation. Added missing cancellation-token source/registration lifetime APIs. Corrected overstatements about exception filters, async/task and event propagation, cooperative cancellation, disposal/idempotence/ownership, critical finalization, SafeHandle and legacy exception serialization. Rechecked examples and target-framework notes. No unresolved factual or manifest-scope issue remains; no draft was promoted."
+      ]
+    },
+    {
+      "scope": "C#/.NET collections, collection expressions, and collection APIs (t01-014)",
+      "status": "full topic claim and frozen-inventory audit complete",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2.addorupdate",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.trimexcess",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1.trimexcess"
+      ],
+      "findings": [
+        "Audited all 385 frozen inventory entries and 11 lessons. Checked API existence, current release/version scope, collection contracts, complexity claims, examples, comparer semantics, concurrency boundaries, and immutable/frozen behavior against official documentation. Added omitted collection expressions, C# 15 expression arguments, wrappers, ordered dictionary APIs, and collection methods; corrected atomicity, factory execution, TrimExcess, and ordering/performance overstatements. No unresolved issues remain."
       ]
     }
   ],
@@ -19740,13 +19758,50 @@
       "topicId": "t01-014",
       "phase": "overview",
       "draft": "course/drafts/t01-014/t01-014-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -19772,20 +19827,57 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-014-concepts",
       "topicId": "t01-014",
       "phase": "concepts",
       "draft": "course/drafts/t01-014/t01-014-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -19811,20 +19903,57 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-014-reference-collection-contracts-and-selection",
       "topicId": "t01-014",
       "phase": "reference",
       "draft": "course/drafts/t01-014/t01-014-reference-collection-contracts-and-selection.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -19850,20 +19979,57 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-014-reference-array-and-list-apis",
       "topicId": "t01-014",
       "phase": "reference",
       "draft": "course/drafts/t01-014/t01-014-reference-array-and-list-apis.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -19889,20 +20055,57 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-014-reference-dictionary-and-key-value-apis",
       "topicId": "t01-014",
       "phase": "reference",
       "draft": "course/drafts/t01-014/t01-014-reference-dictionary-and-key-value-apis.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -19928,20 +20131,57 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-014-reference-set-and-priority-collections",
       "topicId": "t01-014",
       "phase": "reference",
       "draft": "course/drafts/t01-014/t01-014-reference-set-and-priority-collections.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -19967,20 +20207,57 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-014-reference-queue-stack-and-linked-collections",
       "topicId": "t01-014",
       "phase": "reference",
       "draft": "course/drafts/t01-014/t01-014-reference-queue-stack-and-linked-collections.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -20006,20 +20283,57 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-014-reference-concurrent-immutable-and-frozen-collections",
       "topicId": "t01-014",
       "phase": "reference",
       "draft": "course/drafts/t01-014/t01-014-reference-concurrent-immutable-and-frozen-collections.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -20045,20 +20359,57 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-014-reference-collection-algorithm-and-performance",
       "topicId": "t01-014",
       "phase": "reference",
       "draft": "course/drafts/t01-014/t01-014-reference-collection-algorithm-and-performance.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -20084,20 +20435,57 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-014-practice",
       "topicId": "t01-014",
       "phase": "practice",
       "draft": "course/drafts/t01-014/t01-014-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -20123,20 +20511,57 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-014-interview",
       "topicId": "t01-014",
       "phase": "interview",
       "draft": "course/drafts/t01-014/t01-014-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+          "section": "Collection overview, selecting a collection, and collection interfaces",
+          "verdict": "verified",
+          "correction": null
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+          "section": "Collection expressions, spread elements, target typing, and collection builders",
+          "verdict": "verified",
+          "correction": "Added missing collection-expression inventory and target-typing details."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+          "section": "Collection expression arguments",
+          "verdict": "verified",
+          "correction": "Added C# 15 with(...) arguments and overload-resolution constraints."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ordereddictionary-2",
+          "section": "OrderedDictionary<TKey,TValue> API and members",
+          "verdict": "verified",
+          "correction": "Added .NET 9 ordered generic dictionary and indexed APIs."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.collectionextensions.tryadd",
+          "section": "CollectionExtensions.TryAdd",
+          "verdict": "verified",
+          "correction": "Distinguished extension method from SortedDictionary instance API."
+        },
+        {
+          "sourceUrl": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1.pushrange",
+          "section": "PushRange overload remarks",
+          "verdict": "verified",
+          "correction": "Scoped atomicity guarantee to PushRange contract."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
         "https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class",
@@ -20162,7 +20587,7 @@
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-8/overview",
         "https://learn.microsoft.com/en-us/dotnet/whats-new/dotnet-9/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the complete manifest inventory and all lesson claims/examples/interview answers against current official .NET/C# documentation. Added missing collection-expression, object-model wrapper, ordered dictionary, and alternate-lookup API coverage; corrected TrimExcess thresholds, comparer and key semantics, concurrent factory/atomicity boundaries, collection algorithm caveats, and immutable/frozen behavior. No unresolved scope or factual issues remain; lessons remain drafts."
     },
     {
       "taskId": "t01-015-overview",
@@ -118379,6 +118804,14 @@
       "findings": [
         "Checked all 175 manifest inventory entries and the nine lesson explanations/examples/exercises/interview claims. Added CancellationTokenSource.CancelAsync/TryReset/disposal and CancellationToken registration lifecycle coverage. Corrected that filter exceptions evaluate false; async Task faults differ from raw-thread unhandled exceptions; cancellation is cooperative and task cancellation has token/task-state semantics; IDisposable is not limited to unmanaged resources and idempotence is a design contract; modern .NET does not run finalizers during process termination; SafeHandle-owning wrappers do not need their own finalizer; critical finalization wording is bounded to CLR-supported scenarios; formatter-based exception serialization is obsolete from .NET 8. Reviewed examples and API release availability against official Microsoft docs. No unresolved issues remain; lessons remain drafts."
       ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "C#/.NET collections and collection API coverage (t01-014)",
+      "status": "full claim and frozen-inventory audit complete for all 11 lessons",
+      "findings": [
+        "Reviewed all 385 frozen manifest inventory entries and every explanation, code example, exercise, complexity statement, and interview answer. Added missing C# collection-expression semantics and versions; Array.Empty/AsReadOnly, object-model wrappers, ordered and concurrent dictionary API coverage; and omitted Queue/Stack/LinkedList methods. Corrected List/Queue/Stack TrimExcess thresholds, SortedDictionary TryAdd attribution, ConcurrentDictionary factory and multi-operation atomicity, immutable element mutability, PriorityQueue tie ordering, collection complexity qualifications, and HashSet type wording. Official current Microsoft documentation checked. No unresolved factual or coverage issues remain; lessons remain drafts."
+      ]
     }
   ]
-}
+}\n

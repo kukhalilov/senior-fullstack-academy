@@ -24,7 +24,7 @@ using System.Collections.Concurrent;
 // Initialize the concurrent dictionary
 var sessions = new ConcurrentDictionary<int, string>();
 
-// Atomic update: Add or update the session
+// Thread-safe per-key update; the delegate may be invoked more than once.
 sessions.AddOrUpdate(101, "Active", (key, oldValue) => "Active");
 
 // Thread-safe lookup
@@ -57,7 +57,7 @@ if (sessions.TryGetValue(101, out string status))
 # Tests and edge cases
 * **Mutation during enumeration:** Structural mutation of a `List<T>` invalidates its enumerator; later enumerator operations throw `InvalidOperationException`. Check each collection's contract rather than assuming all collections behave alike.
 * **Capacity:** When using `List<T>` or `Dictionary<TKey,TValue>`, if you know the number of items in advance, use the constructor that accepts `capacity` to avoid expensive reallocations.
-* **Equality:** `HashSet<T>` and `Dictionary<TKey,TValue>` rely on the `GetHashCode` method. If your key type does not implement equality correctly, lookups will fail even if the key "looks" correct.
+* **Equality:** Hash-based collections require equality and hash codes to be consistent. Built-in types generally provide this; implement or supply a comparer when a custom type needs different equality semantics.
 
 # Reflection questions
 * Why is a read-only wrapper not the same as an immutable collection? (Hint: One is a view over backing data; the other preserves immutable collection structure.)

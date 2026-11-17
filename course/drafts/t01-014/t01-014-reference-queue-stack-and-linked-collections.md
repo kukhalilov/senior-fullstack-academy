@@ -19,20 +19,26 @@ Collections are tools for managing data based on how you need to access it. Whil
 ### Queue<T> and Stack<T>
 * `Queue<T>`: A collection that stores objects in a FIFO order.
 * `Queue<T>.Enqueue`: Adds an object to the end of the `Queue<T>`.
-* `Queue<T>.Dequeue`: Removes and returns the object at the beginning of the `Queue<T>`.
+* `Queue<T>.Dequeue`: Removes and returns the object at the beginning; throws when empty.
+* `Queue<T>.Count`: Gets the number of queued elements.
+* `Queue<T>.Clear`: Removes all elements while retaining capacity.
+* `Queue<T>.ToArray`: Copies queue elements to a new array in dequeue order.
 * `Queue<T>.TryDequeue`: Attempts to remove and return the object at the beginning; returns false if empty.
 * `Queue<T>.Peek`: Returns the object at the beginning without removing it.
 * `Queue<T>.TryPeek`: Attempts to return the object at the beginning without removing it; returns false if empty.
 * `Queue<T>.EnsureCapacity`: Sets the capacity to the specified number of elements to avoid reallocations.
-* `Queue<T>.TrimExcess`: Sets the capacity to the actual number of elements to save memory.
+* `Queue<T>.TrimExcess`: Reduces capacity to `Count` when below its trimming threshold; it may do nothing when nearly full.
 * `Stack<T>`: A collection that stores objects in a LIFO order.
 * `Stack<T>.Push`: Inserts an object at the top of the `Stack<T>`.
-* `Stack<T>.Pop`: Removes and returns the object at the top of the `Stack<T>`.
+* `Stack<T>.Pop`: Removes and returns the object at the top; throws when empty.
+* `Stack<T>.Count`: Gets the number of stacked elements.
+* `Stack<T>.Clear`: Removes all elements while retaining capacity.
+* `Stack<T>.ToArray`: Copies elements into a new array in LIFO enumeration order (top first).
 * `Stack<T>.TryPop`: Attempts to remove and return the object at the top; returns false if empty.
 * `Stack<T>.Peek`: Returns the object at the top without removing it.
 * `Stack<T>.TryPeek`: Attempts to return the object at the top without removing it; returns false if empty.
 * `Stack<T>.EnsureCapacity`: Sets the capacity to the specified number of elements.
-* `Stack<T>.TrimExcess`: Sets the capacity to the actual number of elements.
+* `Stack<T>.TrimExcess`: Reduces capacity to `Count` when below its trimming threshold; it may do nothing when nearly full.
 
 ### LinkedList<T>
 * `LinkedList<T>`: A doubly linked list where each node points to the next and previous nodes.
@@ -46,7 +52,13 @@ Collections are tools for managing data based on how you need to access it. Whil
 * `LinkedList<T>.Remove`: Removes the first occurrence of a specific value.
 * `LinkedList<T>.RemoveFirst`: Removes the node at the start.
 * `LinkedList<T>.RemoveLast`: Removes the node at the end.
-* `LinkedList<T>.Clear`: Removes all nodes from the list.
+* `LinkedList<T>.Clear`: Removes all nodes.
+* `LinkedList<T>.Count`: Gets the number of nodes.
+* `LinkedList<T>.First`: Gets the first node, or `null` when empty.
+* `LinkedList<T>.Last`: Gets the last node, or `null` when empty.
+* `LinkedList<T>.Contains`: Checks for an equal value by traversal.
+* `LinkedList<T>.Remove(LinkedListNode<T>)`: Removes a particular node in O(1) when it belongs to this list.
+* `LinkedList<T>.CopyTo`: Copies values to a one-dimensional array.
 
 ### BitArray
 * `BitArray`: A compact array of boolean values.
@@ -67,7 +79,7 @@ Collections are tools for managing data based on how you need to access it. Whil
 # Cross-item comparison
 * **Queue vs Stack:** Use `Queue<T>` when order of arrival matters (e.g., print jobs). Use `Stack<T>` for backtracking or undo operations.
 * **LinkedList vs List:** `List<T>` is usually faster due to memory locality. Use `LinkedList<T>` only if you frequently insert/remove items in the middle of the sequence.
-* **Concurrent variants:** The `Concurrent` versions of Queue and Stack are necessary when multiple threads access the collection simultaneously to prevent data corruption.
+* **Concurrent variants:** Use `ConcurrentQueue<T>` or `ConcurrentStack<T>` when their thread-safe per-operation contract fits shared access. External locking is another option, especially when an invariant spans multiple operations.
 
 # Examples
 ```csharp

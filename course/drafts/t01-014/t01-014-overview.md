@@ -24,8 +24,8 @@ Collections in .NET are organized by their **contracts** (interfaces) and their 
 2.  **Concrete Types:** These are the actual classes (like `List<T>` or `Dictionary<TKey,TValue>`) that implement the interfaces and provide the underlying storage logic.
 3.  **Specialized Variants:**
     *   **Concurrent Collections:** Designed for multi-threaded environments where multiple tasks might try to change the data at the same time.
-    *   **Immutable Collections:** Designed to never change. Instead of modifying them, you create a new version with your changes, which is safer for sharing data across different parts of an application.
-    *   **Frozen Collections:** Optimized for scenarios where you build a collection once and then perform millions of lookups (read-heavy).
+    *   **Immutable Collections:** Their collection structure does not change; an update returns a new value and can preserve earlier versions. Objects stored inside may still be mutable.
+    *   **Frozen Collections:** Built for data prepared before a read-heavy phase. Construction and memory costs trade against workload-dependent lookup behavior.
 
 # Concept map
 *   **Storage Shape:** The internal structure (e.g., hash table, linked list, array).
@@ -57,8 +57,8 @@ Imagine you are building a system to track user scores in a game.
 *   **Use Arrays** when the number of items is known and fixed. They provide fixed-length contiguous indexed storage and can be compact, though memory efficiency depends on element types and usage.
 *   **Use `List<T>`** for general-purpose dynamic sequences.
 *   **Use `Dictionary<TKey,TValue>`** for fast lookups. **Tradeoff:** It uses more memory than a list because it stores extra data to make lookups fast.
-*   **Use Concurrent Collections** only when you actually have multiple threads accessing the same collection. **Tradeoff:** They are slower than standard collections due to the overhead of ensuring thread safety.
-*   **Use Immutable/Frozen Collections** for data that shouldn't change. **Tradeoff:** Creating them is "expensive" (takes more time/memory), but reading from them is highly optimized.
+*   **Use Concurrent Collections** when their supported operations fit concurrent access. Coordination costs depend on workload and contention; ordinary collections with an external lock may suit other patterns.
+*   **Use Immutable/Frozen Collections** when snapshot semantics or read-mostly data suit the workload. Build costs and lookup performance vary by type, size, and access pattern; measure before choosing.
 
 **Common Mistake:** Modifying a collection while looping through it (e.g., removing an item from a `List` while using `foreach`). Some enumerators (including List<T> enumerators) are invalidated by structural modifications during iteration. Behavior varies by collection; use its documented mutation pattern.
 

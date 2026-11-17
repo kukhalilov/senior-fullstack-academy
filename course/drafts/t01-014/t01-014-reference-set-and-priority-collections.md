@@ -120,7 +120,7 @@ This reference catalog explains every item assigned to the set-and-priority-coll
   - Equality and ordering note: `SortedSet<T>` uses its comparer both to order elements and to decide whether a value is already represented. If the comparer returns zero for two values, the set treats them as equivalent for membership even if `Equals` would say otherwise.
 
 * `PriorityQueue<TElement,TPriority>`
-  - Purpose and behavior: A binary heap structure that stores elements with associated priorities, allowing efficient retrieval and removal of the element with the lowest priority value (min-heap behavior by default).
+  - Purpose and behavior: An array-backed quaternary min-heap that retrieves an element with the lowest priority according to its comparer. Equal priorities have no FIFO guarantee.
 
 * `PriorityQueue<TElement,TPriority>.Enqueue`
   - Purpose and behavior: Adds an element with a specified priority into the priority queue.

@@ -16,6 +16,8 @@ In .NET, collections are chosen based on access patterns and memory requirements
 
 ### Array
 *   `Array`: The base class for all arrays in .NET. It provides static methods for manipulating, searching, and sorting arrays.
+*   `Array.Empty<T>`: Returns an empty array of element type `T`, avoiding repeated empty-array allocations.
+*   `Array.AsReadOnly<T>`: Wraps the array in a `ReadOnlyCollection<T>` view; the array can still change through another reference.
 *   `Array.Length`: Gets the total number of elements in all dimensions of the array.
 *   `Array.Rank`: Gets the number of dimensions in the array.
 *   `Array.GetLength`: Gets the number of elements in the specified dimension.
@@ -73,8 +75,10 @@ In .NET, collections are chosen based on access patterns and memory requirements
 *   `List<T>.Sort`: Sorts the elements in the list.
 *   `List<T>.Reverse`: Reverses the order of elements in the list.
 *   `List<T>.EnsureCapacity`: Sets the capacity to at least the specified number of elements.
-*   `List<T>.TrimExcess`: Sets the capacity to the actual number of elements in the list.
-*   `List<T>.GetEnumerator`: Returns an enumerator that iterates through the list.
+*   `List<T>.TrimExcess`: Reduces capacity to `Count` when unused capacity exceeds the documented threshold; it can do nothing when the list is already over 90% full. The threshold is not a fixed API promise.
+*   `List<T>.GetEnumerator`: Returns an enumerator that iterates through the list. Structural mutation invalidates it.
+*   `List<T>.ConvertAll<TOutput>`: Applies a converter to each element and returns a new list of converted results.
+*   `List<T>.ForEach mutation behavior`: Modifying the list from the action can cause `InvalidOperationException`; use another iteration pattern when mutation is needed.
 *   `List<T>.Capacity growth`: When `Count` reaches capacity, the list grows its backing storage to accommodate more items. The precise growth factor is an implementation detail, not a fixed API contract.
 
 ### Comparison

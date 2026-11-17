@@ -36,14 +36,29 @@ In .NET, a collection is a combination of a storage shape (how data is organized
 * `IDictionary<TKey,TValue>.TryGetValue`: A safe way to retrieve a value by key without throwing an exception if the key is missing.
 * `KeyValuePair<TKey,TValue>`: A structure representing a single key-value pair.
 * `Collection initializer`: A syntax feature to populate a collection during instantiation.
-* `Collection expression target collection`: The specific collection type created when using the `[...]` syntax.
+* `Collection expression target collection`: Collection expressions are target-typed; the expected type controls conversion and creation. C# 12 supports arrays, spans, list-compatible types, selected interfaces, and custom collection builders. They are materialized values, not lazy LINQ sequences.
+* `Collection expression introduced in C# 12`: The `[...]` syntax creates a collection value when converted to an eligible target type. Context is significant.
+* `Collection expression target typing`: The target type determines which collection-expression conversion and element type apply. An untyped expression may be ambiguous in an overloaded call.
+* `Collection expression spread element (..)`: A `..sequence` element enumerates and includes the sequence values in the result.
+* `Collection expression conversion targets`: Current targets include arrays, spans, types supporting collection initialization, selected generic collection interfaces, and custom types with a collection builder. A collection expression eagerly creates its result.
+* `CollectionBuilderAttribute`: A collection type can opt into collection expressions through `System.Runtime.CompilerServices.CollectionBuilderAttribute` naming a static builder `Create` method that accepts a `ReadOnlySpan<T>`.
+* `C# 15 collection expression with(...) argument feature`: The C# 15 collection-expression extension that passes leading `with(...)` arguments to a constructor or collection builder.
+* `Collection expression with(...) arguments in C# 15`: A leading `with(...)` element passes arguments to a target collection constructor or builder. It must be first; its arguments do not determine the target during overload resolution or generic inference.
+* `Collection expression evaluation and materialization`: Element expressions are evaluated once in source order; spread sequences are enumerated into the created value. The compiler may optimize storage, but the resulting collection expression is not lazy.
 * `Collection capacity`: The number of elements a collection can hold before it must resize its internal storage.
 * `Collection Count`: The current number of elements in the collection.
 * `Enumerator invalidation after mutation`: The behavior where an enumerator becomes invalid if the underlying collection is modified during iteration.
-* `Fail-fast enumerator behavior`: The mechanism that throws an exception if a collection is modified while being enumerated.
+* `Fail-fast enumerator behavior`: A common implementation behavior that detects invalidating mutations and throws on a subsequent enumerator operation. It is collection-specific, not a universal guarantee.
 * `Generic versus non-generic collection`: The distinction between type-safe collections (`List<T>`) and legacy collections (`ArrayList`) that store `object`.
 * `Read-only view versus immutable collection`: A read-only view is a restricted interface to a mutable object; an immutable collection cannot be changed after creation.
-* `Collection selection by access pattern`: The process of choosing a collection based on whether you need indexed access, uniqueness, or specific ordering.
+* `Collection selection by access pattern`: Choose based on indexed access, uniqueness, ordering, concurrent operations, immutable versions, or read-mostly use.
+* `System.Collections.ObjectModel.Collection<T>`: An extensible wrapper over an `IList<T>` with virtual hooks for customizing insert, set, remove, and clear behavior.
+* `ReadOnlyCollection<T> live wrapper`: A read-only wrapper over an `IList<T>`; changes through the backing list remain visible. It is not a snapshot or immutable copy.
+* `ReadOnlyDictionary<TKey,TValue> live wrapper`: A read-only view over a dictionary; changes through another reference remain visible.
+* `ObservableCollection<T> change notifications`: A mutable collection that raises synchronous collection-change notifications for supported mutations, commonly for data binding. It does not make concurrent mutation thread-safe.
+* `ReadOnlyObservableCollection<T>`: A read-only wrapper over an `ObservableCollection<T>` that relays collection/property change notifications.
+* `Array.Empty<T>`: Returns an empty array of the requested element type and can avoid repeated empty-array allocations.
+* `Array.AsReadOnly<T>`: Creates a read-only wrapper over an array. The array remains mutable through other references, and the wrapper reflects those changes.
 
 # Cross-item comparison
 * **`ICollection<T>` vs `IReadOnlyCollection<T>`**: `ICollection<T>` allows modification (Add/Remove), while `IReadOnlyCollection<T>` only allows inspection.

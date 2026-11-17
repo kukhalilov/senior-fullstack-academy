@@ -18,9 +18,9 @@ This inventory addresses advanced data management challenges:
 # Supplied names explained
 Every name in this assigned group is explained below in its role within the broader .NET collection architecture:
 
-* `ConcurrentDictionary<TKey,TValue>`: A thread-safe dictionary implementation designed for multi-threaded environments where keys and values are frequently updated concurrently.
+* `ConcurrentDictionary<TKey,TValue>`: A thread-safe dictionary for concurrent access. Its methods do not make mutable values thread-safe or a series of calls transactional.
 * `ConcurrentDictionary<TKey,TValue>.GetOrAdd`: Thread-safely gets the value or adds a value for a missing key. Its value factory can run more than once, outside internal locks, so it must not be treated as an exactly-once side-effect hook.
-* `ConcurrentDictionary<TKey,TValue>.AddOrUpdate`: Thread-safely applies the dictionary update and returns the stored result, but its add/update delegates may run multiple times outside internal locks. The method is not atomic with respect to all other dictionary operations, so keep delegates free of non-repeatable side effects and use external synchronization for a wider invariant.
+* `ConcurrentDictionary<TKey,TValue>.AddOrUpdate`: Adds or computes an updated value using a thread-safe dictionary operation. Its delegates may run multiple times outside internal locks, and the method is not atomic with respect to all other dictionary operations; do not use it as an exactly-once side-effect hook.
 * `ConcurrentDictionary<TKey,TValue>.TryAdd`: Attempts to add a key and value to the concurrent dictionary, returning a boolean indicating success or failure.
 * `ConcurrentDictionary<TKey,TValue>.TryUpdate`: Updates the value associated with a specific key to a new value only if it currently matches an expected comparison value atomically.
 * `ConcurrentDictionary<TKey,TValue>.TryRemove`: Attempts to remove and return the value with the specified key from the concurrent dictionary in a thread-safe manner.
@@ -32,7 +32,7 @@ Every name in this assigned group is explained below in its role within the broa
 * `ConcurrentQueue<T>.IsEmpty`: Gets a value indicating whether the concurrent queue is empty at the moment of inspection.
 * `ConcurrentStack<T>`: A thread-safe last-in, first-out (LIFO) collection.
 * `ConcurrentStack<T>.Push`: Inserts an object at the top of the concurrent stack.
-* `ConcurrentStack<T>.PushRange`: Inserts a batch at the top atomically according to this API's contract. Do not generalize the batch guarantee to other concurrent collection methods.
+* `ConcurrentStack<T>.PushRange`: Inserts a batch at the top atomically according to this API's contract. Do not generalize this guarantee to other methods or collection types.
 * `ConcurrentStack<T>.TryPop`: Attempts to pop and return the object at the top of the concurrent stack.
 * `ConcurrentStack<T>.TryPopRange`: Attempts to pop and return multiple objects from the top of the concurrent stack into an array.
 * `ConcurrentStack<T>.TryPeek`: Attempts to return an object from the top of the stack without removing it.
@@ -48,7 +48,7 @@ Every name in this assigned group is explained below in its role within the broa
 * `BlockingCollection<T>.CompleteAdding`: Signals to the collection that no more items will be added, waking up waiting consumer threads.
 * `BlockingCollection<T>.GetConsumingEnumerable`: Provides a blocking enumeration over items in the collection, exiting when adding is completed and the collection is empty.
 * `IProducerConsumerCollection<T>`: The base interface implemented by data structures like `ConcurrentQueue<T>` and `ConcurrentStack<T>` to standardize producer-consumer interactions [https://learn.microsoft.com/en-us/dotnet/standard/collections/thread-safe/](https://learn.microsoft.com/en-us/dotnet/standard/collections/thread-safe/).
-* `ImmutableArray<T>`: A high-performance, structurally sound immutable array structure backed by a contiguous block of memory.
+* `ImmutableArray<T>`: An immutable array-shaped collection backed by an array. Its collection structure cannot be changed through its API; contained mutable objects are not deeply immutable.
 * `ImmutableList<T>`: An immutable sequence whose update methods return a new logical value while preserving prior versions; implementations can share unchanged structure rather than copying the full collection.
 * `ImmutableDictionary<TKey,TValue>`: An immutable dictionary mapping keys to values.
 * `ImmutableHashSet<T>`: An immutable unordered set ensuring element uniqueness.
@@ -85,8 +85,8 @@ Within this specific group of concurrent, immutable, and frozen structures, choi
 
 # Examples
 
-## Example 1: Using `ConcurrentDictionary` with Atomic Methods
-This snippet demonstrates thread-safe initialization and updates using `ConcurrentDictionary<TKey,TValue>` and `GetOrAdd` [https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent]:
+  ## Example 1: Thread-Safe Per-Key Operations with `ConcurrentDictionary`
+  These calls safely access individual key mappings. They do not make a sequence of calls transactional, and delegates passed to factory overloads can run multiple times; larger invariants need external coordination [https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2.addorupdate]:
 
 ```csharp
 using System;
@@ -98,11 +98,11 @@ class Program
     {
         ConcurrentDictionary<string, int> cache = new();
 
-        // Atomically get value or add if missing
+        // Safely get the mapped value or add this value if the key is missing
         int value = cache.GetOrAdd("counter", 42);
         Console.WriteLine(value);
 
-        // Atomically update value based on existing state
+        // Apply a per-key update; the delegate may run more than once
         int updated = cache.AddOrUpdate("counter", 1, (key, existingVal) => existingVal + 1);
         Console.WriteLine(updated);
     }
@@ -153,7 +153,7 @@ Gamma
 # Common mistakes
 * **Assuming a concurrent method is an exactly-once transaction**: Multi-call workflows are separate operations. `GetOrAdd` and `AddOrUpdate` factories can run repeatedly and outside locks; do not place non-repeatable side effects in them. Synchronize a larger invariant explicitly.
 * **Assuming immutable updates copy everything**: Immutable updates preserve old values and can structurally share data; costs differ by collection. Consider a builder for a batch, then measure if performance matters.
-* **Expecting frozen collections to be modifiable**: Attempting to add or remove items from a `FrozenDictionary<TKey,TValue>` or `FrozenSet<T>` will fail because they are strictly designed as read-only, optimized final artifacts.
+* **Expecting frozen collections to be modifiable**: Frozen APIs expose no mutation operations. Build a new frozen instance when the data changes.
 
 # Knowledge checks with answers
 1. **Question**: When should you choose `FrozenDictionary<TKey,TValue>` over `ConcurrentDictionary<TKey,TValue>`?
