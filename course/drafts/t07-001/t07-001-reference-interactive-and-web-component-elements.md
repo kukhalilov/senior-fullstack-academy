@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-Current HTML Living Standard checked 2026-11-16. The customizable-select `<selectedcontent>` element is standardized but marked limited availability by MDN. See [WHATWG interactive elements](https://html.spec.whatwg.org/multipage/interactive-elements.html), [WHATWG selectedcontent](https://html.spec.whatwg.org/multipage/form-elements.html), and [MDN selectedcontent](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/selectedcontent).
+Current HTML Living Standard checked 2026-11-17. The customizable-select `<selectedcontent>` element is standardized but marked limited availability by MDN. See [WHATWG interactive elements](https://html.spec.whatwg.org/multipage/interactive-elements.html), [WHATWG selectedcontent](https://html.spec.whatwg.org/multipage/form-elements.html), and [MDN selectedcontent](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/selectedcontent).
 
 ## How this group fits the mental model
 
@@ -12,7 +12,7 @@ These elements provide native disclosure/dialog behavior or composition points f
 
 - `<details>` — Disclosure widget whose content is shown or hidden; a `<summary>` supplies its visible label. Its `open` state and toggle behavior are native.
 - `<dialog>` — Dialog box that can be modal or nonmodal. Modal display uses the dialog APIs and affects focus/inertness; provide a meaningful accessible name and a way to close it.
-- `<selectedcontent>` — In customizable select markup, mirrors the selected option's content inside the first child button of the select. It has a narrow permitted parent and limited browser availability. Dynamic edits to option content may not update the clone automatically.
+- `<selectedcontent>` — In customizable-select markup, its required parent is the first-child `<button>` inside `<select>`. The browser clones the selected `<option>` content into it, replacing that clone when selection changes; later script mutations to the option's descendants do not necessarily synchronize automatically. It has limited browser availability and older parsers may discard the new structure, so test target browsers and keep an appropriate fallback.
 - `<summary>` — Caption/legend for a `<details>` disclosure. It should be the first summary child to label the disclosure.
 - `<slot>` — Placeholder in a shadow tree where assigned light-DOM content is rendered; named slots match a `slot` attribute. It is a Web Component composition point.
 - `<template>` — Holds inert document-fragment content that is not rendered until cloned/instantiated by script or a component.
@@ -38,6 +38,8 @@ These elements provide native disclosure/dialog behavior or composition points f
 
 The customizable select sample needs feature/support checks and accessible interaction testing. A native select without customized structure remains the robust fallback.
 
+The mirrored subtree is a clone, not a live reference to the `<option>` node. Frameworks that update option descendants after initial rendering must account for the stale clone behavior documented for this feature.
+
 ## Common mistakes
 
 - Placing arbitrary interactive controls inside summary and assuming all input behavior remains intuitive.
@@ -45,6 +47,7 @@ The customizable select sample needs feature/support checks and accessible inter
 - Treating a template as rendered content or assuming its descendants are active before insertion.
 - Forgetting slot fallback/assignment behavior when composing a custom element.
 - Depending on `<selectedcontent>` without a browser-support strategy or assuming its mirrored clone always stays synchronized with arbitrary DOM mutations.
+- Assuming every browser preserves customizable-select child markup during HTML parsing; older implementations may remove nontraditional children.
 
 ## Knowledge checks with answers
 

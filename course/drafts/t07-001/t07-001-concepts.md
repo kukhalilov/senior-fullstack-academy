@@ -16,7 +16,7 @@ The source-to-DOM and semantic model follows the [WHATWG HTML Living Standard](h
 
 **Semantics are contracts.** `<nav>` identifies a navigation region; `<main>` identifies the page's principal content; `<article>` represents a self-contained composition; `<section>` groups thematic content, usually with a heading. `<div>` has no special meaning. These elements do not dictate visual styles, and styling a `<div>` to look like a heading does not make it a heading.
 
-**Headings communicate hierarchy.** Use `<h1>` through `<h6>` for actual headings and choose levels from the document outline, not font size. The current standard defines `headingoffset` and `headingreset`; support and tooling should be checked before using newer behavior. `<hgroup>` groups a heading with related subtitle/tagline paragraphs. It is not a replacement for a semantic section.
+**Headings communicate hierarchy.** Use `<h1>` through `<h6>` for actual headings and choose levels from the document outline, not font size. The current standard defines newer `headingoffset` and `headingreset` attributes, but browser and assistive-technology support is not uniform; conventional heading levels remain the reliable interoperable choice unless the target environment is verified. `<hgroup>` groups a heading with related subtitle/tagline paragraphs. It is not a replacement for a semantic section.
 
 **Content categories help determine placement.** Metadata, flow, sectioning, heading, phrasing, embedded, interactive, palpable, and script-supporting categories overlap; they are not a simple inheritance tree. An element can belong to more than one category. The content model for a particular parent determines which children are conforming. Transparent content models inherit restrictions from the context. SVG and MathML enter foreign-content parsing rules.
 
@@ -50,7 +50,7 @@ Use `<article>` for content that could be distributed or understood independentl
 - `<header>` and `<footer>` are not automatically page-wide landmarks when nested inside sectioning content.
 - `hidden` and `inert` differ: hidden content is not rendered; inert content remains present but is not interactive/focusable and is excluded from interaction.
 - `aria-*` does not create native behavior, and global `tabindex` can create harmful focus order.
-- `<selectedcontent>` is a standardized customizable-select element with limited browser availability; it mirrors selected option content and has a narrow permitted parent.
+- `<selectedcontent>` is a standardized customizable-select element with limited browser availability; it clones selected option content, has a narrow permitted parent, and may not automatically reflect later DOM mutations within the option.
 - SVG/MathML elements follow foreign-content integration rules; HTML casing and attribute parsing assumptions do not uniformly apply inside them.
 
 ## Knowledge checks with answers

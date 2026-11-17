@@ -39,7 +39,7 @@ Sectioning and heading elements describe the organization of body content. They 
     <header><h1>Choosing a database</h1>By Mina</header>
     <section><h2>Read patterns</h2>...</section>
     <aside><h2>Related guide</h2>Indexes</aside>
-    <footer>Updated 2026-11-16</footer>
+    <footer>Updated 2026-11-17</footer>
   </article>
 </main>
 ```

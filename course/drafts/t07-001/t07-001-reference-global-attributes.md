@@ -20,8 +20,8 @@ Global attributes can appear on many HTML elements, but “global” does not me
 - `dir` — Sets text direction (`ltr`, `rtl`, or `auto`) and affects bidi layout; direction is distinct from language.
 - `draggable` — Declares whether an element participates in HTML drag-and-drop; keyboard/touch alternatives still matter.
 - `enterkeyhint` — Hints the label/action displayed on a virtual keyboard's Enter key.
-- `headingoffset` — Current standard attribute that offsets computed heading levels in descendants; valid values are bounded and newer behavior needs implementation/tooling verification.
-- `headingreset` — Boolean boundary for heading-offset computation; it resets traversal beyond the annotated element under current rules.
+- `headingoffset` — Experimental/newer global attribute that participates in computed heading-level offsets in descendants. Its precise integer value and algorithm are defined by the current Living Standard, but implementation and accessibility-tool support are not yet dependable across target environments; check current browser support before using it.
+- `headingreset` — Experimental/newer boolean global attribute that bounds heading-offset computation across descendants under the current algorithm. Do not assume screen readers or heading-navigation tools expose the computed result consistently.
 - `hidden` — Indicates content not currently relevant for rendering; current states include hidden and hidden-until-found behavior. It is not a substitute for authorization.
 - `id` — Unique identifier within the document, used by fragment links and relationships; duplicate IDs make references ambiguous.
 - `inert` — Makes a subtree noninteractive and removes it from sequential focus/accessibility interaction while it remains in the DOM.
@@ -68,6 +68,7 @@ The custom data value is visible to the client and must not contain a secret or 
 - Assuming `hidden`, `inert`, or a `data-*` value enforces security.
 - Reusing duplicate IDs or using `autofocus` on every route.
 - Shipping `headingoffset`/`headingreset` without verifying browser, accessibility tree, and heading-navigation tooling support.
+- Treating `autofocus`, `autocorrect`, `writingsuggestions`, or keyboard hints as commands that every user agent must follow; several are hints with platform-dependent behavior.
 
 ## Knowledge checks with answers
 

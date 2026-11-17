@@ -27,7 +27,7 @@ Create an article page with a site header, navigation, main content, article tit
         <section><h2>Recovery goals</h2>...</section>
         <figure><img src="backup.png" alt="Backup verification flow"><figcaption>Verification steps</figcaption></figure>
         <aside>Related: recovery testing</aside>
-        <footer>Updated 2026-11-16</footer>
+        <footer>Updated 2026-11-17</footer>
       </article>
     </main>
   </body>
@@ -44,6 +44,7 @@ The tags express page and article structure; CSS can change layout without chang
 4. A video needs subtitles and an image needs an alternative. Identify the elements and information needed.
 5. Repair this structure: `<!doctype html><p>Intro<section><h3>Details</h2><p>Text</section>`. Explain both source problems and likely parsing effects.
 6. Given `<button disabled="false">Save</button>`, predict whether it is disabled and show the enabled form.
+7. A framework changes the text inside the currently selected `<option>` without changing the selected value. Why might a customizable select's `<selectedcontent>` still show old text, and what compatibility checks are needed?
 
 ## Progressive hints
 
@@ -53,6 +54,7 @@ The tags express page and article structure; CSS can change layout without chang
 4. Timed captions use a text track; an image alternative conveys purpose, not filename.
 5. Paragraphs close implicitly in some parse contexts, but heading end tags must match; write explicit valid nesting.
 6. Boolean attributes are true by presence.
+7. `<selectedcontent>` contains a clone updated on selection changes, not a live reference. Check the browser matrix and preserve a usable native-select fallback.
 
 ## Complete solutions
 
@@ -62,6 +64,7 @@ The tags express page and article structure; CSS can change layout without chang
 4. Use `<video>` with `<track kind="captions">` and a properly sourced text track. Use `<img alt="...">` with concise equivalent information, or `alt=""` if decorative.
 5. Close the paragraph before sectioning content; close the `h3` with `</h3>`; then place a paragraph inside the section. HTML may repair the original paragraph nesting, but mismatched heading markup is a source defect and should not be relied on.
 6. It is disabled because the `disabled` attribute is present. Remove the attribute entirely: `<button>Save</button>`.
+7. The standard behavior copies the selected option's contents into `<selectedcontent>` when the selected option changes. Mutating descendants later may leave the clone stale, so update the displayed subtree when appropriate, test actual supported browsers, and don't rely on the markup in legacy implementations that discard it while parsing.
 
 ## Tests and edge cases
 
@@ -71,6 +74,7 @@ The tags express page and article structure; CSS can change layout without chang
 - Confirm image alternatives for informative, functional, and decorative images.
 - Check caption association, table headers, embedded-context names, and content-model validity.
 - Test current browser support before using `<selectedcontent>`; retain a native/fallback select path.
+- If option subtrees are updated dynamically, verify the `<selectedcontent>` clone stays synchronized in the target browsers and framework lifecycle.
 - Treat `data-*` values as untrusted input and keep secrets out of source and DOM attributes.
 
 ## Reflection questions

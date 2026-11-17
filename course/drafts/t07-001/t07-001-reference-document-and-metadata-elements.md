@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-Current HTML Living Standard, checked 2026-11-16. See [WHATWG document metadata](https://html.spec.whatwg.org/multipage/semantics.html) and the [MDN element index](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements).
+Current HTML Living Standard, checked 2026-11-17. See [WHATWG document metadata](https://html.spec.whatwg.org/multipage/semantics.html) and the [MDN element index](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements).
 
 ## How this group fits the mental model
 
