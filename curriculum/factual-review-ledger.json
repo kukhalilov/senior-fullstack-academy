@@ -78164,12 +78164,25 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-consistency-and-coordination.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
+      "status": "partial",
+      "claimInventory": "in-progress",
+      "claimsChecked": 31,
+      "claimsCorrected": 2,
+      "evidence": [
+        {"claim":"Linearizability requires a legal sequential history that respects real-time precedence of non-overlapping operations.","source":"https://www.cs.columbia.edu/~wing/publications/HerlihyWing90.pdf","section":"§2.2 Definition of Linearizability","verdict":"supported"},
+        {"claim":"Sequential consistency requires one legal total order preserving each process's program order, without imposing cross-process real-time order.","source":"https://pages.cs.wisc.edu/~markhill/restricted/toc79_sc.pdf; https://www.cs.columbia.edu/~wing/publications/HerlihyWing90.pdf","section":"Lamport paper definition; contrast with linearizability real-time precedence","verdict":"supported"},
+        {"claim":"Eventual consistency is a convergence condition under further communication and no continuing writes; it has no inherent finite freshness bound.","source":"https://www.cs.cornell.edu/lorenzo/papers/cac-tr.pdf; https://www.cs.cornell.edu/courses/cs5414/2020fa/notes/Week8.pdf","section":"Coordination Avoidance report Appendix A.3; Cornell geo-replicated systems notes","verdict":"supported; wording tied to required communication/reconciliation conditions"},
+        {"claim":"Read-your-writes is a per-session guarantee, distinct from atomic transactions or global visibility, and enforcing session guarantees can restrict available servers.","source":"https://www.cs.cornell.edu/courses/cs734/2000FA/cached%20papers/SessionGuaranteesPDIS_1.html","section":"Abstract; §§1, 3.1","verdict":"supported"},
+        {"claim":"For fixed replica sets, R+W>N implies every read set intersects every write set, but this alone does not establish linearizability without version/order and failure assumptions.","source":"https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html; https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf","section":"Cassandra tunable consistency; quorum intersection distinction","verdict":"supported; caveat retained"},
+        {"claim":"Consensus safety and liveness depend on different assumptions; quorum intersection supports safety and an available non-faulty quorum plus synchrony conditions supports progress in the cited Paxos model.","source":"https://lamport.azurewebsites.net/pubs/web-byzpaxos.pdf","section":"§2.2 Paxos Consensus","verdict":"supported"},
+        {"claim":"Raft elects a leader, replicates log entries, commits according to majority replication and current-term rules, and cannot commit when a majority is unavailable.","source":"https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf","section":"§§5.2–5.4; Figure 2","verdict":"supported"},
+        {"claim":"Raft membership changes and log compaction are addressed separately in the paper and matter to correct implementation and operation.","source":"https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf","section":"§§6–7 and Figure 2 caption","verdict":"supported"},
+        {"claim":"Classical 2PC has prepare/vote and decision phases, and can block prepared participants when coordinator failure leaves them uncertain about the decision.","source":"https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tpsod/e34079f0-22de-4c03-9cb8-84c2448a4613; https://arxiv.org/abs/cs/0408036","section":"MS-TPSOD §1.1.2; Gray and Lamport abstract","verdict":"supported"},
+        {"claim":"2PC and consensus are related but distinct protocols; consensus replication of a commit decision is one fault-tolerant commit construction, not a claim that ordinary 2PC is nonblocking consensus.","source":"https://arxiv.org/abs/cs/0408036","section":"Abstract and introduction","verdict":"supported"},
+        {"claim":"A microservice-local consensus log does not by itself atomically commit a cross-service workflow; saga compensation has different visible intermediate-state semantics.","source":"https://arxiv.org/abs/cs/0408036; https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction","section":"Distributed transaction commit distinction; compensating transaction pattern","verdict":"supported; architecture comparison scoped as conceptual"
+        }
+      ],
+      "issues": ["Initial claim evidence is grouped across 31 sentence-level checks. A final pass of every remaining sentence and independent manifest/Handbook scope check is still required before marking reviewed."],
       "reviewedAt": null,
       "sourceUrls": [
         "https://hld.handbook.academy/",
@@ -78189,9 +78202,19 @@
         "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
         "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
         "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf",
+        "https://www.cs.columbia.edu/~wing/publications/HerlihyWing90.pdf",
+        "https://pages.cs.wisc.edu/~markhill/restricted/toc79_sc.pdf",
+        "https://www.cs.cornell.edu/courses/cs734/2000FA/cached%20papers/SessionGuaranteesPDIS_1.html",
+        "https://www.cs.cornell.edu/lorenzo/papers/cac-tr.pdf",
+        "https://www.cs.cornell.edu/courses/cs5414/2020fa/notes/Week8.pdf",
+        "https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html",
+        "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tpsod/e34079f0-22de-4c03-9cb8-84c2448a4613",
+        "https://learn.microsoft.com/en-us/azure/architecture/patterns/saga"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Initial claim evidence recorded for the eight assigned consistency/coordination items. Keep partial until every sentence is checked, the assigned inventory is rechecked, and technical omissions are resolved.",
+      "claimChecks": 31,
+      "scopeCheck": {"status":"assigned manifest inventory checked; independent Handbook module title-by-title check pending","checkedItems":["Linearizability","Sequential consistency","Eventual consistency","Read-your-writes","Quorum read/write","Consensus","Raft","Two-phase commit (2PC)"],"missingItems":[]}
     },
     {
       "taskId": "t12-002-reference-time-ordering-and-failure",
