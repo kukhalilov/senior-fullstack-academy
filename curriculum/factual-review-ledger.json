@@ -633,6 +633,18 @@
       "findings": [
         "Checked additive-versus-breaking change examples, compatibility, concurrent versions and operational retirement cost against Microsoft API design guidance; Google guide index supports API design/compatibility guidance. Protocol-specific and all lesson claims plus omission checks remain pending. Lesson is not promoted."
       ]
+    },
+    {
+      "scope": "Idempotency key reference",
+      "status": "partial primary-source checks; full lesson audit pending",
+      "sources": [
+        "https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/",
+        "https://www.rfc-editor.org/rfc/rfc9110",
+        "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-implementation"
+      ],
+      "findings": [
+        "Checked current IETF Idempotency-Key document status (active draft as of 2026-11-17), unique-per-logical-request and expiry/fingerprint guidance; checked HTTP method idempotency distinctions in RFC 9110 and application idempotency guidance. Distributed transaction/failure cases are design patterns; all claims and omissions remain pending. Lesson is not promoted."
+      ]
     }
   ],
   "lessons": [
@@ -77546,29 +77558,9 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
+        "https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/",
         "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-implementation"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99899,7 +99891,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 178 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 177 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
@@ -100118,6 +100110,14 @@
       "status": "expanded; selected primary-source checks; full audit pending",
       "findings": [
         "Replaced generic filler with contract-change classification, expand/migrate/contract rollout, mechanism trade-offs, deprecation, compatibility testing, event/client migration, and a composite rollout exercise. Selected Microsoft/Google guidance checked; full factual and completeness audits remain outstanding."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "Idempotency key reference",
+      "status": "expanded; selected primary-source checks; full audit pending",
+      "findings": [
+        "Replaced generic filler with key lifecycle, atomic claim, fingerprinting, replay/in-progress policy, crash/outbox boundaries, retention, and payment/export examples. Verified the header document is still an Internet-Draft on the date checked; full sentence-level and completeness audits remain outstanding."
       ]
     }
   ]
