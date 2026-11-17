@@ -24,7 +24,7 @@ String algorithms rely on three layers of logic:
 # Concept map
 *   **Data Representation:** `char` (UTF-16) vs. `System.Text.Rune` (Unicode scalar value).
 *   **Structural Relationships:** Prefix, Suffix, Substring, Subsequence, Palindrome, Anagram.
-*   **Comparison Logic:** Ordinal (binary value) vs. Culture-sensitive (language rules).
+*   **Comparison Logic:** Ordinal UTF-16 code-unit ordering vs. culture-sensitive linguistic rules; normalization and case policy are separate choices.
 *   **Search Algorithms:** Naive, KMP (Prefix function), Z-function, Rabin-Karp (Rolling hash).
 *   **Performance Constraints:** Immutability (strings cannot be changed, only copied) and allocation costs.
 
@@ -38,8 +38,8 @@ Consider searching for the pattern "ABA" in the text "ABABA".
 
 # When to use it and tradeoffs
 *   **Use Ordinal comparison** for internal identifiers or protocol data where language rules don't apply; path comparison should follow the target platform's path rules.
-*   **Use Culture-sensitive comparison** for user-facing text (e.g., sorting names in a list).
-*   **Tradeoff:** String immutability in C# means every modification (like `+` concatenation) creates a new string in memory. For heavy manipulation, use `StringBuilder` or span-based techniques to avoid excessive allocations.
+*   **Use culture-sensitive comparison** when the product requires language-aware presentation or matching; spell out culture and casing options where they affect behavior.
+*   **Tradeoff:** Strings are immutable, so building a growing result through repeated concatenation can repeatedly copy earlier content. For that workload, `StringBuilder` or a suitable buffer can reduce allocations; spans are views for reading/slicing and do not themselves provide mutable string storage.
 *   **Risk:** When using *Polynomial rolling hash* for matching, account for *hash collisions*—where different strings produce the same hash—and verify candidate matches when correctness requires exact equality.
 
 # What later lessons cover

@@ -5,7 +5,7 @@
 *Automatically generated draft.*
 
 # Scope and version
-This lesson covers fundamental string comparison and matching concepts within the context of .NET 11 and timeless algorithmic principles. It focuses on the definitions and mechanics of how strings are compared and how patterns are identified within sequences. All content is based on documentation checked as of 2026-11-14.
+This lesson covers fundamental string comparison and matching concepts within current .NET and timeless algorithmic principles. It focuses on how strings are compared and how patterns are identified within sequences. Documentation was checked on 2026-11-17.
 
 # How this group fits the mental model
 String algorithms rely on defining what constitutes an "element" and how to determine equality or proximity between sequences. In C#, strings are immutable UTF-16 sequences. Because a single user-perceived character (grapheme cluster) may consist of multiple UTF-16 code units, the method of comparison significantly alters the result. These concepts provide the building blocks for searching, sorting, and validating text data efficiently.
@@ -17,15 +17,15 @@ String algorithms rely on defining what constitutes an "element" and how to dete
 * `Case-insensitive comparison`: A comparison policy that treats certain case variants as equivalent. It can be ordinal or culture-sensitive, and the choice affects its rules.
 * `Normalization`: A Unicode transformation that maps text into a selected normalization form. It can make canonically equivalent sequences compare alike when the application's equality policy requires that; .NET string comparison does not automatically normalize every string.
 * `Naive pattern matching`: A brute-force approach that checks for a pattern by sliding it across the text one position at a time. It has a worst-case time complexity of O(n*m).
-* `Prefix function`: A core component of the Knuth-Morris-Pratt algorithm; it computes the length of the longest proper prefix of a substring that is also a suffix of that same substring.
+* `Prefix function`: For each prefix ending at position i, records the length of its longest proper prefix that is also a suffix. KMP uses these border lengths to choose a safe fallback after a mismatch.
 * `Knuth-Morris-Pratt matching`: An efficient pattern-matching algorithm that uses the prefix function to skip unnecessary comparisons, achieving O(n+m) time complexity.
-* `Z-function`: An algorithm that computes an array where each element `z[i]` is the length of the longest common prefix between the string and its suffix starting at `i`.
-* `Rabin-Karp matching`: A pattern-matching algorithm that uses hashing to find a pattern in a text. It calculates the hash of the pattern and compares it against the rolling hashes of substrings in the text.
-* `Polynomial rolling hash`: A hashing technique used in Rabin-Karp where the hash value is updated in constant time as the window slides across the text, reducing the cost of recomputing hashes.
+* `Z-function`: Computes for each position i the length of the longest prefix of the string that matches the substring beginning at i. z[0] is convention-dependent and often set to zero.
+* `Rabin-Karp matching`: Compares a pattern hash with rolling hashes of text windows, then handles hash matches according to the required correctness guarantee. Exact verification avoids false positives but collision-heavy inputs can cause quadratic verification work.
+* `Polynomial rolling hash`: Represents a sequence by a polynomial-like value modulo a chosen modulus; removing the outgoing contribution and adding the incoming value updates a fixed-length window in constant arithmetic operations, assuming suitable arithmetic and overflow handling.
 
 # Cross-item comparison
 * **Comparison Methods**: `Ordinal comparison` follows code-unit values and `Culture-sensitive comparison` follows language-specific collation rules. Apply `Normalization` only when the chosen text-equivalence policy requires it; it is not a prerequisite for every comparison.
-* **Matching Algorithms**: `Naive pattern matching` is simple but inefficient. `Knuth-Morris-Pratt matching` and `Rabin-Karp matching` are optimized alternatives. `Knuth-Morris-Pratt matching` relies on the `Prefix function` to avoid re-scanning, while `Rabin-Karp matching` relies on `Polynomial rolling hash` to compare blocks of text via numeric signatures. The `Z-function` provides a different structural analysis of the string, useful for identifying repeated patterns.
+* **Matching Algorithms**: `Naive pattern matching` has O(nm) worst-case time. `Knuth-Morris-Pratt matching` preprocesses borders and has O(n+m) worst-case time. `Rabin-Karp matching` uses rolling fingerprints; performance and false-positive risk depend on hash choices and whether candidate windows are verified. The `Z-function` is another linear-time prefix-match primitive and can be adapted for matching with a separator that cannot occur in either input (or a generalized sequence).
 
 # Examples
 ```csharp

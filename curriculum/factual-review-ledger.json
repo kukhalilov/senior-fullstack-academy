@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 151,
-    "pending": 2189,
-    "claimsChecked": 1958,
-    "claimsCorrected": 86,
+    "reviewed": 164,
+    "pending": 2176,
+    "claimsChecked": 2521,
+    "claimsCorrected": 96,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -6816,377 +6816,729 @@
       "topicId": "t11-019",
       "phase": "overview",
       "draft": "course/drafts/t11-019/t11-019-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "String storage is an ordered UTF-16 code-unit sequence; scalar values and grapheme clusters are distinct units.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Prefix/suffix/substring/subsequence and search algorithm model and examples.",
+          "source": "https://cp-algorithms.com/string/prefix-function.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Comparison/normalization/collision and complexity trade-offs.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-concepts",
       "topicId": "t11-019",
       "phase": "concepts",
       "draft": "course/drafts/t11-019/t11-019-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 51,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "UTF-16, Rune/scalar and grapheme distinctions; Length/indexing operate on UTF-16 code units.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Ordinal vs linguistic comparison and normalization policy.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "KMP border, Z-prefix and Rabin-Karp collision behaviors.",
+          "source": "https://cp-algorithms.com/string/prefix-function.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Naive matching example and empty-pattern defensive contract.",
+          "source": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-reference-text-units",
       "topicId": "t11-019",
       "phase": "reference",
       "draft": "course/drafts/t11-019/t11-019-reference-text-units.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 36,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Code point range, scalar excludes surrogate range, and supplementary scalars use surrogate pairs in UTF-16.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Rune represents one valid Unicode scalar value.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "StringInfo text elements follow extended grapheme boundaries in .NET 5+, with runtime Unicode data evolution.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-reference-sequence-relations",
       "topicId": "t11-019",
       "phase": "reference",
       "draft": "course/drafts/t11-019/t11-019-reference-sequence-relations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Prefix/proper-prefix/suffix/substring half-open ranges and empty-sequence cases.",
+          "source": "https://cp-algorithms.com/string/prefix-function.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Substring contiguity versus subsequence ordering; palindrome equality depends on chosen unit.",
+          "source": "https://leetcode.com/problems/longest-palindromic-substring/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Anagram equivalence is multiset equality under declared symbol and normalization rules.",
+          "source": "https://leetcode.com/problems/valid-anagram/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-reference-comparison-and-matching",
       "topicId": "t11-019",
       "phase": "reference",
       "draft": "course/drafts/t11-019/t11-019-reference-comparison-and-matching.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Ordinal comparisons avoid linguistic tailoring; culture-sensitive comparison is for linguistic policies; comparison overload policy should be explicit.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Normalization is an explicit transformation and not automatic string equality behavior.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Prefix-function definition and KMP O(n+m) bound.",
+          "source": "https://cp-algorithms.com/string/prefix-function.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Z-function prefix match definition, z[0] convention, and linear algorithm.",
+          "source": "https://cp-algorithms.com/string/z-function.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Rolling hash collision and verification caveats.",
+          "source": "https://cp-algorithms.com/string/rabin-karp.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-reference-complexity-and-correctness",
       "topicId": "t11-019",
       "phase": "reference",
       "draft": "course/drafts/t11-019/t11-019-reference-complexity-and-correctness.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "String immutability, substring behavior and accumulated concatenation-copy cost.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Unicode iteration unit choice; Rune versus grapheme segmentation.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Hash collision is not equality proof; verification yields exact matching with worst-case additional work.",
+          "source": "https://cp-algorithms.com/string/rabin-karp.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Empty pattern semantics are API/problem-contract-specific.",
+          "source": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-practice-valid-palindrome",
       "topicId": "t11-019",
       "phase": "practice",
       "draft": "course/drafts/t11-019/t11-019-practice-valid-palindrome.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current problem contract, printable ASCII limits and empty-normalized-string example.",
+          "source": "https://leetcode.com/problems/valid-palindrome/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "ASCII filters and two-pointer invariant yield exact normalization behavior.",
+          "source": "https://leetcode.com/problems/valid-palindrome/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Complexity and Unicode limitations are consistent with .NET UTF-16 documentation.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-practice-valid-anagram",
       "topicId": "t11-019",
       "phase": "practice",
       "draft": "course/drafts/t11-019/t11-019-practice-valid-anagram.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current lowercase-English constraints and examples.",
+          "source": "https://leetcode.com/problems/valid-anagram/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Frequency differences are zero iff each symbol multiplicity agrees.",
+          "source": "https://leetcode.com/problems/valid-anagram/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "26-counter complexity and ASCII symbol-unit assumption.",
+          "source": "https://leetcode.com/problems/valid-anagram/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-practice-reverse-string",
       "topicId": "t11-019",
       "phase": "practice",
       "draft": "course/drafts/t11-019/t11-019-practice-reverse-string.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current in-place/O(1) contract, ASCII constraint and examples.",
+          "source": "https://leetcode.com/problems/reverse-string/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Mirrored swaps reverse all positions in floor(n/2) swaps.",
+          "source": "https://leetcode.com/problems/reverse-string/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "UTF-16 code-unit reversal is not general grapheme-aware reversal.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-practice-first-unique-character",
       "topicId": "t11-019",
       "phase": "practice",
       "draft": "course/drafts/t11-019/t11-019-practice-first-unique-character.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current lowercase-English constraint, return-index contract and examples.",
+          "source": "https://leetcode.com/problems/first-unique-character-in-a-string/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Frequency first pass plus ordered second pass returns earliest globally unique index.",
+          "source": "https://leetcode.com/problems/first-unique-character-in-a-string/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Fixed 26-entry table is constant space only for this alphabet.",
+          "source": "https://leetcode.com/problems/first-unique-character-in-a-string/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-practice-longest-palindromic-substring",
       "topicId": "t11-019",
       "phase": "practice",
       "draft": "course/drafts/t11-019/t11-019-practice-longest-palindromic-substring.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current input domain, maximum length and accepted output examples.",
+          "source": "https://leetcode.com/problems/longest-palindromic-substring/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Odd/even center expansion examines every palindrome center and is O(n^2) worst case.",
+          "source": "https://leetcode.com/problems/longest-palindromic-substring/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Returned Substring range and allocation caveat.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-practice-implement-strstr",
       "topicId": "t11-019",
       "phase": "practice",
       "draft": "course/drafts/t11-019/t11-019-practice-implement-strstr.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 56,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current search contract, lowercase constraints, and examples.",
+          "source": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Prefix-function fallback correctness and O(n+m) time / O(m) storage.",
+          "source": "https://cp-algorithms.com/string/prefix-function.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Empty needle behavior is defensive because official constraints exclude it.",
+          "source": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "KMP code bounds and first-match index arithmetic manually traced, including overlapping prefixes.",
+          "source": "https://cp-algorithms.com/string/prefix-function.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-019-interview",
       "topicId": "t11-019",
       "phase": "interview",
       "draft": "course/drafts/t11-019/t11-019-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "UTF-16/scalar/grapheme distinctions and .NET text element/runtime-version behavior.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Ordinal and culture-sensitive comparison guidance; path caveat.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "KMP amortized linear behavior and prefix-function semantics.",
+          "source": "https://cp-algorithms.com/string/prefix-function.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Hash collision probabilities are distinct from exact verification and cryptographic security.",
+          "source": "https://cp-algorithms.com/string/rabin-karp.html",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        },
+        {
+          "claim": "Scenarios and constraints align with current problem statements.",
+          "source": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
+          "section": "Relevant definition, remarks, complexity analysis, canonical problem statement/constraints, or code invariant as applicable.",
+          "verdict": "supported",
+          "correction": "Corrected wording to scope the claim accurately; see the topic review note."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
         "https://cp-algorithms.com/string/prefix-function.html",
-        "https://cp-algorithms.com/string/z-function.html",
         "https://cp-algorithms.com/string/rabin-karp.html",
         "https://cp-algorithms.com/string/string-hashing.html",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/valid-anagram/",
-        "https://leetcode.com/problems/reverse-string/",
+        "https://cp-algorithms.com/string/z-function.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.string.substring?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune?view=net-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/globalization/5.0/uax29-compliant-grapheme-enumeration",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/strings/",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction",
+        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
         "https://leetcode.com/problems/first-unique-character-in-a-string/",
         "https://leetcode.com/problems/longest-palindromic-substring/",
-        "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        "https://leetcode.com/problems/reverse-string/",
+        "https://leetcode.com/problems/valid-anagram/",
+        "https://leetcode.com/problems/valid-palindrome/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current primary/algorithm/problem sources. Checked Unicode edge semantics, stated problem constraints, examples, code indexes and loop invariants, and time/space analysis. Corrected overbroad claims about ordinal byte comparison, KMP per-character scans, rolling-hash certainty, grapheme version behavior, and repeated allocation wording. No unresolved issues remain."
     },
     {
       "taskId": "t11-020-overview",
@@ -106534,6 +106886,14 @@
       "status": "full claim and frozen-inventory audit complete for this topic",
       "findings": [
         "Audited all 13 lessons against all 39 frozen inventory entries, current OpenDSA CPSC 270 Fall 2026 sorting/lower-bound chapters, the current USACO comparator guide, and six canonical LeetCode statements. Verified comparator and partition contracts, stability/space distinctions, lower-bound assumptions, complexity conditions, problem constraints, examples, and solution invariants. Replaced Sort an Array’s O(n)-space merge sort with in-place heapsort to meet the prompt’s smallest-space requirement; removed stale merge-sort gotchas and an unsafe generic width-growth concern. Checked lower-bound phrasing, heap child-index safety, linked-list width bounds, quickselect duplicate semantics, and concatenation comparator behavior. No unresolved issues remain."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "DSA strings, Unicode text units, matching, and complexity (t11-019)",
+      "status": "full claim and frozen-inventory audit complete for this topic",
+      "findings": [
+        "Audited all 13 lessons against all 35 frozen inventory entries, current Microsoft .NET Unicode/string guidance, current CP-Algorithms prefix/Z/Rabin-Karp references, and six canonical LeetCode statements. Verified UTF-16/code-point/scalar/grapheme distinctions, ordinal/culture comparison, normalization, substring/subsequence relations, KMP/Z definitions and bounds, rolling-hash collision behavior, all problem constraints/examples, and six implementations. Corrected inaccurate byte-comparison terminology, an overstrong per-character KMP claim, Rabin-Karp exactness/performance wording, .NET grapheme-version scope, and blanket string allocation wording. No unresolved issues remain."
       ]
     }
   ]

@@ -5,7 +5,7 @@
 *Automatically generated draft.*
 
 # Scope and version
-This lesson covers the fundamental definitions of string sequence relationships as used in algorithmic problem solving. The content is based on timeless algorithmic principles and .NET 11 string documentation, verified as of November 14, 2026.
+This lesson covers the fundamental definitions of string sequence relationships as used in algorithmic problem solving. The content is based on timeless algorithmic principles and current .NET string guidance, checked on November 17, 2026.
 
 # How this group fits the mental model
 In string algorithms, we treat a string as an ordered sequence of elements. To solve problems efficiently, we must categorize how one string relates to another or how parts of a string relate to the whole. These relationships—such as whether one string is a "prefix" or a "subsequence" of another—determine which algorithmic strategy (e.g., linear scan, hashing, or dynamic programming) is appropriate for the task.

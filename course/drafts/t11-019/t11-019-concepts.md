@@ -21,7 +21,7 @@ A critical distinction exists between how computers store text and how humans pe
 * `Unicode scalar value`: A Unicode code point outside the surrogate range. A scalar uses one UTF-16 code unit in the Basic Multilingual Plane or a surrogate pair outside it.
 * `Grapheme cluster`: A user-perceived text element (for example, a base letter with a combining accent) that can contain multiple Unicode scalar values.
 
-When comparing strings, choose an equality and ordering policy deliberately. `Ordinal comparison` compares UTF-16 code units; `Culture-sensitive comparison` applies linguistic rules for a selected culture. Neither choice automatically normalizes text.
+When comparing strings, choose an equality and ordering policy deliberately. `Ordinal comparison` compares UTF-16 code units without linguistic tailoring; `Culture-sensitive comparison` applies linguistic rules for a selected culture. Neither choice automatically normalizes text. In .NET, ordinal operations are appropriate for exact machine identifiers when that matches the identifier contract; path comparisons must follow the target platform's path semantics.
 
 # Mechanisms and relationships
 String problems are often solved by identifying specific relationships within the sequence:
@@ -31,7 +31,7 @@ String problems are often solved by identifying specific relationships within th
     * `Naive pattern matching`: Compares the pattern at every possible position.
     * `Knuth-Morris-Pratt matching`: Uses a `Prefix function` to skip unnecessary comparisons by remembering information about previously matched characters.
     * `Z-function`: Computes the length of the longest common prefix between the string and its suffixes.
-    * `Rabin-Karp matching`: Uses a `Polynomial rolling hash` to compare strings in constant time after an initial preprocessing step, though it carries a risk of `Hash collision`.
+    * `Rabin-Karp matching`: Uses rolling fingerprints to screen candidate windows after preprocessing. Hash candidates need verification for exact results; collisions can force extra work.
 
 Source: [https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction](https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction)
 
@@ -64,7 +64,7 @@ Source: [https://cp-algorithms.com/string/string-hashing.html](https://cp-algori
 # Misconceptions and edge cases
 * **Indexing**: `string.Length` and indexers return the count of `UTF-16 code unit` values. If a string contains emojis or complex characters, the index will not point to the start of a `Grapheme cluster`. Use `System.Text.Rune` or `StringInfo text element` for correct iteration.
 * **Immutability**: Avoid `string += "a"` in loops. This creates a new string object every iteration, resulting in $O(N^2)$ complexity. Use `StringBuilder` for modifications.
-* **Hash Collisions**: When using `Polynomial rolling hash`, always verify matches with an `Exact string comparison` to handle potential collisions.
+* **Hash Collisions**: Verify hash matches when exact correctness is required; randomized or multiple hashes alone lower risk but remain probabilistic.
 
 # Knowledge checks with answers
 1. **Question**: Why is `string.Length` sometimes misleading?

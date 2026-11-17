@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers the fundamental units of text representation in C# and the .NET 11 environment. It focuses on how strings are structured at the memory level versus how they are perceived as human-readable text. All information is based on timeless algorithmic principles and .NET 11 documentation as of November 14, 2026.
+This lesson covers the fundamental units of text representation in C# and current .NET. It focuses on how strings are structured at the memory level versus how they are perceived as human-readable text. Timeless algorithmic claims and current documentation were checked on November 17, 2026.
 
 # How this group fits the mental model
 In C#, a `string` is an immutable sequence of 16-bit values. When solving string algorithms, you must distinguish between the "machine" view (how the computer stores the data) and the "human" view (what a user sees as a character). 
@@ -24,7 +24,7 @@ The mental model for string processing is:
 * `Grapheme cluster`: A sequence of one or more Unicode scalar values that should be treated as a single user-perceived character.
 * `char`: The C# primitive type representing a single `UTF-16 code unit`. A `char` can hold a surrogate half and therefore doesn't always represent a complete Unicode scalar value.
 * `System.Text.Rune`: A .NET type that represents a single `Unicode scalar value`, ensuring you do not accidentally split a surrogate pair.
-* `StringInfo text element`: A unit of text as identified by the `System.Globalization.StringInfo` class, which helps identify `grapheme clusters`.
+* `StringInfo text element`: A unit returned by `System.Globalization.StringInfo`; in .NET 5 and later, text-element enumeration follows Unicode extended-grapheme-cluster boundaries. The exact Unicode segmentation data follows the runtime's supported Unicode version.
 
 # Cross-item comparison
 

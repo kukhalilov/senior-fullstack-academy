@@ -8,7 +8,7 @@
     C# strings are immutable sequences of UTF-16 code units (`char` values). The `Length` property and integer indexing operate strictly on these 16-bit code units. A user-perceived character (a grapheme cluster, such as an emoji with skin tone modifiers or a base letter with multiple combining diacritics) or a high-range Unicode scalar value outside the Basic Multilingual Plane requires a surrogate pair (two `char` units). Consequently, `Length` counts UTF-16 code units rather than glyphs or logical code points.
 
 *   **What is the difference between an ordinal comparison and a culture-sensitive comparison?**
-    An ordinal comparison evaluates strings byte-for-byte or code-unit-by-code-unit using numeric values. It is fast, deterministic, and ideal for programmatic identifiers, paths, and internal keys. A culture-sensitive comparison follows linguistic rules for a specific human language (such as Turkish dotless/dotted 'I' sorting or German umlaut handling), which can make identical byte sequences compare as equal or affect sorting orders based on local rules.
+    An ordinal comparison evaluates UTF-16 code units numerically without linguistic tailoring. It is culture-insensitive and appropriate for exact programmatic identifiers when that is the required policy; file-path comparison must also follow the platform's path semantics. A culture-sensitive comparison follows linguistic rules for a selected culture and is commonly appropriate for user-facing sorting. Different sequences can compare as linguistically equivalent under some comparison options; normalization is a separate policy and is not automatic.
 
 *   **When should you choose Knuth-Morris-Pratt (KMP) over naive pattern matching, and what does the prefix function compute?**
     Naive pattern matching compares a pattern against every possible text alignment and can degrade to $O(N \times M)$ time when many partial matches mismatch late in the pattern. Knuth-Morris-Pratt guarantees $O(N + M)$ time complexity by preprocessing the pattern into a prefix function (often called the $\pi$ table or `pi` array). The prefix function stores the length of the longest proper prefix of the pattern that is also a suffix of the current prefix, allowing the algorithm to shift the pattern intelligently without re-scanning characters in the text that are already matched.
@@ -19,13 +19,13 @@
 # Concise interview answers
 
 *   **Explain C# string immutability in one sentence.**
-    C# strings are immutable because their character buffer cannot be modified after creation, meaning any modification operation (such as concatenation or replacement) allocates a new string object in memory.
+    C# strings are immutable; an operation that changes their contents returns a different string value rather than modifying the existing string. Repeatedly building a growing result can copy accumulated content many times, so use a suitable builder or buffer for such workloads.
 
 *   **What is the distinction between a Substring and a Subsequence?**
     A Substring consists of contiguous elements from the original sequence, whereas a Subsequence can omit elements as long as the relative order of the remaining elements is preserved.
 
 *   **Why is repeated string concatenation in a loop discouraged?**
-    Because strings are immutable, each concatenation allocates a new intermediate string and copies all previous characters, turning an $O(N)$ operation into $O(N^2)$ quadratic time complexity (which can be avoided by using `System.Text.StringBuilder`).
+    Repeatedly appending to a growing immutable string may copy the accumulated prefix each time, yielding quadratic total copying for equal-size appends; a `StringBuilder` or another suitable buffer avoids that repeated-prefix pattern.
 
 *   **What does the Z-function compute for a string?**
     The Z-function computes an array where each entry $Z[i]$ represents the length of the longest common prefix between the string itself and the suffix of the string starting at index $i$.
@@ -36,10 +36,10 @@
     **Candidate:** To iterate safely over Unicode scalar values, you inspect the code units to detect surrogate pairs and decode them using a type like `System.Text.Rune`. For full user-perceived characters (grapheme clusters), you rely on higher-level text element iteration (such as `StringInfo text element` processing) because combining marks and extended graphemes span multiple code points. Stopping blindly at an arbitrary `char` index risks slicing a surrogate pair in half, resulting in invalid replacement characters or corrupted text.
 
 *   **Interviewer:** *"How does the KMP prefix function avoid redundant comparisons during a mismatch?"*
-    **Candidate:** When a mismatch occurs after $k$ successful matches, the prefix function tells us the length of the longest prefix of the pattern that is also a suffix of those $k$ matched characters. Instead of resetting our text pointer back to the beginning of the match or shifting by just one position, we shift the pattern so that the known matching prefix aligns immediately with the current text position. This guarantees that no character in the text is scanned more than twice across the entire search, bounding the search time to $O(N + M)$.
+    **Candidate:** When a mismatch occurs after $k$ successful matches, the prefix function identifies the longest shorter prefix that is also a suffix of those matched characters. The algorithm falls back through these borders without rewinding the text index. The text scan and all fallback work are amortized linear, so preprocessing and search take $O(N + M)$ time.
 
 *   **Interviewer:** *"What are the safety and performance trade-offs of Rabin-Karp compared to exact string comparison?"*
-    **Candidate:** Rabin-Karp offers an average and best-case search time of $O(N + M)$ by reducing equality checks on long windows down to integer arithmetic via a polynomial rolling hash. However, its worst-case time is $O(N \times M)$ if malicious inputs trigger frequent hash collisions that force full character-by-character verifications. Furthermore, choosing a weak modulus or a small base increases collision probabilities, requiring careful prime selection or double hashing to maintain cryptographic or algorithmic robustness.
+    **Candidate:** A rolling hash updates a window fingerprint in constant arithmetic work after initialization. With suitable randomized hash parameters, collision probability can be bounded; a fixed hash has no universal exactness guarantee. If every matching fingerprint is verified by direct comparison, the result is exact, but collision-heavy/adversarial cases can make verification O(NM). Double hashing lowers risk but is still probabilistic unless candidates are checked. These hashes are not cryptographic authentication.
 
 # Scenario questions
 
@@ -52,8 +52,8 @@
 # Tradeoffs and alternatives
 
 *   **Ordinal comparison vs. Culture-sensitive comparison:**
-    *   *Ordinal comparison* is fast, stable across machines, and immune to locale differences, but it will fail human-language sorting expectations (e.g., treating uppercase and lowercase differently or ignoring linguistic collation rules).
-    *   *Culture-sensitive comparison* respects local language rules and linguistic sort orders, but it carries higher CPU overhead and can produce different results depending on the host operating system or runtime patch level.
+    *   *Ordinal comparison* ignores linguistic collation and is unaffected by current culture, but it will not meet language-aware sorting expectations. Do not promise identical behavior across every platform/version for operations that depend on changing Unicode data.
+    *   *Culture-sensitive comparison* applies linguistic rules and may vary with culture and globalization data. Choose it when product requirements call for language-aware behavior, and specify culture/casing options where they matter.
 
 *   **Naive pattern matching vs. Knuth-Morris-Pratt:**
     *   *Naive pattern matching* is trivial to implement and has zero memory overhead beyond the pointers, but its worst-case performance is $O(N \times M)$.

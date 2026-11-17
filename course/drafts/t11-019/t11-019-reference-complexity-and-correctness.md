@@ -5,7 +5,7 @@
 *Automatically generated draft.*
 
 # Scope and version
-This lesson covers the performance and correctness risks associated with string algorithms in C#. It is based on .NET 11 string and Unicode documentation as of 2026-11-14. It focuses on the inherent costs and logical pitfalls of string manipulation rather than specific API catalogs.
+This lesson covers the performance and correctness risks associated with string algorithms in C#. It is based on current .NET string and Unicode documentation checked on 2026-11-17. It focuses on algorithmic costs and logical pitfalls rather than a version-specific API catalog.
 
 # How this group fits the mental model
 In C#, strings are immutable sequences of UTF-16 code units. Because they cannot be changed once created, many common operations—like building a string through repeated concatenation or slicing—incur hidden memory and performance costs. Furthermore, because strings are sequences of code units rather than "user-perceived characters," algorithms must account for Unicode complexity to remain correct. This group of items identifies the "danger zones" where naive implementations often fail in terms of efficiency or logical correctness.
@@ -14,8 +14,8 @@ In C#, strings are immutable sequences of UTF-16 code units. Because they cannot
 
 * `String immutability`: The property that a `string` object cannot be modified after creation. Any "change" to a string actually creates a new string object in memory, leaving the original unchanged.
 * `Repeated concatenation cost`: The performance penalty incurred when repeatedly appending similarly sized pieces in a loop. Because strings are immutable, each result contains the accumulated text; building a length-$n$ string this way can copy a total of $O(n^2)$ characters. Other piece sizes have costs based on the sum of intermediate result lengths.
-* `Substring allocation`: The process of creating a new `string` object when extracting a portion of an existing string. This consumes additional memory and can trigger frequent garbage collection if performed inside tight loops.
-* `Hash collision`: A scenario where two different strings produce the same hash value. When using hash-based matching (like Rabin-Karp), algorithms must be designed to verify the actual string content if a hash match occurs to avoid incorrect results.
+* `Substring allocation`: `Substring` returns a string value for the requested range rather than modifying the source. A nontrivial extracted range generally requires result storage; avoid repeated slicing in hot loops when a span or index range can serve the need.
+* `Hash collision`: A scenario where two different strings produce the same hash value. A single fixed hash is not an exact equality proof. Directly verify matching windows for exact results; randomized/double hashing can reduce collision probability but remains probabilistic without verification.
 * `Empty pattern`: A common edge case in string searching algorithms. An empty pattern is technically present at every position in a string; failing to handle this explicitly can lead to infinite loops or off-by-one errors.
 * `Repeated characters`: A structural property of strings that can degrade the performance of naive pattern-matching algorithms to $O(n \times m)$. Advanced algorithms (like KMP) use this property to skip unnecessary comparisons.
 * `Unicode-aware iteration`: The practice of choosing an iteration unit deliberately: UTF-16 code units, `Rune` scalar values, or `StringInfo` text elements for grapheme-aware processing. A `Rune` avoids splitting a valid surrogate pair, but combining sequences can still contain multiple scalars.
@@ -59,8 +59,8 @@ string text = "a\u0301"; // 'a' + combining acute accent
 
 # Knowledge checks with answers
 
-1. **Why does `Repeated concatenation cost` occur in C#?**
-   *Answer:* Because strings are immutable. Every concatenation operation creates a brand-new string object in memory rather than modifying the existing one.
+1. **Why can `Repeated concatenation cost` occur in C#?**
+   *Answer:* Strings are immutable, so each step that grows a result may create a new string and copy the accumulated prefix. For repeated equal-size appends, total copied content grows quadratically; a builder or suitable buffer avoids repeatedly copying the entire prefix.
 
 2. **What is the primary risk of using a simple hash for string matching?**
    *Answer:* `Hash collision`. Two different strings might produce the same hash, leading the algorithm to report a match where none exists unless a secondary content check is performed.
