@@ -13,7 +13,7 @@ In programming, we often need to track collections of items. While lists or arra
 # Supplied names explained
 
 * `Set`: A mathematical collection of unique items. Unlike a list, a set does not store items at specific indices. Its primary purpose is to provide a container where the existence of an item is the only property that matters.
-* `Element membership`: The operation of checking whether a specific item exists within a set. In efficient set implementations, this is often a constant-time operation, meaning it takes the same amount of time regardless of how many items are in the set.
+* `Element membership`: The operation of checking whether a specific item exists within a set. Hash-based implementations commonly provide expected O(1) membership under suitable hash distribution; sorted implementations commonly take O(log n), and hash collisions can worsen the hash-table case.
 * `Distinct elements`: The core constraint of a set. Every item in a set must be unique. If you attempt to add an item that is already present, the set remains unchanged.
 * `Duplicate elimination`: The process of converting a collection with repeating items into a set. This is a common way to clean data or find unique values in a list.
 * `Set equality`: A comparison between two sets that returns true if they contain exactly the same elements, regardless of the order in which they were added.
@@ -37,7 +37,7 @@ Imagine you have a list of user IDs: `[101, 102, 101, 103]`.
 # Common mistakes
 
 * **Confusing order with sets**: Beginners often expect a set to remember the order in which items were added. While some implementations (like `SortedSet<T>`) might keep items in a specific order, a general `Set` does not guarantee any specific sequence.
-* **Ignoring the equality comparer**: A set relies on the definition of equality for the items it stores. If your custom objects do not correctly implement equality, the set may fail to identify duplicates, leading to incorrect `Set cardinality`.
+* **Ignoring the equality comparer**: A set relies on its equality or ordering comparer. For `HashSet<T>`, equal values must have equal hash codes. For `SortedSet<T>`, values that compare as zero are treated as duplicates. Incorrect or mutable comparison keys can make membership and cardinality surprising.
 * **Overusing sets for small data**: For very small collections, the overhead of calculating hashes or maintaining tree structures for a set can be slower than simply scanning a list.
 
 # Knowledge checks with answers

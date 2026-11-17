@@ -18,9 +18,9 @@ The mental model for sets is **membership**: "Is this item present?" Sets are de
 * `Direct-address set`: A specialized set implementation where each possible element maps to a unique index in an array. This is extremely fast but requires a small, known range of possible values.
 * `Bit set`: A memory-efficient implementation of a direct-address set where each element is represented by a single bit (0 or 1). It is ideal for sets of integers within a fixed, small range.
 * `HashSet<T>`: The concrete .NET class implementing a hash-based set. It is the default choice for general-purpose membership testing.
-* `SortedSet<T>`: The concrete .NET class implementing a tree-based set. Use this when you need to keep elements sorted or perform operations like "find all elements between X and Y."
+* `SortedSet<T>`: The concrete .NET class implementing a comparer-ordered set. It is useful when sorted iteration or range views such as `GetViewBetween` are needed; elements for which the comparer returns zero are treated as duplicates.
 * `ISet<T>`: An interface that defines the standard contract for set operations, such as adding, removing, and performing mathematical set operations (union, intersection).
-* `IReadOnlySet<T>`: An interface that provides a view of a set that cannot be modified, ensuring data safety when passing collections to other parts of a program.
+* `IReadOnlySet<T>`: An interface that exposes set-membership and relation checks without mutation methods. It does not make the underlying set immutable or prevent another reference from changing it.
 
 # Cross-item comparison
 * **Hash set vs. Sorted set**: `Hash set` (and `HashSet<T>`) offers faster average-case performance for adding and checking membership. `Sorted set` (and `SortedSet<T>`) is slower but provides the benefit of sorted iteration and range-based queries.
@@ -50,6 +50,6 @@ ISet<int> orderedSet = new SortedSet<int> { 3, 1, 2 };
 2. **Question**: What is the primary difference between `ISet<T>` and `HashSet<T>`?
    * **Answer**: `ISet<T>` is an interface (a contract), while `HashSet<T>` is the concrete class that implements that contract.
 3. **Question**: Why might you choose a `Bit set` over a `HashSet<T>`?
-   * **Answer**: If you are dealing with a known, small range of integers, a `Bit set` is significantly more memory-efficient and can be faster than a hash-based approach.
+   * **Answer**: If you are dealing with a known, small range of integers, a a bit-oriented representation may use substantially less memory for a bounded dense integer domain; speed depends on representation and workload.
 
 *Sources: [HashSet<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1), [SortedSet<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1), [USACO Guide](https://usaco.guide/bronze/intro-sets)*

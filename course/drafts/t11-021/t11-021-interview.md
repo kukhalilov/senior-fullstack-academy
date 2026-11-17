@@ -20,7 +20,7 @@ When asked "What is a set?", provide a definition that highlights its mathematic
 # Deep follow-up answers
 If the interviewer asks about performance or implementation, discuss the trade-offs:
 
-*   **Hash-based vs. Ordered:** "I choose `HashSet<T>` when I need the fastest possible lookups, as it provides expected constant-time membership. I choose `SortedSet<T>` when I need to maintain **ordered membership** or perform range queries, accepting that lookups will take logarithmic time."
+*   **Hash-based vs. Ordered:** "I choose `HashSet<T>` for expected O(1) membership under suitable hashing when sorted order is unnecessary; I verify the workload and memory tradeoff. I choose `SortedSet<T>` when I need to maintain **ordered membership** or perform range queries, accepting that lookup is typically O(log n)."
 *   **Equality:** "A set's behavior depends entirely on the **equality comparer**. If the comparer is incorrect, the set will fail to detect duplicates or find existing elements, effectively breaking the set's contract."
 
 # Scenario questions

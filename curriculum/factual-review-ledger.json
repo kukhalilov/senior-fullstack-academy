@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 371,
-    "pending": 1969,
-    "claimsChecked": 10576,
-    "claimsCorrected": 1096,
+    "reviewed": 383,
+    "pending": 1957,
+    "claimsChecked": 10826,
+    "claimsCorrected": 1102,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 371,
-    "pendingLessons": 1969
+    "reviewedLessons": 383,
+    "pendingLessons": 1957
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1159,6 +1159,28 @@
       ],
       "findings": [
         "Reviewed all 272 frozen manifest items across five groups and the nine lesson explanations, examples, exercises, and interview answers. Expanded the SpinWait/SpinLock API inventory for missing overloads and behavior; corrected thread-pool, thread lifetime, lazy initialization, progress guarantee, SpinLock/SpinWait, wait-handle, volatile/atomic, parallel-loop, and ReaderWriterLockSlim claims. Rewrote the signaling sample to avoid fire-and-forget work, unconditional permit release, and blocking waits in async Main; every worker task is awaited. Current Microsoft documentation checked. No known unresolved issues remain; lesson files remain drafts pending curriculum-wide audit completion."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "Sets, set operations, implementation choices, and membership problems (t11-021)",
+      "status": "full claim and frozen-inventory audit complete for all 12 lessons",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
+        "https://usaco.guide/bronze/intro-sets",
+        "https://leetcode.com/problems/contains-duplicate/",
+        "https://leetcode.com/problems/intersection-of-two-arrays/",
+        "https://leetcode.com/problems/happy-number/",
+        "https://leetcode.com/problems/jewels-and-stones/",
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
+      ],
+      "findings": [
+        "Reviewed all 29 frozen set concepts and 12 lesson files, including five canonical problem statements, solutions, invariants, complexity analyses, examples, and interview answers. Qualified hash-set expected-time complexity, clarified SortedSet comparer equivalence and range use, corrected IReadOnlySet immutability implications and default equality guidance. Confirmed canonical problem statements, constraints, and examples against LeetCode. No known unresolved issues remain; lessons remain drafts pending full curriculum audit."
       ]
     }
   ],
@@ -19047,13 +19069,19 @@
       "topicId": "t11-021",
       "phase": "overview",
       "draft": "course/drafts/t11-021/t11-021-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19062,22 +19090,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-concepts",
       "topicId": "t11-021",
       "phase": "concepts",
       "draft": "course/drafts/t11-021/t11-021-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19086,22 +19124,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-reference-set-model",
       "topicId": "t11-021",
       "phase": "reference",
       "draft": "course/drafts/t11-021/t11-021-reference-set-model.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19110,22 +19158,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-reference-set-operations",
       "topicId": "t11-021",
       "phase": "reference",
       "draft": "course/drafts/t11-021/t11-021-reference-set-operations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19134,22 +19192,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-reference-set-implementations",
       "topicId": "t11-021",
       "phase": "reference",
       "draft": "course/drafts/t11-021/t11-021-reference-set-implementations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19158,22 +19226,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-reference-set-algorithm-patterns",
       "topicId": "t11-021",
       "phase": "reference",
       "draft": "course/drafts/t11-021/t11-021-reference-set-algorithm-patterns.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19182,22 +19260,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-practice-contains-duplicate",
       "topicId": "t11-021",
       "phase": "practice",
       "draft": "course/drafts/t11-021/t11-021-practice-contains-duplicate.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19206,22 +19294,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-practice-intersection-two-arrays",
       "topicId": "t11-021",
       "phase": "practice",
       "draft": "course/drafts/t11-021/t11-021-practice-intersection-two-arrays.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 27,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19230,22 +19328,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-practice-happy-number",
       "topicId": "t11-021",
       "phase": "practice",
       "draft": "course/drafts/t11-021/t11-021-practice-happy-number.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19254,22 +19362,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-practice-jewels-and-stones",
       "topicId": "t11-021",
       "phase": "practice",
       "draft": "course/drafts/t11-021/t11-021-practice-jewels-and-stones.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 27,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19278,22 +19396,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-practice-unique-number-of-occurrences",
       "topicId": "t11-021",
       "phase": "practice",
       "draft": "course/drafts/t11-021/t11-021-practice-unique-number-of-occurrences.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 27,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19302,22 +19430,32 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t11-021-interview",
       "topicId": "t11-021",
       "phase": "interview",
       "draft": "course/drafts/t11-021/t11-021-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "source": "Microsoft Learn API references for HashSet<T>, SortedSet<T>, ISet<T>, IReadOnlySet<T>; canonical LeetCode problem statements for assigned practice problems.",
+          "sections": "API and type contracts; problem statements, examples, and constraints",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1",
@@ -19326,9 +19464,13 @@
         "https://leetcode.com/problems/intersection-of-two-arrays/",
         "https://leetcode.com/problems/happy-number/",
         "https://leetcode.com/problems/jewels-and-stones/",
-        "https://leetcode.com/problems/unique-number-of-occurrences/"
+        "https://leetcode.com/problems/unique-number-of-occurrences/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ireadonlyset-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.sortedset-1.getviewbetween"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the frozen inventory and official API/problem sources. Corrected complexity, comparer, mutability, and implementation caveats where needed. Examples and solution invariants were reviewed; no known unresolved factual or scope gaps remain. Lesson files remain drafts pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-overview",

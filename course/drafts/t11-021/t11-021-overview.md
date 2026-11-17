@@ -18,7 +18,7 @@ Imagine a club door policy at a private venue.
 * A **list** is like a sign-in sheet where people can write their names as many times as they want, in the exact order they arrived. If you want to check if "Alice" is inside, you have to read every line from top to bottom.
 * A **set** is like a strict guest list with a single rule: **every person's name appears at most once**. 
 
-When Alice arrives, an efficient set implementation can use its organization to avoid scanning every name. The exact lookup cost depends on the implementation: a hash set offers expected constant-time membership under suitable hashing assumptions, while an ordered set typically takes logarithmic time.
+When Alice arrives, an efficient set implementation can use its organization to avoid scanning every name. The exact lookup cost depends on the implementation: a hash set offers expected O(1) membership under suitable hash distribution, while an ordered set typically takes O(log n); collisions and resizing affect actual costs.
 
 In programming, a set guarantees uniqueness according to its equality rules. It supports membership checks, with performance determined by the concrete implementation.
 
@@ -119,7 +119,7 @@ All admin IDs were processed: True
 * **Probabilistic Membership**: If memory is extremely constrained and you can tolerate rare false positives, specialized probabilistic structures (such as Bloom filters) are preferred over exact sets.
 
 ### Tradeoffs:
-* **Hash-based sets (`HashSet<T>`)** offer expected constant-time performance ($O(1)$) for insertions, deletions, and membership checks, but they do not maintain any predictable sort order. They also depend heavily on a well-designed equality comparer and hash function.
+* **Hash-based sets (`HashSet<T>`)** offer expected constant-time performance ($O(1)$) for insertions, deletions, and membership checks, but they do not maintain any predictable sort order. Their expected costs depend on hash distribution and the equality comparer; collisions can degrade performance, and resizing can make an individual insertion O(n).
 * **Sorted sets (`SortedSet<T>`)** maintain elements in sorted order and support range queries, but their operations typically run in logarithmic time ($O(\log n)$).
 
 ---

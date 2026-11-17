@@ -18,14 +18,14 @@
 # Core concepts
 A `Set` is a collection of `Distinct elements`. Unlike a list, a set does not care about the order of items or how many times an item is added; it performs `Duplicate elimination` automatically. 
 
-The primary utility of a set is `Element membership` testing. If you need to check if an item exists in a large collection, a list requires a full scan (slow), while a set provides a highly optimized lookup. The `Set cardinality` refers to the total count of unique elements within the set.
+The primary utility of a set is `Element membership` testing. If you need to check if an item exists in a large collection, a list requires a full scan (slow), while a hash set provides expected O(1) membership with suitable hashes, while a sorted set commonly uses O(log n) membership; neither is automatically faster for every workload. The `Set cardinality` refers to the total count of unique elements within the set.
 
 When comparing two sets, `Set equality` is determined by whether both sets contain the same elements, regardless of how they were inserted. This differs from `Sequence equality`, where the order of elements must also match.
 
 # Mechanisms and relationships
 Sets are implemented using different underlying data structures, each with specific performance characteristics:
 
-* **`Hash set` (`HashSet<T>`)**: Uses a hash table to provide `Expected constant-time membership`. It is ideal when order does not matter.
+* **`Hash set` (`HashSet<T>`)**: Uses a hash table for expected O(1) membership under suitable hashing, without a worst-case guarantee. Use it when sorted iteration and range queries are unnecessary and its memory/performance tradeoff fits.
 * **`Sorted set` (`SortedSet<T>`)**: Maintains elements in a sorted structure, providing `Ordered membership`. This is useful when you need to iterate through elements in order or perform range queries.
 * **`Direct-address set`**: Uses an array where the index corresponds to the element value. This is extremely fast but only feasible for small, dense ranges of integers.
 * **`Bit set`**: A space-efficient variation of a direct-address set where each bit represents the presence or absence of an integer.
@@ -50,8 +50,8 @@ Imagine you are tracking users who have visited a website.
 
 # Misconceptions and edge cases
 * **Misconception**: "Sets are always faster." **Reality**: For very small collections, the overhead of hashing or tree balancing in `HashSet<T>` or `SortedSet<T>` can be slower than a simple linear scan of an array.
-* **Edge Case**: If you use a custom object as an element, you must ensure your `Equality comparer` is consistent. If the hash code of an object changes while it is inside a `HashSet<T>`, the set may fail to find it later.
-* **Trade-off**: `SortedSet<T>` provides `Ordered membership`, but insertion and lookup are generally slower (logarithmic time) compared to the `Expected constant-time membership` of `HashSet<T>`.
+* **Edge Case**: For `HashSet<T>`, equality and hash codes must remain consistent while an item is stored; for `SortedSet<T>`, the ordering comparer also defines which elements compare as duplicates. Mutating fields used by those rules can make lookups or removal fail.
+* **Trade-off**: `SortedSet<T>` provides `Ordered membership`, but insertion and lookup are generally slower (logarithmic time) compared with the expected O(1) membership of `HashSet<T>` under suitable hashing.
 
 # Knowledge checks with answers
 1. **Question**: Why would you choose a `SortedSet<T>` over a `HashSet<T>`?
