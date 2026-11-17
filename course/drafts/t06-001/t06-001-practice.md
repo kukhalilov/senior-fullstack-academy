@@ -212,6 +212,14 @@ Run module tests in a fresh module scope; do not use them to demonstrate sloppy 
 4. Is an example relying on browser classic-script behavior that differs in modules?
 5. Could a captured reference keep an unnecessarily large object graph reachable?
 
+# Reflection answers
+
+1. First check whether the identifier resolves to the intended binding; then check whether that binding has initialized before the read. A correct binding can still be read too early and throw in the TDZ.
+2. A closure normally observes the current value of its captured binding. If the desired behavior is a snapshot, copy the needed primitive or object state explicitly when creating the callback.
+3. Narrow blocks or functions can make ownership and lifetime clearer, reduce accidental name collisions, and make TDZ/read-order mistakes easier to see.
+4. Yes. Classic scripts and modules have different top-level environments and strictness rules; test or explain global-object behavior only in the intended execution context.
+5. Yes. A reachable closure may keep references alive; capture only the state the callback needs and release references when the callback is no longer needed.
+
 # Sources
 
 - [ECMAScript 2026: Executable Code and Execution Contexts](https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html)

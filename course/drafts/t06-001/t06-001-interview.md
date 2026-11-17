@@ -44,6 +44,14 @@
 4. A module cannot access a variable declared at the top level of another module. Explain module-local scope and how export/import bindings connect them.
 5. A `const` reference's object changes despite no reassignment. Explain binding immutability versus object mutability.
 
+## Scenario answers
+
+1. With `var`, callbacks close over one function-scoped binding, so later calls can all observe its final value. Use `let` in the loop to create per-iteration bindings, or explicitly capture a copied value.
+2. If `account` is an unresolvable name, `typeof account` returns `"undefined"`. If a lexical `account` binding exists in the current scope but is still uninitialized, the read throws `ReferenceError`.
+3. A classic script's Global Environment Record has an object component and a declarative component. An eligible top-level `var` can be exposed through the global object while top-level `let` is a separate lexical binding; this statement assumes no conflicting preexisting global property/declaration.
+4. Top-level declarations are local to their module. To connect them, the first module must export the binding and the second import it; the imported binding is live and read-only from the importer's side.
+5. `const` prevents assigning a different object to that binding. It does not freeze the object, so mutating an existing property is allowed unless the object is separately frozen or protected by another API.
+
 ## Tradeoffs and alternatives
 
 Use `const` for stable bindings and `let` for intentional reassignment. Use narrow lexical scopes to reduce accidental sharing. Closures work well for callbacks and encapsulated state, while explicit parameters and returned data can make dependencies easier to inspect. If independent iterations are intended, prefer `let`, `for...of`, or a higher-order array operation rather than a shared `var`. Treat Environment Record vocabulary as a model for reasoning, not as a reflective API.
