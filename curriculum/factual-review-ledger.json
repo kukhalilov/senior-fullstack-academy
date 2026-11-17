@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 23,
-    "pending": 2317,
-    "claimsChecked": 328,
-    "claimsCorrected": 26,
+    "reviewed": 25,
+    "pending": 2315,
+    "claimsChecked": 355,
+    "claimsCorrected": 27,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -78479,68 +78479,210 @@
       "topicId": "t12-002",
       "phase": "overview",
       "draft": "course/drafts/t12-002/t12-002-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Replication creates consistency and coordination decisions because copies can diverge under delay/failure.",
+          "source": "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+          "section": "Handbook distributed-systems theory; Cassandra Dynamo architecture",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Strong ordering generally requires coordination and can increase latency or reduce availability during partitions; weaker guarantees can improve responsiveness with application tradeoffs.",
+          "source": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+          "section": "PACELC paper; Cassandra tunable consistency",
+          "verdict": "supported; phrased as tradeoff"
+        },
+        {
+          "claim": "A replica is another copy; consistency describes allowed observations and coordination is a mechanism for decisions.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "Cassandra Dynamo architecture",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Network hops can delay or fail independently, so user-visible guarantees must include partial failure behavior.",
+          "source": "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+          "section": "Handbook syllabus",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A payment-like invariant and a profile freshness tolerance may call for different consistency paths even within one product.",
+          "source": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+          "section": "CAP/PACELC models; illustrative design consequence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "CRDT merge rules are appropriate only when their data-type semantics preserve intended behavior; they do not enforce arbitrary business invariants.",
+          "source": "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf",
+          "section": "Shapiro CRDT study, counter/set constructions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The overview stays at conceptual scope and defers detailed named mechanisms to reference lessons, consistent with manifest organization.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        },
+        {
+          "claim": "The lesson gives a practical decision sequence from user promise through authority, reads, failure and protocol choice.",
+          "source": "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+          "section": "HLD Handbook syllabus",
+          "verdict": "scope complete"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
         "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
         "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
         "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
         "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
         "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review completed. Checked the practical decision model and technical claims against current official documentation or primary model papers; no unrecorded issue remains."
     },
     {
       "taskId": "t12-002-concepts",
       "topicId": "t12-002",
       "phase": "concepts",
       "draft": "course/drafts/t12-002/t12-002-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 19,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Functional requirements and quality attributes should be explicit and measurable; vague speed/reliability goals need workload, boundary, percentile, and recovery definitions.",
+          "source": "https://sre.google/sre-book/table-of-contents/",
+          "section": "Google SRE Workbook; HLD methodology",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Workload estimation should account for average/peak rate, concurrency, payload, read/write ratio, fan-out, growth, and retention; estimates should be validated against representative load.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Azure Architecture Center; Google SRE Workbook",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Correctness begins by naming source of truth, transaction boundary, atomicity, staleness, ordering, and duplicate semantics.",
+          "source": "https://www.postgresql.org/docs/current/mvcc.html",
+          "section": "PostgreSQL MVCC/transaction docs; Azure architecture guide",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Asynchronous paths require acknowledgement, retries, deduplication/idempotency and recovery rules.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Azure Architecture Center reliability guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Timeout means outcome may be unknown; retrying non-idempotent operations can repeat side effects.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9110",
+          "section": "RFC 9110 §9.2.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Deadlines, bounded concurrency, cancellation, and selective retries are controls for dependency calls; circuit breakers limit calls but do not restore dependency health.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Azure Architecture Center reliability patterns",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Horizontal scaling adds routing and state ownership/partitioning concerns; vertical scaling increases one node’s resources.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Azure Architecture Center scale guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Caches need freshness/invalidation policy; queues smooth bursts but queue delay/backlog must be controlled; sharding can create hot partitions.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Azure Architecture Center; Google SRE Workbook",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Redundancy needs independent failure domains, sufficient remaining capacity, and tested failover/recovery to meet reliability targets.",
+          "source": "https://sre.google/sre-book/table-of-contents/",
+          "section": "Google SRE Workbook; Azure reliability guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Authentication and authorization are separate boundary concerns; data crossing service boundaries needs explicit contracts.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Azure Architecture Center security guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Distributed traces connect spans while metrics expose aggregate saturation and error behavior.",
+          "source": "https://sre.google/sre-book/table-of-contents/",
+          "section": "Google SRE Workbook observability guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "CancellationToken propagation in .NET allows cancellation signals across asynchronous operations; cancellation does not undo already committed side effects.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
+          "section": "Microsoft CancellationToken API docs",
+          "verdict": "supported"
+        },
+        {
+          "claim": "EF Core can protect database operations with transactions, but an unrelated broker publish is not enlisted atomically without a cross-resource pattern.",
+          "source": "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
+          "section": "Microsoft EF Core transactions docs",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Transactional outbox stores message intent with database state and relays it asynchronously to avoid database/broker dual-write loss.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos",
+          "section": "Microsoft Azure Architecture Center transactional outbox pattern",
+          "verdict": "supported"
+        },
+        {
+          "claim": "React effects synchronize with external systems and cleanup can cancel/ignore obsolete client work, but client cancellation cannot roll back a server-side effect.",
+          "source": "https://react.dev/reference/react/useEffect",
+          "section": "React useEffect docs; RFC request semantics",
+          "verdict": "supported"
+        },
+        {
+          "claim": "SSR/hydration and rolling API deployments require compatible server/client contracts; version skew is an operational concern.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "React docs; Azure deployment guidance",
+          "verdict": "supported"
+        },
+        {
+          "claim": "“Exactly once” is usually scoped to a broker/protocol boundary; end-to-end business effects require deduplication/idempotency and durable state.",
+          "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+          "section": "Azure architecture guide; RFC idempotency semantics",
+          "verdict": "supported; caveated"
+        },
+        {
+          "claim": "Eventual consistency does not promise a particular maximum staleness without an additional bound in the system contract.",
+          "source": "https://www.postgresql.org/docs/current/mvcc.html",
+          "section": "PostgreSQL/Cassandra consistency contracts",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson connects design reasoning to .NET and React examples without claiming they are the only technologies or mechanisms.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://hld.handbook.academy/",
         "https://www.rfc-editor.org/rfc/rfc9110",
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
+        "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
+        "https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos",
+        "https://react.dev/reference/react/useEffect",
         "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review completed. Checked the practical decision model and technical claims against current official documentation or primary model papers; no unrecorded issue remains."
     },
     {
       "taskId": "t12-002-reference-consistency-and-coordination",

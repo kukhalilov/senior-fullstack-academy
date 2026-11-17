@@ -49,7 +49,7 @@ For a read-heavy catalog, begin with database indexes and query shape, measure c
 ## Misconceptions and edge cases
 
 - A replica is not automatically a backup; replication may copy corruption or deletion.
-- “Exactly once” usually describes a bounded protocol guarantee, not end-to-end business effect across arbitrary services.
+- “Exactly once” semantics are scoped to a specific protocol and state boundary (for example, broker delivery plus a transactional consumer state update); they do not by themselves guarantee one end-to-end business effect across arbitrary services or external providers.
 - Autoscaling has reaction delay and cannot compensate for an unbounded queue or exhausted database.
 - Eventual consistency does not promise a particular maximum staleness.
 - Multi-region increases availability only when data placement, conflict rules, routing, and recovery are tested.
