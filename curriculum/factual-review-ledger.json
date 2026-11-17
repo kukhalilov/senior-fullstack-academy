@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 7,
-    "pending": 2333,
-    "claimsChecked": 164,
-    "claimsCorrected": 4,
+    "reviewed": 8,
+    "pending": 2332,
+    "claimsChecked": 178,
+    "claimsCorrected": 5,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -78988,34 +78988,104 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-multi-paxos.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 14,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Single-decree Paxos chooses one value; a replicated state machine applies a sequence of commands by running consensus instances for log positions.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+          "section": "§2.1–2.3 and §3, “Implementing a State Machine”",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Multi-Paxos amortizes leader/coordinator establishment across instances; after establishing a ballot and recovering accepted state for relevant slots, the stable coordinator can issue later Phase 2 proposals without a fresh Phase 1 for each command.",
+          "source": "https://static.googleusercontent.com/media/research.google.com/en/us/archive/paxos_made_live.pdf",
+          "section": "§4.2, “Multi-Paxos”",
+          "verdict": "supported; lesson wording narrowed to relevant slots"
+        },
+        {
+          "claim": "A new proposer runs Phase 1 with a quorum and must preserve the highest-numbered accepted value it learns for each slot.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+          "section": "§2.2, P2c and prepare/accept phases",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Paxos safety uses ballot ordering, promises, and quorum intersection; a majority acceptance chooses a value in the described fixed-majority protocol.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+          "section": "§2.2, P1–P2c and Phase 1/Phase 2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Acceptors must preserve protocol state across crash/restart and record intended responses in stable storage before sending them.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+          "section": "§2.5, “The Implementation”",
+          "verdict": "supported; lesson wording made response boundary explicit"
+        },
+        {
+          "claim": "Practical Multi-Paxos systems need replica catch-up, persistent logs, recovery, and may use snapshots; batching can combine values for throughput.",
+          "source": "https://static.googleusercontent.com/media/research.google.com/en/us/archive/paxos_made_live.pdf",
+          "section": "§4.2 and §5, engineering challenges",
+          "verdict": "supported as implementation concerns, not requirements of the abstract protocol"
+        },
+        {
+          "claim": "Leader changes can expose chosen values beyond missing log slots; later slots cannot be applied in order until gaps are recovered or filled safely.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+          "section": "§3, “Implementing a State Machine,” leader change and no-op gap filling",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A no-op can fill a slot only when Phase 1 leaves its value unconstrained; previously accepted values must be preserved.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+          "section": "§3, commands 135–140 and preceding Phase 1 recovery",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A stable leader reduces normal-case coordination rounds; loss of quorum prevents progress, while contention can prevent progress even though safety is maintained.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+          "section": "§2.4 Progress and §3",
+          "verdict": "supported; wording limited to progress conditions"
+        },
+        {
+          "claim": "Raft is a replicated-log consensus algorithm with strong leadership and joint consensus for membership changes in the cited extended paper.",
+          "source": "https://raft.github.io/raft.pdf",
+          "section": "Abstract; §§5 and 6",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A leader’s local append is not by itself proof that a value is chosen; the protocol’s acceptance quorum and learning/commit rules determine that outcome.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+          "section": "§2.2 and §2.3",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A value accepted by a quorum at an earlier ballot cannot be replaced by a different value under a correct later Phase 1/Phase 2 execution.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+          "section": "§2.2, P2–P2c",
+          "verdict": "supported; example corrected to make the earlier proposal unaccepted"
+        },
+        {
+          "claim": "Multi-Paxos alone does not define client-level duplicate business operation handling; request IDs and application deduplication are integration design responsibilities.",
+          "source": "https://static.googleusercontent.com/media/research.google.com/en/us/archive/paxos_made_live.pdf",
+          "section": "§4.2–5; replicated-log scope and engineering concerns",
+          "verdict": "supported as a boundary/inference; not claimed as a Paxos protocol property"
+        },
+        {
+          "claim": "The lesson covers the complete frozen manifest inventory for this file: Multi-Paxos, including steady-state operation, recovery, safety, liveness, operational concerns, and comparison to Raft.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "inventory group “handbook-consensus-quorum-and-hash-algorithms-multi-paxos”",
+          "verdict": "scope complete for assigned named item"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://static.googleusercontent.com/media/research.google.com/en/us/archive/paxos_made_live.pdf",
+        "https://raft.github.io/raft.pdf"
+      ],
+      "reviewNote": "Manual claim-by-claim review completed against the listed primary papers; corrected ambiguity in the example so it does not imply a chosen Paxos value can be replaced. Manifest contains one assigned item and its mechanism, recovery, safety, liveness, and operational boundaries are covered. Reopen if sources or protocol scope change."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-read-quorum-and-write-quorum",
@@ -100022,7 +100092,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 160 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 159 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits.",
         "Replaced generic GCS reference filler with object-storage mental model, consistency boundaries, generation preconditions, resumable upload and signed-URL security, deletion/recovery distinctions, application flows, and design exercises. Selected claims checked against Google Cloud documentation; complete factual and feature-omission audits remain pending.",
@@ -100035,7 +100105,8 @@
         "Replaced generic LRU filler with exact policy invariants, map/list implementation, qualified complexity, scan pollution, admission-versus-eviction distinction, and alternatives grounded in research and implementation documentation. Selected claims checked; full factual and completeness audit remains pending.",
         "Replaced generic TinyLFU filler with admission-versus-eviction distinction, compact frequency sketch and aging, Window TinyLFU cold-start behavior, scan/burst examples, and benchmark guidance. Selected claims checked against original research and Caffeine docs; full audit remains pending.",
         "Replaced generic APNs reference filler with provider/device flow, best-effort semantics, token lifecycle, collapse/expiration choices, durable outbox guidance, and operational retry examples. Selected claims checked against Apple docs; full factual and completeness audit remains pending.",
-        "Replaced generic FCM reference filler with notification/data message handling, TTL/priority/collapse semantics, token management, durable event ownership, and cross-platform recovery design. Selected claims checked against Firebase docs; full factual and completeness audit remains pending."
+        "Replaced generic FCM reference filler with notification/data message handling, TTL/priority/collapse semantics, token management, durable event ownership, and cross-platform recovery design. Selected claims checked against Firebase docs; full factual and completeness audit remains pending.",
+        "Completed the Multi-Paxos lesson claim inventory and scope audit against Lamport, Paxos Made Live, and Raft primary papers; clarified leader recovery, safe gap filling, durable acceptor state, and an ambiguous example. One lesson is now fully reviewed."
       ]
     },
     {
