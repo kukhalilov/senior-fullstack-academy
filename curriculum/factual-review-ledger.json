@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 10,
-    "pending": 2330,
-    "claimsChecked": 200,
-    "claimsCorrected": 7,
+    "reviewed": 11,
+    "pending": 2329,
+    "claimsChecked": 212,
+    "claimsCorrected": 9,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -79266,32 +79266,90 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-hinted-handoff.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Dynamo stores a hinted replica on a substitute node, records the intended recipient, and attempts delivery after recovery; the substitute may then delete the extra copy.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.6 “Handling Failures: Hinted Handoff”",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dynamo hinted handoff is intended for temporary failures; permanent/extended divergence uses replica synchronization with Merkle trees.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.7 “Handling permanent failures: Replica synchronization”",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra 5.0 stores temporary hints on the coordinator local filesystem, and describes hints as best-effort rather than a guarantee of eventual consistency.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+          "section": "Hints overview",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra 5.0 RF=3 LOCAL_QUORUM example waits for two replica acknowledgements and stores a local hint for an unavailable replica.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+          "section": "Hinted Handoff example",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra 5.0 documents max_hint_window default as three hours and hints can stop covering an outage beyond that window.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+          "section": "Hinted Handoff and Configuring Hints; product-specific default",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra hint storage flush period does not trigger fsync; lesson distinguishes local storage from guaranteed durable replication.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+          "section": "Configuring Hints, hints_flush_period",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra preserves the original mutation timestamp in a hint; hint application is idempotent and cannot overwrite a future mutation.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+          "section": "Storage of Hints on Disk",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra repair compares common token ranges with Merkle trees and streams divergent data; hints alone are not guaranteed to cover all missed writes.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Repair overview",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra offers full and incremental repairs; incremental repair does not cover all disk corruption/operator error cases, so full repair remains needed periodically.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Incremental and Full Repairs",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra repair is operator-run because of disk and network cost; tombstones can reappear if unrepaired data outlives gc_grace_seconds.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Usage and Best Practices",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Read repair and anti-entropy repair have different coverage: reads can repair encountered data while anti-entropy compares broader replica ranges.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html; https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Hints overview; Repair overview",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers its complete manifest scope for hinted handoff, limitations, recovery, and comparison to read/anti-entropy repair.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "inventory group “handbook-consensus-quorum-and-hash-algorithms-hinted-handoff”",
+          "verdict": "scope complete for assigned named item"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
         "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },

@@ -4,7 +4,7 @@ Sources: [Handbook module 3](https://hld.handbook.academy/curriculum/distributed
 
 ## Scope and version
 
-This lesson explains the temporary missed-write record used by hint-based replication. Persistence, expiry, delivery, and monitoring settings are product-specific.
+This lesson compares hinted handoff in the original Dynamo design with hints in Apache Cassandra 5.0. Retention, persistence, delivery, and repair guarantees are product- and version-specific; Cassandra examples below use its 5.0 documentation.
 
 ## How this group fits the mental model
 
@@ -12,27 +12,30 @@ When a replica is temporarily unavailable, a coordinator can keep a record that 
 
 ## Supplied names explained
 
-Hints consume storage at coordinators and require expiry, retry, back-pressure, and observability policies. A coordinator may fail, a hint may expire, or the replica may remain unavailable beyond the retention window. Cassandra explicitly treats hints as best-effort and lists read repair and full/incremental anti-entropy repair as additional convergence mechanisms.
+A hint is a temporary record of work a replica missed, kept by another node so the mutation can be replayed after recovery. This improves recovery from short outages but adds disk use, replay traffic, and backlog. Monitor hint volume and age, ensure enough disk headroom, and tune delivery so replay does not overwhelm foreground traffic. A node or coordinator can fail before replay, and finite retention can end while a target remains unavailable.
 
-Replay must also coexist with newer writes and deletions. The database's version/timestamp reconciliation determines whether an old hinted mutation is superseded; tombstone retention and repair timing matter. Never build an application workflow that treats hint acknowledgement as proof that every replica durably stores the value.
+In Cassandra 5.0, the coordinator stores hints on its local filesystem; the documented default maximum hint window is three hours. Hint files are not guaranteed to be fsynced by the periodic flush setting, and Cassandra calls hints best-effort. These are implementation details, not universal properties of hinted handoff. The Cassandra docs describe a successful LOCAL_QUORUM example with RF=3 as acknowledged by two replicas while a hint is stored for the unavailable third; do not claim the hint itself makes every replica durable.
+
+Replaying the original mutation timestamp allows Cassandra hint application to be idempotent and not overwrite a future mutation. Deletions still require attention: tombstones can expire, and unrepaired replicas can resurrect deleted data. Run the product’s repair process within its tombstone-retention constraints. Hints reduce inconsistency duration; they do not replace read repair or scheduled anti-entropy repair.
 
 ## Cross-item comparison
 
-Hinted handoff is targeted replay to replicas believed to have missed writes. Read repair fixes discrepancies discovered by reads, while anti-entropy repair compares broader replica ranges on a schedule or operator command. Hints can reduce inconsistency duration but do not replace those wider repair paths.
+Hinted handoff is targeted replay to a known replica after missed writes. Read repair reconciles data encountered by reads. Anti-entropy repair compares replica ranges (Cassandra uses Merkle trees) and streams differences; Cassandra repair is operator-run rather than automatic. Hints and read repair are best-effort paths and do not remove the need for planned repair. In Dynamo, hinted handoff handles temporary failures; replica synchronization with Merkle trees is the separate recovery path for longer or permanent divergence.
 
 ## Examples
 
-Replica B is unavailable for 20 minutes while coordinator A accepts a mutation at the configured write threshold and stores a hint for B. When B returns, A replays the hint. If A fails before replay, or the hint expires, B may remain stale; a later read repair or anti-entropy repair must detect and fix the difference. Define how operators monitor pending hint volume and what repair covers a missed hint.
+In Cassandra RF=3 at LOCAL_QUORUM, two replicas acknowledge a write while the coordinator records a hint for an unavailable third replica. If the target returns within the hint window, the coordinator replays the mutation; if not, later read repair may fix rows read by clients, while scheduled anti-entropy repair covers replica ranges. Check hint backlog and disk, replay throttle, node outage duration, tombstone grace, and repair completion before assuming replicas converged.
 
 ## Common mistakes
 
-- Treating a hint as a durable replica or guaranteed write-ahead log.
+- Treating a best-effort hint as a durable replica or a guaranteed write-ahead log.
 - Assuming a hint queue is unbounded or retained until successful delivery.
-- Treating hinted handoff as a substitute for full/incremental repair.
-- Ignoring old writes, tombstones, expiration, coordinator failure, and hint backlog.
+- Treating hinted handoff as a substitute for Cassandra repair or Dynamo replica synchronization.
+- Saying a Cassandra hint is fsynced merely because it is stored on local disk.
+- Ignoring tombstone grace, expiration, coordinator failure, disk pressure, or replay backlog.
 
 ## Knowledge checks with answers
 
 1. **What does a hint record?** A mutation that an intended replica missed, for later attempted delivery.
-2. **Does successful hint storage prove every replica has the update?** No; it proves at most that the current implementation accepted the hint under its write path.
-3. **What repairs discrepancies if a hint is lost or expires?** Read repair may fix data encountered by reads; anti-entropy repair compares wider ranges.
+2. **Does Cassandra’s local hint storage make the hint a durable replica?** No. Hints are best-effort and their buffering/flush behavior has implementation-specific durability limits.
+3. **What repairs discrepancies if a hint is lost or expires?** Read repair may reconcile data encountered by reads; anti-entropy repair compares and streams broader replica-range differences.
