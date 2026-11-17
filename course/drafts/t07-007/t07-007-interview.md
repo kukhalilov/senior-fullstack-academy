@@ -16,6 +16,7 @@ Sources: React 19.3 [Sharing State Between Components](https://react.dev/learn/s
 10. When introduce an external state library?
 11. How do UI state and server data differ?
 12. What makes data flow traceable?
+13. How does context select a provider and propagate changed values?
 
 ## Concise interview answers
 
@@ -31,6 +32,7 @@ Sources: React 19.3 [Sharing State Between Components](https://react.dev/learn/s
 10. When requirements like broad shared subscriptions/selectors/persistence/devtools or cross-route coordination justify its conventions.
 11. UI state is local interaction/draft; server data is authoritative and needs caching/invalidation semantics.
 12. One-way owner→props/context→event callback→owner update→render flow.
+13. A consumer reads the closest provider above it or the default if none exists. Provider changes are compared with `Object.is`; consumers receive fresh values even through `memo`. A returned provider cannot affect a `useContext` call in the same component.
 
 ## Deep follow-up answers
 

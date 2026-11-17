@@ -1,6 +1,6 @@
 # React context composition state ownership and component architecture — Reference: Context placement and alternatives
 
-Sources: React 19.3 [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context), [Passing Props](https://react.dev/learn/passing-props-to-a-component), and [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components).
+Sources: React 19.3 [`useContext`](https://react.dev/reference/react/useContext), [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context), [Passing Props](https://react.dev/learn/passing-props-to-a-component), and [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components).
 
 ## Scope and version
 
@@ -10,9 +10,11 @@ This reference decides where context belongs relative to props/composition/exter
 
 Props provide explicit data flow from parent to child. Use them for direct relationships or when intermediates legitimately configure content. Composition can eliminate prop drilling: a parent can pass a prepared child element through a wrapper that does not need to understand the child's data. Context is useful for distant descendants that need the same value (theme, locale, current user, feature environment) without every intermediate forwarding it.
 
-Provider placement determines scope. Put a provider around the smallest subtree that needs the value, close to its owner. Broad root providers can hide dependencies and enlarge the set of consumers affected by value changes. Context consumer subscription means consumers update when their provider value changes; separate unrelated contexts or values by update frequency to control fan-out. Context does not replace state ownership: state still lives somewhere, often in the provider-owning component or a reducer.
+Provider placement determines scope. A consumer reads the closest matching provider above it; a provider returned by a component does not affect that same component’s `useContext` call. Without a matching provider, the value is the context’s `createContext` default (an explicit `undefined` provider value does not fall back to the default). Put a provider around the smallest subtree that needs the value, close to its owner.
 
-Context versus external state store: context propagates a value through a React subtree and works well for low/medium-frequency shared values. An external store adds a store lifecycle, subscriptions/selectors, derived state, devtools/persistence/middleware conventions, or cross-root coordination depending on library. Choose one when actual requirements justify it; context alone is not automatically slow, and external store alone is not automatically better.
+Consumers subscribe to the context value. React compares old and new provider values with `Object.is`; consumers of that context receive the fresh value even when wrapped in `memo`. A new object/function created for `value` on every parent render therefore changes by identity and can fan out updates. Split unrelated contexts, keep stable values where correct, and measure before optimizing. Context does not replace state ownership: state still lives somewhere, often in the provider-owning component or a reducer. There is no universal update-frequency cutoff where context becomes wrong; use an external store when its subscription/selector capabilities match concrete requirements.
+
+Context versus external state store: context propagates a value through a React subtree and subscribes its consumers. An external store can add a store lifecycle, fine-grained subscriptions/selectors, derived state, devtools/persistence/middleware conventions, or cross-root coordination depending on library. Choose according to measured update needs and required capabilities; context alone is not automatically slow, and an external store alone is not automatically better.
 
 ## Decision example
 
@@ -33,9 +35,12 @@ Creating a provider at app root without need; using context for one immediate ch
 
 ## Knowledge checks with answers
 
-1. **What does provider placement control?** Which subtree can read/subscribe to the value.
-2. **How can composition avoid drilling?** Pass a prepared child/slot through a wrapper.
-3. **When external store?** When real store-level subscription, selectors, persistence, cross-tree coordination, or tooling needs exceed context.
+1. **What value does a consumer read?** The closest matching provider above it, or the context default if none exists.
+2. **Can a component read a provider that it returns?** No; that provider is below the component’s own read.
+3. **How does React detect a changed context value?** It compares old and new values with `Object.is`.
+4. **Does `memo` stop a context consumer receiving a changed value?** No.
+5. **How can composition avoid drilling?** Pass a prepared child/slot through a wrapper.
+6. **When consider an external store?** When its concrete subscription, selector, persistence, or cross-tree capabilities solve measured needs.
 
 ## How this group fits the mental model
 
@@ -43,14 +48,13 @@ Context is a propagation/subscription boundary that complements state ownership 
 
 ## Supplied names explained
 
-The inventory below lists distant values, provider placement, subscriptions/fan-out, explicit props, composition, and store comparisons.
+The inventory below lists distant values, provider placement, nearest-provider/default behavior, subscription/update identity, `memo` interaction, explicit props, composition, and store comparisons.
 
 ## Examples
 
 The theme, title, and normalized entity examples show different data-flow choices.
 
 ## Exact terms covered
-
 
 ### Exact terms covered
 
@@ -62,3 +66,8 @@ The theme, title, and normalized entity examples show different data-flow choice
 - `Composition as an alternative to prop drilling`
 - `Context versus prop passing`
 - `Context versus external state store`
+- `Closest matching provider supplies context value`
+- `Context default value applies only when no matching provider exists`
+- `A component cannot read the provider it returns from its own render`
+- `Context value changes compare with Object.is`
+- `memo does not block fresh context values for consumers`

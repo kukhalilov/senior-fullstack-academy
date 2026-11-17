@@ -54,6 +54,12 @@ A feature keeps an open menu, unsaved form draft, list of server results, and re
 
 **Solution:** Keep menu local; form draft with form/feature owner; server results with the router/data cache; pending/error alongside the operation where it is handled. Share only what needs coordination and use a store/data library for concrete cross-route cache requirements.
 
+### 9. Context value update and memo
+
+A context provider passes a newly created object each render. A consumer is wrapped in `memo` and unrelated parent state changes. What should you expect?
+
+**Solution:** React compares provider values with `Object.is`; a new object has a different identity, so consumers of that context receive the new value. `memo` does not block context updates. Split unrelated context values or stabilize provider values when that is semantically correct, then measure. Do not assume every descendant rerenders: context consumers of the changed value are the relevant subscribers.
+
 ### 8. Decide whether a reducer/store is needed
 
 A component has three independent booleans, then grows into a multi-step workflow with many legal transitions and shared consumers.

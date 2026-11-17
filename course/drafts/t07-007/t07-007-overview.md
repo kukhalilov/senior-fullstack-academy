@@ -1,6 +1,6 @@
 # React context composition state ownership and component architecture — Big-picture orientation and mental model
 
-Sources: React 19.3 [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components), [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context), [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure), [Managing State](https://react.dev/learn/managing-state), and [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect).
+Sources: React 19.3 [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components), [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context), [`useContext`](https://react.dev/reference/react/useContext), [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure), [Managing State](https://react.dev/learn/managing-state), and [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect).
 
 ## Problem and purpose
 
