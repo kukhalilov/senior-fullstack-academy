@@ -47,6 +47,10 @@ Write an async function that does not request `./editor.js` when a flag is false
 
 Write a static import for `settings.json` using the current import-attribute syntax. Explain what an environment must support before it will work.
 
+## 6. Non-identifier export name
+
+Given a dependency exporting a binding as `"legacy-name"`, write its export statement and import it under the local name `legacyName`. Explain why the imported name and local binding use different grammar forms.
+
 # Progressive hints
 
 1. An expression export initializes the default binding from a value; an export list can expose the original local binding.
@@ -54,6 +58,7 @@ Write a static import for `settings.json` using the current import-attribute syn
 3. Put `import()` inside the true branch. It returns a promise for a namespace; the caller can await it.
 4. Linking can create the cycle's bindings before the bodies run; lexical `const` remains uninitialized until its declaration evaluates.
 5. Use `with { type: "json" }`; test that the target host supports both the attribute and JSON module loading.
+6. Use a string literal after `as` in the export list and a string literal in braces on import, then alias it to a local identifier.
 
 # Complete solutions
 
@@ -129,7 +134,21 @@ import settings from "./settings.json" with { type: "json" };
 console.log(settings.theme);
 ```
 
-The host must support the `type` import attribute and JSON module loading. ECMAScript standardizes the request metadata, while supported keys and resource loading depend on the host/runtime.
+ECMAScript 2026 requires conforming hosts to support the `type: "json"` request. Check whether the target runtime and build tools implement that edition; older implementations may reject it.
+
+## 6. Non-identifier export name
+
+```js
+// dependency.js
+const value = 42;
+export { value as "legacy-name" };
+
+// consumer.js
+import { "legacy-name" as legacyName } from "./dependency.js";
+console.log(legacyName); // 42
+```
+
+The module export name can be a string literal, but an imported local binding must be an identifier. The `as` clause bridges those names.
 
 # Tests and edge cases
 

@@ -20,8 +20,11 @@ Static imports declare dependency edges and local imported bindings before the i
 - `Combined default and namespace import` — `import main, * as api from "./module.js";` binds the default export and a namespace object in one declaration.
 - `Combined default and named import` — `import main, { parse } from "./module.js";` binds both the default export and selected named exports.
 - `Import alias` — `import { parse as parseInput } from "./module.js";` gives an imported export a different local name. The alias still refers to the same live read-only imported binding.
-- `Import attributes clause (with)` — Adds key/string-value metadata to a static module request, for example `with { type: "json" }`. The standardized syntax is `with`; `assert { ... }` is historical. The host declares which attribute keys it supports; unsupported keys are rejected consistently by the module-loading algorithms, while supported-key meanings and loading remain host-dependent.
-- `JSON module type attribute` — `with { type: "json" }` marks the request as a JSON module request. Whether a host supports JSON modules and requires this attribute is a runtime/host policy; when such a request loads as a JSON module, its module interface supplies a default export rather than named exports. Check the target browser or Node version rather than treating syntax support as universal.
+- `String-literal imported name` — `import { "not-an-identifier" as value } from "./module.js";` imports an export whose name is a string literal rather than an `IdentifierName`. An alias is needed to bind it to a local JavaScript identifier; this syntax is part of ECMAScript 2022 and later.
+- `Duplicate imported local binding early error` — The same local binding name cannot be imported more than once in one module, including collisions with another top-level lexical binding. Such duplicate bound names are rejected during parsing/static semantics.
+- `Import attributes clause (with)` — Adds key/string-value metadata to a static module request, for example `with { type: "json" }`. The standardized syntax is `with`; `assert { ... }` is historical. The host reports supported keys and unsupported keys cause loading errors. ECMAScript 2026 requires `type: "json"`; other attribute meanings and loading remain host-defined.
+- `Duplicate import attribute key early error` — A `with` clause cannot contain the same key more than once, even if the values differ. The duplicate makes the importing source a syntax error.
+- `JSON module type attribute` — `with { type: "json" }` marks the request as a JSON module request. ECMAScript 2026 requires a conforming host to load it as a JSON module; older runtimes, bundlers, and deployment targets may not yet implement that edition. JSON modules expose a default export, not named exports. Check the target runtime and toolchain for support.
 
 # Cross-item comparison
 
@@ -39,9 +42,11 @@ Static imports declare dependency edges and local imported bindings before the i
 import "./register.js";
 import config, { createClient as makeClient } from "./client.js";
 import * as math from "./math.js";
+import { "not-an-identifier" as externalValue } from "./legacy-exports.js";
 
 const client = makeClient(config);
 console.log(math.total([client.value]));
+console.log(externalValue);
 ```
 
 ```js
@@ -49,7 +54,7 @@ import settings from "./settings.json" with { type: "json" };
 console.log(settings.theme);
 ```
 
-The `with` form is standardized syntax; the host must support JSON modules and the `type` attribute for this request to load successfully.
+The `with` form is standardized syntax. ECMAScript 2026 requires a conforming host to support JSON modules with the `type` attribute; an older runtime or build tool may not implement that edition.
 
 # Common mistakes
 
@@ -59,7 +64,9 @@ The `with` form is standardized syntax; the host must support JSON modules and t
 - Importing a name not exported by the target and expecting a runtime `undefined`; static linking rejects a missing export.
 - Forgetting that `import * as api` creates a namespace object, not a default export.
 - Using `assert { type: "json" }` in current-standard examples; the standardized syntax is `with`.
-- Assuming every host supports the same import attribute keys or JSON-module policy.
+- Assuming an older runtime or toolchain implements the ES2026 JSON-module requirement; check target support even though current conforming hosts must support `type: "json"`.
+- Assuming an imported export name must be a valid local identifier; string-literal module export names are allowed, but must be aliased to a binding identifier.
+- Repeating an import attribute key; duplicate keys are an early syntax error.
 - Assuming a relative specifier uses the same lookup behavior in every host.
 - Importing JSON names as named exports; the standard JSON module shape provides a default export.
 

@@ -19,7 +19,11 @@ Exports form a module's public interface. The exporting module owns the binding;
 - `Exported class declaration` — `export class Name {}` exports a class binding. The class binding is lexical and remains in the temporal dead zone until its declaration evaluates.
 - `Export list` — `export { localA, localB };` exposes existing local bindings without redeclaring them. It can appear after the declarations and does not copy values.
 - `Export alias` — `export { internalName as publicName };` exposes a local binding under another exported name; `export { local as default }` aliases it to the default name.
+- `String-literal exported name` — `export { value as "legacy-name" };` exposes a binding using a string-literal module name that is not a valid identifier. Consumers can import it with a string-literal name and a local alias. This syntax is part of ECMAScript 2022 and later.
+- `Duplicate exported-name early error` — A module cannot declare the same exported name more than once. Conflicting names introduced by star exports are treated as ambiguous during export resolution rather than selected by declaration order; explicitly export the intended binding to resolve the ambiguity.
+- `Default export expression and default binding forms` — `export default expression` initializes the synthetic default export binding from the expression's value; `export { local as default }` aliases the local binding, and named/anonymous default function or class declarations have their corresponding declaration-binding rules.
 - `Re-export from another module` — `export { item } from "./source.js";` forwards an imported name without creating an ordinary local binding in the re-exporting module.
+- `Import attributes on re-export requests` — An export-from request can carry the same `with { key: "value" }` attributes as an import request, for example `export { default as settings } from "./settings.json" with { type: "json" };`. The host-loading rules and supported attributes apply to this dependency request too.
 - `Namespace re-export` — `export * as utilities from "./utilities.js";` exports a namespace object as one named export.
 - `Export all declaration` — `export * from "./source.js";` forwards the target's named exports except `default`. If multiple star paths resolve the same name to different bindings, that name is ambiguous unless resolved explicitly.
 
@@ -47,6 +51,7 @@ export default function label(shape) { return `${shape} area`; }
 // index.js: a small public surface
 export { area as rectangleArea, unit } from "./geometry.js";
 export * as geometry from "./geometry.js";
+export { unit as "unit-label" } from "./geometry.js";
 ```
 
 The second module exposes two named paths: individual re-exported names and a namespace export. It does not silently re-export the default function through `export *`.
@@ -61,6 +66,7 @@ The second module exposes two named paths: individual re-exported names and a na
 - Re-exporting many `*` names that collide and expecting the loader to choose one automatically.
 - Expecting an export list to create the listed local variables; each local must already be declared.
 - Treating `export default expression` as a live alias of a variable used in the expression.
+- Assuming every exported name must be a JavaScript identifier; module export names may also be string literals.
 
 # Knowledge checks with answers
 

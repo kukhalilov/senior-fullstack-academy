@@ -24,7 +24,10 @@
         "Combined default and namespace import",
         "Combined default and named import",
         "Import alias",
+        "String-literal imported name",
         "Import attributes clause (with)",
+        "Duplicate import attribute key early error",
+        "Duplicate imported local binding early error",
         "JSON module type attribute"
       ]
     },
@@ -39,7 +42,11 @@
         "Exported class declaration",
         "Export list",
         "Export alias",
+        "String-literal exported name",
+        "Default export expression and default binding forms",
+        "Duplicate exported-name early error",
         "Re-export from another module",
+        "Import attributes on re-export requests",
         "Namespace re-export",
         "Export all declaration"
       ]
@@ -123,6 +130,15 @@
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html"
       ]
+    },
+    {
+      "edition": "ECMAScript 2022",
+      "items": [
+        "String-literal import and export names"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html"
+      ]
     }
   ],
   "sourceSnapshot": {
@@ -146,6 +162,15 @@
     "Node.js package exports and CommonJS, which are host-specific (tooling topic)",
     "Import maps, which are a host/browser feature",
     "Deferred imports proposal, not included in the ECMAScript 2026 standard edition"
+  ],
+  "accuracyFacts": [
+    "ECMAScript 2026 requires conforming hosts to support JSON modules when the request has the type attribute with value json; runtime version and deployment support still matter.",
+    "A static import/export module name may be an IdentifierName or a StringLiteral; string-literal names can expose otherwise non-identifier export names and must be aliased to a binding identifier when imported.",
+    "Import attribute keys must be unique within a with clause; duplicate keys are syntax errors. Duplicate imported local binding names are also syntax errors.",
+    "Duplicate export names are syntax errors; star-export ambiguity is resolved during export-name resolution and does not use arbitrary source order.",
+    "The module namespace object is non-extensible with a null prototype, exposes export names in sorted order, and uses exotic operations to keep exports live while rejecting writes.",
+    "Static import declarations are module-top-level syntax. Dynamic import is an expression returning a promise for a module namespace object.",
+    "ECMAScript defines linking and evaluation but delegates mapping/fetching of specifiers and import.meta properties to host integration points."
   ],
   "generationAllowed": true
 }

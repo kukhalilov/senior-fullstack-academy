@@ -7,8 +7,8 @@
     "lessons": 2341,
     "reviewed": 802,
     "pending": 1539,
-    "claimsChecked": 29415,
-    "claimsCorrected": 1456,
+    "claimsChecked": 29480,
+    "claimsCorrected": 1461,
     "draftsMayBePromoted": false,
     "reviewedLessons": 802,
     "pendingLessons": 1539
@@ -1368,6 +1368,22 @@
       ],
       "findings": [
         "Checked all 22 fields/private elements inventory entries and 31 class forms/inheritance entries against ECMAScript 2026 normative algorithms and MDN reference. Verified constructor and element early errors, static method constructor exception, class/method/field property descriptors, class and initializer order, computed-name timing, extends null, private name pairing/brand semantics, and Proxy opacity. Corrected one reference statement that implied static constructor methods are rejected; Node runtime confirmed static constructor method is allowed, while instance and static fields named constructor are syntax errors. Ran all practice outputs including the two new brand/descriptor exercises. Validators passed. Six lessons remain in drafts pending whole-course completion."
+      ]
+    },
+    {
+      "scope": "ECMAScript modules and import/export/loading semantics (t06-019)",
+      "status": "follow-up full claim and expanded-inventory audit complete for all 7 lessons",
+      "sources": [
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+        "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+        "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+        "https://html.spec.whatwg.org/multipage/webappapis.html",
+        "https://nodejs.org/api/esm.html",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+      ],
+      "findings": [
+        "Checked every manifest item and lesson claim against current ECMA-262 2026 grammar, early errors, module linking/evaluation and host hooks; cross-checked HTML host loading and Node behavior. Corrected the false claim that JSON-module support is merely optional host policy: the current standard requires conforming hosts to support type=\"json\", while older runtimes and build tools can lag. Added ES2022 string-literal module names, duplicate local/attribute/export name errors, and import attributes on re-exports. Verified dynamic data-module examples and syntax errors using Node. All 7 previously reviewed lessons remain drafts pending full-curriculum completion."
       ]
     }
   ],
@@ -50627,8 +50643,8 @@
       "draft": "course/drafts/t06-019/t06-019-overview.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 23,
-      "claimsCorrected": 0,
+      "claimsChecked": 27,
+      "claimsCorrected": 1,
       "evidence": [
         {
           "claims": "Checked module-scope mental model, graph/link/evaluate stages, live-binding example, host-resolution claims, dynamic import and top-level-await summaries, and import-attribute version notes against current standards and host documentation.",
@@ -50680,6 +50696,19 @@
             }
           ],
           "verdict": "verified against current normative and host documentation"
+        },
+        {
+          "claims": "Follow-up audit checked 4 new or revalidated claim units and the complete manifest scope. Rechecked the overview model, version notes, host boundary, and manifest coverage. Clarified string-literal module names and that the ES2026 JSON module requirement is normative for conforming hosts; older runtimes/toolchains may lag.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+            "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+            "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+            "https://html.spec.whatwg.org/multipage/webappapis.html",
+            "https://nodejs.org/api/esm.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+          ],
+          "verdict": "verified; corrected the JSON module conformance claim"
         }
       ],
       "issues": [],
@@ -50696,7 +50725,7 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
+      "reviewNote": "Rechecked the overview model, version notes, host boundary, and manifest coverage. Clarified string-literal module names and that the ES2026 JSON module requirement is normative for conforming hosts; older runtimes/toolchains may lag. Original review retained; follow-up confirms the expanded inventory. Lesson remains in drafts pending whole-curriculum audit."
     },
     {
       "taskId": "t06-019-concepts",
@@ -50705,8 +50734,8 @@
       "draft": "course/drafts/t06-019/t06-019-concepts.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 66,
-      "claimsCorrected": 1,
+      "claimsChecked": 74,
+      "claimsCorrected": 2,
       "evidence": [
         {
           "claims": "Checked module records, imported binding behavior, export forms, link/evaluate/cycle behavior, dynamic import, TLA dependency effects, namespace descriptors, host hooks, and import attributes. Narrowed JSON module claim to host-supported loading.",
@@ -50758,6 +50787,19 @@
             }
           ],
           "verdict": "verified against current normative and host documentation"
+        },
+        {
+          "claims": "Follow-up audit checked 8 new or revalidated claim units and the complete manifest scope. Rechecked module scope, strictness, linking/evaluation, cycles, dynamic import, import attributes, namespace objects, and all manifest entries. Corrected the earlier statement that JSON module support is an unconstrained host choice; ECMAScript 2026 requires type=json support. Added string-literal import/export names and top-level this.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+            "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+            "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+            "https://html.spec.whatwg.org/multipage/webappapis.html",
+            "https://nodejs.org/api/esm.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+          ],
+          "verdict": "verified; corrected the JSON module conformance claim"
         }
       ],
       "issues": [],
@@ -50774,7 +50816,7 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
+      "reviewNote": "Rechecked module scope, strictness, linking/evaluation, cycles, dynamic import, import attributes, namespace objects, and all manifest entries. Corrected the earlier statement that JSON module support is an unconstrained host choice; ECMAScript 2026 requires type=json support. Added string-literal import/export names and top-level this. Original review retained; follow-up confirms the expanded inventory. Lesson remains in drafts pending whole-curriculum audit."
     },
     {
       "taskId": "t06-019-reference-static-import-forms",
@@ -50783,8 +50825,8 @@
       "draft": "course/drafts/t06-019/t06-019-reference-static-import-forms.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 71,
-      "claimsCorrected": 1,
+      "claimsChecked": 83,
+      "claimsCorrected": 2,
       "evidence": [
         {
           "claims": "Checked all 10 static import inventory entries, grammar/placement, immutable live bindings, namespace imports, current with syntax, supported attribute keys, and JSON host behavior. Corrected prior claim that ES2026 universally requires a JSON parse module record.",
@@ -50836,6 +50878,19 @@
             }
           ],
           "verdict": "verified against current normative and host documentation"
+        },
+        {
+          "claims": "Follow-up audit checked 12 new or revalidated claim units and the complete manifest scope. Checked every supplied import form and early error against grammar and static semantics. Added string-literal imports, duplicate local binding and attribute-key errors. Corrected JSON type attribute conformance wording: current ECMAScript requires conforming hosts to support it, though legacy engines/toolchains may not.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+            "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+            "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+            "https://html.spec.whatwg.org/multipage/webappapis.html",
+            "https://nodejs.org/api/esm.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+          ],
+          "verdict": "verified; corrected the JSON module conformance claim"
         }
       ],
       "issues": [],
@@ -50852,7 +50907,7 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
+      "reviewNote": "Checked every supplied import form and early error against grammar and static semantics. Added string-literal imports, duplicate local binding and attribute-key errors. Corrected JSON type attribute conformance wording: current ECMAScript requires conforming hosts to support it, though legacy engines/toolchains may not. Original review retained; follow-up confirms the expanded inventory. Lesson remains in drafts pending whole-curriculum audit."
     },
     {
       "taskId": "t06-019-reference-export-forms",
@@ -50861,7 +50916,7 @@
       "draft": "course/drafts/t06-019/t06-019-reference-export-forms.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 65,
+      "claimsChecked": 74,
       "claimsCorrected": 0,
       "evidence": [
         {
@@ -50914,6 +50969,19 @@
             }
           ],
           "verdict": "verified against current normative and host documentation"
+        },
+        {
+          "claims": "Follow-up audit checked 9 new or revalidated claim units and the complete manifest scope. Checked all supplied declaration, binding, alias, star and namespace forms. Added string-literal exported names, default-binding distinctions, duplicate-name constraints and import attributes on export-from requests.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+            "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+            "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+            "https://html.spec.whatwg.org/multipage/webappapis.html",
+            "https://nodejs.org/api/esm.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+          ],
+          "verdict": "verified; scope expanded with string-literal module names and request semantics"
         }
       ],
       "issues": [],
@@ -50930,7 +50998,7 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
+      "reviewNote": "Checked all supplied declaration, binding, alias, star and namespace forms. Added string-literal exported names, default-binding distinctions, duplicate-name constraints and import attributes on export-from requests. Original review retained; follow-up confirms the expanded inventory. Lesson remains in drafts pending whole-curriculum audit."
     },
     {
       "taskId": "t06-019-reference-module-meta-dynamic-loading",
@@ -50939,7 +51007,7 @@
       "draft": "course/drafts/t06-019/t06-019-reference-module-meta-dynamic-loading.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 116,
+      "claimsChecked": 126,
       "claimsCorrected": 0,
       "evidence": [
         {
@@ -50992,6 +51060,19 @@
             }
           ],
           "verdict": "verified against current normative and host documentation"
+        },
+        {
+          "claims": "Follow-up audit checked 10 new or revalidated claim units and the complete manifest scope. Checked module request hooks, dynamic import promise behavior, top-level await, module namespace exotic-object properties, metadata hooks, cycles and host resolution against ECMA-262, WHATWG HTML and Node documentation.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+            "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+            "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+            "https://html.spec.whatwg.org/multipage/webappapis.html",
+            "https://nodejs.org/api/esm.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+          ],
+          "verdict": "verified; scope expanded with string-literal module names and request semantics"
         }
       ],
       "issues": [],
@@ -51008,7 +51089,7 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
+      "reviewNote": "Checked module request hooks, dynamic import promise behavior, top-level await, module namespace exotic-object properties, metadata hooks, cycles and host resolution against ECMA-262, WHATWG HTML and Node documentation. Original review retained; follow-up confirms the expanded inventory. Lesson remains in drafts pending whole-curriculum audit."
     },
     {
       "taskId": "t06-019-practice",
@@ -51017,8 +51098,8 @@
       "draft": "course/drafts/t06-019/t06-019-practice.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 88,
-      "claimsCorrected": 1,
+      "claimsChecked": 102,
+      "claimsCorrected": 2,
       "evidence": [
         {
           "claims": "Checked five exercise solutions, default expression/alias output, re-export syntax, cycle ordering, dynamic import behavior, JSON attributes, and host boundaries. Added complete answers to all five reflection questions and narrowed JSON host support statement.",
@@ -51070,6 +51151,19 @@
             }
           ],
           "verdict": "verified against current normative and host documentation"
+        },
+        {
+          "claims": "Follow-up audit checked 14 new or revalidated claim units and the complete manifest scope. Executed and checked live-binding, star export, default, cycle, dynamic import, string-literal name and attribute syntax examples. Corrected the JSON module explanation to distinguish the current standard requirement from older runtime/toolchain support.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+            "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+            "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+            "https://html.spec.whatwg.org/multipage/webappapis.html",
+            "https://nodejs.org/api/esm.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+          ],
+          "verdict": "verified; corrected the JSON module conformance claim"
         }
       ],
       "issues": [],
@@ -51086,7 +51180,7 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
+      "reviewNote": "Executed and checked live-binding, star export, default, cycle, dynamic import, string-literal name and attribute syntax examples. Corrected the JSON module explanation to distinguish the current standard requirement from older runtime/toolchain support. Original review retained; follow-up confirms the expanded inventory. Lesson remains in drafts pending whole-curriculum audit."
     },
     {
       "taskId": "t06-019-interview",
@@ -51095,8 +51189,8 @@
       "draft": "course/drafts/t06-019/t06-019-interview.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 112,
-      "claimsCorrected": 1,
+      "claimsChecked": 120,
+      "claimsCorrected": 2,
       "evidence": [
         {
           "claims": "Checked 12 core answers, six scenarios, follow-ups, tradeoff comparisons, weak-answer corrections, and rubric. Clarified supported versus unsupported import-attribute keys and JSON host policy.",
@@ -51148,6 +51242,19 @@
             }
           ],
           "verdict": "verified against current normative and host documentation"
+        },
+        {
+          "claims": "Follow-up audit checked 8 new or revalidated claim units and the complete manifest scope. Rechecked all core/deep/scenario answers and weak-answer corrections; added current JSON requirement nuance and string-literal module-name coverage.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+            "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+            "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+            "https://html.spec.whatwg.org/multipage/webappapis.html",
+            "https://nodejs.org/api/esm.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+          ],
+          "verdict": "verified; corrected the JSON module conformance claim"
         }
       ],
       "issues": [],
@@ -51164,7 +51271,7 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
+      "reviewNote": "Rechecked all core/deep/scenario answers and weak-answer corrections; added current JSON requirement nuance and string-literal module-name coverage. Original review retained; follow-up confirms the expanded inventory. Lesson remains in drafts pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-overview",

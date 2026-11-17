@@ -16,6 +16,7 @@
 10. Who resolves a module specifier?
 11. What are import attributes used for?
 12. What is the current host loading hook, and what changed from earlier editions?
+13. Can an import/export name contain characters that are not valid in a JavaScript identifier?
 
 # Concise interview answers
 
@@ -31,6 +32,7 @@
 10. The host loader applies its own resolution/loading model; ECMAScript does not define universal file/package lookup rules.
 11. They attach metadata such as `{ type: "json" }` to an import request; the host determines supported keys and handling.
 12. ECMAScript 2026 uses `HostLoadImportedModule`; earlier specs used a narrower `HostResolveImportedModule` hook model.
+13. Yes. ECMAScript 2022 added string-literal module export names, such as `export { value as "legacy-name" }`; importers use the string name and alias it to a local identifier.
 
 # Deep follow-up answers
 
@@ -52,18 +54,18 @@ Linking can establish a live binding before its lexical declaration has initiali
 
 ## How do hosts fit into the standard?
 
-The language defines module syntax, request records, linking, evaluation, and host hooks. The host controls how a specifier is mapped/fetched and which import-attribute keys it supports. Unsupported keys are rejected consistently, while supported-key meanings and concrete loading are host-specific. The current loading integration uses `HostLoadImportedModule`. `import.meta` is created by the language and host hooks can populate/finalize it; properties such as `url` and a method such as `resolve()` are host-specific.
+The language defines module syntax, request records, linking, evaluation, and host hooks. The host controls how a specifier is mapped/fetched and reports supported import-attribute keys; unsupported keys are rejected. ECMAScript 2026 requires support for `type: "json"`, while other keys and their meanings are host-specific. The current loading integration uses `HostLoadImportedModule`. `import.meta` is created by the language and host hooks can populate/finalize it; properties such as `url` and a method such as `resolve()` are host-specific.
 
 ## What happens with JSON imports?
 
-The current syntax uses `with { type: "json" }`. The attribute marks the request; the host must support that attribute and JSON modules. Do not generalize the exact policy or availability from one runtime to another. A JSON module exposes its default value rather than named bindings.
+The current syntax uses `with { type: "json" }`. The attribute marks the request, and ECMAScript 2026 requires conforming hosts to load it as a JSON module. Older runtime versions and toolchains may not implement that edition. A JSON module exposes its default value rather than named bindings.
 
 # Scenario questions
 
 1. **Two modules import each other and one immediately reads an exported `const`.** Inspect evaluation order and initialization timing; the cycle can link yet throw if the read occurs before initialization.
 2. **A heavy feature is rarely used.** Use dynamic `import()` on the feature path, await the promise, and handle rejection. This is a loading decision, not merely a different spelling of static import.
 3. **A consumer wants to mutate an imported `let`.** Move the state-changing operation behind an exported function or another module-owned API; the consumer cannot assign the imported binding.
-4. **A package imports `./settings.json` successfully in one environment and fails in another.** Check host JSON module and `with { type: "json" }` support; the host determines loading policy.
+4. **A package imports `./settings.json` successfully in one environment and fails in another.** Check whether both runtime/toolchain versions implement the current JSON-module request and whether their loading configuration accepts it.
 5. **A path-like specifier resolves differently in two hosts.** That is expected at the language boundary: inspect the host loader and its resolution rules.
 6. **A module uses `import.meta.url` in an embedded host.** Confirm that host provides `url`; ECMAScript itself permits host-defined metadata properties rather than requiring that specific field.
 
@@ -87,7 +89,8 @@ The current syntax uses `with { type: "json" }`. The attribute marks the request
 - “Dynamic import is just static import inside an `if`.” It is an asynchronous expression with a promise result.
 - “`import.meta.url` is in ECMAScript.” The meta object is; specific fields are host-provided.
 - “The current host hook is HostResolveImportedModule.” ES2026 uses HostLoadImportedModule.
-- “With a JSON attribute, every runtime must load a JSON file the same way.” Attribute support and runtime policies remain host-specific.
+- “Any older runtime must support JSON modules because ES2026 specifies them.” The standard requirement does not guarantee older runtime or bundler support; verify the deployment target.
+- “Export names must always be identifier names.” Current ECMAScript also permits string-literal module export names.
 - “The namespace object is an ordinary object of copied exports.” It is exotic and exposes live module bindings.
 
 # Self-check rubric

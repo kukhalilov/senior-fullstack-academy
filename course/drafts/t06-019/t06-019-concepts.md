@@ -14,7 +14,7 @@ You should understand lexical bindings, functions, promises, strict mode, and th
 
 ## A module has private scope and explicit connections
 
-Each module has its own top-level scope and is strict code. Its top-level declarations do not automatically become properties of a host global object. A module has an explicit interface made of exports. A static import declaration is legal only at module top level and is resolved as part of the dependency graph rather than conditionally executing like a function call.
+Each module has its own top-level scope and is strict code. Its top-level `this` is `undefined`, and its declarations do not automatically become properties of a host global object. A module has an explicit interface made of exports. A static import declaration is legal only at module top level and is resolved as part of the dependency graph rather than conditionally executing like a function call.
 
 Static requests are analyzed before the importing module body evaluates. This lets a host load the graph and the language link imported names to exported bindings. A syntax-valid specifier does not itself guarantee that a host can locate a file or package.
 
@@ -36,13 +36,15 @@ Cycles are permitted. The loader tracks visited modules so it does not recursive
 
 ## Static import, dynamic import, and top-level await
 
-Static imports describe unconditional graph edges and cannot be placed inside branches or functions. `import()` is an expression; it accepts a specifier (and current import options) and returns a promise for the module namespace object. Use it for conditional loading or code paths that should be requested later, and handle its rejection.
+Static imports describe unconditional graph edges and cannot be placed inside branches or functions. `import()` is an expression usable in modules and classic scripts; it accepts a specifier (and current import options) and returns a promise for the module namespace object. Use it for conditional loading or code paths that should be requested later, and handle its rejection.
 
 Top-level `await` is permitted in modules, not ordinary classic scripts. It makes a module's evaluation asynchronous. Modules depending on it wait for its evaluation to settle; this can delay the whole dependent path. Use it deliberately because startup now depends on asynchronous work and cycles with asynchronous evaluation are harder to reason about.
 
 ## Import attributes and JSON modules
 
-The current syntax is `with { key: "value" }`, for example `import data from "./settings.json" with { type: "json" };`. The attribute is metadata attached to the module request. The host declares supported attribute keys; unsupported keys are rejected consistently, while the meaning of supported keys and actual loading are host-specific. The `type: "json"` attribute is commonly used for JSON modules, but JSON module support and whether the attribute is required depend on the target host/runtime. Do not use the old `assert { ... }` spelling in current examples.
+The current syntax is `with { key: "value" }`, for example `import data from "./settings.json" with { type: "json" };`. The attribute is metadata attached to the module request. The host declares supported attribute keys; unsupported keys are rejected, and duplicate keys are syntax errors. ECMAScript 2026 requires conforming hosts to support JSON modules when requested with `type: "json"`; older runtimes, bundlers, and deployment targets may not yet implement that edition. Do not use the old `assert { ... }` spelling in current examples.
+
+Module export names do not have to be valid JavaScript identifiers. Since ECMAScript 2022, string-literal names can be imported/exported, for example `export { value as "legacy-name" }` and `import { "legacy-name" as value }`. The local binding still must use a binding identifier.
 
 ## Module namespace and metadata objects
 
@@ -103,7 +105,7 @@ The expression returns a promise. The caller must await or otherwise handle its 
 - **A module specifier is a filesystem path by definition.** Resolution is host-defined; browsers and Node apply different rules.
 - **`import.meta.url` is an ECMAScript guarantee.** The metadata object is standardized, but its properties are supplied by the host.
 - **Dynamic import throws synchronously for all load errors.** The request returns a promise that can reject for load/link/evaluation failure.
-- **`with { type: "json" }` guarantees universal runtime support.** It is standard syntax, but host feature support and deployment compatibility still need checking.
+- **Every older runtime supports `with { type: "json" }` because ES2026 requires it.** Older implementations and bundlers may predate that requirement, so deployment compatibility still needs checking.
 - **Top-level `await` is just function-level `await`.** It affects asynchronous evaluation of the module graph and its dependents.
 
 # Knowledge checks with answers

@@ -57,7 +57,7 @@ Use static imports for normal dependencies so the graph is explicit and tools ca
 
 # Recent version changes
 
-Top-level `await` became part of ECMAScript 2022. Import attributes use the `with { ... }` form in ECMAScript 2025; hosts define which attribute keys they support, and JSON module behavior depends on host rules. The `assert` spelling is historical. See [ECMAScript modules](https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html).
+Top-level `await` and string-literal module export names became part of ECMAScript 2022. Import attributes use the `with { ... }` form in ECMAScript 2025. ECMAScript 2026 requires conforming hosts to support JSON modules with `type: "json"`, though older runtimes and build tools may not implement that edition. The `assert` spelling is historical. See [ECMAScript modules](https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html).
 
 # What later lessons cover
 
