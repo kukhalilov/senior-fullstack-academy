@@ -17,11 +17,11 @@ Each application first chooses what a DSU element represents, then identifies wh
 - **`Kruskal minimum spanning tree connection`:** process weighted edges in nondecreasing order and accept only edges that successfully union two components.
 - **`Accounts or identities grouping`:** merge account IDs when a shared key (such as email) occurs; group all values by final root after all unions.
 - **`Grid cell connectivity`:** map relevant cells to IDs and union neighboring cells that the problem declares connected; do not include irrelevant cells in a root count.
-- **`Offline connectivity query`:** when future query information is known, some tasks can sort or reverse events to make unions suitable; fully dynamic deletion requires additional rollback/time-segment methods outside this basic structure.
+- **`Offline connectivity query`:** if all queries are known, reorder work when the answer is order-independent. For example, sort edges and threshold queries by weight, union all edges at or below each query's limit, then answer whether its endpoints share a root. For a sequence containing only edge deletions, process it backward as edge additions when the initial state and query timing permit. Arbitrarily interleaved online additions and deletions require more advanced dynamic-connectivity techniques.
 
 ## Cross-item comparison
 
-Component count and component size are distinct metadata: one counts all sets globally, the other counts members in one root. Incremental connectivity can be processed immediately. An offline query formulation may reorder work only when the problem's answer semantics permit it. Kruskal's DSU checks whether an edge would form a cycle; it does not sort the edges or decide that lower weight is desirable.
+Component count and component size are distinct metadata: one counts all sets globally, the other counts members in one root. Incremental connectivity can be processed immediately. Offline threshold queries can be sorted because each answer depends on a monotone edge-weight prefix; reverse-time processing turns a supported deletion-only sequence into additions. Work cannot be reordered arbitrarily if query answers depend on the original state at each time. Kruskal's DSU checks whether an edge would form a cycle; it does not sort the edges or decide that lower weight is desirable.
 
 ## Examples
 

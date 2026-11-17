@@ -21,7 +21,7 @@ There are stones on distinct integer coordinate points. A stone can be removed w
 
 ## Clarifying assumptions
 
-Rows and columns are different entity types even if their coordinate integers match. Represent each stone as an edge between a row node and a column node. In each connected component of this bipartite graph, exactly one stone must remain; the rest can be removed by following a spanning-tree leaf-removal order.
+Rows and columns are different entity types even if their coordinate integers match. Represent each stone as an edge between a row node and a column node. The components of this bipartite graph correspond to components in a graph whose vertices are stones and whose edges join stones that share a row or column.
 
 ## Progressive hints
 1. Use separate ID namespaces for rows and columns, e.g. row `x` and column `10001+y`.
@@ -92,7 +92,7 @@ static class Program
 
 ## Correctness argument
 
-Two stones are in one incidence-graph component exactly when a chain of stones links them by shared rows or columns. For a component with k stones, the incidence graph's connected edges admit a spanning tree; repeatedly remove a leaf stone while another stone remains, since its shared row/column still belongs to another remaining edge. This removes k-1 stones, and one must remain because it has no partner. Thus the optimum is the sum of `k-1` over components, or `n - componentCount`. DSU unions each stone's row and column, constructing precisely those components.
+Two stones are in one incidence-graph component exactly when a chain of stones links them by shared rows or columns. Equivalently, the graph whose vertices are stones and whose edges connect row/column-sharing pairs has the same components. For a connected component with k stones, choose a spanning tree of that stone graph. While more than one stone remains, remove a leaf of the remaining spanning tree: its parent stone is still present and shares its row or column, so removal is legal. This removes k-1 stones; the last stone has no remaining partner and cannot be removed. Summing over components gives `n - componentCount`. DSU unions each stone's row and column, constructing precisely these components.
 
 ## Step-by-step dry run
 
