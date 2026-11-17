@@ -12,7 +12,8 @@ Traversal labels the portion reachable under the graph's edge semantics. Repeati
 
 - Connected components — Maximal sets of vertices connected by undirected paths.
 - Reachability — Existence of a directed or undirected path from a specified source.
-- Undirected cycle detection — Detect revisiting an already discovered vertex other than the DFS parent; a visited neighbor alone may just be the parent edge.
+- Undirected cycle detection in simple graphs — A visited neighbor other than the DFS parent vertex indicates a cycle.
+- Parent-edge identity for multigraph cycle detection — Identify and skip the exact parent edge by edge ID; a second parallel edge to the parent forms a length-two cycle under the multigraph convention.
 - Bipartite graph — Vertices can be divided into two sets such that every edge crosses between them.
 - Two-coloring — Assign alternating colors across each edge; conflicting same-color adjacency disproves bipartiteness.
 - Grid flood fill — Traversal over same-valued or eligible adjacent cells, usually with 4- or 8-direction choice explicit.
@@ -34,6 +35,7 @@ For a triangle, color vertex 0 red; its two neighbors are blue. The edge between
 - Checking only the component containing vertex zero.
 - Treating directed reachability as symmetric.
 - Declaring an undirected DFS back-edge to the immediate parent a cycle.
+- Skipping every edge to the parent vertex in a multigraph, which can hide a parallel-edge cycle; track edge identity there.
 - Omitting boundary checks in grid neighbor generation.
 - Using 8-directional grid connectivity when the statement specifies orthogonal adjacency.
 
@@ -41,7 +43,7 @@ For a triangle, color vertex 0 red; its two neighbors are blue. The edge between
 
 1. **How count components?** Start a traversal at each unseen vertex and increment the count.
 2. **What edge disproves bipartiteness?** One whose endpoints already have the same color.
-3. **Why skip the DFS parent in undirected cycle checks?** The reverse adjacency entry is the tree edge just traversed.
+3. **Why skip the DFS parent edge in undirected cycle checks?** The reverse adjacency entry is the tree edge just traversed; with parallel edges, skip that exact edge ID rather than all edges to the parent vertex.
 4. **Does directed reachability imply strongly connected?** No; strong connectivity requires mutual reachability among vertices.
 
 Sources: [USACO Guide: Graph Traversal](https://usaco.guide/silver/graph-traversal), [USACO Guide: Flood Fill](https://usaco.guide/silver/flood-fill).

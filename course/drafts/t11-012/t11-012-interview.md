@@ -15,7 +15,7 @@
 - Relax u->v when dist[u]+w improves dist[v], guarding unreachable and overflow.
 - Nonnegative weights ensure the minimum tentative distance cannot later be improved.
 - V-1 edge-relaxation rounds suffice for simple shortest paths without a relevant negative cycle; one more detects reachable negative cycles.
-- Lazy decrease-key enqueues a new entry after every improvement; older entries are skipped when popped.
+- A lazy priority-queue update enqueues a new entry after every improvement rather than changing an existing key; older entries are skipped when popped.
 - Count on strict improvements by replacing count, and on equal distances by adding count; positive weights ensure predecessors are processed first.
 
 ## Deep follow-up answers
@@ -54,6 +54,7 @@ Minimum effort combines edges with max and selects the minimum such path; the re
 - Floyd-Warshall is dense and simple but cubic.
 - DAG relaxation supports negative weights in O(V+E) because order removes cycles.
 - A heap implementation with decrease-key avoids stale entries but is more complex; lazy duplicates are often simpler.
+- .NET's `PriorityQueue<TElement,TPriority>` is a quaternary min-heap with no decrease-key and no FIFO guarantee for equal priorities; use lazy duplicate entries for Dijkstra and skip stale distances.
 
 ## Common weak answers
 

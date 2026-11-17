@@ -19,11 +19,21 @@ These algorithms differ in how they order the next candidate. FIFO is enough for
 - BFS for equal edge costs — First discovery is shortest when each transition has the same cost.
 - 0-1 BFS — Use a deque for weights 0 or 1.
 - Deque front/back relaxation — Push improved zero-cost neighbors to front; push one-cost neighbors to back.
-- Dijkstra complexity by heap and graph representation — With adjacency lists and a binary heap, commonly O((V+E)logV); a matrix-based selection scan is O(V²), and heap details affect exact bounds.
+- Indexed binary heap with decrease-key — Alongside adjacency lists, supports O((V+E) log V) Dijkstra by keeping one active key per vertex.
+- Lazy binary heap complexity — Adding a new entry on every strict improvement costs O((V+E) log(E+1)) in a general multigraph; for simple graphs where E=O(V²), this is commonly written O((V+E) log V).
+- Fibonacci heap theoretical complexity — With adjacency lists, decrease-key amortized O(1) gives theoretical O(E+V log V) Dijkstra, but Fibonacci heaps are uncommon in standard libraries.
+- Dijkstra complexity by graph representation — A matrix plus linear minimum scan costs O(V²+E), usually O(V²); an adjacency list plus heap avoids scanning absent edges.
 
 ## Cross-item comparison
 
 Dijkstra permits zero weights; a zero edge does not break distance correctness but can complicate counting equal-cost paths. 0-1 BFS is more specialized and can run in O(V+E). BFS is simpler when all weights are equal. Negative edges require another method.
+
+### C#/.NET priority-queue note
+
+- **.NET PriorityQueue<TElement,TPriority> quaternary min-heap:** `PriorityQueue<TElement,TPriority>` is array-backed and quaternary; lower priorities dequeue first.
+- **Equal-priority dequeue order is unspecified:** the type does not promise FIFO behavior among equal priorities.
+- **.NET PriorityQueue has no decrease-key:** it does not update an existing queued priority in place.
+- **Lazy-update Dijkstra with .NET PriorityQueue:** enqueue a new `(vertex, distance)` entry after each strict improvement and skip entries whose saved distance no longer equals the current best. The heap arity changes constants, not the logarithmic asymptotic bound.
 
 ## Examples
 

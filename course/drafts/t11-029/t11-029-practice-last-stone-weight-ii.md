@@ -68,7 +68,9 @@ static class Program
 
 ## Correctness argument
 
-Every smash result can be represented as the absolute difference between sums of two groups of original stones, and a partition's sign assignment corresponds to such a difference. For any subset sum x, the difference is `|S-2x|`. The smaller of x and S-x is at most S/2 and has the same difference, so an optimal partition has a reachable representative x at most half. The descending Boolean DP computes exactly all subset sums up to that half, using each stone once. Choosing the largest reachable x minimizes `S-2x`, yielding the minimum possible final weight.
+For any fixed order of the stones, repeatedly smashing the current remaining stone with the next one can produce the absolute value of a signed sum of all stones seen so far. Inductively, if the current value is `|A|`, smashing it with weight `w` yields `||A|-w|`; this is the absolute value of either `A-w` or `A+w` after choosing the sign of the new stone and, if needed, flipping every earlier sign (which does not change the absolute value). Conversely, every smash sequence expands to a signed sum: each smash subtracts one operand from the other, so the original stones in the two operands receive opposite signs. Therefore the minimum achievable remainder equals the minimum absolute signed sum, or equivalently the minimum partition difference.
+
+For a partition whose one side has sum x and total is S, that difference is `|S-2x|`. The smaller of x and S-x is at most S/2 and has the same difference, so it suffices to find the largest reachable subset sum x no greater than half. The descending Boolean DP computes exactly those 0/1 subset sums, using each stone once. Maximizing x up to half minimizes `S-2x`, yielding the minimum possible final weight.
 
 ## Step-by-step dry run
 

@@ -13,6 +13,7 @@ Representation determines memory cost and which operations are cheap. Prefer the
 - Adjacency list — For each vertex, store its outgoing/incident neighbors.
 - Adjacency matrix — A V-by-V structure records whether each ordered pair is connected.
 - Edge list — Store each edge as endpoint data; useful for scanning all edges.
+- Vertex set and isolated vertices — Keep the vertex count or explicit set separately when an edge list alone omits vertices with no incident edge.
 - O(V+E) adjacency-list space — Vertices plus stored neighbor entries; undirected edges are listed twice.
 - O(V²) matrix space — Storage includes absent edges.
 - Constant-time matrix edge lookup — Inspect one cell directly.
@@ -28,6 +29,8 @@ Adjacency lists are generally memory-efficient for sparse graphs and traverse on
 ## Examples
 
 For an undirected edge between 0 and 2, add 2 to list 0 and 0 to list 2. In an m-by-n grid, an orthogonal neighbor candidate is (r+1,c); check r+1<m before access.
+
+An edge list `[(0,1)]` does not reveal whether vertices 2 through 100 also exist as isolated vertices. Keep the declared vertex count or explicit vertex set alongside it.
 
 ## Common mistakes
 

@@ -18,7 +18,7 @@ Given a binary grid, return the largest area among islands connected horizontall
 
 ## Examples with expected output
 
-1. In the supplied multi-region grid, the largest four-connected component has area 6.
+1. `[[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]] -> 6`.
 2. An all-zero row -> 0.
 3. [[1,1],[1,0]] -> 3.
 
@@ -94,6 +94,15 @@ public static class Program
 
     public static void Main()
     {
+        Equal(MaxAreaOfIsland(Grid(
+            new[] { 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+            new[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            new[] { 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
+            new[] { 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0 },
+            new[] { 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0 },
+            new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
+            new[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            new[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 })), 6, "Example 1");
         Equal(MaxAreaOfIsland(Grid(new[] { 0, 0, 1, 0, 0 }, new[] { 0, 1, 1, 0, 0 }, new[] { 0, 1, 0, 0, 1 }, new[] { 0, 0, 0, 1, 1 })), 4, "components");
         Equal(MaxAreaOfIsland(Grid(new[] { 0, 0, 0, 0 })), 0, "all water");
         Equal(MaxAreaOfIsland(Grid(new[] { 1, 1 }, new[] { 1, 0 })), 3, "connected corner");
