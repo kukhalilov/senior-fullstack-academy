@@ -27,7 +27,7 @@ The `type` attribute selects an input state, not merely its visual style. It cha
 - `type=number` — Numeric control for numbers where a spinbutton/range-like numeric UI is appropriate. It is unsuitable for digit strings such as postal codes or card numbers; use text when leading zeroes/formatting are meaningful.
 - `type=range` — Slider for choosing an approximate numeric value within bounds. It has default range behavior and is not ideal when exact values matter without a complementary numeric input.
 - `type=color` — Color control with a normalized serialized color value. Current HTML adds `alpha` for alpha-channel selection and `colorspace` for color-space choice; UI support varies. Invalid/default behavior is defined by the standard, so do not assume all browsers expose advanced color UI identically.
-- `type=checkbox` — Boolean or independently selectable choice. Only checked controls contribute a value; omitted `value` defaults to a conventional value. Group related choices with labels and names according to whether they represent one set or independent flags.
+- `type=checkbox` — Boolean or independently selectable choice. Only checked controls contribute a value; omitted `value` defaults to `on`. The `switch` content attribute requests two-state switch semantics/presentation; when present, indeterminate state has no effect. Support and appearance vary by browser. Group related choices with labels and names according to whether they represent one set or independent flags.
 - `type=radio` — One-of-many choice. Radios with the same form owner and name form a group; only the checked member is submitted. Provide labels and a sensible initial/default selection when required.
 - `type=file` — File picker. The `accept` attribute is a chooser hint, not server validation. The `files` property exposes selected File objects; `multiple` allows several. Use POST and `multipart/form-data` for native file submission.
 - `type=submit` — Submit button state for an input, with optional name/value and form-override attributes. The activated submitter can affect the form request and entry list.
@@ -67,5 +67,6 @@ The second field remains text because postal codes are identifiers, not quantiti
 3. Does `datetime-local` include an offset? **No.**
 4. What does `accept` do for file inputs? **Hints the file picker; server-side checks remain necessary.**
 5. When is a checkbox value included? **When it is checked and otherwise successful.**
+6. What changes when a checkbox has the `switch` attribute? **It represents a two-state switch; the underlying checkedness/submission model remains checkbox-like, and indeterminate state has no effect. Browser UI/support can vary.**
 
 Sources: [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input), [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html).

@@ -110,5 +110,6 @@ email.setCustomValidity(isAllowed(email.value) ? '' : 'Enter an allowed address.
 3. Does `indeterminate` change submitted checkbox data? **No; submitted data still depends on checkedness.**
 4. What does `showPicker()` generally require? **A supported control and an allowed context, commonly transient user activation.**
 5. Which API changes text selection? **`setSelectionRange()` or `setRangeText()` on supported text-entry states.**
+6. What can make `showPicker()` throw even for a supported input type? **The input may be immutable, the call may lack transient user activation, or the document may be in a disallowed cross-origin context (with the standard's historical file/color exceptions).**
 
 Sources: [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [WHATWG form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [MDN HTMLInputElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).

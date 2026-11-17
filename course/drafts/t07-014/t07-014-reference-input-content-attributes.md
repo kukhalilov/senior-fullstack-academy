@@ -43,6 +43,7 @@ Content attributes configure initial/default state and behavior in markup. DOM I
 - `size` — Preferred visible character width for text-like controls; for some types it has different state-specific meaning. It is a presentation hint, not a data-length constraint.
 - `src` — Image URL for `type=image`. Use an appropriate `alt` value; image loading behavior and CSP policy also matter.
 - `step` — Allowed numeric/date/time increment for applicable types and participates in step-mismatch validation. The base value and scale are state-dependent; it is not merely a UI spinner increment.
+- `switch` — Current boolean attribute for checkbox state. When present, the checkbox represents a two-state switch and user agents may expose switch semantics; indeterminate state has no effect. Browser support and presentation vary, so check target browsers and retain a clear accessible label.
 - `type` — Selects the input state and thus UI, value model, applicable attributes, validation, and submission behavior. Missing/invalid values fall back according to the standard, typically to text state.
 - `value` — Default/current value depending on state and whether the live DOM property has been changed. For checkbox/radio it is the submitted value when checked; for file inputs scripts cannot set an arbitrary chosen file path.
 - `width` — Rendered image width for `type=image`, in CSS pixels when used as the dimension attribute.

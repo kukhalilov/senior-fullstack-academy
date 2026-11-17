@@ -69,4 +69,12 @@ This mixes distinct browser models. Use persistent labels; preserve card digits 
 4. Why are telephone and postal values usually text rather than numbers?
 5. Which sensitive values should be avoided in logs and persistent storage?
 
+## Reflection model answers
+
+1. Browser constraints such as `required`, type syntax, length, range, and pattern checks give immediate and accessible feedback. The server must still authenticate, authorize, validate every submitted value and cross-field rule, enforce business invariants, and reject forged or stale data.
+2. `form.elements` is a live collection of associated controls, including controls that are disabled, unnamed, unchecked, or not the submitter. The outgoing entry list filters by submission rules, preserves duplicate names and files, and depends on the submitter and form state.
+3. `formnovalidate` on the chosen submitter bypasses interactive constraint validation for that submission. `formaction` overrides the form's action URL for that submitter. Other submitter overrides can similarly affect method, encoding, or target.
+4. Telephone numbers and postal codes are identifiers/text: arithmetic is not meaningful, leading zeroes and punctuation can matter, and valid formats vary by locale. Use text-like controls with `tel`/`postal-code` autocomplete and `inputmode` hints where useful.
+5. Avoid logging passwords, one-time codes, full payment-card data, security codes, authentication tokens, and unnecessary personal data. Do not persist a card verification code after authorization; redact sensitive request bodies and restrict access to logs.
+
 Sources: [WHATWG HTML forms](https://html.spec.whatwg.org/multipage/forms.html), [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [WHATWG form-control infrastructure](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html), [MDN constraint validation](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation), [MDN form reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form), [PCI SSC card verification code guidance](https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/).

@@ -57,6 +57,15 @@
 5. A form includes a named file input with `accept="image/*"`. Which server checks are still necessary?
 6. A user changes a hidden price field and submits successfully. Which layer must reject the changed price and how should it derive the correct one?
 
+## Scenario model answers
+
+1. Read the actual `SubmitEvent.submitter`, preserve that submitter when constructing `FormData(form, submitter)`, and respect its `formaction`, `formmethod`, `formenctype`, `formnovalidate`, and `formtarget` overrides when implementing the scripted request. Do not infer the operation from whichever button happens to be first or from a stale click handler; submit can also be initiated by keyboard or script.
+2. Use `FormData.getAll("tag")` or iterate `FormData` entries; do not convert it to a plain object that collapses duplicate names. An unchecked checkbox contributes no entry.
+3. `invalid` does not bubble. Attach to each relevant control or use a capturing listener on the form/document; `checkValidity()` and interactive validation can dispatch it for invalid candidates.
+4. A disabled fieldset disables descendant controls except descendants of its first `legend` element child. The exception is based on that first legend, not any later legend or arbitrary caption.
+5. Treat `accept="image/*"` as picker guidance only. The server must authenticate/authorize, enforce count and byte limits, inspect actual content rather than trust filename/MIME metadata, safely decode/process/store it, and reject disallowed content. Apply malware scanning and content-disposition/download policy as appropriate to the product.
+6. The server must ignore the submitted price as authority and derive the amount from trusted catalog, promotion, tax, currency, and inventory rules at transaction time. It must also authorize the purchase and handle stale prices or inventory changes explicitly; a hidden field is user-controlled input.
+
 # Tradeoffs and alternatives
 
 - Native browser validation provides consistent baseline feedback and semantic constraints; custom validation enables domain-specific messaging but must preserve accessibility and can accidentally replace native behavior.
