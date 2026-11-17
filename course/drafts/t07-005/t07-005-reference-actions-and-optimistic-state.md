@@ -8,13 +8,13 @@ This reference covers the React Action state hooks. Form `action` props, `useFor
 
 ## Actions and `useActionState`
 
-An Action is work that may be asynchronous and updates UI around pending/completion. `useActionState(reducerAction, initialState, permalink?)` returns `[state, dispatchAction, isPending]`. The `reducerAction(previousState, actionPayload)` receives the last state (initially `initialState`, then previous result) plus the dispatched payload. `dispatchAction` must be called in an Action context (for example, a form Action or transition) to obtain expected pending/async semantics. Multiple dispatched Actions can queue; state results build on prior results. Initial state is ignored after the first dispatch.
+An Action is a function that handles a user action and may be asynchronous. `useActionState(reducerAction, initialState, permalink?)` returns `[state, dispatchAction, isPending]`. The `reducerAction(previousState, actionPayload)` receives the last state (initially `initialState`, then previous result) plus the dispatched payload. `dispatchAction` must be called in an Action context (for example, a form Action or transition) to obtain expected pending/async semantics. Dispatches through one hook are queued and run sequentially, each receiving the previous result; React documents batching multiple ongoing Actions together as a current limitation. Initial state is ignored after the first dispatch. `dispatchAction` has stable identity.
 
-`isPending` indicates whether dispatched Actions for this hook are pending. Use it for disabled controls/progress UI; do not infer success/failure from pending alone. Return an explicit result/error state for expected failures. For thrown errors, use appropriate try/catch or an error boundary strategy; rejected async work is not automatically converted to a friendly state. `permalink` is an optional unique URL for progressive enhancement with Server Functions/forms before JavaScript loads; it is not a general router redirect argument.
+`isPending` indicates whether dispatched Actions for this hook are pending. Use it for disabled controls/progress UI; do not infer success/failure from pending alone. Return an explicit result/error state for expected failures. If the Action throws, React cancels queued Actions and shows the nearest Error Boundary; catch expected failures inside the Action and return a state the UI can display. `permalink` is an optional unique URL for progressive enhancement with Server Functions/forms before JavaScript loads; the same form/action/permalink must be rendered at the destination. It is not a general router redirect argument.
 
 ## Optimistic state
 
-`useOptimistic(state, updateFn?)` returns `[optimisticState, setOptimistic]`. The first argument is the confirmed base. Without pending Actions, the optimistic value reflects that base; while an Action is pending it can reflect a temporary update. `updateFn(currentState, action)` is a pure reducer for optimistic presentation. `setOptimistic` is used within an Action/transition and can receive a value or update function. When the Action ends, React reconciles back to the latest confirmed prop/state; on failure, show a recoverable error and rely on the confirmed data. Do not treat optimistic values as persisted truth.
+`useOptimistic(value, reducer?)` returns `[optimisticState, setOptimistic]`. The first argument is the confirmed base. Without pending Actions, the optimistic value reflects that base; while an Action is pending it can reflect a temporary update. `reducer(currentState, action)` is a pure reducer for optimistic presentation. `setOptimistic` is used within an Action/transition and can receive a value or updater function. When the Action ends, React reconciles back to the latest confirmed prop/state; on failure, show a recoverable error and rely on the confirmed data. Do not treat optimistic values as persisted truth.
 
 For concurrent Actions, optimistic updates may layer/rebase; make updates idempotent where possible and design failure handling so one rejection does not erase unrelated confirmed changes. Keep server authorization/validation authoritative. An optimistic delete should support restoring the item or refreshing source data on error.
 
@@ -68,8 +68,9 @@ The async action example demonstrates result state and async work; wire dispatch
 - `useActionState(reducerAction, initialState, permalink?)`
 - `reducerAction(previousState, actionPayload)`
 - `dispatchAction`
+- `Sequential useActionState dispatch queue`
 - `useActionState isPending`
-- `useOptimistic(state, updateFn?)`
+- `useOptimistic(value, reducer?)`
 - `Optimistic state`
 - `Optimistic reducer function`
 - `Action pending state`

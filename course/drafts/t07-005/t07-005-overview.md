@@ -1,6 +1,6 @@
 # React state reducer context and action hooks — Big-picture orientation and mental model
 
-Sources: React 19.3 [`useState`](https://react.dev/reference/react/useState), [`useReducer`](https://react.dev/reference/react/useReducer), [`useContext`](https://react.dev/reference/react/useContext), [`useActionState`](https://react.dev/reference/react/useActionState), and [`useOptimistic`](https://react.dev/reference/react/useOptimistic).
+Sources: React 19.3 [`useState`](https://react.dev/reference/react/useState), [`useReducer`](https://react.dev/reference/react/useReducer), [`useContext`](https://react.dev/reference/react/useContext), [`useActionState`](https://react.dev/reference/react/useActionState), [`useOptimistic`](https://react.dev/reference/react/useOptimistic), [`use`](https://react.dev/reference/react/use), [Rules of Hooks](https://react.dev/reference/rules/rules-of-hooks), and [React 18 automatic batching](https://react.dev/blog/2022/03/29/react-v18).
 
 ## Problem and purpose
 
@@ -18,11 +18,11 @@ Context provider → nearest value → subscribing consumers update when value c
 Action → useActionState result/pending status; useOptimistic temporary view
 ```
 
-All Hooks must be called at the top level of a component or custom Hook in stable order. Custom Hooks package reusable behavior, but state remains isolated per component calling the custom Hook.
+Ordinary Hooks must be called at the top level of a component or custom Hook in stable order. React 19's `use` API is an exception, not a Hook: it can read Context or a Promise in conditions/loops but not in `try`/`catch`. Custom Hooks package reusable behavior, but state remains isolated per component calling the custom Hook.
 
 ## Concept map
 
-Use `useState` for independent values and simple transitions; use `useReducer` when related updates form a clear state-transition model. Replace objects and arrays immutably. Use context to avoid threading values through intermediate components, not as a global mutable singleton. Use `useActionState` for Action result state and pending status; `useOptimistic` presents a temporary projection while an Action is pending and returns to confirmed state when the Action completes/fails.
+Use `useState` for independent values and simple transitions; use `useReducer` when related updates form a clear state-transition model. Replace objects and arrays immutably. Use context to avoid threading values through intermediate components, not as a global mutable singleton. Use `useActionState` for Action result state and pending status; `useOptimistic` presents a temporary projection while an Action is pending and returns to confirmed state when the Action completes/fails. React 19 also allows the context object itself as a provider; `.Provider` remains supported.
 
 ## End-to-end walkthrough
 

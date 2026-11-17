@@ -1,6 +1,6 @@
 # React state reducer context and action hooks — Interview questions and reasoning
 
-Sources: React 19.3 [`useState`](https://react.dev/reference/react/useState), [`useReducer`](https://react.dev/reference/react/useReducer), [`useContext`](https://react.dev/reference/react/useContext), [`useActionState`](https://react.dev/reference/react/useActionState), [`useOptimistic`](https://react.dev/reference/react/useOptimistic), and [Rules of Hooks](https://react.dev/reference/rules/rules-of-hooks).
+Sources: React 19.3 [`useState`](https://react.dev/reference/react/useState), [`useReducer`](https://react.dev/reference/react/useReducer), [`createContext`](https://react.dev/reference/react/createContext), [`useContext`](https://react.dev/reference/react/useContext), [`useActionState`](https://react.dev/reference/react/useActionState), [`useOptimistic`](https://react.dev/reference/react/useOptimistic), [`use`](https://react.dev/reference/react/use), [Rules of Hooks](https://react.dev/reference/rules/rules-of-hooks), and [React 18 automatic batching](https://react.dev/blog/2022/03/29/react-v18).
 
 ## Core questions
 
@@ -16,6 +16,8 @@ Sources: React 19.3 [`useState`](https://react.dev/reference/react/useState), [`
 10. Compare confirmed and optimistic state.
 11. What are the Rules of Hooks?
 12. Does a custom Hook share state across callers?
+13. Can `use(context)` or `use(promise)` be called conditionally?
+14. What changed about batching in React 18 and context providers in React 19?
 
 ## Concise interview answers
 
@@ -31,6 +33,8 @@ Sources: React 19.3 [`useState`](https://react.dev/reference/react/useState), [`
 10. Confirmed state is authoritative input; optimistic state is a temporary projection while an Action is pending.
 11. Call Hooks at the top level of function components/custom Hooks in stable order, not conditionally/in loops/events/classes.
 12. No; each component caller has isolated Hook state unless the Hook reads shared context/store.
+13. Yes. React's `use` API is not a Hook and may be used in conditions or loops, but never in `try`/`catch`; ordinary Hooks still require stable top-level calls.
+14. React 18 with `createRoot` expanded automatic batching to promises, timers, native handlers, and other sources. React 19 allows `<Context value>` while retaining `.Provider`.
 
 ## Deep follow-up answers
 

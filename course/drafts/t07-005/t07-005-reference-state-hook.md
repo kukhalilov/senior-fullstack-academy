@@ -1,6 +1,6 @@
 # React state reducer context and action hooks — Reference: State declaration and update APIs
 
-Sources: React 19.3 [`useState`](https://react.dev/reference/react/useState), [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot), [Queueing State Updates](https://react.dev/learn/queueing-a-series-of-state-updates), [Updating Objects in State](https://react.dev/learn/updating-objects-in-state), [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state),.
+Sources: React 19.3 [`useState`](https://react.dev/reference/react/useState), [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot), [Queueing State Updates](https://react.dev/learn/queueing-a-series-of-state-updates), [Updating Objects in State](https://react.dev/learn/updating-objects-in-state), [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state), [React 18 release](https://react.dev/blog/2022/03/29/react-v18), and [React 18 upgrade guide](https://react.dev/blog/2022/03/08/react-18-upgrade-guide).
 
 ## Scope and version
 
@@ -12,11 +12,13 @@ This chapter covers local state declaration and updates. Tree identity/key rules
 
 Set function can receive a next value or a functional updater function. If a queued next value depends on previous state, use `setState(previous => next)`. React queues updater functions and applies them in order, so repeated increments compose; repeated `setState(count + 1)` calls read the same render snapshot and may collapse to the same value. React batches updates in event handling; state is visible on the next render, not synchronously inside the same handler.
 
-React compares next and current state with `Object.is`. If equal, React can skip rendering the component's children (it may still call the component in some circumstances before bailing out; do not rely on invocation counts). Mutating an object/array then passing the same reference can make React treat it as unchanged and also violates purity. Replace objects/arrays immutably; copy nested paths that change. `Array.map`, `filter`, spreads, and immutable transformations are common tools.
+React compares next and current state with `Object.is`. If equal, React can skip rendering the component and its children (it may still call the component in some circumstances before bailing out; do not rely on invocation counts). The setter has stable identity and returns `undefined`. Mutating an object/array then passing the same reference can make React treat it as unchanged and also violates purity. Replace objects/arrays immutably; copy nested paths that change. `Array.map`, `filter`, spreads, and immutable transformations are common tools.
 
 ## Lazy initialization, reset, and previous values
 
-Lazy initializer avoids recalculating an expensive initial value on every render, but the function expression itself is still created; keep it pure. In development Strict Mode may call initializers/updaters twice to find impurity. Use a key to reset a subtree when logical identity changes rather than manually clearing many local values. “Storing previous-render information” is a specialized render-time adjustment pattern documented by React; first ask whether the value is derivable or belongs in a ref/effect/state elsewhere. Avoid extra state that can be derived from current props/state because it causes synchronization bugs.
+Lazy initializer avoids recalculating an expensive initial value on every render, but the function expression itself is still created; keep it pure. In development Strict Mode may call initializers/updaters twice to find impurity. If the state value itself is a function, wrap it: initialize with `useState(() => fn)` and update with `setFn(() => nextFn)`, because passing a function directly means initializer/updater. Use a key to reset a subtree when logical identity changes rather than manually clearing many local values. “Storing previous-render information” is a specialized render-time adjustment pattern documented by React; first ask whether the value is derivable or belongs in a ref/effect/state elsewhere. Avoid extra state that can be derived from current props/state because it causes synchronization bugs.
+
+React 18 expanded automatic batching to updates from promises, timers, native handlers, and other sources when using `createRoot`; earlier versions primarily batched updates in React event handlers. Batching groups updates, but does not make state mutate synchronously in the current handler.
 
 ## Example
 
@@ -54,6 +56,7 @@ Mutating objects/arrays; expecting setter to change current snapshot; using a di
 2. **What is batching?** Multiple updates are processed together to avoid unnecessary renders.
 3. **Why return a new object?** React uses `Object.is`; same reference can be treated as unchanged.
 4. **How should a previous-state increment be expressed?** Functional updater such as `n => n + 1`.
+5. **How store a function in state?** Wrap it in an initializer/updater function (`useState(() => fn)`, `setFn(() => nextFn)`).
 
 ## How this group fits the mental model
 
@@ -74,12 +77,17 @@ The task example uses lazy initialization and immutable array/object replacement
 - `useState(initialState)`
 - `State variable`
 - `set function`
+- `Stable state setter identity`
+- `State setter returns undefined`
 - `Functional updater function`
 - `Lazy initializer function`
+- `Storing a function as state value`
 - `State snapshot per render`
 - `State update queue`
 - `State batching`
+- `React 18 automatic batching with createRoot`
 - `Object.is state bailout`
+- `Strict Mode initializer/updater double call`
 - `Replacing objects in state`
 - `Replacing arrays in state`
 - `Resetting state with a key`

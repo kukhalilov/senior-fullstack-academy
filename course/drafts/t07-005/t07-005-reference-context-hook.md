@@ -8,7 +8,7 @@ Context propagates a value through a render subtree. It is not a replacement for
 
 ## Create and provide
 
-`createContext(defaultValue)` creates a context object. The default is a static fallback used only when no matching provider exists above the consumer; it is not mutable context state. A provider supplies `<SomeContext value={value}>` to descendants. The provider component itself does not read its own value through a hook in the same render; only descendants see it. Nested providers override the value for their subtree, and the nearest provider wins.
+Call `createContext(defaultValue)` outside components to create a context object. The default is a static fallback used only when no matching provider exists above the consumer; it is not mutable context state. In React 19, the context object itself can be rendered as `<SomeContext value={value}>`; before React 19 use `<SomeContext.Provider value={value}>`. `.Provider` remains supported. The older `<SomeContext.Consumer>{value => ...}</SomeContext.Consumer>` render-prop form remains available but is rarely needed with Hooks. The provider component itself does not read its own value through a hook in the same render; only descendants see it. Nested providers override the value for their subtree, and the nearest provider wins.
 
 ## Read and subscribe
 
@@ -36,7 +36,7 @@ function Toolbar() {
 }
 ```
 
-The provider wraps the consumer. A toggle creates a new primitive value; the consumer updates. React 19 allows rendering the context object as provider; older patterns use `<ThemeContext.Provider value={...}>` (the manifest tracks current value syntax).
+The provider wraps the consumer. A toggle creates a new primitive value; the consumer updates. React 19 allows rendering the context object as provider; older code commonly uses `<ThemeContext.Provider value={...}>`.
 
 ## Common mistakes
 
@@ -55,7 +55,7 @@ Context supplies values through a subtree and subscribes consumers to provider v
 
 ## Supplied names explained
 
-The exact index below covers context creation/defaults, provider syntax, consumer hook, nearest-provider lookup, subscription, equality, and memo interaction.
+The exact index below covers context creation/defaults, current and earlier provider syntax, the rarely-used Consumer render prop, the consumer hook, nearest-provider lookup, subscription, equality, and memo interaction.
 
 ## Cross-item comparison
 
@@ -70,10 +70,14 @@ The Theme example shows a state-backed provider and a subscribing toolbar.
 ### Exact terms covered
 
 - `createContext(defaultValue)`
+- `createContext outside components`
 - `Context object`
 - `Context default value`
 - `Context provider value`
 - `<SomeContext value={value}>`
+- `React 19 Context as provider shorthand`
+- `Legacy <SomeContext.Provider value={value}>`
+- `SomeContext.Consumer render-prop API`
 - `useContext(SomeContext)`
 - `Nearest provider lookup`
 - `Context value subscription`

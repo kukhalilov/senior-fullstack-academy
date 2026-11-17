@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 910,
-    "pending": 1431,
-    "claimsChecked": 34211,
-    "claimsCorrected": 1470,
+    "reviewed": 919,
+    "pending": 1422,
+    "claimsChecked": 34584,
+    "claimsCorrected": 1472,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 910,
-    "pendingLessons": 1431
+    "reviewedLessons": 919,
+    "pendingLessons": 1422
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -108115,13 +108115,100 @@
       "topicId": "t07-005",
       "phase": "overview",
       "draft": "course/drafts/t07-005/t07-005-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked the snapshot/queue mental model, state/reducer/context/Action boundaries, optimistic-state description, React 18 batching and React 19 context/use APIs, and topic scope.",
+          "sources": [
+            {
+              "url": "https://react.dev/reference/hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useReducer",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useActionState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useOptimistic",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/use",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/rules/rules-of-hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/state-as-a-snapshot",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-objects-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-arrays-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/29/react-v18",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/12/05/react-19",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/reference/react/hooks",
         "https://react.dev/reference/react/useState",
@@ -108134,22 +108221,114 @@
         "https://react.dev/learn/queueing-a-series-of-state-updates",
         "https://react.dev/learn/state-as-a-snapshot",
         "https://react.dev/learn/updating-objects-in-state",
-        "https://react.dev/learn/updating-arrays-in-state"
+        "https://react.dev/learn/updating-arrays-in-state",
+        "https://react.dev/reference/hooks",
+        "https://react.dev/reference/react/use",
+        "https://react.dev/blog/2022/03/29/react-v18",
+        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+        "https://react.dev/blog/2024/12/05/react-19"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against current React 19.3 references and React Team release notes. Verified all 67 named state/reducer/context/Action/Hook-rule terms; corrected useOptimistic to its current value/reducer signature and distinguished React 19 use API from ordinary Hooks, added legacy Context APIs and current queue/batching nuances. No unresolved issues remain; lesson remains in drafts."
     },
     {
       "taskId": "t07-005-concepts",
       "topicId": "t07-005",
       "phase": "concepts",
       "draft": "course/drafts/t07-005/t07-005-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all claims about state snapshots, updater queues, immutability, reducer contracts, context subscription/equality, Action dispatch/error semantics, optimistic state, and the `use` API exception.",
+          "sources": [
+            {
+              "url": "https://react.dev/reference/hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useReducer",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useActionState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useOptimistic",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/use",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/rules/rules-of-hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/state-as-a-snapshot",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-objects-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-arrays-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/29/react-v18",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/12/05/react-19",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/reference/react/hooks",
         "https://react.dev/reference/react/useState",
@@ -108162,22 +108341,114 @@
         "https://react.dev/learn/queueing-a-series-of-state-updates",
         "https://react.dev/learn/state-as-a-snapshot",
         "https://react.dev/learn/updating-objects-in-state",
-        "https://react.dev/learn/updating-arrays-in-state"
+        "https://react.dev/learn/updating-arrays-in-state",
+        "https://react.dev/reference/hooks",
+        "https://react.dev/reference/react/use",
+        "https://react.dev/blog/2022/03/29/react-v18",
+        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+        "https://react.dev/blog/2024/12/05/react-19"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against current React 19.3 references and React Team release notes. Verified all 67 named state/reducer/context/Action/Hook-rule terms; corrected useOptimistic to its current value/reducer signature and distinguished React 19 use API from ordinary Hooks, added legacy Context APIs and current queue/batching nuances. No unresolved issues remain; lesson remains in drafts."
     },
     {
       "taskId": "t07-005-reference-state-hook",
       "topicId": "t07-005",
       "phase": "reference",
       "draft": "course/drafts/t07-005/t07-005-reference-state-hook.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked useState tuple and initializer/updater function behavior, current snapshots, batching/version nuance, Object.is bailouts, setter identity/return, Strict Mode double calls, function-valued state, immutable replacement, key reset, and render-time previous-value caveat.",
+          "sources": [
+            {
+              "url": "https://react.dev/reference/hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useReducer",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useActionState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useOptimistic",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/use",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/rules/rules-of-hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/state-as-a-snapshot",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-objects-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-arrays-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/29/react-v18",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/12/05/react-19",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/reference/react/hooks",
         "https://react.dev/reference/react/useState",
@@ -108190,22 +108461,114 @@
         "https://react.dev/learn/queueing-a-series-of-state-updates",
         "https://react.dev/learn/state-as-a-snapshot",
         "https://react.dev/learn/updating-objects-in-state",
-        "https://react.dev/learn/updating-arrays-in-state"
+        "https://react.dev/learn/updating-arrays-in-state",
+        "https://react.dev/reference/hooks",
+        "https://react.dev/reference/react/use",
+        "https://react.dev/blog/2022/03/29/react-v18",
+        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+        "https://react.dev/blog/2024/12/05/react-19"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against current React 19.3 references and React Team release notes. Verified all 67 named state/reducer/context/Action/Hook-rule terms; corrected useOptimistic to its current value/reducer signature and distinguished React 19 use API from ordinary Hooks, added legacy Context APIs and current queue/batching nuances. No unresolved issues remain; lesson remains in drafts."
     },
     {
       "taskId": "t07-005-reference-reducer-hook",
       "topicId": "t07-005",
       "phase": "reference",
       "draft": "course/drafts/t07-005/t07-005-reference-reducer-hook.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked useReducer signature, arbitrary action values and conventional action objects, lazy init, pure reducer contract, queued dispatch/stable identity, Object.is bailout, Strict Mode double-call behavior, and comparison guidance.",
+          "sources": [
+            {
+              "url": "https://react.dev/reference/hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useReducer",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useActionState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useOptimistic",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/use",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/rules/rules-of-hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/state-as-a-snapshot",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-objects-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-arrays-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/29/react-v18",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/12/05/react-19",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/reference/react/hooks",
         "https://react.dev/reference/react/useState",
@@ -108218,22 +108581,114 @@
         "https://react.dev/learn/queueing-a-series-of-state-updates",
         "https://react.dev/learn/state-as-a-snapshot",
         "https://react.dev/learn/updating-objects-in-state",
-        "https://react.dev/learn/updating-arrays-in-state"
+        "https://react.dev/learn/updating-arrays-in-state",
+        "https://react.dev/reference/hooks",
+        "https://react.dev/reference/react/use",
+        "https://react.dev/blog/2022/03/29/react-v18",
+        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+        "https://react.dev/blog/2024/12/05/react-19"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against current React 19.3 references and React Team release notes. Verified all 67 named state/reducer/context/Action/Hook-rule terms; corrected useOptimistic to its current value/reducer signature and distinguished React 19 use API from ordinary Hooks, added legacy Context APIs and current queue/batching nuances. No unresolved issues remain; lesson remains in drafts."
     },
     {
       "taskId": "t07-005-reference-context-hook",
       "topicId": "t07-005",
       "phase": "reference",
       "draft": "course/drafts/t07-005/t07-005-reference-context-hook.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked context creation/default behavior, creating context outside components, React 19 provider shorthand plus continuing .Provider support, Consumer render-prop API, nearest-provider lookup, same-component caveat, Object.is updates, memo behavior, and duplicate module identity risk.",
+          "sources": [
+            {
+              "url": "https://react.dev/reference/hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useReducer",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useActionState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useOptimistic",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/use",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/rules/rules-of-hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/state-as-a-snapshot",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-objects-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-arrays-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/29/react-v18",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/12/05/react-19",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/reference/react/hooks",
         "https://react.dev/reference/react/useState",
@@ -108246,22 +108701,114 @@
         "https://react.dev/learn/queueing-a-series-of-state-updates",
         "https://react.dev/learn/state-as-a-snapshot",
         "https://react.dev/learn/updating-objects-in-state",
-        "https://react.dev/learn/updating-arrays-in-state"
+        "https://react.dev/learn/updating-arrays-in-state",
+        "https://react.dev/reference/hooks",
+        "https://react.dev/reference/react/use",
+        "https://react.dev/blog/2022/03/29/react-v18",
+        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+        "https://react.dev/blog/2024/12/05/react-19"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against current React 19.3 references and React Team release notes. Verified all 67 named state/reducer/context/Action/Hook-rule terms; corrected useOptimistic to its current value/reducer signature and distinguished React 19 use API from ordinary Hooks, added legacy Context APIs and current queue/batching nuances. No unresolved issues remain; lesson remains in drafts."
     },
     {
       "taskId": "t07-005-reference-actions-and-optimistic-state",
       "topicId": "t07-005",
       "phase": "reference",
       "draft": "course/drafts/t07-005/t07-005-reference-actions-and-optimistic-state.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked useActionState signature/tuple, reducerAction payload ordering, sequential dispatch queue and current batching limitation, isPending, permalink progressive enhancement constraints, thrown versus returned errors, useOptimistic(value,reducer?) contract, Action context, and reconciliation with confirmed state.",
+          "sources": [
+            {
+              "url": "https://react.dev/reference/hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useReducer",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useActionState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useOptimistic",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/use",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/rules/rules-of-hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/state-as-a-snapshot",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-objects-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-arrays-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/29/react-v18",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/12/05/react-19",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/reference/react/hooks",
         "https://react.dev/reference/react/useState",
@@ -108274,22 +108821,114 @@
         "https://react.dev/learn/queueing-a-series-of-state-updates",
         "https://react.dev/learn/state-as-a-snapshot",
         "https://react.dev/learn/updating-objects-in-state",
-        "https://react.dev/learn/updating-arrays-in-state"
+        "https://react.dev/learn/updating-arrays-in-state",
+        "https://react.dev/reference/hooks",
+        "https://react.dev/reference/react/use",
+        "https://react.dev/blog/2022/03/29/react-v18",
+        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+        "https://react.dev/blog/2024/12/05/react-19"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against current React 19.3 references and React Team release notes. Verified all 67 named state/reducer/context/Action/Hook-rule terms; corrected useOptimistic to its current value/reducer signature and distinguished React 19 use API from ordinary Hooks, added legacy Context APIs and current queue/batching nuances. No unresolved issues remain; lesson remains in drafts."
     },
     {
       "taskId": "t07-005-reference-hook-rules-and-custom-hooks",
       "topicId": "t07-005",
       "phase": "reference",
       "draft": "course/drafts/t07-005/t07-005-reference-hook-rules-and-custom-hooks.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 37,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked ordinary Hook call positions/order and custom Hook composition/isolation; verified React 19 `use` is not a Hook, its condition/loop exception, component/Hook restriction, and try/catch prohibition against current docs.",
+          "sources": [
+            {
+              "url": "https://react.dev/reference/hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useReducer",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useActionState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useOptimistic",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/use",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/rules/rules-of-hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/state-as-a-snapshot",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-objects-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-arrays-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/29/react-v18",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/12/05/react-19",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/reference/react/hooks",
         "https://react.dev/reference/react/useState",
@@ -108302,22 +108941,114 @@
         "https://react.dev/learn/queueing-a-series-of-state-updates",
         "https://react.dev/learn/state-as-a-snapshot",
         "https://react.dev/learn/updating-objects-in-state",
-        "https://react.dev/learn/updating-arrays-in-state"
+        "https://react.dev/learn/updating-arrays-in-state",
+        "https://react.dev/reference/hooks",
+        "https://react.dev/reference/react/use",
+        "https://react.dev/blog/2022/03/29/react-v18",
+        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+        "https://react.dev/blog/2024/12/05/react-19"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against current React 19.3 references and React Team release notes. Verified all 67 named state/reducer/context/Action/Hook-rule terms; corrected useOptimistic to its current value/reducer signature and distinguished React 19 use API from ordinary Hooks, added legacy Context APIs and current queue/batching nuances. No unresolved issues remain; lesson remains in drafts."
     },
     {
       "taskId": "t07-005-practice",
       "topicId": "t07-005",
       "phase": "practice",
       "draft": "course/drafts/t07-005/t07-005-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 46,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all eleven worked scenarios/solutions for updater composition, mutation, reducer selection, context identity/provider timing, optimistic failures, ordinary Hook rules, custom Hook isolation, function-valued state, use exception, and React 18/19 migration behavior.",
+          "sources": [
+            {
+              "url": "https://react.dev/reference/hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useReducer",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useActionState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useOptimistic",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/use",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/rules/rules-of-hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/state-as-a-snapshot",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-objects-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-arrays-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/29/react-v18",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/12/05/react-19",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/reference/react/hooks",
         "https://react.dev/reference/react/useState",
@@ -108330,22 +109061,114 @@
         "https://react.dev/learn/queueing-a-series-of-state-updates",
         "https://react.dev/learn/state-as-a-snapshot",
         "https://react.dev/learn/updating-objects-in-state",
-        "https://react.dev/learn/updating-arrays-in-state"
+        "https://react.dev/learn/updating-arrays-in-state",
+        "https://react.dev/reference/hooks",
+        "https://react.dev/reference/react/use",
+        "https://react.dev/blog/2022/03/29/react-v18",
+        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+        "https://react.dev/blog/2024/12/05/react-19"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against current React 19.3 references and React Team release notes. Verified all 67 named state/reducer/context/Action/Hook-rule terms; corrected useOptimistic to its current value/reducer signature and distinguished React 19 use API from ordinary Hooks, added legacy Context APIs and current queue/batching nuances. No unresolved issues remain; lesson remains in drafts."
     },
     {
       "taskId": "t07-005-interview",
       "topicId": "t07-005",
       "phase": "interview",
       "draft": "course/drafts/t07-005/t07-005-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 44,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all concise answers, scenarios and tradeoffs for state, reducer, context, Actions, custom Hooks, React 18 batching, React 19 provider syntax, and the `use` exception.",
+          "sources": [
+            {
+              "url": "https://react.dev/reference/hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useReducer",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useContext",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useActionState",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/useOptimistic",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/use",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/rules/rules-of-hooks",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/state-as-a-snapshot",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-objects-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/updating-arrays-in-state",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/29/react-v18",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/12/05/react-19",
+              "section": "Current React 19.3 API reference, learning guidance, or official React 18/19 release documentation relevant to the checked claim",
+              "verdict": "supported; signature/version error or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/reference/react/hooks",
         "https://react.dev/reference/react/useState",
@@ -108358,9 +109181,14 @@
         "https://react.dev/learn/queueing-a-series-of-state-updates",
         "https://react.dev/learn/state-as-a-snapshot",
         "https://react.dev/learn/updating-objects-in-state",
-        "https://react.dev/learn/updating-arrays-in-state"
+        "https://react.dev/learn/updating-arrays-in-state",
+        "https://react.dev/reference/hooks",
+        "https://react.dev/reference/react/use",
+        "https://react.dev/blog/2022/03/29/react-v18",
+        "https://react.dev/blog/2022/03/08/react-18-upgrade-guide",
+        "https://react.dev/blog/2024/12/05/react-19"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against current React 19.3 references and React Team release notes. Verified all 67 named state/reducer/context/Action/Hook-rule terms; corrected useOptimistic to its current value/reducer signature and distinguished React 19 use API from ordinary Hooks, added legacy Context APIs and current queue/batching nuances. No unresolved issues remain; lesson remains in drafts."
     },
     {
       "taskId": "t07-006-overview",
@@ -146456,6 +147284,14 @@
       "status": "full claim and frozen-inventory audit complete for all 10 lessons",
       "findings": [
         "Audited all 73 named items in six inventories and all ten lessons. Verified function/class component guidance, JSX syntax and transform requirements, React DOM property/style details, props/defaults/composition, JavaScript conditional/list behavior, and event handler/propagation examples. Corrected an overbroad event-bubbling claim, repaired an invalid exercise snippet and malformed source references, and added the onScroll non-bubbling exception, React 19 JSX transform requirement, aria/data spelling rule, and numeric style-unit behavior. No unresolved scope gaps or factual issues remain; lessons remain drafts."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "React state, reducers, Context, Actions, optimistic state, and Hook rules (t07-005)",
+      "status": "full claim and frozen-inventory audit complete for all 9 lessons",
+      "findings": [
+        "Audited all 67 terms across five inventories and all nine lessons against current React 19.3 documentation plus React 18/19 release notes. Verified state snapshots/update queues, functional and lazy initialization, immutability/Object.is, reducer purity, Context defaults/providers/subscriptions, Action and optimistic semantics, and custom Hook rules. Corrected the `useOptimistic(value, reducer?)` signature and the blanket Hook-rule wording to account for React 19’s non-Hook `use` API exception; added older Context.Provider/Consumer surface and React 18 automatic-batching context. No unresolved omissions or claims remain; lessons remain drafts."
       ]
     }
   ]

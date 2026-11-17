@@ -1,6 +1,6 @@
 # React state reducer context and action hooks — Exercises and worked solutions
 
-Sources: React 19.3 [`useState`](https://react.dev/reference/react/useState), [`useReducer`](https://react.dev/reference/react/useReducer), [`useContext`](https://react.dev/reference/react/useContext), [`useActionState`](https://react.dev/reference/react/useActionState), [`useOptimistic`](https://react.dev/reference/react/useOptimistic), [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot), and [Queueing State Updates](https://react.dev/learn/queueing-a-series-of-state-updates).
+Sources: React 19.3 [`useState`](https://react.dev/reference/react/useState), [`useReducer`](https://react.dev/reference/react/useReducer), [`useContext`](https://react.dev/reference/react/useContext), [`useActionState`](https://react.dev/reference/react/useActionState), [`useOptimistic`](https://react.dev/reference/react/useOptimistic), [`use`](https://react.dev/reference/react/use), [Rules of Hooks](https://react.dev/reference/rules/rules-of-hooks), [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot), [Queueing State Updates](https://react.dev/learn/queueing-a-series-of-state-updates), and [React 18 automatic batching](https://react.dev/blog/2022/03/29/react-v18).
 
 ## Goals
 
@@ -73,6 +73,24 @@ Two components call `useCounter()` and assume they share a count.
 
 **Solution:** Each caller receives isolated Hook state. Lift state to a common parent and pass props, or use context/store if shared subtree-wide subscription is appropriate.
 
+### 9. Store a callback in state
+
+`const [callback, setCallback] = useState(onSave)` unexpectedly calls `onSave` as an initializer. How should a function value be stored and replaced?
+
+**Solution:** Wrap the function in another function: `const [callback, setCallback] = useState(() => onSave)` and `setCallback(() => nextCallback)`. React interprets a function argument as initializer/updater logic.
+
+### 10. Apply React 19's `use` exception
+
+`if (promise) { const data = use(promise); }` is inside a component. Does this violate Rules of Hooks? What block remains forbidden?
+
+**Solution:** `use(promise)` is an API, not a Hook, and React explicitly permits it in conditions and loops. It must still run inside a component or Hook and cannot be placed in `try`/`catch`; ordinary Hooks such as `useState` remain top-level only.
+
+### 11. Choose a Context provider API
+
+An existing React 18 example uses `<ThemeContext.Provider value={theme}>`. Must it be rewritten for React 19?
+
+**Solution:** No. React 19 permits `<ThemeContext value={theme}>` as shorthand; `.Provider` remains supported. `<ThemeContext.Consumer>` also remains available but is a less common render-prop alternative to `useContext`.
+
 ## Progressive hints
 
 Identify the render snapshot; ask whether an update depends on previous queued state; identify data owner and provider boundary; then check whether the Hook call happens on every render in the same order.
@@ -83,8 +101,8 @@ Each exercise gives a complete fix. Async Actions require an Action context and 
 
 ## Tests and edge cases
 
-Test batched increments, same-reference bailouts, nested object updates, reducer exhaustive actions, no provider/default versus undefined provider, context object identity, memo consumers, Action pending/error/success and concurrent submissions, optimistic rollback, and conditional Hook paths.
+Test batched increments from React events and promises under `createRoot`, same-reference bailouts, function-valued state, nested object updates, reducer exhaustive actions and identity, no provider/default versus undefined provider, Context.Provider/Consumer compatibility, context object identity, memo consumers, Action pending/error/success and sequential submissions, optimistic rollback, ordinary conditional Hook violations, and the special `use` API condition/loop exception.
 
 ## Reflection questions
 
-Who owns each piece of state? Does it need to be shared or can it remain local? Is the value derived? Is optimistic feedback reconciled with confirmed data? Are all Hooks called unconditionally?
+Who owns each piece of state? Does it need to be shared or can it remain local? Is the value derived? Is optimistic feedback reconciled with confirmed data? Is this an ordinary Hook (top-level only) or the special `use` API?

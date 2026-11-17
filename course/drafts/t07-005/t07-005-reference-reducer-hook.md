@@ -8,7 +8,7 @@ This reference covers reducer-based local state. `useActionState` is a separate 
 
 ## API contract
 
-`useReducer(reducer, initialArg, init?)` returns `[state, dispatch]`. Call at the top level. The reducer receives current state and an action object and returns next state. `initialArg` is used directly if no initializer exists; optional `init(initialArg)` computes initial state lazily. Reducer and initializer must be pure. Dispatch queues an action for a later render; it does not update the current state snapshot. Dispatch has stable identity.
+`useReducer(reducer, initialArg, init?)` returns `[state, dispatch]`. Call at the top level. The reducer receives current state and an action value and returns next state; actions are conventionally objects with a `type`, but React does not require that shape. `initialArg` is used directly if no initializer exists; optional `init(initialArg)` computes initial state lazily. Reducer and initializer must be pure. Dispatch queues an action for a later render; it does not update the current state snapshot. Dispatch has stable identity and returns no value. In development Strict Mode may call the reducer and initializer twice to expose impurity. If the returned state is `Object.is`-equal to current state, React can skip rendering the component and its children.
 
 Actions are plain values describing intent (`{type: 'item/added', item}`). Reducers switch on action type and return immutable next state. Every branch must return valid state; avoid accidental `undefined`, mutation, I/O, random values, or reading mutable globals. A reducer is a state transition function `next = reducer(current, action)` and is easy to test independently.
 
@@ -72,7 +72,10 @@ The quantity/name reducer demonstrates multiple named transitions over one coher
 - `Reducer function`
 - `Action object`
 - `dispatch function`
+- `Stable dispatch identity`
+- `Object.is reducer state bailout`
 - `Reducer initializer function`
+- `Reducer and initializer Strict Mode double call`
 - `Reducer purity`
 - `Reducer state transition`
 - `Reducer versus useState`
