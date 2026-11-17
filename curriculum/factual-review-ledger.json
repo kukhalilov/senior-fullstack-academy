@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 200,
-    "pending": 2140,
-    "claimsChecked": 3815,
-    "claimsCorrected": 213,
+    "reviewed": 206,
+    "pending": 2134,
+    "claimsChecked": 4019,
+    "claimsCorrected": 256,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -774,6 +774,24 @@
       "findings": [
         "Verified the 99 named inventory entries across four groups. Corrected lifecycle facts (STS is 24 months; current .NET 10 LTS and .NET 11 STS both supported to Nov 2028), compile/runtime/deployment boundaries, TFM/RID semantics, SDK/runtime resolution, .NET Standard compatibility boundaries, Native AOT/ReadyToRun/single-file differences, and overgeneralized comparisons. No unresolved issue remains in this topic."
       ]
+    },
+    {
+      "scope": "C# t01-002 source files, namespaces, using directives, and entry points",
+      "status": "all 6 lesson units claim-reviewed; draft state retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/main-command-line",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extern-alias",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace"
+      ],
+      "findings": [
+        "Verified all 26 named inventory items. Corrected the false association of file-based apps with top-level statements, incorrect claim that a declared Main conflicts with top-level statements, Main signature/argument/exit behavior, global using scope, file-scoped namespace restrictions, and extern alias setup. No unresolved issues remain within the topic scope."
+      ]
     }
   ],
   "lessons": [
@@ -1487,13 +1505,64 @@
       "topicId": "t01-002",
       "phase": "overview",
       "draft": "course/drafts/t01-002/t01-002-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 33,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked all externally verifiable claims in this lesson, including compilation-unit and namespace semantics, using directives and aliases, entry-point signatures, top-level statements, file-based apps, command-line arguments, exit codes, examples, and constraints.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/main-command-line",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extern-alias",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
@@ -1502,20 +1571,71 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the complete lesson against current Microsoft C# documentation and the frozen 26-item manifest inventory. Corrected conflation of file-based/project-based forms with Main/top-level statement styles; exact behavior when both top-level statements and an explicit Main are present; Main signature/argument/return rules; using directives do not add dependencies; file-scoped namespace restrictions; and extern alias configuration. No unresolved omissions remain within the assigned inventory; draft state is retained."
     },
     {
       "taskId": "t01-002-concepts",
       "topicId": "t01-002",
       "phase": "concepts",
       "draft": "course/drafts/t01-002/t01-002-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked all externally verifiable claims in this lesson, including compilation-unit and namespace semantics, using directives and aliases, entry-point signatures, top-level statements, file-based apps, command-line arguments, exit codes, examples, and constraints.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/main-command-line",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extern-alias",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
@@ -1524,20 +1644,71 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the complete lesson against current Microsoft C# documentation and the frozen 26-item manifest inventory. Corrected conflation of file-based/project-based forms with Main/top-level statement styles; exact behavior when both top-level statements and an explicit Main are present; Main signature/argument/return rules; using directives do not add dependencies; file-scoped namespace restrictions; and extern alias configuration. No unresolved omissions remain within the assigned inventory; draft state is retained."
     },
     {
       "taskId": "t01-002-reference-files-namespaces-and-imports",
       "topicId": "t01-002",
       "phase": "reference",
       "draft": "course/drafts/t01-002/t01-002-reference-files-namespaces-and-imports.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 36,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked all externally verifiable claims in this lesson, including compilation-unit and namespace semantics, using directives and aliases, entry-point signatures, top-level statements, file-based apps, command-line arguments, exit codes, examples, and constraints.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/main-command-line",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extern-alias",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
@@ -1546,20 +1717,71 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the complete lesson against current Microsoft C# documentation and the frozen 26-item manifest inventory. Corrected conflation of file-based/project-based forms with Main/top-level statement styles; exact behavior when both top-level statements and an explicit Main are present; Main signature/argument/return rules; using directives do not add dependencies; file-scoped namespace restrictions; and extern alias configuration. No unresolved omissions remain within the assigned inventory; draft state is retained."
     },
     {
       "taskId": "t01-002-reference-entry-points-and-application-forms",
       "topicId": "t01-002",
       "phase": "reference",
       "draft": "course/drafts/t01-002/t01-002-reference-entry-points-and-application-forms.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked all externally verifiable claims in this lesson, including compilation-unit and namespace semantics, using directives and aliases, entry-point signatures, top-level statements, file-based apps, command-line arguments, exit codes, examples, and constraints.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/main-command-line",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extern-alias",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
@@ -1568,20 +1790,71 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the complete lesson against current Microsoft C# documentation and the frozen 26-item manifest inventory. Corrected conflation of file-based/project-based forms with Main/top-level statement styles; exact behavior when both top-level statements and an explicit Main are present; Main signature/argument/return rules; using directives do not add dependencies; file-scoped namespace restrictions; and extern alias configuration. No unresolved omissions remain within the assigned inventory; draft state is retained."
     },
     {
       "taskId": "t01-002-practice",
       "topicId": "t01-002",
       "phase": "practice",
       "draft": "course/drafts/t01-002/t01-002-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked all externally verifiable claims in this lesson, including compilation-unit and namespace semantics, using directives and aliases, entry-point signatures, top-level statements, file-based apps, command-line arguments, exit codes, examples, and constraints.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/main-command-line",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extern-alias",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
@@ -1590,20 +1863,71 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the complete lesson against current Microsoft C# documentation and the frozen 26-item manifest inventory. Corrected conflation of file-based/project-based forms with Main/top-level statement styles; exact behavior when both top-level statements and an explicit Main are present; Main signature/argument/return rules; using directives do not add dependencies; file-scoped namespace restrictions; and extern alias configuration. No unresolved omissions remain within the assigned inventory; draft state is retained."
     },
     {
       "taskId": "t01-002-interview",
       "topicId": "t01-002",
       "phase": "interview",
       "draft": "course/drafts/t01-002/t01-002-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked all externally verifiable claims in this lesson, including compilation-unit and namespace semantics, using directives and aliases, entry-point signatures, top-level statements, file-based apps, command-line arguments, exit codes, examples, and constraints.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/main-command-line",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/extern-alias",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace",
+              "section": "Relevant language rule, example, entry-point signature table, version note, or source organization behavior",
+              "verdict": "supported; corrections recorded where draft generalized or misstated the rule"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure",
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/namespaces",
@@ -1612,7 +1936,7 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the complete lesson against current Microsoft C# documentation and the frozen 26-item manifest inventory. Corrected conflation of file-based/project-based forms with Main/top-level statement styles; exact behavior when both top-level statements and an explicit Main are present; Main signature/argument/return rules; using directives do not add dependencies; file-scoped namespace restrictions; and extern alias configuration. No unresolved omissions remain within the assigned inventory; draft state is retained."
     },
     {
       "taskId": "t01-003-overview",

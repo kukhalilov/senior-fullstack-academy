@@ -35,8 +35,8 @@ Think of your C# project like a library:
     * **Global directives**: Prefixed with `global`, these apply to every file in your project, reducing repetition.
 
 ### Starting the Program
-* **Project-based app**: The traditional approach where you define a `Main` method inside a class.
-* **File-based app**: A modern approach (introduced in C# 14) that allows you to write code directly in a file without wrapping it in a class or namespace, using **Top-level statements**.
+* **Project-based app**: An app built from a project file such as `.csproj`, usually with one or more source files.
+* **File-based app**: Introduced with C# 14 and .NET 10, it runs a single `.cs` source file without a project file. File-based and project-based are application-form choices; either can use top-level statements or an explicit `Main`.
 
 ## Worked examples
 
@@ -54,7 +54,7 @@ namespace MyApp {
 }
 ```
 
-### Example 2: Modern File-based App
+### Example 2: Project-based App with Top-level Statements
 ```csharp
 using static System.Console; // Static using directive
 
@@ -65,7 +65,7 @@ WriteLine("Hello from top-level statements!");
 ## Misconceptions and edge cases
 * **Misconception**: "I must use a `Main` method." 
     * **Reality**: In modern C#, you can use **Top-level statements**. The compiler creates the `Main` entry point for you behind the scenes.
-* **Edge Case**: If you have multiple files with `Main` methods, the compiler will throw an error because it doesn't know which one to start with.
+* **Edge Case**: Multiple `Main` methods can exist; with no top-level statements, select the desired entry point using the `StartupObject` compiler option. If top-level statements are present, their generated entry point is selected.
 * **Edge Case**: `static Task<int> Main` is useful when your program needs to perform asynchronous work (like downloading a file) before exiting.
 
 ## Knowledge checks with answers
@@ -76,8 +76,8 @@ WriteLine("Hello from top-level statements!");
 2. **What is the purpose of a `static using directive`?**
    * *Answer*: It allows you to access static members of a type directly without typing the type name (e.g., calling `WriteLine()` instead of `Console.WriteLine()`).
 
-3. **Can a program have both a `Main` method and top-level statements?**
-   * *Answer*: No, you must choose one approach for the entry point of your application.
+3. **Can a project declare `Main` and also use top-level statements?**
+   * *Answer*: It can declare a `Main` method, but top-level statements generate the selected entry point; the explicit method cannot be selected as the entry point in that compilation.
 
 4. **What does the `int` return type in `static int Main()` represent?**
    * *Answer*: It represents the **Program exit code**, which tells the operating system whether the program finished successfully (usually `0`) or encountered an error.

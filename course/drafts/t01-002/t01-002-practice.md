@@ -87,8 +87,8 @@ WriteLine("Hello!"); // No 'Console.' prefix needed
 
 ## Tests and edge cases
 
-* **Edge Case:** What happens if you have both a `Main` method and top-level statements? (The compiler will report an error; only one entry point is allowed).
-* **Edge Case:** Can you have multiple `Main` methods? (Yes, but you must specify which one is the entry point in your project configuration).
+* **Edge Case:** What happens if a project declares `Main` and also has top-level statements? (The compiler-generated entry point from top-level statements is selected; the declared method cannot be chosen as the entry point for that compilation.)
+* **Edge Case:** Can a project have multiple `Main` declarations? (Yes, if there are no top-level statements, specify the entry point with the `StartupObject` compiler option when needed.)
 * **Test:** If your `Main` returns `1`, does the operating system receive it? (Yes, it is passed as the process exit code).
 
 ---

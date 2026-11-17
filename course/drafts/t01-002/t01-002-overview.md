@@ -8,14 +8,14 @@
 In C#, code is not just a single block of text; it is a collection of files that must be organized to remain readable and maintainable. As a project grows, you need a way to group related code (namespaces), bring in external functionality (using directives), and define exactly where the computer should start executing your program (entry points). This topic provides the structural rules for how C# source files are organized and how they transition from raw text into a running application.
 
 # Plain-language mental model
-Think of a C# project like a large library:
-*   **Compilation units (Source files):** These are the individual books on the shelves.
-*   **Namespaces:** These are the sections of the library (e.g., "History," "Science"). They prevent name collisions—you can have a book titled "Introduction" in both sections without confusion.
-*   **Using directives:** These are "shortcuts" or "bookmarks." Instead of walking to the "Science" section every time you need a specific book, you place a bookmark on your desk so you can refer to it by its short title.
-*   **Entry point:** This is the "front door" of the library. It is the specific location where the program begins its work when you run it.
+Think of a C# application like a library:
+*   **Compilation units (Source files):** These are individual books or folders of material; a project may also use one file without a project file.
+*   **Namespaces:** These are logical sections of the library. Their names distinguish types; they do not have to mirror folders.
+*   **Using directives:** These are name shortcuts. They change how you refer to types or static members; they do not add packages or load files.
+*   **Entry point:** This is the designated starting point of an executable: an explicit `Main` method or compiler-generated entry point for top-level statements.
 
 # How the parts fit together
-C# organizes code hierarchically. A **project** contains multiple **compilation units** (source files). Inside these files, you declare **namespaces** to group your **type declarations** (like classes or structs). To use types from other namespaces, you use **using directives**. Finally, the compiler looks for a specific **entry point**—either a traditional `Main` method or modern **top-level statements**—to determine how to launch the application.
+C# source files contain declarations, namespaces, and (in executable contexts) possibly top-level statements. A project can contain multiple compilation units; file-based apps can run from one `.cs` file without a project file. Namespaces logically organize types, and `using` directives provide shorter names. An executable has one entry point: an explicit `Main` method or compiler-generated entry point from top-level statements.
 
 # Concept map
 1.  **Source Units:** The physical file structure.
@@ -27,17 +27,17 @@ C# organizes code hierarchically. A **project** contains multiple **compilation 
 # End-to-end walkthrough
 Imagine a simple "Hello World" program:
 
-1.  **The File:** You create a file. In a modern **file-based app**, you use **top-level statements**. You simply write `Console.WriteLine("Hello!");`.
-2.  **The Namespace:** If you add a class, you wrap it in a **file-scoped namespace declaration** to keep it organized.
-3.  **The Import:** You add a `using System;` directive at the top so you can type `Console` instead of `System.Console`.
-4.  **The Execution:** When you run the program, the compiler treats your top-level code as the **Main method**. If you need to accept input, you can access the `args` array (representing **command-line arguments**) directly.
-5.  **The Exit:** If your program finishes successfully, it returns an implicit exit code of `0`. You can explicitly return an integer to signal success or failure to the operating system.
+1.  **Choose an app form:** With C# 14 and .NET 10 or later, a file-based app can run from one `.cs` file without a project file. A project-based app uses a `.csproj`. Either form can use top-level statements or an explicit `Main` method.
+2.  **Organize types:** If you add a type, place it in a namespace if useful. File-scoped and block-scoped declarations are alternatives; namespaces need not match folders.
+3.  **Resolve names:** An explicit `using System;` lets you write `Console` instead of `System.Console`. SDK implicit usings may also provide that name.
+4.  **Execution:** Top-level statements generate an entry point. The implicit `args` variable contains command-line arguments.
+5.  **Exit:** An `int` returned from `Main` or top-level code becomes the process exit code. A `void`/`Task` entry point does not explicitly return a status; normal process completion generally produces zero.
 
 Source: [Microsoft Learn C# Program Structure](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure)
 
 # When to use it and tradeoffs
-*   **Top-level statements vs. Main method:** Use top-level statements for small utilities or simple scripts to reduce "boilerplate" (repetitive code). Use a formal `Main` method when you need explicit control over the entry point signature or are working in a legacy project-based app.
-*   **File-scoped vs. Block-scoped namespaces:** Use file-scoped namespaces to reduce indentation levels and keep your code cleaner. Use block-scoped namespaces if you need to define multiple namespaces within a single file (rare).
+*   **Top-level statements vs. Main method:** Top-level statements reduce entry-point boilerplate and work for projects of any size. Use an explicit `Main` when you need a visible signature, arguments/return type control, or consistency with an existing codebase.
+*   **File-scoped vs. Block-scoped namespaces:** File-scoped syntax reduces indentation when the file has one namespace. Block-scoped syntax can express multiple namespace declarations within one file.
 *   **Global using directives:** Use these to avoid repeating common imports across every file in your project, but be careful: too many global imports can make it difficult to track where a type originated.
 
 # What later lessons cover

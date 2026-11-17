@@ -7,7 +7,7 @@
 # Source units, namespaces, and using directives
 
 ## Scope and version
-This lesson covers the structural organization of C# source code as of **C# 15 stable on .NET 11 GA** (checked 2026-11-14). It focuses on how code is grouped into files and namespaces, and how `using` directives manage name availability. 
+This lesson covers the structural organization of C# source code. Microsoft Learn checked 2026-11-17 lists C# 15 as current for .NET 11. Namespace and using syntax here is not tied to a specific language version except where noted.
 
 *Source: [Microsoft Learn C# Fundamentals](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure)*
 
@@ -19,24 +19,24 @@ In C#, code is not just a loose collection of instructions. It is organized into
 
 ## Supplied names explained
 
-*   **Compilation unit**: The technical term for a single `.cs` source file. It is the top-level structure that contains your code.
-*   **Namespace**: A logical grouping of related types. It prevents naming collisions (e.g., having two `Logger` classes in different namespaces).
+*   **Compilation unit**: A C# source file as processed by the compiler. A project compilation may combine multiple source files; file-based apps can also run from one source file without a project.
+*   **Namespace**: A logical naming scope for types. It can help distinguish same-named types; namespace names need not match folders.
 *   **Type declaration**: The definition of a class, struct, interface, enum, or delegate within a compilation unit.
 *   **File-scoped namespace declaration**: A syntax where the namespace covers the entire file without requiring curly braces `{}`.
 *   **Block-scoped namespace declaration**: The traditional syntax where a namespace is wrapped in curly braces `{}`.
-*   **Namespace using directive**: Imports a namespace so you can use its types directly.
+*   **Namespace using directive**: Allows unqualified lookup of names in the named namespace; it does not add an assembly, package, or source file to the project.
 *   **Static using directive**: Imports the static members of a class so you can call them without the class name (e.g., `WriteLine` instead of `Console.WriteLine`).
 *   **Alias using directive**: Assigns a custom name to a type or namespace to resolve naming conflicts or simplify long names.
-*   **Global using directive**: A `using` directive that applies to every file in the project.
-*   **Global static using directive**: A `static using` that applies to every file in the project.
-*   **Global alias using directive**: An `alias using` that applies to every file in the project.
-*   **Extern alias directive**: Allows you to reference different versions of the same assembly by assigning them unique aliases.
+*   **Global using directive**: A using directive whose scope applies across the compilation, commonly the project. It must appear before non-using declarations in its source file.
+*   **Global static using directive**: A static using directive whose scope applies across the compilation.
+*   **Global alias using directive**: A globally scoped alias directive that makes an alias available throughout the compilation.
+*   **Extern alias directive**: Makes an assembly reference configured with an extern alias available under that alias. It can disambiguate conflicting names; the alias is configured on the assembly reference and does not itself select a version.
 
 ## Cross-item comparison
 
 | Feature | Comparison |
 | :--- | :--- |
-| **File-scoped vs. Block-scoped namespace** | File-scoped reduces indentation and is cleaner for single-namespace files; Block-scoped allows multiple namespaces in one file. |
+| **File-scoped vs. Block-scoped namespace** | File-scoped applies to the remainder of the file and permits only one file-scoped namespace declaration; block-scoped syntax can declare multiple namespaces in one file. |
 | **Standard vs. Global using** | Standard `using` applies only to the current file; `Global using` applies to the entire project. |
 | **Namespace vs. Static using** | Namespace `using` imports types (like `List`); Static `using` imports members (like `Math.PI`). |
 
@@ -73,7 +73,7 @@ class Program {
 *Answer: A compilation unit is the physical file (.cs), while a namespace is a logical container for types within one or more files.*
 
 **2. When would you use an `extern alias` directive?**
-*Answer: When you need to use two different versions of the same library in the same project.*
+*Answer: When an assembly reference has an extern alias configured, for example to disambiguate types exposed by multiple referenced assemblies. The alias must also be configured in the project/reference setup.*
 
 **3. How does a `static using` directive change your code?**
 *Answer: It allows you to access static members of a class directly without prefixing them with the class name.*

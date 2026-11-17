@@ -9,7 +9,7 @@
 This lesson helps you explain how C# code is structured and how applications begin execution. 
 
 ### Mental Model
-Think of a C# project as a library. **Namespaces** are the shelves that organize your books (**Types**). **Source files** are the pages, and **using directives** are the index cards that let you find books on other shelves without typing their full location. The **Entry Point** is the "Start" button of your application, which can be a formal `Main` method or simplified **Top-level statements**.
+Think of C# source files as units compiled into an application. **Namespaces** give types logical names, and **using directives** shorten how code refers to names. A project may use a file-based single source form or a project file; either can use a formal `Main` method or **top-level statements** as its entry-point style.
 
 ---
 
@@ -25,13 +25,13 @@ Think of a C# project as a library. **Namespaces** are the shelves that organize
 *   **Organization:** Code is organized into **Namespaces**, which prevent naming conflicts. You use **File-scoped** or **Block-scoped namespace declarations** to define these areas.
 *   **Entry Points:** The `Main` method is the traditional entry point. **Top-level statements** provide a modern, concise way to write the entry point without requiring an explicit class or method wrapper.
 *   **Imports:** **Using directives** make types from other namespaces available. You can use **Global using directives** to apply imports across the entire project.
-*   **Exit:** An application communicates with the OS via the **Program exit code** (an integer returned by `Main` or implicitly by top-level statements).
+*   **Exit:** An application can communicate a status through an integer returned by `Main` or top-level code. A `void` or `Task` return does not explicitly provide an integer status.
 
 ---
 
 ### Deep follow-up answers
 *   **Why use File-scoped vs. Block-scoped namespaces?** File-scoped namespaces reduce indentation levels, making code cleaner. Block-scoped namespaces are useful if you need to define multiple namespaces within a single file.
-*   **How do command-line arguments work?** They are passed as a `string[] args` array to the `Main` method. In top-level statements, this array is implicitly available as the `args` variable.
+*   **How do command-line arguments work?** When the entry point accepts `string[] args`, the runtime supplies the arguments. Top-level statements expose an implicit `args` variable corresponding to that parameter.
 *   **What are the return types for `Main`?** You can return `void`, `int` (for exit codes), `Task`, or `Task<int>` (for asynchronous entry points).
 *   **What is the role of an Alias using directive?** It allows you to rename a type or namespace to avoid collisions or simplify long, nested names.
 
@@ -46,8 +46,8 @@ Think of a C# project as a library. **Namespaces** are the shelves that organize
 ---
 
 ### Tradeoffs and alternatives
-*   **Top-level statements vs. Main method:** Top-level statements are ideal for small utilities and scripts (C# 14+). The `Main` method is preferred for complex applications where explicit control over the entry point signature is required.
-*   **File-based vs. Project-based apps:** File-based apps allow for rapid prototyping and single-file execution, while project-based apps provide the structure needed for large-scale, multi-file development.
+*   **Top-level statements vs. Main method:** Top-level statements can be used in applications of any size and generate the entry point. An explicit `Main` makes the signature visible and is useful when its parameter and return shape should be explicit.
+*   **File-based vs. Project-based apps:** File-based apps run a single `.cs` file without a project file. Project-based apps use a project file and can span multiple sources and configure builds. This choice is independent of top-level statements versus `Main`.
 
 ---
 
