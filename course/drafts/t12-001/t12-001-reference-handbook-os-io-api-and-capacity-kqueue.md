@@ -1,36 +1,70 @@
 # system design foundations and infrastructure building blocks — Reference: kqueue
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.rfc-editor.org/rfc/rfc9846), [reference 3](https://www.rfc-editor.org/rfc/rfc9293), [reference 4](https://www.rfc-editor.org/rfc/rfc6455), [reference 5](https://www.rfc-editor.org/rfc/rfc9000), [reference 6](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 7](https://hld.handbook.academy/curriculum/prerequisites/), [reference 8](https://hld.handbook.academy/curriculum/building-blocks/), [reference 9](https://man7.org/linux/man-pages/man7/epoll.7.html), [reference 10](https://man7.org/linux/man-pages/man7/io_uring.7.html), [reference 11](https://man.freebsd.org/cgi/man.cgi?query=kqueue).
+Sources: [FreeBSD 15.1 kqueue(2)/kevent(2) manual](https://man.freebsd.org/cgi/man.cgi?query=kqueue).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson describes `kqueue` as documented for FreeBSD 15.1. Other BSD-derived operating systems and compatibility layers may expose different filters, flags, and behavior. Check the target platform’s manual pages and headers before relying on a filter.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+A server with many connections needs to know which resources can make progress without repeatedly checking each one. `kqueue` is a kernel event notification mechanism: an application registers interest in conditions and waits for the events that are ready. It does not perform the application’s protocol work, guarantee that a whole request is available, or manage the application’s connection state and backpressure.
 
 ## Supplied names explained
 
-- `kqueue` — BSD-family kernel event notification interface for monitoring descriptor and other event filters; exact filters and semantics vary by operating system.
+- `kqueue` — Creates a kernel event queue; `kevent()` applies a batch of changes and retrieves a batch of triggered events. Each event is identified by an `(ident, filter)` pair.
+
+## Registering and receiving events
+
+Create a queue with `kqueue()` (or a platform-supported variant such as `kqueuex()`), then use `kevent()` to submit changes and receive pending events. A `struct kevent` carries an identifier, filter, action flags, filter-specific flags/data, and opaque application data (`udata`). Keep `udata` tied to a lifecycle-safe connection or resource object; a raw descriptor number alone can be reused after close.
+
+The `kevent()` changelist is applied before pending events are returned. This lets an event loop batch registration updates and retrieval. A filter is evaluated when registered and when relevant conditions occur; repeated triggers may be aggregated into one event rather than producing one queued record per low-level trigger. The event’s `data` and flags have meanings defined by its filter. Always interpret them according to that filter and check error/EOF indications.
+
+Common action flags include `EV_ADD` to add or modify, `EV_ENABLE`/`EV_DISABLE` to control delivery, and `EV_DELETE` to remove. `EV_ONESHOT` removes an event after its first delivery; `EV_DISPATCH` disables after delivery until re-enabled; `EV_CLEAR` resets reported state and is useful for transition-like notifications. Do not assume these flags are interchangeable: select them based on the filter and event-loop policy described by the platform documentation.
+
+## Filters: beyond socket readability
+
+The `EVFILT_READ` and `EVFILT_WRITE` filters report read and write conditions for supported identifiers. Their details vary by resource type. For example, a listening socket read event indicates a pending connection; a connected socket read event indicates data or a terminal/error condition. A write event signals an opportunity to write, not that an arbitrary response will fit in one call. Use nonblocking I/O and retain partial input/output state.
+
+A distinct advantage of the kqueue model is its family of filters for other event sources. FreeBSD documents filters including `EVFILT_VNODE` for file-system-related changes, `EVFILT_PROC` for process events, `EVFILT_SIGNAL` for signals, `EVFILT_TIMER` for timers, and `EVFILT_USER` for user-triggered events, alongside AIO and other platform facilities. Their precise supported notes and semantics are OS-specific. A file notification is not automatically a durable, lossless journal of every filesystem operation; use it to trigger reconciliation when correctness depends on current state.
+
+## Event-loop design and failure handling
+
+For a network service, register the listening socket, accept connections when signaled, configure accepted sockets nonblocking, and register their read interest. Read available bytes into bounded buffers, parse only complete protocol messages, and queue responses. Attempt writes and preserve unsent bytes. Enable write interest while output remains, then disable it when the queue drains to avoid a busy loop. On EOF/error, stop dispatching the connection, remove its state, close resources, and ignore any stale event already present in a returned batch.
+
+An event is a prompt to inspect and handle a condition, not a durable work item. A process can crash between notification and processing; after restart, reconstruct current state from authoritative resources. If a file watcher reports a change, for example, re-stat or rescan the relevant path rather than assuming the event itself contains the full new state. Bound event batches and per-connection work so one hot resource does not starve others.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+`kqueue` is a FreeBSD kernel interface and has counterparts with different contracts elsewhere. Linux `epoll` centers on readiness for registered descriptors, while `kqueue` exposes a generalized filter/kevent model for multiple kinds of events. This is a useful architectural distinction, not a claim that one is universally more capable or faster. Portable runtimes hide platform backends behind one API; their behavior is defined by the runtime contract and may not expose every native filter. `io_uring` is another Linux interface with submission/completion queues and is not a drop-in name for kqueue.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+A cross-platform file-indexing service may use a native vnode filter to learn that a watched file might have changed. It marks the path dirty, coalesces duplicate notifications, reads the current file state, and updates its index idempotently. If events are lost while the process is down or a watch is invalidated, a periodic or startup reconciliation scan repairs the index. The event stream reduces detection delay; the filesystem remains the source of truth.
+
+For a TCP API server, a writable event should cause the loop to attempt a nonblocking write of queued bytes. If only part is accepted, keep the remainder and the write interest. If the response queue grows without bound because the client is slow, apply explicit backpressure or close policy; `kqueue` does not solve resource exhaustion.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating the returned event as a complete application message or as proof that all bytes can be written.
+- Assuming event notifications are a durable event log or never need reconciliation.
+- Assuming a filter or flag available in FreeBSD has identical behavior on every BSD-like OS.
+- Leaving write interest enabled after the output queue drains.
+- Using `udata` that points to freed state or dispatching a stale event to a reused descriptor.
+- Confusing one-shot removal, dispatch disabling, and clear/reset semantics.
+- Ignoring EOF, error, timer cancellation, or watch invalidation.
+- Letting duplicate notifications trigger repeated non-idempotent work.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What does a `kevent` identify?** A unique `(ident, filter)` pair within the queue; the filter defines the interpretation of associated flags and data.
+2. **Does a read event mean one complete HTTP request is ready?** No. It means the filter reports a read condition; the application must perform nonblocking reads and frame protocol data itself.
+3. **How do `EV_ONESHOT` and `EV_DISPATCH` differ conceptually?** One-shot removes the event after delivery; dispatch disables it after delivery so the application can explicitly enable it again.
+4. **Can a file watcher replace a reconciliation scan?** Not when correctness depends on the complete current filesystem state. Treat notifications as prompts and reconcile with the authoritative filesystem.
+5. **Why carry an application object in `udata`?** It can identify lifecycle state more safely than a descriptor number alone, provided the object remains valid and stale events are handled.
+
+## Practice
+
+Design a file-watching service using `EVFILT_VNODE`. Explain how it responds to a notification, handles several changes arriving together, survives a crash, and avoids applying an old event to a deleted or replaced file.
+
+**Suggested answer:** Register a vnode filter on an opened file and request only the relevant supported notes. On notification, mark the logical path dirty and schedule an idempotent refresh that reads current metadata/content; coalesce bursts because the notification is a signal to recheck, not a complete change record. Maintain object identity and validate it before applying results so replaced files are not confused with old file descriptors. Recreate invalidated watches and periodically/startup reconcile the indexed directory from the filesystem. If the service crashes, the filesystem remains authoritative and reconciliation repairs missed work.
