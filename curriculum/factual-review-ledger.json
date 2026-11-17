@@ -78324,12 +78324,24 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-partitioning-and-convergence.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
+      "status": "partial",
+      "claimInventory": "in-progress",
+      "claimsChecked": 27,
+      "claimsCorrected": 2,
+      "evidence": [
+        {"claim":"Consistent hashing limits remapping when the destination set changes but does not by itself guarantee uniform request load; virtual nodes and placement policy affect balance.","source":"https://people.csail.mit.edu/karger/Papers/web.pdf; https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html","section":"Karger et al. consistent hash definition; Cassandra 5.0 token ring and vnodes","verdict":"supported; wording narrowed to distinguish remapping from balancing"},
+        {"claim":"Rendezvous/HRW computes a key-node score and selects the maximum, giving deterministic placement for a shared node set and scoring function.","source":"https://www.eecs.umich.edu/techreports/cse/96/CSE-TR-316-96.pdf","section":"Abstract; §§4–5","verdict":"supported"},
+        {"claim":"Hot partitions are those with disproportionate access/load, and partition design should balance request rate and prevent a single partition exceeding capacity.","source":"https://learn.microsoft.com/en-in/azure/architecture/best-practices/data-partitioning","section":"Horizontal partitioning; designing partitions for scalability","verdict":"supported"},
+        {"claim":"Salting distributes a hot key's writes only by changing the read/aggregation path; this is presented as an application-specific tradeoff, not a universal automatic feature.","source":"https://learn.microsoft.com/en-in/azure/architecture/best-practices/data-partitioning","section":"Workload-aware partition key guidance; conceptual design inference","verdict":"supported as architecture inference; explicit inference label in review note"},
+        {"claim":"The state-based CRDT model uses a join-semilattice merge that is associative, commutative, and idempotent; under eventual delivery and termination, the cited theorem gives strong eventual consistency.","source":"https://pages.lip6.fr/Marc.Shapiro/papers/CRDTs_SSS-2011.pdf","section":"§2.3, Definition 4 and Theorem 1","verdict":"supported"},
+        {"claim":"The operation-based CRDT model requires concurrent operations to commute and reliable causal delivery, with delivery preconditions met.","source":"https://pages.lip6.fr/Marc.Shapiro/papers/CRDTs_SSS-2011.pdf","section":"§2.4, Definitions 5–6 and Theorem 2","verdict":"supported"},
+        {"claim":"State-based and operation-based CRDT designs trade state/delta transfer size against causal dissemination requirements; actual implementations may include variants.","source":"https://pages.lip6.fr/Marc.Shapiro/papers/CRDTs_SSS-2011.pdf","section":"§§2.3–2.4; implementation-variant caveat is scope framing","verdict":"supported with explicit classic-model scope"},
+        {"claim":"Last-write-wins selects according to an implementation ordering such as timestamps and can discard a concurrent update; Cassandra and DynamoDB global tables document distinct implementation behavior.","source":"https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html; https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables_HowItWorks.html; https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf","section":"Cassandra 5.0 Dynamo architecture; DynamoDB global table conflict resolution; original Dynamo vector-clock reconciliation","verdict":"supported; corrected any implication that Cassandra, Dynamo (paper), and DynamoDB are interchangeable"},
+        {"claim":"A lease alone may not protect an external resource from a stale client; the resource must validate a revision/fencing/sequencer on operations it protects.","source":"https://etcd.io/docs/v3.6/learning/why/; https://research.google/pubs/the-chubby-lock-service-for-loosely-coupled-distributed-systems/","section":"etcd §Notes on the usage of lock and lease; Chubby §2.4 sequencers","verdict":"supported; corrected prior broad implication that consensus alone protects downstream effects"},
+        {"claim":"The Handbook’s distributed-systems-theory module index names a separate consistent-hashing lesson covering hash rings, virtual nodes, bounded load, rendezvous, Maglev, and jump hash; those latter named alternatives are not in this lesson’s eight-item manifest.","source":"https://hld.handbook.academy/curriculum/distributed-systems-theory/","section":"Part 3 module 3.9","verdict":"source scope checked; lesson remains limited to assigned inventory, adjacent variants are covered elsewhere in curriculum"
+        }
+      ],
+      "issues": ["27 sentence-level checks are recorded. Need one more full claim pass and verify the course mapping for Maglev, jump hash, bounded-load hashing and CRDT case examples before promotion."],
       "reviewedAt": null,
       "sourceUrls": [
         "https://hld.handbook.academy/",
@@ -78351,7 +78363,9 @@
         "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
         "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Primary-source checks cover the eight manifest items. Two overbroad descriptions were narrowed. Handbook module 3.9 lists related algorithms outside this lesson inventory; confirm their separate curriculum locations during the title-by-title coverage audit. Keep partial until the final sentence-level pass and coverage check.",
+      "claimChecks": 27,
+      "scopeCheck": {"status":"assigned inventory checked; separate handbook coverage cross-check in progress","checkedItems":["Consistent hashing","Rendezvous hashing","Hot partition","Conflict-free replicated data type (CRDT)","State-based CRDT","Operation-based CRDT","Last-write-wins register","Split brain"],"missingItems":[]}
     },
     {
       "taskId": "t12-002-reference-cap-and-replication-guarantees",
