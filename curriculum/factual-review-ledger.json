@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 81,
-    "pending": 2259,
-    "claimsChecked": 896,
-    "claimsCorrected": 79,
+    "reviewed": 97,
+    "pending": 2243,
+    "claimsChecked": 976,
+    "claimsCorrected": 83,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -12251,400 +12251,785 @@
       "topicId": "t11-005",
       "phase": "overview",
       "draft": "course/drafts/t11-005/t11-005-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 5,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "evidence": [
+        {
+          "claim": "Binary search halves a candidate space only when order or a monotone predicate proves one side impossible.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Binary Search on Monotonic Functions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Lower bound and upper bound use distinct predicates (>=target and >target), and their difference counts duplicates.",
+          "source": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+          "section": "Problem definition; bound logic independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The half-open lower-bound walkthrough on [1,3,6,6,9] returns index 2 for target 6.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "First-true boundary; walkthrough independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Rotated-array search uses a sorted half under distinct-value assumptions; row-major virtual search requires cross-row ordering.",
+          "source": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+          "section": "Description and distinct-value constraint",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The overview distinguishes check cost, random access, safe bounds, and explicit impossible results.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Binary Search on Monotonic Functions; complexity",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-concepts",
       "topicId": "t11-005",
       "phase": "concepts",
       "draft": "course/drafts/t11-005/t11-005-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Half-open lower-bound updates preserve first-true semantics and return n when no element satisfies the predicate.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Finding the Minimum x Such That f(x)=true",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Exact search, first/last occurrence, and lower/upper bounds answer different contracts.",
+          "source": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+          "section": "Description and required return bounds",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Answer-search complexity is iterations multiplied by feasibility-check cost; monotone bounds must be proved.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Binary Search on Monotonic Functions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Distinct rotated search relies on exactly one ordered half; the assigned source excludes duplicates.",
+          "source": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+          "section": "Description and constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Flattened matrix mapping x/columns, x%columns is correct under globally ordered row-major constraints.",
+          "source": "https://leetcode.com/problems/search-a-2d-matrix/",
+          "section": "Matrix order requirements",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The former upper-midpoint expression could overflow delta+1; it has been replaced with delta/2 + delta%2 and full-width caveat.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Integer overflow / midpoint; correction applied",
+          "verdict": "corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
         "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
         "https://leetcode.com/problems/search-a-2d-matrix/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-reference-sorted-array-search",
       "topicId": "t11-005",
       "phase": "reference",
       "draft": "course/drafts/t11-005/t11-005-reference-sorted-array-search.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 3,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Every term in the assigned manifest inventory appears and is explained within its stated preconditions.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Manifest inventory sorted-array-search",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson’s comparisons, boundaries, complexity and exclusions agree with the source definition and the frozen topic scope.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Lower bound, upper bound and binary-search implementations",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The former ceiling midpoint delta+1 expression could overflow; the entry now uses a safe split and documents its bound assumption.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Midpoint overflow; correction applied",
+          "verdict": "corrected"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-reference-intervals-and-invariants",
       "topicId": "t11-005",
       "phase": "reference",
       "draft": "course/drafts/t11-005/t11-005-reference-intervals-and-invariants.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 3,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "evidence": [
+        {
+          "claim": "Every term in the assigned manifest inventory appears and is explained within its stated preconditions.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Manifest inventory intervals-and-invariants",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson’s comparisons, boundaries, complexity and exclusions agree with the source definition and the frozen topic scope.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "First/last true search, off-by-one and overflow sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Floor midpoint and candidate-elimination examples are valid for the specified interval conventions.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "First true/last true boundaries and overflow notes",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-reference-monotone-answer",
       "topicId": "t11-005",
       "phase": "reference",
       "draft": "course/drafts/t11-005/t11-005-reference-monotone-answer.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 3,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Every term in the assigned manifest inventory appears and is explained within its stated preconditions.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Manifest inventory monotone-answer",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson’s comparisons, boundaries, complexity and exclusions agree with the source definition and the frozen topic scope.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Monotone functions; assigned feasibility problems",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Koko speed bounds [1,max pile] and shipping capacity bounds [max item,sum] are feasible/impossible as stated under constraints.",
+          "source": "https://leetcode.com/problems/koko-eating-bananas/",
+          "section": "Koko constraints and feasibility definition",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
         "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-reference-rotated-and-matrix",
       "topicId": "t11-005",
       "phase": "reference",
       "draft": "course/drafts/t11-005/t11-005-reference-rotated-and-matrix.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 3,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Every term in the assigned manifest inventory appears and is explained within its stated preconditions.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Manifest inventory rotated-and-matrix",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson’s comparisons, boundaries, complexity and exclusions agree with the source definition and the frozen topic scope.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Assigned rotated/matrix requirements and algorithm reference",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Virtual index conversion and the cross-row ordering precondition are necessary and sufficient for globally sorted flattening.",
+          "source": "https://leetcode.com/problems/search-a-2d-matrix/",
+          "section": "Matrix ordering constraints",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
         "https://leetcode.com/problems/search-in-rotated-sorted-array/",
         "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
         "https://leetcode.com/problems/search-a-2d-matrix/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-reference-limits-and-tradeoffs",
       "topicId": "t11-005",
       "phase": "reference",
       "draft": "course/drafts/t11-005/t11-005-reference-limits-and-tradeoffs.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 3,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "evidence": [
+        {
+          "claim": "Every term in the assigned manifest inventory appears and is explained within its stated preconditions.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Manifest inventory limits-and-tradeoffs",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson’s comparisons, boundaries, complexity and exclusions agree with the source definition and the frozen topic scope.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Binary Search on Monotonic Functions; complexity requirements",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Logarithmic checks require efficient midpoint access; per-check work and sorting costs are included.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Search-space halving and feasibility checks",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-practice-binary-search",
       "topicId": "t11-005",
       "phase": "practice",
       "draft": "course/drafts/t11-005/t11-005-practice-binary-search.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Problem contract, input constraints, and result semantics match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/binary-search/",
+          "section": "Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and lesson walkthrough outcomes are consistent with their inputs.",
+          "source": "https://leetcode.com/problems/binary-search/",
+          "section": "Examples; independent recalculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The implementation invariant and elimination/feasibility proof cover every valid answer and no invalid answer.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Algorithm proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Bounds, midpoint/index calculations, and accumulator widths are safe for the stated constraints.",
+          "source": "https://leetcode.com/problems/binary-search/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space complexity account for each search iteration and any linear feasibility scan.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Search-space complexity and check cost",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases match contract, including empty arrays where permitted, duplicate endpoints, full rotation, and matrix sentinels.",
+          "source": "https://leetcode.com/problems/binary-search/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Draft bounds incorrectly included values exactly +/-10,000; official statement uses strict inequalities, now transcribed correctly.",
+          "source": "https://leetcode.com/problems/binary-search/",
+          "section": "Constraints",
+          "verdict": "corrected"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/binary-search/",
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-practice-search-insert-position",
       "topicId": "t11-005",
       "phase": "practice",
       "draft": "course/drafts/t11-005/t11-005-practice-search-insert-position.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "evidence": [
+        {
+          "claim": "Problem contract, input constraints, and result semantics match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/search-insert-position/",
+          "section": "Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and lesson walkthrough outcomes are consistent with their inputs.",
+          "source": "https://leetcode.com/problems/search-insert-position/",
+          "section": "Examples; independent recalculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The implementation invariant and elimination/feasibility proof cover every valid answer and no invalid answer.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Algorithm proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Bounds, midpoint/index calculations, and accumulator widths are safe for the stated constraints.",
+          "source": "https://leetcode.com/problems/search-insert-position/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space complexity account for each search iteration and any linear feasibility scan.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Search-space complexity and check cost",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases match contract, including empty arrays where permitted, duplicate endpoints, full rotation, and matrix sentinels.",
+          "source": "https://leetcode.com/problems/search-insert-position/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/search-insert-position/",
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-practice-find-first-last-position",
       "topicId": "t11-005",
       "phase": "practice",
       "draft": "course/drafts/t11-005/t11-005-practice-find-first-last-position.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "evidence": [
+        {
+          "claim": "Problem contract, input constraints, and result semantics match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+          "section": "Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and lesson walkthrough outcomes are consistent with their inputs.",
+          "source": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+          "section": "Examples; independent recalculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The implementation invariant and elimination/feasibility proof cover every valid answer and no invalid answer.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Algorithm proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Bounds, midpoint/index calculations, and accumulator widths are safe for the stated constraints.",
+          "source": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space complexity account for each search iteration and any linear feasibility scan.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Search-space complexity and check cost",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases match contract, including empty arrays where permitted, duplicate endpoints, full rotation, and matrix sentinels.",
+          "source": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-practice-search-in-rotated-sorted-array",
       "topicId": "t11-005",
       "phase": "practice",
       "draft": "course/drafts/t11-005/t11-005-practice-search-in-rotated-sorted-array.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "evidence": [
+        {
+          "claim": "Problem contract, input constraints, and result semantics match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+          "section": "Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and lesson walkthrough outcomes are consistent with their inputs.",
+          "source": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+          "section": "Examples; independent recalculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The implementation invariant and elimination/feasibility proof cover every valid answer and no invalid answer.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Algorithm proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Bounds, midpoint/index calculations, and accumulator widths are safe for the stated constraints.",
+          "source": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space complexity account for each search iteration and any linear feasibility scan.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Search-space complexity and check cost",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases match contract, including empty arrays where permitted, duplicate endpoints, full rotation, and matrix sentinels.",
+          "source": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-practice-find-minimum-rotated-sorted-array",
       "topicId": "t11-005",
       "phase": "practice",
       "draft": "course/drafts/t11-005/t11-005-practice-find-minimum-rotated-sorted-array.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "evidence": [
+        {
+          "claim": "Problem contract, input constraints, and result semantics match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+          "section": "Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and lesson walkthrough outcomes are consistent with their inputs.",
+          "source": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+          "section": "Examples; independent recalculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The implementation invariant and elimination/feasibility proof cover every valid answer and no invalid answer.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Algorithm proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Bounds, midpoint/index calculations, and accumulator widths are safe for the stated constraints.",
+          "source": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space complexity account for each search iteration and any linear feasibility scan.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Search-space complexity and check cost",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases match contract, including empty arrays where permitted, duplicate endpoints, full rotation, and matrix sentinels.",
+          "source": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-practice-koko-eating-bananas",
       "topicId": "t11-005",
       "phase": "practice",
       "draft": "course/drafts/t11-005/t11-005-practice-koko-eating-bananas.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "evidence": [
+        {
+          "claim": "Problem contract, input constraints, and result semantics match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/koko-eating-bananas/",
+          "section": "Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and lesson walkthrough outcomes are consistent with their inputs.",
+          "source": "https://leetcode.com/problems/koko-eating-bananas/",
+          "section": "Examples; independent recalculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The implementation invariant and elimination/feasibility proof cover every valid answer and no invalid answer.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Algorithm proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Bounds, midpoint/index calculations, and accumulator widths are safe for the stated constraints.",
+          "source": "https://leetcode.com/problems/koko-eating-bananas/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space complexity account for each search iteration and any linear feasibility scan.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Search-space complexity and check cost",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases match contract, including empty arrays where permitted, duplicate endpoints, full rotation, and matrix sentinels.",
+          "source": "https://leetcode.com/problems/koko-eating-bananas/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/koko-eating-bananas/",
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-practice-capacity-to-ship-packages",
       "topicId": "t11-005",
       "phase": "practice",
       "draft": "course/drafts/t11-005/t11-005-practice-capacity-to-ship-packages.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "evidence": [
+        {
+          "claim": "Problem contract, input constraints, and result semantics match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+          "section": "Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and lesson walkthrough outcomes are consistent with their inputs.",
+          "source": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+          "section": "Examples; independent recalculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The implementation invariant and elimination/feasibility proof cover every valid answer and no invalid answer.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Algorithm proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Bounds, midpoint/index calculations, and accumulator widths are safe for the stated constraints.",
+          "source": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space complexity account for each search iteration and any linear feasibility scan.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Search-space complexity and check cost",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases match contract, including empty arrays where permitted, duplicate endpoints, full rotation, and matrix sentinels.",
+          "source": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-practice-search-a-2d-matrix",
       "topicId": "t11-005",
       "phase": "practice",
       "draft": "course/drafts/t11-005/t11-005-practice-search-a-2d-matrix.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Problem contract, input constraints, and result semantics match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/search-a-2d-matrix/",
+          "section": "Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and lesson walkthrough outcomes are consistent with their inputs.",
+          "source": "https://leetcode.com/problems/search-a-2d-matrix/",
+          "section": "Examples; independent recalculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The implementation invariant and elimination/feasibility proof cover every valid answer and no invalid answer.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Algorithm proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Bounds, midpoint/index calculations, and accumulator widths are safe for the stated constraints.",
+          "source": "https://leetcode.com/problems/search-a-2d-matrix/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space complexity account for each search iteration and any linear feasibility scan.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Search-space complexity and check cost",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases match contract, including empty arrays where permitted, duplicate endpoints, full rotation, and matrix sentinels.",
+          "source": "https://leetcode.com/problems/search-a-2d-matrix/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The dry-run midpoint values were misstated; corrected sequence is flat index 6->16, 3->7, 5->11, then lower-bound index 6->16.",
+          "source": "https://leetcode.com/problems/search-a-2d-matrix/",
+          "section": "Sample matrix and binary-search walkthrough",
+          "verdict": "corrected"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/search-a-2d-matrix/",
+        "https://usaco.guide/silver/binary-search"
+      ],
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-005-interview",
       "topicId": "t11-005",
       "phase": "interview",
       "draft": "course/drafts/t11-005/t11-005-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 4,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "First-true versus last-true answers and interval updates are correctly tied to their invariants.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "First and last monotone boundary search",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Answer-space feasibility examples correctly explain predicate direction and feasibility-check cost.",
+          "source": "https://leetcode.com/problems/koko-eating-bananas/",
+          "section": "Minimum feasible integer speed",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Distinct rotated-array branch justification and duplicate caveat match problem constraints.",
+          "source": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+          "section": "Distinct values and sorted-half requirements",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Interview scenarios, alternatives, and self-check cover all assigned patterns and explicitly call for proof of bounds/termination.",
+          "source": "https://usaco.guide/silver/binary-search",
+          "section": "Manifest concepts, inventory, and problems",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/binary-search",
-        "https://leetcode.com/problems/binary-search/",
-        "https://leetcode.com/problems/search-insert-position/",
-        "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-        "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-        "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
         "https://leetcode.com/problems/koko-eating-bananas/",
-        "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
-        "https://leetcode.com/problems/search-a-2d-matrix/"
+        "https://leetcode.com/problems/search-in-rotated-sorted-array/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and scope audit completed against current canonical problem statements, the binary-search reference, and the frozen topic inventory. Predicate semantics, constraints, sample calculations, loop invariants, bounds, midpoint arithmetic, complexity, C# implementation, and edge cases were checked; corrections are recorded and no unresolved issue remains."
     },
     {
       "taskId": "t11-006-overview",
@@ -104094,6 +104479,14 @@
       "status": "full claim and frozen-inventory audit complete for this topic",
       "findings": [
         "Reviewed all 14 lessons against the frozen prefix/window/difference-array inventory and current canonical LeetCode statements. Rechecked 1D/2D formulas, negative prefix/remainder handling, empty-prefix ordering, difference sentinels, example arithmetic, C# numeric/index bounds, and static/offline/online workload distinctions. No factual or scope corrections were required; no unresolved issues remain."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "DSA binary search, bounds, rotated arrays, and monotone answer search (t11-005)",
+      "status": "full claim and frozen-inventory audit complete for this topic",
+      "findings": [
+        "Audited all 16 lessons against the supplied search/bounds/answer-space/rotated/matrix inventory and current canonical problem statements. Corrected an overflow-prone generic ceiling-midpoint formula, the Binary Search constraint transcription, and a Search a 2D Matrix walkthrough. Verified lower/upper-bound contracts, rotated distinct-value assumptions, feasibility bounds/checks, matrix flattening, examples, C# arithmetic and complexities. No unresolved issues remain."
       ]
     }
   ]

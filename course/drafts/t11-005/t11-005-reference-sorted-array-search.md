@@ -16,7 +16,7 @@ Ordered values turn comparisons into monotone predicates. Choosing the predicate
 - `First occurrence` — Lower bound of target, followed by an equality check. If the returned index is n or its value differs, target is absent.
 - `Last occurrence` — Upper bound minus one, followed by an equality check. Guard the boundary before indexing; if upper bound is zero or the previous value differs, target is absent.
 - `Left-biased midpoint` — Floor midpoint `lo+(hi-lo)/2`. It is appropriate when an update can set hi to mid and the interval still shrinks.
-- `Right-biased midpoint` — Ceiling midpoint `lo+(hi-lo+1)/2`. It is useful when searching for the last true candidate with an update such as lo=mid; it prevents stalling.
+- `Right-biased midpoint` — A ceiling midpoint is useful when searching for the last true candidate with an update such as lo=mid; it prevents stalling. For nonnegative bounds with representable `delta = hi-lo`, compute `lo + delta/2 + delta%2`; avoid `delta+1`, which can overflow at the largest interval width. Widen the difference for bounds spanning the full signed type.
 - `Insertion position` — The boundary where a target can be inserted while preserving order. Lower bound inserts before equal items; upper bound inserts after equal items. Both may return n.
 - `Sorted-array precondition` — Values must be ordered under the same comparison used by the search. If this precondition fails, half-discard reasoning is invalid; sorting first changes positions and costs time.
 

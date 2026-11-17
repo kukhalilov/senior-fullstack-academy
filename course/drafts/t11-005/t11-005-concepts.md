@@ -27,7 +27,7 @@ An exact search may return any matching index. If the problem asks for the first
 
 Closed `[lo,hi]` and half-open `[lo,hi)` are both valid. Do not mix their stopping conditions and updates. In a closed exact search, while `lo <= hi`, failure on a midpoint discards it with `lo=mid+1` or `hi=mid-1`. In a lower-bound half-open search, `hi=mid` may retain mid, and the loop stops when the interval is empty.
 
-Use `lo + (hi-lo)/2` to avoid overflow in `lo+hi` when indices or bounds can be large. For a last-true search, use an upper midpoint such as `lo+(hi-lo+1)/2` so the interval progresses when only two candidates remain. A loop invariant plus a decreasing interval length proves termination.
+Use `lo + (hi-lo)/2` to avoid overflow in `lo+hi` when indices or bounds can be large. For a last-true search, use a ceiling midpoint so the interval progresses when only two candidates remain. For nonnegative bounds with representable `delta = hi-lo`, compute `lo + delta/2 + delta%2`; avoid `delta+1`, which can overflow at the largest interval width. If bounds span the full signed type, widen the subtraction or use a carefully derived unsigned form. A loop invariant plus a decreasing interval length proves termination.
 
 ### Search a monotone answer space
 

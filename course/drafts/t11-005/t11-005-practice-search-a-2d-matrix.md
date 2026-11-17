@@ -100,7 +100,7 @@ The matrix conditions ensure that reading cells row by row produces one globally
 
 ## Step-by-step dry run
 
-For the sample matrix and target 13, total is 12. Flat midpoint 6 maps to row 1, column 2, value 16; retain the lower half. A later midpoint maps to value 10, which is below 13; advance left. The final lower-bound position maps to 16, not 13, so return false.
+For the sample matrix and target 13, total is 12. Flat midpoint 6 maps to row 1, column 2, value 16; retain the lower half. Midpoint 3 maps to 7, below 13, so advance left to 4; midpoint 5 maps to 11, also below 13, so advance to 6. The final lower-bound position maps to 16, not 13, so return false.
 
 ## Time complexity
 

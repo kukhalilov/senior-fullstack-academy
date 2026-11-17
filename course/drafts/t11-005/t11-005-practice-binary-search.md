@@ -13,9 +13,9 @@ Given an array of distinct integers nums sorted in ascending order and an intege
 ## Input constraints
 
 - 1 <= nums.Length <= 10,000.
-- -10,000 <= nums[i] <= 10,000.
+- -10,000 < nums[i] < 10,000.
 - All values in nums are distinct and sorted ascending.
-- -10,000 <= target <= 10,000.
+- -10,000 < target < 10,000.
 
 ## Examples with expected output
 
