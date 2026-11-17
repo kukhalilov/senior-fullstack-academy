@@ -52,7 +52,7 @@ Use iteration when consumers should process a sequence incrementally, when eager
 
 # Recent version changes
 
-ECMAScript 2025 added the `Iterator` base class, `Iterator.from()`, and synchronous iterator helper methods. ECMAScript 2026 added `Iterator.concat()`. Runtime support may differ from the language edition. See [ECMAScript control abstraction objects](https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html).
+ECMAScript 2025 added the `Iterator` base class, `Iterator.from()`, and synchronous iterator helper methods. ECMAScript 2026 added `Iterator.concat()`. The edition has an intrinsic `%AsyncIteratorPrototype%`, but no public global `AsyncIterator` constructor or built-in async iterator helpers. Runtime support may differ from the language edition. See [ECMAScript control abstraction objects](https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html).
 
 # What later lessons cover
 

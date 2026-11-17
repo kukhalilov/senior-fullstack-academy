@@ -22,31 +22,35 @@ This group explains how JavaScript asks for a synchronous sequence, obtains succ
 - `Iterator protocol optional throw method` — Lets a caller inject an exception into an iterator that supports it. Generator objects implement it; ordinary loop consumers generally do not call it.
 - `Iterator global constructor` — The `Iterator` base is subclassable, but calling or constructing the base itself throws. Use it to define custom iterator subclasses, not as a factory for built-in sequence values.
 - `Iterator.prototype` — Shared prototype for the `Iterator` constructor and its helper methods. Built-in iterators in current editions inherit iterator behavior through this prototype chain.
-- `Iterator.prototype.constructor` — The inherited constructor reference pointing back to `Iterator`; it does not reconstruct an iterator from a sequence.
-- `Iterator.from` — Converts an iterable or iterator into an Iterator-compatible object. It returns an existing Iterator instance when possible and wraps a bare iterator so helpers are available.
-- `Iterator.concat` — Creates a lazy iterator that yields values from each supplied iterable in argument order. Inputs must be iterable objects; a bare iterator that is not itself iterable can be adapted with `Iterator.from()`.
+- `Iterator.prototype.constructor` — A configurable accessor whose getter returns `Iterator`; assignment on an instance creates/shadows an own property rather than changing the shared prototype. It does not reconstruct an iterator from a sequence.
+- `Iterator.from` — Converts an iterable or iterator into an Iterator-compatible object. It returns an existing Iterator instance when possible and wraps a bare iterator so helpers are available. The protocol adapter accepts a string primitive as an iterable; other non-object primitives are rejected.
+- `Iterator.concat` — Creates a lazy iterator that yields values from each supplied iterable in argument order. At the call, it verifies each argument is an object and captures its `Symbol.iterator` method; it calls those methods only as consumption reaches each iterable. Inputs must be iterable objects; a bare iterator that is not itself iterable can be adapted with `Iterator.from()`.
 
 ## Lazy transformation helpers
 
-- `Iterator.prototype.map` — Lazily maps each yielded value through a callback; the callback runs only when a consumer pulls the mapped iterator.
-- `Iterator.prototype.filter` — Lazily yields only values whose predicate is truthy; it may pull several source values to produce one output.
-- `Iterator.prototype.take` — Yields at most the requested nonnegative count and then completes. A negative count is invalid; early stopping closes the upstream iterator.
-- `Iterator.prototype.drop` — Consumes and discards the requested number of initial values, then yields the rest. A negative count is invalid.
-- `Iterator.prototype.flatMap` — Maps each value to an iterable and lazily yields that inner iterable's values before moving to the next outer value.
+- `Iterator.prototype.map` — Lazily maps each yielded value through `mapper(value, index)`; the callback runs only when a consumer pulls the mapped iterator. Indexing starts at zero for this helper, and there is no `thisArg` parameter.
+- `Iterator.prototype.filter` — Lazily yields values whose `predicate(value, index)` is truthy; it may pull several source values to produce one output. Indexing starts at zero for this helper, and there is no `thisArg` parameter.
+- `Iterator.prototype.take` — Yields at most the requested count and then completes. The limit is converted to an integer; NaN and negative values throw `RangeError`, while positive infinity is unbounded. Stopping early closes the upstream iterator.
+- `Iterator.prototype.drop` — Consumes and discards the requested number of initial values, then yields the rest. Its converted limit follows `take`'s nonnegative-integer rules.
+- `Iterator.prototype.flatMap` — Calls `mapper(value, index)` and requires each mapped result to be iterable, then lazily yields that inner iterable's values before moving to the next outer value. Indexing starts at zero; there is no `thisArg` parameter.
 
 ## Consuming terminal helpers
 
-- `Iterator.prototype.reduce` — Consumes the iterator into an accumulator and returns one value. Without an initial value, an empty iterator throws; it also closes on callback failure.
+- `Iterator.prototype.reduce` — Consumes the iterator into an accumulator by calling `reducer(accumulator, value, index)` and returns one value. Without an initial value, an empty iterator throws; it also closes on callback failure. The first value becomes the accumulator when no initial value is supplied, and callback indexing begins at zero for the first reducer call.
 - `Iterator.prototype.toArray` — Consumes all remaining values into a new array. It is unsuitable for an infinite iterator unless a prior helper bounds it.
-- `Iterator.prototype.forEach` — Consumes values and calls a callback for each one, returning undefined. It is synchronous; returning a promise does not make it await.
-- `Iterator.prototype.some` — Consumes until a predicate succeeds or the iterator ends, returning a boolean and closing after a successful early match.
-- `Iterator.prototype.every` — Consumes until a predicate fails or the iterator ends, returning a boolean and closing after the first failure.
-- `Iterator.prototype.find` — Returns the first value matching the predicate, or undefined when exhausted; a match stops consumption and closes upstream.
+- `Iterator.prototype.forEach` — Consumes values and calls `procedure(value, index)` for each one, returning undefined. It is synchronous; returning a promise does not make it await.
+- `Iterator.prototype.some` — Calls `predicate(value, index)` until it succeeds or the iterator ends, returning a boolean and closing after a successful early match.
+- `Iterator.prototype.every` — Calls `predicate(value, index)` until it fails or the iterator ends, returning a boolean and closing after the first failure.
+- `Iterator.prototype.find` — Returns the first value matching `predicate(value, index)`, or undefined when exhausted; a match stops consumption and closes upstream.
 
 ## Identity, protocols, and built-in consumers
 
 - `Iterator.prototype[Symbol.iterator]` — Returns the iterator itself, making Iterator instances iterable and allowing them to feed synchronous consumers and helpers.
-- `Iterator.prototype[Symbol.toStringTag]` — Supplies the descriptive string tag `"Iterator"` for iterator instances.
+- `Iterator.prototype[Symbol.toStringTag]` — A configurable accessor that reports `"Iterator"` for ordinary iterator instances; it is a debugging tag, not a reliable type test.
+- `Iterator helper object` — An implementation-created lazy iterator returned by helper methods. It has no public constructor.
+- `%IteratorHelperPrototype%.next` — Resumes the helper pipeline and requests its next output.
+- `%IteratorHelperPrototype%.return` — Closes a helper pipeline and its underlying iterators, including when the helper has not yet been pulled.
+- `%IteratorHelperPrototype%[Symbol.toStringTag]` — Reports `"Iterator Helper"` for helper objects.
 - `Symbol.iterator` — Well-known symbol used as the method key that exposes a synchronous iterator.
 - `for-of statement` — Acquires the iterable's iterator and requests values until done; `break`, `return`, or abrupt completion closes it through optional `return()`.
 - `Array destructuring iteration` — Uses the synchronous iterable protocol to fill binding positions. It can stop after the requested positions and closes an unfinished iterator.
@@ -75,7 +79,7 @@ console.log(evens.next()); // { value: 20, done: false }
 console.log(evens.toArray()); // [40]
 ```
 
-The first `next()` pulls just enough source values to produce 20. The terminal call consumes the remaining bounded helper.
+The first `next()` pulls just enough source values to produce 20. The terminal call consumes the remaining bounded helper. Calling `Iterator.concat()` checks that each argument is an object and reads its iterator method immediately, while opening and consuming each iterator remains lazy.
 
 ```js
 const all = Iterator.concat([1, 2], [3, 4]).toArray();

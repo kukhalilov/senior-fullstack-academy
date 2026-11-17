@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 795,
-    "pending": 1546,
-    "claimsChecked": 28944,
-    "claimsCorrected": 1460,
+    "reviewed": 802,
+    "pending": 1539,
+    "claimsChecked": 29285,
+    "claimsCorrected": 1462,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 795,
-    "pendingLessons": 1546
+    "reviewedLessons": 802,
+    "pendingLessons": 1539
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1335,6 +1335,14 @@
       "status": "full claim and expanded frozen-inventory audit complete for all 8 lessons",
       "findings": [
         "Audited the original API inventory against ECMA-262 2026 section 23 and 25 ToCs. Added omitted constructor links, Symbol.toStringTag properties, SharedArrayBuffer species, DataView constructor overloads, and resizable-buffer DataView tracking/out-of-bounds semantics; removed a duplicate static BYTES_PER_ELEMENT inventory item. Checked numeric types, conversion/rounding, species behavior, ordering, endianness, base64/hex decoding, and all worked examples/questions. Corrected that toReversed/toSorted/with ignore Symbol.species and return the same concrete typed-array type; clarified the hidden shared TypedArray constructor property versus each concrete prototype property. Added answers for all practice reflection prompts and recent version notes. Node 24.14.1 confirms the exercised resize/view behavior, endian output, and species distinction; it lacks the ES2026 Uint8Array hex/base64 methods. All eight lessons remain drafts pending whole-course audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "JavaScript iteration protocols and generators (t06-016)",
+      "status": "full claim and expanded frozen-inventory audit complete for all 7 lessons",
+      "findings": [
+        "Checked the complete synchronous/async iteration and generator inventories against ECMAScript 2026 normative sections and ToCs, including iterator helper methods/prototypes, generator and async-generator intrinsic properties, identity-protocol inheritance, Iterator.concat acquisition timing, iterator closing, async-from-sync adaptation, and yield* missing-method behavior. Clarified a custom async iterator’s result.value is not separately awaited by for-await-of; confirmed with Node 24.14.1 while async-generator and sync-adapter yielded promises are awaited. Added answers to all five practice reflection questions. ECMAScript 2026 defines no global AsyncIterator constructor or async helper methods. All seven lessons remain drafts pending whole-course audit."
       ]
     }
   ],
@@ -54267,140 +54275,217 @@
       "topicId": "t06-016",
       "phase": "overview",
       "draft": "course/drafts/t06-016/t06-016-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 29,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked 29 claim units, examples, APIs, version claims, exercise answers, and inventory coverage against the cited normative specification sections and guidance; source snapshot is ECMAScript 2026 as of 2026-11-17.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators"
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed claim-by-claim source check and expanded inventory audit. Validated exact coverage against the 2026 spec table of contents and protocol algorithms; lesson remains in drafts pending course-wide completion."
     },
     {
       "taskId": "t06-016-concepts",
       "topicId": "t06-016",
       "phase": "concepts",
       "draft": "course/drafts/t06-016/t06-016-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually checked 38 claim units, examples, APIs, version claims, exercise answers, and inventory coverage against the cited normative specification sections and guidance; source snapshot is ECMAScript 2026 as of 2026-11-17.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators"
+          ],
+          "verdict": "verified after clarification/correction"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed claim-by-claim source check and expanded inventory audit. Validated exact coverage against the 2026 spec table of contents and protocol algorithms; lesson remains in drafts pending course-wide completion."
     },
     {
       "taskId": "t06-016-reference-synchronous-iteration",
       "topicId": "t06-016",
       "phase": "reference",
       "draft": "course/drafts/t06-016/t06-016-reference-synchronous-iteration.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 72,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked 72 claim units, examples, APIs, version claims, exercise answers, and inventory coverage against the cited normative specification sections and guidance; source snapshot is ECMAScript 2026 as of 2026-11-17.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators"
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed claim-by-claim source check and expanded inventory audit. Validated exact coverage against the 2026 spec table of contents and protocol algorithms; lesson remains in drafts pending course-wide completion."
     },
     {
       "taskId": "t06-016-reference-generators-and-delegation",
       "topicId": "t06-016",
       "phase": "reference",
       "draft": "course/drafts/t06-016/t06-016-reference-generators-and-delegation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 49,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked 49 claim units, examples, APIs, version claims, exercise answers, and inventory coverage against the cited normative specification sections and guidance; source snapshot is ECMAScript 2026 as of 2026-11-17.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators"
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed claim-by-claim source check and expanded inventory audit. Validated exact coverage against the 2026 spec table of contents and protocol algorithms; lesson remains in drafts pending course-wide completion."
     },
     {
       "taskId": "t06-016-reference-async-iteration",
       "topicId": "t06-016",
       "phase": "reference",
       "draft": "course/drafts/t06-016/t06-016-reference-async-iteration.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 50,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually checked 50 claim units, examples, APIs, version claims, exercise answers, and inventory coverage against the cited normative specification sections and guidance; source snapshot is ECMAScript 2026 as of 2026-11-17.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators"
+          ],
+          "verdict": "verified after clarification/correction"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed claim-by-claim source check and expanded inventory audit. Validated exact coverage against the 2026 spec table of contents and protocol algorithms; lesson remains in drafts pending course-wide completion."
     },
     {
       "taskId": "t06-016-practice",
       "topicId": "t06-016",
       "phase": "practice",
       "draft": "course/drafts/t06-016/t06-016-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 46,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked 46 claim units, examples, APIs, version claims, exercise answers, and inventory coverage against the cited normative specification sections and guidance; source snapshot is ECMAScript 2026 as of 2026-11-17.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators"
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed claim-by-claim source check and expanded inventory audit. Validated exact coverage against the 2026 spec table of contents and protocol algorithms; lesson remains in drafts pending course-wide completion."
     },
     {
       "taskId": "t06-016-interview",
       "topicId": "t06-016",
       "phase": "interview",
       "draft": "course/drafts/t06-016/t06-016-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 57,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked 57 claim units, examples, APIs, version claims, exercise answers, and inventory coverage against the cited normative specification sections and guidance; source snapshot is ECMAScript 2026 as of 2026-11-17.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators"
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed claim-by-claim source check and expanded inventory audit. Validated exact coverage against the 2026 spec table of contents and protocol algorithms; lesson remains in drafts pending course-wide completion."
     },
     {
       "taskId": "t06-005-overview",

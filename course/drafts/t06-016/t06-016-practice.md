@@ -171,6 +171,14 @@ console.log(result); // ["first", "second"]
 4. What part of `for await...of` is asynchronous for a sync-only iterable?
 5. Why are generators useful for infinite sequences?
 
+## Reflection answers
+
+1. Cursor state belongs inside the closure or iterator object created for each traversal, so separate iterators do not share a cursor accidentally.
+2. A terminal operation such as `toArray()`, `reduce()`, or a consumer loop pulls values and executes the lazy callbacks.
+3. `break`, `return`, and abrupt completion while consuming with constructs such as `for...of` request iterator closing when the iterator provides `return()`; normal exhaustion does not require early closing.
+4. For a sync-only iterable, the loop wraps its synchronous iterator in an async-from-sync adapter, awaits each adapted step, and awaits each yielded value. The producer's `next()` work itself is still synchronous.
+5. A generator can represent an unbounded sequence one item at a time without storing all future values; consumers must still bound or stop consumption.
+
 # Sources
 
 - [ECMAScript iteration and iterator helpers](https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html)

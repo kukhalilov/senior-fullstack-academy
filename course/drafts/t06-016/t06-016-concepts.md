@@ -38,7 +38,7 @@ Creating a helper chain does not run its callbacks. A terminal operation or loop
 
 ## Async iteration adds asynchronous requests
 
-An async iterable exposes `Symbol.asyncIterator`; its iterator's `next()` returns a promise for an iterator result. An async generator can use `await` and `yield`; its `next`, `return`, and `throw` return promises. Requests are queued so execution remains serialized even if requests overlap.
+An async iterable exposes `Symbol.asyncIterator`; its iterator's `next()` returns a promise for an iterator result. For a custom async iterator, `for await...of` awaits that result promise but does not separately await `result.value`; async-from-sync adaptation and async generators have their own value-awaiting rules. An async generator can use `await` and `yield`; its `next`, `return`, and `throw` return promises. Requests are queued so execution remains serialized even if requests overlap. There is no public `AsyncIterator` constructor or standardized async helper family in ECMAScript 2026.
 
 `for await...of` first asks for an async iterator. If none exists but a synchronous iterator does, the language creates an async-from-sync adapter that awaits yielded values. This does not make the source's production itself asynchronous. Early exit awaits async iterator closing.
 

@@ -8,7 +8,7 @@ This reference explains the supplied synchronous generator syntax and its intrin
 
 # How this group fits the mental model
 
-A generator function is a recipe for a paused execution; calling it creates a generator object but does not run its body. Its `next`, `return`, and `throw` methods resume that saved execution in different ways. `yield` pauses and exposes a value; `yield*` delegates a portion of the iterator protocol to another sequence. The object is both an iterator and an iterable that returns itself.
+A generator function is a recipe for a paused execution; calling it creates a generator object but does not run its body. Its `next`, `return`, and `throw` methods resume that saved execution in different ways. `yield` pauses and exposes a value; `yield*` delegates a portion of the iterator protocol to another sequence. The object is both an iterator and an iterable that returns itself. The `GeneratorFunction` intrinsic exists, but normal `function*` syntax is preferable to dynamic source construction. Generator objects inherit the shared generator methods and, through `%Iterator.prototype%`, standard iterator helpers.
 
 # Supplied names explained
 
@@ -20,10 +20,18 @@ A generator function is a recipe for a paused execution; calling it creates a ge
 - `Generator.prototype.return` — Injects a return completion at the suspension point, causing pending `finally` blocks to run. A `finally` block may yield, so the returned result may still have `done: false`.
 - `Generator.prototype.throw` — Throws a supplied value at the suspended `yield` expression. Generator code may catch it; otherwise it propagates, with `finally` cleanup still executed.
 - `yield expression` — Produces an iterator result with the expression's value and suspends execution. When resumed by a later `next(value)`, the yield expression evaluates to that supplied value.
-- `yield* delegation` — Delegates iteration to another iterable/iterator until it completes. It forwards `next`, `throw`, and `return` according to the delegated iterator protocol and evaluates to the delegate's final value when applicable.
+- `yield* delegation` — Delegates iteration to another iterable/iterator until it completes. It forwards `next`, `throw`, and `return` according to the delegated iterator protocol and evaluates to the delegate's final value when applicable. If the delegate lacks `throw`, delegation attempts its `return` cleanup if present, then throws a `TypeError`; if it lacks `return` when the outer generator is asked to return, the outer return completion proceeds.
+- `yield* missing-throw and missing-return behavior` — When `throw()` is injected and the delegate lacks `throw`, `yield*` calls the delegate `return()` if present to close it, then throws `TypeError`. When `return()` is injected and the delegate lacks `return`, delegation propagates the outer return completion.
 - `GeneratorFunction` — Intrinsic constructor associated with generator function objects. It is not a recommended way to generate source dynamically; dynamic construction has security and debugging costs.
 - `GeneratorFunction.prototype` — Shared prototype in the generator-function constructor chain; generator functions inherit function behavior through it.
-- `Generator.prototype[Symbol.iterator]` — Returns the generator object itself so it can be consumed by `for...of`, spread, and iterator helpers.
+- `Generator.prototype.constructor` — Refers to `GeneratorFunction.prototype`; generator instances inherit it through their generator-specific prototype.
+- `Generator.prototype inherits Iterator.prototype[Symbol.iterator]` — Generator instances inherit this identity method through `%Iterator.prototype%`; calling it returns the generator object itself, so it is iterable by `for...of`, spread, and iterator helpers. It is inherited rather than an own property of `%GeneratorPrototype%`.
+- `Generator.prototype[Symbol.toStringTag]` — The inherited, non-writable tag is `"Generator"`; it is descriptive and not a sound security/type check.
+- `Generator.prototype internal prototype relationship to Iterator.prototype` — `%GeneratorPrototype%` has `%Iterator.prototype%` as its own prototype, so generator objects inherit generic iterator methods and ES2025 helpers through the chain.
+- `GeneratorFunction.prototype.constructor` — Refers to the `GeneratorFunction` intrinsic.
+- `GeneratorFunction.prototype.prototype` — Points to `%GeneratorPrototype%`, the shared prototype used by generator instances.
+- `GeneratorFunction.prototype[Symbol.toStringTag]` — The intrinsic function-prototype tag is `"GeneratorFunction"`.
+- `Generator function instance length, name, and prototype properties` — A generator function has ordinary function `length` and `name` properties and its own `prototype` object used in the created generator's prototype chain. That per-function prototype object is not the same as `%GeneratorPrototype%`.
 
 # State transitions
 

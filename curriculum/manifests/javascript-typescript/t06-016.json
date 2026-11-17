@@ -41,6 +41,10 @@
         "Iterator.prototype.find",
         "Iterator.prototype[Symbol.iterator]",
         "Iterator.prototype[Symbol.toStringTag]",
+        "Iterator helper object",
+        "%IteratorHelperPrototype%.next",
+        "%IteratorHelperPrototype%.return",
+        "%IteratorHelperPrototype%[Symbol.toStringTag]",
         "Symbol.iterator",
         "for-of statement",
         "Array destructuring iteration",
@@ -64,7 +68,15 @@
         "yield* delegation",
         "GeneratorFunction",
         "GeneratorFunction.prototype",
-        "Generator.prototype[Symbol.iterator]"
+        "GeneratorFunction.prototype.constructor",
+        "GeneratorFunction.prototype.prototype",
+        "GeneratorFunction.prototype[Symbol.toStringTag]",
+        "Generator function instance length, name, and prototype properties",
+        "Generator.prototype.constructor",
+        "Generator.prototype inherits Iterator.prototype[Symbol.iterator]",
+        "Generator.prototype[Symbol.toStringTag]",
+        "Generator.prototype internal prototype relationship to Iterator.prototype",
+        "yield* missing-throw and missing-return behavior"
       ]
     },
     {
@@ -77,6 +89,7 @@
         "Symbol.asyncIterator",
         "for-await-of statement",
         "Async generator function",
+        "Async generator function expression",
         "Async generator method",
         "Async generator object",
         "AsyncGenerator.prototype.next",
@@ -84,6 +97,15 @@
         "AsyncGenerator.prototype.throw",
         "AsyncGeneratorFunction",
         "AsyncGeneratorFunction.prototype",
+        "AsyncIteratorPrototype is internal and there is no global AsyncIterator constructor in ECMAScript 2026",
+        "AsyncGeneratorFunction.prototype.constructor",
+        "AsyncGeneratorFunction.prototype.prototype",
+        "AsyncGeneratorFunction.prototype[Symbol.toStringTag]",
+        "Async generator function instance length, name, and prototype properties",
+        "AsyncGenerator.prototype.constructor",
+        "AsyncGenerator.prototype[Symbol.toStringTag]",
+        "AsyncGenerator.prototype inherits AsyncIteratorPrototype[Symbol.asyncIterator]",
+        "AsyncGenerator.prototype internal prototype relationship to AsyncIteratorPrototype",
         "Async-from-sync iterator",
         "AsyncIteratorClose"
       ]
@@ -142,7 +164,7 @@
   "sourceSnapshot": {
     "authority": "ECMA-262 and MDN JavaScript guide",
     "edition": "ECMAScript 2026",
-    "checkedAt": "2026-11-16",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://tc39.es/ecma262/2026/multipage/control-abstraction-objects.html",
       "https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html",
