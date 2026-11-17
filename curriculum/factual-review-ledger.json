@@ -5,9 +5,9 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 112,
-    "pending": 2228,
-    "claimsChecked": 1052,
+    "reviewed": 125,
+    "pending": 2215,
+    "claimsChecked": 1187,
     "claimsCorrected": 84,
     "draftsMayBePromoted": false
   },
@@ -13783,312 +13783,1074 @@
       "topicId": "t11-007",
       "phase": "overview",
       "draft": "course/drafts/t11-007/t11-007-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "An ADT specifies logical operations independently of the physical representation.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A stack processes the newest remaining item first (LIFO).",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A queue removes the oldest item first (FIFO).",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Circular arrays reuse positions before the current head through wraparound.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Array and linked implementations are alternative representations.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Nested delimiter matching depends on closing the most recent unmatched opener.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A ring queue needs additional state or a reserved slot to distinguish full and empty.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
-        "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+        "https://leetcode.com/problems/valid-parentheses/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked the orientation against current OpenDSA Complete Catalog linear-structure and queue chapters. Re-traced the delimiter example and verified that each metaphor is labeled as an access-order contract rather than a required storage representation. No factual or scope issue found."
     },
     {
       "taskId": "t11-007-concepts",
       "topicId": "t11-007",
       "phase": "concepts",
       "draft": "course/drafts/t11-007/t11-007-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 16,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Stack and queue are restricted-access list-like ADTs; representation is separate from contract.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The .NET Stack<T> implementation is array-backed and automatically grows when required.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A Stack<T>.Push with spare capacity is O(1); growth can be O(n).",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Circular queue enqueue/dequeue advance indices instead of shifting the entire array.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Head equality alone can denote empty or full, so count/flag/reserved slot disambiguation is required.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Linked queue end operations can update head/tail links without scanning when both references are maintained.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Lazy transfer only when output stack is empty preserves FIFO.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each item is transferred at most once, giving amortized O(1) operations but possible O(n) individual transfer.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Rotating older values after enqueue places newest at queue front.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "LIFO is the required delimiter order; FIFO would mismatch nested delimiters.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Postfix expressions use an operand stack and apply the earlier popped item as left operand.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A basic FIFO queue contract does not itself specify producer-consumer synchronization/backpressure.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Array and linked representations differ in allocation/locality tradeoffs.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Priority ordering is distinct from first-in-first-out ordering.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Stack<T> is a stack ADT backed by an array, not a linked list.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Queue<T> is a FIFO collection implemented as a circular array.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
         "https://leetcode.com/problems/implement-queue-using-stacks/",
         "https://leetcode.com/problems/implement-stack-using-queues/",
+        "https://leetcode.com/problems/valid-parentheses/",
         "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked each assigned concept against current OpenDSA linear-structure/queue material and Microsoft Stack<T>/Queue<T> documentation. Recomputed queue-from-stacks item movement and circular buffer invariants. Verified BFS FIFO, linked head/tail boundary, producer-consumer concurrency caveat, and priority ordering distinction. No unresolved issue found."
     },
     {
       "taskId": "t11-007-reference-stack-models",
       "topicId": "t11-007",
       "phase": "reference",
       "draft": "course/drafts/t11-007/t11-007-reference-stack-models.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "LIFO means last pushed, still-present item is the next popped.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Push inserts at top; Pop removes top; Peek observes top without removing it.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Stack<T> is array-backed.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Push with available capacity is O(1).",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Push that reallocates capacity can be O(n).",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Stack<T> automatically increases capacity when required.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Pop on an empty .NET Stack<T> throws InvalidOperationException.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1.pop",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Array-backed storage offers contiguous locality while linked representation allocates nodes.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A linked stack can push/pop by changing its head link.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The abstraction does not prescribe fixed versus dynamic capacity.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
-        "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1.pop"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all ten frozen inventory entries. Verified .NET Stack<T> array representation, dynamic capacity behavior and empty operations against Microsoft docs; added explicit current .NET exception and TryPop/TryPeek behavior. Linked-stack end operations and tradeoffs match OpenDSA. No unresolved issue found."
     },
     {
       "taskId": "t11-007-reference-queue-models",
       "topicId": "t11-007",
       "phase": "reference",
       "draft": "course/drafts/t11-007/t11-007-reference-queue-models.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 11,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
-        "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+      "evidence": [
+        {
+          "claim": "FIFO means the earliest enqueued item leaves first.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Enqueue occurs at back and dequeue occurs at front.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Circular-array indices reuse vacant slots by wrapping.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A queue can distinguish empty/full using count or reserve a slot.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The current .NET Queue<T> uses a circular array.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dequeue removes the oldest item and is O(1).",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1.dequeue",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dequeue on an empty .NET Queue<T> throws InvalidOperationException.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1.dequeue",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "TryDequeue reports false when the queue is empty.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1.trydequeue",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A linked queue with maintained head/tail can enqueue/dequeue in constant time.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Removing the final linked node requires both head and tail to represent empty.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Shifting all entries on every array dequeue adds linear work per removal.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1.dequeue",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1.trydequeue"
+      ],
+      "reviewNote": "Checked all eleven frozen inventory entries. Updated obsolete fall-2019 source to current OpenDSA Complete Catalog Queue chapter; verified .NET Queue<T> ring representation, FIFO members, empty Dequeue exception, and TryDequeue/TryPeek alternatives against Microsoft docs. Traced head/count/tail formulas and linked-queue empty/one-node transitions. No unresolved issue found."
     },
     {
       "taskId": "t11-007-reference-deques-and-simulations",
       "topicId": "t11-007",
       "phase": "reference",
       "draft": "course/drafts/t11-007/t11-007-reference-deques-and-simulations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "A deque permits insertion and removal at both ends.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Using one deque end for push/pop gives stack behavior.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Using opposite ends for insertion/removal gives queue behavior.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A deque contract does not promise constant-time middle indexing.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A doubly linked deque can remove the tail in O(1); a singly linked structure may need predecessor search.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Transfer only when output stack is empty preserves existing older queue items.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Every queued item crosses from incoming to outgoing no more than once.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "One dequeue may be O(n) despite amortized O(1) operations.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "One-queue rotation pays O(n) on push while top/pop use the front.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Two-queue implementation can choose to make push or pop the expensive operation.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
         "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+        "https://leetcode.com/problems/implement-stack-using-queues/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all nine frozen inventory entries and their operation-cost distinctions. Simulated lazy transfer and one-queue rotation with mixed operations; verified each item crosses stacks at most once and that singly-linked pop-back may require predecessor search. Scope boundary to dedicated monotonic structures and priority queues remains accurate. No unresolved issue found."
     },
     {
       "taskId": "t11-007-reference-applications-and-selection",
       "topicId": "t11-007",
       "phase": "reference",
       "draft": "course/drafts/t11-007/t11-007-reference-applications-and-selection.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
-        "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+      "evidence": [
+        {
+          "claim": "A closer must match the latest unmatched opener.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Postfix evaluation uses a stack; infix evaluation also needs precedence/grammar handling.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Equal counts do not detect crossing delimiter nesting.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Undo commonly reverses the most recent action, but external side effects may require compensating actions.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "FIFO processes a breadth-first frontier in discovery order.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Marking graph nodes when enqueued prevents duplicate pending work.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A queue data structure alone does not provide concurrent synchronization/backpressure.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Array and linked representations have different locality/allocation costs.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Priority ordering selects by key rather than arrival order.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Monotonic stack is an extension with an additional value/index invariant.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/valid-parentheses/",
+        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1"
+      ],
+      "reviewNote": "Checked all eight frozen inventory entries. Verified delimiter LIFO, postfix operand order concept, BFS FIFO/mark-at-enqueue rule, and distinction between a basic queue and synchronization/backpressure. Confirmed priority queue and monotonic algorithm details remain within linked topics. No unresolved issue found."
     },
     {
       "taskId": "t11-007-practice-valid-parentheses",
       "topicId": "t11-007",
       "phase": "practice",
       "draft": "course/drafts/t11-007/t11-007-practice-valid-parentheses.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
-        "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+      "evidence": [
+        {
+          "claim": "Input alphabet contains the six bracket characters only.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Length constraint is 1 through 10^4.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A valid closer matches the same bracket type.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Closers must appear in proper nesting order.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Every closer must have a matching opener.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples classify nested and crossed bracket strings correctly.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The stack invariant stores unmatched openers in input order.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "One pass uses O(n) time and O(n) worst-case stack space.",
+          "source": "https://leetcode.com/problems/valid-parentheses/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/valid-parentheses/"
+      ],
+      "reviewNote": "Checked problem statement, constraints, examples, operation contract, implementation invariant, complexity, edge cases, C# arithmetic/indexing, and solution reasoning against the current canonical LeetCode statement (Description and constraints). Independently traced every supplied example and the additional edge assertions in the lesson. No unresolved issue found."
     },
     {
       "taskId": "t11-007-practice-min-stack",
       "topicId": "t11-007",
       "phase": "practice",
       "draft": "course/drafts/t11-007/t11-007-practice-min-stack.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
-        "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+      "evidence": [
+        {
+          "claim": "Required operations are push, pop, top, and getMin.",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Every required operation must be O(1).",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Values span the complete signed Int32 range.",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Problem calls pop/top/getMin only on nonempty stacks.",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "At most 30,000 operations are allowed.",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Canonical example restores minimum after popping the minimum value.",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Per-depth minimum snapshot equals min(value, previous depth minimum).",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Duplicate minima are preserved by storing a snapshot per stack entry.",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The solution performs no arithmetic on Int32 values, so extremes are safe.",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each operation is O(1) and the pair stack uses O(n) space.",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/min-stack/"
+      ],
+      "reviewNote": "Checked problem statement, constraints, examples, operation contract, implementation invariant, complexity, edge cases, C# arithmetic/indexing, and solution reasoning against the current canonical LeetCode statement (Operations, O(1) requirement, full Int32 constraints). Independently traced every supplied example and the additional edge assertions in the lesson. No unresolved issue found."
     },
     {
       "taskId": "t11-007-practice-implement-queue-using-stacks",
       "topicId": "t11-007",
       "phase": "practice",
       "draft": "course/drafts/t11-007/t11-007-practice-implement-queue-using-stacks.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 9,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
-        "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+      "evidence": [
+        {
+          "claim": "Required simulated queue operations are push, peek, pop, and empty.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Only standard stack operations may be used.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The follow-up requests amortized O(1) operations.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Problem guarantees pop and peek calls are valid.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "When outgoing is nonempty, its top is the earliest queue item.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Transferring all incoming items reverses order so oldest becomes outgoing top.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Items are transferred at most once.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Worst-case transfer operation is O(n), amortized operation O(1).",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Example and mixed enqueue/dequeue trace preserve FIFO.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/implement-queue-using-stacks/"
+      ],
+      "reviewNote": "Checked problem statement, constraints, examples, operation contract, implementation invariant, complexity, edge cases, C# arithmetic/indexing, and solution reasoning against the current canonical LeetCode statement (Allowed stack operations, amortized follow-up, valid calls). Independently traced every supplied example and the additional edge assertions in the lesson. No unresolved issue found."
     },
     {
       "taskId": "t11-007-practice-implement-stack-using-queues",
       "topicId": "t11-007",
       "phase": "practice",
       "draft": "course/drafts/t11-007/t11-007-practice-implement-stack-using-queues.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 9,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
-        "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+      "evidence": [
+        {
+          "claim": "Required simulated stack operations are push, top, pop, and empty.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Only standard queue operations may be used.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Problem follow-up permits implementation with one queue.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Problem guarantees top and pop calls are valid.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Capturing count before enqueue rotates only older entries.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "After rotation, queue front is newest stack item.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Push rotation is O(n); top/pop/empty are O(1).",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Repeated pushes can total O(n^2) rotation work.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Walkthrough and code rotation order agree.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/implement-stack-using-queues/"
+      ],
+      "reviewNote": "Checked problem statement, constraints, examples, operation contract, implementation invariant, complexity, edge cases, C# arithmetic/indexing, and solution reasoning against the current canonical LeetCode statement (Allowed queue operations and one-queue follow-up). Independently traced every supplied example and the additional edge assertions in the lesson. No unresolved issue found."
     },
     {
       "taskId": "t11-007-practice-evaluate-reverse-polish-notation",
       "topicId": "t11-007",
       "phase": "practice",
       "draft": "course/drafts/t11-007/t11-007-practice-evaluate-reverse-polish-notation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 11,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
-        "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+      "evidence": [
+        {
+          "claim": "Valid RPN operators are +, -, *, and /.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Integer division truncates toward zero.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Input has no division by zero.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Answer and intermediate calculations fit signed 32-bit integer.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Token count is 1 through 10^4.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Integer operands are in range [-200,200].",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each operator pops right first, then left, and evaluates left op right.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Valid expression leaves exactly one stack value.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "All listed examples evaluate to their stated outputs.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# integral division truncates toward zero.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each token is pushed or consumed once, giving O(n) time and O(n) worst-case space.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators"
+      ],
+      "reviewNote": "Checked problem statement, constraints, examples, operation contract, implementation invariant, complexity, edge cases, C# arithmetic/indexing, and solution reasoning against the current canonical LeetCode statement (Valid RPN, operators, truncation toward zero, Int32 and token constraints). Independently traced every supplied example and the additional edge assertions in the lesson. No unresolved issue found."
     },
     {
       "taskId": "t11-007-practice-design-circular-queue",
       "topicId": "t11-007",
       "phase": "practice",
       "draft": "course/drafts/t11-007/t11-007-practice-design-circular-queue.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Queue contract is FIFO and ring connects last slot to first.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Constructor capacity k is in range 1 through 1000.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Values are in range 0 through 1000.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "At most 3000 method calls are made.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Front/Rear return -1 when empty.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Enqueue/dequeue report success or failure as booleans.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The problem forbids use of a built-in queue.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "With head and count, insertion index is (head+count) modulo capacity.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Count distinguishes empty and full even when ring indices coincide.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Rear index is (head+count-1) modulo capacity for nonempty queue.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Failed operations leave state unchanged and valid operations are O(1).",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Capacity-one and wraparound walkthroughs preserve FIFO.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
-        "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
-        "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
         "https://leetcode.com/problems/design-circular-queue/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked problem statement, constraints, examples, operation contract, implementation invariant, complexity, edge cases, C# arithmetic/indexing, and solution reasoning against the current canonical LeetCode statement (Capacity, operations, sentinel, no built-in queue, examples and constraints). Independently traced every supplied example and the additional edge assertions in the lesson. No unresolved issue found."
     },
     {
       "taskId": "t11-007-interview",
       "topicId": "t11-007",
       "phase": "interview",
       "draft": "course/drafts/t11-007/t11-007-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Stack and queue access-order definitions match LIFO and FIFO.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Deque exposes both ends.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Lazy two-stack queue has O(1) amortized operations, with occasional O(n) transfer.",
+          "source": "https://leetcode.com/problems/implement-queue-using-stacks/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Head/count ring formulas distinguish empty and full states.",
+          "source": "https://leetcode.com/problems/design-circular-queue/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Per-depth min snapshots preserve the previous minimum on pop.",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Duplicate minima need duplicate-aware state or per-depth snapshots.",
+          "source": "https://leetcode.com/problems/min-stack/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "RPN pops right operand before left and evaluates left op right.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Problem division truncates toward zero and intermediate results fit Int32.",
+          "source": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "One-queue rotation can pay O(n) on push for O(1) top/pop.",
+          "source": "https://leetcode.com/problems/implement-stack-using-queues/",
+          "section": "problem statement, constraints, examples, or independently traced algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Array stack growth has occasional O(n) worst-case push despite amortized constant insertion.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The .NET queue is a circular-array implementation.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Linked queue must clear tail when the last node is removed.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+          "section": "ADT definitions, implementation and complexity sections",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
-        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html",
-        "https://leetcode.com/problems/valid-parentheses/",
-        "https://leetcode.com/problems/min-stack/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
         "https://leetcode.com/problems/implement-queue-using-stacks/",
-        "https://leetcode.com/problems/implement-stack-using-queues/",
+        "https://leetcode.com/problems/design-circular-queue/",
+        "https://leetcode.com/problems/min-stack/",
         "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
-        "https://leetcode.com/problems/design-circular-queue/"
+        "https://leetcode.com/problems/implement-stack-using-queues/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all stated definitions, invariants, complexities, edge cases, and scenarios against assigned inventory and current source material. Re-derived amortized transfer count, ring-buffer formulas, minimum snapshots with duplicates, RPN operand ordering, and BFS queue order. No unresolved issue found."
     },
     {
       "taskId": "t11-022-overview",
@@ -104852,6 +105614,14 @@
       "status": "full claim and frozen-inventory audit complete for this topic",
       "findings": [
         "Audited all 15 lessons against the linked-list representation/mutation/fast-slow/identity inventory, a refreshed OpenDSA module, .NET LinkedList<T> documentation, and eight current canonical problem statements. Checked node identity, pointer invariants, cycle behavior, constraints, examples, runtime/space costs, and input mutation. Corrected the defensive both-null Add Two Numbers result so it returns a zero node consistently with its stated null extension. No unresolved issues remain."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "DSA stacks, queues, deques, circular buffers, and simulations (t11-007)",
+      "status": "full claim and frozen-inventory audit complete for this topic",
+      "findings": [
+        "Reviewed all 13 lessons against all 38 assigned inventory entries, the current OpenDSA Complete Catalog, current Microsoft Stack<T>/Queue<T> documentation, and six current canonical problem statements. Checked stack/queue/deque contracts, array/linked/ring representations, empty/full states, amortized transfer/growth bounds, BFS and parser ordering, examples, C# division and API behavior, and every practice solution. Refreshed the queue source link and clarified current .NET empty-operation/Try API behavior. No unresolved factual or coverage issues remain."
       ]
     }
   ]

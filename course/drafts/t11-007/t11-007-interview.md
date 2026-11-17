@@ -92,4 +92,4 @@ Removing the front then shifting n-1 elements makes dequeue O(n), yielding O(n²
 
 Check that you can explain the LIFO/FIFO/deque contracts; prove lazy transfer's amortized cost by counting item movements; derive ring-buffer front and rear indices; explain duplicate minima; preserve operand order in postfix evaluation; and give one workload where a priority queue is required instead of FIFO.
 
-Sources: [OpenDSA: Lists](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html), [OpenDSA: Queue](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html).
+Sources: [OpenDSA: Lists](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html), [OpenDSA: Queue](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html).

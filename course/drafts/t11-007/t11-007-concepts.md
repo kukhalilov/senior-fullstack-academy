@@ -64,4 +64,4 @@ For queue-from-stacks, enqueue A,B,C into incoming. On first dequeue, transfer C
 4. **What order does BFS need?** FIFO by discovery.
 5. **Does a basic queue provide thread safety or backpressure?** No; those are separate coordination policies.
 
-Sources: [OpenDSA: Linear Lists](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html), [OpenDSA: Queues](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html).
+Sources: [OpenDSA: Linear Lists](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html), [OpenDSA: Queues](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html).

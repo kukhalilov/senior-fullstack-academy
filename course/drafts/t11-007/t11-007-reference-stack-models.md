@@ -14,7 +14,7 @@ A stack exposes one active end. Push adds there; peek observes it; pop removes i
 - `Push` — Add an item to the top. With a growable array, most pushes are constant time but a resize may copy all elements.
 - `Pop` — Remove and return the top. Removing from an empty stack must follow a defined API contract, such as throwing or returning a Try result.
 - `Peek/top` — Observe the current top without removing it. Empty behavior must be defined just as for pop.
-- `Empty-stack behavior` — The specified outcome for pop/peek on empty storage. Never read an uninitialized array slot or decrement a top index below its valid range.
+- `Empty-stack behavior` — The specified outcome for pop/peek on empty storage. In .NET, `Stack<T>.Pop()` and `Peek()` throw `InvalidOperationException`; newer target frameworks also provide `TryPop` and `TryPeek` for non-throwing checks. Never read an uninitialized array slot or decrement a top index below its valid range.
 - `Array-backed stack` — Store items in an array and a count/top index. It offers compact storage and locality; capacity growth may copy elements.
 - `Linked stack` — Store a top reference and link nodes downward. Push/pop update the head in O(1); each item typically needs an allocation/reference and locality is weaker.
 - `Dynamic capacity growth` — When an array fills, allocate a larger array and copy active elements. Geometric growth bounds total copying over many pushes, though one push can be O(n).
@@ -44,4 +44,4 @@ Push A, then B, then C. Peek returns C without changing the stack. Pop returns C
 3. **Why can a single dynamic-array push be O(n)?** It may allocate and copy all active elements during growth.
 4. **What must fixed capacity define?** Behavior when another push occurs while full.
 
-Source: [OpenDSA: Linear Lists](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html).
+Sources: [OpenDSA: Linear Lists](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html), [Microsoft: Stack<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1).

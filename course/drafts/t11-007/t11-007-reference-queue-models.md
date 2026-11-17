@@ -14,7 +14,7 @@ A queue admits new work at the back and serves the oldest pending work at the fr
 - `Enqueue` — Add an item at the back. A linked queue attaches after tail; a circular buffer writes at its calculated next position.
 - `Dequeue` — Remove and return the front item, then advance head or bypass the first node. If the last node leaves a linked queue, set both head and tail to null.
 - `Front/peek` — Observe the oldest item without removing it. Define behavior for an empty queue.
-- `Empty-queue behavior` — Specify what dequeue/peek do when no elements are present. Do not infer emptiness from stale array contents.
+- `Empty-queue behavior` — Specify what dequeue/peek do when no elements are present. In .NET, `Queue<T>.Dequeue()` and `Peek()` throw `InvalidOperationException`; `TryDequeue` and `TryPeek` report absence without throwing. Do not infer emptiness from stale array contents.
 - `Array-backed queue` — Use an array for storage. Shifting all remaining items after each dequeue is O(n); circular indexing avoids repeated shifts.
 - `Circular array queue` — Treat an array as a ring: advance indices modulo capacity and track count or reserve one slot to distinguish full from empty.
 - `Linked queue` — Maintain front/head and back/tail references. Enqueue at tail and dequeue at head are O(1); handle transitions to/from empty.
@@ -46,4 +46,4 @@ With capacity 5 and logical items at slots 3 and 4, dequeue advances head to 4. 
 3. **What extra state can distinguish empty/full when head equals tail?** A count, or one reserved unused slot.
 4. **What state follows removing the last linked item?** Both head and tail become null.
 
-Source: [OpenDSA: Queues](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html).
+Sources: [OpenDSA: Queues](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html), [Microsoft: Queue<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1).

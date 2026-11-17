@@ -49,4 +49,4 @@ Do not substitute a priority queue for FIFO unless priority order is explicitly 
 
 The concepts lesson compares the contracts, representations, amortized costs, and worklist applications. References detail stack, queue, deque/simulation, and selection behavior. Independent practice solves delimiter validation, minimum tracking, both ADT simulations, reverse Polish notation, and a circular queue.
 
-Sources: [OpenDSA: Linear Lists](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html), [OpenDSA: Queues](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html).
+Sources: [OpenDSA: Linear Lists](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html), [OpenDSA: Queues](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html).

@@ -43,4 +43,4 @@ In BFS, mark a vertex visited when enqueued, then dequeue it and enqueue newly d
 3. **What additional concerns does producer-consumer buffering introduce?** Thread safety, capacity, backpressure, cancellation, and shutdown.
 4. **What selects an item in a priority queue?** Its priority rule rather than FIFO or LIFO alone.
 
-Sources: [OpenDSA: Linear Lists](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html), [OpenDSA: Queues](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html).
+Sources: [OpenDSA: Linear Lists](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html), [OpenDSA: Queues](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html).

@@ -43,4 +43,4 @@ For queue-from-stacks, enqueue A,B,C to incoming. On dequeue, transfer C,B,A to 
 3. **Why is the transfer cost amortized O(1) per item?** Each item transfers at most once.
 4. **Does deque imply efficient middle access?** No.
 
-Source: [OpenDSA: Queues](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/odsa-all/fall-2019/Public_Instance/html/Queue.html).
+Source: [OpenDSA: Queues](https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html).
