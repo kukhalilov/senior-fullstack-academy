@@ -78301,31 +78301,43 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://developer.apple.com/documentation/usernotifications/setting-up-a-remote-notification-server",
+        "https://developer.apple.com/documentation/usernotifications/sending-notification-requests-to-apns",
+        "https://developer.apple.com/documentation/usernotifications/handling-notification-responses-from-apns",
+        "https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns",
+        "https://developer.apple.com/documentation/usernotifications/registering-your-app-with-apns"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed.",
+      "partialSourceChecks": [
+        {
+          "status": "partial primary-source checks; full lesson audit pending",
+          "checks": [
+            {
+              "claim": "APNs provider requests use HTTP/2 and TLS; providers use token-based or certificate-based trust and send a POST with token/topic/payload.",
+              "source": "https://developer.apple.com/documentation/usernotifications/setting-up-a-remote-notification-server",
+              "also": "https://developer.apple.com/documentation/usernotifications/sending-notification-requests-to-apns",
+              "verdict": "verified against current Apple docs"
+            },
+            {
+              "claim": "APNs delivery is best effort, may reorder, and pending storage/expiration behavior is bounded by the request expiration semantics.",
+              "source": "https://developer.apple.com/documentation/usernotifications/sending-notification-requests-to-apns",
+              "verdict": "verified; lesson avoids claiming guaranteed retention duration"
+            },
+            {
+              "claim": "Collapse identifiers can coalesce notifications; APNs responses include status/reason and 410 timestamp semantics for invalidation.",
+              "source": "https://developer.apple.com/documentation/usernotifications/sending-notification-requests-to-apns",
+              "also": "https://developer.apple.com/documentation/usernotifications/handling-notification-responses-from-apns",
+              "verdict": "verified"
+            },
+            {
+              "claim": "Device registration produces tokens that the app sends to its provider; tokens need lifecycle/update handling.",
+              "source": "https://developer.apple.com/documentation/usernotifications/registering-your-app-with-apns",
+              "verdict": "verified for registration flow; application account association is design guidance"
+            }
+          ],
+          "remaining": "Full push type/payload/header matrix, all response reasons and credential lifecycle details, every statement, and manifest completeness remain unaudited."
+        }
+      ]
     },
     {
       "taskId": "t12-001-reference-handbook-building-block-product-and-protocol-examples-firebase-cloud-messaging-fcm",
@@ -99992,7 +100004,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 162 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 161 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits.",
         "Replaced generic GCS reference filler with object-storage mental model, consistency boundaries, generation preconditions, resumable upload and signed-URL security, deletion/recovery distinctions, application flows, and design exercises. Selected claims checked against Google Cloud documentation; complete factual and feature-omission audits remain pending.",
@@ -100003,7 +100015,8 @@
         "Replaced generic Durable Objects filler with per-entity coordination, async transaction semantics, lifecycle/hibernation, alarms, hot-key tradeoffs, and queue/database boundaries. Selected claims checked against Cloudflare docs; complete factual and omission audits remain pending.",
         "Replaced generic edge database filler with write ownership, consistency, replica, quorum, offline conflict, and failover models grounded in Aurora and Spanner documentation. Selected claims checked; complete factual and category-wide completeness audits remain pending.",
         "Replaced generic LRU filler with exact policy invariants, map/list implementation, qualified complexity, scan pollution, admission-versus-eviction distinction, and alternatives grounded in research and implementation documentation. Selected claims checked; full factual and completeness audit remains pending.",
-        "Replaced generic TinyLFU filler with admission-versus-eviction distinction, compact frequency sketch and aging, Window TinyLFU cold-start behavior, scan/burst examples, and benchmark guidance. Selected claims checked against original research and Caffeine docs; full audit remains pending."
+        "Replaced generic TinyLFU filler with admission-versus-eviction distinction, compact frequency sketch and aging, Window TinyLFU cold-start behavior, scan/burst examples, and benchmark guidance. Selected claims checked against original research and Caffeine docs; full audit remains pending.",
+        "Replaced generic APNs reference filler with provider/device flow, best-effort semantics, token lifecycle, collapse/expiration choices, durable outbox guidance, and operational retry examples. Selected claims checked against Apple docs; full factual and completeness audit remains pending."
       ]
     },
     {
