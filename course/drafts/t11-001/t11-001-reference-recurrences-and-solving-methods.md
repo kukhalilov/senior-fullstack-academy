@@ -6,70 +6,75 @@
 
 # Scope and version
 
-This lesson covers the mathematical tools used to analyze the cost of recursive algorithms. It focuses on how to express the running time of a function that calls itself and the standard techniques used to solve those expressions. These concepts are timeless foundations of computer science (references checked 2026-11-14).
-
 # How this group fits the mental model
 
-When you analyze a simple loop, you can count the operations directly. However, recursive algorithms—those that solve a problem by breaking it into smaller versions of itself—require a different approach. 
-
-Think of a **recurrence** as a "cost recipe." It describes the total work as the sum of the work done at the current level plus the work required to solve the smaller sub-problems. To understand the overall efficiency (the **asymptotic bound**), you must "solve" this recipe to find a standard notation like Big O. The names in this group represent the components of that recipe and the different strategies you can use to find the final answer.
+A recurrence defines a cost function using costs for smaller inputs, together with base values. It is a model derived from the algorithm and the chosen cost measure. A recurrence does not solve itself: first count recursive calls and nonrecursive work, then choose a solution technique whose assumptions fit. The result may be a bound rather than an exact closed form.
 
 # Supplied names explained
 
-*   `Recurrence relation`: An equation or inequality that defines a function over non-negative integers (usually representing input size $n$) in terms of itself. In algorithm analysis, it expresses the total time $T(n)$ by breaking it down into the time spent on sub-problems and the time spent on "extra" work like dividing the input or combining results.
-*   `Base case`: The part of a recurrence relation that defines the cost for the smallest possible input (often $n=1$ or $n=0$). Without a base case, the recurrence would subtract from the input size forever, and the mathematical model would never reach a conclusion.
-*   `Substitution method`: A two-step technique for solving recurrences. First, you guess the form of the solution (e.g., "I think this is $O(n^2)$"). Second, you use mathematical induction to prove that your guess is correct. This is powerful but requires a good initial guess.
-*   `Iteration method`: A technique where you repeatedly expand (unfold) the recurrence by replacing the recursive term with its own definition. You continue this until you see a pattern, usually resulting in a summation (a series of numbers added together) that you can solve using standard algebra.
-*   `Recursion tree method`: A visual way to solve recurrences. You draw a tree where each node represents the cost of a single sub-problem at a specific level of recursion. By summing the costs of all nodes at each level and then summing the totals of all levels, you can determine the total asymptotic cost.
-*   `Master method`: A "cookbook" approach for solving recurrences that follow a specific standard form, typically $T(n) = aT(n/b) + f(n)$. It provides a set of pre-determined rules to quickly find the Big O bound without drawing trees or performing induction.
-*   `Master theorem`: The underlying mathematical theorem that proves the validity of the Master method. It provides the formal bounds for the three cases used to compare the cost of dividing/combining ($f(n)$) against the cost of the recursive sub-problems.
+`Recurrence relation` is the equation or inequality; `Base case` provides its boundary values. `Substitution method`, `Iteration method`, `Recursion tree method`, `Master method`, and `Master theorem` are standard ways to reason about solutions.
 
-# Cross-item comparison
+## Build the recurrence carefully
 
-*   **`Substitution method` vs. `Recursion tree method`**: The recursion tree is often used to generate a good "guess" for the cost, while the substitution method is used to formally prove that the guess is correct.
-*   **`Iteration method` vs. `Master method`**: The iteration method is a manual process of unfolding the math, which works for almost any recurrence. The Master method is a shortcut that only works for specific "divide and conquer" patterns.
-*   **`Master method` vs. `Master theorem`**: In practice, you use the *method* (the steps) to solve a problem, while the *theorem* is the mathematical proof that those steps are correct.
+For a recursive procedure, write `T(n) = (sum of recursive-call costs) + (nonrecursive work)` and state base cases. Include all recursive calls, including calls on unequal subproblem sizes; do not count work already included in a recursive call twice. Clarify rounding and what happens for small `n`. A base case must terminate the recurrence and have a cost consistent with the model.
+
+**Example: merge sort.** With two halves and linear merging, `T(n)=T(floor(n/2))+T(ceil(n/2))+Theta(n)` for `n>1`, and `T(1)=Theta(1)`. On powers of two this simplifies to `2T(n/2)+Theta(n)`. The simplification preserves the asymptotic solution; the exact recurrence includes floors and ceilings.
 
 # Examples
 
-### Defining a Recurrence
-For an algorithm like Merge Sort, which splits an array in half and then merges the results, the cost is described by this `Recurrence relation`:
-$T(n) = 2T(n/2) + n$
-The `Base case` is $T(1) = 1$ (sorting one item takes constant time).
+## Solution methods
 
-### Using the Master Method
-To solve $T(n) = 2T(n/2) + n$ using the `Master method`, we identify the parts:
-*   $a = 2$ (number of sub-problems)
-*   $b = 2$ (factor by which input size shrinks)
-*   $f(n) = n$ (cost of merging)
+## Iteration / expansion
 
-According to the `Master theorem`, since the work is balanced between the sub-problems and the merging step, the solution is $T(n) = \Theta(n \log n)$.
+Repeatedly substitute the recurrence into itself until reaching base cases, then evaluate the resulting sum. This is useful for revealing a geometric or arithmetic pattern and works beyond the Master theorem's form, provided the expansion can be bounded.
 
-### Using a Recursion Tree
-If we used the `Recursion tree method` for the same problem:
-1.  The top node is $n$.
-2.  The next level has two nodes of $n/2$ (total $n$).
-3.  The next level has four nodes of $n/4$ (total $n$).
-4.  The tree has $\log n$ levels.
-5.  Total cost = (Work per level) $\times$ (Number of levels) = $n \log n$.
+For `T(n)=T(n-1)+n`, `T(1)=Theta(1)`, expansion gives `T(n)=T(1)+2+3+...+n = Theta(n^2)`. For `T(n)=T(n/2)+1`, `T(1)=Theta(1)`, expansion has `Theta(log n)` constant-cost levels, so `T(n)=Theta(log n)`.
+
+## Recursion tree
+
+Draw one node per subproblem, label it with the nonrecursive work at that node, sum costs by level, and include leaves/base-case costs. For `T(n)=2T(n/2)+n`, each level has total nonrecursive work `n`; there are `log2(n)` internal levels and `n` constant-cost leaves, so total cost is `Theta(n log n)`. For irregular trees, level costs may not be equal; sum the actual series and check leaves rather than assuming “work per level times depth.”
+
+## Substitution / induction
+
+Guess a bound, substitute it into the recurrence, and prove it by induction, including base cases. The guess can come from expansion, a tree, or another argument. For an upper bound, inductive constants and lower-order terms matter. If a direct guess fails, strengthen it (for example, prove `T(n) <= c n log n - d n` rather than only `c n log n`). A recursion tree can suggest a result, but the induction establishes the claimed inequality.
+
+## Master theorem for a restricted divide-and-conquer form
+
+For the standard recurrence `T(n)=aT(n/b)+f(n)`, where `a>=1`, `b>1` are constants, subproblems have equal size (with conventional rounding), base costs are bounded, and `f` is asymptotically nonnegative, compare `f(n)` with `n^p`, where `p=log_b(a)`. A common Master theorem version states:
+
+1. If `f(n)=O(n^(p-epsilon))` for some constant `epsilon>0`, then `T(n)=Theta(n^p)`.
+2. If `f(n)=Theta(n^p log^k n)` for a constant `k>=0`, then `T(n)=Theta(n^p log^(k+1) n)`.
+3. If `f(n)=Omega(n^(p+epsilon))` for some constant `epsilon>0` and the regularity condition `a f(n/b) <= c f(n)` holds eventually for some constant `c<1`, then `T(n)=Theta(f(n))`.
+
+This formulation covers the usual cases but is not a universal recurrence solver. Variants state slightly different hypotheses. In particular, Case 3 needs its regularity condition; merely observing that `f` grows polynomially faster is insufficient. The equal-size, fixed-branching recurrence is essential. The theorem does not directly solve unequal splits such as `T(n)=T(n/3)+T(2n/3)+n`, decrement-by-one recurrences, recurrences with nonconstant branching, or arbitrary recurrences. Use expansion, a tree, induction, or a more general theorem when the form does not match.
+
+**Example.** `T(n)=2T(n/2)+n` has `a=2`, `b=2`, `p=log2(2)=1`, and `f(n)=Theta(n)=Theta(n^p)`. Case 2 with `k=0` yields `Theta(n log n)`. By contrast, `T(n)=2T(n/2)+1` has `f(n)=O(n^(1-epsilon))` for a suitable positive epsilon, so Case 1 yields `Theta(n)`.
+
+# Cross-item comparison
+
+* Expansion is direct when repeated substitution yields a tractable sum.
+* A recursion tree is useful for seeing per-level costs and generating a conjecture.
+* Induction is useful to verify a proposed bound and handles many recurrences outside a theorem's scope.
+* The Master theorem is quick only after verifying its form and hypotheses. A failed match is a reason to use another method, not to force a case.
 
 # Common mistakes
 
-*   **Ignoring the Base Case**: Forgetting the `Base case` in a `Substitution method` proof often leads to a "proof" that seems to work but is logically invalid.
-*   **Misapplying the Master Method**: The `Master method` cannot be used if $a < 1$ (you can't have fewer than one sub-problem) or if the sub-problems are not of equal size (e.g., $T(n) = T(n/3) + T(2n/3) + n$). In these cases, you must use a `Recursion tree method` or `Iteration method`.
-*   **Confusing "n" with "T(n)"**: When expanding a recurrence, learners sometimes confuse the input size ($n$) with the cost function ($T$). Always remember that $T(n)$ is the "price" you pay for an input of size $n$.
+* Omitting a base case or recursive branch.
+* Treating `T(n)=2T(n/2)+n` as `2T(n)+n`, or counting recursive work again as nonrecursive work.
+* Assuming every recursion tree has equal cost at each level.
+* Applying the Master theorem to unequal-sized subproblems or ignoring Case 3 regularity.
+* Stopping an expansion before the base cases and losing leaf cost or recursion depth.
+* Reporting `O` when the argument supports a tight `Theta` bound, or claiming `Theta` from an upper-bound argument alone.
 
 # Knowledge checks with answers
 
-1.  **Question**: Which method is best described as "unfolding" the recurrence into a long sum?
-    *   **Answer**: `Iteration method`.
-2.  **Question**: If you have a recurrence $T(n) = 3T(n/2) + n^2$, and you want to solve it quickly using a set of three standard cases, which tool are you using?
-    *   **Answer**: `Master method`.
-3.  **Question**: Why is a `Base case` necessary in a `Recurrence relation`?
-    *   **Answer**: It provides a stopping point for the recursion, representing the smallest problem size that can be solved directly without further calls.
-4.  **Question**: True or False: The `Substitution method` is the easiest way to find a solution if you have no idea what the Big O bound might be.
-    *   **Answer**: False. The substitution method requires you to guess the answer first. The `Recursion tree method` is usually better for finding the initial guess.
+1. **Solve `T(n)=T(n-1)+n`, with constant base cost.** Expansion gives a sum from 1 through n, hence `Theta(n^2)`.
+2. **Why is `T(n)=T(n/3)+T(2n/3)+n` outside the basic Master theorem above?** It has two unequal subproblem sizes rather than `a` identical subproblems each of size `n/b`.
+3. **What extra hypothesis does the common third Master case require?** A regularity condition such as `a f(n/b) <= c f(n)` eventually for some `c<1`, in addition to polynomial separation.
+4. **What does a recursion tree contribute to a proof?** A way to organize and sum node costs; the asymptotic sum still needs justification, and induction may be used to establish a bound.
 
-**Sources:**
-*   [OpenDSA: Asymptotic Analysis](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html)
-*   [MIT OCW: Asymptotic Notation and Recurrences](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html)
+**Sources**
+
+* [MIT OCW, 6.046J Lecture 2: Asymptotic Notation and Recurrences](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html) — substitution, recursion trees, Master theorem.
+* [MIT OCW, 6.006 Recitation 3: Recurrences](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf) — theorem hypotheses and method overview.
+* [MIT OCW, Mathematics for Computer Science, §21.4.4](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf) — one statement of the Master theorem including regularity.

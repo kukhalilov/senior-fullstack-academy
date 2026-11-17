@@ -12,20 +12,20 @@ Before analyzing an algorithm, you must define what you are measuring (the resou
 
 # Supplied names explained
 
-* `Input size`: The primary variable (often denoted as $n$) representing the amount of data the algorithm processes. Choosing the correct measure is critical; for sorting, it is the number of elements, while for graph algorithms, it may be the number of vertices and edges.
-* `Running time`: The measure of computational steps or operations performed by an algorithm. It is typically expressed as a function of the input size.
-* `Auxiliary space`: The extra memory used by an algorithm, excluding the space taken by the input itself. This is essential for understanding memory constraints.
-* `Best-case cost`: The minimum amount of resources required by an algorithm for any input of a given size. This is rarely used for performance guarantees but helps identify the lower bound of an algorithm's behavior.
-* `Average-case cost`: The expected resource usage over all possible inputs of a given size, assuming a specific probability distribution.
-* `Worst-case cost`: The maximum amount of resources required for any input of a given size. This provides a reliable upper bound, ensuring the algorithm will never perform worse than this limit.
-* `Amortized cost`: The average cost of an operation over a worst-case sequence of operations. This is useful when an occasional expensive operation is offset by many inexpensive ones.
+* `Input size`: The parameter (or parameters) describing the problem instance, commonly denoted by $n$. For an array, it may be the number of elements; for graph algorithms, useful analysis often needs both vertex count $V$ and edge count $E$. For numeric inputs, bit length can matter more than numeric value. State the measure so the bound is interpretable.
+* `Running time`: A cost measure for computational steps under a stated model, typically expressed as a function of input parameters. Asymptotic operation counts abstract away hardware-dependent elapsed seconds; measured wall-clock time is a different empirical quantity.
+* `Auxiliary space`: Extra working memory used by the algorithm beyond the input representation, under a clearly stated convention. Some sources include output storage in space complexity and others report it separately, so say which convention is used. Recursion stack is auxiliary space.
+* `Best-case cost`: For a fixed input size and cost model, the minimum cost over all inputs of that size. It describes the most favorable case; it is not a lower bound for every input.
+* `Average-case cost`: Expected resource use over inputs of a fixed size under an explicitly stated probability distribution. Without that distribution the expected cost is underspecified.
+* `Worst-case cost`: The maximum cost over inputs of the given size. It is a bound across those inputs, when expressed as an upper bound; unlike a best case, it covers even the most costly input instance.
+* `Amortized cost`: A per-operation bound derived from total actual cost over every legal sequence (often a worst-case sequence bound divided by sequence length). It needs no probability distribution. An individual operation can be expensive; state restrictions on initial state or operation mix when they are part of the proof.
 * `Asymptotic growth rate`: The mathematical behavior of the cost function as the input size approaches infinity. It ignores constant factors and lower-order terms to focus on how the algorithm scales.
 
 # Cross-item comparison
 
 | Comparison Pair | Distinction |
 | :--- | :--- |
-| `Best-case cost` vs `Worst-case cost` | Best-case represents the "lucky" scenario; Worst-case represents the "guaranteed" upper limit. |
+| `Best-case cost` vs `Worst-case cost` | They are respectively the minimum and maximum cost among inputs of the same size under the same model. |
 | `Average-case cost` vs `Amortized cost` | Average-case depends on input probability; Amortized depends on the sequence of operations regardless of input distribution. |
 
 # Examples
@@ -33,12 +33,12 @@ Consider a dynamic array that doubles its size when full:
 1. **Worst-case cost**: A single "insert" operation might trigger a resize, requiring $O(n)$ time to copy elements.
 2. **Amortized cost**: Over a sequence of $n$ insertions, the total time is $O(n)$, meaning the amortized cost per insertion is $O(1)$.
 3. **Input size**: If we insert $n$ items, $n$ is our input size.
-4. **Asymptotic growth rate**: We describe the amortized performance as $O(1)$, ignoring the constant factors involved in the resize.
+4. **Asymptotic growth rate**: For the specified append-only sequence and copying model, total work is $O(n)$ and amortized append cost is $O(1)$. A resizing append remains $\Theta(n)$ worst-case. `O(1)` per operation is an upper bound, not an exact cost.
 
 # Common mistakes
 * **Confusing Average-case with Amortized**: Average-case assumes random input; Amortized assumes a worst-case sequence of operations.
 * **Ignoring Constants**: While asymptotic growth ignores constants, they can be significant in practice for small input sizes.
-* **Misidentifying Input Size**: Measuring input size by the number of bits in a number rather than the number of elements can lead to incorrect complexity analysis.
+* **Misidentifying Input Size**: The relevant measure depends on the problem and algorithm. Numeric algorithms often need bit length; graph algorithms may need both $V$ and $E$. There is no universal input-size parameter.
 
 # Knowledge checks with answers
 1. **Question**: If an algorithm performs $O(1)$ most of the time but $O(n)$ once every $n$ operations, what is the amortized cost?

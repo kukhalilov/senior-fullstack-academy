@@ -20,7 +20,7 @@ In the broader study of algorithm cost models, asymptotic bounds represent the c
 3. **Classify growth:** Apply asymptotic notations to describe how $T(n)$ scales as $n$ approaches infinity.
 4. **Solve recurrences or amortize:** Combine these bounds with recurrence relations or aggregate sequences of operations.
 
-The five asymptotic notations form a complete vocabulary for comparing two growth functions: $f(n)$ (the algorithm's cost) and $g(n)$ (a reference function like $n^2$ or $\log n$). They categorize bounds into upper limits, lower limits, tight bounds, and strict (non-tight) inequalities.
+These five notations are a common core vocabulary for comparing two growth functions: $f(n)$ (the algorithm's cost) and $g(n)$ (a reference function like $n^2$ or $\log n$). They categorize upper, lower, tight, and strict bounds; they are not an exhaustive list of every asymptotic relation or equivalence used in mathematics and algorithms.
 
 # Supplied names explained
 

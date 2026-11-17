@@ -21,10 +21,10 @@ When assessing how an algorithm behaves, measuring raw runtimes in seconds is un
 
 The inventory of growth families provides standard rate categories (also known as complexity classes). These families group mathematical functions $f(n)$ according to their growth behavior as $n \to \infty$ ([MIT OCW Lecture 2](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html)):
 
-1. **Sub-linear growth:** Resource consumption grows far slower than input size (`Constant growth`, `Logarithmic growth`).
+1. **Sub-linear growth:** Resource consumption grows more slowly than input size (`Constant growth`, `Logarithmic growth`). Such bounds generally rely on exploitable structure or assumptions that allow avoiding work on some items.
 2. **Linear growth:** Resource consumption grows in direct proportion to input size (`Linear growth`).
 3. **Linearithmic growth:** A near-linear superlinear family, typically expressed as $n \log n$.
-4. **Polynomial growth:** A fixed power of the input size, such as quadratic, cubic, or a higher-degree polynomial. Linearithmic growth is superlinear but is not itself a polynomial function.
+4. **Polynomial growth:** A fixed power of the input size, such as quadratic, cubic, or a higher-degree polynomial. `n log n` is not a polynomial, though it is eventually smaller than `n^(1+epsilon)` for every fixed `epsilon>0`.
 5. **Exponential and factorial growth:** These grow multiplicatively with input size and eventually outgrow every fixed-degree polynomial.
 
 Understanding these families allows you to predict whether an algorithm will scale effectively to large datasets or quickly become unusable.
@@ -33,15 +33,15 @@ Understanding these families allows you to predict whether an algorithm will sca
 
 The items below represent the pre-enumerated growth families used in standard asymptotic analysis.
 
-* `Constant growth`: Denoted asymptotically as $O(1)$. The modeled cost does not depend on input size $n$. Array lookup by index is constant time; a linked-node stack push is constant time, while a dynamic-array stack push is amortized constant time and can take linear time during a resize ([OpenDSA Asymptotic Analysis](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html)).
-* `Logarithmic growth`: Denoted asymptotically as $O(\log n)$. Execution cost grows proportionally to the logarithm of the input size $n$. This pattern occurs when an algorithm repeatedly cuts the remaining input scope by a fixed fraction (typically halved) at each step, such as binary search on a sorted array. Doubling the input size adds only a constant number of operations.
-* `Linear growth`: Denoted asymptotically as $O(n)$. Execution cost increases in direct linear proportion to input size $n$. Scanning an unsorted array to find a maximum value or iterating over a list once are classic examples. If the input size doubles, the operations performed double as well.
-* `Linearithmic growth`: Denoted asymptotically as $O(n \log n)$. Execution cost grows as the product of linear and logarithmic terms. Merge sort achieves this worst-case bound, matching the comparison-sorting lower bound up to constant factors. It grows faster than linear but slower than every fixed-degree polynomial of degree greater than 1.
+* `Constant growth`: A tight constant bound is written $\Theta(1)$; $O(1)$ alone means an upper bound. Indexed array access and linked-node stack push are constant time in the usual model. Dynamic-array append is amortized constant time but can be linear during resizing. State the data structure and cost model.
+* `Logarithmic growth`: A tight logarithmic bound is $\Theta(\log n)$; changing between fixed bases greater than one changes only a constant factor. It often occurs when active problem size shrinks by a fixed ratio at each step, as in binary search on a sorted array. Doubling `n` adds a constant number of iterations; binary search relies on sorted input.
+* `Linear growth`: A tight linear bound is $\Theta(n)$. A scan examining all `n` array elements performs linearly many operations; maximum finding takes `n-1` comparisons for `n>=1`. Doubling `n` approximately doubles the leading term, not necessarily measured elapsed time.
+* `Linearithmic growth`: A common tight bound is $\Theta(n \log n)$. Merge sort has this comparison/time bound in the usual model; comparison sorting requires `Omega(n log n)` comparisons in the worst case, so merge sort is asymptotically optimal among comparison sorts. `n log n` is eventually smaller than `n^(1+epsilon)` for each fixed `epsilon>0`.
 * `Quadratic growth`: Denoted asymptotically as $O(n^2)$. Execution cost increases proportionally to the square of input size $n$. This growth commonly arises from nested loops processing all pairs of input elements, such as naive Bubble Sort or checking every pair in a collection for duplicates. Doubling $n$ increases operations by approximately four times.
 * `Cubic growth`: Denoted asymptotically as $O(n^3)$. Execution cost increases proportionally to the cube of input size $n$. This pattern frequently appears in algorithms that process all triples of input elements, such as standard three-loop matrix multiplication or the Floyd-Warshall all-pairs shortest path algorithm. Doubling $n$ increases operations by approximately eight times.
-* `Polynomial growth`: Denoted asymptotically as $O(n^k)$ for a fixed constant power $k \ge 0$. This general family encompasses constant ($k=0$), linear ($k=1$), quadratic ($k=2$), cubic ($k=3$), and higher fixed-power rates. Polynomial algorithms are generally considered "feasible" or "tractable" in theoretical Computer Science compared to non-polynomial alternatives ([MIT OCW Lecture 2](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html)).
-* `Exponential growth`: Denoted asymptotically as $O(c^n)$ for a constant base $c > 1$ (such as $O(2^n)$). Execution cost doubles (or increases by factor $c$) every time input size $n$ increases by 1. This rate occurs in brute-force evaluation of subset-sum problems or generating all subsets of a set. It becomes computationally infeasible even for moderate values of $n$ (such as $n \ge 50$).
-* `Factorial growth`: Denoted asymptotically as $O(n!)$. Execution cost grows proportionally to the product of all positive integers up to $n$. This rate appears in naive algorithms generating all permutations of a set, such as solving the Traveling Salesperson Problem by trying every tour order. It grows even faster than simple exponential functions like $2^n$ and becomes unusable beyond tiny values of $n$ (such as $n \ge 13$).
+* `Polynomial growth`: A fixed power $n^k$ for constant $k>=0$; a polynomial function is a finite sum of such terms, with its highest nonzero degree dominating. Polynomial time is the standard theoretical tractability criterion in complexity theory, but high-degree polynomials can be impractical; asymptotic class alone does not determine engineering feasibility.
+* `Exponential growth`: A tight exponential family has form $\Theta(c^n)$ for fixed base `c>1`; $O(c^n)$ alone is only an upper bound. Increasing `n` by one multiplies the representative function by `c`. Enumerating all subsets has `2^n` outputs. Feasibility thresholds depend on hardware, constants, implementation, and time limits; there is no universal cutoff.
+* `Factorial growth`: `n!` counts orderings of `n` distinct items. Enumerating all permutations entails at least `Omega(n!)` outputs and often `Theta(n*n!)` time when each is materialized. For every fixed `c>1`, `n!` eventually outgrows `c^n`; crossover points and practical cutoffs are workload-dependent.
 
 # Cross-item comparison
 
@@ -53,10 +53,10 @@ $$1 < \log n < n < n\log n < n^2 < n^3 < c^n < n!$$
 
 ### Key distinctions within the group:
 
-1. **Sub-linear (`Constant growth`, `Logarithmic growth`) vs. Linear (`Linear growth`):** Sub-linear operations avoid inspecting every element in the input. Linear operations must visit every element at least once.
+1. **Sub-linear (`Constant growth`, `Logarithmic growth`) vs. Linear (`Linear growth`):** Sublinear algorithms process fewer than linearly many units in their stated model, typically by exploiting structure, preprocessing, or an indexed query interface. A general scan that must inspect every item has linear cost; a sublinear claim needs assumptions that permit skipping items.
 2. **Linear (`Linear growth`) vs. Linearithmic (`Linearithmic growth`):** Adding a logarithmic factor (such as dividing work into subproblems during recursion) increases growth slightly above linear, but `Linearithmic growth` remains scalable for millions of items.
 3. **Polynomial sub-families (`Quadratic growth`, `Cubic growth`, general `Polynomial growth`):** Fixed-exponent functions scale by raising input growth ratio to exponent $k$. If input size increases by factor $m$, work increases by factor $m^k$.
-4. **Polynomial (`Polynomial growth`) vs. Non-polynomial (`Exponential growth`, `Factorial growth`):** In polynomial growth, the variable $n$ is in the base ($n^k$). In exponential and factorial growth, $n$ appears in the exponent or controls the factorial term sequence ($c^n$, $n!$). Non-polynomial growth explodes rapidly, rendering algorithms impractical for large input sizes regardless of hardware speed ([MIT OCW Lecture 11](https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf)).
+4. **Polynomial vs. exponential/factorial:** For fixed `k` and `c>1`, `n^k` is eventually dominated by `c^n`; `n!` eventually dominates every fixed-base exponential. This is an asymptotic ordering, not a claim about which concrete implementation runs faster at a finite size.
 
 # Examples
 
@@ -110,8 +110,10 @@ def demo_exponential(n: int) -> int:
 | `Linearithmic growth` | $O(n \log_2 n)$ | $\approx 33$ steps | $\approx 664$ steps | $\approx 9,966$ steps |
 | `Quadratic growth` | $O(n^2)$ | $100$ steps | $10,000$ steps | $1,000,000$ steps |
 | `Cubic growth` | $O(n^3)$ | $1,000$ steps | $1,000,000$ steps | $1,000,000,000$ steps |
-| `Exponential growth` | $O(2^n)$ | $1,024$ steps | $\approx 1.27 \times 10^{30}$ steps | Intractable |
-| `Factorial growth` | $O(n!)$ | $3,628,800$ steps | Intractable | Intractable |
+| `Exponential growth` | $2^n$ representative function | $1,024$ units | $\approx 1.27 \times 10^{30}$ units | Larger still |
+| `Factorial growth` | $n!$ representative function | $3,628,800$ units | $9.33 \times 10^{157}$ units | $\approx 4.02 \times 10^{2567}$ units |
+
+These are values of representative functions, not measured runtimes or operation counts for every algorithm in the class. Big-O classes hide constants and lower-order terms.
 
 # Common mistakes
 
@@ -139,8 +141,8 @@ def demo_exponential(n: int) -> int:
 
 ### Answers
 
-1. **Answer:** `Logarithmic growth` ($O(\log n)$). Repeatedly halving the problem space generates a logarithmic tree depth.
+1. **Answer:** `Logarithmic growth` ($\Theta(\log n)$) when the algorithm reduces active size by a fixed ratio per step; repeated halving takes logarithmically many steps.
 2. **Answer:** `Exponential growth` ($O(2^n)$). Adding a constant $1$ to input size multiplies work by a fixed base factor (in this case, 2).
 3. **Answer:** Both are specific instances of `Polynomial growth` where the fixed power $k$ is $2$ (`Quadratic growth`) and $3$ (`Cubic growth`).
 4. **Answer:** True for $n>2$ when the logarithm is base 2: $n < n\log_2 n < n^2$. As an asymptotic comparison, linearithmic growth is strictly between linear and quadratic growth.
-5. **Answer:** Because $n! = n \times (n-1) \times \dots \times 1$. As $n$ grows, every added term multiplies by a factor equal to $n$, which exceeds any constant base exponent $c^n$ as $n \to \infty$.
+5. **Answer:** For each fixed `c>1`, the ratio `n!/c^n` eventually grows without bound, so factorial eventually exceeds that exponential. The crossover point depends on `c`.

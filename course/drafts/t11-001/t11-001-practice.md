@@ -13,17 +13,16 @@
 # Worked example
 Consider a function that processes an array of size $n$ by splitting it into two halves, processing each recursively, and performing a linear scan ($O(n)$) to merge them.
 
-**Recurrence Relation:** $T(n) = 2T(n/2) + n$
-**Base Case:** $T(1) = 1$
+**Recurrence Relation:** $T(n) = 2T(n/2) + \Theta(n)$ for powers of two, with constant base cost $T(1)=\Theta(1)$. The nonrecursive term represents merging work; it is not itself the total runtime.
 
 To solve this using the `Master method`:
 1. Identify $a=2, b=2, f(n)=n$.
 2. Compare $f(n)$ to $n^{\log_b a} = n^{\log_2 2} = n^1 = n$.
-3. Since $f(n) = \Theta(n^{\log_b a})$, we fall into the second case of the `Master theorem`.
+3. Since $f(n) = \Theta(n^{\log_b a})$, this is the balanced case of the `Master theorem` (`k=0`).
 4. The solution is $T(n) = \Theta(n \log n)$, which is `Linearithmic growth`.
 
 # Exercises
-1. Determine the `Asymptotic growth rate` of an algorithm that has a `Worst-case cost` defined by $T(n) = T(n-1) + n$.
+1. Determine the `Asymptotic growth rate` of an algorithm that has a `Worst-case cost` defined by $T(n) = T(n-1) + n$ for $n>1$, with $T(1)=\Theta(1)$.
 2. If an operation takes $O(1)$ most of the time but $O(n)$ every $n$ operations, what is the `Amortized cost` per operation?
 3. Classify the following functions by their `Common growth families`:
     *   $f(n) = 3n^2 + 5n$

@@ -12,7 +12,7 @@ Sources:
 - [MIT OCW Lecture 2: Asymptotic Notation and Recurrences](https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html)
 
 # Concise interview answers
-- **Worst-case vs. Amortized Cost**: Worst-case cost bounds the maximum resource (such as running time) consumed by *any single* operation. Amortized cost bounds the average resource consumption per operation over a *sequence* of operations, even if individual operations vary wildly in cost.
+- **Worst-case vs. Amortized Cost**: Worst-case cost is the maximum resource consumed over inputs in the stated size class (for an operation, over its allowed states/inputs). Amortized cost bounds the average resource consumption per operation over a *sequence* of operations, even if individual operations vary wildly in cost.
 - **Big O vs. Big Theta**: Big O notation ($\mathcal{O}$) provides an *upper bound* on growth rate (within a constant factor for large inputs). Big Theta notation ($\Theta$) provides a *tight bound*, meaning it is both an upper and a lower bound. In interviews, stating $\Theta$ shows a more precise understanding than $\mathcal{O}$ if the lower bound matches.
 - **Solving Recurrences**: To analyze recursive code, first define input size and express the work as a recurrence relation with a base case. Then, apply a solving technique such as the substitution method, iteration method, recursion tree method, or Master method to find a closed-form solution.
 

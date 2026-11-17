@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 29,
-    "pending": 2311,
-    "claimsChecked": 402,
-    "claimsCorrected": 28,
+    "reviewed": 38,
+    "pending": 2302,
+    "claimsChecked": 570,
+    "claimsCorrected": 57,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -4389,171 +4389,909 @@
       "topicId": "t11-001",
       "phase": "overview",
       "draft": "course/drafts/t11-001/t11-001-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Input size and resource measure are distinct quantities; operation counts and memory are separate models.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Asymptotic analysis and algorithm-cost discussion",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A scan computing a maximum on n>=1 values makes n-1 comparisons and has Theta(n) comparison cost.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Program-analysis examples; direct comparison count",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The scan uses constant auxiliary storage when it keeps only the current maximum.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Space analysis; direct state count",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For an empty list, maximum is undefined unless an API specifies a result or error.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Scope clarification; mathematical definition of maximum",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Big O is an upper-bound notation; Theta expresses matching asymptotic upper and lower bounds.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, asymptotic notation definitions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For two balanced recursive halves and constant combine work, T(n)=2T(n/2)+Theta(1) solves to Theta(n).",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, Master theorem; case 1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Balanced recursive maximum finding has logarithmic call-stack depth.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, recursion-tree depth from halving",
+          "verdict": "supported"
+        },
+        {
+          "claim": "An iterative scan can use Theta(1) auxiliary state.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Space analysis; direct algorithm state count",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Exact elapsed seconds depend on implementation and machine; asymptotic operation counts describe scaling in a model.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Asymptotic analysis motivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Divide-and-conquer maximum finding does not reduce the Theta(n) comparison count over a scan.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Recurrence solution plus n-1 comparison lower bound for arbitrary values",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
         "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html",
-        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf"
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+        "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+        "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit completed against the cited MIT OpenCourseWare and OpenDSA materials. The assigned manifest concepts and inventory names were checked against this lesson. Corrections were applied for identified modeling, scope, theorem-hypothesis, or proof gaps; no unresolved factual or scope issues remain in this lesson."
     },
     {
       "taskId": "t11-001-concepts",
       "topicId": "t11-001",
       "phase": "concepts",
       "draft": "course/drafts/t11-001/t11-001-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 11,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Algorithm analysis requires an input-size parameter and a resource/cost measure.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Asymptotic analysis introduction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Best, average, and worst cases refer to costs over inputs of a fixed size; average case needs a probability model.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Best, average, and worst case analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Amortized analysis bounds costs over operation sequences without requiring an input probability distribution.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, introduction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Asymptotic notation is independent of whether the function describes best, average, or worst-case cost.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Asymptotic notation and case distinctions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Big O, Big Omega, Big Theta, little o, and little omega represent upper, lower, tight, and strict bounds.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, asymptotic notation definitions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Recursive cost models require recurrences and base values.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, recurrences",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Iteration, recursion trees, substitution, and the Master theorem are distinct recurrence-analysis approaches.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recitation 3, Recurrences and Master theorem",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The Master theorem applies only to a restricted divide-and-conquer form and its hypotheses.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recitation 3, theorem statement",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Aggregate, accounting, and potential are amortized-analysis methods.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, §§11.1-11.3",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For T(n)=2T(n/2)+n, equal total work occurs at each non-leaf level and the result is Theta(n log n).",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, recursion tree and Master theorem",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A single amortized operation may be expensive while sequence total remains bounded.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, introduction",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
         "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html",
-        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf"
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+        "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+        "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit completed against the cited MIT OpenCourseWare and OpenDSA materials. The assigned manifest concepts and inventory names were checked against this lesson. Corrections were applied for identified modeling, scope, theorem-hypothesis, or proof gaps; no unresolved factual or scope issues remain in this lesson."
     },
     {
       "taskId": "t11-001-reference-cost-models-and-cases",
       "topicId": "t11-001",
       "phase": "reference",
       "draft": "course/drafts/t11-001/t11-001-reference-cost-models-and-cases.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claim": "Input size may be a single parameter or multiple parameters, such as graph V and E.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Algorithm input-size modeling; OpenDSA graph-analysis examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Numeric algorithm input is often measured by bit length when arithmetic cost depends on representation size.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Algorithm input-size modeling",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Running time counts operations under a model and is not identical to machine-dependent wall-clock time.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Algorithm analysis introduction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Auxiliary space conventionally means additional working storage, with output treatment stated explicitly.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Space complexity discussion",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Best case is the minimum cost over inputs of a fixed size.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Best, average, and worst cases",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Average-case cost is an expectation under a stated input distribution.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Average-case analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Worst-case cost is the maximum over inputs of a fixed size.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Worst-case analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Amortized cost bounds sequence totals rather than each operation independently.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, introduction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dynamic-array append can cost Theta(n) during a resize but append-only total work is O(n) under geometric doubling.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf",
+          "section": "Lecture 13, table doubling analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Geometric resize sequence yields O(1) amortized append under the copying model.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf",
+          "section": "Lecture 13, aggregate/potential table analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Big O is an upper bound and does not specify an analysis case.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, asymptotic notation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Asymptotic analysis ignores fixed constants for growth classification but constants still affect practical runtime.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Asymptotic analysis motivation",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
         "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html",
-        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf"
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+        "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+        "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit completed against the cited MIT OpenCourseWare and OpenDSA materials. The assigned manifest concepts and inventory names were checked against this lesson. Corrections were applied for identified modeling, scope, theorem-hypothesis, or proof gaps; no unresolved factual or scope issues remain in this lesson."
     },
     {
       "taskId": "t11-001-reference-asymptotic-notations",
       "topicId": "t11-001",
       "phase": "reference",
       "draft": "course/drafts/t11-001/t11-001-reference-asymptotic-notations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 14,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Big O formalizes an eventual asymptotic upper bound with positive constants c and n0.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, O-notation definition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Big Omega formalizes an eventual asymptotic lower bound.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, Omega-notation definition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Big Theta holds when a function is both O and Omega of the comparison function.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, Theta-notation definition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Little o is a strict upper-growth relation and can be defined by every positive constant bound eventually.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, little-o definition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Little omega is the strict lower-growth counterpart.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, little-omega definition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "These five notations are a common set, not a complete inventory of all asymptotic relations.",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "Chapter 13, asymptotic relations including asymptotic equivalence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Notation describes a function bound and is not synonymous with worst-case analysis.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Asymptotic notation and case distinction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "If a function is both O(g) and Omega(g), it is Theta(g).",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, Theta definition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For T(n)=3n^2+5n+2, an eventual O(n^2) bound holds with c=4 and n0=6.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Definition application; direct inequality verification",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The same polynomial is Theta(n^2) by matching upper and lower bounds.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Theta definition and polynomial example",
+          "verdict": "supported"
+        },
+        {
+          "claim": "This polynomial is o(n^3) but not o(n^2), as shown by ratio limits.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, little-o definition/examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A 7n log n - 4n function is Theta(n log n) for sufficiently large n.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Dominant-term asymptotic analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "5n^2 is not O(n) because the ratio to n is unbounded.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "O definition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Strict and non-strict asymptotic relations are not interchangeable.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, O/o and Omega/omega comparisons",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
         "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html",
-        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf"
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+        "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+        "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit completed against the cited MIT OpenCourseWare and OpenDSA materials. The assigned manifest concepts and inventory names were checked against this lesson. Corrections were applied for identified modeling, scope, theorem-hypothesis, or proof gaps; no unresolved factual or scope issues remain in this lesson."
     },
     {
       "taskId": "t11-001-reference-common-growth-families",
       "topicId": "t11-001",
       "phase": "reference",
       "draft": "course/drafts/t11-001/t11-001-reference-common-growth-families.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 14,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claim": "Changing logarithm bases greater than one changes logarithmic growth only by a constant factor.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Asymptotic growth comparisons",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Repeated fixed-ratio shrinkage yields logarithmic iteration count.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recursion tree depth",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Binary search requires sorted input to discard half the search range correctly.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Searching example precondition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Scanning n elements is Theta(n); maximum scan uses n-1 comparisons for n>=1.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Direct loop analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Merge sort is Theta(n log n) in the standard comparison model.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, Master theorem example",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Worst-case comparison sorting has an Omega(n log n) lower bound.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, sorting lower bound discussion",
+          "verdict": "supported"
+        },
+        {
+          "claim": "n log n grows faster than n but slower than n^(1+epsilon) for fixed epsilon>0.",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "Chapter 13, sums and asymptotics",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Polynomial time is a standard theoretical tractability criterion, not a guarantee of practical efficiency.",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "Complexity discussion; asymptotic bounds",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A finite sum of polynomial terms is dominated by its highest nonzero degree.",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "Chapter 13, asymptotic polynomial comparison",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Exponential function c^n with fixed c>1 multiplies by c when n increments by one.",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "Chapter 13, exponential growth comparison",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Enumerating all subsets has 2^n outputs.",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "Combinatorial counting; subset count",
+          "verdict": "supported"
+        },
+        {
+          "claim": "n! counts permutations and eventually exceeds every fixed-base exponential.",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "Chapter 13, polynomial/exponential comparison; factorial growth ratio argument",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A concrete permutation enumerator may spend Theta(n) per emitted permutation, leading to Theta(n*n!) time.",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "Output-size lower bound and per-output materialization analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Numeric entries in the lesson table are representative function values, not universal runtime predictions.",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "Asymptotic bounds suppress constants and lower-order terms",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
         "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html",
-        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf"
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+        "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+        "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit completed against the cited MIT OpenCourseWare and OpenDSA materials. The assigned manifest concepts and inventory names were checked against this lesson. Corrections were applied for identified modeling, scope, theorem-hypothesis, or proof gaps; no unresolved factual or scope issues remain in this lesson."
     },
     {
       "taskId": "t11-001-reference-recurrences-and-solving-methods",
       "topicId": "t11-001",
       "phase": "reference",
       "draft": "course/drafts/t11-001/t11-001-reference-recurrences-and-solving-methods.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 16,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claim": "A recurrence models recursive-call work plus nonrecursive work and requires base values.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recurrence setup",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Merge sort has two half-size subproblems, linear merge work, and constant base work.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, recurrence example",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Floors and ceilings handle non-power-of-two input sizes; the simplified halving form preserves the asymptotic result.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recurrence rounding conventions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Iteration repeatedly expands a recurrence into a sum until reaching base cases.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recurrences: substitution/expansion discussion",
+          "verdict": "supported"
+        },
+        {
+          "claim": "T(n)=T(n-1)+n with constant base cost sums to Theta(n^2).",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recurrence expansion; arithmetic-series sum",
+          "verdict": "supported"
+        },
+        {
+          "claim": "T(n)=T(n/2)+1 with constant base cost has Theta(log n) levels.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recursion-tree depth",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For T(n)=2T(n/2)+n, each non-leaf level costs n and there are logarithmically many levels.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, recursion-tree example",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Substitution method proves a guessed bound by induction and must handle base cases.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, substitution method",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Recursion-tree summation must include leaves and cannot assume equal level cost for all recurrences.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, recursion-tree method",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The Master theorem solves fixed-branching, equal-subproblem recurrences of the form aT(n/b)+f(n) under conditions.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recitation 3, theorem statement",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Master theorem Case 1 compares f with n^p separated by a polynomial factor.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recitation 3, Master theorem case 1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Master theorem Case 2 yields an additional logarithmic factor for the balanced family.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recitation 3, Master theorem case 2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Master theorem Case 3 requires polynomial separation and a regularity condition.",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "§21.4.4, Case 3",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Unequal splits and decrement-by-one recurrences are not directly covered by this standard Master form.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Theorem statement and scope",
+          "verdict": "supported"
+        },
+        {
+          "claim": "T(n)=2T(n/2)+n solves to Theta(n log n); T(n)=2T(n/2)+1 solves to Theta(n).",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recitation 3, Master theorem cases",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A proposed tight Theta result needs both upper and lower bound arguments.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, Theta definition",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
         "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html",
-        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf"
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+        "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+        "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit completed against the cited MIT OpenCourseWare and OpenDSA materials. The assigned manifest concepts and inventory names were checked against this lesson. Corrections were applied for identified modeling, scope, theorem-hypothesis, or proof gaps; no unresolved factual or scope issues remain in this lesson."
     },
     {
       "taskId": "t11-001-reference-amortized-analysis-methods",
       "topicId": "t11-001",
       "phase": "reference",
       "draft": "course/drafts/t11-001/t11-001-reference-amortized-analysis-methods.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 15,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claim": "Amortized analysis studies worst-case total cost over sequences and needs no probability distribution.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, introduction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Aggregate analysis bounds total sequence cost and derives per-operation cost by dividing by sequence length.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "§11.1 Aggregate Analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each pushed item can be popped at most once, bounding total stack PUSH/POP/MULTIPOP work linearly.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "§11.1 Aggregate Analysis, stack example",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Accounting charges are valid when cumulative credit never becomes negative for any prefix.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "§11.2 Accounting Method",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The stack accounting scheme charges PUSH three and removals zero, with credits covering later pops.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "§11.2 Accounting Method, stack example",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Potential amortized cost is actual cost plus potential change.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "§11.3 Potential Method",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Summation telescopes to total actual cost equal to amortized charges plus initial minus final potential.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "§11.3 Potential Method",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Nonnegative potential with initial zero is sufficient to upper-bound actual total by amortized total.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "§11.3 Potential Method",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Potential need not be nonnegative absolutely if final potential is bounded below relative to initial potential.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "§11.3 Potential Method; telescoping identity",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Doubling dynamic-table append may cost linear time on resize but has constant amortized cost.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf",
+          "section": "Potential analysis of table doubling",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For the stated capacity convention, Phi=2n-q is nonnegative and append amortized cost is at most three after initial allocation.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf",
+          "section": "Potential analysis of table doubling; direct delta calculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Accounting and potential methods track sequence-wide stored credit in different representations.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "§§11.2-11.3",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Amortized bound is not a per-operation worst-case bound.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, introduction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Operation mix and starting-state assumptions must be stated for a sequence guarantee.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, sequence definition and analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Resizing cost depends on the chosen model for copying and allocating storage.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf",
+          "section": "Table-doubling cost model",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
         "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html",
-        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf"
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+        "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+        "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit completed against the cited MIT OpenCourseWare and OpenDSA materials. The assigned manifest concepts and inventory names were checked against this lesson. Corrections were applied for identified modeling, scope, theorem-hypothesis, or proof gaps; no unresolved factual or scope issues remain in this lesson."
     },
     {
       "taskId": "t11-001-practice",
       "topicId": "t11-001",
       "phase": "practice",
       "draft": "course/drafts/t11-001/t11-001-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Merge recurrence uses two half-size recursive calls, linear nonrecursive merge work, and constant base cost.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, Master theorem example",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For a=b=2 and f(n)=n, the balanced Master case gives Theta(n log n).",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, Master theorem",
+          "verdict": "supported"
+        },
+        {
+          "claim": "T(n)=T(n-1)+n with constant base cost expands to n(n+1)/2 and Theta(n^2).",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recurrence expansion; arithmetic series",
+          "verdict": "supported"
+        },
+        {
+          "claim": "An operation with O(1) ordinary cost and O(n) resize every n operations has O(1) amortized cost under the stipulated schedule.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, aggregate analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "3n^2+5n is Theta(n^2).",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Dominant-term analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "2^n+n^10 is Theta(2^n).",
+          "source": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+          "section": "Polynomial versus exponential growth",
+          "verdict": "supported"
+        },
+        {
+          "claim": "log n+100 is Theta(log n).",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Dominant-term analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Big Theta needs matching upper and lower bounds; Big O alone provides upper bound.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, notation definitions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The Master theorem is limited to a stated recurrence form and hypothesis set.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recitation 3, theorem statement",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Input-size choice changes interpretation of complexity, including bit length versus item count.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Input-size modeling",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
         "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html",
-        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf"
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+        "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+        "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit completed against the cited MIT OpenCourseWare and OpenDSA materials. The assigned manifest concepts and inventory names were checked against this lesson. Corrections were applied for identified modeling, scope, theorem-hypothesis, or proof gaps; no unresolved factual or scope issues remain in this lesson."
     },
     {
       "taskId": "t11-001-interview",
       "topicId": "t11-001",
       "phase": "interview",
       "draft": "course/drafts/t11-001/t11-001-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Worst-case cost is maximum over inputs in a stated size class or allowed state set.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Worst-case analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Amortized cost bounds sequence average without a probability distribution.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, introduction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Big O is upper bound while Big Theta requires both upper and lower bounds.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, definitions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Writing a recurrence requires input parameter, recursive calls, nonrecursive work, and base cases.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recurrences lecture",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Recursion depth contributes to call-stack space; total stack is depth times per-frame storage when frame storage is bounded.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Space analysis; recurrence depth",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Aggregate, accounting, and potential are the three standard amortized methods in the cited course.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, introduction and §§11.1-11.3",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dynamic array append has Theta(n) worst-case resize and O(1) amortized append under geometric doubling/copy model.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf",
+          "section": "Table doubling analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Average-case analysis depends on an explicit input distribution.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
+          "section": "Average-case analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A sequence-wide amortized guarantee does not make each operation constant-time.",
+          "source": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+          "section": "Lecture 11, introduction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Big O can bound best, average, or worst-case functions; it does not select the case.",
+          "source": "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+          "section": "Lecture 2, asymptotic notation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A recurrence must include base values to define its solution.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recurrence formulation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Master method is a shortcut only when structural hypotheses match.",
+          "source": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+          "section": "Recitation 3, Master theorem scope",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/AnalAsymptotic.html",
         "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/resources/lecture-2-asymptotic-notation-recurrences-substitution-master-method/index.html",
-        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf"
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/83b82d45beb3776da72b7f3e1b3f42df_MIT6_046JS12_lec11.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/18167c95317e5340225edcc885d0add4_lec2.pdf",
+        "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/1869dbf640ded6b31f1bd369d2001ef5_MIT6_006S20_r03.pdf",
+        "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf",
+        "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/b1e5ac3c8f7d60db9b8d5b66c40bc55e_MIT6_046JS12_Notes.pdf",
+        "https://ocw.mit.edu/courses/6-046j-introduction-to-algorithms-sma-5503-fall-2005/0a02bc84e917b9aeddaf69c8dc151a6f_lec13.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit completed against the cited MIT OpenCourseWare and OpenDSA materials. The assigned manifest concepts and inventory names were checked against this lesson. Corrections were applied for identified modeling, scope, theorem-hypothesis, or proof gaps; no unresolved factual or scope issues remain in this lesson."
     },
     {
       "taskId": "t11-002-overview",
