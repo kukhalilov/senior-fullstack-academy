@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 780,
-    "pending": 1561,
-    "claimsChecked": 28092,
-    "claimsCorrected": 1456,
+    "reviewed": 787,
+    "pending": 1554,
+    "claimsChecked": 28421,
+    "claimsCorrected": 1457,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 780,
-    "pendingLessons": 1561
+    "reviewedLessons": 787,
+    "pendingLessons": 1554
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1319,6 +1319,14 @@
       "status": "full claim and frozen-inventory audit complete for all 6 lessons",
       "findings": [
         "Checked all 39 inventoried API names plus explanatory, version, output-order, example, exercise, and interview claims against ECMA-262 2026 and current MDN references. Verified Map groupBy (ES2024), Set composition (ES2025), Map getOrInsert methods (ES2026), SameValueZero/canonicalized zero, live iteration, set-like protocol, operation order/size strategy, and species behavior. No factual corrections or missing inventory items found. Local Node 24 lacks the ES2026 Map insertion methods; lessons mark their runtime requirements. All six lessons remain drafts pending whole-course audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "JavaScript WeakMap and WeakSet collections (t06-014)",
+      "status": "full claim and frozen-inventory audit complete for all 7 lessons",
+      "findings": [
+        "Checked all 25 inventoried API and semantics entries, plus claims, examples, exercise answers, and interview answers against ECMA-262 2026 and current MDN. Verified non-registered-symbol keys (ES2023), Map-equivalent weakmap default insertion methods (ES2026), invalid-key return/throw distinctions, constructor iterable protocols, callback reentrancy, non-enumerability, and weak-reference timing. Added the important caveat that well-known symbols qualify but are effectively always live and may keep associated values retained. Node 24 confirms symbol keys but does not yet implement the ES2026 WeakMap insertion methods. All seven lessons remain drafts pending whole-course audit."
       ]
     }
   ],
@@ -52886,161 +52894,413 @@
       "topicId": "t06-014",
       "phase": "overview",
       "draft": "course/drafts/t06-014/t06-014-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked the weak-reference mental model, scope, tradeoffs, and versions against ECMA-262 2026 and current MDN references. No factual errors found.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.3 WeakMap Objects and §24.4 WeakSet Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
+              "section": "ECMA-262 §9.13 CanBeHeldWeakly and §9.9 weak-target processing",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+              "section": "WeakMap current API and weak-key description",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
+              "section": "WeakMap.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
+              "section": "WeakMap.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+              "section": "WeakSet current API and weak-key description",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
-        "https://262.ecma-international.org/6.0/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete. Checked the weak-reference mental model, scope, tradeoffs, and versions against ECMA-262 2026 and current MDN references. No factual errors found. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-014-concepts",
       "topicId": "t06-014",
       "phase": "concepts",
       "draft": "course/drafts/t06-014/t06-014-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 54,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked weak reachability, symbol eligibility, invalid-key outcomes, iterable constructors, eager/computed insertion and reentrancy, enumeration limits, and examples against ECMA-262 2026 and current MDN. Added an explicit warning that well-known symbols qualify but are effectively immortal and can keep associated values retained.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.3 WeakMap Objects and §24.4 WeakSet Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
+              "section": "ECMA-262 §9.13 CanBeHeldWeakly and §9.9 weak-target processing",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+              "section": "WeakMap current API and weak-key description",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
+              "section": "WeakMap.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
+              "section": "WeakMap.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+              "section": "WeakSet current API and weak-key description",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
-        "https://262.ecma-international.org/6.0/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete. Checked weak reachability, symbol eligibility, invalid-key outcomes, iterable constructors, eager/computed insertion and reentrancy, enumeration limits, and examples against ECMA-262 2026 and current MDN. Added an explicit warning that well-known symbols qualify but are effectively immortal and can keep associated values retained. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-014-reference-weakmap-api",
       "topicId": "t06-014",
       "phase": "reference",
       "draft": "course/drafts/t06-014/t06-014-reference-weakmap-api.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 60,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all nine inventoried WeakMap names, receiver/key/callback validation, constructor behavior, missing versus undefined, callback this/reentrancy, and ES2026 status against the normative algorithms and MDN. No factual correction required.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.3 WeakMap Objects and §24.4 WeakSet Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
+              "section": "ECMA-262 §9.13 CanBeHeldWeakly and §9.9 weak-target processing",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+              "section": "WeakMap current API and weak-key description",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
+              "section": "WeakMap.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
+              "section": "WeakMap.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+              "section": "WeakSet current API and weak-key description",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
-        "https://262.ecma-international.org/6.0/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete. Checked all nine inventoried WeakMap names, receiver/key/callback validation, constructor behavior, missing versus undefined, callback this/reentrancy, and ES2026 status against the normative algorithms and MDN. No factual correction required. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-014-reference-weakset-api",
       "topicId": "t06-014",
       "phase": "reference",
       "draft": "course/drafts/t06-014/t06-014-reference-weakset-api.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all six inventoried WeakSet names, valid and invalid value behavior, constructor protocol, return values, receiver requirements, and non-enumerability against ECMA-262 2026 and MDN. No factual correction required.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.3 WeakMap Objects and §24.4 WeakSet Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
+              "section": "ECMA-262 §9.13 CanBeHeldWeakly and §9.9 weak-target processing",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+              "section": "WeakMap current API and weak-key description",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
+              "section": "WeakMap.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
+              "section": "WeakMap.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+              "section": "WeakSet current API and weak-key description",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
-        "https://262.ecma-international.org/6.0/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete. Checked all six inventoried WeakSet names, valid and invalid value behavior, constructor protocol, return values, receiver requirements, and non-enumerability against ECMA-262 2026 and MDN. No factual correction required. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-014-reference-weak-key-semantics",
       "topicId": "t06-014",
       "phase": "reference",
       "draft": "course/drafts/t06-014/t06-014-reference-weak-key-semantics.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all ten eligibility/limitation entries including CanBeHeldWeakly, Symbol.for/keyFor, well-known symbols, absent enumeration/size/clear, and weak/strong lifetime distinctions against the current abstract operation. Added the practical well-known-symbol retention caveat.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.3 WeakMap Objects and §24.4 WeakSet Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
+              "section": "ECMA-262 §9.13 CanBeHeldWeakly and §9.9 weak-target processing",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+              "section": "WeakMap current API and weak-key description",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
+              "section": "WeakMap.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
+              "section": "WeakMap.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+              "section": "WeakSet current API and weak-key description",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; one completeness addition made"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
-        "https://262.ecma-international.org/6.0/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete. Checked all ten eligibility/limitation entries including CanBeHeldWeakly, Symbol.for/keyFor, well-known symbols, absent enumeration/size/clear, and weak/strong lifetime distinctions against the current abstract operation. Added the practical well-known-symbol retention caveat. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-014-practice",
       "topicId": "t06-014",
       "phase": "practice",
       "draft": "course/drafts/t06-014/t06-014-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 50,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all four exercise solutions, table outcomes, cycle traversal, runtime guards, and assertions. Node 24 confirms non-registered symbol weak keys and the legacy WeakMap/WeakSet behavior, but lacks the ES2026 WeakMap insertion methods; the lesson conditions those tests on a supporting runtime. All exercises have worked solutions.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.3 WeakMap Objects and §24.4 WeakSet Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
+              "section": "ECMA-262 §9.13 CanBeHeldWeakly and §9.9 weak-target processing",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+              "section": "WeakMap current API and weak-key description",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
+              "section": "WeakMap.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
+              "section": "WeakMap.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+              "section": "WeakSet current API and weak-key description",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
-        "https://262.ecma-international.org/6.0/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete. Checked all four exercise solutions, table outcomes, cycle traversal, runtime guards, and assertions. Node 24 confirms non-registered symbol weak keys and the legacy WeakMap/WeakSet behavior, but lacks the ES2026 WeakMap insertion methods; the lesson conditions those tests on a supporting runtime. All exercises have worked solutions. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-014-interview",
       "topicId": "t06-014",
       "phase": "interview",
       "draft": "course/drafts/t06-014/t06-014-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 47,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all interview answers and scenarios against ECMA-262 2026 and MDN, including callback reentrancy, eligibility, symbol boundaries, and collection timing. All prompts have answers.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.3 WeakMap Objects and §24.4 WeakSet Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
+              "section": "ECMA-262 §9.13 CanBeHeldWeakly and §9.9 weak-target processing",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+              "section": "WeakMap current API and weak-key description",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
+              "section": "WeakMap.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
+              "section": "WeakMap.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+              "section": "WeakSet current API and weak-key description",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
-        "https://262.ecma-international.org/6.0/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsert",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete. Checked all interview answers and scenarios against ECMA-262 2026 and MDN, including callback reentrancy, eligibility, symbol boundaries, and collection timing. All prompts have answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-015-overview",
