@@ -1,6 +1,6 @@
 # React DOM rendering modes hydration and host integration — Reference: Client rendering, server rendering, and hydration modes
 
-Sources: React 19.3 [React DOM client APIs](https://react.dev/reference/react-dom/client), [React DOM server APIs](https://react.dev/reference/react-dom/server), and [React 19](https://react.dev/blog/2024/12/05/react-19).
+Sources: React 19.3 [React DOM client APIs](https://react.dev/reference/react-dom/client), [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot), [React DOM server APIs](https://react.dev/reference/react-dom/server), and [React 19](https://react.dev/blog/2024/12/05/react-19).
 
 ## Scope and version
 
@@ -38,7 +38,11 @@ The first client render must produce the same output as the server markup for hy
 
 ### Hydration mismatch
 
-The client and server produced different initial structure or content. React can warn and recover in some cases, but recovery may discard/recreate DOM or lead to poor behavior. The warning is evidence of a rendering consistency defect; do not suppress it broadly.
+The client and server produced different initial structure, text, or attributes. Treat this as a bug and compare the initial inputs. Development React warns, but it does not guarantee that mismatched attributes will be patched; recovery behavior should not be relied on to repair inconsistent markup.
+
+### `suppressHydrationWarning` limitations
+
+For one unavoidable text or attribute difference on a specific element, `suppressHydrationWarning={true}` is a narrow escape hatch. It only works one level deep, and React does not attempt to patch mismatched text content. It silences a warning; it does not make the markup agree or fix downstream behavior. Prefer deterministic initial output or a deliberate post-hydration client pass.
 
 ### Hydration mismatch root causes
 
@@ -94,18 +98,8 @@ If server and client both receive the same `name`, the output agrees. If the ser
 - `Initial server-client output agreement`
 - `Hydration mismatch`
 - `Hydration mismatch root causes`
-- `Selective hydration`
-- `Hydration boundary priority`
-
-### Exact terms covered
-
-- `Client rendering`
-- `Server rendering`
-- `Server-rendered HTML`
-- `Hydration`
-- `Hydration attaches behavior to existing markup`
-- `Initial server-client output agreement`
-- `Hydration mismatch`
-- `Hydration mismatch root causes`
+- `Attribute mismatch is not guaranteed to be patched`
+- `suppressHydrationWarning is a one-level escape hatch`
+- `suppressHydrationWarning does not patch mismatched text`
 - `Selective hydration`
 - `Hydration boundary priority`

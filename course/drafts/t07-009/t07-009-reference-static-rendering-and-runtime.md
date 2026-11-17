@@ -1,6 +1,6 @@
 # React DOM rendering modes hydration and host integration — Reference: Static output modes and runtime constraints
 
-Sources: React 19.3 [React DOM static APIs](https://react.dev/reference/react-dom/static) and [React DOM server APIs](https://react.dev/reference/react-dom/server).
+Sources: React 19.3 [React DOM static APIs](https://react.dev/reference/react-dom/static), [React DOM server APIs](https://react.dev/reference/react-dom/server), [React 19 release notes](https://react.dev/blog/2024/12/05/react-19), and [React 19.2 release notes](https://react.dev/blog/2025/10/01/react-19-2).
 
 ## Scope and version
 
@@ -18,11 +18,11 @@ Generate HTML ahead of request time for content that can be known during a build
 
 ### Wait for suspended content before static output
 
-Static generation generally needs a complete output artifact. When content suspends, the chosen static API may wait for it rather than emitting a progressive response. If the product needs incremental reveal, use a streaming-capable response path where supported.
+React 19's `react-dom/static` prerender APIs wait for suspended content to resolve before returning the completed HTML output; this differs from legacy `renderToString`, which immediately returns a Suspense fallback. Prerender output may be carried in a stream interface, but it is not progressively revealed as content loads. React 19.2 also supports partial prerendering: generate the static shell plus postponed state, then resume later to produce a dynamic stream or finish a static response. This deliberate partial workflow is distinct from waiting for the complete static artifact.
 
 ### Web Streams runtime
 
-Web Streams use browser-standard stream primitives such as `ReadableStream`. React exposes server/static output methods suited to Web Streams in supported runtimes. Verify that the hosting environment, adapters, compression, and response APIs accept this stream type.
+Web Streams use standard stream primitives such as `ReadableStream`. React exposes server/static output methods suited to Web Streams in supported runtimes. Since React 19.2, those APIs are also available in Node.js, but React recommends Node Streams for Node SSR because they are faster there and Web Streams do not support compression by default. Verify that the hosting environment, adapters, compression, and response APIs accept the selected stream type.
 
 ### Node.js Streams runtime
 
@@ -38,7 +38,7 @@ Static output prioritizes reusable complete artifacts; streaming prioritizes ear
 
 ### Resumable prerender workflow
 
-Some integrations can prerender available static output and later resume the remaining work in a streaming-capable request. This can combine cacheable early content with dynamic continuation. Exact support and API names are version- and framework-sensitive; use current official integration documentation.
+React 19.2 supports a partial prerender workflow: prerender a shell and retain the postponed state, serve/cache the shell, and resume later to stream request-specific content; a resume-and-prerender path can instead finish static output. This combines cacheable early content with dynamic continuation. Frameworks still own request lifecycle, storage of postponed state, cache policy, and response integration; exact method signatures are in t07-021.
 
 ### Framework-managed rendering lifecycle
 
@@ -80,15 +80,7 @@ Documentation pages with stable content can be generated and served from a CDN. 
 - `Runtime-specific stream output`
 - `Static output versus streaming response`
 - `Resumable prerender workflow`
-- `Framework-managed rendering lifecycle`
-
-### Exact terms covered
-
-- `Static prerendering`
-- `Wait for suspended content before static output`
-- `Web Streams runtime`
-- `Node.js Streams runtime`
-- `Runtime-specific stream output`
-- `Static output versus streaming response`
-- `Resumable prerender workflow`
+- `React 19 static APIs wait for content during prerender`
+- `React 19.2 partial prerender and resume workflow`
+- `Prefer Node Streams over Web Streams for Node SSR`
 - `Framework-managed rendering lifecycle`

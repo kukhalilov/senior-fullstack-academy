@@ -1,6 +1,6 @@
 # React DOM rendering modes hydration and host integration — Reference: Streaming, Suspense boundaries, and progressive response
 
-Sources: React 19.3 [React DOM server APIs](https://react.dev/reference/react-dom/server) and [Suspense](https://react.dev/reference/react/Suspense).
+Sources: React 19.3 [React DOM server APIs](https://react.dev/reference/react-dom/server), [`renderToString`](https://react.dev/reference/react-dom/server/renderToString), [Suspense](https://react.dev/reference/react/Suspense), and [React 19.2 release notes](https://react.dev/blog/2025/10/01/react-19-2).
 
 ## Scope and version
 
@@ -23,6 +23,12 @@ Available chunks reach the browser as the response proceeds. The browser can par
 ### Suspense boundary during server rendering
 
 A Suspense boundary divides content that may not be ready from surrounding content. The server can emit the fallback and complete the boundary later when supported by the renderer. Boundary placement affects perceived progress and UX; overly broad boundaries hide ready content, while tiny boundaries can produce noisy transitions.
+
+In a streaming response, React can send the shell with fallbacks first, then send a boundary's completed HTML and instructions to replace its fallback. React 19.2 briefly batches some server-rendered boundary reveals so nearby content can appear together and better match client reveal behavior; this is a short heuristic, not an application-controlled fixed delay.
+
+### Legacy `renderToString` limitation
+
+`renderToString` returns a string immediately. It neither streams chunks nor waits for suspended data; if a child suspends, the closest Suspense fallback appears in the generated HTML. React's streaming APIs can stream resolved content as it becomes ready. Static prerender APIs instead wait for suspended content before returning the completed static result.
 
 ### Fallback content in server response
 
@@ -49,7 +55,7 @@ The client hydrates server-delivered boundaries as their markup and code become 
 | Behavior | Streaming | Whole response rendering |
 |---|---|---|
 | First bytes | Can arrive as parts become ready | Waits for full output before sending |
-| Boundary fallback | May reveal while content completes | Usually included in completed result if suspended |
+| Suspended content | Streaming can send fallback, then later boundary HTML | Depends on API: `renderToString` emits fallback immediately; static prerender waits for content |
 | Infrastructure sensitivity | Buffering can erase incremental benefit | Less dependent on chunk flush behavior |
 
 ## Examples
@@ -89,14 +95,6 @@ If reviews are slower, the summary can be made available earlier while the fallb
 - `Progressive enhancement before client JavaScript`
 - `Streaming response completion`
 - `Client hydration of streamed content`
-
-### Exact terms covered
-
-- `Streaming server rendering`
-- `Incremental HTML delivery`
-- `Suspense boundary during server rendering`
-- `Fallback content in server response`
-- `Progressive content reveal`
-- `Progressive enhancement before client JavaScript`
-- `Streaming response completion`
-- `Client hydration of streamed content`
+- `renderToString does not stream or wait for data`
+- `renderToString emits Suspense fallback without waiting`
+- `React 19.2 briefly batches server Suspense boundary reveals`

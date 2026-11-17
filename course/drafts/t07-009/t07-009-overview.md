@@ -40,4 +40,4 @@ References separate renderer and host concepts, client/server/hydration behavior
 
 ## Version notes
 
-React 19.3 documentation continues to distinguish client, server, and static APIs. Streaming method availability depends on the target runtime; framework integrations commonly hide the low-level calls. Server Components are a separate model covered elsewhere.
+React 18 introduced streaming server rendering with Suspense and selective hydration. React 19 added static prerender APIs that wait for suspended content. React 19.2 added partial prerender/resume and briefly batches server Suspense boundary reveals; it also made Web Streams server APIs available in Node, while React still recommends Node Streams for Node SSR. Framework integrations commonly hide low-level calls. Server Components are a separate model covered elsewhere.
