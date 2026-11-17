@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 452,
-    "pending": 1888,
-    "claimsChecked": 15080,
+    "reviewed": 465,
+    "pending": 1875,
+    "claimsChecked": 15516,
     "claimsCorrected": 1390,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 452,
-    "pendingLessons": 1888
+    "reviewedLessons": 465,
+    "pendingLessons": 1875
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -30252,325 +30252,832 @@
       "topicId": "t11-023",
       "phase": "overview",
       "draft": "course/drafts/t11-023/t11-023-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-concepts",
       "topicId": "t11-023",
       "phase": "concepts",
       "draft": "course/drafts/t11-023/t11-023-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-reference-events-and-order",
       "topicId": "t11-023",
       "phase": "reference",
       "draft": "course/drafts/t11-023/t11-023-reference-events-and-order.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-reference-active-state",
       "topicId": "t11-023",
       "phase": "reference",
       "draft": "course/drafts/t11-023/t11-023-reference-active-state.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-reference-coordinate-and-geometry",
       "topicId": "t11-023",
       "phase": "reference",
       "draft": "course/drafts/t11-023/t11-023-reference-coordinate-and-geometry.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-reference-correctness-and-cost",
       "topicId": "t11-023",
       "phase": "reference",
       "draft": "course/drafts/t11-023/t11-023-reference-correctness-and-cost.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-practice-meeting-rooms-ii",
       "topicId": "t11-023",
       "phase": "practice",
       "draft": "course/drafts/t11-023/t11-023-practice-meeting-rooms-ii.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-practice-car-pooling",
       "topicId": "t11-023",
       "phase": "practice",
       "draft": "course/drafts/t11-023/t11-023-practice-car-pooling.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-practice-my-calendar-i",
       "topicId": "t11-023",
       "phase": "practice",
       "draft": "course/drafts/t11-023/t11-023-practice-my-calendar-i.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-practice-my-calendar-iii",
       "topicId": "t11-023",
       "phase": "practice",
       "draft": "course/drafts/t11-023/t11-023-practice-my-calendar-iii.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-practice-number-of-flowers-in-full-bloom",
       "topicId": "t11-023",
       "phase": "practice",
       "draft": "course/drafts/t11-023/t11-023-practice-number-of-flowers-in-full-bloom.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-practice-the-skyline-problem",
       "topicId": "t11-023",
       "phase": "practice",
       "draft": "course/drafts/t11-023/t11-023-practice-the-skyline-problem.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-023-interview",
       "topicId": "t11-023",
       "phase": "interview",
       "draft": "course/drafts/t11-023/t11-023-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually verified the lesson definitions, interval endpoint semantics and tie rules, event-sweep invariant, examples and arithmetic, complexity statements, active-state/data-structure requirements, and exact frozen manifest inventory against the cited canonical problem statement or algorithm reference. The six C# practice programs compiled and all embedded assertions passed on .NET 10.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/plat/sweep-line?lang=cpp",
+              "section": "Sweep-line event construction, active-state scan, coordinate/event complexity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+              "section": "Canonical interval, constraints, examples, and solution semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/car-pooling/",
+              "section": "Canonical trip interval, capacity constraints, examples, and event semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-i/",
+              "section": "Canonical half-open booking, constraints, examples, and rejected-booking behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/my-calendar-iii/",
+              "section": "Canonical half-open booking, constraints, examples, and maximum-overlap behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+              "section": "Canonical inclusive bloom interval, constraints, examples, and query semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/the-skyline-problem/",
+              "section": "Canonical building geometry, constraints, examples, and skyline output contract",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/plat/sweep-line?lang=cpp",
-        "https://usaco.guide/CPH.pdf",
         "https://leetcode.com/problems/meeting-rooms-ii/",
-        "https://leetcode.doocs.org/en/lc/253/",
         "https://leetcode.com/problems/car-pooling/",
         "https://leetcode.com/problems/my-calendar-i/",
         "https://leetcode.com/problems/my-calendar-iii/",
         "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
         "https://leetcode.com/problems/the-skyline-problem/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual claim review and frozen-inventory coverage audit. Confirmed half-open versus inclusive boundary rules, same-coordinate event treatment, scalar versus ordered/multiset state, compressed-coordinate limits, and per-problem contracts. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues found; lesson remains a draft."
     },
     {
       "taskId": "t11-009-overview",
