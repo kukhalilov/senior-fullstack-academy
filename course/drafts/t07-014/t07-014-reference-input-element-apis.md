@@ -35,7 +35,7 @@ The DOM interface exposes live control state and operations. Reflected propertie
 - `maxLength` — Reflected maximum text length in code units for applicable states; assigning invalid values can raise an exception according to the IDL rules.
 - `min` — Reflected lower bound string for applicable states.
 - `minLength` — Reflected minimum text length for applicable states.
-- `multiple` — Boolean state allowing multiple files/email addresses or select options according to the input type.
+- `multiple` — Boolean state allowing multiple selected files in the File Upload state or a comma-separated list of email addresses in the Email state. It does not apply to an input state that selects options; `<select multiple>` is a separate element feature.
 - `name` — Reflected field name used by form submission and form named access.
 - `pattern` — Reflected pattern string used for constraint validation on applicable text states.
 - `placeholder` — Reflected empty-value hint; not a label.
