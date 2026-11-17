@@ -61,4 +61,4 @@ For signed full-width integers, `a - b` can overflow, changing the sign used for
 
 Be able to derive predicates from endpoint inclusion; distinguish union, scheduling, stabbing, intersection, and containment objectives; state each scan's invariant; justify the greedy exchange; explain all tie-breaks; and account for sort and output memory.
 
-Sources: [USACO Guide: Greedy with Sorting](https://usaco.guide/silver/greedy-sorting), [USACO Guide: Problem-Analysis Paradigms](https://usaco.guide/PAPS.pdf).
+Sources: [USACO Guide: Greedy with Sorting](https://usaco.guide/silver/greedy-sorting), [LeetCode: Non-overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/).

@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 125,
-    "pending": 2215,
-    "claimsChecked": 1187,
-    "claimsCorrected": 84,
+    "reviewed": 138,
+    "pending": 2202,
+    "claimsChecked": 1295,
+    "claimsCorrected": 85,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -15169,312 +15169,916 @@
       "topicId": "t11-008",
       "phase": "overview",
       "draft": "course/drafts/t11-008/t11-008-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Closed touching intervals merge.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Ranges sharing a point overlap.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Touching ranges are compatible.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Coverage task uses half-open ranges.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Earliest-finish scheduling is optimal.",
+          "source": "https://usaco.guide/silver/greedy-sorting",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Balloon endpoints are included.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sorted disjoint lists allow linear intersection.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Coverage tie-break is descending end.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
         "https://leetcode.com/problems/merge-intervals/",
         "https://leetcode.com/problems/insert-interval/",
         "https://leetcode.com/problems/non-overlapping-intervals/",
+        "https://leetcode.com/problems/remove-covered-intervals/",
+        "https://usaco.guide/silver/greedy-sorting",
         "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+        "https://leetcode.com/problems/interval-list-intersections/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked the six distinct objectives against current problem statements and USACO Guide. Corrected the overview count from four to six; no issues remain."
     },
     {
       "taskId": "t11-008-concepts",
       "topicId": "t11-008",
       "phase": "concepts",
       "draft": "course/drafts/t11-008/t11-008-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Closed overlap includes equality.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Closed intersection includes singleton equality.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Half-open touching ranges are disjoint.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Insertion end expands across overlaps.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Earliest-finish proof uses exchange.",
+          "source": "https://usaco.guide/silver/greedy-sorting",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Touching is compatible.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Earliest end supports interval stabbing.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Advance earlier end without skipping intersections.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Equal starts need descending-end tie-break.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# checked and unchecked arithmetic differ on overflow.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
         "https://leetcode.com/problems/merge-intervals/",
+        "https://leetcode.com/problems/interval-list-intersections/",
+        "https://leetcode.com/problems/remove-covered-intervals/",
         "https://leetcode.com/problems/insert-interval/",
+        "https://usaco.guide/silver/greedy-sorting",
         "https://leetcode.com/problems/non-overlapping-intervals/",
         "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked endpoint predicates, scan invariants, greedy exchange, pointer advancement, and comparator safety against current statements and Microsoft C# docs."
     },
     {
       "taskId": "t11-008-reference-interval-model",
       "topicId": "t11-008",
       "phase": "reference",
       "draft": "course/drafts/t11-008/t11-008-reference-interval-model.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
-        "https://leetcode.com/problems/merge-intervals/",
-        "https://leetcode.com/problems/insert-interval/",
-        "https://leetcode.com/problems/non-overlapping-intervals/",
-        "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+      "evidence": [
+        {
+          "claim": "Merge source uses closed intervals.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Closed endpoints are included.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Coverage uses half-open intervals.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Singleton intersections are retained.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Zero-length closed intervals are allowed.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Touching compatibility is task-specific.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Lists are sorted and pairwise disjoint.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Arrow hits include endpoints.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Coverage requires containment.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Ordering is an input precondition.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/merge-intervals/",
+        "https://leetcode.com/problems/interval-list-intersections/",
+        "https://leetcode.com/problems/remove-covered-intervals/",
+        "https://leetcode.com/problems/non-overlapping-intervals/",
+        "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/"
+      ],
+      "reviewNote": "Checked all ten terms against current closed, half-open, touching, singleton, and sorted-disjoint contracts; updated citations."
     },
     {
       "taskId": "t11-008-reference-merge-and-insert",
       "topicId": "t11-008",
       "phase": "reference",
       "draft": "course/drafts/t11-008/t11-008-reference-merge-and-insert.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
-        "https://leetcode.com/problems/merge-intervals/",
-        "https://leetcode.com/problems/insert-interval/",
-        "https://leetcode.com/problems/non-overlapping-intervals/",
-        "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+      "evidence": [
+        {
+          "claim": "Sort by start supports merge scan.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Merged end is maximum endpoint.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Closed touching ranges merge.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sorted insertion needs no sort.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Earlier intervals satisfy end<newStart.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Expanding end absorbs overlaps.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Suffix follows merge region.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sorted gap closes component.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/merge-intervals/",
+        "https://leetcode.com/problems/insert-interval/"
+      ],
+      "reviewNote": "Checked all eight operations, preconditions, boundary tests, expanding bounds, and emission invariants."
     },
     {
       "taskId": "t11-008-reference-scheduling-greedy",
       "topicId": "t11-008",
       "phase": "reference",
       "draft": "course/drafts/t11-008/t11-008-reference-scheduling-greedy.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Earliest finish is optimal for unweighted scheduling.",
+          "source": "https://usaco.guide/silver/greedy-sorting",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Exchange preserves future choices.",
+          "source": "https://usaco.guide/silver/greedy-sorting",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Touching is compatible.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Minimum removals complement maximum kept.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Duplicates conflict.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Earliest-start can fail.",
+          "source": "https://usaco.guide/silver/greedy-sorting",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Balloon task is interval stabbing.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Coverage differs from selection.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
-        "https://leetcode.com/problems/merge-intervals/",
-        "https://leetcode.com/problems/insert-interval/",
         "https://leetcode.com/problems/non-overlapping-intervals/",
         "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
         "https://leetcode.com/problems/remove-covered-intervals/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all seven terms against the current scheduling statement and USACO proof, including equality and weighted exclusion."
     },
     {
       "taskId": "t11-008-reference-complexity-and-failure",
       "topicId": "t11-008",
       "phase": "reference",
       "draft": "course/drafts/t11-008/t11-008-reference-complexity-and-failure.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Arbitrary merge includes sorting.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sorted insertion is linear.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Coverage tie-break uses descending end.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Equal finishes preserve cardinality.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Closed touching endpoints overlap.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Coordinates span Int32.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Unchecked subtraction may wrap.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Checked subtraction may throw.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+          "section": "canonical statement or greedy proof / C# overflow rules",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
         "https://leetcode.com/problems/merge-intervals/",
         "https://leetcode.com/problems/insert-interval/",
+        "https://leetcode.com/problems/remove-covered-intervals/",
         "https://leetcode.com/problems/non-overlapping-intervals/",
         "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked sort-vs-scan costs, tie ordering, stability, endpoint inclusion, and C# checked/unchecked behavior."
     },
     {
       "taskId": "t11-008-practice-merge-intervals",
       "topicId": "t11-008",
       "phase": "practice",
       "draft": "course/drafts/t11-008/t11-008-practice-merge-intervals.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
-        "https://leetcode.com/problems/merge-intervals/",
-        "https://leetcode.com/problems/insert-interval/",
-        "https://leetcode.com/problems/non-overlapping-intervals/",
-        "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+      "evidence": [
+        {
+          "claim": "Input length is 1..10^4.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Coordinates satisfy 0<=start<=end<=10^4.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Closed touching ranges overlap.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The scan extends end with max(currentEnd,nextEnd).",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The output is sorted, disjoint, and covers the input.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sorting and scanning is O(n log n).",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The shallow clone avoids changing caller order.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples including point intervals were recalculated.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/merge-intervals/"
+      ],
+      "reviewNote": "Checked problem contract, constraints, examples, core invariant, boundaries, complexity, and C# implementation against the current canonical statement; independently traced examples and edge cases. No unresolved issue found."
     },
     {
       "taskId": "t11-008-practice-insert-interval",
       "topicId": "t11-008",
       "phase": "practice",
       "draft": "course/drafts/t11-008/t11-008-practice-insert-interval.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
-        "https://leetcode.com/problems/merge-intervals/",
-        "https://leetcode.com/problems/insert-interval/",
-        "https://leetcode.com/problems/non-overlapping-intervals/",
-        "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+      "evidence": [
+        {
+          "claim": "Existing list may be empty and is sorted by start.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Endpoints lie in 0..10^5.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Touching closed intervals overlap.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Source permits a new output rather than in-place mutation.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Emit prior intervals only when end<newStart.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Absorb while nextStart<=evolvingEnd.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Remaining suffix is after the final merged range.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each interval is inspected once, O(n).",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/insert-interval/"
+      ],
+      "reviewNote": "Checked problem contract, constraints, examples, core invariant, boundaries, complexity, and C# implementation against the current canonical statement; independently traced examples and edge cases. No unresolved issue found."
     },
     {
       "taskId": "t11-008-practice-non-overlapping-intervals",
       "topicId": "t11-008",
       "phase": "practice",
       "draft": "course/drafts/t11-008/t11-008-practice-non-overlapping-intervals.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
-        "https://leetcode.com/problems/merge-intervals/",
-        "https://leetcode.com/problems/insert-interval/",
-        "https://leetcode.com/problems/non-overlapping-intervals/",
-        "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+      "evidence": [
+        {
+          "claim": "Input length is 1..10^5 and every start<end.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Touching intervals are compatible.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Identical intervals conflict.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sort by end and accept start>=lastEnd.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Earliest finish is exchange-optimal.",
+          "source": "https://usaco.guide/silver/greedy-sorting",
+          "section": "greedy proof or C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Minimum removals equal n minus maximum kept.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Complexity is O(n log n) including sort.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples including touch and duplicates were recalculated.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/non-overlapping-intervals/",
+        "https://usaco.guide/silver/greedy-sorting"
+      ],
+      "reviewNote": "Checked problem contract, constraints, examples, core invariant, boundaries, complexity, and C# implementation against the current canonical statement; independently traced examples and edge cases. No unresolved issue found."
     },
     {
       "taskId": "t11-008-practice-minimum-arrows-balloons",
       "topicId": "t11-008",
       "phase": "practice",
       "draft": "course/drafts/t11-008/t11-008-practice-minimum-arrows-balloons.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
-        "https://leetcode.com/problems/merge-intervals/",
-        "https://leetcode.com/problems/insert-interval/",
-        "https://leetcode.com/problems/non-overlapping-intervals/",
-        "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+      "evidence": [
+        {
+          "claim": "Balloon intervals are closed and arrow hits include endpoints.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Input length is 1..10^5.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Endpoints span Int32 and require start<end.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sort by end and place at the earliest uncovered end.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A start equal to arrow position is already hit.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "CompareTo avoids subtraction overflow.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Full-range example has shared point zero.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sort plus scan is O(n log n).",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/"
+      ],
+      "reviewNote": "Checked problem contract, constraints, examples, core invariant, boundaries, complexity, and C# implementation against the current canonical statement; independently traced examples and edge cases. No unresolved issue found."
     },
     {
       "taskId": "t11-008-practice-interval-list-intersections",
       "topicId": "t11-008",
       "phase": "practice",
       "draft": "course/drafts/t11-008/t11-008-practice-interval-list-intersections.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
-        "https://leetcode.com/problems/merge-intervals/",
-        "https://leetcode.com/problems/insert-interval/",
-        "https://leetcode.com/problems/non-overlapping-intervals/",
-        "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+      "evidence": [
+        {
+          "claim": "Each list is sorted and pairwise disjoint.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Lists may be empty but not both empty.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Intervals are closed and singleton intersection is valid.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Bounds are max starts and min ends.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Advance earlier end; equal ends advance both.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Pointer scan takes O(m+n).",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Validation enforces source preconditions.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples with endpoint-only intersections were recalculated.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/interval-list-intersections/"
+      ],
+      "reviewNote": "Checked problem contract, constraints, examples, core invariant, boundaries, complexity, and C# implementation against the current canonical statement; independently traced examples and edge cases. No unresolved issue found."
     },
     {
       "taskId": "t11-008-practice-remove-covered-intervals",
       "topicId": "t11-008",
       "phase": "practice",
       "draft": "course/drafts/t11-008/t11-008-practice-remove-covered-intervals.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Source represents intervals as half-open [l,r).",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Coverage is start containment and end containment.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Intervals are unique; 1..1000 items; start<end.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sort start ascending and end descending on ties.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Current end<=farthest prior end means covered.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Count only strict increases in the farthest end.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Partial overlap is not containment.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples including equal starts were recalculated.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
-        "https://leetcode.com/problems/merge-intervals/",
-        "https://leetcode.com/problems/insert-interval/",
-        "https://leetcode.com/problems/non-overlapping-intervals/",
-        "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
-        "https://leetcode.com/problems/interval-list-intersections/",
         "https://leetcode.com/problems/remove-covered-intervals/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked problem contract, constraints, examples, core invariant, boundaries, complexity, and C# implementation against the current canonical statement; independently traced examples and edge cases. No unresolved issue found."
     },
     {
       "taskId": "t11-008-interview",
       "topicId": "t11-008",
       "phase": "interview",
       "draft": "course/drafts/t11-008/t11-008-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Closed merge treats touching as overlap.",
+          "source": "https://leetcode.com/problems/merge-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Scheduling may treat the same equality boundary as compatible.",
+          "source": "https://leetcode.com/problems/non-overlapping-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Earliest-finish greedy has an exchange proof.",
+          "source": "https://usaco.guide/silver/greedy-sorting",
+          "section": "greedy proof or C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Interval stabbing differs from compatible selection.",
+          "source": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Two sorted disjoint lists use a linear intersection scan.",
+          "source": "https://leetcode.com/problems/interval-list-intersections/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Coverage requires containment and a tie-break.",
+          "source": "https://leetcode.com/problems/remove-covered-intervals/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Subtraction comparators can overflow in C#.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+          "section": "greedy proof or C# overflow rules",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Already sorted insertion needs no sort.",
+          "source": "https://leetcode.com/problems/insert-interval/",
+          "section": "current canonical statement / constraints / examples",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/silver/greedy-sorting",
-        "https://usaco.guide/PAPS.pdf",
         "https://leetcode.com/problems/merge-intervals/",
-        "https://leetcode.com/problems/insert-interval/",
         "https://leetcode.com/problems/non-overlapping-intervals/",
+        "https://usaco.guide/silver/greedy-sorting",
         "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
         "https://leetcode.com/problems/interval-list-intersections/",
-        "https://leetcode.com/problems/remove-covered-intervals/"
+        "https://leetcode.com/problems/remove-covered-intervals/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://leetcode.com/problems/insert-interval/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked problem contract, constraints, examples, core invariant, boundaries, complexity, and C# implementation against the current canonical statement; independently traced examples and edge cases. No unresolved issue found."
     },
     {
       "taskId": "t11-023-overview",
@@ -105622,6 +106226,14 @@
       "status": "full claim and frozen-inventory audit complete for this topic",
       "findings": [
         "Reviewed all 13 lessons against all 38 assigned inventory entries, the current OpenDSA Complete Catalog, current Microsoft Stack<T>/Queue<T> documentation, and six current canonical problem statements. Checked stack/queue/deque contracts, array/linked/ring representations, empty/full states, amortized transfer/growth bounds, BFS and parser ordering, examples, C# division and API behavior, and every practice solution. Refreshed the queue source link and clarified current .NET empty-operation/Try API behavior. No unresolved factual or coverage issues remain."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "DSA interval semantics, merging, intersection, and scheduling (t11-008)",
+      "status": "full claim and frozen-inventory audit complete for this topic",
+      "findings": [
+        "Reviewed all 13 lessons against all 33 inventory items, six current canonical interval-problem statements, current USACO scheduling material, and Microsoft C# overflow documentation. Checked endpoint conventions, preconditions, greedy proofs, pointer movement, tie-breaks, examples, constraints, comparator safety, and solution invariants. Corrected the overview category undercount and replaced an old general PDF citation with relevant current references. No unresolved issues remain."
       ]
     }
   ]

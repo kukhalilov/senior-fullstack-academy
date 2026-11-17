@@ -45,4 +45,4 @@ An interval is a set of ordered coordinates. Endpoint inclusion determines wheth
 3. **Is `[4,4]` empty?** No; it is a singleton closed interval.
 4. **Why read problem examples before coding?** They establish the endpoint equality rule the scan must implement.
 
-Source: [USACO Guide: Greedy with Sorting](https://usaco.guide/silver/greedy-sorting).
+Sources: [LeetCode: Merge Intervals](https://leetcode.com/problems/merge-intervals/), [LeetCode: Interval List Intersections](https://leetcode.com/problems/interval-list-intersections/), [LeetCode: Remove Covered Intervals](https://leetcode.com/problems/remove-covered-intervals/).

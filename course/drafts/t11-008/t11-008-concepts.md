@@ -59,7 +59,7 @@ For closed intervals `[1,2]` and `[2,3]`, equality makes them overlap. For sched
 - Updating an overlap intersection with `max(end)` where it must shrink with `min(end)`.
 - Advancing both pointers in interval-list intersections without proof; advancing the earlier-ending range is sufficient.
 
-Sources: [USACO Guide: Greedy with Sorting](https://usaco.guide/silver/greedy-sorting), [USACO Guide: Problem-Analysis Paradigms](https://usaco.guide/PAPS.pdf).
+Sources: [USACO Guide: Greedy with Sorting](https://usaco.guide/silver/greedy-sorting), [LeetCode: Non-overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/).
 
 ## Knowledge checks with answers
 

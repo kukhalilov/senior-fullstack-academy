@@ -42,4 +42,4 @@ To sort by start ascending and end descending: compare starts; if equal, compare
 3. **Does stability imply correct secondary ordering?** Only if preserving input order is the intended secondary rule.
 4. **Why keep duplicate-case tests?** Duplicates can change kept counts or boundary transitions even when sorting looks correct.
 
-Source: [USACO Guide: Greedy with Sorting](https://usaco.guide/silver/greedy-sorting).
+Sources: [USACO Guide: Greedy with Sorting](https://usaco.guide/silver/greedy-sorting), [Microsoft: checked and unchecked arithmetic](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked).
