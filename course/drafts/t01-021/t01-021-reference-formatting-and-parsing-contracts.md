@@ -107,7 +107,7 @@ const string format = "O";
 string wire = timestamp.ToString(format, CultureInfo.InvariantCulture);
 if (!DateTimeOffset.TryParseExact(
         wire, format, CultureInfo.InvariantCulture,
-        DateTimeStyles.RoundtripKind, out DateTimeOffset parsed))
+        DateTimeStyles.None, out DateTimeOffset parsed))
     throw new FormatException("Invalid timestamp.");
 ```
 

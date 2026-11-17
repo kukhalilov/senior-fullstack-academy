@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 431,
-    "pending": 1909,
-    "claimsChecked": 13756,
-    "claimsCorrected": 1359,
+    "reviewed": 439,
+    "pending": 1901,
+    "claimsChecked": 14464,
+    "claimsCorrected": 1387,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 431,
-    "pendingLessons": 1909
+    "reviewedLessons": 439,
+    "pendingLessons": 1901
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -24481,280 +24481,374 @@
       "topicId": "t01-021",
       "phase": "overview",
       "draft": "course/drafts/t01-021/t01-021-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timezoneinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.numberformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/formatting-types",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-source-generators",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 44,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s date/time, zone, globalization, Unicode, format/parsing, regex engine/API, security, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrected the DateTimeOffset round-trip example to use DateTimeStyles.None because RoundtripKind has no effect on DateTimeOffset; reviewed civil-time/DST ambiguity, offsets versus named zones, TimeProvider monotonic use, culture and Unicode comparison, exact parsing, and .NET 11 RegexOptions.AnyNewLine/nonbacktracking/timeout/source-generation behavior. Frozen inventory validates; draft status is retained."
     },
     {
       "taskId": "t01-021-concepts",
       "topicId": "t01-021",
       "phase": "concepts",
       "draft": "course/drafts/t01-021/t01-021-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timezoneinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.numberformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/formatting-types",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-source-generators",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 79,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s date/time, zone, globalization, Unicode, format/parsing, regex engine/API, security, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrected the DateTimeOffset round-trip example to use DateTimeStyles.None because RoundtripKind has no effect on DateTimeOffset; reviewed civil-time/DST ambiguity, offsets versus named zones, TimeProvider monotonic use, culture and Unicode comparison, exact parsing, and .NET 11 RegexOptions.AnyNewLine/nonbacktracking/timeout/source-generation behavior. Frozen inventory validates; draft status is retained."
     },
     {
       "taskId": "t01-021-reference-date-time-and-time-zone-types",
       "topicId": "t01-021",
       "phase": "reference",
       "draft": "course/drafts/t01-021/t01-021-reference-date-time-and-time-zone-types.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 104,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s date/time, zone, globalization, Unicode, format/parsing, regex engine/API, security, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.timezoneinfo",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.datetimeoffset",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/",
         "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
         "https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly",
         "https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider",
         "https://learn.microsoft.com/en-us/dotnet/api/system.timezoneinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.numberformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/formatting-types",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-source-generators",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.datetimeoffset"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrected the DateTimeOffset round-trip example to use DateTimeStyles.None because RoundtripKind has no effect on DateTimeOffset; reviewed civil-time/DST ambiguity, offsets versus named zones, TimeProvider monotonic use, culture and Unicode comparison, exact parsing, and .NET 11 RegexOptions.AnyNewLine/nonbacktracking/timeout/source-generation behavior. Frozen inventory validates; draft status is retained."
     },
     {
       "taskId": "t01-021-reference-culture-number-date-and-string-globalization",
       "topicId": "t01-021",
       "phase": "reference",
       "draft": "course/drafts/t01-021/t01-021-reference-culture-number-date-and-string-globalization.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 112,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s date/time, zone, globalization, Unicode, format/parsing, regex engine/API, security, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.compareinfo",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timezoneinfo",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/globalization",
         "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.numberformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/formatting-types",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-source-generators",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.compareinfo",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.rune"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrected the DateTimeOffset round-trip example to use DateTimeStyles.None because RoundtripKind has no effect on DateTimeOffset; reviewed civil-time/DST ambiguity, offsets versus named zones, TimeProvider monotonic use, culture and Unicode comparison, exact parsing, and .NET 11 RegexOptions.AnyNewLine/nonbacktracking/timeout/source-generation behavior. Frozen inventory validates; draft status is retained."
     },
     {
       "taskId": "t01-021-reference-formatting-and-parsing-contracts",
       "topicId": "t01-021",
       "phase": "reference",
       "draft": "course/drafts/t01-021/t01-021-reference-formatting-and-parsing-contracts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 108,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s date/time, zone, globalization, Unicode, format/parsing, regex engine/API, security, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/formatting-types",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.datetimeoffset.parseexact",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.datetime.parseexact",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.iformattable",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.ispanparsable-1",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timezoneinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.numberformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo",
         "https://learn.microsoft.com/en-us/dotnet/standard/base-types/formatting-types",
         "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-source-generators",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.datetimeoffset.parseexact",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.datetime.parseexact",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.iformattable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.ispanparsable-1"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrected the DateTimeOffset round-trip example to use DateTimeStyles.None because RoundtripKind has no effect on DateTimeOffset; reviewed civil-time/DST ambiguity, offsets versus named zones, TimeProvider monotonic use, culture and Unicode comparison, exact parsing, and .NET 11 RegexOptions.AnyNewLine/nonbacktracking/timeout/source-generation behavior. Frozen inventory validates; draft status is retained."
     },
     {
       "taskId": "t01-021-reference-regular-expression-engine-and-patterns",
       "topicId": "t01-021",
       "phase": "reference",
       "draft": "course/drafts/t01-021/t01-021-reference-regular-expression-engine-and-patterns.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timezoneinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.numberformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/formatting-types",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-source-generators",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 124,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s date/time, zone, globalization, Unicode, format/parsing, regex engine/API, security, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-source-generators",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-source-generators",
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrected the DateTimeOffset round-trip example to use DateTimeStyles.None because RoundtripKind has no effect on DateTimeOffset; reviewed civil-time/DST ambiguity, offsets versus named zones, TimeProvider monotonic use, culture and Unicode comparison, exact parsing, and .NET 11 RegexOptions.AnyNewLine/nonbacktracking/timeout/source-generation behavior. Frozen inventory validates; draft status is retained."
     },
     {
       "taskId": "t01-021-practice",
       "topicId": "t01-021",
       "phase": "practice",
       "draft": "course/drafts/t01-021/t01-021-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timezoneinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.numberformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/formatting-types",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-source-generators",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 67,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s date/time, zone, globalization, Unicode, format/parsing, regex engine/API, security, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrected the DateTimeOffset round-trip example to use DateTimeStyles.None because RoundtripKind has no effect on DateTimeOffset; reviewed civil-time/DST ambiguity, offsets versus named zones, TimeProvider monotonic use, culture and Unicode comparison, exact parsing, and .NET 11 RegexOptions.AnyNewLine/nonbacktracking/timeout/source-generation behavior. Frozen inventory validates; draft status is retained."
     },
     {
       "taskId": "t01-021-interview",
       "topicId": "t01-021",
       "phase": "interview",
       "draft": "course/drafts/t01-021/t01-021-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
-        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timeprovider",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.timezoneinfo",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu",
-        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/globalization",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.numberformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.globalization.datetimeformatinfo",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/formatting-types",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-strings",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-source-generators",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 70,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s date/time, zone, globalization, Unicode, format/parsing, regex engine/API, security, version, and example claims against the linked official Microsoft documentation. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions",
+              "section": "Relevant API behavior, parser/format contract, globalization rule, time-zone conversion, regex syntax/engine guarantee, or security boundary",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options",
+        "https://learn.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrected the DateTimeOffset round-trip example to use DateTimeStyles.None because RoundtripKind has no effect on DateTimeOffset; reviewed civil-time/DST ambiguity, offsets versus named zones, TimeProvider monotonic use, culture and Unicode comparison, exact parsing, and .NET 11 RegexOptions.AnyNewLine/nonbacktracking/timeout/source-generation behavior. Frozen inventory validates; draft status is retained."
     },
     {
       "taskId": "t11-003-overview",
