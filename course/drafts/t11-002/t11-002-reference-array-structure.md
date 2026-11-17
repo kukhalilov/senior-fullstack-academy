@@ -6,7 +6,7 @@
 
 # Scope and version
 
-This lesson covers the fundamental structural properties of arrays used in algorithmic problem solving. It focuses on how data is organized in memory and how we interact with that data using indices. The concepts apply to timeless computer science principles and specific implementations in C# and .NET as of the 2026-11-14 update.
+This lesson covers the fundamental structural properties of arrays used in algorithmic problem solving. It focuses on how data is organized in memory and how we interact with that data using indices. The concepts apply to timeless computer science principles and specific implementations in C# and .NET as of the 2026-11-17 update.
 
 # How this group fits the mental model
 
@@ -27,9 +27,9 @@ Each of the following terms describes a specific rule or behavior of how arrays 
 *   `Zero-based indexing`: This is the convention where the first element of an array is accessed using the number `0`. The second element is at index `1`, and the last element is at index `length - 1`. This is a standard in C# and most modern programming languages.
 *   `Array length`: This represents the total number of elements an array can hold. It is a fixed property of the array. For example, an array with a length of 5 has indices 0, 1, 2, 3, and 4.
 *   `Contiguous sequence`: The array's element slots are laid out consecutively in managed memory, which lets indexed access calculate a slot from the array and index. For an array of object references, the references occupy those slots; the referenced objects themselves can be elsewhere in memory.
-*   `Indexed element access`: This is the ability to retrieve or change a value at a specific position using its index (e.g., `myArray[3]`). Because the sequence is contiguous, the computer performs a simple math calculation to jump straight to that memory address, making this operation nearly instantaneous regardless of the array's size.
+*   `Indexed element access`: This is the ability to retrieve or change a value at a specific position using its index (e.g., `myArray[3]`). Under the usual random-access machine model, indexed element access takes O(1) time because the address is computed from the base and index. Real elapsed time and bounds checks still depend on the runtime and hardware.
 *   `Array traversal`: This is the process of visiting every element in the array, usually starting from index 0 and moving to the end. This is typically done using a loop (like a `for` or `foreach` loop) to perform an action on every item, such as searching for a value or calculating a sum.
-*   `Empty array`: An array that has an `Array length` of zero. It contains no elements and occupies minimal memory. It is often used as a safe return value in algorithms to indicate that no results were found, preventing "null" errors.
+*   `Empty array`: An array that has an `Array length` of zero. It contains no elements but is still a valid array object with runtime overhead. It is often returned to represent no results while avoiding a null reference.
 
 # Cross-item comparison
 
@@ -84,7 +84,7 @@ int[] noScores = new int[0];
 
 **Answers:**
 1. **9** (Because of `Zero-based indexing`, the last index is `Length - 1`).
-2. Because the computer can calculate the exact memory location and jump there instantly, whereas traversal requires checking every single element until the target is found.
+2. Because the index determines one slot in O(1) time under the usual model; traversal is needed when the value is unknown and may require examining O(n) elements.
 3. **Contiguous sequence**.
 4. **False**. You must create a new array of a different size and move the data.
 

@@ -29,7 +29,7 @@ Given an integer array `nums`, return `true` if any value appears at least twice
 1.  **Brute Force:** You could compare every element with every other element using nested loops. What is the time complexity of this approach?
 2.  **Sorting:** If you sort the array first, duplicates will be adjacent. How does sorting affect the time complexity?
 3.  **Membership Tracking:** Can you use a data structure to remember which numbers you have already seen while scanning the array once?
-4.  **API Selection:** In C#, which collection allows for fast (constant time) lookups to check if an item exists? (Hint: See `System.Collections.Generic.HashSet<T>`).
+4.  **API Selection:** In C#, which collection provides expected O(1) lookup under ordinary hash behavior to check if an item exists? (Hint: See `System.Collections.Generic.HashSet<T>`).
 
 # Complete C# solution
 ```csharp dsa-solution

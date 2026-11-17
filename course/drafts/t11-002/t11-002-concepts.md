@@ -15,7 +15,7 @@
 * Understanding of memory as a sequence of storage locations.
 
 # Core concepts
-An array is a data structure that stores an ordered sequence of elements in a **contiguous sequence** (a block of memory where items are placed side-by-side). Because they are contiguous, you can perform **indexed element access** in constant time using **zero-based indexing**.
+An array is a data structure that stores an ordered sequence of elements in a **contiguous sequence** (a block of adjacent element slots). Under the usual random-access machine model, **indexed element access** takes O(1) time using **zero-based indexing**.
 
 *   **Fixed-size array**: A structure with a set **Array length** defined at creation. It cannot grow or shrink.
 *   **Dynamic array**: A structure that manages a **Logical count** (the number of items currently in use) and an allocated **Capacity** (the total space available). When the count reaches capacity, the structure performs a **Resize and copy** operation to a larger memory block.

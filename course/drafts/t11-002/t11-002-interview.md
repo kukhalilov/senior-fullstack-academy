@@ -10,7 +10,7 @@ When preparing for technical interviews, you must be able to explain the fundame
 
 *   **What is the difference between a fixed-size array and a dynamic array?** A fixed-size array has a set length defined at creation, while a dynamic array manages its own memory, allowing for a logical count of elements that can grow beyond its initial allocation.
 *   **Why does a dynamic array have both a "count" and a "capacity"?** The logical count represents the number of elements currently in use, while the capacity represents the total number of slots allocated in memory. When the count reaches the capacity, the structure must resize.
-*   **What is the cost of appending to a dynamic array?** While most appends are fast, resizing requires allocating a new, larger block of memory and copying existing elements, leading to an amortized append cost (the average cost over a sequence of operations).
+*   **What is the cost of appending to a dynamic array?** While most appends are fast, resizing requires allocating a new, larger block of memory and copying existing elements, leading to O(1) amortized append cost under geometric growth: every sequence of m appends has O(m) total work, even though one append can be O(n).
 
 Source: [https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html](https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html)
 
@@ -20,7 +20,7 @@ Keep your answers direct. If asked about array performance:
 "Arrays provide constant-time indexed access because they are stored as a contiguous sequence in memory. However, inserting or deleting elements in the middle of an array is expensive because it requires shifting subsequent elements to maintain the order."
 
 If asked about multidimensional shapes:
-"A rectangular multidimensional array uses a single block of memory with fixed bounds for every row, whereas a jagged array is an 'array of arrays,' where each row can have a different length."
+"A rectangular C# multidimensional array has a fixed length for each dimension and uses `array[row, column]`; a jagged array is an array of row arrays addressed as `array[row][column]`, and rows may have different lengths."
 
 Source: [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays)
 
@@ -32,7 +32,7 @@ When an interviewer asks "How does resizing actually work?", explain the mechani
 3.  **Copy:** It iterates through the old array, copying every element to the new memory location.
 4.  **Replace:** The old array is discarded, and the structure points to the new one.
 
-This explains why we distinguish between worst-case append cost (when a resize occurs) and amortized append cost (the average performance).
+This is why worst-case cost for one append differs from amortized cost across a sequence.
 
 Source: [https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity)
 
@@ -42,12 +42,12 @@ Source: [https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic
 **Reasoning:** A dynamic array is ideal here. It provides the necessary indexed element access while handling the unknown size through capacity growth.
 
 **Scenario:** You are processing a grid of data where every row must have exactly the same number of columns.
-**Reasoning:** A rectangular multidimensional array is preferred over a jagged array because it enforces uniform bounds and is often more memory-efficient for dense grids.
+**Reasoning:** A rectangular multidimensional array is preferred over a jagged array because it enforces uniform bounds and can model dense uniform grids directly. Measure memory and speed for the actual runtime and access pattern.
 
 # Tradeoffs and alternatives
 
 *   **In-place update vs. Auxiliary array:** Use an in-place update to save memory when you don't need to preserve the original data. Use an auxiliary array when you need to keep the original input intact or when the logic is too complex to manage safely in-place.
-*   **Mutation vs. Copy:** Mutating an array is faster and uses less memory but can lead to bugs if other parts of your code expect the original data to remain unchanged.
+*   **Mutation vs. Copy:** Mutating an array may avoid a result allocation but changes shared state; copying can be worth its allocation and copying cost when callers need the original.
 
 # Common weak answers
 

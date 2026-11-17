@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 38,
-    "pending": 2302,
-    "claimsChecked": 570,
-    "claimsCorrected": 57,
+    "reviewed": 52,
+    "pending": 2288,
+    "claimsChecked": 746,
+    "claimsCorrected": 77,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -5298,13 +5298,98 @@
       "topicId": "t11-002",
       "phase": "overview",
       "draft": "course/drafts/t11-002/t11-002-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 14,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "C# arrays are reference types with a fixed length per instance, and their indices are zero-based from 0 to n-1.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Arrays properties, lines 58-64",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For C# reference-type arrays, the slots contain references; referenced objects need not be laid out as a contiguous object graph.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array types and reference types, lines 40-64",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Known-index access is modeled as O(1) in the random-access array model; this is a model claim rather than a wall-clock guarantee.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list access model",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A full scan takes O(n) element visits.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list traversal and analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Ordered insertion/removal away from the end shifts a suffix; append and remove-at-end do not require suffix shifts.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list insert/remove operations",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dynamic-array count and capacity are distinct, and List<T>.Capacity is storage available before resize.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+          "section": "Definition and property value, lines 69-94",
+          "verdict": "supported"
+        },
+        {
+          "claim": "List<T>.Add is O(1) while Count is below Capacity and O(n) when capacity must grow.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.add?view=net-10.0",
+          "section": "Remarks, line 767",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Geometric capacity growth bounds cumulative copying across m appends by O(m), making append O(1) amortized.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Dynamic-array growth and amortized analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "An individual append that grows a full array can take O(n).",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.add?view=net-10.0",
+          "section": "Remarks, line 767",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# supports rectangular multidimensional arrays and jagged arrays, whose inner arrays can vary in length.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array properties and jagged arrays, lines 58-64 and 281-314",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# multidimensional-array enumeration increments the rightmost index first.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Multidimensional arrays, lines 207-225",
+          "verdict": "supported"
+        },
+        {
+          "claim": "In-place transformation mutates the input; an auxiliary array trades storage for keeping source values intact.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array list operations; direct algorithmic scope check",
+          "verdict": "supported"
+        },
+        {
+          "claim": "All overview mechanisms and examples stay within the assigned array/dynamic-array concepts and do not claim full APIs.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "Concept list, scope exclusions, overview topic map",
+          "verdict": "scope checked; all listed concepts present"
+        },
+        {
+          "claim": "C# arrays have fixed dimension lengths for an instance; a dynamic list can grow subject to memory and implementation limits.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays; https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+          "section": "Array properties, lines 58-64; List<T>.Capacity exceptions, lines 83-93",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5319,22 +5404,85 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-concepts",
       "topicId": "t11-002",
       "phase": "concepts",
       "draft": "course/drafts/t11-002/t11-002-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Array slots form an ordered sequence and C# indices are zero-based.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array properties, lines 58-64",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Indexed access and scans have distinct costs; a full scan can visit n items.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Insertion/removal in the middle shifts a suffix; end operations avoid that shift.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list operations",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dynamic array count differs from its reserved capacity.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+          "section": "Definition and property value, lines 69-94",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Geometric growth yields O(1) amortized append but a single append can be O(n).",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.add?view=net-10.0; https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "List<T>.Add remarks, line 767; dynamic-array amortized analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Rectangular and jagged arrays have different shapes; jagged inner arrays may differ in length or be null before initialization.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array properties and jagged arrays, lines 58-64, 281-314",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# rightmost-dimension-first enumeration supports row-first traversal order.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Multidimensional arrays, lines 207-225",
+          "verdict": "supported"
+        },
+        {
+          "claim": "In-place updates mutate input; auxiliary arrays use additional storage.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list and transformation model",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Problem statements and examples for seven practice lessons correspond to their named tasks and are mapped in the manifest.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "Practice problem inventory; assigned statements listed in sourceSnapshot",
+          "verdict": "scope checked"
+        },
+        {
+          "claim": "The concepts lesson distinguishes general array structure from separately scoped hash maps, two pointers, and prefix techniques.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "scopeExclusions and concepts",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5349,22 +5497,97 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-reference-array-structure",
       "topicId": "t11-002",
       "phase": "reference",
       "draft": "course/drafts/t11-002/t11-002-reference-array-structure.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "C# arrays have an immutable length per instance and are zero-indexed.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array properties, lines 58-64",
+          "verdict": "supported"
+        },
+        {
+          "claim": "An array length n has valid C# indices 0 through n-1.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array properties and single-dimensional arrays, lines 58-64, 86-110",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# arrays are reference types; an array of references stores object references in its elements.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array reference type, lines 40-64",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Uninitialized array elements receive the element type default value.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Default values and arrays, lines 48-65",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# supports a non-null empty array distinct from a null array reference.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array reference/nullability and length, lines 40-62",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Indexed access is O(1) under the conventional random-access machine model.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list access analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A scan may require O(n) visits when a value is not known by index.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list search/traversal analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "An empty array has no valid element index and is still an allocated array object.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array length and valid indices, lines 58-64",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Array traversal visits elements in index order for one-dimensional C# arrays.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Single-dimensional arrays, line 111",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The sample loops stop before Length and therefore avoid indexing at Length.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array indexing examples, lines 86-111; direct loop audit",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A null array reference and an empty array are different states.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array reference nullability and array length, lines 40-64",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers all seven assigned structure names and does not imply arrays can resize.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "array-structure inventory and fixed-size concept",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5379,22 +5602,103 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-reference-dynamic-array",
       "topicId": "t11-002",
       "phase": "reference",
       "draft": "course/drafts/t11-002/t11-002-reference-dynamic-array.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 13,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claim": "A dynamic array combines contiguous element storage with a logical size and spare capacity.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Dynamic array-based list representation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For .NET List<T>, Count is logical item count and Capacity is available storage before resizing.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+          "section": "Definition and property value, lines 69-94",
+          "verdict": "supported"
+        },
+        {
+          "claim": "List<T>.Add appends one item; when capacity is full, capacity must grow and that Add costs O(n).",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.add?view=net-10.0",
+          "section": "API definition and Remarks, lines 69-86, 767",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A dynamic array cannot grow without memory and implementation limits.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+          "section": "Capacity exceptions, lines 83-93",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Geometric capacity growth gives O(1) amortized append over sequences, not average-case input analysis.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Dynamic allocation and amortized analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "An individual resize/copy append can be linear in the current count.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.add?view=net-10.0",
+          "section": "Remarks, line 767",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Insertion at an interior index shifts the suffix even when spare capacity exists.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list insertion",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A full insertion can require both a resize/copy and a suffix shift.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list insertion and dynamic growth",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Removal before the end shifts the later suffix; removing the final element does not need a shift.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list removal",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A preallocated List<T> capacity of 2 accepts two items without growing; the third Add grows, but the precise new capacity is implementation-dependent.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0; https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.add?view=net-10.0",
+          "section": "Capacity definition; Add remarks",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A runtime may throw OutOfMemoryException when capacity cannot be allocated.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+          "section": "Exceptions, lines 85-93",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Capacity growth policy is described as geometric for the abstract structure and not promised as a stable exact factor by List<T> API.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.add?view=net-10.0; https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+          "section": "List<T> public contract, lines 69-94; implementation-policy boundary",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The assigned dynamic-array inventory is covered, including Count/Capacity distinction and index operations.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "dynamic-array inventory",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5409,22 +5713,103 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-reference-multidimensional-arrays",
       "topicId": "t11-002",
       "phase": "reference",
       "draft": "course/drafts/t11-002/t11-002-reference-multidimensional-arrays.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 13,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claim": "C# arrays can be multidimensional or jagged; dimension count and lengths are fixed for each array instance.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array properties and multidimensional declarations, lines 58-80",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# rectangular arrays use comma-separated indices such as array[row,column].",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Multidimensional arrays, lines 162-180",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A C# jagged array is an array of arrays; member arrays may have different sizes and default to null.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Jagged arrays, lines 281-314",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# multidimensional enumeration increments the rightmost dimension first.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Multidimensional arrays, lines 207-225",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Zero-based C# dimensions of positive length N have indices 0 through N-1; zero length has no valid index.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array properties, lines 58-64; direct bounds deduction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "GetLength(dimension) reports length along a selected dimension.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Multidimensional arrays example, lines 196-203",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Rectangular arrays suit uniform grids while jagged arrays permit irregular row lengths.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Multidimensional and jagged arrays, lines 162-180 and 281-314",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Row-first traversal matches the documented rightmost-index-first enumeration order for a 2D C# array.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Multidimensional arrays, lines 207-225",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Relative runtime/memory performance is not guaranteed by the C# language reference and should not be asserted without measurement.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Documentation describes shape/enumeration, not a universal speed ranking",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A jagged row is a reference and must be initialized before indexing when it is null.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Jagged arrays, lines 281-314",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sparse or irregular rows can waste slots in a rectangular structure; jagged arrays trade this for row-object/reference overhead.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array shapes, lines 162-180 and 281-314; space-count comparison",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Code examples use GetLength for dimensions and initialize each jagged row before access.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Multidimensional and jagged examples, lines 196-203 and 281-314",
+          "verdict": "supported"
+        },
+        {
+          "claim": "All four assigned multidimensional inventory names appear in their bounded lesson.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "multidimensional-arrays inventory",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5439,22 +5824,91 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-reference-array-algorithm-techniques",
       "topicId": "t11-002",
       "phase": "reference",
       "draft": "course/drafts/t11-002/t11-002-reference-array-algorithm-techniques.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 11,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "A full linear scan visits each item once; early-terminating search may stop before the end.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list traversal/search",
+          "verdict": "supported"
+        },
+        {
+          "claim": "In-place update mutates input and may avoid a proportional auxiliary array.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list representation and operations",
+          "verdict": "supported"
+        },
+        {
+          "claim": "An auxiliary array can preserve source values but needs additional storage.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list space model",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# valid indices run from 0 to Length-1 and access at Length is outside the array.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array properties, lines 58-64",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Off-by-one conditions such as i<=Length can attempt an invalid access.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array index bounds; direct loop audit",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Stable relative order means equal-key items retain their prior order; this definition is relevant to stable transformations.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array/list ordering property; algorithmic definition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Mutation versus copy is a behavioral and allocation tradeoff, not a universal claim that one is faster.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Operation model; direct comparison of mutation/copy costs",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Reverse-in-place by symmetric swaps takes O(n) time and O(1) auxiliary space.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array.Reverse example, lines 113-151; direct swap count",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A stable write-pointer compaction must clear the suffix if the specified output requires zeroes there.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Move Zeroes statement, lines 22-24; direct algorithm proof",
+          "verdict": "supported"
+        },
+        {
+          "claim": "All seven assigned technique names are explained and illustrated.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "array-algorithm-techniques inventory",
+          "verdict": "scope checked"
+        },
+        {
+          "claim": "The lesson separates stability, mutation, index safety, and storage choice rather than treating them as the same property.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "array-algorithm-techniques inventory and lesson comparison",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5469,22 +5923,103 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-practice-two-sum",
       "topicId": "t11-002",
       "phase": "practice",
       "draft": "course/drafts/t11-002/t11-002-practice-two-sum.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 13,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "The assigned statement requires returning two distinct indices, guarantees one solution, and allows any output order.",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "section": "Problem statement, lines 22-26",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The current constraints are 2<=n<=10^4 and values/target in [-10^9,10^9].",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "section": "Constraints, lines 60-65",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Given those bounds, target-nums[i] lies in [-2e9,2e9], within Int32 range.",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "section": "Constraints, lines 62-64; direct arithmetic bounds check",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Checking seen values before inserting the current value prevents pairing an element with itself and still handles duplicate values.",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "section": "Problem requirement lines 22-24; algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "TryGetValue returns true iff the key exists and exposes the associated index.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.trygetvalue?view=net-10.0",
+          "section": "Returns and Remarks, lines 90-96, 174-181",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The dictionary stores only prior values, so a found complement has a different earlier index.",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "section": "No same element twice, line 24; solution invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Exactly one valid pair implies the one-pass search eventually returns that pair.",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "section": "Exactly one answer, lines 24 and 65; solution proof",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The standard nested-loop baseline is O(n^2) time and O(1) auxiliary space.",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "section": "Follow-up subquadratic challenge, line 69; direct pair enumeration",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dictionary approach uses O(n) auxiliary space and expected O(n) scan time under ordinary hashing.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.trygetvalue?view=net-10.0",
+          "section": "TryGetValue approaches O(1), line 181; total at most n stored entries",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Hash operations are not a deterministic worst-case O(1) guarantee.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.trygetvalue?view=net-10.0",
+          "section": "TryGetValue only says approaches O(1), line 181",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Main examples and negative/duplicate boundary tests satisfy the statement and return allowed index pairs.",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "section": "Examples, lines 30-56; direct solution trace",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The complement arithmetic warning correctly identifies wider numeric bounds as a reason to use long.",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "section": "Constraint-based arithmetic analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The implementation throws if no solution exists, which is unreachable under the stated guarantee.",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "section": "Exactly one solution, lines 24 and 65",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5499,22 +6034,97 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-practice-contains-duplicate",
       "topicId": "t11-002",
       "phase": "practice",
       "draft": "course/drafts/t11-002/t11-002-practice-contains-duplicate.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "The problem asks whether any integer occurs at least twice and current constraints match 1<=n<=10^5 and +/-10^9 values.",
+          "source": "https://leetcode.com/problems/contains-duplicate/description/",
+          "section": "Statement and Constraints, lines 22-56",
+          "verdict": "supported"
+        },
+        {
+          "claim": "HashSet<T>.Add returns true when added and false when the item already exists.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add?view=net-10.0",
+          "section": "Returns, lines 92-96",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Returning on the first false Add correctly identifies a repeated value.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add?view=net-10.0",
+          "section": "Return contract, lines 92-96; solution invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Completing the scan without a failed Add means all values are distinct.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add?view=net-10.0",
+          "section": "Return contract and scan proof",
+          "verdict": "supported"
+        },
+        {
+          "claim": "HashSet auxiliary space is O(n) in the distinct case.",
+          "source": "https://leetcode.com/problems/contains-duplicate/description/",
+          "section": "Constraints, lines 53-56; at most one stored item per input element",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Set membership/insertion yields expected O(n) total time under ordinary hashing; resizing can make an individual Add O(n).",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add?view=net-10.0",
+          "section": "Remarks, lines 127-131",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Collision-heavy patterns can reduce hash-table lookup performance; O(n) is not a universal worst-case scan bound.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add?view=net-10.0",
+          "section": "Remarks, lines 127-131; hash-based operation caveat",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sorting then comparing adjacent values offers O(1) extra space only if in-place sort is used, but changes input and takes sorting time.",
+          "source": "https://leetcode.com/problems/contains-duplicate/description/",
+          "section": "Problem statement and constraints; algorithm alternative analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The code handles negative and boundary int values without arithmetic.",
+          "source": "https://leetcode.com/problems/contains-duplicate/description/",
+          "section": "Value constraints, lines 53-56; direct code audit",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The API hint was corrected from unconditional constant-time wording to expected O(1) under ordinary hash behavior.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1.add?view=net-10.0",
+          "section": "Remarks, lines 127-131",
+          "verdict": "wording narrowed"
+        },
+        {
+          "claim": "Examples and single-element case satisfy the statement.",
+          "source": "https://leetcode.com/problems/contains-duplicate/description/",
+          "section": "Examples, lines 26-49; direct solution trace",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The assigned HashSet-based membership scope is covered without claiming a full HashSet API catalog.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "contains-duplicate problem scope and topic inventory",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5529,22 +6139,91 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-practice-stock-one-transaction",
       "topicId": "t11-002",
       "phase": "practice",
       "draft": "course/drafts/t11-002/t11-002-practice-stock-one-transaction.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 11,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "The problem permits one buy followed by a strictly later sell and returns zero when no positive profit exists.",
+          "source": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "section": "Statement, lines 22-25",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The current constraints are 1<=n<=10^5 and prices from 0 through 10^4.",
+          "source": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "section": "Constraints, lines 44-47",
+          "verdict": "supported"
+        },
+        {
+          "claim": "At day i, the best sale profit is prices[i] minus the minimum price from days strictly before i.",
+          "source": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "section": "Statement timing constraint, lines 22-25; algorithm invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Tracking the prefix minimum and maximum profit examines all possible sell days.",
+          "source": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "section": "Statement and solution proof",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Updating the minimum on a lower current price without selling that same day preserves the strict buy-before-sell rule.",
+          "source": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "section": "Statement, lines 22-25; loop invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The one-pass solution runs O(n) time and O(1) auxiliary space.",
+          "source": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "section": "Problem scope and direct loop analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A single-day array returns zero because there is no later sell day.",
+          "source": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "section": "Constraint n>=1 and different future day, lines 22-25",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A decreasing price series has no profitable transaction and returns zero.",
+          "source": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "section": "Statement, lines 24-25; Example 2, lines 35-39",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Example transactions and answers match the assigned statement.",
+          "source": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "section": "Examples 1-2, lines 29-39",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Null/empty fallback behavior is outside the official constraints but does not change valid-input behavior.",
+          "source": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+          "section": "Constraints, lines 44-47; implementation boundary",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers the running-minimum technique without importing the multiple-transaction variant.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "stock-one-transaction task statement",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5559,22 +6238,109 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-practice-maximum-subarray",
       "topicId": "t11-002",
       "phase": "practice",
       "draft": "course/drafts/t11-002/t11-002-practice-maximum-subarray.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 14,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "The problem returns the largest sum over a contiguous subarray; the assigned constraints make the array nonempty.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Statement and Constraints, lines 22-50",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For a range ending at i, optimal sum is max(nums[i], prior-ending-best+nums[i]).",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Statement; recurrence derivation by last-element cases",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Initializing endingHere and best from nums[0] preserves nonempty-subarray semantics for all-negative input.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Nonempty subarray requirement and constraints; recurrence invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Scanning all right endpoints returns the global maximum subarray sum.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Problem asks global max; proof by endpoint partition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm is O(n) time and O(1) auxiliary space.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Direct loop and constant-state analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Under the maximum input constraints, any sum magnitude is bounded by 10^9, within signed 32-bit range.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Constraints, lines 47-50; direct bound",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The supplied examples and all-negative case are valid and outputs correct.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Examples, lines 26-42; direct arithmetic",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Prefix-minimum alternative needs minimum prefix strictly before the current right boundary.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Alternative algorithm derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Divide-and-conquer crossing maximum is best left suffix plus best right prefix; recurrence is O(n log n).",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Official divide-and-conquer follow-up, line 54; standard recurrence derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Balanced divide-and-conquer recursion uses O(log n) call-stack depth.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Recurrence halving depth",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Segment-tree summary can store total, best prefix, best suffix, and best subarray and merge adjacent segments.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Segment tree algorithm derivation for range maximum-subarray query",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Segment tree build O(n), point update/range query O(log n), storage O(n) for fixed-factor tree representation.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Segment tree standard bound derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson distinguishes subarray from subsequence and forbids empty range per the task convention.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Statement and examples, lines 22-42; standard subarray definition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "All assigned solution, complexity, and edge-case claims are internally consistent with the task constraints.",
+          "source": "https://leetcode.com/problems/maximum-subarray/description/",
+          "section": "Constraints and examples, lines 22-50",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5589,22 +6355,109 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-practice-product-except-self",
       "topicId": "t11-002",
       "phase": "practice",
       "draft": "course/drafts/t11-002/t11-002-practice-product-except-self.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 14,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "The output at i multiplies all values except nums[i], with no division and O(n) time required.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Statement, lines 22-26",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Every input prefix/suffix product and each answer fits in signed 32-bit integer under the current constraints.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Statement and Constraints, lines 22-45",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The output array is excluded from auxiliary-space analysis in the follow-up.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Follow-up, lines 47-49",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The product of an empty prefix/suffix is one.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Product identity and prefix/suffix decomposition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Forward pass stores product of strictly prior values at each index.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Direct loop invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Reverse pass multiplies the suffix product before incorporating the current value.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Direct loop invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The two passes compute every required answer without division.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Statement, line 26; algorithm proof",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Zero values are handled without a special branch; one zero permits only its own slot to be nonzero.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Examples, lines 33-36; product semantics",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Two or more zeroes make every except-self product zero.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Product semantics",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time is O(n), extra scalar state O(1), and output storage O(n).",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Follow-up, lines 47-49; direct pass/space count",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The returned array leaves input unchanged.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Implementation loop audit",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Provided examples and added zero/negative edge cases yield correct products.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Examples and constraints, lines 27-45; direct arithmetic",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson describes wider-type use only for variants that lack official numeric bounds.",
+          "source": "https://leetcode.com/problems/product-of-array-except-self/",
+          "section": "Constraints guarantee int-sized products, lines 24 and 45",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers all assigned prefix/suffix, no-division, and output-space points.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "product-except-self task and problem inventory",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5619,22 +6472,109 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-practice-move-zeroes",
       "topicId": "t11-002",
       "phase": "practice",
       "draft": "course/drafts/t11-002/t11-002-practice-move-zeroes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 14,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "The task moves all zeroes to the end, preserves nonzero relative order, and forbids copying the array.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Statement, lines 22-24",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Current length and signed 32-bit value constraints match the lesson.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Constraints, lines 42-44",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The solution tracks earliest unfilled zero and scans read positions monotonically.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Direct loop invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Swapping earliest zero with next nonzero preserves nonzero order and moves one zero rightward.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Stability requirement, line 22; direct proof",
+          "verdict": "supported"
+        },
+        {
+          "claim": "No-self-swap guard avoids redundant swaps when read equals firstZero.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Direct code audit",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The method uses O(n) time and O(1) auxiliary space.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Follow-up in-place requirement; direct loop/state count",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The number of nontrivial swaps equals nonzero items that have at least one earlier zero under this algorithm.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Direct trace and invariant",
+          "verdict": "supported"
+        },
+        {
+          "claim": "That count is minimal when the metric is nontrivial arbitrary swaps, not a universal minimum for all machine operations.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Follow-up asks minimize operations, line 48; metric distinction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Tuple swap may compile to multiple assignments, so claim is explicitly limited to swap count.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "C# semantics and lesson tradeoff statement",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Stable write-and-fill alternative is O(n) time and O(1) space.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Statement and direct algorithm count",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and signed-boundary values are consistent with zero comparison without arithmetic.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Examples and constraints, lines 28-44",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Zero suffix is produced by the swap invariant; stable compaction alternative explicitly clears suffix.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Statement output and direct proof",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The task does not require returning a separate array; in-place mutation is the output.",
+          "source": "https://leetcode.com/problems/move-zeroes/",
+          "section": "Statement, lines 22-24",
+          "verdict": "supported"
+        },
+        {
+          "claim": "All assigned minimum-swap/stability scope is explained with an explicit operation metric.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "move-zeroes statement, patterns, constraints",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5649,22 +6589,103 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-practice-rotate-array",
       "topicId": "t11-002",
       "phase": "practice",
       "draft": "course/drafts/t11-002/t11-002-practice-rotate-array.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 13,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "The task rotates right by nonnegative k in-place, and current constraints are 1<=n<=10^5 and k<=10^5.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Statement and constraints, lines 22-49",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Effective rotation is k mod n.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Statement and constraints; cyclic-index identity",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Reverse-all then reverse first k then remainder implements right rotation.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Direct index-order proof",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm runs O(n) time and O(1) auxiliary space.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Follow-up, lines 53-56; direct swap count",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The reverse helper operates on inclusive endpoints and stops when start>=end.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Direct code and boundary audit",
+          "verdict": "supported"
+        },
+        {
+          "claim": "k=0 or k=n leaves the array unchanged.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Cyclic rotation identity; direct modulo behavior",
+          "verdict": "supported"
+        },
+        {
+          "claim": "k>n reduces to the same result as k mod n.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Cyclic rotation identity",
+          "verdict": "supported"
+        },
+        {
+          "claim": "All official examples match the resulting rotated arrays.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Examples, lines 26-40",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The original implementation was missing explicit null, empty-array, and negative-k guards outside official preconditions; guards were added for a clear reusable method contract.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Constraints, lines 22-49",
+          "verdict": "corrected; defensive precondition handling added"
+        },
+        {
+          "claim": "The new k>length example evaluates to [3,1,2] for [1,2,3], k=4.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Direct modulo/reversal check",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Int32 values are moved without arithmetic, so their full range introduces no overflow risk.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "Constraints, lines 45-49; direct code audit",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The method mutates original array and does not allocate an array proportional to n.",
+          "source": "https://leetcode.com/problems/rotate-array/description/",
+          "section": "In-place follow-up, lines 53-56; direct code audit",
+          "verdict": "supported"
+        },
+        {
+          "claim": "All assigned rotation technique and index-boundary concepts appear in the lesson.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "rotate-array practice task and inventory",
+          "verdict": "scope checked"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5679,22 +6700,97 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-002-interview",
       "topicId": "t11-002",
       "phase": "interview",
       "draft": "course/drafts/t11-002/t11-002-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claim": "Fixed arrays have a fixed length; List<T> separates Count and Capacity.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays; https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+          "section": "Array properties lines 58-64; Capacity definition lines 69-94",
+          "verdict": "supported"
+        },
+        {
+          "claim": "List<T>.Add is O(1) with spare capacity and O(n) if capacity growth is needed.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.add?view=net-10.0",
+          "section": "Remarks, line 767",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Geometric growth supports O(1) amortized append over sequences.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Dynamic-array amortized analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Single resize append can be O(n).",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.add?view=net-10.0",
+          "section": "Remarks, line 767",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# rectangular and jagged array syntax/shape distinction is correctly described.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array properties and examples, lines 58-84, 162-180, 281-314",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Mutation versus copy is a behavior/allocation tradeoff, not universally faster.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Array reference and mutation example, lines 113-151; direct cost distinction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Interior array insertion/removal shifts suffix and can be O(n).",
+          "source": "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
+          "section": "Array-based list operations",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Unknown-size positional collection is a reasonable dynamic-array use case subject to memory/capacity limits.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+          "section": "Capacity definition and allocation exception, lines 69-93",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Row-first enumeration order for C# multidimensional arrays is rightmost index first.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Multidimensional array enumeration, lines 207-225",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Capacity is not count; unused capacity is not exposed as List<T> items.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+          "section": "Definition/property value, lines 69-94",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The comparison and scenario answers are bounded to the topic inventory and do not overclaim exact performance.",
+          "source": "curriculum/manifests/data-structures-and-algorithms/t11-002.json",
+          "section": "array concepts, comparisons, and scope exclusions",
+          "verdict": "scope checked"
+        },
+        {
+          "claim": "The lesson’s phrase “single block” was replaced by C# shape/index wording and its unconditional performance claim was narrowed.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+          "section": "Arrays properties and multidimensional sections",
+          "verdict": "corrected; implementation claim narrowed"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
@@ -5709,9 +6805,11 @@
         "https://leetcode.com/problems/rotate-array/description/",
         "https://leetcode.com/problems/maximum-subarray/description/",
         "https://leetcode.com/problems/product-of-array-except-self/",
-        "https://leetcode.com/problems/move-zeroes/"
+        "https://leetcode.com/problems/move-zeroes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.capacity?view=net-10.0",
+        "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual and scope audit completed against the current Microsoft Learn .NET references, the assigned LeetCode problem statements, and array-based-list algorithm materials. Constraints, examples, proofs, numeric ranges, complexity caveats, and the frozen inventory were checked. Corrections and clarifications were applied where noted; no unresolved factual or scope issue remains in this lesson."
     },
     {
       "taskId": "t11-019-overview",
@@ -102255,6 +103353,14 @@
       "status": "coverage expanded; claim audit pending",
       "findings": [
         "Replaced generic alternative comparisons and sparse scenarios with worked interview reasoning for URL shortener, rate limiter, chat, news feed, direct object upload, and multi-region failover. Added follow-ups for retries, hot keys, rollout, restore, authorization, and deletion propagation. These additions have not been counted as claim-by-claim factual review."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "DSA arrays and seven practice lessons (t11-002)",
+      "status": "full claim and inventory audit complete for this topic",
+      "findings": [
+        "Checked current C# array/list behavior and the seven assigned problem statements. Corrected overbroad memory/performance comparisons, dynamic-array average-case wording, capacity/insertion explanation, mutation-vs-copy assumptions, and rotation input guards. Proved the prefix/suffix, running-minimum, Kadane, stable-compaction, reversal, and complement-lookup invariants against constraints and examples. All 14 lessons have complete claim inventories and no unresolved issues."
       ]
     }
   ]

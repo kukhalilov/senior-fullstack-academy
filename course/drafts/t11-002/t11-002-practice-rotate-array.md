@@ -36,6 +36,10 @@ using System;
 
 public class Solution {
     public static void Rotate(int[] nums, int k) {
+        if (nums is null) throw new ArgumentNullException(nameof(nums));
+        if (nums.Length == 0) throw new ArgumentException("Array must be non-empty.", nameof(nums));
+        if (k < 0) throw new ArgumentOutOfRangeException(nameof(k));
+
         int n = nums.Length;
         k %= n;
         if (k == 0) return;
@@ -75,6 +79,12 @@ public class Solution {
         int[] arr3 = { 1, 2 };
         Rotate(arr3, 0);
         if (arr3[0] != 1 || arr3[1] != 2) throw new InvalidOperationException("Edge case k=0 failed");
+
+        // A rotation larger than the array length is reduced modulo its length.
+        int[] arr4 = { 1, 2, 3 };
+        Rotate(arr4, 4);
+        if (arr4[0] != 3 || arr4[1] != 1 || arr4[2] != 2)
+            throw new InvalidOperationException("Edge case k > length failed");
 
         Console.WriteLine("All tests passed!");
     }

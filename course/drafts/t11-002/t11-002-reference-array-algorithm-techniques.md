@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers fundamental techniques and common pitfalls when using arrays and dynamic arrays for algorithmic problem solving. The content is based on timeless algorithmic principles and current C#/.NET collection references as of 2026-11-14. Source: [OpenDSA ListArray](https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html) and [Microsoft Learn C# Arrays](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays).
+This lesson covers fundamental techniques and common pitfalls when using arrays and dynamic arrays for algorithmic problem solving. The content is based on timeless algorithmic principles and current C#/.NET collection references as of 2026-11-17. Source: [OpenDSA ListArray](https://opendsa.cs.vt.edu/ODSA/Books/Catalog/html/ListArray.html) and [Microsoft Learn C# Arrays](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays).
 
 # How this group fits the mental model
 Arrays are the building blocks of efficient algorithms because they provide contiguous memory storage. In algorithmic problem solving, you must balance the speed of direct indexed access against the cost of modifying the sequence. These techniques help you manage how you traverse, transform, and protect the integrity of your data structures while respecting memory constraints.
@@ -18,7 +18,7 @@ Arrays are the building blocks of efficient algorithms because they provide cont
 * `Index boundary`: The valid range of indices for an array, typically `0` to `length - 1`. Algorithms must explicitly check these boundaries to prevent "out of bounds" exceptions.
 * `Off-by-one error`: A common logic mistake where an algorithm iterates one position too far or stops one position too early. This frequently occurs when calculating loop termination conditions or index offsets.
 * `Stable relative order`: A property where the relative positions of elements with equal values remain unchanged after an operation. Maintaining stability is critical in many sorting and filtering algorithms.
-* `Mutation versus copy`: The fundamental design choice between changing an existing array (mutation) or producing a new one (copy). Mutation is faster and uses less memory, while copying preserves the original state for debugging or backtracking.
+* `Mutation versus copy`: The fundamental design choice between changing an existing array (mutation) or producing a new one (copy). Mutation avoids allocating a result copy but changes the caller-visible input; copying preserves the original at the cost of extra allocation and copying work. Neither is universally faster.
 
 # Cross-item comparison
 
