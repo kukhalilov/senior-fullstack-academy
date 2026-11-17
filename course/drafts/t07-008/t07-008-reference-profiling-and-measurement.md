@@ -18,7 +18,7 @@ Wrap a subtree in `<Profiler id="Results" onRender={callback}>`. React calls the
 
 ### `onRender(id, phase, actualDuration, baseDuration, startTime, commitTime)`
 
-Callback receives the profiler identifier, commit phase, render-duration estimates, and timestamps. It runs for commits in the profiled tree, not every abandoned render attempt. Keep callbacks cheap; instrumentation itself can affect measurements.
+Callback receives the profiler identifier, commit phase, render durations, and timestamps. It runs for commits in the profiled tree, not every abandoned render attempt. Keep callbacks cheap; instrumentation itself can affect measurements.
 
 ### Profiler mount phase
 
@@ -30,11 +30,11 @@ Callback receives the profiler identifier, commit phase, render-duration estimat
 
 ### Profiler nested-update phase
 
-Some documentation/devtools surfaces may describe work triggered by an update scheduled during rendering as a nested update. Do not rely on this label as a universal public `phase` value for the callback: the documented callback phase values are `mount` and `update`. Diagnose render-phase update loops separately and avoid setting state during render.
+The callback’s documented `phase` values are `mount`, `update`, and `nested-update`. The first identifies an initial mount, the second a subsequent update, and the third is React’s nested-update phase label. Do not reinterpret this label as a recommendation to update state during render; components should remain pure.
 
 ### `actualDuration`
 
-Estimated time spent rendering the profiled subtree for the current committed update. Memoization may reduce this relative to the subtree’s baseline. It is not a measure of browser paint or total end-to-end response time.
+Milliseconds React spent rendering the profiled subtree for the current committed update. Memoization may reduce this relative to the subtree’s baseline. It is not a measure of browser paint or total end-to-end response time.
 
 ### `baseDuration`
 
@@ -61,7 +61,7 @@ Capture the same route, data shape, device class, and interaction before and aft
 | Tool/field | Answers | Does not establish by itself |
 |---|---|---|
 | React Profiler | Which committed React subtree work took time? | Total browser or network latency |
-| `actualDuration` | How much estimated render work this commit used? | Time to pixels or interaction responsiveness |
+| `actualDuration` | How many milliseconds React spent rendering this subtree in the commit? | Time to pixels or interaction responsiveness |
 | Browser Performance panel | What occupied browser threads and rendering pipeline? | Which React state design is conceptually correct |
 | User interaction measurement | Did the perceived response improve? | Which code change caused it without deeper evidence |
 
@@ -91,7 +91,7 @@ In production, send only bounded, privacy-safe performance data. Avoid recording
 ## Knowledge checks with answers
 
 1. **When is `onRender` called?** When the profiled subtree commits.
-2. **What is `actualDuration`?** Estimated current committed render work for the subtree.
+2. **What is `actualDuration`?** Milliseconds React spent rendering the subtree for the current committed update.
 3. **Which tool finds layout and paint costs?** Browser Performance tooling, alongside React DevTools.
 4. **Why benchmark the same interaction?** To make before/after evidence comparable.
 

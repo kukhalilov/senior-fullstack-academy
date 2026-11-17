@@ -46,7 +46,7 @@ Controlled input state must update urgently to keep typing responsive. Transitio
 
 ### What do `actualDuration` and `baseDuration` tell you?
 
-`actualDuration` estimates React render time for the committed update in the profiled tree. `baseDuration` estimates the subtree’s cost without recent render savings. Neither equals total response time or browser paint.
+`actualDuration` reports milliseconds React spent rendering the profiled subtree for the committed update. `baseDuration` estimates the subtree’s cost without recent render savings. Neither equals total response time or browser paint. The callback phase can be `mount`, `update`, or `nested-update`.
 
 ### What does React Compiler change?
 

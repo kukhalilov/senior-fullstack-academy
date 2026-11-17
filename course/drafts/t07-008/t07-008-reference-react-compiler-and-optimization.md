@@ -50,7 +50,7 @@ Diagnostics explain optimization eligibility or rule violations. A skipped compo
 
 ### Compilation mode
 
-The compiler’s supported modes and configuration determine how much code is analyzed and transformed. Use the mode recommended by the current official React Compiler integration and the application’s framework. Treat configuration names as version-sensitive and consult current docs rather than copying flags from old previews.
+The current documented `compilationMode` values are `infer` (the default), `annotation`, `syntax`, and `all`. At a high level, `infer` selects likely components/Hooks by conventions and analysis; `annotation` opts in marked functions for gradual adoption; `syntax` targets Flow component/Hook syntax and is not for TypeScript; `all` compiles all top-level functions and can optimize non-React utilities, so React does not recommend it for typical use. The detailed configuration and directives are covered in t07-022; use its current instructions for setup.
 
 ## Cross-item comparison
 
@@ -93,3 +93,7 @@ Before broad manual caching, keep render logic pure and profile the slow interac
 - `Incremental compiler adoption`
 - `Compiler diagnostics`
 - `Compilation mode`
+- `compilationMode infer default`
+- `compilationMode annotation mode`
+- `compilationMode syntax mode requires Flow`
+- `compilationMode all mode compiles top-level functions`

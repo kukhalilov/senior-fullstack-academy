@@ -24,7 +24,7 @@ Start from a concrete symptom: delayed keystrokes, slow navigation, dropped fram
 
 `useDeferredValue(value, initialValue?)` returns a deferred version that can lag behind the current value while React prepares a background render. It does not itself debounce, throttle, or prevent a network request; it changes rendering priority. A subtree can compare current and deferred values to indicate stale content. Unlike a transition, it can be used when the update source is outside the component or should not be wrapped at the source. The two APIs solve related but distinct scheduling problems.
 
-`<Profiler id onRender>` calls `onRender` when a wrapped subtree commits. The callback receives `id`, `phase`, `actualDuration`, `baseDuration`, `startTime`, and `commitTime`. `phase` is `mount` or `update`; nested updates are commits caused by an update scheduled during rendering. `actualDuration` estimates render time for the committed update; `baseDuration` estimates the subtree cost without optimizations based on recent renders. These fields measure React rendering, not total user-perceived latency. React DevTools Profiler offers an interactive view; the browser Performance panel reveals scripting, layout, paint, and other work. Production profiling requires an appropriate profiling-enabled build.
+`<Profiler id onRender>` calls `onRender` when a wrapped subtree commits. The callback receives `id`, `phase`, `actualDuration`, `baseDuration`, `startTime`, and `commitTime`. The documented `phase` values are `mount`, `update`, and `nested-update`. `actualDuration` is the milliseconds spent rendering the profiled subtree for that committed update; `baseDuration` estimates the subtree cost without optimizations from recent renders. These fields measure React rendering, not total user-perceived latency. React DevTools Profiler offers an interactive view; the browser Performance panel reveals scripting, layout, paint, and other work. Production profiling requires an appropriate profiling-enabled build.
 
 React Compiler analyzes eligible code at build time and can insert memoization for component results, values, and functions. Its optimization depends on components and Hooks following the Rules of React, especially render purity and correct Hook usage. Compiler diagnostics can identify code that cannot be optimized; adoption can be incremental. Compiler output is not a substitute for profiling or algorithmic improvements. It does not eliminate network, DOM layout, paint, or other non-React bottlenecks.
 
@@ -72,7 +72,7 @@ The input uses the urgent query, while results may render using an older deferre
 ## Knowledge checks with answers
 
 1. **What should trigger optimization?** A reproducible user-visible issue with measured evidence.
-2. **What does `actualDuration` describe?** The estimated React render time for the committed update in the profiled subtree.
+2. **What does `actualDuration` describe?** The milliseconds React spent rendering the profiled subtree for the committed update.
 3. **What does deferring a value not do?** Debounce network requests or eliminate computation.
 4. **Can a memoized component still render?** Yes, due to its own state, consumed context, changed props, or other React work.
 5. **What does Compiler adoption change?** Eligible code may receive build-time memoization; profiling and correctness remain necessary.
