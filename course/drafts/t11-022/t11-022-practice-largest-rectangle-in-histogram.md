@@ -24,7 +24,7 @@ Given unit-width histogram bars with nonnegative heights, return the area of the
 
 ## Progressive hints
 1. Fix a bar of height h as the rectangle's limiting minimum.
-2. Find the nearest strictly smaller bar on each side; they are exclusive boundaries.
+2. For this implementation, the surviving left boundary is strictly smaller, while the current right boundary may be smaller or equal. Equal heights are assigned to the later bar; its span can extend across earlier equal bars.
 3. Width is `rightBoundary - leftBoundary - 1`.
 4. Scan left to right and pop bars when the current height is less than or equal to the stack top; the current index becomes the popped bar's right boundary.
 
@@ -75,7 +75,7 @@ static class Program
 ```
 
 ## Correctness argument
-When index i arrives, every popped bar has height at least the current height, so i is a boundary at which that popped bar cannot extend as the chosen representative. After popping, the new stack top has height strictly smaller than the popped bar; it is the nearest such surviving left boundary because intervening bars were removed by the monotonic rule. The candidate span is exactly `i-leftBoundary-1`. With equal heights, popping `>=` lets the rightmost equal bar represent a span that includes earlier equal bars. Therefore an optimal rectangle's minimum height is evaluated over a maximal span by one of its equal-height representatives, and the maximum recorded area is optimal.
+When index i arrives, every popped bar has height greater than or equal to the current height. For a popped bar, i is its first right boundary with a smaller-or-equal height, not necessarily a strictly smaller one. After popping, the new stack top is strictly smaller than the popped bar and is its nearest surviving left boundary: any intervening bar that could block that boundary would still be above it on the stack. The candidate width `i-leftBoundary-1` is therefore valid. Equal-height bars can share the same maximal rectangle; popping `>=` assigns that span to the rightmost equal bar, which can extend across the earlier equal bars. Thus at least one representative evaluates the maximal area for each possible limiting height.
 
 ## Step-by-step dry run
 For `[2,1,5,6,2,3]`, index 3 of height 6 is popped when height 2 arrives at index 4. Its left boundary is index 2 (height 5), so width 1 and area 6. Then height 5 at index 2 is also popped; its left boundary is index 1 (height 1), so width `4-1-1=2` and area 10.
