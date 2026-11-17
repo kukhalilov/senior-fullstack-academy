@@ -1,36 +1,56 @@
 # end-to-end system design case studies — Reference: Block-level deduplication
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 6920: Naming Things with Hashes](https://www.rfc-editor.org/rfc/rfc6920.html), [RFC 9054: COSE Hash Algorithms](https://www.rfc-editor.org/rfc/rfc9054.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson covers identifying repeated file chunks to avoid storing or transferring the same content repeatedly. Hash choice, chunking, encryption, and privacy policy are design-specific; do not infer a universal storage saving or security guarantee from the technique name.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Instead of comparing whole files, divide each file into chunks, fingerprint each chunk, and reuse a stored chunk when the same content already exists. A file manifest records chunk order and metadata so the file can be reconstructed. This helps when edits shift only part of a large file or many users share common blocks, but adds indexing, integrity, privacy, and garbage-collection work.
 
 ## Supplied names explained
 
-- `Block-level deduplication` — Detects identical file chunks to reduce transfer or storage; chunk boundaries, hashes, privacy leakage, and encryption scope affect results.
+- **Fixed-size chunking:** splits at fixed byte offsets; simple, but an insertion near the start shifts later boundaries and can reduce reuse.
+- **Content-defined chunking:** chooses boundaries based on content fingerprints so similar regions can remain aligned after insertions; costs more computation and needs boundary/min/max controls.
+- **Chunk digest:** hash used as a candidate identifier. Compare length and, where threat/correctness requires, verify bytes before reusing; hash collision risk is tiny with suitable modern hashes but is not mathematical impossibility.
+- **Manifest:** ordered chunk references, lengths, and file metadata needed to rebuild the original file.
+- **Reference count/mark-and-sweep:** ways to determine whether a chunk is still reachable by any live manifest before deleting it; concurrent upload/delete and retention windows complicate safe reclamation.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Strategy | Advantage | Limitation |
+| --- | --- | --- |
+| Whole-file dedup | Simple index and verification | Small file changes often prevent reuse of the complete file |
+| Fixed-size chunks | Simple and low CPU | Insertions shift boundaries and reduce matching |
+| Content-defined chunks | Better reuse across shifted content | More CPU and implementation complexity; adversarial input and tiny-chunk floods need resource limits |
+| Client-side cross-user dedup | Avoids sending/storing content already present | Can leak whether another user has a guessed file; encryption and tenant isolation complicate reuse |
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+An uploaded 1 GB virtual-machine image changes in one region. Whole-file hashing sees a different object; fixed chunks or content-defined chunks can reuse unchanged blocks and store only changed chunks plus a new manifest. On download, verify chunk lengths/digests, reconstruct in manifest order, and verify the whole-file digest before exposing the result. If one chunk is missing or corrupt, fail clearly and repair from a replica or source rather than returning silent corruption.
+
+For multi-tenant attachments, a global “does this digest exist?” response can reveal another tenant’s content. Scope lookup and authorization to an appropriate privacy boundary, avoid timing/response behavior that acts as a membership oracle, and evaluate whether cross-tenant dedup savings justify leakage risk. Server-side encryption with tenant-specific keys may prevent shared encrypted chunks; convergent encryption enables dedup but has separate confidentiality risks and must not be treated as ordinary encryption.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating digest equality as a substitute for integrity checks and durable manifests.
+- Selecting chunk sizes without measuring metadata/index overhead, dedup ratio, CPU, and workload distribution.
+- Assuming fixed boundaries will reuse data after edits near the beginning of files.
+- Exposing a “file already exists” response that lets attackers probe private content.
+- Deleting a chunk while an upload or manifest commit is still referencing it.
+- Forgetting orphan cleanup, replication repair, versioning, retention, and backup semantics.
+- Claiming strong confidentiality from convergent/client-side dedup without analyzing confirmation attacks and key scope.
+- Allowing adversarial uploads to generate excessive tiny chunks or hash-index work.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Why can content-defined chunking outperform fixed chunks after an insertion?** Boundaries can resynchronize based on content, preserving matching chunks beyond the insertion.
+2. **Does a matching digest prove two chunks are byte-identical?** It is strong evidence under a suitable hash, but applications can verify bytes or use additional safeguards for the required threat model.
+3. **Why can global dedup leak information?** An attacker may infer that guessed content is stored by observing deduplication or response behavior.
+4. **What must be safe before garbage-collecting a chunk?** Establish that no committed/live manifest, in-flight operation, retained version, or required backup still references it.
+
+## Review status
+
+Hash-based naming and collision concepts are checked against RFC 6920 and RFC 9054. This lesson remains pending a full claim-by-claim audit and manifest omission check.

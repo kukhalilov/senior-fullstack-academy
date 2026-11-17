@@ -369,6 +369,18 @@
       "findings": [
         "Distinguished quantile/rank sketches from distinct counting, using DataSketches/BigQuery/Redis docs; assignment and solver descriptions checked against Google OR-Tools docs; contraction hierarchy preprocessing/shortcut concepts checked against original paper and later research. Lessons remain pending full claim-by-claim and omission audits."
       ]
+    },
+    {
+      "scope": "Block deduplication and content-addressed attachments/build artifacts in t12-006",
+      "status": "partial source check; full lesson audits pending",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc6920.html",
+        "https://www.rfc-editor.org/rfc/rfc9054.html",
+        "https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts"
+      ],
+      "findings": [
+        "Expanded three content-addressing references with chunking, digest verification, tenant membership leakage, lifecycle/reference safety, artifact provenance, cache poisoning, and immutable promotion caveats. RFC hash-naming/security docs and GitHub workflow/artifact guidance were consulted. Full claims and omission checks remain pending."
+      ]
     }
   ],
   "lessons": [
@@ -100352,7 +100364,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 224 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 221 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
