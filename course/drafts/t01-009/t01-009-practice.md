@@ -29,7 +29,7 @@ var myObj = CreateInstance<System.Text.StringBuilder>();
 **Why this works:**
 1.  `T` is the `Generic type parameter`.
 2.  `where T : new()` is the `new() constraint`. It guarantees the compiler that `T` has a public parameterless constructor.
-3.  The compiler performs `Type argument substitution` at compile time, creating a specialized version of the method for `StringBuilder`.
+3.  The compiler checks this constructed method with `StringBuilder` as the type argument. Runtime specialization or code sharing is an implementation detail.
 
 # Exercises
 
@@ -40,8 +40,8 @@ var myObj = CreateInstance<System.Text.StringBuilder>();
 # Progressive hints
 
 *   **Exercise 1:** Use `where T : class`. If you try to pass an `int` (a value type), the compiler will trigger a `Constraint diagnostic`.
-*   **Exercise 2:** Simply call `Swap(ref x, ref y);`. The compiler looks at the `Input type` of the arguments to determine `T`.
-*   **Exercise 3:** `ref struct` types have ref-safety restrictions. A generic can accept one only when its type parameter uses `allows ref struct` and its implementation follows ref-safety rules; this does not promise physical ref-safety restricted.
+*   **Exercise 2:** Simply call `Swap(ref x, ref y);`. The compiler infers `T` from the exact types of the two `ref` arguments, which must match.
+*   **Exercise 3:** `ref struct` types have ref-safety restrictions. A generic can accept one only when its type parameter uses `allows ref struct` and its implementation follows ref-safety rules; this does not promise values reside physically on the stack; ref safety governs escape and use.
 
 # Complete solutions
 
@@ -70,9 +70,9 @@ public void ProcessRefStruct<T>(T item) where T : allows ref struct
 # Tests and edge cases
 
 *   **Constraint satisfaction:** If you define `where T : struct`, passing a `string` (a reference type) will fail.
-*   **Inference failure:** `Inference from return type is not performed`. If you have `T Create<T>()`, you *must* call `Create<int>()`; you cannot write `int x = Create();`.
+*   **Inference failure:** For `T Create<T>()` with no inferable method arguments, write `Create<int>()`; the assignment target does not infer `T`.
 *   **Static fields:** Remember that `Generic type static field per closed type` means `MyClass<int>` and `MyClass<string>` have completely separate static fields.
-*   **Boxing:** Using `where T : struct` prevents boxing when storing value types in generic collections.
+*   **Boxing:** Generic collections store value types without boxing in their typed storage; a struct constraint alone does not prevent boxing if the value is converted to object or an interface.
 
 # Reflection questions
 

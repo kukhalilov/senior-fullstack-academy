@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 289,
-    "pending": 2051,
-    "claimsChecked": 6987,
-    "claimsCorrected": 669,
+    "reviewed": 297,
+    "pending": 2043,
+    "claimsChecked": 7298,
+    "claimsCorrected": 722,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 289,
-    "pendingLessons": 2051
+    "reviewedLessons": 297,
+    "pendingLessons": 2043
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -949,6 +949,30 @@
       ],
       "findings": [
         "Checked all 138 named inventory items and every explanatory/code claim in all nine lessons against official Microsoft C# language references, specifications, and release notes. Corrected semantic and version errors; no assigned inventory gaps or unresolved factual issues remain."
+      ]
+    },
+    {
+      "scope": "C# generics, constraints, inference, overload resolution, and runtime behavior (t01-009; all eight lesson units)",
+      "status": "full claim and frozen-inventory audit complete; draft states retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      ],
+      "findings": [
+        "Reviewed all eight lessons against the frozen generic-language inventory and official Microsoft C# documentation/specifications. Corrected runtime specialization/sharing and boxing absolutes, nullable and ordering semantics of constraints, lambda/method-group inference distinctions, overload/signature rules, and ref-safety description. Checked examples, constraints, version notes, and scope boundaries; no unresolved issues remain."
       ]
     }
   ],
@@ -9019,216 +9043,1456 @@
       "topicId": "t01-009",
       "phase": "overview",
       "draft": "course/drafts/t01-009/t01-009-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and full frozen-inventory audit completed against primary Microsoft C# documentation and language specifications. Corrected runtime specialization and boxing overstatements, constraint/nullability semantics, inference terminology, and overload statements. No unresolved factual or manifest-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-009-concepts",
       "topicId": "t01-009",
       "phase": "concepts",
       "draft": "course/drafts/t01-009/t01-009-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and full frozen-inventory audit completed against primary Microsoft C# documentation and language specifications. Corrected runtime specialization and boxing overstatements, constraint/nullability semantics, inference terminology, and overload statements. No unresolved factual or manifest-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-009-reference-generic-declarations-and-type-arguments",
       "topicId": "t01-009",
       "phase": "reference",
       "draft": "course/drafts/t01-009/t01-009-reference-generic-declarations-and-type-arguments.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 46,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and full frozen-inventory audit completed against primary Microsoft C# documentation and language specifications. Corrected runtime specialization and boxing overstatements, constraint/nullability semantics, inference terminology, and overload statements. No unresolved factual or manifest-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-009-reference-constraints-and-capability-contracts",
       "topicId": "t01-009",
       "phase": "reference",
       "draft": "course/drafts/t01-009/t01-009-reference-constraints-and-capability-contracts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and full frozen-inventory audit completed against primary Microsoft C# documentation and language specifications. Corrected runtime specialization and boxing overstatements, constraint/nullability semantics, inference terminology, and overload statements. No unresolved factual or manifest-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-009-reference-inference-and-construction",
       "topicId": "t01-009",
       "phase": "reference",
       "draft": "course/drafts/t01-009/t01-009-reference-inference-and-construction.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and full frozen-inventory audit completed against primary Microsoft C# documentation and language specifications. Corrected runtime specialization and boxing overstatements, constraint/nullability semantics, inference terminology, and overload statements. No unresolved factual or manifest-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-009-reference-generic-overloads-and-runtime",
       "topicId": "t01-009",
       "phase": "reference",
       "draft": "course/drafts/t01-009/t01-009-reference-generic-overloads-and-runtime.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and full frozen-inventory audit completed against primary Microsoft C# documentation and language specifications. Corrected runtime specialization and boxing overstatements, constraint/nullability semantics, inference terminology, and overload statements. No unresolved factual or manifest-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-009-practice",
       "topicId": "t01-009",
       "phase": "practice",
       "draft": "course/drafts/t01-009/t01-009-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and full frozen-inventory audit completed against primary Microsoft C# documentation and language specifications. Corrected runtime specialization and boxing overstatements, constraint/nullability semantics, inference terminology, and overload statements. No unresolved factual or manifest-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-009-interview",
       "topicId": "t01-009",
       "phase": "interview",
       "draft": "course/drafts/t01-009/t01-009-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language, API, version, and example claims against the relevant official reference sections; corrections are recorded in lesson and reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable generic types, constraints, inference, overload resolution, runtime behavior, or C# version notes",
+              "verdict": "Supported by official Microsoft documentation or language specification; implementation-dependent wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generics-in-the-run-time",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/ref-struct-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and full frozen-inventory audit completed against primary Microsoft C# documentation and language specifications. Corrected runtime specialization and boxing overstatements, constraint/nullability semantics, inference terminology, and overload statements. No unresolved factual or manifest-coverage issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-010-overview",

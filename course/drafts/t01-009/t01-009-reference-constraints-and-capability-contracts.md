@@ -18,29 +18,29 @@ Constraints act as a "contract" between the caller and the generic implementatio
 * `Base class constraint`: Requires the type argument to be a specific class or inherit from it.
 * `Interface constraint`: Requires the type argument to implement a specific interface.
 * `Multiple interface constraints`: Allows a type parameter to be constrained by several interfaces simultaneously.
-* `class constraint`: Specifies that the type argument must be a reference type.
-* `class? constraint`: Specifies that the type argument can be a nullable reference type.
-* `notnull constraint`: Ensures the type argument cannot be null.
+* `class constraint`: Requires a reference-type argument; in a nullable-enabled context it means non-nullable reference type and a nullable argument produces a warning.
+* `class? constraint`: Requires a reference type and permits nullable or non-nullable reference-type arguments.
+* `notnull constraint`: In an enabled nullable context, expresses a non-nullable type-argument contract; violation produces a warning rather than an error, and the constraint is not enforced in oblivious context.
 * `struct constraint`: Specifies that the type argument must be a value type (non-nullable).
-* `unmanaged constraint`: Specifies that the type argument must be an unmanaged type (types that do not contain reference types).
+* `unmanaged constraint`: Requires a non-nullable value type whose fields recursively contain no managed references; it implies `struct` and cannot be combined with `struct` or `new()`.
 * `new() constraint`: Requires the type argument to have a public parameterless constructor.
 * `Type parameter constraint`: A constraint that uses another type parameter as the requirement (e.g., `where T : U`).
 * `allows ref struct anti-constraint`: Permits the use of `ref struct` types as arguments, provided the code follows ref-safety rules (introduced in C# 13).
-* `default constraint`: Used to specify that a type parameter has no constraints.
-* `Constraint ordering`: The required sequence of constraints (e.g., class/struct must come first, followed by interfaces, then `new()`).
-* `Constraint cannot repeat sealed type`: A rule preventing the use of a `sealed` class as a base class constraint, as it cannot be inherited.
+* `default constraint`: Used only on an override or explicit interface implementation to resolve `T?` ambiguity when inherited constraints do not specify `class` or `struct`; it does not mean "no constraints" generally.
+* `Constraint ordering`: At most one primary constraint comes first; then an optional base-class or interface/type-parameter constraints; `new()` follows these and is last among ordinary constraints; `allows ref struct` follows all constraints. Some combinations are disallowed.
+* `Constraint cannot repeat sealed type`: A sealed class cannot be specified as a base-class constraint; base-class constraints must be inheritable classes.
 * `Constraint on type parameter`: The application of a constraint to a generic type's parameter.
 * `Constraint on generic method`: The application of a constraint to a method's specific type parameter.
 * `Constraint on generic type`: The application of a constraint to a class, struct, or interface's type parameter.
-* `Constraint inheritance`: The behavior where derived classes inherit the constraints of their base classes.
+* `Constraint inheritance`: A derived generic type must repeat constraints needed to satisfy the corresponding constrained base type parameter; constraints on an override/interface implementation are inherited from the contract and cannot be freely restated.
 * `Constraint satisfaction`: The process where the compiler verifies that a provided type argument meets all declared constraints.
 * `Constraint diagnostic`: The compiler error or warning generated when a type argument fails to meet a constraint.
-* `Nullable reference type constraint`: A constraint specifically targeting the nullability state of a reference type.
+* `Nullable reference type constraint`: `class` versus `class?` controls non-nullable-only versus nullable-or-non-nullable reference type arguments in nullable-aware context; `notnull` also admits non-nullable value types and is warning-based.
 * `Value type constraint`: A conceptual grouping for constraints like `struct` or `unmanaged`.
 * `Reference type constraint`: A conceptual grouping for constraints like `class`.
-* `Unmanaged type constraint`: A specific requirement for types that can be used in pointer operations.
+* `Unmanaged type constraint`: Requires an unmanaged value type and enables unmanaged-oriented operations such as `sizeof(T)` in permitted unsafe contexts; pointer types themselves are not legal generic type arguments.
 * `Constructor constraint`: Another name for the `new()` constraint.
-* `Static abstract interface constraint`: Allows generic code to call static members defined in interfaces.
+* `Static abstract interface constraint`: An interface constraint whose static abstract members can be called through a constrained type parameter, enabling compile-time polymorphism such as generic math.
 * `Generic math constraint`: Constraints used to enable generic arithmetic operations.
 * `Constraint does not select a type argument`: A reminder that constraints filter types; they do not perform "search" to find a matching type.
 * `Constraint does not imply variance`: A reminder that constraints and variance (how types relate in hierarchies) are independent concepts.
@@ -51,7 +51,7 @@ Constraints act as a "contract" between the caller and the generic implementatio
 | :--- | :--- |
 | `class constraint` | Restricts to reference types. |
 | `struct constraint` | Restricts to value types. |
-| `unmanaged constraint` | Restricts to types without references (storable in memory blocks). |
+| `unmanaged constraint` | Requires a non-nullable value type with no managed references in any field; a value type may still contain references and fail this constraint. |
 | `Base class constraint` | Enforces inheritance hierarchy. |
 | `Interface constraint` | Enforces capability implementation. |
 
@@ -61,7 +61,7 @@ Constraints act as a "contract" between the caller and the generic implementatio
 // A generic method with multiple constraints
 public T CreateAndProcess<T>(T input) where T : class, new()
 {
-    // 'new()' allows us to call new T()
+    // The new() constraint permits new T() when T has a public parameterless constructor.
     T instance = new T();
     return instance;
 }
@@ -72,16 +72,16 @@ public void PrintData<T>(T item) where T : IPrintable
     item.Print();
 }
 ```
-*Unverified example.*
+The examples are illustrative; `IPrintable` is an application-defined interface.
 
 # Common mistakes
 * **Over-constraining:** Adding constraints you don't actually need, which limits the usability of your generic code.
-* **Ignoring Order:** Placing the `new()` constraint before a `class` or `struct` constraint will cause a compiler error.
+* **Ignoring Order:** Constraint ordering has primary, secondary, constructor, and anti-constraint positions, with prohibited combinations; `new()` follows interface/base constraints and precedes `allows ref struct`.
 * **Assuming Inference:** Expecting the compiler to "find" a type that satisfies a constraint rather than requiring the caller to provide a valid type.
 
 # Knowledge checks with answers
 1. **Question:** Can you use a `sealed` class as a base class constraint?
-   **Answer:** No, because a `sealed` class cannot be inherited.
+   **Answer:** No. The class-type constraint must be inheritable, and a sealed class cannot be used as a base-class constraint.
 2. **Question:** What is the purpose of the `new()` constraint?
    **Answer:** It allows the generic code to instantiate the type parameter using `new T()`.
 3. **Question:** Does a constraint help the compiler infer a type argument?
