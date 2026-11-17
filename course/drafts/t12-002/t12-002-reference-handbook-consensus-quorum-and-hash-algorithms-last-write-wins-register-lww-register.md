@@ -1,6 +1,6 @@
 # distributed systems consistency coordination and convergence — Reference: Last-Write-Wins Register (LWW-Register)
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://hld.handbook.academy/curriculum/distributed-systems-theory/).
+Sources: [Shapiro et al., Conflict-free Replicated Data Types](https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf), [Lamport, Time, Clocks, and the Ordering of Events](https://lamport.azurewebsites.net/pubs/time-clocks.pdf).
 
 ## Scope and version
 
@@ -12,25 +12,32 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Supplied names explained
 
-- `Last-Write-Wins Register (LWW-Register)` — Selects a value by timestamp and tie-break rule; clock skew and concurrent user intent can cause one update to be discarded.
+- `Last-Write-Wins Register (LWW-Register)` — Stores a value with a timestamp (often plus a deterministic tie-breaker) and resolves concurrent versions by choosing the greatest timestamp/order key. This yields a deterministic winner if every replica applies the same total comparison, but it does not establish which user action happened later in real time: physical clocks can skew, and concurrent events have no inherent global order. The losing value is discarded from the register’s visible state unless separately retained.
+
+## Choose by data semantics
+
+LWW is appropriate only when “one value wins by this ordering” is an acceptable product rule, such as a replaceable preference where losing a concurrent edit is tolerable. It is dangerous for counters, inventory, payments, collaborative text, or any state where both concurrent intents matter. Use causal versions and merge logic, a CRDT designed for the operation, explicit conflict presentation, or a coordinated transaction when those semantics are required. A tie-breaker makes choice repeatable, not meaningful.
+
+In Cassandra, for example, mutations are timestamped and the latest timestamp wins under its conflict-resolution model; clients and servers must account for timestamp generation and skew. That implementation detail should not be generalized to every LWW register or treated as consensus ordering.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Compare LWW with a causal register: LWW always collapses concurrent values according to a scalar order, while a causal register can detect concurrency and retain multiple siblings for application resolution. Compare both with a CRDT for the actual field type; convergence does not make a poor merge rule semantically correct.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Two offline devices edit the same profile field. Device A’s clock is five minutes fast; device B’s later human edit gets the smaller timestamp and loses. Explain why a deterministic tie-breaker does not fix that semantic loss, and propose a product-appropriate alternative.
 
 ## Common mistakes
 
 - Selecting a component by popularity before defining the requirement.
 - Treating a protocol or product name as a guarantee without reading its contract.
 - Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating the largest physical timestamp as proof of the latest real-world user intent.
+- Assuming deterministic conflict resolution is lossless conflict resolution.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What does LWW guarantee?** A deterministic winner under the chosen comparison rule, assuming replicas apply the same rule.
+2. **Does the winning timestamp prove which edit happened last?** No; clock skew and concurrency prevent that inference.
+3. **When is LWW unsafe?** When silently losing concurrent intent violates the data’s meaning or a business invariant.
