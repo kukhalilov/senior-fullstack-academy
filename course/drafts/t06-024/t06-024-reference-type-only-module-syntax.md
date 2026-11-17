@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson covers all 15 supplied names. It focuses on TypeScript's module/type behavior; ECMAScript import/export grammar is treated in t06-019. Current stable behavior is TypeScript 7.0; TypeScript 7.1 beta changes are labeled. [Modules reference](https://www.typescriptlang.org/docs/handbook/modules/reference.html) · [TypeScript 7.0](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/)
+This lesson covers all 14 supplied names. It focuses on TypeScript's module/type behavior; ECMAScript import/export grammar is treated in t06-019. Current stable behavior is TypeScript 7.0; TypeScript 7.1 beta changes are labeled. [Modules reference](https://www.typescriptlang.org/docs/handbook/modules/reference.html) · [TypeScript 7.0](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/)
 
 ## How this group fits the mental model
 

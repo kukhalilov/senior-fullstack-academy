@@ -189,7 +189,7 @@
   "sourceSnapshot": {
     "authority": "Official TypeScript Handbook, TSConfig Reference, and release notes",
     "edition": "TypeScript 7.0 stable; 7.1 beta as of 2026-11-17",
-    "checkedAt": "2026-11-17",
+    "checkedAt": "2026-11-18",
     "urls": [
       "https://www.typescriptlang.org/docs/handbook/modules/introduction.html",
       "https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html",
@@ -219,7 +219,7 @@
     "Module augmentation resolves its module specifier like an import/export, must augment an existing named export, cannot add new top-level declarations, and cannot augment a default export. Runtime implementation still must be installed/executed.",
     "Declaration merging has ordered rules and conflicts: interfaces merge compatible members, namespaces can merge with classes/functions/enums in supported orders, and class/interface declarations do not generally merge as an arbitrary pair.",
     "NodeNext follows current Node.js module behavior and can change across TypeScript versions; node16/node18/node20 modes model fixed Node versions. Bundler mode supports package exports/imports and extensionless relative paths but does not enforce all Node ESM path constraints.",
-    "The module option and moduleResolution work together to determine emitted form and package conditions. Node16/node18/node20/NodeNext must pair with corresponding resolution modes; bundler pairs with esnext or preserve; preserve implies bundler resolution.",
+    "The module option and moduleResolution work together to determine emitted form and package conditions. Node16/node18/node20 module modes use moduleResolution node16; NodeNext uses moduleResolution nodenext; bundler pairs with esnext or preserve; preserve implies bundler resolution.",
     "In Node-aware and bundler resolution, package exports/imports may control reachable paths and condition selection. The types condition and runtime condition ordering must be designed so TypeScript and runtime resolve compatible implementations; typesVersions is generally a fallback when exports are absent for package resolution.",
     "The package types/typings fields point to declaration entry points; exports can encapsulate subpaths and use conditional types/runtime targets. typesVersions redirects declarations by compiler version only in supported resolution contexts and does not override exports.",
     "baseUrl is deprecated in TypeScript 6.0 and is no longer a lookup root in TypeScript 7.0; paths does not rewrite emitted specifiers and must match the runtime/bundler mapping separately.",

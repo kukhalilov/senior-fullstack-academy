@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson explains all 21 supplied declaration names. A declaration is a static description; code, globals, and package exports must still exist at runtime. [Declaration files introduction](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) · [Declaration merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
+This lesson explains all 20 supplied declaration names. A declaration is a static description; code, globals, and package exports must still exist at runtime. [Declaration files introduction](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) · [Declaration merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
 
 ## How this group fits the mental model
 

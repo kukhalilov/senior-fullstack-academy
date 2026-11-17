@@ -13,9 +13,9 @@ Resolution follows the host: TypeScript consults the emitted module form, file e
 | Supplied name | Role, behavior, and practical use |
 |---|---|
 | `NodeNext module resolution` | Tracks current Node.js ESM/CommonJS rules, including package `exports`/`imports`, file format, and import-vs-require condition selection. Because NodeNext evolves with Node and TypeScript, a future upgrade may change its modeled behavior. |
-| `Node16 module resolution` | Models Node 16's ESM/CJS resolution rules, paired with `module: "node16"`. It is a fixed historical target rather than a mode that automatically follows current Node behavior. |
-| `Node18 module mode` | `module: "node18"` models Node 18's module semantics and uses the corresponding Node-aware resolver behavior. It is appropriate when that specific Node baseline matters; do not pair it with bundler resolution. |
-| `Node20 module mode` | `module: "node20"` models Node 20's supported module behavior and corresponding resolution. Choose it only when its fixed behavior matches the deployment target; NodeNext is the moving current-Node mode. |
+| `Node16 module resolution` | Models the fixed Node 16 ESM/CJS resolution rules. `moduleResolution: "node16"` pairs with `module: "node16"`, `"node18"`, or `"node20"`; the latter module modes model later fixed Node baselines while using this resolver family. |
+| `Node18 module mode` | `module: "node18"` models Node 18's module semantics and implies/enforces `moduleResolution: "node16"`. It is appropriate when that specific Node baseline matters; do not pair it with bundler resolution. |
+| `Node20 module mode` | `module: "node20"` models Node 20's supported module behavior and implies/enforces `moduleResolution: "node16"`. Choose it only when its fixed behavior matches the deployment target; NodeNext is the moving current-Node mode. |
 | `Bundler module resolution` | Models common bundler lookup: package `exports`/`imports` plus extensionless relative imports and directory modules. Pair with `module: "esnext"` or `"preserve"`; it can accept imports that native Node ESM rejects. |
 | `Classic module resolution` | Historical pre-Node resolution strategy; removed in TypeScript 6.0. Do not use it for new code; migrate to a Node-aware or bundler mode. |
 | `Node10 module resolution (deprecated)` | The legacy `node`/`node10` CommonJS-era algorithm. Deprecated in TypeScript 6.0 and removed in TypeScript 7.0; it does not model modern package `exports`/`imports`. |
@@ -39,7 +39,7 @@ Resolution follows the host: TypeScript consults the emitted module form, file e
 
 ## Cross-item comparison
 
-NodeNext models current Node behavior; Node16/18/20 are fixed target modes. Bundler understands modern package conditions but deliberately allows relative paths that native Node ESM may reject. The `module` option affects whether a source import is emitted as `import` or `require`, which in turn affects the package condition TypeScript selects. [Modules reference](https://www.typescriptlang.org/docs/handbook/modules/reference.html)
+NodeNext models current Node behavior; module modes Node16/18/20 are fixed target modes. `moduleResolution` exposes `node16` as the resolver family for all three fixed modes; it has no separate `node18` or `node20` value. Bundler understands modern package conditions but deliberately allows relative paths that native Node ESM may reject. The `module` option affects whether a source import is emitted as `import` or `require`, which in turn affects the package condition TypeScript selects. [Modules reference](https://www.typescriptlang.org/docs/handbook/modules/reference.html)
 
 Package `types` is a default declaration pointer. A `types` export condition supports per-branch/per-subpath declarations, and `typesVersions` provides compiler-version redirects in supported cases. The `exports` map is a package boundary; `paths` is only a TypeScript lookup alias and is not emitted. Keep runtime and type maps aligned.
 

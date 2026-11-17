@@ -54,17 +54,25 @@ It tells the checker to treat an existing exported symbol or global as having ad
 
 A project uses `moduleResolution: "bundler"`, imports `./utils`, and then runs emitted ESM directly in Node. Explain the mismatch, recommend the appropriate Node-aware mode and source specifier, and say what bundler mode was modeling.
 
+**Answer:** Bundler mode permits extensionless relative imports commonly rewritten or resolved by bundlers. Native Node ESM generally requires a runtime-resolvable extension. Use a compatible Node-aware `module`/`moduleResolution` pair such as `NodeNext`/`NodeNext`, write `./utils.js` in TypeScript source (which TypeScript can map to `utils.ts` for checking), and ensure the output layout matches. Keep bundler mode when a bundler actually owns that resolution step.
+
 ### “The type says the method exists”
 
 A dependency augmentation adds `client.retry()`, but production throws that it is not a function. Explain the missing runtime patch/load-order relationship and outline a safer explicit extension design.
+
+**Answer:** Augmentation only changes TypeScript's model. The package must also install `retry` on the runtime object/prototype, and the importing program must load that patch before calling it. If installation is optional or ordering is fragile, expose a function such as `withRetry(client)` or a wrapper type/value that installs behavior explicitly and can be tested.
 
 ### “TypeScript finds the alias; the browser does not”
 
 An import begins `@app/` and `paths` maps it to `src/`. Explain the compiler-only mapping and identify the parallel bundler/runtime configuration to check.
 
+**Answer:** `paths` affects TypeScript lookup and normally leaves the emitted specifier unchanged. Configure the bundler's alias to the same target (and any test runner or runtime resolver that executes the code), or use a host-supported package import where appropriate. Check the final emitted/bundled import and the host's resolution configuration.
+
 ### “Types work from source but not after publish”
 
 The package has `types` and `exports` fields. Describe how a missing packed `.d.ts`, an unexported subpath, condition order, or mismatched `.d.mts`/`.d.cts` branches could cause the issue. Recommend inspecting the package archive and testing ESM/CJS consumer fixtures.
+
+**Answer:** Source builds can see declarations that the published archive omits, and an `exports` map can intentionally block a deep path even when its file exists. TypeScript's `types` condition must be reachable in the applicable branch and describe the paired runtime format; `.d.mts` and `.d.cts` signal ESM and CommonJS declaration formats. Inspect `npm pack --dry-run` or the archive, then install it into separate ESM and CommonJS consumer fixtures and resolve both public entry points.
 
 ## Tradeoffs and alternatives
 
