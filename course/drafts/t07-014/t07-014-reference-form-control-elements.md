@@ -1,6 +1,6 @@
 <!-- GENERATED DRAFT: automated shape and editorial checks passed; independent factual verification is not implied. -->
 
-# HTML forms controls validation and form submission — Reference: Native form and form-associated elements
+# HTML forms controls validation and form submission — Reference: Form elements, controls, and related elements
 
 # Scope and version
 
@@ -28,7 +28,7 @@ These elements create form ownership, data entry, labels, grouping, suggestions,
 - `<select>` — Selects one or multiple options, with behavior influenced by `multiple`, `size`, option selectedness, and current customizable-select features. Selected values participate in submission when the control is successful.
 - `<selectedcontent>` — Element used with customizable-select presentation to display cloned content from the selected option inside the select's button. It is not a standalone replacement for `<option>` or a form-associated control; support/styling needs browser verification.
 - `<textarea>` — Multiline text control. Its initial value comes from text content/default value, unlike `<input>`'s `value` attribute. `rows`, `cols`, `wrap`, and length constraints affect presentation/submission/validation.
-- `form-associated custom elements` — Custom elements opting into form association through `static formAssociated = true` and `ElementInternals`. They can identify a form owner, contribute values, participate in disabled/validation state, and respond to form lifecycle callbacks. Define their value and validity integration deliberately; ordinary custom elements do not automatically act as native controls.
+- `form-associated custom elements` — Autonomous custom elements opt into native form behavior with `static formAssociated = true` and call `this.attachInternals()` once to obtain `ElementInternals`. The internals expose the form owner, labels, validation state/APIs, and `setFormValue(value, state?)` / `setValidity(flags, message, anchor?)`. The component implements form lifecycle callbacks when it needs to react to reassociation, disabled state, reset, or state restoration; ordinary custom elements do not automatically act as native controls.
 
 # Cross-item comparison
 

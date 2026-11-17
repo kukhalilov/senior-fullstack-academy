@@ -48,7 +48,7 @@ The DOM interface exposes live control state and operations. Reflected propertie
 - `type` — Reflected current input state. Setting can change available value semantics and clear/transform state according to type-change rules.
 - `defaultValue` — Reflects the value attribute/default value. Current `value` may differ after user edits.
 - `value` — Current value string. For file inputs, setting it to an empty string can clear selection but cannot choose an arbitrary file path. For checkbox/radio, it is the submitted value, not checkedness.
-- `valueAsDate` — Gets/sets a Date representation for supported date/time-like states; returns `null` when empty or not representable. It is not supported for every type (notably `datetime-local`) and timezone conversion must be understood.
+- `valueAsDate` — Gets/sets a `Date` representation for the supported date, month, week, and time states; returns `null` when empty or when the current state does not support it. It is not supported for `datetime-local`; the UTC-based representation must not be confused with the user's local display/time zone.
 - `valueAsNumber` — Gets/sets the value as a number for numeric/date-time states; empty or invalid values generally map to `NaN`. Units depend on type (for date/time types often milliseconds relative to a defined epoch).
 - `width` — Image submit input width.
 - `stepUp()` — Increments an applicable control by its step (or supplied count). It can throw when the type/state cannot step or step is `any`; constraints and bounds affect results.
@@ -61,11 +61,11 @@ The DOM interface exposes live control state and operations. Reflected propertie
 - `setCustomValidity()` — Sets/clears the custom error string; clear with an empty string.
 - `labels` — Read-only `NodeList` of labels associated with this input, including explicit and implicit associations.
 - `select()` — Selects the text in supported text-entry controls; not applicable to every input state.
-- `selectionStart` — Start offset of selected text/caret for supported text-selection input states. Reading/writing unsupported types can throw.
-- `selectionEnd` — End offset of selected text/caret for supported text-selection input states.
-- `selectionDirection` — Direction (`forward`, `backward`, or `none`) of the current text selection where supported.
+- `selectionStart` — Start offset of selected text/caret for supported text-selection input states (`text`, `search`, `url`, `tel`, `password`). On unsupported input states, reading returns `null`; setting throws `InvalidStateError`.
+- `selectionEnd` — End offset of selected text/caret for supported text-selection input states. On unsupported input states, reading returns `null`; setting throws `InvalidStateError`.
+- `selectionDirection` — Direction (`forward`, `backward`, or `none`) of the current text selection where supported; it returns `null` when the property does not apply.
 - `setRangeText()` — Replaces a range of text in a supported text-entry control and updates selection according to an optional selection mode. Unsupported types can throw.
-- `setSelectionRange()` — Sets selection start/end/direction for supported text-entry types; throws for unsupported states.
+- `setSelectionRange()` — Sets selection start/end/direction for supported text-entry types; throws `InvalidStateError` for unsupported input states.
 - `showPicker()` — Opens a browser-provided picker for applicable types (date/time/color/file, depending on platform). It generally requires transient user activation and can throw when unsupported, disabled/readonly, or called in a disallowed context.
 - `input event` — Fires as the user changes a value through interaction for controls that support it. Programmatically assigning `.value` does not itself fire `input`; dispatching a synthetic event is not equivalent to trusted user input.
 - `change event` — Fires when a value change is committed according to that control's interaction model, often on blur/selection/commit rather than every keystroke. Exact timing differs by control type.

@@ -24,6 +24,7 @@ This mixes distinct browser models. Use persistent labels; preserve card digits 
 8. **Files and encoding:** Design a file upload form that supports multiple images, limits accept hints to image types, and sends file data. Explain why `accept` is not validation and what `multipart/form-data` changes.
 9. **Security boundary:** Identify which checks must run server-side when client validation passes. Include file uploads, prices, user identity, and unexpected fields.
 10. **Review:** Inspect a real form using keyboard navigation and a screen reader. Verify labels, grouping, validity feedback, required state, focus behavior, mobile keyboard hints, and operation without JavaScript.
+11. **Form-associated custom element:** A reusable rating control must submit a normalized value, preserve the user's display state for restoration, participate in native validation, react to disabled fieldsets and reset, and associate with external labels. Name the opt-in, internals APIs, and lifecycle callbacks it needs.
 
 # Progressive hints
 
@@ -37,6 +38,7 @@ This mixes distinct browser models. Use persistent labels; preserve card digits 
 8. The form's `enctype` must be `multipart/form-data` for the standard multipart file upload encoding. `accept` only guides the picker.
 9. The browser is controlled by the user; every request and uploaded byte is untrusted.
 10. Test without relying on visual appearance alone. A native form should still submit through ordinary browser behavior absent client scripting.
+11. A form-associated custom element requires the static `formAssociated = true` opt-in and `attachInternals()`. `ElementInternals.setFormValue(normalizedValue, userState)` separates server-ready data from restorable UI state; `setValidity(flags, message, anchor)` integrates constraints and user feedback. `formDisabledCallback(disabled)` updates internal interaction when the host/fieldset's effective disabled state changes, `formResetCallback()` restores the component's default, and `formStateRestoreCallback(state, mode)` restores browser-provided state. `ElementInternals.labels` exposes external associated labels, but the author must still provide an accessible role, name, focus model, and keyboard interaction. Ordinary custom elements do not get these behaviors automatically.
 
 # Complete solutions
 

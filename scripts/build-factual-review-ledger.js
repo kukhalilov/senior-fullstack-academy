@@ -41,6 +41,11 @@ const lessons = queue.tasks.map(task => {
   };
 });
 
+// Keep review history for lessons removed from the active generation queue.
+// Removing a task from the queue must not erase its completed audit record.
+const activeTaskIds = new Set(queue.tasks.map(task => task.id));
+lessons.push(...(existingLedger?.lessons ?? []).filter(lesson => !activeTaskIds.has(lesson.taskId)));
+
 const missingDrafts = lessons.filter(lesson => !fs.existsSync(lesson.draft));
 if (missingDrafts.length) throw new Error(`Cannot build factual ledger: ${missingDrafts.length} queued lesson files are missing (first: ${missingDrafts[0].taskId})`);
 const reviewed = lessons.filter(lesson => lesson.status === 'reviewed').length;
@@ -111,6 +116,7 @@ const ledger = {
       findings: ['RFC 9309 explicitly says robots rules are not access authorization, matching the lesson. RFC 8216 is an informational HLS specification describing version 7, so the lesson avoids treating it as a universal current implementation profile. NIST FIPS 203 and 204 are final standards but their live pages now identify potential errata; the lessons were updated to tell learners to check those errata. These checks do not promote any full lesson to reviewed.']
     }
   ],
+  auditFindings: existingLedger?.auditFindings ?? [],
   lessons
 };
 // Preserve hand-authored audit batches and quality findings when rebuilding the

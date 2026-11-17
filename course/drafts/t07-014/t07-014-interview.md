@@ -16,6 +16,7 @@
 10. What does native form progressive enhancement mean?
 11. Why is client-side validation not a security control?
 12. When are `dirname`, `formdata`, `invalid`, and `submit` useful?
+13. How does a form-associated custom element participate in submission, validation, disabled state, reset, and state restoration?
 
 # Concise interview answers
 
@@ -31,6 +32,7 @@
 10. Core controls and browser submission work without application JavaScript. Scripts can add validation, async feedback, or interception while retaining a usable native fallback where the product requires it.
 11. Users can alter DOM state, disable checks, craft requests directly, or call APIs that bypass interactive constraints. The server must authenticate, authorize, validate, and enforce domain rules independently.
 12. `dirname` adds direction metadata to submitted data; `formdata` observes/modifies the entry list; `invalid` handles failed controls (often with capture because it does not bubble); `submit` intercepts a normal valid submission and exposes its submitter.
+13. Set `static formAssociated = true`, obtain `ElementInternals` with `attachInternals()`, provide submission data with `setFormValue()`, and integrate constraints with `setValidity()`. The internals expose the form owner, labels, and validation APIs. Implement `formAssociatedCallback`, `formDisabledCallback`, `formResetCallback`, and `formStateRestoreCallback` when component behavior needs to track those native lifecycle changes; do not assume registration supplies an accessible widget automatically.
 
 # Deep follow-up answers
 
