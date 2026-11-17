@@ -14,7 +14,7 @@ A guard is an observation or declared function contract that can refine a value'
 |---|---|
 | `typeof type guard` | A comparison such as `typeof value === "string"` narrows primitive types and callable/object categories. JavaScript reports `typeof null` as `"object"`; add a null check when needed. |
 | `instanceof type guard` | `value instanceof C` performs JavaScript's runtime instance check and can narrow to types associated with `C`. It follows runtime prototype/`Symbol.hasInstance` semantics, so it is not a universal validator for structurally similar objects or values crossing realms. |
-| `in operator narrowing` | `"name" in value` checks property presence along the object/prototype chain and narrows types that declare the property. Optional-property types can remain on both sides; presence does not guarantee a non-undefined value. |
+| `in operator narrowing` | `"name" in value` checks property presence along the object/prototype chain and narrows types that declare the property. Since TypeScript 4.9, when a checked object type does not list the key, the true branch intersects it with `Record<"name", unknown>` so the property can be checked next. Optional-property types can remain on both sides; presence does not guarantee a non-undefined value. At runtime the right operand must be an object and the left operand a property key. |
 | `Equality narrowing` | Equality comparisons can narrow operands using their possible overlapping values, such as `x === y`, or remove a literal/nullish possibility. The checker uses strict equality semantics for `===`/`!==`; coercive equality details belong to t06-011. |
 | `Truthiness narrowing` | A truthy/falsy branch removes values according to JavaScript truthiness. It is useful for nullish/object checks but can also remove valid `0`, `false`, and empty-string values; use exact checks when those values are meaningful. |
 | `Assignment narrowing` | An assignment changes the flow type to the assigned value's compatible type at that point. Later branches start from the current flow type, while the declared variable type remains the overall assignment contract. |
@@ -52,13 +52,21 @@ function assertStringArray(value: unknown): asserts value is string[] {
   }
 }
 
+function packageName(value: unknown): string | undefined {
+  if (value !== null && typeof value === "object" &&
+      "name" in value && typeof value.name === "string") {
+    return value.name;
+  }
+  return undefined;
+}
+
 function use(value: unknown): string[] {
   assertStringArray(value);
   return value;
 }
 ```
 
-With TypeScript 5.5, `isNonNullish` can infer a generic predicate equivalent to a non-nullish refinement. The explicit assertion performs both an array check and an element check; `Array.isArray` alone would only establish that the outer value is an array. The exception makes failure visible at runtime.
+With TypeScript 5.5, `isNonNullish` can infer a generic predicate equivalent to a non-nullish refinement. The explicit assertion performs both an array check and an element check; `Array.isArray` alone would only establish that the outer value is an array. The exception makes failure visible at runtime. In `packageName`, the object check prevents the runtime `in` operator from receiving null or a primitive; TypeScript 4.9 gives the previously unlisted `name` property type `unknown`, which the final `typeof` check refines to string.
 
 An unsound predicate example should be avoided: declaring `function isUser(x: unknown): x is User { return true; }` tells the checker every value is a user. Since the compiler trusts the signature, code may compile and then fail when it accesses a missing field.
 
@@ -67,6 +75,7 @@ An unsound predicate example should be avoided: declaring `function isUser(x: un
 - Forgetting `typeof null === "object"`.
 - Assuming `instanceof` proves structural compatibility or works identically across realms.
 - Assuming an `in` check means the property's value is defined.
+- Using `in` on an unchecked `unknown`, null, or primitive value; establish an object first, then validate the property value separately.
 - Using truthiness to remove only `null`/`undefined`, inadvertently discarding valid zero/empty/false values.
 - Treating an explicit predicate or assertion signature as compiler-verified.
 - Assuming TypeScript 5.5 infers a predicate for every boolean-returning callback; the structural conditions and reverse direction must hold.
@@ -80,5 +89,6 @@ An unsound predicate example should be avoided: declaring `function isUser(x: un
 3. **What must an inferred predicate establish?** Its true and false results must correspond to the target/refined and excluded type sets.
 4. **Does `Array.isArray` validate elements?** No, only the outer array condition.
 5. **Does TypeScript verify an explicit predicate implementation?** No; the author is responsible for making the check truthful.
+6. **How does TypeScript 4.9 narrow an unlisted property after `"name" in objectValue`?** It intersects the object type with `Record<"name", unknown>`; a separate value check is still needed.
 
-Sources: [Narrowing handbook](https://www.typescriptlang.org/docs/handbook/2/narrowing.html), [everyday types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html), [TypeScript 5.5 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html).
+Sources: [Narrowing handbook](https://www.typescriptlang.org/docs/handbook/2/narrowing.html), [everyday types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html), [TypeScript 4.9 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html), [TypeScript 5.5 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html).

@@ -35,6 +35,7 @@ The literal `status` links each state's fields to its tag. A plain object with u
 8. TypeScript 5.4 narrows a value inside a callback after conversion to a new type. Explain the last-assignment condition and what nested mutation would do.
 9. TypeScript 5.5 narrows `record[key]` after `typeof`. State both stability requirements.
 10. Create two object types with a conflicting property and explain the difference between a `never` property and an entire intersection that reduces to `never`.
+11. Validate an `unknown` package value with `in` and a value-type check. Explain TypeScript 4.9’s unlisted-property narrowing and why the object check must come first.
 
 ## Progressive hints
 
@@ -48,6 +49,7 @@ The literal `status` links each state's fields to its tag. A plain object with u
 8. The callback must be created after the final assignment; nested function assignment defeats the analysis.
 9. Neither the object nor the key may change between check and access.
 10. Conflicting literal discriminants can make the combined type impossible as a whole; ordinary property conflicts can leave the containing object with a `never` property.
+11. First prove the value is a non-null object, then check `"name" in value`, then test `typeof value.name === "string"`; since 4.9 the property becomes `unknown` after the presence check, not already a string.
 
 ## Complete solutions
 
@@ -131,6 +133,16 @@ The literal `status` links each state's fields to its tag. A plain object with u
    type Impossible = Red & Blue; // reduces to never due incompatible discriminants
    ```
    A plain conflicting property may remain as a `never` member on the object type, while conflicting discriminant values can prove the entire intersection impossible.
+
+11.
+   ```ts
+   function packageName(value: unknown): string | undefined {
+     if (value !== null && typeof value === "object" &&
+         "name" in value && typeof value.name === "string") return value.name;
+     return undefined;
+   }
+   ```
+   The right side of JavaScript `in` must be an object; the initial null/type check makes that runtime operation safe. TypeScript 4.9 narrows an unlisted property to `unknown`, so the value still needs its own validation.
 
 ## Tests and edge cases
 

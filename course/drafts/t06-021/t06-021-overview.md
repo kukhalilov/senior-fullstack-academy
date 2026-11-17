@@ -4,7 +4,7 @@
 
 Programs often handle values whose shape depends on data: a request may be loading, successful, or failed; a value from a map may be absent; a function may accept a string or a number. TypeScript needs to describe those possibilities without forcing every caller to pretend there is only one. Union and intersection types express the alternatives and combinations. Narrowing then uses observable checks and code flow to determine which alternatives remain possible at a particular line.
 
-This topic uses TypeScript 7.0 stable as the current stable compiler and labels TypeScript 7.1 as beta as of 2026-11-16. It assumes basic types, object properties, functions, and conditions. Static narrowing does not validate network data or change JavaScript execution; runtime checks must really establish the facts the types claim. [Narrowing handbook](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)
+This topic uses TypeScript 7.0 stable as the current stable compiler and labels TypeScript 7.1 as beta as of 2026-11-17. Recent notable narrowing milestones include TypeScript 4.9's support for checking properties not listed on an object type, TypeScript 5.4's last-assignment closure analysis, and TypeScript 5.5's inferred predicates and stable indexed-access narrowing. It assumes basic types, object properties, functions, and conditions. Static narrowing does not validate network data or change JavaScript execution; runtime checks must really establish the facts the types claim. [Narrowing handbook](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)
 
 ## Plain-language mental model
 

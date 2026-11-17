@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 810,
-    "pending": 1531,
-    "claimsChecked": 29871,
+    "reviewed": 817,
+    "pending": 1524,
+    "claimsChecked": 30326,
     "claimsCorrected": 1467,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 810,
-    "pendingLessons": 1531
+    "reviewedLessons": 817,
+    "pendingLessons": 1524
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1403,6 +1403,25 @@
       ],
       "findings": [
         "Checked the current WHATWG Fetch and DOM living standards and MDN API references for the supplied interfaces, method/body semantics, RequestInit core dictionary versus browser extensions, cancellation, and Deferred Fetch quotas/lifecycle. Corrected the null-body Request.arrayBuffer result, documented all six ResponseType values and Response.error() type, separated Chromium/browser privacy and target-address-space extensions from core RequestInit, and corrected fetchLater quota ownership from per-document to per-top-level traversable/tab. Expanded exact host-extension fields and deferred-fetch quota inventory. Reviewed all 8 lesson explanations, code examples, exercises, comparison tables, interview answers, and frozen inventory; no unresolved topic-specific issues remain."
+      ]
+    },
+    {
+      "scope": "TypeScript unions, intersections, and control-flow narrowing (t06-021)",
+      "status": "topic claim and inventory audit complete for all 7 lessons",
+      "sources": [
+        "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+        "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://github.com/microsoft/TypeScript/milestone/224"
+      ],
+      "findings": [
+        "Reviewed all seven lessons against the frozen 36-item inventory and official TypeScript documentation/release records. Confirmed 7.0 stable and 7.1 beta on 2026-11-17; checked unions/intersections, all guard forms, control-flow paths, and the 4.4/4.6/5.4/5.5 milestones. Added missing TypeScript 4.9 unlisted-property narrowing for in checks and an unknown-input example/exercise/interview question; documented that this yields unknown and does not validate runtime data. No unresolved scope or factual issues remain; lessons remain drafts."
       ]
     }
   ],
@@ -94184,154 +94203,301 @@
       "topicId": "t06-021",
       "phase": "overview",
       "draft": "course/drafts/t06-021/t06-021-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 34,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "TypeScript union/intersection semantics, built-in and custom narrowing, reachability and control flow, version-specific behavior, every example and exercise, and complete frozen topic inventory.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+            "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://github.com/microsoft/TypeScript/milestone/224"
+          ],
+          "verdict": "checked; omission added where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
         "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://github.com/microsoft/TypeScript/milestone/224"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory review recorded against official TypeScript handbook, release notes, and version announcements; the listed source checks are distinct from automated structure validation."
     },
     {
       "taskId": "t06-021-concepts",
       "topicId": "t06-021",
       "phase": "concepts",
       "draft": "course/drafts/t06-021/t06-021-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 52,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "TypeScript union/intersection semantics, built-in and custom narrowing, reachability and control flow, version-specific behavior, every example and exercise, and complete frozen topic inventory.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+            "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://github.com/microsoft/TypeScript/milestone/224"
+          ],
+          "verdict": "checked; omission added where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
         "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://github.com/microsoft/TypeScript/milestone/224"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory review recorded against official TypeScript handbook, release notes, and version announcements; the listed source checks are distinct from automated structure validation."
     },
     {
       "taskId": "t06-021-reference-union-and-intersection-types",
       "topicId": "t06-021",
       "phase": "reference",
       "draft": "course/drafts/t06-021/t06-021-reference-union-and-intersection-types.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 47,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "TypeScript union/intersection semantics, built-in and custom narrowing, reachability and control flow, version-specific behavior, every example and exercise, and complete frozen topic inventory.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+            "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://github.com/microsoft/TypeScript/milestone/224"
+          ],
+          "verdict": "checked; omission added where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
         "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://github.com/microsoft/TypeScript/milestone/224"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory review recorded against official TypeScript handbook, release notes, and version announcements; the listed source checks are distinct from automated structure validation."
     },
     {
       "taskId": "t06-021-reference-narrowing-guards",
       "topicId": "t06-021",
       "phase": "reference",
       "draft": "course/drafts/t06-021/t06-021-reference-narrowing-guards.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 76,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "TypeScript union/intersection semantics, built-in and custom narrowing, reachability and control flow, version-specific behavior, every example and exercise, and complete frozen topic inventory.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+            "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://github.com/microsoft/TypeScript/milestone/224"
+          ],
+          "verdict": "checked; omission added where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
         "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://github.com/microsoft/TypeScript/milestone/224"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory review recorded against official TypeScript handbook, release notes, and version announcements; the listed source checks are distinct from automated structure validation."
     },
     {
       "taskId": "t06-021-reference-control-flow-patterns",
       "topicId": "t06-021",
       "phase": "reference",
       "draft": "course/drafts/t06-021/t06-021-reference-control-flow-patterns.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 73,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "TypeScript union/intersection semantics, built-in and custom narrowing, reachability and control flow, version-specific behavior, every example and exercise, and complete frozen topic inventory.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+            "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://github.com/microsoft/TypeScript/milestone/224"
+          ],
+          "verdict": "checked; omission added where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
         "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://github.com/microsoft/TypeScript/milestone/224"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory review recorded against official TypeScript handbook, release notes, and version announcements; the listed source checks are distinct from automated structure validation."
     },
     {
       "taskId": "t06-021-practice",
       "topicId": "t06-021",
       "phase": "practice",
       "draft": "course/drafts/t06-021/t06-021-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 112,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "TypeScript union/intersection semantics, built-in and custom narrowing, reachability and control flow, version-specific behavior, every example and exercise, and complete frozen topic inventory.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+            "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://github.com/microsoft/TypeScript/milestone/224"
+          ],
+          "verdict": "checked; omission added where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
         "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://github.com/microsoft/TypeScript/milestone/224"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory review recorded against official TypeScript handbook, release notes, and version announcements; the listed source checks are distinct from automated structure validation."
     },
     {
       "taskId": "t06-021-interview",
       "topicId": "t06-021",
       "phase": "interview",
       "draft": "course/drafts/t06-021/t06-021-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 61,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "TypeScript union/intersection semantics, built-in and custom narrowing, reachability and control flow, version-specific behavior, every example and exercise, and complete frozen topic inventory.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+            "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://github.com/microsoft/TypeScript/milestone/224"
+          ],
+          "verdict": "checked; omission added where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
         "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-6.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://github.com/microsoft/TypeScript/milestone/224"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory review recorded against official TypeScript handbook, release notes, and version announcements; the listed source checks are distinct from automated structure validation."
     },
     {
       "taskId": "t06-022-overview",
@@ -136532,6 +136698,14 @@
       "status": "full claim and inventory audit complete for all 8 lessons",
       "findings": [
         "Checked the current WHATWG Fetch and DOM living standards plus MDN current API references for every assigned topic group. Corrected Request.arrayBuffer behavior for null bodies, completed ResponseType coverage including constructed and error responses, separated browser privacy/network extensions from normative RequestInit, corrected Deferred Fetch quota ownership and documented its allocation model and activation limits. Checked all lesson examples and expanded exact inventory items. No unresolved factual or coverage issues remain; lessons remain drafts."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "TypeScript unions, intersections, and control-flow narrowing (t06-021)",
+      "status": "full claim and inventory audit complete for all 7 lessons",
+      "findings": [
+        "Reviewed all seven lessons against the frozen 36-item inventory and official TypeScript documentation/release records. Confirmed 7.0 stable and 7.1 beta on 2026-11-17; checked unions/intersections, all guard forms, control-flow paths, and the 4.4/4.6/5.4/5.5 milestones. Added missing TypeScript 4.9 unlisted-property narrowing for in checks and an unknown-input example/exercise/interview question; documented that this yields unknown and does not validate runtime data. No unresolved scope or factual issues remain; lessons remain drafts."
       ]
     }
   ]

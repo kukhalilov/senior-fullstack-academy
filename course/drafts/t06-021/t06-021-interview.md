@@ -13,6 +13,7 @@
 9. What did TypeScript 5.4 add for closures and TypeScript 5.5 for constant indexed accesses?
 10. What is the difference between `??` and a non-null assertion?
 11. How does a `never` check make a switch exhaustive?
+12. What did TypeScript 4.9 change about the `in` operator for an unlisted property?
 
 ## Concise interview answers
 
@@ -27,6 +28,7 @@
 9. 5.4 can preserve a narrowing in a non-hoisted closure created after the last assignment when nested functions do not write to the variable. 5.5 can narrow `obj[key]` when both object and key are effectively constant.
 10. `??` executes a nullish fallback at runtime; `!` is erased and only tells the checker to remove nullishness.
 11. A default branch passes the remaining value to a `never` parameter. An unhandled union member makes that assignment fail.
+12. The true branch intersects the object with `Record<key, unknown>`, letting code check a property that was absent from its declared type. The runtime value still needs validation, and an object/null check is needed before using JavaScript `in` on unknown input.
 
 ## Deep follow-up answers
 
