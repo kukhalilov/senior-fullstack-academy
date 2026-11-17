@@ -56,3 +56,8 @@ If a server renders `new Date().toLocaleString()` using one timezone and the cli
 2. **What must initially agree?** Server markup and client’s initial rendered output.
 3. **What does streaming change?** When response portions can be delivered, not necessarily how often they update.
 4. **Who typically owns route/cache integration?** The application framework or server integration.
+
+
+## System-design view: rendering is part of the request path
+
+Choose rendering per user journey and operating constraint. Server rendering can return useful HTML earlier, but adds server capacity, data-fetch latency, and cache/privacy decisions; static output shifts work to build or revalidation time but may be stale; client rendering depends on JavaScript delivery and browser work. Streaming can release ready portions sooner but still needs a compatible host and carefully chosen boundaries. Hydration requires the initial client render to agree with server markup. Keep personalized HTML out of shared caches unless the cache key and authorization model are correct. Treat initial HTML, JavaScript chunks, API data, and CDN cache as one release graph. [React DOM server APIs](https://react.dev/reference/react-dom/server) · [React Suspense](https://react.dev/reference/react/Suspense).

@@ -1,0 +1,115 @@
+{
+  "t12-001": [
+    {
+      "id": "operating-systems-and-data-structures",
+      "title": "Operating-system resources and foundational data structures",
+      "entries": {
+        "Process": "An operating-system resource boundary with its own address space and lifecycle; process isolation costs more than sharing memory between threads.",
+        "Thread": "A schedulable execution path within a process that shares process memory and therefore requires synchronization around shared state.",
+        "Virtual memory": "An address-space abstraction backed by physical pages and possibly storage; page faults and working-set pressure can dominate tail latency.",
+        "Page cache": "Operating-system memory that caches file-backed data, often making repeated reads faster while competing with application memory.",
+        "Blocking I/O": "An operation where the caller waits until I/O completes; too many blocked worker threads can limit concurrency.",
+        "Readiness-based I/O": "An I/O model that notifies an event loop when a descriptor can progress, reducing idle thread use while adding state-machine complexity.",
+        "File descriptor": "A process-local handle to an open file, socket, or similar resource; descriptor limits can constrain connection-heavy services.",
+        "Hash table": "A key-to-bucket structure with expected efficient lookup under a suitable hash and load policy; collisions and adversarial keys matter.",
+        "Skip list": "A layered linked structure supporting expected logarithmic search and ordered traversal with simpler probabilistic balancing.",
+        "Bloom filter": "A compact approximate set-membership structure with possible false positives but no false negatives for inserted values under correct use.",
+        "B-tree": "A balanced page-oriented search tree that supports ordered lookup and range scans with bounded tree height.",
+        "LSM tree": "A write-optimized storage structure that flushes sorted runs and compacts them later, trading write behavior for read/space amplification."
+      }
+    },
+    {
+      "id": "geospatial-indexing",
+      "title": "Spatial partitioning and geospatial query structures",
+      "entries": {
+        "Geohash": "Encodes a location into a hierarchical string cell; nearby points near cell borders may have different prefixes, so neighboring cells must be queried.",
+        "Quadtree": "Recursively subdivides a two-dimensional region into four cells, adapting spatial resolution to data distribution.",
+        "R-tree": "Indexes bounding rectangles in a balanced tree for spatial intersection and range queries; overlapping nodes can increase search work.",
+        "S2 geometry": "Represents spherical geometry using hierarchical cells mapped from a cube projection, supporting global spatial indexing.",
+        "H3 grid": "Partitions the globe into hierarchical hexagonal cells with pentagonal exceptions, useful for aggregation and neighborhood queries.",
+        "Bounding-box candidate search": "Finds a coarse set of spatial candidates before a more exact distance or geometry test; it must account for projection and antimeridian behavior.",
+        "Spatial hot cell": "A geographic partition with unusually high traffic or data density; split, replicate, or adapt query strategy without losing boundary correctness."
+      }
+    }
+  ],
+  "t12-002": [
+    {
+      "id": "cap-and-replication-guarantees",
+      "title": "Partition tradeoffs and replication guarantees",
+      "entries": {
+        "CAP theorem": "During a network partition, a distributed data system cannot guarantee both linearizable consistency and a successful response from every non-failing side; outside a partition, the theorem does not rank all designs.",
+        "PACELC": "Extends the partition tradeoff by describing a latency-versus-consistency choice when there is no partition, alongside behavior during partitions.",
+        "Read quorum": "The number of replicas whose responses are required for a read under a specified replication protocol; it does not by itself define freshness or ordering.",
+        "Write quorum": "The number of replica acknowledgements required before a write is reported successful under a specified protocol.",
+        "Sloppy quorum": "Accepts writes from temporary nodes outside the usual replica set during failure, improving availability but requiring later handoff and repair.",
+        "Hinted handoff": "Temporarily stores a replica's missed update at another node and forwards it when the intended replica returns.",
+        "Read repair": "Reconciles stale replicas during a read path; it can improve convergence but adds latency and does not replace background repair."
+      }
+    }
+  ],
+  "t12-004": [
+    {
+      "id": "architecture-evolution-and-team-shape",
+      "title": "Architecture evolution, teams, and execution models",
+      "entries": {
+        "Conway's Law": "An organization tends to produce system boundaries that reflect communication boundaries; architecture and team design influence one another.",
+        "Team topology": "How teams are organized around stream-aligned ownership, enabling platforms, complicated subsystems, or temporary collaboration; it affects cognitive load and service boundaries.",
+        "Serverless computing": "Runs code or managed capabilities without direct server administration, while capacity limits, cold starts, event semantics, and unit economics still require design.",
+        "Function as a service (FaaS)": "Executes bounded functions on demand under a provider runtime; execution duration, concurrency, startup, and state constraints shape use.",
+        "Local-first software": "Keeps useful data and behavior on the user device and synchronizes later, requiring merge/conflict, privacy, and revocation rules.",
+        "Platform engineering": "Builds supported internal capabilities and workflows as a product for delivery teams, with adoption and developer outcomes as measures.",
+        "Internal developer platform (IDP)": "A collection of self-service tools and paved paths that standardize common delivery tasks while allowing justified exceptions."
+      }
+    },
+    {
+      "id": "resilience-and-operational-practice",
+      "title": "Resilience experiments, scaling, and operational economics",
+      "entries": {
+        "Chaos engineering": "Runs controlled experiments against explicit steady-state hypotheses to learn how a system behaves under faults; it is not random production breakage.",
+        "Game day": "A rehearsed operational exercise that validates people, runbooks, signals, and system recovery for a scoped scenario.",
+        "Autoscaling": "Adjusts capacity from measured signals or schedules; startup delay, warm-up, downstream limits, and scale-in safety constrain effectiveness.",
+        "Predictive scaling": "Adds capacity based on forecast demand, requiring forecast quality and a fallback for unexpected peaks.",
+        "Graceful degradation": "Preserves core user value by disabling or simplifying lower-priority functions under stress or dependency failure.",
+        "Load shedding": "Rejects or discards selected work to protect system capacity and critical operations when demand exceeds safe limits.",
+        "FinOps": "A cross-functional practice that relates cloud spending to business value, accountability, and optimization decisions.",
+        "Spot capacity": "Lower-cost interruptible compute that may be reclaimed; use only for work that can checkpoint, retry, or tolerate interruption.",
+        "Power usage effectiveness (PUE)": "A facility-energy-to-IT-equipment-energy ratio; it describes data-center overhead but not the full carbon impact of useful work.",
+        "Carbon-aware scheduling": "Moves deferrable workloads in time or place based on carbon intensity while honoring latency, residency, and capacity constraints."
+      }
+    },
+    {
+      "id": "identity-and-threat-protection-at-scale",
+      "title": "Service identity, perimeter threats, and cryptographic lifecycle",
+      "entries": {
+        "OAuth 2.0": "An authorization framework for delegated access; the chosen grant and client type determine the threat model and token handling.",
+        "OpenID Connect (OIDC)": "An identity layer on OAuth 2.0 that provides authentication claims and ID-token semantics.",
+        "JSON Web Token (JWT)": "A compact claims representation that may be signed or encrypted; validate issuer, audience, expiry, algorithm policy, and key rotation.",
+        "SPIFFE/SPIRE": "A workload-identity approach that issues verifiable identities to running workloads and supports short-lived credentials.",
+        "Distributed denial-of-service (DDoS) mitigation": "Layered capacity, filtering, rate control, and traffic absorption to reduce availability impact from volumetric or application-level attacks.",
+        "Web application firewall (WAF)": "An HTTP-aware rule layer that blocks or challenges selected traffic patterns; it cannot repair authorization or input-validation flaws.",
+        "Key management service (KMS)": "A managed cryptographic-key lifecycle and access control service; envelope encryption and key rotation policies remain application concerns.",
+        "Supply-chain provenance": "Evidence of source, build process, and artifact lineage that supports integrity verification and incident response.",
+        "Post-quantum cryptography migration": "A staged transition to quantum-resistant algorithms where long-lived confidentiality or signature validity requires it; interoperability and crypto agility must be planned."
+      }
+    }
+  ],
+  "t12-005": [
+    {
+      "id": "llm-operations-and-multi-agent-systems",
+      "title": "Prompt operations, multi-agent coordination, and model economics",
+      "entries": {
+        "Prompt-as-code": "Treats prompt templates and structured instructions as reviewed, versioned artifacts with tests, rollout, and rollback.",
+        "Red teaming": "Probes a system with adversarial inputs and misuse scenarios to find safety and security failures before and after release.",
+        "Multi-agent orchestration": "Coordinates multiple model-driven workers or specialists; shared state, failure propagation, loops, and budget need explicit limits.",
+        "Planner-executor pattern": "Separates task decomposition from action execution; validate every proposed action and bound plan depth and retries.",
+        "Model routing": "Selects a model/provider using task capability, privacy, quality, latency, quota, and cost constraints.",
+        "Model cascade": "Tries a cheaper or faster model first and escalates selected cases to a stronger model according to an evaluated policy.",
+        "Prompt caching": "Reuses provider-side processing for repeated prompt prefixes where supported; it does not cache the full semantic answer by itself.",
+        "Streaming speech recognition (ASR)": "Produces partial speech-to-text results while audio arrives, reducing perceived delay but allowing revisions.",
+        "Text-to-speech (TTS) streaming": "Emits generated speech incrementally so playback can begin before the full output is available.",
+        "Model Context Protocol (MCP)": "Defines a protocol for exposing context and tools to AI applications; client and server trust, authorization, and input validation remain essential.",
+        "Multimodal data pipeline": "Ingests and transforms text, image, audio, video, or documents while preserving provenance, access policy, and modality-specific evaluation."
+      }
+    }
+  ]
+}

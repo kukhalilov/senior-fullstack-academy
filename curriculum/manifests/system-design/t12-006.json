@@ -1,0 +1,1707 @@
+{
+  "schemaVersion": 4,
+  "id": "t12-006",
+  "track": "track-12",
+  "title": "end-to-end system design case studies",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A case study is a way to practice applying requirements, models, data ownership, failure analysis, and tradeoffs. There is no universal diagram: a strong design begins with constraints, establishes a correct baseline, follows concrete read/write paths, and evolves only when a bottleneck or requirement demands it.",
+    "Translate product requirements into observable measures and testable user journeys before choosing components.",
+    "Make state ownership, consistency, replay, and recovery explicit at every boundary.",
+    "Account for latency, throughput, tail behavior, capacity, cost, security, privacy, and operational effort as interacting constraints.",
+    "Use a simple baseline, then add a mechanism only to meet a stated requirement or measured bottleneck.",
+    "Design failure behavior and release compatibility across client, API, data, and operations rather than per component."
+  ],
+  "inventory": [
+    {
+      "id": "transactional-and-collaborative-systems",
+      "title": "Transactions, collaboration, and ownership cases",
+      "items": [
+        "Payment processing",
+        "Ticket booking",
+        "Hotel booking",
+        "Collaborative document editing",
+        "File synchronization",
+        "Distributed lock service",
+        "Distributed scheduler",
+        "Notification service"
+      ]
+    },
+    {
+      "id": "high-throughput-and-realtime-cases",
+      "title": "Traffic-heavy, realtime, and discovery cases",
+      "items": [
+        "URL shortener",
+        "Paste service",
+        "Chat system",
+        "Social feed",
+        "Ride-hailing dispatch",
+        "Search autocomplete",
+        "Video streaming platform",
+        "Metrics ingestion platform"
+      ]
+    },
+    {
+      "id": "common-design-artifacts-and-failure-drills",
+      "title": "Reusable design artifacts and validation",
+      "items": [
+        "Requirements table",
+        "Workload model",
+        "Entity and ownership map",
+        "API contract",
+        "Read path",
+        "Write path",
+        "Failure matrix",
+        "Capacity estimate",
+        "Architecture decision record (ADR)",
+        "Operational runbook"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Fan-out-on-write",
+      "Fan-out-on-read"
+    ],
+    [
+      "At-most-once",
+      "At-least-once delivery"
+    ],
+    [
+      "Strong reservation",
+      "Best-effort availability"
+    ],
+    [
+      "Object bytes",
+      "Object metadata"
+    ],
+    [
+      "Synchronous response",
+      "Durable asynchronous acceptance"
+    ]
+  ],
+  "comparisonSources": [
+    "https://hld.handbook.academy/",
+    "https://sre.google/sre-book/table-of-contents/",
+    "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+    "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework",
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+    "https://www.rfc-editor.org/rfc/rfc9110",
+    "https://learn.microsoft.com/en-us/ef/core/saving/transactions"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "The HLD Handbook public system-design syllabus, with relevant standards, framework guidance, and official platform documentation for technical context.",
+    "edition": "Handbook syllabus checked 2026-11-17; concepts are version-independent unless an implementation-specific source says otherwise.",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://hld.handbook.academy/",
+      "https://sre.google/sre-book/table-of-contents/",
+      "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+      "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+      "https://www.rfc-editor.org/rfc/rfc9110",
+      "https://learn.microsoft.com/en-us/ef/core/saving/transactions"
+    ]
+  },
+  "scopeExclusions": [
+    "This course paraphrases the handbook’s syllabus and teaches selected core concepts; it does not reproduce the handbook’s 159 chapters or 56 case-study articles. Consult the linked handbook for its full scope and additional cases.",
+    "Vendor-specific service SKUs, quotas, and configuration signatures are intentionally excluded; verify those in the selected provider’s current documentation.",
+    "The inventory names are the closed reference scope for this topic; the overview teaches the mental model without listing every item."
+  ],
+  "generationAllowed": true,
+  "practiceProblems": [
+    {
+      "id": "url-shortener",
+      "name": "Design a URL shortener",
+      "difficulty": "advanced",
+      "patterns": [
+        "identifier generation",
+        "redirect latency",
+        "abuse controls",
+        "and analytics isolation"
+      ],
+      "statement": "Design a URL-shortening service that accepts destination URLs, returns short links, redirects reliably, supports expiration and abuse reporting, and measures usage without slowing redirects.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "distributed-rate-limiter",
+      "name": "Design a distributed API rate limiter",
+      "difficulty": "advanced",
+      "patterns": [
+        "quota semantics",
+        "atomic counters",
+        "clock windows",
+        "and failure policy"
+      ],
+      "statement": "Design per-user and per-tenant limits enforced across many API instances, including burst allowance, fairness, and behavior when the shared limiter is unavailable.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "chat-system",
+      "name": "Design a chat system",
+      "difficulty": "advanced",
+      "patterns": [
+        "persistent connections",
+        "message durability",
+        "ordering scope",
+        "and offline delivery"
+      ],
+      "statement": "Design one-to-one and group chat with online delivery, offline history, delivery status, and support for reconnecting clients.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "social-feed",
+      "name": "Design a social feed",
+      "difficulty": "advanced",
+      "patterns": [
+        "fan-out tradeoffs",
+        "hot authors",
+        "ranking",
+        "and freshness"
+      ],
+      "statement": "Design a feed for a social product with ordinary users and a small number of authors whose posts have millions of followers.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "file-sync",
+      "name": "Design a file synchronization service",
+      "difficulty": "advanced",
+      "patterns": [
+        "object durability",
+        "metadata versions",
+        "offline clients",
+        "and conflict resolution"
+      ],
+      "statement": "Design multi-device sync that supports large files, offline edits, version history, deletion, and shared folders.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "ticketing-service",
+      "name": "Design a high-demand ticketing service",
+      "difficulty": "advanced",
+      "patterns": [
+        "inventory correctness",
+        "temporary holds",
+        "admission control",
+        "and payment saga"
+      ],
+      "statement": "Design ticket sales for a popular event where many users attempt to buy the final seats at the same time.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "realtime-leaderboard",
+      "name": "Design a real-time leaderboard",
+      "difficulty": "advanced",
+      "patterns": [
+        "score ingestion",
+        "partitioned aggregation",
+        "rank queries",
+        "and approximate tails"
+      ],
+      "statement": "Design a leaderboard for millions of players with frequent score updates, global top ranks, friends-only views, and seasonal periods.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "metrics-ingestion",
+      "name": "Design a metrics ingestion platform",
+      "difficulty": "advanced",
+      "patterns": [
+        "high-cardinality ingestion",
+        "retention",
+        "aggregation",
+        "and alert latency"
+      ],
+      "statement": "Design a platform that ingests numeric measurements from many services, supports dashboards and alerts, and retains useful history affordably.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "unique-id-service",
+      "name": "Design a distributed unique ID generator",
+      "difficulty": "advanced",
+      "patterns": [
+        "uniqueness",
+        "ordering",
+        "clock behavior",
+        "and failure domains"
+      ],
+      "statement": "Design an ID scheme for independent services that need unique sortable IDs without a network call on every allocation.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "notification-platform",
+      "name": "Design a notification platform",
+      "difficulty": "advanced",
+      "patterns": [
+        "preferences",
+        "channel delivery",
+        "retries",
+        "and provider ambiguity"
+      ],
+      "statement": "Design email, push, and SMS delivery from product events while honoring preferences and provider rate limits.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "pastebin",
+      "name": "Design a paste-sharing service",
+      "difficulty": "advanced",
+      "patterns": [
+        "large-object storage",
+        "expiration",
+        "access policy",
+        "and abuse controls"
+      ],
+      "statement": "Design a text-sharing service with public, unlisted, and private pastes, optional expiration, and syntax highlighting.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "distributed-key-value-store",
+      "name": "Design a distributed key-value store",
+      "difficulty": "advanced",
+      "patterns": [
+        "partitioning",
+        "quorum reads/writes",
+        "membership",
+        "and replica repair"
+      ],
+      "statement": "Design a key-value store that partitions keys across nodes and remains useful during node and network failures.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "photo-sharing",
+      "name": "Design a photo-sharing service",
+      "difficulty": "advanced",
+      "patterns": [
+        "upload workflow",
+        "media derivatives",
+        "object storage",
+        "CDN",
+        "and feed integration"
+      ],
+      "statement": "Design photo upload and viewing for a social application with multiple resolutions, private accounts, and a feed.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "web-crawler",
+      "name": "Design a distributed web crawler",
+      "difficulty": "advanced",
+      "patterns": [
+        "frontier scheduling",
+        "politeness",
+        "deduplication",
+        "and robots policy"
+      ],
+      "statement": "Design a crawler that discovers pages at large scale while respecting host limits, robots policy, and recrawl priorities.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "search-autocomplete",
+      "name": "Design search autocomplete",
+      "difficulty": "advanced",
+      "patterns": [
+        "prefix retrieval",
+        "top-K ranking",
+        "freshness",
+        "and keystroke request races"
+      ],
+      "statement": "Design low-latency suggestions while users type, including popular queries, typo tolerance, trending terms, and keyboard selection.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "video-streaming",
+      "name": "Design a video-streaming platform",
+      "difficulty": "advanced",
+      "patterns": [
+        "ingest",
+        "transcoding",
+        "adaptive playback",
+        "CDN delivery",
+        "and entitlement"
+      ],
+      "statement": "Design user video upload and playback across devices and variable network quality.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "netflix-end-to-end",
+      "name": "Design a large subscription video platform",
+      "difficulty": "advanced",
+      "patterns": [
+        "content delivery",
+        "personalization",
+        "resilience",
+        "and multi-service operations"
+      ],
+      "statement": "Design a global subscription streaming experience from catalog browsing through playback and recommendations.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "ride-hailing",
+      "name": "Design a ride-hailing dispatch service",
+      "difficulty": "advanced",
+      "patterns": [
+        "fresh location ingest",
+        "geospatial candidate search",
+        "matching",
+        "and trip state"
+      ],
+      "statement": "Design driver-rider matching with live location updates, ETA, acceptance deadlines, and changing supply.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "maps-routing",
+      "name": "Design a maps and routing service",
+      "difficulty": "advanced",
+      "patterns": [
+        "tile delivery",
+        "graph routing",
+        "ETA freshness",
+        "and offline access"
+      ],
+      "statement": "Design map visualization and route planning for global users with online traffic updates and offline areas.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "collaborative-editing",
+      "name": "Design collaborative document editing",
+      "difficulty": "advanced",
+      "patterns": [
+        "concurrent edits",
+        "offline merge",
+        "presence",
+        "and durable history"
+      ],
+      "statement": "Design a multi-user document editor that supports concurrent typing, disconnection, cursor presence, and version history.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "distributed-cache",
+      "name": "Design a distributed cache",
+      "difficulty": "advanced",
+      "patterns": [
+        "key placement",
+        "eviction",
+        "replication",
+        "hot keys",
+        "and stale-data safety"
+      ],
+      "statement": "Design a shared cache for many application instances with large read volume and a strict tolerance for stale values on some records.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "recommendation-system",
+      "name": "Design a recommendation system",
+      "difficulty": "advanced",
+      "patterns": [
+        "candidate generation",
+        "ranking",
+        "feedback",
+        "cold start",
+        "and evaluation"
+      ],
+      "statement": "Design personalized recommendations for a large catalog with new users, new items, and measurable user outcomes.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "payment-system",
+      "name": "Design a payment system",
+      "difficulty": "advanced",
+      "patterns": [
+        "ledger correctness",
+        "idempotent commands",
+        "provider workflows",
+        "and reconciliation"
+      ],
+      "statement": "Design payment authorization, capture, refund, and status queries across internal services and an external payment provider.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "stock-exchange-matching",
+      "name": "Design an exchange matching engine",
+      "difficulty": "advanced",
+      "patterns": [
+        "deterministic ordering",
+        "market data fan-out",
+        "auditability",
+        "and latency"
+      ],
+      "statement": "Design a simplified exchange order book that accepts orders, matches buyers and sellers, publishes market data, and supports replay/audit.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "food-delivery",
+      "name": "Design a food-delivery marketplace",
+      "difficulty": "advanced",
+      "patterns": [
+        "three-sided workflow",
+        "dispatch",
+        "ETA",
+        "reassignment",
+        "and partial failure"
+      ],
+      "statement": "Design order placement and fulfillment across customer, restaurant, courier, and payment systems.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "ad-click-aggregation",
+      "name": "Design real-time ad-click aggregation",
+      "difficulty": "advanced",
+      "patterns": [
+        "event deduplication",
+        "windows",
+        "late data",
+        "fraud signals",
+        "and billing correctness"
+      ],
+      "statement": "Design click ingestion and reporting for campaigns with near-real-time dashboards and financial settlement.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "logging-platform",
+      "name": "Design a centralized logging platform",
+      "difficulty": "advanced",
+      "patterns": [
+        "ingest backpressure",
+        "indexing cost",
+        "retention tiers",
+        "and sensitive-data control"
+      ],
+      "statement": "Design logs collection and search for thousands of services while keeping ingestion reliable and preventing accidental sensitive-data exposure.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "proximity-service",
+      "name": "Design a nearby-people or places service",
+      "difficulty": "advanced",
+      "patterns": [
+        "geospatial cells",
+        "freshness",
+        "privacy",
+        "and hotspot control"
+      ],
+      "statement": "Design nearby discovery for users sharing current locations with opt-in privacy and high-density events.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "hotel-reservation",
+      "name": "Design a hotel reservation system",
+      "difficulty": "advanced",
+      "patterns": [
+        "date-range inventory",
+        "search projections",
+        "holds",
+        "and supplier inconsistency"
+      ],
+      "statement": "Design search and booking for room inventory across concurrent customers and potentially external hotel suppliers.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "distributed-job-scheduler",
+      "name": "Design a distributed job scheduler",
+      "difficulty": "advanced",
+      "patterns": [
+        "durable scheduling",
+        "leases",
+        "retries",
+        "missed runs",
+        "and duplicate-safe effects"
+      ],
+      "statement": "Design a scheduler that runs one-time and recurring jobs across workers, supports dependencies, and survives worker crashes.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "chatgpt-scale",
+      "name": "Design a conversational AI service",
+      "difficulty": "advanced",
+      "patterns": [
+        "session state",
+        "streaming generation",
+        "inference capacity",
+        "safety",
+        "and cost"
+      ],
+      "statement": "Design a conversational assistant that streams responses, supports conversation history, and serves many tenants under model-provider limits.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "enterprise-rag",
+      "name": "Design an enterprise retrieval-augmented assistant",
+      "difficulty": "advanced",
+      "patterns": [
+        "document ingestion",
+        "ACL-aware retrieval",
+        "freshness",
+        "citations",
+        "and tenant isolation"
+      ],
+      "statement": "Design a multi-tenant assistant over private enterprise documents that returns cited answers and respects source permissions.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "coding-agent",
+      "name": "Design a coding agent service",
+      "difficulty": "advanced",
+      "patterns": [
+        "repository indexing",
+        "isolated tools",
+        "patch review",
+        "and session streaming"
+      ],
+      "statement": "Design an assistant that indexes repositories, answers code questions, and can propose or apply changes through tools.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "ai-search-citations",
+      "name": "Design AI search with citations",
+      "difficulty": "advanced",
+      "patterns": [
+        "query rewriting",
+        "retrieval",
+        "source grounding",
+        "streaming",
+        "and freshness"
+      ],
+      "statement": "Design a search product that retrieves web or enterprise sources and streams a synthesized answer with citations.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "realtime-voice-agent",
+      "name": "Design a real-time voice agent",
+      "difficulty": "advanced",
+      "patterns": [
+        "streaming audio",
+        "turn-taking",
+        "interruption",
+        "latency budgets",
+        "and privacy"
+      ],
+      "statement": "Design a voice assistant that listens, responds with generated speech, and supports barge-in while maintaining low conversational delay.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "content-moderation",
+      "name": "Design a content moderation system",
+      "difficulty": "advanced",
+      "patterns": [
+        "classifier cascades",
+        "pre-publish latency",
+        "human review",
+        "appeals",
+        "and audit"
+      ],
+      "statement": "Design moderation for user-generated text and media with fast high-confidence decisions and human handling of uncertain cases.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "semantic-cache",
+      "name": "Design a semantic cache for AI requests",
+      "difficulty": "advanced",
+      "patterns": [
+        "similarity thresholds",
+        "tenant isolation",
+        "invalidation",
+        "and false reuse cost"
+      ],
+      "statement": "Design a cache that may reuse a prior model answer for semantically similar prompts to reduce cost and latency.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "model-router",
+      "name": "Design a model routing gateway",
+      "difficulty": "advanced",
+      "patterns": [
+        "provider selection",
+        "streaming",
+        "quotas",
+        "failover",
+        "and per-tenant cost"
+      ],
+      "statement": "Design a gateway that routes AI requests across multiple model providers based on latency, quality, availability, and price.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "feature-flag-service",
+      "name": "Design a feature flag and experimentation service",
+      "difficulty": "advanced",
+      "patterns": [
+        "low-latency evaluation",
+        "configuration distribution",
+        "targeting",
+        "and kill switches"
+      ],
+      "statement": "Design a feature-flag platform that evaluates flags in application processes and propagates updates quickly across regions.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "dns-service",
+      "name": "Design a global recursive DNS service",
+      "difficulty": "advanced",
+      "patterns": [
+        "caching",
+        "anycast routing",
+        "protocol behavior",
+        "abuse resistance",
+        "and DNSSEC"
+      ],
+      "statement": "Design a public DNS resolver that serves low-latency queries globally while resisting abuse and maintaining correct cache behavior.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "dating-app",
+      "name": "Design a dating application",
+      "difficulty": "advanced",
+      "patterns": [
+        "candidate retrieval",
+        "mutual-match correctness",
+        "safety",
+        "privacy",
+        "and recommendation feedback"
+      ],
+      "statement": "Design discovery, swipe, mutual match, messaging, and blocking for a location-aware dating product.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "online-auction",
+      "name": "Design a real-time online auction",
+      "difficulty": "advanced",
+      "patterns": [
+        "bid ordering",
+        "atomic acceptance",
+        "anti-sniping rules",
+        "and realtime fan-out"
+      ],
+      "statement": "Design auctions with many concurrent bidders, visible bid updates, reserve prices, and a defined closing rule.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "multi-tenant-saas",
+      "name": "Design a multi-tenant SaaS platform",
+      "difficulty": "advanced",
+      "patterns": [
+        "tenant isolation",
+        "service tiers",
+        "metering",
+        "noisy-neighbor controls",
+        "and data lifecycle"
+      ],
+      "statement": "Design a SaaS platform for many organizations with different service tiers, usage billing, and tenant-specific retention or residency rules.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "video-conferencing",
+      "name": "Design a video-conferencing service",
+      "difficulty": "advanced",
+      "patterns": [
+        "media routing",
+        "latency budgets",
+        "signaling",
+        "recording",
+        "and network adaptation"
+      ],
+      "statement": "Design meetings with interactive audio/video, screen sharing, recording, and participants joining from unreliable networks.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "email-service",
+      "name": "Design a large-scale email service",
+      "difficulty": "advanced",
+      "patterns": [
+        "mail delivery",
+        "mailbox state",
+        "search",
+        "spam defenses",
+        "and retention"
+      ],
+      "statement": "Design sending and receiving email with mailbox search, attachments, threading, spam filtering, and long-term retention.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "live-comments",
+      "name": "Design live comments for a large broadcast",
+      "difficulty": "advanced",
+      "patterns": [
+        "hot-stream fan-out",
+        "moderation",
+        "batching",
+        "ordering",
+        "and slow clients"
+      ],
+      "statement": "Design comments for a live event with millions of viewers but far fewer commenters, including moderation and replay.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "fraud-detection",
+      "name": "Design a real-time fraud detection system",
+      "difficulty": "advanced",
+      "patterns": [
+        "feature freshness",
+        "rules/model cascade",
+        "decision latency",
+        "and analyst feedback"
+      ],
+      "statement": "Design transaction scoring that can block or challenge suspicious activity under a strict response deadline.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "fitness-tracking",
+      "name": "Design a fitness tracking service",
+      "difficulty": "advanced",
+      "patterns": [
+        "GPS ingestion",
+        "activity processing",
+        "segment matching",
+        "leaderboards",
+        "and privacy"
+      ],
+      "statement": "Design activity recording and sharing for runners and cyclists with route maps, segment rankings, and privacy zones.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "online-judge",
+      "name": "Design an online code-judging platform",
+      "difficulty": "advanced",
+      "patterns": [
+        "untrusted code isolation",
+        "queue fairness",
+        "deterministic testing",
+        "and contest peaks"
+      ],
+      "statement": "Design a coding challenge service that compiles and runs untrusted submissions and returns verdicts under bursty contest load.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "price-tracking",
+      "name": "Design a product price-tracking service",
+      "difficulty": "advanced",
+      "patterns": [
+        "polite data acquisition",
+        "change detection",
+        "retention",
+        "and subscriber alerts"
+      ],
+      "statement": "Design a service that monitors product prices over time and alerts subscribers when prices change or cross a target.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "api-gateway-scale",
+      "name": "Design a high-scale API gateway",
+      "difficulty": "advanced",
+      "patterns": [
+        "routing configuration",
+        "authentication boundaries",
+        "quotas",
+        "and failure isolation"
+      ],
+      "statement": "Design a gateway that routes many public APIs to backend services while adding authentication integration, quotas, and observability with low overhead.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "cicd-platform",
+      "name": "Design a CI/CD platform",
+      "difficulty": "advanced",
+      "patterns": [
+        "workflow scheduling",
+        "ephemeral runners",
+        "artifact integrity",
+        "secrets",
+        "and tenant isolation"
+      ],
+      "statement": "Design a hosted build platform that executes customer workflows with caches, artifacts, secrets, and concurrent jobs.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "observability-platform",
+      "name": "Design an observability platform",
+      "difficulty": "advanced",
+      "patterns": [
+        "multi-signal ingestion",
+        "cardinality",
+        "trace correlation",
+        "query isolation",
+        "and retention"
+      ],
+      "statement": "Design ingestion and query for metrics, logs, and traces across many hosts and multiple customer organizations.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "web-search-engine",
+      "name": "Design a web-scale search engine",
+      "difficulty": "advanced",
+      "patterns": [
+        "crawl/index pipelines",
+        "inverted indexes",
+        "ranking",
+        "freshness",
+        "and query serving"
+      ],
+      "statement": "Design search over a large document corpus with ranked results, low query latency, and frequent content updates.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "brokerage-platform",
+      "name": "Design a retail brokerage platform",
+      "difficulty": "advanced",
+      "patterns": [
+        "order lifecycle",
+        "market-data fan-out",
+        "ledger/tax lots",
+        "and auditability"
+      ],
+      "statement": "Design trading for retail users with order submission, streaming quotes, portfolio views, fractional shares, and regulatory records.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "channel-scale-chat",
+      "name": "Design channel-scale team chat",
+      "difficulty": "advanced",
+      "patterns": [
+        "large-room fan-out",
+        "workspace authorization",
+        "presence aggregation",
+        "and search"
+      ],
+      "statement": "Design team chat with channels that may have very large membership, threads, presence, file sharing, and workspace search.",
+      "constraints": [
+        "Define requirements, invariant, workload, and source of truth before selecting components.",
+        "Cover peak demand, partial failure, recovery, security, and operational evidence."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer changes one workload or failure assumption during the discussion.",
+          "output": "Update the affected path and explain which decision changes and why."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    }
+  ]
+}

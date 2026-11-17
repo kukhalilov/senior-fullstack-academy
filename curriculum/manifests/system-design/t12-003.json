@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 4,
+  "id": "t12-003",
+  "track": "track-12",
+  "title": "data systems storage engines analytics streams and search",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Data architecture follows access patterns, invariants, retention, and query shape. Transactional stores, analytical systems, event logs, search indexes, and object stores optimize different work; duplication between them creates freshness, replay, and ownership responsibilities.",
+    "Translate product requirements into observable measures and testable user journeys before choosing components.",
+    "Make state ownership, consistency, replay, and recovery explicit at every boundary.",
+    "Account for latency, throughput, tail behavior, capacity, cost, security, privacy, and operational effort as interacting constraints.",
+    "Use a simple baseline, then add a mechanism only to meet a stated requirement or measured bottleneck.",
+    "Design failure behavior and release compatibility across client, API, data, and operations rather than per component."
+  ],
+  "inventory": [
+    {
+      "id": "storage-and-query-models",
+      "title": "Databases and storage-engine tradeoffs",
+      "items": [
+        "OLTP",
+        "OLAP",
+        "B-tree",
+        "Log-structured merge tree (LSM tree)",
+        "Write-ahead log (WAL)",
+        "MVCC",
+        "Relational database",
+        "Key-value store",
+        "Document database",
+        "Column-family store"
+      ]
+    },
+    {
+      "id": "pipelines-and-derived-data",
+      "title": "Events, analytics, and change propagation",
+      "items": [
+        "Batch processing",
+        "Stream processing",
+        "Lambda architecture",
+        "Kappa architecture",
+        "Change data capture (CDC)",
+        "Transactional outbox",
+        "Event sourcing",
+        "Data lake",
+        "Data warehouse",
+        "Lakehouse"
+      ]
+    },
+    {
+      "id": "specialized-indexes-and-data",
+      "title": "Search, time-series, graph, and vector workloads",
+      "items": [
+        "Inverted index",
+        "BM25",
+        "Time-series database",
+        "Graph database",
+        "Vector database",
+        "Approximate nearest neighbor (ANN) index",
+        "Bloom filter",
+        "Materialized view"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "OLTP",
+      "OLAP"
+    ],
+    [
+      "B-tree",
+      "Log-structured merge tree (LSM tree)"
+    ],
+    [
+      "Batch processing",
+      "Stream processing"
+    ],
+    [
+      "Lambda architecture",
+      "Kappa architecture"
+    ],
+    [
+      "Data lake",
+      "Data warehouse",
+      "Lakehouse"
+    ],
+    [
+      "Inverted index",
+      "Vector database"
+    ]
+  ],
+  "comparisonSources": [
+    "https://hld.handbook.academy/",
+    "https://www.postgresql.org/docs/current/mvcc.html",
+    "https://kafka.apache.org/documentation/",
+    "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "The HLD Handbook public system-design syllabus, with relevant standards, framework guidance, and official platform documentation for technical context.",
+    "edition": "Handbook syllabus checked 2026-11-17; concepts are version-independent unless an implementation-specific source says otherwise.",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://hld.handbook.academy/",
+      "https://www.postgresql.org/docs/current/mvcc.html",
+      "https://kafka.apache.org/documentation/",
+      "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html"
+    ]
+  },
+  "scopeExclusions": [
+    "This course paraphrases the handbook’s syllabus and teaches selected core concepts; it does not reproduce the handbook’s 159 chapters or 56 case-study articles. Consult the linked handbook for its full scope and additional cases.",
+    "Vendor-specific service SKUs, quotas, and configuration signatures are intentionally excluded; verify those in the selected provider’s current documentation.",
+    "The inventory names are the closed reference scope for this topic; the overview teaches the mental model without listing every item."
+  ],
+  "generationAllowed": true
+}

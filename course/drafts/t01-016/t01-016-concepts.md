@@ -77,3 +77,8 @@ To wait for already-started independent operations together, use `Task.WhenAll(T
     *   **Answer**: `Task` is a reference type and is generally the simpler reusable return type; implementations can cache completed tasks. `ValueTask` is a value type that can avoid allocating a `Task` for some synchronous completions, but may add complexity and is not guaranteed allocation-free.
 
 *Sources: [Microsoft C# asynchronous programming guide](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/), [TAP guidance](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)*
+
+
+## .NET async behavior as a capacity boundary
+
+Async I/O lets a request release its worker thread while waiting; it does not remove downstream limits or make CPU-heavy work parallel. In a service, propagate the request cancellation token to cooperative I/O, apply an end-to-end deadline, and bound concurrent work. Avoid sync-over-async and unbounded task creation, which can exhaust ThreadPool workers or memory under load. A client disconnect may cancel work that has not committed; after durable acceptance, background work may intentionally outlive the HTTP request. Decide that boundary explicitly. See [Task-based Asynchronous Pattern](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap) and [common async bugs](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs).

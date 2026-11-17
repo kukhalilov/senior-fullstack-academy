@@ -1,0 +1,42 @@
+# system design foundations and infrastructure building blocks — Reference: Spatial partitioning and geospatial query structures
+
+Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.rfc-editor.org/rfc/rfc8446), [reference 3](https://www.rfc-editor.org/rfc/rfc9293), [reference 4](https://www.rfc-editor.org/rfc/rfc6455), [reference 5](https://www.rfc-editor.org/rfc/rfc9000), [reference 6](https://learn.microsoft.com/en-us/azure/architecture/guide/).
+
+## Scope and version
+
+This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+
+## How this group fits the mental model
+
+These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+
+## Supplied names explained
+
+- `Geohash` — Encodes a location into a hierarchical string cell; nearby points near cell borders may have different prefixes, so neighboring cells must be queried.
+- `Quadtree` — Recursively subdivides a two-dimensional region into four cells, adapting spatial resolution to data distribution.
+- `R-tree` — Indexes bounding rectangles in a balanced tree for spatial intersection and range queries; overlapping nodes can increase search work.
+- `S2 geometry` — Represents spherical geometry using hierarchical cells mapped from a cube projection, supporting global spatial indexing.
+- `H3 grid` — Partitions the globe into hierarchical hexagonal cells with pentagonal exceptions, useful for aggregation and neighborhood queries.
+- `Bounding-box candidate search` — Finds a coarse set of spatial candidates before a more exact distance or geometry test; it must account for projection and antimeridian behavior.
+- `Spatial hot cell` — A geographic partition with unusually high traffic or data density; split, replicate, or adapt query strategy without losing boundary correctness.
+
+## Cross-item comparison
+
+Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+
+## Examples
+
+For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+
+## Common mistakes
+
+- Selecting a component by popularity before defining the requirement.
+- Treating a protocol or product name as a guarantee without reading its contract.
+- Ignoring cost, operational ownership, observability, and recovery.
+- Applying one consistency or caching rule to data with different correctness needs.
+
+## Knowledge checks with answers
+
+1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
+2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
+3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.

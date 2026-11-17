@@ -80,3 +80,8 @@ The client-generated operation ID/unique constraint helps make replay detectable
 3. **What does a savepoint do?** Provides a rollback point inside an open transaction without committing it.
 4. **What does unknown commit mean?** The database may have committed even though the client did not receive confirmation.
 5. **What handles stale updates?** Concurrency token conflict resolution, not blind transient retry.
+
+
+## System-design boundary: EF Core transaction and external delivery
+
+An EF Core transaction can make related database changes atomic on the same transactional resource. It cannot atomically commit a message to an unrelated broker or an email provider. Write an outbox record with the domain change in one database transaction; publish it asynchronously and expect possible duplicate delivery. Give each event a stable identifier and make the consumer's effect idempotent. Keep broker calls outside the database transaction so network delay does not extend locks. Recovery includes retrying pending outbox rows and reconciling downstream state. This pattern composes local transactions with at-least-once delivery; it is not end-to-end exactly-once execution. [EF Core transactions](https://learn.microsoft.com/en-us/ef/core/saving/transactions).

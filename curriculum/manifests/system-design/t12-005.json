@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 4,
+  "id": "t12-005",
+  "track": "track-12",
+  "title": "ai and machine learning system design",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "An AI feature is a product system around a model: data collection, retrieval, inference, policy, evaluation, observability, feedback, and cost. A successful design defines quality and safety criteria, uses deterministic software for deterministic rules, and makes model uncertainty visible to users and operators.",
+    "Translate product requirements into observable measures and testable user journeys before choosing components.",
+    "Make state ownership, consistency, replay, and recovery explicit at every boundary.",
+    "Account for latency, throughput, tail behavior, capacity, cost, security, privacy, and operational effort as interacting constraints.",
+    "Use a simple baseline, then add a mechanism only to meet a stated requirement or measured bottleneck.",
+    "Design failure behavior and release compatibility across client, API, data, and operations rather than per component."
+  ],
+  "inventory": [
+    {
+      "id": "llm-inference-and-retrieval",
+      "title": "Model serving, retrieval, and orchestration",
+      "items": [
+        "Model serving",
+        "Inference endpoint",
+        "Retrieval-augmented generation (RAG)",
+        "Embedding",
+        "Vector search",
+        "Reranking",
+        "Agent",
+        "Tool calling",
+        "Context window",
+        "Prompt injection"
+      ]
+    },
+    {
+      "id": "evaluation-quality-and-safety",
+      "title": "Evaluation, governance, and safe operations",
+      "items": [
+        "Offline evaluation",
+        "Online evaluation",
+        "Golden dataset",
+        "LLM-as-judge",
+        "Hallucination",
+        "Human-in-the-loop review",
+        "Prompt/version registry",
+        "Model drift",
+        "Data poisoning",
+        "Responsible AI risk assessment"
+      ]
+    },
+    {
+      "id": "ml-data-features-and-cost",
+      "title": "Classical ML pipelines, feedback, and economics",
+      "items": [
+        "Feature store",
+        "Training-serving skew",
+        "Model registry",
+        "Canary model rollout",
+        "Recommendation system",
+        "Cold-start problem",
+        "Feedback loop",
+        "Batch inference",
+        "Real-time inference",
+        "Multimodal model",
+        "Token budget",
+        "Fallback policy"
+      ]
+    },
+    {
+      "id": "llm-operations-and-multi-agent-systems",
+      "title": "Prompt operations, multi-agent coordination, and model economics",
+      "items": [
+        "Prompt-as-code",
+        "Red teaming",
+        "Multi-agent orchestration",
+        "Planner-executor pattern",
+        "Model routing",
+        "Model cascade",
+        "Prompt caching",
+        "Streaming speech recognition (ASR)",
+        "Text-to-speech (TTS) streaming",
+        "Model Context Protocol (MCP)",
+        "Multimodal data pipeline"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "RAG",
+      "Fine-tuning"
+    ],
+    [
+      "Offline evaluation",
+      "Online evaluation"
+    ],
+    [
+      "Batch inference",
+      "Real-time inference"
+    ],
+    [
+      "LLM-as-judge",
+      "Human review"
+    ],
+    [
+      "Agent",
+      "Deterministic workflow"
+    ]
+  ],
+  "comparisonSources": [
+    "https://hld.handbook.academy/",
+    "https://platform.openai.com/docs/guides/production-best-practices",
+    "https://cloud.google.com/architecture/framework/ai-ml",
+    "https://csrc.nist.gov/pubs/sp/800/207/final",
+    "https://owasp.org/www-project-api-security/"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "The HLD Handbook public system-design syllabus, with relevant standards, framework guidance, and official platform documentation for technical context.",
+    "edition": "Handbook syllabus checked 2026-11-17; concepts are version-independent unless an implementation-specific source says otherwise.",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://hld.handbook.academy/",
+      "https://platform.openai.com/docs/guides/production-best-practices",
+      "https://cloud.google.com/architecture/framework/ai-ml",
+      "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "https://owasp.org/www-project-api-security/"
+    ]
+  },
+  "scopeExclusions": [
+    "This course paraphrases the handbook’s syllabus and teaches selected core concepts; it does not reproduce the handbook’s 159 chapters or 56 case-study articles. Consult the linked handbook for its full scope and additional cases.",
+    "Vendor-specific service SKUs, quotas, and configuration signatures are intentionally excluded; verify those in the selected provider’s current documentation.",
+    "The inventory names are the closed reference scope for this topic; the overview teaches the mental model without listing every item."
+  ],
+  "generationAllowed": true
+}

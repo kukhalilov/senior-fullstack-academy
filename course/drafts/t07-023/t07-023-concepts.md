@@ -93,3 +93,8 @@ The boundary belongs at the module top. Keep server-only data access above it an
 3. **What does `'use server'` mean?** A Server Function directive, not a Server Component declaration.
 4. **What does a loader do?** Reads data for a route and integrates with the router/framework lifecycle.
 5. **Why is cache scope important?** Persistent shared caches can leak stale or user-specific data without correct keys/invalidation.
+
+
+## System-design view: React data caches and backend ownership
+
+A route loader, Server Component, browser query cache, CDN, and API database are different layers with different lifetimes. Decide which layer owns each representation, how mutation invalidates or revalidates it, and whether a stale value is safe. User-specific data needs authorization-aware cache keys and private/shared cache rules; do not assume framework caching is automatically per-user. Mutations should be authorized and validated by the server even when initiated by a route action or Server Function. During deployment, retain old asset files while cached HTML may reference them, and evolve API/schema contracts so old clients and new servers can overlap safely. [React application guidance](https://react.dev/learn/creating-a-react-app) · [Next.js App Router](https://nextjs.org/docs/app).

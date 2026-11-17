@@ -99,3 +99,8 @@ The registered singleton handler returns true but only logs. The middleware cons
 ## Sources
 
 [Environments](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments) · [Configuration](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration) · [Error handling](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling) · [Performance best practices](https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices) · [Deployment modes](https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes)
+
+
+## System-design deployment: readiness, draining, and compatible releases
+
+A production ASP.NET Core instance should receive traffic only after startup validation and required initialization finish. During shutdown, stop accepting new work and allow bounded in-flight requests to drain; durable background work needs its own checkpoint/retry protocol. Behind a reverse proxy, configure trusted forwarded headers deliberately so scheme, host, and client-address interpretation cannot be spoofed. For rolling deployment, keep old and new code compatible with the shared database and API clients: expand schema first, deploy code that can read both shapes, backfill, then contract after old consumers are gone. A binary rollback cannot reverse an incompatible data mutation. [ASP.NET Core health checks](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks) · [ASP.NET Core environments](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments).

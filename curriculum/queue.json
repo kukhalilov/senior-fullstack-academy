@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 1954,
+  "taskCount": 2067,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -23218,6 +23218,1392 @@
       "status": "draft-generation-eligible"
     },
     {
+      "id": "t12-001-overview",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Big-picture orientation and mental model",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-001-concepts",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Core concepts and how they fit together",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t12-001-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-001-reference-network-and-transport",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Network path and transport behavior",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "network-and-transport"
+    },
+    {
+      "id": "t12-001-reference-traffic-entry-and-delivery",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Traffic entry, routing, and edge delivery",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-network-and-transport"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "traffic-entry-and-delivery"
+    },
+    {
+      "id": "t12-001-reference-state-and-work-distribution",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Caching, queues, rate limits, and object storage",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-traffic-entry-and-delivery"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "state-and-work-distribution"
+    },
+    {
+      "id": "t12-001-reference-operating-systems-and-data-structures",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Operating-system resources and foundational data structures",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-state-and-work-distribution"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "operating-systems-and-data-structures"
+    },
+    {
+      "id": "t12-001-reference-geospatial-indexing",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Spatial partitioning and geospatial query structures",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-operating-systems-and-data-structures"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "geospatial-indexing"
+    },
+    {
+      "id": "t12-001-practice",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Exercises and worked solutions",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-001-reference-geospatial-indexing"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-001-interview",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Interview questions and reasoning",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t12-001-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-002-overview",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Big-picture orientation and mental model",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-002-concepts",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Core concepts and how they fit together",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t12-002-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-002-reference-consistency-and-coordination",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Consistency, transactions, and consensus",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "consistency-and-coordination"
+    },
+    {
+      "id": "t12-002-reference-time-ordering-and-failure",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Time, failure detection, and anti-entropy",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-consistency-and-coordination"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "time-ordering-and-failure"
+    },
+    {
+      "id": "t12-002-reference-partitioning-and-convergence",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Data placement and mergeable state",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-time-ordering-and-failure"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "partitioning-and-convergence"
+    },
+    {
+      "id": "t12-002-reference-cap-and-replication-guarantees",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Partition tradeoffs and replication guarantees",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-partitioning-and-convergence"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cap-and-replication-guarantees"
+    },
+    {
+      "id": "t12-002-practice",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Exercises and worked solutions",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-002-reference-cap-and-replication-guarantees"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-002-interview",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Interview questions and reasoning",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t12-002-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-003-overview",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Big-picture orientation and mental model",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-003-concepts",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Core concepts and how they fit together",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t12-003-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-003-reference-storage-and-query-models",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Databases and storage-engine tradeoffs",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "storage-and-query-models"
+    },
+    {
+      "id": "t12-003-reference-pipelines-and-derived-data",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Events, analytics, and change propagation",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-storage-and-query-models"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "pipelines-and-derived-data"
+    },
+    {
+      "id": "t12-003-reference-specialized-indexes-and-data",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Search, time-series, graph, and vector workloads",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-pipelines-and-derived-data"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "specialized-indexes-and-data"
+    },
+    {
+      "id": "t12-003-practice",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Exercises and worked solutions",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-003-reference-specialized-indexes-and-data"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-003-interview",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Interview questions and reasoning",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t12-003-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-004-overview",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Big-picture orientation and mental model",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-004-concepts",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Core concepts and how they fit together",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t12-004-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-004-reference-service-and-data-boundaries",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Application and integration patterns",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "service-and-data-boundaries"
+    },
+    {
+      "id": "t12-004-reference-regions-tenancy-and-data-protection",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Regions, tenants, and privacy boundaries",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-service-and-data-boundaries"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "regions-tenancy-and-data-protection"
+    },
+    {
+      "id": "t12-004-reference-reliability-security-and-delivery",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Operational controls and secure system behavior",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-regions-tenancy-and-data-protection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "reliability-security-and-delivery"
+    },
+    {
+      "id": "t12-004-reference-security-and-sustainable-operations",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Security at scale, privacy, cost, and sustainability",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-reliability-security-and-delivery"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "security-and-sustainable-operations"
+    },
+    {
+      "id": "t12-004-reference-architecture-evolution-and-team-shape",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Architecture evolution, teams, and execution models",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-security-and-sustainable-operations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "architecture-evolution-and-team-shape"
+    },
+    {
+      "id": "t12-004-reference-resilience-and-operational-practice",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Resilience experiments, scaling, and operational economics",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-architecture-evolution-and-team-shape"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "resilience-and-operational-practice"
+    },
+    {
+      "id": "t12-004-reference-identity-and-threat-protection-at-scale",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Service identity, perimeter threats, and cryptographic lifecycle",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-resilience-and-operational-practice"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "identity-and-threat-protection-at-scale"
+    },
+    {
+      "id": "t12-004-practice",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Exercises and worked solutions",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-004-reference-identity-and-threat-protection-at-scale"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-004-interview",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Interview questions and reasoning",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t12-004-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-005-overview",
+      "track": "track-12",
+      "title": "ai and machine learning system design — Big-picture orientation and mental model",
+      "module": "t12-005",
+      "manifest": "curriculum/manifests/system-design/t12-005.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-005-concepts",
+      "track": "track-12",
+      "title": "ai and machine learning system design — Core concepts and how they fit together",
+      "module": "t12-005",
+      "manifest": "curriculum/manifests/system-design/t12-005.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t12-005-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-005-reference-llm-inference-and-retrieval",
+      "track": "track-12",
+      "title": "ai and machine learning system design — Reference: Model serving, retrieval, and orchestration",
+      "module": "t12-005",
+      "manifest": "curriculum/manifests/system-design/t12-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-005-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "llm-inference-and-retrieval"
+    },
+    {
+      "id": "t12-005-reference-evaluation-quality-and-safety",
+      "track": "track-12",
+      "title": "ai and machine learning system design — Reference: Evaluation, governance, and safe operations",
+      "module": "t12-005",
+      "manifest": "curriculum/manifests/system-design/t12-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-005-reference-llm-inference-and-retrieval"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "evaluation-quality-and-safety"
+    },
+    {
+      "id": "t12-005-reference-ml-data-features-and-cost",
+      "track": "track-12",
+      "title": "ai and machine learning system design — Reference: Classical ML pipelines, feedback, and economics",
+      "module": "t12-005",
+      "manifest": "curriculum/manifests/system-design/t12-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-005-reference-evaluation-quality-and-safety"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "ml-data-features-and-cost"
+    },
+    {
+      "id": "t12-005-reference-llm-operations-and-multi-agent-systems",
+      "track": "track-12",
+      "title": "ai and machine learning system design — Reference: Prompt operations, multi-agent coordination, and model economics",
+      "module": "t12-005",
+      "manifest": "curriculum/manifests/system-design/t12-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-005-reference-ml-data-features-and-cost"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "llm-operations-and-multi-agent-systems"
+    },
+    {
+      "id": "t12-005-practice",
+      "track": "track-12",
+      "title": "ai and machine learning system design — Exercises and worked solutions",
+      "module": "t12-005",
+      "manifest": "curriculum/manifests/system-design/t12-005.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-005-reference-llm-operations-and-multi-agent-systems"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-005-interview",
+      "track": "track-12",
+      "title": "ai and machine learning system design — Interview questions and reasoning",
+      "module": "t12-005",
+      "manifest": "curriculum/manifests/system-design/t12-005.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t12-005-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-006-overview",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Big-picture orientation and mental model",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-006-concepts",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Core concepts and how they fit together",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t12-006-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-006-reference-transactional-and-collaborative-systems",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Transactions, collaboration, and ownership cases",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "transactional-and-collaborative-systems"
+    },
+    {
+      "id": "t12-006-reference-high-throughput-and-realtime-cases",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Traffic-heavy, realtime, and discovery cases",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-transactional-and-collaborative-systems"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "high-throughput-and-realtime-cases"
+    },
+    {
+      "id": "t12-006-reference-common-design-artifacts-and-failure-drills",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Reusable design artifacts and validation",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-high-throughput-and-realtime-cases"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "common-design-artifacts-and-failure-drills"
+    },
+    {
+      "id": "t12-006-practice-url-shortener",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a URL shortener",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-reference-common-design-artifacts-and-failure-drills"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "url-shortener",
+      "problemTitle": "Design a URL shortener"
+    },
+    {
+      "id": "t12-006-practice-distributed-rate-limiter",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a distributed API rate limiter",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-url-shortener"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "distributed-rate-limiter",
+      "problemTitle": "Design a distributed API rate limiter"
+    },
+    {
+      "id": "t12-006-practice-chat-system",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a chat system",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-distributed-rate-limiter"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "chat-system",
+      "problemTitle": "Design a chat system"
+    },
+    {
+      "id": "t12-006-practice-social-feed",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a social feed",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-chat-system"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "social-feed",
+      "problemTitle": "Design a social feed"
+    },
+    {
+      "id": "t12-006-practice-file-sync",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a file synchronization service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-social-feed"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "file-sync",
+      "problemTitle": "Design a file synchronization service"
+    },
+    {
+      "id": "t12-006-practice-ticketing-service",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a high-demand ticketing service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-file-sync"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "ticketing-service",
+      "problemTitle": "Design a high-demand ticketing service"
+    },
+    {
+      "id": "t12-006-practice-realtime-leaderboard",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a real-time leaderboard",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-ticketing-service"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "realtime-leaderboard",
+      "problemTitle": "Design a real-time leaderboard"
+    },
+    {
+      "id": "t12-006-practice-metrics-ingestion",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a metrics ingestion platform",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-realtime-leaderboard"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "metrics-ingestion",
+      "problemTitle": "Design a metrics ingestion platform"
+    },
+    {
+      "id": "t12-006-practice-unique-id-service",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a distributed unique ID generator",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-metrics-ingestion"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "unique-id-service",
+      "problemTitle": "Design a distributed unique ID generator"
+    },
+    {
+      "id": "t12-006-practice-notification-platform",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a notification platform",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-unique-id-service"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "notification-platform",
+      "problemTitle": "Design a notification platform"
+    },
+    {
+      "id": "t12-006-practice-pastebin",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a paste-sharing service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-notification-platform"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "pastebin",
+      "problemTitle": "Design a paste-sharing service"
+    },
+    {
+      "id": "t12-006-practice-distributed-key-value-store",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a distributed key-value store",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-pastebin"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "distributed-key-value-store",
+      "problemTitle": "Design a distributed key-value store"
+    },
+    {
+      "id": "t12-006-practice-photo-sharing",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a photo-sharing service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-distributed-key-value-store"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "photo-sharing",
+      "problemTitle": "Design a photo-sharing service"
+    },
+    {
+      "id": "t12-006-practice-web-crawler",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a distributed web crawler",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-photo-sharing"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "web-crawler",
+      "problemTitle": "Design a distributed web crawler"
+    },
+    {
+      "id": "t12-006-practice-search-autocomplete",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design search autocomplete",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-web-crawler"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "search-autocomplete",
+      "problemTitle": "Design search autocomplete"
+    },
+    {
+      "id": "t12-006-practice-video-streaming",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a video-streaming platform",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-search-autocomplete"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "video-streaming",
+      "problemTitle": "Design a video-streaming platform"
+    },
+    {
+      "id": "t12-006-practice-netflix-end-to-end",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a large subscription video platform",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-video-streaming"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "netflix-end-to-end",
+      "problemTitle": "Design a large subscription video platform"
+    },
+    {
+      "id": "t12-006-practice-ride-hailing",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a ride-hailing dispatch service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-netflix-end-to-end"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "ride-hailing",
+      "problemTitle": "Design a ride-hailing dispatch service"
+    },
+    {
+      "id": "t12-006-practice-maps-routing",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a maps and routing service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-ride-hailing"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "maps-routing",
+      "problemTitle": "Design a maps and routing service"
+    },
+    {
+      "id": "t12-006-practice-collaborative-editing",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design collaborative document editing",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-maps-routing"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "collaborative-editing",
+      "problemTitle": "Design collaborative document editing"
+    },
+    {
+      "id": "t12-006-practice-distributed-cache",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a distributed cache",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-collaborative-editing"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "distributed-cache",
+      "problemTitle": "Design a distributed cache"
+    },
+    {
+      "id": "t12-006-practice-recommendation-system",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a recommendation system",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-distributed-cache"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "recommendation-system",
+      "problemTitle": "Design a recommendation system"
+    },
+    {
+      "id": "t12-006-practice-payment-system",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a payment system",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-recommendation-system"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "payment-system",
+      "problemTitle": "Design a payment system"
+    },
+    {
+      "id": "t12-006-practice-stock-exchange-matching",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design an exchange matching engine",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-payment-system"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "stock-exchange-matching",
+      "problemTitle": "Design an exchange matching engine"
+    },
+    {
+      "id": "t12-006-practice-food-delivery",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a food-delivery marketplace",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-stock-exchange-matching"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "food-delivery",
+      "problemTitle": "Design a food-delivery marketplace"
+    },
+    {
+      "id": "t12-006-practice-ad-click-aggregation",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design real-time ad-click aggregation",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-food-delivery"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "ad-click-aggregation",
+      "problemTitle": "Design real-time ad-click aggregation"
+    },
+    {
+      "id": "t12-006-practice-logging-platform",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a centralized logging platform",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-ad-click-aggregation"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "logging-platform",
+      "problemTitle": "Design a centralized logging platform"
+    },
+    {
+      "id": "t12-006-practice-proximity-service",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a nearby-people or places service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-logging-platform"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "proximity-service",
+      "problemTitle": "Design a nearby-people or places service"
+    },
+    {
+      "id": "t12-006-practice-hotel-reservation",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a hotel reservation system",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-proximity-service"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "hotel-reservation",
+      "problemTitle": "Design a hotel reservation system"
+    },
+    {
+      "id": "t12-006-practice-distributed-job-scheduler",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a distributed job scheduler",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-hotel-reservation"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "distributed-job-scheduler",
+      "problemTitle": "Design a distributed job scheduler"
+    },
+    {
+      "id": "t12-006-practice-chatgpt-scale",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a conversational AI service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-distributed-job-scheduler"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "chatgpt-scale",
+      "problemTitle": "Design a conversational AI service"
+    },
+    {
+      "id": "t12-006-practice-enterprise-rag",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design an enterprise retrieval-augmented assistant",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-chatgpt-scale"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "enterprise-rag",
+      "problemTitle": "Design an enterprise retrieval-augmented assistant"
+    },
+    {
+      "id": "t12-006-practice-coding-agent",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a coding agent service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-enterprise-rag"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "coding-agent",
+      "problemTitle": "Design a coding agent service"
+    },
+    {
+      "id": "t12-006-practice-ai-search-citations",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design AI search with citations",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-coding-agent"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "ai-search-citations",
+      "problemTitle": "Design AI search with citations"
+    },
+    {
+      "id": "t12-006-practice-realtime-voice-agent",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a real-time voice agent",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-ai-search-citations"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "realtime-voice-agent",
+      "problemTitle": "Design a real-time voice agent"
+    },
+    {
+      "id": "t12-006-practice-content-moderation",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a content moderation system",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-realtime-voice-agent"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "content-moderation",
+      "problemTitle": "Design a content moderation system"
+    },
+    {
+      "id": "t12-006-practice-semantic-cache",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a semantic cache for AI requests",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-content-moderation"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "semantic-cache",
+      "problemTitle": "Design a semantic cache for AI requests"
+    },
+    {
+      "id": "t12-006-practice-model-router",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a model routing gateway",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-semantic-cache"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "model-router",
+      "problemTitle": "Design a model routing gateway"
+    },
+    {
+      "id": "t12-006-practice-feature-flag-service",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a feature flag and experimentation service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-model-router"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "feature-flag-service",
+      "problemTitle": "Design a feature flag and experimentation service"
+    },
+    {
+      "id": "t12-006-practice-dns-service",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a global recursive DNS service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-feature-flag-service"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "dns-service",
+      "problemTitle": "Design a global recursive DNS service"
+    },
+    {
+      "id": "t12-006-practice-dating-app",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a dating application",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-dns-service"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "dating-app",
+      "problemTitle": "Design a dating application"
+    },
+    {
+      "id": "t12-006-practice-online-auction",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a real-time online auction",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-dating-app"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "online-auction",
+      "problemTitle": "Design a real-time online auction"
+    },
+    {
+      "id": "t12-006-practice-multi-tenant-saas",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a multi-tenant SaaS platform",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-online-auction"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "multi-tenant-saas",
+      "problemTitle": "Design a multi-tenant SaaS platform"
+    },
+    {
+      "id": "t12-006-practice-video-conferencing",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a video-conferencing service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-multi-tenant-saas"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "video-conferencing",
+      "problemTitle": "Design a video-conferencing service"
+    },
+    {
+      "id": "t12-006-practice-email-service",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a large-scale email service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-video-conferencing"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "email-service",
+      "problemTitle": "Design a large-scale email service"
+    },
+    {
+      "id": "t12-006-practice-live-comments",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design live comments for a large broadcast",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-email-service"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "live-comments",
+      "problemTitle": "Design live comments for a large broadcast"
+    },
+    {
+      "id": "t12-006-practice-fraud-detection",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a real-time fraud detection system",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-live-comments"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "fraud-detection",
+      "problemTitle": "Design a real-time fraud detection system"
+    },
+    {
+      "id": "t12-006-practice-fitness-tracking",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a fitness tracking service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-fraud-detection"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "fitness-tracking",
+      "problemTitle": "Design a fitness tracking service"
+    },
+    {
+      "id": "t12-006-practice-online-judge",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design an online code-judging platform",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-fitness-tracking"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "online-judge",
+      "problemTitle": "Design an online code-judging platform"
+    },
+    {
+      "id": "t12-006-practice-price-tracking",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a product price-tracking service",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-online-judge"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "price-tracking",
+      "problemTitle": "Design a product price-tracking service"
+    },
+    {
+      "id": "t12-006-practice-api-gateway-scale",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a high-scale API gateway",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-price-tracking"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "api-gateway-scale",
+      "problemTitle": "Design a high-scale API gateway"
+    },
+    {
+      "id": "t12-006-practice-cicd-platform",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a CI/CD platform",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-api-gateway-scale"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "cicd-platform",
+      "problemTitle": "Design a CI/CD platform"
+    },
+    {
+      "id": "t12-006-practice-observability-platform",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design an observability platform",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-cicd-platform"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "observability-platform",
+      "problemTitle": "Design an observability platform"
+    },
+    {
+      "id": "t12-006-practice-web-search-engine",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a web-scale search engine",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-observability-platform"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "web-search-engine",
+      "problemTitle": "Design a web-scale search engine"
+    },
+    {
+      "id": "t12-006-practice-brokerage-platform",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design a retail brokerage platform",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-web-search-engine"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "brokerage-platform",
+      "problemTitle": "Design a retail brokerage platform"
+    },
+    {
+      "id": "t12-006-practice-channel-scale-chat",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Problem: Design channel-scale team chat",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-006-practice-brokerage-platform"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "channel-scale-chat",
+      "problemTitle": "Design channel-scale team chat"
+    },
+    {
+      "id": "t12-006-interview",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Interview questions and reasoning",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t12-006-practice-channel-scale-chat"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
       "id": "t10-001-overview",
       "track": "track-10",
       "title": "unit tests assertions fixtures mocks stubs fakes and isolation — Big-picture orientation and mental model",
@@ -24157,6 +25543,118 @@
       "problemTitle": "Plan a safe full-stack deployment and rollback"
     },
     {
+      "id": "t10-009-practice-ambiguous-payment-timeout",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Resolve a payment request whose response timed out",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t10-009-practice-deploy-fullstack-service-safely"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "ambiguous-payment-timeout",
+      "problemTitle": "Resolve a payment request whose response timed out"
+    },
+    {
+      "id": "t10-009-practice-multi-tenant-noisy-neighbor",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Protect a multi-tenant service from a noisy tenant",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t10-009-practice-ambiguous-payment-timeout"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "multi-tenant-noisy-neighbor",
+      "problemTitle": "Protect a multi-tenant service from a noisy tenant"
+    },
+    {
+      "id": "t10-009-practice-database-queue-dual-write",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Prevent lost events between a database and a broker",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t10-009-practice-multi-tenant-noisy-neighbor"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "database-queue-dual-write",
+      "problemTitle": "Prevent lost events between a database and a broker"
+    },
+    {
+      "id": "t10-009-practice-regional-failover-recovery",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Design and test regional recovery",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t10-009-practice-database-queue-dual-write"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "regional-failover-recovery",
+      "problemTitle": "Design and test regional recovery"
+    },
+    {
+      "id": "t10-009-practice-api-evolution-mixed-clients",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Evolve an API used by old and new clients",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t10-009-practice-regional-failover-recovery"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "api-evolution-mixed-clients",
+      "problemTitle": "Evolve an API used by old and new clients"
+    },
+    {
+      "id": "t10-009-practice-live-leaderboard-hot-key",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Design a live leaderboard without one hot key",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t10-009-practice-api-evolution-mixed-clients"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "live-leaderboard-hot-key",
+      "problemTitle": "Design a live leaderboard without one hot key"
+    },
+    {
+      "id": "t10-009-practice-recommendation-feedback-loop",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Diagnose a recommendation system feedback loop",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t10-009-practice-live-leaderboard-hot-key"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "recommendation-feedback-loop",
+      "problemTitle": "Diagnose a recommendation system feedback loop"
+    },
+    {
+      "id": "t10-009-practice-production-latency-after-release",
+      "track": "track-10",
+      "title": "architecture interviews tradeoffs requirements and constraints — Problem: Investigate a latency regression after release",
+      "module": "t10-009",
+      "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t10-009-practice-recommendation-feedback-loop"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "production-latency-after-release",
+      "problemTitle": "Investigate a latency regression after release"
+    },
+    {
       "id": "t10-009-interview",
       "track": "track-10",
       "title": "architecture interviews tradeoffs requirements and constraints — Interview questions and reasoning",
@@ -24164,7 +25662,7 @@
       "manifest": "curriculum/manifests/testing-and-senior-interviews/t10-009.json",
       "phase": "interview",
       "prerequisites": [
-        "t10-009-practice-deploy-fullstack-service-safely"
+        "t10-009-practice-production-latency-after-release"
       ],
       "status": "draft-generation-eligible"
     },

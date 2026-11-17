@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 4,
+  "id": "t12-001",
+  "track": "track-12",
+  "title": "system design foundations and infrastructure building blocks",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Design starts with user-visible goals and workload, then composes a small set of network, compute, storage, and coordination primitives. The first design should be understandable end to end; each added component must solve an evidenced bottleneck or failure requirement.",
+    "Translate product requirements into observable measures and testable user journeys before choosing components.",
+    "Make state ownership, consistency, replay, and recovery explicit at every boundary.",
+    "Account for latency, throughput, tail behavior, capacity, cost, security, privacy, and operational effort as interacting constraints.",
+    "Use a simple baseline, then add a mechanism only to meet a stated requirement or measured bottleneck.",
+    "Design failure behavior and release compatibility across client, API, data, and operations rather than per component."
+  ],
+  "inventory": [
+    {
+      "id": "network-and-transport",
+      "title": "Network path and transport behavior",
+      "items": [
+        "DNS",
+        "TCP",
+        "TLS",
+        "HTTP/1.1",
+        "HTTP/2",
+        "HTTP/3",
+        "WebSocket",
+        "Server-Sent Events (SSE)"
+      ]
+    },
+    {
+      "id": "traffic-entry-and-delivery",
+      "title": "Traffic entry, routing, and edge delivery",
+      "items": [
+        "Layer 4 load balancing",
+        "Layer 7 load balancing",
+        "Reverse proxy",
+        "API gateway",
+        "Content delivery network (CDN)",
+        "Service discovery",
+        "Backend for frontend (BFF)",
+        "Edge compute"
+      ]
+    },
+    {
+      "id": "state-and-work-distribution",
+      "title": "Caching, queues, rate limits, and object storage",
+      "items": [
+        "Cache-aside",
+        "Write-through cache",
+        "Time-to-live (TTL)",
+        "Token bucket",
+        "Leaky bucket",
+        "Message queue",
+        "Event stream",
+        "Object storage"
+      ]
+    },
+    {
+      "id": "operating-systems-and-data-structures",
+      "title": "Operating-system resources and foundational data structures",
+      "items": [
+        "Process",
+        "Thread",
+        "Virtual memory",
+        "Page cache",
+        "Blocking I/O",
+        "Readiness-based I/O",
+        "File descriptor",
+        "Hash table",
+        "Skip list",
+        "Bloom filter",
+        "B-tree",
+        "LSM tree"
+      ]
+    },
+    {
+      "id": "geospatial-indexing",
+      "title": "Spatial partitioning and geospatial query structures",
+      "items": [
+        "Geohash",
+        "Quadtree",
+        "R-tree",
+        "S2 geometry",
+        "H3 grid",
+        "Bounding-box candidate search",
+        "Spatial hot cell"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Layer 4 load balancing",
+      "Layer 7 load balancing"
+    ],
+    [
+      "Message queue",
+      "Event stream"
+    ],
+    [
+      "Cache-aside",
+      "Write-through cache"
+    ],
+    [
+      "WebSocket",
+      "Server-Sent Events (SSE)"
+    ]
+  ],
+  "comparisonSources": [
+    "https://hld.handbook.academy/",
+    "https://www.rfc-editor.org/rfc/rfc9110",
+    "https://www.rfc-editor.org/rfc/rfc8446",
+    "https://www.rfc-editor.org/rfc/rfc9293",
+    "https://www.rfc-editor.org/rfc/rfc6455",
+    "https://www.rfc-editor.org/rfc/rfc9000",
+    "https://learn.microsoft.com/en-us/azure/architecture/guide/"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "The HLD Handbook public system-design syllabus, with relevant standards, framework guidance, and official platform documentation for technical context.",
+    "edition": "Handbook syllabus checked 2026-11-17; concepts are version-independent unless an implementation-specific source says otherwise.",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://hld.handbook.academy/",
+      "https://www.rfc-editor.org/rfc/rfc9110",
+      "https://www.rfc-editor.org/rfc/rfc8446",
+      "https://www.rfc-editor.org/rfc/rfc9293",
+      "https://www.rfc-editor.org/rfc/rfc6455",
+      "https://www.rfc-editor.org/rfc/rfc9000",
+      "https://learn.microsoft.com/en-us/azure/architecture/guide/"
+    ]
+  },
+  "scopeExclusions": [
+    "This course paraphrases the handbook’s syllabus and teaches selected core concepts; it does not reproduce the handbook’s 159 chapters or 56 case-study articles. Consult the linked handbook for its full scope and additional cases.",
+    "Vendor-specific service SKUs, quotas, and configuration signatures are intentionally excluded; verify those in the selected provider’s current documentation.",
+    "The inventory names are the closed reference scope for this topic; the overview teaches the mental model without listing every item."
+  ],
+  "generationAllowed": true
+}

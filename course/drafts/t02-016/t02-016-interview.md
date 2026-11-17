@@ -114,3 +114,8 @@ Score each from 0 to 2: **0** = missing/incorrect, **1** = partial, **2** = prec
 - [.NET metrics instrumentation](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/metrics-instrumentation)
 - [.NET distributed tracing instrumentation](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs)
 - [.NET OpenTelemetry](https://opentelemetry.io/docs/languages/dotnet/)
+
+
+## System-design scenario: trace a request through HTTP, SQL, and a worker
+
+A good response distinguishes aggregate signals from request-level evidence. Start with the user-facing SLI, inspect trace sampling and service/resource identity, follow the request span into database and outbound HTTP spans, then trace queued work using propagated context or a causal link. Check duration, errors, saturation, and queue age. Avoid adding customer IDs as metric dimensions; use access-controlled trace/log correlation when individual diagnosis is necessary. Health probes answer readiness/liveness questions and do not replace these signals. [OpenTelemetry .NET](https://opentelemetry.io/docs/languages/dotnet/).

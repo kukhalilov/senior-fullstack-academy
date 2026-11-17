@@ -253,6 +253,230 @@
         "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
         "https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments"
       ]
+    },
+    {
+      "id": "ambiguous-payment-timeout",
+      "name": "Resolve a payment request whose response timed out",
+      "difficulty": "advanced",
+      "patterns": [
+        "payment idempotency key",
+        "ambiguous commit",
+        "ledger state",
+        "provider reconciliation"
+      ],
+      "statement": "An API receives a payment request. The provider may have charged the card, but the response timed out. Design safe retry, user-visible status, and reconciliation behavior.",
+      "constraints": [
+        "State assumptions and the correctness property before selecting technology.",
+        "Explain normal, peak, failure, recovery, and observability behavior."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer adds a failure, traffic spike, or compatibility constraint midway through the design.",
+          "output": "Revisit only the affected assumptions, trace the changed path, and explain the new tradeoff and validation plan."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "multi-tenant-noisy-neighbor",
+      "name": "Protect a multi-tenant service from a noisy tenant",
+      "difficulty": "advanced",
+      "patterns": [
+        "tenant identity enforcement",
+        "fairness and quotas",
+        "workload isolation",
+        "per-tenant observability"
+      ],
+      "statement": "One tenant creates a sudden workload spike that raises latency for every customer. Explain diagnosis, containment, fairness, and longer-term partitioning decisions.",
+      "constraints": [
+        "State assumptions and the correctness property before selecting technology.",
+        "Explain normal, peak, failure, recovery, and observability behavior."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer adds a failure, traffic spike, or compatibility constraint midway through the design.",
+          "output": "Revisit only the affected assumptions, trace the changed path, and explain the new tradeoff and validation plan."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "database-queue-dual-write",
+      "name": "Prevent lost events between a database and a broker",
+      "difficulty": "advanced",
+      "patterns": [
+        "transactional outbox",
+        "duplicate delivery",
+        "idempotent consumer",
+        "reconciliation"
+      ],
+      "statement": "An API writes an order to SQL Server and publishes an event to a broker. A process crash between these operations can lose or duplicate the event. Design the path.",
+      "constraints": [
+        "State assumptions and the correctness property before selecting technology.",
+        "Explain normal, peak, failure, recovery, and observability behavior."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer adds a failure, traffic spike, or compatibility constraint midway through the design.",
+          "output": "Revisit only the affected assumptions, trace the changed path, and explain the new tradeoff and validation plan."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "regional-failover-recovery",
+      "name": "Design and test regional recovery",
+      "difficulty": "advanced",
+      "patterns": [
+        "RTO and RPO",
+        "data replication and ownership",
+        "routing and promotion",
+        "failback validation"
+      ],
+      "statement": "A regional outage affects a customer-facing service. Define the failover decision, data-loss boundary, customer communication, and safe return to the primary region.",
+      "constraints": [
+        "State assumptions and the correctness property before selecting technology.",
+        "Explain normal, peak, failure, recovery, and observability behavior."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer adds a failure, traffic spike, or compatibility constraint midway through the design.",
+          "output": "Revisit only the affected assumptions, trace the changed path, and explain the new tradeoff and validation plan."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "api-evolution-mixed-clients",
+      "name": "Evolve an API used by old and new clients",
+      "difficulty": "intermediate",
+      "patterns": [
+        "contract compatibility",
+        "additive then removal sequence",
+        "capability detection",
+        "telemetry and deprecation"
+      ],
+      "statement": "A mobile client may remain installed for months while the backend must change a response and a required field. Propose a migration that avoids breaking deployed clients.",
+      "constraints": [
+        "State assumptions and the correctness property before selecting technology.",
+        "Explain normal, peak, failure, recovery, and observability behavior."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer adds a failure, traffic spike, or compatibility constraint midway through the design.",
+          "output": "Revisit only the affected assumptions, trace the changed path, and explain the new tradeoff and validation plan."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "live-leaderboard-hot-key",
+      "name": "Design a live leaderboard without one hot key",
+      "difficulty": "advanced",
+      "patterns": [
+        "partitioned aggregation",
+        "approximate versus exact ranking",
+        "update frequency",
+        "read model freshness"
+      ],
+      "statement": "A global game leaderboard receives frequent score updates and millions of reads. Explain ingestion, ranking, hot-key control, consistency, and cost.",
+      "constraints": [
+        "State assumptions and the correctness property before selecting technology.",
+        "Explain normal, peak, failure, recovery, and observability behavior."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer adds a failure, traffic spike, or compatibility constraint midway through the design.",
+          "output": "Revisit only the affected assumptions, trace the changed path, and explain the new tradeoff and validation plan."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "recommendation-feedback-loop",
+      "name": "Diagnose a recommendation system feedback loop",
+      "difficulty": "advanced",
+      "patterns": [
+        "candidate generation and ranking",
+        "exposure bias",
+        "offline and online evaluation",
+        "safety and user controls"
+      ],
+      "statement": "A recommendation system increasingly shows only already popular items. Explain data, model, evaluation, product, and monitoring changes that address the feedback loop.",
+      "constraints": [
+        "State assumptions and the correctness property before selecting technology.",
+        "Explain normal, peak, failure, recovery, and observability behavior."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer adds a failure, traffic spike, or compatibility constraint midway through the design.",
+          "output": "Revisit only the affected assumptions, trace the changed path, and explain the new tradeoff and validation plan."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
+    },
+    {
+      "id": "production-latency-after-release",
+      "name": "Investigate a latency regression after release",
+      "difficulty": "intermediate",
+      "patterns": [
+        "user-centered SLI and percentiles",
+        "traces and dependency breakdown",
+        "rollback and feature flags",
+        "data-plane versus client evidence"
+      ],
+      "statement": "p50 latency is unchanged, but users report delays after a deployment. Describe evidence collection, blast-radius reduction, rollback decision, and follow-up.",
+      "constraints": [
+        "State assumptions and the correctness property before selecting technology.",
+        "Explain normal, peak, failure, recovery, and observability behavior."
+      ],
+      "examples": [
+        {
+          "input": "The interviewer adds a failure, traffic spike, or compatibility constraint midway through the design.",
+          "output": "Revisit only the affected assumptions, trace the changed path, and explain the new tradeoff and validation plan."
+        }
+      ],
+      "sourceUrls": [
+        "https://hld.handbook.academy/",
+        "https://sre.google/sre-book/table-of-contents/",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework"
+      ]
     }
   ],
   "inventoryComplete": true,
@@ -295,7 +519,10 @@
     "https://docs.cloud.google.com/architecture/framework",
     "https://docs.cloud.google.com/architecture/framework/reliability",
     "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework",
-    "https://sre.google/sre-book/service-level-objectives/"
+    "https://sre.google/sre-book/service-level-objectives/",
+    "https://hld.handbook.academy/",
+    "https://sre.google/sre-book/table-of-contents/",
+    "https://learn.microsoft.com/en-us/azure/architecture/guide/"
   ],
   "versionNotes": [],
   "sourceSnapshot": {
@@ -317,7 +544,10 @@
       "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/?view=aspnetcore-10.0",
       "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
       "https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments",
-      "https://docs.github.com/en/actions/reference/security/secure-use"
+      "https://docs.github.com/en/actions/reference/security/secure-use",
+      "https://hld.handbook.academy/",
+      "https://sre.google/sre-book/table-of-contents/",
+      "https://learn.microsoft.com/en-us/azure/architecture/guide/"
     ]
   },
   "scopeExclusions": [

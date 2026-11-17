@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 4,
+  "id": "t12-004",
+  "track": "track-12",
+  "title": "architecture patterns multi-region tenancy and reliability",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Architecture decomposes ownership and change while preserving clear data and failure boundaries. Distribution may improve independent scaling or isolation, but brings network failures, duplicated policy, coordination, and operational cost. Reliability and security must be designed as observable behavior, not appended after deployment.",
+    "Translate product requirements into observable measures and testable user journeys before choosing components.",
+    "Make state ownership, consistency, replay, and recovery explicit at every boundary.",
+    "Account for latency, throughput, tail behavior, capacity, cost, security, privacy, and operational effort as interacting constraints.",
+    "Use a simple baseline, then add a mechanism only to meet a stated requirement or measured bottleneck.",
+    "Design failure behavior and release compatibility across client, API, data, and operations rather than per component."
+  ],
+  "inventory": [
+    {
+      "id": "service-and-data-boundaries",
+      "title": "Application and integration patterns",
+      "items": [
+        "Modular monolith",
+        "Microservices",
+        "Hexagonal architecture",
+        "Domain-driven design bounded context",
+        "Event-driven architecture",
+        "CQRS",
+        "Saga",
+        "Strangler Fig",
+        "Multi-tenant architecture",
+        "Backend for frontend (BFF)"
+      ]
+    },
+    {
+      "id": "regions-tenancy-and-data-protection",
+      "title": "Regions, tenants, and privacy boundaries",
+      "items": [
+        "Single-region deployment",
+        "Multi-zone deployment",
+        "Active-passive multi-region",
+        "Active-active multi-region",
+        "RTO",
+        "RPO",
+        "Tenant isolation",
+        "Noisy neighbor",
+        "Data residency",
+        "Data deletion workflow"
+      ]
+    },
+    {
+      "id": "reliability-security-and-delivery",
+      "title": "Operational controls and secure system behavior",
+      "items": [
+        "Service level indicator (SLI)",
+        "Service level objective (SLO)",
+        "Error budget",
+        "RED method",
+        "USE method",
+        "Distributed trace",
+        "Circuit breaker",
+        "Bulkhead",
+        "Zero-trust architecture",
+        "Software bill of materials (SBOM)",
+        "Canary deployment",
+        "Expand-and-contract migration"
+      ]
+    },
+    {
+      "id": "security-and-sustainable-operations",
+      "title": "Security at scale, privacy, cost, and sustainability",
+      "items": [
+        "Authentication",
+        "Authorization",
+        "Role-based access control (RBAC)",
+        "Attribute-based access control (ABAC)",
+        "Relationship-based access control (ReBAC)",
+        "Mutual TLS (mTLS)",
+        "Secrets manager",
+        "Web application firewall (WAF)",
+        "Data residency and erasure",
+        "Differential privacy",
+        "Federated learning",
+        "Software supply-chain provenance",
+        "Carbon-aware scheduling",
+        "Power usage effectiveness (PUE)",
+        "FinOps unit economics",
+        "Energy-per-workload measurement"
+      ]
+    },
+    {
+      "id": "architecture-evolution-and-team-shape",
+      "title": "Architecture evolution, teams, and execution models",
+      "items": [
+        "Conway's Law",
+        "Team topology",
+        "Serverless computing",
+        "Function as a service (FaaS)",
+        "Local-first software",
+        "Platform engineering",
+        "Internal developer platform (IDP)"
+      ]
+    },
+    {
+      "id": "resilience-and-operational-practice",
+      "title": "Resilience experiments, scaling, and operational economics",
+      "items": [
+        "Chaos engineering",
+        "Game day",
+        "Autoscaling",
+        "Predictive scaling",
+        "Graceful degradation",
+        "Load shedding",
+        "FinOps",
+        "Spot capacity",
+        "Power usage effectiveness (PUE)",
+        "Carbon-aware scheduling"
+      ]
+    },
+    {
+      "id": "identity-and-threat-protection-at-scale",
+      "title": "Service identity, perimeter threats, and cryptographic lifecycle",
+      "items": [
+        "OAuth 2.0",
+        "OpenID Connect (OIDC)",
+        "JSON Web Token (JWT)",
+        "SPIFFE/SPIRE",
+        "Distributed denial-of-service (DDoS) mitigation",
+        "Web application firewall (WAF)",
+        "Key management service (KMS)",
+        "Supply-chain provenance",
+        "Post-quantum cryptography migration"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "Modular monolith",
+      "Microservices"
+    ],
+    [
+      "CQRS",
+      "Event sourcing"
+    ],
+    [
+      "Single-region deployment",
+      "Multi-zone deployment",
+      "Multi-region deployment"
+    ],
+    [
+      "Active-passive multi-region",
+      "Active-active multi-region"
+    ],
+    [
+      "RED method",
+      "USE method"
+    ],
+    [
+      "Canary deployment",
+      "Expand-and-contract migration"
+    ]
+  ],
+  "comparisonSources": [
+    "https://hld.handbook.academy/",
+    "https://sre.google/sre-book/table-of-contents/",
+    "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework",
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+    "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+    "https://csrc.nist.gov/pubs/sp/800/207/final",
+    "https://owasp.org/www-project-api-security/",
+    "https://opentelemetry.io/docs/concepts/"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "The HLD Handbook public system-design syllabus, with relevant standards, framework guidance, and official platform documentation for technical context.",
+    "edition": "Handbook syllabus checked 2026-11-17; concepts are version-independent unless an implementation-specific source says otherwise.",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://hld.handbook.academy/",
+      "https://sre.google/sre-book/table-of-contents/",
+      "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+      "https://learn.microsoft.com/en-us/azure/architecture/guide/",
+      "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "https://owasp.org/www-project-api-security/",
+      "https://opentelemetry.io/docs/concepts/"
+    ]
+  },
+  "scopeExclusions": [
+    "This course paraphrases the handbook’s syllabus and teaches selected core concepts; it does not reproduce the handbook’s 159 chapters or 56 case-study articles. Consult the linked handbook for its full scope and additional cases.",
+    "Vendor-specific service SKUs, quotas, and configuration signatures are intentionally excluded; verify those in the selected provider’s current documentation.",
+    "The inventory names are the closed reference scope for this topic; the overview teaches the mental model without listing every item."
+  ],
+  "generationAllowed": true
+}

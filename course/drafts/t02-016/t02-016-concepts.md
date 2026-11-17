@@ -132,3 +132,8 @@ Subscribe to `Microsoft.AspNetCore.Hosting` for built-in server metrics and `Mic
 - [.NET metrics instrumentation](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/metrics-instrumentation)
 - [.NET distributed tracing instrumentation](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs)
 - [OpenTelemetry .NET](https://opentelemetry.io/docs/languages/dotnet/)
+
+
+## System-design tracing across the .NET request path
+
+Instrument an inbound request, database operation, and outbound dependency as one causal path. When work crosses a broker, propagate trace context in message metadata and start a consumer activity on receipt; a queue boundary is not automatically a child span in another process. Use a stable service identity and low-cardinality route/operation attributes. Track request outcomes and duration as metrics, use traces to localize a slow span, and keep sensitive user data and credentials out of baggage and telemetry. Sampling changes which traces are retained, so preserve aggregate metrics for population-wide SLOs. [OpenTelemetry .NET](https://opentelemetry.io/docs/languages/dotnet/) · [distributed tracing instrumentation](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs).
