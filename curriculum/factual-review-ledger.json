@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 686,
-    "pending": 1655,
-    "claimsChecked": 23027,
-    "claimsCorrected": 1429,
+    "reviewed": 699,
+    "pending": 1642,
+    "claimsChecked": 23472,
+    "claimsCorrected": 1430,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 686,
-    "pendingLessons": 1655
+    "reviewedLessons": 699,
+    "pendingLessons": 1642
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -47194,13 +47194,32 @@
       "topicId": "t11-032",
       "phase": "overview",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 21,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked the mental model, method selection, complexity claims, assumptions, and decimal-exponent recurrence against number-theory references and official problem contracts.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47211,22 +47230,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-concepts",
       "topicId": "t11-032",
       "phase": "concepts",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 29,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked GCD/LCM, sieve/factorization, modular arithmetic/inverse conditions, factorial-zero and combination preconditions, numeric limits, signed remainder semantics, examples, and inventory coverage. Corrected Math.Abs minimum-value wording to document OverflowException.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47237,22 +47277,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-reference-divisibility-and-gcd",
       "topicId": "t11-032",
       "phase": "reference",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-reference-divisibility-and-gcd.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all ten inventory definitions, Euclidean invariant, extended-Euclid/Bézout, LCM and zero conventions, overflow guidance, examples, and answers.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47263,22 +47324,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-reference-primes-and-factorization",
       "topicId": "t11-032",
       "phase": "reference",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-reference-primes-and-factorization.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all ten inventory concepts, trial and sieve bounds/complexities, SPF use, factorization/divisor count, prefix endpoints, examples, and answers.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47289,22 +47371,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-reference-modular-arithmetic",
       "topicId": "t11-032",
       "phase": "reference",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-reference-modular-arithmetic.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all ten concepts, positive modulus, C# signed remainder, normalization safety, modular laws, inverse conditions, Fermat restrictions, examples, and answers.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47315,22 +47418,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-reference-combinatorics-and-numeric-limits",
       "topicId": "t11-032",
       "phase": "reference",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-reference-combinatorics-and-numeric-limits.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all ten concepts, binomial/Pascal formulas, prime/index conditions, numeric safety, boundaries, examples, and answers; corrected the Math.Abs exception wording.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47341,22 +47465,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-practice-count-primes",
       "topicId": "t11-032",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-practice-count-primes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official contract, strict bound, sieve and overflow-safe guard, proof, complexity, examples, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47367,22 +47512,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-practice-powx-n",
       "topicId": "t11-032",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-practice-powx-n.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official constraints, exponent invariant, int.MinValue widening, floating-point behavior, examples, complexity, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47393,22 +47559,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-practice-factorial-trailing-zeroes",
       "topicId": "t11-032",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-practice-factorial-trailing-zeroes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official contract, quotient-sum proof, examples, implementation, complexity, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47419,22 +47606,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-practice-find-greatest-common-divisor-array",
       "topicId": "t11-032",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-practice-find-greatest-common-divisor-array.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official request for min/max pair, examples, implementation, proof, complexity, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47445,22 +47653,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-practice-check-if-it-is-a-good-array",
       "topicId": "t11-032",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-practice-check-if-it-is-a-good-array.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official statement, constraints, examples, coefficients, implementation, proof, complexity, and tests. Added all reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47471,22 +47700,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-practice-super-pow",
       "topicId": "t11-032",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-practice-super-pow.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official digit-array contract, recurrence, composite modulus, bounded multiplication, proof, complexity, examples, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47497,22 +47747,43 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-032-interview",
       "topicId": "t11-032",
       "phase": "interview",
       "draft": "course/drafts/data-structures-and-algorithms/t11-032/t11-032-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked concise/deep answers, inverse preconditions, factorial-zero reasoning, signed minimum handling, floating-point caveat, decimal recurrence, and tradeoffs.",
+          "sources": [
+            "https://usaco.guide/gold/divisibility",
+            "https://usaco.guide/gold/modular",
+            "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+            "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+            "https://leetcode.com/problems/count-primes/",
+            "https://leetcode.com/problems/powx-n/",
+            "https://leetcode.com/problems/factorial-trailing-zeroes/",
+            "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
+            "https://leetcode.com/problems/check-if-it-is-a-good-array/",
+            "https://leetcode.com/problems/super-pow/",
+            "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/divisibility",
         "https://usaco.guide/gold/modular",
@@ -47523,9 +47794,11 @@
         "https://leetcode.com/problems/factorial-trailing-zeroes/",
         "https://leetcode.com/problems/find-greatest-common-divisor-of-array/",
         "https://leetcode.com/problems/check-if-it-is-a-good-array/",
-        "https://leetcode.com/problems/super-pow/"
+        "https://leetcode.com/problems/super-pow/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, source-scope, and completeness audit against the frozen topic inventory, official problem statements, Microsoft documentation where C# behavior is discussed, and linked number-theory references. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-overview",

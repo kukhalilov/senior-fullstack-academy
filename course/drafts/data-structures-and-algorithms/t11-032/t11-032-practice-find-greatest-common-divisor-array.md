@@ -77,3 +77,9 @@ Checks cover all official examples and distinguish the specified min/max pair fr
 1. Why is this not necessarily the GCD of all array entries?
 2. Why does Euclid preserve the common divisors?
 3. What convention would you use if both inputs could be zero?
+
+## Reflection answers
+
+1. The problem explicitly selects the minimum and maximum values. Other values may change a fold over the full array but must not affect this requested pair's GCD.
+2. If `a=q*b+r`, a number divides both `a,b` exactly when it divides both `b,r`; therefore the common divisors, and their greatest member, are unchanged.
+3. In programming, defining `gcd(0,0)=0` is a useful convention, but the API should state it because “largest positive common divisor” does not define a unique answer for `(0,0)`.

@@ -88,3 +88,9 @@ Tests cover all official examples, negative base with odd exponent, zero exponen
 1. Why can `-n` overflow if `n` is an `int` minimum?
 2. Why does exponentiation by squaring reduce the number of multiplications?
 3. What happens for `x=0,n=0` under this problem contract?
+
+## Reflection answers
+
+1. The positive magnitude of `int.MinValue` is `2^31`, which exceeds `int.MaxValue`; convert to `long` before negating.
+2. Each step squares the base and halves the remaining exponent, so only logarithmically many steps are needed.
+3. The stated constraint excludes `x=0,n<=0`, so `(0,0)` is not a valid input; the implementation would return 1 because it initializes the accumulator that way, but that behavior is outside the contract.

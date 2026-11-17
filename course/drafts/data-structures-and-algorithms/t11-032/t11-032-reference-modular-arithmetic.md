@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson covers modular arithmetic modulo positive `m`, including composite moduli. See [USACO Guide: Modular arithmetic](https://usaco.guide/gold/modular) and [CP-Algorithms: Modular inverse](https://cp-algorithms.com/algebra/module-inverse.html).
+This lesson covers modular arithmetic modulo positive `m`, including composite moduli. See [USACO Guide: Modular arithmetic](https://usaco.guide/gold/modular), [CP-Algorithms: Modular inverse](https://cp-algorithms.com/algebra/module-inverse.html), and the [C# remainder operator reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator) for signed remainder behavior.
 
 ## How this group fits the mental model
 

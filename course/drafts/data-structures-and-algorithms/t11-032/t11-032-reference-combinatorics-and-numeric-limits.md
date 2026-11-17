@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson covers binomial coefficients and implementation boundaries, not advanced combinatorics. See [USACO Guide modular arithmetic](https://usaco.guide/gold/modular) and [USACO Guide combinatorics](https://github.com/cpinitiative/usaco-guide/blob/master/content/4_Gold/Combinatorics.mdx).
+This lesson covers binomial coefficients and implementation boundaries, not advanced combinatorics. See [USACO Guide modular arithmetic](https://usaco.guide/gold/modular), [USACO Guide combinatorics](https://github.com/cpinitiative/usaco-guide/blob/master/content/4_Gold/Combinatorics.mdx), and Microsoft's [`Math.Abs`](https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0) reference for the signed-minimum exception.
 
 ## How this group fits the mental model
 
@@ -17,7 +17,7 @@ Combinatorial counts often grow beyond machine integers, so a problem may reques
 - **Prime-modulus assumption** — Fermat-based inverses and common factorial table formulas rely on `p` being prime. Composite moduli need different methods and may have noninvertible factorial residues.
 - **Index below prime modulus assumption** — If `n>=p`, then `n!` is divisible by `p` and is zero modulo `p`, so its inverse does not exist. For larger indices use a method that handles base-`p` digits or prime factors, if constraints require it.
 - **Overflow-safe multiplication** — Promote operands before multiplying when a wider type suffices; otherwise use repeated doubling/addition or big integers. Reducing after overflow cannot recover lost information.
-- **Signed absolute-value minimum edge case** — `int.MinValue` has no positive magnitude representable in `int`; `Math.Abs(int.MinValue)` throws in checked behavior or cannot represent the value. Widen first or special-case it.
+- **Signed absolute-value minimum edge case** — `int.MinValue` has no positive magnitude representable in `int`; `Math.Abs(int.MinValue)` throws `OverflowException`. Widen first or special-case it.
 - **Integer square-root boundary** — To check `d*d <= n`, widen the product or use `d <= n/d` for positive `d`. Floating-point square roots can round around perfect squares; verify with integer arithmetic.
 - **Floating-point rounding hazard** — Floating-point values cannot represent every large integer exactly. Do not use `double` multiplication or `sqrt` as an unchecked substitute for exact integer bounds.
 

@@ -82,3 +82,9 @@ Assertions cover all official examples, the one-element array `[1]`, and an arra
 1. Why does a GCD greater than one make 1 impossible?
 2. Why are negative coefficients essential to the Bézout statement?
 3. How could extended Euclid construct actual coefficients for the result?
+
+## Reflection answers
+
+1. If the GCD is greater than one, every integer combination remains divisible by that GCD, so it cannot equal 1.
+2. Bézout's identity permits signed integer coefficients; restricting coefficients to nonnegative values changes the set of reachable sums and invalidates the GCD criterion.
+3. Run extended Euclid while folding values, combining the previous GCD coefficients with the next input; the resulting coefficients express the final GCD as a combination of array elements.

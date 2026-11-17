@@ -92,3 +92,9 @@ Checks cover all official examples, exponent zero, and a base divisible by the c
 1. Why can the decimal exponent not be parsed into a machine integer?
 2. Why does the digit recurrence avoid Euler/Fermat exponent reduction?
 3. Where is multiplication safe from overflow in this code, and why?
+
+## Reflection answers
+
+1. The digit array can contain up to 2,000 decimal digits, far beyond fixed-width integer ranges.
+2. The recurrence computes the exponent exactly by decimal place value and uses modular exponentiation directly; Euler or Fermat reduction would require extra coprimality/modulus conditions.
+3. In `PowMod`, the factor and result are residues below 1337, so their product is at most `1336*1336`, which fits in `int`; the final product of two returned residues has the same bound.

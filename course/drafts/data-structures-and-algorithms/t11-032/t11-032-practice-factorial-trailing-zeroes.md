@@ -76,3 +76,9 @@ Tests cover all official examples, including zero, plus 25 where an extra factor
 1. Why do we not count factors of two?
 2. Why is `n/5` alone insufficient for `n=25`?
 3. How would the idea change for trailing zeroes in another base?
+
+## Reflection answers
+
+1. Every trailing zero consumes one factor 2 and one factor 5, and `n!` contains more factors of 2 than of 5.
+2. `n/5` counts one factor of 5 for each multiple of 5, but multiples of 25 contribute a second factor, which requires the additional `n/25` term.
+3. Factor the base into primes. The number of trailing zeroes is the minimum, over its prime factors, of the available exponent in `n!` divided by that prime's exponent in the base.

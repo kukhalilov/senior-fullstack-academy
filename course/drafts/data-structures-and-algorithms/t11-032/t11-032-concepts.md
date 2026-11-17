@@ -8,7 +8,7 @@ Derive Euclid's GCD recurrence, recognize when a sieve beats repeated primality 
 
 You should know integer division and remainder, factors and multiples, arrays, loops, and logarithmic complexity. In C#, integer division truncates toward zero, and `%` can be negative when its left operand is negative.
 
-The general algorithm background is covered in [USACO Guide divisibility](https://usaco.guide/gold/divisibility) and [USACO Guide modular arithmetic](https://usaco.guide/gold/modular).
+The general algorithm background is covered in [USACO Guide divisibility](https://usaco.guide/gold/divisibility) and [USACO Guide modular arithmetic](https://usaco.guide/gold/modular). Microsoft's [C# arithmetic-operator reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/division-operator) documents truncation-toward-zero division and remainder sign; [`Math.Abs`](https://learn.microsoft.com/en-us/dotnet/api/system.math.abs?view=net-10.0) documents the minimum-value overflow exception.
 
 ## Core concepts
 
@@ -39,7 +39,7 @@ To find primes below 10, initialize 2 through 9 as candidates. For prime 2 mark 
 - Fermat inverse `a^(p-2)` requires prime `p` and `a mod p != 0`.
 - Reducing operands does not guarantee their product fits the machine type.
 - `p*p` can overflow before a loop comparison; use a wider type or division-based bound.
-- `Math.Abs(int.MinValue)` overflows because its positive magnitude is not representable as `int`.
+- `Math.Abs(int.MinValue)` throws `OverflowException` because its positive magnitude is not representable as `int`.
 - Floating-point `sqrt` can round near an integer boundary; verify with integer multiplication in a wider type.
 
 ## Knowledge checks with answers

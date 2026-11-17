@@ -85,3 +85,9 @@ Tests include three official examples, the strict-boundary case `n=2`, a prime b
 1. Why is 1 excluded from the count?
 2. Why can marking stop when `p*p >= n`?
 3. How would you answer many interval prime-count queries after one sieve?
+
+## Reflection answers
+
+1. A prime is defined as an integer greater than 1 with exactly two positive divisors; 1 has only one divisor.
+2. When `p*p >= n`, no composite below `n` can have `p` as its smallest prime factor, so no further marking is needed.
+3. Build a prefix-count array over the sieve and answer a half-open interval `[left,right)` with `prefix[right] - prefix[left]`, using a clearly defined prefix convention.
