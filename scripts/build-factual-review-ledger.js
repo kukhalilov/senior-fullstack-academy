@@ -113,5 +113,11 @@ const ledger = {
   ],
   lessons
 };
+// Preserve hand-authored audit batches and quality findings when rebuilding the
+// ledger. The generated baseline entries above remain authoritative by scope;
+// reviewer-added scopes are retained across queue/source updates.
+const baselineScopes = new Set(ledger.partialSourceChecks.map(check => check.scope));
+ledger.partialSourceChecks.push(...(existingLedger?.partialSourceChecks ?? []).filter(check => !baselineScopes.has(check.scope)));
+if (existingLedger?.contentQualityFindings?.length) ledger.contentQualityFindings = existingLedger.contentQualityFindings;
 fs.writeFileSync('curriculum/factual-review-ledger.json', `${JSON.stringify(ledger, null, 2)}\n`);
 console.log(`Updated factual-review ledger for ${lessons.length} lessons: ${reviewed} reviewed, ${lessons.length - reviewed} pending, ${claimsChecked} claims checked.`);

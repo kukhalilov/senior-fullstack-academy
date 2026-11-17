@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 6,
-    "pending": 2334,
-    "claimsChecked": 104,
-    "claimsCorrected": 2,
+    "reviewed": 7,
+    "pending": 2333,
+    "claimsChecked": 118,
+    "claimsCorrected": 4,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -118,6 +118,42 @@
       ],
       "findings": [
         "Eight named claims were checked against the original CAP/PACELC papers and Cassandra 5.0 documentation. A material read-repair nuance was added: Cassandra blocking mode supports monotonic quorum reads while NONE preserves partition-level write atomicity. Whole-lesson extraction and omission audit are not complete."
+      ]
+    },
+    {
+      "scope": "TLS and HTTP transport edition check in t12-001",
+      "status": "partial claim audit; lesson remains draft",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html"
+      ],
+      "findings": [
+        "RFC 8446 is obsolete for TLS 1.3; RFC 9846 (July 2026) is the current specification. HTTP/2 and HTTP/3 behavior and WHATWG EventSource reconnection were checked. DNS, TCP, HTTP/1.1, WebSocket, and the rest of the lesson are still pending."
+      ]
+    },
+    {
+      "scope": "Completed bounded audit: t12-001 network-and-transport reference",
+      "status": "lesson reviewed; course promotion still pending its remaining lessons",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9293",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc6455",
+        "https://www.rfc-editor.org/rfc/rfc8441",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://hld.handbook.academy/curriculum/building-blocks/"
+      ],
+      "findings": [
+        "All 8 supplied items and key cross-comparisons checked against current IETF specifications and the WHATWG living standard. TLS 1.3 source corrected from obsolete RFC 8446 to RFC 9846; HTTP/1.1 security update RFC 9931 and WebSocket over HTTP/2 RFC 8441 added."
       ]
     }
   ],
@@ -76512,7 +76548,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76540,7 +76587,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76549,13 +76607,98 @@
       "topicId": "t12-001",
       "phase": "reference",
       "draft": "course/drafts/t12-001/t12-001-reference-network-and-transport.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 14,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "DNS is a distributed hierarchical domain-name system; resolvers cache responses subject to DNS TTL information.",
+          "source": "https://www.rfc-editor.org/rfc/rfc1034; https://www.rfc-editor.org/rfc/rfc1035",
+          "section": "RFC 1034 §§2, 4.3.2; RFC 1035 §4.3.1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A DNS address result does not authenticate the application service identity; service identity verification is a separate TLS/application check.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9525",
+          "section": "§§1.1–1.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "TCP provides a reliable, ordered byte stream rather than application message boundaries; applications need their own framing.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9293",
+          "section": "§§2.2, 3.7–3.8",
+          "verdict": "supported"
+        },
+        {
+          "claim": "TLS 1.3 is specified by RFC 9846 (July 2026), which obsoletes RFC 8446 while retaining version 1.3 and backward compatibility; it forbids KeyShare reuse across connections and TLS 1.0/1.1 negotiation.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9846",
+          "section": "§§1.2–1.4",
+          "verdict": "supported; outdated citation replaced"
+        },
+        {
+          "claim": "TLS provides confidentiality, integrity, and peer authentication when the protocol is configured and identity validation is performed; mutual client authentication is optional.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9846; https://www.rfc-editor.org/rfc/rfc9525",
+          "section": "RFC 9846 §1; RFC 9525 §§1.1–1.2",
+          "verdict": "supported; wording narrowed"
+        },
+        {
+          "claim": "HTTP/1.1 uses persistent connections; requests on a connection are sequential and pipelining can suffer application-level head-of-line blocking.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9112; https://www.rfc-editor.org/rfc/rfc9931",
+          "section": "RFC 9112 §§9.3–9.4; RFC 9931 §3",
+          "verdict": "supported"
+        },
+        {
+          "claim": "RFC 9931 (March 2026) adds security requirements for optimistic HTTP/1.1 protocol transitions and CONNECT handling, including protections against forwarding untrusted data before acceptance.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9931",
+          "section": "§§1, 4, 8",
+          "verdict": "supported; new edition note added"
+        },
+        {
+          "claim": "HTTP/2 allows concurrent exchanges on one connection and compresses fields, but TCP packet loss can stall all active transactions sharing that TCP connection.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9113",
+          "section": "Abstract; §1 Introduction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "HTTP/3 maps HTTP semantics over QUIC and uses QUIC stream multiplexing; loss on one stream does not block progress on other streams, while congestion control is shared across the connection.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9114",
+          "section": "§§1.2, 2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "RFC 6455 WebSocket has an opening handshake followed by framed two-way communication; RFC 8441 separately defines WebSocket bootstrapping over HTTP/2 with extended CONNECT.",
+          "source": "https://www.rfc-editor.org/rfc/rfc6455; https://www.rfc-editor.org/rfc/rfc8441",
+          "section": "RFC 6455 §§1, 4; RFC 8441 abstract and §4",
+          "verdict": "supported; lesson wording clarified"
+        },
+        {
+          "claim": "WebSocket protocol support does not itself supply application authorization, durable replay, or fan-out policy.",
+          "source": "https://www.rfc-editor.org/rfc/rfc6455",
+          "section": "§§1, 10; protocol scope",
+          "verdict": "supported as protocol/application boundary"
+        },
+        {
+          "claim": "The WHATWG EventSource API opens a server-to-client event stream over HTTP and reconnects after closure; Last-Event-ID supports resumption only when the server has and returns corresponding event history.",
+          "source": "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+          "section": "§§9.2.1, 9.2.3–9.2.4",
+          "verdict": "supported; replay caveat stated"
+        },
+        {
+          "claim": "The lesson’s HTTP/2, HTTP/3, WebSocket, and SSE comparison accurately distinguishes transport/protocol behavior from application authorization, replay, backpressure, and fan-out responsibilities.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9113; https://www.rfc-editor.org/rfc/rfc9114; https://www.rfc-editor.org/rfc/rfc6455; https://html.spec.whatwg.org/multipage/server-sent-events.html",
+          "section": "Primary protocol specifications cited above",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers every manifest item for its assigned network-and-transport group and keeps deeper item inventories in separate bounded lessons.",
+          "source": "https://hld.handbook.academy/curriculum/building-blocks/",
+          "section": "t12-001 manifest network-and-transport inventory; draft item list",
+          "verdict": "scope checked; each supplied item appears"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://hld.handbook.academy/",
         "https://www.rfc-editor.org/rfc/rfc9110",
@@ -76568,9 +76711,20 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9325"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and scope audit completed for this bounded network-and-transport reference. The old TLS 1.3 source was updated to RFC 9846; HTTP/1.1 RFC 9931 update and WebSocket HTTP/2 setup were added. Each of the eight manifest items is present."
     },
     {
       "taskId": "t12-001-reference-traffic-entry-and-delivery",
@@ -76596,7 +76750,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76624,7 +76789,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76652,7 +76828,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76680,7 +76867,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76708,7 +76906,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76736,7 +76945,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76764,7 +76984,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76792,7 +77023,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76820,7 +77062,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76848,7 +77101,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76876,7 +77140,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76904,7 +77179,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76932,7 +77218,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76960,7 +77257,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76988,7 +77296,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77016,7 +77335,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77044,7 +77374,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77072,7 +77413,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77100,7 +77452,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77128,7 +77491,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77156,7 +77530,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77184,7 +77569,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77212,7 +77608,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77240,7 +77647,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77268,7 +77686,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77296,7 +77725,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77324,7 +77764,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77352,7 +77803,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77380,7 +77842,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77408,7 +77881,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77436,7 +77920,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77464,7 +77959,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77492,7 +77998,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77520,7 +78037,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77548,7 +78076,18 @@
         "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
         "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue"
+        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
+        "https://www.rfc-editor.org/rfc/rfc9846",
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://www.rfc-editor.org/rfc/rfc9114",
+        "https://www.rfc-editor.org/rfc/rfc9525",
+        "https://www.rfc-editor.org/rfc/rfc9325",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc1034",
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://www.rfc-editor.org/rfc/rfc9931",
+        "https://www.rfc-editor.org/rfc/rfc8441"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77659,12 +78198,75 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-time-ordering-and-failure.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
+      "status": "partial",
+      "claimInventory": "in-progress",
+      "claimsChecked": 22,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Happened-before is a partial order; a consistent total ordering can be constructed, but it does not imply every pair of events is causally related.",
+          "source": "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+          "section": "Introduction and The Partial Ordering",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Lamport clock order preserves happened-before in one direction, but timestamp order alone does not imply causality.",
+          "source": "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+          "section": "Logical Clocks; The Partial Ordering",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Physical clocks can have uncertainty and may move non-monotonically; overlapping uncertainty intervals cannot order events.",
+          "source": "https://cse.buffalo.edu/tech-reports/2014-04.pdf",
+          "section": "§1.1 Physical Time; RFC/POSIX clock discussion",
+          "verdict": "supported for the cited design discussion; claim narrowed to avoid numerical accuracy promises"
+        },
+        {
+          "claim": "Vector clocks track knowledge of other nodes' logical clocks and can represent causal ordering/concurrency under the tracked-process model; metadata grows with participants.",
+          "source": "https://cse.msu.edu/~cse812/fall03/Slides/VectorClocksMattern.pdf; https://cse.buffalo.edu/tech-reports/2014-04.pdf",
+          "section": "Mattern, Virtual Time and Global States; HLC report §1.1",
+          "verdict": "supported; scope limited to the simple vector-clock model and calls out implementation-specific variants"
+        },
+        {
+          "claim": "The cited HLC design preserves happened-before ordering while keeping its logical component close to NTP time under its assumptions; this does not make physical time exact.",
+          "source": "https://cse.buffalo.edu/tech-reports/2014-04.pdf",
+          "section": "Abstract and §1.2 Contributions",
+          "verdict": "supported; earlier wording implying skew is accounted for was corrected"
+        },
+        {
+          "claim": "Failure detectors can make mistakes; completeness and accuracy are distinct properties in the Chandra-Toueg model.",
+          "source": "https://hdl.handle.net/1813/7192",
+          "section": "Abstract and §1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "SWIM separates randomized probing from membership dissemination, can use indirect probes and suspicion before declaring failure, and does not by itself establish data consistency or consensus.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "Abstract; §§3.1–4.2",
+          "verdict": "supported; non-guarantee statement is a scope distinction from the protocol's stated membership service"
+        },
+        {
+          "claim": "Phi accrual failure detection emits a continuous suspicion level based on heartbeat arrival history; applications choose thresholds, trading detection speed against mistakes.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "Abstract; §§III–IV",
+          "verdict": "supported; corrected the oversimplification that phi is merely a probability of death"
+        },
+        {
+          "claim": "Cassandra anti-entropy repair compares common token ranges using Merkle trees and streams differences; repair execution is operator-run and command coverage is node/range scoped.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Repair; Incremental and Full Repairs; Usage and Best Practices",
+          "verdict": "supported for Cassandra 5.0 example; explicitly not generalized to every database"
+        },
+        {
+          "claim": "A Merkle-tree mismatch localizes differing summaries but does not itself choose the authoritative value or resolve an application conflict.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Repair; inference from the documented compare-and-stream repair procedure",
+          "verdict": "supported as a scope distinction/inference; the repair protocol supplies reconciliation semantics"
+        }
+      ],
+      "issues": [
+        "Inventory scope is covered, but the lesson still needs a final pass for each factual sentence and comparison against all eight manifest items before promotion."
+      ],
       "reviewedAt": null,
       "sourceUrls": [
         "https://hld.handbook.academy/",
@@ -77686,7 +78288,13 @@
         "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
         "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Initial claim evidence recorded for the eight manifest items. 22 sentence-level checks are tracked, with grouped evidence entries; remaining statements and scope need a final independent pass. Keep draft until complete.",
+      "claimChecks": 22,
+      "scopeCheck": {
+        "status": "checked against assigned manifest inventory; independent Handbook module title-by-title check pending",
+        "checkedItems": ["Wall-clock timestamp", "Lamport clock", "Vector clock", "Hybrid logical clock", "Failure detector", "Gossip protocol", "Anti-entropy", "Merkle tree"],
+        "missingItems": []
+      }
     },
     {
       "taskId": "t12-002-reference-partitioning-and-convergence",
