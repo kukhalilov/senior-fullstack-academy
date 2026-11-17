@@ -78252,11 +78252,41 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
         "https://redis.io/docs/latest/develop/use-cases/cache-aside/nodejs/",
+        "https://redis.io/docs/latest/manual/patterns/distributed-locks/",
+        "https://redis.io/docs/latest/commands/set/",
         "https://httpwg.org/specs/rfc5861.html"
       ],
-      "reviewNote": "Partial source verification only. Three cache-lock and stale-response claims checked against Redis documentation and RFC 5861; remaining claims and manifest omission review require full audit. Do not promote."
+      "reviewNote": "Partial source verification only. Three cache-lock and stale-response claims checked against Redis documentation and RFC 5861; remaining claims and manifest omission review require full audit. Do not promote.",
+      "partialSourceChecks": [
+        {
+          "status": "partial primary-source checks; full lesson audit pending",
+          "checks": [
+            {
+              "claim": "Redis SET NX with an expiry supports atomic single-instance lock acquisition; unique ownership token is needed for safe conditional release.",
+              "source": "https://redis.io/docs/latest/manual/patterns/distributed-locks/",
+              "also": "https://redis.io/docs/latest/commands/set/",
+              "verdict": "verified; lesson explicitly warns lease does not guarantee one execution forever"
+            },
+            {
+              "claim": "Redis cache-aside example uses a single-flight lock, makes concurrent callers wait briefly, and invalidates cache after primary writes.",
+              "source": "https://redis.io/docs/latest/develop/use-cases/cache-aside/nodejs/",
+              "verdict": "verified for the documented example"
+            },
+            {
+              "claim": "RFC 5861 defines independent stale-while-revalidate and stale-if-error extensions with bounded stale windows.",
+              "source": "https://httpwg.org/specs/rfc5861.html",
+              "verdict": "verified; HTTP cache directives are distinguished from application-specific cache logic"
+            },
+            {
+              "claim": "TTL jitter, bounded waiting, fencing/version checks, and freshness policy are presented as architecture guidance, not vendor guarantees.",
+              "source": "https://redis.io/docs/latest/manual/patterns/distributed-locks/",
+              "verdict": "partial; design claims still need broader sources and claim-level review"
+            }
+          ],
+          "remaining": "The full factual sentence inventory, probabilistic refresh and jitter supporting evidence, complete feature-scope check, and lesson-by-lesson claim audit remain outstanding."
+        }
+      ]
     },
     {
       "taskId": "t12-001-reference-handbook-building-block-product-and-protocol-examples-apns",
@@ -100246,6 +100276,14 @@
       "status": "expanded; selected primary-source checks; full audit pending",
       "findings": [
         "Replaced generic filler with client/broker/topic model, QoS scope, sessions/version evolution, retained state, wills, shared subscriptions, security, flow control, and device-system example. Selected protocol statements checked against OASIS MQTT standards; full factual and completeness audits remain outstanding."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "Cache stampede prevention reference",
+      "status": "partial source review; full lesson review pending",
+      "findings": [
+        "Existing lesson already contained topic-specific mechanisms and scenarios; it was not counted as a generic reference filler file. Selected Redis lease/cache-aside and RFC 5861 stale-directive claims were checked against primary sources. Full claim inventory, remaining technique evidence, and scope completeness are still pending."
       ]
     }
   ]
