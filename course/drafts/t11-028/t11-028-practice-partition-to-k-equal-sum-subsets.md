@@ -23,6 +23,8 @@ Return whether `nums` can be divided into k nonempty subsets whose sums are equa
 
 All values are positive and each input occurrence is a distinct item even when values repeat. Equal target sums and positive values imply every bucket is nonempty. A symmetry optimization may skip trying the same next value in buckets with equal current loads because those buckets have identical future constraints.
 
+The implementation sorts `nums` in place; clone it first if the caller needs the original order preserved.
+
 ## Progressive hints
 1. Compute `target = total/k`; reject if the total is not divisible or any item exceeds target.
 2. Sort items descending and recursively place each into a bucket with enough remaining capacity.

@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 518,
-    "pending": 1822,
-    "claimsChecked": 17300,
+    "reviewed": 531,
+    "pending": 1809,
+    "claimsChecked": 17736,
     "claimsCorrected": 1393,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 518,
-    "pendingLessons": 1822
+    "reviewedLessons": 531,
+    "pendingLessons": 1809
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -37432,13 +37432,59 @@
       "topicId": "t11-028",
       "phase": "overview",
       "draft": "course/drafts/t11-028/t11-028-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37449,20 +37495,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-concepts",
       "topicId": "t11-028",
       "phase": "concepts",
       "draft": "course/drafts/t11-028/t11-028-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37473,20 +37565,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-reference-constraints-and-partial-assignments",
       "topicId": "t11-028",
       "phase": "reference",
       "draft": "course/drafts/t11-028/t11-028-reference-constraints-and-partial-assignments.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37497,20 +37635,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-reference-search-order-and-pruning",
       "topicId": "t11-028",
       "phase": "reference",
       "draft": "course/drafts/t11-028/t11-028-reference-search-order-and-pruning.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37521,20 +37705,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-reference-puzzle-structures",
       "topicId": "t11-028",
       "phase": "reference",
       "draft": "course/drafts/t11-028/t11-028-reference-puzzle-structures.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37545,20 +37775,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-reference-state-restoration-and-correctness",
       "topicId": "t11-028",
       "phase": "reference",
       "draft": "course/drafts/t11-028/t11-028-reference-state-restoration-and-correctness.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37569,20 +37845,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-practice-n-queens",
       "topicId": "t11-028",
       "phase": "practice",
       "draft": "course/drafts/t11-028/t11-028-practice-n-queens.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37593,20 +37915,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-practice-sudoku-solver",
       "topicId": "t11-028",
       "phase": "practice",
       "draft": "course/drafts/t11-028/t11-028-practice-sudoku-solver.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37617,20 +37985,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-practice-word-search",
       "topicId": "t11-028",
       "phase": "practice",
       "draft": "course/drafts/t11-028/t11-028-practice-word-search.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37641,20 +38055,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-practice-partition-to-k-equal-sum-subsets",
       "topicId": "t11-028",
       "phase": "practice",
       "draft": "course/drafts/t11-028/t11-028-practice-partition-to-k-equal-sum-subsets.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37665,20 +38125,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-practice-matchsticks-square",
       "topicId": "t11-028",
       "phase": "practice",
       "draft": "course/drafts/t11-028/t11-028-practice-matchsticks-square.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37689,20 +38195,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-practice-word-search-ii",
       "topicId": "t11-028",
       "phase": "practice",
       "draft": "course/drafts/t11-028/t11-028-practice-word-search-ii.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37713,20 +38265,66 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-028-interview",
       "topicId": "t11-028",
       "phase": "interview",
       "draft": "course/drafts/t11-028/t11-028-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked variable/domain and partial-state definitions, sound-pruning obligations, MRV versus branch elimination, symmetry arguments, mutable-state restoration, bit-mask widths, worst-case search estimates, puzzle-specific constraints, examples, and the frozen manifest inventory against algorithm references and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added explicit input-mutation notes for the two in-place sorted bucket-assignment implementations.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/CP2.pdf",
+              "section": "Complete search, permutations/backtracking, and complexity concepts",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://usaco.guide/bronze/complete-rec?lang=cpp",
+              "section": "Recursive search and choice/undo patterns",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/n-queens/",
+              "section": "Canonical all-distinct-solutions contract, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/sudoku-solver/",
+              "section": "Sudoku rules, board contract, unique-solution guarantee, and example board",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search/",
+              "section": "Adjacency/no-reuse rules, constraints, examples, and search-pruning follow-up",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+              "section": "Equal nonempty subset contract, constraints, and repeated-value bound",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/matchsticks-to-square/",
+              "section": "Use-every-matchstick-once rules and constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/word-search-ii/",
+              "section": "Dictionary, adjacency, no-reuse, uniqueness, and board constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/CP2.pdf",
         "https://usaco.guide/bronze/complete-rec?lang=cpp",
@@ -37737,7 +38335,7 @@
         "https://leetcode.com/problems/matchsticks-to-square/",
         "https://leetcode.com/problems/word-search-ii/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified search-state invariants, candidate coverage, pruning and symmetry proofs, bit-mask bounds, restoration on success/failure, puzzle contracts, and complexity assumptions. Added notes that the equal-bucket implementations sort their input arrays in place. All six C# solutions compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-014-overview",

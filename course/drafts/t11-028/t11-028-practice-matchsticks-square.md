@@ -22,6 +22,8 @@ Given matchstick lengths, use every stick exactly once without breaking any stic
 
 All sticks have positive lengths, and every stick must be assigned to exactly one side. Each side has target `sum/4`. Sides are interchangeable: their labels have no bearing on whether the remaining sticks can complete them. Sums are stored in `long` even though the maximum aggregate under the limit is within `int` range.
 
+The implementation sorts `matchsticks` in place; clone it first if the caller needs the original order preserved.
+
 ## Progressive hints
 1. Reject if total length is not divisible by four or the longest stick exceeds one side.
 2. Sort descending and place each stick into a side without exceeding the target.
