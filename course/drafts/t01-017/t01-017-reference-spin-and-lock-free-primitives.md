@@ -93,10 +93,10 @@ This section explains every supplied name in the inventory group.
   - Purpose and behavior: The design choice between keeping a CPU core active to check for conditions instantly (`SpinWait`) versus relinquishing the core entirely to let other work run (blocking wait via semaphores, events, or monitors).
 
 * `Lock-free algorithm progress guarantee`
-  - Purpose and behavior: A concurrency guarantee ensuring that at least one thread makes progress globally across the system within a finite number of steps, even if other threads experience delays or contention.
+  - Purpose and behavior: A system-wide progress guarantee: under continued execution, some operation completes in a finite number of its own steps despite delays or contention affecting other threads. It does not promise that every individual thread makes progress.
 
 * `Wait-free algorithm progress guarantee`
-  - Purpose and behavior: The strongest progress guarantee, ensuring that *every* individual thread is guaranteed to complete its operation within a bounded number of steps, regardless of the behavior or interference of other threads.
+  - Purpose and behavior: A per-operation progress guarantee: every operation completes in a bounded number of its own steps, independent of other threads’ progress. This is a step bound, not a real-time wall-clock deadline.
 
 * `Obstruction-free algorithm progress guarantee`
   - Purpose and behavior: A guarantee that a thread will make progress if it runs in isolation (unobstructed by other threads), which requires a conflict-resolution mechanism to resolve concurrent collisions.
@@ -126,7 +126,7 @@ This section explains every supplied name in the inventory group.
   - Purpose and behavior: The integration of cancellation tokens (`CancellationToken`) into waiting primitives so that blocked or spinning threads can abort immediately when an external cancellation request occurs.
 
 * `Primitive disposal while waiters remain`
-  - Purpose and behavior: A dangerous usage error where synchronization primitives or underlying handles are disposed while other threads are actively waiting on or spinning against them, leading to undefined behavior or exceptions.
+  - Purpose and behavior: A dangerous usage error where synchronization primitives or underlying handles are disposed while other threads are actively waiting on or spinning against them, which may cause exceptions or violate the primitive’s lifetime contract; exact outcomes depend on the API, so stop and join users before disposal.
 
 # Cross-item comparison
 Within this assigned group, items fall into distinct functional categories:

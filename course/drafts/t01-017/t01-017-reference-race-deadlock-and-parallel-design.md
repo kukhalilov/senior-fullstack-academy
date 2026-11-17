@@ -23,7 +23,7 @@ This reference lesson explains every inventory item assigned to this group. Each
   A situation where the correctness of a program depends on the relative timing or interleaving of threads. Even if individual operations are atomic, the overall outcome changes depending on which thread runs first.
 
 - `Data race`
-  A specific hardware- and memory-level hazard where two or more instructions from different threads access the exact same memory location concurrently, at least one access is a write, and there is no synchronization order between them. Data races are undefined behavior.
+  A conflict where threads access the same memory location concurrently, at least one access is a write, and no synchronization establishes an ordering. In .NET, unsynchronized conflicting accesses have no general visibility or ordering guarantee; do not import C/C++ undefined-behavior terminology as the C# contract.
 
 - `Lost update`
   A classic race condition where two threads read a shared value, compute an update locally, and write their results back. The second write overwrites the first, causing one update to disappear.
@@ -35,10 +35,10 @@ This reference lesson explains every inventory item assigned to this group. Each
   A security and correctness hazard (often abbreviated as TOCTOU) similar to a check-then-act race, where an external resource state changes between the moment it is verified and the moment it is consumed.
 
 - `Thread-safe type contract`
-  A guarantee that instances of a type can be accessed concurrently by multiple threads without external synchronization, while maintaining internal data integrity and predictable behavior.
+  A documented contract describing which concurrent operations on instances are safe and what synchronization callers must provide; thread-safety guarantees are often operation-specific rather than blanket guarantees for every member.
 
 - `Thread-safe static state`
-  A guarantee that static fields, properties, and methods on a type can be accessed and modified concurrently by multiple threads without corruption.
+  A contract for concurrent use of static members. Static state is not automatically thread-safe; each member and shared invariant needs an explicit synchronization design.
 
 - `Immutable shared data`
   Data whose state cannot be modified after construction. Immutable data is inherently thread-safe because multiple threads can read it concurrently without locks or data races.
@@ -77,13 +77,13 @@ This reference lesson explains every inventory item assigned to this group. Each
   The configuration choices provided by `Lazy<T>` that dictate how thread safety is enforced during lazy evaluation and instantiation of the wrapped value.
 
 - `LazyThreadSafetyMode.None`
-  No thread safety is enforced. If multiple threads access an uninitialized `Lazy<T>` instance concurrently, the outcome is unpredictable and state corruption may occur. Intended strictly for single-threaded scenarios.
+  No synchronization is provided for concurrent access to the `Lazy<T>` instance. Use only when callers ensure safe access, commonly single-threaded access; do not promise a particular result for concurrent unsynchronized use.
 
 - `LazyThreadSafetyMode.PublicationOnly`
   Multiple threads are permitted to run the initialization factory function concurrently, but only the first thread to complete publishes its result as the final value. Other threads' results are discarded.
 
 - `LazyThreadSafetyMode.ExecutionAndPublication`
-  Full thread safety. A lock ensures that only a single thread executes the initialization factory function, and all subsequent threads block until that initialization completes and the value is published.
+  For a supplied factory, one thread executes the factory for that `Lazy<T>` instance while other callers wait; the value or factory exception is then cached according to the mode contract.
 
 - `Parallel.For`
   A static method in the `System.Threading.Tasks.Parallel` class that executes a for-loop iteration space in parallel across multiple tasks and threads.
@@ -98,7 +98,7 @@ This reference lesson explains every inventory item assigned to this group. Each
   An overload of `Parallel.ForEach` that supports local state initialization, iteration processing, and final local-to-global aggregation.
 
 - `Parallel.ForEachAsync`
-  An asynchronous parallel loop API introduced in .NET 6 that processes enumerable items concurrently using asynchronous bodies (`Func<TSource, CancellationToken, ValueTask>`) [https://learn.microsoft.com/en-us/dotnet/standard/threading/overview-of-synchronization-primitives].
+  An asynchronous parallel loop API introduced in .NET 6 that processes enumerable items concurrently using asynchronous bodies (`Func<TSource, CancellationToken, ValueTask>`) [https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.parallel.foreachasync].
 
 - `ParallelOptions`
   An options class used to configure parallel loops, specifying degree of parallelism, cancellation tokens, and task schedulers.
@@ -158,7 +158,7 @@ This reference lesson explains every inventory item assigned to this group. Each
   The tradeoff analysis showing that small workloads run faster sequentially because parallel scheduling, task allocation, and partitioning consume more time than the actual computation.
 
 - `Avoid shared mutable accumulator in parallel loop`
-  A core best practice stating that updating a shared variable inside a parallel loop using locks or atomic operations on every iteration destroys parallelism due to contention. Use local state instead.
+  A performance guideline: shared updates on every iteration can create contention. When possible, use partition-local state and combine partial results; measure because the right approach depends on work size and contention.
 
 - `Concurrent collections in t01-014`
   Thread-safe collection types (such as `ConcurrentDictionary<TKey, TValue>`) designed for concurrent access using implementation-specific synchronization, covered in topic t01-014.
@@ -235,7 +235,7 @@ Computed Sum: 500500
 ```
 
 # Common mistakes
-- **Using shared mutable accumulators inside parallel loops**: Updating a shared integer variable via `Interlocked.Increment` or a `lock` on *every* iteration of `Parallel.For` introduces severe lock contention. Always use partition-local accumulation (`Parallel.For<TLocal>`) and combine results only at partition finalization.
+- **Using shared mutable accumulators inside parallel loops**: Updating shared state on every iteration of `Parallel.For` can introduce contention. Consider partition-local accumulation (`Parallel.For<TLocal>`) and combining results after work; benchmark and choose based on the invariant and workload.
 - **Applying parallelism to fine-grained workloads**: Spawning parallel tasks for trivial loop bodies (such as adding two local numbers) incurs more scheduling overhead than executing sequentially. Parallelism requires sufficient work per iteration to amortize task creation.
 - **Forgetting asynchronous boundaries in `Parallel.ForEachAsync`**: A blocking body in `Parallel.ForEachAsync` occupies a worker and one concurrency slot while blocked; it does not necessarily exhaust the whole thread pool. Prefer awaiting naturally asynchronous operations, and size the concurrency limit for the resource and workload.
 - **Confusing `Stop()` and `Break()` semantics**: `Stop()` and `Break()` request that additional iterations cease, but iterations already running may finish. Use `Break()` for an index-based lowest-break-point requirement; do not rely on deterministic side effects from parallel iterations.

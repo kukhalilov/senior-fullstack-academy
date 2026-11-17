@@ -119,7 +119,7 @@ This section explains every item in the assigned inventory group, connecting eac
   Synchronizes memory access by establishing a memory barrier that prevents CPU processors from reordering memory reads and writes across the barrier.
 
 * `Interlocked.MemoryBarrierProcessWide`
-  A process-wide memory barrier that forces processor-level reordering restrictions across all threads in the current process.
+  A process-wide memory barrier that prevents reads and writes from any CPU from moving across the barrier; this specialized API is rarely needed in application code.
 
 * `Thread.MemoryBarrier()`
   Establishes a memory barrier that prevents the calling thread's memory operations from being reordered across the barrier. Use the synchronization primitives designed for the shared-state protocol (such as a lock or an appropriate Interlocked operation) instead of treating a barrier alone as a replacement for mutual exclusion.
@@ -188,7 +188,7 @@ This section explains every item in the assigned inventory group, connecting eac
   An anti-pattern where code locks on a `typeof(T)` object, which is visible across the entire application domain and creates severe cross-component contention.
 
 * `Lock ordering`
-  A deadlock-prevention strategy where multiple locks are always acquired in a globally agreed-upon, consistent sequence across all threads.
+  A deadlock-reduction strategy: when code must acquire multiple locks, consistently order them across all paths to avoid circular wait; it does not address every deadlock source.
 
 * `Critical section duration`
   The elapsed execution time spent inside a locked block; keeping critical sections short reduces contention and improves throughput.

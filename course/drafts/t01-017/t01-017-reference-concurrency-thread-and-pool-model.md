@@ -36,8 +36,8 @@ The **Thread Pool** is a managed collection of worker threads that the runtime m
 * `Thread.Sleep(Int32)`: Suspends the current thread for a specified number of milliseconds.
 * `Thread.Interrupt()`: Requests interruption of a target thread blocked in `WaitSleepJoin`; a `ThreadInterruptedException` is thrown when that thread resumes from the wait, or at a later wait if it was not currently waiting. It is not a safe general-purpose cancellation mechanism.
 * `Thread.Yield()`: Causes the calling thread to yield execution to another thread on the same processor.
-* `Thread.BeginCriticalRegion()`: Informs the host that a block of code is about to enter a critical section.
-* `Thread.EndCriticalRegion()`: Informs the host that a block of code has exited a critical section.
+* `Thread.BeginCriticalRegion()`: Legacy host notification that code is entering a region where thread abort or an unhandled exception could affect other tasks in an application domain; it is not a mutual-exclusion lock and ordinary applications generally should not call it.
+* `Thread.EndCriticalRegion()`: Legacy host notification that the previously declared critical region has ended; it does not release a lock.
 
 ### Thread-Local Storage
 * `ThreadLocal<T>`: Provides thread-local storage of data.
@@ -64,14 +64,14 @@ The **Thread Pool** is a managed collection of worker threads that the runtime m
 * `ThreadPool starvation`: A condition where the pool cannot create threads fast enough to handle demand.
 * `Thread-pool hill climbing`: The algorithm used by the runtime to adjust thread counts based on throughput.
 * `Thread-pool worker thread`: A thread dedicated to executing user-queued tasks.
-* `Thread-pool I/O completion thread`: A thread dedicated to handling asynchronous I/O callbacks.
+* `Thread-pool I/O completion thread`: Runtime and platform implementations use thread-pool mechanisms to dispatch some I/O completions; do not assume every asynchronous I/O wait occupies a dedicated completion thread.
 
 ### Lifecycle and Behavior
 * `Foreground thread process lifetime`: The process remains alive as long as at least one foreground thread is running.
 * `Background thread process lifetime`: These threads are terminated automatically when all foreground threads exit.
 * `Dedicated Thread versus ThreadPool thread`: Dedicated threads are for long-running tasks; pool threads are for short, efficient tasks.
 * `Thread.Abort unsupported on modern .NET`: `Abort` is not available in .NET Core/5+ to prevent unstable state.
-* `Thread.Suspend and Thread.Resume obsolete hazards`: These methods are deprecated due to deadlock risks.
+* `Thread.Suspend and Thread.Resume obsolete hazards`: These legacy APIs are obsolete and unsupported on modern .NET; suspending another thread can leave locks or invariants held and deadlock the process.
 * `Unhandled thread exception process behavior`: In modern .NET, unhandled exceptions in threads typically terminate the process.
 * `Thread affinity`: The requirement that a task must run on a specific thread (e.g., UI threads).
 * `CPU-bound work scheduling`: The strategy of distributing heavy calculations across available cores.
@@ -100,7 +100,7 @@ Console.WriteLine($"Data for this thread: {threadData.Value}");
 
 # Knowledge checks with answers
 1. **Question**: What happens to background threads when all foreground threads finish?
-   **Answer**: They are terminated immediately by the runtime.
+   **Answer**: The process may terminate without waiting for background threads when no foreground threads remain; do not rely on their cleanup or completion.
 2. **Question**: Why is `Thread.Abort` unsupported in modern .NET?
    **Answer**: It can leave the application in an inconsistent state (e.g., locks not released, corrupted memory).
 3. **Question**: What is the primary purpose of the `ThreadPool`?

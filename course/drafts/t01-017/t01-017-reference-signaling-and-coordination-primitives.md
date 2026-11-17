@@ -219,7 +219,7 @@ This section defines every assigned signaling and coordination primitive accordi
 
 Within this assigned signaling and coordination group, several primitives share overlapping purposes but differ in performance and intended architecture:
 
-* **Kernel vs. Slim Primitives (`AutoResetEvent` / `ManualResetEvent` vs. `ManualResetEventSlim`, `Semaphore` vs. `SemaphoreSlim`)**: Kernel-based handles (`AutoResetEvent`, `Semaphore`) incur operating system transition overhead, making them mandatory only when coordinating across different processes (named handles). For in-process coordination, slim variants (`ManualResetEventSlim`, `SemaphoreSlim`) spin briefly in user mode before invoking kernel waits, drastically reducing CPU context-switch overhead.
+* **Kernel vs. Slim Primitives (`AutoResetEvent` / `ManualResetEvent` vs. `ManualResetEventSlim`, `Semaphore` vs. `SemaphoreSlim`)**: OS-backed wait handles can support named cross-process coordination, but are also usable within one process. Slim variants are in-process alternatives that may spin briefly before blocking; spinning can help only for suitable short waits and is not a universal performance win.
 * **Completion Tracking (`CountdownEvent` vs. `Barrier`)**: A `CountdownEvent` tracks a one-shot countdown (e.g., waiting for $N$ worker tasks to finish before proceeding). A `Barrier`, by contrast, coordinates cyclical work where threads meet repeatedly at phase boundaries, executing phased, iterative algorithms.
 * **Exclusive vs. Shared Access (`lock` vs. `ReaderWriterLockSlim`)**: Standard locks provide exclusive mutual exclusion (one thread at a time). `ReaderWriterLockSlim` permits high-concurrency read operations while serializing write operations, making it ideal for read-heavy cache structures.
 
@@ -283,7 +283,7 @@ All tasks completed successfully.
 
 # Common mistakes
 
-* **Forgetting to Dispose Unmanaged and Kernel Resources**: Primitives that wrap OS handles or implement `IDisposable` (such as `Semaphore`, `SemaphoreSlim`, `Mutex`, `CountdownEvent`, `Barrier`, and `ReaderWriterLockSlim`) must be disposed properly to prevent kernel leaks.
+* **Ignoring disposable primitive lifetime**: Dispose synchronization primitives when their owning scope ends and no waits or operations remain. Some implementations allocate OS handles lazily; disposal races with active users are unsafe.
 * **Releasing Semaphores Incorrectly**: Calling `SemaphoreSlim.Release()` without a matching successful `Wait()` call corrupts the semaphore count, allowing more threads into the critical section than intended.
 * **Using Heavy Kernel Handles In-Process**: Using `AutoResetEvent` or process-wide `Semaphore` objects for simple in-process thread signaling adds unnecessary context-switch overhead. Prefer `ManualResetEventSlim` or `SemaphoreSlim`.
 * **Lock Recursion Deadlocks in `ReaderWriterLockSlim`**: Entering write locks while holding read locks without using upgradeable read modes can trigger runtime exceptions or deadlocks depending on the configured `RecursionPolicy`.
@@ -291,7 +291,7 @@ All tasks completed successfully.
 # Knowledge checks with answers
 
 1. **Question**: When should you choose `SemaphoreSlim` instead of a standard `Semaphore`?
-   * **Answer**: Choose `SemaphoreSlim` for lightweight, in-process thread synchronization because it avoids kernel transition overhead by utilizing spinning before falling back to wait handles. Use `Semaphore` only when you need named system-wide synchronization across different operating system processes.
+   * **Answer**: Choose `SemaphoreSlim` for many lightweight in-process coordination cases; it can avoid a kernel wait for short waits, but may spin and is not always faster. Use a named `Semaphore` when coordination across processes is required.
 2. **Question**: What is the primary difference between `CountdownEvent` and a `Barrier`?
    * **Answer**: A `CountdownEvent` is used for one-shot coordination where threads signal completion until a count reaches zero. A `Barrier` coordinates cyclical phases where multiple threads must repeatedly meet and wait for all participants to arrive before entering the next phase.
 3. **Question**: Why might calling `WaitHandle.WaitAll` on an array of wait handles fail or be discouraged in modern .NET applications?
