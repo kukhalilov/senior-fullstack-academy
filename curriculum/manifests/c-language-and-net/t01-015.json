@@ -205,12 +205,17 @@
         "Queryable.SequenceEqual",
         "Queryable.First",
         "Queryable.FirstOrDefault",
+        "Queryable.FirstOrDefault explicit-default overloads",
         "Queryable.Last",
         "Queryable.LastOrDefault",
+        "Queryable.LastOrDefault explicit-default overloads",
         "Queryable.Single",
         "Queryable.SingleOrDefault",
+        "Queryable.SingleOrDefault explicit-default overloads",
         "Queryable.ElementAt",
+        "Queryable.ElementAt Index overload",
         "Queryable.ElementAtOrDefault",
+        "Queryable.ElementAtOrDefault Index overload",
         "Queryable.AsQueryable",
         "Queryable expression-tree overload signatures",
         "Queryable provider translation failure",
@@ -221,8 +226,7 @@
         "Provider-specific function translation",
         "Client evaluation versus server evaluation",
         "Explicit materialization using ToList",
-        "AsEnumerable changes subsequent operator binding",
-        "Queryable.ToLookup"
+        "AsEnumerable changes subsequent operator binding"
       ]
     },
     {
@@ -342,7 +346,7 @@
         "First versus Single cardinality contracts",
         "FirstOrDefault default-value semantics",
         "ElementAt index-from-end support",
-        "Async enumeration backpressure boundary",
+        "Async enumeration pacing and prefetch boundary",
         "Cancellation during async enumeration",
         "Do not run CPU-bound work concurrently by adding async LINQ",
         "Avoid query side effects",
@@ -412,7 +416,7 @@
     {
       "edition": ".NET 9, .NET 10, and .NET 11 LINQ additions",
       "items": [
-        ".NET 9 added `CountBy`, `AggregateBy`, and ordering helpers including `Order` and `OrderDescending` to LINQ. .NET 10 added built-in `AsyncEnumerable` operators for IAsyncEnumerable<T>. .NET 11 added `FullJoin` and tuple-returning Join/GroupJoin overloads across Enumerable, Queryable, and AsyncEnumerable. These are library APIs, not C# language syntax; package and target-framework availability must be checked when multitargeting."
+        ".NET 9 added `CountBy`, `AggregateBy`, and ordering helpers including `Order` and `OrderDescending` to LINQ. .NET 10 added the platform `System.Linq.AsyncEnumerable` class; use its package when targeting earlier frameworks, and check package versions for APIs backported to .NET 10. .NET 11 added `FullJoin` and tuple-returning Join/GroupJoin overloads to Enumerable and Queryable; the async FullJoin API is in .NET 11 and is also package-provided for .NET 10. These are library APIs, not C# language syntax; package and target-framework availability must be checked when multitargeting."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9",
@@ -425,16 +429,17 @@
     "IEnumerable<T> and IQueryable<T> describe sequence/query abstractions; neither implies the source is necessarily in-memory or remote. IQueryable behavior is defined by its provider, which may translate only supported expression-tree shapes.",
     "AsEnumerable changes the compile-time operator binding for subsequent calls; it does not itself enumerate, materialize, or execute the source. Enumeration later can still invoke an underlying IQueryable provider for the preceding query.",
     "AsQueryable over an ordinary in-memory sequence may wrap it with an in-memory provider; it does not automatically create remote translation.",
+    "Queryable does not provide every Enumerable terminal/materialization method. Enumerable.ToLookup and Enumerable.ToList can consume an IQueryable through IEnumerable and then execute via enumeration; they are not Queryable operators.",
     "LINQ deferred operators usually execute on enumeration, but some operators execute immediately and return a scalar or materialized collection. Distinct is deferred and can yield unique items incrementally while retaining a set of seen values; it is not an all-input buffering operator.",
     "OrderBy is deferred but non-streaming for LINQ to Objects: it consumes and sorts the input before yielding the first ordered result. GroupBy for LINQ to Objects also builds groups before yielding. Provider-backed behavior is provider-specific.",
-    "IAsyncEnumerable<T> denotes asynchronous enumeration, not necessarily network I/O or parallel processing. AsyncEnumerable.ToListAsync returns ValueTask<List<T>>, not Task<List<T>>; several async sequence terminal operators use ValueTask results.",
+    "IAsyncEnumerable<T> denotes asynchronous enumeration, not necessarily network I/O or parallel processing. .NET 10 introduced the platform AsyncEnumerable class; use System.Linq.AsyncEnumerable for earlier targets and verify package versions for individual additions such as FullJoin. AsyncEnumerable.ToListAsync returns ValueTask<List<T>>, not Task<List<T>>; several async sequence terminal operators use ValueTask results.",
     "Repeated enumeration of a deferred query repeats its work; for a provider-backed IQueryable, this can reissue a provider query. Whether it causes a database round trip depends on the provider and source.",
     "Filter or project remotely only when the actual provider supports translation; do not imply every IQueryable source is a database query or that unsupported expressions are always silently evaluated client-side."
   ],
   "sourceSnapshot": {
     "authority": "Microsoft C# LINQ guide, .NET Enumerable/Queryable/AsyncEnumerable API reference, and current .NET release notes",
-    "edition": ".NET 11 GA standard query operator and async-sequence surface checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": ".NET 11 GA LINQ, .NET 10 AsyncEnumerable, and current package-provided async additions checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
       "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/",
@@ -449,7 +454,12 @@
       "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1",
       "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9",
       "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
-      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
+      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.firstordefault",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.lastordefault",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.singleordefault",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.elementatordefault?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.linq.asyncenumerable.fulljoin"
     ]
   },
   "scopeExclusions": [

@@ -5,7 +5,7 @@
 *Automatically generated draft.*
 
 # Scope and version
-This lesson covers the standard query operators available in the `System.Linq.Enumerable` class for .NET 11. These operators provide the core functionality for working with `IEnumerable<T>` collections in local memory. This reference is based on the .NET 11 GA standard query operator surface as of 2026-11-14.
+This lesson covers the standard query operators available in the `System.Linq.Enumerable` class for .NET 11. These operators synchronously enumerate `IEnumerable<T>` sources; the source is often in memory but can also stream or retrieve data from elsewhere. This reference is based on the .NET 11 GA standard query operator surface as of 2026-11-17.
 
 # How this group fits the mental model
 LINQ (Language Integrated Query) is a family of query patterns. The `Enumerable` operators represent the **local execution** side of this family. When you use these methods, you are processing data already loaded into the application's memory. 
@@ -75,7 +75,7 @@ Most of these operators use **deferred execution**: they do not perform the work
 *   `Enumerable.Contains`: Determines if a sequence contains a value.
 *   `Enumerable.SequenceEqual`: Determines if two sequences are equal.
 *   `Enumerable.First`: Returns the first element.
-*   `Enumerable.FirstOrDefault`: Returns the first element or a default.
+*   `Enumerable.FirstOrDefault`: Returns the first element or `default(TSource)` when no element matches; overloads can accept a predicate.
 *   `Enumerable.Last`: Returns the last element.
 *   `Enumerable.LastOrDefault`: Returns the last element or a default.
 *   `Enumerable.Single`: Returns the only element.
@@ -93,10 +93,10 @@ Most of these operators use **deferred execution**: they do not perform the work
 *   `Enumerable.ToLookup materialization overloads`: Overloads for `ToLookup` with custom comparers.
 *   `Enumerable.ToDictionary comparer overloads`: Overloads for `ToDictionary` with custom comparers.
 *   `Enumerable.ToDictionary element selector overloads`: Overloads for `ToDictionary` with element transformation.
-*   `Enumerable.FirstOrDefault default-value overload`: Returns a specific default if not found.
+*   `Enumerable.FirstOrDefault default-value overload`: .NET 6 and later overloads return the supplied fallback when the sequence or predicate match is empty. Equivalent explicit-fallback overload families exist for `LastOrDefault` and `SingleOrDefault`; `SingleOrDefault` still throws if multiple elements match.
 *   `Enumerable.LastOrDefault default-value overload`: Returns a specific default if not found.
 *   `Enumerable.SingleOrDefault default-value overload`: Returns a specific default if not found.
-*   `Enumerable.ElementAtOrDefault default-value overload`: Returns a specific default if index out of range.
+*   `Enumerable.ElementAtOrDefault default-value overload`: The `System.Index` overload supports from-start and from-end positions and returns `default(TSource)` when out of range; this is distinct from a caller-supplied fallback overload.
 *   `Enumerable.Order comparer overload`: Sorts with a custom `IComparer<T>`.
 *   `Enumerable.OrderDescending comparer overload`: Sorts descending with a custom `IComparer<T>`.
 

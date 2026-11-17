@@ -36,7 +36,7 @@ foreach (var n in query) { Console.WriteLine(n); }
 
 1.  **Deferred vs. Immediate:** Given a list of integers, write a query that filters them, then call `ToList()` to force immediate execution.
 2.  **Async Consumption:** Use `await foreach` to consume an `IAsyncEnumerable<int>`.
-3.  **Modern Joins:** Use `FullJoin` to combine two sequences of tuples (available in .NET 11).
+3.  **Modern Joins:** Use `FullJoin` to combine two sequences of tuples (available in .NET 11; the async form is package-provided when targeting .NET 10).
 
 # Progressive hints
 
@@ -64,7 +64,7 @@ await foreach (var item in asyncStream)
 
 **Exercise 3:**
 ```csharp
-// .NET 11 FullJoin example
+// .NET 11 Enumerable.FullJoin example
 var left = new[] { (1, "A"), (2, "B") };
 var right = new[] { (2, "B"), (3, "C") };
 var joined = left.FullJoin(right, l => l.Item1, r => r.Item1, (l, r) => (l, r));

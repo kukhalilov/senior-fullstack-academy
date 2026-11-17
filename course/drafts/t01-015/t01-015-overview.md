@@ -30,7 +30,7 @@ Consider a list of products. We want to find the names of expensive products.
 
 1.  **Definition**: We define a query using `Enumerable.Where` and `Enumerable.Select`. Because these are deferred, no filtering happens yet.
 2.  **Execution**: We call `Enumerable.ToList`. This triggers the "materialization boundary," causing the code to iterate through the source, apply the filter, and store the results in a new list.
-3.  **Async Variation**: If the source were an `IAsyncEnumerable<T>`, we would use `AsyncEnumerable.ToListAsync` to await the results asynchronously.
+3.  **Async Variation**: If the source were an `IAsyncEnumerable<T>`, we would use `AsyncEnumerable.ToListAsync` to consume it asynchronously. .NET 10 introduced the platform async LINQ operators; package references are relevant for earlier targets and some newer API additions.
 
 # When to use it and tradeoffs
 *   **Use it for**: Readability, maintainability, and consistent data manipulation across different types of collections.

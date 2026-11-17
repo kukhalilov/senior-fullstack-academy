@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 344,
-    "pending": 1996,
-    "claimsChecked": 9295,
-    "claimsCorrected": 1070,
+    "reviewed": 353,
+    "pending": 1987,
+    "claimsChecked": 9729,
+    "claimsCorrected": 1084,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 344,
-    "pendingLessons": 1996
+    "reviewedLessons": 353,
+    "pendingLessons": 1987
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1087,6 +1087,26 @@
       ],
       "findings": [
         "Audited all 385 frozen inventory entries and 11 lessons. Checked API existence, current release/version scope, collection contracts, complexity claims, examples, comparer semantics, concurrency boundaries, and immutable/frozen behavior against official documentation. Added omitted collection expressions, C# 15 expression arguments, wrappers, ordered dictionary APIs, and collection methods; corrected atomicity, factory execution, TrimExcess, and ordering/performance overstatements. No unresolved issues remain."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "LINQ standard operators, provider behavior, async sequences, and .NET version coverage (t01-015)",
+      "status": "full topic claim and frozen-inventory audit complete",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.asyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/deferred-execution-lazy-evaluation",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.asyncenumerable.fulljoin",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.firstordefault",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.elementatordefault?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
+      ],
+      "findings": [
+        "Audited 315 frozen inventory entries and all nine lessons. Removed the nonexistent Queryable.ToLookup assignment, added current Queryable fallback and Index overloads, corrected the .NET 10 AsyncEnumerable/platform timeline and .NET 10 package provision for async FullJoin, and refined provider binding, GroupJoin, single-use sequence, local execution, buffering/backpressure, and default-value claims. API names, examples, and version statements checked against current Microsoft docs. No unresolved issues."
       ]
     }
   ],
@@ -20594,13 +20614,34 @@
       "topicId": "t01-015",
       "phase": "overview",
       "draft": "course/drafts/t01-015/t01-015-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 22,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "overview claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (1/2)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-overview.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "overview claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (2/2)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/deferred-execution-lazy-evaluation",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-overview.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/",
@@ -20617,20 +20658,51 @@
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited this lesson against the frozen t01-015 manifest and current Microsoft LINQ/API/release documentation. Corrected inaccurate API attribution, execution/provider boundaries, .NET 10/11 async API availability, overload coverage, and terminology where applicable. No unresolved factual or inventory issue remains; lesson stays in drafts."
     },
     {
       "taskId": "t01-015-concepts",
       "topicId": "t01-015",
       "phase": "concepts",
       "draft": "course/drafts/t01-015/t01-015-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "concepts claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (1/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-concepts.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "concepts claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (2/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/deferred-execution-lazy-evaluation",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-concepts.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "concepts claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (3/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-concepts.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/",
@@ -20647,20 +20719,41 @@
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited this lesson against the frozen t01-015 manifest and current Microsoft LINQ/API/release documentation. Corrected inaccurate API attribution, execution/provider boundaries, .NET 10/11 async API availability, overload coverage, and terminology where applicable. No unresolved factual or inventory issue remains; lesson stays in drafts."
     },
     {
       "taskId": "t01-015-reference-linq-model-and-query-shapes",
       "topicId": "t01-015",
       "phase": "reference",
       "draft": "course/drafts/t01-015/t01-015-reference-linq-model-and-query-shapes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (1/2)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-linq-model-and-query-shapes.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (2/2)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-linq-model-and-query-shapes.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/",
@@ -20677,20 +20770,51 @@
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited this lesson against the frozen t01-015 manifest and current Microsoft LINQ/API/release documentation. Corrected inaccurate API attribution, execution/provider boundaries, .NET 10/11 async API availability, overload coverage, and terminology where applicable. No unresolved factual or inventory issue remains; lesson stays in drafts."
     },
     {
       "taskId": "t01-015-reference-enumerable-standard-operators",
       "topicId": "t01-015",
       "phase": "reference",
       "draft": "course/drafts/t01-015/t01-015-reference-enumerable-standard-operators.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 86,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (1/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-enumerable-standard-operators.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (2/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/deferred-execution-lazy-evaluation",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-enumerable-standard-operators.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (3/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-enumerable-standard-operators.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/",
@@ -20707,20 +20831,61 @@
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited this lesson against the frozen t01-015 manifest and current Microsoft LINQ/API/release documentation. Corrected inaccurate API attribution, execution/provider boundaries, .NET 10/11 async API availability, overload coverage, and terminology where applicable. No unresolved factual or inventory issue remains; lesson stays in drafts."
     },
     {
       "taskId": "t01-015-reference-queryable-provider-operators",
       "topicId": "t01-015",
       "phase": "reference",
       "draft": "course/drafts/t01-015/t01-015-reference-queryable-provider-operators.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 95,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (1/4)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-queryable-provider-operators.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (2/4)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.firstordefault",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-queryable-provider-operators.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (3/4)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.elementatordefault?view=net-11.0",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-queryable-provider-operators.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (4/4)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-queryable-provider-operators.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/",
@@ -20735,22 +20900,55 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.firstordefault",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable.elementatordefault?view=net-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited this lesson against the frozen t01-015 manifest and current Microsoft LINQ/API/release documentation. Corrected inaccurate API attribution, execution/provider boundaries, .NET 10/11 async API availability, overload coverage, and terminology where applicable. No unresolved factual or inventory issue remains; lesson stays in drafts."
     },
     {
       "taskId": "t01-015-reference-async-enumerable-operators",
       "topicId": "t01-015",
       "phase": "reference",
       "draft": "course/drafts/t01-015/t01-015-reference-async-enumerable-operators.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 78,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (1/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.asyncenumerable",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-async-enumerable-operators.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (2/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-async-enumerable-operators.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (3/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.asyncenumerable.fulljoin",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-async-enumerable-operators.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/",
@@ -20765,22 +20963,54 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.asyncenumerable.fulljoin"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited this lesson against the frozen t01-015 manifest and current Microsoft LINQ/API/release documentation. Corrected inaccurate API attribution, execution/provider boundaries, .NET 10/11 async API availability, overload coverage, and terminology where applicable. No unresolved factual or inventory issue remains; lesson stays in drafts."
     },
     {
       "taskId": "t01-015-reference-execution-semantics-and-query-design",
       "topicId": "t01-015",
       "phase": "reference",
       "draft": "course/drafts/t01-015/t01-015-reference-execution-semantics-and-query-design.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (1/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/deferred-execution-lazy-evaluation",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-execution-semantics-and-query-design.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (2/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-execution-semantics-and-query-design.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "reference claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (3/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-reference-execution-semantics-and-query-design.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/",
@@ -20797,20 +21027,51 @@
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited this lesson against the frozen t01-015 manifest and current Microsoft LINQ/API/release documentation. Corrected inaccurate API attribution, execution/provider boundaries, .NET 10/11 async API availability, overload coverage, and terminology where applicable. No unresolved factual or inventory issue remains; lesson stays in drafts."
     },
     {
       "taskId": "t01-015-practice",
       "topicId": "t01-015",
       "phase": "practice",
       "draft": "course/drafts/t01-015/t01-015-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "practice claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (1/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-practice.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "practice claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (2/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-practice.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "practice claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (3/3)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.asyncenumerable.fulljoin",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-practice.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/",
@@ -20825,22 +21086,64 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.asyncenumerable.fulljoin"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited this lesson against the frozen t01-015 manifest and current Microsoft LINQ/API/release documentation. Corrected inaccurate API attribution, execution/provider boundaries, .NET 10/11 async API availability, overload coverage, and terminology where applicable. No unresolved factual or inventory issue remains; lesson stays in drafts."
     },
     {
       "taskId": "t01-015-interview",
       "topicId": "t01-015",
       "phase": "interview",
       "draft": "course/drafts/t01-015/t01-015-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 25,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "interview claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (1/4)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-interview.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "interview claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (2/4)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-interview.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "interview claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (3/4)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-interview.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        },
+        {
+          "claims": "interview claims and coverage for LINQ operator behavior, API surface, execution contracts, and release scope (4/4)",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+              "section": "Official documentation used to verify the assigned inventory and claims in course/drafts/t01-015/t01-015-interview.md",
+              "verdict": "Checked against current Microsoft C#/.NET language, API, or release documentation; corrections are recorded in this lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/linq/standard-query-operators/",
@@ -20857,7 +21160,7 @@
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited this lesson against the frozen t01-015 manifest and current Microsoft LINQ/API/release documentation. Corrected inaccurate API attribution, execution/provider boundaries, .NET 10/11 async API availability, overload coverage, and terminology where applicable. No unresolved factual or inventory issue remains; lesson stays in drafts."
     },
     {
       "taskId": "t01-016-overview",
@@ -118812,6 +119115,14 @@
       "findings": [
         "Reviewed all 385 frozen manifest inventory entries and every explanation, code example, exercise, complexity statement, and interview answer. Added missing C# collection-expression semantics and versions; Array.Empty/AsReadOnly, object-model wrappers, ordered and concurrent dictionary API coverage; and omitted Queue/Stack/LinkedList methods. Corrected List/Queue/Stack TrimExcess thresholds, SortedDictionary TryAdd attribution, ConcurrentDictionary factory and multi-operation atomicity, immutable element mutability, PriorityQueue tie ordering, collection complexity qualifications, and HashSet type wording. Official current Microsoft documentation checked. No unresolved factual or coverage issues remain; lessons remain drafts."
       ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "LINQ execution models and operator coverage (t01-015)",
+      "status": "full claim and frozen-inventory audit complete for all 9 lessons",
+      "findings": [
+        "Reviewed 315 named inventory items across five groups and all explanations, examples, exercises, comparisons, and interview answers. Corrected the false Queryable.ToLookup attribution, expanded missing Queryable explicit-default and Index overloads, fixed async API release wording, corrected Queryable/IQueryProvider and grouped-join descriptions, and qualified over-fetching, async pacing, single-use enumeration, and execution-location claims. Verified examples and release claims against official Microsoft C#/.NET API and release documentation. All nine lessons remain drafts."
+      ]
     }
   ]
-}\n
+}

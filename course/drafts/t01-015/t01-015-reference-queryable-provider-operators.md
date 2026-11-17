@@ -61,12 +61,17 @@ An expression tree wraps C# code as data structures rather than compiled executa
 * `Queryable.SequenceEqual` - Determines whether two sequences are equal by comparing their elements.
 * `Queryable.First` - Returns the first element of a sequence.
 * `Queryable.FirstOrDefault` - Returns the first element of a sequence, or a default value if the sequence contains no elements.
+* `Queryable.FirstOrDefault explicit-default overloads` - .NET 6 and later provide overloads that return a caller-supplied fallback when the source or predicate match is empty; provider support for translating or executing the expression still varies.
 * `Queryable.Last` - Returns the last element of a sequence.
 * `Queryable.LastOrDefault` - Returns the last element of a sequence, or a default value if the sequence contains no elements.
+* `Queryable.LastOrDefault explicit-default overloads` - .NET 6 and later provide caller-supplied fallback overloads, including predicate forms; providers may differ in support.
 * `Queryable.Single` - Returns the only element of a sequence, and throws an exception if there is not exactly one element.
 * `Queryable.SingleOrDefault` - Returns the only element of a sequence, or a default value if the sequence is empty.
+* `Queryable.SingleOrDefault explicit-default overloads` - .NET 6 and later provide caller-supplied fallback overloads. They still throw when more than one element satisfies the single-result contract; provider support varies.
 * `Queryable.ElementAt` - Returns the element at a specified index in a sequence.
+* `Queryable.ElementAt Index overload` - Accepts `System.Index` positions such as `^1`; provider translation support varies.
 * `Queryable.ElementAtOrDefault` - Returns the element at a specified index, or a default value if the index is out of range.
+* `Queryable.ElementAtOrDefault Index overload` - Accepts a `System.Index`, including from-end positions, and returns the type default when the position is out of range; provider support varies.
 * `Queryable.AsQueryable` - Returns an `IQueryable`; for an ordinary enumerable, this uses an in-memory queryable wrapper and does not create a remote provider.
 * `Queryable expression-tree overload signatures` - The internal mechanisms defining how query operators accept `Expression<TDelegate>` instead of standard delegates.
 * `Queryable provider translation failure` - Errors thrown or fallback behaviors triggered when a query provider encounters unsupported expression tree nodes.
@@ -78,13 +83,12 @@ An expression tree wraps C# code as data structures rather than compiled executa
 * `Client evaluation versus server evaluation` - The execution split where parts of a query run on a remote data store versus local client memory.
 * `Explicit materialization using ToList` - Triggering immediate query execution and caching results into a local `List<T>` collection.
 * `AsEnumerable changes subsequent operator binding` - Exposes the sequence as `IEnumerable<T>`, so subsequent extension calls bind to `Enumerable`; it is deferred and does not itself execute/materialize the upstream source.
-* `Queryable.ToLookup` - Creates a `Lookup<TKey, TElement>` from an `IQueryable<T>` by executing the query immediately.
 
 # Cross-item comparison
 
 Within this group of queryable and expression-tree execution members, several items contrast directly:
 * `Queryable versus Enumerable overload selection` dictates whether a query compiles to deferred expression trees or immediate delegate execution based on whether the source variable type is `IQueryable<T>` or `IEnumerable<T>` [https://learn.microsoft.com/en-us/dotnet/api/system.linq.queryable].
-* `ToList` and `AsEnumerable` have different effects: `ToList` enumerates and stores results immediately, while `AsEnumerable` remains deferred and changes downstream operator binding. Upstream provider execution still occurs when enumeration begins.
+* `Enumerable.ToList` and `AsEnumerable` have different effects: `ToList` enumerates and stores results immediately, while `AsEnumerable` remains deferred and changes downstream operator binding. `Queryable` does not define a `ToList` operator; the `Enumerable.ToList` extension can consume an `IQueryable<T>` through its `IEnumerable<T>` interface. Upstream provider execution still occurs when enumeration begins. `Enumerable.ToLookup` likewise materializes through `IEnumerable<T>`.
 * `Client evaluation versus server evaluation` determines where query logic executes, contrasting with `Queryable provider translation failure` which occurs when a provider cannot execute a given expression tree and refuses to translate it.
 
 # Examples

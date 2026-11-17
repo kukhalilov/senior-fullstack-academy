@@ -28,7 +28,7 @@ LINQ (Language Integrated Query) is a unified programming model for querying dat
     *   **Reasoning:** Use `GroupJoin` followed by `DefaultIfEmpty`, or the newer `LeftJoin` operator available in .NET 11 to explicitly define the relationship.
 
 # Tradeoffs and alternatives
-*   **Method vs. Query Syntax:** Method syntax is more powerful and supports all operators; query syntax is often more readable for complex joins and groupings.
+*   **Method vs. Query Syntax:** Query expressions are translated by the compiler into standard query method calls and cover a useful subset of operator patterns; method syntax can compose the full extension-method surface, while query syntax can be clearer for joins and grouping.
 *   **Client vs. Server Evaluation:** Keeping logic on the server (via `IQueryable`) minimizes data transfer. However, if the provider cannot translate a specific C# construct, `AsEnumerable` changes downstream overload binding but is deferred: it does not itself execute or transfer data. When enumeration begins, the upstream provider query executes and downstream `Enumerable` operators run locally; the transferred amount depends on the composed upstream query.
 
 # Common weak answers

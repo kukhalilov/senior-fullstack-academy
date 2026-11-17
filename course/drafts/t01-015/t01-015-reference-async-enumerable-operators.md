@@ -3,7 +3,7 @@
 # LINQ operators deferred execution IEnumerable IQueryable and async sequences — Reference: Built-in .NET 10 and .NET 11 AsyncEnumerable operators and asynchronous enumeration
 
 # Scope and version
-This reference lesson covers the built-in .NET 10 and .NET 11 `AsyncEnumerable` operators and asynchronous enumeration surface, checked against the .NET 11 GA release per the Microsoft C# LINQ guide and API reference [https://learn.microsoft.com/en-us/dotnet/csharp/linq/](https://learn.microsoft.com/en-us/dotnet/csharp/linq/).
+This reference lesson covers the platform `AsyncEnumerable` operator surface introduced in .NET 10 and included in .NET 11. Use the `System.Linq.AsyncEnumerable` package when targeting earlier frameworks; individual newer APIs such as `FullJoin` may also be package-provided for .NET 10, so check target/package availability [https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable](https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable).
 
 # How this group fits the mental model
 In modern C#, Language Integrated Query (LINQ) provides a uniform vocabulary for filtering, transforming, joining, and aggregating sequences. `Enumerable` operators process synchronous enumeration, while `Queryable` operators pass expression trees to a provider that may translate or execute them. `IAsyncEnumerable<T>` supports asynchronous iteration with `await foreach`; the interface does not guarantee remote I/O or parallel work.
@@ -17,7 +17,7 @@ This reference catalog explains every assigned item in the `async-enumerable-ope
 * `AsyncEnumerable.Select`: Projects each element of an asynchronous sequence into a new form using a transform delegate.
 * `AsyncEnumerable.SelectMany`: Projects each element of an asynchronous sequence to an `IAsyncEnumerable<T>` and flattens the resulting sequences into one async stream.
 * `AsyncEnumerable.OfType`: Filters the elements of an asynchronous sequence based on a specified type, returning only items that match.
-* `AsyncEnumerable.Cast`: Casts the elements of a non-generic or alternative async stream to a specified type.
+* `AsyncEnumerable.Cast`: Casts each element of a generic asynchronous sequence to the requested result type when that element is read; invalid casts fail during enumeration.
 * `AsyncEnumerable.Distinct`: Returns distinct elements from an asynchronous sequence by using default equality comparison.
 * `AsyncEnumerable.DistinctBy`: Returns distinct elements from an asynchronous sequence according to a key selection function.
 * `AsyncEnumerable.Union`: Produces the set union of two asynchronous sequences using default equality.
@@ -35,7 +35,7 @@ This reference catalog explains every assigned item in the `async-enumerable-ope
 * `AsyncEnumerable.GroupJoin`: Correlates the elements of two asynchronous sequences based on matching keys and groups the results for each element.
 * `AsyncEnumerable.LeftJoin`: Performs a left outer join across two asynchronous sequences, ensuring every element of the left sequence appears in the output.
 * `AsyncEnumerable.RightJoin`: Performs a right outer join across two asynchronous sequences, ensuring every element of the right sequence appears in the output.
-* `AsyncEnumerable.FullJoin`: Performs a full outer join across two asynchronous sequences (introduced alongside .NET 11 library updates), matching keys and retaining unmatched items from both sides [https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries].
+* `AsyncEnumerable.FullJoin`: Performs a full outer join across two asynchronous sequences, matching keys and retaining unmatched items from both sides. The API is included in .NET 11 and package-provided for .NET 10 [https://learn.microsoft.com/en-us/dotnet/api/system.linq.asyncenumerable.fulljoin].
 * `AsyncEnumerable.Order`: Sorts the elements of an asynchronous sequence in ascending order using default comparers.
 * `AsyncEnumerable.OrderDescending`: Sorts the elements of an asynchronous sequence in descending order.
 * `AsyncEnumerable.OrderBy`: Sorts elements of an asynchronous sequence in ascending order by a key selector.
@@ -92,7 +92,7 @@ This reference catalog explains every assigned item in the `async-enumerable-ope
 * `WithCancellation token propagation`: The mechanism by which cooperative cancellation requests flow into async operators during asynchronous iteration.
 * `AsyncEnumerable cancellationToken parameter`: Explicit cancellation parameters accepted by terminal or streaming operator overloads to handle cancellation safely.
 * `TaskAsyncEnumerableExtensions.ConfigureAwait`: Configures how awaits are marshaled back to the original synchronization context during async iteration (similar to `Task.ConfigureAwait`).
-* `System.Linq.AsyncEnumerable package versus built-in APIs`: Distinction between historical third-party NuGet packages (`System.Linq.Async`) and the native built-in APIs available directly in .NET 10 and .NET 11 core libraries [https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable].
+* `System.Linq.AsyncEnumerable package versus built-in APIs`: .NET 10 introduced the platform `AsyncEnumerable` class. Use the `System.Linq.AsyncEnumerable` package for earlier target frameworks or for package-provided additions; this differs from older third-party `System.Linq.Async` packages, so check namespace, package, and target-framework compatibility when multitargeting [https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/10.0/asyncenumerable].
 
 # Cross-item comparison
 Within this assigned group of async operators, operations fall into distinct behavioral categories:

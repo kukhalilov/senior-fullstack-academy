@@ -22,8 +22,8 @@ LINQ is a unified way to process data. The mental model relies on three pillars:
 * `Query expression translation`: The process where the C# compiler converts query expression syntax into method calls.
 * `IEnumerable<T>`: The interface for synchronous enumeration; it does not guarantee that the source is local or in-memory.
 * `IEnumerator<T>`: The object that maintains the current position during synchronous iteration.
-* `IQueryable<T>`: The interface for data sources that support translation into expression trees (e.g., database providers).
-* `IQueryProvider`: The engine that translates an `IQueryable` expression tree into a specific format (like SQL).
+* `IQueryable<T>`: An abstraction that exposes an expression tree and an `IQueryProvider`; a provider may translate the expression (for example, to SQL) or execute it another way, locally or remotely.
+* `IQueryProvider`: The provider component that creates query objects from expressions and executes queries; translation to SQL is one provider behavior, not a guarantee of the interface.
 * `IAsyncEnumerable<T>`: The interface for asynchronous streams of data.
 * `IAsyncEnumerator<T>`: The object that maintains the current position during asynchronous iteration.
 * `Enumerable`: The static class containing extension methods for `IEnumerable<T>`.
@@ -44,7 +44,7 @@ LINQ is a unified way to process data. The mental model relies on three pillars:
 * `Query syntax select clause`: A clause that defines the shape of the output.
 * `Query syntax where clause`: A clause that filters the data source.
 * `Query syntax from clause`: The starting clause that identifies the data source.
-* `Query syntax group join into`: A specific syntax for performing a left-outer join.
+* `Query syntax group join into`: Introduces a grouped join result. Applying `DefaultIfEmpty` to each group expresses the traditional left-outer-join pattern; `into` by itself does not make the join outer.
 * `Deferred execution`: A behavior where the query is not executed until the data is requested (e.g., via `foreach`).
 * `Immediate execution`: A behavior where the query runs as soon as the method is called (e.g., `ToList()`).
 * `Streaming operator`: An operator that yields items one by one without buffering the entire set.
@@ -53,7 +53,7 @@ LINQ is a unified way to process data. The mental model relies on three pillars:
 * `Intermediate operator`: An operator that returns a new queryable sequence, maintaining deferred execution.
 * `Materialization boundary`: The point in a query chain where deferred execution is forced into a concrete collection.
 * `Repeated enumeration`: The act of iterating over a deferred query multiple times, which may re-run the logic.
-* `Single-use sequence`: A sequence (often async) that can only be consumed once.
+* `Single-use sequence`: A source-specific sequence that rejects or cannot meaningfully repeat enumeration. Neither `IEnumerable<T>` nor `IAsyncEnumerable<T>` generally guarantees that a sequence is single-use or repeatable; check the source contract.
 * `Side effect during enumeration`: Unintended changes to state that occur when a query is executed.
 * `Provider translation boundary`: The point where the query is handed off to an `IQueryProvider`.
 * `Client-side evaluation boundary`: The point where the query stops being translated and starts running locally.
@@ -77,7 +77,7 @@ var result = query.ToList(); // Execution happens here
 ```
 
 # Common mistakes
-1. **Over-fetching:** Using `IEnumerable` methods on an `IQueryable` source, which pulls all data into memory before filtering.
+1. **Over-fetching:** Explicitly switching a provider-backed query to local `Enumerable` operators before filtering can transfer more rows and do more work locally. The actual boundary depends on static operator binding and provider behavior.
 2. **Multiple Enumeration:** Re-running a complex database query multiple times because the result was not materialized into a list.
 3. **Async Misconception:** Assuming `IAsyncEnumerable` makes CPU-bound work parallel; it represents asynchronous iteration, and the source determines the work and I/O behavior.
 

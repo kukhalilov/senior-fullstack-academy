@@ -42,9 +42,9 @@ Understanding these items helps you avoid "N+1" query problems, excessive memory
 * `Distinct equality comparer`: The ability to provide an `IEqualityComparer<T>` to define how uniqueness is determined.
 * `DefaultIfEmpty empty sequence behavior`: Returns a sequence containing a default value if the source is empty.
 * `First versus Single cardinality contracts`: `First` returns the first element; `Single` throws an exception if there is not exactly one element.
-* `FirstOrDefault default-value semantics`: Returns the default value of the type if the sequence is empty, rather than throwing an exception.
+* `FirstOrDefault default-value semantics`: Without an explicit fallback argument, returns `default(TSource)` when no matching element exists; overloads that accept a fallback return that supplied value. This can make absence ambiguous when the default is also a valid element value.
 * `ElementAt index-from-end support`: Allows accessing elements from the end of a sequence using index-from-end syntax (e.g., `^1`).
-* `Async enumeration backpressure boundary`: The point where an async stream is consumed, allowing the producer to pause if the consumer is slow.
+* `Async enumeration pacing and prefetch boundary`: `await foreach` requests the next element through `MoveNextAsync`, so the consumer controls demand at that boundary. An implementation may still buffer or prefetch; `IAsyncEnumerable<T>` alone does not promise end-to-end backpressure.
 * `Cancellation during async enumeration`: The ability to pass a `CancellationToken` to stop an async query mid-stream.
 * `Do not run CPU-bound work concurrently by adding async LINQ`: Async LINQ is for I/O-bound operations, not for parallelizing CPU-heavy tasks.
 * `Avoid query side effects`: Queries should be pure; changing state inside a query delegate can lead to unpredictable behavior.
@@ -57,7 +57,7 @@ Understanding these items helps you avoid "N+1" query problems, excessive memory
 # Cross-item comparison
 * **`First` vs `Single`**: `First` is satisfied by the presence of at least one element. `Single` requires exactly one element and will throw an exception if the sequence contains zero or more than one element.
 * **`LeftJoin`, `RightJoin`, `FullJoin`**: These are direct operators for outer joins, whereas `GroupJoin` combined with `DefaultIfEmpty` is the legacy pattern for achieving a left outer join.
-* **`ToList` vs `AsEnumerable`**: `ToList` is a materialization operator that creates a new collection in memory. `AsEnumerable` is a cast that changes the compile-time type to `IEnumerable<T>` without executing the query or allocating new storage.
+* **`Enumerable.ToList` vs `AsEnumerable`**: `ToList` enumerates and materializes into a new collection. `AsEnumerable` exposes the existing source as `IEnumerable<T>` and changes subsequent extension-method binding without itself enumerating or materializing.
 
 # Examples
 ```csharp
@@ -74,7 +74,7 @@ var everySecondItem = myData.Where((item, index) => index % 2 == 0);
 # Common mistakes
 * **Multiple Enumeration:** Reiterating a database-backed query commonly causes another provider execution; confirm behavior for the particular provider.
 * **Premature Materialization:** Calling `.ToList()` too early, which forces the entire dataset into memory instead of streaming it.
-* **Ignoring Provider Limits:** Assuming that all LINQ methods will work against a database; if a method cannot be translated to the provider's language, it may throw an exception or force the entire table to be pulled into memory.
+* **Ignoring Provider Limits:** Assuming that all LINQ methods will work against a database. Unsupported expressions may fail or follow provider-specific behavior; client evaluation is not a universal automatic fallback. An explicit switch to `Enumerable` makes subsequent operators local.
 
 # Knowledge checks with answers
 1. **Question:** Does `Where` execute immediately?
