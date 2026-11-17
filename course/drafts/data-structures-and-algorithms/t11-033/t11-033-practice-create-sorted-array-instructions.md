@@ -88,3 +88,9 @@ Assertions cover all official examples, all-equal duplicate handling, and minimu
 1. Why do equal prior values contribute to neither strict count?
 2. Why calculate the cost before inserting the current value?
 3. How would coordinate compression help if the value limit were much larger but only a small set of values appeared?
+
+## Reflection answers
+
+1. The problem counts values strictly less and strictly greater. Equal values satisfy neither strict comparison and contribute to neither count.
+2. The cost for an instruction is defined from earlier instructions only; inserting first would incorrectly count the current value.
+3. Compress the distinct instruction values to sorted ranks, preserving order, then use ranks as Fenwick indexes instead of allocating for the entire numeric universe.

@@ -118,3 +118,9 @@ Assertions cover the official sequence, boundaries around a removed hole, and re
 1. Why is a query on `[13,15)` false after removing `[14,16)`?
 2. Why can absent children mean uncovered state?
 3. What would change if operations used inclusive integer intervals instead?
+
+## Reflection answers
+
+1. `[13,15)` includes time 14, which lies in the removed interval `[14,16)`, so the query is not fully covered.
+2. An absent child has never been modified. The tree defines its default state as uncovered, so no node is needed until an update changes part of that segment.
+3. One can convert inclusive integer `[l,r]` to half-open `[l,r+1)`, while guarding overflow, or use inclusive boundaries consistently in every update, query, and split.

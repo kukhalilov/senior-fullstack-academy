@@ -17,7 +17,7 @@ A Fenwick tree partitions prefixes into blocks whose sizes are powers of two. Th
 - **Prefix aggregate query** — To sum first `count` elements, start `i=count`; add `tree[i]` and retreat `i -= lowbit(i)` until zero. This decomposition visits disjoint blocks.
 - **Range sum by prefix subtraction** — Inclusive `[left,right]` sum is `prefix(right+1)-prefix(left)`, using prefix lengths; the subtraction relies on additive inverses.
 - **One-based internal indexing** — External zero-based position `k` maps to internal index `k+1`; prefix length `count` maps directly to internal starting index `count`.
-- **O(log n) update and prefix query** — Each low-bit step removes or adds at least one set bit, so at most logarithmically many cells are visited.
+- **O(log n) update and prefix query** — A prefix query clears one set bit per step. An update follows Fenwick parent indexes `i += lowbit(i)`; this path also has at most logarithmically many cells. An update does not necessarily reduce the number of set bits at every step.
 - **Build from initial values** — Repeated point updates cost `O(n log n)`; an `O(n)` build can initialize cells and propagate each block to its parent. Verify the exact build variant against the chosen indexing.
 - **Coordinate compression for indexed values** — Sort distinct known keys and map each to a dense rank, then store frequencies or sums in a Fenwick tree. Use lower/upper bounds to distinguish `<x` from `<=x` and retain original ordering.
 

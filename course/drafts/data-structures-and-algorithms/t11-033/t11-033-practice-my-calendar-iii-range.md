@@ -108,3 +108,9 @@ Tests check the official sequence and touching endpoints. The end coordinate is 
 1. Why is storing only a sum insufficient for a maximum-overlap query?
 2. What does the lazy value mean after it has already changed `Max`?
 3. How would a sweep-line solution compare when only 400 bookings are allowed?
+
+## Reflection answers
+
+1. The root stores the maximum overlap over the whole coordinate domain, so it returns the requested maximum after each booking.
+2. With at most 400 updates over a domain up to `10^9`, a dynamic tree creates only nodes on visited paths instead of allocating an impractically large dense tree.
+3. A sweep line could store endpoint deltas and sort or maintain them, which is simpler for this small call bound but can require rescanning/sorting accumulated events; the tree updates a range and reports the global maximum in logarithmic time.

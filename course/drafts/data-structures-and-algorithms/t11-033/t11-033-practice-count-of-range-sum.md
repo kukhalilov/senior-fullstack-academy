@@ -94,3 +94,9 @@ Tests cover all official examples, no result, duplicate prefixes (zero sums), an
 1. Why must the current prefix be inserted after its query?
 2. Why are prefix values stored as `long`?
 3. How does a merge-sort counting solution avoid coordinate compression?
+
+## Reflection answers
+
+1. Inserting the current prefix first would allow pairing it with itself, which represents an empty subarray; querying first enforces the required earlier index `j<i`.
+2. Up to 100,000 signed 32-bit values can accumulate beyond the 32-bit range, so prefix sums and derived bounds use `long`.
+3. A merge-sort method sorts prefix sums by halves and counts, with two moving pointers, how many right-half prefixes form an allowed difference for each left prefix, then merges the halves. It achieves `O(n log n)` without ranking every value in a Fenwick tree.

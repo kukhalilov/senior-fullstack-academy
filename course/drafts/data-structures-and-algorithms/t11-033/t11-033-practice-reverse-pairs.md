@@ -94,3 +94,9 @@ Assertions cover official examples, descending order, a strict-boundary pair, an
 1. Why is a wider type required for `2*nums[j]`?
 2. Why does reverse scanning make a frequency tree useful?
 3. How does merge-sort counting achieve the same asymptotic complexity?
+
+## Reflection answers
+
+1. Doubling a 32-bit value can exceed the signed 32-bit range and overflow can reverse comparisons; widen before multiplication.
+2. Reverse scanning ensures the frequency tree contains exactly values at later indexes, which are the only eligible `j` for the current `i`.
+3. Merge sort counts cross-half pairs with two pointers while sorting each half, so the total work is `O(n log n)` without coordinate compression.

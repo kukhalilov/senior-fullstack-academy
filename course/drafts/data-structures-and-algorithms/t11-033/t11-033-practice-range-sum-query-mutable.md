@@ -111,3 +111,9 @@ Assertions cover the official example, a single-element range, a one-element arr
 1. Why store the current values as well as the tree?
 2. What indexing bug causes a Fenwick update loop to stop progressing?
 3. Why does this prefix-difference approach work for sums but not minima?
+
+## Reflection answers
+
+1. The tree stores aggregates, not the original value at an index; retaining values lets replacement compute `newValue-oldValue` as the required Fenwick delta.
+2. A one-based Fenwick update starting at index zero never advances because `lowbit(0)=0`; convert external index `k` to `k+1`.
+3. Sums have additive inverses, so one prefix can be subtracted from another. Minimum has no inverse operation that recovers a range minimum from two prefix minima.

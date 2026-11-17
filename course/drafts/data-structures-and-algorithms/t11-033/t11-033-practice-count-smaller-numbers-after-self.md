@@ -89,3 +89,9 @@ Tests cover the official examples, repeated equal values, and a mixed sequence w
 1. Why scan from right to left?
 2. Why query `rank-1` rather than `rank`?
 3. Could merge-sort counting solve the same problem without coordinate compression?
+
+## Reflection answers
+
+1. Scanning right to left makes the data structure contain exactly the suffix values that are candidates for the current answer.
+2. Querying through `rank-1` counts only strictly smaller values; querying through `rank` would also count equal values.
+3. Yes. Merge sort can count how many right-half values move before each left-half value while preserving stable ordering, yielding `O(n log n)` time without coordinate compression.

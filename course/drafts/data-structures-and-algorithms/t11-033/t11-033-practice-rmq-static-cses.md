@@ -93,3 +93,9 @@ Checks use all four official CSES sample queries, a singleton range, a full rang
 1. Why can the query blocks overlap for minimum?
 2. Why would the same query formula be wrong for sums?
 3. What data structure would support point updates after preprocessing?
+
+## Reflection answers
+
+1. Minimum is idempotent: repeating an element already included in the queried range cannot change the minimum.
+2. Sum is not idempotent; overlapping blocks count their shared elements twice.
+3. A segment tree supports point updates with logarithmic update and query time; a Fenwick tree works for sums but not arbitrary minimum replacement queries.

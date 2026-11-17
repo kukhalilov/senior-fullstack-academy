@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 699,
-    "pending": 1642,
-    "claimsChecked": 23472,
-    "claimsCorrected": 1430,
+    "reviewed": 714,
+    "pending": 1627,
+    "claimsChecked": 24003,
+    "claimsCorrected": 1432,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 699,
-    "pendingLessons": 1642
+    "reviewedLessons": 714,
+    "pendingLessons": 1627
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -47805,13 +47805,31 @@
       "topicId": "t11-033",
       "phase": "overview",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 22,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked structure-selection guidance, interval models, complexity, sparse-table idempotence caveat, and examples against the handbook and official problem contracts.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -47825,20 +47843,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-concepts",
       "topicId": "t11-033",
       "phase": "concepts",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked algebraic requirements, Fenwick indexing, segment-tree composition, lazy update laws, sparse-table constructions, coordinate compression semantics, numeric/index caveats, and examples. Corrected the false claim that each Fenwick update step reduces set-bit count; updates still have logarithmic path length.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -47852,20 +47888,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-reference-fenwick-tree",
       "topicId": "t11-033",
       "phase": "reference",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-reference-fenwick-tree.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 33,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all ten inventory entries, low-bit traversal, one-based conversion, prefix subtraction, build methods, coordinate compression, examples, complexity, and answers. Corrected the update-path explanation.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -47879,20 +47933,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-reference-segment-tree",
       "topicId": "t11-033",
       "phase": "reference",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-reference-segment-tree.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all ten inventory entries, associative ordering, identities, recursive/iterative layouts, non-power-of-two handling, query/update complexity, examples, and answers.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -47906,20 +47978,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-reference-range-updates-and-lazy",
       "topicId": "t11-033",
       "phase": "reference",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-reference-range-updates-and-lazy.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all ten inventory entries, lazy aggregate effects, tag order, add/assign examples, segment-tree-beats scope, dynamic-node complexity assumptions, and answers.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -47933,20 +48023,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-reference-static-query-and-selection",
       "topicId": "t11-033",
       "phase": "reference",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-reference-static-query-and-selection.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all ten inventory entries, sparse table recurrences and overlapping query conditions, disjoint sparse table distinction, static prefix sums, tradeoffs, endpoints, examples, and answers. Corrected the inventory label to distinguish ordinary sparse-table disjoint power-of-two intervals from the separate disjoint sparse table construction.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -47960,20 +48068,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-practice-range-sum-query-mutable",
       "topicId": "t11-033",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-practice-range-sum-query-mutable.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official contract/constraints, replacement delta, prefix-length indexes, Fenwick implementation, proof, complexity, and stateful tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -47987,20 +48113,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-practice-count-smaller-numbers-after-self",
       "topicId": "t11-033",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-practice-count-smaller-numbers-after-self.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official contract, strict duplicate semantics, compression ranks, reverse-scan invariant, implementation, proof, complexity, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -48014,20 +48158,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-practice-range-module",
       "topicId": "t11-033",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-practice-range-module.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official half-open range contract, dynamic coverage states, update/query recursion, absent-child default, merge behavior, complexity, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -48041,20 +48203,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-practice-my-calendar-iii-range",
       "topicId": "t11-033",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-practice-my-calendar-iii-range.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official half-open booking contract, domain and call bounds, dynamic lazy maximum tree, endpoint behavior, proof, complexity, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -48068,20 +48248,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-practice-count-of-range-sum",
       "topicId": "t11-033",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-practice-count-of-range-sum.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official contract and constraints, prefix-pair derivation, inclusive rank bounds, insertion order, long arithmetic, implementation, proof, complexity, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -48095,20 +48293,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-practice-reverse-pairs",
       "topicId": "t11-033",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-practice-reverse-pairs.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official pair inequality and constraints, widened comparison, strict threshold rank, reverse-scan invariant, count bounds, proof, complexity, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -48122,20 +48338,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-practice-rmq-static-cses",
       "topicId": "t11-033",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-practice-rmq-static-cses.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked CSES bounds and one-based statement indexes, zero-based code conversion, sparse table build/query recurrence, idempotent overlap proof, complexity, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -48149,20 +48383,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-practice-create-sorted-array-instructions",
       "topicId": "t11-033",
       "phase": "practice",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-practice-create-sorted-array-instructions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked official statement and examples, strict less/greater counts, duplicate handling, modulus, Fenwick implementation, proof, complexity, and tests. Added reflection answers; C# solution compiled and ran.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -48176,20 +48428,38 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t11-033-interview",
       "topicId": "t11-033",
       "phase": "interview",
       "draft": "course/drafts/data-structures-and-algorithms/t11-033/t11-033-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked structure-selection answers, group/monoid wording, Fenwick and lazy invariants, sparse-table alternatives, coordinate-compression semantics, scenarios, and complexity comparisons.",
+          "sources": [
+            "https://usaco.guide/gold/PURS",
+            "https://usaco.guide/CPH.pdf",
+            "https://usaco.guide/plat/sparse-segtree?lang=cpp",
+            "https://cses.fi/problemset/task/1647/",
+            "https://leetcode.com/problems/range-sum-query-mutable/",
+            "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+            "https://leetcode.com/problems/range-module/",
+            "https://leetcode.com/problems/my-calendar-iii/",
+            "https://leetcode.com/problems/count-of-range-sum/",
+            "https://leetcode.com/problems/reverse-pairs/",
+            "https://leetcode.com/problems/create-sorted-array-through-instructions/"
+          ],
+          "verdict": "verified; correction and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/gold/PURS",
         "https://usaco.guide/CPH.pdf",
@@ -48203,7 +48473,7 @@
         "https://leetcode.com/problems/reverse-pairs/",
         "https://leetcode.com/problems/create-sorted-array-through-instructions/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual, implementation, problem-contract, and frozen-inventory audit against USACO/CPH algorithm references, official problem statements, and the topic proofs. Lesson remains in drafts."
     },
     {
       "taskId": "t06-001-overview",
@@ -132167,4 +132437,4 @@
       ]
     }
   ]
-}
+}\n
