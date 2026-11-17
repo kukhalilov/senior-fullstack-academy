@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson explains all 20 supplied declaration names. A declaration is a static description; code, globals, and package exports must still exist at runtime. [Declaration files introduction](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) · [Declaration merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
+This lesson explains all 21 supplied declaration names. A declaration is a static description; code, globals, and package exports must still exist at runtime. [Declaration files introduction](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) · [Declaration merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
 
 ## How this group fits the mental model
 
@@ -31,6 +31,7 @@ The runtime supplies JavaScript values; declaration files describe those values 
 | `typesVersions package field` | Package metadata maps compiler-version ranges and declaration subpaths to alternate type files. It can support compiler-specific declaration layouts but is subject to module-resolution/package-export rules. |
 | `types field versus typesVersions` | `types` points to a default declaration entry; `typesVersions` conditionally redirects declarations by compiler version and subpath in supported resolution paths. When package `exports` is used, it generally governs resolution and `typesVersions` does not bypass it. |
 | `Declaration file module versus script` | A top-level import/export makes a `.d.ts` an external module with scoped exports. Without one it can be an ambient script contributing globals or `declare module` definitions. Add `export {}` when a global augmentation file must itself be a module. |
+| `Import attributes in ambient module declarations (TypeScript 7.1 beta)` | The beta can declare a shape for a required import attribute, for example `declare module "*" with { type: "css" } { ... }`. This lets attributes control which declaration applies; it still does not check that the asset exists or provide its runtime loader. These declarations are not shipped in TypeScript's built-in libraries. |
 
 ## Cross-item comparison
 
@@ -92,5 +93,6 @@ Supported namespace/function merging is coordinated with emitted JavaScript. For
 3. **What does `/// <reference types="node" />` load?** Type declarations, not Node.js runtime code.
 4. **When can interfaces merge?** Same-name declarations merge in the same declaration space when duplicate members are compatible.
 5. **What does a package `types` field point to?** A declaration entry point that must be present in the published package.
+6. **Do TypeScript 7.1 beta attribute-specific ambient declarations make an asset importable at runtime?** No; they affect type lookup only, and the host still needs a loader and the resource must exist.
 
 Sources: [declaration files introduction](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html), [declaration merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html), [modules reference](https://www.typescriptlang.org/docs/handbook/modules/reference.html), [module declaration template](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html).

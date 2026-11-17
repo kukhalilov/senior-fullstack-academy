@@ -4,7 +4,7 @@
 
 TypeScript source code is compiled or checked in a project whose runtime or bundler must also locate modules. The type checker therefore needs a model of file boundaries, package entry points, and runtime resolution. Separately, declaration files describe JavaScript APIs so TypeScript can understand code that has no TypeScript implementation.
 
-These are related but distinct jobs: module syntax describes dependencies and exports; resolution options select files and package conditions; declaration files supply static descriptions; the runtime or bundler still loads actual code. This lesson reflects TypeScript 7.0 stable, with TypeScript 7.1 beta changes labeled separately as of 2026-11-16. [Modules reference](https://www.typescriptlang.org/docs/handbook/modules/reference.html) · [TypeScript 7.0 announcement](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/)
+These are related but distinct jobs: module syntax describes dependencies and exports; resolution options select files and package conditions; declaration files supply static descriptions; the runtime or bundler still loads actual code. This lesson reflects TypeScript 7.0 stable, with TypeScript 7.1 beta changes labeled separately as of 2026-11-17. [Modules reference](https://www.typescriptlang.org/docs/handbook/modules/reference.html) · [TypeScript 7.0 announcement](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/)
 
 ## Plain-language mental model
 

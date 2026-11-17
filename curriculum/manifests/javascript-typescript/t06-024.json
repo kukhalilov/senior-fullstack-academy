@@ -4,20 +4,235 @@
   "track": "track-06",
   "title": "TypeScript modules, declaration files, and augmentation",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["A source file is a module when it has a top-level import or export", "Type-only imports and exports disappear from JavaScript emit", "Declaration files describe types for JavaScript code", "Declaration merging combines compatible declarations", "Module and global augmentation extend existing type environments", "Package metadata determines where consumers find declarations"],
+  "concepts": [
+    "A source file is a module when it has a top-level import or export",
+    "Type-only imports and exports disappear from JavaScript emit",
+    "Declaration files describe types for JavaScript code",
+    "Declaration merging combines compatible declarations",
+    "Module and global augmentation extend existing type environments",
+    "Package metadata determines where consumers find declarations"
+  ],
   "inventory": [
-    {"id":"type-only-module-syntax","title":"TypeScript imports, exports, and module declarations","items":["TypeScript external module","Type-only import","Type-only export","import type declaration","export type declaration","Import type query (typeof import)","Import equals declaration","export = assignment","Ambient external module declaration","Ambient module wildcard declaration","Node.js module resolution mode","Package type condition","moduleDetection setting","module preserve mode"]},
-    {"id":"declaration-files-and-augmentation","title":"Declaration files, ambient context, and augmentation","items":["Declaration file (.d.ts)","declare modifier","Ambient variable declaration","Ambient function declaration","Ambient class declaration","Ambient namespace declaration","Global augmentation","Module augmentation","Declaration merging","Interface merging","Namespace merging","Function and namespace merging","Class and namespace merging","Triple-slash reference directive","Triple-slash types directive","types package entry","typesVersions package field","types field versus typesVersions","Declaration file module versus script"]},
-    {"id":"module-resolution-and-emit","title":"Module resolution, declaration emit, and package interop","items":["NodeNext module resolution","Node16 module resolution","Node18 module mode","Node20 module mode","Bundler module resolution","Classic module resolution","Node10 module resolution (deprecated)","package.json type field","package.json types field","package.json exports field","package.json imports field","typesVersions resolution","types conditional export","Declaration emit","Declaration map","esModuleInterop","verbatimModuleSyntax","preserveValueImports (deprecated)","importsNotUsedAsValues (removed)","resolvePackageJsonExports setting","resolvePackageJsonImports setting","customConditions setting","paths mapping","baseUrl option (deprecated)"]}
+    {
+      "id": "type-only-module-syntax",
+      "title": "TypeScript imports, exports, and module declarations",
+      "items": [
+        "TypeScript external module",
+        "Type-only import",
+        "Type-only export",
+        "import type declaration",
+        "export type declaration",
+        "Import type query (typeof import)",
+        "Import equals declaration",
+        "export = assignment",
+        "Ambient external module declaration",
+        "Ambient module wildcard declaration",
+        "Node.js module resolution mode",
+        "Package type condition",
+        "moduleDetection setting",
+        "module preserve mode"
+      ]
+    },
+    {
+      "id": "declaration-files-and-augmentation",
+      "title": "Declaration files, ambient context, and augmentation",
+      "items": [
+        "Declaration file (.d.ts)",
+        "declare modifier",
+        "Ambient variable declaration",
+        "Ambient function declaration",
+        "Ambient class declaration",
+        "Ambient namespace declaration",
+        "Global augmentation",
+        "Module augmentation",
+        "Declaration merging",
+        "Interface merging",
+        "Namespace merging",
+        "Function and namespace merging",
+        "Class and namespace merging",
+        "Triple-slash reference directive",
+        "Triple-slash types directive",
+        "types package entry",
+        "typesVersions package field",
+        "types field versus typesVersions",
+        "Declaration file module versus script",
+        "Import attributes in ambient module declarations (TypeScript 7.1 beta)"
+      ]
+    },
+    {
+      "id": "module-resolution-and-emit",
+      "title": "Module resolution, declaration emit, and package interop",
+      "items": [
+        "NodeNext module resolution",
+        "Node16 module resolution",
+        "Node18 module mode",
+        "Node20 module mode",
+        "Bundler module resolution",
+        "Classic module resolution",
+        "Node10 module resolution (deprecated)",
+        "package.json type field",
+        "package.json types field",
+        "package.json exports field",
+        "package.json imports field",
+        "typesVersions resolution",
+        "types conditional export",
+        "Declaration emit",
+        "Declaration map",
+        "esModuleInterop",
+        "verbatimModuleSyntax",
+        "preserveValueImports (deprecated)",
+        "importsNotUsedAsValues (removed)",
+        "resolvePackageJsonExports setting",
+        "resolvePackageJsonImports setting",
+        "customConditions setting",
+        "paths mapping",
+        "baseUrl option (deprecated)"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["type-only import","value import"],["ambient declaration","runtime implementation"],["module augmentation","global augmentation"],["NodeNext","Bundler module resolution"],["package.json types field","types conditional export"]],
-  "comparisonSources": ["https://www.typescriptlang.org/docs/handbook/modules/introduction.html","https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html","https://www.typescriptlang.org/docs/handbook/declaration-merging.html","https://www.typescriptlang.org/docs/handbook/modules/reference.html","https://www.typescriptlang.org/docs/handbook/modules/theory.html","https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html","https://www.typescriptlang.org/tsconfig/moduleDetection.html","https://www.typescriptlang.org/tsconfig/resolvePackageJsonExports.html","https://www.typescriptlang.org/tsconfig/resolvePackageJsonImports.html","https://www.typescriptlang.org/tsconfig/customConditions.html","https://www.typescriptlang.org/tsconfig/paths.html","https://www.typescriptlang.org/tsconfig/baseUrl.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html","https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/","https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/","https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"],
-  "versionNotes": [{"edition":"TypeScript 5.0","items":["verbatimModuleSyntax replaced older import-elision controls as the recommended explicit emit model","moduleResolution bundler","Node16 and NodeNext module modes"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html"]},{"edition":"TypeScript 5.5","items":["preserveValueImports and importsNotUsedAsValues deprecation transition"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"]},{"edition":"TypeScript 6.0","items":["baseUrl deprecated","node10 module resolution deprecated","classic module resolution removed","esModuleInterop false no longer supported","new defaults for module and strict"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html"]},{"edition":"TypeScript 7.1 beta","items":["Import attributes in ambient modules"],"sourceUrls":["https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"]}],
-  "sourceSnapshot": {"authority":"Official TypeScript Handbook, TSConfig Reference, and release notes","edition":"TypeScript 7.0 stable; 7.1 beta as of 2026-11-16","checkedAt":"2026-11-16","urls":["https://www.typescriptlang.org/docs/handbook/modules/introduction.html","https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html","https://www.typescriptlang.org/docs/handbook/declaration-merging.html","https://www.typescriptlang.org/docs/handbook/modules/reference.html","https://www.typescriptlang.org/docs/handbook/modules/theory.html","https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html","https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/","https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/","https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/","https://www.typescriptlang.org/tsconfig/moduleDetection.html","https://www.typescriptlang.org/tsconfig/resolvePackageJsonExports.html","https://www.typescriptlang.org/tsconfig/resolvePackageJsonImports.html","https://www.typescriptlang.org/tsconfig/customConditions.html","https://www.typescriptlang.org/tsconfig/paths.html","https://www.typescriptlang.org/tsconfig/baseUrl.html"]},
-  "accuracyFacts": ["The stable compiler is TypeScript 7.0 as of 2026-11-16; TypeScript 7.1 is beta. Clearly label beta behavior and do not present it as stable.","A file with a top-level import or export is a module; moduleDetection may also classify files as modules based on package.json type and other project context. A file with no module indicator may contribute declarations to a shared script/global scope.","Type-only import/export syntax is erased from JavaScript output. With verbatimModuleSyntax, import/export modifiers communicate whether syntax is preserved or erased; imports lacking type modifiers are not silently elided as type-only uses.","A declaration file describes a runtime API but supplies no implementation. Ambient declarations and module declarations are not evidence that a runtime module or global actually exists.","Module augmentation resolves its module specifier like an import/export, must augment an existing named export, cannot add new top-level declarations, and cannot augment a default export. Runtime implementation still must be installed/executed.","Declaration merging has ordered rules and conflicts: interfaces merge compatible members, namespaces can merge with classes/functions/enums in supported orders, and class/interface declarations do not generally merge as an arbitrary pair.","NodeNext follows current Node.js module behavior and can change across TypeScript versions; node16/node18/node20 modes model fixed Node versions. Bundler mode supports package exports/imports and extensionless relative paths but does not enforce all Node ESM path constraints.","The module option and moduleResolution work together to determine emitted form and package conditions. Node16/node18/node20/NodeNext must pair with corresponding resolution modes; bundler pairs with esnext or preserve; preserve implies bundler resolution.","In Node-aware and bundler resolution, package exports/imports may control reachable paths and condition selection. The types condition and runtime condition ordering must be designed so TypeScript and runtime resolve compatible implementations; typesVersions is generally a fallback when exports are absent for package resolution.","The package types/typings fields point to declaration entry points; exports can encapsulate subpaths and use conditional types/runtime targets. typesVersions redirects declarations by compiler version only in supported resolution contexts and does not override exports.","baseUrl is deprecated in TypeScript 6.0 and is no longer a lookup root in TypeScript 7.0; paths does not rewrite emitted specifiers and must match the runtime/bundler mapping separately.","preserveValueImports and importsNotUsedAsValues were deprecated in TypeScript 5.5 in favor of verbatimModuleSyntax; TypeScript 6.0 and 7.0 remove/deprecate legacy module options including classic and node10 module resolution.","Declaration emit generates .d.ts descriptions from source; declarationMap adds map files for editor navigation and does not change runtime code."
+  "comparisons": [
+    [
+      "type-only import",
+      "value import"
+    ],
+    [
+      "ambient declaration",
+      "runtime implementation"
+    ],
+    [
+      "module augmentation",
+      "global augmentation"
+    ],
+    [
+      "NodeNext",
+      "Bundler module resolution"
+    ],
+    [
+      "package.json types field",
+      "types conditional export"
+    ]
   ],
-  "scopeExclusions": ["ECMAScript static import and export syntax (t06-019)","Node.js CommonJS runtime behavior","Bundler configuration APIs (t06-026)","TypeScript source maps and general compiler emit settings outside declaration emit (t06-026)"],
-  "scopeExclusions": ["ECMAScript static import and export syntax (t06-019)","Node.js CommonJS runtime behavior","Bundler configuration APIs (t06-026)"],
+  "comparisonSources": [
+    "https://www.typescriptlang.org/docs/handbook/modules/introduction.html",
+    "https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html",
+    "https://www.typescriptlang.org/docs/handbook/declaration-merging.html",
+    "https://www.typescriptlang.org/docs/handbook/modules/reference.html",
+    "https://www.typescriptlang.org/docs/handbook/modules/theory.html",
+    "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html",
+    "https://www.typescriptlang.org/tsconfig/moduleDetection.html",
+    "https://www.typescriptlang.org/tsconfig/resolvePackageJsonExports.html",
+    "https://www.typescriptlang.org/tsconfig/resolvePackageJsonImports.html",
+    "https://www.typescriptlang.org/tsconfig/customConditions.html",
+    "https://www.typescriptlang.org/tsconfig/paths.html",
+    "https://www.typescriptlang.org/tsconfig/baseUrl.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+  ],
+  "versionNotes": [
+    {
+      "edition": "TypeScript 5.0",
+      "items": [
+        "verbatimModuleSyntax replaced older import-elision controls as the recommended explicit emit model",
+        "moduleResolution bundler",
+        "Node16 and NodeNext module modes"
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 5.5",
+      "items": [
+        "preserveValueImports and importsNotUsedAsValues deprecation transition"
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 6.0",
+      "items": [
+        "baseUrl deprecated",
+        "node10 module resolution deprecated",
+        "classic module resolution removed",
+        "esModuleInterop false no longer supported",
+        "new defaults for module and strict",
+        "rootDir defaults to the tsconfig directory; types defaults to []; target defaults to current-year ES; noUncheckedSideEffectImports defaults to true; libReplacement defaults to false"
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 7.1 beta",
+      "items": [
+        "Import attributes in ambient modules",
+        "Ambient module declarations can require import attributes and select a type by the attribute; matching specifiers are not validated against files, and the declarations are not shipped in built-in libs."
+      ],
+      "sourceUrls": [
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+      ]
+    },
+    {
+      "edition": "TypeScript 7.0",
+      "items": [
+        "Carries forward TypeScript 6.0 defaults, including strict true, module esnext, target current stable ES, rootDir ./, and types []; deprecated TypeScript 6.0 options become hard errors or unsupported."
+      ],
+      "sourceUrls": [
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Official TypeScript Handbook, TSConfig Reference, and release notes",
+    "edition": "TypeScript 7.0 stable; 7.1 beta as of 2026-11-17",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://www.typescriptlang.org/docs/handbook/modules/introduction.html",
+      "https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html",
+      "https://www.typescriptlang.org/docs/handbook/declaration-merging.html",
+      "https://www.typescriptlang.org/docs/handbook/modules/reference.html",
+      "https://www.typescriptlang.org/docs/handbook/modules/theory.html",
+      "https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+      "https://www.typescriptlang.org/tsconfig/moduleDetection.html",
+      "https://www.typescriptlang.org/tsconfig/resolvePackageJsonExports.html",
+      "https://www.typescriptlang.org/tsconfig/resolvePackageJsonImports.html",
+      "https://www.typescriptlang.org/tsconfig/customConditions.html",
+      "https://www.typescriptlang.org/tsconfig/paths.html",
+      "https://www.typescriptlang.org/tsconfig/baseUrl.html"
+    ]
+  },
+  "accuracyFacts": [
+    "The stable compiler is TypeScript 7.0 as of 2026-11-17; TypeScript 7.1 is beta. Clearly label beta behavior and do not present it as stable.",
+    "A file with a top-level import or export is a module; moduleDetection may also classify files as modules based on package.json type and other project context. A file with no module indicator may contribute declarations to a shared script/global scope.",
+    "Type-only import/export syntax is erased from JavaScript output. With verbatimModuleSyntax, import/export modifiers communicate whether syntax is preserved or erased; imports lacking type modifiers are not silently elided as type-only uses.",
+    "A declaration file describes a runtime API but supplies no implementation. Ambient declarations and module declarations are not evidence that a runtime module or global actually exists.",
+    "Module augmentation resolves its module specifier like an import/export, must augment an existing named export, cannot add new top-level declarations, and cannot augment a default export. Runtime implementation still must be installed/executed.",
+    "Declaration merging has ordered rules and conflicts: interfaces merge compatible members, namespaces can merge with classes/functions/enums in supported orders, and class/interface declarations do not generally merge as an arbitrary pair.",
+    "NodeNext follows current Node.js module behavior and can change across TypeScript versions; node16/node18/node20 modes model fixed Node versions. Bundler mode supports package exports/imports and extensionless relative paths but does not enforce all Node ESM path constraints.",
+    "The module option and moduleResolution work together to determine emitted form and package conditions. Node16/node18/node20/NodeNext must pair with corresponding resolution modes; bundler pairs with esnext or preserve; preserve implies bundler resolution.",
+    "In Node-aware and bundler resolution, package exports/imports may control reachable paths and condition selection. The types condition and runtime condition ordering must be designed so TypeScript and runtime resolve compatible implementations; typesVersions is generally a fallback when exports are absent for package resolution.",
+    "The package types/typings fields point to declaration entry points; exports can encapsulate subpaths and use conditional types/runtime targets. typesVersions redirects declarations by compiler version only in supported resolution contexts and does not override exports.",
+    "baseUrl is deprecated in TypeScript 6.0 and is no longer a lookup root in TypeScript 7.0; paths does not rewrite emitted specifiers and must match the runtime/bundler mapping separately.",
+    "preserveValueImports and importsNotUsedAsValues were deprecated in TypeScript 5.5 in favor of verbatimModuleSyntax; TypeScript 6.0 and 7.0 remove/deprecate legacy module options including classic and node10 module resolution.",
+    "Declaration emit generates .d.ts descriptions from source; declarationMap adds map files for editor navigation and does not change runtime code.",
+    "TypeScript 6.0 defaults rootDir to the directory containing tsconfig, types to [], target to the current-year stable ECMAScript version, noUncheckedSideEffectImports to true, and libReplacement to false. TypeScript 7.0 carries forward the new defaults, including strict true and module esnext, while making TypeScript 6 deprecations hard errors or unsupported.",
+    "TypeScript 7.1 beta ambient module declarations may include import attributes such as declare module \"*\" with { type: \"text\" }; this can require an import attribute and select a declaration shape, but does not validate file existence or ship a runtime loader."
+  ],
+  "scopeExclusions": [
+    "ECMAScript static import and export syntax (t06-019)",
+    "Node.js CommonJS runtime behavior",
+    "Bundler configuration APIs (t06-026)",
+    "TypeScript source maps and general compiler emit settings outside declaration emit (t06-026)"
+  ],
   "generationAllowed": true
 }

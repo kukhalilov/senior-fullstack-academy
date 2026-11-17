@@ -92,6 +92,12 @@ The TypeScript compiler can now resolve `@app/view`, but `paths` does not rewrit
 
 The output contains declarations and maps, not JavaScript. A separate runtime build must produce files matching the package's export map.
 
+## TypeScript 6.0 and 7.0 configuration changes
+
+TypeScript 6.0 changed defaults that can affect an existing project: `module` defaults to `esnext`; `target` defaults to the current-year stable ECMAScript target (ES2025 in 6.0); `rootDir` defaults to the directory containing `tsconfig.json`; `types` defaults to an empty list; `noUncheckedSideEffectImports` defaults to `true`; and `libReplacement` defaults to `false`. TypeScript 7.0 carries these defaults forward and defaults `strict` to `true`; its `target` follows the current supported target immediately below `esnext`, and `stableTypeOrdering` is enabled. Set options explicitly when a project depends on prior inferred values, especially global `@types` packages and output layout. [TypeScript 6.0 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html) · [TypeScript 7.0 announcement](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/)
+
+TypeScript 6.0 deprecated `baseUrl` and Node10 resolution, removed `classic`, and disallowed `esModuleInterop: false`. TypeScript 7.0 makes remaining 6.0 deprecations hard errors or unsupported. `node20` is a fixed module mode introduced in TypeScript 5.9; `nodenext` follows evolving Node behavior. TypeScript 7.1 is still beta in this snapshot, so keep its ambient import-attribute syntax out of stable configuration assumptions.
+
 ## Common mistakes
 
 - Selecting `bundler` and assuming the resulting imports are valid in native Node ESM.
