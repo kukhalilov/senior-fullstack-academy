@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 11,
-    "pending": 2329,
-    "claimsChecked": 212,
-    "claimsCorrected": 9,
+    "reviewed": 12,
+    "pending": 2328,
+    "claimsChecked": 223,
+    "claimsCorrected": 11,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -79664,32 +79664,83 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-read-repair.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 11,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Cassandra read repair occurs during a read when replicas involved at the requested consistency level disagree; the coordinator reconciles data and repairs only stale replicas involved in the read.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Read repair; read consistency and read repair",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The read response may not be the globally newest data when the requested consistency level does not involve all replicas.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Background Read Repair (including global-freshness caveat)",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra blocking read repair supports monotonic quorum reads, preventing a subsequent quorum read from going older under the documented failed-quorum-write scenario.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Expectation of Monotonic Quorum Reads",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra BLOCKING waits for repair writes to reach the requested consistency level and does not provide partition-level write atomicity for partial-partition reads.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Table level configuration; Blocking",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra NONE reconciles response data without repair writes, preserving partition-level write atomicity but not monotonic quorum reads.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Table level configuration; None",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Read repair can break partition write atomicity when a multi-row partition write is read at more granular row scope.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Table level configuration example",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra 4.0 introduced table-level `read_repair` options and removed background `read_repair_chance` and `dclocal_read_repair_chance` settings.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Table level configuration; Background Read Repair",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra read repair uses full and digest reads to detect mismatches at applicable consistency levels; ONE/LOCAL_ONE do not perform this comparison in the documented flow.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Read Repair Example; Read Consistency Level and Read Repair",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Read repair is distinct from hints and full/incremental anti-entropy repair and does not replace them.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Repair overview and Usage",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A read limited to selected rows can leave other rows or replicas unrepaired; example reflects the documented partition atomicity interaction.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Table level configuration example",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers the complete frozen read-repair item scope and Cassandra 5.0 mode tradeoffs.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "inventory group “handbook-consensus-quorum-and-hash-algorithms-read-repair”",
+          "verdict": "scope complete for assigned named item"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
         "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },

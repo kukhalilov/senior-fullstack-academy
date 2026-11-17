@@ -4,15 +4,15 @@ Sources: [Handbook module 3](https://hld.handbook.academy/curriculum/distributed
 
 ## Scope and version
 
-This lesson uses Apache Cassandra 5.0 to make read repair concrete. Other databases may use the term for different mechanisms.
+This lesson uses Apache Cassandra 5.0 to make read repair concrete. Cassandra 4.0 removed the old background `read_repair_chance` mechanism and introduced the table-level `read_repair` options discussed here. Other databases may use the term for different mechanisms.
 
 ## How this group fits the mental model
 
-Replicas can disagree because writes were missed, delayed, or only partly acknowledged. During a read, the coordinator compares responses from the replicas needed by the requested consistency level. If it finds a mismatch, read repair sends the newer reconciled data to stale replicas involved in that read. This repairs the data touched by that request, not every partition in the cluster.
+Replicas can disagree because writes were missed, delayed, or only partly acknowledged. During a read, the coordinator compares responses from replicas involved in the requested consistency level (including digest reads in Cassandra). If it finds a mismatch, it obtains full data as needed, reconciles the response, and—when blocking repair is enabled—sends repair mutations to stale replicas involved in the read. It does not contact or repair every replica for every read, so a successful read at a level below ALL can still fail to include a newer value on an uncontacted replica. This repairs only data touched by that request, not every partition in the cluster.
 
 ## Supplied names explained
 
-In Cassandra 5.0, blocking read repair waits for repair writes to reach the requested consistency level and supports monotonic quorum reads: under the documented conditions, successive quorum reads do not go backward after a failed quorum write. It can break partition-level write atomicity when only part of a multi-row partition write is read and repaired. The table option `read_repair='NONE'` reconciles data for the response without sending repairs; this preserves partition-level write atomicity but does not provide the same monotonic quorum-read property.
+In Cassandra 5.0, `BLOCKING` read repair waits for repair writes to reach the requested consistency level and supports monotonic quorum reads: under the documented conditions, successive quorum reads do not go backward even after a failed quorum write left the newest value on only a minority. It can break partition-level write atomicity when only part of a multi-row partition write is read and repaired. The table option `read_repair='NONE'` still reconciles replica differences to construct the response but sends no repair mutations; it preserves partition-level write atomicity and does not provide the same monotonic-quorum-read property. Cassandra removed the older probabilistic background repair settings in 4.0.
 
 Read repair adds work and latency to reads that discover mismatches. It is distinct from hinted handoff, which replays a recorded missed mutation, and anti-entropy repair, which compares broader replica ranges. Neither a successful read nor a read-repair setting proves that all data across all replicas is synchronized.
 
@@ -22,7 +22,7 @@ Use blocking read repair where the monotonic-quorum-read property is required an
 
 ## Examples
 
-Two replicas store a partition with rows x and y. A batch intends to update both, but a failed write leaves only one replica with the newer values. A later query selects only x. Blocking read repair may make x converge among the read replicas; it does not necessarily repair y, and this granular repair can expose a partially applied partition update. With NONE, the read returns reconciled x without repairing replicas, preserving partition-level write atomicity while sacrificing the same monotonic-quorum-read guarantee.
+Two replicas store a partition with rows x and y. A batch intends to update both, but a failed write leaves the newest version on only one replica. A later query selects only x. With BLOCKING, Cassandra may repair x among the replicas involved in that read; it does not necessarily repair y, so a later query can observe a partially applied partition update. With NONE, Cassandra reconciles x for the response but sends no repair mutation, preserving partition-level write atomicity; after a failed quorum write, a later read may then see an older value, so it lacks the same monotonic-quorum-read property. Any other replica not contacted by the read can remain stale until another repair path reaches it.
 
 ## Common mistakes
 
@@ -30,6 +30,8 @@ Two replicas store a partition with rows x and y. A batch intends to update both
 - Assuming every database's “read repair” has Cassandra's semantics.
 - Ignoring the Cassandra BLOCKING versus NONE tradeoff.
 - Treating repair-on-read as a replacement for scheduled anti-entropy repair.
+- Assuming a read at QUORUM or LOCAL_QUORUM proves no uncontacted replica has a newer value.
+- Confusing Cassandra 4.0+ table-level `read_repair` with removed probabilistic background repair settings.
 
 ## Knowledge checks with answers
 
