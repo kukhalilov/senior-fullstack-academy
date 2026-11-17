@@ -5,74 +5,74 @@
 *Draft: Automatically generated.*
 
 # Scope and version
-This lesson covers C# 15 and .NET 11 nullability analysis attributes. These features provide a way to communicate nullability contracts to the compiler's static flow analysis engine. All information is based on the C# 15 and .NET 11 GA release (checked 2026-11-14).
+This lesson covers C# 15 and .NET 11 nullability analysis attributes. These features communicate null-state contracts to compiler analysis, not runtime enforcement. Current official documentation was checked on 2026-11-17.
 
 Source: [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis)
 
 # How this group fits the mental model
-In C#, nullable reference types are a compile-time system. The compiler tracks the "null state" of variables through your code. However, the compiler cannot always see inside external libraries or complex logic. These attributes act as "hints" or "contracts" that tell the compiler: "I know this might look null, but it isn't," or "This method will only return null if the input was null." They bridge the gap between your code's logic and the compiler's static analysis.
+Nullable reference types use compiler flow analysis and nullable metadata, not runtime enforcement. Nullable-analysis attributes refine caller/callee null-state contracts when ordinary annotations cannot express a relationship; implementations must satisfy any declared postcondition.
 
 # Supplied names explained
 
-* `AllowNullAttribute`: Used on a property or field to indicate that while the type is non-nullable, the caller is allowed to pass `null` (the setter handles it).
-* `DisallowNullAttribute`: Used on a property or field to indicate that while the type is nullable, the caller should not pass `null`.
-* `MaybeNullAttribute`: Indicates that a return value or field might be `null` even if the type is marked as non-nullable.
-* `NotNullAttribute`: Indicates that a return value or field will never be `null`, even if the type is marked as nullable.
-* `MaybeNullWhenAttribute`: Used on a parameter to indicate that the argument might be `null` when the method returns a specific `bool` value.
-* `NotNullWhenAttribute`: Used on a parameter to indicate that the argument will not be `null` when the method returns a specific `bool` value.
-* `NotNullIfNotNullAttribute`: Indicates that the return value is non-null if the specified argument is non-null.
-* `MemberNotNullAttribute`: Indicates that the method ensures specific fields or properties are not null upon return.
-* `MemberNotNullWhenAttribute`: Indicates that the method ensures specific fields or properties are not null when it returns a specific `bool` value.
-* `DoesNotReturnAttribute`: Indicates that a method never returns (e.g., it always throws an exception).
-* `DoesNotReturnIfAttribute`: Indicates that a method never returns if the associated boolean parameter has a specific value.
-* `NotNullWhenAttribute.ReturnValue`: The boolean value that indicates the parameter is not null.
-* `MaybeNullWhenAttribute.ReturnValue`: The boolean value that indicates the parameter might be null.
+* `AllowNullAttribute`: Permits callers to pass null to an input even when its annotated type is non-nullable; it does not ensure a property setter converts or handles null.
+* `DisallowNullAttribute`: Warns callers against passing null to an input whose annotated type permits null; it does not add runtime rejection.
+* `MaybeNullAttribute`: Allows a method return or output to be maybe-null even when its declared type is non-nullable; it doesn't mean every call returns null.
+* `NotNullAttribute`: Describes a postcondition that an output is not null on normal return; it does not insert a check.
+* `MaybeNullWhenAttribute`: Describes an output parameter as maybe-null when the method returns the specified Boolean value.
+* `NotNullWhenAttribute`: Describes an input/output parameter as not-null when the method returns the specified Boolean value.
+* `NotNullIfNotNullAttribute`: States that a return value is not-null when the named input parameter is not-null.
+* `MemberNotNullAttribute`: Tells flow analysis that named members are not-null after the annotated method or property returns normally.
+* `MemberNotNullWhenAttribute`: Tells flow analysis that named members are not-null when the annotated method returns the specified Boolean value.
+* `DoesNotReturnAttribute`: Tells flow analysis that a method does not return normally; it does not make a method that returns behave as if it threw.
+* `DoesNotReturnIfAttribute`: Tells flow analysis that a method does not return normally for the specified Boolean parameter value.
+* `NotNullWhenAttribute.ReturnValue`: The Boolean return value for which flow analysis treats the annotated parameter as not-null; the method must uphold that condition.
+* `MaybeNullWhenAttribute.ReturnValue`: The Boolean return value for which flow analysis treats the annotated output as maybe-null; it does not require null on that path.
 * `NotNullIfNotNullAttribute.ParameterName`: The name of the parameter that determines the nullability of the return.
-* `MemberNotNullAttribute.Members`: The list of fields or properties guaranteed to be non-null.
-* `MemberNotNullWhenAttribute.ReturnValue`: The boolean value that triggers the member nullability guarantee.
-* `MemberNotNullWhenAttribute.Members`: The list of fields or properties guaranteed to be non-null if the return matches the value.
-* `AllowNull on property setter`: Applying the attribute to a setter to permit null inputs for non-nullable types.
-* `DisallowNull on property setter`: Applying the attribute to a setter to forbid null inputs for nullable types.
-* `MaybeNull on return value`: Applying the attribute to a method return to signal potential nullability.
-* `NotNull on return value`: Applying the attribute to a method return to guarantee a non-null result.
-* `MaybeNullWhen on out parameter`: Using the attribute to describe the state of an `out` parameter based on the method's boolean result.
-* `NotNullWhen on Boolean return`: Using the attribute to inform the compiler that a `true` or `false` return implies a non-null argument.
-* `NotNullIfNotNull on dependent return`: Linking the nullability of a return value to an input parameter.
-* `MemberNotNull after helper call`: Using the attribute to inform the compiler that a helper method initialized specific members.
-* `DoesNotReturn on throw helper`: Marking custom exception-throwing methods so the compiler knows code following the call is unreachable.
-* `DoesNotReturnIf on conditional assertion`: Marking methods that throw only if a condition is met.
-* `Conditional postcondition`: A contract describing the state of data after a method finishes.
-* `Conditional precondition`: A contract describing the required state of data before a method starts.
+* `MemberNotNullAttribute.Members`: Names of fields/properties asserted not-null after normal return; the implementation must establish that condition.
+* `MemberNotNullWhenAttribute.ReturnValue`: The Boolean value for which flow analysis treats listed members as not-null, subject to the method honoring that postcondition.
+* `MemberNotNullWhenAttribute.Members`: Names of fields/properties asserted not-null when the Boolean return matches its configured value.
+* `AllowNull on property setter`: Applying the input contract to permit a null assignment even when the property's getter type is non-nullable; the setter must define its behavior.
+* `DisallowNull on property setter`: Applying the input contract to warn when null is assigned even though the property's getter type permits null.
+* `MaybeNull on return value`: Applying the attribute to a method return to describe a maybe-null result despite a non-nullable annotation.
+* `NotNull on return value`: Applying the attribute to a method return as a postcondition; implementation must honor it.
+* `MaybeNullWhen on out parameter`: Describes when an `out` value may be null based on the Boolean return.
+* `NotNullWhen on Boolean return`: Describes that an input/output parameter is not null for one selected Boolean result, not necessarily for both results.
+* `NotNullIfNotNull on dependent return`: Describes that the return is non-null when the named input is non-null; the implementation must satisfy that relationship.
+* `MemberNotNull after helper call`: Applying `MemberNotNull` to a helper that establishes named members before normal return; callers still need runtime validation if those values can be corrupted or externally mutated.
+* `DoesNotReturn on throw helper`: Marking a helper that does not return normally so flow analysis treats subsequent code as unreachable on that path; it does not itself cause an exception.
+* `DoesNotReturnIf on conditional assertion`: Describes that a helper does not return normally for a configured Boolean argument value; implementation must match.
+* `Conditional postcondition`: A documented/annotated claim about output or state after a method returns; attributes inform analysis but do not enforce truth at runtime.
+* `Conditional precondition`: A documented/annotated input contract whose applicability depends on the call or input state; nullable analysis attributes primarily describe caller/callee null-state relationships.
 * `Nullability metadata`: The information stored in the assembly about nullability.
-* `NullableAttribute (compiler-emitted metadata)`: Internal attribute used by the compiler to store nullability state.
-* `NullableContextAttribute (compiler-emitted metadata)`: Internal attribute defining the default nullability context for a scope.
-* `NullablePublicOnlyAttribute (compiler-emitted metadata)`: Internal attribute indicating only public members have nullability metadata.
+* `NullableAttribute (compiler-emitted metadata)`: Compiler-emitted metadata used to encode nullable annotations for signatures/elements; it is not a runtime null check.
+* `NullableContextAttribute (compiler-emitted metadata)`: Compiler-emitted metadata recording a default nullable annotation context for a scope; consumers/tools can inspect it.
+* `NullablePublicOnlyAttribute (compiler-emitted metadata)`: Compiler-emitted metadata indicating nullable annotations are included only for public API members for an assembly build; it is not an application-level nullability switch.
 
 # Cross-item comparison
-* **`AllowNull` vs `DisallowNull`**: `AllowNull` makes a non-nullable type accept `null` (useful for lazy initialization); `DisallowNull` makes a nullable type reject `null` (useful for validation).
-* **`NotNullWhen` vs `MaybeNullWhen`**: These are used on parameters to describe the state of that parameter based on the method's return value (e.g., `bool TryGet(out T value)`).
-* **`NotNullIfNotNull`**: This is a powerful tool for mapping input nullability to output nullability, commonly used in string manipulation methods.
+* **`AllowNull` vs `DisallowNull`**: These attributes adjust compile-time input contracts relative to the annotated type; neither performs runtime normalization or rejection.
+* **`NotNullWhen` vs `MaybeNullWhen`**: They describe conditional null-state postconditions for parameters based on the method's Boolean return; they do not enforce those postconditions at runtime.
+* **`NotNullIfNotNull`**: Maps the null-state of a named input parameter to a return-value postcondition; the implementation must honor the stated relationship.
 
 # Examples
 ```csharp
-// Example: Using NotNullWhen
-public bool TryGetValue(string key, [NotNullWhen(true)] out string? value)
+using System.Diagnostics.CodeAnalysis;
+
+// Example: Using NotNullWhen for an input parameter
+public bool IsPresent([NotNullWhen(true)] string? value)
 {
-    // If this returns true, the compiler knows 'value' is not null.
-    // If this returns false, the compiler knows 'value' might be null.
-    // ... logic ...
+    return value is not null;
 }
 ```
 
 # Common mistakes
 1. **Assuming runtime enforcement**: These attributes are for the compiler. They do not throw exceptions at runtime if you pass `null` to a method marked `[NotNull]`. You must still use `ArgumentNullException.ThrowIfNull` for runtime safety.
-2. **Over-using attributes**: Only use these when the compiler's default analysis is insufficient. Simple code usually does not need them.
+2. **Over-using attributes**: Use attributes when a public contract has a null-state relationship the compiler cannot infer; incorrect attributes make analysis unsound, while simple flow often needs none.
 3. **Ignoring warnings**: Suppressing warnings with the null-forgiving operator (`!`) instead of using these attributes hides potential bugs rather than documenting the contract.
 
 # Knowledge checks with answers
 1. **Question**: Do these attributes perform runtime null checks?
-   **Answer**: No. They are strictly for compile-time static flow analysis.
+   **Answer**: No. They affect nullable analysis and metadata only; runtime validation must be implemented separately.
 2. **Question**: Which attribute should you use if a method returns `null` only when a specific input parameter is `null`?
    **Answer**: `NotNullIfNotNullAttribute`.
 3. **Question**: If you mark a method with `[DoesNotReturn]`, what does the compiler assume about the code immediately following a call to that method?
-   **Answer**: The compiler assumes that code is unreachable.
+   **Answer**: Flow analysis treats the call as not returning normally, so following code is unreachable on that path; the implementation must honor the annotation.

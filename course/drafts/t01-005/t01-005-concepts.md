@@ -21,11 +21,11 @@
 In C#, "null" represents the absence of a value. However, C# handles this differently depending on the type:
 
 1.  **Nullable Value Types (`Nullable<T>`):** Value types (like `int`, `bool`, `struct`) cannot be null by default. `Nullable<T>` (or `T?`) wraps these types, allowing them to hold a value or be "empty." This is a distinct runtime type.
-2.  **Nullable Reference Types (NRTs):** Reference types (like `string`, `object`, `class`) can always be null. NRTs are a **compile-time feature**. They do not change the runtime behavior of your code; instead, the compiler tracks whether a variable *might* be null and issues warnings if you try to use it unsafely.
+2.  **Nullable Reference Types (NRTs):** Reference types remain capable of holding null at runtime. NRT annotations are a **compile-time analysis and metadata feature**: the compiler tracks possible null states and issues warnings, but annotations do not insert runtime checks.
 
 ### Mechanisms and relationships
 The system relies on a **Nullable Context**. When enabled, the compiler tracks the "null state" of variables:
-*   **Not-null state:** The compiler is confident the variable holds an object.
+*   **Not-null state:** Flow analysis treats the expression as not-null at that program point based on known information; this is not proof against mutation or external behavior.
 *   **Maybe-null state:** The compiler warns that the variable might be null.
 
 **The Flow Analysis:** The compiler watches your code. If you check `if (x is not null)`, the compiler updates the null state of `x` to "not-null" within that block.
@@ -68,20 +68,20 @@ Console.WriteLine(name!.Length); // Assertion: "I know this isn't null"
 
 ### Misconceptions and edge cases
 *   **Misconception:** "Nullable reference types prevent `NullReferenceException` at runtime."
-    *   **Reality:** They only provide compile-time warnings. Reflection, deserialization, and code from "nullable-oblivious" libraries can still introduce nulls into your code.
+    *   **Reality:** They provide compile-time diagnostics and metadata, not runtime enforcement. Reflection, deserialization, and code from nullable-oblivious libraries can still introduce nulls.
 *   **Edge Case:** `default` structs. If a struct contains a reference type field, the `default` value of that struct will contain a null reference, even if you annotated the field as non-nullable.
 *   **Edge Case:** The null-forgiving operator (`!`) is a "trust me" signal to the compiler. It does not perform a runtime check.
 
 ### Knowledge checks with answers
 
 1.  **Question:** Does `string?` create a new type at runtime?
-    *   **Answer:** No. It is a compile-time annotation. `string` and `string?` are the same type at runtime.
+    *   **Answer:** No. The annotation affects compiler analysis and emitted nullability metadata, but does not create a distinct runtime type or automatic check.
 
 2.  **Question:** What is the difference between `Nullable<T>.Value` and `GetValueOrDefault()`?
-    *   **Answer:** `Value` throws an `InvalidOperationException` if the value is null. `GetValueOrDefault()` returns the default value of `T` (or a specified default) if the value is null.
+    *   **Answer:** `Value` throws an `InvalidOperationException` if no value is present. `GetValueOrDefault()` returns `default(T)), or the supplied fallback overload; use a fallback only when it matches the domain meaning.
 
 3.  **Question:** Why would you use `[NotNullWhen(true)]` on a method parameter?
-    *   **Answer:** To tell the compiler that if the method returns `true`, the specified parameter is guaranteed to be non-null (e.g., in `bool TryGetValue(out T? value)`).
+    *   **Answer:** To describe the method's conditional postcondition to the compiler. For example, `[NotNullWhen(true)]` states that the annotated parameter is not null when the method returns true; the implementation must uphold that contract.
 
 4.  **Question:** How do you handle nulls from external libraries that don't use nullable annotations?
     *   **Answer:** Treat them as "nullable-oblivious." Use explicit null checks (`ArgumentNullException.ThrowIfNull`) at your system boundaries to ensure safety.

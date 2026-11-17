@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 255,
-    "pending": 2085,
-    "claimsChecked": 5448,
-    "claimsCorrected": 488,
+    "reviewed": 263,
+    "pending": 2077,
+    "claimsChecked": 5797,
+    "claimsCorrected": 512,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 255,
-    "pendingLessons": 2085
+    "reviewedLessons": 263,
+    "pendingLessons": 2077
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -849,6 +849,25 @@
       ],
       "findings": [
         "Audited all seven lesson files and checked all 112 frozen inventory entries (44 equality/copy concepts, 45 type/design concepts plus supporting inventory groups) against current Microsoft language and API references. Corrected physical-storage/address analogies; struct shallow-copy and nested-reference behavior; ref/in/ref readonly parameter wording; boxing allocation and nullable boxing/unboxing; defensive copies; readonly transitivity; record class/struct assignment and synthesized equality; EqualityContract scope; equality/hash/array/sequence contracts; nullable lifted comparisons; ref struct interface rules; InlineArray behavior; and non-universal performance guidance. No uncovered inventory item or unresolved in-scope issue remains."
+      ]
+    },
+    {
+      "scope": "C# nullability, t01-005 (all eight lesson units)",
+      "status": "all lesson claims reviewed; draft state retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/nullable-warnings",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.objectdisposedexception.throwif?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters"
+      ],
+      "findings": [
+        "Reviewed all eight lessons and the complete supplied manifest inventory against current Microsoft C# and .NET 11 documentation. Corrected a substantive nullable relational-operator error: <, >, <=, and >= return false when either nullable operand is null, unlike most lifted arithmetic operators. Also refined compiler/runtime wording and an attribute code example. No unresolved factual issues remain within this topic inventory."
       ]
     }
   ],
@@ -5741,13 +5760,69 @@
       "topicId": "t01-005",
       "phase": "overview",
       "draft": "course/drafts/t01-005/t01-005-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "overall nullability model and runtime/type distinction",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable value types; lifted operators; boxing; conversions; nullable Boolean operators",
+              "verdict": "Supported; corrected the distinction between arithmetic null propagation and relational operators returning false for null operands."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            }
+          ]
+        },
+        {
+          "claims": "annotation analysis and compiler limits",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/nullable-warnings",
+              "section": "Nullable warning diagnostics and nullable context",
+              "verdict": "Supported; warnings are diagnostics, not runtime validation."
+            }
+          ]
+        },
+        {
+          "claims": "flow attributes and guards",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis",
+              "section": "Nullable analysis attributes and conditional postconditions",
+              "verdict": "Supported; checked each named contract attribute and verified the annotated example."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull?view=net-11.0",
+              "section": "ThrowIfNull and nullable-flow postcondition",
+              "verdict": "Supported; runtime guard and continuing-path flow behavior checked."
+            }
+          ]
+        },
+        {
+          "claims": "runtime string validation",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace?view=net-11.0",
+              "section": "ThrowIfNullOrWhiteSpace exceptions and contract",
+              "verdict": "Supported; null and empty/whitespace exception behavior checked."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
@@ -5758,20 +5833,71 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review completed against the cited official Microsoft language and API documentation. Checked the frozen manifest inventory against lesson coverage, corrected identified overstatements, and retained draft status."
     },
     {
       "taskId": "t01-005-concepts",
       "topicId": "t01-005",
       "phase": "concepts",
       "draft": "course/drafts/t01-005/t01-005-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "nullable value and reference type semantics",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable value types; lifted operators; boxing; conversions; nullable Boolean operators",
+              "verdict": "Supported; corrected the distinction between arithmetic null propagation and relational operators returning false for null operands."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            }
+          ]
+        },
+        {
+          "claims": "null-state analysis and operators",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable value types; lifted operators; boxing; conversions; nullable Boolean operators",
+              "verdict": "Supported; corrected the distinction between arithmetic null propagation and relational operators returning false for null operands."
+            }
+          ]
+        },
+        {
+          "claims": "flow-analysis attribute contracts",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis",
+              "section": "Nullable analysis attributes and conditional postconditions",
+              "verdict": "Supported; checked each named contract attribute and verified the annotated example."
+            }
+          ]
+        },
+        {
+          "claims": "runtime validation",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull?view=net-11.0",
+              "section": "ThrowIfNull and nullable-flow postcondition",
+              "verdict": "Supported; runtime guard and continuing-path flow behavior checked."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
@@ -5782,20 +5908,56 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review completed against the cited official Microsoft language and API documentation. Checked the frozen manifest inventory against lesson coverage, corrected identified overstatements, and retained draft status."
     },
     {
       "taskId": "t01-005-reference-nullable-value-types",
       "topicId": "t01-005",
       "phase": "reference",
       "draft": "course/drafts/t01-005/t01-005-reference-nullable-value-types.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 77,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Nullable<T> members, conversions, boxing, lifted operators, and nullable Boolean exceptions",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable value types; lifted operators; boxing; conversions; nullable Boolean operators",
+              "verdict": "Supported; corrected the distinction between arithmetic null propagation and relational operators returning false for null operands."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1?view=net-11.0",
+              "section": "Nullable<T> members and exceptions",
+              "verdict": "Supported; checked HasValue, Value, GetValueOrDefault, equality, hashing, and formatting."
+            }
+          ]
+        },
+        {
+          "claims": "generic constraints",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+              "section": "struct and notnull constraints",
+              "verdict": "Supported; distinguished runtime struct constraint from nullable-analysis notnull constraint."
+            }
+          ]
+        },
+        {
+          "claims": "null-handling syntax and result behavior",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
@@ -5806,20 +5968,61 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review completed against the cited official Microsoft language and API documentation. Checked the frozen manifest inventory against lesson coverage, corrected identified overstatements, and retained draft status."
     },
     {
       "taskId": "t01-005-reference-nullable-reference-types-and-contexts",
       "topicId": "t01-005",
       "phase": "reference",
       "draft": "course/drafts/t01-005/t01-005-reference-nullable-reference-types-and-contexts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 63,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "reference annotations, contexts, flow states, warnings, and operators",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/nullable-warnings",
+              "section": "Nullable warning diagnostics and nullable context",
+              "verdict": "Supported; warnings are diagnostics, not runtime validation."
+            }
+          ]
+        },
+        {
+          "claims": "generic/array nullability and default values",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint",
+              "section": "struct and notnull constraints",
+              "verdict": "Supported; distinguished runtime struct constraint from nullable-analysis notnull constraint."
+            }
+          ]
+        },
+        {
+          "claims": "runtime guard contracts",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull?view=net-11.0",
+              "section": "ThrowIfNull and nullable-flow postcondition",
+              "verdict": "Supported; runtime guard and continuing-path flow behavior checked."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
@@ -5830,20 +6033,51 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review completed against the cited official Microsoft language and API documentation. Checked the frozen manifest inventory against lesson coverage, corrected identified overstatements, and retained draft status."
     },
     {
       "taskId": "t01-005-reference-flow-analysis-contract-attributes",
       "topicId": "t01-005",
       "phase": "reference",
       "draft": "course/drafts/t01-005/t01-005-reference-flow-analysis-contract-attributes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "public nullability attributes and conditional contracts",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis",
+              "section": "Nullable analysis attributes and conditional postconditions",
+              "verdict": "Supported; checked each named contract attribute and verified the annotated example."
+            }
+          ]
+        },
+        {
+          "claims": "parameter directions and outputs",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Parameter annotations and out/ref parameter semantics",
+              "verdict": "Supported; parameter-direction claims checked."
+            }
+          ]
+        },
+        {
+          "claims": "metadata versus runtime enforcement",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
@@ -5854,20 +6088,71 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review completed against the cited official Microsoft language and API documentation. Checked the frozen manifest inventory against lesson coverage, corrected identified overstatements, and retained draft status."
     },
     {
       "taskId": "t01-005-reference-safe-validation-and-api-design",
       "topicId": "t01-005",
       "phase": "reference",
       "draft": "course/drafts/t01-005/t01-005-reference-safe-validation-and-api-design.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 49,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "guard APIs, exception behavior, and flow effects",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull?view=net-11.0",
+              "section": "ThrowIfNull and nullable-flow postcondition",
+              "verdict": "Supported; runtime guard and continuing-path flow behavior checked."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace?view=net-11.0",
+              "section": "ThrowIfNullOrWhiteSpace exceptions and contract",
+              "verdict": "Supported; null and empty/whitespace exception behavior checked."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.objectdisposedexception.throwif?view=net-11.0",
+              "section": "ThrowIf overloads",
+              "verdict": "Supported; condition and object/type context overloads checked."
+            }
+          ]
+        },
+        {
+          "claims": "try-pattern and optional-value semantics",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis",
+              "section": "Nullable analysis attributes and conditional postconditions",
+              "verdict": "Supported; checked each named contract attribute and verified the annotated example."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            }
+          ]
+        },
+        {
+          "claims": "nullable API boundaries and compatibility",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/nullable-warnings",
+              "section": "Nullable warning diagnostics and nullable context",
+              "verdict": "Supported; warnings are diagnostics, not runtime validation."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
@@ -5878,20 +6163,61 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review completed against the cited official Microsoft language and API documentation. Checked the frozen manifest inventory against lesson coverage, corrected identified overstatements, and retained draft status."
     },
     {
       "taskId": "t01-005-practice",
       "topicId": "t01-005",
       "phase": "practice",
       "draft": "course/drafts/t01-005/t01-005-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 27,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "nullable declarations, guards, and sample behavior",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable value types; lifted operators; boxing; conversions; nullable Boolean operators",
+              "verdict": "Supported; corrected the distinction between arithmetic null propagation and relational operators returning false for null operands."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull?view=net-11.0",
+              "section": "ThrowIfNull and nullable-flow postcondition",
+              "verdict": "Supported; runtime guard and continuing-path flow behavior checked."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace?view=net-11.0",
+              "section": "ThrowIfNullOrWhiteSpace exceptions and contract",
+              "verdict": "Supported; null and empty/whitespace exception behavior checked."
+            }
+          ]
+        },
+        {
+          "claims": "TryParse and nullable output example contract",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Parameter annotations and out/ref parameter semantics",
+              "verdict": "Supported; parameter-direction claims checked."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis",
+              "section": "Nullable analysis attributes and conditional postconditions",
+              "verdict": "Supported; checked each named contract attribute and verified the annotated example."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
@@ -5902,20 +6228,66 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review completed against the cited official Microsoft language and API documentation. Checked the frozen manifest inventory against lesson coverage, corrected identified overstatements, and retained draft status."
     },
     {
       "taskId": "t01-005-interview",
       "topicId": "t01-005",
       "phase": "interview",
       "draft": "course/drafts/t01-005/t01-005-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "core nullability distinctions and flow",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable value types; lifted operators; boxing; conversions; nullable Boolean operators",
+              "verdict": "Supported; corrected the distinction between arithmetic null propagation and relational operators returning false for null operands."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+              "section": "Nullable contexts, annotations, flow analysis, arrays, generics, and null operators",
+              "verdict": "Supported; checked annotation/warning contexts, flow-state examples, metadata/runtime boundaries, and operators."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/nullable-warnings",
+              "section": "Nullable warning diagnostics and nullable context",
+              "verdict": "Supported; warnings are diagnostics, not runtime validation."
+            }
+          ]
+        },
+        {
+          "claims": "contracts and runtime validation",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis",
+              "section": "Nullable analysis attributes and conditional postconditions",
+              "verdict": "Supported; checked each named contract attribute and verified the annotated example."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull?view=net-11.0",
+              "section": "ThrowIfNull and nullable-flow postcondition",
+              "verdict": "Supported; runtime guard and continuing-path flow behavior checked."
+            }
+          ]
+        },
+        {
+          "claims": "optional/sentinel design comparison",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable value types; lifted operators; boxing; conversions; nullable Boolean operators",
+              "verdict": "Supported; corrected the distinction between arithmetic null propagation and relational operators returning false for null operands."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
@@ -5926,7 +6298,7 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review completed against the cited official Microsoft language and API documentation. Checked the frozen manifest inventory against lesson coverage, corrected identified overstatements, and retained draft status."
     },
     {
       "taskId": "t01-006-overview",

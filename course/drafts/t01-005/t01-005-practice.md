@@ -26,17 +26,17 @@ public static class UserFormatter
 {
     public static string FormatDisplayName(UserProfile? user)
     {
-        // Guard clause ensuring runtime safety if null somehow bypasses static flow
+        // Runtime validation for an API that requires a non-null profile
         ArgumentNullException.ThrowIfNull(user);
 
-        // Null-conditional and null-coalescing operators handle potential null properties
+        // Coalescing supplies a domain-appropriate fallback for the optional email
         string emailPart = user.Email ?? "no-email@example.com";
         return $"{user.Username} ({emailPart})";
     }
 }
 ```
 
-*Proof idea*: `UserProfile?` indicates that the input parameter may be null. Calling `ArgumentNullException.ThrowIfNull(user)` ensures that if a null reference is passed at runtime, an exception is thrown immediately. The static analyzer tracks that after the guard clause, `user` is guaranteed to be non-null, allowing safe access to `.Username` and `.Email`.
+*Proof idea*: `UserProfile?` indicates that the input may be null. `ArgumentNullException.ThrowIfNull(user)` throws at runtime for null. Its annotated contract lets flow analysis treat `user` as not-null after the call on the continuing path; this is a static state based on the guard contract.
 
 *Dry run*:
 1. If `user` is passed as `null`, `ArgumentNullException.ThrowIfNull(user)` throws an `ArgumentNullException`.

@@ -8,34 +8,34 @@
 
 When interviewing for C# roles, you will likely be asked to explain the difference between `Nullable<T>` and nullable reference types. 
 
-*   **What is a nullable value type?** It is a struct (`System.Nullable<T>`) that wraps a value type to allow it to represent an additional "null" state.
-*   **What are nullable reference types?** They are a compile-time feature that uses static flow analysis to track nullability. Unlike value types, they do not change the runtime type of the object; they only provide warnings to the developer.
-*   **Why do we need both?** Value types (like `int`) cannot be null by default, so `Nullable<T>` provides a container for them. Reference types (like `string`) can always be null, so nullable reference types provide a way to express intent and catch potential `NullReferenceException` errors before the code runs.
+*   **What is a nullable value type?** It is `Nullable<T>`, a generic struct representing either no value or an underlying non-nullable value type value.
+*   **What are nullable reference types?** Nullable reference annotations participate in compile-time flow analysis and are recorded in metadata. They do not create a new runtime type or automatically validate values; compiler warnings help identify possible contract violations.
+*   **Why do we need both?** A value type such as `int` needs `Nullable<int>` to represent absence. Reference values can be null at runtime already; nullable reference annotations help static analysis identify possible null misuse but don't prevent runtime exceptions.
 
 # Concise interview answers
 
-*   **How do you handle nulls in C#?** I use `Nullable<T>` for value types and nullable reference annotations for reference types. I rely on `ArgumentNullException.ThrowIfNull` for runtime validation and use flow-analysis attributes like `NotNullWhen` to help the compiler understand complex logic.
-*   **Does `string?` change the runtime behavior?** No. It is a compile-time annotation. The runtime sees a standard `string`.
-*   **What is the null-forgiving operator (`!`)?** It is a way to tell the compiler, "I know this expression is not null, even if you think it might be." It has no effect at runtime.
+*   **How do you handle nulls in C#?** I use `Nullable<T>` for optional value types, reference annotations to communicate intended contracts, and runtime guards where API boundaries require them. Flow attributes describe relationships the compiler cannot infer.
+*   **Does `string?` change the runtime behavior?** It does not create a distinct CLR type or runtime check; the compiler can emit nullable metadata for analysis and tooling.
+*   **What is the null-forgiving operator (`!`)?** It suppresses nullable flow diagnostics for an expression. It neither checks the value nor changes it at runtime.
 
 # Deep follow-up answers
 
-*   **How does the compiler track null state?** The compiler performs null-state analysis by tracking assignments, branches, and patterns. For example, after an `if (obj is not null)` check, the compiler updates the state of `obj` to "not-null" within that scope.
+*   **How does the compiler track null state?** With nullable analysis enabled, it tracks assignments, branches, patterns, and recognized contracts. For example, after `if (obj is not null)`, flow analysis treats `obj` as not-null in that branch; this does not prevent external mutation or contract violations.
 *   **Why might a nullable annotation be wrong?** Annotations are not proof. They can be violated by reflection, deserialization, arrays, or external code that was compiled without nullable warnings enabled.
-*   **How do you handle complex validation?** If a method returns a value only when a condition is met, I use `MaybeNullWhen` or `NotNullWhen` attributes. This allows the compiler to understand the relationship between the return value and the method's output parameters.
+*   **How do you handle complex validation?** When a public method has a null-state relationship that ordinary annotations and flow can't express, I use the appropriate attribute (for example, `NotNullWhen` for an input parameter); its stated postcondition must match runtime behavior.
 
 # Scenario questions
 
 *   **Scenario:** You have a library that accepts a string that might be null, but you want to ensure it is not null before processing.
-    *   **Answer:** I would use `ArgumentNullException.ThrowIfNull(input)` at the start of the method. This acts as a guard clause that satisfies the compiler's null-state analysis.
+    *   **Answer:** I would use `ArgumentNullException.ThrowIfNull(input)` at the start when null is invalid. It performs runtime validation, and its annotated contract lets compiler flow analysis treat input as non-null after the continuing path.
 *   **Scenario:** You are working with an older library that does not use nullable annotations.
     *   **Answer:** The compiler treats these as "nullable-oblivious." I would use the null-forgiving operator (`!`) if I am certain the value is safe, or perform explicit null checks to be defensive.
 
 # Tradeoffs and alternatives
 
-*   **`Nullable<T>` vs. `T?` (Reference):** `Nullable<T>` is a distinct type at runtime; `T?` (reference) is a metadata-only hint.
-*   **`GetValueOrDefault()` vs. `.Value`:** `.Value` throws an `InvalidOperationException` if the value is null. `GetValueOrDefault()` is safer as it returns the default value of the type if the container is empty.
-*   **Sentinel values vs. Null:** Using a sentinel value (like -1 for an ID) can be faster but is often less expressive than `Nullable<int>`. The Null Object pattern is a better alternative for complex objects to avoid null checks entirely.
+*   **`Nullable<T>` vs. `T?` (Reference):** `Nullable<T>` is a distinct runtime value type. Nullable reference `T?` doesn't create a distinct CLR type; compilers emit nullable metadata used by tools and analysis.
+*   **`GetValueOrDefault()` vs. `.Value`:** `.Value` throws an `InvalidOperationException` if empty; `GetValueOrDefault()` returns a default or supplied fallback. Whether silently substituting a default is safe depends on the domain contract.
+*   **Sentinel values vs. Null:** A sentinel can collide with valid data or require special handling; `Nullable<int>` represents absence explicitly for value types. Null Object and optional-result types address different domain/API needs, with no universal best choice.
 
 # Common weak answers
 
@@ -45,7 +45,7 @@ When interviewing for C# roles, you will likely be asked to explain the differen
 
 # Self-check rubric
 
-*   **Can you distinguish between compile-time analysis and runtime enforcement?** (Reference: [Nullable reference types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types))
+*   **Can you distinguish between compile-time analysis and runtime enforcement?** (Annotations and flow attributes inform compile-time analysis; explicit guards validate runtime values.)
 *   **Do you know when to use `ThrowIfNull`?** (Reference: [ArgumentNullException.ThrowIfNull](https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull))
 *   **Can you explain the purpose of flow-analysis attributes?** (Reference: [Nullable analysis attributes](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis))
 *   **Do you understand that `Nullable<T>` is a struct?** (Reference: [Nullable value types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types))
