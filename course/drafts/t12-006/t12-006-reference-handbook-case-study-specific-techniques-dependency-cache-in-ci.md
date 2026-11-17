@@ -1,36 +1,60 @@
 # end-to-end system design case studies — Reference: Dependency cache in CI
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [GitHub Actions dependency caching](https://docs.github.com/en/actions/concepts/workflows-and-actions/dependency-caching), [GitHub Actions dependency caching reference](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching), [GitHub Actions secure use](https://docs.github.com/en/actions/reference/security/secure-use).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson covers caching downloaded dependencies and reproducible build intermediates to reduce CI time. GitHub Actions is used as an example; cache scoping and security behavior are platform-specific and may change. Consult the current platform reference before designing trust boundaries.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+A cache is disposable optimization state: the build must still succeed by downloading or regenerating files after a cache miss or eviction. An artifact is an output to preserve or transfer, such as a tested binary or build log. Mixing these purposes creates integrity and retention problems.
+
+Cache keys should identify the inputs that determine the cached contents: operating system/architecture, runtime/compiler, lockfiles, relevant build configuration, and sometimes source revision. A broad restore key can improve hits but may restore stale or unsafe data. Treat restored files as untrusted input and validate them through normal dependency/build checks.
 
 ## Supplied names explained
 
-- `Dependency cache in CI` — Reuses downloaded or compiled dependencies to reduce build time; key correctness, trust, invalidation, and poisoning risks need controls.
+- **Cache key:** exact lookup identity derived from relevant inputs; incomplete keys can reuse incompatible or stale files.
+- **Restore key/prefix:** fallback match when an exact key is absent; useful for reuse, but contents may not match current inputs.
+- **Cache scope:** boundary controlling which branch/workflow can save or restore entries. In GitHub Actions, caches are scoped by branch/tag rules, not by workflow identity alone.
+- **Cache poisoning:** untrusted workflow writes crafted cache content later restored by a more privileged workflow, potentially influencing execution.
+- **Dependency lockfile:** records dependency resolution so cache hits and clean downloads use known versions/integrity checks according to the package manager.
+- **Artifact:** output retained or transferred between jobs/runs; unlike a cache, it is not merely disposable speed state and may need provenance/retention controls.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Mechanism | Intended use | Trust/integrity rule |
+| --- | --- | --- |
+| Dependency cache | Reuse package downloads or expensive intermediate computation | Must be rebuildable; never store secrets; validate restored contents and isolate untrusted writers |
+| Build artifact | Preserve or hand off a specific produced output | Bind to run/source/digest and control access/retention; do not assume artifact is safe merely because it is downloadable |
+| Package registry | Authoritative distribution of versioned dependencies | Verify package source, lockfile/integrity metadata, credentials, and supply-chain policy |
+| Workspace reuse | Share files between steps in one job | Same job’s earlier step may have modified files; treat untrusted code output accordingly |
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+A trusted push workflow creates a NuGet cache keyed by OS, .NET SDK version, and hashes of project lock/config files. A fork pull request restores compatible cache data but has no write access to the default branch’s trusted cache under GitHub’s low-trust cache restrictions. The build still runs package integrity checks and can recover from a miss. Never place API keys, signing certificates, or private package credentials in the cache directory.
+
+If a cache is restored from a broader prefix, verify package manager behavior and rebuild generated outputs affected by changed inputs. Do not share a writable cache between untrusted PR execution and a privileged deployment workflow without a strong isolation design. For release, upload the tested package as an artifact with digest and provenance rather than treating a cache entry as the release source.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating a cache hit as proof dependencies are authentic or current.
+- Assuming cache isolation follows workflow/job identity when the platform scopes by branch/ref.
+- Letting low-trust pull-request code write a cache later restored by a privileged workflow.
+- Caching secrets or private credential files.
+- Omitting SDK, lockfile, architecture, or build flags from a key and reusing incompatible outputs.
+- Using a permissive restore prefix without considering that its contents may be stale or poisoned.
+- Using caches for release artifact retention or job-to-job handoff when artifacts are the intended mechanism.
+- Making a build depend on a cache existing instead of being able to regenerate dependencies.
+- Failing to clear/rotate caches after a suspected compromised package or runner.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Should a build fail when the cache is empty?** No; the cache is an optimization and the build should be able to regenerate/download inputs.
+2. **Why can a fork PR’s cache access matter to a release workflow?** Shared scopes and trust triggers can allow restored data to cross workflow boundaries; a poisoned cache can influence trusted execution.
+3. **Where should a tested binary be handed to a deployment job?** As a run-specific artifact with integrity/provenance checks, not as an opportunistic dependency cache.
+4. **Does a lockfile make restored cache contents automatically safe?** No. It helps constrain dependency resolution; runner/cache trust, package integrity, and workflow permissions still matter.
+
+## Review status
+
+Cache semantics and poisoning cautions are checked against current GitHub Actions documentation. This lesson remains pending full claim-by-claim audit and manifest omission check.

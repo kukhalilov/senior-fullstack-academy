@@ -455,6 +455,24 @@
       "findings": [
         "Separated Kafka transactional guarantees inside Kafka from external side effects and documented idempotency/reconciliation boundary using official Kafka docs. Expanded order book and matching-engine explanations with price-time priority as an explicitly simplified model, command sequencing, partial fills, deterministic replay, and venue-rule exclusions; checked book representation context against FIX and transaction caveats against PostgreSQL docs. All remain pending complete claim and omission audits."
       ]
+    },
+    {
+      "scope": "CI dependency cache, ephemeral runner, and Firecracker microVM references in t12-006",
+      "status": "partial source check; full lesson audits pending",
+      "sources": [
+        "https://docs.github.com/en/actions/concepts/workflows-and-actions/dependency-caching",
+        "https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching",
+        "https://docs.github.com/en/actions/reference/security/secure-use",
+        "https://docs.github.com/en/actions/reference/runners/self-hosted-runners",
+        "https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/remove-runners",
+        "https://github.com/firecracker-microvm/firecracker/blob/main/docs/design.md",
+        "https://github.com/firecracker-microvm/firecracker/blob/main/docs/prod-host-setup.md",
+        "https://github.com/firecracker-microvm/firecracker/blob/main/docs/jailer.md",
+        "https://github.com/firecracker-microvm/firecracker/blob/main/docs/seccomp.md"
+      ],
+      "findings": [
+        "Cache poisoning, scope, and artifact-vs-cache behavior checked against GitHub Actions docs; ephemeral runner and self-hosted runner risks checked against official runner/security docs; Firecracker VMM/jailer/seccomp/host setup claims checked against project docs. Lessons remain pending full claim and omission audits."
+      ]
     }
   ],
   "lessons": [
@@ -100438,7 +100456,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 209 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 206 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]

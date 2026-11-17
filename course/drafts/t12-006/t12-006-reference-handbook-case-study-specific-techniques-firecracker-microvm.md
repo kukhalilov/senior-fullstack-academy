@@ -1,36 +1,62 @@
 # end-to-end system design case studies — Reference: Firecracker microVM
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [Firecracker design](https://github.com/firecracker-microvm/firecracker/blob/main/docs/design.md), [Firecracker production host setup](https://github.com/firecracker-microvm/firecracker/blob/main/docs/prod-host-setup.md), [Firecracker jailer](https://github.com/firecracker-microvm/firecracker/blob/main/docs/jailer.md), [Firecracker seccomp](https://github.com/firecracker-microvm/firecracker/blob/main/docs/seccomp.md).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson describes Firecracker as a lightweight virtual-machine monitor for running microVMs, often for multi-tenant or short-lived workloads. Firecracker’s design and production recommendations evolve; verify the current documentation for kernel, VMM, host, jailer, device, and configuration requirements. A microVM is an isolation component, not a complete security architecture.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Containers share the host kernel; a VM runs a guest kernel behind a virtual-machine boundary. Firecracker uses KVM and a deliberately small virtual device model to reduce the VMM’s exposed surface and enable fast lifecycle operations. Host-side isolation still matters: a guest controls input to the VMM, and a VMM/kernel vulnerability could cross boundaries. Firecracker documentation recommends running with the jailer and applying host hardening such as namespaces/cgroups and seccomp, plus regular patching.
+
+For untrusted workloads, use multiple layers: minimal guest image, least-privilege guest, VMM/jailer isolation, CPU/memory/disk limits, restricted networking, host patching, and monitoring. Avoid exposing the Firecracker API socket or host paths to tenant code. The control plane that creates VMs and injects credentials is part of the trusted computing base.
 
 ## Supplied names explained
 
-- `Firecracker microVM` — Lightweight virtual-machine monitor used for workload isolation; a secure deployment still needs kernel, host, networking, image, and resource controls.
+- **MicroVM:** virtual machine configured for a small device model and fast provisioning, still with a guest kernel and VM boundary.
+- **KVM:** Linux kernel virtualization facility used for hardware-assisted virtualization; host kernel and hardware support are dependencies.
+- **Jailer:** Firecracker companion process for production setup that establishes isolation/resource context and drops privileges according to its configuration.
+- **Seccomp filters:** constrain system calls available to the VMM process; a filter that is too permissive increases attack surface, while an incorrect filter may break operation.
+- **cgroups/namespaces/chroot:** host controls that can limit resources and process/filesystem visibility; configure and verify them as part of the sandbox, not as substitutes for virtualization.
+- **Guest kernel/image:** software running inside the microVM; guest patching and image provenance remain the workload owner’s responsibility.
+- **Control plane/API socket:** privileged interface to configure/start/stop a microVM; restrict to a trusted manager and protect its credentials and filesystem permissions.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Isolation option | Boundary | Trade-offs |
+| --- | --- | --- |
+| Process/container | OS process and namespace controls, shared host kernel | Lower overhead and fast startup; kernel is shared and configuration mistakes can expose host resources |
+| MicroVM (Firecracker) | Guest kernel and virtual devices behind VMM/KVM | Stronger separation model for many workloads with added VM/host complexity; not invulnerable, still depends on host kernel, KVM, VMM, config, and operations |
+| Full general-purpose VM | Hypervisor-managed guest OS/device environment | Broad compatibility and established tooling; typically larger device/model/resource footprint than a specialized microVM setup |
+
+These comparisons are architectural tendencies, not universal performance or security rankings. Benchmark the actual workload and threat model.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+A build service executes customer-provided code. It creates a fresh microVM with a pinned guest image, constrained vCPU/memory/disk, no host filesystem mounts, minimal network egress, and a per-job identity. The controller starts Firecracker through the jailer with seccomp enabled and a protected API socket, streams input/artifacts through explicit channels, then destroys the VM and scratch disks. Customer code cannot access the host’s cloud credentials because those credentials remain in the control plane and are never mounted into the guest.
+
+Before production, test guest escape assumptions, malformed device/API input, VM startup/termination failure, resource-exhaustion attempts, network policy, noisy-neighbor limits, image rollback, host reboot, and cleanup of disk snapshots. Monitor host kernel/VMM versions, seccomp/jailer errors, VM lifecycle latency, per-tenant resource use, unexpected egress, and orphaned VMs. A successful microVM boot does not prove isolation or patch compliance.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Calling Firecracker “secure by default” or “unbreakable” without its production hardening and patching requirements.
+- Running it with broad host privileges or exposing its API socket to untrusted processes.
+- Forgetting that a VMM processes guest-controlled inputs and that the host kernel/KVM are in the trust boundary.
+- Assuming a guest’s isolation means its network egress, credentials, or resource consumption are safe.
+- Sharing writable host paths, secrets, disks, or snapshots across tenants without explicit isolation.
+- Failing to apply CPU/memory/disk/PID/network controls and monitor noisy-neighbor exhaustion.
+- Treating containers inside a microVM or namespaces alone as proof that configuration is correct.
+- Leaving scratch disks or VM state after termination, exposing one tenant’s data to another.
+- Basing capacity claims on launch-rate anecdotes without measuring the target host, guest image, and workload.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What does a microVM boundary add compared with a container?** It includes a guest kernel behind a VM/VMM boundary instead of sharing only the host kernel, with added host/hypervisor dependencies and overhead.
+2. **Does the VM alone secure cloud credentials?** No. Keep credentials in a restricted control plane or inject narrowly scoped short-lived credentials only when necessary; restrict metadata/network access.
+3. **Why use the jailer and seccomp?** They add host process isolation and syscall restrictions around a VMM that processes guest-controlled input; they complement patching and resource/network controls.
+4. **What if a VM fails to terminate cleanly?** Quarantine the host/resources, revoke identities, verify disk/snapshot cleanup, and avoid reusing state until isolation is restored.
+
+## Review status
+
+Firecracker’s design and host/jailer/seccomp recommendations are checked against its official repository docs. This lesson remains pending full claim-by-claim audit and manifest omission check.
