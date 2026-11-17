@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 423,
-    "pending": 1917,
-    "claimsChecked": 13031,
-    "claimsCorrected": 1325,
+    "reviewed": 431,
+    "pending": 1909,
+    "claimsChecked": 13756,
+    "claimsCorrected": 1359,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 423,
-    "pendingLessons": 1917
+    "reviewedLessons": 431,
+    "pendingLessons": 1909
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -24113,272 +24113,368 @@
       "topicId": "t01-020",
       "phase": "overview",
       "draft": "course/drafts/t01-020/t01-020-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 46,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s API, protocol, platform, lifetime, security, serialization, I/O, and example claims against the linked official Microsoft references. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/io/",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/io/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.stream",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.file",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.directory",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.path",
         "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializer",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsondocument",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonreader",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonwriter",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/tcp-classes",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/http-client",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.socket"
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections include JsonElement.TryGetProperty failure behavior and FileStream.Lock/Unlock unsupported platforms. Reviewed byte-stream partial/exact read contracts, file/path and symlink boundaries, JSON DOM lifetime/options/limits, compression expansion, socket/TCP/UDP semantics, HTTP connection lifetime/status/retry/cancellation, and all enumerated names. Draft status is retained."
     },
     {
       "taskId": "t01-020-concepts",
       "topicId": "t01-020",
       "phase": "concepts",
       "draft": "course/drafts/t01-020/t01-020-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 86,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s API, protocol, platform, lifetime, security, serialization, I/O, and example claims against the linked official Microsoft references. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/io/",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/io/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.stream",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.file",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.directory",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.path",
         "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializer",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsondocument",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonreader",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonwriter",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/tcp-classes",
         "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/http-client",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.socket"
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections include JsonElement.TryGetProperty failure behavior and FileStream.Lock/Unlock unsupported platforms. Reviewed byte-stream partial/exact read contracts, file/path and symlink boundaries, JSON DOM lifetime/options/limits, compression expansion, socket/TCP/UDP semantics, HTTP connection lifetime/status/retry/cancellation, and all enumerated names. Draft status is retained."
     },
     {
       "taskId": "t01-020-reference-stream-abstractions-and-implementations",
       "topicId": "t01-020",
       "phase": "reference",
       "draft": "course/drafts/t01-020/t01-020-reference-stream-abstractions-and-implementations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/io/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.stream",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.file",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.directory",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.path",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializer",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsondocument",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonreader",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonwriter",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/tcp-classes",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/http-client",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.socket"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 113,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s API, protocol, platform, lifetime, security, serialization, I/O, and example claims against the linked official Microsoft references. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.io.stream",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.io.filestream",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.io.pipetransmissionmode",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/io/",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/api/system.io.stream",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.io.filestream",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.io.pipetransmissionmode",
+        "https://learn.microsoft.com/en-us/dotnet/standard/io/"
+      ],
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections include JsonElement.TryGetProperty failure behavior and FileStream.Lock/Unlock unsupported platforms. Reviewed byte-stream partial/exact read contracts, file/path and symlink boundaries, JSON DOM lifetime/options/limits, compression expansion, socket/TCP/UDP semantics, HTTP connection lifetime/status/retry/cancellation, and all enumerated names. Draft status is retained."
     },
     {
       "taskId": "t01-020-reference-file-directory-and-path-apis",
       "topicId": "t01-020",
       "phase": "reference",
       "draft": "course/drafts/t01-020/t01-020-reference-file-directory-and-path-apis.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 105,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s API, protocol, platform, lifetime, security, serialization, I/O, and example claims against the linked official Microsoft references. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/io/",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.io.file",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.io.directory",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.io.path",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.io.filestream.lock",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/io/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.stream",
         "https://learn.microsoft.com/en-us/dotnet/api/system.io.file",
         "https://learn.microsoft.com/en-us/dotnet/api/system.io.directory",
         "https://learn.microsoft.com/en-us/dotnet/api/system.io.path",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializer",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsondocument",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonreader",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonwriter",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/tcp-classes",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/http-client",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.socket"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.io.filestream.lock"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections include JsonElement.TryGetProperty failure behavior and FileStream.Lock/Unlock unsupported platforms. Reviewed byte-stream partial/exact read contracts, file/path and symlink boundaries, JSON DOM lifetime/options/limits, compression expansion, socket/TCP/UDP semantics, HTTP connection lifetime/status/retry/cancellation, and all enumerated names. Draft status is retained."
     },
     {
       "taskId": "t01-020-reference-serialization-and-compression",
       "topicId": "t01-020",
       "phase": "reference",
       "draft": "course/drafts/t01-020/t01-020-reference-serialization-and-compression.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 111,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s API, protocol, platform, lifetime, security, serialization, I/O, and example claims against the linked official Microsoft references. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonelement.trygetproperty",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/character-casing",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/io/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.stream",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.file",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.directory",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.path",
         "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
         "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to",
         "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializer",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsondocument",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonreader",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonwriter",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/tcp-classes",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/http-client",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.socket"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonelement.trygetproperty",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/character-casing"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections include JsonElement.TryGetProperty failure behavior and FileStream.Lock/Unlock unsupported platforms. Reviewed byte-stream partial/exact read contracts, file/path and symlink boundaries, JSON DOM lifetime/options/limits, compression expansion, socket/TCP/UDP semantics, HTTP connection lifetime/status/retry/cancellation, and all enumerated names. Draft status is retained."
     },
     {
       "taskId": "t01-020-reference-network-socket-and-http-client",
       "topicId": "t01-020",
       "phase": "reference",
       "draft": "course/drafts/t01-020/t01-020-reference-network-socket-and-http-client.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 117,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s API, protocol, platform, lifetime, security, serialization, I/O, and example claims against the linked official Microsoft references. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/tcp-classes",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/http-client",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/standard/io/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.stream",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.file",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.directory",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.path",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializer",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsondocument",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonreader",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonwriter",
         "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview",
         "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/tcp-classes",
         "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/http-client",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.socket"
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/http-client"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections include JsonElement.TryGetProperty failure behavior and FileStream.Lock/Unlock unsupported platforms. Reviewed byte-stream partial/exact read contracts, file/path and symlink boundaries, JSON DOM lifetime/options/limits, compression expansion, socket/TCP/UDP semantics, HTTP connection lifetime/status/retry/cancellation, and all enumerated names. Draft status is retained."
     },
     {
       "taskId": "t01-020-practice",
       "topicId": "t01-020",
       "phase": "practice",
       "draft": "course/drafts/t01-020/t01-020-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 75,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s API, protocol, platform, lifetime, security, serialization, I/O, and example claims against the linked official Microsoft references. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/io/",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/io/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.stream",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.file",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.directory",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.path",
         "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializer",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsondocument",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonreader",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonwriter",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/tcp-classes",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/http-client",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.socket"
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections include JsonElement.TryGetProperty failure behavior and FileStream.Lock/Unlock unsupported platforms. Reviewed byte-stream partial/exact read contracts, file/path and symlink boundaries, JSON DOM lifetime/options/limits, compression expansion, socket/TCP/UDP semantics, HTTP connection lifetime/status/retry/cancellation, and all enumerated names. Draft status is retained."
     },
     {
       "taskId": "t01-020-interview",
       "topicId": "t01-020",
       "phase": "interview",
       "draft": "course/drafts/t01-020/t01-020-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 72,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually enumerated and checked the lesson’s API, protocol, platform, lifetime, security, serialization, I/O, and example claims against the linked official Microsoft references. Corrected the recorded inaccuracies; no unresolved omissions remain within the assigned manifest scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/io/",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/tcp-classes",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
+              "section": "Relevant API contract, platform support, protocol behavior, security guidance, serializer defaults, or lifetime rule",
+              "verdict": "supported; corrections recorded where the draft overstated or misstated behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/standard/io/",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.stream",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.file",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.directory",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.io.path",
         "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to",
-        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializer",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsondocument",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonreader",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.utf8jsonwriter",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/sockets-overview",
         "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/sockets/tcp-classes",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/http-client",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.socket"
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and manifest-completeness audit completed. Corrections include JsonElement.TryGetProperty failure behavior and FileStream.Lock/Unlock unsupported platforms. Reviewed byte-stream partial/exact read contracts, file/path and symlink boundaries, JSON DOM lifetime/options/limits, compression expansion, socket/TCP/UDP semantics, HTTP connection lifetime/status/retry/cancellation, and all enumerated names. Draft status is retained."
     },
     {
       "taskId": "t01-021-overview",

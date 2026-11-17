@@ -54,8 +54,8 @@ Streams abstract ordered bytes behind capability flags. Implementations differ: 
 | `FileStreamOptions.UnixCreateMode` | Unix permission mode for file creation on supported platforms; respect umask and platform semantics. |
 | `FileStream.SafeFileHandle` | Exposes the underlying safe OS file handle; direct handle use must respect stream lifetime and position/buffering. |
 | `FileStream.Flush(Boolean)` | When true, requests flushing intermediate file buffers to disk; stronger durability has performance/platform costs. |
-| `FileStream.Lock(Int64,Int64)` | Requests an OS file-range lock; behavior and coordination scope vary by platform/filesystem. |
-| `FileStream.Unlock(Int64,Int64)` | Releases a previously locked file range; coordinate with the same handle/range contract. |
+| `FileStream.Lock(Int64,Int64)` | Requests an OS file-range lock; behavior and coordination scope vary by platform/filesystem. The API is unsupported on FreeBSD, iOS, macOS, and tvOS in .NET 11. |
+| `FileStream.Unlock(Int64,Int64)` | Releases a previously locked file range; coordinate with the same handle/range contract. The API is unsupported on FreeBSD, iOS, macOS, and tvOS in .NET 11. |
 | `FileStream asynchronous handle option` | Opening with asynchronous options enables async handle behavior; async APIs otherwise may have different cost/implementation. |
 | `MemoryStream` | Seekable in-memory byte stream whose capacity can grow; it duplicates data if copied to arrays. |
 | `MemoryStream.GetBuffer()` | Exposes the backing array only when the stream was created with publicly visible buffer; capacity may exceed length. |

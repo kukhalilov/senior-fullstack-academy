@@ -55,7 +55,7 @@ Serialization is a mapping from a domain value to a defined representation. Opti
 | `JsonDocument.Dispose()` | Releases document resources; elements from it must no longer be used unless cloned. |
 | `JsonElement.ValueKind` | Indicates JSON kind: object, array, string, number, boolean, null, or undefined. |
 | `JsonElement.GetProperty(String)` | Gets a named object property or throws if absent/wrong kind; names are case-sensitive for DOM lookup. |
-| `JsonElement.TryGetProperty(String,JsonElement)` | Attempts property lookup and returns false when missing/wrong kind without exception. |
+| `JsonElement.TryGetProperty(String,JsonElement)` | Looks up a case-sensitive property on an object and returns false when absent. It throws `InvalidOperationException` if the current element is not an object, and `ObjectDisposedException` if its parent document has been disposed. If a name is duplicated, the last matching property is returned. |
 | `JsonElement.EnumerateObject()` | Iterates object properties in source order; repeated property names require an explicit policy. |
 | `JsonElement.EnumerateArray()` | Iterates array elements without materializing a CLR collection. |
 | `JsonElement.GetString()` | Reads a string value or null for JSON null; throws for incompatible kinds. |
