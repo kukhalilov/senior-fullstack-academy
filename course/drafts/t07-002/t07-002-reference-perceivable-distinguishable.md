@@ -14,10 +14,10 @@ Users need to perceive content through different sensory conditions and presenta
 
 - `1.4.1 Use of Color (A)` — Color cannot be the only visual means of conveying information, indicating an action, prompting a response, or distinguishing an element. Add labels, patterns, icons, or other cues.
 - `1.4.2 Audio Control (A)` — Automatically playing audio longer than three seconds needs a mechanism to pause/stop it or independently control its volume, separate from overall system volume.
-- `1.4.3 Contrast (Minimum) (AA)` — Text and images of text need 4.5:1 contrast, or 3:1 for large-scale text; listed exceptions include incidental, logotype, and certain inactive text.
+- `1.4.3 Contrast (Minimum) (AA)` — Text and images of text need 4.5:1 contrast, or 3:1 for large-scale text. WCAG defines large-scale as at least 18 point regular or 14 point bold (about 24 CSS px or 18.67 CSS px respectively); listed exceptions include incidental, logotype, and certain inactive text.
 - `1.4.4 Resize Text (AA)` — Text must resize to 200% without assistive technology and without loss of content or functionality, subject to the criterion’s exceptions.
 - `1.4.5 Images of Text (AA)` — Use text rather than images of text when the technology can achieve the presentation, except where the image is customizable or essential.
-- `1.4.6 Contrast (Enhanced) (AAA)` — Enhanced text contrast is 7:1, or 4.5:1 for large-scale text, with criterion exceptions.
+- `1.4.6 Contrast (Enhanced) (AAA)` — Enhanced text contrast is 7:1, or 4.5:1 for large-scale text using the same 18-point regular / 14-point bold definition, with criterion exceptions.
 - `1.4.7 Low or No Background Audio (AAA)` — For prerecorded audio-only content primarily speech, the criterion limits background sound or provides a way to suppress it, with exceptions.
 - `1.4.8 Visual Presentation (AAA)` — Provides mechanisms for specified text presentation controls (foreground/background selection, width, alignment, line spacing, and resizing) and prevents loss of content/function when those settings are applied.
 - `1.4.9 Images of Text (No Exception) (AAA)` — Images of text are used only for decoration or where the specific presentation is essential; unlike 1.4.5, there is no general customizable-image exception.

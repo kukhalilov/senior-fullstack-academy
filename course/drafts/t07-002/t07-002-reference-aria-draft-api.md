@@ -16,12 +16,12 @@ ARIA 1.3 adds a notification mechanism and clarifies a document-root constraint.
 - `Document.ariaNotify() (WAI-ARIA 1.3 draft)` — Proposed document-level notification API for a message not naturally associated with a particular element.
 - `AriaNotificationOptions (WAI-ARIA 1.3 draft)` — Options dictionary supplied to the notification APIs; use only fields and semantics defined by the cited snapshot, and do not assume future editions preserve its shape.
 - `AriaNotifyPriority normal and high (WAI-ARIA 1.3 draft)` — Proposed priority choices: normal is lower interruption priority; high is more interruptive and should be reserved for genuinely urgent information.
-- `aria-notify Permissions Policy feature (WAI-ARIA 1.3 draft)` — Draft Permissions Policy control that can govern access to notification functionality. Embedded contexts may be subject to policy restrictions.
+- `aria-notify Permissions Policy feature (WAI-ARIA 1.3 draft)` — Draft policy-controlled feature named `aria-notify`; the cited draft gives it a default allowlist of `*`. A document that is not allowed to use the feature does not send notifications, so an embedding policy can matter. This is draft behavior, not an established support guarantee.
 - `aria-hidden document-root restriction (WAI-ARIA 1.3 draft)` — The dated draft prohibits `aria-hidden="true"` on document root elements. This is draft-specific wording; do not misstate it as a new WAI-ARIA 1.2 Recommendation rule.
 
 # Cross-item comparison
 
-`Element.ariaNotify()` associates an announcement with an element; `Document.ariaNotify()` is document-level. Priority concerns interruption, not importance to the document’s semantic structure. The permissions policy is a separate availability/security gate. The root `aria-hidden` restriction concerns hiding the document tree, not ordinary use of `aria-hidden` on a non-focusable decorative subtree.
+`Element.ariaNotify()` associates an announcement with an element; `Document.ariaNotify()` is document-level. Priority concerns interruption, not importance to the document’s semantic structure. The permissions policy is a separate availability gate; the draft's default `*` allowlist does not mean every browser implements the API. The root `aria-hidden` restriction concerns hiding the document tree, not ordinary use of `aria-hidden` on a non-focusable decorative subtree.
 
 # Examples
 
@@ -33,6 +33,7 @@ For an experimental prototype, check whether the method exists before calling it
 - Treating `high` priority as a generic “important message” setting and interrupting users repeatedly.
 - Assuming a successful call guarantees a particular spoken string or timing across AT.
 - Treating policy denial as a reason to remove the visible status.
+- Assuming the draft's `*` default allowlist means the notification API is implemented in the browser.
 - Describing the root restriction as stable 1.2 conformance text.
 
 # Knowledge checks with answers
