@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 787,
-    "pending": 1554,
-    "claimsChecked": 28421,
-    "claimsCorrected": 1457,
+    "reviewed": 795,
+    "pending": 1546,
+    "claimsChecked": 28944,
+    "claimsCorrected": 1460,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 787,
-    "pendingLessons": 1554
+    "reviewedLessons": 795,
+    "pendingLessons": 1546
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1327,6 +1327,14 @@
       "status": "full claim and frozen-inventory audit complete for all 7 lessons",
       "findings": [
         "Checked all 25 inventoried API and semantics entries, plus claims, examples, exercise answers, and interview answers against ECMA-262 2026 and current MDN. Verified non-registered-symbol keys (ES2023), Map-equivalent weakmap default insertion methods (ES2026), invalid-key return/throw distinctions, constructor iterable protocols, callback reentrancy, non-enumerability, and weak-reference timing. Added the important caveat that well-known symbols qualify but are effectively always live and may keep associated values retained. Node 24 confirms symbol keys but does not yet implement the ES2026 WeakMap insertion methods. All seven lessons remain drafts pending whole-course audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "JavaScript typed arrays and binary data views (t06-015)",
+      "status": "full claim and expanded frozen-inventory audit complete for all 8 lessons",
+      "findings": [
+        "Audited the original API inventory against ECMA-262 2026 section 23 and 25 ToCs. Added omitted constructor links, Symbol.toStringTag properties, SharedArrayBuffer species, DataView constructor overloads, and resizable-buffer DataView tracking/out-of-bounds semantics; removed a duplicate static BYTES_PER_ELEMENT inventory item. Checked numeric types, conversion/rounding, species behavior, ordering, endianness, base64/hex decoding, and all worked examples/questions. Corrected that toReversed/toSorted/with ignore Symbol.species and return the same concrete typed-array type; clarified the hidden shared TypedArray constructor property versus each concrete prototype property. Added answers for all practice reflection prompts and recent version notes. Node 24.14.1 confirms the exercised resize/view behavior, endian output, and species distinction; it lacks the ES2026 Uint8Array hex/base64 methods. All eight lessons remain drafts pending whole-course audit."
       ]
     }
   ],
@@ -53307,280 +53315,952 @@
       "topicId": "t06-015",
       "phase": "overview",
       "draft": "course/drafts/t06-015/t06-015-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked the byte-storage/view mental model, end-to-end example, scope, and version summary against ECMA-262 2026 and current MDN references. No factual correction required.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/structured-data.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2020/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2025/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc4648",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://tc39.es/ecma262/2026/",
-        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+        "https://tc39.es/ecma262/2020/",
+        "https://tc39.es/ecma262/2022/",
+        "https://tc39.es/ecma262/2023/",
+        "https://tc39.es/ecma262/2024/",
+        "https://tc39.es/ecma262/2025/",
+        "https://html.spec.whatwg.org/",
+        "https://www.rfc-editor.org/rfc/rfc4648",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/f16round",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromHex",
-        "https://tc39.es/ecma262/2025/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete frozen-inventory audit done. Checked the byte-storage/view mental model, end-to-end example, scope, and version summary against ECMA-262 2026 and current MDN references. No factual correction required. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-015-concepts",
       "topicId": "t06-015",
       "phase": "concepts",
       "draft": "course/drafts/t06-015/t06-015-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 62,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked storage versus views, conversion boundaries, byte order, alias/copy/transfer behavior, resizable/shared buffers, and length-tracking versus fixed views against ECMA-262 2026. Added precise DataView tracking and out-of-bounds behavior.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/structured-data.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2020/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2025/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc4648",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://tc39.es/ecma262/2026/",
-        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+        "https://tc39.es/ecma262/2020/",
+        "https://tc39.es/ecma262/2022/",
+        "https://tc39.es/ecma262/2023/",
+        "https://tc39.es/ecma262/2024/",
+        "https://tc39.es/ecma262/2025/",
+        "https://html.spec.whatwg.org/",
+        "https://www.rfc-editor.org/rfc/rfc4648",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/f16round",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromHex",
-        "https://tc39.es/ecma262/2025/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete frozen-inventory audit done. Checked storage versus views, conversion boundaries, byte order, alias/copy/transfer behavior, resizable/shared buffers, and length-tracking versus fixed views against ECMA-262 2026. Added precise DataView tracking and out-of-bounds behavior. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-015-reference-typed-array-constructors",
       "topicId": "t06-015",
       "phase": "reference",
       "draft": "course/drafts/t06-015/t06-015-reference-typed-array-constructors.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 66,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all typed-array constructors, the shared factories/species, each conversion type, and Float16/BigInt behavior against ECMA-262 editions 2020–2026 and MDN. Clarified the static BYTES_PER_ELEMENT property is on each concrete constructor and does not exist on the abstract intrinsic.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/structured-data.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2020/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2025/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc4648",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; factual clarifications recorded"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://tc39.es/ecma262/2026/",
-        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+        "https://tc39.es/ecma262/2020/",
+        "https://tc39.es/ecma262/2022/",
+        "https://tc39.es/ecma262/2023/",
+        "https://tc39.es/ecma262/2024/",
+        "https://tc39.es/ecma262/2025/",
+        "https://html.spec.whatwg.org/",
+        "https://www.rfc-editor.org/rfc/rfc4648",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/f16round",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromHex",
-        "https://tc39.es/ecma262/2025/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete frozen-inventory audit done. Checked all typed-array constructors, the shared factories/species, each conversion type, and Float16/BigInt behavior against ECMA-262 editions 2020–2026 and MDN. Clarified the static BYTES_PER_ELEMENT property is on each concrete constructor and does not exist on the abstract intrinsic. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-015-reference-typed-array-instance-api",
       "topicId": "t06-015",
       "phase": "reference",
       "draft": "course/drafts/t06-015/t06-015-reference-typed-array-instance-api.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 88,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all 40 supplied accessor/method names and mutation/copy/alias/iteration semantics against ECMA-262 2026. Corrected species boundaries: legacy derived methods can consult species, while ES2023 toReversed/toSorted/with create the same concrete type and ignore species. Distinguished the hidden shared constructor link from concrete prototype constructor properties.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/structured-data.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2020/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2025/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc4648",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; factual clarifications recorded"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://tc39.es/ecma262/2026/",
-        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+        "https://tc39.es/ecma262/2020/",
+        "https://tc39.es/ecma262/2022/",
+        "https://tc39.es/ecma262/2023/",
+        "https://tc39.es/ecma262/2024/",
+        "https://tc39.es/ecma262/2025/",
+        "https://html.spec.whatwg.org/",
+        "https://www.rfc-editor.org/rfc/rfc4648",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/f16round",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromHex",
-        "https://tc39.es/ecma262/2025/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete frozen-inventory audit done. Checked all 40 supplied accessor/method names and mutation/copy/alias/iteration semantics against ECMA-262 2026. Corrected species boundaries: legacy derived methods can consult species, while ES2023 toReversed/toSorted/with create the same concrete type and ignore species. Distinguished the hidden shared constructor link from concrete prototype constructor properties. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-015-reference-buffers-and-data-view",
       "topicId": "t06-015",
       "phase": "reference",
       "draft": "course/drafts/t06-015/t06-015-reference-buffers-and-data-view.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 115,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all buffer, SharedArrayBuffer, and DataView inventory entries and behavior against ECMA-262 2026, current MDN, and the HTML Standard. Added missing constructor/tag properties and SharedArrayBuffer species, which is consulted by slice; added DataView length-tracking and exact out-of-bounds failures.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/structured-data.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2020/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2025/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc4648",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; factual clarifications recorded"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://tc39.es/ecma262/2026/",
-        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+        "https://tc39.es/ecma262/2020/",
+        "https://tc39.es/ecma262/2022/",
+        "https://tc39.es/ecma262/2023/",
+        "https://tc39.es/ecma262/2024/",
+        "https://tc39.es/ecma262/2025/",
+        "https://html.spec.whatwg.org/",
+        "https://www.rfc-editor.org/rfc/rfc4648",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/f16round",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromHex",
-        "https://tc39.es/ecma262/2025/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete frozen-inventory audit done. Checked all buffer, SharedArrayBuffer, and DataView inventory entries and behavior against ECMA-262 2026, current MDN, and the HTML Standard. Added missing constructor/tag properties and SharedArrayBuffer species, which is consulted by slice; added DataView length-tracking and exact out-of-bounds failures. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-015-reference-binary-text-conversion",
       "topicId": "t06-015",
       "phase": "reference",
       "draft": "course/drafts/t06-015/t06-015-reference-binary-text-conversion.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 61,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all six byte conversion methods against ECMA-262 2026 and RFC 4648 semantics: accepted alphabet options, padding/partial chunks, ASCII whitespace, syntax failures, destination truncation, and read/written counts. No factual correction required.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/structured-data.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2020/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2025/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc4648",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://tc39.es/ecma262/2026/",
-        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+        "https://tc39.es/ecma262/2020/",
+        "https://tc39.es/ecma262/2022/",
+        "https://tc39.es/ecma262/2023/",
+        "https://tc39.es/ecma262/2024/",
+        "https://tc39.es/ecma262/2025/",
+        "https://html.spec.whatwg.org/",
+        "https://www.rfc-editor.org/rfc/rfc4648",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/f16round",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromHex",
-        "https://tc39.es/ecma262/2025/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete frozen-inventory audit done. Checked all six byte conversion methods against ECMA-262 2026 and RFC 4648 semantics: accepted alphabet options, padding/partial chunks, ASCII whitespace, syntax failures, destination truncation, and read/written counts. No factual correction required. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-015-practice",
       "topicId": "t06-015",
       "phase": "practice",
       "draft": "course/drafts/t06-015/t06-015-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all exercise solutions and output predictions for endianness, copy versus alias, and binary text conversion. Added written answers to all four reflection prompts; confirmed representative examples against the standard and the local runtime where supported.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/structured-data.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2020/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2025/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc4648",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://tc39.es/ecma262/2026/",
-        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+        "https://tc39.es/ecma262/2020/",
+        "https://tc39.es/ecma262/2022/",
+        "https://tc39.es/ecma262/2023/",
+        "https://tc39.es/ecma262/2024/",
+        "https://tc39.es/ecma262/2025/",
+        "https://html.spec.whatwg.org/",
+        "https://www.rfc-editor.org/rfc/rfc4648",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/f16round",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromHex",
-        "https://tc39.es/ecma262/2025/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete frozen-inventory audit done. Checked all exercise solutions and output predictions for endianness, copy versus alias, and binary text conversion. Added written answers to all four reflection prompts; confirmed representative examples against the standard and the local runtime where supported. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-015-interview",
       "topicId": "t06-015",
       "phase": "interview",
       "draft": "course/drafts/t06-015/t06-015-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 59,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all core, deep, and scenario answers on typed arrays, endian parsing, resizing/transfer, shared-memory deployment, Float16, and encoding against the current specification and HTML Standard. No factual corrections required.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/structured-data.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2020/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2024/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2025/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc4648",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+              "section": "API definition, behavior, version, compatibility, or encoding contract relevant to the lesson",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://tc39.es/ecma262/2026/",
-        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+        "https://tc39.es/ecma262/2026/multipage/structured-data.html",
         "https://tc39.es/ecma262/2026/multipage/numbers-and-dates.html",
+        "https://tc39.es/ecma262/2020/",
+        "https://tc39.es/ecma262/2022/",
+        "https://tc39.es/ecma262/2023/",
+        "https://tc39.es/ecma262/2024/",
+        "https://tc39.es/ecma262/2025/",
+        "https://html.spec.whatwg.org/",
+        "https://www.rfc-editor.org/rfc/rfc4648",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/f16round",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toHex",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromBase64",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/setFromHex",
-        "https://tc39.es/ecma262/2025/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and complete frozen-inventory audit done. Checked all core, deep, and scenario answers on typed arrays, endian parsing, resizing/transfer, shared-memory deployment, Float16, and encoding against the current specification and HTML Standard. No factual corrections required. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-016-overview",

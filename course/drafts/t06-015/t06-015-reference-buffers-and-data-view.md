@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This reference covers the supplied buffer, view, and DataView names through ECMAScript 2026. Resizable ArrayBuffer and growable SharedArrayBuffer arrived in ES2024; Float16 DataView access arrived in ES2025. See [ECMAScript structured data](https://tc39.es/ecma262/2026/multipage/structured-data.html), [indexed collections](https://tc39.es/ecma262/2026/multipage/indexed-collections.html), and [DataView reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView).
+This reference covers the supplied buffer, view, and DataView names through ECMAScript 2026, including constructor links, species, and descriptive tags. Resizable ArrayBuffer and growable SharedArrayBuffer arrived in ES2024; Float16 DataView access arrived in ES2025. See [ECMAScript structured data](https://tc39.es/ecma262/2026/multipage/structured-data.html), [indexed collections](https://tc39.es/ecma262/2026/multipage/indexed-collections.html), and [DataView reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView).
 
 # How this group fits the mental model
 
@@ -16,10 +16,12 @@ A buffer owns bytes. A typed array overlays a repeated fixed-width interpretatio
 
 - `ArrayBuffer` — Constructor for an ordinary byte-storage object. It is not itself an indexed element collection; make a typed-array or DataView view to interpret its bytes.
 - `SharedArrayBuffer` — Constructor for byte storage that can be shared between agents. It is not a synchronization primitive; coordinate access separately.
-- `DataView` — Constructor for a flexible view whose individual get/set operations choose field type and byte order. Its offsets are relative to the view.
+- `DataView` — Constructor for a flexible view whose individual get/set operations choose field type and byte order. Its offsets are relative to the view. `DataView constructor overloads` accept a buffer plus an optional byte offset and optional byte length; `new DataView(buffer, byteOffset?, byteLength?)` validates these ranges. Omitting `byteLength` covers the remaining fixed buffer or creates a length-tracking view over a resizable buffer.
 - `ArrayBuffer() constructor` — Creates fixed storage from a byte length, or resizable storage when `maxByteLength` is supplied. Validate untrusted lengths before allocation.
 - `ArrayBuffer.isView` — Returns true for typed-array and DataView objects, including cross-realm views; it does not mean the view is currently in bounds or attached.
 - `ArrayBuffer[Symbol.species]` — Constructor lookup used by buffer-producing methods such as `slice`; subclass species customization can change the result type.
+- `ArrayBuffer.prototype.constructor` — Initially refers to `ArrayBuffer`; it is an ordinary prototype link, not a reliable authenticity or security check.
+- `ArrayBuffer.prototype[Symbol.toStringTag]` — Initially has the tag `ArrayBuffer` and is configurable but non-writable/non-enumerable; it affects descriptive object tagging, not secure brand checks.
 - `ArrayBuffer.prototype.byteLength` — Current buffer length in bytes. A detached buffer reports zero; a resizable buffer may change length.
 - `ArrayBuffer.prototype.detached` — Boolean state indicating whether the buffer has been detached, useful for explicit lifecycle checks.
 - `ArrayBuffer.prototype.maxByteLength` — Maximum permitted length for a resizable buffer; for a fixed buffer it equals its initial length.
@@ -29,12 +31,17 @@ A buffer owns bytes. A typed array overlays a repeated fixed-width interpretatio
 - `ArrayBuffer.prototype.transfer` — Moves the bytes to a new ArrayBuffer and detaches the original. Optional new length can resize the destination within applicable limits.
 - `ArrayBuffer.prototype.transferToFixedLength` — Transfers to a fixed-length destination even when the source is resizable; the source becomes detached.
 - `Resizable ArrayBuffer constructor maxByteLength option` — Enables a buffer to resize up to its fixed maximum. Omitted option means fixed length.
+- `SharedArrayBuffer[Symbol.species]` — A static accessor whose getter returns its receiver constructor. `SharedArrayBuffer.prototype.slice()` consults species to construct its result, so a subclass can customize that result; species customization can execute user code.
+- `SharedArrayBuffer.prototype.constructor` — Initially refers to `SharedArrayBuffer`; it is an ordinary prototype link, not a security brand check.
+- `SharedArrayBuffer.prototype[Symbol.toStringTag]` — Initially has the tag `SharedArrayBuffer` and is configurable but non-writable/non-enumerable; descriptive only, not a secure brand check.
 - `SharedArrayBuffer.prototype.byteLength` — Current shared-storage length in bytes; a growable instance can increase but cannot shrink.
 - `SharedArrayBuffer.prototype.maxByteLength` — Maximum size allowed for a growable shared buffer; for a fixed one it equals current length.
 - `SharedArrayBuffer.prototype.growable` — Indicates whether the shared buffer can grow, not whether it has spare capacity at this instant.
 - `SharedArrayBuffer.prototype.grow` — Increases a growable shared buffer up to its maximum. It cannot shrink; new bytes are zero-initialized.
 - `SharedArrayBuffer.prototype.slice` — Copies a selected byte range into a new shared buffer; the result is separate storage, not an alias.
 - `Growable SharedArrayBuffer constructor maxByteLength option` — Enables monotonic growth to a declared maximum. Browser availability commonly depends on cross-origin isolation.
+- `DataView length-tracking versus fixed-length view` — Over a resizable ArrayBuffer, omitting the constructor byteLength creates a view that tracks available bytes after its offset; specifying byteLength creates a fixed-length view.
+- `Out-of-bounds DataView after buffer resize` — If shrinking makes a fixed DataView out of bounds, byteLength/byteOffset accessors and get/set methods throw TypeError until the view becomes in bounds again. A field access extending past an otherwise in-bounds view throws RangeError.
 - `Fixed-length versus length-tracking typed-array views` — With a length omitted on a resizable buffer, a typed array tracks the remaining region as the buffer changes. An explicit element length is fixed; offsets and lengths must satisfy element alignment.
 - `Out-of-bounds typed-array view after buffer resize` — Shrinking can place a fixed view outside the new buffer. Such a view becomes out of bounds and its observable length/byteLength are zero until it becomes valid again; do not assume stale indexes remain usable.
 - `ArrayBuffer transfer detaches original buffer and views` — After transfer, the original buffer is detached and its prior views cannot access the moved bytes. Do not retain them as if they still owned live data.
@@ -47,6 +54,8 @@ A buffer owns bytes. A typed array overlays a repeated fixed-width interpretatio
 - `DataView unaligned mixed-width access` — DataView permits byte offsets that are not aligned to the field width and can read mixed field sizes from one record. Bounds still apply.
 - `DataView.prototype.buffer` — The underlying ArrayBuffer or SharedArrayBuffer object.
 - `DataView.prototype.byteLength` — Size of the viewed region in bytes, not an element count.
+- `DataView.prototype.constructor` — Initially refers to `DataView`; this ordinary prototype property is not a reliable authenticity check.
+- `DataView.prototype[Symbol.toStringTag]` — Initially has the tag `DataView` and is configurable but non-writable/non-enumerable; it is descriptive, not a secure brand check.
 - `DataView.prototype.byteOffset` — Start position of the view in its underlying buffer.
 - `DataView.prototype.getInt8` — Reads one signed 8-bit integer at a byte offset; no endian parameter is needed.
 - `DataView.prototype.getUint8` — Reads one unsigned 8-bit integer.

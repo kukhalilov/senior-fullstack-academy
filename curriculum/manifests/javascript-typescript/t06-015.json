@@ -81,8 +81,9 @@
         "%TypedArray%.prototype.toString",
         "%TypedArray%.prototype[Symbol.iterator]",
         "%TypedArray%.prototype[Symbol.toStringTag]",
-        "%TypedArray%.BYTES_PER_ELEMENT",
-        "%TypedArray%.prototype.BYTES_PER_ELEMENT"
+        "%TypedArray%.prototype.BYTES_PER_ELEMENT",
+        "%TypedArray%.prototype.constructor",
+        "Concrete TypedArray prototype constructor property"
       ]
     },
     {
@@ -141,7 +142,17 @@
         "DataView.prototype.setFloat32",
         "DataView.prototype.setFloat64",
         "DataView.prototype.setBigInt64",
-        "DataView.prototype.setBigUint64"
+        "DataView.prototype.setBigUint64",
+        "ArrayBuffer.prototype.constructor",
+        "ArrayBuffer.prototype[Symbol.toStringTag]",
+        "SharedArrayBuffer[Symbol.species]",
+        "SharedArrayBuffer.prototype.constructor",
+        "SharedArrayBuffer.prototype[Symbol.toStringTag]",
+        "DataView constructor overloads",
+        "DataView.prototype.constructor",
+        "DataView.prototype[Symbol.toStringTag]",
+        "DataView length-tracking versus fixed-length view",
+        "Out-of-bounds DataView after buffer resize"
       ]
     },
     {
@@ -188,6 +199,38 @@
   ],
   "versionNotes": [
     {
+      "edition": "ECMAScript 2020",
+      "items": [
+        "BigInt64Array",
+        "BigUint64Array"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2020/"
+      ]
+    },
+    {
+      "edition": "ECMAScript 2022",
+      "items": [
+        "%TypedArray%.prototype.at"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2022/"
+      ]
+    },
+    {
+      "edition": "ECMAScript 2023",
+      "items": [
+        "%TypedArray%.prototype.findLast",
+        "%TypedArray%.prototype.findLastIndex",
+        "%TypedArray%.prototype.toReversed",
+        "%TypedArray%.prototype.toSorted",
+        "%TypedArray%.prototype.with"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2023/"
+      ]
+    },
+    {
       "edition": "ECMAScript 2024",
       "items": [
         "Resizable ArrayBuffer",
@@ -230,7 +273,7 @@
   "sourceSnapshot": {
     "authority": "ECMA-262 and MDN JavaScript reference",
     "edition": "ECMAScript 2026",
-    "checkedAt": "2026-11-16",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://tc39.es/ecma262/2026/",
       "https://tc39.es/ecma262/2026/multipage/structured-data.html",
@@ -258,5 +301,12 @@
     "WebAssembly memory APIs",
     "Node.js Buffer extensions"
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "SharedArrayBuffer has a standardized Symbol.species accessor, and SharedArrayBuffer.prototype.slice consults it to construct its result; unlike typed-array species, it is an active result-construction hook.",
+    "Each concrete TypedArray prototype has a constructor property initially referring to its matching concrete constructor. ArrayBuffer and SharedArrayBuffer prototypes also have constructor and Symbol.toStringTag properties; DataView has a prototype constructor and Symbol.toStringTag.",
+    "A DataView constructed over a resizable ArrayBuffer with omitted byteLength is length-tracking; providing byteLength creates a fixed-length view. If a resize makes a fixed view out of bounds, DataView byteLength/byteOffset accessors and reads/writes throw TypeError until the view is back in bounds; an individual access past an in-bounds view range throws RangeError.",
+    "TypedArraySpeciesCreate is used by methods such as map, filter, slice, and subarray, whereas ES2023 toReversed, toSorted, and with use TypedArrayCreateSameType and ignore Symbol.species.",
+    "The hidden shared %TypedArray%.prototype constructor property refers to the %TypedArray% intrinsic; each concrete typed-array prototype also has its own constructor property pointing to the matching concrete constructor."
+  ]
 }

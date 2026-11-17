@@ -111,3 +111,10 @@ console.log([...fromBase64url]); // [0, 127, 255]
 - [ECMAScript structured data](https://tc39.es/ecma262/2026/multipage/structured-data.html)
 - [MDN DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
 - [MDN Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+
+## Reflection answers
+
+1. Buffer lengths, byte offsets, DataView field widths, and raw data positions are measured in bytes. Typed-array indexes and `set()` offsets are measured in elements. A typed array `length` counts elements; `byteLength` counts bytes.
+2. Use a typed array for a uniform sequence of one numeric element type. Use DataView for mixed-width fields, unaligned fields, or a format that specifies byte order.
+3. Untrusted lengths can exceed available data, engine allocation limits, or application limits. Validate before allocation or view construction to avoid malformed parsing, out-of-bounds exceptions, or excessive memory use.
+4. `subarray()` aliases its source; `slice()` copies. `DataView` and `new Uint8Array(buffer, ...)` create views. `Uint8Array.fromHex()` allocates new byte storage.

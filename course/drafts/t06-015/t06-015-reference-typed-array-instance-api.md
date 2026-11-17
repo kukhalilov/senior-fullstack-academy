@@ -4,16 +4,18 @@
 
 # Scope and version
 
-This lesson explains the shared `%TypedArray%.prototype` accessors, iteration, searching, mutation, copying, and formatting methods in ECMAScript 2026. The behavior is shared by concrete typed-array kinds, subject to BigInt/Number conversion and buffer/view lifetime rules. See [ECMAScript TypedArray methods](https://tc39.es/ecma262/2026/multipage/indexed-collections.html) and [MDN TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray).
+This lesson explains the shared `%TypedArray%.prototype` accessors, the constructor link, iteration, searching, mutation, copying, and formatting methods in ECMAScript 2026. The behavior is shared by concrete typed-array kinds, subject to BigInt/Number conversion and buffer/view lifetime rules. See [ECMAScript TypedArray methods](https://tc39.es/ecma262/2026/multipage/indexed-collections.html) and [MDN TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray).
 
 # How this group fits the mental model
 
-Typed arrays intentionally resemble arrays but store fixed-width numeric elements over bytes. Most methods return typed arrays of the same element kind when they create a new typed array; some mutate in place, and `subarray()` specifically creates an aliasing view. Because methods may allocate through the species constructor, subclasses can influence derived results. Treat each method as either a live-storage mutation, an independent copy, or a view, and account for resizable/detached buffer state.
+Typed arrays intentionally resemble arrays but store fixed-width numeric elements over bytes. By default, methods that create a typed array produce the same concrete kind; species customization can select a different typed-array constructor subject to the standard content-type constraints; some mutate in place, and `subarray()` specifically creates an aliasing view. Some methods that allocate derived views use the species constructor, so subclasses can influence those results; the ES2023 copy-by-change methods instead create the same concrete typed-array kind. Treat each method as either a live-storage mutation, an independent copy, or a view, and account for resizable/detached buffer state.
 
 # Supplied names explained
 
 ## View accessors and iteration
 
+- `%TypedArray%.prototype.constructor` — On the hidden shared `%TypedArray%.prototype` intrinsic, this initially refers to the `%TypedArray%` intrinsic constructor. The concrete typed-array prototype objects also each have their own `constructor` property.
+- `Concrete TypedArray prototype constructor property` — Each concrete prototype, such as `Uint8Array.prototype`, initially points back to its matching constructor. It is an ordinary writable/configurable property, not a security brand check.
 - `%TypedArray%.prototype.buffer` — Underlying ArrayBuffer or SharedArrayBuffer. Multiple views can refer to the same bytes; changing one view can affect another.
 - `%TypedArray%.prototype.byteLength` — Size of the viewed region in bytes, not element count; can change with a length-tracking view over a resizable buffer.
 - `%TypedArray%.prototype.byteOffset` — Starting byte position in the underlying buffer.
@@ -56,9 +58,9 @@ Typed arrays intentionally resemble arrays but store fixed-width numeric element
 - `%TypedArray%.prototype.map` — Builds a same-kind derived typed array from callback results; each result converts to the element type.
 - `%TypedArray%.prototype.slice` — Returns a new independent typed array copy of the selected range.
 - `%TypedArray%.prototype.subarray` — Returns a new view over the same buffer and selected range; mutations alias the original storage. On resizable buffers, omitted end can produce a length-tracking view.
-- `%TypedArray%.prototype.toReversed` — Returns a reversed copy without mutating the original; added with the change-by-copy methods in ECMAScript 2023.
-- `%TypedArray%.prototype.toSorted` — Returns a sorted copy without mutating the original; uses typed-array numeric ordering by default.
-- `%TypedArray%.prototype.with` — Returns a copy with one indexed element replaced after conversion; negative indices count from the end and invalid indices throw.
+- `%TypedArray%.prototype.toReversed` — Returns a reversed copy of the same concrete typed-array kind without mutating the original; it ignores `Symbol.species`. Added with change-by-copy methods in ECMAScript 2023.
+- `%TypedArray%.prototype.toSorted` — Returns a sorted copy of the same concrete typed-array kind without mutating the original or consulting `Symbol.species`; uses typed-array numeric ordering by default.
+- `%TypedArray%.prototype.with` — Returns a same-concrete-kind copy with one indexed element replaced after conversion; negative indices count from the end and invalid indices throw. It ignores `Symbol.species`.
 - `%TypedArray%.prototype.join` — Joins element string forms with a separator; large typed arrays can allocate large strings.
 - `%TypedArray%.prototype.toLocaleString` — Formats elements using locale-sensitive number/BigInt formatting and joins them; output varies by locale and is not a wire format.
 - `%TypedArray%.prototype.toString` — Produces the comma-joined representation, generally through `join()`; it is a display/debug form, not a binary serialization.
@@ -71,7 +73,7 @@ Operations divide into three practical groups:
 - **Allocate converted typed values:** `filter`, `map`, `slice`, `toReversed`, `toSorted`, and `with`.
 - **Create a view:** `subarray`; its bytes remain shared with the original buffer.
 
-Iterators traverse the typed array, not a snapshot. If code mutates the view while iterating, later reads can observe changed values. Methods that allocate may consult `%TypedArray%[Symbol.species]` for the result constructor, so hostile/incorrect subclass overrides can create unexpected result types or side effects.
+Iterators traverse the typed array, not a snapshot. If code mutates the view while iterating, later reads can observe changed values. Species-using allocation methods include `filter`, `map`, `slice`, and `subarray`. The ES2023 copy-by-change methods `toReversed`, `toSorted`, and `with` use the same concrete typed-array kind instead and ignore species. Species customization can execute subclass code and produce a different compatible typed-array constructor, so treat it as a specialized hook rather than assuming every copy method uses it.
 
 # Examples
 
