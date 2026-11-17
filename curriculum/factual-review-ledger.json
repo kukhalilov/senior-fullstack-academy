@@ -5,9 +5,9 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 26,
-    "pending": 2314,
-    "claimsChecked": 362,
+    "reviewed": 27,
+    "pending": 2313,
+    "claimsChecked": 373,
     "claimsCorrected": 27,
     "draftsMayBePromoted": false
   },
@@ -79158,9 +79158,9 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-cap-and-replication-guarantees.md",
-      "status": "partial-review",
-      "claimInventory": "partial",
-      "claimsChecked": 9,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 20,
       "claimsCorrected": 0,
       "evidence": [
         {
@@ -79216,12 +79216,76 @@
           "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
           "section": "Repair; Usage and Best Practices",
           "verdict": "supported"
+        },
+        {
+          "claim": "For RF=3,R=2,W=2, fixed-set read/write quorum intersection follows by set cardinality; stale version selection, concurrent writes, sloppy substitution, and multi-datacenter scope remain protocol questions.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html; https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "Cassandra Picking Consistency Levels; Dynamo §4.5–4.6",
+          "verdict": "supported; scope caveat retained"
+        },
+        {
+          "claim": "Cassandra sends writes to all replicas but waits for the configured consistency-level response threshold; `ANY` can be acknowledged by a hint and is write-only, not a read quorum.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "Tunable Consistency and consistency-level definitions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra 5.0 LOCAL_QUORUM and QUORUM thresholds use data-center/global replica scope respectively; local levels are not interchangeable with global RF arithmetic.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "Consistency levels; local data-center scope",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dynamo sloppy quorum can use the N highest-ranked reachable preference-list nodes, so read and write responder sets may not be the same fixed replica set.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.6 Handling Failures: Hinted Handoff",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra hints are temporary, best-effort, and can stop covering an outage after the configured maximum hint window; they do not replace repair.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+          "section": "Hints overview and Configuring Hints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra BLOCKING read repair supports monotonic quorum reads but can break partition-level write atomicity for granular reads; NONE avoids repair writes and preserves that atomicity while lacking the same monotonic-read guarantee.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Table-level configuration; BLOCKING and NONE",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra repair uses Merkle trees to compare common token ranges and streams differences; repair commands run on node/range scope and need an explicit cluster-wide schedule.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Repair overview and Usage and Best Practices",
+          "verdict": "supported"
+        },
+        {
+          "claim": "CAP is an impossibility result under communication faults for the formalized atomic-object consistency and availability properties, not a rule that every architecture must select exactly two fixed features.",
+          "source": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+          "section": "§2 formal model and theorem",
+          "verdict": "supported"
+        },
+        {
+          "claim": "PACELC classifies partition-time availability/consistency and normal-operation latency/consistency tradeoffs; it is a taxonomy lens rather than an implementation protocol.",
+          "source": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+          "section": "PACELC formulation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The three-replica cart example is a prompt to trace acknowledgement, substitute acceptance, later read participants, and recovery; it does not promise convergence without documented repair assumptions.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "inventory group “cap-and-replication-guarantees”; lesson example scope",
+          "verdict": "scope complete"
+        },
+        {
+          "claim": "All seven manifest items are covered: CAP, PACELC, read quorum, write quorum, sloppy quorum, hinted handoff, and read repair.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "inventory group “cap-and-replication-guarantees”",
+          "verdict": "scope complete"
         }
       ],
-      "issues": [
-        "Lesson-wide claim extraction and omission audit are still incomplete; do not mark reviewed."
-      ],
-      "reviewedAt": null,
+      "issues": [],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://hld.handbook.academy/",
         "https://www.rfc-editor.org/rfc/rfc9110",
@@ -79240,9 +79304,10 @@
         "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
         "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
         "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf",
+        "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf"
       ],
-      "reviewNote": "Nine high-risk CAP, PACELC, quorum, hint, and Cassandra repair claims checked against original research and Cassandra 5.0 documentation. Remaining lesson claims and scope completeness are pending."
+      "reviewNote": "Completed claim and omission audit for all seven manifest items. Verified CAP/PACELC framing, fixed-set quorum arithmetic and its limits, Cassandra consistency-level scopes, sloppy quorum behavior, and the distinct coverage of hints, read repair, and anti-entropy repair."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-multi-paxos",
