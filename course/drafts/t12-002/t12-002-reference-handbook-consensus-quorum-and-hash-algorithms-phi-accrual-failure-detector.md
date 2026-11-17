@@ -16,7 +16,7 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Inputs, adaptation, and limits
 
-The detector observes heartbeat inter-arrival times and estimates their distribution. In the paper’s formulation, φ is the negative base-10 logarithm of the probability that the next heartbeat has not arrived by the observed delay. This is a statistical suspicion score, not a calibrated probability that a machine is dead. Estimation choices, sampling windows, heartbeat scheduling, JVM pauses or other runtime stalls, network congestion, and clock/timer behavior affect the signal.
+The detector observes heartbeat inter-arrival times and estimates their distribution. In the paper’s formulation, φ is the negative base-10 logarithm of the estimated tail probability that the next heartbeat takes longer than the observed delay: φ = −log10(P_later(delay)). Under that model, threshold Φ=1 corresponds to about a 10% chance that a late heartbeat will later contradict the suspicion; Φ=2, about 1%; Φ=3, about 0.1%. These are model-based late-heartbeat mistake rates, not the posterior probability that a machine is dead. The original implementation estimates the arrival distribution from a sliding window of heartbeat inter-arrival samples (using a normal-distribution approximation); sample-window size and workload/network shifts affect calibration. Heartbeat scheduling, JVM pauses or other runtime stalls, network congestion, and monotonic timer behavior affect the signal. The monitored and monitoring processes do not need synchronized wall clocks when measuring local inter-arrival durations.
 
 An accrual detector cannot distinguish a failed process from a slow process or a partition in a fully asynchronous system. It improves how an application reasons about varying delays; it does not remove uncertainty or provide consensus. Use hysteresis or staged suspicion where flapping is costly, and fence stale leaders before they can write after a replacement leader is elected.
 
@@ -31,7 +31,8 @@ If heartbeats usually arrive each second, then one 1.5-second delay may be low s
 ## Common mistakes
 
 - Selecting a component by popularity before defining the requirement.
-- Reading φ as the literal probability the process is dead; it is derived from heartbeat-delay probability, not ground truth about process state.
+- Reading φ as the literal probability the process is dead; it is derived from the estimated late-heartbeat tail probability, not ground truth about process state.
+- Treating Φ=1/2/3 mistake rates as guarantees when the learned timing distribution does not match current conditions.
 - Ignoring cost, operational ownership, observability, and recovery.
 - Applying one consistency or caching rule to data with different correctness needs.
 

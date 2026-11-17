@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 17,
-    "pending": 2323,
-    "claimsChecked": 273,
-    "claimsCorrected": 18,
+    "reviewed": 19,
+    "pending": 2321,
+    "claimsChecked": 295,
+    "claimsCorrected": 21,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -79658,68 +79658,169 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-swim-membership-protocol.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 11,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "SWIM separates failure detection from membership-update dissemination.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "Abstract and §§3–4",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each protocol period randomly selects a member and sends a direct ping.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "§3.1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "On missing direct acknowledgement, the initiator asks a random subgroup to probe indirectly and relay an acknowledgement.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "§3.1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Membership updates are piggybacked on ping/ack messages in the improved protocol.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "§4.1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Suspicion precedes failure declaration, allowing refutation and lowering false positives.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "Abstract and §4.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Membership views are weakly consistent and can temporarily differ across processes.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "Abstract and §1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The paper analyzes constant expected message load per member and logarithmic infection-style dissemination latency under stated assumptions.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "Abstract and §4.1",
+          "verdict": "supported; clarified as model results"
+        },
+        {
+          "claim": "SWIM membership is not consensus and does not establish safe exclusive leadership.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "§1 weak-membership scope; derived distinction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Probe timing and suspicion interval trade detection speed and false positives.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "§3.1 and §4.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A process can be falsely suspected due to delay/loss and may remain active.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "§1 and §4.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers complete frozen SWIM manifest scope.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf"
+      ],
+      "reviewNote": "Manual claim-by-claim and manifest-scope audit completed against the primary protocol paper; failure suspicion is distinguished from proof of failure."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-phi-accrual-failure-detector",
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-phi-accrual-failure-detector.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 11,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "An accrual detector outputs a continuous suspicion level, leaving application policy/threshold choice to consumers.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "Accrual FD paper, §§I and III",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Phi equals negative log10 of estimated probability that the next heartbeat arrives later than the observed delay.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "Phi paper, §IV.A eq. 2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Thresholds 1, 2, 3 correspond approximately to 10%, 1%, 0.1% late-heartbeat contradiction probabilities under the model.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "Phi paper, §IV.A",
+          "verdict": "supported; clarified as model-dependent"
+        },
+        {
+          "claim": "Phi is not the probability that the process is dead.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "Phi paper, §IV.A; definition interpretation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Implementation estimates heartbeat arrival distribution from a sliding window of recent samples.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "Phi paper, §I and §IV.B",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The original implementation uses a normal distribution approximation and configurable history/sample window.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "Phi paper, §IV.B and experiments",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Lower threshold detects faster but yields more false suspicions; higher threshold is more conservative.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "Phi paper, §I",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The failure detector cannot distinguish crash from delay or network partition in an asynchronous setting.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "Accrual FD paper, §§II–III; SWIM paper",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Local inter-arrival measurement does not require synchronized wall clocks.",
+          "source": "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+          "section": "Phi paper, §IV formula and local observation model",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Consensus/fencing is still required when a suspected process might retain write authority.",
+          "source": "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+          "section": "Failure detector semantics; SWIM membership limitations",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers complete frozen phi detector manifest scope.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://dspace.jaist.ac.jp/dspace/bitstream/10119/4784/1/IS-RR-2004-010.pdf",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf"
+      ],
+      "reviewNote": "Manual claim-by-claim and manifest-scope audit completed against the primary protocol paper; failure suspicion is distinguished from proof of failure."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-bounded-load-consistent-hashing",
