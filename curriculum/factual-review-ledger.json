@@ -331,6 +331,26 @@
       "findings": [
         "Expanded the ledger scenario with atomic balanced posting, concurrency control and retry caveats checked against PostgreSQL docs; label cardinality and bounded-dimension guidance checked against Prometheus docs; secrets, fork event restrictions, untrusted input and action pinning checked against GitHub Actions security docs. All lessons remain pending full fact and manifest scope audits."
       ]
+    },
+    {
+      "scope": "DoT, DoQ, DoH, and DNSSEC case studies in t12-006",
+      "status": "partial source check; full lesson audits pending",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc7858.html",
+        "https://www.rfc-editor.org/rfc/rfc8310.html",
+        "https://www.rfc-editor.org/rfc/rfc8932.html",
+        "https://www.rfc-editor.org/rfc/rfc9250.html",
+        "https://www.rfc-editor.org/rfc/rfc9000.html",
+        "https://www.rfc-editor.org/rfc/rfc8484.html",
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://www.rfc-editor.org/rfc/rfc4033.html",
+        "https://www.rfc-editor.org/rfc/rfc4034.html",
+        "https://www.rfc-editor.org/rfc/rfc4035.html",
+        "https://www.rfc-editor.org/rfc/rfc9364.html"
+      ],
+      "findings": [
+        "Rewrote four DNS references to separate transport confidentiality/integrity from DNSSEC origin authentication/integrity; checked protocol framing, default ports, and DNSSEC boundaries against the cited IETF RFCs. Added resolver trust, fallback, network support, key-chain and rollover failure cases. All remain pending complete claim-by-claim audit and inventory omission check."
+      ]
     }
   ],
   "lessons": [
@@ -100314,7 +100334,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 231 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 227 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
