@@ -14,6 +14,8 @@
 8. Can a BigInt be relationally compared with a Number?
 9. What is the difference between `||` and `??`?
 10. Why can `document.all` violate the usual truthiness intuition in browsers?
+11. How do fixed-width `ToInt*`/`ToUint*` conversions differ from `ToUint8Clamp`?
+12. Why is `document.all == null` true but `null == document.all` false?
 
 ## Concise interview answers
 
@@ -26,7 +28,9 @@
 7. If both primitive values are strings, comparison is lexicographic by UTF-16 code units, not locale or numeric ordering.
 8. Yes. Relational comparison supports mixed BigInt/Number values without first rounding BigInt to Number; NaN still makes the result false.
 9. `||` falls back for any falsy left value; `??` falls back only for `null` or `undefined`. Both return an operand.
-10. Browser `document.all` is a legacy host exotic with `[[IsHTMLDDA]]`, giving it special falsiness, `typeof`, and loose-equality behavior.
+10. Browser `document.all` is a legacy host exotic with `[[IsHTMLDDA]]`, giving it special falsiness, `typeof`, and operand-sensitive loose-equality behavior.
+11. The 8/16/32-bit conversions truncate then wrap modulo their width, with signed forms reinterpreting the high bit; `ToUint8Clamp` clamps to 0–255 and rounds ties to even.
+12. The `[[IsHTMLDDA]]` exception is checked when that object is the left operand; `null == document.all` follows the other ordering and is false.
 
 ## Deep follow-up answers
 

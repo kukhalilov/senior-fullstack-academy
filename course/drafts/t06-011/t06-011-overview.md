@@ -57,7 +57,7 @@ Coercion is still useful: conditions naturally use truthiness, template strings 
 
 ## What later lessons cover
 
-The concepts lesson develops the conversion and comparison decision process. The three reference lessons cover every supplied conversion operation, equality rule, relational operator, and boolean-context item. Practice traces mixed values and designs safe boundary checks; interview questions focus on explaining edge cases without memorizing misleading slogans.
+The concepts lesson develops the conversion and comparison decision process. The three reference lessons cover every supplied conversion operation—including fixed-width Number and BigInt conversions—equality rule, relational operator, and boolean-context item. Practice traces mixed values and designs safe boundary checks; interview questions focus on explaining edge cases without memorizing misleading slogans.
 
 ## Sources
 

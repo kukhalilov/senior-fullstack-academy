@@ -53,7 +53,18 @@ Object.is(+0, -0)
 9007199254740993n == 9007199254740992
 ```
 
-### 3. Compare strings and numbers
+### 3. Fixed-width conversions and clamping
+
+Predict the output and distinguish wrapping from clamping:
+
+```js
+new Int8Array([130])[0]
+new Uint8Array([-1])[0]
+new Uint8ClampedArray([2.5, 3.5, 4.5]).join()
+new BigInt64Array([2n ** 63n])[0]
+```
+
+### 4. Compare strings and numbers
 
 Predict the result and explain whether each pair is compared as strings or numbers:
 
@@ -65,17 +76,17 @@ Predict the result and explain whether each pair is compared as strings or numbe
 NaN >= 0
 ```
 
-### 4. Select the correct default
+### 5. Select the correct default
 
 Write an expression that preserves `0`, `false`, and `""`, but replaces only `null` or `undefined` with `"unknown"`. Then write a second expression that replaces every falsy value with `"unknown"`.
 
-### 5. Observe an object conversion hook
+### 6. Observe an object conversion hook
 
 Write an object with `Symbol.toPrimitive` that returns `"12"` for the string hint and `12` otherwise. Predict `String(value)`, `value < 20`, and `value == 12`. Explain why `Boolean(value)` is true without invoking the conversion method.
 
-### 6. Browser legacy check
+### 7. Browser legacy check
 
-In a browser console, inspect `Boolean(document.all)`, `document.all == null`, `document.all === null`, and `typeof document.all`. Explain why this result must not be generalized to ordinary objects.
+In a browser console, inspect `Boolean(document.all)`, `document.all == null`, `document.all === null`, `null == document.all`, and `typeof document.all`. Explain why this result must not be generalized to ordinary objects.
 
 ## Progressive hints
 
@@ -112,9 +123,23 @@ The string `"false"` is non-empty; Boolean conversion does not parse Boolean wor
 | `Object.is(+0, -0)` | `false` | SameValue distinguishes signed zeros |
 | `1n == 1` | `true` | Exact mathematical values are equal under loose equality |
 | `1n === 1` | `false` | BigInt and Number have different types |
-| `9007199254740993n == 9007199254740992` | `false` | The Number represents 9007199254740992, a different integer value |
+| `9007199254740993n == 9007199254740992
+1n == NaN
+1n == Infinity` | `false` | The Number represents 9007199254740992, a different integer value |
+| `1n == NaN` and `1n == Infinity` | `false` | The mixed numeric equality branch rejects non-finite Number values |
 
-### 3. Compare strings and numbers
+### 3. Fixed-width conversions and clamping
+
+Predict the output and distinguish wrapping from clamping:
+
+```js
+new Int8Array([130])[0]
+new Uint8Array([-1])[0]
+new Uint8ClampedArray([2.5, 3.5, 4.5]).join()
+new BigInt64Array([2n ** 63n])[0]
+```
+
+### 4. Compare strings and numbers
 
 | Expression | Result | Rule |
 | --- | --- | --- |
@@ -124,7 +149,7 @@ The string `"false"` is non-empty; Boolean conversion does not parse Boolean wor
 | `1n < 1.5` | `true` | Supported mixed BigInt/Number relational comparison |
 | `NaN >= 0` | `false` | Unordered numeric comparison yields false |
 
-### 4. Select the correct default
+### 5. Select the correct default
 
 ```js
 const onlyIfMissing = value => value ?? "unknown";
@@ -133,7 +158,7 @@ const ifFalsy = value => value || "unknown";
 
 For `0`, `false`, and `""`, `onlyIfMissing` returns the input. `ifFalsy` returns `"unknown"` for all three.
 
-### 5. Observe an object conversion hook
+### 6. Observe an object conversion hook
 
 ```js
 const value = {
@@ -150,9 +175,9 @@ console.log(Boolean(value)); // true
 
 `String()` requests the string hint. Relational comparison and loose equality request primitive conversion with a numeric/default path here, which returns 12. `Boolean()` sees an ordinary object and returns true without calling `Symbol.toPrimitive`.
 
-### 6. Browser legacy check
+### 7. Browser legacy check
 
-In a browser, the results are `false`, `true`, `false`, and `"undefined"`, respectively. `document.all` has the host-defined `[[IsHTMLDDA]]` internal slot for web compatibility. Ordinary objects do not receive that slot and remain truthy; application code should not rely on this exception.
+In a browser, `Boolean(document.all)` is false, `document.all == null` is true, `document.all === null` is false, `null == document.all` is false, and `typeof document.all` is `"undefined"`. The special loose-equality check is operand-sensitive. `document.all` has the host-defined `[[IsHTMLDDA]]` internal slot for web compatibility. Ordinary objects do not receive that slot and remain truthy; application code should not rely on this exception.
 
 ## Tests and edge cases
 

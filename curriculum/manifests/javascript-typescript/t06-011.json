@@ -4,17 +4,142 @@
   "track": "track-06",
   "title": "JavaScript coercion, equality, and comparison semantics",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Implicit and explicit conversions", "Truthiness and falsiness", "Primitive conversion hints", "Loose equality coercion rules", "Strict equality, SameValue, and SameValueZero distinctions", "Relational comparison edge cases", "Host-defined legacy exceptions"],
+  "concepts": [
+    "Implicit and explicit conversions",
+    "Truthiness and falsiness",
+    "Primitive conversion hints",
+    "Loose equality coercion rules",
+    "Strict equality, SameValue, and SameValueZero distinctions",
+    "Relational comparison edge cases",
+    "Host-defined legacy exceptions"
+  ],
   "inventory": [
-    {"id":"conversion-operations","title":"Conversion operators and abstract operations","items":["ToPrimitive","Symbol.toPrimitive","ToBoolean","ToString","ToNumber","ToNumeric","ToIntegerOrInfinity","ToInt32","ToUint32","ToBigInt","ToPropertyKey","Number() conversion","String() conversion","Boolean() conversion","Unary plus conversion"]},
-    {"id":"equality-and-sameness","title":"Equality operators and sameness algorithms","items":["Abstract Equality Comparison (==)","Strict Equality Comparison (===)","SameValue","SameValueZero","Object.is","NaN equality behavior","+0 and -0 equality behavior","Object identity equality","BigInt and Number equality","HTMLDDA (document.all) legacy exception"]},
-    {"id":"relational-and-boolean-contexts","title":"Relational comparison and boolean contexts","items":["Less-than operator (<)","Greater-than operator (>)","Less-than-or-equal operator (<=)","Greater-than-or-equal operator (>=)","Relational comparison of strings","Relational comparison of BigInts and Numbers","Logical NOT operator (!)","Conditional expression truthiness","Nullish coalescing operator (??)","Logical OR operator (||)","Nullish-coalescing mixing restriction with || and &&"]}
+    {
+      "id": "conversion-operations",
+      "title": "Conversion operators and abstract operations",
+      "items": [
+        "ToPrimitive",
+        "OrdinaryToPrimitive",
+        "Symbol.toPrimitive",
+        "ToBoolean",
+        "ToString",
+        "StringToNumber",
+        "ToNumber",
+        "ToNumeric",
+        "ToIntegerOrInfinity",
+        "ToInt8",
+        "ToUint8",
+        "ToInt16",
+        "ToUint16",
+        "ToInt32",
+        "ToUint32",
+        "ToUint8Clamp",
+        "ToBigInt",
+        "StringToBigInt",
+        "ToBigInt64",
+        "ToBigUint64",
+        "ToPropertyKey",
+        "Number() conversion",
+        "String() conversion",
+        "Boolean() conversion",
+        "Unary plus conversion"
+      ]
+    },
+    {
+      "id": "equality-and-sameness",
+      "title": "Equality operators and sameness algorithms",
+      "items": [
+        "Abstract Equality Comparison (==)",
+        "Strict Equality Comparison (===)",
+        "SameValue",
+        "SameValueZero",
+        "Object.is",
+        "NaN equality behavior",
+        "+0 and -0 equality behavior",
+        "Object identity equality",
+        "BigInt and Number equality",
+        "HTMLDDA (document.all) legacy exception"
+      ]
+    },
+    {
+      "id": "relational-and-boolean-contexts",
+      "title": "Relational comparison and boolean contexts",
+      "items": [
+        "Less-than operator (<)",
+        "Greater-than operator (>)",
+        "Less-than-or-equal operator (<=)",
+        "Greater-than-or-equal operator (>=)",
+        "Relational comparison of strings",
+        "Relational comparison of BigInts and Numbers",
+        "Logical NOT operator (!)",
+        "Conditional expression truthiness",
+        "Nullish coalescing operator (??)",
+        "Logical OR operator (||)",
+        "Nullish-coalescing mixing restriction with || and &&"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["==","==="],["Object.is","==="],["SameValueZero","SameValue"],["||","??"],["ToNumber","ToNumeric"]],
-  "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/abstract-operations.html","https://tc39.es/ecma262/2026/multipage/ecmascript-data-types-and-values.html","https://tc39.es/ecma262/2026/multipage/additional-ecmascript-features-for-web-browsers.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness"],
+  "comparisons": [
+    [
+      "==",
+      "==="
+    ],
+    [
+      "Object.is",
+      "==="
+    ],
+    [
+      "SameValueZero",
+      "SameValue"
+    ],
+    [
+      "||",
+      "??"
+    ],
+    [
+      "ToNumber",
+      "ToNumeric"
+    ],
+    [
+      "document.all == null",
+      "null == document.all"
+    ]
+  ],
+  "comparisonSources": [
+    "https://tc39.es/ecma262/2026/multipage/abstract-operations.html",
+    "https://tc39.es/ecma262/2026/multipage/ecmascript-data-types-and-values.html",
+    "https://tc39.es/ecma262/2026/multipage/additional-ecmascript-features-for-web-browsers.html",
+    "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness"
+  ],
   "versionNotes": [],
-  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript reference","edition":"ECMAScript 2026","checkedAt":"2026-11-16","urls":["https://tc39.es/ecma262/2026/multipage/abstract-operations.html","https://tc39.es/ecma262/2026/multipage/ecmascript-data-types-and-values.html","https://tc39.es/ecma262/2026/multipage/additional-ecmascript-features-for-web-browsers.html","https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness"]},
-  "scopeExclusions": ["Parsing strings into numeric values with Number and BigInt methods","Arithmetic operator behavior beyond conversion and comparison","TypeScript static type compatibility"],
-  "generationAllowed": true
+  "sourceSnapshot": {
+    "authority": "ECMA-262 and MDN JavaScript reference",
+    "edition": "ECMAScript 2026",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://tc39.es/ecma262/2026/multipage/abstract-operations.html",
+      "https://tc39.es/ecma262/2026/multipage/ecmascript-data-types-and-values.html",
+      "https://tc39.es/ecma262/2026/multipage/additional-ecmascript-features-for-web-browsers.html",
+      "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness"
+    ]
+  },
+  "scopeExclusions": [
+    "Parsing strings into numeric values with Number and BigInt methods",
+    "Arithmetic operator behavior beyond conversion and comparison",
+    "TypeScript static type compatibility"
+  ],
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "ECMAScript 2026 defines ToInt8, ToUint8, ToInt16, ToUint16, ToInt32, and ToUint32 as Number conversions that truncate toward zero and wrap modulo the relevant bit width; signed forms reinterpret the high bit as negative. Non-finite and zero values become positive zero.",
+    "ToUint8Clamp clamps to 0–255 and rounds ties to even; NaN becomes positive zero. It does not wrap.",
+    "ToBigInt accepts Boolean, BigInt, and grammar-valid String primitives (after object-to-primitive conversion); it rejects Number, Symbol, null, and undefined. ToBigInt64 and ToBigUint64 wrap modulo 2^64 and return signed/unsigned 64-bit-range BigInts.",
+    "Abstract ToString(Symbol()) throws TypeError, but the explicit String(Symbol()) function has a special case and succeeds.",
+    "ToNumber rejects BigInt and Symbol; Number() has an explicit BigInt case that can lose precision; unary plus follows ToNumber and rejects BigInt.",
+    "For mixed BigInt/Number loose equality, both values must be finite and have equal exact mathematical values; BigInt does not equal NaN or either infinity.",
+    "The legacy [[IsHTMLDDA]] loose-equality exception is operand-sensitive: document.all == null is true while null == document.all is false; document.all remains a browser-host compatibility exception.",
+    "String relational comparison is lexicographic by UTF-16 code units, not code points, locale collation, or Unicode-normalized equivalence."
+  ]
 }

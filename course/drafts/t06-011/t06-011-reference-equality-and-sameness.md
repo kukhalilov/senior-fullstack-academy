@@ -12,7 +12,7 @@ Equality is not one universal test. Strict equality compares types and values wi
 
 ## Supplied names explained
 
-- `Abstract Equality Comparison (==)` — The algorithm behind `==`. Same-type values use strict equality; `null` and `undefined` match; booleans convert to numbers; Number/string pairs convert the string to Number; BigInt/string pairs parse the string with the BigInt grammar; object/primitive pairs convert the object to a primitive. A browser `[[IsHTMLDDA]]` object is a legacy special case. This is a decision tree, not “convert both sides to Number.”
+- `Abstract Equality Comparison (==)` — The algorithm behind `==`. Same-type values use strict equality; `null` and `undefined` match; booleans convert to numbers; Number/string pairs convert the string to Number; BigInt/string pairs parse the string with the BigInt grammar; object/primitive pairs convert the object to a primitive. The algorithm is generally symmetric in ordinary cases, but its browser-only `[[IsHTMLDDA]]` steps are operand-sensitive: the legacy object loosely equals null/undefined when it is the left operand, while `null == document.all` and `undefined == document.all` are false. This is a decision tree, not “convert both sides to Number.”
 - `Strict Equality Comparison (===)` — The algorithm behind `===`. Different types are unequal; same-type primitives compare by their defined values, with `NaN` unequal to itself and both signed zeros equal. Objects compare by identity, not structure.
 - `SameValue` — Specification relation used by `Object.is`. For Numbers, `NaN` is the same as `NaN`, but `+0` and `-0` differ. Other primitive types use their specified value identity; objects match only when they are the same object.
 - `SameValueZero` — Same as SameValue except `+0` and `-0` are treated as the same. It considers `NaN` equal to itself. It is used by operations including `Array.prototype.includes`, `Map`/`Set` key matching, and `Iterator.prototype.includes` in editions that provide iterator helpers.
@@ -20,8 +20,8 @@ Equality is not one universal test. Strict equality compares types and values wi
 - `NaN equality behavior` — Under `===`, every Number `NaN` is unequal, including to itself. `Object.is(NaN, NaN)` is true, as are SameValueZero comparisons. `Number.isNaN(value)` can test specifically for the Number value without coercing its input.
 - `+0 and -0 equality behavior` — Strict equality and SameValueZero consider them equal. SameValue and `Object.is` distinguish them. The sign can affect reciprocal results (`1 / +0` is `Infinity`; `1 / -0` is `-Infinity`).
 - `Object identity equality` — Two object values are equal only when they refer to the same object. Two separately created `{}` objects are unequal even with identical properties; assigning one object to another variable preserves identity.
-- `BigInt and Number equality` — Under `===`, a BigInt and Number are different types and unequal. Under `==`, finite Number and BigInt values can match when their exact mathematical values are equal. No rounding conversion is used to make the comparison: an imprecise Number does not match a different BigInt merely because their printed values look similar.
-- `HTMLDDA (document.all) legacy exception` — Browsers expose `document.all` as a host-defined exotic object with `[[IsHTMLDDA]]` for web compatibility. It is falsy, `typeof document.all` is `"undefined"`, and it loosely equals `null` and `undefined`; it remains an object and is not strictly equal to either. This is a browser legacy exception, not a general property of DOM values or a feature for new code.
+- `BigInt and Number equality` — Under `===`, a BigInt and Number are different types and unequal. Under `==`, finite Number and BigInt values can match when their exact mathematical values are equal. NaN and either infinity never match a BigInt. No rounding conversion is used to make the comparison: an imprecise Number does not match a different BigInt merely because their printed values look similar.
+- `HTMLDDA (document.all) legacy exception` — Browsers expose `document.all` as a host-defined exotic object with `[[IsHTMLDDA]]` for web compatibility. It is falsy, `typeof document.all` is `"undefined"`, and it loosely equals `null` and `undefined` in the object-left comparison; `null == document.all` and `undefined == document.all` are false under the opposite ordering. It remains an object and is not strictly equal to either. This is a browser legacy exception, not a general property of DOM values or a feature for new code. Its loose-equality behavior is operand-sensitive as specified by IsLooselyEqual; do not assume symmetry for this one legacy case.
 
 ## Cross-item comparison
 
@@ -62,6 +62,7 @@ The browser-only legacy behavior can be observed in a browser console:
 Boolean(document.all);        // false
 document.all == null;          // true
 document.all === null;         // false
+null == document.all;          // false: the legacy check is operand-sensitive
 typeof document.all;           // "undefined"
 ```
 
