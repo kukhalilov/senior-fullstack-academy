@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 740,
-    "pending": 1601,
-    "claimsChecked": 25092,
-    "claimsCorrected": 1441,
+    "reviewed": 747,
+    "pending": 1594,
+    "claimsChecked": 25631,
+    "claimsCorrected": 1442,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 740,
-    "pendingLessons": 1601
+    "reviewedLessons": 747,
+    "pendingLessons": 1594
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1232,6 +1232,26 @@
       ],
       "findings": [
         "Checked 504 claims across all eleven lessons and confirmed coverage of every named operator/expression in the frozen manifest. Added the complete current precedence ladder and separated precedence/grouping from left-to-right operand evaluation and short-circuiting. Corrected invalid C# 15 collection-expression argument punctuation, compile-time-vs-runtime checked overflow in an exercise, null-conditional result and skip rules, equality overload assumptions, C# 14 user-defined compound and conditional assignments, C# version details for C# 11/12/13/14/15, range/await/cast/shift and overflow caveats, and several example/type/nullability issues. Primary Microsoft language documentation/specification checked; no known assigned-scope omissions remain. Lessons remain drafts pending completion of the entire curriculum audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "JavaScript object model, property descriptors, reflection and integrity APIs (t06-004)",
+      "status": "full claim and frozen-inventory audit complete for all 7 lessons",
+      "sources": [
+        "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+        "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
+      ],
+      "findings": [
+        "Checked all seven lesson files against ECMA-262 2026 normative object and Object algorithms and corresponding MDN reference pages. Verified creation and key conversion, own/inherited lookup, descriptor defaults/transitions, property enumeration/order, grouping, copying/write semantics, prototype operations, legacy compatibility methods, and integrity limits. Corrected the Exercise 5 explanation to specify JSON.parse preserves __proto__ as an own data key and Object.assign changes the target prototype only because this value is an object; the legacy setter ignores primitive values other than null. All seven lessons contain answers to their included tutorial/interview questions. No unresolved omissions found in the frozen inventory; drafts remain unpromoted pending full curriculum audit."
       ]
     }
   ],
@@ -49398,13 +49418,70 @@
       "topicId": "t06-004",
       "phase": "overview",
       "draft": "course/drafts/t06-004/t06-004-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 22,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked all explanatory and example claims about object creation, key conversion, prototype lookup, reflection, copy behavior, and integrity levels. Verified against ECMA-262 2026; overview answers and walkthrough are internally consistent.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49417,20 +49494,77 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete for this lesson; course file remains in drafts until the full course audit finishes."
     },
     {
       "taskId": "t06-004-concepts",
       "topicId": "t06-004",
       "phase": "concepts",
       "draft": "course/drafts/t06-004/t06-004-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked the full property/prototype/descriptor model, enumeration table, assignment/spread/fromEntries/groupBy semantics, strict-mode caveats, proxy invariants, and examples against ECMA-262 2026. No material omission found within the frozen scope.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49443,20 +49577,77 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete for this lesson; course file remains in drafts until the full course audit finishes."
     },
     {
       "taskId": "t06-004-reference-object-creation-and-property-keys",
       "topicId": "t06-004",
       "phase": "reference",
       "draft": "course/drafts/t06-004/t06-004-reference-object-creation-and-property-keys.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 76,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 14 supplied terms, object constructor conversion, Object.create validation, computed ToPropertyKey, own/inherited semantics, spread getter behavior, accessor receivers, and examples against ECMA-262 2026 and MDN. Answers are present.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49469,20 +49660,77 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete for this lesson; course file remains in drafts until the full course audit finishes."
     },
     {
       "taskId": "t06-004-reference-property-descriptors-and-reflection",
       "topicId": "t06-004",
       "phase": "reference",
       "draft": "course/drafts/t06-004/t06-004-reference-property-descriptors-and-reflection.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 112,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 20 named inventory entries, descriptor conversion/defaults/redefinition constraints, own-key enumerability and key-type distinctions, key ordering, getters, Object.groupBy release/return semantics, Object.fromEntries behavior, and examples against ECMA-262 2026. Answers are present.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49495,20 +49743,77 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete for this lesson; course file remains in drafts until the full course audit finishes."
     },
     {
       "taskId": "t06-004-reference-prototype-and-integrity-apis",
       "topicId": "t06-004",
       "phase": "reference",
       "draft": "course/drafts/t06-004/t06-004-reference-prototype-and-integrity-apis.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 105,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 20 supplied APIs including primitive handling, proxy caveats, SameValue, assign target/source semantics, legacy Annex B methods, and shallow integrity limits against ECMA-262 2026. Corrected explanation of __proto__ merge value conditions in practice answer.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49521,20 +49826,77 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete for this lesson; course file remains in drafts until the full course audit finishes."
     },
     {
       "taskId": "t06-004-practice",
       "topicId": "t06-004",
       "phase": "practice",
       "draft": "course/drafts/t06-004/t06-004-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Executed/predicted all seven examples and checked answer keys. Corrected Exercise 5 solution to state JSON.parse own-key behavior and that the legacy __proto__ setter changes the target prototype for this object-valued key, while ignoring primitive values except null. Other exercise results match specification.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49547,20 +49909,77 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete for this lesson; course file remains in drafts until the full course audit finishes."
     },
     {
       "taskId": "t06-004-interview",
       "topicId": "t06-004",
       "phase": "interview",
       "draft": "course/drafts/t06-004/t06-004-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 85,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked core and scenario answers, deep follow-ups, alternative/tradeoff claims, and rubric against ECMA-262 2026/MDN sources. Every listed prompt is answered; claims are consistent with the reference lessons.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze",
+              "section": "ECMA-262 2026 ordinary object internal methods, Object and property descriptor algorithms; corresponding MDN API semantics where applicable",
+              "verdict": "supported; practice correction incorporated where noted"
+            }
+          ],
+          "verdict": "verified against current normative standard and explanatory references"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49573,7 +49992,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit complete for this lesson; course file remains in drafts until the full course audit finishes."
     },
     {
       "taskId": "t06-018-overview",

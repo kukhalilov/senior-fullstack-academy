@@ -96,6 +96,8 @@ console.log(Object.getPrototypeOf(assigned).admin);
 console.log(Object.hasOwn(spread, "__proto__"), Object.getPrototypeOf(spread) === Object.prototype);
 ```
 
+In this particular example the JSON value for `__proto__` is an object, so the inherited legacy setter changes `assigned`'s prototype. The legacy setter ignores primitive values other than `null`; it does not turn every `__proto__` value into a prototype. `JSON.parse` creates an own data property and does not itself change the parsed object's prototype.
+
 Explain the different target-write mechanisms. Why should this example make you careful with merge code?
 
 ## Exercise 6: grouping and key conversion
@@ -159,7 +161,7 @@ The first line is `5 false`: assign triggers the target's setter, which stores `
 
 ## Solution 5
 
-The results are `false`, `true`, and `true true`. Assign writes the key to an ordinary empty object's inherited legacy `__proto__` setter, changing the target's prototype. Spread creates an own data property named `__proto__`, leaving the new object's prototype as `Object.prototype`. This demonstrates a prototype-pollution hazard in merges; robust code should validate keys and choose safe destination/write semantics rather than blindly assigning untrusted records.
+The results are `false`, `true`, and `true true`. `JSON.parse` preserves `__proto__` as an own data property on `source`. Assign writes that object value to an ordinary empty object's inherited legacy `__proto__` setter, changing the target's prototype; the target does not gain an own `__proto__` property. Spread creates an own data property named `__proto__`, leaving the new object's prototype as `Object.prototype`. For a primitive `__proto__` value, the legacy setter ignores the value (except `null`, which sets the prototype to null). This demonstrates a prototype-pollution hazard in merges; robust code should validate keys and choose safe destination/write semantics rather than blindly assigning untrusted records.
 
 ## Solution 6
 
