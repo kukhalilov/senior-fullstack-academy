@@ -514,6 +514,19 @@
       "findings": [
         "Checked S2 hierarchical spherical quadrilateral cells and levels, H3 cell hierarchy and pentagon caveat, PostGIS GiST/R-tree bounding-box primary filtering and secondary exact predicates, and ST_DWithin availability against official documentation. Geohash, quadtree, coordinate edge cases, every lesson claim, and full inventory omission checks remain to be audited; this lesson is not promoted."
       ]
+    },
+    {
+      "scope": "epoll event-notification reference",
+      "status": "partial primary-source checks; full lesson audit pending",
+      "sources": [
+        "https://man7.org/linux/man-pages/man7/epoll.7.html",
+        "https://man7.org/linux/man-pages/man2/epoll_create1.2.html",
+        "https://man7.org/linux/man-pages/man2/epoll_ctl.2.html",
+        "https://man7.org/linux/man-pages/man2/epoll_wait.2.html"
+      ],
+      "findings": [
+        "Checked the interest/ready-list model, LT and ET behavior, nonblocking ET drain-to-EAGAIN guidance, EPOLLONESHOT rearming, descriptor duplication/close behavior, starvation and event-cache pitfalls, and watched-descriptor limit mechanism against Linux man-pages epoll(7). The lesson is not fully audited; all claims and omission checks remain pending."
+      ]
     }
   ],
   "lessons": [
@@ -77238,29 +77251,10 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
         "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://man7.org/linux/man-pages/man2/epoll_create1.2.html",
+        "https://man7.org/linux/man-pages/man2/epoll_ctl.2.html",
+        "https://man7.org/linux/man-pages/man2/epoll_wait.2.html"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -100120,6 +100114,14 @@
       "status": "expanded; selected primary-source checks; full audit pending",
       "findings": [
         "Replaced generic filler with learner-first candidate-versus-exact explanation, point/shape/grid distinctions, Geohash, quadtree, R-tree, S2, H3, conservative bounding-box search, spatial hot cells, a comparison table, end-to-end example, edge cases, and exercises. Selected S2, H3, and PostGIS claims were checked against official documentation. Full sentence-level verification and completeness audit remain outstanding."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "Linux epoll reference",
+      "status": "expanded; selected primary-source checks; full audit pending",
+      "findings": [
+        "Replaced generic filler with an event-loop model, readiness and backpressure, LT/ET semantics, lifecycle and stale-event handling, operational capacity, comparison with related interfaces, realistic examples, failure cases, and exercises. Selected behavior was checked against Linux man-pages; full claim inventory and completeness audit remain outstanding."
       ]
     }
   ]
