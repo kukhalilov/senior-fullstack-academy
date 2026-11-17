@@ -1,6 +1,6 @@
 # ai and machine learning system design — Reference: Model serving, retrieval, and orchestration
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://platform.openai.com/docs/guides/production-best-practices), [reference 2](https://cloud.google.com/architecture/framework/ai-ml), [reference 3](https://csrc.nist.gov/pubs/sp/800/207/final), [reference 4](https://owasp.org/www-project-api-security/).
+Sources: [HLD Handbook](https://hld.handbook.academy/curriculum/ai-ml-system-design/), [reference 1](https://docs.vllm.ai/), [reference 2](https://huggingface.co/docs/text-generation-inference/index), [reference 3](https://nvidia.github.io/TensorRT-LLM/), [reference 4](https://owasp.org/www-project-top-10-for-large-language-model-applications/), [reference 5](https://modelcontextprotocol.io/specification/), [reference 6](https://webrtc.org/), [reference 7](https://github.com/feast-dev/feast), [reference 8](https://kserve.github.io/website/), [reference 9](https://mlflow.org/docs/latest/ml/model-registry/).
 
 ## Scope and version
 

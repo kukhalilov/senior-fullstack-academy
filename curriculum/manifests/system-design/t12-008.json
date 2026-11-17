@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 4,
+  "id": "t12-008",
+  "track": "track-12",
+  "title": "system design tradeoffs and decision methods",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A tradeoff is a consequence of meeting one requirement under another constraint, not a slogan or a universal ranking. State the invariant and workload, compare mechanisms at the same abstraction level, then name operational and failure costs.",
+    "Translate product requirements into observable measures and testable user journeys before choosing components.",
+    "Make state ownership, consistency, replay, and recovery explicit at every boundary.",
+    "Account for latency, throughput, tail behavior, capacity, cost, security, privacy, and operational effort as interacting constraints.",
+    "Use a simple baseline, then add a mechanism only to meet a stated requirement or measured bottleneck.",
+    "Design failure behavior and release compatibility across client, API, data, and operations rather than per component."
+  ],
+  "inventory": [
+    {
+      "id": "data-and-storage-sql-vs-nosql",
+      "title": "SQL vs NoSQL",
+      "items": [
+        "SQL vs NoSQL"
+      ]
+    },
+    {
+      "id": "data-and-storage-b-tree-vs-lsm-tree",
+      "title": "B-tree vs LSM-tree",
+      "items": [
+        "B-tree vs LSM-tree"
+      ]
+    },
+    {
+      "id": "data-and-storage-range-vs-hash-vs-consistent-hash-vs-directory-partitioning",
+      "title": "Range vs hash vs consistent-hash vs directory partitioning",
+      "items": [
+        "Range vs hash vs consistent-hash vs directory partitioning"
+      ]
+    },
+    {
+      "id": "data-and-storage-normalization-vs-denormalization",
+      "title": "Normalization vs denormalization",
+      "items": [
+        "Normalization vs denormalization"
+      ]
+    },
+    {
+      "id": "data-and-storage-acid-vs-base",
+      "title": "ACID vs BASE",
+      "items": [
+        "ACID vs BASE"
+      ]
+    },
+    {
+      "id": "consistency-and-replication-strong-vs-eventual-consistency",
+      "title": "Strong vs eventual consistency",
+      "items": [
+        "Strong vs eventual consistency"
+      ]
+    },
+    {
+      "id": "consistency-and-replication-cap-and-pacelc-applied",
+      "title": "CAP and PACELC applied",
+      "items": [
+        "CAP and PACELC applied"
+      ]
+    },
+    {
+      "id": "consistency-and-replication-leader-follower-vs-multi-leader-vs-leaderless-replication",
+      "title": "Leader-follower vs multi-leader vs leaderless replication",
+      "items": [
+        "Leader-follower vs multi-leader vs leaderless replication"
+      ]
+    },
+    {
+      "id": "consistency-and-replication-2pc-vs-saga-vs-tcc",
+      "title": "2PC vs saga vs TCC",
+      "items": [
+        "2PC vs saga vs TCC"
+      ]
+    },
+    {
+      "id": "consistency-and-replication-optimistic-vs-pessimistic-concurrency-control",
+      "title": "Optimistic vs pessimistic concurrency control",
+      "items": [
+        "Optimistic vs pessimistic concurrency control"
+      ]
+    },
+    {
+      "id": "performance-and-scale-latency-vs-throughput",
+      "title": "Latency vs throughput",
+      "items": [
+        "Latency vs throughput"
+      ]
+    },
+    {
+      "id": "performance-and-scale-vertical-vs-horizontal-scaling",
+      "title": "Vertical vs horizontal scaling",
+      "items": [
+        "Vertical vs horizontal scaling"
+      ]
+    },
+    {
+      "id": "performance-and-scale-cache-aside-vs-write-through-vs-write-behind",
+      "title": "Cache-aside vs write-through vs write-behind",
+      "items": [
+        "Cache-aside vs write-through vs write-behind"
+      ]
+    },
+    {
+      "id": "performance-and-scale-token-bucket-vs-sliding-window-rate-limiting",
+      "title": "Token bucket vs sliding-window rate limiting",
+      "items": [
+        "Token bucket vs sliding-window rate limiting"
+      ]
+    },
+    {
+      "id": "performance-and-scale-single-region-vs-multi-region-deployment",
+      "title": "Single-region vs multi-region deployment",
+      "items": [
+        "Single-region vs multi-region deployment"
+      ]
+    },
+    {
+      "id": "architecture-and-apis-monolith-vs-microservices",
+      "title": "Monolith vs microservices",
+      "items": [
+        "Monolith vs microservices"
+      ]
+    },
+    {
+      "id": "architecture-and-apis-rest-vs-grpc-vs-graphql",
+      "title": "REST vs gRPC vs GraphQL",
+      "items": [
+        "REST vs gRPC vs GraphQL"
+      ]
+    },
+    {
+      "id": "architecture-and-apis-load-balancer-vs-reverse-proxy-vs-api-gateway",
+      "title": "Load balancer vs reverse proxy vs API gateway",
+      "items": [
+        "Load balancer vs reverse proxy vs API gateway"
+      ]
+    },
+    {
+      "id": "messaging-and-streaming-batch-vs-stream-processing",
+      "title": "Batch vs stream processing",
+      "items": [
+        "Batch vs stream processing"
+      ]
+    },
+    {
+      "id": "messaging-and-streaming-lambda-vs-kappa-architecture",
+      "title": "Lambda vs Kappa architecture",
+      "items": [
+        "Lambda vs Kappa architecture"
+      ]
+    },
+    {
+      "id": "messaging-and-streaming-polling-vs-long-polling-vs-sse-vs-websockets-vs-webhooks",
+      "title": "Polling vs long-polling vs SSE vs WebSockets vs webhooks",
+      "items": [
+        "Polling vs long-polling vs SSE vs WebSockets vs webhooks"
+      ]
+    },
+    {
+      "id": "messaging-and-streaming-push-vs-pull-delivery-and-fan-out",
+      "title": "Push vs pull delivery and fan-out",
+      "items": [
+        "Push vs pull delivery and fan-out"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "SQL vs NoSQL",
+      "B-tree vs LSM-tree",
+      "Range vs hash vs consistent-hash vs directory partitioning",
+      "Normalization vs denormalization",
+      "ACID vs BASE"
+    ],
+    [
+      "Strong vs eventual consistency",
+      "CAP and PACELC applied",
+      "Leader-follower vs multi-leader vs leaderless replication",
+      "2PC vs saga vs TCC",
+      "Optimistic vs pessimistic concurrency control"
+    ],
+    [
+      "Latency vs throughput",
+      "Vertical vs horizontal scaling",
+      "Cache-aside vs write-through vs write-behind",
+      "Token bucket vs sliding-window rate limiting",
+      "Single-region vs multi-region deployment"
+    ],
+    [
+      "Monolith vs microservices",
+      "REST vs gRPC vs GraphQL",
+      "Load balancer vs reverse proxy vs API gateway"
+    ],
+    [
+      "Batch vs stream processing",
+      "Lambda vs Kappa architecture",
+      "Polling vs long-polling vs SSE vs WebSockets vs webhooks",
+      "Push vs pull delivery and fan-out"
+    ]
+  ],
+  "comparisonSources": [
+    "https://hld.handbook.academy/trade-offs/",
+    "https://www.rfc-editor.org/rfc/rfc9110",
+    "https://www.postgresql.org/docs/current/mvcc.html",
+    "https://sre.google/sre-book/table-of-contents/",
+    "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+    "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "The HLD Handbook public system-design syllabus, with relevant standards, framework guidance, and official platform documentation for technical context.",
+    "edition": "Handbook syllabus checked 2026-11-17; concepts are version-independent unless an implementation-specific source says otherwise.",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://hld.handbook.academy/trade-offs/",
+      "https://www.rfc-editor.org/rfc/rfc9110",
+      "https://www.postgresql.org/docs/current/mvcc.html",
+      "https://sre.google/sre-book/table-of-contents/",
+      "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+      "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf"
+    ]
+  },
+  "scopeExclusions": [
+    "The 22 tradeoff guides are the named scope from the Handbook index; each production decision needs workload-specific evidence and a protocol/product-specific source."
+  ],
+  "generationAllowed": true
+}

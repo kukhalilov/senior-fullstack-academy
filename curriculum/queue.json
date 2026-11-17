@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 2067,
+  "taskCount": 2119,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -23723,6 +23723,19 @@
       "inventoryGroup": "llm-operations-and-multi-agent-systems"
     },
     {
+      "id": "t12-005-reference-handbook-ai-ml-named-scope",
+      "track": "track-12",
+      "title": "ai and machine learning system design — Reference: Handbook AI/ML named systems, algorithms, and design decisions",
+      "module": "t12-005",
+      "manifest": "curriculum/manifests/system-design/t12-005.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-005-reference-llm-operations-and-multi-agent-systems"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-ai-ml-named-scope"
+    },
+    {
       "id": "t12-005-practice",
       "track": "track-12",
       "title": "ai and machine learning system design — Exercises and worked solutions",
@@ -23730,7 +23743,7 @@
       "manifest": "curriculum/manifests/system-design/t12-005.json",
       "phase": "practice",
       "prerequisites": [
-        "t12-005-reference-llm-operations-and-multi-agent-systems"
+        "t12-005-reference-handbook-ai-ml-named-scope"
       ],
       "status": "draft-generation-eligible"
     },
@@ -24600,6 +24613,657 @@
       "phase": "interview",
       "prerequisites": [
         "t12-006-practice-channel-scale-chat"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-007-overview",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Big-picture orientation and mental model",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-007-concepts",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Core concepts and how they fit together",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t12-007-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-007-reference-handbook-relational-databases",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Relational databases",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-relational-databases"
+    },
+    {
+      "id": "t12-007-reference-handbook-distributed-sql-and-sharding-middleware",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Distributed SQL and sharding middleware",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-relational-databases"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-distributed-sql-and-sharding-middleware"
+    },
+    {
+      "id": "t12-007-reference-handbook-key-value-and-document-stores",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Key-value and document stores",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-distributed-sql-and-sharding-middleware"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-key-value-and-document-stores"
+    },
+    {
+      "id": "t12-007-reference-handbook-wide-column-stores",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Wide-column stores",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-key-value-and-document-stores"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-wide-column-stores"
+    },
+    {
+      "id": "t12-007-reference-handbook-analytical-and-olap-databases",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Analytical and OLAP databases",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-wide-column-stores"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-analytical-and-olap-databases"
+    },
+    {
+      "id": "t12-007-reference-handbook-time-series-databases",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Time-series databases",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-analytical-and-olap-databases"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-time-series-databases"
+    },
+    {
+      "id": "t12-007-reference-handbook-graph-databases",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Graph databases",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-time-series-databases"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-graph-databases"
+    },
+    {
+      "id": "t12-007-reference-handbook-search-engines",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Search engines",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-graph-databases"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-search-engines"
+    },
+    {
+      "id": "t12-007-reference-handbook-vector-databases-and-indexes",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Vector databases and indexes",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-search-engines"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-vector-databases-and-indexes"
+    },
+    {
+      "id": "t12-007-reference-handbook-storage-engines",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Storage engines",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-vector-databases-and-indexes"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-engines"
+    },
+    {
+      "id": "t12-007-reference-handbook-messaging-and-streaming",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Messaging and streaming",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-storage-engines"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-messaging-and-streaming"
+    },
+    {
+      "id": "t12-007-reference-handbook-stream-processing",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Stream processing",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-messaging-and-streaming"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-stream-processing"
+    },
+    {
+      "id": "t12-007-reference-handbook-change-data-capture",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Change data capture",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-stream-processing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-change-data-capture"
+    },
+    {
+      "id": "t12-007-reference-handbook-workflow-orchestration",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Workflow orchestration",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-change-data-capture"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-workflow-orchestration"
+    },
+    {
+      "id": "t12-007-reference-handbook-coordination-and-service-discovery",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Coordination and service discovery",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-workflow-orchestration"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-coordination-and-service-discovery"
+    },
+    {
+      "id": "t12-007-reference-handbook-proxies-and-service-mesh",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Proxies and service mesh",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-coordination-and-service-discovery"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-proxies-and-service-mesh"
+    },
+    {
+      "id": "t12-007-reference-handbook-observability",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Observability",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-proxies-and-service-mesh"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-observability"
+    },
+    {
+      "id": "t12-007-reference-handbook-cdn-and-edge",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: CDN and edge",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-observability"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-cdn-and-edge"
+    },
+    {
+      "id": "t12-007-reference-handbook-object-storage",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Object storage",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-cdn-and-edge"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-object-storage"
+    },
+    {
+      "id": "t12-007-reference-handbook-realtime-and-push",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Realtime and push",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-object-storage"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-realtime-and-push"
+    },
+    {
+      "id": "t12-007-reference-handbook-protocols",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Reference: Protocols",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-007-reference-handbook-realtime-and-push"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-protocols"
+    },
+    {
+      "id": "t12-007-practice",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Exercises and worked solutions",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-007-reference-handbook-protocols"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-007-interview",
+      "track": "track-12",
+      "title": "system design technology landscape and selection — Interview questions and reasoning",
+      "module": "t12-007",
+      "manifest": "curriculum/manifests/system-design/t12-007.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t12-007-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-008-overview",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Big-picture orientation and mental model",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-008-concepts",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Core concepts and how they fit together",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t12-008-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-008-reference-data-and-storage-sql-vs-nosql",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: SQL vs NoSQL",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "data-and-storage-sql-vs-nosql"
+    },
+    {
+      "id": "t12-008-reference-data-and-storage-b-tree-vs-lsm-tree",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: B-tree vs LSM-tree",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-data-and-storage-sql-vs-nosql"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "data-and-storage-b-tree-vs-lsm-tree"
+    },
+    {
+      "id": "t12-008-reference-data-and-storage-range-vs-hash-vs-consistent-hash-vs-directory-partitioning",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Range vs hash vs consistent-hash vs directory partitioning",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-data-and-storage-b-tree-vs-lsm-tree"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "data-and-storage-range-vs-hash-vs-consistent-hash-vs-directory-partitioning"
+    },
+    {
+      "id": "t12-008-reference-data-and-storage-normalization-vs-denormalization",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Normalization vs denormalization",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-data-and-storage-range-vs-hash-vs-consistent-hash-vs-directory-partitioning"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "data-and-storage-normalization-vs-denormalization"
+    },
+    {
+      "id": "t12-008-reference-data-and-storage-acid-vs-base",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: ACID vs BASE",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-data-and-storage-normalization-vs-denormalization"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "data-and-storage-acid-vs-base"
+    },
+    {
+      "id": "t12-008-reference-consistency-and-replication-strong-vs-eventual-consistency",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Strong vs eventual consistency",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-data-and-storage-acid-vs-base"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "consistency-and-replication-strong-vs-eventual-consistency"
+    },
+    {
+      "id": "t12-008-reference-consistency-and-replication-cap-and-pacelc-applied",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: CAP and PACELC applied",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-consistency-and-replication-strong-vs-eventual-consistency"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "consistency-and-replication-cap-and-pacelc-applied"
+    },
+    {
+      "id": "t12-008-reference-consistency-and-replication-leader-follower-vs-multi-leader-vs-leaderless-replication",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Leader-follower vs multi-leader vs leaderless replication",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-consistency-and-replication-cap-and-pacelc-applied"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "consistency-and-replication-leader-follower-vs-multi-leader-vs-leaderless-replication"
+    },
+    {
+      "id": "t12-008-reference-consistency-and-replication-2pc-vs-saga-vs-tcc",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: 2PC vs saga vs TCC",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-consistency-and-replication-leader-follower-vs-multi-leader-vs-leaderless-replication"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "consistency-and-replication-2pc-vs-saga-vs-tcc"
+    },
+    {
+      "id": "t12-008-reference-consistency-and-replication-optimistic-vs-pessimistic-concurrency-control",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Optimistic vs pessimistic concurrency control",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-consistency-and-replication-2pc-vs-saga-vs-tcc"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "consistency-and-replication-optimistic-vs-pessimistic-concurrency-control"
+    },
+    {
+      "id": "t12-008-reference-performance-and-scale-latency-vs-throughput",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Latency vs throughput",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-consistency-and-replication-optimistic-vs-pessimistic-concurrency-control"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "performance-and-scale-latency-vs-throughput"
+    },
+    {
+      "id": "t12-008-reference-performance-and-scale-vertical-vs-horizontal-scaling",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Vertical vs horizontal scaling",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-performance-and-scale-latency-vs-throughput"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "performance-and-scale-vertical-vs-horizontal-scaling"
+    },
+    {
+      "id": "t12-008-reference-performance-and-scale-cache-aside-vs-write-through-vs-write-behind",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Cache-aside vs write-through vs write-behind",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-performance-and-scale-vertical-vs-horizontal-scaling"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "performance-and-scale-cache-aside-vs-write-through-vs-write-behind"
+    },
+    {
+      "id": "t12-008-reference-performance-and-scale-token-bucket-vs-sliding-window-rate-limiting",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Token bucket vs sliding-window rate limiting",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-performance-and-scale-cache-aside-vs-write-through-vs-write-behind"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "performance-and-scale-token-bucket-vs-sliding-window-rate-limiting"
+    },
+    {
+      "id": "t12-008-reference-performance-and-scale-single-region-vs-multi-region-deployment",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Single-region vs multi-region deployment",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-performance-and-scale-token-bucket-vs-sliding-window-rate-limiting"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "performance-and-scale-single-region-vs-multi-region-deployment"
+    },
+    {
+      "id": "t12-008-reference-architecture-and-apis-monolith-vs-microservices",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Monolith vs microservices",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-performance-and-scale-single-region-vs-multi-region-deployment"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "architecture-and-apis-monolith-vs-microservices"
+    },
+    {
+      "id": "t12-008-reference-architecture-and-apis-rest-vs-grpc-vs-graphql",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: REST vs gRPC vs GraphQL",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-architecture-and-apis-monolith-vs-microservices"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "architecture-and-apis-rest-vs-grpc-vs-graphql"
+    },
+    {
+      "id": "t12-008-reference-architecture-and-apis-load-balancer-vs-reverse-proxy-vs-api-gateway",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Load balancer vs reverse proxy vs API gateway",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-architecture-and-apis-rest-vs-grpc-vs-graphql"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "architecture-and-apis-load-balancer-vs-reverse-proxy-vs-api-gateway"
+    },
+    {
+      "id": "t12-008-reference-messaging-and-streaming-batch-vs-stream-processing",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Batch vs stream processing",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-architecture-and-apis-load-balancer-vs-reverse-proxy-vs-api-gateway"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "messaging-and-streaming-batch-vs-stream-processing"
+    },
+    {
+      "id": "t12-008-reference-messaging-and-streaming-lambda-vs-kappa-architecture",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Lambda vs Kappa architecture",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-messaging-and-streaming-batch-vs-stream-processing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "messaging-and-streaming-lambda-vs-kappa-architecture"
+    },
+    {
+      "id": "t12-008-reference-messaging-and-streaming-polling-vs-long-polling-vs-sse-vs-websockets-vs-webhooks",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Polling vs long-polling vs SSE vs WebSockets vs webhooks",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-messaging-and-streaming-lambda-vs-kappa-architecture"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "messaging-and-streaming-polling-vs-long-polling-vs-sse-vs-websockets-vs-webhooks"
+    },
+    {
+      "id": "t12-008-reference-messaging-and-streaming-push-vs-pull-delivery-and-fan-out",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Reference: Push vs pull delivery and fan-out",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-008-reference-messaging-and-streaming-polling-vs-long-polling-vs-sse-vs-websockets-vs-webhooks"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "messaging-and-streaming-push-vs-pull-delivery-and-fan-out"
+    },
+    {
+      "id": "t12-008-practice",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Exercises and worked solutions",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-008-reference-messaging-and-streaming-push-vs-pull-delivery-and-fan-out"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-008-interview",
+      "track": "track-12",
+      "title": "system design tradeoffs and decision methods — Interview questions and reasoning",
+      "module": "t12-008",
+      "manifest": "curriculum/manifests/system-design/t12-008.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t12-008-practice"
       ],
       "status": "draft-generation-eligible"
     },

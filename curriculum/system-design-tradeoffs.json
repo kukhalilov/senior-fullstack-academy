@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "source": "https://hld.handbook.academy/trade-offs/",
+  "attribution": "Tradeoff names and category organization are adapted from The HLD Handbook (https://hld.handbook.academy/), © Handbook Academy contributors, licensed CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Explanations are original course writing.",
+  "groups": [
+    {
+      "id": "data-and-storage",
+      "title": "Data and storage tradeoffs",
+      "items": [
+        {"name":"SQL vs NoSQL","guide":"Relational systems provide declarative queries and transactional constraints; non-relational systems span several distinct models rather than one SQL-free category. Compare invariants, query patterns, consistency, schema evolution, and operating expertise."},
+        {"name":"B-tree vs LSM-tree","guide":"B-trees support ordered lookup and updates through page-oriented structures; LSM designs buffer and merge writes across sorted runs, trading write behavior against compaction, read amplification, and space amplification. Actual engines combine techniques."},
+        {"name":"Range vs hash vs consistent-hash vs directory partitioning","guide":"Range placement supports ordered scans but can create skew; hash placement spreads keys but weakens range locality; consistent hashing can limit remapping when membership changes; directory placement adds a lookup/control layer and can route flexibly at that layer's availability and scale cost."},
+        {"name":"Normalization vs denormalization","guide":"Normalization reduces duplicated facts and update anomalies; denormalization can reduce read joins or distribute precomputed views while adding write coordination, freshness, storage, and repair work."},
+        {"name":"ACID vs BASE","guide":"ACID names transaction properties; BASE is an informal family of availability-oriented, eventually convergent design choices, not a formal opposite protocol. Compare concrete transaction and consistency guarantees for each operation."}
+      ]
+    },
+    {
+      "id": "consistency-and-replication",
+      "title": "Consistency and replication tradeoffs",
+      "items": [
+        {"name":"Strong vs eventual consistency","guide":"Specify the actual consistency model and operation. Linearizable reads/writes give stronger ordering than eventual convergence but can require coordination; eventual consistency alone gives no fixed freshness bound."},
+        {"name":"CAP and PACELC applied","guide":"CAP concerns atomic consistency (linearizable behavior) and availability during a network partition under its model; PACELC also highlights latency-versus-consistency choices when there is no partition. These are reasoning lenses, not database product labels."},
+        {"name":"Leader-follower vs multi-leader vs leaderless replication","guide":"A leader can simplify write order but creates election/failover dependencies; multi-leader permits concurrent writes and requires conflict policy; leaderless designs use replica protocols and quorum assumptions. Compare topology, consistency, failure, and repair behavior."},
+        {"name":"2PC vs saga vs TCC","guide":"Two-phase commit coordinates participants in one distributed transaction and may block while a decision is unresolved; a saga composes local transactions with compensations; Try-Confirm-Cancel reserves then commits or releases resources. None makes arbitrary external effects magically atomic."},
+        {"name":"Optimistic vs pessimistic concurrency control","guide":"Optimistic control detects conflicts at validation/commit and suits workloads with tolerable retries; pessimistic control prevents some conflicts by locking but can block or deadlock. Choose from contention, transaction duration, and failure/retry semantics."}
+      ]
+    },
+    {
+      "id": "performance-and-scale",
+      "title": "Performance and scale tradeoffs",
+      "items": [
+        {"name":"Latency vs throughput","guide":"Latency is time for an operation; throughput is completed work per unit time. Concurrency and batching can increase throughput while raising queueing and tail latency. Measure distributions under representative load."},
+        {"name":"Vertical vs horizontal scaling","guide":"Vertical scaling increases resources within a node and may simplify stateful operation until limits or failure concentration dominate; horizontal scaling adds nodes and requires distribution, coordination, and capacity management."},
+        {"name":"Cache-aside vs write-through vs write-behind","guide":"Cache-aside loads on demand; write-through updates cache and backing store according to a policy; write-behind acknowledges before deferred persistence and therefore needs explicit durability, ordering, and loss/replay handling."},
+        {"name":"Token bucket vs sliding-window rate limiting","guide":"Token bucket bounds sustained rate while allowing configured bursts; sliding-window approaches measure activity over a moving interval with implementation choices for exactness and cost. Distributed enforcement adds synchronization or approximation tradeoffs."},
+        {"name":"Single-region vs multi-region deployment","guide":"One region reduces cross-region complexity but leaves regional recovery requirements; multiple regions can reduce locality or recovery time for some users while introducing replication lag, conflict, failover, cost, and residency decisions."}
+      ]
+    },
+    {
+      "id": "architecture-and-apis",
+      "title": "Architecture and API tradeoffs",
+      "items": [
+        {"name":"Monolith vs microservices","guide":"A modular monolith has one deployable application boundary with internal modules; microservices introduce independently deployable network boundaries, ownership and failure isolation alongside contract, operations, latency, and data-consistency costs."},
+        {"name":"REST vs gRPC vs GraphQL","guide":"REST is an architectural style; HTTP APIs commonly use resource-oriented semantics. gRPC defines service contracts and its mainstream RPC protocol uses HTTP/2. GraphQL lets clients select fields through a schema and server execution. Evaluate browser/client constraints, evolution, caching, tooling, streaming, and operational policy."},
+        {"name":"Load balancer vs reverse proxy vs API gateway","guide":"A load balancer distributes traffic; a reverse proxy receives and forwards requests; an API gateway applies API-level routing and policy. Products may combine roles, so compare the responsibilities and failure domain rather than names alone."}
+      ]
+    },
+    {
+      "id": "messaging-and-streaming",
+      "title": "Messaging and streaming tradeoffs",
+      "items": [
+        {"name":"Batch vs stream processing","guide":"Batch computes over bounded or accumulated data; stream processing handles continuing events with explicit event time, state, lateness, and recovery semantics. Many systems combine both."},
+        {"name":"Lambda vs Kappa architecture","guide":"Lambda separates batch and stream paths and reconciles their views; Kappa favors a replayable stream-processing path. They differ in code paths, replay capability, historical recomputation, and operational burden, not simply speed."},
+        {"name":"Polling vs long-polling vs SSE vs WebSockets vs webhooks","guide":"Polling is client initiated on intervals; long-polling holds a request until data or timeout; SSE is one-way server-to-client over HTTP; WebSockets are bidirectional; webhooks deliver server-to-server callbacks. Choose by direction, latency, connectivity, replay, scale, and authentication needs."},
+        {"name":"Push vs pull delivery and fan-out","guide":"Push distributes work/data to consumers proactively and can create hot consumers or fan-out bursts; pull lets consumers control pace but adds polling delay and cursor/lease management. Hybrid systems partition responsibility and need backpressure."}
+      ]
+    }
+  ]
+}

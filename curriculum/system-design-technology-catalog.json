@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "source": "https://hld.handbook.academy/technologies/",
+  "attribution": "Technology names and category organization are adapted from The HLD Handbook (https://hld.handbook.academy/), © Handbook Academy contributors, licensed CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Product role notes are original course writing.",
+  "sourceSnapshot": {
+    "checkedAt": "2026-11-17",
+    "categoryCount": 21,
+    "technologyCount": 67,
+    "note": "Names and category membership are a snapshot of the Handbook index. This is a study list, not an endorsement, ranking, or exhaustive list of all products in each market."
+  },
+  "groups": [
+    {
+      "id": "relational-distributed-sql-and-operational-stores",
+      "title": "Relational, distributed SQL, key-value, document, and wide-column stores",
+      "categories": ["Relational databases", "Distributed SQL and sharding middleware", "Key-value and document stores", "Wide-column stores"],
+      "technologies": [
+        {"name":"PostgreSQL","role":"General-purpose relational database; evaluate transaction, indexing, extension, operations, and workload fit."},
+        {"name":"MySQL","role":"General-purpose relational database; evaluate its engine, compatibility, operations, and workload fit."},
+        {"name":"Spanner","role":"Distributed relational database service; examine geographic consistency, latency, and service-specific operating model."},
+        {"name":"CockroachDB","role":"Distributed SQL database; examine transaction semantics, topology, latency, and operating complexity."},
+        {"name":"TiDB","role":"Distributed SQL platform; evaluate SQL compatibility, storage/compute layout, workload mix, and operations."},
+        {"name":"Vitess","role":"MySQL sharding and database-cluster management layer; compare an application-facing sharding platform with a distributed SQL database."},
+        {"name":"YugabyteDB","role":"Distributed SQL database; evaluate its compatibility model, consistency, regions, and operational footprint."},
+        {"name":"Redis","role":"In-memory data platform used for cache and other low-latency data structures; evaluate persistence, memory cost, and data-loss behavior for the chosen mode."},
+        {"name":"Memcached","role":"In-memory cache focused on simple key-value caching; compare its intentionally narrower responsibilities with a broader data platform."},
+        {"name":"DynamoDB","role":"Managed key-value/document database; model access patterns, partition keys, consistency options, and provider-specific limits."},
+        {"name":"MongoDB","role":"Document database; evaluate document boundaries, indexes, transaction needs, and query patterns."},
+        {"name":"Cassandra","role":"Distributed wide-column database; design around partition-key access patterns and replication behavior."},
+        {"name":"ScyllaDB","role":"Distributed wide-column database with documented Cassandra/CQL compatibility; check its versioned compatibility matrix because support is not a blanket promise of identical behavior."},
+        {"name":"Bigtable","role":"Managed wide-column database; evaluate key design, range access, and managed-service constraints."},
+        {"name":"HBase","role":"Wide-column database in the Hadoop ecosystem; evaluate its deployment and integration needs against the workload."}
+      ],
+      "comparison": "Do not rank these products on a single scalability label. First separate relational transactions, distributed SQL, application-managed sharding, cache/key-value access, document retrieval, and wide-column access patterns. Then compare consistency, indexing/query flexibility, partition-key constraints, operational model, failure behavior, migration cost, and measured workload."
+    },
+    {
+      "id": "analytics-timeseries-graph-and-search",
+      "title": "Analytical, time-series, graph, and search systems",
+      "categories": ["Analytical and OLAP databases", "Time-series databases", "Graph databases", "Search engines"],
+      "technologies": [
+        {"name":"BigQuery","role":"Managed analytical warehouse; evaluate scan-oriented query economics, governance, and cloud integration."},
+        {"name":"ClickHouse","role":"Column-oriented analytical database; evaluate ingest, aggregation, compression, and query patterns."},
+        {"name":"Snowflake","role":"Managed analytical data platform; evaluate workload isolation, governance, ecosystem, and cost model."},
+        {"name":"Redshift","role":"Managed analytical warehouse; evaluate its architecture and integration in the selected cloud environment."},
+        {"name":"Druid","role":"Analytical data store often used for interactive time-oriented aggregates; assess ingestion and query pattern fit."},
+        {"name":"Pinot","role":"Distributed OLAP store focused on low-latency analytical queries; assess freshness and indexing needs."},
+        {"name":"InfluxDB","role":"Time-series database; evaluate write, query, retention, and downsampling requirements against its current edition."},
+        {"name":"TimescaleDB","role":"Time-series capabilities built around PostgreSQL; compare relational integration with specialized time-series operations."},
+        {"name":"VictoriaMetrics","role":"Time-series monitoring storage; evaluate ingestion, retention, query compatibility, and operational design."},
+        {"name":"Neo4j","role":"Property-graph database; evaluate relationship traversal patterns, graph model, and query needs."},
+        {"name":"Elasticsearch","role":"Search and analytics engine; evaluate indexing, relevance, aggregations, operations, and document freshness."},
+        {"name":"OpenSearch","role":"Open search and analytics suite; compare its current distribution, plugins, compatibility, and operating model with alternatives."}
+      ],
+      "comparison": "Choose by query shape and freshness: broad scans and aggregates, event-time windows, multi-hop relationship traversal, or relevance-ranked text retrieval are different workloads. Keep authoritative business records separate from rebuildable analytics/search projections and define reconciliation, freshness, retention, and access control."
+    },
+    {
+      "id": "vector-search-and-embedded-storage",
+      "title": "Vector databases, nearest-neighbor libraries, and embedded storage",
+      "categories": ["Vector databases and indexes", "Storage engines"],
+      "technologies": [
+        {"name":"Pinecone","role":"Managed vector database; evaluate managed operations, filtering, freshness, tenancy, and cost."},
+        {"name":"Weaviate","role":"Vector database platform; compare deployment and data-model capabilities against the retrieval workload."},
+        {"name":"Milvus","role":"Vector database; evaluate index, deployment, scaling, and operational requirements."},
+        {"name":"Qdrant","role":"Vector search engine; evaluate filtering, deployment, index choices, and workload needs."},
+        {"name":"Faiss","role":"Vector similarity-search library; compare embedding search as an application-managed component with a full database service."},
+        {"name":"pgvector","role":"Vector extension for PostgreSQL; compare keeping vectors beside relational data with a separate vector system."},
+        {"name":"RocksDB","role":"Embeddable key-value storage engine based on an LSM design; distinguish an embedded library from a distributed database service."}
+      ],
+      "comparison": "For vector workloads compare managed service versus self-operated database versus embedded library; exact versus approximate search; recall versus latency; filtering and tenant isolation; update/delete freshness; index rebuild time; and total memory/storage cost. For embedded storage, compare application ownership and replication/recovery work rather than assuming a library supplies distributed-system behavior."
+    },
+    {
+      "id": "messaging-streaming-cdc-and-workflows",
+      "title": "Messaging, streaming, change capture, and workflow platforms",
+      "categories": ["Messaging and streaming", "Stream processing", "Change data capture", "Workflow orchestration"],
+      "technologies": [
+        {"name":"Kafka","role":"Distributed event log and streaming platform; evaluate partition ordering, retention, consumer replay, and operations."},
+        {"name":"RabbitMQ","role":"Message broker with routing and acknowledgement patterns; evaluate delivery workflow, topology, and operational fit."},
+        {"name":"NATS","role":"Messaging system with core and persistence-oriented options; compare latency, retention, and delivery needs by mode."},
+        {"name":"SQS","role":"Managed queue service; evaluate delivery, visibility, ordering options, quotas, and provider dependency."},
+        {"name":"Kinesis","role":"Managed streaming service; evaluate shard/throughput model, retention, consumers, and provider integration."},
+        {"name":"Pulsar","role":"Distributed messaging and streaming platform; compare its topic, subscription, storage, and operations model to requirements."},
+        {"name":"Flink","role":"Stream-processing engine; evaluate event-time stateful processing, checkpointing, and operational complexity."},
+        {"name":"Spark","role":"Data-processing engine with batch and streaming capabilities; compare latency and processing semantics for the use case."},
+        {"name":"Debezium","role":"Change-data-capture platform based on database change streams/logs; evaluate connector support, schema changes, and replay behavior."},
+        {"name":"Temporal","role":"Durable workflow orchestration platform; evaluate long-running stateful workflows, retries, and operational model."},
+        {"name":"Airflow","role":"Workflow scheduler/orchestrator commonly used for data pipelines; compare scheduled DAG execution with event-driven long-running workflows."}
+      ],
+      "comparison": "Separate a work queue, retained event log, pub/sub delivery, stream processor, CDC connector, and workflow engine. They solve related but different problems. Compare ordering scope, retention/replay, acknowledgement, redelivery, state/checkpointing, backpressure, scheduling, failure recovery, and operator burden. A broker guarantee does not make an external business side effect exactly once."
+    },
+    {
+      "id": "coordination-proxies-and-service-mesh",
+      "title": "Coordination, service discovery, proxies, and service meshes",
+      "categories": ["Coordination and service discovery", "Proxies and service mesh"],
+      "technologies": [
+        {"name":"ZooKeeper","role":"Coordination service used for metadata and leader/membership patterns; evaluate quorum operations and client semantics."},
+        {"name":"etcd","role":"Distributed key-value store commonly used for coordination/configuration; evaluate consistency, watch, and quorum behavior."},
+        {"name":"Consul","role":"Service networking and discovery platform; distinguish its catalog, health, and service-mesh responsibilities."},
+        {"name":"Nginx","role":"Web server and reverse proxy; evaluate routing, TLS, caching, and configuration needs."},
+        {"name":"Envoy","role":"Programmable proxy used for service and edge traffic; evaluate dynamic configuration, protocol support, and operations."},
+        {"name":"HAProxy","role":"Load balancer and proxy; evaluate transport/application routing, health, and deployment needs."},
+        {"name":"Kong","role":"API gateway platform; compare gateway policy and plugin requirements with a general-purpose proxy."},
+        {"name":"Istio","role":"Service-mesh platform; evaluate identity, traffic policy, telemetry, sidecar/control-plane complexity, and alternatives."},
+        {"name":"Linkerd","role":"Service-mesh platform; compare its operating model and feature scope against the actual service-network requirements."}
+      ],
+      "comparison": "First decide whether the need is naming/discovery, consensus-backed coordination, connection balancing, HTTP routing, API policy, or service-to-service identity/telemetry. A mesh can centralize some network policy but adds control-plane and data-plane components. A proxy is not automatically an API gateway, and a service catalog is not consensus for business data."
+    },
+    {
+      "id": "observability-edge-and-object-delivery",
+      "title": "Observability, CDN/edge, and object delivery",
+      "categories": ["Observability", "CDN and edge", "Object storage"],
+      "technologies": [
+        {"name":"Prometheus","role":"Metrics collection and query ecosystem; evaluate scrape/push patterns, label cardinality, and retention architecture."},
+        {"name":"Grafana","role":"Visualization and observability interface; distinguish dashboards from the telemetry storage and collection layers."},
+        {"name":"Jaeger","role":"Distributed tracing backend/UI; compare trace ingestion, sampling, storage, and query requirements."},
+        {"name":"OpenTelemetry","role":"Vendor-neutral instrumentation and telemetry data model/protocol ecosystem; it is not itself a telemetry database."},
+        {"name":"Cloudflare","role":"Edge network and security platform; evaluate CDN, DNS, proxy, security, and edge-compute needs separately."},
+        {"name":"CloudFront","role":"AWS content-delivery network; evaluate origin integration, cache policy, invalidation, and geographic distribution."},
+        {"name":"Akamai","role":"Content delivery and security platform; compare delivery footprint, controls, and contract/operating requirements."},
+        {"name":"Fastly","role":"Programmable content-delivery platform; evaluate caching, edge logic, purge behavior, and delivery needs."},
+        {"name":"S3","role":"AWS object-storage service; evaluate object semantics, lifecycle, access, consistency contract, durability, and provider-specific limits."}
+      ],
+      "comparison": "Separate instrumentation and transport from collection, storage, query, and visualization. For CDN/edge compare cache control, key design, purge, origin shielding, security, and programmable compute. For object storage compare immutable object delivery and lifecycle against transactional database requirements; do not assume S3 semantics transfer identically to another provider."
+    },
+    {
+      "id": "realtime-and-api-protocols",
+      "title": "Realtime delivery and API protocols",
+      "categories": ["Realtime and push", "Protocols"],
+      "technologies": [
+        {"name":"Firebase","role":"Google's application-development platform including realtime data capabilities; identify the specific product/service and consistency/security model before comparing."},
+        {"name":"gRPC","role":"RPC framework/protocol based on HTTP/2 and Protocol Buffers in common deployments; evaluate generated contracts, streaming, browser support, and observability."},
+        {"name":"GraphQL","role":"API query language/runtime that lets clients request shaped data; evaluate authorization, query-cost limits, caching, and N+1 behavior."},
+        {"name":"WebSockets","role":"Bidirectional persistent communication channel; evaluate connection scale, reconnection, ordering, authorization, and application-level delivery guarantees."}
+      ],
+      "comparison": "Choose an API contract and delivery mechanism from caller needs: resource-oriented HTTP, schema-driven query, typed RPC, or persistent realtime channel. For server push also compare Server-Sent Events, long polling, webhooks, and WebSockets; they differ in direction, connection state, retry, firewall compatibility, and delivery guarantees."
+    }
+  ]
+}

@@ -16,6 +16,9 @@ The [HLD Handbook](https://hld.handbook.academy/) organizes its syllabus into 12
 | 9. AI/ML system design | LLM serving, RAG, vector retrieval, agents, evaluation, LLMOps, cost, safety, ML systems, features/recommendations, voice, multimodal, AI data/MCP | [t12-005](../course/drafts/t12-005/t12-005-overview.md); web security and React/.NET lessons provide application-level boundaries |
 | 10. Emerging patterns | Carbon-aware scheduling, PUE, sustainable computing | Sustainability, carbon-aware scheduling, PUE, and FinOps unit economics in t12-004 reference lessons |
 | 11. Interview framework | Scoping, prioritization, diagramming, tradeoff communication, company context, RFC/ADR/design docs | [t10-009](../course/drafts/t10-009/t10-009-interview.md), t12-006 design artifacts, and the 56 case exercises |
+| Handbook technology index | 67 technologies in 21 categories, from relational/distributed databases and analytics to brokers, observability, CDN, object storage, and API protocols | [t12-007 overview](../course/drafts/t12-007/t12-007-overview.md) teaches capability-first selection; 21 reference lessons enumerate all 67 names with role-level comparison prompts. The catalog records the Handbook snapshot in [system-design-technology-catalog.json](system-design-technology-catalog.json). |
+| Trade-off library | 22 guides across data/storage, consistency/replication, performance/scale, architecture/APIs, and messaging/streaming | [t12-008 overview](../course/drafts/t12-008/t12-008-overview.md) precedes 22 standalone reference lessons, one per named comparison, with explanations and workload-sensitive decision checks. Exact index is in [system-design-tradeoffs.json](system-design-tradeoffs.json). |
+| AI/ML named scope | The Handbook's 15 modules name serving engines, ANN algorithms, agent/evaluation tools, model operations, recommendation methods, voice and multimodal systems, and AI data infrastructure | [t12-005 reference: handbook-ai-ml-named-scope](../course/drafts/t12-005/t12-005-reference-handbook-ai-ml-named-scope.md) inventories 91 named systems, algorithms, and decisions alongside four broader AI references. Source names are mapped in [system-design-ai-inventory.json](system-design-ai-inventory.json). |
 
 ## Stack-specific integration
 
@@ -24,4 +27,8 @@ The [HLD Handbook](https://hld.handbook.academy/) organizes its syllabus into 12
 
 ## Case-study scope
 
-Each of the 56 named case-study prompts has an individual Markdown lesson with a case-specific design answer, exercises, failure tests, and reflection questions. Workload numbers displayed by the source handbook are not treated as universal facts: each interview answer requires the learner to state and test its own assumptions.
+Each of the 56 named case-study prompts has an individual Markdown lesson with a case-specific design answer, exercises, failure tests, and reflection questions. Workload numbers displayed by the source handbook are not treated as universal facts: each interview answer requires the learner to state and test its own assumptions. The technology list and tradeoff library are separately enumerated so the course does not imply that React, .NET, and SQL Server are the only implementation choices. Product roles are orientation; version-specific claims require current primary product documentation.
+
+## Coverage and factual-review status
+
+This is a topic-to-course map, not proof that every one of the Handbook's 159 modules has been reproduced in equal depth. The catalog and tradeoff names are checked against the Handbook index; technical behavior still requires claim-by-claim source review. All lesson files remain drafts until their factual-review ledger records each claim, its primary source, and any correction. See [the factual-review ledger](factual-review-ledger.json) for per-lesson progress.

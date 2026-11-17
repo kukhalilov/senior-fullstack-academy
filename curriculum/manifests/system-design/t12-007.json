@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 4,
+  "id": "t12-007",
+  "track": "track-12",
+  "title": "system design technology landscape and selection",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "System design is technology-neutral: choose tools by their data model, guarantees, workload, failure behavior, operating model, and team constraints. The course uses .NET, React, and SQL Server for concrete integrations, while this topic compares a wider representative landscape from the HLD Handbook.",
+    "Translate product requirements into observable measures and testable user journeys before choosing components.",
+    "Make state ownership, consistency, replay, and recovery explicit at every boundary.",
+    "Account for latency, throughput, tail behavior, capacity, cost, security, privacy, and operational effort as interacting constraints.",
+    "Use a simple baseline, then add a mechanism only to meet a stated requirement or measured bottleneck.",
+    "Design failure behavior and release compatibility across client, API, data, and operations rather than per component."
+  ],
+  "inventory": [
+    {
+      "id": "handbook-relational-databases",
+      "title": "Relational databases",
+      "items": [
+        "PostgreSQL",
+        "MySQL",
+        "Spanner",
+        "CockroachDB"
+      ]
+    },
+    {
+      "id": "handbook-distributed-sql-and-sharding-middleware",
+      "title": "Distributed SQL and sharding middleware",
+      "items": [
+        "TiDB",
+        "Vitess",
+        "YugabyteDB"
+      ]
+    },
+    {
+      "id": "handbook-key-value-and-document-stores",
+      "title": "Key-value and document stores",
+      "items": [
+        "Redis",
+        "Memcached",
+        "DynamoDB",
+        "MongoDB"
+      ]
+    },
+    {
+      "id": "handbook-wide-column-stores",
+      "title": "Wide-column stores",
+      "items": [
+        "Cassandra",
+        "ScyllaDB",
+        "Bigtable",
+        "HBase"
+      ]
+    },
+    {
+      "id": "handbook-analytical-and-olap-databases",
+      "title": "Analytical and OLAP databases",
+      "items": [
+        "BigQuery",
+        "ClickHouse",
+        "Snowflake",
+        "Redshift",
+        "Druid",
+        "Pinot"
+      ]
+    },
+    {
+      "id": "handbook-time-series-databases",
+      "title": "Time-series databases",
+      "items": [
+        "InfluxDB",
+        "TimescaleDB",
+        "VictoriaMetrics"
+      ]
+    },
+    {
+      "id": "handbook-graph-databases",
+      "title": "Graph databases",
+      "items": [
+        "Neo4j"
+      ]
+    },
+    {
+      "id": "handbook-search-engines",
+      "title": "Search engines",
+      "items": [
+        "Elasticsearch",
+        "OpenSearch"
+      ]
+    },
+    {
+      "id": "handbook-vector-databases-and-indexes",
+      "title": "Vector databases and indexes",
+      "items": [
+        "Pinecone",
+        "Weaviate",
+        "Milvus",
+        "Qdrant",
+        "Faiss",
+        "pgvector"
+      ]
+    },
+    {
+      "id": "handbook-storage-engines",
+      "title": "Storage engines",
+      "items": [
+        "RocksDB"
+      ]
+    },
+    {
+      "id": "handbook-messaging-and-streaming",
+      "title": "Messaging and streaming",
+      "items": [
+        "Kafka",
+        "RabbitMQ",
+        "NATS",
+        "SQS",
+        "Kinesis",
+        "Pulsar"
+      ]
+    },
+    {
+      "id": "handbook-stream-processing",
+      "title": "Stream processing",
+      "items": [
+        "Flink",
+        "Spark"
+      ]
+    },
+    {
+      "id": "handbook-change-data-capture",
+      "title": "Change data capture",
+      "items": [
+        "Debezium"
+      ]
+    },
+    {
+      "id": "handbook-workflow-orchestration",
+      "title": "Workflow orchestration",
+      "items": [
+        "Temporal",
+        "Airflow"
+      ]
+    },
+    {
+      "id": "handbook-coordination-and-service-discovery",
+      "title": "Coordination and service discovery",
+      "items": [
+        "ZooKeeper",
+        "etcd",
+        "Consul"
+      ]
+    },
+    {
+      "id": "handbook-proxies-and-service-mesh",
+      "title": "Proxies and service mesh",
+      "items": [
+        "Nginx",
+        "Envoy",
+        "HAProxy",
+        "Kong",
+        "Istio",
+        "Linkerd"
+      ]
+    },
+    {
+      "id": "handbook-observability",
+      "title": "Observability",
+      "items": [
+        "Prometheus",
+        "Grafana",
+        "Jaeger",
+        "OpenTelemetry"
+      ]
+    },
+    {
+      "id": "handbook-cdn-and-edge",
+      "title": "CDN and edge",
+      "items": [
+        "Cloudflare",
+        "CloudFront",
+        "Akamai",
+        "Fastly"
+      ]
+    },
+    {
+      "id": "handbook-object-storage",
+      "title": "Object storage",
+      "items": [
+        "S3"
+      ]
+    },
+    {
+      "id": "handbook-realtime-and-push",
+      "title": "Realtime and push",
+      "items": [
+        "Firebase"
+      ]
+    },
+    {
+      "id": "handbook-protocols",
+      "title": "Protocols",
+      "items": [
+        "gRPC",
+        "GraphQL",
+        "WebSockets"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    [
+      "PostgreSQL",
+      "MySQL",
+      "Spanner",
+      "CockroachDB",
+      "TiDB",
+      "Vitess",
+      "YugabyteDB"
+    ],
+    [
+      "Redis",
+      "Memcached",
+      "DynamoDB",
+      "MongoDB",
+      "Cassandra",
+      "ScyllaDB",
+      "Bigtable",
+      "HBase"
+    ],
+    [
+      "BigQuery",
+      "ClickHouse",
+      "Snowflake",
+      "Redshift",
+      "Druid",
+      "Pinot"
+    ],
+    [
+      "Kafka",
+      "RabbitMQ",
+      "NATS",
+      "SQS",
+      "Kinesis",
+      "Pulsar"
+    ],
+    [
+      "Nginx",
+      "Envoy",
+      "HAProxy",
+      "Kong",
+      "Istio",
+      "Linkerd"
+    ],
+    [
+      "Pinecone",
+      "Weaviate",
+      "Milvus",
+      "Qdrant",
+      "Faiss",
+      "pgvector"
+    ]
+  ],
+  "comparisonSources": [
+    "https://hld.handbook.academy/technologies/",
+    "https://www.postgresql.org/docs/current/",
+    "https://kafka.apache.org/documentation/",
+    "https://grpc.io/about/",
+    "https://grpc.io/docs/what-is-grpc/core-concepts/",
+    "https://graphql.org/learn/",
+    "https://cloud.google.com/spanner",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html",
+    "https://vitess.io/docs/24.0/overview/whatisvitess/",
+    "https://docs.scylladb.com/manual/master/using-scylla/cassandra-compatibility.html"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "The HLD Handbook public system-design syllabus, with relevant standards, framework guidance, and official platform documentation for technical context.",
+    "edition": "Handbook syllabus checked 2026-11-17; concepts are version-independent unless an implementation-specific source says otherwise.",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://hld.handbook.academy/technologies/",
+      "https://www.postgresql.org/docs/current/",
+      "https://kafka.apache.org/documentation/",
+      "https://grpc.io/about/",
+      "https://grpc.io/docs/what-is-grpc/core-concepts/",
+      "https://graphql.org/learn/",
+      "https://cloud.google.com/spanner",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html",
+      "https://vitess.io/docs/24.0/overview/whatisvitess/",
+      "https://docs.scylladb.com/manual/master/using-scylla/cassandra-compatibility.html"
+    ]
+  },
+  "scopeExclusions": [
+    "The 67 product names are a snapshot of the Handbook technology index, not all products in the market. Product roles are orientation only; verify exact current capabilities, limits, versions, pricing, and regional availability in primary vendor documentation."
+  ],
+  "generationAllowed": true
+}
