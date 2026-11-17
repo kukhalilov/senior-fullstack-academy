@@ -226,6 +226,19 @@ topics.find(t=>t.id==='t12-005').sourceUrls=[
   'https://kserve.github.io/website/',
   'https://mlflow.org/docs/latest/ml/model-registry/'
 ];
+const handbookAdditions=JSON.parse(fs.readFileSync('curriculum/system-design-handbook-additions.json','utf8'));
+const supplementalSources={
+  't12-001':['https://hld.handbook.academy/curriculum/prerequisites/','https://hld.handbook.academy/curriculum/building-blocks/','https://man7.org/linux/man-pages/man7/epoll.7.html','https://man7.org/linux/man-pages/man7/io_uring.7.html','https://man.freebsd.org/cgi/man.cgi?query=kqueue'],
+  't12-002':['https://hld.handbook.academy/curriculum/distributed-systems-theory/'],
+  't12-003':['https://hld.handbook.academy/curriculum/data-systems/'],
+  't12-004':['https://hld.handbook.academy/curriculum/architecture-patterns/','https://hld.handbook.academy/curriculum/reliability-and-operations/','https://hld.handbook.academy/curriculum/security-at-scale/','https://hld.handbook.academy/curriculum/emerging-patterns/','https://csrc.nist.gov/pubs/fips/203/final','https://csrc.nist.gov/pubs/fips/204/final'],
+  't12-006':['https://hld.handbook.academy/curriculum/case-studies/','https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/','https://www.rfc-editor.org/rfc/rfc9309','https://www.rfc-editor.org/rfc/rfc5322','https://www.rfc-editor.org/rfc/rfc8216']
+};
+for(const [topicId,groups] of Object.entries(handbookAdditions.topics)){
+  const topic=topics.find(t=>t.id===topicId);
+  for(const group of groups) for(const [name,definition] of Object.entries(group.entries)) topic.refs.push({id:`${group.id}-${name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}`,title:name,entries:{[name]:definition}});
+  topic.sourceUrls=[...new Set([...(topic.sourceUrls??sources(...topic.sourceKeys)),...supplementalSources[topicId]])];
+}
 fs.writeFileSync('curriculum/system-design-case-studies.md',`# System-design case-study index\n\nThe HLD Handbook lists 56 system-design cases across consumer products, infrastructure, financial systems, AI, and developer platforms. This index links to an independently authored practice lesson for every listed case. The source topic list is adapted from [The HLD Handbook](https://hld.handbook.academy/curriculum/case-studies/) (CC BY-SA 4.0); this adapted index is shared under CC BY-SA 4.0. The explanations and answer guides in this project are original course writing.\n\n| # | Case | Lesson |\n|---:|---|---|\n${caseStudies.map((c,i)=>`| ${i+1} | ${c.name} | [Open lesson](../course/drafts/t12-006/t12-006-practice-${c.id}.md) |`).join('\n')}\n`);
 for (const t of topics) {
   const topicSources=t.sourceUrls??sources(...t.sourceKeys);

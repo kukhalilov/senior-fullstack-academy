@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 2119,
+  "taskCount": 2340,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -23305,6 +23305,383 @@
       "inventoryGroup": "geospatial-indexing"
     },
     {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-epoll",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: epoll",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-geospatial-indexing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-epoll"
+    },
+    {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-kqueue",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: kqueue",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-epoll"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-kqueue"
+    },
+    {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-io-uring",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: io_uring",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-kqueue"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-io-uring"
+    },
+    {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-filesystem-internals",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Filesystem internals",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-io-uring"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-filesystem-internals"
+    },
+    {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-memory-hierarchy",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Memory hierarchy",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-filesystem-internals"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-memory-hierarchy"
+    },
+    {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-little-s-law",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Little's Law",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-memory-hierarchy"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-little-s-law"
+    },
+    {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-graphql-n-1-query-problem",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: GraphQL N+1 query problem",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-little-s-law"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-graphql-n-1-query-problem"
+    },
+    {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-grpc-streaming",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: gRPC streaming",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-graphql-n-1-query-problem"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-grpc-streaming"
+    },
+    {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-cursor-pagination",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Cursor pagination",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-grpc-streaming"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-cursor-pagination"
+    },
+    {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-api-versioning-and-evolution",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: API versioning and evolution",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-cursor-pagination"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-api-versioning-and-evolution"
+    },
+    {
+      "id": "t12-001-reference-handbook-os-io-api-and-capacity-idempotency-key",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Idempotency key",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-api-versioning-and-evolution"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-os-io-api-and-capacity-idempotency-key"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-aws-application-load-balancer-alb",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: AWS Application Load Balancer (ALB)",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-os-io-api-and-capacity-idempotency-key"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-aws-application-load-balancer-alb"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-aws-network-load-balancer-nlb",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: AWS Network Load Balancer (NLB)",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-aws-application-load-balancer-alb"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-aws-network-load-balancer-nlb"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-google-cloud-pub-sub",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Google Cloud Pub/Sub",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-aws-network-load-balancer-nlb"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-google-cloud-pub-sub"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-amazon-sns",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Amazon SNS",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-google-cloud-pub-sub"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-amazon-sns"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-webrtc",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: WebRTC",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-amazon-sns"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-webrtc"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-mqtt",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: MQTT",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-webrtc"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-mqtt"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-google-cloud-storage-gcs",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Google Cloud Storage (GCS)",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-mqtt"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-google-cloud-storage-gcs"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-minio",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: MinIO",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-google-cloud-storage-gcs"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-minio"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-cloudflare-workers",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Cloudflare Workers",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-minio"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-cloudflare-workers"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-aws-lambda-edge",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: AWS Lambda@Edge",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-cloudflare-workers"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-aws-lambda-edge"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-deno-deploy",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Deno Deploy",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-aws-lambda-edge"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-deno-deploy"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-cloudflare-durable-objects",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Cloudflare Durable Objects",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-deno-deploy"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-cloudflare-durable-objects"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-edge-database",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Edge database",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-cloudflare-durable-objects"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-edge-database"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-least-recently-used-lru-eviction",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Least Recently Used (LRU) eviction",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-edge-database"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-least-recently-used-lru-eviction"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-tinylfu-eviction",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: TinyLFU eviction",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-least-recently-used-lru-eviction"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-tinylfu-eviction"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-cache-stampede-prevention",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Cache stampede prevention",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-tinylfu-eviction"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-cache-stampede-prevention"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-apns",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: APNs",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-cache-stampede-prevention"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-apns"
+    },
+    {
+      "id": "t12-001-reference-handbook-building-block-product-and-protocol-examples-firebase-cloud-messaging-fcm",
+      "track": "track-12",
+      "title": "system design foundations and infrastructure building blocks — Reference: Firebase Cloud Messaging (FCM)",
+      "module": "t12-001",
+      "manifest": "curriculum/manifests/system-design/t12-001.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-apns"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-building-block-product-and-protocol-examples-firebase-cloud-messaging-fcm"
+    },
+    {
       "id": "t12-001-practice",
       "track": "track-12",
       "title": "system design foundations and infrastructure building blocks — Exercises and worked solutions",
@@ -23312,7 +23689,7 @@
       "manifest": "curriculum/manifests/system-design/t12-001.json",
       "phase": "practice",
       "prerequisites": [
-        "t12-001-reference-geospatial-indexing"
+        "t12-001-reference-handbook-building-block-product-and-protocol-examples-firebase-cloud-messaging-fcm"
       ],
       "status": "draft-generation-eligible"
     },
@@ -23403,6 +23780,188 @@
       "inventoryGroup": "cap-and-replication-guarantees"
     },
     {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-multi-paxos",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Multi-Paxos",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-cap-and-replication-guarantees"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-multi-paxos"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-read-quorum-and-write-quorum",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Read quorum and write quorum",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-multi-paxos"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-read-quorum-and-write-quorum"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-sloppy-quorum",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Sloppy quorum",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-read-quorum-and-write-quorum"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-sloppy-quorum"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-hinted-handoff",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Hinted handoff",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-sloppy-quorum"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-hinted-handoff"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-g-counter",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: G-Counter",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-hinted-handoff"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-g-counter"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-pn-counter",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: PN-Counter",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-g-counter"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-pn-counter"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-observed-remove-set-or-set",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Observed-Remove Set (OR-Set)",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-pn-counter"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-observed-remove-set-or-set"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-last-write-wins-register-lww-register",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Last-Write-Wins Register (LWW-Register)",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-observed-remove-set-or-set"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-last-write-wins-register-lww-register"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-swim-membership-protocol",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: SWIM membership protocol",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-last-write-wins-register-lww-register"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-swim-membership-protocol"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-phi-accrual-failure-detector",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Phi accrual failure detector",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-swim-membership-protocol"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-phi-accrual-failure-detector"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-bounded-load-consistent-hashing",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Bounded-load consistent hashing",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-phi-accrual-failure-detector"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-bounded-load-consistent-hashing"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-maglev-hashing",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Maglev hashing",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-bounded-load-consistent-hashing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-maglev-hashing"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-jump-consistent-hash",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Jump consistent hash",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-maglev-hashing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-jump-consistent-hash"
+    },
+    {
+      "id": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-read-repair",
+      "track": "track-12",
+      "title": "distributed systems consistency coordination and convergence — Reference: Read repair",
+      "module": "t12-002",
+      "manifest": "curriculum/manifests/system-design/t12-002.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-jump-consistent-hash"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-consensus-quorum-and-hash-algorithms-read-repair"
+    },
+    {
       "id": "t12-002-practice",
       "track": "track-12",
       "title": "distributed systems consistency coordination and convergence — Exercises and worked solutions",
@@ -23410,7 +23969,7 @@
       "manifest": "curriculum/manifests/system-design/t12-002.json",
       "phase": "practice",
       "prerequisites": [
-        "t12-002-reference-cap-and-replication-guarantees"
+        "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-read-repair"
       ],
       "status": "draft-generation-eligible"
     },
@@ -23488,6 +24047,175 @@
       "inventoryGroup": "specialized-indexes-and-data"
     },
     {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-innodb",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: InnoDB",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-specialized-indexes-and-data"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-innodb"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-delta-lake",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Delta Lake",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-innodb"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-delta-lake"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-apache-iceberg",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Apache Iceberg",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-delta-lake"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-apache-iceberg"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-apache-hudi",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Apache Hudi",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-apache-iceberg"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-apache-hudi"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-apache-hadoop",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Apache Hadoop",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-apache-hudi"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-apache-hadoop"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-kafka-streams",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Kafka Streams",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-apache-hadoop"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-kafka-streams"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-spark-structured-streaming",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Spark Structured Streaming",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-kafka-streams"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-spark-structured-streaming"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-maxwell-s-daemon",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Maxwell's Daemon",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-spark-structured-streaming"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-maxwell-s-daemon"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-apache-solr",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Apache Solr",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-maxwell-s-daemon"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-apache-solr"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-amazon-neptune",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Amazon Neptune",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-apache-solr"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-amazon-neptune"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-dgraph",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Dgraph",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-amazon-neptune"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-dgraph"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-thanos",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Thanos",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-dgraph"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-thanos"
+    },
+    {
+      "id": "t12-003-reference-handbook-storage-and-data-platform-examples-cortex",
+      "track": "track-12",
+      "title": "data systems storage engines analytics streams and search — Reference: Cortex",
+      "module": "t12-003",
+      "manifest": "curriculum/manifests/system-design/t12-003.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-003-reference-handbook-storage-and-data-platform-examples-thanos"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-storage-and-data-platform-examples-cortex"
+    },
+    {
       "id": "t12-003-practice",
       "track": "track-12",
       "title": "data systems storage engines analytics streams and search — Exercises and worked solutions",
@@ -23495,7 +24223,7 @@
       "manifest": "curriculum/manifests/system-design/t12-003.json",
       "phase": "practice",
       "prerequisites": [
-        "t12-003-reference-specialized-indexes-and-data"
+        "t12-003-reference-handbook-storage-and-data-platform-examples-cortex"
       ],
       "status": "draft-generation-eligible"
     },
@@ -23625,6 +24353,630 @@
       "inventoryGroup": "identity-and-threat-protection-at-scale"
     },
     {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-conway-s-law",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Conway's Law",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-identity-and-threat-protection-at-scale"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-conway-s-law"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-notification-state-transfer-and-domain-events",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Notification, state-transfer, and domain events",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-conway-s-law"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-notification-state-transfer-and-domain-events"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-choreography",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Choreography",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-notification-state-transfer-and-domain-events"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-choreography"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-aws-lambda",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: AWS Lambda",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-choreography"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-aws-lambda"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-google-cloud-functions",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Google Cloud Functions",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-aws-lambda"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-google-cloud-functions"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-azure-functions",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Azure Functions",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-google-cloud-functions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-azure-functions"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-clean-architecture",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Clean Architecture",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-azure-functions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-clean-architecture"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-onion-architecture",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Onion Architecture",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-clean-architecture"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-onion-architecture"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-yjs",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Yjs",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-onion-architecture"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-yjs"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-automerge",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Automerge",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-yjs"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-automerge"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-horizontal-pod-autoscaler-hpa",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Horizontal Pod Autoscaler (HPA)",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-automerge"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-horizontal-pod-autoscaler-hpa"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-cluster-autoscaler",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Cluster Autoscaler",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-horizontal-pod-autoscaler-hpa"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-cluster-autoscaler"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-predictive-autoscaling",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Predictive autoscaling",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-cluster-autoscaler"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-predictive-autoscaling"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-launchdarkly",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: LaunchDarkly",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-predictive-autoscaling"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-launchdarkly"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-chaos-monkey",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Chaos Monkey",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-launchdarkly"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-chaos-monkey"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-fault-injection-game-day",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Fault injection game day",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-chaos-monkey"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-fault-injection-game-day"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-backstage",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Backstage",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-fault-injection-game-day"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-backstage"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-dora-metrics",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: DORA metrics",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-backstage"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-dora-metrics"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-space-framework",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: SPACE framework",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-dora-metrics"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-space-framework"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-spot-instances",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Spot instances",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-space-framework"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-spot-instances"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-reserved-capacity",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Reserved capacity",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-spot-instances"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-reserved-capacity"
+    },
+    {
+      "id": "t12-004-reference-handbook-architecture-operations-and-security-examples-cost-unit-economics",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Cost unit economics",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-reserved-capacity"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-architecture-operations-and-security-examples-cost-unit-economics"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-spicedb",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: SpiceDB",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-architecture-operations-and-security-examples-cost-unit-economics"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-spicedb"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-openfga",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: OpenFGA",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-spicedb"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-openfga"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-aws-iam",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: AWS IAM",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-openfga"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-aws-iam"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-oauth-2-0-authorization-code-with-pkce",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: OAuth 2.0 Authorization Code with PKCE",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-aws-iam"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-oauth-2-0-authorization-code-with-pkce"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-openid-connect-oidc",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: OpenID Connect (OIDC)",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-oauth-2-0-authorization-code-with-pkce"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-openid-connect-oidc"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-jws",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: JWS",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-openid-connect-oidc"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-jws"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-jwe",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: JWE",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-jws"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-jwe"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-spiffe",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: SPIFFE",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-jwe"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-spiffe"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-spire",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: SPIRE",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-spiffe"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-spire"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-hashicorp-vault",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: HashiCorp Vault",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-spire"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-hashicorp-vault"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-aws-secrets-manager",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: AWS Secrets Manager",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-hashicorp-vault"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-aws-secrets-manager"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-key-management-service-kms",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Key Management Service (KMS)",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-aws-secrets-manager"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-key-management-service-kms"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-aws-shield",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: AWS Shield",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-key-management-service-kms"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-aws-shield"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-gdpr",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: GDPR",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-aws-shield"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-gdpr"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-digital-personal-data-protection-act-dpdp",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Digital Personal Data Protection Act (DPDP)",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-gdpr"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-digital-personal-data-protection-act-dpdp"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-california-consumer-privacy-act-ccpa-cpra",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: California Consumer Privacy Act (CCPA/CPRA)",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-digital-personal-data-protection-act-dpdp"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-california-consumer-privacy-act-ccpa-cpra"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-lgpd",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: LGPD",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-california-consumer-privacy-act-ccpa-cpra"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-lgpd"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-cryptographic-erasure-crypto-shredding",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Cryptographic erasure (crypto-shredding)",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-lgpd"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-cryptographic-erasure-crypto-shredding"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-slsa-provenance",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: SLSA provenance",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-cryptographic-erasure-crypto-shredding"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-slsa-provenance"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-sigstore",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Sigstore",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-slsa-provenance"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-sigstore"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-xz-utils-compromise",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: xz-utils compromise",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-sigstore"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-xz-utils-compromise"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-solarwinds-orion-compromise",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: SolarWinds Orion compromise",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-xz-utils-compromise"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-solarwinds-orion-compromise"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-secure-aggregation",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Secure aggregation",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-solarwinds-orion-compromise"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-secure-aggregation"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-homomorphic-encryption",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: Homomorphic encryption",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-secure-aggregation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-homomorphic-encryption"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-ml-kem",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: ML-KEM",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-homomorphic-encryption"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-ml-kem"
+    },
+    {
+      "id": "t12-004-reference-handbook-security-identities-regulation-and-crypto-ml-dsa",
+      "track": "track-12",
+      "title": "architecture patterns multi-region tenancy and reliability — Reference: ML-DSA",
+      "module": "t12-004",
+      "manifest": "curriculum/manifests/system-design/t12-004.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-ml-kem"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-security-identities-regulation-and-crypto-ml-dsa"
+    },
+    {
       "id": "t12-004-practice",
       "track": "track-12",
       "title": "architecture patterns multi-region tenancy and reliability — Exercises and worked solutions",
@@ -23632,7 +24984,7 @@
       "manifest": "curriculum/manifests/system-design/t12-004.json",
       "phase": "practice",
       "prerequisites": [
-        "t12-004-reference-identity-and-threat-protection-at-scale"
+        "t12-004-reference-handbook-security-identities-regulation-and-crypto-ml-dsa"
       ],
       "status": "draft-generation-eligible"
     },
@@ -23821,6 +25173,1527 @@
       "inventoryGroup": "common-design-artifacts-and-failure-drills"
     },
     {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-redis-lua-atomic-operation",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Redis Lua atomic operation",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-common-design-artifacts-and-failure-drills"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-redis-lua-atomic-operation"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-two-tier-local-and-global-rate-limit",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Two-tier local and global rate limit",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-redis-lua-atomic-operation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-two-tier-local-and-global-rate-limit"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-dead-letter-queue",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Dead-letter queue",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-two-tier-local-and-global-rate-limit"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-dead-letter-queue"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-end-to-end-encryption-e2ee",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: End-to-end encryption (E2EE)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-dead-letter-queue"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-end-to-end-encryption-e2ee"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-celebrity-fan-out-problem",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Celebrity fan-out problem",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-end-to-end-encryption-e2ee"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-celebrity-fan-out-problem"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-origin-shielding-for-cdn",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Origin shielding for CDN",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-celebrity-fan-out-problem"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-origin-shielding-for-cdn"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-robots-exclusion-protocol-robots-txt",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Robots Exclusion Protocol (robots.txt)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-origin-shielding-for-cdn"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-robots-exclusion-protocol-robots-txt"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-top-k-precomputation",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Top-K precomputation",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-robots-exclusion-protocol-robots-txt"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-top-k-precomputation"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-hls",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: HLS",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-top-k-precomputation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-hls"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-mpeg-dash",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: MPEG-DASH",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-hls"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-mpeg-dash"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-cmaf",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: CMAF",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-mpeg-dash"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-cmaf"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-isp-peering",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: ISP peering",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-cmaf"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-isp-peering"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-open-connect",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Open Connect",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-isp-peering"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-open-connect"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-contraction-hierarchies",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Contraction hierarchies",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-open-connect"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-contraction-hierarchies"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-operational-transformation-ot",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Operational Transformation (OT)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-contraction-hierarchies"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-operational-transformation-ot"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-redis-setnx",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Redis SETNX",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-operational-transformation-ot"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-redis-setnx"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-virtual-waiting-room",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Virtual waiting room",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-redis-setnx"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-virtual-waiting-room"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-double-entry-ledger",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Double-entry ledger",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-virtual-waiting-room"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-double-entry-ledger"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-fifo-order-book",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: FIFO order book",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-double-entry-ledger"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-fifo-order-book"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-price-time-priority",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Price-time priority",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-fifo-order-book"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-price-time-priority"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-downsampling",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Downsampling",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-price-time-priority"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-downsampling"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-ad-click-event-time-windows",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Ad-click event-time windows",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-downsampling"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-ad-click-event-time-windows"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-time-warp-reconciliation-for-file-sync",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Time-warp/reconciliation for file sync",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-ad-click-event-time-windows"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-time-warp-reconciliation-for-file-sync"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-redis-geo-commands-geosets",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Redis GEO commands/geosets",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-time-warp-reconciliation-for-file-sync"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-redis-geo-commands-geosets"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-h3-geospatial-grid",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: H3 geospatial grid",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-redis-geo-commands-geosets"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-h3-geospatial-grid"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-temporal-workflow-orchestration",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Temporal workflow orchestration",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-h3-geospatial-grid"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-temporal-workflow-orchestration"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-sse-token-streaming",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: SSE token streaming",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-temporal-workflow-orchestration"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-sse-token-streaming"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-firecracker-microvm",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Firecracker microVM",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-sse-token-streaming"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-firecracker-microvm"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-seccomp",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: seccomp",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-firecracker-microvm"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-seccomp"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-linux-cgroups",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Linux cgroups",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-seccomp"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-linux-cgroups"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-software-similarity-plagiarism-detection-moss-style",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Software similarity plagiarism detection (MOSS-style)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-linux-cgroups"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-software-similarity-plagiarism-detection-moss-style"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-opentelemetry-protocol-otlp",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: OpenTelemetry Protocol (OTLP)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-software-similarity-plagiarism-detection-moss-style"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-opentelemetry-protocol-otlp"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-bm25-plus-pagerank-search-ranking",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: BM25 plus PageRank search ranking",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-opentelemetry-protocol-otlp"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-bm25-plus-pagerank-search-ranking"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-neural-reranking-cascade",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Neural reranking cascade",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-bm25-plus-pagerank-search-ranking"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-neural-reranking-cascade"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-smtp-ingress",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: SMTP ingress",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-neural-reranking-cascade"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-smtp-ingress"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-rfc-5322-message-format",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: RFC 5322 message format",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-smtp-ingress"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-rfc-5322-message-format"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-content-addressed-attachment-deduplication",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Content-addressed attachment deduplication",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-rfc-5322-message-format"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-content-addressed-attachment-deduplication"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-sfu",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: SFU",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-content-addressed-attachment-deduplication"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-sfu"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-mcu",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: MCU",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-sfu"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-mcu"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-simulcast",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Simulcast",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-mcu"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-simulcast"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-scalable-video-coding-svc",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Scalable Video Coding (SVC)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-simulcast"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-scalable-video-coding-svc"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-webrtc-stun-and-turn",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: WebRTC STUN and TURN",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-scalable-video-coding-svc"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-webrtc-stun-and-turn"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-redis-lua-compare-and-set-bid",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Redis Lua compare-and-set bid",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-webrtc-stun-and-turn"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-redis-lua-compare-and-set-bid"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-delta-batched-comment-fan-out",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Delta-batched comment fan-out",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-redis-lua-compare-and-set-bid"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-delta-batched-comment-fan-out"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-graph-ring-detection",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Graph ring detection",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-delta-batched-comment-fan-out"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-graph-ring-detection"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-dynamic-time-warping-dtw",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Dynamic Time Warping (DTW)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-graph-ring-detection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-dynamic-time-warping-dtw"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-moss",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: MOSS",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-dynamic-time-warping-dtw"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-moss"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-anycast-dns",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Anycast DNS",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-moss"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-anycast-dns"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-dns-over-tls-dot",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: DNS over TLS (DoT)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-anycast-dns"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-dns-over-tls-dot"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-dns-over-https-doh",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: DNS over HTTPS (DoH)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-dns-over-tls-dot"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-dns-over-https-doh"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-dns-over-quic-doq",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: DNS over QUIC (DoQ)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-dns-over-https-doh"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-dns-over-quic-doq"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-dnssec-validation",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: DNSSEC validation",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-dns-over-quic-doq"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-dnssec-validation"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-api-gateway-at-scale",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: API Gateway at scale",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-dnssec-validation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-api-gateway-at-scale"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-content-addressed-build-artifact",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Content-addressed build artifact",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-api-gateway-at-scale"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-content-addressed-build-artifact"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-ephemeral-ci-runner",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Ephemeral CI runner",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-content-addressed-build-artifact"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-ephemeral-ci-runner"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-trace-log-correlation",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Trace-log correlation",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-ephemeral-ci-runner"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-trace-log-correlation"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-regulatory-audit-trail",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Regulatory audit trail",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-trace-log-correlation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-regulatory-audit-trail"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-evcache",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: EVCache",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-regulatory-audit-trail"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-evcache"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-bipartite-matching-for-dispatch",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Bipartite matching for dispatch",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-evcache"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-bipartite-matching-for-dispatch"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-surge-pricing",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Surge pricing",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-bipartite-matching-for-dispatch"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-surge-pricing"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-map-tile-rendering",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Map tile rendering",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-surge-pricing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-map-tile-rendering"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-graph-neural-network-gnn-eta-prediction",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Graph Neural Network (GNN) ETA prediction",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-map-tile-rendering"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-graph-neural-network-gnn-eta-prediction"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-offline-maps",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Offline maps",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-graph-neural-network-gnn-eta-prediction"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-offline-maps"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-block-level-deduplication",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Block-level deduplication",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-offline-maps"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-block-level-deduplication"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-delta-sync",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Delta sync",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-block-level-deduplication"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-delta-sync"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-presence-broadcasting",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Presence broadcasting",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-delta-sync"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-presence-broadcasting"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-collaborative-version-history",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Collaborative version history",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-presence-broadcasting"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-collaborative-version-history"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-collaborative-filtering",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Collaborative filtering",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-collaborative-version-history"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-collaborative-filtering"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-content-based-recommendation",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Content-based recommendation",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-collaborative-filtering"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-content-based-recommendation"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-anti-bot-defenses",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Anti-bot defenses",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-content-based-recommendation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-anti-bot-defenses"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-fifo-matching-engine",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: FIFO matching engine",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-anti-bot-defenses"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-fifo-matching-engine"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-multicast-market-data-distribution",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Multicast market-data distribution",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-fifo-matching-engine"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-multicast-market-data-distribution"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-colocation-in-trading-systems",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Colocation in trading systems",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-multicast-market-data-distribution"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-colocation-in-trading-systems"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-approximate-leaderboard-rank",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Approximate leaderboard rank",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-colocation-in-trading-systems"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-approximate-leaderboard-rank"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-snowflake-style-distributed-ids",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Snowflake-style distributed IDs",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-approximate-leaderboard-rank"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-snowflake-style-distributed-ids"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-ulid",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: ULID",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-snowflake-style-distributed-ids"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-ulid"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-tsid",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: TSID",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-ulid"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-tsid"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-uuidv7",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: UUIDv7",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-tsid"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-uuidv7"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-postgresql-exclusion-constraint-for-reservations",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: PostgreSQL exclusion constraint for reservations",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-uuidv7"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-postgresql-exclusion-constraint-for-reservations"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-exactly-once-workflow-execution-claim",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Exactly-once workflow execution claim",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-postgresql-exclusion-constraint-for-reservations"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-exactly-once-workflow-execution-claim"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-openrouter",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: OpenRouter",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-exactly-once-workflow-execution-claim"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-openrouter"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-litellm",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: LiteLLM",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-openrouter"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-litellm"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-harness-feature-management-experimentation-fme",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Harness Feature Management & Experimentation (FME)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-litellm"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-harness-feature-management-experimentation-fme"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-unleash",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Unleash",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-harness-feature-management-experimentation-fme"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-unleash"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-public-recursive-dns-over-udp-and-tcp",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Public recursive DNS over UDP and TCP",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-unleash"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-public-recursive-dns-over-udp-and-tcp"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-virtual-private-network-vpn-and-encrypted-dns-tradeoffs",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Virtual private network (VPN) and encrypted DNS tradeoffs",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-public-recursive-dns-over-udp-and-tcp"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-virtual-private-network-vpn-and-encrypted-dns-tradeoffs"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-mutual-match-detection",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Mutual-match detection",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-virtual-private-network-vpn-and-encrypted-dns-tradeoffs"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-mutual-match-detection"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-proxy-bidding",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Proxy bidding",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-mutual-match-detection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-proxy-bidding"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-auction-sniping-extension",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Auction sniping extension",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-proxy-bidding"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-auction-sniping-extension"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-peer-to-peer-p2p-media-topology",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Peer-to-peer (P2P) media topology",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-auction-sniping-extension"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-peer-to-peer-p2p-media-topology"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-bandwidth-estimation-for-conferencing",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Bandwidth estimation for conferencing",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-peer-to-peer-p2p-media-topology"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-bandwidth-estimation-for-conferencing"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-regional-media-routing",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Regional media routing",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-bandwidth-estimation-for-conferencing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-regional-media-routing"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-spam-classification-cascade",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Spam classification cascade",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-regional-media-routing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-spam-classification-cascade"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-per-user-sharded-email-search",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Per-user sharded email search",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-spam-classification-cascade"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-per-user-sharded-email-search"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-tax-lot-accounting",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Tax-lot accounting",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-per-user-sharded-email-search"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-tax-lot-accounting"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-symbol-channel-quote-fan-out",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Symbol-channel quote fan-out",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-tax-lot-accounting"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-symbol-channel-quote-fan-out"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-priority-driven-web-scraping",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Priority-driven web scraping",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-symbol-channel-quote-fan-out"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-priority-driven-web-scraping"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-proxy-pool-rotation",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Proxy-pool rotation",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-priority-driven-web-scraping"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-proxy-pool-rotation"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-diff-based-price-alert",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Diff-based price alert",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-proxy-pool-rotation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-diff-based-price-alert"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-hitless-configuration-reload",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Hitless configuration reload",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-diff-based-price-alert"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-hitless-configuration-reload"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-yaml-workflow-dag",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: YAML workflow DAG",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-hitless-configuration-reload"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-yaml-workflow-dag"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-dependency-cache-in-ci",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Dependency cache in CI",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-yaml-workflow-dag"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-dependency-cache-in-ci"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-build-secrets-injection",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Build secrets injection",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-dependency-cache-in-ci"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-build-secrets-injection"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-cardinality-control-for-observability",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Cardinality control for observability",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-build-secrets-injection"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-cardinality-control-for-observability"
+    },
+    {
+      "id": "t12-006-reference-handbook-case-study-specific-techniques-fractional-share-aggregation",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Fractional-share aggregation",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-cardinality-control-for-observability"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-case-study-specific-techniques-fractional-share-aggregation"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-reshaded-framework",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: RESHADED framework",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-case-study-specific-techniques-fractional-share-aggregation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-reshaded-framework"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-pedals-framework",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: PEDALS framework",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-reshaded-framework"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-pedals-framework"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-adept-framework",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: ADEPT framework",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-pedals-framework"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-adept-framework"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-alex-xu-four-step-framework",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Alex Xu four-step framework",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-adept-framework"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-alex-xu-four-step-framework"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-hello-interview-delivery-framework",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Hello Interview Delivery Framework",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-alex-xu-four-step-framework"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-hello-interview-delivery-framework"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-grokking-six-step-framework",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Grokking six-step framework",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-hello-interview-delivery-framework"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-grokking-six-step-framework"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-interviewing-io-three-step-framework",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: interviewing.io three-step framework",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-grokking-six-step-framework"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-interviewing-io-three-step-framework"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-moscow-prioritization",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: MoSCoW prioritization",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-interviewing-io-three-step-framework"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-moscow-prioritization"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-excalidraw",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Excalidraw",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-moscow-prioritization"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-excalidraw"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-miro",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Miro",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-excalidraw"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-miro"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-company-specific-interview-prompts",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Company-specific interview prompts",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-miro"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-company-specific-interview-prompts"
+    },
+    {
+      "id": "t12-006-reference-handbook-interview-framework-tools-and-prioritization-design-rfc-and-architecture-decision-record-adr",
+      "track": "track-12",
+      "title": "end-to-end system design case studies — Reference: Design RFC and Architecture Decision Record (ADR)",
+      "module": "t12-006",
+      "manifest": "curriculum/manifests/system-design/t12-006.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-company-specific-interview-prompts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "handbook-interview-framework-tools-and-prioritization-design-rfc-and-architecture-decision-record-adr"
+    },
+    {
       "id": "t12-006-practice-url-shortener",
       "track": "track-12",
       "title": "end-to-end system design case studies — Problem: Design a URL shortener",
@@ -23828,7 +26701,7 @@
       "manifest": "curriculum/manifests/system-design/t12-006.json",
       "phase": "practice",
       "prerequisites": [
-        "t12-006-reference-common-design-artifacts-and-failure-drills"
+        "t12-006-reference-handbook-interview-framework-tools-and-prioritization-design-rfc-and-architecture-decision-record-adr"
       ],
       "status": "draft-generation-eligible",
       "problemId": "url-shortener",

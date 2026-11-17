@@ -77,6 +77,12 @@ const ledger = {
       findings: ['The source lists 15 modules. The course named-scope inventory maps the named tools, algorithms, and design decisions from those module summaries; this does not verify each technical description.']
     },
     {
+      scope: 'Additional named concepts in Handbook module summaries',
+      status: 'selected scope mapped; all explanatory claims pending',
+      sources: ['https://hld.handbook.academy/curriculum/prerequisites/', 'https://hld.handbook.academy/curriculum/building-blocks/', 'https://hld.handbook.academy/curriculum/distributed-systems-theory/', 'https://hld.handbook.academy/curriculum/data-systems/', 'https://hld.handbook.academy/curriculum/architecture-patterns/', 'https://hld.handbook.academy/curriculum/reliability-and-operations/', 'https://hld.handbook.academy/curriculum/security-at-scale/', 'https://hld.handbook.academy/curriculum/case-studies/'],
+      findings: ['A further 221 named examples and techniques from the module summaries are split into individual reference lessons under the nearest existing topics. This is a selected named-scope pass; the full 159-module coverage map still needs a title-by-title audit.']
+    },
+    {
       scope: 'Selected system-design product and API descriptions',
       status: 'partial primary-source checks; lessons still pending',
       sources: ['https://cloud.google.com/spanner', 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html', 'https://vitess.io/docs/24.0/overview/whatisvitess/', 'https://docs.scylladb.com/manual/master/using-scylla/cassandra-compatibility.html', 'https://grpc.io/about/', 'https://graphql.org/learn/'],
@@ -87,6 +93,12 @@ const ledger = {
       status: 'primary-paper sources added; lesson claim review pending',
       sources: ['https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf', 'https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf'],
       findings: ['The lesson now distinguishes CAP’s atomic-consistency/availability tension during partitions from PACELC’s latency/consistency decision in the else case. Claim-level review is still pending.']
+    }
+    ,{
+      scope: 'Selected system-design standards in the added Handbook references',
+      status: 'source-checked; full lesson reviews pending',
+      sources: ['https://www.rfc-editor.org/rfc/rfc9309', 'https://www.rfc-editor.org/rfc/rfc8216', 'https://csrc.nist.gov/pubs/fips/203/final', 'https://csrc.nist.gov/pubs/fips/204/final'],
+      findings: ['RFC 9309 explicitly says robots rules are not access authorization, matching the lesson. RFC 8216 is an informational HLS specification describing version 7, so the lesson avoids treating it as a universal current implementation profile. NIST FIPS 203 and 204 are final standards but their live pages now identify potential errata; the lessons were updated to tell learners to check those errata. These checks do not promote any full lesson to reviewed.']
     }
   ],
   lessons
