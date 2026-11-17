@@ -5,9 +5,9 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 25,
-    "pending": 2315,
-    "claimsChecked": 355,
+    "reviewed": 26,
+    "pending": 2314,
+    "claimsChecked": 362,
     "claimsCorrected": 27,
     "draftsMayBePromoted": false
   },
@@ -78689,10 +78689,10 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-consistency-and-coordination.md",
-      "status": "partial",
-      "claimInventory": "in-progress",
-      "claimsChecked": 31,
-      "claimsCorrected": 2,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 1,
       "evidence": [
         {
           "claim": "Linearizability requires a legal sequential history that respects real-time precedence of non-overlapping operations.",
@@ -78759,12 +78759,52 @@
           "source": "https://arxiv.org/abs/cs/0408036; https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction",
           "section": "Distributed transaction commit distinction; compensating transaction pattern",
           "verdict": "supported; architecture comparison scoped as conceptual"
+        },
+        {
+          "claim": "For N=5,R=3,W=3 fixed participant sets, every read set intersects every successful write set; this is only an intersection fact and not a complete linearizability proof.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "Dynamo §4.5; fixed-set cardinality consequence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A stale inventory read can violate an oversell-prevention invariant after a competing purchase completed; choose a consistency boundary from the business rule.",
+          "source": "https://www.cs.columbia.edu/~wing/publications/HerlihyWing90.pdf",
+          "section": "Linearizability definition and legal sequential histories; illustrative application",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A feed may tolerate eventual convergence while a session read-your-writes guarantee provides visibility for the writer without implying global visibility.",
+          "source": "https://www.cs.cornell.edu/courses/cs734/2000FA/cached%20papers/SessionGuaranteesPDIS_1.html; https://www.cs.cornell.edu/lorenzo/papers/cac-tr.pdf",
+          "section": "Session Guarantees; coordination avoidance/eventual convergence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Raft requires a majority to commit new entries; loss of majority stops progress while safety is preserved.",
+          "source": "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+          "section": "§§5.2–5.4",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Raft replication within inventory and payment services does not alone atomically commit a cross-service transaction; 2PC or an explicitly different saga workflow addresses a different problem and has different failure/visibility semantics.",
+          "source": "https://arxiv.org/abs/cs/0408036; https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction",
+          "section": "Gray and Lamport transaction commit; Azure compensating transaction pattern",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A lost response can leave a committed operation’s result unknown to the caller; use idempotency or status lookup before retrying non-idempotent effects.",
+          "source": "https://www.rfc-editor.org/rfc/rfc9110",
+          "section": "§9.2.2 Idempotent Methods",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The final example, common mistakes, knowledge checks, and sources cover all eight manifest items and do not introduce a new guarantee beyond the audited models.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "inventory group “consistency-and-coordination”; lesson closeout audit",
+          "verdict": "scope complete"
         }
       ],
-      "issues": [
-        "Initial claim evidence is grouped across 31 sentence-level checks. A final pass of every remaining sentence and independent manifest/Handbook scope check is still required before marking reviewed."
-      ],
-      "reviewedAt": null,
+      "issues": [],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://hld.handbook.academy/",
         "https://www.rfc-editor.org/rfc/rfc9110",
@@ -78791,9 +78831,11 @@
         "https://www.cs.cornell.edu/courses/cs5414/2020fa/notes/Week8.pdf",
         "https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html",
         "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tpsod/e34079f0-22de-4c03-9cb8-84c2448a4613",
-        "https://learn.microsoft.com/en-us/azure/architecture/patterns/saga"
+        "https://learn.microsoft.com/en-us/azure/architecture/patterns/saga",
+        "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+        "https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction"
       ],
-      "reviewNote": "Initial claim evidence recorded for the eight assigned consistency/coordination items. Keep partial until every sentence is checked, the assigned inventory is rechecked, and technical omissions are resolved.",
+      "reviewNote": "Completed the prior partial claim-by-claim audit. Verified all 31 previously checked sentence-level claims, reviewed the cross-service reservation example and knowledge checks, and checked the eight-item manifest scope. Added evidence for quorum arithmetic, failure behavior, retries, and transaction coordination.",
       "claimChecks": 31,
       "scopeCheck": {
         "status": "assigned manifest inventory checked; independent Handbook module title-by-title check pending",
