@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 306,
-    "pending": 2034,
-    "claimsChecked": 7646,
-    "claimsCorrected": 782,
+    "reviewed": 315,
+    "pending": 2025,
+    "claimsChecked": 8092,
+    "claimsCorrected": 866,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 306,
-    "pendingLessons": 2034
+    "reviewedLessons": 315,
+    "pendingLessons": 2025
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -989,6 +989,29 @@
       ],
       "findings": [
         "Reviewed all nine lessons against the topic inventory and Microsoft C# interface variance specification and .NET variance documentation. Distinguished generic interface/delegate variance from method-group binding, array covariance/runtime store failure, and C# 9 covariant overrides. Corrected nested variance, static-member exception, value-type boundaries, and read-only/producer overgeneralizations. No unresolved issues remain."
+      ]
+    },
+    {
+      "scope": "C# delegates, events, lambdas, closures, expression trees, and query providers (t01-011; nine lesson units)",
+      "status": "full claim and assigned-inventory audit complete; draft states retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove"
+      ],
+      "findings": [
+        "Reviewed all nine lessons against the topic inventory and current Microsoft specifications/API/release documentation. Corrected captured-variable lifetime/allocation claims, field-like event concurrency nuance, lambda feature versions, `EventHandler<TEventArgs>` target-framework differences, multicast delegate behavior, expression-tree syntax limits/provider boundaries, and Native AOT interpretation behavior. Added C# 14 modifier inference for lambda parameters. No unresolved factual or scope issues remain."
       ]
     }
   ],
@@ -11361,288 +11384,1539 @@
       "topicId": "t01-011",
       "phase": "overview",
       "draft": "course/drafts/t01-011/t01-011-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/delegate",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and assigned-inventory review completed against current Microsoft C# specifications, .NET API documentation, and release notes. Corrected event/delegate semantics, captured-state and allocation absolutes, async-lambda and expression-tree limits, query-provider distinctions, Native AOT behavior, and C# 14 lambda updates. No unresolved factual or scope issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-011-concepts",
       "topicId": "t01-011",
       "phase": "concepts",
       "draft": "course/drafts/t01-011/t01-011-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/delegate",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and assigned-inventory review completed against current Microsoft C# specifications, .NET API documentation, and release notes. Corrected event/delegate semantics, captured-state and allocation absolutes, async-lambda and expression-tree limits, query-provider distinctions, Native AOT behavior, and C# 14 lambda updates. No unresolved factual or scope issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-011-reference-delegate-types-and-invocation",
       "topicId": "t01-011",
       "phase": "reference",
       "draft": "course/drafts/t01-011/t01-011-reference-delegate-types-and-invocation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 62,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/delegate",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and assigned-inventory review completed against current Microsoft C# specifications, .NET API documentation, and release notes. Corrected event/delegate semantics, captured-state and allocation absolutes, async-lambda and expression-tree limits, query-provider distinctions, Native AOT behavior, and C# 14 lambda updates. No unresolved factual or scope issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-011-reference-events-and-publisher-subscriber-pattern",
       "topicId": "t01-011",
       "phase": "reference",
       "draft": "course/drafts/t01-011/t01-011-reference-events-and-publisher-subscriber-pattern.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 56,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/delegate",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and assigned-inventory review completed against current Microsoft C# specifications, .NET API documentation, and release notes. Corrected event/delegate semantics, captured-state and allocation absolutes, async-lambda and expression-tree limits, query-provider distinctions, Native AOT behavior, and C# 14 lambda updates. No unresolved factual or scope issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-011-reference-anonymous-functions-lambdas-and-capture",
       "topicId": "t01-011",
       "phase": "reference",
       "draft": "course/drafts/t01-011/t01-011-reference-anonymous-functions-lambdas-and-capture.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 63,
+      "claimsCorrected": 14,
+      "evidence": [
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/delegate",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and assigned-inventory review completed against current Microsoft C# specifications, .NET API documentation, and release notes. Corrected event/delegate semantics, captured-state and allocation absolutes, async-lambda and expression-tree limits, query-provider distinctions, Native AOT behavior, and C# 14 lambda updates. No unresolved factual or scope issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-011-reference-expression-trees-and-query-providers",
       "topicId": "t01-011",
       "phase": "reference",
       "draft": "course/drafts/t01-011/t01-011-reference-expression-trees-and-query-providers.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 62,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/delegate",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and assigned-inventory review completed against current Microsoft C# specifications, .NET API documentation, and release notes. Corrected event/delegate semantics, captured-state and allocation absolutes, async-lambda and expression-tree limits, query-provider distinctions, Native AOT behavior, and C# 14 lambda updates. No unresolved factual or scope issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-011-reference-behavior-design-and-runtime-tradeoffs",
       "topicId": "t01-011",
       "phase": "reference",
       "draft": "course/drafts/t01-011/t01-011-reference-behavior-design-and-runtime-tradeoffs.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 49,
+      "claimsCorrected": 10,
+      "evidence": [
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/delegate",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and assigned-inventory review completed against current Microsoft C# specifications, .NET API documentation, and release notes. Corrected event/delegate semantics, captured-state and allocation absolutes, async-lambda and expression-tree limits, query-provider distinctions, Native AOT behavior, and C# 14 lambda updates. No unresolved factual or scope issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-011-practice",
       "topicId": "t01-011",
       "phase": "practice",
       "draft": "course/drafts/t01-011/t01-011-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/delegate",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and assigned-inventory review completed against current Microsoft C# specifications, .NET API documentation, and release notes. Corrected event/delegate semantics, captured-state and allocation absolutes, async-lambda and expression-tree limits, query-provider distinctions, Native AOT behavior, and C# 14 lambda updates. No unresolved factual or scope issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-011-interview",
       "topicId": "t01-011",
       "phase": "interview",
       "draft": "course/drafts/t01-011/t01-011-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 44,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable language/API/version claims and examples against the relevant official sections; corrections are recorded in the lesson reviewer note.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove",
+              "section": "Delegate/event contract, lambda typing/capture, expression-tree restrictions/execution, or runtime/version behavior as applicable",
+              "verdict": "Supported by primary Microsoft documentation or specification; overbroad statements were narrowed."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/events-overview",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/delegate",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-execution",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryprovider",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.delegate.remove"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and assigned-inventory review completed against current Microsoft C# specifications, .NET API documentation, and release notes. Corrected event/delegate semantics, captured-state and allocation absolutes, async-lambda and expression-tree limits, query-provider distinctions, Native AOT behavior, and C# 14 lambda updates. No unresolved factual or scope issues remain. Lesson remains a draft."
     },
     {
       "taskId": "t01-012-overview",

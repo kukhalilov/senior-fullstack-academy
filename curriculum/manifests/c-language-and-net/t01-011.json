@@ -127,7 +127,8 @@
         "Static lambda capture restriction",
         "Lambda lexical scope",
         "Lambda return does not return from containing method",
-        "Lambda jump statement boundary"
+        "Lambda jump statement boundary",
+        "C# 14 simple lambda parameters with modifiers"
       ]
     },
     {
@@ -265,12 +266,22 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions"
       ]
+    },
+    {
+      "edition": "C# 14 lambda parameter update",
+      "items": [
+        "C# 14 permits lambda parameter modifiers such as ref, in, out, scoped, and ref readonly without spelling parameter types when target typing supplies them; params still requires an explicit type."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions"
+      ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft C# language reference, programming guide, .NET API reference, and release notes",
-    "edition": "C# 15 / .NET 11 stable delegate, event, lambda, and expression-tree surface checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "C# 15 / .NET 11 stable delegate, event, lambda, and expression-tree surface checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/delegates-lambdas",
       "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/",
@@ -287,7 +298,11 @@
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
       "https://learn.microsoft.com/en-us/dotnet/csharp/delegates-patterns",
-      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates"
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/delegates",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/expression-tree-restrictions",
+      "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/classes"
     ]
   },
   "scopeExclusions": [
@@ -301,5 +316,6 @@
     "Invoking a null delegate throws NullReferenceException; null-conditional invocation with ?.Invoke() skips the call when the delegate is null.",
     "For a multicast delegate with a non-void return, invocation returns the final invoked method's return value; intermediate return values are discarded. An exception stops normal progression through the invocation list.",
     "Expression trees represent supported expression structure for inspection or translation and differ from delegates that execute compiled code."
-  ]
+  ],
+  "generationNotes": []
 }

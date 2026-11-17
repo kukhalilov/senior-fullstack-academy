@@ -50,7 +50,7 @@ int result = Execute(5, 3, add); // result is 8
 ```csharp
 int factor = 10;
 // The lambda captures 'factor'
-Func<int, int> multiplier = x => x * factor; 
+Func<int, int> multiplier = x => x * factor;
 factor = 20;
 // The closure observes the current value of the captured variable
 Console.WriteLine(multiplier(2)); // Outputs 40
@@ -71,8 +71,8 @@ Console.WriteLine(body.NodeType); // Outputs "GreaterThan"
 
 # Misconceptions and edge cases
 * **Events vs. Delegates**: Use a `Delegate` when you want a single callback. Use an `Event` when you want to allow multiple independent subscribers to listen to a notification.
-* **Closure Lifetime**: Capturing a variable in a closure keeps that variable alive as long as the delegate exists. This can lead to memory leaks if not managed carefully.
-* **Static Lambdas**: Use `static lambda` to explicitly prevent variable capture. This improves performance by avoiding extra object allocations.
+* **Closure Lifetime**: Capturing a variable extends its lifetime at least until the delegate or expression tree that references it becomes eligible for garbage collection. This can lead to memory leaks if not managed carefully.
+* **Static Lambdas**: Use `static lambda` to make the no-capture rule explicit. This can prevent closure capture, but does not guarantee a particular allocation or performance result.
 * **Expression Tree Limitations**: Not all C# code can be converted to an `Expression tree`. Complex logic, such as `async` methods or certain loops, cannot be represented as data.
 
 # Knowledge checks with answers

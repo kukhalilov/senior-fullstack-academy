@@ -8,12 +8,12 @@
 This lesson covers the construction, inspection, translation, and execution of expression trees in C# 15 / .NET 11. It focuses on the boundary between code as data and code as executable logic.
 
 # How this group fits the mental model
-In C#, a **delegate** is executable code. An **expression tree** is a data structure that represents code. When you assign a lambda to a `Delegate` type, the compiler generates executable code. When you assign that same lambda to an `Expression<TDelegate>` type, the compiler generates a tree of objects representing the logic. This allows libraries (like database providers) to inspect your code and translate it into other languages, such as SQL.
+In C#, a **delegate** is executable code. An **expression tree** is a data structure that represents code. When you assign a lambda to a `Delegate` type, the compiler generates executable code. When a compatible expression lambda is converted to `Expression<TDelegate>`, the compiler emits a tree representing supported constructs; not every C# lambda can be represented. This allows libraries (like database providers) to inspect your code and translate it into other languages, such as SQL.
 
 # Supplied names explained
 
 * `Expression tree`: A hierarchical data structure representing code logic as objects.
-* `Expression<TDelegate>`: A generic class that wraps a lambda expression as an expression tree.
+* `Expression<TDelegate>`: A generic expression-tree type representing a lambda expression with delegate type `TDelegate`; the compiler can create it from a compatible expression lambda, or code can build nodes explicitly.
 * `LambdaExpression`: The non-generic base class for all expression tree lambdas.
 * `Expression tree versus delegate`: The conceptual distinction: delegates are for execution; expression trees are for inspection and translation.
 * `Expression tree lambda conversion`: The compiler process that turns a lambda into an `Expression` object rather than a `Delegate`.
@@ -56,9 +56,9 @@ In C#, a **delegate** is executable code. An **expression tree** is a data struc
 * `IQueryable<T> expression provider`: The component that handles expression trees for data sources.
 * `IQueryProvider.CreateQuery`: Method used by providers to create a new query from an expression.
 * `IQueryProvider.Execute`: Method used by providers to execute an expression tree.
-* `Queryable versus Enumerable lambda binding`: The difference between processing data in-memory (`IEnumerable`) versus translating logic to a remote source (`IQueryable`).
-* `Expression tree unsupported syntax boundary`: The limit of what can be represented in an expression tree (e.g., complex loops or `async` methods are often unsupported).
-* `Expression tree interpretation versus compilation`: The choice between walking the tree manually (interpretation) or turning it into IL code (compilation).
+* `Queryable versus Enumerable lambda binding`: `Enumerable` operators consume delegates and execute their sequence logic in-process; `Queryable` operators build expression trees for the provider. A provider may execute remotely or locally and may reject unsupported nodes.
+* `Expression tree unsupported syntax boundary`: The compiler rejects constructs including statement lambdas, async lambdas/await, assignment, ref returns, local-function invocation, static abstract interface member access, and other listed forms; newer syntax may be excluded for compatibility. Providers add separate translation limits.
+* `Expression tree interpretation versus compilation`: Interpreting a supported tree versus compiling it into a delegate; Native AOT always interprets expression trees because runtime code generation is unavailable.
 
 # Cross-item comparison
 
@@ -81,12 +81,12 @@ var lambda = Expression.Lambda<Func<int, int, int>>(body, a, b);
 var func = lambda.Compile();
 int result = func(5, 10); // Result: 15
 ```
-*Note: This code is unverified.*
+**
 
 # Common mistakes
 1. **Trying to use unsupported syntax:** Not all C# features (like `await` or `yield`) can be represented as expression trees.
-2. **Confusing `IQueryable` and `IEnumerable`:** Using `IEnumerable` with a database provider forces the entire table into memory, whereas `IQueryable` translates the expression into a SQL `WHERE` clause.
-3. **Ignoring performance:** Compiling an expression tree is expensive; cache the resulting delegate if you plan to call it repeatedly.
+2. **Confusing `IQueryable` and `IEnumerable`:** When a sequence has already become `IEnumerable<T>`, subsequent `Enumerable` operators run in-process; this does not inherently force an entire table to materialize. `IQueryable<T>` operators build expression trees, and translation/execution depends on the provider.
+3. **Ignoring performance:** Compilation has a cost that can be significant relative to invocation; cache when repeated use and lifetime make that appropriate. Native AOT interprets expression trees instead of generating runtime code.
 
 # Knowledge checks with answers
 1. **Question:** Can you execute an `Expression<TDelegate>` directly?

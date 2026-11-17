@@ -16,18 +16,18 @@ In C#, a delegate is a type-safe object that represents one or more callable met
 * `Delegate invocation`: The execution of the methods wrapped by a delegate instance, matching the parameter signature of the delegate type.
 * `Delegate Invoke method`: The compiler-generated or explicitly exposed method on a delegate type (`Invoke`) that executes the underlying invocation list synchronously.
 * `Null delegate invocation`: Attempting to invoke a delegate reference whose value is `null`, which throws a `NullReferenceException` at runtime (per the accuracy facts).
-* `Null-conditional delegate invocation`: Using the `?.Invoke()` syntax to safely invoke a delegate only if its reference is non-null, avoiding manual `null` checks and runtime exceptions.
+* `Null-conditional delegate invocation`: `?.Invoke()` calls the delegate only when non-null; it does not catch exceptions thrown by targets.
 * `Multicast delegate`: A delegate instance that holds an ordered invocation list containing more than one target method.
-* `Invocation list`: The internal ordered array of method targets maintained by a multicast delegate instance.
-* `Delegate combination operator +`: An operator used to combine two delegate instances into a new multicast delegate containing both invocation lists.
+* `Invocation list`: The ordered sequence of delegate entries invoked by a multicast delegate; its concrete internal representation is an implementation detail.
+* `Delegate combination operator +`: Combines compatible delegates of the same delegate type into a multicast delegate; invocation-list entries retain order.
 * `Delegate removal operator -`: An operator used to construct a new delegate instance by removing occurrences of a target delegate's methods from another delegate's invocation list.
 * `Delegate combination assignment +=`: A shorthand assignment operator that appends a method or delegate instance to an existing delegate variable's invocation list.
 * `Delegate removal assignment -=`: A shorthand assignment operator that removes a method or delegate instance from an existing delegate variable's invocation list.
 * `Delegate equality`: The comparison semantics for delegates; two delegate instances are generally considered equal if they have the same invocation lists in the same order, or under specific method/target match rules.
-* `Delegate.GetInvocationList`: An instance method on `System.Delegate` that returns an array containing the individual delegates representing each entry in the current multicast invocation list.
+* `Delegate.GetInvocationList`: Returns an array of individual delegate entries in invocation order; a single-cast delegate yields one entry.
 * `Delegate.Method`: A property returning the `MethodInfo` reflection object representing the method invoked by the delegate (for single-target delegates or the representative entry).
 * `Delegate.Target`: A property returning the object instance (or `null` for static methods) on which the delegate invokes its target method.
-* `Delegate.DynamicInvoke`: A reflection-based method that invokes the delegate using an array of `object` arguments, carrying a performance overhead compared to direct invocation.
+* `Delegate.DynamicInvoke`: Invokes a delegate using runtime argument objects and late signature checking; it may box value types and is less type-safe and generally slower than direct invocation. Target exceptions are surfaced through reflection-style exception behavior.
 * `Func<TResult>`: A built-in generic delegate family member representing a method that takes no parameters and returns a value of type `TResult`.
 * `Func<T,TResult>`: A built-in generic delegate representing a method that takes one parameter of type `T` and returns a value of type `TResult`.
 * `Action`: A built-in non-generic delegate representing a method that takes no parameters and returns `void`.
@@ -37,7 +37,7 @@ In C#, a delegate is a type-safe object that represents one or more callable met
 * `Converter<TInput,TOutput>`: A built-in generic delegate representing a method that converts an object from one type (`TInput`) to another (`TOutput`).
 * `Custom delegate versus Func/Action`: The architectural choice between defining a custom named delegate type versus reusing generic `Func` and `Action` variants based on readability, semantic intent, and API stability.
 * `Delegate return value from multicast invocation`: The behavioral rule where invoking a multicast delegate with a non-void return value returns the return value of the *final* invoked method in the list, discarding all intermediate return values.
-* `Exception propagation in multicast invocation`: The behavioral rule where an exception thrown by any method in a multicast invocation list halts execution immediately, preventing subsequent methods in the list from running.
+* `Exception propagation in multicast invocation`: In ordinary invocation, an unhandled exception from an entry propagates and later entries are not invoked; explicitly enumerate entries to isolate failures.
 * `Delegate variance boundary`: The set of rules governing covariance (returning more derived types) and contravariance (accepting less derived parameter types) for delegate types, managed under .NET type safety rules.
 
 # Cross-item comparison
@@ -60,7 +60,7 @@ public class Program
 
         // 3. Multicast combination assignment += and delegate invocation
         logger += LogToPrefix;
-        
+
         // 4. Null-conditional delegate invocation
         logger?.Invoke("System starting up.");
 

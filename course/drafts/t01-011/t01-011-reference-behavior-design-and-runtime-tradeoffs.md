@@ -8,7 +8,7 @@
 This lesson covers the behavioral design and runtime tradeoffs for delegates, events, lambdas, and expression trees in C# 15 / .NET 11. It focuses on the architectural decisions required when choosing between callbacks and notifications, managing allocations, and navigating provider boundaries.
 
 # How this group fits the mental model
-In C#, you often need to pass logic as data. A **delegate** is the base type for this, acting as a type-safe function pointer. An **event** is a specialized wrapper around a delegate that enforces a "publisher-subscriber" pattern, preventing external code from clearing the invocation list. **Lambdas** provide a concise syntax to create these delegates, while **expression trees** allow code to be treated as data structures for translation (e.g., to SQL). Understanding the tradeoffs in this group helps you decide whether to use a simple callback or a robust event, and when to avoid the performance overhead of closures or expression tree compilation.
+In C#, you often need to pass logic as data. A **delegate** is a type-safe callable object representing one or more targets. An **event** is a specialized wrapper around a delegate that enforces a "publisher-subscriber" pattern, preventing external code from clearing the invocation list. **Lambdas** provide a concise syntax to create these delegates, while **expression trees** allow code to be treated as data structures for translation (e.g., to SQL). Understanding the tradeoffs in this group helps you decide whether to use a simple callback or a robust event, and when to avoid the performance overhead of closures or expression tree compilation.
 
 # Supplied names explained
 
@@ -22,14 +22,14 @@ In C#, you often need to pass logic as data. A **delegate** is the base type for
 * `Synchronous event delivery`: The default behavior where the publisher waits for all subscribers to finish executing before continuing.
 * `Asynchronous event delivery`: A pattern where the publisher invokes subscribers via a task-based approach to prevent blocking the main execution flow.
 * `Event reentrancy`: A scenario where an event handler triggers another event or calls back into the publisher, potentially leading to stack overflows or inconsistent state.
-* `Lambda allocation considerations`: The performance impact of creating lambda objects. Capturing variables often requires the runtime to allocate a "closure" object on the heap.
+* `Lambda allocation considerations`: The performance impact of creating lambda objects. Capturing variables commonly uses compiler-generated storage, but exact allocations depend on code and runtime/compiler optimization.
 * `Closure allocation considerations`: The memory overhead incurred when a lambda captures local variables, extending their lifetime beyond the scope of the method.
-* `Static lambda allocation boundary`: Using the `static` modifier on a lambda to prevent variable capture, which allows the compiler to optimize by avoiding heap allocations.
+* `Static lambda allocation boundary`: Using `static` to prohibit capture; this can enable optimizations, but does not guarantee allocation-free delegate creation.
 * `Delegate caching`: Storing a delegate instance to reuse it, reducing the allocation frequency of repeated lambda expressions.
 * `Expression tree construction cost`: The overhead of building a data structure representing code at runtime, which is significantly higher than creating a simple delegate.
 * `Expression tree compilation cost`: The cost of converting an expression tree into an executable delegate at runtime using `Compile()`.
 * `Expression tree provider translation limits`: The constraint that not all C# syntax can be translated by providers (like LINQ-to-SQL); complex logic inside a lambda may fail to translate.
-* `Expression tree trimming and Native AOT constraints`: The difficulty of using expression trees in trimmed or Native AOT applications, as they often rely on dynamic code generation which is restricted in these environments.
+* `Expression tree trimming and Native AOT constraints`: Trimming can require care around dynamically accessed members; Native AOT does not support runtime code generation and uses the interpreted expression-tree implementation.
 * `Prefer named method for complex behavior`: A best practice to improve readability and debuggability by replacing long, complex lambdas with named methods.
 * `Prefer event when subscribers are independent`: A design guideline suggesting events when multiple, unrelated components need to react to a state change.
 * `Prefer callback when caller supplies one operation`: A design guideline suggesting delegates when the caller is providing a specific strategy or transformation for a single task.
@@ -39,7 +39,7 @@ In C#, you often need to pass logic as data. A **delegate** is the base type for
 * **Delegate vs. Event**: Use a delegate for a direct callback; use an event for a broadcast notification where the publisher shouldn't be controlled by the subscriber.
 * **Callback vs. Observer-style event**: A callback is a direct "do this for me" request; an observer-style event is a "something happened, react if you want" notification.
 * **Lambda (Delegate) vs. Lambda (Expression Tree)**: A delegate lambda is executable code; an expression tree lambda is a data structure that can be inspected or translated.
-* **Captured vs. Static Lambda**: Captured lambdas create heap-allocated closures; static lambdas are allocation-free and safer for performance-critical paths.
+* **Captured vs. Static Lambda**: Captured lambdas extend captured-state lifetime and commonly require generated storage; static lambdas prohibit capture. Neither form guarantees a particular allocation profile.
 
 # Examples
 * **Callback**: `Action<int> callback = x => Console.WriteLine(x);` (Simple, single-cast).
@@ -53,7 +53,7 @@ In C#, you often need to pass logic as data. A **delegate** is the base type for
 
 # Knowledge checks with answers
 1. **Question**: Why should you use `static` on a lambda?
-   **Answer**: To prevent the capture of outer variables, which avoids heap allocations and makes the boundary explicit.
+   **Answer**: To prohibit access to enclosing locals and instance state; any allocation or caching effect depends on the generated delegate and use context.
 2. **Question**: Can you get a return value from an event?
    **Answer**: No, events are designed for notifications. Use a delegate if you need to return a value from the invoked logic.
 3. **Question**: What happens to subsequent subscribers if one subscriber in a multicast delegate throws an exception?

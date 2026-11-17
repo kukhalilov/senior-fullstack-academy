@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Problem and purpose
-In C#, you often need to pass "behavior" (code) to other parts of your program, or notify multiple parts of your program when something happens. Hard-coding these interactions makes your code rigid and difficult to reuse. 
+In C#, you often need to pass "behavior" (code) to other parts of your program, or notify multiple parts of your program when something happens. Hard-coding these interactions makes your code rigid and difficult to reuse.
 
 Delegates, events, lambdas, and expression trees provide a flexible way to decouple components. They allow you to:
 *   Pass methods as arguments to other methods.
@@ -15,7 +15,7 @@ Delegates, events, lambdas, and expression trees provide a flexible way to decou
 # Plain-language mental model
 Think of these concepts as a hierarchy of "code-as-a-value":
 
-1.  **Delegate**: A "function pointer" with a strict contract. It is a variable that holds a reference to a method.
+1. **Delegate**: A type-safe reference object whose invocation list contains callable targets matching a delegate signature; it is more than a raw function pointer.
 2.  **Event**: A "subscription service." It uses delegates to allow other parts of your program to sign up for notifications without the sender needing to know who the listeners are.
 3.  **Lambda**: A "shortcut." It is a quick way to write a method inline without giving it a formal name.
 4.  **Closure**: A "memory-keeper." When a lambda uses a variable from its surrounding scope, it "closes over" that variable, keeping it alive even after the original scope finishes.
@@ -47,18 +47,18 @@ Imagine a `Button` class in a user interface:
     button.OnClick += () => { count++; Console.WriteLine(count); };
     ```
     Here, the lambda "captures" the `count` variable, creating a **closure**.
-5.  **The Expression Tree**: If you were saving this button's logic to a database, you might use an `Expression<Func<bool>>` to represent the condition `() => count > 0`. The database provider inspects this tree to generate a `WHERE count > 0` SQL statement.
+5.  **The Expression Tree**: For a provider-backed query, an expression tree such as `Expression<Func<Row, bool>>` can represent a predicate for translation. Whether a provider translates a particular node or captured value depends on that provider; a local UI callback is not automatically a database query.
 
 # When to use it and tradeoffs
 *   **Use Delegates** when you need to pass a specific behavior to a method (e.g., a custom sorting rule).
 *   **Use Events** when you have a "one-to-many" relationship where multiple objects need to react to a single action.
 *   **Use Lambdas** for short, one-off logic to keep code concise.
-*   **Use Expression Trees** only when you need to translate code into another format (like LINQ to SQL). They are significantly slower to create and compile than standard delegates.
+*   Use expression trees when code must be inspected, transformed, or translated. They add construction/compilation costs relative to direct delegate use; Native AOT interprets expression trees because runtime code generation is unavailable.
 
 **Tradeoffs:**
-*   **Allocations**: Lambdas that capture variables (closures) create objects on the heap, which can impact performance in high-frequency loops.
+*   **Allocations**: Capturing lambdas extend captured-variable lifetimes and commonly use compiler-generated storage; exact allocations and caching are implementation/optimization dependent, so measure hot paths.
 *   **Complexity**: Expression trees are powerful but carry overhead for compilation and are limited to specific syntax patterns.
-*   **Memory**: Events can cause "memory leaks" if a subscriber forgets to unsubscribe, as the event keeps a reference to the subscriber alive.
+*   **Memory**: Events can cause "memory leaks" if a subscriber forgets to unsubscribe, as the event delegate can retain its subscriber target while subscribed.
 
 # What later lessons cover
 *   **Delegate mechanics**: How to combine multiple methods into one delegate (multicast) and handle return values.

@@ -5,10 +5,10 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers the syntax, typing, and capture mechanics of anonymous functions in C# 15 / .NET 11. It focuses on how lambdas behave as delegates or expression trees and how they interact with lexical scope. This content is based on the official C# language reference and .NET API documentation as of 2026-11-14.
+This lesson covers the syntax, typing, and capture mechanics of anonymous functions in C# 15 / .NET 11. It focuses on how lambdas behave as delegates or expression trees and how they interact with lexical scope. This content is based on the official C# language reference and .NET API documentation checked 2026-11-17, including C# 14 lambda parameter modifiers.
 
 # How this group fits the mental model
-In C#, you often need to pass "behavior" as data. A **delegate** is the type-safe object that holds this behavior. A **lambda** is the concise syntax used to create that behavior. 
+In C#, delegates are type-safe callable objects. A lambda is anonymous-function syntax that can convert to a compatible delegate or, for supported expression lambdas, an expression tree.
 
 The items below define the "how" of lambdas:
 1. **Structure:** How you write the code (Expression vs. Statement).
@@ -20,48 +20,49 @@ The items below define the "how" of lambdas:
 
 * `Lambda expression`: The general term for an anonymous function that can be used to create a delegate or an expression tree.
 * `Expression lambda`: A lambda with a single expression body (e.g., `x => x + 1`). The result is returned automatically.
-* `Statement lambda`: A lambda with a block body `{ ... }`. It requires an explicit `return` statement.
+* `Statement lambda`: A lambda with a block body `{ ... }`. A non-void target requires valid return paths; a void-compatible statement lambda need not return a value.
 * `Parenthesized lambda parameter list`: Using parentheses `(x, y) => ...` to define parameters, required for zero, multiple, or typed parameters.
 * `Implicitly typed lambda parameter`: Parameters where the compiler infers the type from the context (e.g., `x => ...`).
 * `Explicitly typed lambda parameter`: Parameters where you define the type (e.g., `(int x) => ...`).
-* `Lambda return type inference`: The compiler determining the return type based on the expression body or return statements.
+* `Lambda return type inference`: The compiler uses the lambda body and target delegate context (or natural function type rules, where applicable) to determine compatibility and infer output types.
 * `Explicit lambda return type`: Using syntax to force a specific return type, useful for complex inference scenarios.
 * `Lambda target typing`: The process where the compiler uses the expected delegate type to infer the lambda's signature.
-* `Natural function type of a lambda`: The type the compiler assigns to a lambda when no specific delegate type is provided.
+* `Natural function type of a lambda`: A compiler-inferred natural delegate type for a lambda/method group in contexts that permit it; it is not a general standalone runtime type for lambda syntax.
 * `Lambda overload resolution`: How the compiler chooses between multiple methods when a lambda is passed as an argument.
 * `lambda conversion to delegate`: The process of turning a lambda into an executable delegate object.
 * `Lambda conversion to expression tree`: The process of turning a lambda into a data structure (`Expression<T>`) for inspection or translation.
 * `Anonymous method expression`: An older syntax using the `delegate` keyword to define an anonymous function.
 * `delegate anonymous-function operator`: The keyword used to define anonymous methods.
-* `Lambda default parameter value`: Assigning a default value to a parameter in a lambda (C# 12+).
-* `Lambda params parameter`: Using the `params` keyword in a lambda parameter list.
-* `Lambda parameter attribute`: Applying attributes to lambda parameters (C# 11+).
-* `Lambda return attribute`: Applying attributes to the return value of a lambda (C# 11+).
+* `Lambda default parameter value`: Lambda parameters can declare default values (C# 12); invocation and conversion must satisfy the usual optional-parameter and target-signature rules.
+* `Lambda params parameter`: C# 12 supports `params` arrays on explicitly typed lambda parameters; C# 13 extends `params` to recognized collection types, and lambda/delegate compatibility follows parameter-array rules.
+* `Lambda parameter attribute`: Applying attributes to lambda parameters; lambda attributes were introduced in C# 10.
+* `Lambda return attribute`: Applying return-target attributes to a lambda; lambda attributes were introduced in C# 10.
 * `Lambda discard parameter`: Using `_` as a parameter name to ignore it.
 * `Lambda discard parameters`: Using multiple `_` parameters to ignore multiple inputs.
 * `static lambda`: A lambda marked `static` to prevent it from capturing outer variables.
 * `async lambda`: A lambda marked `async` to allow `await` inside its body.
 * `async void lambda`: An `async` lambda that returns `void`, typically used for event handlers.
-* `ref return lambda`: A lambda that returns a reference to a variable.
-* `ref parameter lambda`: A lambda that accepts parameters by reference.
+* `ref return lambda`: A lambda with a `ref` return compatible with a delegate whose return is by reference; it cannot convert to an expression tree.
+* `ref parameter lambda`: A lambda parameter can use `ref`, `in`, or `out` when its target delegate signature matches; C# 14 permits omitting the parameter type when target typing determines it.
+* `C# 14 simple lambda parameters with modifiers`: C# 14 allows modifiers such as `scoped`, `ref`, `in`, `out`, and `ref readonly` without spelling parameter types when target typing supplies them. `params` still requires an explicitly typed parameter.
 * `Outer variable capture`: The mechanism where a lambda accesses variables defined in its enclosing scope.
 * `Captured local variable`: A local variable that remains alive because a lambda references it.
 * `Captured instance state`: When a lambda accesses `this`, keeping the object instance alive.
 * `Closure`: The combination of a function and the environment (captured variables) it references.
-* `Closure variable lifetime`: The rule that captured variables live as long as the delegate that references them.
+* `Closure variable lifetime`: A captured outer variable’s lifetime is extended at least until the delegate or expression tree that references it becomes eligible for garbage collection.
 * `Captured variable mutation visibility`: Changes to a captured variable are visible to both the lambda and the outer scope.
-* `Loop variable capture`: A common pitfall where a lambda captures the variable reference rather than the value at a specific iteration.
+* `Loop variable capture`: Captured variables are variables, not value snapshots. A `for` iteration variable is shared across iterations; a `foreach` iteration variable is distinct per iteration in modern C#.
 * `Cannot capture ref parameter`: A restriction preventing lambdas from capturing `ref` parameters.
 * `Cannot capture in parameter`: A restriction preventing lambdas from capturing `in` parameters.
 * `Cannot capture out parameter`: A restriction preventing lambdas from capturing `out` parameters.
 * `Static lambda capture restriction`: The compiler error triggered if a `static` lambda attempts to access outer variables.
 * `Lambda lexical scope`: The region of code where the lambda is defined and where it can "see" variables.
 * `Lambda return does not return from containing method`: A `return` inside a lambda only exits the lambda, not the method that contains it.
-* `Lambda jump statement boundary`: The rule that `break` or `continue` cannot jump out of a lambda into the outer scope.
+* `Lambda jump statement boundary`: A `goto`, `break`, or `continue` cannot transfer control across the lambda boundary; targets must remain within the applicable function body.
 
 # Cross-item comparison
 * **Expression vs. Statement:** Use `Expression lambda` for simple logic; use `Statement lambda` for complex logic requiring multiple lines or control flow.
-* **Captured vs. Static:** Use `static lambda` when you want to guarantee no accidental memory leaks or performance overhead from capturing state.
+* **Captured vs. Static:** Use `static lambda` when capture is not intended; it makes enclosing local and instance-state access a compile-time error.
 * **Delegate vs. Expression Tree:** A delegate is for *execution*; an expression tree is for *analysis* (e.g., converting C# to SQL).
 
 # Examples
@@ -79,8 +80,8 @@ Func<int, int> addTwo = static x => x + 2;
 ```
 
 # Common mistakes
-1. **Loop variable capture:** In older C# versions, capturing a loop variable often resulted in all lambdas seeing the final value of the loop. Always define a local copy inside the loop if you need the specific iteration value.
-2. **Memory leaks:** Because a `Closure` keeps captured variables alive, a long-lived delegate can prevent large objects from being garbage collected.
+1. **Loop variable capture:** A `for` loop’s iteration variable is one captured variable shared across iterations, so deferred lambdas can observe its final value. Modern C# `foreach` gives each iteration a separate iteration variable in modern C#; older foreach semantics differed.
+2. **Memory leaks:** A delegate that captures an object can keep that object reachable for as long as the delegate remains reachable; unsubscribe or release references when lifetimes require it.
 3. **Confusing `async void`:** Avoid `async void` except for event handlers, as exceptions in `async void` methods cannot be caught by the caller.
 
 # Knowledge checks with answers
