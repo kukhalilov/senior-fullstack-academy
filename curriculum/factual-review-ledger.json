@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 774,
-    "pending": 1567,
-    "claimsChecked": 27784,
+    "reviewed": 780,
+    "pending": 1561,
+    "claimsChecked": 28092,
     "claimsCorrected": 1456,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 774,
-    "pendingLessons": 1567
+    "reviewedLessons": 780,
+    "pendingLessons": 1561
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1311,6 +1311,14 @@
       ],
       "findings": [
         "Checked all 59 frozen inventory entries and all 14 lesson files against ECMA-262 2026 indexed collections/Array exotic semantics, ECMA-402, MDN Array references, and TC39 proposals/history. Covered array-index boundary and length range, constructors, Array.from/fromAsync, sparse holes and inherited indexes, iterator and callback traversal, every supplied method, sort stability/order, species, and locale conversion. Added exact length validation and explicit iterator-versus-callback traversal comparison. Added answers to all five previously unanswered practice reflection questions. Parsed all 35 self-contained JavaScript examples, including async syntax in async wrappers, and directly checked Array length/index boundary behavior on Node. No unresolved scope omissions remain; lessons stay drafts pending full-curriculum audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "JavaScript Map and Set collections (t06-013)",
+      "status": "full claim and frozen-inventory audit complete for all 6 lessons",
+      "findings": [
+        "Checked all 39 inventoried API names plus explanatory, version, output-order, example, exercise, and interview claims against ECMA-262 2026 and current MDN references. Verified Map groupBy (ES2024), Set composition (ES2025), Map getOrInsert methods (ES2026), SameValueZero/canonicalized zero, live iteration, set-like protocol, operation order/size strategy, and species behavior. No factual corrections or missing inventory items found. Local Node 24 lacks the ES2026 Map insertion methods; lessons mark their runtime requirements. All six lessons remain drafts pending whole-course audit."
       ]
     }
   ],
@@ -52416,13 +52424,65 @@
       "topicId": "t06-013",
       "phase": "overview",
       "draft": "course/drafts/t06-013/t06-013-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked the mental model, comparisons, version boundaries, examples, and stated scope against ECMA-262 2026 and current MDN Map/Set references. No factual corrections required.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.1 Map Objects and §24.2 Set Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+              "section": "Map reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsert",
+              "section": "Map.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
+              "section": "Map.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
+              "section": "Map species",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+              "section": "Set reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set.intersection and order behavior",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
+              "section": "Set species",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -52431,28 +52491,75 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/difference",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/union",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/symmetricDifference",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked the mental model, comparisons, version boundaries, examples, and stated scope against ECMA-262 2026 and current MDN Map/Set references. No factual corrections required. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-concepts",
       "topicId": "t06-013",
       "phase": "concepts",
       "draft": "course/drafts/t06-013/t06-013-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 57,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked SameValueZero/canonicalized zero, insertion order and live mutation, iterable constructor behavior, grouping, default insertion callbacks, set-like protocol, operation ordering, weak lifetime, and species claims against ECMA-262 2026 and MDN. No factual corrections required.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.1 Map Objects and §24.2 Set Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+              "section": "Map reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsert",
+              "section": "Map.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
+              "section": "Map.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
+              "section": "Map species",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+              "section": "Set reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set.intersection and order behavior",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
+              "section": "Set species",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -52461,28 +52568,75 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/difference",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/union",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/symmetricDifference",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked SameValueZero/canonicalized zero, insertion order and live mutation, iterable constructor behavior, grouping, default insertion callbacks, set-like protocol, operation ordering, weak lifetime, and species claims against ECMA-262 2026 and MDN. No factual corrections required. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-reference-map-api",
       "topicId": "t06-013",
       "phase": "reference",
       "draft": "course/drafts/t06-013/t06-013-reference-map-api.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 61,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 18 inventoried Map names, signatures, return/receiver behavior, constructor and iterator details, current species behavior, Map.groupBy, and ES2026 get-or-insert semantics against ECMA-262 2026 and current MDN. No factual corrections required.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.1 Map Objects and §24.2 Set Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+              "section": "Map reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsert",
+              "section": "Map.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
+              "section": "Map.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
+              "section": "Map species",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+              "section": "Set reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set.intersection and order behavior",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
+              "section": "Set species",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -52491,28 +52645,75 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/difference",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/union",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/symmetricDifference",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked all 18 inventoried Map names, signatures, return/receiver behavior, constructor and iterator details, current species behavior, Map.groupBy, and ES2026 get-or-insert semantics against ECMA-262 2026 and current MDN. No factual corrections required. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-reference-set-api",
       "topicId": "t06-013",
       "phase": "reference",
       "draft": "course/drafts/t06-013/t06-013-reference-set-api.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 67,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 21 inventoried Set names, constructor/iterator/callback semantics, all seven set operations and relations, size-based traversal/order, set-like protocol, and species behavior against ECMA-262 2026 and MDN. No factual corrections required.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.1 Map Objects and §24.2 Set Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+              "section": "Map reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsert",
+              "section": "Map.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
+              "section": "Map.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
+              "section": "Map species",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+              "section": "Set reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set.intersection and order behavior",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
+              "section": "Set species",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -52521,28 +52722,75 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/difference",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/union",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/symmetricDifference",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked all 21 inventoried Set names, constructor/iterator/callback semantics, all seven set operations and relations, size-based traversal/order, set-like protocol, and species behavior against ECMA-262 2026 and MDN. No factual corrections required. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-practice",
       "topicId": "t06-013",
       "phase": "practice",
       "draft": "course/drafts/t06-013/t06-013-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all five exercise solutions, output predictions, compatibility statements, and Set/Map edge-case assertions against the specification and locally supported runtime behavior. The local Node 24 runtime supports groupBy and Set algebra but lacks ES2026 Map insertion methods; those examples are explicitly compatibility-qualified. All exercises have worked answers.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.1 Map Objects and §24.2 Set Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+              "section": "Map reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsert",
+              "section": "Map.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
+              "section": "Map.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
+              "section": "Map species",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+              "section": "Set reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set.intersection and order behavior",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
+              "section": "Set species",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -52551,28 +52799,75 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/difference",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/union",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/symmetricDifference",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked all five exercise solutions, output predictions, compatibility statements, and Set/Map edge-case assertions against the specification and locally supported runtime behavior. The local Node 24 runtime supports groupBy and Set algebra but lacks ES2026 Map insertion methods; those examples are explicitly compatibility-qualified. All exercises have worked answers. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-interview",
       "topicId": "t06-013",
       "phase": "interview",
       "draft": "course/drafts/t06-013/t06-013-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 46,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all core/deep/scenario answers, alternatives, common-mistake corrections, and edition claims against ECMA-262 2026 and MDN. All interview prompts have answers; no factual corrections required.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "ECMA-262 §24.1 Map Objects and §24.2 Set Objects",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+              "section": "Map reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsert",
+              "section": "Map.getOrInsert",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
+              "section": "Map.getOrInsertComputed",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
+              "section": "Map species",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+              "section": "Set reference and compatibility",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set.intersection and order behavior",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
+              "section": "Set species",
+              "verdict": "verified"
+            }
+          ],
+          "verdict": "verified; no factual correction required"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -52581,15 +52876,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsertComputed",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/difference",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/union",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/symmetricDifference",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked all core/deep/scenario answers, alternatives, common-mistake corrections, and edition claims against ECMA-262 2026 and MDN. All interview prompts have answers; no factual corrections required. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-014-overview",
