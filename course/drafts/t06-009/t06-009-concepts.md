@@ -40,7 +40,7 @@ Interfaces describe structural contracts; they can extend multiple compatible in
 
 ### Variance follows member positions
 
-A type parameter in an output position tends to be covariant; in an input position it tends to be contravariant; in both positions it is generally invariant. TypeScript infers these relationships structurally. `strictFunctionTypes` affects function parameter checks but not method/constructor parameters in the same way. TypeScript 4.7 `in`/`out` annotations are advanced and must match structural variance; they do not override structural comparison. [Variance annotations](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html)
+A type parameter in an output position tends to be covariant; in an input position it tends to be contravariant. A sound abstraction that both reads and writes the parameter should be invariant. TypeScript infers structural relationships, but direct mutable properties are a soundness exception: `{ value: Dog }` can be assigned to `{ value: Animal }`, allowing a wider alias to write a non-Dog. `strictFunctionTypes` affects function parameter checks, not ordinary property variance, and method/constructor parameters retain their compatibility exception. TypeScript 4.7 `in`/`out` annotations are advanced and must match structural variance; they do not override structural comparison. [Variance annotations](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html) · [Type compatibility and soundness](https://www.typescriptlang.org/docs/handbook/type-compatibility.html)
 
 ## Mechanisms and relationships
 

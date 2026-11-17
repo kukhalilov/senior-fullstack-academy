@@ -22,7 +22,7 @@ After a generic declaration introduces a placeholder, inference needs evidence t
 | `Variance annotation (out)` | An `out` annotation declares an intended covariant parameter. It must agree with structural use and does not affect structural comparisons; annotations are primarily relevant to instantiation-based comparisons and complex recursive types. |
 | `Covariant type parameter` | A parameter used as an output can vary in the same assignability direction: a producer of a narrower value can often be used as a producer of its wider supertype. Examples include a read-only result position; mutability and other members can change the relation. |
 | `Contravariant type parameter` | A parameter used as an input varies in the opposite direction: a consumer accepting every `Animal` can handle a `Dog`, so it can serve where a `Dog` handler is required. Under `strictFunctionTypes`, ordinary function-property parameters are checked contravariantly. |
-| `Invariant type parameter` | A parameter used in both input and output positions generally cannot safely vary either direction. A mutable cell that both accepts and returns `T` is the common intuition: widening it could permit writes the original reader cannot handle. |
+| `Invariant type parameter` | For a sound read/write abstraction, `T` should generally be invariant: callers can both observe and supply `T`. This is a semantic safety rule, not a promise about every TypeScript structural comparison. |
 | `Bivariant method parameter compatibility` | Method parameter positions retain a compatibility exception that can permit assignment in either direction, even when strict function checking would reject a callback. It supports common method/callback patterns but is less sound; a function-valued property gets stricter checking. |
 | `Stricter type parameter relationships in distributive conditional branches` | In TypeScript 7.1 beta, a distributive branch that narrows a type parameter no longer automatically preserves every relationship it had to another parameter constrained by the original type. Some code accepted in 7.0 is rejected because that relationship is not safe for each narrowed constituent. This concerns generic relationship checking; the full conditional-type mechanics are in t06-022. |
 
@@ -45,6 +45,9 @@ type Cell<T> = { value: T };
 
 type Animal = { name: string };
 type Dog = Animal & { bark(): void };
+declare const dogCell: Cell<Dog>;
+const animalCell: Cell<Animal> = dogCell; // accepted by structural property compatibility
+animalCell.value = { name: "not a Dog" }; // the Dog view can now be violated
 declare const dogReader: Reader<Dog>;
 const animalReader: Reader<Animal> = dogReader;
 
@@ -52,7 +55,7 @@ declare const animalWriter: Writer<Animal>;
 const dogWriter: Writer<Dog> = animalWriter;
 ```
 
-`get` demonstrates a key constraint and result relation. `Reader` produces `T`, allowing the `Dog` reader to be viewed as an animal reader. `Writer` consumes values, so a writer that accepts every animal can safely receive a dog. `Cell` both reads and writes; it does not have the same substitution freedom. The `declare` variables are type-only examples and create no runtime values.
+`get` demonstrates a key constraint and result relation. `Reader` produces `T`, allowing the `Dog` reader to be viewed as an animal reader. `Writer` consumes values, so a writer that accepts every animal can safely receive a dog. A sound read/write abstraction should not freely substitute `Cell<Dog>` for `Cell<Animal>`. But the plain mutable property shown here is structurally covariant in TypeScript: the assignment below is accepted even though writing a non-dog through the wider view can violate the narrower view. This is a known soundness trade-off; do not infer that all mutable properties are invariant. The `declare` variables are type-only examples and create no runtime values.
 
 The 7.1 beta change can be understood with a relationship such as `B extends A`: after a distributive branch narrows `A` to one constituent, TypeScript checks whether `B` still has the necessary relation to that narrowed constituent. The original bound only related it to the full `A`; it did not guarantee the narrower fact. See the official beta announcement for its complete example. [TypeScript 7.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/)
 
@@ -63,7 +66,7 @@ The 7.1 beta change can be understood with a relationship such as `B extends A`:
 - Treating a default as a required type or a constraint.
 - Adding variance annotations to “fix” an incompatible shape. Fix the member positions or API design instead.
 - Assuming all callback parameters are bivariant. The exception is for method syntax; strict function-property parameters behave differently.
-- Calling every mixed generic parameter invariant without inspecting the full structural relation and compiler settings.
+- Assuming TypeScript enforces semantic invariance for every mutable property. A direct `value: T` property can be covariant in structural assignability despite the write-safety risk.
 - Explaining the TypeScript 7.1 beta branch rule as a change to stable TypeScript 7.0 or as a general ban on conditional types.
 
 ## Knowledge checks with answers

@@ -17,7 +17,7 @@
 2. The compiler gathers candidates from arguments and context. Use explicit arguments when a parameter has no evidence or when the intended contract should be stated.
 3. A constraint restricts legal arguments and exposes guaranteed members; a default supplies an omitted argument when inference does not choose one.
 4. `K extends keyof T` restricts the key, and `T[K]` computes the matching property type.
-5. Producers are covariant, consumers contravariant, and read/write use generally invariant because substitution must be safe in both directions.
+5. Producers are covariant and consumers contravariant under sound function checking. A sound read/write abstraction should be invariant, but TypeScript can still accept covariance for a direct mutable property `value: T`; a widened alias may then permit an unsafe write. `strictFunctionTypes` affects function parameters, not ordinary property variance.
 6. They annotate intended variance in advanced cases. They must agree with actual structural use and do not change structural comparisons.
 7. TypeScript retains a method-parameter bivariance exception for compatibility. A function-valued property is checked more strictly under `strictFunctionTypes`.
 8. The beta checks certain relationships again after a type parameter is narrowed within a distributive conditional branch; a constraint to the original union may not prove a relation to each narrowed constituent. [Official beta notes](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/)
@@ -38,7 +38,7 @@ Only members and relations guaranteed by the bound. For `T extends { id: string 
 
 ### How should variance be explained without oversimplifying TypeScript?
 
-Describe where the parameter appears and use assignability examples. A function consuming `Animal` can safely replace a `Dog` consumer; a producer of `Dog` can replace an `Animal` producer. But structural types may contain multiple positions, mutable members, methods, and compiler options. TypeScript infers structural variance; annotations are not universal coercion switches. Method bivariance is a specific compatibility exception.
+Describe where the parameter appears and use assignability examples. A function consuming `Animal` can safely replace a `Dog` consumer; a producer of `Dog` can replace an `Animal` producer. But structural types may contain multiple positions, mutable members, methods, and compiler options. In particular, semantic invariance for read/write safety does not mean TypeScript rejects every covariant mutable property assignment. TypeScript infers structural variance; annotations are not universal coercion switches. Method bivariance is a specific compatibility exception.
 
 ### What is the practical effect of the 7.1 beta change?
 

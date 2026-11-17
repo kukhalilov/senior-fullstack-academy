@@ -39,7 +39,7 @@ An arbitrary string could fail at runtime, so it cannot be accepted as a valid k
 4. A generic function can recover the `T` member from a `Box<T>` argument.
 5. Use the key parameter in both the constraint and indexed access.
 6. The static side exists independently of each `Class<T>` instance.
-7. A producer returns a value; a consumer accepts one. A mutable cell does both.
+7. A producer returns a value; a consumer accepts one. Distinguish semantic read/write safety from TypeScript assignment behavior for a direct mutable property.
 8. The original relation is `B extends A`; after distribution, the branch uses one narrowed constituent of `A`, and `B` might still represent another permitted constituent.
 
 ## Complete solutions
@@ -97,7 +97,7 @@ An arbitrary string could fail at runtime, so it cannot be accepted as a valid k
    const cache = SafeCache.from(() => new Date());
    ```
    `U` is declared on the method, so it is independently inferred. A type assertion such as `undefined as U` would suppress checking but would not construct a value.
-7. A producer of `Dog` can be used where a producer of `Animal` is expected because each produced dog is an animal. A consumer that accepts `Animal` can be used where a consumer for `Dog` is expected because it accepts every dog. A read/write cell cannot freely substitute because widening can allow writes that invalidate the narrower reader.
+7. A producer of `Dog` can be used where a producer of `Animal` is expected because each produced dog is an animal. A consumer that accepts `Animal` can be used where a consumer for `Dog` is expected because it accepts every dog. Semantically, a sound read/write cell should not freely substitute because widening may allow unsafe writes. TypeScript does accept covariance for a plain mutable property such as `{ value: Dog }` to `{ value: Animal }`, so explain this compiler unsoundness rather than claiming the language rejects it. `strictFunctionTypes` does not change ordinary property variance.
 
 8. A constraint against the full union `A` does not mean the constrained parameter is assignable to every individual constituent after `A` is narrowed by distributive processing. TypeScript 7.1 beta checks that relationship more strictly and can reject the unsound assumption. Keep the compiler version explicit; this is a beta change, not the stable 7.0 rule. [TypeScript 7.1 beta announcement](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/)
 

@@ -51,7 +51,7 @@ TypeScript is structurally typed and computes variance from member positions. `i
 
 Consider `function choose<T, K extends keyof T>(obj: T, key: K): T[K]`. The object supplies evidence for `T`; the string-literal key supplies evidence for `K`; the constraint checks the key belongs to the object; indexed access computes the result. The output is precise because the signature connects all four stages. If the function accepted `key: string`, it would need a runtime check and could not promise `T[string]` safely.
 
-For variance, inspect where a type parameter occurs, not its name. `Box<T> { value: T }` both reads and writes and is invariant-like under strict checking. `Reader<T> { read(): T }` produces. `Writer<T> { write(value: T): void }` consumes. A method-shaped callback can differ from a function-property callback under the method bivariance rule; choose the stricter function-property form when contravariant checking is important.
+For variance, inspect where a type parameter occurs, not its name. A sound read/write cell should be invariant, but TypeScript treats a plain property `value: T` covariantly in structural compatibility. That can be unsound: a widened alias may write an `Animal` that is not a `Dog` into a `Box<Dog>`. `strictFunctionTypes` does not make ordinary mutable property types invariant. `Reader<T> { read(): T }` produces. `Writer<T> { write: (value: T) => void }` consumes. A method-shaped callback can differ from a function-property callback under the method bivariance rule; choose the stricter function-property form when contravariant checking is important.
 
 ## Worked examples
 

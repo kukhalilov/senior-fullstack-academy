@@ -28,7 +28,7 @@ Class declarations create constructor values and instance shapes. Inheritance co
 | `StrictFunctionTypes compatibility` | With `strictFunctionTypes`, function-valued property parameters are checked contravariantly. Method and constructor parameter positions retain bivariance for compatibility, so syntax can affect assignability. |
 | `Covariant relationship` | A generic producer can often vary in the same direction as its type argument: if `Dog` is assignable to `Animal`, a producer of Dog can be used where a producer of Animal is expected. |
 | `Contravariant relationship` | A consumer varies in the opposite direction: a handler that accepts every Animal can be used where a handler for Dog is expected; a Dog-only handler cannot necessarily handle every Animal. |
-| `Invariant relationship` | A parameter used for both reading and writing generally cannot safely vary either direction. Widening a mutable container could allow writes that invalidate narrower reads. |
+| `Invariant relationship` | For a sound abstraction that both reads and writes `T`, the type argument should generally be invariant. This is a semantic safety requirement, not a promise that TypeScript rejects every mutable-property assignment. |
 
 ## Cross-item comparison
 
@@ -45,6 +45,9 @@ interface Cell<T> { value: T }
 
 type Animal = { name: string };
 type Dog = Animal & { bark(): void };
+declare const dogCell: Cell<Dog>;
+const animalCell: Cell<Animal> = dogCell; // accepted: mutable property is structurally covariant
+animalCell.value = { name: "not a Dog" }; // can violate the Dog view
 
 declare const dogs: Producer<Dog>;
 const animals: Producer<Animal> = dogs;
@@ -60,7 +63,7 @@ class UserRepository extends Repository<{ id: string }> {
 }
 ```
 
-`Producer` only returns `T`; `Consumer` accepts `T` through a function property, so the assignments show opposite directions under strict checking. `Cell<T>` is mutable and uses the type both ways, so it does not share either freedom. The concrete repository supplies the abstract method and `override` verifies that the base method exists.
+`Producer` only returns `T`; `Consumer` accepts `T` through a function property, so the assignments show opposite directions under strict checking. Semantically, a sound read/write cell should be invariant. However, TypeScript structurally treats a plain mutable property `value: T` covariantly, so the shown assignment is accepted and a write through the wider alias can violate the narrower view. `strictFunctionTypes` does not make ordinary properties invariant. The concrete repository supplies the abstract method and `override` verifies that the base method exists.
 
 ## Common mistakes
 
@@ -79,7 +82,7 @@ class UserRepository extends Repository<{ id: string }> {
 2. **Does `implements` add the abstract method body?** No; the class must implement it.
 3. **Why can a producer of Dog substitute for a producer of Animal?** Every produced Dog is an Animal.
 4. **Why can an Animal consumer substitute for a Dog consumer?** It accepts every Dog; the direction reverses because the parameter is consumed.
-5. **Why is a mutable cell more invariant?** It both returns and accepts the type, so changing it either direction can make writes unsafe.
+5. **Why should a sound mutable cell be invariant, and what does TypeScript actually allow?** A safe read/write abstraction needs invariance, but a plain `value: T` property is structurally covariant in TypeScript and can permit an unsafe widened write.
 6. **Can a variance annotation override a structural comparison?** No.
 
 Sources: [classes handbook](https://www.typescriptlang.org/docs/handbook/2/classes.html), [type compatibility](https://www.typescriptlang.org/docs/handbook/type-compatibility.html), [object types](https://www.typescriptlang.org/docs/handbook/2/objects.html), [TypeScript 4.3](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html), [TypeScript 4.7](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html).
