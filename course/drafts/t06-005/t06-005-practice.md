@@ -48,6 +48,10 @@ Schedule a Promise reaction, call `queueMicrotask`, schedule a zero-delay timer,
 
 ## 6. Resolver ownership
 
+## 7. Timer cancellation boundary and nesting
+
+An application schedules a timer with a 1 ms delay. A later callback calls `clearTimeout(id)`. Explain why clearing can prevent a handler only while its timer ID remains active, why it cannot retract a handler task already queued, and when HTML imposes a 4 ms minimum delay. Does that minimum apply to every timer?
+
 Use `Promise.withResolvers()` to create a promise and settle it from a later timer callback. Explain why sharing `resolve`/`reject` widely can make state ownership unclear.
 
 # Progressive hints
@@ -58,6 +62,7 @@ Use `Promise.withResolvers()` to create a promise and settle it from a later tim
 4. Promise resolution accepts the first effective resolve/reject call and adopts thenables.
 5. Current synchronous code completes first; queued microtasks run at the checkpoint; timer work is a later task.
 6. The resolver functions belong to one promise capability and are one-shot, but code can still call them from unexpected places.
+7. Timer clearing removes the active ID; the timer algorithm queues a task after its timeout steps. The 4 ms clamp applies after timer nesting level exceeds five, for a requested delay below 4 ms.
 
 # Complete solutions
 
@@ -136,6 +141,10 @@ promise.then(console.log); // later logs "finished"
 ```
 
 `resolve` and `reject` settle the same promise once. If unrelated components can call them, it becomes harder to reason about who owns completion and which outcome wins.
+
+## 7. Timer cancellation boundary and nesting
+
+`clearTimeout(id)` removes the ID from the shared timer-ID map. If it is removed before the timeout algorithm finishes and queues its handler task, the timer steps can stop. If the handler task has already been queued, clearing the ID does not remove that queued task; and no clear method can interrupt a callback already executing. HTML sets a timer's effective timeout to at least 4 ms when its nesting level is greater than five and its requested timeout is below 4 ms. The nesting level applies across nested `setTimeout()` and `setInterval()` calls; it is not a minimum for every timer.
 
 # Tests and edge cases
 

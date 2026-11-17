@@ -17,6 +17,7 @@
 11. What is the difference between an ECMAScript Promise job and a browser task?
 12. How do microtasks relate to tasks and rendering?
 13. What is an unhandled rejection?
+14. When can `clearTimeout()` no longer prevent a scheduled handler, and when does HTML apply its nested-timer delay clamp?
 
 # Concise interview answers
 
@@ -33,6 +34,7 @@
 11. A Promise job is an ECMAScript scheduling abstraction; a browser task is an HTML host event-loop unit.
 12. Browser microtasks drain at checkpoints between tasks; rendering opportunities are separately scheduled.
 13. A rejected promise without a handler at the host's reporting point; notification and late handling are host-defined.
+14. Clearing removes the active timer ID; it cannot retract the timer task after that task has been queued. When the timer nesting level exceeds five, HTML raises a requested delay below 4 ms to 4 ms.
 
 # Deep follow-up answers
 
@@ -98,6 +100,8 @@ HTML defines microtasks for work that must run at checkpoints before the event l
 - “Every async function begins later.” Its synchronous prefix runs immediately.
 - “Browsers have one FIFO queue for all callbacks.” HTML separates task queues and a microtask queue.
 - “A zero timer always runs before paint.” Timer eligibility and rendering are host-scheduled.
+- “`clearTimeout()` can retract a timer task after it has been queued.” It cannot remove that queued task; cancellation must happen while the timer ID remains active.
+- “Every browser timer has a 4 ms minimum.” HTML applies the clamp when timer nesting level is greater than five and the requested delay is less than 4 ms.
 - “Unhandled rejection is a Promise method.” Reporting belongs to the host.
 
 # Self-check rubric

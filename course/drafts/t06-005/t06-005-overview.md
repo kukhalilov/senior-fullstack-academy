@@ -16,7 +16,7 @@ A Promise is a one-time delivery ticket. It starts pending and settles as fulfil
 2. **Transform outcomes.** `.then()` creates a new promise. A returned value fulfills that next promise; a thrown error rejects it; a returned promise/thenable is assimilated.
 3. **Compose work.** Combinators coordinate many promises but do not cancel the underlying operations.
 4. **Write sequential-looking async code.** An async function returns a promise. `await` suspends that function and resumes it through scheduled work.
-5. **Understand scheduling.** Synchronous statements finish first. Promise reactions and `queueMicrotask()` callbacks are microtasks. Browser timers queue tasks; after a task, a microtask checkpoint runs before later tasks.
+5. **Understand scheduling.** Synchronous statements finish first. Promise reactions and `queueMicrotask()` callbacks are microtasks. Browser timers queue tasks; after a task, a microtask checkpoint runs before later tasks. HTML clamps delays below 4 ms when timer nesting exceeds five; timers are still subject to host scheduling.
 6. **Keep browser policy separate.** Task sources, timers, and rendering are host/browser concepts. Node.js has a distinct event-loop model, outside this lesson.
 
 # Concept map

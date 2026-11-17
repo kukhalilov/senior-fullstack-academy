@@ -30,9 +30,11 @@ The JavaScript call stack runs synchronously to completion. ECMAScript specifies
 
 - `queueMicrotask()` — Browser global method that queues a callback in the microtask queue. It returns no promise; callback exceptions are reported as uncaught exceptions.
 - `setTimeout()` — Schedules one callback as a timer task after at least the requested delay; the callback can run later due to synchronous work, other queues, throttling, or rendering work. A zero delay still means a future task.
-- `clearTimeout()` — Removes an active timeout ID so its not-yet-started handler task can be aborted. It cannot interrupt a callback that is already running. HTML shares the timeout/interval ID map, so either clear method can clear either timer kind.
+- `clearTimeout()` — Removes the ID from the shared timeout/interval ID map. Clear it before its timer initialization completes if you need to prevent its handler from being queued; once the timer task has been queued, removing the ID does not retract that task. It cannot interrupt a callback already running. Either clear method can clear either timer kind.
 - `setInterval()` — Schedules a callback repeatedly through timer tasks. Actual callback spacing can exceed the requested interval; avoid assuming precise cadence or that callbacks run concurrently.
 - `clearInterval()` — Removes an active interval ID and prevents further scheduled runs; it cannot stop a callback already executing. It can also clear a timeout ID under the shared HTML timer-ID map.
+
+HTML clamps a timer delay below 4 ms to 4 ms when the timer nesting level is greater than five. Nesting level applies to nested calls to either timer method and to repeating intervals; it is not a universal minimum delay for every timer.
 
 # Cross-item comparison
 
@@ -65,7 +67,7 @@ const timerId = setTimeout(() => console.log("not started if cleared in time"), 
 clearTimeout(timerId);
 ```
 
-Clearing an active timer prevents the scheduled callback from starting. It cannot stop code after that callback has already begun.
+Clearing an active timer before its timer steps queue the handler task prevents the handler from being queued. Clearing after the task is queued does not retract that task; clearing also cannot stop code after that callback has already begun.
 
 # Common mistakes
 
@@ -85,10 +87,10 @@ Clearing an active timer prevents the scheduled callback from starting. It canno
 1. **Does the browser run a Promise reaction in the current synchronous stack?** No; it runs during a later microtask checkpoint.
 2. **Is the microtask queue one of HTML's task queues?** No, it is separate.
 3. **Are task queues globally FIFO across all task sources?** No; the event loop selects among runnable queues while preserving source-specific ordering.
-4. **Does `setTimeout(fn, 0)` mean immediate execution?** No; it schedules a future timer task after the threshold and host scheduling.
+4. **Does `setTimeout(fn, 0)` mean immediate execution?** No; it schedules a future timer task after the effective threshold and host scheduling. Deeply nested timers with a delay below 4 ms are clamped to 4 ms.
 5. **Can microtasks queued by another microtask run in the same checkpoint?** Yes, the checkpoint drains until empty.
 6. **Does every checkpoint cause a render?** No; rendering opportunities are browser-controlled.
-7. **Can `clearTimeout` cancel a callback that is already executing?** No.
+7. **When does `clearTimeout` prevent a handler from running?** It removes the active timer ID; call it before the timer algorithm queues the handler task. It cannot retract a task already queued or interrupt a running callback.
 
 # Further reading
 
