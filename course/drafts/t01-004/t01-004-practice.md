@@ -31,15 +31,15 @@ b2.X = 20;     // b1.X is now 20 (aliasing)
 ```
 
 **Why this happens:**
-When you assign a `struct`, the runtime performs a **Value copy**, duplicating the actual data. When you assign a `class`, the runtime performs a **Reference copy**, meaning both variables point to the same **Object allocation** on the **Managed heap**.
+When you assign a struct variable, the target receives a copy of its value (including any reference fields). When you assign a class variable, the target receives a copy of the reference; both can designate the same object. Physical storage is a runtime implementation detail.
 
 # Exercises
-1. Create a `struct` named `Dimensions` with two `int` fields. Assign one instance to another and modify the second. Verify if the first changed.
+1. Create a `struct` named `Dimensions` with two `int` fields. Assign one instance to another and modify the second. Verify whether the first variable changed. Then add an array field and see whether the copied structs still refer to the same array.
 2. Create a `class` named `Container` with one `int` field. Assign one instance to another and modify the second. Verify if the first changed.
 3. Use `object.ReferenceEquals` to compare two different instances of a `class` with the same data, then compare the same instance to itself.
 
 # Progressive hints
-* **Hint 1:** Remember that `struct` types are value types. Modifying a copy does not affect the original.
+* **Hint 1:** Remember that `struct` types are value types. Modifying a copied field doesn't affect the original variable, but copied reference fields can still refer to shared objects.
 * **Hint 2:** `class` types are reference types. If two variables hold the same reference, they are aliases for the same object.
 * **Hint 3:** `ReferenceEquals` checks whether two references identify the same object instance (identity), not if their contents are the same.
 
@@ -65,9 +65,10 @@ bool sameSelf = object.ReferenceEquals(a, a); // True
 ```
 
 # Tests and edge cases
-* **Boxing:** If you cast a `struct` to an `object`, it undergoes **Boxing conversion**, moving the value to the heap. Modifying the boxed value does not affect the original `struct`.
+* **Boxing:** Casting a struct value to `object` creates a boxed object containing a copy. Mutating that boxed copy does not mutate the original struct variable; boxing commonly allocates, though optimization can remove unobservable allocation.
 * **Mutable Structs:** A `struct` containing a reference type (like an array) can be dangerous. Copying the `struct` copies the reference, so both `struct` copies will point to the same array.
 * **NaN Equality:** Floating-point types have specific rules where `double.NaN == double.NaN` is false, while `Double.Equals(double.NaN)` returns true.
+* **Nullable boxing:** Boxing an empty `int?` produces `null`; boxing a non-empty `int?` produces a boxed `int`, not a boxed `Nullable<int>`.
 
 # Reflection questions
 1. Why is it generally safer to make `struct` types immutable?

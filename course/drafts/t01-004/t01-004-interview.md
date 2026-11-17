@@ -16,34 +16,34 @@ In C#, understanding how data is stored and compared is fundamental. Beginners o
 
 ### Concise interview answers
 *   **Value vs. Reference:** A value-type variable contains a value; a reference-type variable contains a reference to an object. Physical placement and representation are implementation details.
-*   **Assignment:** Assigning a Value type creates a **Value copy** (a bit-for-bit duplicate). Assigning a Reference type creates a **Reference copy** (both variables now point to the exact same object).
-*   **Equality:** `==` checks for value equality (for primitives) or reference equality (for classes). `ReferenceEquals` checks whether two references identify the same object instance. `Equals()` is a virtual method intended to check for logical equality.
-*   **Mutability:** If you mutate a shared object (Reference type), all variables pointing to that object see the change. If you mutate a local copy of a Value type, the original remains unchanged.
+*   **Assignment:** Assigning a value type copies its value (for a struct with reference fields, those references are also copied). Assigning a reference type copies the reference, so both variables can refer to the same object.
+*   **Equality:** `==` is type-dependent and can be overloaded. `ReferenceEquals` checks object identity; `Equals()` is virtual and its meaning depends on the implementation. Base `Object.Equals` uses identity for ordinary classes, while value types provide value equality.
+*   **Mutability:** Mutating an object through one alias can be observed through another alias. Mutating a copied struct value doesn't mutate the source variable, though copied reference fields can still share mutable objects.
 
 ### Deep follow-up answers
-*   **"Does a Value type always live on the stack?"** No. That is a common misconception. The language specification defines behavior, not physical storage. A Value type can live on the heap if it is a field of a class, or inside an array.
-*   **"What is Boxing?"** Boxing is the process of wrapping a Value type inside an object on the heap. This allows a Value type to be treated as a Reference type (e.g., when casting an `int` to `object`). This incurs a performance cost due to allocation.
-*   **"How do Records handle equality?"** Records (both `record class` and `record struct`) provide synthesized equality. They automatically implement `Equals` and `GetHashCode` based on their synthesized equality rules and instance state, rather than reference identity.
+*   **"Does a value type always live on the stack?"** No. The specification defines semantics, not physical storage. A value can be embedded in an object or array, boxed, or stored according to runtime implementation.
+*   **"What is Boxing?"** Boxing creates an object containing a copy of a value type, enabling conversion to `object` or an implemented interface. It commonly allocates, though optimization may remove an unobservable allocation.
+*   **"How do Records handle equality?"** Records synthesize value equality and matching hash codes. A `record class` remains a reference type; a `record struct` remains a value type. A `with` expression makes a shallow copy.
 
 ### Scenario questions
 *   **Scenario:** You have a `List<MyStruct>` where `MyStruct` is large. What is the performance implication?
-    *   *Answer:* Because structs are copied by value, accessing or iterating over a list of large structs can cause significant performance degradation due to frequent memory copying. Consider using `ref` returns or `readonly ref` parameters to avoid these copies.
+    *   *Answer:* Cost depends on struct size and access pattern; `List<T>` indexer returns `T` by value, while enumeration has its own semantics. Measure before redesigning; `ref`-returning APIs or `in` parameters may help in selected cases but add constraints and aren't universally faster.
 *   **Scenario:** You need to store a custom type in a `Dictionary`. What must you implement?
-    *   *Answer:* You must ensure the type has a consistent `GetHashCode()` and `Equals()` implementation. If the type is mutable, using it as a dictionary key is a "mutable hash key hazard," as changing the object after it is added will make it impossible to retrieve.
+    *   *Answer:* Equality and hash code must be consistent, and dictionary lookup uses its comparer. If key state used by the comparer changes after insertion, lookup may fail because the key may be searched in a different bucket.
 
 ### Tradeoffs and alternatives
-*   **Struct vs. Class:** Use `struct` for small, immutable data carriers (Value objects) to avoid heap allocation. Use `class` for entities that require identity, inheritance, or shared mutable state.
-*   **EqualityComparer<T>.Default:** Always prefer `EqualityComparer<T>.Default` over manual equality checks in generic code. It automatically selects the most efficient equality implementation (e.g., `IEquatable<T>` if available).
+*   **Struct vs. Class:** Consider `struct` for small values with value semantics; it does not guarantee avoiding heap allocation. Use `class` when reference identity, inheritance, or shared object state is needed.
+*   **EqualityComparer<T>.Default:** Use it when generic code needs type-appropriate equality. It uses `IEquatable<T>` when available and otherwise falls back to object equality; avoid promising a particular performance gain without measurement.
 
 ### Common weak answers
 *   **"Value types are on the stack, Reference types are on the heap."** (Too simplistic; ignores implementation details and boxing).
 *   **"I always use `==` for equality."** (Fails to account for custom operator overloads or the difference between reference and value equality).
-*   **"Records are just classes."** (Ignores the critical difference: Records provide value-based equality by default, whereas classes provide reference-based equality).
+*   **"Records are just classes."** (`record class` is a reference type with synthesized value equality; `record struct` is a value type with synthesized value equality. Ordinary classes don't synthesize that contract.)
 
 ### Self-check rubric
-*   **Can you explain "Aliasing"?** (Do you understand that two variables pointing to the same object means changing one changes the other?)
-*   **Can you identify a "Mutable value type hazard"?** (Do you know why mutable structs are generally discouraged?)
-*   **Do you know when to use `IEquatable<T>`?** (Do you understand it is a performance optimization to avoid boxing during equality checks?)
+*   **Can you explain "Aliasing"?** (Do you understand that mutations to one object through one reference can be observed through another reference to that same object?)
+*   **Can you identify a "Mutable value type hazard"?** (Do you know that copies and property/indexer access can produce separate values?)
+*   **Do you know when to implement `IEquatable<T>`?** (Do you know it supplies strongly typed equality and generic comparers can call it without boxing value types when that path applies?)
 
 ***
 

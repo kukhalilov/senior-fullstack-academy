@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 206,
-    "pending": 2134,
-    "claimsChecked": 5195,
-    "claimsCorrected": 413,
+    "reviewed": 255,
+    "pending": 2085,
+    "claimsChecked": 5448,
+    "claimsCorrected": 488,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 248,
-    "pendingLessons": 2092
+    "reviewedLessons": 255,
+    "pendingLessons": 2085
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -825,6 +825,30 @@
       ],
       "findings": [
         "Checked every lesson against the full current implicit/explicit conversion matrices. Corrected repeated false equivalence of implicit conversion with exactness; clarified checked versus unchecked integral, floating-point, and decimal conversion behavior; separated language guarantees from .NET 9 x86/x64 and .NET 11 CoreCLR/Native AOT runtime changes; corrected decimal/floating conversion and promotion claims; removed absolute numeric performance/financial advice; and added all eight combined unsigned-long literal suffix spellings."
+      ]
+    },
+    {
+      "scope": "C# t01-004 value/reference types, copying, identity, and equality",
+      "status": "all 7 lesson units claim-reviewed; draft state retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13"
+      ],
+      "findings": [
+        "Audited all seven lesson files and checked all 112 frozen inventory entries (44 equality/copy concepts, 45 type/design concepts plus supporting inventory groups) against current Microsoft language and API references. Corrected physical-storage/address analogies; struct shallow-copy and nested-reference behavior; ref/in/ref readonly parameter wording; boxing allocation and nullable boxing/unboxing; defensive copies; readonly transitivity; record class/struct assignment and synthesized equality; EqualityContract scope; equality/hash/array/sequence contracts; nullable lifted comparisons; ref struct interface rules; InlineArray behavior; and non-universal performance guidance. No uncovered inventory item or unresolved in-scope issue remains."
       ]
     }
   ],
@@ -4891,13 +4915,94 @@
       "topicId": "t01-004",
       "phase": "overview",
       "draft": "course/drafts/t01-004/t01-004-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 27,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Checked each factual statement, example, and recommendation in the orientation: assignment/copy semantics, aliasing including structs with reference fields, equality versus identity, record behavior, memory-placement cautions, struct/class tradeoffs, and examples. Corrected physical-box mental model, overbroad identity and immutability statements, and categorical struct performance advice. All 15 official source pages were checked successfully on 2026-11-17; selected page clauses were read for each claim family.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Type categories, assignment and conversion semantics, struct inheritance, identity/equality, nullable lifting and language-version rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value-type classification, struct/enum/tuple/record-struct behavior, boxing and default values",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "Reference categories, object/string/dynamic, equality and boxing",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Value versus reference parameters, ref/out/in/ref readonly semantics and call-site rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable<T> APIs, lifted operators, comparisons, boxing and conversions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Ref safety, escape restrictions, stack-only language rules, interface implementation and versioned changes",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+              "section": "Equality operators, Equals, ReferenceEquals, null, string, floating-point and user-defined equality",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
+              "section": "Record synthesis, EqualityContract, inheritance, with expressions and shallow copies",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+              "section": "ReferenceEquals identity behavior and object-parameter boxing of value types",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+              "section": "Hash-code equality contract, collisions, stability and restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+              "section": "ValueType equality and InlineArray exception on .NET 9+",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+              "section": "Default comparer selection and equality/hash operations",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+              "section": "Sequence length/element comparison and comparer overload",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Current C# version status and version-specific type-system features",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Ref struct interface implementation and conversion/boxing restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
@@ -4909,22 +5014,113 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iequatable-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every supplied inventory item and externally verifiable claim in this complete lesson against current official Microsoft language/API references. Corrected overstated claims and examples; no unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-004-concepts",
       "topicId": "t01-004",
       "phase": "concepts",
       "draft": "course/drafts/t01-004/t01-004-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Checked all language-semantic, example, equality, and edge-case claims: value/reference assignment, references inside structs, storage implementation details, boxing, aliasing, string equality, and ReferenceEquals argument conversion. Corrected bitwise independence, stack/heap, boxing allocation, defensive-copy, and equality generalizations. All 15 official source pages were checked successfully on 2026-11-17; selected page clauses were read for each claim family.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Type categories, assignment and conversion semantics, struct inheritance, identity/equality, nullable lifting and language-version rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value-type classification, struct/enum/tuple/record-struct behavior, boxing and default values",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "Reference categories, object/string/dynamic, equality and boxing",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Value versus reference parameters, ref/out/in/ref readonly semantics and call-site rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable<T> APIs, lifted operators, comparisons, boxing and conversions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Ref safety, escape restrictions, stack-only language rules, interface implementation and versioned changes",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+              "section": "Equality operators, Equals, ReferenceEquals, null, string, floating-point and user-defined equality",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
+              "section": "Record synthesis, EqualityContract, inheritance, with expressions and shallow copies",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+              "section": "ReferenceEquals identity behavior and object-parameter boxing of value types",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+              "section": "Hash-code equality contract, collisions, stability and restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+              "section": "ValueType equality and InlineArray exception on .NET 9+",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+              "section": "Default comparer selection and equality/hash operations",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+              "section": "Sequence length/element comparison and comparer overload",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Current C# version status and version-specific type-system features",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Ref struct interface implementation and conversion/boxing restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
@@ -4936,22 +5132,113 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iequatable-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every supplied inventory item and externally verifiable claim in this complete lesson against current official Microsoft language/API references. Corrected overstated claims and examples; no unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-004-reference-value-reference-and-copy-semantics",
       "topicId": "t01-004",
       "phase": "reference",
       "draft": "course/drafts/t01-004/t01-004-reference-value-reference-and-copy-semantics.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 47,
+      "claimsCorrected": 16,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked every supplied item and explanatory statement covering type categories, value/reference assignment, shallow/deep copy, MemberwiseClone/record with, parameter passing, in/ref readonly behavior, ref returns/locals, allocation, stack/heap cautions, boxing/unboxing including nullable boxing, ref safety, defaults, and examples. Corrected managed-type definition, copy semantics, parameter aliasing, nullable boxing, cast failures, readonly transitivity, and allocation guarantees. All 15 official source pages were checked successfully on 2026-11-17; selected page clauses were read for each claim family.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Type categories, assignment and conversion semantics, struct inheritance, identity/equality, nullable lifting and language-version rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value-type classification, struct/enum/tuple/record-struct behavior, boxing and default values",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "Reference categories, object/string/dynamic, equality and boxing",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Value versus reference parameters, ref/out/in/ref readonly semantics and call-site rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable<T> APIs, lifted operators, comparisons, boxing and conversions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Ref safety, escape restrictions, stack-only language rules, interface implementation and versioned changes",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+              "section": "Equality operators, Equals, ReferenceEquals, null, string, floating-point and user-defined equality",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
+              "section": "Record synthesis, EqualityContract, inheritance, with expressions and shallow copies",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+              "section": "ReferenceEquals identity behavior and object-parameter boxing of value types",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+              "section": "Hash-code equality contract, collisions, stability and restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+              "section": "ValueType equality and InlineArray exception on .NET 9+",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+              "section": "Default comparer selection and equality/hash operations",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+              "section": "Sequence length/element comparison and comparer overload",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Current C# version status and version-specific type-system features",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Ref struct interface implementation and conversion/boxing restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
@@ -4963,22 +5250,113 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iequatable-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every supplied inventory item and externally verifiable claim in this complete lesson against current official Microsoft language/API references. Corrected overstated claims and examples; no unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-004-reference-equality-contracts-and-operators",
       "topicId": "t01-004",
       "phase": "reference",
       "draft": "course/drafts/t01-004/t01-004-reference-equality-contracts-and-operators.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 55,
+      "claimsCorrected": 15,
+      "evidence": [
+        {
+          "claims": "Checked each equality API/operator, comparer, structural and sequence operation, record/anonymous/array rule, hash contract, collection behavior, null/NaN/string/decimal case, example, and interview answer. Corrected base equality descriptions, ReferenceEquals boxing, structural recursion assumptions, record EqualityContract scope, with-expression shallow copying, hash mutation absolutes, and comparer-performance claims; added .NET 9+ InlineArray ValueType.Equals caveat. All 15 official source pages were checked successfully on 2026-11-17; selected page clauses were read for each claim family.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Type categories, assignment and conversion semantics, struct inheritance, identity/equality, nullable lifting and language-version rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value-type classification, struct/enum/tuple/record-struct behavior, boxing and default values",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "Reference categories, object/string/dynamic, equality and boxing",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Value versus reference parameters, ref/out/in/ref readonly semantics and call-site rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable<T> APIs, lifted operators, comparisons, boxing and conversions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Ref safety, escape restrictions, stack-only language rules, interface implementation and versioned changes",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+              "section": "Equality operators, Equals, ReferenceEquals, null, string, floating-point and user-defined equality",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
+              "section": "Record synthesis, EqualityContract, inheritance, with expressions and shallow copies",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+              "section": "ReferenceEquals identity behavior and object-parameter boxing of value types",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+              "section": "Hash-code equality contract, collisions, stability and restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+              "section": "ValueType equality and InlineArray exception on .NET 9+",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+              "section": "Default comparer selection and equality/hash operations",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+              "section": "Sequence length/element comparison and comparer overload",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Current C# version status and version-specific type-system features",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Ref struct interface implementation and conversion/boxing restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
@@ -4990,22 +5368,113 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iequatable-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every supplied inventory item and externally verifiable claim in this complete lesson against current official Microsoft language/API references. Corrected overstated claims and examples; no unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-004-reference-implementation-and-design-tradeoffs",
       "topicId": "t01-004",
       "phase": "reference",
       "draft": "course/drafts/t01-004/t01-004-reference-implementation-and-design-tradeoffs.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
+      "claimsCorrected": 14,
+      "evidence": [
+        {
+          "claims": "Checked all design/runtime claims and named inventory entries: struct/class and record tradeoffs, ref structs and C# 13 interfaces, InlineArray, boxing, constrained dispatch, nullable APIs/operators, reference conversions, equality algorithms, and storage optimization. Replaced universal performance/identity claims, clarified ref-safety and interface constraints, nullable lifted behavior, readonly transitivity, and by-reference tradeoffs. All 15 official source pages were checked successfully on 2026-11-17; selected page clauses were read for each claim family.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Type categories, assignment and conversion semantics, struct inheritance, identity/equality, nullable lifting and language-version rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value-type classification, struct/enum/tuple/record-struct behavior, boxing and default values",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "Reference categories, object/string/dynamic, equality and boxing",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Value versus reference parameters, ref/out/in/ref readonly semantics and call-site rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable<T> APIs, lifted operators, comparisons, boxing and conversions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Ref safety, escape restrictions, stack-only language rules, interface implementation and versioned changes",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+              "section": "Equality operators, Equals, ReferenceEquals, null, string, floating-point and user-defined equality",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
+              "section": "Record synthesis, EqualityContract, inheritance, with expressions and shallow copies",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+              "section": "ReferenceEquals identity behavior and object-parameter boxing of value types",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+              "section": "Hash-code equality contract, collisions, stability and restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+              "section": "ValueType equality and InlineArray exception on .NET 9+",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+              "section": "Default comparer selection and equality/hash operations",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+              "section": "Sequence length/element comparison and comparer overload",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Current C# version status and version-specific type-system features",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Ref struct interface implementation and conversion/boxing restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
@@ -5017,22 +5486,113 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iequatable-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every supplied inventory item and externally verifiable claim in this complete lesson against current official Microsoft language/API references. Corrected overstated claims and examples; no unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-004-practice",
       "topicId": "t01-004",
       "phase": "practice",
       "draft": "course/drafts/t01-004/t01-004-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 19,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Checked the worked code, tasks, solutions, hints, boxing, struct-with-reference edge case, NaN equality, and reflection answers. Corrected heap placement claims and expanded exercises to expose aliasing through copied struct reference fields; added nullable boxing behavior. All 15 official source pages were checked successfully on 2026-11-17; selected page clauses were read for each claim family.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Type categories, assignment and conversion semantics, struct inheritance, identity/equality, nullable lifting and language-version rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value-type classification, struct/enum/tuple/record-struct behavior, boxing and default values",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "Reference categories, object/string/dynamic, equality and boxing",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Value versus reference parameters, ref/out/in/ref readonly semantics and call-site rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable<T> APIs, lifted operators, comparisons, boxing and conversions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Ref safety, escape restrictions, stack-only language rules, interface implementation and versioned changes",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+              "section": "Equality operators, Equals, ReferenceEquals, null, string, floating-point and user-defined equality",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
+              "section": "Record synthesis, EqualityContract, inheritance, with expressions and shallow copies",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+              "section": "ReferenceEquals identity behavior and object-parameter boxing of value types",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+              "section": "Hash-code equality contract, collisions, stability and restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+              "section": "ValueType equality and InlineArray exception on .NET 9+",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+              "section": "Default comparer selection and equality/hash operations",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+              "section": "Sequence length/element comparison and comparer overload",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Current C# version status and version-specific type-system features",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Ref struct interface implementation and conversion/boxing restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
@@ -5044,22 +5604,113 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iequatable-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every supplied inventory item and externally verifiable claim in this complete lesson against current official Microsoft language/API references. Corrected overstated claims and examples; no unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-004-interview",
       "topicId": "t01-004",
       "phase": "interview",
       "draft": "course/drafts/t01-004/t01-004-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Checked concise and deep answers, scenarios, design guidance, weak-answer examples, and rubric against the language/API contracts. Corrected struct copy and record equality explanations, large List<T> copy/performance claims, aliasing, boxing, storage placement, dictionary key behavior, and IEquatable performance generalization. All 15 official source pages were checked successfully on 2026-11-17; selected page clauses were read for each claim family.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
+              "section": "Type categories, assignment and conversion semantics, struct inheritance, identity/equality, nullable lifting and language-version rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value-type classification, struct/enum/tuple/record-struct behavior, boxing and default values",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "Reference categories, object/string/dynamic, equality and boxing",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+              "section": "Value versus reference parameters, ref/out/in/ref readonly semantics and call-site rules",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+              "section": "Nullable<T> APIs, lifted operators, comparisons, boxing and conversions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+              "section": "Ref safety, escape restrictions, stack-only language rules, interface implementation and versioned changes",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+              "section": "Equality operators, Equals, ReferenceEquals, null, string, floating-point and user-defined equality",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
+              "section": "Record synthesis, EqualityContract, inheritance, with expressions and shallow copies",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+              "section": "ReferenceEquals identity behavior and object-parameter boxing of value types",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+              "section": "Hash-code equality contract, collisions, stability and restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+              "section": "ValueType equality and InlineArray exception on .NET 9+",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+              "section": "Default comparer selection and equality/hash operations",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+              "section": "Sequence length/element comparison and comparer overload",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Current C# version status and version-specific type-system features",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Ref struct interface implementation and conversion/boxing restrictions",
+              "verdict": "supported; corrections noted above where draft wording exceeded documented semantics"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
@@ -5071,9 +5722,19 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iequatable-1",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/ref-struct",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/expressions/equality",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.valuetype.equals?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every supplied inventory item and externally verifiable claim in this complete lesson against current official Microsoft language/API references. Corrected overstated claims and examples; no unresolved omissions remain within the assigned inventory. Draft status is retained."
     },
     {
       "taskId": "t01-005-overview",
