@@ -6,26 +6,26 @@
 
 * **Topic:** `int` implicit numeric conversions in C#
 * **Scope and Boundary:** This reference lesson covers exactly the five predefined implicit numeric conversions originating from the `int` type, as specified in the frozen source snapshot. All nonnumeric conversions, explicit narrowing casts, parsing APIs, operator catalogs, and other source types are excluded.
-* **Edition and Verification:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-14 ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+* **Edition and Verification:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Draft Status:** Automatically generated draft.
 
 ---
 
 ## How this group fits the mental model
 
-In C#, a numeric type conversion allows a value of one numeric type to be treated as another. When the target type is large enough to represent every possible value of the source type without losing magnitude or precision, C# performs this automatically. This is called an **implicit numeric conversion**.
+In C#, a numeric type conversion allows a value of one numeric type to be treated as another. The language defines particular implicit conversion paths. Some preserve every value; conversions from integral types to floating point can lose precision while preserving order of magnitude. This is called an **implicit numeric conversion**.
 
-The `int` type represents a 32-bit signed integer. Because other types provide wider ranges, floating-point precision, or exact high-precision decimal storage, a 32-bit signed integer can be converted into those wider or more flexible representations safely without an explicit cast operator. Understanding these paths helps you supply integer constants and variables to methods requiring wider types smoothly.
+The `int` type represents a 32-bit signed integer. The listed conversions are permitted without casts. `long`, `double`, `decimal`, and `nint` preserve every `int` value exactly; `float` can round large integers because it has only 24 bits of significand precision.
 
 ---
 
 ## Supplied names explained
 
 * **int to long (implicit numeric conversion):** Converts a 32-bit signed integer (`int`) into a 64-bit signed integer (`long`). This is completely safe because every number that fits in 32 bits also fits in 64 bits.
-* **int to float (implicit numeric conversion):** Converts a 32-bit signed integer (`int`) into a single-precision 32-bit floating-point number (`float`). While `float` uses a mantissa and exponent layout, all 32-bit integers can be converted, though very large integers may experience minor precision rounding because a `float` has 24 bits of mantissa precision.
-* **int to double (implicit numeric conversion):** Converts a 32-bit signed integer (`int`) into a double-precision 64-bit floating-point number (`double`). A `double` provides 53 bits of mantissa precision, allowing it to represent all standard 32-bit integer values exactly.
-* **int to decimal (implicit numeric conversion):** Converts a 32-bit signed integer (`int`) into a 128-bit high-precision decimal number (`decimal`). This conversion is exact because the `decimal` type is designed to hold financial and high-precision data with a scale, easily accommodating any 32-bit integer value without data loss.
-* **int to nint (implicit numeric conversion):** Converts a 32-bit signed integer (`int`) into a native-sized signed integer (`nint`). On 32-bit platforms `nint` is 32 bits, and on 64-bit platforms it is 64 bits. Since an `int` is never larger than a native integer, this conversion is always safe and implicit.
+* **int to float (implicit numeric conversion):** Converts a 32-bit signed integer (`int`) into IEEE binary32 `float`. Every value stays within range, but integers above the exact-integer precision (24 significant binary bits) may round.
+* **int to double (implicit numeric conversion):** Converts a 32-bit signed integer (`int`) into a double-precision 64-bit floating-point number (`double`). A `double` has enough precision to represent every 32-bit integer exactly.
+* **int to decimal (implicit numeric conversion):** Converts a 32-bit signed integer (`int`) into a 128-bit high-precision decimal number (`decimal`). This conversion preserves every `int` value exactly because the decimal range and precision are sufficient for all 32-bit integers.
+* **int to nint (implicit numeric conversion):** Converts an `int` to native-sized signed `nint`; every `int` value fits in either 32-bit or 64-bit process width.
 
 ---
 
@@ -71,7 +71,7 @@ nint asNint = sourceValue;
 ## Common mistakes
 
 * **Expecting complete bit-exactness when converting to `float`:** Developers sometimes assume 32-bit integers convert to 32-bit floats with zero compromise. Because `float` reserves bits for an exponent, integers with large magnitudes can lose low-order precision bits.
-* **Confusing implicit widening with narrowing conversions:** Attempting to assign a `long` or `double` back to an `int` implicitly will trigger a compilation error. Only conversions that never overflow or lose core integer range (such as the five listed in this inventory) are implicit.
+* **Confusing implicit widening with narrowing conversions:** Attempting to assign a `long` or `double` back to an `int` implicitly will trigger a compilation error. C# permits some implicit conversions that can lose precision, such as `int` to `float`; implicit does not mean bit-exact.
 
 ---
 

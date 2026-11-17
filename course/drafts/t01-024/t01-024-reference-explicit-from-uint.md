@@ -16,9 +16,9 @@ This reference lesson covers the exact explicit numeric conversions from `uint` 
 
 # How this group fits the mental model
 
-In C#, numeric types have strict ranges and memory widths. When you store a 32-bit unsigned integer (`uint`), its value can range from `0` to `4,294,967,295`. 
+In C#, numeric types have strict ranges and memory widths. When you store a 32-bit unsigned integer (`uint`), its value can range from `0` to `4,294,967,295`.
 
-Because types like `byte`, `sbyte`, `short`, `ushort`, `int`, `nint`, and `char` have smaller storage sizes or reserved sign bits, the compiler cannot guarantee that an arbitrary `uint` value will fit safely inside them. Therefore, C# requires an **explicit numeric conversion** (a cast) to signal that you, the programmer, take responsibility for potential precision loss, truncation, or overflow.
+Because the listed target types cannot represent every possible `uint` value, C# requires an explicit conversion. Checked out-of-range integral conversions throw; unchecked conversions follow language-defined truncation/extension rules. This is a range issue, not floating-point precision loss.
 
 ---
 
@@ -26,7 +26,7 @@ Because types like `byte`, `sbyte`, `short`, `ushort`, `int`, `nint`, and `char`
 
 * **`uint to sbyte (explicit numeric conversion)`**: Converts a `uint` into a signed 8-bit integer (`sbyte`), which holds values from `-128` to `127`. Because `uint` can hold much larger numbers and negative values do not exist in `sbyte`, casting requires explicit syntax and triggers overflow checks in a `checked` context.
 * **`uint to byte (explicit numeric conversion)`**: Converts a `uint` into an unsigned 8-bit integer (`byte`), which holds values from `0` to `255`. Values above `255` exceed the destination capacity.
-* **`uint to short (explicit numeric conversion)`**: Converts a `uint` into a signed 16-bit integer (`short`), holding values from `-32,768` to `32,767`. 
+* **`uint to short (explicit numeric conversion)`**: Converts a `uint` into a signed 16-bit integer (`short`), holding values from `-32,768` to `32,767`.
 * **`uint to ushort (explicit numeric conversion)`**: Converts a `uint` into an unsigned 16-bit integer (`ushort`), holding values from `0` to `65,535`.
 * **`uint to int (explicit numeric conversion)`**: Converts a `uint` into a signed 32-bit integer (`int`), holding values from `-2,147,483,648` to `2,147,483,647`. Even though both types occupy 32 bits, `uint` uses its highest bit for magnitude, whereas `int` uses its highest bit as a sign indicator. Thus, `uint` values above `2,147,483,647` exceed the positive range of `int`.
 * **`uint to nint (explicit numeric conversion)`**: Converts a `uint` into a native-sized signed integer (`nint`), which matches the pointer size of the execution platform (32-bit on 32-bit architectures, 64-bit on 64-bit architectures). On 64-bit platforms, a `uint` easily fits within an `nint`, but the explicit cast remains syntactically required because of potential width mismatches on 32-bit platforms.
@@ -36,7 +36,7 @@ Because types like `byte`, `sbyte`, `short`, `ushort`, `int`, `nint`, and `char`
 
 # Cross-item comparison
 
-All items in this inventory share a common characteristic: they convert from a 32-bit unsigned source (`uint`) to a narrower or sign-conflicting destination type, and **all require explicit cast syntax**. 
+All items in this inventory share a common characteristic: they convert from a 32-bit unsigned source (`uint`) to a narrower or sign-conflicting destination type, and **all require explicit cast syntax**.
 
 | Source Type | Destination Type | Destination Range | Cast Syntax Required? |
 | :--- | :--- | :--- | :--- |
@@ -52,7 +52,7 @@ All items in this inventory share a common characteristic: they convert from a 3
 
 # Examples
 
-The following code snippets illustrate valid syntax for performing these explicit numeric conversions. 
+The following code snippets illustrate valid syntax for performing these explicit numeric conversions.
 
 ```csharp
 // Unverified code example
@@ -77,7 +77,7 @@ char asChar = (char)65; // Represents 'A'
 
 1. **Assuming same-width types are implicit:** Developers often assume that converting a `uint` to an `int` can be done implicitly because both take 32 bits of memory. However, because `uint` can represent values larger than `int.MaxValue`, the compiler requires an explicit cast (`uint to int (explicit numeric conversion)`).
 2. **Ignoring overflow behavior:** Performing narrowing casts in a `checked` block without verifying bounds can throw an `OverflowException` at runtime if the `uint` value exceeds the target type's maximum limit.
-3. **Confusing sign flags:** Casting a large `uint` value (where the highest bit is `1`) into a signed type like `sbyte` or `int` the result follows integral conversion rules; depending on the target width, high bits are discarded and the destination signed type interprets its own sign bit.
+3. **Confusing sign interpretation:** For out-of-range conversions to signed types, checked context throws. Unchecked integral conversions follow the language's destination-width truncation and signed interpretation rules.
 
 ---
 

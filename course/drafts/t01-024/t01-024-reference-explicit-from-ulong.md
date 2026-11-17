@@ -6,17 +6,17 @@
 
 ## Scope and version
 
-**Scope:** This reference lesson covers the exact set of explicit numeric conversions originating from the `ulong` type to other integral types in C# (`sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `nint`, `nuint`, and `char`). 
+**Scope:** This reference lesson covers the exact set of explicit numeric conversions originating from the `ulong` type to other integral types in C# (`sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `nint`, `nuint`, and `char`).
 
 **Scope Exclusions:** All non-numeric conversions, implicit numeric conversions, conversions to `ulong` from other types, floating-point conversions, and general arithmetic operator rules are excluded.
 
-**Version & Edition:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-14 ([Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+**Version & Edition:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 
 ---
 
 ## How this group fits the mental model
 
-In C#, numeric types have distinct bit widths and signedness. The `ulong` type represents an unsigned 64-bit integer, meaning it can store very large positive numbers. 
+In C#, numeric types have distinct bit widths and signedness. The `ulong` type represents an unsigned 64-bit integer, meaning it can store very large positive numbers.
 
 When you convert a `ulong` value to a smaller or signed integral type, the compiler requires an **explicit numeric conversion** (a cast). This signals that you, the programmer, take responsibility for potential data loss, truncation, or overflow if the `ulong` value exceeds the range of the destination type. Understanding this group helps you choose appropriate cast operations while managing overflow safety and runtime context settings.
 
@@ -48,7 +48,7 @@ The inventory group consists of the following ten explicit numeric conversions f
 
 ## Examples
 
-The following code snippet demonstrates explicit casts from `ulong` to members of this inventory group. 
+The following code snippet demonstrates explicit casts from `ulong` to members of this inventory group.
 
 *Note: Unexecuted code example; verify behavior in your specific runtime environment.*
 
@@ -59,7 +59,7 @@ ulong largeVal = 300_000UL;
 ushort asUshort = (ushort)largeVal; // Unchecked by default, results in bit truncation
 
 // Explicit conversion to uint (fits within uint.MaxValue)
-uint asUint = (uint)largeVal; 
+uint asUint = (uint)largeVal;
 
 // Explicit conversion to long
 long asLong = (long)largeVal;

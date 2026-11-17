@@ -5,13 +5,13 @@
 # Scope and version
 * **Topic:** C# numeric literals and numeric conversions — specifically, the `decimal explicit numeric conversions` inventory group ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Target Audience:** Self-study learners seeking exact reference details on casting `decimal` values to other primitive types.
-* **Edition and Timeline:** C# 15 / .NET 11 General Availability (GA) numeric conversions and .NET 9 behavior; checked 2026-11-14 ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+* **Edition and Timeline:** C# 15 / .NET 11 General Availability (GA) numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Scope Boundary:** This reference covers only the named explicit conversions originating from `decimal`. Nonnumeric conversions, widening conversions, parsing APIs, and other source types are excluded ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 
 ---
 
 # How this group fits the mental model
-In C#, when you work with high-precision financial or currency data, you typically use the `decimal` type. However, other parts of an application or library may require integral types (`int`, `long`, `byte`, etc.) or lighter-weight floating-point types (`float`, `double`). 
+In C#, when you work with high-precision financial or currency data, you typically use the `decimal` type. However, other parts of an application or library may require integral types (`int`, `long`, `byte`, etc.) or lighter-weight floating-point types (`float`, `double`).
 
 Because converting a `decimal` to another primitive type can result in a loss of fractional precision, range overflow, or fractional truncation, C# requires an **explicit numeric conversion** (a cast). This tells the compiler that you, the developer, accept responsibility for potential data truncation or overflow behavior ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 
@@ -37,8 +37,8 @@ Because converting a `decimal` to another primitive type can result in a loss of
 
 # Cross-item comparison
 
-* **Integral Targets (`sbyte` through `nuint`, `char`) vs. Floating-Point Targets (`float`, `double`):** 
-  Conversions from `decimal` to integral targets discard fractional components by truncating toward zero. Conversions to `float` or `double` preserve fractional values where possible, though precision can be lost due to the inherent storage differences between base-10 decimal representations and base-2 binary floating-point formats ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+* **Integral Targets (`sbyte` through `nuint`, `char`) vs. Floating-Point Targets (`float`, `double`):**
+  Conversions from `decimal` to integral targets round toward zero. Conversions to `float` or `double` round to the nearest target value and can lose precision or range; .NET 11 correctly rounds from the exact decimal source value ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Checked vs. Unchecked Explicit Numeric Conversions:**
   When converting `decimal` to an integral type, the fractional part is rounded toward zero and an out-of-range result always throws `OverflowException`, including in an `unchecked` context. This differs from some floating-point-to-integral conversions. ([Microsoft Learn C# Keywords - Checked and Unchecked](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked)).
 

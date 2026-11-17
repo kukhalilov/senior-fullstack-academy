@@ -4,14 +4,14 @@
 
 # Scope and version
 
-**Automatically generated draft.**  
+**Automatically generated draft.**
 This self-study reference lesson covers the C# numeric conversion rules for the inventory group **int explicit numeric conversions**, based on C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 
 ---
 
 # How this group fits the mental model
 
-In C#, numeric types have distinct sizes and ranges. When you convert an `int` (a 32-bit signed integer) into a smaller, wider, unsigned, or differently signed numeric type, the compiler requires an **explicit numeric conversion**. 
+In C#, numeric types have distinct sizes and ranges. When you convert an `int` (a 32-bit signed integer) into a smaller, wider, unsigned, or differently signed numeric type, the compiler requires an **explicit numeric conversion**.
 
 Explicit conversions signal caller responsibility ([Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)). Because an `int` value might exceed the capacity of the target type (or hold a negative value when the target is unsigned), implicit conversions are not allowed. You must use a cast operator (e.g., `(byte)`) to instruct the compiler that you accept the risks of overflow or range truncation.
 
@@ -84,8 +84,8 @@ char asChar = (char)originalValue;
 
 # Knowledge checks with answers
 
-1. **Question**: Why is an explicit cast required when converting an `int` to a `ulong`?  
+1. **Question**: Why is an explicit cast required when converting an `int` to a `ulong`?
    **Answer**: Because `ulong` is an unsigned type and cannot represent negative numbers that an `int` variable might hold ([Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 
-2. **Question**: Can an `int` be converted implicitly to a `short`?  
+2. **Question**: Can an `int` be converted implicitly to a `short`?
    **Answer**: No. Converting `int` to `short` is a narrowing conversion that risks data loss or range overflow, so it requires an explicit numeric conversion ([Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).

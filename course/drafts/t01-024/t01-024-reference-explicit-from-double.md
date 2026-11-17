@@ -5,15 +5,15 @@
 # Scope and version
 
 * Automatically generated draft.
-* **Scope:** This reference lesson covers explicit numeric conversions from `double` to other numeric types in C#, as defined by the C# 15 / .NET 11 GA environment (checked 2026-11-14). 
+* **Scope:** This reference lesson covers explicit numeric conversions from `double` to other numeric types in C#, as defined by the C# 15 / .NET 11 GA environment (checked 2026-11-17).
 * **Source Authority:** Microsoft Learn C# numeric literal, numeric conversion, and numeric type references ([Source Snapshot](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Exclusions:** Nonnumeric conversions, implicit conversions, operator catalogs, and parsing APIs are excluded.
 
 # How this group fits the mental model
 
-In C#, numbers occupy different amounts of memory and have different ranges and precisions. A `double` is a 64-bit double-precision floating-point type that can store very large or fractional numbers. 
+In C#, numbers occupy different amounts of memory and have different ranges and precisions. A `double` is a 64-bit double-precision floating-point type that can store very large or fractional numbers.
 
-When you want to store a `double` value inside a smaller or fundamentally different numeric type (such as an integer or a `float`), the compiler requires an **explicit numeric conversion** (a cast). This signals that you acknowledge the risk of data loss, precision reduction, or range overflow. 
+When you want to store a `double` value inside a smaller or fundamentally different numeric type (such as an integer or a `float`), the compiler requires an **explicit numeric conversion** (a cast). This signals that you acknowledge the risk of data loss, precision reduction, or range overflow.
 
 Within the broader topic of numeric conversions, `double` explicit conversions act as boundary bridges. They take a wide, fractional, or potentially out-of-range value and force it into a restricted destination container, subject to runtime rules and context flags.
 
@@ -32,7 +32,7 @@ Every item in this reference inventory represents a specific cast operation from
 * **double to nint (explicit numeric conversion):** Casts a `double` to a native-size signed integer (`nint`), which matches 32-bit or 64-bit pointer sizes depending on the execution platform.
 * **double to nuint (explicit numeric conversion):** Casts a `double` to a native-size unsigned integer (`nuint`). Requires explicit casting syntax.
 * **double to float (explicit numeric conversion):** Casts a `double` (64-bit) down to a `float` (32-bit single-precision floating-point). This conversion can experience precision loss because a `float` has fewer mantissa bits.
-* **double to decimal (explicit numeric conversion):** Casts a `double` to a `decimal` (128-bit high-precision financial type). Starting in .NET 11, conversions between `decimal` and `double` are correctly rounded from the exact source value ([.NET 11 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/11/decimal-biginteger-floating-point-conversions)).
+* **double to decimal (explicit numeric conversion):** Casts a `double` to finite-range decimal-scaled `decimal`. .NET 11 correctly rounds from the exact binary source; NaN, infinity, and out-of-range inputs throw, while sufficiently small values can become zero ([.NET 11 Compatibility](https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/11/decimal-biginteger-floating-point-conversions)).
 * **double to char (explicit numeric conversion):** Casts a `double` to a 16-bit UTF-16 code unit (`char`). The fractional portion is discarded; an in-range numeric result maps to a code-unit value, not necessarily a complete Unicode scalar.
 
 # Cross-item comparison
@@ -40,7 +40,7 @@ Every item in this reference inventory represents a specific cast operation from
 To understand how these conversions relate, consider the following structural comparisons derived from C# conversion architecture:
 
 * **To Integer Types (`sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `nint`, `nuint`, `char`):** These conversions drop any fractional component (truncation toward zero) and translate magnitude into discrete whole numbers. They face range limitations and potential overflow or saturation.
-* **To Floating-Point / High-Precision Types (`float`, `decimal`):** Unlike integer casts, converting `double` to `float` or `decimal` preserves fractional values. However, `double to float` reduces precision and range limits, whereas `double to decimal` shifts from binary floating-point representation to a base-10 positional scale with correct rounding updates in .NET 11 ([Source Snapshot](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types)).
+* **To Floating-Point / High-Precision Types (`float`, `decimal`):** Unlike integer casts, both conversions round to a representable target. `double` to `float` can underflow to zero or overflow to infinity; `double` to `decimal` can underflow to zero or throw for NaN, infinity, or out-of-range values. .NET 11 correctly rounds from the exact source value ([Source Snapshot](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types)).
 
 # Examples
 

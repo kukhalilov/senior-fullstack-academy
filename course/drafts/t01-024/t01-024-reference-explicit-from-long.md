@@ -4,7 +4,7 @@
 
 # Scope and version
 
-**Scope and Version:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-14. Source authority: Microsoft Learn C# numeric literal, numeric conversion, and numeric type references [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions). This is an automatically generated draft.
+**Scope and Version:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17. Source authority: Microsoft Learn C# numeric literal, numeric conversion, and numeric type references [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions). This is an automatically generated draft.
 
 This reference lesson covers one bounded inventory group: **long explicit numeric conversions**. All nonnumeric conversions, arithmetic operator catalogs beyond promotion, parsing APIs, and representation internals are excluded.
 
@@ -12,7 +12,7 @@ This reference lesson covers one bounded inventory group: **long explicit numeri
 
 # How this group fits the mental model
 
-In C#, numeric types have distinct sizes and ranges. When you store a value from a wider type (such as a 64-bit integer like `long`) into a narrower or differently sized type, C# requires an **explicit numeric conversion** (a cast). This signals caller responsibility because information loss—such as truncation of higher bits or sign changes—can occur if the source value exceeds the destination type's capacity. 
+In C#, numeric types have distinct sizes and ranges. When you store a value from a wider type (such as a 64-bit integer like `long`) into a narrower or differently sized type, C# requires an **explicit numeric conversion** (a cast). This signals caller responsibility because information loss—such as truncation of higher bits or sign changes—can occur if the source value exceeds the destination type's capacity.
 
 The items in this reference inventory dictate how a 64-bit signed integer (`long`) transforms into other integral or character types when an explicit cast is applied.
 
@@ -37,14 +37,14 @@ The following ten explicit conversions define the complete scope of this referen
 
 # Cross-item comparison
 
-- **Signed vs. Unsigned destinations (`long to sbyte` vs. `long to byte`, `long to short` vs. `long to ushort`, `long to int` vs. `long to uint`, `long to nint` vs. `long to nuint`)**: Signed destinations preserve negative values (subject to truncation range), whereas unsigned destinations treat high-order bit patterns as positive magnitude values, frequently turning negative `long` inputs into large positive numbers.
+- **Signed vs. Unsigned destinations (`long to sbyte` vs. `long to byte`, `long to short` vs. `long to ushort`, `long to int` vs. `long to uint`, `long to nint` vs. `long to nuint`)**: In checked conversions, negative values cannot convert to unsigned targets and out-of-range values throw. In unchecked conversions, narrowing integral values follow specified bit truncation and destination interpretation rules.
 - **Fixed-width vs. Native-width (`long to int` vs. `long to nint`, `long to uint` vs. `long to nuint`)**: Fixed-width conversions always target a 32-bit boundary regardless of architecture. Native-width conversions target 32-bit or 64-bit sizes depending on the target platform architecture.
 
 ---
 
 # Examples
 
-The following code snippet demonstrates explicit casting from `long` to several inventory types. 
+The following code snippet demonstrates explicit casting from `long` to several inventory types.
 
 ```csharp
 // Unverified code example (syntax valid for C# 15 / .NET 11)
@@ -60,14 +60,14 @@ sbyte asSByte = (sbyte)largeValue;
 char asChar = (char)65L; // Represents 'A'
 ```
 
-*Expected results:* `asShort` becomes `300`. `asSByte` experiences overflow truncation because `300` exceeds `sbyte.MaxValue`. `asChar` becomes `'A'`.
+*Expected results:* `asShort` becomes `300`. The `asSByte` conversion throws in checked context; in unchecked context it keeps the low 8 bits. `asChar` becomes `'A'`.
 
 ---
 
 # Common mistakes
 
 - **Assuming implicit safety**: Attempting to assign a `long` variable directly to an `int` or `byte` without an explicit cast (`(int)` or `(byte)`) causes a compile-time error.
-- **Ignoring overflow without context**: Forgetting that explicit conversions do not throw exceptions on overflow by default unless evaluated inside a `checked` block or scope.
+- **Ignoring overflow without context**: Checked integral casts throw when out of range; unchecked integral narrowing follows defined bit rules. Floating-point and decimal conversions have different rules.
 
 ---
 

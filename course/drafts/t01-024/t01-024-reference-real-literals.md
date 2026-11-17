@@ -6,7 +6,7 @@
 
 * **Topic:** Real literal forms in C# numeric literals and numeric conversions.
 * **Scope Boundary:** This reference lesson explains only the supplied inventory items governing real (floating-point and decimal) literal forms in C#. It excludes nonnumeric conversions, arithmetic operator catalogs, parsing APIs, and general integral literals.
-* **Edition and Source Snapshot:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)); checked 2026-11-14.
+* **Edition and Source Snapshot:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)); checked 2026-11-17.
 * **Draft Status:** Automatically generated draft.
 
 ---
@@ -30,7 +30,7 @@ When writing C#, the literal syntax you choose directly determines the compile-t
 
 ## Cross-item comparison
 
-* **Float suffix F or f vs. Decimal suffix M or m vs. Double suffix D or d vs. Real literal without suffix (double):** These forms control the foundational data type and precision of a constant. Unadorned literals and `D`/`d` suffixes produce 64-bit binary floating-point values (`double`), `F`/`f` produces 32-bit binary floating-point values (`float`), and `M`/`m` produces 128-bit high-precision decimal values (`decimal`). Mixing these in arithmetic triggers implicit numeric promotion rules.
+* **Float suffix F or f vs. Decimal suffix M or m vs. Double suffix D or d vs. Real literal without suffix (double):** These forms select `float`, `decimal`, or `double`. `float`/`double` use binary floating point; `decimal` is decimal-scaled. Integral values can mix with these types under numeric promotion rules, but `decimal` cannot be mixed with `float` or `double` without an explicit conversion.
 * **Exponent notation E or e vs. Digit separator _ in numeric literals:** Exponent notation changes the mathematical value of the literal by scaling it by powers of 10, whereas the digit separator is strictly a visual formatting aid that leaves the underlying value and type entirely unchanged.
 
 ---
@@ -77,7 +77,7 @@ decimal planetaryDistance = 149_600_000.50m;
 1. **What compile-time type does the C# compiler assign to the literal `123.45` when no suffix is present?**
    * *Answer:* `double` (`System.Double`).
 2. **How does appending the `M` or `m` suffix change the behavior of a numeric literal compared to an unadorned real literal?**
-   * *Answer:* It changes the type from binary floating-point (`double`) to 128-bit base-10 `decimal`, which is designed for high-precision financial calculations.
+   * *Answer:* It selects `decimal`, a 16-byte decimal-scaled type that can represent many decimal fractions exactly. Choose it when its range/scale and rounding behavior match the domain.
 3. **What is the purpose of the underscore (`_`) character inside a numeric literal, such as `1_000.50m`?**
    * *Answer:* It acts as a digit separator to improve visual readability; the compiler ignores it entirely.
 4. **Why will `float f = 5.5;` generate a compilation error, and how do you fix it?**

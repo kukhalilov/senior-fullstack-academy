@@ -10,7 +10,7 @@ This lesson covers implicit numeric conversions originating from the `byte` type
 Source: [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)
 
 # How this group fits the mental model
-In C#, numeric types have different ranges. An **implicit conversion** is a "safe" move where the compiler automatically promotes a smaller type to a larger one because the destination type is guaranteed to hold the source value without data loss. Since `byte` is an 8-bit unsigned integer (range 0 to 255), it is small enough to fit into any standard integer or floating-point type, making these conversions automatic and invisible to the developer.
+In C#, implicit numeric conversions are explicitly enumerated by the language. Every `byte` value is within the range of each listed integral destination. Conversion to floating point is also implicit; exactness depends on the target format, though `byte` values are exactly representable by `float` and `double`.
 
 # Supplied names explained
 *   **byte to short (implicit numeric conversion):** Promotes the 8-bit unsigned `byte` to a 16-bit signed `short`.
@@ -48,7 +48,7 @@ Console.WriteLine(i); // Result: 10
 
 # Knowledge checks with answers
 1. **Question:** Why is `byte` to `int` an implicit conversion?
-   **Answer:** Because the range of `byte` (0–255) is entirely contained within the range of `int`, ensuring no data loss occurs.
+   **Answer:** Every `byte` value (0–255) is exactly representable by `int`.
 
 2. **Question:** Does `byte` to `float` require an explicit cast?
    **Answer:** No, it is an implicit numeric conversion.

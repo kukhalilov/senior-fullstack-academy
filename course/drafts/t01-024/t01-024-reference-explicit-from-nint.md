@@ -5,13 +5,13 @@
 ## Scope and version
 
 * **Topic:** `nint` explicit numeric conversions in C#.
-* **Edition:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-14. Source authority: Microsoft Learn [1].
+* **Edition:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17. Source authority: Microsoft Learn [1].
 * **Status:** Automatically generated draft.
 * **Scope Boundary:** This reference lesson covers only the explicit numeric conversions originating from the native-sized signed integer type (`nint`) to the specific smaller or alternate integer/character types listed in the inventory. It excludes implicit conversions, conversions from other types to `nint`, and nonnumeric conversions.
 
 ## How this group fits the mental model
 
-In C#, `nint` represents a native-sized signed integer whose size matches the pointer size of the execution target (32-bit on 32-bit architectures, 64-bit on 64-bit architectures). Because a `nint` can hold values that exceed the storage capacity or sign constraints of smaller types (such as `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `ulong`, `nuint`, and `char`), the C# type system treats any conversion from `nint` to these target types as potentially lossy or unsafe. 
+In C#, `nint` represents a native-sized signed integer whose size matches the pointer size of the execution target (32-bit on 32-bit architectures, 64-bit on 64-bit architectures). Because a `nint` can hold values that exceed the storage capacity or sign constraints of smaller types (such as `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `ulong`, `nuint`, and `char`), the C# type system treats any conversion from `nint` to these target types as potentially lossy or unsafe.
 
 Consequently, these conversions require an **explicit numeric conversion** [1]. An explicit conversion signals that you (the developer) accept responsibility for potential truncation, sign loss, or overflow when the runtime value exceeds the destination type's boundaries.
 
@@ -46,7 +46,7 @@ short s = (short)nativeValue;
 
 // Explicit conversion from nint to byte
 // Note: 300 exceeds byte.MaxValue (255)
-byte b = (byte)nativeValue; 
+byte b = (byte)nativeValue;
 
 // Explicit conversion from nint to uint
 uint ui = (uint)nativeValue;

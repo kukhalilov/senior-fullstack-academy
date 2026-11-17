@@ -4,15 +4,15 @@
 
 # Scope and version
 
-* **Edition & Checked Date:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-14 ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+* **Edition & Checked Date:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Topic Scope:** This reference lesson covers the exact inventory group of implicit numeric conversions originating from the `char` type, explaining their role within broader C# numeric literal and conversion concepts.
 * **Automatic Draft Notice:** This document is an automatically generated draft.
 
 # How this group fits the mental model
 
-In C#, numeric types and characters share a close relationship at the binary representation level. A `char` value represents a 16-bit UTF-16 code unit. Because a `char` holds a UTF-16 code-unit value, C# allows certain widening operations to happen automatically without explicit casting. 
+In C#, numeric types and characters share a close relationship at the binary representation level. A `char` value represents a 16-bit UTF-16 code unit. Because a `char` holds a UTF-16 code-unit value, C# allows certain widening operations to happen automatically without explicit casting.
 
-When you assign or operate on a `char` value alongside wider numeric types, the compiler can widen the 16-bit unsigned value into larger integral or floating-point representations safely, without losing magnitude or precision. This group of implicit conversions ensures that `char` data can flow naturally into mathematical expressions or wider storage types.
+`char` is an unsigned 16-bit UTF-16 code unit. C# defines implicit numeric conversions from `char` to the listed integer and numeric types; each listed conversion preserves the code-unit's numeric value. This says nothing about whether that code unit alone represents a complete Unicode character.
 
 # Supplied names explained
 
@@ -33,7 +33,7 @@ Within this inventory group, all conversions share a common source (`char`) but 
 
 * **To 16-bit (`ushort`):** Retains identical bit-width and range characteristics.
 * **To Signed/Unsigned 32-bit and 64-bit (`int`, `uint`, `nint`, `nuint`, `long`, `ulong`):** Widens the container to accommodate larger arithmetic operations. Signed targets succeed because the maximum value of a `char` fits safely inside positive signed limits.
-* **To Floating-Point and Decimal (`float`, `double`, `decimal`):** Transforms an exact integer code point into a real-number representation, useful when characters participate in mixed-type mathematical calculations.
+* **To Floating-Point and Decimal (`float`, `double`, `decimal`):** Converts the code-unit's integer value; all 16-bit `char` values are exactly representable by these targets.
 
 # Examples
 
@@ -53,7 +53,7 @@ double asDouble = letter;       // char to double (implicit numeric conversion)
 decimal asDecimal = letter;     // char to decimal (implicit numeric conversion)
 ```
 
-*Expected behavior:* Each assignment compiles without explicit cast syntax because the compiler recognizes that no data loss or range violation can occur when converting a 16-bit `char` to these specific wider destinations.
+*Expected behavior:* Each assignment compiles without cast syntax. All `char` values (0 through 65,535) are exactly representable by each listed destination.
 
 # Common mistakes
 

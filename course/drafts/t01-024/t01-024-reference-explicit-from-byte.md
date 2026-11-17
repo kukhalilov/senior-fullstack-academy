@@ -6,16 +6,16 @@
 
 * **Topic:** C# numeric literals and numeric conversions (`byte` explicit numeric conversions)
 * **Scope Boundary:** This reference lesson covers exactly two conversions starting from the `byte` type: `byte to sbyte (explicit numeric conversion)` and `byte to char (explicit numeric conversion)`. Nonnumeric conversions, larger integral conversions, and parsing APIs are excluded.
-* **Edition & Snapshot Date:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-14.
+* **Edition & Snapshot Date:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17.
 * **Sources:** [Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions) [1], [Microsoft Learn Integral Numeric Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types) [2].
 
 ---
 
 ## How this group fits the mental model
 
-In C#, numeric types have distinct storage ranges and signedness rules. A `byte` is an unsigned 8-bit integer type storing values from `0` to `255`. 
+In C#, numeric types have distinct storage ranges and signedness rules. A `byte` is an unsigned 8-bit integer type storing values from `0` to `255`.
 
-When you assign or cast a `byte` to a type that cannot automatically guarantee safety or preservation of all possible source values without potential range or interpretation changes, C# requires an **explicit numeric conversion**. 
+An explicit conversion from `byte` is required for the listed targets because C# does not define an implicit path to them. In checked context, an out-of-range conversion throws; unchecked integral conversion follows language-defined low-bit and signedness rules.
 
 The inventory group covered in this lesson (`byte to sbyte` and `byte to char`) represents narrow transitions where the compiler refuses implicit conversions because:
 1. An `sbyte` uses signed representation (`-128` to `127`), meaning large `byte` values will exceed the positive boundary.

@@ -8,7 +8,7 @@
 This lesson covers `sbyte` implicit numeric conversions within the context of C# 15 and .NET 11. All information is based on the official Microsoft Learn C# documentation and .NET 11 compatibility notes, checked as of 2026-11-14.
 
 # How this group fits the mental model
-In C#, numeric types have specific ranges. An **implicit conversion** occurs when the compiler automatically converts a value from one type to another because the destination type is guaranteed to hold the source value without data loss. The `sbyte` (signed 8-bit integer) type is the smallest signed integer type. Because its range is smaller than most other numeric types, it can be safely promoted to them without explicit instructions from the programmer.
+In C#, `sbyte` is an 8-bit signed integer. The language defines implicit conversions from it to the listed destinations. These target types accommodate its magnitude; the exactness of floating-point conversions depends on the target, though all `sbyte` values are exact in `float` and `double`.
 
 # Supplied names explained
 The following list defines the valid implicit conversions from `sbyte`:
@@ -23,7 +23,7 @@ The following list defines the valid implicit conversions from `sbyte`:
 
 # Cross-item comparison
 *   **Integral vs. Floating-point:** Conversions to `short`, `int`, `long`, and `nint` maintain exact integer representation. Conversions to `float`, `double`, and `decimal` change the internal representation to support fractional values.
-*   **Precision:** While `sbyte` to `decimal` is safe, `sbyte` to `float` or `double` may involve approximation if the source value were larger, though for `sbyte` (range -128 to 127), all these conversions are exact.
+*   **Precision:** Every `sbyte` value is exactly representable as `float`, `double`, or `decimal`.
 
 # Examples
 ```csharp

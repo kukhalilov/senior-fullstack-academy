@@ -53,7 +53,7 @@ decimal decimalVal = nativeVal;
 **2. Is `nint` to `int` an implicit conversion?**
 *Answer:* No. Because `nint` can be 64-bit, it cannot be implicitly converted to a 32-bit `int` without potential data loss.
 
-**3. Which conversion is best for financial calculations?**
-*Answer:* `nint` to `decimal`, as `decimal` provides the high precision required for financial data without the rounding issues associated with binary floating-point types.
+**3. Which listed conversion preserves each native integer value exactly?**
+*Answer:* `nint` to `decimal` preserves the integer value. That does not make decimal universally correct for finance; use domain-specific scale and rounding rules.
 
 **Source:** [Microsoft Learn: Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)

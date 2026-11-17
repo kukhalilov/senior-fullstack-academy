@@ -15,7 +15,7 @@
 
 # How this group fits the mental model
 
-In C#, numbers can be converted from one type to another either implicitly (automatically, when no data loss is possible) or explicitly (manually using a cast expression, when data loss or truncation might happen). The items in this group (`char` to `sbyte`, `char` to `byte`, and `char` to `short`) represent narrowing, explicit conversions originating from a 16-bit UTF-16 code unit (`char`). Because a `char` can hold values up to `65,535`, converting it into smaller or signed numeric containers (`sbyte`, `byte`, `short`) requires developer intent and an explicit cast because the destination type might not have enough range to hold every possible `char` value.
+The listed conversions from `char` require casts because C# defines them as explicit. A `char` is an unsigned 16-bit UTF-16 code unit (0–65,535); those target types cannot represent its entire range. Checked out-of-range conversions throw, while unchecked integral conversions follow the language's truncation/extension rules.
 
 ---
 

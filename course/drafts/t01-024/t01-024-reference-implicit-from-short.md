@@ -5,11 +5,11 @@
 *Draft: Automatically generated.*
 
 # Scope and version
-This lesson covers `short` implicit numeric conversions in C# 15 and .NET 11. It focuses on how the 16-bit signed integer type (`short`) promotes to larger or more precise types without data loss. 
+This lesson covers the predefined implicit conversions from `short`. Conversions to integral and decimal targets preserve every `short` value; conversions to the listed floating-point targets also preserve these 16-bit integer values exactly.
 *Source: [Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)*
 
 # How this group fits the mental model
-In C#, numeric types have a hierarchy based on their range and precision. An **implicit conversion** is a "safe" operation performed automatically by the compiler because the destination type is guaranteed to hold the value of the source type without overflow or loss of magnitude. Since `short` is a 16-bit signed integer, it is smaller than most other numeric types, making it a common starting point for widening conversions.
+An **implicit conversion** is a path the language permits without a cast. For the listed `short` conversions, each target can represent the full source range and preserves these integer values.
 
 # Supplied names explained
 The following conversions are defined as implicit, meaning no special syntax is required:
@@ -43,7 +43,7 @@ nint myNint = myShort;       // Implicitly converted to nint
 
 # Knowledge checks with answers
 1. **Question:** Why does the compiler allow `short` to `int` conversion without a cast?
-   *   **Answer:** Because the range of `int` (32-bit) fully encompasses the range of `short` (16-bit), ensuring no data loss occurs.
+   *   **Answer:** Every `short` value is within `int`'s range and converts exactly.
 
 2. **Question:** Can you implicitly convert a `short` to a `byte`?
    *   **Answer:** No. `byte` has a smaller range than `short`, so an implicit conversion is not possible.

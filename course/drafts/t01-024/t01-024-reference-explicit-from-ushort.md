@@ -5,12 +5,12 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers `ushort` explicit numeric conversions in C# 15 / .NET 11. It focuses on the specific set of conversions from `ushort` (an unsigned 16-bit integer) to other integral types. 
+This lesson covers `ushort` explicit numeric conversions in C# 15 / .NET 11. It focuses on the specific set of conversions from `ushort` (an unsigned 16-bit integer) to other integral types.
 
 *Reference: [Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)*
 
 # How this group fits the mental model
-In C#, numeric types have different ranges. An **implicit conversion** occurs when the destination type can always hold the source value without data loss. An **explicit conversion** (using a cast) is required when the compiler cannot guarantee that the source value fits within the destination range. 
+The listed conversions from `ushort` require casts because those source-to-target paths are explicit in C#. A cast's result depends on source and target types, value, and checked context; implicit numeric conversions can also lose precision.
 
 Because a `ushort` can hold values up to 65,535, it may exceed the capacity of smaller types (like `sbyte` or `byte`). Therefore, the compiler requires you to explicitly acknowledge the risk of data loss or overflow by using a cast.
 
@@ -38,7 +38,7 @@ ushort source = 300;
 
 // Explicit conversion to byte
 // Result: 44 (300 truncated to 8 bits)
-byte b = (byte)source; 
+byte b = (byte)source;
 
 // Explicit conversion to short
 // Result: 300 (Fits within short range)

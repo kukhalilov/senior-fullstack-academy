@@ -5,12 +5,12 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers the explicit numeric conversions from the `short` type to other integral types in C# 15 / .NET 11. The information provided is based on the .NET 11 GA release and .NET 9 behavior, with data checked as of 2026-11-14. 
+This lesson covers the explicit numeric conversions from the `short` type to other integral types in C# 15 / .NET 11. The information provided is based on the .NET 11 GA release and .NET 9 behavior, with data checked as of 2026-11-14.
 
 Source: [Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)
 
 # How this group fits the mental model
-In C#, numeric conversions are categorized as either implicit (safe, no data loss) or explicit (requires a cast, potential for data loss or overflow). Because a `short` (a 16-bit signed integer) can hold values that do not fit into smaller types (like `sbyte` or `byte`) or unsigned types (where negative values are invalid), the compiler requires you to explicitly acknowledge the risk of data loss or overflow using a cast. This group of conversions represents the specific scenarios where you must manually instruct the compiler to perform the conversion from `short`.
+An explicit conversion requires a cast for these `short` source paths. Depending on the target and value, checked conversions may throw; unchecked integral conversions follow specified truncation and extension behavior. Implicit conversions can also lose floating-point precision.
 
 # Supplied names explained
 *   **short to sbyte (explicit numeric conversion):** Converts a 16-bit signed integer to an 8-bit signed integer. Requires a cast because the `short` value may exceed the range of `sbyte` (-128 to 127).
@@ -23,14 +23,14 @@ In C#, numeric conversions are categorized as either implicit (safe, no data los
 
 # Cross-item comparison
 *   **Implicit vs. Explicit:** Unlike implicit conversions (e.g., `short` to `int`), which happen automatically, all items in this list require an explicit cast (e.g., `(byte)myShort`) because they involve potential range violations or sign mismatches.
-*   **Checked vs. Unchecked:** These conversions are subject to `checked` and `unchecked` contexts. In a `checked` context, an overflow exception is thrown if the value is out of range; in an `unchecked` context, integral conversion follows the language's truncation rules.
+*   **Checked vs. Unchecked:** Checked integral conversions throw if the value is out of range; unchecked integral conversions follow the language's truncation/extension rules.
 
 # Examples
 ```csharp
 short myShort = -10;
 
 // Explicit conversion required
-byte myByte = (byte)myShort; 
+byte myByte = (byte)myShort;
 
 // In a checked context, this would throw an OverflowException
 checked
@@ -42,7 +42,7 @@ checked
 *Note: The code above is unverified.*
 
 # Common mistakes
-*   **Ignoring sign:** Attempting to convert a negative `short` to an unsigned type (like `byte` or `ushort`) without considering that the result will be interpreted as a large positive number due to bit representation.
+*   **Ignoring sign:** In checked context, converting a negative `short` to an unsigned type throws. In unchecked context, the result follows the destination-width bit conversion rules.
 *   **Assuming safety:** Forgetting that even if a `short` value fits in the destination type, the compiler still mandates an explicit cast for these specific conversions.
 *   **Context confusion:** Relying on default `unchecked` behavior in production code when you actually need to detect overflow errors using `checked` blocks.
 

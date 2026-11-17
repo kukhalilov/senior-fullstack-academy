@@ -5,13 +5,13 @@
 # Scope and version
 
 * **Topic:** C# numeric literals and numeric conversions (`ushort` implicit numeric conversions)
-* **Edition / Snapshot:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-14 ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+* **Edition / Snapshot:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Automatic Generation Notice:** This is an automatically generated draft.
 * **Scope Boundary:** This reference lesson covers only the exact set of implicit numeric conversions originating from the `ushort` type as defined in the inventory group. All other conversions, literal formatting options, and operators are excluded.
 
 # How this group fits the mental model
 
-In C#, numeric types have differing bit widths, signs, and ranges. When you assign a numeric value from one type to another, the compiler must guarantee that the operation is safe—meaning no unexpected loss of magnitude or precision occurs. 
+In C#, numeric types have differing bit widths, signs, and ranges. When you assign a numeric value from one type to another, the compiler must guarantee that the operation is safe—meaning no unexpected loss of magnitude or precision occurs.
 
 An **implicit numeric conversion** is performed automatically by the compiler without requiring an explicit cast syntax (such as `(int)`). The `ushort` type represents an unsigned 16-bit integer, spanning values from $0$ to $65,535$. Because larger integer types, floating-point types, and the native unsigned integer type (`nuint`) can fully represent every possible value of a 16-bit unsigned integer without overflow, the language permits widening conversions automatically. Understanding these conversions helps you select appropriate variable targets and design clean, warning-free mathematical expressions.
 

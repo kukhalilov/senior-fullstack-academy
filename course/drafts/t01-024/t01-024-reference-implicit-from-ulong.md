@@ -8,13 +8,13 @@
 This lesson covers `ulong` implicit numeric conversions in C# 15 / .NET 11. The information is based on the C# language specification and .NET runtime behaviors as of 2026-11-14.
 
 # How this group fits the mental model
-In C#, numeric types have different ranges and precision. An **implicit conversion** is a safe, compiler-managed transition from one type to another where no data loss of magnitude is expected. Because `ulong` (unsigned 64-bit integer) represents a very large range of positive whole numbers, converting it to floating-point types requires the compiler to handle potential precision differences. These conversions are "implicit" because the compiler guarantees they will succeed without requiring you to write explicit casting syntax.
+The language defines implicit conversions from `ulong` to `float`, `double`, and `decimal`. Every value stays within range, but the floating-point conversions can lose precision; `decimal` preserves every `ulong` integer exactly.
 
 # Supplied names explained
 
 *   **ulong to float (implicit numeric conversion)**: Converts a 64-bit unsigned integer to a 32-bit single-precision floating-point number. While `float` has a larger range than `ulong`, it has less precision; therefore, the conversion may result in a loss of precision for very large `ulong` values.
 *   **ulong to double (implicit numeric conversion)**: Converts a 64-bit unsigned integer to a 64-bit double-precision floating-point number. This conversion is generally safe, though extremely large `ulong` values may still experience precision loss due to the way floating-point numbers represent values.
-*   **ulong to decimal (implicit numeric conversion)**: Converts a 64-bit unsigned integer to a 128-bit decimal floating-point number. This is the most precise conversion, as `decimal` is designed for financial and high-precision calculations, ensuring the integer value is represented exactly.
+*   **ulong to decimal (implicit numeric conversion)**: Converts a 64-bit unsigned integer to a 16-byte decimal-scaled value. The integer is represented exactly because `decimal` can represent every `ulong` value; later decimal arithmetic can still round or overflow.
 
 # Cross-item comparison
 
@@ -45,11 +45,11 @@ In this example, the compiler automatically handles the conversion. Note that `f
 
 # Knowledge checks with answers
 
-**1. Which conversion is best for financial calculations?**
-*Answer*: `ulong` to `decimal`, because it provides the highest precision and avoids the rounding issues inherent in binary floating-point types.
+**1. Which target preserves every `ulong` integer value exactly?**
+*Answer*: `decimal`; this fact alone doesn't establish the correct type for a financial domain, whose scale and rounding rules determine the representation.
 
 **2. Does an implicit conversion require a cast operator (e.g., `(float)myUlong`)?**
-*Answer*: No. Implicit conversions are performed automatically by the compiler because they are considered safe from overflow.
+*Answer*: No. This conversion path is defined as implicit; conversion from `ulong` to floating point may still lose precision.
 
 **3. Is it possible to lose precision when converting `ulong` to `float`?**
-*Answer*: Yes. While the conversion is safe from overflow, `float` has fewer significant digits than `ulong`, which can lead to precision loss for very large numbers.
+*Answer*: Yes. A `ulong` can convert to `float` without losing order of magnitude, but `float` cannot represent every `ulong` integer exactly.

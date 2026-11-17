@@ -20,7 +20,7 @@
 Numeric types in C# are governed by how they are represented in code (literals) and how they move between types (conversions).
 
 ### Mental Model
-Think of numeric types as containers of different sizes and shapes. An **implicit conversion** is like pouring water from a small cup into a larger one—it is always safe. An **explicit conversion** is like pouring water from a large bucket into a small cup—you might lose data (overflow), so the compiler forces you to acknowledge the risk.
+An **implicit conversion** is one the language permits without a cast; it is not always exact (for example, `long` to `float` can lose precision). An **explicit conversion** requires a cast because it can lose information or fail, but the cast alone does not choose a rounding or overflow policy.
 
 ### Literals
 Literals are the raw values written in your code.
@@ -28,30 +28,30 @@ Literals are the raw values written in your code.
 * **Suffixes:** Append letters to literals to force a specific type: `U` (unsigned), `L` (long), `F` (float), `M` (decimal), or `D` (double).
 
 ### Conversions
-* **Implicit:** The compiler automatically converts the value because the target type is guaranteed to hold the source value.
-* **Explicit:** Required when data loss is possible. You must use a cast, such as `(int)myDouble`.
+* **Implicit:** The language permits the conversion without cast syntax. Some preserve the value exactly; others can lose floating-point precision while preserving order of magnitude.
+* **Explicit:** A cast is required for paths where range, precision, or representation requires explicit handling. Runtime behavior depends on source/target types and checked context.
 
 ## Mechanisms and relationships
 ### Numeric Promotion
-When performing arithmetic, C# "promotes" operands to a common type. For example, adding an `int` and a `long` results in a `long`.
+When performing arithmetic, C# applies operator-specific numeric promotion rules. For example, `int + long` produces `long`; decimal cannot be mixed with `float` or `double` without an explicit conversion.
 
 ### Checked and Unchecked Contexts
-By default, some conversions may silently truncate data.
-* **`checked`:** Forces the runtime to throw an `OverflowException` if a conversion results in data loss.
-* **`unchecked`:** Explicitly allows truncation or wrapping behavior.
+`checked` and `unchecked` affect integral arithmetic/conversions and floating-point-to-integral conversions, not every kind of numeric operation.
+* **`checked`:** Applicable integral overflow and out-of-range floating-point-to-integral conversions throw `OverflowException`. Decimal-to-integral overflow throws regardless of context.
+* **`unchecked`:** Integral-to-integral conversions use specified truncation/extension behavior. For floating-point-to-integral values outside range, C# leaves the result unspecified; .NET 9+ and .NET 11 add saturation for specified targets/runtimes. Decimal arithmetic can still throw in unchecked context.
 
 ### Runtime Behavior
-Recent updates (e.g., .NET 9 and .NET 11) have standardized how floating-point numbers convert to integers. On modern runtimes, these conversions often use "saturating" behavior, where values exceeding the target range are clamped to the maximum or minimum possible value rather than wrapping around.
+Version-specific runtime behavior must be separated from C# language rules: .NET 9 documents saturation for unchecked conversions to `int`, `uint`, `long`, and `ulong` on x86 and x64; .NET 11 adds `sbyte`, `byte`, `short`, `ushort`, and `char` on CoreCLR (including its interpreter) and Native AOT, but not Mono. Checked conversions throw on out-of-range values.
 
 ## Worked examples
 
 ### Example 1: Literals and Implicit Conversion
 ```csharp
 // Using digit separators and suffixes
-long myLong = 1_000_000L; 
+long myLong = 1_000_000L;
 
 // Implicit conversion: int fits into long
-long promoted = 500; 
+long promoted = 500;
 ```
 
 ### Example 2: Explicit Conversion and Overflow
@@ -65,12 +65,12 @@ checked
 {
     int largeValue = 2_000_000_000;
     // This would throw an OverflowException if the result exceeded int.MaxValue
-    int result = (int)(largeValue * 2L); 
+    int result = (int)(largeValue * 2L);
 }
 ```
 
 ## Misconceptions and edge cases
-* **Precision Loss:** Converting `double` to `decimal` or `int` is not just about size; it is about precision. `decimal` is preferred for financial calculations to avoid binary floating-point errors.
+* **Precision Loss:** `float`, `double`, and `decimal` have different representations and ranges. `decimal` can exactly represent many decimal fractions but isn't automatically the right financial model; follow domain scale and rounding rules.
 * **NaN and Infinity:** Floating-point types support `NaN` (Not a Number), `PositiveInfinity`, and `NegativeInfinity`. Converting these to integral types behaves differently depending on the runtime version.
 * **Runtime Differences:** Always check your target runtime. .NET 11 introduced more consistent saturation behavior for small integer conversions compared to older versions.
 

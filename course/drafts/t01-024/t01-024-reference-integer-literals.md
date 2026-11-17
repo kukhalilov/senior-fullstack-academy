@@ -5,14 +5,14 @@
 # Scope and version
 
 * **Topic:** Integer literal forms and notation in C#
-* **Edition/Scope:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-14 ([Microsoft Learn C# numeric literal reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types))
+* **Edition/Scope:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn C# numeric literal reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types))
 * **Automatic Generation Notice:** This is an automatically generated draft.
 
 ---
 
 # How this group fits the mental model
 
-Integer literals form the bedrock of constant numeric values in C#. Before numbers can participate in arithmetic, assignments, or numeric conversions, the C# compiler must inspect how they are written in source code. 
+Integer literals form the bedrock of constant numeric values in C#. Before numbers can participate in arithmetic, assignments, or numeric conversions, the C# compiler must inspect how they are written in source code.
 
 The notation choices—such as base prefixes, trailing suffixes, and grouping characters—instruct the compiler on two critical attributes:
 1. **The numerical value** (in decimal, hexadecimal, or binary).
@@ -29,17 +29,17 @@ The notation choices—such as base prefixes, trailing suffixes, and grouping ch
 * **Digit separator _:** The underscore character (`_`) placed between digits (e.g., `1_000_000`) to improve human readability. It is ignored entirely by the compiler during compilation and type selection.
 * **Unsigned suffix U or u:** A trailing modifier appended to an integer literal to force its type to be unsigned (`uint` or `ulong` depending on magnitude and other suffixes).
 * **Long suffix L or l:** A trailing modifier appended to an integer literal to force its type to be a 64-bit integer (`long` or `ulong`).
-* **Combined unsigned long suffix UL, Ul, uL, or ul:** A trailing modifier combining both unsigned and 64-bit characteristics, forcing the literal's type to `ulong`.
+* **Combined unsigned long suffix UL, Ul, uL, or ul:** `UL`, `Ul`, `uL`, `ul`, `LU`, `Lu`, `lU`, or `lu` select `ulong`. **Combined unsigned long suffix LU, Lu, lU, or lu** are alternate spellings for the same suffix.
 
 ---
 
 # Cross-item comparison
 
 * **Decimal vs. Hexadecimal vs. Binary integer literals:** All three represent identical numeric values if configured correctly (e.g., decimal `42`, hexadecimal `0x2A`, and binary `0b00101010`), but they use different numeral bases and prefixes (`0x`/`0b`/none) to optimize clarity for human readers depending on domain logic.
-* **Unsigned suffix U or u vs. Long suffix L or l vs. Combined unsigned long suffix UL:** 
+* **Unsigned suffix U or u vs. Long suffix L or l vs. Combined unsigned long suffix UL:**
   * `U` / `u` forces an unsigned type representation.
-  * `L` / `l` forces a 64-bit signed (or unsigned if combined) representation.
-  * `UL` (and its case variations) forces a 64-bit *unsigned* (`ulong`) type representation.
+  * `L` / `l` selects the first fitting type among `long` and `ulong`.
+  * A combined suffix (`UL`, `Ul`, `uL`, `ul`, `LU`, `Lu`, `lU`, or `lu`) selects `ulong`.
 * **Digit separator _ vs. Raw digits:** Underscores have zero effect on value, type selection, or runtime performance; they exist solely to chunk long numbers for human readability.
 
 ---

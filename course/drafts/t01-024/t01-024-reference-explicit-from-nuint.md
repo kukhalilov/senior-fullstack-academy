@@ -8,7 +8,7 @@
 
 **Scope and Version:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)). Checked 2026-11-14.
 
-This reference lesson covers one bounded group of exact, pre-enumerated names: explicit numeric conversions originating from the native unsigned integer type (`nuint`). 
+This reference lesson covers one bounded group of exact, pre-enumerated names: explicit numeric conversions originating from the native unsigned integer type (`nuint`).
 
 ### Scope Exclusions
 * All nonnumeric conversions (such as reference, boxing, unboxing, nullable, tuple, and user-defined conversions).
@@ -20,7 +20,7 @@ This reference lesson covers one bounded group of exact, pre-enumerated names: e
 
 ## How this group fits the mental model
 
-In C#, numeric types range from tiny 8-bit values to platform-native pointers like `nuint` (native unsigned integer, which matches the size of a pointer on the target architecture—32-bit on 32-bit systems, 64-bit on 64-bit systems). 
+In C#, numeric types range from tiny 8-bit values to platform-native pointers like `nuint` (native unsigned integer, which matches the size of a pointer on the target architecture—32-bit on 32-bit systems, 64-bit on 64-bit systems).
 
 When you want to transfer a value from a wider or platform-dependent type like `nuint` into a narrower or differently signed type, the compiler requires an **explicit numeric conversion**. Because `nuint` can hold values that exceed the maximum limits of smaller types (like `byte`, `short`, or `int`), implicit conversions are not allowed. You must explicitly cast the value, taking full responsibility for potential data loss, truncation, or overflow.
 
@@ -46,14 +46,14 @@ The inventory for this lesson consists exclusively of the following nine explici
 
 To understand how these conversions relate, consider the broader conversion categories and semantics documented in C#:
 
-* **Implicit vs. Explicit Numeric Conversions**: Implicit conversions happen automatically when the target type can safely represent all values of the source type without data loss. Explicit conversions (such as all items in this inventory) require a cast operator `(TargetType)` because value truncation, range overflow, or sign interpretation changes can occur.
+* **Implicit vs. Explicit Numeric Conversions**: C# defines each implicit or explicit source-target path. The explicit conversions in this inventory require casts; results depend on value, destination range, and checked context. Other implicit numeric paths can still lose floating-point precision.
 * **Checked vs. Unchecked Contexts**: Under an explicit conversion, you can wrap operations in `checked` or `unchecked` blocks. For integral conversions, `checked` throws `OverflowException` when out of range; `unchecked` discards high-order bits according to the language rules. Floating-point and decimal sources have different rules.
 
 ---
 
 ## Examples
 
-The following code snippets illustrate how to use the inventory items in valid C# syntax. 
+The following code snippets illustrate how to use the inventory items in valid C# syntax.
 
 *Note: The code examples below are unexecuted snippets demonstrating syntax patterns.*
 
@@ -67,9 +67,9 @@ class Program
         nuint nativeVal = 300;
 
         // 1. nuint to byte (explicit numeric conversion)
-        // 300 exceeds byte.MaxValue (255). 
+        // 300 exceeds byte.MaxValue (255).
         // Unchecked integral conversion truncates according to language rules.
-        byte b = (byte)nativeVal; 
+        byte b = (byte)nativeVal;
 
         // 2. nuint to ushort (explicit numeric conversion)
         // 300 fits safely within ushort bounds (0 to 65,535).

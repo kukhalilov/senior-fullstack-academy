@@ -5,17 +5,17 @@
 # Scope and version
 
 * **Topic:** C# numeric literals and numeric conversions (`nuint` implicit conversions group)
-* **Edition / Snapshot:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-14 ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions))
+* **Edition / Snapshot:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions))
 * **Scope Boundary:** This reference lesson covers only the exact supplied inventory group: `nuint` implicit numeric conversions to wider numeric types. Non-numeric conversions, explicit conversions, narrowing, parsing, and arithmetic operators are excluded from this catalog.
 
 *Note: This is an automatically generated draft.*
 
 # How this group fits the mental model
 
-In C#, numeric types form a hierarchy based on their storage size and range. When you perform calculations or assign values, the compiler often needs to convert one numeric type to another. 
+In C#, numeric types form a hierarchy based on their storage size and range. When you perform calculations or assign values, the compiler often needs to convert one numeric type to another.
 
 * **Implicit conversions** happen automatically without requiring special syntax or cast operators because the target type is wide enough to hold every possible value of the source type without loss of magnitude.
-* **`nuint`** represents a native unsigned integer type whose size is platform-dependent (32-bit on 32-bit architectures, 64-bit on 64-bit architectures). 
+* **`nuint`** represents a native unsigned integer type whose size is platform-dependent (32-bit on 32-bit architectures, 64-bit on 64-bit architectures).
 * The inventory group covered in this lesson defines the exact pathways where a native unsigned integer can safely expand into a wider or floating-point representation without explicit casts.
 
 # Supplied names explained
@@ -34,7 +34,7 @@ The supplied items represent the target destinations for implicit widening from 
 
 # Examples
 
-The following code snippet demonstrates the usage of the supplied implicit conversions in a valid C# context. 
+The following code snippet demonstrates the usage of the supplied implicit conversions in a valid C# context.
 
 *Unverified code example:*
 

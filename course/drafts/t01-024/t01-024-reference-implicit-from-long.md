@@ -5,7 +5,7 @@
 *Automatically generated draft.*
 
 # Scope and version
-This lesson covers the implicit numeric conversions from the `long` type to floating-point and decimal types in C# 15 / .NET 11. It focuses on how these conversions allow safe assignment and operation without data loss of magnitude, though precision loss may occur. This content is current as of the .NET 11 GA release (checked 2026-11-14).
+This lesson covers the implicit numeric conversions from `long` to `float`, `double`, and `decimal`. The language permits each path; floating-point conversions can lose precision, while the decimal conversion preserves the integer value exactly.
 
 Source: [Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)
 
@@ -41,15 +41,15 @@ decimal myDecimal = myLong; // Exact representation
 
 # Common mistakes
 * **Assuming precision is always kept**: A common mistake is assuming that because the conversion is "implicit" (safe from overflow), it is also "exact." Converting a very large `long` to a `float` can result in a loss of precision because the `float` type cannot represent every integer value exactly.
-* **Ignoring the cost**: While these conversions are implicit, they are not free. Converting to `decimal` is significantly slower than converting to `double` or `float` due to the complexity of the `decimal` type's internal representation.
+* **Ignoring the cost**: While these conversions are implicit, they are not free. Do not assume a fixed performance ratio among numeric conversions; costs depend on operation, runtime, and workload. Benchmark if performance matters.
 
 # Knowledge checks with answers
 
 1. **Question**: Why is `long` to `float` an implicit conversion if it can lose precision?
    * **Answer**: In C#, "implicit" refers to the ability to store the *magnitude* of the value without overflow. The compiler permits it because it is safe from a range perspective, even if the underlying representation (floating-point) differs from the source (integer).
 
-2. **Question**: Which of the three conversions is best for financial calculations?
-   * **Answer**: `long` to `decimal` is the best choice because the `decimal` type provides the high precision required for financial data, avoiding the rounding issues inherent in binary floating-point types like `float` and `double`.
+2. **Question**: Which of the three conversions preserves a `long` integer exactly?
+   * **Answer**: `decimal` preserves the integer exactly, but the right financial representation depends on domain scale and rounding rules; the type alone does not guarantee correct monetary calculations.
 
 3. **Question**: Does the compiler require an explicit cast for `long` to `double`?
    * **Answer**: No. Because `double` can represent the range of a `long`, the conversion is implicit and the compiler handles it automatically.
