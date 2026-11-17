@@ -561,6 +561,19 @@
       "findings": [
         "Checked ext4 directory-name-to-inode separation and inode metadata, journal/data-mode distinction, and Linux fsync(file) versus directory-entry durability against kernel documentation and Linux man-pages. Broader filesystem comparisons, every claim, and omissions remain pending; lesson is not promoted."
       ]
+    },
+    {
+      "scope": "Memory hierarchy reference",
+      "status": "partial primary-source checks; full lesson audit pending",
+      "sources": [
+        "https://docs.kernel.org/admin-guide/mm/concepts.html",
+        "https://docs.kernel.org/mm/page_tables.html",
+        "https://cdrdv2-public.intel.com/821612/248966-Optimization-Reference-Manual-V1-050.pdf",
+        "https://docs.kernel.org/admin-guide/mm/numaperf.html"
+      ],
+      "findings": [
+        "Checked Linux page-table/TLB/page-fault overview, NUMA local/far memory distinction, and Intel locality/cache optimization guidance. Architecture-specific performance claims, every lesson statement, and completeness remain pending; lesson is not promoted."
+      ]
     }
   ],
   "lessons": [
@@ -77360,29 +77373,10 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://docs.kernel.org/admin-guide/mm/concepts.html",
+        "https://docs.kernel.org/mm/page_tables.html",
+        "https://cdrdv2-public.intel.com/821612/248966-Optimization-Reference-Manual-V1-050.pdf",
+        "https://docs.kernel.org/admin-guide/mm/numaperf.html"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99947,7 +99941,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 187 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 183 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
@@ -100118,6 +100112,14 @@
       "status": "expanded; selected primary-source checks; full audit pending",
       "findings": [
         "Replaced generic filler with names/inodes/data mapping, cache path, ext4 journaling guarantees and limits, durability sequence, application examples, distinctions from database WAL, and exercises. Selected claims were checked against Linux kernel and man-page sources; full claim and completeness audits remain outstanding."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "Memory hierarchy reference",
+      "status": "expanded; selected primary-source checks; full audit pending",
+      "findings": [
+        "Replaced generic filler with registers/caches, locality, virtual memory/TLB/faults, NUMA, page cache, bandwidth-vs-latency, profiling guidance, symptom matrix, examples, and practice. Selected material was checked against Linux and Intel documentation; full sentence-level and omission audits remain outstanding."
       ]
     }
   ]
