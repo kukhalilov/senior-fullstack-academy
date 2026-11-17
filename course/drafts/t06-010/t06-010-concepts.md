@@ -20,13 +20,13 @@ A config file does not simply mean “all files under this folder.” `files` is
 
 ### Resolution, target, and libraries answer different questions
 
-`module` chooses the module form TypeScript understands or emits. `moduleResolution` models how import specifiers map to files and package metadata. They must be a compatible pair: `nodenext` models Node’s dual module behavior; `bundler` models bundler-oriented ESM resolution. `paths` adds compiler lookup mappings but does not rewrite imports or configure a runtime resolver.
+`module` chooses the module form TypeScript understands or emits. `moduleResolution` models how import specifiers map to files and package metadata. They must be a compatible pair: `nodenext` models Node’s dual module behavior; `bundler` models bundler resolution and, since TypeScript 6.0, can also pair with `module: commonjs`. Unlike Node’s modes, bundler resolution permits extensionless relative imports. `paths` adds compiler lookup mappings but does not rewrite imports or configure a runtime resolver. [TypeScript 6.0](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html)
 
 `target` selects the JavaScript syntax level to emit and, absent an explicit `lib`, influences standard-library declarations. `lib` describes APIs available to type checking; it does not install polyfills. If a program types against `Promise` or a DOM API, the runtime still needs to provide it. Browser, Node, and custom environments may need different declaration packages and explicit `types` entries.
 
 ### Strictness is a family with interactions
 
-The `strict` switch enables a family of checks, including null handling, implicit `any`, function compatibility, and property initialization. Individual strictness flags let a team stage or specialize the policy. `exactOptionalPropertyTypes` distinguishes a missing optional property from a property explicitly set to `undefined`; `noUncheckedIndexedAccess` adds `undefined` to uncertain indexed reads. These options affect static reasoning, not JavaScript runtime checks.
+The `strict` switch enables a family of checks, including null handling, implicit `any`, function compatibility, and property initialization. Individual strictness flags let a team stage or specialize the policy. The family can gain stricter checks in later TypeScript releases, so upgrades may add diagnostics. `exactOptionalPropertyTypes` distinguishes a missing optional property from a property explicitly set to `undefined`; `noUncheckedIndexedAccess` adds `undefined` to uncertain indexed reads. These options affect static reasoning, not JavaScript runtime checks.
 
 ### Emit is a pipeline decision
 

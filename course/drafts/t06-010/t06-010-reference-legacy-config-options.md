@@ -10,7 +10,7 @@ These names are retained only to recognize old configurations and explain migrat
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|
@@ -28,9 +28,7 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 
 ## Cross-item comparison
 
-The old names do not all share the same deprecation date. ignoreDeprecations is a TypeScript 6 transition aid; outFile was already removed in 6.0.
-
-The old names do not all share the same deprecation date. ignoreDeprecations is a TypeScript 6 transition aid; outFile was already removed in 6.0.
+These names have different histories. `ignoreDeprecations` is a TypeScript 6 transition aid; `outFile` was removed in 6.0.
 
 ## Examples
 

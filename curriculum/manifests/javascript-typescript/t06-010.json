@@ -276,7 +276,8 @@
     "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
     "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
     "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
-    "https://www.npmjs.com/package/typescript/v/7.1.0-beta"
+    "https://www.npmjs.com/package/typescript/v/7.1.0-beta",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-7.html"
   ],
   "versionNotes": [
     {
@@ -345,7 +346,8 @@
       "https://www.typescriptlang.org/tsconfig/fallbackPolling.html",
       "https://www.typescriptlang.org/tsconfig/synchronousWatchDirectory.html",
       "https://www.typescriptlang.org/tsconfig/excludeDirectories.html",
-      "https://www.typescriptlang.org/tsconfig/excludeFiles.html"
+      "https://www.typescriptlang.org/tsconfig/excludeFiles.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-7.html"
     ]
   },
   "scopeExclusions": [
@@ -366,6 +368,14 @@
     "TypeScript 7.1 beta adds deduplicatePackages; do not state its semantics beyond its supplied name and official compiler option text.",
     "TypeScript 7.1 beta introduces a redesigned programmatic API, but its broad API/AST export surface is outside this TSConfig and build-options inventory; do not imply this topic exhaustively teaches those exports.",
     "TypeScript 7.1 beta contentMappers are a separate preview feature: they map embedded source regions and require --runExternalCode to execute the configured package. Editors add workspace trust/permission controls.",
-    "TypeScript 7.1.0-beta differs from the TypeScript 7.0 rootDir guidance: the beta compiler help reports a computed rootDir, and a no-rootDir project with a common ./src source directory produced TS5011 requesting an explicit rootDir. Set rootDir deliberately and verify this beta behavior before relying on it."
+    "TypeScript 7.1.0-beta differs from the TypeScript 7.0 rootDir guidance: the beta compiler help reports a computed rootDir, and a no-rootDir project with a common ./src source directory produced TS5011 requesting an explicit rootDir. Set rootDir deliberately and verify this beta behavior before relying on it.",
+    "allowImportingTsExtensions permits TypeScript-extension imports. Its current default is true when rewriteRelativeImportExtensions is enabled, false otherwise. Without rewriting supported relative specifiers, emitting those extensions unchanged is unsuitable for ordinary JavaScript runtimes; noEmit or emitDeclarationOnly remains a use case when another tool handles runtime output. Choose module resolution to match the runtime or bundler; the flag does not inherently require bundler resolution. TypeScript 5.7 introduced rewriteRelativeImportExtensions.",
+    "The module option includes preserve, which preserves individual ESM statements while emitting import-equals/export-equals in CommonJS form; TypeScript 6.0 also permits moduleResolution bundler with module commonjs.",
+    "allowUnreachableCode and allowUnusedLabels use undefined defaults that surface editor suggestion warnings; true suppresses those warnings and false turns them into compiler errors. Unreachable-code diagnostics concern syntax-provable unreachable statements, not control-flow conclusions made only by type analysis.",
+    "noUnusedParameters exempts parameters whose names begin with an underscore.",
+    "isolatedModules reports constructs unsafe for single-file transpilation but does not perform transpilation or replace whole-program checking. noLib removes standard library declarations, so a project must supply the global declarations it needs.",
+    "composite projects require their implementation files to be covered by project inputs, force declaration generation, and default incremental mode on; tsBuildInfoFile selects the incremental metadata path.",
+    "assumeChangesOnlyAffectDirectDependencies is a watch-mode performance trade-off that skips some downstream rechecks and can defer diagnostics until a fuller build.",
+    "The TypeScript 7.0 --checkers and --builders compiler parallelism controls are experimental; increasing concurrency can raise memory use, especially when both levels are increased."
   ]
 }

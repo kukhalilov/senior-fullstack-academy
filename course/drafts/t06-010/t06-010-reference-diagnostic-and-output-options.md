@@ -10,7 +10,7 @@ Use diagnostic switches to answer a question: which files entered, why did a mod
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|
@@ -31,9 +31,7 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 
 ## Cross-item comparison
 
-listFiles/explainFiles reveal program membership, traceResolution explains one import, and performance flags measure compiler work. skipDefaultLibCheck is narrower than skipLibCheck.
-
-listFiles/explainFiles reveal program membership, traceResolution explains one import, and performance flags measure compiler work. skipDefaultLibCheck is narrower than skipLibCheck.
+`listFiles`/`explainFiles` reveal program membership, `traceResolution` explains a module lookup, and performance flags measure compiler work. `skipDefaultLibCheck` is narrower than `skipLibCheck`.
 
 ## Examples
 

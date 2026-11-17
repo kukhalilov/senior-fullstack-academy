@@ -10,12 +10,12 @@ These settings affect static diagnostics, not runtime validation. The flags unde
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|
-| `allowUnreachableCode` | Disable error reporting for unreachable code. default: undefined |
-| `allowUnusedLabels` | Disable error reporting for unused labels. default: undefined |
+| `allowUnreachableCode` | `undefined` (default) gives editor suggestion warnings for code provably unreachable from JavaScript syntax; `true` ignores it and `false` reports compiler errors. It does not cover code that only appears unreachable through type analysis. |
+| `allowUnusedLabels` | `undefined` (default) gives editor suggestion warnings; `true` ignores unused labels and `false` reports compiler errors. |
 | `alwaysStrict` | In TypeScript 7, strict mode is assumed and this is always true; setting it false is unsupported. It concerns strict-mode parsing/emit behavior, not the type-checking umbrella alone. [TypeScript 7 changes](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/) |
 | `exactOptionalPropertyTypes` | Interpret optional property types as written, rather than adding 'undefined'. default: false |
 | `noFallthroughCasesInSwitch` | Enable error reporting for fallthrough cases in switch statements. default: false |
@@ -26,12 +26,12 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 | `noPropertyAccessFromIndexSignature` | Enforces using indexed accessors for keys declared using an indexed type. default: false |
 | `noUncheckedIndexedAccess` | Add 'undefined' to a type when accessed using an index. default: false |
 | `noUnusedLocals` | Enable error reporting when local variables aren't read. default: false |
-| `noUnusedParameters` | Raise an error when a function parameter isn't read. default: false |
+| `noUnusedParameters` | Raise an error when a function parameter isn't read; parameters whose names begin with `_` are exempt. default: false |
 | `stableTypeOrdering` | Ensure types are ordered stably and deterministically across compilations. default: true |
 | `strict` | Enable all strict type-checking options. default: true |
 | `strictBindCallApply` | Check that the arguments for 'bind', 'call', and 'apply' methods match the original function. default: `true`, unless `strict` is `false` |
 | `strictBuiltinIteratorReturn` | Built-in iterators are instantiated with a 'TReturn' type of 'undefined' instead of 'any'. default: `true`, unless `strict` is `false` |
-| `strictFunctionTypes` | When assigning functions, check to ensure parameters and the return values are subtype-compatible. default: `true`, unless `strict` is `false` |
+| `strictFunctionTypes` | Check function parameter compatibility more safely; under strict checking, function-syntax parameters are contravariant, while method and constructor parameters keep a bivariance exception. Return types are checked in the output direction independently of this option. default: `true`, unless `strict` is `false` |
 | `strictNullChecks` | When type checking, take into account 'null' and 'undefined'. default: `true`, unless `strict` is `false` |
 | `strictPropertyInitialization` | Check for class properties that are declared but not set in the constructor. default: `true`, unless `strict` is `false` |
 | `useUnknownInCatchVariables` | Default catch clause variables as 'unknown' instead of 'any'. default: `true`, unless `strict` is `false` |

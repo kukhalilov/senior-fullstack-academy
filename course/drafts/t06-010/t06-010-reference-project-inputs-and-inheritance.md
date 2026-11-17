@@ -10,7 +10,7 @@ Start by separating root-file discovery from dependency closure. An `exclude` en
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|
@@ -28,9 +28,7 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 
 ## Cross-item comparison
 
-files and include determine roots differently: one enumerates paths and one expands patterns. exclude only applies to the pattern expansion; references add a separate build dependency edge. extends shares common policy without merging all path bases into one directory.
-
-files and include determine roots differently: one enumerates paths and one expands patterns. exclude only applies to the pattern expansion; references add a separate build dependency edge. extends shares common policy without merging all path bases into one directory.
+`files` enumerates root paths; `include` expands patterns. `exclude` filters only pattern discovery, while references add build-graph edges. `extends` shares configuration without changing the directory base of paths written in each config.
 
 ## Examples
 

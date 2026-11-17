@@ -10,7 +10,7 @@ This is a TypeScript 7.1 beta feature, not a TypeScript 7.0 capability. A conten
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|
@@ -19,9 +19,7 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 
 ## Cross-item comparison
 
-contentMappers registers a virtual-source transform; runExternalCode authorizes running its package. A declaration file alone types an import but cannot perform this transformation.
-
-contentMappers registers a virtual-source transform; runExternalCode authorizes running its package. A declaration file alone types an import but cannot perform this transformation.
+`contentMappers` registers a virtual-source transform; `--runExternalCode` authorizes running its package. A declaration file alone types an import but cannot perform this transformation.
 
 ## Examples
 

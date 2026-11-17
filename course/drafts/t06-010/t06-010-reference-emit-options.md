@@ -10,7 +10,7 @@ The key decision is which tool owns each artifact. `noEmit` turns TypeScript int
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|
@@ -20,11 +20,11 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 | `downlevelIteration` | Historical helper-based iteration lowering for older targets. It is unsupported in TypeScript 7; choose a supported modern target rather than relying on this flag. [TypeScript 7 changes](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/) |
 | `emitBOM` | Emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files. default: false |
 | `emitDeclarationOnly` | Only output d.ts files and not JavaScript files. default: false |
-| `importHelpers` | Allow importing helper functions from tslib once per project, instead of including them per-file. default: false |
+| `importHelpers` | Import shared compiler helpers from the `tslib` package instead of embedding them in each file. The runtime/package dependency must be available to the emitted code. default: false |
 | `inlineSourceMap` | Include sourcemap files inside the emitted JavaScript. default: false |
-| `inlineSources` | Include source code in the sourcemaps inside the emitted JavaScript. default: false |
+| `inlineSources` | Embed original source text in source maps; use with `sourceMap` or `inlineSourceMap`. It does not inline source text into JavaScript by itself. default: false |
 | `mapRoot` | Specify the location where debugger should locate map files instead of generated locations. |
-| `newLine` | Set the newline character for emitting files. one of: crlf, lf |
+| `newLine` | Set the newline character for emitted files. one of: `crlf`, `lf`; default follows the host operating system. |
 | `noEmit` | Disable emitting files from a compilation. default: false |
 | `noEmitHelpers` | Disable generating custom helper functions like '__extends' in compiled output. default: false |
 | `noEmitOnError` | Disable emitting files if any type checking errors are reported. default: false |

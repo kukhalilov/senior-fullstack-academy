@@ -10,17 +10,17 @@ Watch settings tune file observation; incremental settings persist per-project s
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|
-| `composite` | Enable constraints that allow a TypeScript project to be used with project references. default: false |
+| `composite` | Enable constraints that allow a TypeScript project to be used with project references, including requiring its implementation files to be covered by the project inputs. It also forces declaration generation and defaults incremental mode on; `tsBuildInfoFile` can select the cache path. default: false |
 | `disableReferencedProjectLoad` | Reduce the number of projects loaded automatically by TypeScript. default: false |
 | `disableSolutionSearching` | Opt a project out of multi-project reference checking when editing. default: false |
 | `disableSourceOfProjectReferenceRedirect` | Disable preferring source files instead of declaration files when referencing composite projects. default: false |
 | `incremental` | Save .tsbuildinfo files to allow for incremental compilation of projects. default: `false`, unless `composite` is set |
 | `tsBuildInfoFile` | Specify the path to .tsbuildinfo incremental compilation file. default: .tsbuildinfo |
-| `assumeChangesOnlyAffectDirectDependencies` | Have recompiles in projects that use 'incremental' and 'watch' mode assume that changes within a file will only affect files directly depending on it. default: false |
+| `assumeChangesOnlyAffectDirectDependencies` | In incremental watch mode, assume a changed file only affects its direct dependents, skipping some downstream rechecks for speed. This is a performance trade-off that can defer diagnostics until a fuller build. default: false |
 | `watchFile` | The strategy for watching individual files: fixedPollingInterval, priorityPollingInterval, dynamicPriorityPolling, useFsEvents (default), or useFsEventsOnParentDirectory. Polling can use more resources; native events can have platform or watcher-limit constraints. [watchFile](https://www.typescriptlang.org/tsconfig/watchFile.html) |
 | `watchDirectory` | The strategy for watching directory trees on systems without recursive native watching: fixed polling, dynamic priority polling, or native useFsEvents (default). [watchDirectory](https://www.typescriptlang.org/tsconfig/watchDirectory.html) |
 | `fallbackPolling` | The polling strategy used when native file events are unavailable or watcher limits are exhausted. It supports fixed, priority, and dynamic-priority polling; synchronousWatchDirectory is another related setting. [fallbackPolling](https://www.typescriptlang.org/tsconfig/fallbackPolling.html) |

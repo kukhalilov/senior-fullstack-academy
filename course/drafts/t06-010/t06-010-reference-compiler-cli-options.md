@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson explains 13 supplied names in the compiler command-line actions and diagnostics group. The current stable compiler is TypeScript 7.0; TypeScript 7.1 is beta as of 2026-11-16. CLI summaries follow the TypeScript 7.1.0-beta compiler help and beta package declarations. Preview-only claims are labeled beta. Do not generalize beta defaults or APIs to TypeScript 7.0. [TypeScript 7.0](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/) · [TypeScript 7.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/) · [beta package](https://www.npmjs.com/package/typescript/v/7.1.0-beta)
+This lesson explains all 12 supplied names in the compiler command-line actions and diagnostics group. The separate content-mappers lesson covers the beta-only `--runExternalCode` permission. The current stable compiler is TypeScript 7.0; TypeScript 7.1 is beta as of 2026-11-16. CLI summaries follow the TypeScript 7.1.0-beta compiler help and beta package declarations. Preview-only claims are labeled beta. Do not generalize beta defaults or APIs to TypeScript 7.0. [TypeScript 7.0](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/) · [TypeScript 7.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/) · [beta package](https://www.npmjs.com/package/typescript/v/7.1.0-beta)
 
 ## How this group fits the mental model
 
@@ -10,7 +10,7 @@ Choose a project-oriented invocation intentionally. Bare `tsc` reads config; exp
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|
@@ -18,7 +18,7 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 | `tsc --help` | Print this message. |
 | `tsc --init` | Initializes a TypeScript project and creates a tsconfig.json file. |
 | `tsc --version` | Print the compiler's version. |
-| `tsc --ignoreConfig` | Ignore the tsconfig found and build with commandline options and files. |
+| `tsc --ignoreConfig` | Ignore the tsconfig found and build with command-line options and files. |
 | `tsc --project` | Compile the project given the path to its configuration file, or to a folder with a 'tsconfig.json'. |
 | `tsc --showConfig` | Print the final configuration instead of building. |
 | `tsc --watch` | Watch input files. |
@@ -26,7 +26,6 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 | `tsc --locale` | Set the language of the messaging from TypeScript. This does not affect emit. |
 | `tsc --pprofDir` | Generate pprof CPU/memory profiles to the given directory. |
 | `tsc --quiet` | Do not print diagnostics. |
-| `tsc --runExternalCode` | Allow loading external content mapper plugins that execute code during compilation. |
 
 ## Cross-item comparison
 

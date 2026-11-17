@@ -6,11 +6,11 @@ This lesson explains 9 supplied names in the build orchestration and parallelism
 
 ## How this group fits the mental model
 
-Build mode coordinates project-reference dependencies. `--checkers` controls type-checker workers within a project; `--builders` controls concurrent referenced projects. Their product can be much larger than either value, so tune memory and CPU together. `--singleThreaded` is a reproducibility/debugging/resource control.
+Build mode coordinates project-reference dependencies. The TypeScript 7.0 `--checkers` and `--builders` parallelism flags are experimental: `--checkers` controls type-checker workers within a project; `--builders` controls concurrent referenced projects. Their product can be much larger than either value, so tune memory and CPU together. `--singleThreaded` is a reproducibility/debugging/resource control.
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|

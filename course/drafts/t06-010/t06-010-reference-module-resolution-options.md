@@ -10,18 +10,18 @@ Select module kind and resolution together based on the runtime. `nodenext` mode
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|
 | `allowArbitraryExtensions` | Enable importing files with any extension, provided a declaration file is present. default: false |
-| `allowImportingTsExtensions` | Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set. default: false |
+| `allowImportingTsExtensions` | Allow imports to include TypeScript file extensions. If output is enabled, `rewriteRelativeImportExtensions` must rewrite supported relative `.ts`/`.tsx`/`.mts`/`.cts` specifiers; otherwise use `noEmit` or `emitDeclarationOnly`. Choose a compatible module-resolution mode for the actual runtime or bundler. default: true when `rewriteRelativeImportExtensions` is enabled; false otherwise |
 | `allowUmdGlobalAccess` | Allow accessing UMD globals from modules. default: false |
 | `baseUrl` | Historical base directory for non-relative names; deprecated in TypeScript 6 and unsupported in TypeScript 7. Remove it and make paths entries relative to the project root. [TypeScript 6 migration](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html) |
 | `customConditions` | Conditions to set in addition to the resolver-specific defaults when resolving imports. |
 | `deduplicatePackages` | Deduplicate packages with the same name and version. default: true |
-| `module` | Specify what module code is generated. one of: commonjs, es6/es2015, es2020, es2022, esnext, node16, node18, node20, nodenext, preserve default: undefined |
-| `moduleResolution` | Specify how TypeScript looks up a file from a given module specifier. one of: node16, nodenext, bundler default: `nodenext` if `module` is `nodenext`; `node16` if `module` is `node16` or `node18`; otherwise, `bundler`. |
+| `module` | Specify what module code is generated. one of: commonjs, es6/es2015, es2020, es2022, esnext, node16, node18, node20, nodenext, preserve. TypeScript 7.0 defaults to `esnext`; confirm separately for beta releases. |
+| `moduleResolution` | Specify how TypeScript looks up a file from a given module specifier. one of: node16, nodenext, bundler default: `nodenext` if `module` is `nodenext`; `node16` if `module` is `node16`, `node18`, or `node20`; otherwise, `bundler`. |
 | `moduleSuffixes` | List of file name suffixes to search when resolving a module. |
 | `noResolve` | Disallow 'import's, 'require's or '<reference>'s from expanding the number of files TypeScript should add to a project. default: false |
 | `noUncheckedSideEffectImports` | Check side effect imports. default: true |
@@ -37,9 +37,9 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 
 ## Cross-item comparison
 
-Resolution answers where a specifier points; it does not configure the runtime loader.
+`module` answers which module behavior TypeScript models or emits; `moduleResolution` chooses how a specifier is found. `nodenext` models Node’s package rules and requires explicit extensions for relative ESM imports; `bundler` models bundlers and allows extensionless relative imports. Since TypeScript 6.0, bundler mode can also pair with `module: commonjs`. Neither mode configures the runtime loader by itself. [TypeScript 6.0](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html)
 
-module describes module semantics; moduleResolution describes lookup. types picks ambient packages while typeRoots changes the search directories. paths affects compiler lookup but requires separate runtime mapping.
+`types` determines which packages are included automatically for ambient globals; `typeRoots` changes where those packages are searched. A `paths` map only affects compiler lookup, so runtime resolution needs a matching mechanism.
 
 ## Examples
 

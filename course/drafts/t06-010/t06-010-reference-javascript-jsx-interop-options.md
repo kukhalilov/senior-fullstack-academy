@@ -10,7 +10,7 @@ This group shapes which source languages and ambient environments join a program
 
 ## Supplied names explained
 
-Each row corresponds to one exact manifest item. For CLI and config names, the description, default, and allowed values follow the compiler own --all help where available.
+Each row corresponds to one exact manifest item. CLI and config descriptions follow TypeScript's own `--all` help where applicable.
 
 | Supplied name | What it does and why it matters |
 |---|---|
@@ -24,7 +24,7 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 | `esModuleInterop` | Enables interop emit for CommonJS imports and also enables synthetic default-import checking. It is true by default and TypeScript 6/7 no longer permits setting it to false. |
 | `forceConsistentCasingInFileNames` | Ensure that casing is correct in imports. default: true |
 | `isolatedDeclarations` | Require sufficient annotation on exports so other tools can trivially generate declaration files. default: false |
-| `isolatedModules` | Ensure that each file can be safely transpiled without relying on other imports. default: false |
+| `isolatedModules` | Report constructs that cannot be safely transpiled one file at a time by tools such as Babel or esbuild. This is a static compatibility check; it does not perform transpilation or make the entire program type-safe. default: false |
 | `preserveSymlinks` | Disable resolving symlinks to their realpath. This correlates to the same flag in node. default: false |
 | `verbatimModuleSyntax` | Do not transform or elide any imports or exports not marked as type-only, ensuring they are written in the output file's format based on the 'module' setting. default: false |
 | `emitDecoratorMetadata` | Emit design-type metadata for decorated declarations in source files. default: false |
@@ -36,16 +36,14 @@ Each row corresponds to one exact manifest item. For CLI and config names, the d
 | `lib` | Specify a set of bundled library declaration files that describe the target runtime environment. one or more: es5, es6/es2015, es7/es2016, es2017, es2018, es2019, es2020, es2021, es2022, es2023, es2024, es2025, es2026, esnext, dom, dom.iterable, dom.asynciterable, webworker, webworker.importscripts, webworker.iterable, webworker.asynciterable, scripthost, es2015.core, es2015.collection, es2015.generator, es2015.iterable, es2015.promise, es2015.proxy, es2015.reflect, es2015.symbol, es2015.symbol.wellknown, es2016.array.include, es2016.intl, es2017.arraybuffer, es2017.date, es2017.object, es2017.sharedmemory, es2017.string, es2017.intl, es2017.typedarrays, es2018.asyncgenerator, es2018.asynciterable/esnext.asynciterable, es2018.intl, es2018.promise, es2018.regexp, es2019.array, es2019.object, es2019.string, es2019.symbol/esnext.symbol, es2019.intl, es2020.bigint/esnext.bigint, es2020.date, es2020.promise, es2020.sharedmemory, es2020.string, es2020.symbol.wellknown, es2020.intl, es2020.number, es2021.promise, es2021.string, es2021.weakref/esnext.weakref, es2021.intl, es2022.array, es2022.error, es2022.intl, es2022.object, es2022.string, es2022.regexp, es2023.array, es2023.collection, es2023.intl, es2024.arraybuffer, es2024.collection, es2024.object/esnext.object, es2024.promise, es2024.regexp/esnext.regexp, es2024.sharedmemory, es2024.string/esnext.string, es2025.collection, es2025.float16/esnext.float16, es2025.intl, es2025.iterator, es2025.promise, es2025.regexp, es2026.array/esnext.array, es2026.collection/esnext.collection, es2026.error/esnext.error, es2026.iterator, es2026.json, es2026.math, es2026.typedarrays/esnext.typedarrays, esnext.iterator, esnext.promise, esnext.date, esnext.decorators, esnext.disposable, esnext.intl, esnext.modulesource, esnext.sharedmemory, esnext.temporal, decorators, decorators.legacy default: undefined |
 | `libReplacement` | Enable lib replacement. default: false |
 | `moduleDetection` | Control what method is used to detect module-format JS files. one of: auto, legacy, force default: "auto": Treat files with imports, exports, import.meta, jsx (with jsx: react-jsx), or esm format (with module: node16+) as modules. |
-| `noLib` | Disable including any library files, including the default lib.d.ts. default: false |
+| `noLib` | Disable inclusion of all standard library declaration files, including the default `lib.d.ts`; the project must then provide the global declarations it needs. default: false |
 | `reactNamespace` | Specify the object invoked for 'createElement'. This only applies when targeting 'react' JSX emit. default: `React` |
-| `target` | Set the JavaScript language version for emitted JavaScript and include compatible library declarations. one of: es6/es2015, es2016, es2017, es2018, es2019, es2020, es2021, es2022, es2023, es2024, es2025, es2026, esnext default: es2026 |
+| `target` | Set the JavaScript language version for emitted JavaScript and include compatible library declarations. one of: es6/es2015, es2016, es2017, es2018, es2019, es2020, es2021, es2022, es2023, es2024, es2025, es2026, esnext. TypeScript 7.0 stable defaults to ES2025; TypeScript 7.1 beta reports ES2026 as its default. `target` does not install runtime APIs or polyfills. |
 | `useDefineForClassFields` | Emit ECMAScript-standard-compliant class fields. default: `true` for ES2022 and above, including ESNext. |
 
 ## Cross-item comparison
 
-allowJs adds JavaScript inputs; checkJs enables diagnostics for them. jsx selects a transform, while jsxFactory/jsxImportSource choose its runtime convention. Decorator emit metadata and decorator syntax are distinct concerns.
-
-allowJs adds JavaScript inputs; checkJs enables diagnostics for them. jsx selects a transform, while jsxFactory/jsxImportSource choose its runtime convention. Decorator emit metadata and decorator syntax are distinct concerns.
+`allowJs` adds JavaScript inputs; `checkJs` enables diagnostics for them. `jsx` selects a transform, while `jsxFactory`/`jsxImportSource` choose its runtime convention. Decorator metadata emit and decorator syntax are distinct concerns.
 
 ## Examples
 
