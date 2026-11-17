@@ -7,8 +7,8 @@
     "lessons": 2341,
     "reviewed": 802,
     "pending": 1539,
-    "claimsChecked": 29373,
-    "claimsCorrected": 1455,
+    "claimsChecked": 29415,
+    "claimsCorrected": 1456,
     "draftsMayBePromoted": false,
     "reviewedLessons": 802,
     "pendingLessons": 1539
@@ -1351,6 +1351,23 @@
       "status": "full claim and expanded inventory audit complete for all 7 lessons",
       "findings": [
         "Checked strict/sloppy this substitution, property-reference and optional calls, arrows, call/apply/bind, construction/new.target/super, Function metadata/descriptors, legacy caller/arguments, source text availability, Symbol.hasInstance, and Object.prototype.toString fallback against ECMAScript 2026 and MDN. Added the previously omitted Function constructor, including parameter/body string conversion, parse errors, global environment instead of local closure, own strictness, and host string-compilation restrictions; added Reflect.apply comparison. Ran all eight practice scenarios, including a separate classic-script VM check for sloppy this. No existing false claims were found. All seven lessons remain drafts pending whole-course audit."
+      ]
+    },
+    {
+      "scope": "JavaScript classes, inheritance, and private elements (t06-018)",
+      "status": "full claim and frozen-inventory audit complete for all 6 lessons",
+      "sources": [
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+        "https://github.com/tc39/proposal-class-fields"
+      ],
+      "findings": [
+        "Checked all 22 fields/private elements inventory entries and 31 class forms/inheritance entries against ECMAScript 2026 normative algorithms and MDN reference. Verified constructor and element early errors, static method constructor exception, class/method/field property descriptors, class and initializer order, computed-name timing, extends null, private name pairing/brand semantics, and Proxy opacity. Corrected one reference statement that implied static constructor methods are rejected; Node runtime confirmed static constructor method is allowed, while instance and static fields named constructor are syntax errors. Ran all practice outputs including the two new brand/descriptor exercises. Validators passed. Six lessons remain in drafts pending whole-course completion."
       ]
     }
   ],
@@ -50100,7 +50117,7 @@
       "draft": "course/drafts/t06-018/t06-018-overview.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 31,
+      "claimsChecked": 35,
       "claimsCorrected": 1,
       "evidence": [
         {
@@ -50148,6 +50165,20 @@
             }
           ],
           "verdict": "verified against current normative standard and explanatory references"
+        },
+        {
+          "claims": "Follow-up audit checked 4 newly added or revalidated claim units. Rechecked the overview and expanded the mental-model note to include Proxy opacity for private brands.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+            "https://github.com/tc39/proposal-class-fields"
+          ],
+          "verdict": "verified"
         }
       ],
       "issues": [],
@@ -50162,7 +50193,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
+      "reviewNote": "Rechecked the overview and expanded the mental-model note to include Proxy opacity for private brands. Combined with the original claim inventory, the complete lesson and frozen scope were checked. Lesson remains in drafts pending whole-course audit."
     },
     {
       "taskId": "t06-018-concepts",
@@ -50171,7 +50202,7 @@
       "draft": "course/drafts/t06-018/t06-018-concepts.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 68,
+      "claimsChecked": 72,
       "claimsCorrected": 1,
       "evidence": [
         {
@@ -50219,6 +50250,20 @@
             }
           ],
           "verdict": "verified against current normative standard and explanatory references"
+        },
+        {
+          "claims": "Follow-up audit checked 4 newly added or revalidated claim units. Rechecked class construction, lexical private names, and Proxy behavior; added the exact-object private-brand rule.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+            "https://github.com/tc39/proposal-class-fields"
+          ],
+          "verdict": "verified"
         }
       ],
       "issues": [],
@@ -50233,7 +50278,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
+      "reviewNote": "Rechecked class construction, lexical private names, and Proxy behavior; added the exact-object private-brand rule. Combined with the original claim inventory, the complete lesson and frozen scope were checked. Lesson remains in drafts pending whole-course audit."
     },
     {
       "taskId": "t06-018-reference-class-forms-and-inheritance",
@@ -50242,8 +50287,8 @@
       "draft": "course/drafts/t06-018/t06-018-reference-class-forms-and-inheritance.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 101,
-      "claimsCorrected": 0,
+      "claimsChecked": 109,
+      "claimsCorrected": 1,
       "evidence": [
         {
           "claims": "Checked all 26 supplied class forms and inheritance terms, constructor restrictions, default constructors, super/new.target, computed names, method/accessor placement and strictness against ECMA-262 2026 and MDN.",
@@ -50290,6 +50335,20 @@
             }
           ],
           "verdict": "verified against current normative standard and explanatory references"
+        },
+        {
+          "claims": "Follow-up audit checked 8 newly added or revalidated claim units. Audited class forms, descriptors, constructor early errors, extends null, computed-name timing, and strictness. Corrected the prior statement that implied static methods named constructor are rejected; runtime and the spec allow that ordinary static method. Fields named constructor remain syntax errors.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+            "https://github.com/tc39/proposal-class-fields"
+          ],
+          "verdict": "verified; corrected one constructor-form claim"
         }
       ],
       "issues": [],
@@ -50304,7 +50363,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
+      "reviewNote": "Audited class forms, descriptors, constructor early errors, extends null, computed-name timing, and strictness. Corrected the prior statement that implied static methods named constructor are rejected; runtime and the spec allow that ordinary static method. Fields named constructor remain syntax errors. Combined with the original claim inventory, the complete lesson and frozen scope were checked. Lesson remains in drafts pending whole-course audit."
     },
     {
       "taskId": "t06-018-reference-fields-and-private-elements",
@@ -50313,7 +50372,7 @@
       "draft": "course/drafts/t06-018/t06-018-reference-fields-and-private-elements.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 96,
+      "claimsChecked": 104,
       "claimsCorrected": 1,
       "evidence": [
         {
@@ -50361,6 +50420,20 @@
             }
           ],
           "verdict": "verified against current normative standard and explanatory references"
+        },
+        {
+          "claims": "Follow-up audit checked 8 newly added or revalidated claim units. Expanded and checked public field descriptors, private duplicate-name/getter-setter rules, private #constructor restriction, Proxy brand behavior, and initializer this/super rules.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+            "https://github.com/tc39/proposal-class-fields"
+          ],
+          "verdict": "verified"
         }
       ],
       "issues": [],
@@ -50375,7 +50448,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
+      "reviewNote": "Expanded and checked public field descriptors, private duplicate-name/getter-setter rules, private #constructor restriction, Proxy brand behavior, and initializer this/super rules. Combined with the original claim inventory, the complete lesson and frozen scope were checked. Lesson remains in drafts pending whole-course audit."
     },
     {
       "taskId": "t06-018-practice",
@@ -50384,7 +50457,7 @@
       "draft": "course/drafts/t06-018/t06-018-practice.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 127,
+      "claimsChecked": 141,
       "claimsCorrected": 1,
       "evidence": [
         {
@@ -50432,6 +50505,20 @@
             }
           ],
           "verdict": "verified against current normative standard and explanatory references"
+        },
+        {
+          "claims": "Follow-up audit checked 14 newly added or revalidated claim units. Added and executed Proxy private-brand and descriptor exercises; verified outputs alongside existing constructor, field, brand, static-order and extends-null solutions.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+            "https://github.com/tc39/proposal-class-fields"
+          ],
+          "verdict": "verified"
         }
       ],
       "issues": [],
@@ -50446,7 +50533,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
+      "reviewNote": "Added and executed Proxy private-brand and descriptor exercises; verified outputs alongside existing constructor, field, brand, static-order and extends-null solutions. Combined with the original claim inventory, the complete lesson and frozen scope were checked. Lesson remains in drafts pending whole-course audit."
     },
     {
       "taskId": "t06-018-interview",
@@ -50455,7 +50542,7 @@
       "draft": "course/drafts/t06-018/t06-018-interview.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 92,
+      "claimsChecked": 96,
       "claimsCorrected": 1,
       "evidence": [
         {
@@ -50503,6 +50590,20 @@
             }
           ],
           "verdict": "verified against current normative standard and explanatory references"
+        },
+        {
+          "claims": "Follow-up audit checked 4 newly added or revalidated claim units. Added and checked concise private-brand Proxy and descriptor answers; updated common weak answer.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-source-code.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
+            "https://github.com/tc39/proposal-class-fields"
+          ],
+          "verdict": "verified"
         }
       ],
       "issues": [],
@@ -50517,7 +50618,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks",
         "https://github.com/tc39/proposal-class-fields"
       ],
-      "reviewNote": "Manual factual and frozen-inventory audit complete; all prompts in lesson have answers. Lesson remains in drafts until the full curriculum audit finishes."
+      "reviewNote": "Added and checked concise private-brand Proxy and descriptor answers; updated common weak answer. Combined with the original claim inventory, the complete lesson and frozen scope were checked. Lesson remains in drafts pending whole-course audit."
     },
     {
       "taskId": "t06-019-overview",

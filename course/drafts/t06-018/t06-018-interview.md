@@ -26,6 +26,8 @@
 6. A field defines an own property without invoking an inherited setter; ordinary assignment can invoke one.
 7. Base fields initialize before the base constructor body. Derived fields initialize after `super()` returns and before the rest of the derived body.
 8. Private names are lexically scoped and use private-element access checks; they are not string keys and cannot be accessed through ordinary reflection.
+9. A Proxy wrapper does not carry a target object's private brand; private access against the wrapper can fail even when the target is branded.
+10. Class methods are non-enumerable properties on the prototype; public fields are enumerable own data properties. The constructor's own `prototype` property is non-writable, although the prototype object can be mutated.
 9. It checks for the specific private element/brand associated with the lexically resolved private name. It is not a general substitute for `instanceof`: a base constructor can return an unrelated object that then receives derived fields and private elements.
 10. During class evaluation, interleaved in source order; a base class finishes static initialization before a derived class.
 11. Public class fields, private methods/accessors, and static initialization blocks became standard in ES2022.
@@ -76,6 +78,7 @@ Field initialization uses define-own-property behavior. A derived field named `v
 - “A field is shorthand for assignment.” It has different property-definition behavior.
 - “Static members belong to instances.” They belong to the constructor object.
 - “A child instance always has the base's private brand because it inherits from the base.” Private access is governed by the declaring class's initialization and lexical name.
+- “A Proxy automatically forwards private-field access.” Private elements are checked on the exact receiver and are not ordinary property operations.
 
 ## Self-check rubric
 

@@ -66,6 +66,14 @@ Create two instances of a class with an instance method and a public field. Use 
 
 Write one derived constructor that returns a replacement object without calling `super()`. Write another that tries to return a primitive without calling `super()`. Explain which can complete and why. Also explain why `class A extends null {}` needs a custom constructor that returns an object without trying to call `super()`.
 
+### 7. Proxy and private brand
+
+Create a class with a private field, then wrap an instance in an empty `Proxy`. Compare the private brand check and private read on the original instance and the proxy. Explain why forwarding ordinary property operations does not forward private elements.
+
+### 8. Class property descriptors
+
+Inspect the descriptors for a public instance field, a prototype method, and a class constructor's own `prototype` property. Identify which properties are enumerable and writable. Explain why the prototype object can still be changed even though the constructor's `prototype` property cannot be reassigned.
+
 ## Progressive hints
 
 1. Put the first derived log before `super()` but do not read `this` until afterward.
@@ -74,6 +82,8 @@ Write one derived constructor that returns a replacement object without calling 
 4. Static fields and blocks are interleaved by source order, and the base class completes before the derived class.
 5. Methods are defined on the prototype. Fields are own properties on each instance.
 6. A derived constructor can return an object directly, which becomes the constructed value. A primitive return is invalid while `this` is uninitialized.
+7. Private brand checks operate on the exact object supplied. A Proxy is not transparent to private names.
+8. Compare `Object.getOwnPropertyDescriptor(instance, "field")`, the descriptor on the class prototype, and the descriptor on the constructor itself.
 
 ## Complete solutions
 
@@ -207,6 +217,36 @@ try {
 
 A derived constructor may return an object directly without calling `super()`. Returning a primitive before `this` has been initialized is an error. The replacement object does not receive the derived class's instance fields because `super()` never initialized that class's `this`. When the heritage is `null`, the default derived constructor cannot construct a base from null; a custom constructor may return an object directly without calling `super()`.
 
+### 7. Proxy and private brand
+
+```js
+class Secret {
+  #value = 3;
+  static has(value) { return #value in value; }
+  static read(value) { return value.#value; }
+}
+const target = new Secret();
+const proxy = new Proxy(target, {});
+console.log(Secret.has(target), Secret.has(proxy)); // true false
+try { Secret.read(proxy); } catch (error) { console.log(error.name); } // TypeError
+```
+
+The Proxy is a distinct object. Its default traps forward ordinary operations to the target, but private elements are not ordinary properties and are not forwarded. An API that needs to operate on a branded object can explicitly unwrap it or bind calls to the target, while accounting for the security and identity implications.
+
+### 8. Class property descriptors
+
+```js
+class Example { field = 1; method() {} }
+const instance = new Example();
+console.log(Object.getOwnPropertyDescriptor(Example.prototype, "method"));
+// { value: [Function: method], writable: true, enumerable: false, configurable: true }
+console.log(Object.getOwnPropertyDescriptor(instance, "field"));
+// { value: 1, writable: true, enumerable: true, configurable: true }
+console.log(Object.getOwnPropertyDescriptor(Example, "prototype").writable); // false
+```
+
+Class methods are shared, non-enumerable writable/configurable properties on the prototype. Public fields are own enumerable writable/configurable data properties. The constructor's `prototype` binding cannot be reassigned, but the referenced prototype object remains mutable: methods can be added or replaced on it.
+
 ## Tests and edge cases
 
 - A derived constructor may run code before `super()`, but reading or writing `this` there throws `ReferenceError`.
@@ -227,6 +267,8 @@ Answers follow each question.
 3. **Why is a private brand check more specific than a prototype check?** It tests possession of one lexically identified private element and cannot be spoofed by changing the public prototype chain. It also is not identical to `instanceof`: an unrelated replacement object can receive the class's private elements during derived initialization.
 4. **What can go wrong when a base constructor calls an overridable method?** Dynamic dispatch may run a child override before child fields initialize, exposing `undefined` state or causing access to an uninitialized private field to throw.
 5. **What class-level work belongs in a static block rather than a per-instance field?** One-time synchronous initialization that needs ordered class-level setup, including access to private static state; a field on the instance would repeat for each object.
+6. **Does a Proxy preserve the private brand of its target?** No. Private elements belong to the target object itself; the wrapper fails the brand check unless the operation is deliberately forwarded against the target.
+7. **How do class method and field descriptors differ?** Methods are non-enumerable properties on the prototype; public fields are enumerable own properties on each instance. Both are writable and configurable by default.
 
 ## Sources
 

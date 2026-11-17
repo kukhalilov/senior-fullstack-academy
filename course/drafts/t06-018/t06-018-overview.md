@@ -79,7 +79,7 @@ console.log(account.balance, account.annualRate, SavingsAccount.currency);
 
 Use classes when objects share stable behavior and a clear lifecycle, when a prototype-based API is already expected, or when private elements provide useful encapsulation. A small object literal or closure may be simpler for one-off data and behavior. Inheritance can couple child behavior to a base-class initialization contract; composition often makes dependencies more explicit.
 
-Fields improve discoverability, but their declaration semantics differ from assignment in a constructor: public fields define own properties and do not call inherited setters. Private fields offer strong lexical access checks, but they are not dynamically inspectable, serializable by default, or interchangeable with public properties. Static initialization is synchronous and class definition fails if it throws.
+Fields improve discoverability, but their declaration semantics differ from assignment in a constructor: public fields define own properties and do not call inherited setters. Private fields offer strong lexical access checks, but they are not dynamically inspectable, serializable by default, or interchangeable with public properties. A `Proxy` wrapper does not carry the target's private brand, so private access through the wrapper fails. Static initialization is synchronous and class definition fails if it throws.
 
 ## Recent version changes
 
