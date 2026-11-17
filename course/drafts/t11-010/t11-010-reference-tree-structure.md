@@ -49,4 +49,4 @@ Two different nodes may both contain 5 but have different parents and positions.
 3. **Can sibling nodes have equal values?** Yes.
 4. **Why does null matter?** It is an explicit absent subtree and supplies a base case.
 
-Source: [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf).
+Source: [OpenDSA: Binary Trees](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html).

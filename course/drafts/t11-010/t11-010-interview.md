@@ -67,4 +67,4 @@ Carry remaining sum or accumulated value downward. Compare only at a leaf. Negat
 
 Can you state the node-versus-edge convention; give the recursive base case; name the exact invariant for DFS/BFS; prove a postorder summary; bound stack by height and queue by width; and distinguish values from node identity?
 
-Source: [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf).
+Sources: [OpenDSA: Binary Trees](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html), [Binary Tree Traversals](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html), [LeetCode: Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/).

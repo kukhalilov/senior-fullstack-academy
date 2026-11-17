@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 164,
-    "pending": 2176,
-    "claimsChecked": 2521,
-    "claimsCorrected": 96,
+    "reviewed": 179,
+    "pending": 2161,
+    "claimsChecked": 3137,
+    "claimsCorrected": 97,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -17678,375 +17678,756 @@
       "topicId": "t11-010",
       "phase": "overview",
       "draft": "course/drafts/t11-010/t11-010-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Rooted subtree mental model and binary-tree structure.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Preorder/inorder/postorder definitions and relationship to subtree results.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Node-count maximum depth and edge-count diameter conventions.",
+          "source": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Recursion stack follows height; informal balance must not imply an unstated bound.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-concepts",
       "topicId": "t11-010",
       "phase": "concepts",
       "draft": "course/drafts/t11-010/t11-010-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Tree/BST distinction, null children, duplicate values and node references.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "DFS visit orders and iterative stack contracts.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "BFS level-size snapshot and queue width bounds.",
+          "source": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Postorder height, diameter, balance and root-to-leaf path invariants.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Problem-specific node/edge units and leaf condition.",
+          "source": "https://leetcode.com/problems/diameter-of-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-reference-tree-structure",
       "topicId": "t11-010",
       "phase": "reference",
       "draft": "course/drafts/t11-010/t11-010-reference-tree-structure.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Rooted/binary/N-ary/tree relationships, child positions and subtree definition.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Depth and height edge conventions and null-child structure.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Level-order serialization is format-specific; repeated values do not identify nodes.",
+          "source": "https://leetcode.com/problems/binary-tree-inorder-traversal/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-reference-depth-first-traversal",
       "topicId": "t11-010",
       "phase": "reference",
       "draft": "course/drafts/t11-010/t11-010-reference-depth-first-traversal.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Preorder, inorder, postorder visit order definitions.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Recursive null-root base case and iterative stack simulation.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Inorder is sorted only when BST ordering holds.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-reference-breadth-first-and-level",
       "topicId": "t11-010",
       "phase": "reference",
       "draft": "course/drafts/t11-010/t11-010-reference-breadth-first-and-level.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Queue BFS visits nondecreasing levels; snapshot prevents child-level mixing.",
+          "source": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Minimum depth first-leaf reasoning and right-side/zigzag level semantics.",
+          "source": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Peak queue is proportional to maximum width, O(n) worst case.",
+          "source": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-reference-recursive-tree-problems",
       "topicId": "t11-010",
       "phase": "reference",
       "draft": "course/drafts/t11-010/t11-010-reference-recursive-tree-problems.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 37,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Null and node-count height recurrence.",
+          "source": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Diameter path counts edges and may not pass through root.",
+          "source": "https://leetcode.com/problems/diameter-of-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Height balance must hold at every node; one-pass summary is O(n).",
+          "source": "https://leetcode.com/problems/balanced-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Path Sum requires root-to-leaf endpoint.",
+          "source": "https://leetcode.com/problems/path-sum/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Postorder information flow and recursive base cases.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-practice-maximum-depth-binary-tree",
       "topicId": "t11-010",
       "phase": "practice",
       "draft": "course/drafts/t11-010/t11-010-practice-maximum-depth-binary-tree.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Statement defines maximum depth by number of nodes and permits empty tree.",
+          "source": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples, constraints and value range match current page.",
+          "source": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Null=0 recurrence, O(n) visits and O(h) stack proof.",
+          "source": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-practice-binary-tree-inorder-traversal",
       "topicId": "t11-010",
       "phase": "practice",
       "draft": "course/drafts/t11-010/t11-010-practice-binary-tree-inorder-traversal.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current traversal contract, examples, node-count/value constraints and iterative follow-up.",
+          "source": "https://leetcode.com/problems/binary-tree-inorder-traversal/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Stack invariant and algorithm emit each node in left-node-right order.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O(n) time, O(h) stack plus O(n) result.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-practice-binary-tree-level-order-traversal",
       "topicId": "t11-010",
       "phase": "practice",
       "draft": "course/drafts/t11-010/t11-010-practice-binary-tree-level-order-traversal.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current level-order contract, examples and constraints.",
+          "source": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Queue snapshot proof preserves exact level boundary and left-to-right order.",
+          "source": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "O(n) time, O(w) frontier and O(n) output.",
+          "source": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-practice-invert-binary-tree",
       "topicId": "t11-010",
       "phase": "practice",
       "draft": "course/drafts/t11-010/t11-010-practice-invert-binary-tree.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current inversion contract, examples and node constraints.",
+          "source": "https://leetcode.com/problems/invert-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Recursive child inversion followed by link swap preserves nodes/values.",
+          "source": "https://leetcode.com/problems/invert-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Operation is an involution and visits each node once.",
+          "source": "https://leetcode.com/problems/invert-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-practice-diameter-binary-tree",
       "topicId": "t11-010",
       "phase": "practice",
       "draft": "course/drafts/t11-010/t11-010-practice-diameter-binary-tree.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 44,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current diameter definition counts edges and may not pass through root.",
+          "source": "https://leetcode.com/problems/diameter-of-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Null=0 node-height recurrence makes leftHeight+rightHeight an edge count.",
+          "source": "https://leetcode.com/problems/diameter-of-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Every possible path is considered at its highest node; O(n) visits/O(h) stack.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-practice-balanced-binary-tree",
       "topicId": "t11-010",
       "phase": "practice",
       "draft": "course/drafts/t11-010/t11-010-practice-balanced-binary-tree.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current height-balanced requirement applies at each node; empty is balanced.",
+          "source": "https://leetcode.com/problems/balanced-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sentinel helper returns height iff balanced and propagates failure correctly.",
+          "source": "https://leetcode.com/problems/balanced-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "One-pass O(n) algorithm versus repeated-height O(n^2) worst-case reasoning.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-practice-path-sum",
       "topicId": "t11-010",
       "phase": "practice",
       "draft": "course/drafts/t11-010/t11-010-practice-path-sum.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 46,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current contract requires a root-to-leaf path and empty tree is false.",
+          "source": "https://leetcode.com/problems/path-sum/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Remainder propagation and leaf-only acceptance are equivalent to path sum.",
+          "source": "https://leetcode.com/problems/path-sum/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Negative values invalidate sign pruning; long arithmetic avoids broadened-input overflow.",
+          "source": "https://leetcode.com/problems/path-sum/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-practice-symmetric-tree",
       "topicId": "t11-010",
       "phase": "practice",
       "draft": "course/drafts/t11-010/t11-010-practice-symmetric-tree.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 47,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Current mirror contract, follow-up and example structures.",
+          "source": "https://leetcode.com/problems/symmetric-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Recursive outer/inner pair mapping checks both values and null shape.",
+          "source": "https://leetcode.com/problems/symmetric-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Iterative pair queue implements the same relation; complexity is O(n) time/O(width) space.",
+          "source": "https://leetcode.com/problems/symmetric-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-010-interview",
       "topicId": "t11-010",
       "phase": "interview",
       "draft": "course/drafts/t11-010/t11-010-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Binary tree versus BST and DFS traversal contracts.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Level snapshot and width/height storage trade-offs.",
+          "source": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Diameter, balance and root-to-leaf correctness invariants.",
+          "source": "https://leetcode.com/problems/diameter-of-binary-tree/",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Skewed recursion depth and iterative alternatives.",
+          "source": "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+          "section": "Definition, traversal/recursion analysis, canonical problem statement/constraints, or solution invariant as applicable.",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/CPH.pdf",
-        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "https://leetcode.com/problems/balanced-binary-tree/",
         "https://leetcode.com/problems/binary-tree-inorder-traversal/",
         "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-        "https://leetcode.com/problems/invert-binary-tree/",
         "https://leetcode.com/problems/diameter-of-binary-tree/",
-        "https://leetcode.com/problems/balanced-binary-tree/",
+        "https://leetcode.com/problems/invert-binary-tree/",
+        "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
         "https://leetcode.com/problems/path-sum/",
-        "https://leetcode.com/problems/symmetric-tree/"
+        "https://leetcode.com/problems/symmetric-tree/",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+        "https://usaco.guide/CPH.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all factual claims and frozen inventory entries against the listed current sources. Checked structural and traversal definitions, node-versus-edge conventions, null and duplicate-value cases, examples, constraints, algorithm invariants, and time/space bounds. Qualified the overview height claim to require an explicit balancing invariant. No unresolved issues remain."
     },
     {
       "taskId": "t11-025-overview",
@@ -106894,6 +107275,14 @@
       "status": "full claim and frozen-inventory audit complete for this topic",
       "findings": [
         "Audited all 13 lessons against all 35 frozen inventory entries, current Microsoft .NET Unicode/string guidance, current CP-Algorithms prefix/Z/Rabin-Karp references, and six canonical LeetCode statements. Verified UTF-16/code-point/scalar/grapheme distinctions, ordinal/culture comparison, normalization, substring/subsequence relations, KMP/Z definitions and bounds, rolling-hash collision behavior, all problem constraints/examples, and six implementations. Corrected inaccurate byte-comparison terminology, an overstrong per-character KMP claim, Rabin-Karp exactness/performance wording, .NET grapheme-version scope, and blanket string allocation wording. No unresolved issues remain."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "DSA binary trees, recursion, and traversal patterns (t11-010)",
+      "status": "full claim and frozen-inventory audit complete for this topic",
+      "findings": [
+        "Audited all 15 lessons against all 41 frozen inventory entries, current OpenDSA CPSC 270 Fall 2026 binary-tree/traversal/recursive-information-flow chapters, and eight current canonical LeetCode statements. Verified structure, DFS/BFS contracts, level snapshots, null and duplicate-value behavior, node-count depth versus edge-count diameter, balance-at-every-node, root-to-leaf path endpoints, examples, constraints, solution invariants, and asymptotic bounds. Corrected the overview to avoid implying that an undefined “balanced” shape guarantees logarithmic height. No unresolved issues remain."
       ]
     }
   ]

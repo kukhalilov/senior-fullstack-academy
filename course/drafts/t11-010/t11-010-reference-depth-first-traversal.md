@@ -43,4 +43,4 @@ For root 2 with left child 1 and right child 3: preorder is [2,1,3], inorder [1,
 3. **Does iterative traversal eliminate auxiliary memory?** No; it moves deferred state to an explicit structure.
 4. **When is inorder sorted?** When the tree satisfies BST ordering.
 
-Source: [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf).
+Source: [OpenDSA: Binary Tree Traversals](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html).

@@ -12,7 +12,7 @@ Treat a node as the root of a smaller tree. A recursive algorithm solves the sam
 
 Depth measures distance downward from the root; height measures distance downward to a deepest leaf. Problems vary on whether these count edges or nodes. Maximum depth as defined here counts nodes, while diameter counts edges. A postorder summary can return child heights and update a global path answer in one pass. This avoids recomputing subtree information.
 
-Recursion is concise, but its stack grows with tree height. A balanced tree has logarithmic height; a skewed tree can have height n. Iterative traversal uses an explicit stack or queue and makes storage visible, though level-order queues may hold an entire wide layer.
+Recursion is concise, but its stack grows with tree height. A tree with a suitable balancing invariant has logarithmic height; the informal label “balanced” alone is not a proof of that bound. A skewed tree can have height n. Iterative traversal uses an explicit stack or queue and makes storage visible, though level-order queues may hold an entire wide layer.
 
 ## Concept map
 
@@ -37,4 +37,4 @@ Use recursive subtree summaries when each answer composes from child answers and
 
 The concepts lesson fixes the terminology, traversal contracts, recursion invariants, and height/diameter relation. Four references cover structure, DFS, BFS, and recursive summaries. Eight problems exercise these patterns with compiling C# programs.
 
-Source: [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf).
+Sources: [OpenDSA: Binary Trees](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html), [Binary Tree Traversals](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html).

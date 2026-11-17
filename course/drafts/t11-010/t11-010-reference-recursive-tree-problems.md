@@ -44,4 +44,4 @@ For a leaf, height in nodes is 1 and through-node diameter is 0 edges. If left a
 3. **How short-circuit balance in one traversal?** Propagate an unbalanced sentinel instead of recomputing heights.
 4. **What governs call-stack depth?** Tree height.
 
-Source: [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf).
+Sources: [OpenDSA: Information Flow in Recursive Functions](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html), [LeetCode: Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/), [Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/), [Path Sum](https://leetcode.com/problems/path-sum/).

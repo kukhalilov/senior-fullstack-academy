@@ -40,4 +40,4 @@ For levels [3], [9,20], [15,7], initialize a queue with 3. Snapshot count 1, pro
 3. **What determines peak queue memory?** Maximum width.
 4. **How obtain right-side view?** Select the rightmost value from each normal left-to-right level.
 
-Source: [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf).
+Source: [LeetCode: Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/).

@@ -58,4 +58,4 @@ For a root with left subtree height 2 nodes and right subtree height 1 node, nod
 4. **What is null height for the node-count recurrence?** Zero.
 5. **Why use reference identity?** Different nodes can have the same value but remain distinct structural positions.
 
-Source: [Competitive Programmer's Handbook](https://usaco.guide/CPH.pdf).
+Sources: [OpenDSA: Binary Trees](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html), [Binary Tree Traversals](https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html), [LeetCode: Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/).
