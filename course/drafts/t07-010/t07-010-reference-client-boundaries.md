@@ -12,12 +12,12 @@ React 19.3 documentation defines the module boundary, render behavior, and suppo
 - `Transitive client module dependency` — An imported dependency beneath a client-marked module is part of the client subtree even if that dependency has no directive itself. Server-only packages must not leak into this graph.
 - `Server-to-client component boundary` — The serialization/reference boundary through which a Server Component provides supported props or rendered elements to a Client Component. Treat it as a real transport boundary.
 - `Serializable props across the boundary` — Values must be representable by the React/framework RSC transport. Nested values also need to be supported; TypeScript types do not enforce runtime serializability.
-- `Supported serializable value` — The documented supported-value set includes primitives, globally registered symbols, serializable iterables, Date, FormData, plain objects, Server Functions, JSX elements, and Promises. Verify framework support and do not rely on private transport behavior.
+- `Supported serializable value` — For Server Component props to Client Components, React documents primitives, globally registered symbols, serializable iterables, Date, plain objects, Server Functions, JSX elements, and Promises. `FormData` is documented for Server Function arguments, not in this prop list. Verify framework support and do not rely on private transport behavior.
 - `Primitive serializable props` — `string`, `number`, `bigint`, `boolean`, `undefined`, and `null` are supported values; validate their business meaning separately.
 - `Global Symbol.for serializable value` — A symbol created through the global symbol registry can cross this boundary. A local `Symbol()` cannot because the receiving environment has no shared identity for it.
 - `Array Map Set and iterable props` — Arrays, Maps, Sets, and strings/iterables of supported values are listed as serializable. Their contained values still must satisfy the transport rules.
 - `TypedArray and ArrayBuffer props` — Typed arrays and ArrayBuffer are supported binary-value shapes. Large payloads still have bandwidth and memory costs.
-- `Date FormData and Promise props` — These built-ins are supported by the documented RSC serialization rules. A Promise can be passed to a Client Component and read with React `use` under Suspense; a FormData value is data, not server-side trust.
+- `Date and Promise props` — These values are supported in Server Component props to Client Components. A Promise can be passed and read with React `use` under Suspense. `FormData` has a different role: React documents it as a Server Function argument and a form Action payload, not as a value in the Server Component prop list.
 - `Plain object props` — Object literals with serializable properties are supported. Avoid class instances, custom prototypes, and objects with null prototypes.
 - `JSX element props across boundary` — Client or Server Component elements can cross as JSX. This enables a client wrapper to control when server-rendered children appear without importing the server component source.
 - `Server Function prop` — A framework-generated reference to an async server function is serializable. It represents a remote call, not a copied closure.
@@ -76,12 +76,13 @@ Mark the smallest module that needs client capabilities. A boundary in a low-lev
 2. Can a local `Symbol()` cross as a supported prop? **No; only globally registered symbols are documented.**
 3. Can a Client Component receive server-produced `children`? **Yes, as JSX output passed by a server parent.**
 4. Does a supported `Date` prop imply the data is safe to disclose? **No; serialization and confidentiality are separate concerns.**
+5. Is `FormData` listed among Server Component props passed to Client Components? **No; it is supported as a Server Function argument instead.**
 
 ## Common mistakes
 
 - Putting `'use client'` below imports, where it is not a directive.
 - Believing all descendants in JSX become client modules when nested under a Client Component.
 - Passing an event handler closure as a normal prop to a Client Component.
-- Treating `Date`, `FormData`, or a Server Function as trusted data merely because React can serialize it.
+- Treating `Date` or a Server Function as trusted data merely because React can serialize it, or assuming `FormData` is part of the Server Component prop set.
 - Passing an ORM model instance or class DTO instead of a plain transport object.
 - Widening the client boundary until server-only imports enter the client build.

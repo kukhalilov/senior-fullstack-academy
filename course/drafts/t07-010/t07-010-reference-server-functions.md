@@ -21,6 +21,7 @@ This covers React’s generic Server Function semantics, not the action prop sig
 - `Serialized return value` — Must satisfy the supported serialization rules. Return minimal DTOs; do not return secrets, database entities with sensitive fields, or raw internal errors.
 - `Server Function serializable argument types` — The documented set includes strings, numbers, bigint, booleans, undefined/null, globally registered symbols, supported iterables, Date, FormData, plain objects, Server Function references, and Promises. Confirm framework-specific limits.
 - `Server Function supported return value types` — React documents return values using the serializable-props set. A fulfilled Promise can produce a value; failures are handled through the integration’s error path.
+- `FormData Server Function argument` — React documents `FormData` as a supported Server Function argument and supplies it as the first argument when a form submits to a Server Function. This does not make `FormData` a documented Server Component prop type for passing to a Client Component.
 - `Server Function as a form action` — A Server Function passed to a form action receives submitted FormData first and can progressively enhance the form. React invokes form Actions in a Transition; form-specific APIs are detailed in the React DOM forms lesson.
 - `Progressive enhancement of form Server Function` — Forms can submit before the client bundle loads when integrated using React’s form Action pattern; after hydration, the framework handles the client/server call. Framework routing and deployment must support it.
 - `Server Function inside a Transition` — React recommends calling Server Functions in a Transition. Form action integration does this automatically; outside a form, wrap the call in a Transition for pending/update semantics.
@@ -78,6 +79,7 @@ The helpers are application-specific. Authorization occurs on the server for the
 2. Can a module-level `'use server'` function be synchronous? **No; Server Functions must be async.**
 3. What does `useActionState` add to the argument list? **Previous state is first, followed by the action payload.**
 4. Does React authorize the mutation? **No; the server function must authenticate and authorize itself.**
+5. Is `FormData` listed as a Server Component prop type? **No. React lists it as a supported Server Function argument and form Action payload; do not conflate the two boundaries.**
 
 ## Common mistakes
 

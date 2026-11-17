@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2342,
-    "reviewed": 956,
-    "pending": 1386,
-    "claimsChecked": 35926,
-    "claimsCorrected": 1475,
+    "reviewed": 965,
+    "pending": 1377,
+    "claimsChecked": 36287,
+    "claimsCorrected": 1479,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -183132,6 +183132,375 @@
         "https://react.dev/blog/2025/10/01/react-19-2"
       ],
       "reviewNote": "Manual claim and frozen-inventory audit against current official React documentation and release notes; lesson remains in drafts."
+    },
+    {
+      "taskId": "t07-010-overview",
+      "topicId": "t07-010",
+      "phase": "overview",
+      "draft": "course/drafts/t07-010/t07-010-overview.md",
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 25,
+      "claimsCorrected": 0,
+      "evidence": [
+        {
+          "claims": "Manually checked 25 claim units against the frozen inventory and current official React RSC/Server Function documentation, React 19.3 release notes, and React security advisories. Verified module versus render boundaries, component serialization, directive semantics, network/action behavior, security boundaries, and stability/version claims. Corrected the inclusion of FormData in the Server Component-to-Client Component prop set; React lists it for Server Function arguments instead. Added the separate October 14, 2026 high-severity Server Function DoS advisory and distinguished its endpoint condition from the RCE advisory. No remaining factual or scope issues.",
+          "sources": [
+            "https://react.dev/reference/rsc/server-components",
+            "https://react.dev/reference/rsc/server-functions",
+            "https://react.dev/reference/rsc/use-client",
+            "https://react.dev/reference/rsc/use-server",
+            "https://react.dev/blog/2026/09/09/react-19-3",
+            "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+            "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+            "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+            "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+          ],
+          "verdict": "verified; coverage addition made, no factual correction required"
+        }
+      ],
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://react.dev/reference/rsc/server-components",
+        "https://react.dev/reference/rsc/server-functions",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server",
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+        "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+        "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+        "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit against official React documentation, release notes, and current React security advisories; lesson remains in drafts."
+    },
+    {
+      "taskId": "t07-010-concepts",
+      "topicId": "t07-010",
+      "phase": "concepts",
+      "draft": "course/drafts/t07-010/t07-010-concepts.md",
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually checked 48 claim units against the frozen inventory and current official React RSC/Server Function documentation, React 19.3 release notes, and React security advisories. Verified module versus render boundaries, component serialization, directive semantics, network/action behavior, security boundaries, and stability/version claims. Corrected the inclusion of FormData in the Server Component-to-Client Component prop set; React lists it for Server Function arguments instead. Added the separate October 14, 2026 high-severity Server Function DoS advisory and distinguished its endpoint condition from the RCE advisory. No remaining factual or scope issues.",
+          "sources": [
+            "https://react.dev/reference/rsc/server-components",
+            "https://react.dev/reference/rsc/server-functions",
+            "https://react.dev/reference/rsc/use-client",
+            "https://react.dev/reference/rsc/use-server",
+            "https://react.dev/blog/2026/09/09/react-19-3",
+            "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+            "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+            "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+            "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+          ],
+          "verdict": "verified; factual correction and coverage addition made"
+        }
+      ],
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://react.dev/reference/rsc/server-components",
+        "https://react.dev/reference/rsc/server-functions",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server",
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+        "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+        "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+        "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit against official React documentation, release notes, and current React security advisories; lesson remains in drafts."
+    },
+    {
+      "taskId": "t07-010-reference-server-component-model",
+      "topicId": "t07-010",
+      "phase": "reference",
+      "draft": "course/drafts/t07-010/t07-010-reference-server-component-model.md",
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 37,
+      "claimsCorrected": 0,
+      "evidence": [
+        {
+          "claims": "Manually checked 37 claim units against the frozen inventory and current official React RSC/Server Function documentation, React 19.3 release notes, and React security advisories. Verified module versus render boundaries, component serialization, directive semantics, network/action behavior, security boundaries, and stability/version claims. Corrected the inclusion of FormData in the Server Component-to-Client Component prop set; React lists it for Server Function arguments instead. Added the separate October 14, 2026 high-severity Server Function DoS advisory and distinguished its endpoint condition from the RCE advisory. No remaining factual or scope issues.",
+          "sources": [
+            "https://react.dev/reference/rsc/server-components",
+            "https://react.dev/reference/rsc/server-functions",
+            "https://react.dev/reference/rsc/use-client",
+            "https://react.dev/reference/rsc/use-server",
+            "https://react.dev/blog/2026/09/09/react-19-3",
+            "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+            "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+            "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+            "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+          ],
+          "verdict": "verified; coverage addition made, no factual correction required"
+        }
+      ],
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://react.dev/reference/rsc/server-components",
+        "https://react.dev/reference/rsc/server-functions",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server",
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+        "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+        "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+        "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit against official React documentation, release notes, and current React security advisories; lesson remains in drafts."
+    },
+    {
+      "taskId": "t07-010-reference-client-boundaries",
+      "topicId": "t07-010",
+      "phase": "reference",
+      "draft": "course/drafts/t07-010/t07-010-reference-client-boundaries.md",
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 44,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually checked 44 claim units against the frozen inventory and current official React RSC/Server Function documentation, React 19.3 release notes, and React security advisories. Verified module versus render boundaries, component serialization, directive semantics, network/action behavior, security boundaries, and stability/version claims. Corrected the inclusion of FormData in the Server Component-to-Client Component prop set; React lists it for Server Function arguments instead. Added the separate October 14, 2026 high-severity Server Function DoS advisory and distinguished its endpoint condition from the RCE advisory. No remaining factual or scope issues.",
+          "sources": [
+            "https://react.dev/reference/rsc/server-components",
+            "https://react.dev/reference/rsc/server-functions",
+            "https://react.dev/reference/rsc/use-client",
+            "https://react.dev/reference/rsc/use-server",
+            "https://react.dev/blog/2026/09/09/react-19-3",
+            "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+            "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+            "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+            "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+          ],
+          "verdict": "verified; factual correction and coverage addition made"
+        }
+      ],
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://react.dev/reference/rsc/server-components",
+        "https://react.dev/reference/rsc/server-functions",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server",
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+        "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+        "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+        "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit against official React documentation, release notes, and current React security advisories; lesson remains in drafts."
+    },
+    {
+      "taskId": "t07-010-reference-server-functions",
+      "topicId": "t07-010",
+      "phase": "reference",
+      "draft": "course/drafts/t07-010/t07-010-reference-server-functions.md",
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
+      "claimsCorrected": 0,
+      "evidence": [
+        {
+          "claims": "Manually checked 43 claim units against the frozen inventory and current official React RSC/Server Function documentation, React 19.3 release notes, and React security advisories. Verified module versus render boundaries, component serialization, directive semantics, network/action behavior, security boundaries, and stability/version claims. Corrected the inclusion of FormData in the Server Component-to-Client Component prop set; React lists it for Server Function arguments instead. Added the separate October 14, 2026 high-severity Server Function DoS advisory and distinguished its endpoint condition from the RCE advisory. No remaining factual or scope issues.",
+          "sources": [
+            "https://react.dev/reference/rsc/server-components",
+            "https://react.dev/reference/rsc/server-functions",
+            "https://react.dev/reference/rsc/use-client",
+            "https://react.dev/reference/rsc/use-server",
+            "https://react.dev/blog/2026/09/09/react-19-3",
+            "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+            "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+            "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+            "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+          ],
+          "verdict": "verified; coverage addition made, no factual correction required"
+        }
+      ],
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://react.dev/reference/rsc/server-components",
+        "https://react.dev/reference/rsc/server-functions",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server",
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+        "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+        "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+        "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit against official React documentation, release notes, and current React security advisories; lesson remains in drafts."
+    },
+    {
+      "taskId": "t07-010-reference-security-and-stability",
+      "topicId": "t07-010",
+      "phase": "reference",
+      "draft": "course/drafts/t07-010/t07-010-reference-security-and-stability.md",
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
+      "claimsCorrected": 0,
+      "evidence": [
+        {
+          "claims": "Manually checked 45 claim units against the frozen inventory and current official React RSC/Server Function documentation, React 19.3 release notes, and React security advisories. Verified module versus render boundaries, component serialization, directive semantics, network/action behavior, security boundaries, and stability/version claims. Corrected the inclusion of FormData in the Server Component-to-Client Component prop set; React lists it for Server Function arguments instead. Added the separate October 14, 2026 high-severity Server Function DoS advisory and distinguished its endpoint condition from the RCE advisory. No remaining factual or scope issues.",
+          "sources": [
+            "https://react.dev/reference/rsc/server-components",
+            "https://react.dev/reference/rsc/server-functions",
+            "https://react.dev/reference/rsc/use-client",
+            "https://react.dev/reference/rsc/use-server",
+            "https://react.dev/blog/2026/09/09/react-19-3",
+            "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+            "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+            "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+            "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+          ],
+          "verdict": "verified; coverage addition made, no factual correction required"
+        }
+      ],
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://react.dev/reference/rsc/server-components",
+        "https://react.dev/reference/rsc/server-functions",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server",
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+        "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+        "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+        "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit against official React documentation, release notes, and current React security advisories; lesson remains in drafts."
+    },
+    {
+      "taskId": "t07-010-reference-server-components-interoperation",
+      "topicId": "t07-010",
+      "phase": "reference",
+      "draft": "course/drafts/t07-010/t07-010-reference-server-components-interoperation.md",
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 33,
+      "claimsCorrected": 0,
+      "evidence": [
+        {
+          "claims": "Manually checked 33 claim units against the frozen inventory and current official React RSC/Server Function documentation, React 19.3 release notes, and React security advisories. Verified module versus render boundaries, component serialization, directive semantics, network/action behavior, security boundaries, and stability/version claims. Corrected the inclusion of FormData in the Server Component-to-Client Component prop set; React lists it for Server Function arguments instead. Added the separate October 14, 2026 high-severity Server Function DoS advisory and distinguished its endpoint condition from the RCE advisory. No remaining factual or scope issues.",
+          "sources": [
+            "https://react.dev/reference/rsc/server-components",
+            "https://react.dev/reference/rsc/server-functions",
+            "https://react.dev/reference/rsc/use-client",
+            "https://react.dev/reference/rsc/use-server",
+            "https://react.dev/blog/2026/09/09/react-19-3",
+            "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+            "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+            "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+            "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+          ],
+          "verdict": "verified; coverage addition made, no factual correction required"
+        }
+      ],
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://react.dev/reference/rsc/server-components",
+        "https://react.dev/reference/rsc/server-functions",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server",
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+        "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+        "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+        "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit against official React documentation, release notes, and current React security advisories; lesson remains in drafts."
+    },
+    {
+      "taskId": "t07-010-practice",
+      "topicId": "t07-010",
+      "phase": "practice",
+      "draft": "course/drafts/t07-010/t07-010-practice.md",
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually checked 43 claim units against the frozen inventory and current official React RSC/Server Function documentation, React 19.3 release notes, and React security advisories. Verified module versus render boundaries, component serialization, directive semantics, network/action behavior, security boundaries, and stability/version claims. Corrected the inclusion of FormData in the Server Component-to-Client Component prop set; React lists it for Server Function arguments instead. Added the separate October 14, 2026 high-severity Server Function DoS advisory and distinguished its endpoint condition from the RCE advisory. No remaining factual or scope issues.",
+          "sources": [
+            "https://react.dev/reference/rsc/server-components",
+            "https://react.dev/reference/rsc/server-functions",
+            "https://react.dev/reference/rsc/use-client",
+            "https://react.dev/reference/rsc/use-server",
+            "https://react.dev/blog/2026/09/09/react-19-3",
+            "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+            "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+            "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+            "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+          ],
+          "verdict": "verified; factual correction and coverage addition made"
+        }
+      ],
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://react.dev/reference/rsc/server-components",
+        "https://react.dev/reference/rsc/server-functions",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server",
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+        "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+        "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+        "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit against official React documentation, release notes, and current React security advisories; lesson remains in drafts."
+    },
+    {
+      "taskId": "t07-010-interview",
+      "topicId": "t07-010",
+      "phase": "interview",
+      "draft": "course/drafts/t07-010/t07-010-interview.md",
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually checked 43 claim units against the frozen inventory and current official React RSC/Server Function documentation, React 19.3 release notes, and React security advisories. Verified module versus render boundaries, component serialization, directive semantics, network/action behavior, security boundaries, and stability/version claims. Corrected the inclusion of FormData in the Server Component-to-Client Component prop set; React lists it for Server Function arguments instead. Added the separate October 14, 2026 high-severity Server Function DoS advisory and distinguished its endpoint condition from the RCE advisory. No remaining factual or scope issues.",
+          "sources": [
+            "https://react.dev/reference/rsc/server-components",
+            "https://react.dev/reference/rsc/server-functions",
+            "https://react.dev/reference/rsc/use-client",
+            "https://react.dev/reference/rsc/use-server",
+            "https://react.dev/blog/2026/09/09/react-19-3",
+            "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+            "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+            "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+            "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+          ],
+          "verdict": "verified; factual correction and coverage addition made"
+        }
+      ],
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://react.dev/reference/rsc/server-components",
+        "https://react.dev/reference/rsc/server-functions",
+        "https://react.dev/reference/rsc/use-client",
+        "https://react.dev/reference/rsc/use-server",
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+        "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+        "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+        "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit against official React documentation, release notes, and current React security advisories; lesson remains in drafts."
     }
   ],
   "contentQualityFindings": [

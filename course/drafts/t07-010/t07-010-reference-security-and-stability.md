@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-Security guidance reflects React’s public `'use server'` security rules and the critical React RSC transport advisory published 2026-10-14, checked 2026-11-16. Patch versions change; check the linked React advisory and framework release before deployment. [React advisory](https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3) [React Server Function security](https://react.dev/reference/rsc/use-server)
+Security guidance reflects React’s public `'use server'` security rules and the October 14, 2026 critical RCE and high-severity Server Function DoS advisories, checked 2026-11-17. Patch versions change; check the linked React advisories and framework release before deployment. [RCE advisory](https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3) [Server Function DoS advisory](https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453) [React Server Function security](https://react.dev/reference/rsc/use-server)
 
 ## Supplied names explained
 
@@ -19,6 +19,7 @@ Security guidance reflects React’s public `'use server'` security rules and th
 - `RSC transport package security advisory` — React security notices apply to `react-server-dom-webpack`, `react-server-dom-parcel`, and `react-server-dom-turbopack` in affected releases; frameworks may bundle or constrain these dependencies.
 - `Unauthenticated RCE risk in vulnerable RSC transport packages` — The 2026-10-14 critical advisory describes crafted payloads to frameworks supporting RSC leading to remote code execution in a rare condition involving multiple typed arrays and attacker-controlled data. This is a package/runtime vulnerability, not something input validation alone fixes. [Advisory details](https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3)
 - `React RSC security advisory patched versions` — Advisory GHSA-xqc2-xf4c-x3h3 lists affected releases through 19.0.8, 19.1.9, 19.2.8, and 19.3.0; patched releases are 19.0.9, 19.1.10, 19.2.9, and 19.3.1 respectively. Check the advisory at study/deploy time for newer advisories and framework backports. [Patched releases](https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3)
+- `React Server Functions DoS advisory (2026-10-14)` — GHSA-h3gv-c5rc-p453 separately reports high-severity denial of service from crafted HTTP requests to Server Function endpoints, potentially causing memory exhaustion or excessive CPU. It affects the same three `react-server-dom-*` packages in listed 19.0.x, 19.1.x, 19.2.x ranges and 19.3.0; the advisory lists 19.0.9, 19.1.10, 19.2.9, and 19.3.1 as patched. This issue is about exposed Server Function endpoints; keep its attack condition distinct from the RCE advisory’s broader RSC-support applicability. [DoS advisory](https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453)
 - `RSC support can be vulnerable without an app-defined Server Function endpoint` — React’s security guidance warns that support for RSC can expose a vulnerable transport even if the app does not implement a Server Function endpoint itself. Inventory the framework and resolved packages, not only application source.
 - `Experimental React taint APIs are not a security substitute` — React marks taint APIs under construction. Do not use them as a replacement for minimizing returned data, authorization, validation, and secure framework updates.
 
@@ -40,11 +41,11 @@ Then separately update React and the framework/bundler to patched versions. A se
 
 ## Version and feature caveats
 
-React 19.3 adds direct rendering of a Context imported from a `'use client'` module in a Server Component. Server Components still cannot call `createContext`; the context definition lives in client-marked code. This is a public feature update, distinct from the unstable framework implementation APIs. [React 19.3](https://react.dev/blog/2026/09/09/react-19-3)
+React 19.3 adds direct rendering of a Context imported from a `'use client'` module in a Server Component. Server Components still cannot call `createContext`; the context definition lives in client-marked code. This is a public feature update, distinct from the unstable framework implementation APIs. The October 14, 2026 RCE and Server Function DoS advisories list the same patched package branches, but their impacts and applicability conditions differ. [React 19.3](https://react.dev/blog/2026/09/09/react-19-3) [RCE advisory](https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3) [DoS advisory](https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453)
 
 ## Knowledge checks with answers
 
-1. Which branch versions did the 2026-10-14 advisory list as patched? **19.0.9, 19.1.10, 19.2.9, and 19.3.1; recheck current advisories before applying.**
+1. Which branch versions did the October 14, 2026 RCE and Server Function DoS advisories list as patched? **19.0.9, 19.1.10, 19.2.9, and 19.3.1; recheck current advisories and framework guidance before applying.**
 2. Is input validation enough to repair RCE in the RSC request decoder? **No; update the vulnerable transport/framework packages.**
 3. Are lower-level RSC framework APIs covered by React’s public 19.x stability promise? **No.**
 4. Does the React 19.3 Context change allow Server Components to call `createContext`? **No; the Context is still created in a client-marked module.**
