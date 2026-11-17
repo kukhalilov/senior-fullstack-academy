@@ -12,6 +12,7 @@ This reference covers the six supplied Function methods and function-classificat
 
 # Supplied names explained
 
+- `Reflect.apply` — Related invocation alternative with the same basic role as `Function.prototype.apply`: it calls a chosen target with an explicit receiver and an array-like argument list. Unlike the method form, the target is an explicit first argument, so it works cleanly when the function itself is selected dynamically; its argument-list value must be an object.
 - `Function.prototype.apply` — Calls its receiver function with a chosen `thisArg` and an array-like object of arguments; it need not be an Array. `null` or `undefined` for the collection means no arguments. Other values must be objects accepted by the array-like conversion; a non-null primitive such as a string is not accepted by the specification algorithm. The function must be callable or a `TypeError` is thrown. The requested `thisArg` passes through unchanged, then a non-strict ordinary target may substitute/box it. Arrows and bound targets ignore the new receiver.
 - `Function.prototype.bind` — Requires a callable target and returns a bound-function exotic object holding the target, receiver, and leading arguments. Further calls append their arguments. Its `length` is derived from target length minus the number of preset arguments, floored at zero; its name is prefixed with `bound `. It has no own `prototype` property, but is constructible when its target is constructible. When constructed, bound `thisArg` is ignored; bound arguments remain. Rebinding cannot replace an existing bound receiver.
 - `Function.prototype.call` — Calls its receiver function immediately, passing the first argument as `thisArg` and the remaining arguments positionally. It rejects a non-callable receiver. It does not pre-coerce `thisArg`; strictness and function kind determine what the target observes.
@@ -24,6 +25,7 @@ This reference covers the six supplied Function methods and function-classificat
 | Pair | Difference |
 | --- | --- |
 | `Function.prototype.call` vs `Function.prototype.apply` | Both invoke immediately with an explicit receiver; `call` takes positional arguments while `apply` reads them from an array-like object. |
+| `Function.prototype.apply` vs `Reflect.apply` | Both invoke a target with a chosen receiver and array-like arguments; `Reflect.apply` makes the target an explicit argument and does not special-case null/undefined argument lists. |
 | `Function.prototype.bind` vs `Function.prototype.call` | Bind creates a reusable wrapper; call performs one immediate invocation. |
 | `Function.prototype.bind` vs `Function.prototype.apply` | Bind stores arguments and receiver for later; apply supplies both for one invocation. |
 | `Function.prototype.toString` vs `Function tag fallback in Object.prototype.toString` | The former returns source/native-style text for a callable; the latter labels a callable when object stringification has no string tag override. |
@@ -50,6 +52,7 @@ pair.apply(null, { 0: "A", 1: "B", length: 2 }); // ["A", "B"]
 # Common mistakes
 
 - Assuming `apply` requires an Array or iterates an arbitrary iterable. Its argument is array-like; use spread for iterable expansion.
+- Assuming `Reflect.apply` has `Function.prototype.apply`'s null/undefined argument-list special case; Reflect requires an array-like object.
 - Assuming `call`/`apply` can override lexical arrow `this` or an existing bound function's receiver.
 - Treating `bind` as mutation of the original function.
 - Assuming a bound function is not constructible because it has no own `prototype` property.

@@ -7,8 +7,8 @@
     "lessons": 2341,
     "reviewed": 802,
     "pending": 1539,
-    "claimsChecked": 29285,
-    "claimsCorrected": 1462,
+    "claimsChecked": 29373,
+    "claimsCorrected": 1455,
     "draftsMayBePromoted": false,
     "reviewedLessons": 802,
     "pendingLessons": 1539
@@ -1343,6 +1343,14 @@
       "status": "full claim and expanded frozen-inventory audit complete for all 7 lessons",
       "findings": [
         "Checked the complete synchronous/async iteration and generator inventories against ECMAScript 2026 normative sections and ToCs, including iterator helper methods/prototypes, generator and async-generator intrinsic properties, identity-protocol inheritance, Iterator.concat acquisition timing, iterator closing, async-from-sync adaptation, and yield* missing-method behavior. Clarified a custom async iterator’s result.value is not separately awaited by for-await-of; confirmed with Node 24.14.1 while async-generator and sync-adapter yielded promises are awaited. Added answers to all five practice reflection questions. ECMAScript 2026 defines no global AsyncIterator constructor or async helper methods. All seven lessons remain drafts pending whole-course audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "JavaScript this binding and Function objects (t06-017)",
+      "status": "full claim and expanded inventory audit complete for all 7 lessons",
+      "findings": [
+        "Checked strict/sloppy this substitution, property-reference and optional calls, arrows, call/apply/bind, construction/new.target/super, Function metadata/descriptors, legacy caller/arguments, source text availability, Symbol.hasInstance, and Object.prototype.toString fallback against ECMAScript 2026 and MDN. Added the previously omitted Function constructor, including parameter/body string conversion, parse errors, global environment instead of local closure, own strictness, and host string-compilation restrictions; added Reflect.apply comparison. Ran all eight practice scenarios, including a separate classic-script VM check for sloppy this. No existing false claims were found. All seven lessons remain drafts pending whole-course audit."
       ]
     }
   ],
@@ -49280,11 +49288,11 @@
       "draft": "course/drafts/t06-017/t06-017-overview.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 20,
-      "claimsCorrected": 1,
+      "claimsChecked": 38,
+      "claimsCorrected": 0,
       "evidence": [
         {
-          "claims": "Checked call-site receiver model, strict/sloppy distinctions, lexical arrows, explicit calls, bound construction, new.target, super, and Function prototype distinctions against ECMA-262 2026.",
+          "claims": "Manually checked 38 claim units, worked examples, answer keys, API behavior, descriptors, and full manifest scope against the cited ECMAScript 2026 algorithms/property definitions and MDN explanations.",
           "sources": [
             "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
             "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49292,7 +49300,7 @@
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
           ],
-          "verdict": "verified; corrections and reflection answers incorporated"
+          "verdict": "verified after inventory expansion; no pre-existing false claim found"
         }
       ],
       "issues": [],
@@ -49304,7 +49312,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
+      "reviewNote": "Completed manual fact and scope audit. Added the omitted global Function constructor, its dynamic parsing/global-environment/strictness behavior, and Reflect.apply comparison. Kept all lessons in draft status pending the complete curriculum audit."
     },
     {
       "taskId": "t06-017-concepts",
@@ -49313,11 +49321,11 @@
       "draft": "course/drafts/t06-017/t06-017-concepts.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 35,
-      "claimsCorrected": 2,
+      "claimsChecked": 52,
+      "claimsCorrected": 0,
       "evidence": [
         {
-          "claims": "Checked receiver selection, global/module this, strictness, apply/call/bind, bound constructors, new.target, super lookup, metadata, and property/constructibility nuances. Corrected overgeneralized .prototype explanations to cover generator and bound functions.",
+          "claims": "Manually checked 52 claim units, worked examples, answer keys, API behavior, descriptors, and full manifest scope against the cited ECMAScript 2026 algorithms/property definitions and MDN explanations.",
           "sources": [
             "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
             "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49325,7 +49333,7 @@
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
           ],
-          "verdict": "verified; corrections and reflection answers incorporated"
+          "verdict": "verified after inventory expansion; no pre-existing false claim found"
         }
       ],
       "issues": [],
@@ -49337,7 +49345,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
+      "reviewNote": "Completed manual fact and scope audit. Added the omitted global Function constructor, its dynamic parsing/global-environment/strictness behavior, and Reflect.apply comparison. Kept all lessons in draft status pending the complete curriculum audit."
     },
     {
       "taskId": "t06-017-reference-this-binding-rules",
@@ -49346,11 +49354,11 @@
       "draft": "course/drafts/t06-017/t06-017-reference-this-binding-rules.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 41,
+      "claimsChecked": 62,
       "claimsCorrected": 0,
       "evidence": [
         {
-          "claims": "Checked all ten receiver/context terms, method reference retention, optional calls, nullish/primitive rules, bound target behavior, construction returns, new.target, and super lookup against ECMA-262 and MDN.",
+          "claims": "Manually checked 62 claim units, worked examples, answer keys, API behavior, descriptors, and full manifest scope against the cited ECMAScript 2026 algorithms/property definitions and MDN explanations.",
           "sources": [
             "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
             "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49358,7 +49366,7 @@
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
           ],
-          "verdict": "verified; corrections and reflection answers incorporated"
+          "verdict": "verified after inventory expansion; no pre-existing false claim found"
         }
       ],
       "issues": [],
@@ -49370,7 +49378,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
+      "reviewNote": "Completed manual fact and scope audit. Added the omitted global Function constructor, its dynamic parsing/global-environment/strictness behavior, and Reflect.apply comparison. Kept all lessons in draft status pending the complete curriculum audit."
     },
     {
       "taskId": "t06-017-reference-function-prototype-methods",
@@ -49379,11 +49387,11 @@
       "draft": "course/drafts/t06-017/t06-017-reference-function-prototype-methods.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 41,
-      "claimsCorrected": 1,
+      "claimsChecked": 51,
+      "claimsCorrected": 0,
       "evidence": [
         {
-          "claims": "Checked all six inventory operations and classification claims, including apply array-like-object requirements (non-null primitives are rejected), bind construction/length/name, toString host availability, Symbol.hasInstance, and Object.prototype.toString fallback behavior.",
+          "claims": "Manually checked 51 claim units, worked examples, answer keys, API behavior, descriptors, and full manifest scope against the cited ECMAScript 2026 algorithms/property definitions and MDN explanations.",
           "sources": [
             "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
             "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49391,7 +49399,7 @@
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
           ],
-          "verdict": "verified; corrections and reflection answers incorporated"
+          "verdict": "verified after inventory expansion; no pre-existing false claim found"
         }
       ],
       "issues": [],
@@ -49403,7 +49411,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
+      "reviewNote": "Completed manual fact and scope audit. Added the omitted global Function constructor, its dynamic parsing/global-environment/strictness behavior, and Reflect.apply comparison. Kept all lessons in draft status pending the complete curriculum audit."
     },
     {
       "taskId": "t06-017-reference-function-own-properties",
@@ -49412,11 +49420,11 @@
       "draft": "course/drafts/t06-017/t06-017-reference-function-own-properties.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 50,
-      "claimsCorrected": 3,
+      "claimsChecked": 58,
+      "claimsCorrected": 0,
       "evidence": [
         {
-          "claims": "Checked all nine properties and exact descriptor/constructibility distinctions. Corrected the prototype-property claim: generator functions have one but cannot be constructed; bound constructors can construct without an own one; Reflect.construct uses newTarget for the instance prototype.",
+          "claims": "Manually checked 58 claim units, worked examples, answer keys, API behavior, descriptors, and full manifest scope against the cited ECMAScript 2026 algorithms/property definitions and MDN explanations.",
           "sources": [
             "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
             "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49424,7 +49432,7 @@
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
           ],
-          "verdict": "verified; corrections and reflection answers incorporated"
+          "verdict": "verified after inventory expansion; no pre-existing false claim found"
         }
       ],
       "issues": [],
@@ -49436,7 +49444,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
+      "reviewNote": "Completed manual fact and scope audit. Added the omitted global Function constructor, its dynamic parsing/global-environment/strictness behavior, and Reflect.apply comparison. Kept all lessons in draft status pending the complete curriculum audit."
     },
     {
       "taskId": "t06-017-practice",
@@ -49445,11 +49453,11 @@
       "draft": "course/drafts/t06-017/t06-017-practice.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 55,
+      "claimsChecked": 82,
       "claimsCorrected": 0,
       "evidence": [
         {
-          "claims": "Checked all seven exercises and complete solutions, strict/sloppy contexts, super lookup, bind argument order, bound construction, property-reference optional calls, and runtime assertions. Added answers to every reflection question.",
+          "claims": "Manually checked 82 claim units, worked examples, answer keys, API behavior, descriptors, and full manifest scope against the cited ECMAScript 2026 algorithms/property definitions and MDN explanations.",
           "sources": [
             "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
             "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49457,7 +49465,7 @@
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
           ],
-          "verdict": "verified; corrections and reflection answers incorporated"
+          "verdict": "verified after inventory expansion; no pre-existing false claim found"
         }
       ],
       "issues": [],
@@ -49469,7 +49477,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
+      "reviewNote": "Completed manual fact and scope audit. Added the omitted global Function constructor, its dynamic parsing/global-environment/strictness behavior, and Reflect.apply comparison. Kept all lessons in draft status pending the complete curriculum audit."
     },
     {
       "taskId": "t06-017-interview",
@@ -49478,11 +49486,11 @@
       "draft": "course/drafts/t06-017/t06-017-interview.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 60,
+      "claimsChecked": 47,
       "claimsCorrected": 0,
       "evidence": [
         {
-          "claims": "Checked core, deep, and scenario answers for strict/sloppy behavior, call/apply/bind, construction, new.target, super, function descriptors, metadata, and legacy poison-pill properties.",
+          "claims": "Manually checked 47 claim units, worked examples, answer keys, API behavior, descriptors, and full manifest scope against the cited ECMAScript 2026 algorithms/property definitions and MDN explanations.",
           "sources": [
             "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
             "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49490,7 +49498,7 @@
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
             "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
           ],
-          "verdict": "verified; corrections and reflection answers incorporated"
+          "verdict": "verified after inventory expansion; no pre-existing false claim found"
         }
       ],
       "issues": [],
@@ -49502,7 +49510,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
+      "reviewNote": "Completed manual fact and scope audit. Added the omitted global Function constructor, its dynamic parsing/global-environment/strictness behavior, and Reflect.apply comparison. Kept all lessons in draft status pending the complete curriculum audit."
     },
     {
       "taskId": "t06-004-overview",

@@ -135,6 +135,20 @@ console.log(get.call({ value: "other" }));
 
 Assume the file is an ES module. Predict the results and explain which expression retains the property reference.
 
+## Exercise 8: dynamic Function constructor scope
+
+```js
+function buildProbe() {
+  const lexicalOnlyForFunctionConstructor = 2;
+  const probe = Function("return typeof lexicalOnlyForFunctionConstructor");
+  const increment = Function("value", "return value + 1");
+  return [probe(), increment(4)];
+}
+console.log(buildProbe());
+```
+
+Predict the result. Explain why the dynamically created function cannot read the local binding, and name one reason to avoid using this constructor with external input.
+
 # Progressive hints
 
 1. **Exercise 1:** The first expression is still `item.read()`, even though lookup walks to the prototype.
@@ -144,6 +158,7 @@ Assume the file is an ES module. Predict the results and explain which expressio
 5. **Exercise 5:** `new` creates the receiver; a bound constructor forwards construction and leading args to its target.
 6. **Exercise 6:** `super.read` starts lookup after the method's home object. The original call `leaf.read()` supplies `leaf`.
 7. **Exercise 7:** Parentheses preserve a reference. Optional call proceeds as a property call; destructuring extracts a function value.
+8. **Exercise 8:** The Function constructor compiles parameter/body strings in the global environment rather than closing over `buildProbe`'s lexical environment.
 
 # Complete solutions
 
@@ -174,6 +189,10 @@ The result is `leaf:11`. The `super` reference starts lookup from the prototype 
 ## Solution 7
 
 The results are `"source"`, `"source"`, and `"other"`. Parenthesizing `source.get` preserves the property reference, so the first call remains a method call. Optional call `source.get?.()` also retains the base when the function exists. Destructuring stores the function value without the original base; the explicit `call` supplies a new receiver.
+
+## Solution 8
+
+The result is `["undefined", 5]`. The dynamically compiled `probe` runs in the realm's global environment, where the local `lexicalOnlyForFunctionConstructor` binding does not exist. The `increment` function receives its value through an explicit parameter. Constructing functions from untrusted strings can execute attacker-controlled code; use closures and ordinary function syntax for normal application logic.
 
 # Tests and edge cases
 

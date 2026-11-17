@@ -12,6 +12,7 @@
 6. What does `new.target` report, and how does `super.method()` choose its receiver?
 7. What do `name`, `length`, and `.prototype` tell you?
 8. Is `Function.prototype.toString()` a reliable way to inspect or serialize source?
+9. What does the `Function` constructor create, and what scope can that function access?
 
 # Concise interview answers
 
@@ -23,6 +24,7 @@
 6. **`new.target` is absent on ordinary calls and records construction.** `super.method()` starts lookup at the method's home-object prototype but supplies the current `this` to the found method.
 7. **Name and length are descriptive metadata.** A constructor's own `.prototype` supplies the initial prototype for instances; it is distinct from `Function.prototype`.
 8. **No.** Source may be unavailable, and native representations are implementation-defined. It is not a safe serializer or evaluator.
+9. **It dynamically parses parameter and body strings into an ordinary function.** The result uses its realm's global environment rather than closing over the caller's locals, is non-strict unless its body has a strict directive, and may be blocked by host policy.
 
 # Deep follow-up answers
 
@@ -45,6 +47,10 @@ The method's home object establishes where a `super` property lookup starts. The
 ## Why are function properties not contracts?
 
 The length property is typical expected parameter count, not a call limit; defaults, rest parameters, and bind affect it. The name is descriptive and has no semantic significance. A constructor's prototype property is mutable and supplies a prototype for new instances, but constructor identity and `instanceof` behavior can be changed by custom hooks or prototype changes. These properties help inspection but should not define authorization or validation.
+
+## When might `Reflect.apply` be preferable?
+
+Use it when the target function is a value selected at runtime and you already have an array-like argument list: `Reflect.apply(target, receiver, args)`. It makes the target explicit, whereas `target.apply(receiver, args)` looks up an `apply` property on that target and can be affected by an overridden property. `Reflect.apply` requires an object for its argument list; `Function.prototype.apply` uniquely treats null/undefined as an empty list.
 
 # Scenario questions
 
@@ -71,6 +77,7 @@ The length property is typical expected parameter count, not a call limit; defau
 - “Bound functions cannot be constructors because there is no `.prototype`.” Constructibility and own prototype property are distinct.
 - “Function length is how many arguments it accepts.” It is descriptive metadata only.
 - “`toString()` lets you reliably recover code.” Hosts may withhold source; native output is implementation-defined.
+- “The `Function` constructor captures local variables like a function expression.” It uses the realm's global environment and dynamically compiles strings; use a closure for lexical capture.
 - “Use `.caller` to debug call stacks.” It is legacy/non-standard and not portable.
 
 # Self-check rubric

@@ -32,6 +32,7 @@
       "id": "function-prototype-methods",
       "title": "Function.prototype methods and function classification behavior",
       "items": [
+        "Reflect.apply",
         "Function.prototype.apply",
         "Function.prototype.bind",
         "Function.prototype.call",
@@ -42,8 +43,13 @@
     },
     {
       "id": "function-own-properties",
-      "title": "Function object properties",
+      "title": "Function constructor and function object properties",
       "items": [
+        "Function constructor",
+        "Function constructor length and name",
+        "Function constructor dynamic body and parameter strings",
+        "Function constructor executes in global scope and cannot capture local lexical bindings",
+        "Function constructor strictness directive behavior",
         "Function.prototype",
         "Function.prototype.constructor",
         "Function.prototype.length",
@@ -99,6 +105,9 @@
     ]
   },
   "accuracyFacts": [
+    "Function(...parameterStrings, bodyString) and new Function(...) produce the same dynamic ordinary function. The final argument is the body; prior arguments are converted to strings and concatenated as formal parameter text. Syntax errors occur before a function is returned.",
+    "A dynamically created function closes over the current realm's global environment, not the caller's local lexical environment. It is non-strict unless its body has a strict directive, and host policy can disallow compiling strings.",
+    "Reflect.apply(target, thisArgument, argumentsList) is a related alternative to Function.prototype.apply. The target is explicit and argumentsList must be an object; unlike Function.prototype.apply, null/undefined is not a special empty-list case.",
     "For an ordinary function, this is determined by the call form, not the function's definition location. A property reference call such as object.method() supplies the base object, including when the method was inherited; extracting the function and calling it loses that receiver.",
     "Strict ordinary functions receive exactly the this argument, including undefined, null, and primitives. Non-strict ordinary functions replace undefined/null with the global this value and box primitives. ECMAScript modules and class code are strict; a script's top-level this is distinct from the receiver of a sloppy detached function call.",
     "Arrow functions have lexical this and lexical new.target; call, apply, and bind cannot replace an arrow's this. A method defined with concise method syntax has a dynamic receiver and is not constructible.",

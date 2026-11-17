@@ -1,10 +1,10 @@
 <!-- GENERATED DRAFT: automated shape and editorial checks passed; independent factual verification is not implied. -->
 
-# JavaScript this binding and Function object methods — Reference: Function object properties
+# JavaScript this binding and Function object methods — Reference: Function constructor and function object properties
 
 # Scope and version
 
-This reference covers the nine supplied properties in the ECMAScript 2026 inventory, including the legacy `arguments` and `caller` entries. “Own” in this group distinguishes properties found directly on a function from inherited properties. Exact descriptors matter when code inspects or redefines metadata. See [ECMAScript Function objects](https://tc39.es/ecma262/2026/multipage/fundamental-objects.html) and [MDN: Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function).
+This reference covers the Function constructor and supplied function properties in the ECMAScript 2026 inventory, including the legacy `arguments` and `caller` entries. “Own” in this group distinguishes properties found directly on a function from inherited properties. Exact descriptors matter when code inspects or redefines metadata. See [ECMAScript Function objects](https://tc39.es/ecma262/2026/multipage/fundamental-objects.html) and [MDN: Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function).
 
 # How this group fits the mental model
 
@@ -12,6 +12,11 @@ Functions participate in prototype relationships: their `[[Prototype]]` chain li
 
 # Supplied names explained
 
+- `Function constructor` — `Function(...parameterStrings, bodyString)` parses strings as formal parameters and a function body, then returns a new ordinary function; calling it or using `new Function(...)` has the same effect. This creates code dynamically, so never place untrusted text in its inputs.
+- `Function constructor length and name` — The global constructor has `length === 1` and the name `"Function"`; those are metadata, not limits on how many parameter strings can be supplied.
+- `Function constructor dynamic body and parameter strings` — The final argument is converted to a string and supplies the body; preceding arguments are each converted to strings and combined as parameter-list text, so one string may contain multiple comma-separated parameters. Invalid syntax throws during construction, before the resulting function is called.
+- `Function constructor executes in global scope and cannot capture local lexical bindings` — Unlike a function expression created in surrounding code, dynamically constructed function code does not close over the caller's local lexical variables; its outer scope is the global environment of its realm.
+- `Function constructor strictness directive behavior` — A dynamically constructed function is non-strict unless its body contains a strict-mode directive such as `"use strict"`; the caller's strictness is not inherited.
 - `Function.prototype` — The non-writable, non-enumerable, non-configurable property on the global `Function` constructor whose value is the intrinsic Function prototype object (`%Function.prototype%`). It is itself callable and returns `undefined`, but it is not a constructor and has no own `prototype` property. Do not confuse this constructor property with the instance prototype property described below.
 - `Function.prototype.constructor` — The initial value is the intrinsic `Function` constructor. It is an ordinary writable, configurable, non-enumerable data property of the Function prototype object. The property name does not mean that every function was created by calling `Function`; function declarations, expressions, methods, and arrows are created by their syntax.
 - `Function.prototype.length` — The value is `0`. On the Function prototype object this property is non-writable, non-enumerable, configurable. It reflects the callable object's descriptive length metadata, not a minimum/maximum argument rule.
@@ -32,6 +37,17 @@ Functions participate in prototype relationships: their `[[Prototype]]` chain li
 | `Function.prototype.arguments (legacy)` vs `Function.prototype.caller (legacy)` | Both inherited poison-pill legacy accessors throw by default; old engine-specific behavior on non-strict functions is not portable. |
 
 # Examples
+
+```js
+function makeAdder(base) {
+  const dynamic = Function("value", "return base + value");
+  // Calling dynamic(1) would throw ReferenceError: it cannot capture makeAdder's local base.
+  return Function("base", "value", "return base + value")(base, 1);
+}
+console.log(makeAdder(4)); // 5
+```
+
+The constructor compiles parameter and body strings in the realm's global environment. Use ordinary closures for access to local variables and avoid dynamic construction for fixed application logic. Hosts can prohibit compilation from strings, in which case construction throws.
 
 ```js
 function add(a, b = 0, ...rest) { return a + b + rest.length; }

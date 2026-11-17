@@ -73,6 +73,8 @@ For a base constructor called with `new`, JavaScript creates the receiver using 
 
 `length` is an informational typical parameter count, adjusted by default/rest parameter rules and by `bind`; functions can still be called with any number of arguments. `name` is descriptive and does not identify a function semantically. Both are non-writable, non-enumerable, configurable on ordinary function instances. Function source text is not a portable serialization format: hosts may withhold it, and native/built-in forms are implementation-defined.
 
+The global `Function` constructor is a separate dynamic-code API: its last string is parsed as a body and preceding strings as parameter lists. Its result does not close over local variables from the call site, and it is non-strict unless its own body contains a strict directive. Prefer declarations, expressions, and closures for normal application code.
+
 # Mechanisms and relationships
 
 | Call form | Receiver before target's own rules | Important result |
