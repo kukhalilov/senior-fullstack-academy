@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 465,
-    "pending": 1875,
-    "claimsChecked": 15516,
-    "claimsCorrected": 1390,
+    "reviewed": 478,
+    "pending": 1862,
+    "claimsChecked": 15952,
+    "claimsCorrected": 1391,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 465,
-    "pendingLessons": 1875
+    "reviewedLessons": 478,
+    "pendingLessons": 1862
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -31688,16 +31688,62 @@
       "topicId": "t11-024",
       "phase": "overview",
       "draft": "course/drafts/t11-024/t11-024-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31705,23 +31751,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-concepts",
       "topicId": "t11-024",
       "phase": "concepts",
       "draft": "course/drafts/t11-024/t11-024-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31729,23 +31821,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-reference-heap-invariant-and-layout",
       "topicId": "t11-024",
       "phase": "reference",
       "draft": "course/drafts/t11-024/t11-024-reference-heap-invariant-and-layout.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31753,23 +31891,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-reference-priority-queue-operations",
       "topicId": "t11-024",
       "phase": "reference",
       "draft": "course/drafts/t11-024/t11-024-reference-priority-queue-operations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31777,23 +31961,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-reference-variants-and-update",
       "topicId": "t11-024",
       "phase": "reference",
       "draft": "course/drafts/t11-024/t11-024-reference-variants-and-update.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31801,23 +32031,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-reference-algorithm-patterns-and-tradeoffs",
       "topicId": "t11-024",
       "phase": "reference",
       "draft": "course/drafts/t11-024/t11-024-reference-algorithm-patterns-and-tradeoffs.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31825,23 +32101,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-practice-last-stone-weight",
       "topicId": "t11-024",
       "phase": "practice",
       "draft": "course/drafts/t11-024/t11-024-practice-last-stone-weight.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31849,23 +32171,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-practice-top-k-frequent-elements",
       "topicId": "t11-024",
       "phase": "practice",
       "draft": "course/drafts/t11-024/t11-024-practice-top-k-frequent-elements.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31873,23 +32241,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-practice-find-median-data-stream",
       "topicId": "t11-024",
       "phase": "practice",
       "draft": "course/drafts/t11-024/t11-024-practice-find-median-data-stream.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31897,23 +32311,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-practice-merge-k-sorted-lists",
       "topicId": "t11-024",
       "phase": "practice",
       "draft": "course/drafts/t11-024/t11-024-practice-merge-k-sorted-lists.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31921,23 +32381,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-practice-task-scheduler",
       "topicId": "t11-024",
       "phase": "practice",
       "draft": "course/drafts/t11-024/t11-024-practice-task-scheduler.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31945,23 +32451,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-practice-kth-largest-element-stream",
       "topicId": "t11-024",
       "phase": "practice",
       "draft": "course/drafts/t11-024/t11-024-practice-kth-largest-element-stream.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31969,23 +32521,69 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-024-interview",
       "topicId": "t11-024",
       "phase": "interview",
       "draft": "course/drafts/t11-024/t11-024-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually reviewed the heap shape/order invariants, array index formulas, operation and construction bounds, comparer and tie semantics, problem constraints/examples, data-structure choices, complexity arguments, and frozen manifest inventory against current Microsoft API documentation, algorithm reference, and canonical problem statements. All six C# practice programs compiled and their embedded assertions passed in the repository-wide .NET 10 DSA validation run. Added the omitted frequency-bucket algorithm for the official Top K Frequent Elements better-than-O(n log n) follow-up and corrected the heap/bucket complexity comparison.",
+          "sources": [
+            {
+              "url": "https://usaco.guide/silver/priority-queues",
+              "section": "Heap and priority-queue operations, bottom-up heap construction, and algorithm tradeoffs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
+              "section": "PriorityQueue public priority behavior, operation members, comparer semantics, and equal-priority contract",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/last-stone-weight/",
+              "section": "Canonical operation rules, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Canonical operation rules, constraints, examples, uniqueness guarantee, and complexity follow-up",
+              "verdict": "supported; follow-up coverage added and heap complexity qualified"
+            },
+            {
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+              "section": "Canonical streaming median behavior, constraints, examples, and numeric expectations",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+              "section": "Canonical sorted-list merge behavior, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/task-scheduler/",
+              "section": "Canonical cooldown semantics, constraints, and examples",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+              "section": "Canonical streaming kth-largest behavior, constraints, and examples",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/priority-queues",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-10.0",
         "https://leetcode.com/problems/last-stone-weight/",
         "https://leetcode.com/problems/top-k-frequent-elements/",
         "https://leetcode.com/problems/find-median-from-data-stream/",
@@ -31993,7 +32591,7 @@
         "https://leetcode.com/problems/task-scheduler/",
         "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Completed manual factual and frozen-inventory audit. Verified heap invariants, array layout, operation and heapify complexity, custom comparer and tie behavior, streaming/bounded-heap patterns, examples, and problem constraints. Added the required linear frequency-bucket alternative for Top K Frequent Elements and corrected its complexity discussion. All six C# programs compiled and assertions passed under .NET 10. No unresolved factual or scope issues remain; lessons remain drafts."
     },
     {
       "taskId": "t11-010-overview",

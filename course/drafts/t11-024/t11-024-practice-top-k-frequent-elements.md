@@ -83,14 +83,14 @@ The map computes exact frequencies. Before the heap reaches size k, every distin
 For `[1,1,1,2,2,3]`, frequencies are 3,2,1. Insert the first two into the size-2 heap; its root has frequency 2. Frequency 1 does not replace it, so the retained values are 1 and 2.
 
 ## Time complexity
-Expected O(n + u log k), where n is input length and u is distinct value count.
+Expected O(n + u log(k+1)), where n is input length and u is distinct value count. The `k+1` form also describes the constant-cost heap operations when k=1.
 
 ## Space complexity
 O(u+k) for frequency counts and heap; k<=u.
 
 ## Alternatives and tradeoffs
-- Frequency buckets achieve O(n+u) when maximum frequency is bounded by n and no ordering beyond top-k is needed.
-- Sorting records costs O(u log u) and is simpler when a full ranking is useful.
+- **Frequency buckets meet the problem's better-than-O(n log n) follow-up:** count values, place each distinct value into bucket `frequency[value]` in an array of n+1 buckets, then scan bucket frequencies from n down to 1 until k values have been collected. This takes O(n+u) time and O(n+u) space, where u is the number of distinct values; the output may be in any order. Bucket order handles the primary ranking without sorting. Values tied at the cutoff cannot create ambiguity because the statement guarantees that the answer set is unique.
+- Sorting all u frequency records costs O(u log u); although simple, it does not satisfy the follow-up in the worst case.
 - Quickselect can find a static kth frequency boundary in expected O(u), but the bounded heap has predictable O(u log k) behavior and naturally generalizes to a stream.
 
 ## Common mistakes and gotchas
