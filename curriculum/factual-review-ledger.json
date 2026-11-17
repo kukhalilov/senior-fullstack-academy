@@ -547,6 +547,20 @@
       "findings": [
         "Checked the SQ/CQ lifecycle, SQEs/CQEs and negative result error reporting, completion reordering and user_data correlation, buffer lifetimes, SQPOLL, linked operations, and exceptions to the one-request/one-completion basic model against Linux man-pages io_uring(7). Kernel-specific opcode support, every claim, and omission checks remain pending; lesson is not promoted."
       ]
+    },
+    {
+      "scope": "Filesystem internals and durability reference",
+      "status": "partial primary-source checks; full lesson audit pending",
+      "sources": [
+        "https://docs.kernel.org/filesystems/ext4/",
+        "https://docs.kernel.org/filesystems/ext4/inodes.html",
+        "https://docs.kernel.org/filesystems/ext4/directory.html",
+        "https://docs.kernel.org/filesystems/ext4/journal.html",
+        "https://man7.org/linux/man-pages/man2/fsync.2.html"
+      ],
+      "findings": [
+        "Checked ext4 directory-name-to-inode separation and inode metadata, journal/data-mode distinction, and Linux fsync(file) versus directory-entry durability against kernel documentation and Linux man-pages. Broader filesystem comparisons, every claim, and omissions remain pending; lesson is not promoted."
+      ]
     }
   ],
   "lessons": [
@@ -77325,29 +77339,11 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://docs.kernel.org/filesystems/ext4/",
+        "https://docs.kernel.org/filesystems/ext4/inodes.html",
+        "https://docs.kernel.org/filesystems/ext4/directory.html",
+        "https://docs.kernel.org/filesystems/ext4/journal.html",
+        "https://man7.org/linux/man-pages/man2/fsync.2.html"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -100114,6 +100110,14 @@
       "status": "expanded; selected primary-source checks; full audit pending",
       "findings": [
         "Replaced generic filler with a learner-first comparison to readiness notification, lifecycle, buffer ownership, completion correlation, ordering/cancellation, feature-dependent behavior, operational constraints, examples, and practice. Selected claims were checked against Linux man-pages; full sentence-level and completeness audits remain outstanding."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "Filesystem internals reference",
+      "status": "expanded; selected primary-source checks; full audit pending",
+      "findings": [
+        "Replaced generic filler with names/inodes/data mapping, cache path, ext4 journaling guarantees and limits, durability sequence, application examples, distinctions from database WAL, and exercises. Selected claims were checked against Linux kernel and man-page sources; full claim and completeness audits remain outstanding."
       ]
     }
   ]
