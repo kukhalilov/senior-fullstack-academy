@@ -1,36 +1,61 @@
 # end-to-end system design case studies — Reference: Anycast DNS
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 4786: Operation of Anycast Services](https://www.rfc-editor.org/rfc/rfc4786.html), [RFC 9499: DNS Terminology](https://www.rfc-editor.org/rfc/rfc9499.html), [RFC 7094: Architectural Considerations of IP Anycast](https://www.rfc-editor.org/rfc/rfc7094.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson discusses IP anycast as an operational technique for distributing DNS service addresses. Routing policy and convergence depend on the network and operator; anycast is not a DNS-record feature that guarantees a client always reaches the geographically nearest or healthiest site. RFC 4786 is an IETF Best Current Practice for operating anycast services; consult current network and DNS implementation documentation for deployment details.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+With unicast, an address ordinarily identifies one network destination. With anycast, the same service address or prefix is advertised from multiple nodes in separate locations; routing selects a reachable route according to topology and routing policy. This can bring a DNS service closer to users and provide routing-based failover, but “nearest” means topologically preferred by the routing system, not necessarily shortest physical distance or lowest application latency.
+
+For an authoritative DNS provider, a resolver sends a query to an anycast service address. The network routes it to one site that must be able to answer consistently with the service’s DNS data and operational policy. Anycast distributes reachability to DNS servers; it does not replicate DNS zone contents, guarantee equal load, or replace DNS protocol redundancy and zone operations.
 
 ## Supplied names explained
 
-- `Anycast DNS` — Advertises the same IP prefix from multiple locations so routing sends clients to a nearby reachable site; routing convergence and health withdrawal need operational design.
+- **Anycast service address:** a shared IP address/prefix made reachable through routes advertised by multiple service nodes.
+- **Anycast node/site:** the service instance or coordinated group of hosts advertising that address from one location.
+- **Route advertisement and withdrawal:** publishing reachability into a routing system and withdrawing it when a site should stop receiving new traffic. A route withdrawal does not instantly move every existing client; routing convergence and resolver/client retries affect recovery.
+- **Unicast comparison:** directs traffic to a particular destination; DNS answers can instead return different addresses or use other traffic-management methods, but those methods have their own caching and failover behavior.
+- **DNS cache/TTL:** resolvers may cache DNS answers for their TTL. Anycast selection occurs at the network layer for traffic to the chosen destination; it is distinct from changing a name’s DNS answer based on client geography.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Technique | Selection mechanism | Strengths | Important limitations |
+| --- | --- | --- | --- |
+| IP anycast | Network routing selects among nodes advertising the same address/prefix | Can provide a stable service address, locality by network topology, and route-based failover without per-client address changes | Site load can be uneven; routes do not know whether the DNS application is healthy unless health is tied safely to advertisement; convergence and client retry behavior matter |
+| DNS answer steering | DNS service returns one or more destination addresses based on policy/health/location | Application operator can choose destinations and steer new resolutions | Resolver caching and TTL mean changes are not instantaneous; the client’s resolver location may differ from the user’s location |
+| Unicast load balancer | A specific endpoint or VIP forwards traffic to a pool | Can balance known backends and provide health-aware forwarding within its scope | It may still depend on a regional or global entry point and does not inherently provide worldwide routing |
+
+These approaches can be combined. For example, DNS can return an anycast address; the network then chooses an anycast site. Each layer introduces its own health, cache, routing, and observability behavior.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Assume DNS service address `192.0.2.53/32` is announced from sites A, B, and C. A resolver’s network path currently prefers site B, so its query reaches B. If B’s application fails but its router continues advertising the route, traffic may continue to land there and fail. Operators can couple service health to route withdrawal, but that mechanism must avoid flapping and must not withdraw reachability based on an overly narrow probe. After withdrawal, routes converge at different times and traffic shifts to whichever remaining route the network prefers; it does not necessarily distribute evenly between A and C.
+
+Because an anycast client can be routed to different sites as paths change, DNS responses and operational state must be designed accordingly. Authoritative nodes generally need compatible zone data and safe update distribution. Long-lived stateful sessions are a poor fit when clients may move between nodes; DNS query/response exchanges are usually short, but monitoring still must identify which site served a query. RFC 4786 recommends in-band mechanisms to identify the node where practical and explains why availability observations vary by client location.
+
+Operationally, probe from multiple external networks and regions; expose node identity in diagnostic responses/logging where appropriate; compare route announcements, query success, latency, and load by site; test route withdrawal and recovery; and verify DNS data version consistency. Avoid treating a successful BGP advertisement as proof that the DNS service is usable.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Defining “nearest” as geographically closest instead of the route selected by topology and policy.
+- Assuming anycast provides balanced load; RFC 4786 notes that load distribution can be difficult and unbalanced.
+- Withdrawing routes on a single noisy health check, causing route flapping and wider instability.
+- Leaving an unhealthy site’s route announced, or withdrawing a route without understanding convergence, traffic shifts, and resolver retries.
+- Assuming identical IP advertisement means identical DNS data; zone distribution and consistency remain application/operator responsibilities.
+- Monitoring from only one location and extrapolating global user experience from that path.
+- Using anycast for long-lived stateful sessions without accounting for route changes that can direct a client to another node.
+- Confusing anycast with GeoDNS or with DNS answer changes; these operate at different layers and have different caching behavior.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Does anycast necessarily send a user to the physically closest site?** No. Routing selects according to network topology and policy, which may not match physical distance or application latency.
+2. **If a DNS anycast site is unhealthy, will its clients instantly move to another site?** Not necessarily. Health detection, route withdrawal, routing convergence, resolver retries, and client behavior all contribute to recovery time.
+3. **Does advertising the same prefix ensure all sites serve the same DNS zone data?** No. Data synchronization and rollout are separate responsibilities.
+4. **How would you investigate reports that only some users cannot resolve names?** Probe from multiple networks, correlate failures with the serving site/node and route state, inspect site health and zone version, and account for resolver caching and path changes.
+
+## Review status
+
+Anycast mechanics and operational cautions are checked against IETF RFC 4786 and DNS terminology against RFC 9499. The lesson remains pending complete claim-by-claim audit and manifest omission check.
