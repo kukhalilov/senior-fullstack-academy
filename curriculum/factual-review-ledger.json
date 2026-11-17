@@ -78033,31 +78033,44 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://developers.cloudflare.com/durable-objects/concepts/what-are-durable-objects/",
+        "https://developers.cloudflare.com/durable-objects/concepts/durable-object-lifecycle/",
+        "https://developers.cloudflare.com/durable-objects/best-practices/rules-of-durable-objects/",
+        "https://developers.cloudflare.com/durable-objects/best-practices/access-durable-objects-storage/",
+        "https://developers.cloudflare.com/durable-objects/best-practices/websockets/",
+        "https://developers.cloudflare.com/durable-objects/reference/faq/",
+        "https://developers.cloudflare.com/reference-architecture/diagrams/storage/durable-object-control-data-plane-pattern/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed.",
+      "partialSourceChecks": [
+        {
+          "status": "partial primary-source checks; full lesson audit pending",
+          "checks": [
+            {
+              "claim": "Each Durable Object has unique identity, single-threaded execution, attached private strongly consistent persistent storage, and actor-like request handling.",
+              "source": "https://developers.cloudflare.com/durable-objects/concepts/what-are-durable-objects/",
+              "verdict": "verified"
+            },
+            {
+              "claim": "Async interleaving means storage read-modify-write should use transactions; Cloudflare recommends transaction() for atomic operations rather than blockConcurrencyWhile in request handling.",
+              "source": "https://developers.cloudflare.com/durable-objects/best-practices/rules-of-durable-objects/",
+              "verdict": "verified"
+            },
+            {
+              "claim": "WebSocket hibernation can keep WebSocket clients connected while object code sleeps; object lifecycle can restart and in-memory state should not be treated as durable.",
+              "source": "https://developers.cloudflare.com/durable-objects/best-practices/websockets/",
+              "also": "https://developers.cloudflare.com/durable-objects/concepts/durable-object-lifecycle/",
+              "verdict": "verified"
+            },
+            {
+              "claim": "Alarms can wake objects for scheduled work; queue suitability guidance is an architectural comparison, not a product equivalence claim.",
+              "source": "https://developers.cloudflare.com/durable-objects/",
+              "verdict": "verified for alarm feature"
+            }
+          ],
+          "remaining": "Full storage API and migration feature inventory, numerical quota matrix, every statement, and omission audit remain outstanding."
+        }
+      ]
     },
     {
       "taskId": "t12-001-reference-handbook-building-block-product-and-protocol-examples-edge-database",
@@ -99918,14 +99931,15 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 166 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 165 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits.",
         "Replaced generic GCS reference filler with object-storage mental model, consistency boundaries, generation preconditions, resumable upload and signed-URL security, deletion/recovery distinctions, application flows, and design exercises. Selected claims checked against Google Cloud documentation; complete factual and feature-omission audits remain pending.",
         "Replaced generic MinIO reference filler with managed-versus-self-operated decision criteria, topology/quorum reasoning, S3 compatibility boundaries, recovery and replication responsibilities, and readiness exercises. Selected claims checked against current MinIO documentation; complete factual and feature-omission audits remain pending.",
         "Replaced generic Cloudflare Workers reference filler with a request/runtime mental model and explicit KV, Durable Object, queue/workflow, and origin boundaries. Selected claims checked against current official documentation; complete factual and feature-omission audits remain pending.",
         "Replaced generic Lambda@Edge filler with CloudFront event/cache-path mental model, edge-function alternatives, deployment/body constraints, and tenant-cache correctness exercises. Selected claims checked against AWS documentation; complete factual and omission audits remain pending.",
-        "Replaced generic Deno Deploy filler with a Deno-runtime vs hosting-service distinction and a prominent official sunset/migration analysis. Selected claims checked against current Deno docs; complete factual and feature-omission audits remain pending."
+        "Replaced generic Deno Deploy filler with a Deno-runtime vs hosting-service distinction and a prominent official sunset/migration analysis. Selected claims checked against current Deno docs; complete factual and feature-omission audits remain pending.",
+        "Replaced generic Durable Objects filler with per-entity coordination, async transaction semantics, lifecycle/hibernation, alarms, hot-key tradeoffs, and queue/database boundaries. Selected claims checked against Cloudflare docs; complete factual and omission audits remain pending."
       ]
     },
     {
