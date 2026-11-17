@@ -1,4 +1,6 @@
-# Production status
+# Historical implementation notes
+
+> Superseded on 2026-11-17. These notes describe a former repository state and are not current instructions. GitHub Actions generation was removed; see [automation status](automation.md) and the current [README](../README.md).
 
 ## Curriculum structure
 

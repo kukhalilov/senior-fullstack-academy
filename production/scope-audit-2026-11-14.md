@@ -1,4 +1,6 @@
-# Scope and readiness audit — 2026-11-14
+# Historical scope and readiness audit — 2026-11-14
+
+> Historical snapshot, superseded by later curriculum changes. GitHub Actions generation was removed on 2026-11-17. Consult the repository README and factual-review ledger for current status.
 
 ## Inventory totals
 

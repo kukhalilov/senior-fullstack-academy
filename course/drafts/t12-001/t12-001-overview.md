@@ -10,6 +10,23 @@ A system design explains how a user action travels through clients, networks, se
 
 First understand the promise to the user. Then trace data and control from the user to the authoritative state and back. Treat every network hop as a possible delay or failure. Separate synchronous work needed for the response from durable asynchronous work that can finish later.
 
+### Begin with the user story, not the component names
+
+Imagine a customer opens a product page and presses **Buy**. The page sends a request; the service checks that the item is available and that the customer may buy it; the system records the order; then the page shows a result. Draw that path with ordinary words before choosing a CDN, gateway, queue, cache, database, or cloud product. If a box cannot be tied to a user need, a measured bottleneck, or a failure requirement, leave it out of the first design.
+
+Now ask what can go wrong: the phone may lose Wi-Fi after sending the request; the order may have been saved even though the reply was lost; two customers may try to buy the last item; or a recommendation service may be slow. Decide what the customer should see in each case. Only then introduce technical terms and tools that solve those concrete problems.
+
+### A beginner's design sequence
+
+1. Describe the main user actions and what counts as success.
+2. State what must never happen (for example, charge twice or sell the same last item twice).
+3. Estimate how many users and requests the design must handle; use rough ranges and label assumptions.
+4. Draw one complete request and response, showing where important data is saved.
+5. Walk through a timeout, a busy service, and a failed machine. Decide what the user sees and how work recovers.
+6. Add a technical mechanism only when it addresses one of these requirements, then explain its cost and limits.
+
+You can apply this sequence before knowing the names of every technology. The later lessons teach those names and compare alternatives after the problem is understandable.
+
 ## How the parts fit together
 
 ```text
