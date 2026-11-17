@@ -1,6 +1,6 @@
 # React function and class components JSX props and events — Interview questions and reasoning
 
-Sources: React 19.3 [Your First Component](https://react.dev/learn/your-first-component), [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx), [Passing Props](https://react.dev/learn/passing-props-to-a-component), [Conditional Rendering](https://react.dev/learn/conditional-rendering), [Rendering Lists](https://react.dev/learn/rendering-lists), [Responding to Events](https://react.dev/learn/responding-to-events), and [`Component`](https://react.dev/reference/react/Component).
+Sources: React 19.3 [Your First Component](https://react.dev/learn/your-first-component), [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx), [Passing Props](https://react.dev/learn/passing-props-to-a-component), [Conditional Rendering](https://react.dev/learn/conditional-rendering), [Rendering Lists](https://react.dev/learn/rendering-lists), [Responding to Events](https://react.dev/learn/responding-to-events), [`Component`](https://react.dev/reference/react/Component), [Common React DOM components](https://react.dev/reference/react-dom/components/common), and [React 19 Upgrade Guide](https://react.dev/blog/2024/04/25/react-19-upgrade-guide).
 
 ## Core questions
 
@@ -17,6 +17,8 @@ Sources: React 19.3 [Your First Component](https://react.dev/learn/your-first-co
 11. Compare `preventDefault` and `stopPropagation`.
 12. What is a synthetic event's `currentTarget`?
 13. How can a child communicate an action to its parent?
+14. What are important React-specific JSX naming/style rules, and what changed for JSX tooling in React 19?
+15. Does every React event bubble?
 
 ## Concise interview answers
 
@@ -33,6 +35,8 @@ Sources: React 19.3 [Your First Component](https://react.dev/learn/your-first-co
 11. `preventDefault` cancels browser behavior; `stopPropagation` stops ancestor event handlers.
 12. `currentTarget` is the element whose handler is executing; `target` may be a nested origin.
 13. Pass a callback prop from parent to child; child invokes it in response to the user event.
+14. Use `className`/`htmlFor`, retain hyphens in `aria-*`/`data-*`, use a camelCase style object with CSS unit rules, and configure the modern JSX transform required by React 19.
+15. No. `onScroll` only runs on the JSX element where attached; most other events bubble through the React tree.
 
 ## Deep follow-up answers
 

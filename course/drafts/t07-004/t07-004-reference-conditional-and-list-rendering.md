@@ -1,6 +1,6 @@
 # React function and class components JSX props and events — Reference: Choosing and mapping rendered output
 
-Sources: React 19.3 [Conditional Rendering](https://react.dev/learn/conditional-rendering), [Rendering Lists](https://react.dev/learn/rendering-lists),.
+Sources: React 19.3 [Conditional Rendering](https://react.dev/learn/conditional-rendering) and [Rendering Lists](https://react.dev/learn/rendering-lists).
 
 ## Scope and version
 

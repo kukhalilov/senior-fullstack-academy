@@ -1,6 +1,6 @@
 # React function and class components JSX props and events — Big-picture orientation and mental model
 
-Sources: React 19.3 [Your First Component](https://react.dev/learn/your-first-component), [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx), [Passing Props](https://react.dev/learn/passing-props-to-a-component), [Conditional Rendering](https://react.dev/learn/conditional-rendering), [Rendering Lists](https://react.dev/learn/rendering-lists), [Responding to Events](https://react.dev/learn/responding-to-events), and [`Component`](https://react.dev/reference/react/Component).
+Sources: React 19.3 [Your First Component](https://react.dev/learn/your-first-component), [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx), [Passing Props](https://react.dev/learn/passing-props-to-a-component), [Conditional Rendering](https://react.dev/learn/conditional-rendering), [Rendering Lists](https://react.dev/learn/rendering-lists), [Responding to Events](https://react.dev/learn/responding-to-events), [`Component`](https://react.dev/reference/react/Component), [Common React DOM components](https://react.dev/reference/react-dom/components/common), and [React 19 Upgrade Guide](https://react.dev/blog/2024/04/25/react-19-upgrade-guide).
 
 ## Problem and purpose
 
@@ -20,11 +20,11 @@ user interaction → React calls passed handler → callback behavior
 
 ## Concept map
 
-Use capitalized identifiers for custom components and lowercase identifiers for host tags. Compose components by nesting JSX. JSX resembles HTML but has JavaScript expression braces, JSX attribute conventions such as `className`/`htmlFor`, object style values, and a single-root syntax rule (use a Fragment if no wrapper is desired). Props are read-only; defaults and explicit forwarding define a component contract. Conditional returns, `&&`, ternaries, and `map` use normal JavaScript semantics. Keys for mapped elements are required for sibling identity and are covered in t07-003.
+Use capitalized identifiers for custom components and lowercase identifiers for host tags. Compose components by nesting JSX. JSX resembles HTML but has JavaScript expression braces, conventions such as `className`/`htmlFor` (while `aria-*` and `data-*` retain hyphens), object style values, and a single-root markup rule (use a Fragment if no wrapper is desired). React 19 requires the modern JSX transform. Props are read-only; defaults and explicit forwarding define a component contract. Conditional returns, `&&`, ternaries, and `map` use normal JavaScript semantics. Keys for mapped elements support sibling identity and are covered in t07-003.
 
 ## End-to-end walkthrough
 
-`<SearchForm onSearch={handleSearch} initialQuery="React">` passes string and function values to a child. The child renders an input and button with JSX and attaches `onSubmit={handleSubmit}`. When the user submits, React invokes the handler with a synthetic event; the handler can call `preventDefault()` to stop native form navigation, then call the callback prop. Event bubbling proceeds through ancestors unless stopped; capture handlers use the `Capture` suffix.
+`<SearchForm onSearch={handleSearch} initialQuery="React">` passes string and function values to a child. The child renders an input and button with JSX and attaches `onSubmit={handleSubmit}`. When the user submits, React invokes the handler with a synthetic event; the handler can call `preventDefault()` to stop native form navigation, then call the callback prop. Most events bubble through ancestors unless stopped; `onScroll` is an exception. Capture handlers use the `Capture` suffix.
 
 ## When to use it and tradeoffs
 

@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 900,
-    "pending": 1441,
-    "claimsChecked": 33841,
-    "claimsCorrected": 1469,
+    "reviewed": 910,
+    "pending": 1431,
+    "claimsChecked": 34211,
+    "claimsCorrected": 1470,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 900,
-    "pendingLessons": 1441
+    "reviewedLessons": 910,
+    "pendingLessons": 1431
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -107215,13 +107215,75 @@
       "topicId": "t07-004",
       "phase": "overview",
       "draft": "course/drafts/t07-004/t07-004-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked component purpose/composition, JSX and props mental model, event timing and propagation summary, version/tooling claims, and topic boundaries.",
+          "sources": [
+            {
+              "url": "https://react.dev/learn/your-first-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/Component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/writing-markup-with-jsx",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/passing-props-to-a-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/conditional-rendering",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/rendering-lists",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/responding-to-events",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createElement",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react-dom/components/common",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/learn/your-first-component",
         "https://react.dev/reference/react/Component",
@@ -107232,22 +107294,86 @@
         "https://react.dev/learn/rendering-lists",
         "https://react.dev/learn/responding-to-events",
         "https://react.dev/learn/responding-to-events#event-propagation",
-        "https://react.dev/reference/react/createElement"
+        "https://react.dev/reference/react/createElement",
+        "https://react.dev/reference/react-dom/components/common",
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against official React 19.3 references and the React 19 upgrade guide. Checked all named JSX, component, prop, list, conditional, and event concepts; refined event propagation to document the onScroll exception; corrected source/example issues; added current JSX transform, attribute spelling, and style unit details. No unresolved issues remain; lesson stays in drafts."
     },
     {
       "taskId": "t07-004-concepts",
       "topicId": "t07-004",
       "phase": "concepts",
       "draft": "course/drafts/t07-004/t07-004-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked function/class behavior, JSX syntax, read-only props/defaults/children, condition/list semantics, handler function timing, synthetic event/currentTarget claims and propagation distinctions.",
+          "sources": [
+            {
+              "url": "https://react.dev/learn/your-first-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/Component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/writing-markup-with-jsx",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/passing-props-to-a-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/conditional-rendering",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/rendering-lists",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/responding-to-events",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createElement",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react-dom/components/common",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/learn/your-first-component",
         "https://react.dev/reference/react/Component",
@@ -107258,22 +107384,86 @@
         "https://react.dev/learn/rendering-lists",
         "https://react.dev/learn/responding-to-events",
         "https://react.dev/learn/responding-to-events#event-propagation",
-        "https://react.dev/reference/react/createElement"
+        "https://react.dev/reference/react/createElement",
+        "https://react.dev/reference/react-dom/components/common",
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against official React 19.3 references and the React 19 upgrade guide. Checked all named JSX, component, prop, list, conditional, and event concepts; refined event propagation to document the onScroll exception; corrected source/example issues; added current JSX transform, attribute spelling, and style unit details. No unresolved issues remain; lesson stays in drafts."
     },
     {
       "taskId": "t07-004-reference-function-components-and-composition",
       "topicId": "t07-004",
       "phase": "reference",
       "draft": "course/drafts/t07-004/t07-004-reference-function-components-and-composition.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked component definition/invocation and capitalization, React-managed JSX creation, nested composition/extraction, nested-component identity warning, and module exports.",
+          "sources": [
+            {
+              "url": "https://react.dev/learn/your-first-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/Component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/writing-markup-with-jsx",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/passing-props-to-a-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/conditional-rendering",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/rendering-lists",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/responding-to-events",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createElement",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react-dom/components/common",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/learn/your-first-component",
         "https://react.dev/reference/react/Component",
@@ -107284,22 +107474,86 @@
         "https://react.dev/learn/rendering-lists",
         "https://react.dev/learn/responding-to-events",
         "https://react.dev/learn/responding-to-events#event-propagation",
-        "https://react.dev/reference/react/createElement"
+        "https://react.dev/reference/react/createElement",
+        "https://react.dev/reference/react-dom/components/common",
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against official React 19.3 references and the React 19 upgrade guide. Checked all named JSX, component, prop, list, conditional, and event concepts; refined event propagation to document the onScroll exception; corrected source/example issues; added current JSX transform, attribute spelling, and style unit details. No unresolved issues remain; lesson stays in drafts."
     },
     {
       "taskId": "t07-004-reference-class-components",
       "topicId": "t07-004",
       "phase": "reference",
       "draft": "course/drafts/t07-004/t07-004-reference-class-components.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked class support/recommendation, Component/render/props, constructor/super order, static defaultProps/contextType, purity, and scoped lifecycle/error-boundary exclusions.",
+          "sources": [
+            {
+              "url": "https://react.dev/learn/your-first-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/Component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/writing-markup-with-jsx",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/passing-props-to-a-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/conditional-rendering",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/rendering-lists",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/responding-to-events",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createElement",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react-dom/components/common",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/learn/your-first-component",
         "https://react.dev/reference/react/Component",
@@ -107310,22 +107564,86 @@
         "https://react.dev/learn/rendering-lists",
         "https://react.dev/learn/responding-to-events",
         "https://react.dev/learn/responding-to-events#event-propagation",
-        "https://react.dev/reference/react/createElement"
+        "https://react.dev/reference/react/createElement",
+        "https://react.dev/reference/react-dom/components/common",
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against official React 19.3 references and the React 19 upgrade guide. Checked all named JSX, component, prop, list, conditional, and event concepts; refined event propagation to document the onScroll exception; corrected source/example issues; added current JSX transform, attribute spelling, and style unit details. No unresolved issues remain; lesson stays in drafts."
     },
     {
       "taskId": "t07-004-reference-jsx-syntax",
       "topicId": "t07-004",
       "phase": "reference",
       "draft": "course/drafts/t07-004/t07-004-reference-jsx-syntax.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 50,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked JSX-versus-HTML and React-versus-JSX distinction, root/tag rules, Fragment forms, braces/comments/children, attribute names, aria/data exception, style object units, spread ordering, React 19 transform requirement, and examples.",
+          "sources": [
+            {
+              "url": "https://react.dev/learn/your-first-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/Component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/writing-markup-with-jsx",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/passing-props-to-a-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/conditional-rendering",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/rendering-lists",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/responding-to-events",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createElement",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react-dom/components/common",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/learn/your-first-component",
         "https://react.dev/reference/react/Component",
@@ -107336,22 +107654,86 @@
         "https://react.dev/learn/rendering-lists",
         "https://react.dev/learn/responding-to-events",
         "https://react.dev/learn/responding-to-events#event-propagation",
-        "https://react.dev/reference/react/createElement"
+        "https://react.dev/reference/react/createElement",
+        "https://react.dev/reference/react-dom/components/common",
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against official React 19.3 references and the React 19 upgrade guide. Checked all named JSX, component, prop, list, conditional, and event concepts; refined event propagation to document the onScroll exception; corrected source/example issues; added current JSX transform, attribute spelling, and style unit details. No unresolved issues remain; lesson stays in drafts."
     },
     {
       "taskId": "t07-004-reference-props-and-children",
       "topicId": "t07-004",
       "phase": "reference",
       "draft": "course/drafts/t07-004/t07-004-reference-props-and-children.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked props object/read-only contract, accepted JS values, destructuring defaults for missing/undefined versus null, children/named slots, forwarding risks, key/ref distinction, and examples.",
+          "sources": [
+            {
+              "url": "https://react.dev/learn/your-first-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/Component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/writing-markup-with-jsx",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/passing-props-to-a-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/conditional-rendering",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/rendering-lists",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/responding-to-events",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createElement",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react-dom/components/common",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/learn/your-first-component",
         "https://react.dev/reference/react/Component",
@@ -107362,22 +107744,86 @@
         "https://react.dev/learn/rendering-lists",
         "https://react.dev/learn/responding-to-events",
         "https://react.dev/learn/responding-to-events#event-propagation",
-        "https://react.dev/reference/react/createElement"
+        "https://react.dev/reference/react/createElement",
+        "https://react.dev/reference/react-dom/components/common",
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against official React 19.3 references and the React 19 upgrade guide. Checked all named JSX, component, prop, list, conditional, and event concepts; refined event propagation to document the onScroll exception; corrected source/example issues; added current JSX transform, attribute spelling, and style unit details. No unresolved issues remain; lesson stays in drafts."
     },
     {
       "taskId": "t07-004-reference-conditional-and-list-rendering",
       "topicId": "t07-004",
       "phase": "reference",
       "draft": "course/drafts/t07-004/t07-004-reference-conditional-and-list-rendering.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked if/early/conditional returns, && operand semantics including zero, ternary/null behavior, map output, empty arrays, stable keys, and mutation caveats.",
+          "sources": [
+            {
+              "url": "https://react.dev/learn/your-first-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/Component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/writing-markup-with-jsx",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/passing-props-to-a-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/conditional-rendering",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/rendering-lists",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/responding-to-events",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createElement",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react-dom/components/common",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/learn/your-first-component",
         "https://react.dev/reference/react/Component",
@@ -107388,22 +107834,86 @@
         "https://react.dev/learn/rendering-lists",
         "https://react.dev/learn/responding-to-events",
         "https://react.dev/learn/responding-to-events#event-propagation",
-        "https://react.dev/reference/react/createElement"
+        "https://react.dev/reference/react/createElement",
+        "https://react.dev/reference/react-dom/components/common",
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against official React 19.3 references and the React 19 upgrade guide. Checked all named JSX, component, prop, list, conditional, and event concepts; refined event propagation to document the onScroll exception; corrected source/example issues; added current JSX transform, attribute spelling, and style unit details. No unresolved issues remain; lesson stays in drafts."
     },
     {
       "taskId": "t07-004-reference-event-handlers",
       "topicId": "t07-004",
       "phase": "reference",
       "draft": "course/drafts/t07-004/t07-004-reference-event-handlers.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked function-reference versus immediate-call behavior, callback props, named event examples, React event object/currentTarget distinction, bubbling/capture, onScroll non-bubbling exception, stopPropagation versus preventDefault, and form button example.",
+          "sources": [
+            {
+              "url": "https://react.dev/learn/your-first-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/Component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/writing-markup-with-jsx",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/passing-props-to-a-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/conditional-rendering",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/rendering-lists",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/responding-to-events",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createElement",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react-dom/components/common",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/learn/your-first-component",
         "https://react.dev/reference/react/Component",
@@ -107414,22 +107924,86 @@
         "https://react.dev/learn/rendering-lists",
         "https://react.dev/learn/responding-to-events",
         "https://react.dev/learn/responding-to-events#event-propagation",
-        "https://react.dev/reference/react/createElement"
+        "https://react.dev/reference/react/createElement",
+        "https://react.dev/reference/react-dom/components/common",
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against official React 19.3 references and the React 19 upgrade guide. Checked all named JSX, component, prop, list, conditional, and event concepts; refined event propagation to document the onScroll exception; corrected source/example issues; added current JSX transform, attribute spelling, and style unit details. No unresolved issues remain; lesson stays in drafts."
     },
     {
       "taskId": "t07-004-practice",
       "topicId": "t07-004",
       "phase": "practice",
       "draft": "course/drafts/t07-004/t07-004-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all ten worked exercises and solutions for valid JSX, prop/default semantics, zero condition, callback timing, propagation/default action, currentTarget, slots, style/attribute rules, and onScroll behavior.",
+          "sources": [
+            {
+              "url": "https://react.dev/learn/your-first-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/Component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/writing-markup-with-jsx",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/passing-props-to-a-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/conditional-rendering",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/rendering-lists",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/responding-to-events",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createElement",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react-dom/components/common",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/learn/your-first-component",
         "https://react.dev/reference/react/Component",
@@ -107440,22 +108014,86 @@
         "https://react.dev/learn/rendering-lists",
         "https://react.dev/learn/responding-to-events",
         "https://react.dev/learn/responding-to-events#event-propagation",
-        "https://react.dev/reference/react/createElement"
+        "https://react.dev/reference/react/createElement",
+        "https://react.dev/reference/react-dom/components/common",
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against official React 19.3 references and the React 19 upgrade guide. Checked all named JSX, component, prop, list, conditional, and event concepts; refined event propagation to document the onScroll exception; corrected source/example issues; added current JSX transform, attribute spelling, and style unit details. No unresolved issues remain; lesson stays in drafts."
     },
     {
       "taskId": "t07-004-interview",
       "topicId": "t07-004",
       "phase": "interview",
       "draft": "course/drafts/t07-004/t07-004-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 41,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all concise and follow-up answers and scenarios against React references, including React 19 transform and onScroll exception.",
+          "sources": [
+            {
+              "url": "https://react.dev/learn/your-first-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/Component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/writing-markup-with-jsx",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/passing-props-to-a-component",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/conditional-rendering",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/rendering-lists",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/learn/responding-to-events",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react/createElement",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/reference/react-dom/components/common",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            },
+            {
+              "url": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide",
+              "section": "Current React 19.3 reference, guide, or React Team upgrade guidance relevant to the audited statement",
+              "verdict": "supported; overgeneralization or omission corrected where indicated"
+            }
+          ],
+          "verdict": "verified against official React sources"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://react.dev/learn/your-first-component",
         "https://react.dev/reference/react/Component",
@@ -107466,9 +108104,11 @@
         "https://react.dev/learn/rendering-lists",
         "https://react.dev/learn/responding-to-events",
         "https://react.dev/learn/responding-to-events#event-propagation",
-        "https://react.dev/reference/react/createElement"
+        "https://react.dev/reference/react/createElement",
+        "https://react.dev/reference/react-dom/components/common",
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit against official React 19.3 references and the React 19 upgrade guide. Checked all named JSX, component, prop, list, conditional, and event concepts; refined event propagation to document the onScroll exception; corrected source/example issues; added current JSX transform, attribute spelling, and style unit details. No unresolved issues remain; lesson stays in drafts."
     },
     {
       "taskId": "t07-005-overview",
@@ -145809,6 +146449,14 @@
       "findings": [
         "Audited all five frozen inventories (65 named terms after adding the documented Fragment state caveat) and all nine lessons. Verified render/commit and purity claims, Strict Mode development checks, React/component/host/module tree distinctions, key-based identity and state-reset examples, createElement/element/node semantics, React 19 ref changes, and every stable React 19.3 FragmentInstance method against current React Team sources. Refined legacy element.ref guidance; noted that current official pages describe returned ref internals differently, so learners are advised not to introspect elements. Added the one-level Fragment state-preservation caveat. No unresolved omissions or claims remain; lessons remain drafts."
       ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "React components, JSX, props, conditional/list rendering, and event handling (t07-004)",
+      "status": "full claim and frozen-inventory audit complete for all 10 lessons",
+      "findings": [
+        "Audited all 73 named items in six inventories and all ten lessons. Verified function/class component guidance, JSX syntax and transform requirements, React DOM property/style details, props/defaults/composition, JavaScript conditional/list behavior, and event handler/propagation examples. Corrected an overbroad event-bubbling claim, repaired an invalid exercise snippet and malformed source references, and added the onScroll non-bubbling exception, React 19 JSX transform requirement, aria/data spelling rule, and numeric style-unit behavior. No unresolved scope gaps or factual issues remain; lessons remain drafts."
+      ]
     }
   ]
-}\n
+}

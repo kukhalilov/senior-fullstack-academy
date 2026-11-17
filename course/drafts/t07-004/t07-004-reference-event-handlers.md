@@ -1,6 +1,6 @@
 # React function and class components JSX props and events — Reference: React event handler behavior and propagation
 
-Sources: React 19.3 [Responding to Events](https://react.dev/learn/responding-to-events) and its [event propagation guidance](https://react.dev/learn/responding-to-events#event-propagation).
+Sources: React 19.3 [Responding to Events](https://react.dev/learn/responding-to-events) and [Common React DOM components and events](https://react.dev/reference/react-dom/components/common).
 
 ## Scope and version
 
@@ -14,7 +14,7 @@ Common props include `onClick`, `onSubmit`, `onChange`, and `onPointerEnter`. Ex
 
 ## Default actions and propagation
 
-Events propagate through the React tree; bubbling handlers run from target outward. Capture handlers use the event name with a `Capture` suffix and run on the capture path before the target/bubble path. `event.stopPropagation()` stops further propagation through ancestors; `event.preventDefault()` prevents a browser default action such as form navigation. They are independent. Use `preventDefault` for native behavior, not as a way to stop parent handlers. For nested click targets, stop propagation only when parent behavior should not run.
+React events generally propagate through the React tree; bubbling handlers run from target outward. React's `onScroll` is an exception: it only fires on the JSX element where it is attached and does not bubble through the React tree. Capture handlers use the event name with a `Capture` suffix and run on the capture path before the target/bubble path. `event.stopPropagation()` stops further propagation through ancestors; `event.preventDefault()` prevents a browser default action such as form navigation. They are independent. Use `preventDefault` for native behavior, not as a way to stop parent handlers. For nested click targets, stop propagation only when parent behavior should not run.
 
 A handler can call a custom callback prop to notify its parent. This keeps a presentational child reusable while the parent owns workflow. Event handlers are outside render and are appropriate for work caused by the interaction; asynchronous work should handle errors/cancellation according to app needs.
 
@@ -55,6 +55,7 @@ Calling the handler instead of passing it; using `stopPropagation` to prevent fo
 2. **What is `currentTarget`?** The element whose listener is currently executing.
 3. **Capture naming convention?** Append `Capture`, such as `onClickCapture`.
 4. **Difference between default prevention and propagation stop?** Cancel browser action versus stop further ancestor handlers.
+5. **Does every React event bubble?** No. For example, `onScroll` only works on the JSX element to which it is attached.
 
 ## How this group fits the mental model
 
@@ -62,7 +63,7 @@ The event prop carries a function out of render; React invokes that function lat
 
 ## Supplied names explained
 
-The index below includes handler forms, callback props, event names, synthetic event details, propagation/default controls, and render-time call distinction.
+The index below includes handler forms, callback props, event names, synthetic event details, propagation/default controls, capture phase, the `onScroll` exception, and render-time call distinction.
 
 ## Examples
 
@@ -83,6 +84,7 @@ The SaveButton/Form code shows an inline adapter, custom callback, current form 
 - `onPointerEnter`
 - `Synthetic event object`
 - `Event bubbling`
+- `React onScroll bubbling exception`
 - `stopPropagation()`
 - `preventDefault()`
 - `Event capture handler naming with Capture suffix`

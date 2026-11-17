@@ -1,6 +1,6 @@
 # React function and class components JSX props and events — Exercises and worked solutions
 
-Sources: React 19.3 [Your First Component](https://react.dev/learn/your-first-component), [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx), [Passing Props](https://react.dev/learn/passing-props-to-a-component), [Conditional Rendering](https://react.dev/learn/conditional-rendering), [Rendering Lists](https://react.dev/learn/rendering-lists), and [Responding to Events](https://react.dev/learn/responding-to-events).
+Sources: React 19.3 [Your First Component](https://react.dev/learn/your-first-component), [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx), [Passing Props](https://react.dev/learn/passing-props-to-a-component), [Conditional Rendering](https://react.dev/learn/conditional-rendering), [Rendering Lists](https://react.dev/learn/rendering-lists), [Responding to Events](https://react.dev/learn/responding-to-events), [Common React DOM components](https://react.dev/reference/react-dom/components/common), and [React 19 Upgrade Guide](https://react.dev/blog/2024/04/25/react-19-upgrade-guide).
 
 ## Goals
 
@@ -43,9 +43,9 @@ A page repeats a user avatar and label in a profile header and comment list. Sho
 
 ### 4. Fix zero conditional
 
-`{cartCount && <CartBadge count={cartCount}/ >}` displays `0` when empty.
+`{cartCount && <CartBadge count={cartCount} />}` displays `0` when empty.
 
-**Solution:** Use `cartCount > 0 && <CartBadge count={cartCount} />` or a ternary returning `null`. Also fix the self-closing syntax to `/>`.
+**Solution:** Use `cartCount > 0 && <CartBadge count={cartCount} />` or a ternary returning `null`. The issue is JavaScript's operand-returning `&&`, not JSX syntax.
 
 ### 5. Fix accidental handler call
 
@@ -71,9 +71,21 @@ A reusable card needs a title, body, and optional actions slot. Design its input
 
 **Solution:** `function Card({ title, children, actions = null })` gives `children` the main body and `actions` a named slot. Document default/null semantics and render each slot in the intended position.
 
+### 9. Fix React-specific markup and style rules
+
+Convert `<label for="email" style="margin-top: 8px" data-id="x">Email</label>` to valid React JSX.
+
+**Solution:** `<label htmlFor="email" style={{ marginTop: 8 }} data-id="x">Email</label>`. React uses `htmlFor`; `data-*` remains hyphenated; `style` is an object, with `marginTop: 8` converted to `8px` by React DOM.
+
+### 10. Diagnose missing ancestor scroll handling
+
+A parent `<div onScroll={handleScroll}>` does not run when a nested scroll container scrolls. Is this propagation broken?
+
+**Solution:** No. React `onScroll` does not bubble; attach it to the element whose scroll you need to observe or use an appropriate native listener/observer for the desired behavior.
+
 ## Progressive hints
 
-For JSX errors, check one expression root and balanced tags. For props, identify who owns each value. For events, ask whether the function is passed or executed now, then distinguish browser default from propagation.
+For JSX errors, check one markup root, balanced tags, React attribute spelling and style object rules. For props, identify who owns each value. For events, ask whether the function is passed or executed now, then distinguish browser default from propagation and remember `onScroll`'s exception.
 
 ## Complete solutions
 
