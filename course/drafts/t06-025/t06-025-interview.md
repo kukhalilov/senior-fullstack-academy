@@ -10,6 +10,7 @@
 6. What is the difference between a version range and the exact version selected for an install?
 7. How does a dependency layout affect undeclared imports and tooling compatibility?
 8. What should you inspect when a lockfile changes unexpectedly?
+9. How do npm 12 and Deno control dependency lifecycle scripts, and what can fail if a native package's script is skipped?
 
 ## Concise interview answers
 
@@ -21,6 +22,7 @@
 6. A range defines versions the resolver may select. The lockfile records the actual selected versions and associated resolution data.
 7. Hoisting can accidentally expose undeclared packages. pnpm's linked layout and Yarn PnP can reveal missing declarations, while PnP may require tools to support its loader/map.
 8. Review direct/transitive versions, source URLs, integrity data, peer changes, platform conditions, workspace links, manager version, and whether the manifest intentionally changed.
+9. npm 12 defaults dependency install scripts to denied unless covered by `allowScripts`; Deno does not run npm scripts by default and offers `deno approve-scripts`. Approve only reviewed packages. If a required native build hook is skipped, the package can resolve and install while its runtime binding remains unavailable.
 
 ## Deep follow-up answers
 

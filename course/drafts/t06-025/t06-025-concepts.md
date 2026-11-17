@@ -25,6 +25,8 @@ The graph starts at the root's direct dependencies. If A requires B and B requir
 
 Do not place a runtime import only in `devDependencies`; a production install may omit it. Conversely, putting every tool in `dependencies` increases the production graph unnecessarily. A category is a declaration of purpose, not a security boundary. [npm package.json](https://docs.npmjs.com/cli/v12/configuring-npm/package-json/)
 
+Install-time lifecycle scripts are a separate security decision from dependency classification. npm 12 default-denies dependency scripts unless the package is approved in `allowScripts`; `npm install-scripts approve|deny|ls|prune` manages those entries, and `strict-allow-scripts` can fail the install when scripts remain unreviewed. This concerns dependency install hooks, not an intentional `npm run build` command. Deno also blocks npm lifecycle scripts by default and exposes `deno approve-scripts`; Bun uses its `trustedDependencies` policy. These controls differ, so a manager migration must re-review which scripts run. [npm install-scripts](https://docs.npmjs.com/cli/commands/npm-install-scripts/) · [Deno approve-scripts](https://docs.deno.com/runtime/reference/cli/approve_scripts/) · [Bun install](https://bun.sh/docs/pm/cli/install)
+
 ### Ranges versus exact selections
 
 A semantic version range is a set of versions allowed by a specifier. A lockfile records the selected graph, including concrete resolved versions and integrity metadata where supported. For example, with a full version:

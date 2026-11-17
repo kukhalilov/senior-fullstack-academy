@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson explains all supplied workspace, linker, store, and range names. The layout is a manager's implementation choice, not an ECMAScript feature. The cited official docs were checked 2026-11-16. [npm workspaces](https://docs.npmjs.com/cli/using-npm/workspaces/) · [pnpm workspace](https://pnpm.io/workspaces) · [Yarn linkers](https://yarnpkg.com/features/linkers) · [Deno workspaces](https://docs.deno.com/runtime/fundamentals/workspaces/)
+This lesson explains all supplied workspace, linker, store, and range names. The layout is a manager's implementation choice, not an ECMAScript feature. The cited official docs were checked 2026-11-17. [npm workspaces](https://docs.npmjs.com/cli/using-npm/workspaces/) · [pnpm workspace](https://pnpm.io/workspaces) · [Yarn linkers](https://yarnpkg.com/features/linkers) · [Deno workspaces](https://docs.deno.com/runtime/fundamentals/workspaces/)
 
 ## How this group fits the mental model
 

@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This reference explains all 19 supplied declarations and commands, using current manager docs checked 2026-11-16. Commands are manager-specific. Examples use the ordinary shell; when passing flags through a package script, argument separator rules can differ. [npm package.json](https://docs.npmjs.com/cli/v12/configuring-npm/package-json/) · [npm run](https://docs.npmjs.com/cli/v12/commands/npm-run/) · [Deno dependency management](https://docs.deno.com/runtime/packages/)
+This reference explains all 19 supplied declarations and commands, using current manager docs checked 2026-11-17. Commands are manager-specific. Examples use the ordinary shell; when passing flags through a package script, argument separator rules can differ. [npm package.json](https://docs.npmjs.com/cli/v12/configuring-npm/package-json/) · [npm run](https://docs.npmjs.com/cli/v12/commands/npm-run/) · [Deno dependency management](https://docs.deno.com/runtime/packages/)
 
 ## How this group fits the mental model
 
@@ -29,6 +29,9 @@ Dependency fields express which role an edge plays in the graph. Commands then e
 - `bun add` — Adds and records a dependency through Bun. Placement flags choose dependency category; inspect the manifest and lock diff, especially in a monorepo where workspace linking or catalog configuration applies. [Bun add](https://bun.sh/docs/pm/cli/add)
 - `deno install` — Installs project dependencies and can add named packages. Deno selects a nearby `deno.json` or `package.json` based on project configuration; current Deno 2.8 supports `--package-json` to force that destination. With npm packages and a package.json, Deno can create `node_modules`; Deno-first projects can use its cache and import map model. It is not the strict CI command. [Deno install](https://docs.deno.com/runtime/reference/cli/install/)
 - `Frozen lockfile install` — A policy: install the committed graph and fail if resolution would change the lock. Select the manager's implementation: npm `ci`; pnpm `install --frozen-lockfile`; Yarn Classic `install --frozen-lockfile`; Yarn Berry `install --immutable`; Bun `ci` or `install --frozen-lockfile`; Deno `ci`. The policy does not eliminate platform-specific outputs, script effects, or the need to pin the manager version. [Deno ci](https://docs.deno.com/runtime/reference/cli/ci/)
+- `npm allowScripts install-script policy` — In npm 12, dependency lifecycle scripts are skipped unless the project approves the resolved dependency in its `allowScripts` manifest field (or `.npmrc` policy). `npm install-scripts approve` writes approvals, pinned to the installed package version by default; inspect before approving because a permitted script executes code during installation. This policy applies to dependency hooks, not explicit project script commands such as `npm run build`. [npm install-scripts](https://docs.npmjs.com/cli/commands/npm-install-scripts/)
+- `npm strict-allow-scripts` — When true, an unreviewed dependency install script becomes an install error instead of a warning/skip. It complements `allowScripts`; it does not cause all scripts to run. Explicit deny entries remain denied. [npm config](https://docs.npmjs.com/cli/using-npm/config/)
+- `Deno approve-scripts lifecycle policy` — Deno does not run npm package lifecycle scripts by default. `deno approve-scripts` reviews pending scripts; approvals are needed for packages whose native setup depends on them, and scripts execute only when using a `node_modules` directory. This differs from npm 12 and Bun policy. [Deno approve-scripts](https://docs.deno.com/runtime/reference/cli/approve_scripts/) · [Deno packages](https://docs.deno.com/runtime/packages/)
 
 ## Cross-item comparison
 
@@ -83,3 +86,4 @@ The `--` makes the boundary clear: npm handles `--package`, and `tsc` receives `
 3. **Does `pnpm --filter` syntax work in Yarn?** No; it is pnpm's workspace selector feature.
 4. **Which command is appropriate for Deno CI?** `deno ci` for a clean frozen install; `deno install` is the general project install/add command.
 5. **Why keep manager-specific override syntax in mind?** A field name or value accepted by one manager may be ignored or interpreted differently by another.
+6. **What does npm 12 do with an unapproved dependency install script?** It skips it and reports it; `allowScripts` records approval, while `strict-allow-scripts` can turn unreviewed scripts into an error.
