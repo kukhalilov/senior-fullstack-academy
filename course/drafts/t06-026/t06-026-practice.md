@@ -2,7 +2,7 @@
 
 ## Goals
 
-Practice choosing a build architecture by runtime and capability, then verify the resulting graph/output instead of relying on option names. Tool behavior targets the official docs checked 2026-11-17; Vite 8.1 bundled dev mode is experimental, Next.js 16 defaults to Turbopack, and Parcel 3 is treated as alpha. [Vite 8.1](https://vite.dev/blog/announcing-vite8-1) · [Next.js Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack) · [Parcel 3 alpha](https://v3.parceljs.org/blog/v3-alpha/)
+Practice choosing a build architecture by runtime and capability, then verify the resulting graph/output instead of relying on option names. Tool behavior targets the official docs checked 2026-11-18; Vite 8.3 is the current supported minor line and its bundled dev mode remains experimental, Next.js 16 defaults to Turbopack, and Parcel 3 is treated as alpha. [Vite releases](https://vite.dev/releases) · [Vite 8.1](https://vite.dev/blog/announcing-vite8-1) · [Next.js Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack) · [Parcel 3 alpha](https://v3.parceljs.org/blog/v3-alpha/)
 
 ## Worked example
 
@@ -50,7 +50,7 @@ Vite 8's major change is the unified Rolldown bundler and Oxc-based transforms; 
 
 1. Watch mode observes files; incremental rebuild reuses work; a dev server serves current resources; live reload refreshes the page; HMR replaces modules through an update runtime when boundaries accept changes. HMR needs a client/runtime protocol and module/framework integration. esbuild's context watch/serve does not itself implement HMR. [Webpack HMR](https://webpack.js.org/concepts/hot-module-replacement) · [esbuild API](https://esbuild.github.io/api/)
 2. (a) Webpack 5 is likely the least disruptive because it supports the ecosystem directly; still check plugin compatibility/version. (b) Use Next.js 16's default Turbopack if required features work; use `--webpack` when a needed plugin is unsupported. (c) esbuild is a reasonable fast transform/build tool, but add a separate HMR/dev workflow if needed. (d) Rollup is common for library output and multiple formats; CommonJS support may require plugins. Alternatives can be valid depending on constraints. [Webpack](https://webpack.js.org/concepts/) · [Next.js Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack) · [Rollup](https://rollupjs.org/introduction/)
-3. Vite 8 unifies development and production bundling on Rolldown and uses Oxc-based transforms instead of the previous esbuild-development/Rollup-production split. Vite 8.1 adds experimental bundled dev mode, which is not the default. For an unsupported hook, find a supported hook/alternative or replace the plugin; validate output behavior with actual build fixtures. Do not assume a Vite plugin works because it worked with Rollup in Vite 7. [Vite 8.1](https://vite.dev/blog/announcing-vite8-1) · [Migration](https://vite.dev/guide/migration)
+3. Vite 8 unifies development and production bundling on Rolldown and uses Oxc-based transforms instead of the previous esbuild-development/Rollup-production split. Vite 8.1 adds experimental bundled dev mode, which is not the default. For an unsupported hook, find a supported hook/alternative or replace the plugin; validate output behavior with actual build fixtures. Do not assume a Vite plugin works because it worked with Rollup in Vite 7. [Vite releases](https://vite.dev/releases) · [Vite 8.1](https://vite.dev/blog/announcing-vite8-1) · [Migration](https://vite.dev/guide/migration)
 4. Parcel 3 alpha is a Rust rewrite, with a native plugin ABI, embedded QuickJS for JS/TS plugins, centralized configuration, and changed bundling/library output. The announcement lists declaration generation, custom bundler plugins, and a programmatic JS API as incomplete; it is an alpha and may have known issues. Use Parcel 2.15 for a stable baseline, and evaluate alpha only in a pinned branch with migration tests. [Parcel 3 alpha](https://v3.parceljs.org/blog/v3-alpha/) · [Parcel 2.15](https://v3.parceljs.org/blog/v2-15-0/)
 5. Rspack is designed for broad webpack API compatibility and may reduce migration effort, but compatibility is not complete. Test each plugin and loader against the exact Rspack 2.3 version; inspect changed defaults and output semantics; run production and dev workflows; and keep webpack fallback until critical behavior is verified. [Rspack 2.3](https://rspack.rs/blog/announcing-2-3) · [Migration](https://rspack.rs/guide/migration/rspack_1.x)
 6. The server may rebuild and serve fresh assets while causing a full reload; HMR may also be disabled, unsupported for a module type, or fail to find an accepting boundary. Add a state counter, edit a component, and observe whether state survives; inspect the HMR client/update logs. A hard reload resets state, while HMR may preserve it depending on framework boundaries.
@@ -74,8 +74,10 @@ Vite 8's major change is the unified Rolldown bundler and Oxc-based transforms; 
 
 ## Reflection questions
 
-- Which parts of your current feedback loop are watch, rebuild, serve, reload, or HMR?
-- Does the selected bundler's plugin API cover your required integrations?
-- How do you prove tree shaking retained important side effects?
-- Which build values may safely appear in a public client artifact?
-- Does local preview match your production routes, base path, and cache behavior?
+Sample answers:
+
+- **Which parts of your feedback loop are watch, rebuild, serve, reload, or HMR?** Watch detects source changes; rebuild updates generated files; serve returns those files; live reload refreshes the page; HMR sends module updates to a runtime that can accept them while retaining state. Observe browser state and network/update logs to distinguish them.
+- **Does the plugin API cover your integrations?** Check the exact tool/version and each plugin's hooks, ordering, runtime assumptions, and documented compatibility. Similar API names or broad compatibility goals do not prove every plugin works.
+- **How do you prove tree shaking retained important side effects?** Build in production with the real metadata, inspect emitted CSS/assets and chunk graphs, then run a smoke test verifying styles, polyfills, registrations, and other required effects remain.
+- **Which values may safely appear in a client artifact?** Only values intended to be public, such as a public service URL or feature flag. Never embed credentials or private tokens; keep secrets on a server and authorize/proxy requests there.
+- **Does preview match production?** Compare base/public paths, SPA fallback and server routes, CDN origins, cache headers, compression, environment, and server-rendering behavior. Test a deployment-shaped environment rather than assuming local preview reproduces it.

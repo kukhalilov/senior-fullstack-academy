@@ -16,7 +16,7 @@
       "id": "bundler-alternatives",
       "title": "Current mainstream bundlers and build platforms",
       "items": [
-        "Vite 8",
+        "Vite 8.3 (current supported Vite 8 line)",
         "Webpack 5",
         "Rollup",
         "esbuild",
@@ -24,7 +24,7 @@
         "Parcel 3 alpha",
         "Rspack 2.3",
         "Turbopack in Next.js",
-        "Rolldown",
+        "Rolldown 1.3",
         "Bun.build",
         "TypeScript compiler emit (tsc)"
       ]
@@ -161,9 +161,19 @@
       ]
     },
     {
-      "edition": "Vite 8.1 (2026-06)",
+      "edition": "Rolldown 1.3 (2026-11)",
       "items": [
-        "Experimental bundled development mode is available for very large applications; default unbundled development remains distinct",
+        "Rolldown 1.3.0 adds experimental import-attributes support and changes some defaults versus 1.2.16; compatibility must be checked for standalone use. Do not force a Rolldown override into Vite; Vite pins the compatible bundled version. Current checked standalone patch is 1.3.2."
+      ],
+      "sourceUrls": [
+        "https://github.com/rolldown/rolldown/releases",
+        "https://rolldown.rs/apis/plugin-api"
+      ]
+    },
+    {
+      "edition": "Vite 8.1 and Vite 8.3 (current supported line, 2026-11)",
+      "items": [
+        "Vite 8.3 is the current supported minor line (latest checked patch 8.3.8); Vite 8.1 introduced experimental bundled development mode for very large applications, while the default unbundled mode remains distinct",
         "Vite 8.1 is a minor release on the Rolldown/Oxc architecture; verify exact feature maturity before relying on experimental mode"
       ],
       "sourceUrls": [
@@ -183,7 +193,7 @@
       ]
     },
     {
-      "edition": "Rspack 2.0 and current 2.3 (2026)",
+      "edition": "Rolldown 1.3 and Rspack 2.0/current 2.3 (2026)",
       "items": [
         "2.0 modernized defaults and ESM/output while preserving broad webpack compatibility",
         "2.3 integrates SWC Next parser and adds memory/build, split-chunk, and experimental cache changes"
@@ -219,8 +229,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Official Vite, Webpack, Rollup, esbuild, Parcel, Rspack, Next.js/Turbopack, Rolldown, Bun, and TypeScript documentation",
-    "edition": "Current stable tool documentation checked 2026-11-17; Parcel 3 alpha labeled separately",
-    "checkedAt": "2026-11-17",
+    "edition": "Current stable tool documentation checked 2026-11-18; Parcel 3 alpha labeled separately",
+    "checkedAt": "2026-11-18",
     "urls": [
       "https://vite.dev/guide/",
       "https://vite.dev/blog/announcing-vite8.html",
@@ -254,11 +264,14 @@
       "https://esbuild.github.io/api/#incremental",
       "https://esbuild.github.io/api/#splitting",
       "https://parceljs.org/features/cli",
-      "https://parceljs.org/features/targets"
+      "https://parceljs.org/features/targets",
+      "https://vite.dev/releases",
+      "https://github.com/vitejs/vite/releases",
+      "https://github.com/rolldown/rolldown/releases"
     ]
   },
   "accuracyFacts": [
-    "Vite 8 stable was released March 12, 2026. It uses Rolldown as its unified bundler and Oxc-based transforms instead of the previous esbuild dependency optimization/Rollup production split; migration documentation lists unsupported hooks/options and behavior changes, so plugin compatibility is not absolute. Vite 8.1 (June 23, 2026) adds experimental bundled development mode for very large applications; do not imply this experimental mode is the default.",
+    "Vite 8.3 is the current supported minor line in the 2026-11-18 snapshot (latest checked patch 8.3.8); Vite 8 stable was released March 12, 2026. It uses Rolldown as its unified bundler and Oxc-based transforms instead of the previous esbuild dependency optimization/Rollup production split; migration documentation lists unsupported hooks/options and behavior changes, so plugin compatibility is not absolute. Vite 8.1 (June 23, 2026) adds experimental bundled development mode for very large applications; do not imply this experimental mode is the default.",
     "Webpack 5 is a configurable application bundler with loader-based module transforms and a broad plugin ecosystem; webpack-dev-server is a separate companion package and HMR behavior depends on accepted updates/runtime integration. Compared with v4, major changes included persistent filesystem caching, Module Federation, improved tree shaking, native asset modules, and removal of automatic Node core polyfills for browser targets.",
     "Rollup emphasizes ES module graph analysis and tree shaking and commonly serves libraries; CommonJS support is supplied through plugins rather than being equivalent to Node's full resolver by default.",
     "esbuild offers fast transform/build APIs plus watch, serve, rebuild contexts, and plugins in its asynchronous JS API; its documented code splitting supports ESM output only, and its serve/watch feature is not HMR.",

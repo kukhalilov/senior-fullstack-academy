@@ -6,7 +6,7 @@
 2. Distinguish watch mode, incremental rebuild, a dev server, live reload, and HMR.
 3. What are tree shaking and code splitting? How are they different from minification?
 4. Why can a bundler accept TypeScript syntax while the project still has type errors?
-5. Compare Vite 8, Webpack 5, Rollup, esbuild, Parcel 2, Rspack 2.3, Turbopack, Rolldown, Bun.build, and tsc by role.
+5. Compare Vite 8.3, Webpack 5, Rollup, esbuild, Parcel 2, Rspack 2.3, Turbopack, Rolldown, Bun.build, and tsc by role.
 6. What changed internally in Vite 8, and why should a plugin be rechecked?
 7. What are the important Webpack 5 changes from Webpack 4?
 8. Is Parcel 3 ready as a stable replacement for Parcel 2? What does its alpha status imply?
@@ -24,7 +24,7 @@
 5. Vite is an integrated frontend workflow; Webpack a configurable loader/plugin system; Rollup an ESM-focused tree-shaker; esbuild a fast transform/build API without HMR; Parcel an integrated low-config tool; Rspack a webpack-compatible Rust bundler; Turbopack the Next.js 16 default bundler for dev/build; Rolldown a standalone Rollup-compatible Rust bundler; Bun.build is runtime-coupled; tsc type-checks/emits but does not bundle the app graph.
 6. Vite 8 unified development and production bundling on Rolldown with Oxc-based transforms. Some Rollup/esbuild hooks/options differ or are unsupported, so test the specific plugin and output. [Vite 8](https://vite.dev/blog/announcing-vite8.html) · [Migration](https://vite.dev/guide/migration)
 7. Webpack 5 added persistent filesystem caching, Module Federation, improved tree shaking, native asset modules, and stopped automatic browser Node-core polyfills. [Webpack 5](https://webpack.js.org/blog/2020-10-10-webpack-5-release/)
-8. No. Parcel 3 was alpha as of 2026-11-17, with declaration generation, custom bundler plugins, and programmatic JavaScript API listed as incomplete. Parcel 2.15 remained the stable line. [Parcel 3 alpha](https://v3.parceljs.org/blog/v3-alpha/)
+8. No. Parcel 3 was alpha as of 2026-11-18, with declaration generation, custom bundler plugins, and programmatic JavaScript API listed as incomplete. Parcel 2.15 remained the stable line. [Parcel 3 alpha](https://v3.parceljs.org/blog/v3-alpha/)
 9. Rspack intentionally offers broad webpack API compatibility but still has migration gaps. Turbopack is tied to Next.js, is default for dev/build in Next.js 16, and supports some webpack loaders through an adapter but not webpack plugins. [Rspack](https://rspack.rs/guide/start/introduction) · [Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack)
 10. It tells the optimizer which modules are safe to omit when exports are unused. Incorrectly marking CSS/polyfills as side-effect-free can delete required behavior.
 11. Browser bundles are public artifacts; build-time replacement embeds values that users can inspect. Keep credentials on the server.
@@ -69,6 +69,24 @@ A Next.js app moves to Turbopack and a Webpack plugin stops running. Explain the
 ### The build passed but types are wrong
 
 A tool transpiles TypeScript quickly but CI did not run type checking. Explain the missing step and propose a build script/CI command.
+
+## Scenario answer outlines
+
+### CSS vanishes only in production
+
+A broad `sideEffects: false` declaration tells the optimizer that package files may be dropped when their exports are unused. CSS imports perform effects, so list the relevant CSS files/patterns as side-effectful (or narrow the metadata) and inspect the production bundle/output HTML to confirm the stylesheet is emitted and loaded.
+
+### “Works in Vite but fails in Node”
+
+Bundler-style resolution can permit extensionless relative imports and rewrite/resolve them as part of a build, while native Node ESM generally requires a runtime-resolvable specifier. Identify whether Node runs emitted files or a bundler output, inspect the actual emitted imports and extensions, and choose TypeScript/module settings and source specifiers that match the deployment host.
+
+### Plugin disappears in a migration
+
+Turbopack is a Next.js-integrated bundler; its compatibility adapter supports selected webpack loaders but not webpack plugins. Check whether the needed behavior has a documented native `turbopack` option or supported loader. If it relies on a webpack plugin with no equivalent, retain the `--webpack` build path or replace the integration before switching.
+
+### The build passed but types are wrong
+
+A syntax transformer may erase TypeScript syntax without semantic checking. Add a separate checker such as `tsc --noEmit` to the build/CI pipeline, with the project's actual tsconfig and a failing exit code, alongside the bundler command.
 
 ## Tradeoffs and alternatives
 

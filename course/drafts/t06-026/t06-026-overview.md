@@ -4,7 +4,7 @@
 
 Modern applications import many modules and assets. A build tool resolves that dependency graph, transforms source syntax and assets, and creates output that the chosen runtime or browser can load. During development, tools also watch files and serve fast feedback. Those capabilities overlap, but the tools are not interchangeable.
 
-As of 2026-11-17, Vite 8.1 is current in the checked release notes and uses Rolldown as its unified bundler; its 8.1 bundled development mode is experimental. Rspack 2.3 is stable; Next.js 16 makes Turbopack the default bundler for development and builds (with `--webpack` opt-out); and TypeScript's `tsc` remains a type checker/emitter rather than an application bundler. [Vite 8.1](https://vite.dev/blog/announcing-vite8-1) · [Rspack 2.3](https://rspack.rs/blog/announcing-2-3) · [Next.js Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack)
+As of 2026-11-18, Vite 8.3 is the current supported minor line (latest checked patch 8.3.8); Vite 8.1 is the recent minor that introduced experimental bundled development and uses Rolldown as its unified bundler; its 8.1 bundled development mode is experimental. Rspack 2.3 is stable; Next.js 16 makes Turbopack the default bundler for development and builds (with `--webpack` opt-out); and TypeScript's `tsc` remains a type checker/emitter rather than an application bundler. [Vite releases](https://vite.dev/releases) · [Vite 8.1](https://vite.dev/blog/announcing-vite8-1) · [Rspack 2.3](https://rspack.rs/blog/announcing-2-3) · [Next.js Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack)
 
 ## Plain-language mental model
 

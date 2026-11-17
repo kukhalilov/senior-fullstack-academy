@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson explains all 17 supplied interfaces. It shows the main place each tool is configured, not every option or plugin. Vite 8/Rolldown migration details and Turbopack's Next.js limitations are noted because apparently similar configuration APIs are not fully interchangeable. [Vite guide](https://vite.dev/guide/) · [Rspack configuration](https://rspack.rs/guide/start/introduction) · [Turbopack configuration](https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack)
+This lesson explains all 17 supplied interfaces. It shows the main place each tool is configured, not every option or plugin. Vite 8.3/Rolldown migration details and Turbopack's Next.js limitations are noted because apparently similar configuration APIs are not fully interchangeable. [Vite guide](https://vite.dev/guide/) · [Rspack configuration](https://rspack.rs/guide/start/introduction) · [Turbopack configuration](https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack)
 
 ## How this group fits the mental model
 
@@ -14,7 +14,7 @@ Configuration declares entry points, target, resolution, transforms, plugins, an
 |---|---|
 | `vite.config.ts` | Vite's project config file, commonly exporting a config object or function. It can configure plugins, server, build, resolution, CSS, and more. The TypeScript config file is loaded by Vite's config loader; its syntax/types do not make Vite itself a type checker. |
 | `Vite defineConfig` | Helper from `vite` that provides inference/context for a Vite config and supports a config callback receiving command/mode. It improves authoring; it does not validate that plugins support Vite 8/Rolldown. [Vite config](https://vite.dev/config/) |
-| `Vite server/build/optimizeDeps configuration` | `server` configures the dev server/proxy; `build` controls production output; `optimizeDeps` configures development dependency optimization. With Vite 8, Rolldown powers unified bundling and deprecated/changed esbuild optimizer settings should be migrated per the versioned guide. |
+| `Vite server/build/optimizeDeps configuration` | `server` configures the dev server/proxy; `build` controls production output; `optimizeDeps` configures development dependency optimization. With Vite 8.3, Rolldown powers unified bundling and deprecated/changed esbuild optimizer settings should be migrated per the versioned guide. |
 | `Webpack configuration object` | CommonJS/ESM config object with fields such as `entry`, `output`, `mode`, `module.rules`, `resolve`, `plugins`, and `optimization`. Webpack config is powerful and explicit; load environment-specific values intentionally. [Webpack concepts](https://webpack.js.org/concepts/) |
 | `Webpack loader` | Resource transform configured in `module.rules` with `test`, `use`, and optional chaining/options. Loaders typically transform a matched resource into a module; ordering and `pitch`/normal execution rules matter. A loader is not a broad compiler lifecycle plugin. |
 | `Webpack plugin` | An object with `apply(compiler)` that taps compiler/compilation hooks to extend broad build behavior such as assets, optimization, or environment injection. Plugin compatibility can depend on Webpack version and internals. |
