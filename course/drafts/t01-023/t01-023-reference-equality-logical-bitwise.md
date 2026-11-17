@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers the C# equality, logical, and bitwise operators as defined in the C# 15 stable release on .NET 11 GA. The information provided is based on the official Microsoft Learn C# language reference and specification (checked 2026-11-14).
+This lesson covers the C# equality, logical, and bitwise operators as defined in the C# 15 stable release on .NET 11 GA. The information provided is based on the official Microsoft Learn C# language reference and specification (checked 2026-11-17).
 
 # How this group fits the mental model
 In C#, expressions combine operands (the data) and operators (the actions) to produce values. This group of operators is essential for controlling program flow and comparing data:
@@ -17,22 +17,23 @@ In C#, expressions combine operands (the data) and operators (the actions) to pr
 # Supplied names explained
 
 *   `Equality operator ==`: Returns `true` if the operands are equal; otherwise, `false`. For reference types, it checks if both operands refer to the same object instance, unless the operator is overloaded.
-*   `Inequality operator !=`: Returns `true` if the operands are not equal; otherwise, `false`. It is the logical negation of the `==` operator.
+*   `Inequality operator !=`: Returns `true` if the operands are not equal; otherwise, `false`. For built-in equality it is the opposite of `==`; user-defined `==` and `!=` overloads are paired declarations but their implementations are not required to be logical complements.
 *   `Boolean and bitwise AND operator &`: For integral types, it performs a bitwise logical AND. For `bool` operands, it performs a logical AND, evaluating both sides regardless of the result of the first.
 *   `Boolean and bitwise XOR operator ^`: For integral types, it performs a bitwise exclusive OR. For `bool` operands, it performs a logical exclusive OR.
 *   `Boolean and bitwise OR operator |`: For integral types, it performs a bitwise inclusive OR. For `bool` operands, it performs a logical inclusive OR, evaluating both sides regardless of the result of the first.
-*   `Conditional AND operator &&`: Performs a logical AND on `bool` operands. It uses "short-circuiting": if the left operand is `false`, the right operand is not evaluated.
-*   `Conditional OR operator ||`: Performs a logical OR on `bool` operands. It uses "short-circuiting": if the left operand is `true`, the right operand is not evaluated.
+*   `Conditional AND operator &&`: For built-in `bool`, performs logical AND and skips the right operand when the left is `false`. For user-defined types, `||` uses `operator true` and `operator |`; it is not overloaded directly.
+*   `Conditional OR operator ||`: For built-in `bool`, performs logical OR and skips the right operand when the left is `true`. User-defined conditional logical behavior can be defined through the required operator members.
 
 # Cross-item comparison
 
 *   **`&` vs `&&`**: The `&` operator always evaluates both operands. The `&&` operator is a "short-circuit" operator; it only evaluates the right side if the left side does not determine the final result. Use `&&` for Boolean logic to avoid unnecessary work or potential side effects.
 *   **`|` vs `||`**: Similar to the AND operators, `|` evaluates both sides, while `||` short-circuits. Use `||` for Boolean logic to improve performance and safety.
-*   **`==` vs `!=`**: These are inverse operations. If `a == b` is `true`, then `a != b` is `false`.
+*   **`==` vs `!=`**: For built-in equality, `!=` is the inverse of `==`. User-defined implementations are required as a pair but need not be logical complements.
 
 # Examples
 
 ```csharp
+using System;
 int a = 5; // Binary: 0101
 int b = 3; // Binary: 0011
 
@@ -50,7 +51,9 @@ bool safeCheck = (divisor != 0) && (10 / divisor > 1); // Safe: right side is sk
 # Common mistakes
 
 1.  **Confusing `&` with `&&`**: Using `&` in a Boolean condition when you intend to short-circuit can lead to performance issues or runtime errors (e.g., a `NullReferenceException` on the right side even if the left side was `null`).
-2.  **Reference vs. Value Equality**: Assuming `==` compares the content of objects rather than their references (unless the type has overloaded the operator, like `string`).
+2.  **Reference vs. Value Equality**: Ordinary class references compare identity by default, but strings and records define value-oriented equality; tuples compare their elements, while arrays normally compare reference identity and delegates compare invocation lists. Nested values still use their own equality semantics.
+3. **Custom structs and operators**: A user-defined struct does not get `==`/`!=` automatically; define them as a consistent pair or use `Equals`. Implement equality/hash-code behavior consistently, and remember `==`/`!=` overloads need not be logical complements.
+4. **Floating-point NaN**: `NaN == NaN` is false for `float`/`double`; use the appropriate `IsNaN` check when testing for NaN.
 
 # Knowledge checks with answers
 

@@ -3,7 +3,7 @@
 # C# operators, precedence, and operand evaluation — Exercises and worked solutions
 
 # Goals
-- Practice solving independent problems involving C# operators, operator precedence, associativity, operand evaluation order, and expression forms (C# 15 stable on .NET 11 GA; checked 2026-11-14 [https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15]).
+- Practice solving independent problems involving C# operators, operator precedence, associativity, operand evaluation order, and expression forms (C# 15 stable on .NET 11 GA; checked 2026-11-17 [https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15]).
 - Develop practical fluency in diagnosing precedence traps, short-circuit behavior, and overflow contexts using selected inventory features.
 
 # Worked example
@@ -28,8 +28,8 @@ fallback
 
 # Exercises
 1. **Precedence and Short-Circuiting**: Given `int x = 5; bool res = false && (++x > 5);`, what are the final values of `res` and `x`? Explain why `++x` is or is not evaluated. Reference source: [Microsoft Learn C# Operators Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/).
-2. **Null-Coalescing Assignment**: Write a self-contained snippet using `??=` to initialize an unassigned integer array variable `int[]? numbers = null;` with a newly allocated array of 3 elements using a collection expression. Reference source: [Microsoft Learn C# Collection Expressions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions).
-3. **Checked Context Overflow**: Write a snippet using a `checked expression` to multiply `int.MaxValue` by `2`, and catch the resulting `OverflowException`. Reference source: [Microsoft Learn Checked and Unchecked Keywords](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked).
+2. **Null-Coalescing Assignment**: Write a self-contained snippet using `??=` to initialize a nullable integer-array variable initialized to null (`int[]? numbers = null;`) with a newly allocated array of 3 elements using a collection expression. Reference source: [Microsoft Learn C# Collection Expressions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions).
+3. **Checked Context Overflow**: Write a snippet using a `checked expression` to multiply `int.MaxValue` by `2`, and catch the resulting `OverflowException`. Reference source: [Microsoft Learn Checked and Unchecked Keywords](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked).
 
 # Progressive hints
 - *Hint for Exercise 1*: Remember that `&&` uses short-circuit evaluation. If the left operand is false, the right operand is never evaluated.
@@ -48,7 +48,8 @@ fallback
    ```csharp
    try
    {
-       int value = checked(int.MaxValue * 2);
+       int factor = 2;
+       int value = checked(int.MaxValue * factor);
    }
    catch (OverflowException)
    {

@@ -20,13 +20,13 @@ To make sense of how complex statements execute, C# relies on several core conce
 - **Precedence and Associativity**: Precedence determines which operator binds tighter (e.g., multiplication before addition). Associativity determines grouping when operators share a precedence level (e.g., `(a + b) + c`), separately from operand evaluation order.
 - **Operand Evaluation Order**: Operands are generally evaluated left-to-right, but conditional structures can skip execution paths.
 - **Static Types and Conversions**: The compiler inspects operand types to select the correct built-in or overloaded operator.
-- **Structured Transformations**: Advanced expressions use patterns, ranges, switch expressions, and `with` statements to handle data safely.
+- **Structured Transformations**: Advanced expressions use patterns, ranges, switch expressions, and `with` expressions to handle data safely.
 - **Checked Contexts**: Arithmetic overflow can be explicitly managed via checked or unchecked compilation contexts.
 
 # Mechanisms and relationships
-Before examining individual operators, it helps to understand how the components fit together in a C# program. The compiler maps out expressions using operator precedence tables. When multiple operators compete for operands, higher precedence operators execute first. If they have equal precedence, associativity dictates grouping (almost all binary operators are left-associative, while assignment and conditional operators are right-associative).
+Before examining individual operators, it helps to understand how the components fit together in a C# program. The compiler maps out expressions using operator precedence tables. When multiple operators compete for operands, higher-precedence operators bind more tightly and determine grouping; that does not by itself specify runtime operand evaluation order. If operators have equal precedence, associativity dictates grouping; assignment, conditional, and null-coalescing operators are right-associative. Grouping and operand evaluation order are separate rules.
 
-Evaluation order governs when side effects occur. For example, in method calls or binary operations, left-hand operands evaluate before right-hand operands. However, short-circuiting logical operators (`&&`, `||`) and the null-coalescing operator (`??`) bypass the right operand entirely if the outcome is already determined by the left operand.
+Evaluation order governs when side effects occur. For example, in method calls or binary operations, left-hand operands evaluate before right-hand operands. However, short-circuiting logical operators (`&&`, `||`) and the null-coalescing operator (`??`) evaluate only the operand(s) required by the left-hand value; `?:` evaluates only its selected branch, and null-conditional access skips the member/index/arguments when its receiver is null.
 
 # Worked examples
 Consider a small end-to-end example combining arithmetic, conditional logic, and assignment:
@@ -50,7 +50,7 @@ bool check = false && (++result > 10);
 For advanced C# 15 features, collection expressions can pass arguments directly into collection constructors or factories. The expression must have a target type:
 ```csharp
 using System.Collections.Generic;
-List<int> values = [with(capacity: 10) 1, 2, 3];
+List<int> values = [with(capacity: 10), 1, 2, 3];
 ```
 *Snippet context:* Demonstrates C# 15 collection-expression constructor arguments with an explicit `List<int>` target.
 

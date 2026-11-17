@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers unary and range operators in C# 15, running on .NET 11 GA. These operators perform operations on a single operand or define ranges for collection indexing. This content is based on the [Microsoft Learn C# operators and expressions reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/).
+This lesson covers unary and range operators in C# 15, running on .NET 11 GA. These operators perform operations on a single operand or define ranges for collection indexing. This content is based on the [Microsoft Learn C# operators and expressions reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/), checked 2026-11-17.
 
 # How this group fits the mental model
 In C#, expressions combine operands and operators to produce values. Unary operators are unique because they act on a single operand, often modifying its state or transforming its type. Range operators provide a concise syntax for slicing collections. These operators sit at the high-precedence end of the expression hierarchy, meaning they are typically evaluated before binary operators like addition or multiplication.
@@ -19,12 +19,12 @@ In C#, expressions combine operands and operators to produce values. Unary opera
 * `Prefix decrement operator --`: Decrements its operand by 1. When used as a prefix, the value is decremented before the result is used in the expression.
 * `Index-from-end operator ^`: Used in indexers to specify a position relative to the end of a sequence. `^1` refers to the last element.
 * `Cast expression (T)`: Explicitly converts an expression to type `T`. This may result in data loss or runtime exceptions if the conversion is invalid.
-* `await expression`: Suspends the evaluation of the enclosing async method until the awaited task completes.
+* `await expression`: Consumes an awaitable via its awaiter pattern; if it is incomplete, the containing async function suspends and later resumes, while an already completed awaitable can continue synchronously. It need not be a `Task`.
 * `Address-of operator &`: Returns the memory address of its operand. This requires an `unsafe` context.
 * `Pointer indirection operator *`: Accesses the value at the memory address held by a pointer. This requires an `unsafe` context.
 * `true operator`: A user-definable operator that returns a `bool` to indicate if an object is considered "true" in conditional contexts.
 * `false operator`: A user-definable operator that returns a `bool` to indicate if an object is considered "false" in conditional contexts.
-* `Range operator ..`: Creates a `Range` value that specifies the start and end indices of a collection slice.
+* `Range operator ..`: Creates a `Range` value from `Index` endpoints. It describes a slice; slicing is performed only by a target that supports a `Range` indexer or the relevant pattern.
 
 # Cross-item comparison
 Within this group, the `Logical negation operator !` and `Bitwise complement operator ~` are both unary operators that invert their operands, but they operate on different domains: `!` is for boolean logic, while `~` is for bit-level manipulation of integral types. Similarly, the `Prefix increment operator ++` and `Prefix decrement operator --` are counterparts that modify state, whereas the `Index-from-end operator ^` and `Range operator ..` are used specifically for collection navigation and slicing.

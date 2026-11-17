@@ -195,12 +195,54 @@
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11"
       ]
+    },
+    {
+      "edition": "C# 14",
+      "items": [
+        "User-defined instance compound-assignment operators can define in-place behavior for compound assignments; when no such operator applies, the existing binary-operator-plus-assignment behavior remains.",
+        "Null-conditional access supports simple and compound assignments, and skips the right-hand side when the receiver is null."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/compound-assignment-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators"
+      ]
+    },
+    {
+      "edition": "C# 14",
+      "items": [
+        "`nameof` can now name unbound generic types, such as `nameof(List<>)`, producing the generic type name.",
+        "Extension members can declare static user-defined operators; operator declaration and overload-resolution rules are covered separately."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading"
+      ]
+    },
+    {
+      "edition": "C# 13",
+      "items": [
+        "The index-from-end operator `^` can be used for implicit indexer access in object initializers."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13"
+      ]
+    },
+    {
+      "edition": "C# 12",
+      "items": [
+        "Collection expressions `[...]` provide target-typed collection construction; C# 15 adds the leading `with(...)` constructor/factory argument element."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn C# operators and expressions reference and language specification",
-    "edition": "C# 15 stable on .NET 11 GA; Memory safety remains preview-only; checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "C# 15 stable on .NET 11 GA; C# 14 and C# 11 operator changes checked 2026-11-17; memory safety remains preview-only",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
@@ -208,7 +250,20 @@
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/checked-and-unchecked",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/equality-operators",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/compound-assignment-operators",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/comparison-operators",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked"
     ]
   },
   "scopeExclusions": [
@@ -218,5 +273,15 @@
     "Statement forms such as if, switch, and try",
     "Every expression grammar production not named in the supplied inventory"
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Operator precedence determines expression grouping; operand evaluation order is specified separately and is generally left to right. Conditional/logical/null-conditional constructs may skip operands or branches.",
+    "In C# 14, user-defined compound assignment operators such as operator += can provide in-place behavior; the language fallback uses the corresponding binary operator and assignment.",
+    "C# 14 conditional-access assignment skips evaluation of the right-hand expression if its receiver is null; compound assignment is allowed but increment/decrement are not.",
+    "Checked/unchecked context applies to specified integral operations and conversions textually inside the context; constant overflow is a compile-time error by default, decimal operations overflow in either context, and unchecked division by zero still throws.",
+    "User-defined == and != operators are declared in pairs but their implementations are not required to be logical complements.",
+    "C# 15 collection expression with(...) argument element must be followed by a comma before collection elements.",
+    "Bitwise and shift operations do not overflow and are unaffected by checked/unchecked context.",
+    "C# 14 adds unbound generic type support to nameof; C# 13 allows ^ index-from-end syntax in object initializer indexers; C# 12 introduced collection expressions and C# 15 adds collection expression constructor/factory arguments."
+  ]
 }

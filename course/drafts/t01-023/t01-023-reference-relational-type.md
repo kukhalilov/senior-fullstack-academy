@@ -15,18 +15,20 @@ In C#, expressions combine operands (data) and operators (logic) to produce resu
 * `Less-than operator <`: Returns `true` if the left operand is less than the right operand; otherwise, `false`.
 * `Greater-than operator >`: Returns `true` if the left operand is greater than the right operand; otherwise, `false`.
 * `Less-than-or-equal operator <=`: Returns `true` if the left operand is less than or equal to the right operand; otherwise, `false`.
-* `Greater-than-or-equal operator >=`: Returns `true` if the left operand is greater than or equal to the right operand; otherwise, `false`.
-* `is operator`: Checks if the result of an expression is compatible with a given type or matches a pattern. It returns `true` if the object is of the specified type (or a derived type), otherwise `false`.
+* `Greater-than-or-equal operator >=`: Returns `true` if the left operand is greater than or equal to the right operand; otherwise, `false`. For built-in floating-point comparisons, any ordered comparison involving `NaN` is false. If you overload `<` or `>`, you must provide both; similarly, `<=` and `>=` are a required pair.
+* `is operator`: Checks if the result of an expression is compatible with a given type or matches a pattern. It returns `true` if the runtime value is compatible with the type or matches the pattern; null and incompatible values yield `false`. It does not apply user-defined conversions.
 * `as operator`: Attempts to cast an expression to a specified type. If the cast is successful, it returns the object as that type; if the cast fails, it returns `null` instead of throwing an exception.
 
 # Cross-item comparison
 
-* **Relational vs. Type-testing**: The relational operators (`<`, `>`, `<=`, `>=`) are used for ordering and magnitude comparisons of numeric or comparable types. The type-testing operators (`is`, `as`) are used for runtime type identification and safe conversion.
-* **`is` vs. `as`**: The `is` operator is a boolean check; it tells you *if* a conversion is possible without performing the conversion. The `as` operator performs the conversion and returns the result, providing a safe way to handle potential cast failures by returning `null`.
+* **Relational vs. Type-testing**: The relational operators (`<`, `>`, `<=`, `>=`) compare supported operands (including numeric and user-defined types with operators); they do not automatically use `IComparable<T>`. The type-testing operators (`is`, `as`) are used for runtime type identification and safe conversion.
+* **`is` vs. `as`**: The `is` operator tests a runtime type or pattern and returns a Boolean (or assigns a pattern variable when that form is used). The `as` operator attempts a permitted reference, boxing, unboxing, or nullable-value conversion (including applicable type-parameter cases) and yields `null` if it cannot produce the requested type; it does not use user-defined conversions.
 
 # Examples
 
 ```csharp
+using System;
+
 int a = 5;
 int b = 10;
 

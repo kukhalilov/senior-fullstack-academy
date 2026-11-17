@@ -14,7 +14,7 @@ To master C# expressions, you must understand how the compiler interprets code. 
 
 # Concise interview answers
 
-*   **Explain `is` vs `as`:** The `is` operator checks if an expression is compatible with a type and returns a `bool`. The `as` operator attempts to cast an expression to a type, returning the object if successful or `null` if it fails.
+*   **Explain `is` vs `as`:** The `is` operator checks if an expression is compatible with a type/pattern and returns a `bool` (or binds a pattern variable). The `as` operator attempts a permitted reference/nullable conversion, returning null if no compatible value exists.
 *   **What is the `?.` operator?** It is the **null-conditional member access operator**. It allows you to access a member only if the receiver is not null; otherwise, it returns null, preventing a `NullReferenceException`.
 *   **What is the `??` operator?** The **null-coalescing operator** returns the value of its left-hand operand if it is not null; otherwise, it returns the right-hand operand.
 
@@ -27,22 +27,22 @@ To master C# expressions, you must understand how the compiler interprets code. 
 # Scenario questions
 
 *   **Scenario:** You need to update a property only if an object is not null.
-    *   **Solution:** Use the **conditional access assignment** (e.g., `receiver?.Property = value;`). Note that this feature was formalized in C# 14.
+    *   **Solution:** Use the **conditional access assignment** (e.g., `receiver?.Property = value;`). This feature was introduced in C# 14.
 *   **Scenario:** You are working with a collection and need to access the last element.
-    *   **Solution:** Use the **index-from-end operator** `^`. For example, `array[^1]` accesses the last element.
+    *   **Solution:** Use the **index-from-end operator** `^`. For example, `array[^1]` constructs an index from the end that selects the last element for an indexable sequence supporting that index.
 *   **Scenario:** You need to perform a calculation that might overflow.
-    *   **Solution:** Wrap the operation in a `checked expression` to ensure the runtime detects the overflow, or use `unchecked expression` to explicitly ignore it.
+    *   **Solution:** Wrap the operation in a `checked expression` to detect applicable integral overflow, or `unchecked expression` to request unchecked behavior for those operations.
 
 # Tradeoffs and alternatives
 
 *   **`!` (Logical negation) vs `~` (Bitwise complement):** Use `!` for boolean logic. Use `~` to invert the individual bits of an integral type.
-*   **`==` vs `is`:** Use `==` for value equality. Use `is` for pattern matching and type testing.
+*   **`==` vs `is`:** `==` applies the type’s equality semantics (which may be reference identity or overloaded value equality). `is` performs a type or pattern test; a constant pattern uses the language’s constant-pattern equality semantics.
 *   **`switch` statement vs `switch expression`:** The `switch` statement is for control flow (executing blocks of code). The `switch expression` is for transforming data into a result value.
 
 # Common weak answers
 
-*   **"Operators are always evaluated left to right."** This is incorrect because it ignores short-circuiting operators and precedence rules.
-*   **"The `!` operator is always for negation."** This is imprecise; it can also be the **null-forgiving operator**, which tells the compiler to ignore a potential null reference warning.
+*   **"Operators are always evaluated left to right."** This confuses grouping with operand evaluation. C# defines left-to-right operand evaluation in general, but short-circuit and conditional constructs skip operands/branches; precedence determines grouping.
+*   **"The `!` operator is always for negation."** In postfix position, `!` is the null-forgiving operator and changes nullable-flow analysis only; prefix `!` is logical negation.
 *   **"I don't need to worry about overflow."** This ignores the `checked` context, which is critical for financial or safety-sensitive calculations.
 
 # Self-check rubric

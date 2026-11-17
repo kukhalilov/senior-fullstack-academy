@@ -7,7 +7,7 @@
 This reference lesson covers the exact named primary, access, and invocation operators and expressions defined in the C# language reference snapshot. 
 
 - **Scope boundary:** This document explains only the assigned inventory group: primary, access, and invocation expressions/operators. It excludes statement forms, query expressions, user-defined operator declaration syntax, and operators from other groups unless referenced for comparison.
-- **Edition baseline:** C# 15 stable on .NET 11 GA. Memory safety features remain preview-only. Checked on 2026-11-14.
+- **Edition baseline:** C# 15 stable on .NET 11 GA. Memory safety features remain preview-only. Checked on 2026-11-17.
 - **Authority and source mapping:** Based on the Microsoft Learn C# operators and expressions reference and language specification [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/).
 
 # How this group fits the mental model
@@ -19,12 +19,12 @@ The primary, access, and invocation operators form the highest-precedence founda
 2. Guard against null reference exceptions safely (using null-conditional operators and the null-forgiving operator).
 3. Execute methods, instantiate objects, query types, allocate memory, and manage overflow safety contexts.
 
-These constructs evaluate operands from left to right, binding tighter than arithmetic or logical operators.
+These constructs have primary-level precedence and generally evaluate their operands left to right. Conditional access skips subsequent member/element access and invocation arguments when the receiver is null.
 
 # Supplied names explained
 
 - `Member access operator .`
-  - *Purpose and behavior:* Accesses a member (such as a field, property, or method) of a namespace, type, or instance. It evaluates the left-hand operand first, then accesses the named member on the resulting reference or value.
+  - *Purpose and behavior:* Accesses a member (such as a field, property, or method) of a namespace, type, or instance. For instance access, the receiver expression is evaluated before the member access; namespace and type qualification is resolved statically.
 
 - `Null-conditional member access operator ?.`
   - *Purpose and behavior:* Accesses a member only when its receiver is non-null. For value-producing members, a null receiver generally lifts a non-nullable value result to its nullable form or yields null for reference results; a conditional call to a `void` method remains a `void` expression.
@@ -39,34 +39,34 @@ These constructs evaluate operands from left to right, binding tighter than arit
   - *Purpose and behavior:* Invokes a method, delegate, or function pointer. It evaluates the target expression and any argument expressions from left to right, passing the arguments to the callable target and returning its result.
 
 - `Post-increment operator ++`
-  - *Purpose and behavior:* Increments its numeric or pointer operand by 1. As a *post*-operator, it evaluates to the original, unincremented value of the operand before the increment side effect takes place.
+  - *Purpose and behavior:* Increments a permitted variable, property, or indexer operand by 1. As a *post*-operator, its expression value is the operand value before increment (with user-defined operator rules applying where overloaded).
 
 - `Post-decrement operator --`
-  - *Purpose and behavior:* Decrements its numeric or pointer operand by 1. As a *post*-operator, it evaluates to the original, undecremented value of the operand before the decrement side effect takes place.
+  - *Purpose and behavior:* Decrements a permitted variable, property, or indexer operand by 1. As a *post*-operator, its expression value is the operand value before decrement (with user-defined operator rules applying where overloaded).
 
 - `Null-forgiving operator !`
-  - *Purpose and behavior:* Also known as the null-suppression operator, it suppresses any nullable warning (`CS8600` or similar) on its operand expression at compile time. It has no runtime effect and compiles down to a direct pass-through of the underlying value.
+  - *Purpose and behavior:* Also known as the null-suppression operator, it suppresses any nullable warning (`CS8600` or similar) on its operand expression at compile time. It changes nullable-flow analysis only; it has no runtime effect and does not make a null value safe to dereference.
 
 - `new expression`
-  - *Purpose and behavior:* Creates an object, value-type instance, delegate, or collection and performs applicable initialization. A `new` expression does not by itself determine stack-versus-heap storage; storage and lifetime depend on the value's type and use context.
+  - *Purpose and behavior:* Creates an object, value-type instance, delegate, or collection and performs applicable initialization. A `new` expression does not by itself determine stack-versus-heap storage; storage and lifetime depend on the value's type and use context. C# also has target-typed `new()` syntax where the target type supplies the type argument.
 
 - `typeof expression`
   - *Purpose and behavior:* `typeof(T)` obtains the `System.Type` object for a type (including an unbound generic type) at runtime. Its operand is a type, not a runtime value expression.
 
 - `checked expression`
-  - *Purpose and behavior:* Explicitly enables overflow checking for integral-type arithmetic operations and conversions performed within its block or sub-expression. If an overflow occurs, it throws an `OverflowException`.
+  - *Purpose and behavior:* Explicitly enables overflow checking for applicable integral arithmetic and conversions textually inside its parenthesized expression. For applicable integral arithmetic or conversions, overflow throws `OverflowException`; decimal overflow throws regardless of checked context, and called method bodies are not placed in that context.
 
 - `unchecked expression`
-  - *Purpose and behavior:* Explicitly disables overflow checking for integral-type arithmetic operations and conversions performed within its block or sub-expression, causing overflowing results to silently wrap around.
+  - *Purpose and behavior:* Explicitly disables overflow checking for applicable integral arithmetic and conversions textually inside its parenthesized expression; decimal overflow still throws, and division by zero still throws.
 
 - `default expression`
-  - *Purpose and behavior:* Produces the default value of a given type. For reference types, this is `null`; for numeric value types, `0`; and for structs, a value where all fields are set to their respective default values.
+  - *Purpose and behavior:* `default(T)` produces the default value of type `T` (`null` for reference types, zero for numeric types, and the zero-initialized value for a struct). The separate default literal `default` takes its type from context.
 
 - `nameof expression`
-  - *Purpose and behavior:* Produces the string representation of the name of a variable, type, member, or parameter at compile time. This avoids hardcoding magic strings when refactoring.
+  - *Purpose and behavior:* Produces a compile-time string for the name of a variable, type, member, or parameter, avoiding many hard-coded names. Since C# 14, an unbound generic type is permitted (for example, `nameof(List<>)` produces `List`).
 
 - `delegate expression`
-  - *Purpose and behavior:* Creates an anonymous method or delegate instance inline, allowing statement blocks or expressions to be treated as delegate objects.
+  - *Purpose and behavior:* Defines an anonymous-method expression that can be converted to a compatible delegate type; it supports a statement block body.
 
 - `sizeof expression`
   - *Purpose and behavior:* Obtains the size in bytes of a type. `sizeof` for built-in types is permitted in safe code; for other unmanaged types, it requires an unsafe context.
@@ -128,7 +128,7 @@ text: Hello, C# 15 (First: H, Length: 12)
 
 # Common mistakes
 
-- **Misusing the null-conditional operator with value types:** Using `?.` on a non-nullable value type changes the return type to a nullable wrapper (`Nullable<T>`), which can cause type mismatch compilation errors if not handled properly.
+- **Misusing the null-conditional operator with value types:** When a conditional access reaches a non-nullable value-type member, the result is lifted to its nullable form. The receiver itself must be nullable-capable (such as a reference or nullable value); `?.` is not used on an ordinary non-nullable value receiver.
 - **Overusing the null-forgiving operator `!`:** Using `!` to silence compiler warnings without ensuring the value is genuinely non-null can lead to unexpected runtime `NullReferenceException` crashes.
 - **Confusing post-increment/decrement return values:** Remembering that `++` and `--` in *post* position evaluate to the *original* value before modification can prevent logical off-by-one errors in expressions.
 - **Assuming `stackalloc` is safe for large allocations:** Allocating large blocks with `stackalloc` on the execution stack can trigger a `StackOverflowException`.

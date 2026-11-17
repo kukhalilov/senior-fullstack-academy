@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 394,
-    "pending": 1946,
-    "claimsChecked": 11176,
-    "claimsCorrected": 1174,
+    "reviewed": 405,
+    "pending": 1935,
+    "claimsChecked": 11680,
+    "claimsCorrected": 1250,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 394,
-    "pendingLessons": 1946
+    "reviewedLessons": 405,
+    "pendingLessons": 1935
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1203,6 +1203,35 @@
       ],
       "findings": [
         "Enumerated and checked 350 claims across all eleven lessons, including the frozen statement-form, selection, iteration, jump/iterator, exception, checked/unchecked, locking, using/await using, and unsafe/fixed inventories. Corrected switch no-match versus section fall-through wording; labeled-jump target-label placement; foreach by-value versus ref/ref readonly semantics; using scope/pattern disposal and awaitable async disposal; filter/finally behavior; C# 13 iterator and Lock changes; checked-context scope; and the limits of fixed pinning. Verified exercises and examples for semantic consistency. No known unresolved factual or assigned-inventory gaps remain; lessons remain draft pending the complete curriculum audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "C# operators, precedence, operand evaluation, and composed expressions (t01-023)",
+      "status": "full claim and frozen-inventory audit complete for all 11 lessons",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/equality-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/comparison-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/type-testing-and-cast",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/compound-assignment-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading"
+      ],
+      "findings": [
+        "Checked 504 claims across all eleven lessons and confirmed coverage of every named operator/expression in the frozen manifest. Added the complete current precedence ladder and separated precedence/grouping from left-to-right operand evaluation and short-circuiting. Corrected invalid C# 15 collection-expression argument punctuation, compile-time-vs-runtime checked overflow in an exercise, null-conditional result and skip rules, equality overload assumptions, C# 14 user-defined compound and conditional assignments, C# version details for C# 11/12/13/14/15, range/await/cast/shift and overflow caveats, and several example/type/nullability issues. Primary Microsoft language documentation/specification checked; no known assigned-scope omissions remain. Lessons remain drafts pending completion of the entire curriculum audit."
       ]
     }
   ],
@@ -20533,253 +20562,656 @@
       "topicId": "t01-023",
       "phase": "overview",
       "draft": "course/drafts/t01-023/t01-023-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 37,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-023-concepts",
       "topicId": "t01-023",
       "phase": "concepts",
       "draft": "course/drafts/t01-023/t01-023-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 55,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-023-reference-primary-and-access",
       "topicId": "t01-023",
       "phase": "reference",
       "draft": "course/drafts/t01-023/t01-023-reference-primary-and-access.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 66,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/type-testing-and-cast",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/type-testing-and-cast",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-023-reference-unary-range",
       "topicId": "t01-023",
       "phase": "reference",
       "draft": "course/drafts/t01-023/t01-023-reference-unary-range.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-023-reference-structured-expressions",
       "topicId": "t01-023",
       "phase": "reference",
       "draft": "course/drafts/t01-023/t01-023-reference-structured-expressions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-023-reference-arithmetic-shifts",
       "topicId": "t01-023",
       "phase": "reference",
       "draft": "course/drafts/t01-023/t01-023-reference-arithmetic-shifts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/arithmetic-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-023-reference-relational-type",
       "topicId": "t01-023",
       "phase": "reference",
       "draft": "course/drafts/t01-023/t01-023-reference-relational-type.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 36,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/comparison-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/type-testing-and-cast",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/comparison-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/type-testing-and-cast"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-023-reference-equality-logical-bitwise",
       "topicId": "t01-023",
       "phase": "reference",
       "draft": "course/drafts/t01-023/t01-023-reference-equality-logical-bitwise.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/equality-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/equality-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/boolean-logical-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-023-reference-assignment-null",
       "topicId": "t01-023",
       "phase": "reference",
       "draft": "course/drafts/t01-023/t01-023-reference-assignment-null.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 49,
+      "claimsCorrected": 10,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/compound-assignment-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/compound-assignment-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-023-practice",
       "topicId": "t01-023",
       "phase": "practice",
       "draft": "course/drafts/t01-023/t01-023-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-023-interview",
       "topicId": "t01-023",
       "phase": "interview",
       "draft": "course/drafts/t01-023/t01-023-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 44,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Enumerated and verified every externally checkable language rule, operator behavior, version claim, example, edge case, and declared scope boundary in this lesson against its assigned frozen inventory.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable operator contract, C# specification clause, or release-feature behavior",
+              "verdict": "supported; lesson text records corrections where required"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-14",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/checked-and-unchecked",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed. Checked this lesson’s named operator/expression inventory and all externally verifiable explanations, examples, exercises/answers, version notes, and omission boundaries against current official C# documentation/specification. Corrected inaccuracies as applicable. No known unresolved factual or assigned-inventory gaps remain; lessons remain drafts pending completion of the full curriculum audit."
     },
     {
       "taskId": "t01-014-overview",

@@ -13,7 +13,7 @@ Furthermore, expressions must handle edge cases gracefully—such as avoiding nu
 Think of evaluating a C# expression like solving a complex mathematical formula combined with a set of assembly instructions on a factory assembly line:
 
 1. **Operands and Operators**: **Operands** are the raw materials (like numbers, variables, or object instances), and **operators** are the tools (like `+`, `-`, or `.` for member access) that act on those materials to build something new.
-2. **Precedence (The Hierarchy of Tools)**: Just as multiplication takes precedence over addition in standard arithmetic, C# assigns a strict ranking to every operator. High-ranking operators finish their work before lower-ranking operators take over, regardless of where they sit in the text (unless parentheses override them).
+2. **Precedence (The Hierarchy of Tools)**: Just as multiplication takes precedence over addition in standard arithmetic, C# assigns a strict ranking to every operator. Higher-precedence operators bind more tightly when the expression is grouped; this does not mean every higher-precedence operand is evaluated first. Parentheses can change grouping.
 3. **Associativity (The Tie-Breaker)**: When operators of the exact same rank sit side-by-side (like `a + b + c`), **associativity** decides how the expression is grouped; operand evaluation order is a separate rule.
 4. **Operand Evaluation Order**: Operands are generally evaluated from left to right, but special **short-circuit** constructs act like safety valves—they conditionally skip work entirely if the final outcome is already known (for instance, if the first part of an `&&` check is false).
 
@@ -25,7 +25,7 @@ To understand how expressions execute, you need to see how the major parts fit t
 * **Precedence and Grouping**: The compiler analyzes the expression text to build a syntax tree based on operator precedence and associativity, ensuring high-priority operations are nested deeper in execution order.
 * **Operand Evaluation**: As the program runs, individual operands are evaluated, transforming variables and method calls into concrete values.
 * **Specialized Expressions**: Beyond basic arithmetic, structured forms—such as pattern tests, range creation, null checks, and conditional logic—compose these operations into expressive, concise transformations.
-* **Runtime Contexts**: Execution wrappers like checked contexts alter how arithmetic overflow behaves during evaluation, throwing exceptions rather than silently wrapping around.
+* **Runtime Contexts**: Execution wrappers like checked contexts affect overflow for applicable integral arithmetic and conversions; decimal overflow throws independently of checked context, while floating-point overflow produces infinity or another non-finite result.
 
 # Concept map
 
@@ -53,7 +53,7 @@ int calculated = baseScore + bonus * 2;
 bool grantsAccess = isPremium || (calculated > 100);
 
 // Null-conditional member access paired with null-coalescing
-string accountName = null;
+string? accountName = null;
 string displayName = accountName?.ToUpper() ?? "Default User";
 ```
 
@@ -72,7 +72,7 @@ string displayName = accountName?.ToUpper() ?? "Default User";
 
 **Tradeoffs and pitfalls:**
 * **Readability vs. Conciseness**: Relying entirely on complex precedence rules without parentheses can confuse readers. When in doubt, use parentheses to make intent explicit.
-* **Side-Effect Ordering**: Because operands evaluate left-to-right, embedding method calls with side effects inside complex expressions (e.g., `a() + b()`) can lead to hard-to-debug bugs if order matters. Keep operand expressions clean and side-effect-free.
+* **Side-Effect Ordering**: C# specifies operand evaluation order separately from precedence. Embedding method calls with side effects inside complex expressions (e.g., `a() + b()`) can make behavior hard to follow. Keep operand expressions clean and side-effect-free.
 
 # What later lessons cover
 
