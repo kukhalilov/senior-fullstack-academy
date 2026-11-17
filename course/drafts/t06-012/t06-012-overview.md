@@ -58,7 +58,7 @@ Array methods can be generic over array-like receivers, but an array-like object
 
 ## Recent version changes
 
-ECMAScript 2023 added `findLast`, `findLastIndex`, `toReversed`, `toSorted`, `toSpliced`, and `with`; ECMAScript 2024 added `Array.fromAsync`, which consumes async iterables, synchronous iterables, or array-like values while awaiting each value and optional mapper sequentially. See the [ECMAScript 2023 indexed-collections edition](https://tc39.es/ecma262/2023/), the [ECMAScript 2024 indexed-collections edition](https://tc39.es/ecma262/2024/multipage/indexed-collections.html), and the [Array.fromAsync proposal](https://github.com/tc39/proposal-array-from-async).
+ECMAScript 2023 added `findLast`, `findLastIndex`, `toReversed`, `toSorted`, `toSpliced`, and `with`; ECMAScript 2024 added `Array.fromAsync`. It consumes async iterables, synchronous iterables, or array-like values sequentially and awaits mapper results. Source-value awaiting depends on the route: values from the sync-iterator adapter and array-like reads are awaited, while a genuine async iterator's yielded value is passed through as yielded. See the [ECMAScript 2023 indexed-collections edition](https://tc39.es/ecma262/2023/), the [ECMAScript 2024 indexed-collections edition](https://tc39.es/ecma262/2024/multipage/indexed-collections.html), and the [Array.fromAsync proposal](https://github.com/tc39/proposal-array-from-async).
 
 ## What later lessons cover
 

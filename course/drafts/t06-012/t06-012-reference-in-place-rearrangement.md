@@ -15,7 +15,7 @@ These methods rearrange or overwrite properties on the receiver. Negative indexe
 - `Array.prototype.copyWithin` — Copies a range of indexed properties within the same receiver, overwriting the target range without changing length. Target, start, and optional end accept negative offsets from the end. It handles overlap in the safe direction, like a memory move; absent source properties cause corresponding target properties to be deleted, preserving holes.
 - `Array.prototype.fill` — Writes the same supplied value into every position in a normalized start/end range and returns the receiver. It mutates, makes holes in the range present, and stores the same object reference in each filled slot rather than cloning it.
 - `Array.prototype.reverse` — Reverses indexed properties in place and returns the receiver. It preserves holes by moving property presence along with values; it is generic over suitable array-like receivers.
-- `Array.prototype.sort` — Sorts in place and returns the receiver. Without a comparator, values are converted to strings and compared lexicographically by UTF-16 code units; with a comparator, its result is converted to Number, and a `NaN` result is treated like zero. `undefined` values sort after defined values, and holes end up after `undefined`. Sorting is stable in current ECMAScript; algorithm and complexity are implementation choices.
+- `Array.prototype.sort` — Sorts in place and returns the receiver. Without a comparator, values are converted to strings and compared lexicographically by UTF-16 code units; `undefined` values are ordered after defined values without calling the comparator, and holes end up after `undefined`. With a comparator, its result is converted to Number and `NaN` is treated like +0; returning a BigInt or Symbol fails during numeric conversion. For predictable results the comparator must be consistent (including reflexive, symmetric sign, and transitive ordering properties); inconsistent comparators can produce implementation-dependent results. Sorting is stable in current ECMAScript; comparison order, algorithm, and complexity are not promised.
 
 ## Cross-item comparison
 
@@ -63,6 +63,7 @@ Stable sorting keeps `B` before `A` because their comparator results are zero an
 - Assuming `reverse` or `sort` returns a new Array; both mutate and return the same receiver.
 - Assuming default sort is numeric or locale-aware.
 - Returning Boolean from a comparator without defining a consistent negative/zero/positive ordering; use a comparator returning a negative, zero, or positive Number.
+- Returning BigInt or Symbol from a comparator; sorting converts the result with `ToNumber` and these conversions throw `TypeError`.
 - Assuming the specification guarantees a particular sort algorithm or complexity.
 - Treating a hole and explicit `undefined` as the same during `sort`; holes are placed after explicit undefined values.
 - Forgetting that a comparator can be called in an implementation-chosen sequence and should not mutate the Array being sorted.

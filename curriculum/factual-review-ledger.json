@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-17",
+  "generatedAt": "2026-11-18",
   "purpose": "Track manual, claim-by-claim factual review. Shape validation and automated model review do not count as factual verification.",
   "status": "in-progress",
   "summary": {
     "lessons": 2360,
     "reviewed": 1041,
     "pending": 1319,
-    "claimsChecked": 39925,
-    "claimsCorrected": 1533,
+    "claimsChecked": 39961,
+    "claimsCorrected": 1547,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1290,9 +1290,9 @@
       ]
     },
     {
-      "date": "2026-11-17",
+      "date": "2026-11-18",
       "scope": "JavaScript Arrays full inventory and lesson audit (t06-012)",
-      "status": "full claim and frozen-inventory audit complete for all 14 lessons",
+      "status": "follow-up full claim and frozen-inventory audit complete; corrections applied across all 14 lessons",
       "sources": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -1308,7 +1308,8 @@
         "https://tc39.es/ecma262/2024/multipage/indexed-collections.html"
       ],
       "findings": [
-        "Checked all 59 frozen inventory entries and all 14 lesson files against ECMA-262 2026 indexed collections/Array exotic semantics, ECMA-402, MDN Array references, and TC39 proposals/history. Covered array-index boundary and length range, constructors, Array.from/fromAsync, sparse holes and inherited indexes, iterator and callback traversal, every supplied method, sort stability/order, species, and locale conversion. Added exact length validation and explicit iterator-versus-callback traversal comparison. Added answers to all five previously unanswered practice reflection questions. Parsed all 35 self-contained JavaScript examples, including async syntax in async wrappers, and directly checked Array length/index boundary behavior on Node. No unresolved scope omissions remain; lessons stay drafts pending full-curriculum audit."
+        "Checked all 49 frozen inventory entries and all 14 lesson files against ECMA-262 2026 indexed collections/Array exotic semantics, ECMA-402, MDN Array references, and TC39 proposals/history. Covered array-index boundary and length range, constructors, Array.from/fromAsync, sparse holes and inherited indexes, iterator and callback traversal, every supplied method, sort stability/order, species, and locale conversion. Added exact length validation and explicit iterator-versus-callback traversal comparison. Added answers to all five previously unanswered practice reflection questions. Parsed all 35 self-contained JavaScript examples, including async syntax in async wrappers, and directly checked Array length/index boundary behavior on Node. No unresolved scope omissions remain; lessons stay drafts pending full-curriculum audit.",
+        "Follow-up corrections: Array.fromAsync only awaits source values on sync-iterator-adapter and array-like routes; true async iterator values are passed through, though mapper results are awaited. Enumerated the exact 16 initial unscopables names and symbol-property attributes. Corrected Array.prototype.length explanation, coercible length assignment and partial shrink failure at non-configurable indexes, inherited indexed-property behavior for pop, and sort comparator consistency/BigInt/Symbol conversion gotchas. Executed targeted Node 24.14.1 probes for iterator-path values, unscopables descriptors, and blocked length shrink. Verified the manifest inventory contains 49 API/property items and all 14 lesson files remain in draft state."
       ]
     },
     {
@@ -53826,8 +53827,8 @@
       "draft": "course/drafts/t06-012/t06-012-overview.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 24,
-      "claimsCorrected": 0,
+      "claimsChecked": 26,
+      "claimsCorrected": 1,
       "evidence": [
         {
           "claims": "Checked all conceptual claims on exotic length/index behavior, hole semantics, mutation/copy distinction, genericity, equality, species, and ES2019–2024 highlights against current standards and MDN. Overview model is accurate and application-oriented.",
@@ -53894,10 +53895,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -53916,7 +53944,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-concepts",
@@ -53925,8 +53953,8 @@
       "draft": "course/drafts/t06-012/t06-012-concepts.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 100,
-      "claimsCorrected": 1,
+      "claimsChecked": 105,
+      "claimsCorrected": 4,
       "evidence": [
         {
           "claims": "Checked index bounds, length transitions, hole/inherited index behavior, method-family sparse semantics, iterator liveness, callback length capture, sorting, species, and examples. Added exact valid length range and explicit callback-versus-iterator comparison.",
@@ -53993,10 +54021,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -54015,7 +54070,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-reference-constructor-and-static",
@@ -54024,8 +54079,8 @@
       "draft": "course/drafts/t06-012/t06-012-reference-constructor-and-static.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 82,
-      "claimsCorrected": 0,
+      "claimsChecked": 87,
+      "claimsCorrected": 2,
       "evidence": [
         {
           "claims": "Checked six supplied entries and construction boundaries, iterator precedence, array-like behavior, mapper/thisArg, async iterator and await sequencing, realm-safe Array.isArray, and species. No remaining discrepancies.",
@@ -54092,10 +54147,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -54114,7 +54196,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-reference-prototype-properties",
@@ -54123,8 +54205,8 @@
       "draft": "course/drafts/t06-012/t06-012-reference-prototype-properties.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 59,
-      "claimsCorrected": 1,
+      "claimsChecked": 62,
+      "claimsCorrected": 3,
       "evidence": [
         {
           "claims": "Checked all three prototype entries, descriptor behavior and [Symbol.unscopables]. Added exact length bounds and RangeError behavior; directly verified maximum length and index boundary in Node.",
@@ -54191,10 +54273,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -54213,7 +54322,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-reference-indexing-and-iteration",
@@ -54222,7 +54331,7 @@
       "draft": "course/drafts/t06-012/t06-012-reference-indexing-and-iteration.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 65,
+      "claimsChecked": 66,
       "claimsCorrected": 1,
       "evidence": [
         {
@@ -54290,10 +54399,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -54312,7 +54448,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-reference-search-and-predicates",
@@ -54321,7 +54457,7 @@
       "draft": "course/drafts/t06-012/t06-012-reference-search-and-predicates.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 98,
+      "claimsChecked": 99,
       "claimsCorrected": 0,
       "evidence": [
         {
@@ -54389,10 +54525,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -54411,7 +54574,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-reference-mapping-and-flattening",
@@ -54420,7 +54583,7 @@
       "draft": "course/drafts/t06-012/t06-012-reference-mapping-and-flattening.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 82,
+      "claimsChecked": 83,
       "claimsCorrected": 0,
       "evidence": [
         {
@@ -54488,10 +54651,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -54510,7 +54700,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-reference-copying-and-copy-by-change",
@@ -54519,7 +54709,7 @@
       "draft": "course/drafts/t06-012/t06-012-reference-copying-and-copy-by-change.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 86,
+      "claimsChecked": 87,
       "claimsCorrected": 0,
       "evidence": [
         {
@@ -54587,10 +54777,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -54609,7 +54826,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-reference-add-remove-and-size-mutations",
@@ -54618,8 +54835,8 @@
       "draft": "course/drafts/t06-012/t06-012-reference-add-remove-and-size-mutations.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 71,
-      "claimsCorrected": 0,
+      "claimsChecked": 74,
+      "claimsCorrected": 1,
       "evidence": [
         {
           "claims": "Checked all five mutation methods, return values, sparse movement, generic receivers, omitted versus explicit undefined deleteCount, and mutation alias examples.",
@@ -54686,10 +54903,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -54708,7 +54952,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-reference-in-place-rearrangement",
@@ -54717,8 +54961,8 @@
       "draft": "course/drafts/t06-012/t06-012-reference-in-place-rearrangement.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 74,
-      "claimsCorrected": 0,
+      "claimsChecked": 78,
+      "claimsCorrected": 2,
       "evidence": [
         {
           "claims": "Checked four supplied methods including overlap handling in copyWithin, fill reference behavior, reverse hole placement, comparator conversion, undefined/hole ordering, sort stability, and unspecified algorithm complexity.",
@@ -54785,10 +55029,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -54807,7 +55078,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-reference-callback-iteration-and-aggregation",
@@ -54816,7 +55087,7 @@
       "draft": "course/drafts/t06-012/t06-012-reference-callback-iteration-and-aggregation.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 70,
+      "claimsChecked": 71,
       "claimsCorrected": 1,
       "evidence": [
         {
@@ -54884,10 +55155,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -54906,7 +55204,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-reference-string-conversion",
@@ -54915,7 +55213,7 @@
       "draft": "course/drafts/t06-012/t06-012-reference-string-conversion.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 61,
+      "claimsChecked": 62,
       "claimsCorrected": 0,
       "evidence": [
         {
@@ -54983,10 +55281,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -55005,7 +55330,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-practice",
@@ -55014,8 +55339,8 @@
       "draft": "course/drafts/t06-012/t06-012-practice.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 120,
-      "claimsCorrected": 1,
+      "claimsChecked": 125,
+      "claimsCorrected": 3,
       "evidence": [
         {
           "claims": "Checked all seven solutions and test statements; added complete answers to five reflection questions. Parsed all JavaScript fences; async blocks were syntax-checked in async wrappers.",
@@ -55082,10 +55407,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -55104,7 +55456,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-012-interview",
@@ -55113,8 +55465,8 @@
       "draft": "course/drafts/t06-012/t06-012-interview.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 105,
-      "claimsCorrected": 0,
+      "claimsChecked": 108,
+      "claimsCorrected": 1,
       "evidence": [
         {
           "claims": "Checked 12 core answers, follow-ups, seven scenarios, comparison alternatives, weak-answer section, and rubric against current Array standard semantics. Answers are self-consistent.",
@@ -55181,10 +55533,37 @@
             }
           ],
           "verdict": "verified against normative standards, explanatory references, and runtime examples"
+        },
+        {
+          "claims": "Follow-up manual audit against current normative algorithms corrected the Array.fromAsync source-value await distinction; the exact Array.prototype[Symbol.unscopables] members/descriptors; Array.prototype.length identity; Array length assignment coercion and non-configurable-index shrink failure; inherited indexed-property behavior for pop; and consistent comparator requirements/ToNumber failures. Rechecked examples and answers against ECMA-262 2026 and runtime probes.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
+              "section": "23.1.2.2 Array.fromAsync, 23.1.3.27 Array.prototype.sort, 23.1.3.41 Array.prototype[Symbol.unscopables], 23.1.4.1 length",
+              "verdict": "normative algorithm checked; corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.4.2.1 ArraySetLength",
+              "verdict": "normative exotic-object behavior checked; correction applied"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync",
+              "section": "Array.fromAsync input paths and examples",
+              "verdict": "cross-check only; normative standard controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+              "section": "sort comparator consistency and default ordering",
+              "verdict": "cross-check only; normative standard controls"
+            }
+          ],
+          "verdict": "follow-up correction and re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/indexed-collections.html",
         "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
@@ -55203,7 +55582,7 @@
         "https://github.com/tc39/proposal-array-from-async",
         "https://github.com/tc39/proposal-change-array-by-copy"
       ],
-      "reviewNote": "Manual claim and complete frozen-inventory audit finished; all included practice/reflection/interview questions have answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit corrected identified factual omissions and checked the full lesson against the current manifest inventory. Lesson remains a draft pending whole-curriculum audit."
     },
     {
       "taskId": "t06-013-overview",

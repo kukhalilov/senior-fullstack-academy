@@ -12,7 +12,7 @@ These methods change indexed properties and `length` on the same object. End ope
 
 ## Supplied names explained
 
-- `Array.prototype.pop` — Removes and returns the final element, shortening the Array. On an empty Array it returns `undefined` and leaves length at zero. If the final index is a hole, the read result is `undefined`, but the length still decreases.
+- `Array.prototype.pop` — Removes and returns the value read from the final index, then shortens the Array. On an empty Array it returns `undefined` and leaves length at zero. If the final index is absent, an inherited indexed property may still supply the returned value; otherwise it reads as `undefined`. The property at the final index is deleted and length decreases.
 - `Array.prototype.push` — Appends each argument as an element and returns the new length. It mutates the receiver and can be generic over a suitable array-like object.
 - `Array.prototype.shift` — Removes and returns the first value, shifts later indexed properties toward zero, and decreases length. Missing positions can remain holes; inherited indexed properties and accessors can affect generic behavior.
 - `Array.prototype.splice` — Mutates the receiver by deleting a range and optionally inserting items at the start index. It returns a species-created Array containing removed values; hole positions in the removed portion can remain holes. Omitted delete count removes through the end, while an explicit `undefined` converts to zero deletions. It is generic over suitable array-like receivers.

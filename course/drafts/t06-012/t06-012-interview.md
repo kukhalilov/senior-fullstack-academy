@@ -23,7 +23,7 @@
 2. A hole is an absent indexed property. Reading either may yield `undefined`, but presence-aware methods distinguish them.
 3. A single numeric argument to `Array` requests a length and makes holes; `Array.of` treats every argument as an element.
 4. It prefers the iterable protocol; without an iterator it reads `length` and indexed properties as an array-like value.
-5. It prefers an async iterator, then adapts a sync iterator, then uses array-like reads; it awaits each value and mapper result sequentially and returns a Promise.
+5. It prefers an async iterator, then adapts a sync iterator, then uses array-like reads; it awaits mapper results sequentially and returns a Promise. It additionally awaits sync-adapter and array-like source values, but a genuine async iterator's yielded value is not additionally awaited by this algorithm.
 6. `includes` finds NaN with SameValueZero; `indexOf` uses strict equality and returns `-1` for NaN.
 7. Methods such as `map`, `forEach`, `filter`, `some`, `every`, and reducers skip absent properties, while `find*` and `includes` read each position. Inherited indexed properties count as present where property-presence is checked.
 8. `reverse`, `sort`, `splice`, and end-edit methods mutate. `toReversed`, `toSorted`, `toSpliced`, and `with` return non-mutating copies.
@@ -56,7 +56,7 @@ It reads through each position to produce a copy. An absent slot with no inherit
 2. **An Array of known size should have every slot initialized to zero. Why not `Array(size).map(() => 0)`?** `Array(size)` has holes and `map` skips them; use a value-producing construction such as `Array.from` with an array-like length and mapper.
 3. **A reducer throws on empty user input. What should you inspect?** Whether an initial accumulator was provided and whether the Array has any present indexes.
 4. **A sorted result must leave cached input unchanged.** Use `toSorted` with a comparator appropriate to the data, or copy before sorting where older runtimes require it.
-5. **A list is consumed asynchronously and each mapper operation performs I/O. Should you expect concurrent mapping?** No; `Array.fromAsync` awaits sequentially. Use an explicitly designed concurrency strategy if parallelism is intended.
+5. **A list is consumed asynchronously and each mapper operation performs I/O. Should you expect concurrent mapping?** No; `Array.fromAsync` awaits mapper results sequentially. Use an explicitly designed concurrency strategy if parallelism is intended. Note that an async iterator's yielded Promise is not automatically unwrapped by `Array.fromAsync` before the mapper; the async iterator's own semantics determine what it yields.
 6. **A subclass's `map` result has an unexpected type.** Inspect its `Symbol.species` behavior; compare with copy-by-change methods that return ordinary Arrays.
 7. **A comma-separated Array string is being stored as a data format. What is the risk?** `join` loses type and nullish distinctions and does not escape values like a serialization format; use a suitable structured format instead.
 
@@ -80,7 +80,7 @@ It reads through each position to produce a copy. An absent slot with no inherit
 - “`sort` sorts numbers numerically.” It uses string order by default.
 - “`sort` is unstable.” Current ECMAScript requires stability.
 - “Every copy preserves subclass type.” Species behavior differs; copy-by-change methods produce ordinary Arrays.
-- “`Array.fromAsync` runs work in parallel.” It awaits values and mapper results sequentially.
+- “`Array.fromAsync` runs mapper work in parallel.” It awaits mapper results sequentially. Source-value awaiting depends on whether input is a real async iterator, a sync iterator, or array-like.
 - “Array copies deep-clone nested data.” They are shallow.
 
 ## Self-check rubric

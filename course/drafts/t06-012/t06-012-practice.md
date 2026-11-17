@@ -54,6 +54,8 @@ Create an Array subclass whose `Symbol.species` returns `Array`. Call `map` on a
 
 Use `Array.fromAsync` with an async iterable that yields two numbers and an asynchronous mapper that doubles each value. Record a start/end label in the mapper and predict the order. Explain why the two mapper calls do not overlap.
 
+Then compare a custom async iterator whose `next()` returns `{ value: promise, done: false }` with a synchronous iterator and an array-like object whose indexed value is that same Promise. Predict what the mapper receives in each case.
+
 ## Progressive hints
 
 1. Use `Array.of` for one value. `Array(5)` creates length five but has no present indexes.
@@ -62,7 +64,7 @@ Use `Array.fromAsync` with an async iterable that yields two numbers and an asyn
 4. `includes` uses SameValueZero; `indexOf` uses strict equality. Both equality rules treat signed zeros as equal, but only SameValueZero finds NaN.
 5. Reducers skip absent indexes. The first present element becomes the accumulator if no initial value is given.
 6. Species affects `map`; `toReversed` does not consult species.
-7. `Array.fromAsync` awaits each source value and mapper result before requesting/processing the next.
+7. `Array.fromAsync` awaits each mapper result before advancing; source-value awaiting depends on the input route (true async iterator versus sync-iterator adapter versus array-like).
 
 ## Complete solutions
 
@@ -188,7 +190,9 @@ console.log(values); // [4, 8]
 console.log(events); // ["start 2", "end 2", "start 4", "end 4"]
 ```
 
-`Array.fromAsync` awaits the first mapper result before continuing to the second value, so this mapping is sequential, not concurrent.
+`Array.fromAsync` awaits the first mapper result before continuing to the second value, so mapper work is sequential, not concurrent. Async generators adopt a yielded Promise as part of async-generator semantics. A custom async iterator can instead return a Promise object as its `value`; `Array.fromAsync` passes that value to the mapper without an extra await. By contrast, the sync-iterator adapter and array-like path await source values.
+
+For example, when a custom async iterator directly returns a Promise as its yielded `value`, the mapper receives that Promise object. When a sync iterator yields the same Promise, the async-from-sync adapter awaits it before passing the resolved value to the mapper. An array-like source also awaits the property value before invoking the mapper. If no mapper is supplied, a Promise value yielded by a true async iterator is stored as that Promise value.
 
 ## Tests and edge cases
 
@@ -210,7 +214,7 @@ Answers follow each question.
 1. **Why should a method choice be based on hole behavior as well as return value?** Sparse slots can be skipped, read as `undefined`, preserved, or materialized depending on the method, which can change callbacks, search results, and output shape.
 2. **When is `includes` a better choice than `indexOf`?** When a Boolean answer is enough, especially when searching for `NaN` or treating holes read as `undefined` as matches; use `indexOf` when the matching index is required.
 3. **Which operations in the exercise mutate, and how can aliases reveal it?** `splice`, `sort`, and other in-place methods mutate the same object, so a second variable referencing that Array observes the change; copy-by-change methods leave the original unchanged.
-4. **Why is `Array.fromAsync` sequential rather than a concurrent mapper?** Its algorithm awaits each iterator value and mapper result before advancing to the next element, preserving ordered consumption and backpressure; concurrency requires an explicit separate strategy.
+4. **Why is `Array.fromAsync` sequential rather than a concurrent mapper?** Its algorithm awaits each mapper result before advancing to the next element, preserving ordered consumption and backpressure; concurrency requires an explicit separate strategy. Source-value awaiting depends on the selected input route.
 5. **What kinds of bugs can a custom species constructor introduce?** It can return an unexpected result type, violate assumptions made by a method, throw during result creation, or execute surprising constructor code when legacy methods create outputs.
 
 ## Sources

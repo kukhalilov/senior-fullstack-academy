@@ -8,13 +8,13 @@ This reference covers the supplied properties found on Array instances and their
 
 ## How this group fits the mental model
 
-Array instances are objects: they have an own `length` and can find methods/properties through `Array.prototype`. The prototype's `constructor` points back to Array, while its `length` is just the arity metadata for that prototype object. `Symbol.unscopables` serves a legacy lexical-lookup feature and does not change ordinary property access.
+Array instances are objects: they have an own `length` and can find methods/properties through `Array.prototype`. The prototype's `constructor` points back to Array; `Array.prototype` is itself an Array object and its own `length` is zero. `Symbol.unscopables` serves a legacy lexical-lookup feature and does not change ordinary property access.
 
 ## Supplied names explained
 
 - `Array.prototype.constructor` — The inherited constructor property whose initial value is the global Array constructor. It is a normal writable/configurable prototype property, not a reliable way to test whether an arbitrary object is an Array: an object can change or inherit a different `constructor` value.
 - `Array.prototype.length` — The value of this property on the prototype object itself is 0. Each Array instance has its own special `length` data property that tracks indexed properties; that instance property is non-enumerable, non-configurable, and normally writable. Reducing an instance's length deletes later configurable own array indexes; increasing length creates holes rather than filling values.
-- `Array.prototype[Symbol.unscopables]` — An object listing selected Array method names to exclude from `with`-statement identifier resolution. This preserves legacy code behavior when new method names are added. It affects `with` scope lookup only; it does not make those properties unavailable through `array.name` or reflection.
+- `Array.prototype[Symbol.unscopables]` — A null-prototype object listing `at`, `copyWithin`, `entries`, `fill`, `find`, `findIndex`, `findLast`, `findLastIndex`, `flat`, `flatMap`, `includes`, `keys`, `toReversed`, `toSorted`, `toSpliced`, and `values` with value `true`. These names are excluded from `with`-statement identifier resolution to preserve legacy binding behavior; ordinary property lookup and reflection still see them. The symbol property is non-writable, non-enumerable, and configurable on `Array.prototype`.
 
 ## Cross-item comparison
 
@@ -22,7 +22,7 @@ Array instances are objects: they have an own `length` and can find methods/prop
 | --- | --- | --- |
 | `Array.prototype.constructor` | Prototype lookup from an instance | Constructor reference; can be shadowed or changed |
 | `Array.prototype.length` | The prototype object | Its own length is zero; each instance has a separate special length |
-| `Array.prototype[Symbol.unscopables]` | Prototype symbol property | Legacy `with`-scope exclusion list |
+| `Array.prototype[Symbol.unscopables]` | Prototype symbol property | The specified legacy `with`-scope exclusion names, all set to `true` |
 
 Do not confuse the Array instance's `length` with `Array.prototype.length`, or either with the `length` of a method function.
 
@@ -47,7 +47,7 @@ console.log(Array.prototype.length);       // 0
 
 The constructor comparison is illustrative only; use `Array.isArray` when checking Array identity.
 
-`length` accepts only an integer in the inclusive range `0` through `2 ** 32 - 1`. Assignment of a negative, fractional, or larger value throws `RangeError`; the largest element index is one less than the maximum length.
+After the Array length conversion rules are applied, the accepted value is an integer in the inclusive range `0` through `2 ** 32 - 1`. A coercible string such as `"2"` can therefore set length to 2; an invalid numeric value such as a negative, fractional, or too-large number throws `RangeError`, while values that fail numeric conversion (such as Symbol or BigInt) throw `TypeError`. The largest element index is one less than the maximum length. A failed shrink blocked by a non-configurable index can still delete higher configurable indexes before restoring length above the blocker.
 
 ## Common mistakes
 
@@ -62,7 +62,7 @@ The constructor comparison is illustrative only; use `Array.isArray` when checki
 1. **What is `Array.prototype.length` initially?** Zero.
 2. **What happens to later configurable indexed properties when instance length shrinks?** They are deleted.
 3. **Does extending `length` create values?** No; it creates absent indexed positions (holes).
-4. **What does `[Symbol.unscopables]` affect?** Identifier resolution inside the legacy `with` statement, not ordinary property access.
+4. **Which names are initially unscopable?** `at`, `copyWithin`, `entries`, `fill`, `find`, `findIndex`, `findLast`, `findLastIndex`, `flat`, `flatMap`, `includes`, `keys`, `toReversed`, `toSorted`, `toSpliced`, and `values`.
 5. **Is `values.constructor === Array` a robust cross-realm Array check?** No; use `Array.isArray`.
 
 ## Further reading

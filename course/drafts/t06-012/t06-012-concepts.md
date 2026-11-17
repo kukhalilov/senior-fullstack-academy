@@ -18,9 +18,9 @@ You should understand objects, properties, prototypes, callbacks, iterables, equ
 
 ### Arrays are exotic objects with a coordinated length
 
-An Array is an object whose special internal property-definition behavior coordinates array-index properties with its `length`. Its `length` is a non-enumerable, non-configurable data property and is writable unless changed by property descriptors. Adding an own array-index property at or above the current length raises `length` to one more than that index. Reducing `length` deletes configurable own index properties at or beyond the new end; a non-configurable index can prevent the requested reduction from fully succeeding.
+An Array is an object whose special internal property-definition behavior coordinates array-index properties with its `length`. Its `length` is a non-enumerable, non-configurable data property and is writable unless changed by property descriptors. Adding an own array-index property at or above the current length raises `length` to one more than that index. Reducing `length` deletes configurable own index properties at or beyond the new end. If deletion reaches a non-configurable index, deletion stops; the Array's length is restored to one greater than that index, and the requested reduction fails (strict assignment throws; reflective operations report failure).
 
-The highest valid array index is `2 ** 32 - 2`; the string `"4294967295"` is not an array index. `length` may be `2 ** 32 - 1` and only accepts integer values in the inclusive range from 0 to that maximum; invalid assignments throw `RangeError`. A property like `array[-1]` is a string-keyed ordinary property, not an element and not a reason to change `length`.
+The highest valid array index is `2 ** 32 - 2`; the string `"4294967295"` is not an array index. `length` may be `2 ** 32 - 1`. When assigning, the value is converted using the array-length rules and must represent an integer in the inclusive range from 0 to that maximum; invalid numeric lengths throw `RangeError`, while conversions such as Symbol/BigInt can throw `TypeError`. Thus a coercible string like `"2"` can set length to 2. A property like `array[-1]` is a string-keyed ordinary property, not an element and not a reason to change `length`.
 
 ### A hole is absent, not an explicit undefined value
 
@@ -39,7 +39,7 @@ This is a rule-of-thumb table; consult each reference item for exact behavior. I
 
 ### Constructors answer different questions
 
-`[]` and array literals put the listed values at indexes. `Array(3)` uses the single-Number length form and creates three holes. `Array(3, 4)` creates two elements. `Array.of(3)` creates one element containing 3, avoiding the single-number special case. `Array.from(source)` prefers an iterable; if no iterator exists, it reads `length` and each indexed position from an array-like object. It can map values as they are read. `Array.fromAsync` first uses an async iterator, then a synchronous iterator adapter, then array-like indexed access; it awaits values and mapper results sequentially.
+`[]` and array literals put the listed values at indexes. `Array(3)` uses the single-Number length form and creates three holes. `Array(3, 4)` creates two elements. `Array.of(3)` creates one element containing 3, avoiding the single-number special case. `Array.from(source)` prefers an iterable; if no iterator exists, it reads `length` and each indexed position from an array-like object. It can map values as they are read. `Array.fromAsync` first uses an async iterator, then a synchronous iterator adapter, then array-like indexed access. It awaits mapper results sequentially. Source-value awaiting is path-specific: sync-iterator adapter and array-like values are awaited, while values from a genuine async iterator are passed through as yielded (including a Promise object from a custom async iterator).
 
 ### Iterators expose a traversal, not a snapshot
 
@@ -61,7 +61,7 @@ Array copies are shallow: nested objects remain shared references. `flat(depth)`
 
 ### Sorting has a default and a contract
 
-Without a comparator, `sort` and `toSorted` compare string representations, so `[1, 30, 4]` defaults to the order `[1, 30, 4]` because `"30"` sorts before `"4"`. Provide a comparator for numeric order, such as `(a, b) => a - b` for finite Numbers. Current ECMAScript requires stable sorting: elements that compare equal retain their relative order. The engine's algorithm and complexity are not specified. A comparator should be consistent and avoid mutating values in ways that undermine the ordering.
+Without a comparator, `sort` and `toSorted` compare string representations, so `[1, 30, 4]` defaults to the order `[1, 30, 4]` because `"30"` sorts before `"4"`. Provide a comparator for numeric order, such as `(a, b) => a - b` for finite Numbers. Current ECMAScript requires stable sorting: elements that compare equal retain their relative order. The engine's comparison-call sequence, algorithm, and complexity are not specified. A comparator must define a consistent ordering and avoid mutating the Array or comparison values in ways that undermine it.
 
 ### Species affects selected result methods
 
@@ -133,7 +133,7 @@ console.log(values.includes(NaN));  // true
 2. **What is the biggest valid Array index?** `2 ** 32 - 2`; `2 ** 32 - 1` is not an array index.
 3. **Which finds a stored or hole-read `NaN`: `indexOf` or `includes`?** `includes`, because it uses SameValueZero.
 4. **Do `toReversed` and `reverse` mutate the same receiver?** `reverse` mutates; `toReversed` returns a dense copy.
-5. **What does `Array.fromAsync` await?** Iterator-produced values and optional mapper results, one step at a time.
+5. **What does `Array.fromAsync` await?** Mapper results sequentially in all paths; it also awaits sync-adapter and array-like source values, but does not additionally await a value yielded by a genuine async iterator.
 6. **Can an inherited property at a hole index be visited by `map`?** Yes; presence checks include the prototype chain.
 7. **What happens when `reduce` has no initial value and no present elements?** It throws `TypeError`.
 
