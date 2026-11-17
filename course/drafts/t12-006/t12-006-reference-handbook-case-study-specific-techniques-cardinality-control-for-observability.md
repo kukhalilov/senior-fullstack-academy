@@ -1,36 +1,61 @@
 # end-to-end system design case studies — Reference: Cardinality control for observability
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [Prometheus instrumentation practices](https://prometheus.io/docs/practices/instrumentation/), [Prometheus metric and label naming](https://prometheus.io/docs/practices/naming/), [Google SRE: monitoring distributed systems](https://sre.google/sre-book/monitoring-distributed-systems/).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson focuses on metrics label cardinality, with Prometheus as a concrete example. Other telemetry backends have different storage and pricing models, but high-dimensional labels commonly increase aggregation, indexing, and query cost. Prometheus’ published numeric recommendations are guidance, not hard universal thresholds; review the current docs and measure your actual system.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Metrics turn repeated measurements into time series that operators can aggregate, alert on, and compare over time. Every distinct combination of metric name and label values creates a distinct series. If a label can take a huge or unbounded number of values, the system can create far more series than expected, increasing memory, CPU, disk, network, scrape, and query costs.
+
+The goal is useful diagnostic dimensions with bounded combinations. Keep high-detail per-request context in traces or structured logs where it can be sampled, filtered, access-controlled, and retained under an explicit policy. Metrics help answer “how many/how often/how long?”; they are not an indexed event database for arbitrary user IDs.
 
 ## Supplied names explained
 
-- `Cardinality control for observability` — Limits unbounded label dimensions to protect metrics storage and query cost; preserve useful diagnostic context through traces/logs with access controls.
+- **Cardinality:** the number of distinct values of a label, or more practically, the number of distinct label combinations for a metric.
+- **Label/dimension:** a key-value attribute attached to a measurement, such as `route="/orders/{id}"` or `status="5xx"`.
+- **Unbounded label:** a value domain that grows with requests or entities, such as user ID, email, request ID, raw URL, or exception message.
+- **Series budget:** a measured or chosen bound for series growth by service, metric family, or tenant; alert on sudden growth and include retention and replica factors.
+- **Alternative telemetry:** traces and logs retain richer per-event context; they also need sampling, indexing, privacy, and retention controls, and are not free or infinitely scalable.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Signal design | Example | Suitable for |
+| --- | --- | --- |
+| Bounded metric label | `route="/users/{id}"`, `method="GET"`, `status_class="5xx"` | Aggregated rate, error ratio, and latency by stable route or outcome class |
+| Unbounded metric label | `user_id="829103..."`, raw URL, request ID, free-form error text | Generally avoid; each new value can create additional metric series |
+| Trace/log attribute | Request ID, user/tenant identifier where justified, detailed error context | Investigating individual requests with sampling, access control, and retention constraints |
+| Top-K or sampled view | A bounded set of the highest-volume tenants/routes plus an “other” group | Finding major contributors without materializing every possible value as a metric series |
+
+Replacing an unbounded metric label with traces or logs preserves context only if instrumentation actually records it and the collection system’s cost, privacy, access, and retention behavior are understood. Scrubbing or hashing an identifier does not necessarily bound its number of unique values.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Suppose an HTTP request counter labels every sample with `path`. `/orders/1`, `/orders/2`, and every other identifier-bearing URL become distinct label values. With many users, the series count can grow continually. Use a route template such as `/orders/{id}` for the metric and retain the exact path or request ID in a trace/log when needed.
+
+Before adding `tenant_id`, estimate cardinality as the product of the distinct values across all labels, then account for the number of metric families, scrape targets, replicas, and retention. A few hundred tenants may still create large series counts when combined with route, status, region, and histogram buckets. Monitor active series and churn, query cost, scrape size, and dropped/limited series. Prometheus guidance suggests investigating alternatives when cardinality is high or can grow beyond its stated rule-of-thumb thresholds; the correct budget depends on workload and resources.
+
+For a top-ten tenant dashboard, produce a bounded aggregation or query over the event/analytics data and label the remaining group as “other.” Do not add every tenant ID as an always-on dimension solely because it makes one dashboard convenient.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Putting request IDs, user IDs, email addresses, raw URLs, timestamps, or arbitrary exception text in metric labels.
+- Counting only possible label values and forgetting combinations across labels, metric families, targets, replicas, histogram buckets, and time retention.
+- Believing hashing a unique identifier lowers cardinality; it changes representation, not uniqueness.
+- Removing every useful dimension and making the metric impossible to act on; bounded labels such as route template, method, status class, and region may be valuable.
+- Moving detailed context into logs/traces without sampling, redaction, access control, or retention limits.
+- Treating a tool’s suggested numeric threshold as a universal service limit rather than guidance to investigate and measure.
+- Detecting series growth only after collection or query capacity is already exhausted.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Why is `request_id` a poor Prometheus label?** Almost every request can have a new value, producing a series per request rather than a reusable aggregate.
+2. **Is a hash of user ID safe as a low-cardinality label?** No. A stable hash preserves distinctness and can still create one series per user.
+3. **How can operators see errors by endpoint without raw URLs?** Instrument route templates and bounded outcomes in metrics, then use trace/log correlation IDs for individual requests.
+4. **Does moving the identifier into traces eliminate all risk?** No. Traces need their own volume, sampling, privacy, access, and retention controls.
+
+## Review status
+
+Series-per-labelset behavior and cardinality guidance are checked against Prometheus documentation. Numeric recommendations are identified as guidance, not universal capacity limits. This lesson remains pending full claim-by-claim audit and manifest omission check.
