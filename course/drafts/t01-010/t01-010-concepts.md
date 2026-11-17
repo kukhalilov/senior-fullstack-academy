@@ -8,7 +8,7 @@
 * Understand the conceptual difference between covariance, contravariance, and invariance.
 * Learn how to use `in` and `out` modifiers to enable safe type conversions.
 * Distinguish between generic variance, array covariance, and covariant return types.
-* Identify the limitations of variance (e.g., why it only applies to reference types and interfaces/delegates).
+* Identify the limitations of variance (e.g., why it conversion applies to reference-type arguments on variant interfaces/delegates).
 
 # Prerequisites
 * Understanding of inheritance and polymorphism (base classes and derived classes).
@@ -20,15 +20,15 @@ Variance describes how the inheritance relationship between two types (e.g., `st
 
 * **Covariance (`out`)**: Allows you to use a more derived type than originally specified. It is used for "producers" (things that return data). If `string` is a `object`, then `IEnumerable<string>` can be treated as `IEnumerable<object>`.
 * **Contravariance (`in`)**: Allows you to use a more base type than originally specified. It is used for "consumers" (things that accept data). If `object` is a base of `string`, then `IComparer<object>` can be treated as `IComparer<string>`.
-* **Invariance**: No conversion is allowed. The generic type must match exactly. This is required for mutable collections like `IList<T>` because they both produce and consume data.
+* **Invariance**: No conversion is allowed. The generic type must match exactly. A parameter used in both input and output positions generally must be invariant; mutable collection interfaces such as `IList<T>` are invariant.
 
 # Mechanisms and relationships
 Variance is a contract defined by the `in` and `out` modifiers on generic type parameters.
 
-1.  **`out` variance modifier**: Marks a type parameter as "output-only." The compiler ensures this parameter is only used in return positions. This enables **Covariance**.
-2.  **`in` variance modifier**: Marks a type parameter as "input-only." The compiler ensures this parameter is only used in method arguments. This enables **Contravariance**.
+1.  **`out` variance modifier**: Marks a type parameter as "output-only." The compiler applies variance-safety rules: output-unsafe uses of `out` parameters and input-unsafe uses of `in` parameters are prohibited in relevant instance/interface contracts. This enables **Covariance**.
+2.  **`in` variance modifier**: Marks a type parameter as "input-only." The compiler applies variance-safety rules: output-unsafe uses of `out` parameters and input-unsafe uses of `in` parameters are prohibited in relevant instance/interface contracts. This enables **Contravariance**.
 3.  **Implicit reference conversion**: Variance is not a cast; it is an implicit conversion that the compiler permits because it is type-safe.
-4.  **Limits**: Variance only applies to interfaces and delegates. It does not apply to classes or structs. It also does not apply to value-type arguments (e.g., `List<int>` cannot be converted to `List<object>`).
+4.  **Limits**: Variance annotations are limited to generic interface and delegate parameters. It also does not apply to value-type arguments (e.g., `List<int>` cannot be converted to `List<object>`).
 
 # Worked examples
 ### Covariance Example
@@ -50,7 +50,7 @@ IComparer<string> stringComparer = objectComparer;
 ```
 
 # Misconceptions and edge cases
-* **Array Covariance vs. Generic Variance**: Arrays allow `string[]` to be treated as `object[]`, but this is a runtime feature that can throw an `ArrayTypeMismatchException` if you try to put an `int` into that `object[]`. Generic variance is checked at compile-time and is strictly type-safe.
+* **Array Covariance vs. Generic Variance**: Arrays allow `string[]` to be treated as `object[]`, but this is a runtime feature that can throw an `ArrayTypeMismatchException` if you try to put an `int` into that `object[]`. Generic variance conversions are statically type-safe under the interface/delegate contract.
 * **Mutable Collections**: A common mistake is expecting `List<string>` to be convertible to `List<object>`. This is **Invariance**. If it were allowed, you could add an `int` to a list that expects `string`, breaking type safety.
 * **Value Types**: Variance does not apply to value types. `List<int>` is not a `List<object>` because `int` is a value type and the underlying memory representation differs.
 * **Method-group binding**: This is distinct from generic variance. You can assign a method that returns a `string` to a delegate that returns an `object` (method-group covariance), even if the delegate itself isn't defined with `out`.
@@ -66,6 +66,6 @@ IComparer<string> stringComparer = objectComparer;
    **Answer**: The compiler will report an "Invalid variance position" diagnostic. The `out` modifier strictly forbids using the type as an input parameter.
 
 4. **Question**: Is `IEnumerable<int>` covariant to `IEnumerable<object>`?
-   **Answer**: No. Variance only applies to reference types. `int` is a value type.
+   **Answer**: No. Variance conversions require reference-type arguments; `int` is a value type, so `IEnumerable<int>` has no variance conversion to `IEnumerable<object>`.
 
 *Source: [Microsoft .NET Generic Variance Documentation](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/)*

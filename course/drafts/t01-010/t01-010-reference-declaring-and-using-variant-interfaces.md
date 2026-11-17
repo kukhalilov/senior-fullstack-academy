@@ -22,10 +22,10 @@ This section explains every item in the assigned reference inventory exactly as 
   An interface declaration that includes variance annotations (`out` or `in`) on one or more of its generic type parameters. This tells the C# compiler that constructed versions of the interface support safe implicit reference conversions when their type arguments share an inheritance relationship.
 
 * `Covariant interface type parameter`
-  A type parameter marked with the `out` modifier in a generic interface declaration. It indicates that the type parameter is used strictly as an output (e.g., return types or read-only properties), enabling covariant assignment compatibility.
+  A type parameter marked `out` in a generic interface declaration. Its uses must be output-safe under variance-safety rules, enabling covariant assignment compatibility.
 
 * `Contravariant interface type parameter`
-  A type parameter marked with the `in` modifier in a generic interface declaration. It indicates that the type parameter is used strictly as an input (e.g., method parameter types), enabling contravariant assignment compatibility.
+  A type parameter marked `in` in a generic interface declaration. Its uses must be input-safe under variance-safety rules, enabling contravariant assignment compatibility.
 
 * `Covariant parameter used as method return type`
   A valid usage position for a covariant (`out`) type parameter where the generic method returns a value of that type parameter. Because the type flows *out* of the interface to the caller, safety is preserved.
@@ -151,14 +151,14 @@ class Program
 # Common mistakes
 - **Treating mutable generic collections as covariant:** Trying to assign `IList<String>` to `IList<Object>` will fail to compile. Mutable collections must remain invariant.
 - **Placing variant type parameters in illegal positions:** Putting an `out` parameter in a method input argument or an `in` parameter in a return position results in an `Invalid variance position` compiler error.
-- **Confusing array covariance with generic variance:** Array covariance permits `String[]` to be treated as `Object[]`, but stores can fail at runtime with an `ArrayTypeMismatchException`. Generic interface covariance is strictly checked at compile time and preserves type safety.
+- **Confusing array covariance with generic variance:** Array covariance permits `String[]` to be treated as `Object[]`, but stores can fail at runtime with an `ArrayTypeMismatchException`. Generic interface variance is constrained by compiler-checked variance safety rules and preserves type safety.
 
 # Knowledge checks with answers
 1. **Question:** Why must `IList<T>` be invariant instead of covariant?
    **Answer:** Because `IList<T>` allows both reading and writing (producing and consuming). If it were covariant, you could take an `IList<String>`, cast it to `IList<Object>`, and insert an integer or another unrelated object into it, corrupting the underlying string collection at runtime.
 
 2. **Question:** What does the `out` keyword signify on a generic interface type parameter?
-   **Answer:** It signifies that the type parameter is covariant, meaning it is used exclusively in output positions (such as return values or read-only properties) and allows safe assignment to broader type arguments.
+   **Answer:** It marks the parameter covariant; its occurrences must satisfy the specification’s output-safety rules, and compatible constructed interfaces support implicit reference conversions.
 
 3. **Question:** Can a contravariant type parameter (`in`) be used as a method return type?
    **Answer:** No. Using a contravariant parameter as a return type is an invalid variance position and will cause a compilation error because input types cannot safely flow out as outputs.

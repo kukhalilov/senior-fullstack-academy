@@ -21,7 +21,7 @@ Understanding these features prevents confusion between compile-time generic var
 
 * `Array`
   * **Exact String:** `Array covariance`
-  * **Explanation:** A language feature permitting an array of a derived reference type to be treated as an array of a base reference type. For example, a `String[]` can be treated as an `Object[]`. Unlike generic interface covariance, array covariance is built into the language runtime for all reference types.
+  * **Explanation:** A language feature permitting an array of a derived reference type to be treated as an array of a base reference type. For example, a `String[]` can be treated as an `Object[]`. Array covariance is a distinct built-in conversion mechanism for reference-type arrays.
 
 * `Array`
   * **Exact String:** `Reference-type array covariance`
@@ -75,10 +75,10 @@ The inventory items compare across two distinct operational models:
 
 # Examples
 
-The following unverified pseudocode examples demonstrate array covariance runtime checks and C# 9 override return covariance.
+The following C# example examples demonstrate array covariance runtime checks and C# 9 override return covariance.
 
 ```csharp
-// Unverified pseudocode example: Array covariance and store failure
+// Array covariance and store failure
 // Reference: https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance
 
 string[] strings = new string[2];
@@ -91,7 +91,7 @@ object[] objects = strings; // Array covariance conversion (reference-type array
 ```
 
 ```csharp
-// Unverified pseudocode example: C# 9 covariant return types in override
+// C# 9 covariant return types in override
 // Reference: https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9
 
 public abstract class Animal { }
@@ -118,6 +118,6 @@ public class DerivedHandler : BaseHandler
 # Knowledge checks with answers
 
 1. **Question:** Why does array covariance require a runtime store check (`ArrayTypeMismatchException`), whereas generic interface covariance does not?
-   * **Answer:** Arrays are mutable read/write data structures. Because an array of a derived type can be referenced as an array of a base type, the runtime must verify that any value written into the array matches the actual allocated element type. Generic interface covariance (`out`), by contrast, is restricted to producing values (read-only), preventing write operations entirely and enabling compile-time safety.
+   * **Answer:** Arrays are mutable read/write data structures. Because an array of a derived type can be referenced as an array of a base type, the runtime must verify that any value written into the array matches the actual allocated element type. Generic interface covariance (`out`) is allowed only for output-safe uses in the interface contract, preventing an unsafe write through a covariantly converted reference.
 2. **Question:** What language feature allows an overriding method in a derived class to return a more derived type than the virtual method in its base class, and in which C# version was it introduced?
    * **Answer:** Covariant return types in overrides, introduced in C# 9 and .NET 5.

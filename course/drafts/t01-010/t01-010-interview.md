@@ -15,12 +15,12 @@
 
 *   **Explain `in` vs `out`:** Use `out` for covariant type parameters (the type is only returned/produced). Use `in` for contravariant type parameters (the type is only accepted as an input).
 *   **Why is `List<T>` invariant?** Because it is a read/write abstraction. If `List<string>` were treated as `List<object>`, you could add an `int` to a list of strings, causing a runtime crash.
-*   **Does variance apply to classes?** No. Variance only applies to interfaces and delegates. Classes are always invariant.
+*   **Does variance apply to classes?** No. Variance annotations are allowed only on interface and delegate type parameters; class type parameters are invariant.
 
 # Deep follow-up answers
 
-*   **How does array covariance differ from generic variance?** Array covariance is a legacy feature that allows `string[]` to be treated as `object[]`. However, it is not type-safe; the runtime performs a check on every write, throwing an `ArrayTypeMismatchException` if the types don't match. Generic variance is enforced at compile-time via the `in`/`out` contract.
-*   **Can I use variance with value types?** No. Variance only applies to reference types. `IEnumerable<int>` cannot be converted to `IEnumerable<object>` because value types do not share the same memory representation as their boxed counterparts in this context.
+*   **How does array covariance differ from generic variance?** Array covariance is a legacy feature that allows `string[]` to be treated as `object[]`. Because the array remains mutable, an incompatible store through the wider reference fails at runtime with `ArrayTypeMismatchException`; this is distinct from generic interface variance. Generic variance is enforced at compile-time via the `in`/`out` contract.
+*   **Can I use variance with value types?** No. Variance only applies to reference types. `IEnumerable<int>` cannot be converted to `IEnumerable<object>` by variance. Boxing an individual `int` to `object` does not create a variant conversion between those constructed interface types.
 *   **Is covariant return type in C# 9 the same as generic variance?** No. Covariant return types allow an overridden method to return a more derived type than the base method. This is a feature of inheritance and virtual dispatch, whereas generic variance is a feature of type parameter substitution.
 
 # Scenario questions
@@ -39,14 +39,14 @@
 
 # Common weak answers
 
-*   **"Variance is just casting."** Incorrect. Variance is a formal type system rule that allows implicit reference conversions. Casting is an explicit operation that may fail at runtime.
-*   **"Everything can be covariant."** Incorrect. Only "producer" types (where the type parameter is used only in output positions) can be covariant.
+*   **"Variance is just casting."** Incorrect. Variance is a formal type-system rule for permitted implicit reference conversions; casts are separate explicit conversions and may fail at runtime.
+*   **"Everything can be covariant."** Incorrect. A covariant parameter must be used only in output-safe positions under the language’s composed variance rules.
 *   **"I can use variance to change the type of a list."** Incorrect. Variance does not change the identity of the object; it only changes the reference type through which you access it.
 
 # Self-check rubric
 
 *   **Can you identify the variance of an interface?** Look for `in` or `out` in the definition. If neither is present, it is invariant.
 *   **Can you predict a compiler error?** If you try to use an `out` parameter in an input position (like a method argument), the compiler will trigger an `Invalid variance position` error.
-*   **Do you understand the limits?** Remember that variance does not apply to classes, structs, or value types.
+*   **Do you understand the limits?** Remember that variance annotations are limited to interface/delegate parameters, and conversion requires reference-type arguments.
 
 *Sources: [Microsoft C# Programming Guide](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/), [Variance in Generic Interfaces](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces), [C# 9 Covariant Returns](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9)*

@@ -13,8 +13,8 @@ This reference lesson covers the exact named group **delegate-variance-and-metho
 
 # Supplied names explained
 - `Variant generic delegate declaration`: Defining a delegate type with `in` or `out` variance annotations on its generic type parameters, establishing compile-time assignment safety across derived and base types.
-- `Covariant delegate return type parameter`: A delegate type parameter annotated with `out`, ensuring that the parameter appears only in output positions (such as return types), enabling safe assignment of delegates returning more derived types.
-- `Contravariant delegate parameter type parameter`: A delegate type parameter annotated with `in`, ensuring that the parameter appears only in input positions (such as method parameters), enabling safe assignment of delegates accepting wider (base) types.
+- `Covariant delegate return type parameter`: A delegate type parameter annotated with `out`, whose occurrences satisfy output-safety rules, enabling safe assignment of delegates returning more derived types.
+- `Contravariant delegate parameter type parameter`: A delegate type parameter annotated with `in`, whose occurrences satisfy input-safety rules, enabling safe assignment of delegates accepting wider (base) types.
 - `Func<TResult> covariance`: The built-in zero-argument `Func<TResult>` delegate is covariant in its `TResult` parameter, permitting assignment of a delegate returning a derived type to a variable expecting a base type result.
 - `Func<T,TResult> input contravariance`: The behavior where the input parameter `T` of a single-argument `Func` delegate is contravariant, allowing a function expecting a base parameter to be used where a derived parameter is requested.
 - `Func<T,TResult> result covariance`: The behavior where the output parameter `TResult` of a single-argument `Func` delegate is covariant, allowing a function returning a derived result to be used where a base result is requested.
@@ -40,7 +40,7 @@ This reference lesson covers the exact named group **delegate-variance-and-metho
 - **`Method-group covariance` vs. `Delegate variance conversion`**: Method-group covariance describes target method binding behavior at assignment time based on return subtyping, while delegate variance conversion describes the broader umbrella of implicit reference conversions allowed between constructed generic delegate instances.
 
 # Examples
-The following unverified code example illustrates variant delegate and method-group compatibility concepts:
+The following code example illustrates variant delegate and method-group compatibility concepts:
 
 ```csharp
 using System;

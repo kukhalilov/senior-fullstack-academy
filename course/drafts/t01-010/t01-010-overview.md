@@ -17,9 +17,9 @@ Think of a **Producer** and a **Consumer**:
 *   **Invariance:** If a machine both takes in and gives out the same type (like a `List<T>`), it cannot be safely treated as a different type. If you change the input or output, you break the contract.
 
 # How the parts fit together
-Variance is a contract between you and the compiler. You use `in` and `out` modifiers on generic type parameters in interfaces and delegates to tell the compiler how that type is used.
+Variance is declared with `in` and `out` on interface/delegate type parameters. The language checks safe and unsafe positions, with a specific exception for non-virtual, non-abstract static members of interfaces.
 
-1.  **Interfaces:** You define an interface as covariant (`out T`) if `T` is only used as a return type or in read-only properties. You define it as contravariant (`in T`) if `T` is only used as a method parameter.
+1.  **Interfaces:** You declare `out T` for a covariant parameter and `in T` for a contravariant parameter. The compiler checks all relevant member positions, including nested interface/delegate variance; these are not merely syntactic return/input tests.
 2.  **Delegates:** Similar rules apply to `Func<T>` (covariant result) and `Action<T>` (contravariant input).
 3.  **Conversion:** Once these contracts are in place, the compiler allows an **implicit reference conversion**. You can assign a variable of a more specific type to a variable of a more general type (or vice versa, depending on the variance).
 
@@ -28,7 +28,7 @@ Variance is a contract between you and the compiler. You use `in` and `out` modi
 *   **Covariance (`out`):** Preserves the inheritance hierarchy (e.g., `IEnumerable<Dog>` can be treated as `IEnumerable<Animal>`).
 *   **Contravariance (`in`):** Reverses the inheritance hierarchy (e.g., `IComparer<Animal>` can be treated as `IComparer<Dog>`).
 *   **Invariance:** No conversion allowed (e.g., `IList<T>`).
-*   **Boundaries:** Variance only applies to reference types and generic interfaces/delegates. It does not apply to classes, structs, or value types.
+*   **Boundaries:** Variance annotations are available only on generic interfaces and delegates. Variance conversions are reference conversions and require reference-type arguments for the variant parameters.
 
 # End-to-end walkthrough
 Imagine you have a `List<Dog>` and a method that processes `IEnumerable<Animal>`.

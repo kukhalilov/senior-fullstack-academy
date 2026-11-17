@@ -146,19 +146,40 @@
   ],
   "inventoryComplete": true,
   "comparisons": [
-    ["Covariance", "Contravariance", "Invariance"],
-    ["IEnumerable<T>", "IList<T>"],
-    ["Producer", "Consumer", "Read/write abstraction"],
-    ["Array covariance", "Generic interface covariance"],
-    ["Delegate method-group variance", "Generic delegate variance"],
-    ["Covariant override return", "Covariant generic type parameter"]
+    [
+      "Covariance",
+      "Contravariance",
+      "Invariance"
+    ],
+    [
+      "IEnumerable<T>",
+      "IList<T>"
+    ],
+    [
+      "Producer",
+      "Consumer",
+      "Read/write abstraction"
+    ],
+    [
+      "Array covariance",
+      "Generic interface covariance"
+    ],
+    [
+      "Delegate method-group variance",
+      "Generic delegate variance"
+    ],
+    [
+      "Covariant override return",
+      "Covariant generic type parameter"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
     "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
     "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
     "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
-    "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance"
+    "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces"
   ],
   "versionNotes": [
     {
@@ -174,8 +195,8 @@
   ],
   "sourceSnapshot": {
     "authority": ".NET generic variance documentation and C# programming guide/reference",
-    "edition": "Current .NET 11 and C# 15 variance rules checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "Current .NET 11 / C# 15 variance rules, checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
       "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
@@ -184,7 +205,8 @@
       "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-for-func-and-action-generic-delegates",
       "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
-      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces"
     ]
   },
   "scopeExclusions": [
@@ -193,5 +215,9 @@
     "Inheritance, virtual dispatch, and interface implementation are covered in t01-007.",
     "Array APIs and generic collection operations are covered in t01-014."
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "Do not reduce interface variance safety to simple return-versus-parameter positions: nested generic/delegate variance composes, and static non-virtual, non-abstract interface members are exempt from variance-safety restrictions.",
+    "Do not claim an entire covariant interface or its implementation is immutable; variance safety constrains access through the variant contract."
+  ]
 }

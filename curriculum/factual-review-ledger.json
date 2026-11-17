@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 297,
-    "pending": 2043,
-    "claimsChecked": 7298,
-    "claimsCorrected": 722,
+    "reviewed": 306,
+    "pending": 2034,
+    "claimsChecked": 7646,
+    "claimsCorrected": 782,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 297,
-    "pendingLessons": 2043
+    "reviewedLessons": 306,
+    "pendingLessons": 2034
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -973,6 +973,22 @@
       ],
       "findings": [
         "Reviewed all eight lessons against the frozen generic-language inventory and official Microsoft C# documentation/specifications. Corrected runtime specialization/sharing and boxing absolutes, nullable and ordering semantics of constraints, lambda/method-group inference distinctions, overload/signature rules, and ref-safety description. Checked examples, constraints, version notes, and scope boundaries; no unresolved issues remain."
+      ]
+    },
+    {
+      "scope": "C# covariance, contravariance, variance conversions, delegate binding, array covariance, and covariant override returns (t01-010; all nine lesson units)",
+      "status": "full claim and frozen-inventory audit complete; draft states retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors"
+      ],
+      "findings": [
+        "Reviewed all nine lessons against the topic inventory and Microsoft C# interface variance specification and .NET variance documentation. Distinguished generic interface/delegate variance from method-group binding, array covariance/runtime store failure, and C# 9 covariant overrides. Corrected nested variance, static-member exception, value-type boundaries, and read-only/producer overgeneralizations. No unresolved issues remain."
       ]
     }
   ],
@@ -10499,216 +10515,846 @@
       "topicId": "t01-010",
       "phase": "overview",
       "draft": "course/drafts/t01-010/t01-010-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-for-func-and-action-generic-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit completed against Microsoft C# specification and official .NET documentation. Corrected producer/consumer oversimplifications, nested variance and static-member boundaries, value-type conversion wording, array-store failure language, and method-group/delegate distinctions. No unresolved factual or manifest-scope issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-010-concepts",
       "topicId": "t01-010",
       "phase": "concepts",
       "draft": "course/drafts/t01-010/t01-010-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 36,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-for-func-and-action-generic-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit completed against Microsoft C# specification and official .NET documentation. Corrected producer/consumer oversimplifications, nested variance and static-member boundaries, value-type conversion wording, array-store failure language, and method-group/delegate distinctions. No unresolved factual or manifest-scope issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-010-reference-variance-model-and-conversions",
       "topicId": "t01-010",
       "phase": "reference",
       "draft": "course/drafts/t01-010/t01-010-reference-variance-model-and-conversions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-for-func-and-action-generic-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit completed against Microsoft C# specification and official .NET documentation. Corrected producer/consumer oversimplifications, nested variance and static-member boundaries, value-type conversion wording, array-store failure language, and method-group/delegate distinctions. No unresolved factual or manifest-scope issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-010-reference-declaring-and-using-variant-interfaces",
       "topicId": "t01-010",
       "phase": "reference",
       "draft": "course/drafts/t01-010/t01-010-reference-declaring-and-using-variant-interfaces.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 54,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-for-func-and-action-generic-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit completed against Microsoft C# specification and official .NET documentation. Corrected producer/consumer oversimplifications, nested variance and static-member boundaries, value-type conversion wording, array-store failure language, and method-group/delegate distinctions. No unresolved factual or manifest-scope issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-010-reference-delegate-variance-and-method-binding",
       "topicId": "t01-010",
       "phase": "reference",
       "draft": "course/drafts/t01-010/t01-010-reference-delegate-variance-and-method-binding.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-for-func-and-action-generic-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit completed against Microsoft C# specification and official .NET documentation. Corrected producer/consumer oversimplifications, nested variance and static-member boundaries, value-type conversion wording, array-store failure language, and method-group/delegate distinctions. No unresolved factual or manifest-scope issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-010-reference-array-variance-and-return-covariance",
       "topicId": "t01-010",
       "phase": "reference",
       "draft": "course/drafts/t01-010/t01-010-reference-array-variance-and-return-covariance.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-for-func-and-action-generic-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit completed against Microsoft C# specification and official .NET documentation. Corrected producer/consumer oversimplifications, nested variance and static-member boundaries, value-type conversion wording, array-store failure language, and method-group/delegate distinctions. No unresolved factual or manifest-scope issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-010-reference-variance-design-and-diagnostics",
       "topicId": "t01-010",
       "phase": "reference",
       "draft": "course/drafts/t01-010/t01-010-reference-variance-design-and-diagnostics.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-for-func-and-action-generic-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit completed against Microsoft C# specification and official .NET documentation. Corrected producer/consumer oversimplifications, nested variance and static-member boundaries, value-type conversion wording, array-store failure language, and method-group/delegate distinctions. No unresolved factual or manifest-scope issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-010-practice",
       "topicId": "t01-010",
       "phase": "practice",
       "draft": "course/drafts/t01-010/t01-010-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-for-func-and-action-generic-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit completed against Microsoft C# specification and official .NET documentation. Corrected producer/consumer oversimplifications, nested variance and static-member boundaries, value-type conversion wording, array-store failure language, and method-group/delegate distinctions. No unresolved factual or manifest-scope issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-010-interview",
       "topicId": "t01-010",
       "phase": "interview",
       "draft": "course/drafts/t01-010/t01-010-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        },
+        {
+          "claims": "Checked applicable variance declaration, conversion direction, version, BCL API, array store, delegate binding, and example claims against the relevant official sections; corrected statements recorded in the draft.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
+              "section": "Variance safety and conversion rules, BCL variance annotations, delegate binding, arrays, or release version as applicable",
+              "verdict": "Supported by Microsoft documentation/specification; overbroad wording was qualified."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/interfaces",
+        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/creating-variant-generic-interfaces",
         "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/variance-in-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/using-variance-for-func-and-action-generic-delegates",
-        "https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/generic-type-parameters-errors"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory audit completed against Microsoft C# specification and official .NET documentation. Corrected producer/consumer oversimplifications, nested variance and static-member boundaries, value-type conversion wording, array-store failure language, and method-group/delegate distinctions. No unresolved factual or manifest-scope issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-011-overview",

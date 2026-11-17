@@ -23,8 +23,8 @@ These rules ensure that you cannot accidentally insert an incompatible type into
 * `Invariance`: The default state where a generic type is only compatible with itself; no conversion is permitted between different type arguments.
 * `Variant generic type parameter`: A type parameter marked with `in` or `out` that enables variance conversions.
 * `Invariant generic type parameter`: A type parameter without `in` or `out` modifiers, restricting the generic type to exact matches.
-* `out variance modifier`: An annotation used on interface or delegate type parameters to indicate the type is only used as a return value (a producer), enabling covariance.
-* `in variance modifier`: An annotation used on interface or delegate type parameters to indicate the type is only used as an input parameter (a consumer), enabling contravariance.
+* `out variance modifier`: An annotation on an interface or delegate type parameter that enables covariance; occurrences must satisfy the language variance-safety rules (including nested generic variance).
+* `in variance modifier`: An annotation on an interface or delegate type parameter that enables contravariance; occurrences must satisfy the language variance-safety rules (including nested generic variance).
 * `Implicit reference conversion between variant interfaces`: The mechanism by which the compiler allows assigning a variant interface (e.g., `IEnumerable<string>`) to a variable of a compatible variant interface (e.g., `IEnumerable<object>`).
 * `Implicit reference conversion between variant delegates`: The mechanism allowing a delegate (e.g., `Func<string>`) to be assigned to a variable of a compatible delegate type (e.g., `Func<object>`).
 * `Variance conversion direction`: The rule that covariance follows the inheritance hierarchy (derived to base), while contravariance moves against it (base to derived).
@@ -35,7 +35,7 @@ These rules ensure that you cannot accidentally insert an incompatible type into
 * `Variance does not apply to generic methods`: Variance applies to the type parameters of the interface or delegate, not to the parameters of a method defined within them.
 * `Variance does not apply to generic parameters of classes`: Variance modifiers cannot be placed on the type parameters of a class definition.
 * `Variance does not change the constructed type identity`: The underlying object remains the same; only the reference type used to access it changes.
-* `Variance does not permit mutation through a producer interface`: Covariance is only safe because the interface does not allow modifying the collection (e.g., `IEnumerable<T>` is read-only).
+* `Variance does not permit mutation through a producer interface`: Covariance is safe when the interface’s exposed member contract cannot be used through a variant reference to supply an incompatible value. This does not assert that the underlying object has no mutation through other interfaces.
 * `Variance and assignment compatibility`: The core rule that determines if a variable of one generic type can be assigned to another based on variance modifiers.
 * `Variance and inheritance conversion`: The relationship between the inheritance of the type arguments and the compatibility of the generic types.
 * `Transitive variance conversion`: If type A can be converted to B, and B to C, then A can be converted to C via variance.
@@ -76,4 +76,4 @@ Action<string> actOnString = actOnObject; // Allowed: can handle string if it ca
 2. **Question:** Does variance apply to `int` or other value types?
    **Answer:** No. Variance conversions only apply to reference types.
 3. **Question:** Why is `IEnumerable<T>` covariant but `IList<T>` is not?
-   **Answer:** `IEnumerable<T>` only produces values (read-only), making it safe for covariance. `IList<T>` allows adding values (consumer), which requires invariance to remain type-safe.
+   **Answer:** `IEnumerable<T>` exposes `T` through output-safe enumeration members, while `IList<T>` also accepts `T` through mutation members and is invariant.

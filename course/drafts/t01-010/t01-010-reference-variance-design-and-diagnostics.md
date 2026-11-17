@@ -16,23 +16,23 @@ When designing or consuming APIs, the `out` and `in` annotations on interface an
 
 # Supplied names explained
 
-* `Producer interface design`: Designing an interface that only yields or returns data of a generic type parameter, allowing it to be annotated as covariant (`out`) so that assignments to broader base types succeed safely.
-* `Consumer interface design`: Designing an interface that only accepts or consumes data of a generic type parameter as input, allowing it to be annotated as contravariant (`in`) so that assignments to narrower derived types or broader delegates succeed safely.
+* `Producer interface design`: Designing an interface that yields or returns data through output-safe occurrences of a generic type parameter, allowing it to be annotated as covariant (`out`) so that assignments to broader base types succeed safely.
+* `Consumer interface design`: Designing an interface that accepts or consumes data through input-safe occurrences of a generic type parameter, allowing it to be annotated as contravariant (`in`) so that assignments to narrower derived types or broader delegates succeed safely.
 * `Read/write interface invariance`: Designing an interface that both reads and writes a generic type parameter, which forces it to remain invariant (unannotated) to prevent dangerous writes of incorrect subtypes into a storage location.
-* `Input-only generic API`: An API design pattern where a generic type parameter is used exclusively in input positions (such as method parameters or consumer methods), making it a candidate for contravariant usage.
-* `Output-only generic API`: An API design pattern where a generic type parameter is used exclusively in output positions (such as return types or property getters), making it a candidate for covariant usage.
+* `Input-only generic API`: An API design pattern where a generic type parameter is used in input-safe positions (such as method parameters or consumer methods), making it a candidate for contravariant usage.
+* `Output-only generic API`: An API design pattern where a generic type parameter is used in output-safe positions (such as return types or property getters), making it a candidate for covariant usage.
 * `Input/output generic API`: An API design pattern where a generic type parameter appears in both input and output positions, requiring invariance to maintain type and memory safety.
 * `Variance for reusable APIs`: Applying variance rules to widespread library abstractions (such as delegates or sequence interfaces) so developers can pass specialized implementations into general-purpose routines without manual wrapper casts.
 * `Avoid unnecessary variance annotation`: The practice of leaving type parameters invariant unless explicitly required by read-only or write-only usage, preventing compiler errors and unintended API design constraints.
-* `Variance and type safety`: The core .NET guarantee that compile-time variance rules prevent runtime type mismatch exceptions (such as `InvalidCastException`) by strictly restricting how variant type parameters are passed.
+* `Variance and type safety`: Variance safety rules ensure that permitted conversions preserve type safety; they do not eliminate unrelated runtime exceptions.
 * `Variance versus casting`: The distinction between compile-time implicit reference conversions allowed by variance annotations and explicit downcasting or upcasting of object references at runtime.
-* `Variance versus adapter allocation`: The efficiency choice between leveraging built-in generic variance (which performs zero-cost reference conversions) versus writing manual wrapper adapter classes to bridge mismatched generic types.
+* `Variance versus adapter allocation`: The efficiency choice between using a built-in variance conversion (which does not allocate an adapter object by itself) versus writing manual wrapper adapter classes to bridge mismatched generic types.
 * `Invalid variance compiler diagnostic`: A compiler error issued when a type parameter is annotated with `out` or `in` but appears in an illegal position (such as an `out` parameter used as a method input, or an `in` parameter used as a return type).
 * `Variance conversion not found diagnostic`: A compiler error issued when attempting an assignment or argument passing operation between constructed generic types that lack the required variance relationship.
 * `Value-type variance conversion limitation`: The restriction that generic variance rules apply only to reference types, meaning value types (like `int` or `Guid`) and structures cannot undergo implicit variance conversions due to underlying representation differences.
 * `Variance with nullable reference annotations`: The interaction between generic variance rules and nullable reference types, ensuring that nullability annotations align correctly across covariant outputs and contravariant inputs.
 * `Variance and generic constraints are separate rules`: The architectural boundary stating that type parameter constraints (such as `where T : class`) and variance annotations (`out`/`in`) are distinct compile-time validation mechanisms that do not replace one another.
-* `Variance and static abstract interface members`: The rule regarding how modern interface features like static abstract members interact with variance, keeping them distinct since static members do not belong to instance state or standard covariant/contravariant flows.
+* `Variance and static abstract interface members`: Variance safety restrictions do not apply to occurrences within non-virtual, non-abstract static members. Static abstract or virtual interface members remain subject to the applicable variance rules; “static” alone does not exempt them.
 * `Variance of a generic parameter inside a delegate argument`: The specific sub-rule governing how type parameters embedded within nested generic signatures or delegate parameters must align with outer variance directions.
 
 # Cross-item comparison
@@ -71,7 +71,7 @@ public class Program
     }
 }
 ```
-* **Expected Result:** Compiles and prints `Hello, Variance!` because string references can be implicitly converted to object references through covariant output design (`out T`).
+* **Expected Result:** Compiles and prints `Hello, Variance!` because `IProducer<out T>` permits the reference variance conversion from `string` to `object`.
 
 # Common mistakes
 

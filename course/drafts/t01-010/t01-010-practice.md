@@ -58,14 +58,14 @@ IConsumer<string> stringConsumer = objectConsumer; // Valid due to contravarianc
 3.  **Hint 3:** `Func<T, TResult>` is contravariant in `T` (input) and covariant in `TResult` (output). You must reverse the relationship for both.
 
 # Complete solutions
-1.  `IEnumerable<T>` is covariant because `T` is only used as a return type (e.g., in `GetEnumerator()`). It is a producer.
+1.  `IEnumerable<T>` is covariant because its type parameter occurs in output-safe positions through enumeration. It does not expose an add operation through that interface.
 2.  Adding `out T` fails because `Process(T item)` uses `T` as an input parameter. The compiler prevents this to ensure type safety; you cannot pass a base class where a derived class is expected.
 3.  No. `Func<string, object>` is `Func<in T, out TResult>`. To assign it to `Func<object, string>`, you would need `object` to be a subtype of `string` (for contravariance) and `string` to be a subtype of `object` (for covariance). The first part is false.
 
 # Tests and edge cases
 *   **Value Types:** Variance does not apply to value types (e.g., `int`, `struct`). `IEnumerable<int>` cannot be converted to `IEnumerable<object>` via variance.
 *   **Mutation:** `IList<T>` is invariant. If it were covariant, you could add an `object` to a `List<string>`, which would cause a runtime crash.
-*   **Array Covariance:** `string[]` can be cast to `object[]`. This is a legacy feature that performs a runtime check on every write. This is distinct from generic interface variance, which is checked at compile time.
+*   **Array Covariance:** `string[]` can be cast to `object[]`. An incompatible store through the wider array reference fails at runtime with `ArrayTypeMismatchException`. This is distinct from generic interface variance, which is checked at compile time.
 
 # Reflection questions
 *   Why is `IList<T>` forced to be invariant? What would happen if we allowed `IList<string>` to be treated as `IList<object>`?
