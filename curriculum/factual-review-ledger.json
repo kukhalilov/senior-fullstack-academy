@@ -267,6 +267,20 @@
         "Replaced generic filler in latency/throughput, vertical/horizontal scaling, monolith/microservices, load balancer/reverse proxy/API gateway, Lambda/Kappa, and push/pull/fan-out references.",
         "The citations support the specific current platform distinctions and monitoring/scaling semantics used. Full sentence-level claim extraction, scope audit, and additional source verification remain required before review status can change."
       ]
+    },
+    {
+      "scope": "t12-008 CAP/PACELC and regional deployment references",
+      "status": "partial source check; full lesson audits pending",
+      "sources": [
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/",
+        "https://learn.microsoft.com/en-us/azure/architecture/high-availability/building-solutions-for-high-availability",
+        "https://docs.cloud.google.com/architecture/disaster-recovery",
+        "https://docs.cloud.google.com/architecture/deployment-archetypes/multiregional",
+        "https://docs.cloud.google.com/architecture/framework/reliability/perform-testing-for-data-loss"
+      ],
+      "notes": "Rewrote both references with explicit failure-model and recovery-objective framing. Source-supported claims were checked against original CAP/PACELC papers and official cloud architecture docs. This is not a claim-by-claim lesson audit; both remain pending."
     }
   ],
   "lessons": [
@@ -100250,9 +100264,9 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 240 reference lessons reusing generic comparison, example, or knowledge-check text (down from the prior 273 finding after edits). This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 238 reference lessons reusing generic comparison, example, or knowledge-check text (down from the prior 273 finding after edits). This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
-        "The t12-008 tradeoff track now has 2 remaining generic reference lessons on this scan; the other 22 reference lessons were expanded, but remain pending full factual audits."
+        "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
     },
     {
