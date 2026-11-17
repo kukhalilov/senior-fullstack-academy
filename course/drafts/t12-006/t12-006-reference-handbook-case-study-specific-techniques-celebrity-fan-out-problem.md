@@ -1,36 +1,50 @@
 # end-to-end system design case studies — Reference: Celebrity fan-out problem
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [HLD Handbook case studies](https://hld.handbook.academy/curriculum/case-studies/), [Meta News Feed ranking architecture](https://engineering.fb.com/2021/01/26/ml-applications/news-feed-ranking/), [Meta TAO graph infrastructure](https://engineering.fb.com/2013/06/25/core-infra/tao-the-power-of-the-graph/).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This is a provider-neutral feed design pattern. The Handbook calls out celebrity fan-out as a case-study technique; exact production architectures and thresholds are provider-specific and change over time.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Fan-out decides when a post is copied into a reader's feed candidate set. It is a materialization choice that moves work between the write path and the read path; it does not determine the final ranking or visibility policy. A feed system still needs authorization, deletion, ranking, freshness, deduplication, and abuse rules.
+
+Let `f(a)` be the number of followers of author `a`. Fan-out-on-write performs work proportional to recipients when author `a` publishes, then a reader can fetch from a prebuilt candidate list. Fan-out-on-read avoids writing to every follower at publish time, but a reader must fetch recent items from followed accounts and merge/rank them. These are workload models, not universal latency guarantees: caches, active users, ranking and filtering change the work.
 
 ## Supplied names explained
 
-- `Celebrity fan-out problem` — A highly followed account creates disproportionate feed fan-out; hybrid push/pull and bounded read-time merging trade write work against read latency.
+- `Celebrity fan-out problem` — An account with a very large follower set can make write-time feed materialization expensive and bursty. Hybrid fan-out usually pushes posts for ordinary accounts and pulls posts for selected high-fan-out accounts at read time, with a bounded merge. A celebrity threshold is a tunable routing policy, not a special property of an account; base it on measured fan-out cost, delivery objectives, and current capacity.
+
+## Read and write paths
+
+**Write path:** persist the post and its visibility metadata; emit a durable fan-out event; workers discover eligible followers and update their feed candidate lists or a partitioned inbox. Acknowledge the author after the product's chosen durability point, not necessarily after every follower has been updated. Make worker retries idempotent and tolerate delayed or duplicated fan-out events.
+
+**Read path:** fetch precomputed candidates, obtain recent posts from followed high-fan-out accounts, apply current authorization/deletion checks, deduplicate, enrich and rank, then return a page with a stable cursor. The pull branch should have a bounded account/time window and a budget so a reader following many high-fan-out accounts cannot trigger unbounded reads.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+- **Push for everyone:** cheap, predictable feed reads, but large accounts cause write amplification, queue backlogs, and broad tail-latency risk.
+- **Pull for everyone:** avoids per-follower writes, but read cost grows with followed accounts and recent-candidate volume.
+- **Hybrid:** places normal authors on push and high-fan-out or low-activity authors on pull. It limits the worst case but adds two data paths, merge logic, freshness differences, and operational thresholds.
+
+Ranking is a downstream choice: systems can assemble candidates from multiple sources and then score them, as Meta's published News Feed architecture describes. Keep candidate generation and ranking separable so freshness, safety, and ranking models can evolve without changing ownership of the source post.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+An ordinary author with 300 followers publishes one post. A background worker adds its identifier to eligible followers' candidate feeds. A public account with 20 million followers is routed through the pull path instead of immediately creating 20 million writes. On a reader request, the service merges that account's recent posts with pushed candidates, checks visibility and deletion state, deduplicates, and ranks. If the celebrity pull source times out, the service applies an explicit partial-feed or fallback policy and records the omission; it does not silently claim that the feed is complete.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Fan-out before checking privacy, blocks, mutes, deletion, and follow changes.
+- Treating a follower-count threshold as permanent or globally optimal.
+- Acknowledging a post only after an unbounded fan-out completes.
+- Pulling every followed account without a candidate and latency budget.
+- Using a stale materialized inbox as the authorization source of truth.
+- Failing to monitor fan-out queue age, duplicate insertions, merge cost, and missing-post rate.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Why do high-fan-out accounts strain push systems?** One post may trigger work proportional to a very large eligible follower set; asynchronous queues can buffer that work, but they do not remove it.
+2. **Why not switch every author to pull?** It moves the cost to reads, where a request may need to fetch and merge candidates from many followed accounts.
+3. **What must happen after candidates are merged?** Recheck current visibility and deletion rules, deduplicate, apply ranking/policy, and return pagination that remains valid as the feed changes.

@@ -36,9 +36,8 @@ const lessons = queue.tasks.map(task => {
     issues: previous?.issues ?? [],
     reviewedAt: previous?.reviewedAt ?? null,
     sourceUrls: [...new Set([...(previous?.sourceUrls ?? []), ...(manifest?.sourceSnapshot?.urls ?? [])])],
-    reviewNote: previous?.status === 'reviewed' && previous.reviewNote
-      ? previous.reviewNote
-      : 'A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed.'
+    reviewNote: previous?.reviewNote
+      ?? 'A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed.'
   };
 });
 
