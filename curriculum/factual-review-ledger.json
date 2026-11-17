@@ -597,6 +597,19 @@
       "findings": [
         "Checked the resolver-driven 1+N pattern and batching/caching mitigations against GraphQL.org documentation and request data-loader behavior against Apollo Server docs. Specific resolver implementation semantics vary; all claims and completeness checks remain pending. Lesson is not promoted."
       ]
+    },
+    {
+      "scope": "gRPC streaming reference",
+      "status": "partial primary-source checks; full lesson audit pending",
+      "sources": [
+        "https://grpc.io/docs/what-is-grpc/core-concepts/",
+        "https://grpc.io/docs/guides/flow-control/",
+        "https://grpc.io/docs/guides/deadlines/",
+        "https://grpc.io/docs/guides/cancellation/"
+      ],
+      "findings": [
+        "Checked RPC shape definitions and per-stream ordering, flow-control/write semantics, deadline behavior, and cancellation propagation against official gRPC documentation. Language-specific details and all claims/omission checks remain pending; lesson is not promoted."
+      ]
     }
   ],
   "lessons": [
@@ -77453,29 +77466,10 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://grpc.io/docs/what-is-grpc/core-concepts/",
+        "https://grpc.io/docs/guides/flow-control/",
+        "https://grpc.io/docs/guides/deadlines/",
+        "https://grpc.io/docs/guides/cancellation/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99923,7 +99917,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 181 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 180 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
@@ -100118,6 +100112,14 @@
       "status": "expanded; selected primary-source checks; full audit pending",
       "findings": [
         "Replaced generic filler with concrete amplification walkthrough, batching/DataLoader/join/bulk API trade-offs, authorization and cache scope, complexity controls, observability, and a nested-pagination exercise. Selected claims were checked against GraphQL.org and Apollo docs; full factual and omission audits remain outstanding."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "gRPC streaming reference",
+      "status": "expanded; selected primary-source checks; full audit pending",
+      "findings": [
+        "Replaced generic filler with four RPC shapes, flow control/backpressure, deadlines/cancellation, reconnect delivery semantics, resource/security controls, operational examples, and upload-resume exercise. Selected claims were checked against grpc.io docs; full claim and completeness audits remain outstanding."
       ]
     }
   ]
