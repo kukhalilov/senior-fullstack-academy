@@ -1329,11 +1329,18 @@
       ]
     },
     {
-      "date": "2026-11-17",
+      "date": "2026-11-18",
       "scope": "JavaScript WeakMap and WeakSet collections (t06-014)",
-      "status": "full claim and frozen-inventory audit complete for all 7 lessons",
+      "status": "follow-up full claim and expanded-inventory audit complete for all 7 lessons",
       "findings": [
-        "Checked all 25 inventoried API and semantics entries, plus claims, examples, exercise answers, and interview answers against ECMA-262 2026 and current MDN. Verified non-registered-symbol keys (ES2023), Map-equivalent weakmap default insertion methods (ES2026), invalid-key return/throw distinctions, constructor iterable protocols, callback reentrancy, non-enumerability, and weak-reference timing. Added the important caveat that well-known symbols qualify but are effectively always live and may keep associated values retained. Node 24 confirms symbol keys but does not yet implement the ES2026 WeakMap insertion methods. All seven lessons remain drafts pending whole-course audit."
+        "Checked all 25 inventoried API and semantics entries, plus claims, examples, exercise answers, and interview answers against ECMA-262 2026 and current MDN. Verified non-registered-symbol keys (ES2023), Map-equivalent weakmap default insertion methods (ES2026), invalid-key return/throw distinctions, constructor iterable protocols, callback reentrancy, non-enumerability, and weak-reference timing. Added the important caveat that well-known symbols qualify but are effectively always live and may keep associated values retained. Node 24 confirms symbol keys but does not yet implement the ES2026 WeakMap insertion methods. All seven lessons remain drafts pending whole-course audit.",
+        "A second inventory pass found the non-writable, non-enumerable, non-configurable WeakMap.prototype and WeakSet.prototype constructor properties missing from the frozen inventories. Added both names and documented descriptors plus the fact that the prototype objects lack collection internal slots, so collection methods throw TypeError when borrowed onto those prototypes. Rechecked both API references and overview against ECMA-262 2026 constructor/prototype clauses; no other omissions or unanswered prompts found in these seven lessons. Catalog and draft validators pass after this follow-up: all 208 inventories and 2,343 lesson drafts validate."
+      ],
+      "sources": [
+        "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+        "https://tc39.es/ecma262/2026/multipage/executable-code-and-execution-contexts.html",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ]
     },
     {

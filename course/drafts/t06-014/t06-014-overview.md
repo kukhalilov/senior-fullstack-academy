@@ -66,4 +66,4 @@ Weak collections can still be misused. A separate strong reference to a key, a c
 
 ## What later lessons cover
 
-The concepts lesson develops reachability, observability, identity, and constructor behavior. The reference lessons cover every current WeakMap operation, WeakSet operation, and weak-key rule in the supplied inventory, including exact behavior for invalid keys and callback reentrancy. Practice builds metadata and cycle-detection examples, then diagnoses when a strong collection is the better design. The interview lesson focuses on tradeoffs, lifetime reasoning, and version-sensitive API support.
+The concepts lesson develops reachability, observability, identity, and constructor behavior. The reference lessons cover the WeakMap and WeakSet constructors, their fixed `prototype` properties, every current instance operation, and the weak-key rules in the supplied inventory, including exact behavior for invalid keys and callback reentrancy. Practice builds metadata and cycle-detection examples, then diagnoses when a strong collection is the better design. The interview lesson focuses on tradeoffs, lifetime reasoning, and version-sensitive API support.
