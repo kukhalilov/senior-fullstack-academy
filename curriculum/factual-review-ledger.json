@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 19,
-    "pending": 2321,
-    "claimsChecked": 295,
-    "claimsCorrected": 21,
+    "reviewed": 22,
+    "pending": 2318,
+    "claimsChecked": 328,
+    "claimsCorrected": 26,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -79827,102 +79827,253 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-bounded-load-consistent-hashing.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 11,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Bounded-load hashing models keys as balls and servers as bins, assigns by consistent-hash order, and forwards from a full bin to the next non-full bin.",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "arXiv v3 §§1.1–1.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "With m balls, n bins, and parameter c>1, capacity is at most ceil(c*m/n).",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "arXiv v3 Abstract and §1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For m=n and c=2, the maximum load is at most 2 and expected movement per single key/server update is constant.",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "arXiv v3 Abstract and §1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "General expected movement bounds depend on epsilon=c-1 and are relative to unavoidable lower bounds.",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "arXiv v3 Theorems 2–3 summary",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The paper assumes updates are handled one at a time with time to restore invariant before the next update.",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "arXiv v3 §1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The bound applies to key count, not automatically to bytes, CPU, or request rate.",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "arXiv v3 §1 definition of load",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A hot key can still overload a single owner even if key counts meet the bound.",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "Model interpretation of balls/bins load metric",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cap parameter trades load balance against movement and forwarding.",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "arXiv v3 §1.2–1.3",
+          "verdict": "supported"
+        },
+        {
+          "claim": "This theorem is not a blanket guarantee for arbitrary weighted heterogeneous servers or replicas.",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "arXiv v3 stated model",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Placement does not perform data movement, replica updates, or cache warming.",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "System-design consequence of placement rule",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers complete frozen bounded-load item scope.",
+          "source": "https://arxiv.org/abs/1608.01350",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://arxiv.org/abs/1608.01350"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-scope audit completed against the cited primary algorithm paper; theorem assumptions and implementation caveats are stated explicitly."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-maglev-hashing",
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-maglev-hashing.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Maglev is a network load balancer using per-service backend pools and health checks; backend health is maintained separately from hashing.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 §§2.1–2.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Maglev assigns each backend a deterministic preference permutation over table slots and fills the lookup table in rounds.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 §3.4",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Prime table size and offset/skip permutations give each backend a traversal of slots.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 §3.4",
+          "verdict": "supported"
+        },
+        {
+          "claim": "With equal turn frequency, each backend receives floor(M/N) or ceil(M/N) entries, differing by at most one.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 §3.4",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Runtime selection is hash then table lookup.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 §3.4",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Maglev emphasizes even load balancing more than minimal disruption compared with some ring/rendezvous schemes.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 §3.4 and §5.3",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Rebuilding the table after backend set changes can remap entries; a larger table reduces disruption but raises memory/build costs.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 §5.3",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Paper supports weights by altering relative backend turn frequency but does not specify implementation details.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 §3.4",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Connection tracking helps preserve established flow affinity while mappings change, subject to failures and implementation behavior.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 Abstract and §§3.3–3.4",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Maglev does not replicate application data or provide application-level session state.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 system scope",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Stable selection depends on backend pool/config synchronization across Maglev instances.",
+          "source": "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+          "section": "USENIX NSDI 2016 §2.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers complete frozen Maglev manifest scope.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eisenbud.pdf",
+        "https://research.google/pubs/maglev-a-fast-and-reliable-software-network-load-balancer/"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-scope audit completed against the cited primary algorithm paper; theorem assumptions and implementation caveats are stated explicitly."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-jump-consistent-hash",
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-jump-consistent-hash.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Jump consistent hash maps a key to numbered sequential buckets and needs no stored ring/table.",
+          "source": "https://arxiv.org/abs/1406.2294",
+          "section": "Lamping and Veach paper, abstract and algorithm",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Buckets must be numbered consecutively; count changes add/remove only the last bucket.",
+          "source": "https://arxiv.org/abs/1406.2294",
+          "section": "Paper abstract and algorithm assumptions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm uses O(1) extra memory and expected O(log n) work for n buckets.",
+          "source": "https://arxiv.org/abs/1406.2294",
+          "section": "Paper algorithm analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Adding a bucket moves only keys that jump to the new bucket under the fixed hash/key mapping.",
+          "source": "https://arxiv.org/abs/1406.2294",
+          "section": "Paper algorithm properties",
+          "verdict": "supported"
+        },
+        {
+          "claim": "It is not a direct mapping to arbitrary named servers or weighted/middle-removal membership.",
+          "source": "https://arxiv.org/abs/1406.2294",
+          "section": "Paper stated sequential bucket limitation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A separate bucket-to-server assignment layer can introduce additional movement.",
+          "source": "https://arxiv.org/abs/1406.2294",
+          "section": "Architectural consequence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Different key encodings, hash functions, and arithmetic can yield incompatible assignments.",
+          "source": "https://arxiv.org/abs/1406.2294",
+          "section": "Deterministic algorithm requirement",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Jump does not solve hot-key/request skew.",
+          "source": "https://arxiv.org/abs/1406.2294",
+          "section": "Placement-versus-workload distinction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "It does not copy/migrate stored records when assignments change.",
+          "source": "https://arxiv.org/abs/1406.2294",
+          "section": "Placement-versus-migration distinction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers complete frozen Jump manifest scope.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://arxiv.org/abs/1406.2294"
+      ],
+      "reviewNote": "Manual claim-by-claim and frozen-scope audit completed against the cited primary algorithm paper; theorem assumptions and implementation caveats are stated explicitly."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-read-repair",

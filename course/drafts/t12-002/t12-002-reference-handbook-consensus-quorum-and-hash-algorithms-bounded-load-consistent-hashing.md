@@ -12,13 +12,13 @@ Ordinary consistent hashing limits how many keys move when a server set changes,
 
 ## Supplied names explained
 
-The published bounded-load construction treats keys as balls and servers as bins. Each key has a preferred server from the consistent-hash ordering. If that bin reaches its capacity bound, the key proceeds to another candidate according to the construction. In the paper’s setting with n keys and n servers, the construction guarantees maximum load at most 2 while moving an expected constant number of keys per server insertion or deletion. That is a theorem under the paper’s model, not a blanket guarantee for arbitrary weighted servers, changing request rates, replication, or hot keys.
+The published bounded-load construction treats keys as balls and servers as bins. Each key has a preferred server from the consistent-hash ordering. If that bin reaches its capacity bound, the key proceeds to another candidate according to the construction. In the paper’s setting with n keys (balls) and n servers (bins), the balancing parameter c=2 gives a maximum load of 2 and expected constant movement per single key/server insertion or deletion. More generally, with m keys and n servers, it guarantees per-bin capacity ⌈c·m/n⌉ for a chosen c>1 while bounding expected movement relative to lower bounds; exact bounds depend on c. The analysis assumes updates are processed one at a time and the system can finish moving keys before the next update. This is a theorem under the paper’s model, not a blanket guarantee for arbitrary weighted servers, changing request rates, replication, or hot keys.
 
 “Load” must be defined. The theoretical result bounds the number of assigned keys under its assumptions; it does not automatically bound bytes, CPU, request rate, or latency. A single popular key can dominate traffic even when the number of keys per server is balanced.
 
 ## Cross-item comparison
 
-Compared with ordinary ring hashing, bounded-load hashing gives a formal load cap in its model, but may remap more keys to honor the cap. Compared with adding virtual nodes or weights, it has a different balancing mechanism and guarantee. Before adopting it, verify that its load metric matches the bottleneck and model the cost of reassignment, metadata, replication, and movement.
+Compared with ordinary ring hashing, bounded-load hashing gives a formal capacity bound in its model, but can forward keys away from preferred bins and moves additional keys to maintain the invariant. The capacity parameter trades tighter balance against movement. Compared with adding virtual nodes or weights, it has a different balancing mechanism and guarantee. Before adopting it, verify that its load metric matches the bottleneck and model the cost of reassignment, metadata, replication, and movement.
 
 ## Examples
 
@@ -28,6 +28,7 @@ Suppose 1,000 equally sized cache keys map to four servers, but one server's pre
 
 - Assuming the paper's maximum key-count bound also caps bytes, CPU, or request rate.
 - Treating a theoretical construction as a vendor implementation guarantee without checking its exact variant.
+- Assuming concurrent membership/key updates are covered when the paper assumes serialized updates with time to restore capacity between them.
 - Ignoring the operational cost of relocating keys, warming caches, or updating replicas.
 - Applying bounded-load placement to a hot key that remains a single serialized owner.
 

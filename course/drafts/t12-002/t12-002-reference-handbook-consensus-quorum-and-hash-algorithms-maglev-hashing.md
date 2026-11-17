@@ -8,11 +8,11 @@ This lesson describes the Maglev algorithm from Google's published load-balancer
 
 ## How this group fits the mental model
 
-For a network load balancer, a packet or connection must be mapped to a healthy backend quickly and consistently. Maglev precomputes a fixed-size lookup table. Each backend receives a deterministic preference permutation over table slots; backends take turns claiming their next available preferred slots until the table is filled. Runtime lookup is then a hash followed by a table lookup, making selection fast.
+For a network load balancer, a packet or connection must be mapped to a healthy backend quickly and consistently. Maglev precomputes a fixed-size lookup table. Each backend receives a deterministic preference permutation over table slots, commonly generated from backend-specific offset and skip values with prime table size M. Backends take turns claiming their next unfilled preferred slot until all M slots are assigned. Runtime selection hashes the flow/key and indexes the precomputed table, making lookup fast.
 
 ## Supplied names explained
 
-Maglev's table aims to give backends nearly equal shares. Adding or removing a backend requires rebuilding the table, and the new table is designed to minimize disruption to existing assignments. A larger table can improve balance and reduce disruption but consumes more memory and takes longer to build. The paper also describes connection tracking so that changes in backend mapping do not necessarily reset established connections. Maglev does not itself make an unhealthy backend healthy, replicate application data, or guarantee application-level session state.
+With equal turns, each backend receives either ⌊M/N⌋ or ⌈M/N⌉ slots, so table shares differ by at most one slot. The paper prioritizes even balance over the strongest minimal-remapping property of ring/rendezvous approaches; rebuilding after backend changes can remap some flows, though experiments show disruption is limited and a larger table reduces it. A larger table also consumes memory and takes longer to build. Weighted shares are possible by changing turn frequency, but the paper does not specify those implementation details. Connection tracking provides affinity for established flows while entries remain valid and the backend is healthy; it does not guarantee old connections survive backend failure or membership changes. Maglev does not replicate application data or guarantee application-level session state.
 
 The original paper notes that weighted backends can be supported by changing how often backends take turns, but does not specify the implementation details. Do not infer a particular weight algorithm from the paper.
 
@@ -28,6 +28,8 @@ An edge load balancer hashes a flow identifier and uses the table to select one 
 
 - Calling the table lookup a health check; health and membership are maintained separately.
 - Assuming minimum disruption means zero remapping or that old connections never reset.
+- Assuming Maglev minimizes remapping as strongly as ring/rendezvous hashing; Maglev prioritizes even backend shares.
+- Assuming every Maglev implementation provides the same connection tracking or weighted-backend policy as Google’s system.
 - Treating consistent backend selection as durable session state or replicated data.
 - Assuming arbitrary backend weights are handled by the paper's fully specified algorithm.
 

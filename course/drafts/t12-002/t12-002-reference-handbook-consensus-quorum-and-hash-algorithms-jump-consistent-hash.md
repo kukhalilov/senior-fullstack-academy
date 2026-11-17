@@ -12,7 +12,7 @@ Jump consistent hash maps a key directly to one of a numbered sequence of bucket
 
 ## Supplied names explained
 
-The algorithm's central constraint is that buckets are numbered consecutively and the count changes by adding or removing the final bucket. It is not a direct fit for arbitrary node identities, removal of a middle bucket, or weighted heterogeneous servers. One common deployment maps bucket numbers to physical shards through a separate assignment layer, but changing that mapping can introduce additional movement. The hash/key encoding and integer behavior must be consistent across clients.
+The algorithm's central constraint is that buckets are numbered consecutively and the count changes by adding or removing the final bucket. It is not a direct fit for arbitrary node identities, removal of a middle bucket, or weighted heterogeneous servers. The original algorithm performs expected O(log n) jumps for n buckets and uses O(1) extra memory; implementations must also agree on key hashing and fixed-width arithmetic to produce the same bucket. One common deployment maps bucket numbers to physical shards through a separate assignment layer, but changing that mapping can introduce additional movement. The hash/key encoding and integer behavior must be consistent across clients.
 
 The paper compares the algorithm with ring-based consistent hashing: Jump uses very little memory and is fast, while the ring naturally represents named nodes, virtual nodes, and replica successors. Neither method solves hot-key load skew or data movement itself; they determine placement.
 
@@ -28,6 +28,7 @@ Suppose a key-value service has 10,000 logical buckets, and the algorithm maps k
 
 - Applying Jump directly to arbitrary backend IDs or weighted nodes without an extra mapping scheme.
 - Assuming low remapping means no data copy or routing change is required.
+- Assuming the sequential-bucket algorithm directly supports weights or arbitrary node removal.
 - Using different hash encodings or integer arithmetic in different clients.
 - Assuming balanced bucket counts imply balanced request volume or byte storage.
 
