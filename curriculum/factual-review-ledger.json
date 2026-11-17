@@ -424,6 +424,23 @@
       "findings": [
         "Auction extension lesson now specifies explicit policy and atomic bid/close ordering without asserting a universal auction rule; concurrency examples checked against PostgreSQL docs. Search ranking separates lexical BM25 from graph-based PageRank using research sources. Collaborative/content-based recommendation distinctions and pipeline stages checked against Google ML documentation. All remain pending complete factual and omission audits."
       ]
+    },
+    {
+      "scope": "Delta sync, collaborative version history, and diff-based price alerts in t12-006",
+      "status": "partial source check; full lesson audits pending",
+      "sources": [
+        "https://developers.google.com/workspace/drive/api/guides/manage-changes",
+        "https://developers.google.com/workspace/drive/api/reference/rest/v3/changes/list",
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://www.rfc-editor.org/rfc/rfc6902.html",
+        "https://pages.lip6.fr/Marc.Shapiro/papers/CRDTs-Springer2018-authorversion.pdf",
+        "https://groups.csail.mit.edu/sdg/pubs/2022/Peritext_PACM_HCI_2022.pdf",
+        "https://www.postgresql.org/docs/current/rangetypes.html",
+        "https://www.rfc-editor.org/rfc/rfc3339.html"
+      ],
+      "findings": [
+        "Delta synchronization cursor/pagination examples checked against official Google Drive API docs; conditional writes against RFC 9110; patch representation against RFC 6902; collaborative convergence/intent caveats against CRDT research; price alert rules are presented as explicit product policies with failure-safe event delivery. Full claim and omission reviews remain pending."
+      ]
     }
   ],
   "lessons": [
@@ -100407,7 +100424,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 215 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 212 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]

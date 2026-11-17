@@ -1,36 +1,64 @@
 # end-to-end system design case studies — Reference: Delta sync
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [Google Drive API: retrieve changes](https://developers.google.com/workspace/drive/api/guides/manage-changes), [Google Drive API: changes.list](https://developers.google.com/workspace/drive/api/reference/rest/v3/changes/list), [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html), [RFC 6902: JSON Patch](https://www.rfc-editor.org/rfc/rfc6902.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson covers synchronizing a client’s local copy by fetching changes since a saved cursor, rather than downloading the full dataset each time. Google Drive is a concrete API example; its exact token and change semantics are specific to Drive API v3. Other systems may use sequence numbers, revision IDs, change feeds, or conditional HTTP requests.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+The server owns a canonical state and exposes a durable way to continue from a known point. A client stores both its local data and a sync cursor. It requests changes after that cursor, applies them safely, and advances the cursor only after the corresponding changes are durably applied. This reduces transfer for large collections but introduces cursor lifecycle, pagination, deletion, conflict, and recovery behavior.
+
+A change notification usually means “check for changes,” not “the notification itself contains the complete durable change history.” A robust design can poll a change feed and use push only to reduce detection delay. Define how a client recovers if it loses local state, a cursor becomes invalid, pagination is interrupted, or an item changes while being downloaded.
 
 ## Supplied names explained
 
-- `Delta sync` — Transfers only changed data between client and server; version bases, concurrent writes, tombstones, and compaction require defined reconciliation.
+- **Change feed:** ordered or cursor-addressable record of changes since a point. It may contain full current resource state, operations, or invalidation hints; know which.
+- **Cursor/page token:** opaque continuation marker. Store it exactly as issued; do not infer order or manufacture one.
+- **Pagination:** fetching all pages in a batch. Advance to a new durable cursor only after the complete batch is processed and persisted.
+- **Tombstone/removal event:** representation that an item was deleted or removed from the user’s view. Without it, stale local copies can remain forever.
+- **Idempotent apply:** applying the same change twice has the same resulting local state as applying it once, or duplicates are detected by change ID/version.
+- **Snapshot/resync:** full baseline download followed by change-feed continuation when local state is missing or cursor recovery requires it.
+- **Conditional update:** client submits an expected version/ETag so the server can reject a write based on stale state instead of silently overwriting newer data.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Sync strategy | Network/state cost | Best fit / caveat |
+| --- | --- | --- |
+| Full snapshot | Transfers and rebuilds the full visible dataset | Simple baseline and recovery; expensive for large collections |
+| Timestamp polling | Fetches records newer than a timestamp | Simple, but clock skew, equal timestamps, and deletions can create gaps unless the API defines a stable overlap/cursor scheme |
+| Opaque change cursor | Fetches a sequence/feed after a saved token | Efficient incremental sync; token expiry, permissions, pagination, and replay semantics must be handled |
+| Content delta/patch | Sends operations or changed fields rather than full objects | Saves bytes for large resources; patch base version and ordering must match, and patch application may fail on divergent local state |
+| Push notification plus feed | Low-latency signal, then cursor-based reconciliation | Notifications can be duplicated/lost/delayed; the durable feed remains the recovery source |
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Google Drive API v3 provides a start page token, `changes.list`, and pagination using `nextPageToken`; its response supplies `newStartPageToken` at the end of the current changes list for future polling. The client should process every page, persist local effects, and then save the returned new start token. The API’s change list can include current file state and removal information according to requested options; it is not a generic patch protocol.
+
+For a generic client, maintain a local transaction that upserts/deletes changes and records the consumed page position atomically. If the client crashes after applying changes but before saving the cursor, it replays the page, so handlers must be idempotent. If it saves the cursor before committing local changes, a crash can skip data permanently. If a downloaded object and change record refer to different revisions, fetch/validate the current revision or retry from a consistent snapshot.
+
+For client edits, include the base revision/ETag. RFC 9110 conditional `If-Match` semantics can make a state-changing request conditional on the current representation; a mismatch prevents applying the stale update (often with `412 Precondition Failed`). The client can then fetch the newer state and merge or ask the user to resolve the conflict.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Saving the next cursor before all pages and local mutations are committed.
+- Assuming notifications are durable, ordered change records and never reconciling with the feed.
+- Ignoring deletions/tombstones, causing removed data to reappear after a later sync.
+- Treating an opaque token as a timestamp or assuming its format/order.
+- Failing to make repeated page application safe after a crash or network timeout.
+- Using timestamps without handling clock skew, same-time updates, and pagination boundaries.
+- Applying a patch to the wrong base version or advancing after a failed patch.
+- Assuming access/permission changes are ordinary content updates; a user’s visible collection can change without the object itself changing.
+- Reusing an old cursor after a full local reset without obtaining a consistent new baseline.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **When is it safe to persist the next cursor?** After all changes through that cursor are durably applied, ideally atomically with the cursor or with idempotent replay protection.
+2. **Why do push notifications not replace the change feed?** They can signal that work exists but may be duplicated, delayed, or missed; cursor reconciliation recovers actual state.
+3. **What prevents a stale client edit from overwriting newer data?** A conditional update tied to the base revision/ETag, followed by conflict resolution when the precondition fails.
+4. **What happens if a client loses its local database?** It needs a snapshot/resync procedure and a new valid continuation token, not merely a cursor from the lost state.
+
+## Review status
+
+The Drive cursor/pagination behavior is checked against official Google API documentation; HTTP conditional update semantics against RFC 9110; patch format scope against RFC 6902. This lesson remains pending full claim-by-claim audit and manifest omission check.
