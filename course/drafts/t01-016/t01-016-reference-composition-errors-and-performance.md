@@ -14,8 +14,9 @@ In the Task-based Asynchronous Pattern (TAP), asynchronous methods represent wor
 
 * `Sequential awaits for independent operations`: A pattern where tasks are awaited one after another, causing the second to wait for the first to finish even if they could have run concurrently.
 * `Start independent tasks before Task.WhenAll`: The practice of initiating multiple asynchronous operations before awaiting their combined completion, enabling parallel execution.
-* `Task.WhenAll all-failure behavior`: The behavior where `Task.WhenAll` aggregates all exceptions from faulted tasks into a single `AggregateException` if multiple tasks fail.
-* `Task.WhenAny result ownership`: The requirement to handle the specific task returned by `WhenAny`, as it represents the first completed operation among many.
+* `Task.WhenAll all-failure behavior`: The returned task faults after all inputs complete and its `Exception` property contains an `AggregateException` with all input failures. Awaiting that task rethrows one underlying exception; inspect `Exception` when every failure is needed.
+* `Task.WhenAny result ownership`: Awaiting `WhenAny` returns the first completed input task even when it faulted or was canceled; await or inspect that returned input task to observe its outcome.
+* `Task.WhenAny does not cancel losing tasks`: The other operations continue running unless the caller cancels them through their own cancellation mechanism.
 * `Bounded asynchronous concurrency`: The strategy of limiting the number of concurrent asynchronous operations to prevent resource exhaustion.
 * `SemaphoreSlim.WaitAsync`: An asynchronous method to enter a semaphore, allowing a task to wait for access to a resource without blocking the thread.
 * `SemaphoreSlim.WaitAsync(CancellationToken)`: A version of `WaitAsync` that allows the wait operation to be cancelled via a token.
@@ -26,7 +27,9 @@ In the Task-based Asynchronous Pattern (TAP), asynchronous methods represent wor
 * `Fire-and-forget task ownership`: The pattern of starting a task without awaiting it; this is dangerous because exceptions may go unobserved and the caller cannot track completion.
 * `Task exception observed by await`: The mechanism where `await` unwraps the first exception from a `Task` and re-throws it in the current context.
 * `AggregateException from Wait and Result`: The exception type thrown when using synchronous blocking methods (`Wait()`, `Result`), which wraps the underlying exception.
-* `Task.WhenAll.Exception aggregate`: The property containing all exceptions if multiple tasks passed to `WhenAll` fail.
+* `Task.WhenAll.Exception aggregate`: The property containing the `AggregateException` and all unwrapped task failures when one or more inputs fault.
+* `Task.WhenAll task.Exception contains all supplied task failures`: Inspecting the returned task's `Exception` exposes the aggregate for every faulted input after all inputs settle.
+* `await on faulted Task.WhenAll rethrows one exception; inspect Exception for all`: Awaiting normally rethrows one underlying failure; retrieve the aggregate from the `Task.WhenAll` task when all failures matter.
 * `ExceptionDispatchInfo and asynchronous stack traces`: A mechanism to preserve the original stack trace when re-throwing exceptions across asynchronous boundaries.
 * `Exception after await`: The point in code where an exception from an awaited task is thrown into the calling method.
 * `Cancellation exception after await`: The `OperationCanceledException` thrown when an awaited task is cancelled.

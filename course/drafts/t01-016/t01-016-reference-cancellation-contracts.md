@@ -26,9 +26,15 @@ When cancellation is triggered, observing code throws an exception (such as `Ope
 * `CancellationToken.ThrowIfCancellationRequested`
   A method that checks the token state and throws an `OperationCanceledException` immediately if cancellation has been requested.
 * `CancellationToken.Register(Action)`
-  Registers a delegate that is called when the `CancellationToken` is cancelled, returning a `CancellationTokenRegistration`.
+  Registers a delegate that is called when the `CancellationToken` is canceled, returning a `CancellationTokenRegistration`. The current `ExecutionContext` is captured; the current `SynchronizationContext` is not captured by this overload.
 * `CancellationToken.Register(Action<Object>,Object)`
   Registers a delegate that accepts state data, called when the `CancellationToken` is cancelled.
+* `CancellationToken.Register` overloads with `useSynchronizationContext`
+  Additional overloads accept a Boolean controlling synchronization-context capture and, in current .NET, callbacks that also receive the token. The callback executes immediately and synchronously when registered against an already-canceled token.
+* `CancellationToken.Register(Action,bool) overload`: Controls whether the current `SynchronizationContext` is captured for the callback.
+* `CancellationToken.Register(Action<Object>,Object,bool) overload`: State-carrying callback overload with explicit synchronization-context capture behavior.
+* `CancellationToken.Register(Action<Object,CancellationToken>,Object) overload`: State-carrying callback that also receives the token being canceled.
+* `CancellationToken.Register immediate invocation when already canceled`: Registration against an already-canceled token invokes the callback synchronously on the registering call; callback exceptions escape from `Register`.
 * `CancellationToken.UnsafeRegister`
   Registers a cancellation callback without capturing the current execution context, improving performance in low-level scenarios.
 * `CancellationToken.WaitHandle`
@@ -58,15 +64,19 @@ When cancellation is triggered, observing code throws an exception (such as `Ope
 * `CancellationTokenSource.CreateLinkedTokenSource(ReadOnlySpan<CancellationToken>)`
   Creates a linked token source triggered when any token in a read-only span is canceled (introduced in .NET 9, see https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.createlinkedtokensource).
 * `CancellationTokenSource.TryReset()`
-  Attempts to reset the state of a `CancellationTokenSource` if it has not already fired, allowing reuse under strict conditions.
+  Returns true only when cancellation has not been requested and resets the source for an unrelated operation. It is intended for the sole owner after the prior operation has completed, no one else can cancel it, and old registrations are no longer meaningful; concurrent cancellation and reset are unsafe. Existing token references still refer to this same source and observe its later state, so reuse can surprise earlier consumers.
 * `CancellationTokenSource.Dispose()`
-  Releases all resources used by the current instance of `CancellationTokenSource`.
+  Releases resources used by the source. Disposal does not request cancellation and must not race with active source operations.
 * `CancellationTokenSource.Dispose(Boolean)`
-  Releases unmanaged and optionally managed resources used by the `CancellationTokenSource`.
+  Protected disposal implementation point; callers use the public `Dispose()` method rather than calling this protected overload.
 * `CancellationTokenRegistration.Dispose()`
-  Disposes the registration, unregistering the associated callback from the token.
+  Unregisters the callback and returns after it is no longer running; it may wait for an executing callback to finish.
 * `CancellationTokenRegistration.Unregister()`
-  Unregisters the callback associated with the token.
+  Unregisters the callback without waiting for it to finish if it is currently executing.
+* `CancellationTokenRegistration.DisposeAsync()`
+  Asynchronously unregisters the callback and awaits its completion when needed.
+* `CancellationTokenRegistration.Dispose waits for an executing callback`: Synchronous disposal waits until the callback is unregistered or its current invocation has finished.
+* `CancellationTokenRegistration.Unregister does not wait for a running callback`: This nonblocking alternative reports whether it removed the callback without waiting for an invocation already in progress.
 * `OperationCanceledException`
   The base exception class thrown when an operation is canceled in response to a `CancellationToken`.
 * `TaskCanceledException`
@@ -82,7 +92,9 @@ When cancellation is triggered, observing code throws an exception (such as `Ope
 * `Linked caller and timeout cancellation`
   Combining multiple tokens (such as user action and timeout timers) using linked token sources.
 * `Cancellation callback exception behavior`
-  Exceptions thrown by cancellation callbacks are collected and reported by the cancellation call (typically in an `AggregateException`); `Cancel(throwOnFirstException: true)` stops callback processing at the first exception.
+  Synchronous `Cancel()` invokes callbacks synchronously in LIFO registration order and aggregates callback failures by default; `Cancel(true)` stops at the first failure. `CancelAsync()` requests cancellation and returns a task representing callback completion; callback failures are reported through that task. Registering against an already-canceled token invokes the callback inline, so its exception comes directly from `Register`.
+* `Cancellation callbacks execute synchronously in LIFO order for Cancel`: Later-registered callbacks run before earlier registrations during synchronous `Cancel()`.
+* `CancellationTokenSource.Dispose(Boolean) protected override surface`: This protected disposal hook is for derived implementations; ordinary consumers call public `Dispose()`.
 * `Cancellation is cooperative rather than forced termination`
   The fundamental design principle that tokens only request cancellation; running code must inspect them and exit gracefully.
 * `Cancellation versus timeout result distinction`
@@ -96,7 +108,7 @@ When cancellation is triggered, observing code throws an exception (such as `Ope
 Within this assigned group, items fall into distinct functional pairs and groups:
 * `CancellationToken` vs `CancellationTokenSource`: The token is an immutable, read-only observer struct distributed to workers, while the source is the mutable controller object that creates the token and invokes cancellation.
 * `OperationCanceledException` vs `TaskCanceledException`: `TaskCanceledException` derives from `OperationCanceledException`. Cancellation may surface as either type, so catch `OperationCanceledException` unless code specifically needs the subtype.
-* `CancellationTokenSource.Cancel()` vs `CancellationTokenSource.CancelAsync()`: Synchronous cancellation immediately runs registered callbacks on the calling thread, whereas `CancelAsync` sets the cancellation-requested state and returns a task representing completion of registered callbacks; callbacks execute asynchronously relative to the caller (see https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync).
+* `CancellationTokenSource.Cancel()` vs `CancellationTokenSource.CancelAsync()`: Synchronous cancellation immediately runs registered callbacks on the calling thread, whereas `CancelAsync` sets the cancellation-requested state and returns a task representing completion of registered callbacks; callbacks are scheduled asynchronously, and callback failures are reported by the returned task (see https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync).
 
 # Examples
 

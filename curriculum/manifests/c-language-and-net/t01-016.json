@@ -54,7 +54,10 @@
         "Task-returning async method versus direct Task return",
         "Async suffix naming convention",
         "async void event-handler exception behavior",
-        "Top-level async entry point"
+        "Top-level async entry point",
+        "Generalized async return type",
+        "Custom task-like return type and AsyncMethodBuilderAttribute",
+        "AsyncStateMachineAttribute and generated state-machine implementation"
       ]
     },
     {
@@ -117,7 +120,28 @@
         "TaskCreationOptions.DenyChildAttach",
         "Attached child task",
         "Task continuation with ContinueWith",
-        "Task continuation ExecuteSynchronously option"
+        "Task continuation ExecuteSynchronously option",
+        "Task.Run cancellation-token overloads and pre-start cancellation",
+        "Task.Delay(TimeSpan) and Task.Delay(Int32) overload families",
+        "Task.Delay(TimeSpan,TimeProvider,CancellationToken)",
+        "Task.WhenAll(IEnumerable<Task>) overload",
+        "Task.WhenAll(ReadOnlySpan<Task>) .NET 9 overload",
+        "Task.WhenAll<TResult>(Task<TResult>[]) overload",
+        "Task.WhenAll<TResult>(ReadOnlySpan<Task<TResult>>) .NET 9 overload",
+        "Task.WhenAny(IEnumerable<Task>) overload",
+        "Task.WhenAny<TResult>(IEnumerable<Task<TResult>>) overload",
+        "Task.WaitAsync(TimeSpan,TimeProvider) overload",
+        "Task.Factory.StartNew async delegate returns nested Task",
+        "Task.FromCanceled requires an already-canceled token",
+        "ValueTask.CompletedTask",
+        "ValueTask.Preserve()",
+        "TaskCompletionSource non-generic .NET 6 API",
+        "TaskCompletionSource.SetCanceled and TrySetCanceled",
+        "TaskCompletionSource<T>.SetCanceled and TrySetCanceled",
+        "Task.WhenAny(ReadOnlySpan<Task>) .NET 9 overload",
+        "Task.WhenAny<TResult>(ReadOnlySpan<Task<TResult>>) .NET 9 overload",
+        "Task.WhenAny(Task,Task) overload",
+        "TaskCompletionSource.SetResult and TrySetResult non-generic methods"
       ]
     },
     {
@@ -161,7 +185,16 @@
         "Cancellation is cooperative rather than forced termination",
         "Cancellation versus timeout result distinction",
         "Cancellation during cleanup",
-        "CancellationTokenSource ownership and disposal"
+        "CancellationTokenSource ownership and disposal",
+        "CancellationToken.Register(Action,bool) overload",
+        "CancellationToken.Register(Action<Object>,Object,bool) overload",
+        "CancellationToken.Register(Action<Object,CancellationToken>,Object) overload",
+        "CancellationToken.Register immediate invocation when already canceled",
+        "CancellationTokenRegistration.Dispose waits for an executing callback",
+        "CancellationTokenRegistration.Unregister does not wait for a running callback",
+        "Cancellation callbacks execute synchronously in LIFO order for Cancel",
+        "CancellationTokenSource.Dispose(Boolean) protected override surface",
+        "CancellationTokenRegistration.DisposeAsync"
       ]
     },
     {
@@ -241,7 +274,10 @@
         "Async disposal with await using",
         "IAsyncDisposable.DisposeAsync",
         "await foreach cancellation with WithCancellation",
-        "Background work lifetime in ASP.NET Core hosted service"
+        "Background work lifetime in ASP.NET Core hosted service",
+        "Task.WhenAll task.Exception contains all supplied task failures",
+        "await on faulted Task.WhenAll rethrows one exception; inspect Exception for all",
+        "Task.WhenAny does not cancel losing tasks"
       ]
     }
   ],
@@ -315,8 +351,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft C# asynchronous programming guide, TAP guidance, and current .NET API reference",
-    "edition": ".NET 11 GA and C# 15 stable APIs checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": ".NET 11 GA, C# 15 stable, and async/cancellation API overloads checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
       "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios",
@@ -330,7 +366,12 @@
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
-      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.unregister",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancel?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall?view=net-11.0"
     ]
   },
   "scopeExclusions": [

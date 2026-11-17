@@ -20,6 +20,7 @@ In the TAP model, a `Task` represents an operation outcome that may be pending, 
 * `Task`: Represents an asynchronous operation that does not return a value.
 * `Task<T>`: Represents an asynchronous operation that returns a value of type `T`.
 * `ValueTask`: A struct-based alternative to `Task` for performance-critical paths where the operation often completes synchronously.
+* `ValueTask.CompletedTask`: A successfully completed non-generic `ValueTask` value.
 * `ValueTask<T>`: A struct-based alternative to `Task<T>`.
 
 ### Task Factories and Pre-completed States
@@ -29,24 +30,26 @@ In the TAP model, a `Task` represents an operation outcome that may be pending, 
 * `Task.FromException<T>(Exception)`: Creates a `Task<T>` faulted with the provided exception.
 * `Task.FromCanceled(CancellationToken)`: Creates a `Task` in the `Canceled` state.
 * `Task.FromCanceled<T>(CancellationToken)`: Creates a `Task<T>` in the `Canceled` state.
+* `Task.FromCanceled` token precondition: The supplied token must already be canceled; a non-canceled token causes the factory to throw `ArgumentOutOfRangeException`.
 
 ### Execution and Scheduling
-* `Task.Run(Action)`: Queues work to the thread pool.
-* `Task.Run(Func<Task>)`: Queues an async operation to the thread pool.
+* `Task.Run(Action)`: Queues work to the thread pool; cancellation-token overloads can cancel queued work before it begins but do not pass the token into the delegate.
+* `Task.Run(Func<Task>)`: Queues an async operation to the thread pool and unwraps the returned task; cancellation-token overloads cancel scheduling before start and do not pass the token into the delegate.
 * `Task.Run<TResult>(Func<TResult>)`: Queues work returning a result to the thread pool.
 * `Task.Run<TResult>(Func<Task<TResult>>)`: Queues an async operation returning a result to the thread pool.
-* `Task.Factory.StartNew`: A lower-level, highly configurable way to create and start tasks.
-* `Task.Delay`: Creates a task that completes after a time delay.
+* `Task.Factory.StartNew`: A lower-level, highly configurable way to create and start tasks. With an `async` delegate it normally returns `Task<Task>` or `Task<Task<T>>`; call `Unwrap()` or use `Task.Run` when a single proxy task is intended.
+* `Task.Delay`: Creates a task that completes after a time delay. Overloads accept milliseconds or `TimeSpan`, cancellation, and (in current .NET) a `TimeProvider` for deterministic timing.
 * `Task.Yield`: Returns a `YieldAwaitable`; awaiting it posts continuation to the current `SynchronizationContext`, or current task scheduler when no synchronization context exists. It does not guarantee UI responsiveness.
 
 ### Composition and Waiting
-* `Task.WhenAll(Task[])`: Creates a task that completes when all supplied tasks complete.
-* `Task.WhenAll<TResult>(IEnumerable<Task<TResult>>)`: Creates a task that completes when all supplied generic tasks complete.
-* `Task.WhenAny(Task[])`: Creates a task that completes when any of the supplied tasks complete.
-* `Task.WaitAsync(CancellationToken)`: Asynchronously waits for the task to complete or the token to trigger.
-* `Task.WaitAsync(TimeSpan)`: Asynchronously waits for the task to complete or the timeout to expire.
+* `Task.WhenAll(Task[])` and `Task.WhenAll(IEnumerable<Task>)`: Create a task that completes when all supplied tasks complete; the returned task's `Exception` aggregates faults from all failed tasks.
+* `Task.WhenAll<TResult>(IEnumerable<Task<TResult>>)` and array overload: Create a task returning results in the same order as the input tasks. .NET 9 also adds `ReadOnlySpan<Task>` and generic `ReadOnlySpan<Task<T>>` overloads.
+* `Task.WhenAny(Task[])` and `Task.WhenAny(IEnumerable<Task>)`: Create a task that completes with the first completed task; they do not cancel the remaining tasks. Generic overloads return the first completed `Task<T>`.
+* `Task.WaitAsync(CancellationToken)`: Asynchronously waits for the task to complete or the token to trigger; cancellation cancels this wait, not necessarily the underlying task.
+* `Task.WaitAsync(TimeSpan)`: Asynchronously waits for the task to complete or the timeout to expire; an elapsed timeout faults the wait with `TimeoutException`.
 * `Task.WaitAsync(TimeSpan,CancellationToken)`: Asynchronously waits for the task to complete, timeout, or cancellation.
 * `Task.WaitAsync(TimeSpan,TimeProvider,CancellationToken)`: Asynchronously waits using a custom `TimeProvider`.
+* `Task.WaitAsync(TimeSpan,TimeProvider)`: Asynchronously waits using a custom `TimeProvider` without a cancellation token.
 
 ### Inspection and Synchronous Blocking
 * `Task<TResult>.Result`: Blocks the calling thread until the task completes to return the value.
@@ -61,24 +64,47 @@ In the TAP model, a `Task` represents an operation outcome that may be pending, 
 * `Task<TResult>.Result synchronous blocking`: Accessing `.Result` blocks if the task has not completed; prefer `await` in asynchronous code.
 * `Task.WaitAll`: Blocks until all tasks complete.
 * `Task.WaitAny`: Blocks until any task completes.
+* `Task.Run cancellation-token overloads and pre-start cancellation`: These overloads can prevent queued work from starting but do not inject the token into the delegate; running work must observe a separately passed token.
+* `Task.Delay(TimeSpan) and Task.Delay(Int32) overload families`: Delay accepts either duration representation, with overloads for cancellation and a `TimeProvider` on current .NET.
+* `Task.Delay(TimeSpan,TimeProvider,CancellationToken)`: Uses a supplied clock and cancellation token, which supports deterministic time-based tests.
+* `Task.WhenAll(IEnumerable<Task>) overload`: Accepts a sequence of non-generic tasks and returns one task that completes after all have completed.
+* `Task.WhenAll(ReadOnlySpan<Task>) .NET 9 overload`: Avoids requiring a task array or enumerable wrapper for a span-based input.
+* `Task.WhenAll<TResult>(Task<TResult>[]) overload`: Accepts an array and returns results in input order after all generic tasks complete.
+* `Task.WhenAll<TResult>(ReadOnlySpan<Task<TResult>>) .NET 9 overload`: Span-based generic aggregation with ordered result values.
+* `Task.WhenAny(IEnumerable<Task>) overload`: Accepts an enumerable and returns a task whose result is the first completed input task.
+* `Task.WhenAny<TResult>(IEnumerable<Task<TResult>>) overload`: Generic enumerable overload returning the first completed generic input task.
+* `Task.WhenAny(ReadOnlySpan<Task>) .NET 9 overload`: Span-based overload for non-generic task inputs.
+* `Task.WhenAny<TResult>(ReadOnlySpan<Task<TResult>>) .NET 9 overload`: Span-based overload for generic task inputs.
+* `Task.WhenAny(Task,Task) overload`: Convenience overload returning whichever of the two tasks completes first.
+* `Task.WhenAny result and empty input`: The returned task itself completes successfully with the first completed input, even if that input faulted or canceled; then await or inspect that input task. An empty input collection throws `ArgumentException`.
+* `Task.WhenAll empty input`: An empty input collection returns an already-successful task (or an empty result array for the generic form).
+* `Task.WaitAsync(TimeSpan,TimeProvider) overload`: Provides a time-provider-based timeout without a cancellation token.
+* `Task.Factory.StartNew async delegate returns nested Task`: Unlike `Task.Run`, an async delegate passed to `StartNew` produces a nested task unless `Unwrap()` is called.
+* `Task.FromCanceled requires an already-canceled token`: Both generic and non-generic factories reject a token whose cancellation has not yet been requested.
+* `TaskCompletionSource non-generic .NET 6 API`: The non-generic producer type is available from .NET 6 for operations without a result value.
+* `TaskCompletionSource.SetCanceled and TrySetCanceled`: Complete the non-generic task in the canceled state; `TrySetCanceled` returns false if another completion already won.
+* `TaskCompletionSource<T>.SetCanceled and TrySetCanceled`: Generic equivalents may carry a cancellation token; `TrySetCanceled` reports whether this call transitioned the task.
+* `TaskCompletionSource.SetResult and TrySetResult non-generic methods`: Complete a non-generic task successfully, with `TrySetResult` reporting whether it won the race.
 
 ### ValueTask Specifics
 * `ValueTask.AsTask()`: Converts a `ValueTask` to a `Task`.
 * `ValueTask<T>.AsTask()`: Converts a `ValueTask<T>` to a `Task`.
 * `ValueTask<T>.Result`: Gets the result and may block if the operation is incomplete; prefer awaiting it.
 * `ValueTask<T>.IsCompletedSuccessfully`: Checks if the `ValueTask<T>` finished successfully.
-* `ValueTask<T>.Preserve()`: Returns a `ValueTask<T>` whose result can be consumed multiple times by preserving/caching the result; this may allocate and should be used only when repeated consumption is required.
+* `ValueTask<T>.Preserve()` and `ValueTask.Preserve()`: Return a value task that can safely be consumed later or repeatedly. They may wrap a `Task` when the original is backed by a pooled `IValueTaskSource`; after calling `Preserve`, do not use the original value task.
 * `ValueTask<T> single-consumption constraint`: A source-backed `ValueTask<T>` may be single-consumption; follow the specific implementation contract. Do not generalize this to every `ValueTask<T>` instance.
 * `ValueTask<T> source-backed implementation constraint`: Limitations on how `ValueTask` interacts with underlying sources.
 
 ### Manual Completion and Advanced Control
 * `ManualResetValueTaskSourceCore<T>`: A helper for implementing `IValueTaskSource`.
 * `IValueTaskSource<T>`: Interface for custom awaitable objects.
-* `TaskCompletionSource<T>`: Allows manual control over a `Task<T>`'s lifecycle.
+* `TaskCompletionSource` and `TaskCompletionSource<T>`: Non-generic and generic types for manually controlling task completion; the non-generic type is available starting in .NET 6.
 * `TaskCompletionSource<T>.SetResult`: Transitions the task to `RanToCompletion`.
 * `TaskCompletionSource<T>.TrySetResult`: Attempts to transition the task to `RanToCompletion`.
 * `TaskCompletionSource<T>.SetException`: Transitions the task to `Faulted`.
 * `TaskCompletionSource<T>.TrySetException`: Attempts to transition the task to `Faulted`.
+* `TaskCompletionSource.SetCanceled`/`TrySetCanceled` and generic equivalents: Transition a task to the canceled state; `TrySet` forms return false if another completion already won.
+* `TaskCompletionSource.SetResult()` and `TrySetResult()`: Complete a non-generic task successfully; `SetResult` throws if it was already completed, while `TrySetResult` reports whether it won the race.
 * `TaskCreationOptions.RunContinuationsAsynchronously`: Ensures continuations registered with the task are scheduled asynchronously; it does not specify a particular thread or require the thread pool.
 * `TaskScheduler.Current`: The scheduler associated with the current task.
 * `TaskScheduler.Default`: The default thread pool scheduler.

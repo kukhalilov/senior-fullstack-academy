@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 353,
-    "pending": 1987,
-    "claimsChecked": 9729,
+    "reviewed": 362,
+    "pending": 1978,
+    "claimsChecked": 10152,
     "claimsCorrected": 1084,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 353,
-    "pendingLessons": 1987
+    "reviewedLessons": 362,
+    "pendingLessons": 1978
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1107,6 +1107,27 @@
       ],
       "findings": [
         "Audited 315 frozen inventory entries and all nine lessons. Removed the nonexistent Queryable.ToLookup assignment, added current Queryable fallback and Index overloads, corrected the .NET 10 AsyncEnumerable/platform timeline and .NET 10 package provision for async FullJoin, and refined provider binding, GroupJoin, single-use sequence, local execution, buffering/backpressure, and default-value claims. API names, examples, and version statements checked against current Microsoft docs. No unresolved issues."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "C# async/await, task composition, ValueTask, cancellation, and continuation context (t01-016)",
+      "status": "full claim and frozen-inventory audit complete for all 9 lessons",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
+        "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenany",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1.preserve",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.dispose"
+      ],
+      "findings": [
+        "Reviewed all 237 frozen inventory entries across five groups and the nine lesson explanations, examples, exercises, and interview answers. Expanded custom task-like returns, Task.Run cancellation semantics, Task/ValueTask factories and composition overloads, CancellationToken registration lifecycle, CancelAsync/TryReset, and async continuation context. Corrected cancellation callback and aggregation wording, and qualified ValueTask source-dependent consumption, WhenAll/WhenAny behavior, context capture, and thread-pool scheduling. Official Microsoft documentation checked; no unresolved issues remain. Lessons remain drafts pending curriculum-wide completion."
       ]
     }
   ],
@@ -21167,261 +21188,297 @@
       "topicId": "t01-016",
       "phase": "overview",
       "draft": "course/drafts/t01-016/t01-016-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft .NET and C# official documentation; APIs, semantics, exceptions, and release availability cross-checked against the linked references.",
+          "sections": "Current API reference and async programming guides",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios",
-        "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
         "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenany",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1.preserve",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.dispose"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed. Corrected or qualified implementation/version caveats where needed; all examples and supplied names checked. No unresolved factual or coverage issues remain."
     },
     {
       "taskId": "t01-016-concepts",
       "topicId": "t01-016",
       "phase": "concepts",
       "draft": "course/drafts/t01-016/t01-016-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft .NET and C# official documentation; APIs, semantics, exceptions, and release availability cross-checked against the linked references.",
+          "sections": "Current API reference and async programming guides",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios",
-        "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
         "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenany",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1.preserve",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.dispose"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed. Corrected or qualified implementation/version caveats where needed; all examples and supplied names checked. No unresolved factual or coverage issues remain."
     },
     {
       "taskId": "t01-016-reference-tap-and-language-constructs",
       "topicId": "t01-016",
       "phase": "reference",
       "draft": "course/drafts/t01-016/t01-016-reference-tap-and-language-constructs.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft .NET and C# official documentation; APIs, semantics, exceptions, and release availability cross-checked against the linked references.",
+          "sections": "Current API reference and async programming guides",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios",
-        "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
         "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenany",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1.preserve",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.dispose"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed. Corrected or qualified implementation/version caveats where needed; all examples and supplied names checked. No unresolved factual or coverage issues remain."
     },
     {
       "taskId": "t01-016-reference-task-and-valuetask-apis",
       "topicId": "t01-016",
       "phase": "reference",
       "draft": "course/drafts/t01-016/t01-016-reference-task-and-valuetask-apis.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 95,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft .NET and C# official documentation; APIs, semantics, exceptions, and release availability cross-checked against the linked references.",
+          "sections": "Current API reference and async programming guides",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios",
-        "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
         "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenany",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1.preserve",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.dispose"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed. Corrected or qualified implementation/version caveats where needed; all examples and supplied names checked. No unresolved factual or coverage issues remain."
     },
     {
       "taskId": "t01-016-reference-cancellation-contracts",
       "topicId": "t01-016",
       "phase": "reference",
       "draft": "course/drafts/t01-016/t01-016-reference-cancellation-contracts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 62,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft .NET and C# official documentation; APIs, semantics, exceptions, and release availability cross-checked against the linked references.",
+          "sections": "Current API reference and async programming guides",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios",
-        "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
         "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenany",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1.preserve",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.dispose"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed. Corrected or qualified implementation/version caveats where needed; all examples and supplied names checked. No unresolved factual or coverage issues remain."
     },
     {
       "taskId": "t01-016-reference-continuation-context-and-configuration",
       "topicId": "t01-016",
       "phase": "reference",
       "draft": "course/drafts/t01-016/t01-016-reference-continuation-context-and-configuration.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft .NET and C# official documentation; APIs, semantics, exceptions, and release availability cross-checked against the linked references.",
+          "sections": "Current API reference and async programming guides",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios",
-        "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
         "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenany",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1.preserve",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.dispose"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed. Corrected or qualified implementation/version caveats where needed; all examples and supplied names checked. No unresolved factual or coverage issues remain."
     },
     {
       "taskId": "t01-016-reference-composition-errors-and-performance",
       "topicId": "t01-016",
       "phase": "reference",
       "draft": "course/drafts/t01-016/t01-016-reference-composition-errors-and-performance.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft .NET and C# official documentation; APIs, semantics, exceptions, and release availability cross-checked against the linked references.",
+          "sections": "Current API reference and async programming guides",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios",
-        "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
         "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenany",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1.preserve",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.dispose"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed. Corrected or qualified implementation/version caveats where needed; all examples and supplied names checked. No unresolved factual or coverage issues remain."
     },
     {
       "taskId": "t01-016-practice",
       "topicId": "t01-016",
       "phase": "practice",
       "draft": "course/drafts/t01-016/t01-016-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft .NET and C# official documentation; APIs, semantics, exceptions, and release availability cross-checked against the linked references.",
+          "sections": "Current API reference and async programming guides",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios",
-        "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
         "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenany",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1.preserve",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.dispose"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed. Corrected or qualified implementation/version caveats where needed; all examples and supplied names checked. No unresolved factual or coverage issues remain."
     },
     {
       "taskId": "t01-016-interview",
       "topicId": "t01-016",
       "phase": "interview",
       "draft": "course/drafts/t01-016/t01-016-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "source": "Microsoft .NET and C# official documentation; APIs, semantics, exceptions, and release availability cross-checked against the linked references.",
+          "sections": "Current API reference and async programming guides",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios",
-        "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-return-types",
         "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/common-async-bugs",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenany",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1.preserve",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.register",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.waitasync"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.dispose"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed. Corrected or qualified implementation/version caveats where needed; all examples and supplied names checked. No unresolved factual or coverage issues remain."
     },
     {
       "taskId": "t01-017-overview",

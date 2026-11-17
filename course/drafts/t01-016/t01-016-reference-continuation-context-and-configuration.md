@@ -43,9 +43,9 @@ For an incomplete `await`, the default task awaiter captures a non-default `Sync
 * `Sync-over-async thread starvation`: A performance issue caused by blocking threads while waiting for async tasks, leading to pool exhaustion.
 * `ConfigureAwait(false) does not create a thread`: A clarification that `ConfigureAwait(false)` only changes *where* the code resumes, not *how* it executes.
 * `ExecutionContext versus SynchronizationContext`: The distinction between ambient data (ExecutionContext) and the environment/thread-affinity (SynchronizationContext).
-* `ExecutionContext.SuppressFlow`: Prevents the `ExecutionContext` from being captured and restored.
+* `ExecutionContext.SuppressFlow`: Temporarily prevents `ExecutionContext` from flowing to newly scheduled asynchronous work. Restore flow with the returned `AsyncFlowControl`; do not call `Undo` from a different execution context or keep flow suppressed across an `await`.
 * `Task.Run ExecutionContext flow`: How `Task.Run` captures the caller's `ExecutionContext` and applies it to the task.
-* `ThreadPool continuation scheduling`: The default behavior when no `SynchronizationContext` is present, where continuations run on the ThreadPool.
+* `ThreadPool continuation scheduling`: With no captured context or non-default scheduler, asynchronously queued task continuations normally use the default ThreadPool scheduler; a continuation may also run inline on the completing thread when the awaiter and task permit it.
 
 # Cross-item comparison
 * **`SynchronizationContext` vs `TaskScheduler`**: `SynchronizationContext` is a higher-level abstraction often tied to specific application models (like UI), while `TaskScheduler` is a lower-level mechanism for managing task execution.
