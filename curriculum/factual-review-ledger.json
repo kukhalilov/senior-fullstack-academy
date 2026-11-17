@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 271,
-    "pending": 2069,
-    "claimsChecked": 6256,
-    "claimsCorrected": 563,
+    "reviewed": 280,
+    "pending": 2060,
+    "claimsChecked": 6557,
+    "claimsCorrected": 607,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 271,
-    "pendingLessons": 2069
+    "reviewedLessons": 280,
+    "pendingLessons": 2060
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -895,6 +895,30 @@
       ],
       "findings": [
         "Audited all eight lessons and checked assigned inventory coverage. Corrected storage/performance myths for structs, shallow reference-field copying, custom class equality, required-member limitations, primary constructor parameter semantics, field initializer ordering, static initialization/BeforeFieldInit distinctions, constructor-failure finalization, record equality boundaries, C# 15 union representation/null behavior, closed-hierarchy direct-descendant rules, and preview status for memory-safety changes. No unresolved claims remain within the assigned inventory."
+      ]
+    },
+    {
+      "scope": "C# inheritance, polymorphism, interfaces, access domains, and C# 15 closed hierarchies (t01-007; all nine lesson units)",
+      "status": "all lesson claims reviewed; draft state retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/override",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new-modifier",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/accessibility-levels",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/protected",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+        "https://learn.microsoft.com/en-us/dotnet/standard/assembly/friend-assemblies",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/sealed"
+      ],
+      "findings": [
+        "Reviewed all nine lessons and the complete manifest inventory against Microsoft language references and specifications. Corrected member-hiding/virtual dispatch claims, sealed override performance overstatement, interface runtime/version and default member access behavior, access-domain terminology and friend assemblies, and closed-hierarchy sample/exhaustiveness boundaries. No unresolved factual issues remain within the assigned inventory."
       ]
     }
   ],
@@ -6960,13 +6984,44 @@
       "topicId": "t01-007",
       "phase": "overview",
       "draft": "course/drafts/t01-007/t01-007-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Inheritance, polymorphism, interfaces, and tradeoffs",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
+              "section": "Base/derived types, single class inheritance, constructors, abstract members, and interface behavior",
+              "verdict": "Supported; corrected abstract intermediate class nuance."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
+              "section": "Virtual dispatch and most-derived override behavior",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface",
+              "section": "Interface members, default implementations, static members, and runtime support",
+              "verdict": "Supported; added call-through-interface and ref struct caveats."
+            }
+          ]
+        },
+        {
+          "claims": "Access modifiers are compile-time visibility, not security",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/accessibility-levels",
+              "section": "Declared accessibility, top-level/file/nested type rules, protected internal and private protected",
+              "verdict": "Supported; corrected project/assembly and access-domain explanations."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
@@ -6979,20 +7034,76 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of each externally verifiable claim and frozen inventory coverage against official Microsoft C# language and .NET documentation. Corrected identified errors and overstatements; draft state retained."
     },
     {
       "taskId": "t01-007-concepts",
       "topicId": "t01-007",
       "phase": "concepts",
       "draft": "course/drafts/t01-007/t01-007-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Virtual dispatch and member hiding examples",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
+              "section": "Virtual dispatch and most-derived override behavior",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new-modifier",
+              "section": "Name hiding and member lookup",
+              "verdict": "Supported; corrected overstatement that new replaces or breaks virtual dispatch."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/override",
+              "section": "Override constraints, covariant returns, and accessibility",
+              "verdict": "Supported."
+            }
+          ]
+        },
+        {
+          "claims": "Interface/runtime version boundaries",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface",
+              "section": "Interface members, default implementations, static members, and runtime support",
+              "verdict": "Supported; added call-through-interface and ref struct caveats."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
+              "section": "Default interface implementation language-version context",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Static abstract/virtual interface member language-version context",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Non-virtual static interface members and closed hierarchies",
+              "verdict": "Supported; separated C# feature availability from target runtime requirements."
+            }
+          ]
+        },
+        {
+          "claims": "Accessibility domains",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/accessibility-levels",
+              "section": "Declared accessibility, top-level/file/nested type rules, protected internal and private protected",
+              "verdict": "Supported; corrected project/assembly and access-domain explanations."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
@@ -7005,20 +7116,61 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of each externally verifiable claim and frozen inventory coverage against official Microsoft C# language and .NET documentation. Corrected identified errors and overstatements; draft state retained."
     },
     {
       "taskId": "t01-007-reference-class-inheritance-and-construction",
       "topicId": "t01-007",
       "phase": "reference",
       "draft": "course/drafts/t01-007/t01-007-reference-class-inheritance-and-construction.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 36,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Inheritance, constructors, abstract/virtual members",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
+              "section": "Base/derived types, single class inheritance, constructors, abstract members, and interface behavior",
+              "verdict": "Supported; corrected abstract intermediate class nuance."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract",
+              "section": "Abstract classes and required concrete implementations",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
+              "section": "Virtual dispatch and most-derived override behavior",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/override",
+              "section": "Override constraints, covariant returns, and accessibility",
+              "verdict": "Supported."
+            }
+          ]
+        },
+        {
+          "claims": "Single class inheritance and sealed behavior",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
+              "section": "Base/derived types, single class inheritance, constructors, abstract members, and interface behavior",
+              "verdict": "Supported; corrected abstract intermediate class nuance."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/sealed",
+              "section": "Sealed types and overrides",
+              "verdict": "Supported; removed an unsupported performance guarantee."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
@@ -7031,20 +7183,66 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of each externally verifiable claim and frozen inventory coverage against official Microsoft C# language and .NET documentation. Corrected identified errors and overstatements; draft state retained."
     },
     {
       "taskId": "t01-007-reference-polymorphism-and-member-lookup",
       "topicId": "t01-007",
       "phase": "reference",
       "draft": "course/drafts/t01-007/t01-007-reference-polymorphism-and-member-lookup.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Runtime type, compile-time lookup, virtual dispatch, override, and hiding",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
+              "section": "Virtual dispatch and most-derived override behavior",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/override",
+              "section": "Override constraints, covariant returns, and accessibility",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new-modifier",
+              "section": "Name hiding and member lookup",
+              "verdict": "Supported; corrected overstatement that new replaces or breaks virtual dispatch."
+            }
+          ]
+        },
+        {
+          "claims": "Covariant returns and sealed overrides",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/override",
+              "section": "Override constraints, covariant returns, and accessibility",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/sealed",
+              "section": "Sealed types and overrides",
+              "verdict": "Supported; removed an unsupported performance guarantee."
+            }
+          ]
+        },
+        {
+          "claims": "Substitutability/composition design guidance",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
+              "section": "Base/derived types, single class inheritance, constructors, abstract members, and interface behavior",
+              "verdict": "Supported; corrected abstract intermediate class nuance."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
@@ -7057,20 +7255,66 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of each externally verifiable claim and frozen inventory coverage against official Microsoft C# language and .NET documentation. Corrected identified errors and overstatements; draft state retained."
     },
     {
       "taskId": "t01-007-reference-interface-contracts",
       "topicId": "t01-007",
       "phase": "reference",
       "draft": "course/drafts/t01-007/t01-007-reference-interface-contracts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Interface members, implicit/explicit implementation, inheritance and mapping",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface",
+              "section": "Interface members, default implementations, static members, and runtime support",
+              "verdict": "Supported; added call-through-interface and ref struct caveats."
+            }
+          ]
+        },
+        {
+          "claims": "Default/static interface members and C# runtime/version boundaries",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface",
+              "section": "Interface members, default implementations, static members, and runtime support",
+              "verdict": "Supported; added call-through-interface and ref struct caveats."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8",
+              "section": "Default interface implementation language-version context",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Static abstract/virtual interface member language-version context",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Non-virtual static interface members and closed hierarchies",
+              "verdict": "Supported; separated C# feature availability from target runtime requirements."
+            }
+          ]
+        },
+        {
+          "claims": "Struct/interface conversion and default member behavior",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface",
+              "section": "Interface members, default implementations, static members, and runtime support",
+              "verdict": "Supported; added call-through-interface and ref struct caveats."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
@@ -7083,20 +7327,56 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of each externally verifiable claim and frozen inventory coverage against official Microsoft C# language and .NET documentation. Corrected identified errors and overstatements; draft state retained."
     },
     {
       "taskId": "t01-007-reference-accessibility-and-visibility",
       "topicId": "t01-007",
       "phase": "reference",
       "draft": "course/drafts/t01-007/t01-007-reference-accessibility-and-visibility.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Access modifier domains and effective accessibility",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/accessibility-levels",
+              "section": "Declared accessibility, top-level/file/nested type rules, protected internal and private protected",
+              "verdict": "Supported; corrected project/assembly and access-domain explanations."
+            }
+          ]
+        },
+        {
+          "claims": "Protected receiver restriction",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/protected",
+              "section": "Protected receiver restriction",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/basic-concepts",
+              "section": "Protected access and receiver rule",
+              "verdict": "Supported."
+            }
+          ]
+        },
+        {
+          "claims": "Friend assemblies and strong-name rules",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/friend-assemblies",
+              "section": "InternalsVisibleTo and strong-name public-key requirements",
+              "verdict": "Supported; included friend assembly caveat."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
@@ -7109,20 +7389,56 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of each externally verifiable claim and frozen inventory coverage against official Microsoft C# language and .NET documentation. Corrected identified errors and overstatements; draft state retained."
     },
     {
       "taskId": "t01-007-reference-design-choice-and-hierarchy",
       "topicId": "t01-007",
       "phase": "reference",
       "draft": "course/drafts/t01-007/t01-007-reference-design-choice-and-hierarchy.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Inheritance, composition, LSP, and extension points",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
+              "section": "Base/derived types, single class inheritance, constructors, abstract members, and interface behavior",
+              "verdict": "Supported; corrected abstract intermediate class nuance."
+            }
+          ]
+        },
+        {
+          "claims": "C# 15 closed hierarchy and exhaustiveness",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Direct descendant boundary and exhaustive switches",
+              "verdict": "Supported; corrected sample to use an actual C# 15 closed class and clarified descendants are not transitive."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Non-virtual static interface members and closed hierarchies",
+              "verdict": "Supported; separated C# feature availability from target runtime requirements."
+            }
+          ]
+        },
+        {
+          "claims": "Sealed design tradeoffs",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/sealed",
+              "section": "Sealed types and overrides",
+              "verdict": "Supported; removed an unsupported performance guarantee."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
@@ -7135,20 +7451,66 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of each externally verifiable claim and frozen inventory coverage against official Microsoft C# language and .NET documentation. Corrected identified errors and overstatements; draft state retained."
     },
     {
       "taskId": "t01-007-practice",
       "topicId": "t01-007",
       "phase": "practice",
       "draft": "course/drafts/t01-007/t01-007-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 22,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Sample class/interface implementation and dispatch",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
+              "section": "Base/derived types, single class inheritance, constructors, abstract members, and interface behavior",
+              "verdict": "Supported; corrected abstract intermediate class nuance."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface",
+              "section": "Interface members, default implementations, static members, and runtime support",
+              "verdict": "Supported; added call-through-interface and ref struct caveats."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
+              "section": "Virtual dispatch and most-derived override behavior",
+              "verdict": "Supported."
+            }
+          ]
+        },
+        {
+          "claims": "Member hiding and accessibility exercises",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new-modifier",
+              "section": "Name hiding and member lookup",
+              "verdict": "Supported; corrected overstatement that new replaces or breaks virtual dispatch."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/accessibility-levels",
+              "section": "Declared accessibility, top-level/file/nested type rules, protected internal and private protected",
+              "verdict": "Supported; corrected project/assembly and access-domain explanations."
+            }
+          ]
+        },
+        {
+          "claims": "Design and sealed tradeoffs",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/sealed",
+              "section": "Sealed types and overrides",
+              "verdict": "Supported; removed an unsupported performance guarantee."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
@@ -7161,20 +7523,76 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of each externally verifiable claim and frozen inventory coverage against official Microsoft C# language and .NET documentation. Corrected identified errors and overstatements; draft state retained."
     },
     {
       "taskId": "t01-007-interview",
       "topicId": "t01-007",
       "phase": "interview",
       "draft": "course/drafts/t01-007/t01-007-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 25,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Core class/interface/dispatch explanations",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
+              "section": "Base/derived types, single class inheritance, constructors, abstract members, and interface behavior",
+              "verdict": "Supported; corrected abstract intermediate class nuance."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface",
+              "section": "Interface members, default implementations, static members, and runtime support",
+              "verdict": "Supported; added call-through-interface and ref struct caveats."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
+              "section": "Virtual dispatch and most-derived override behavior",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new-modifier",
+              "section": "Name hiding and member lookup",
+              "verdict": "Supported; corrected overstatement that new replaces or breaks virtual dispatch."
+            }
+          ]
+        },
+        {
+          "claims": "Static interface feature versioning",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
+              "section": "Static abstract/virtual interface member language-version context",
+              "verdict": "Supported."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Non-virtual static interface members and closed hierarchies",
+              "verdict": "Supported; separated C# feature availability from target runtime requirements."
+            }
+          ]
+        },
+        {
+          "claims": "Closed hierarchy and accessibility answers",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/closed",
+              "section": "Direct descendant boundary and exhaustive switches",
+              "verdict": "Supported; corrected sample to use an actual C# 15 closed class and clarified descendants are not transitive."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/accessibility-levels",
+              "section": "Declared accessibility, top-level/file/nested type rules, protected internal and private protected",
+              "verdict": "Supported; corrected project/assembly and access-domain explanations."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/inheritance",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual",
@@ -7187,7 +7605,7 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11",
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual review of each externally verifiable claim and frozen inventory coverage against official Microsoft C# language and .NET documentation. Corrected identified errors and overstatements; draft state retained."
     },
     {
       "taskId": "t01-008-overview",

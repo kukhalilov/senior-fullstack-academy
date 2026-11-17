@@ -12,30 +12,32 @@ In C#, an **interface** acts as a contract. While inheritance (classes) creates 
 
 # Supplied names explained
 
-* `Interface`: A reference type that defines a contract. It contains members (methods, properties, events, indexers) that implementing classes or structs must provide.
+* `Interface`: A reference type contract. Implementing classes, records, or structs provide required members; interfaces can also provide default implementations and static members, but cannot declare instance fields.
 * `Interface inheritance`: The ability for an interface to inherit from one or more other interfaces, requiring the implementing type to satisfy all inherited contracts.
 * `Multiple interface implementation`: A class or struct can implement any number of interfaces, allowing it to fulfill multiple distinct roles.
 * `Interface base list`: The syntax where a type declares the interfaces it implements, following the base class (if any).
 * `Implicit interface implementation`: The standard way to implement an interface where the class member is public and matches the interface member signature.
 * `Explicit interface implementation`: A way to implement an interface member by prefixing it with the interface name (e.g., `InterfaceName.MemberName`). This hides the member from the class's public API and resolves naming conflicts.
-* `Default interface method`: A method within an interface that provides a body, allowing existing interfaces to evolve without breaking implementing types.
+* `Default interface method`: An instance method with a body that provides a fallback implementation for implementing types that don't provide an override. It can help evolve an interface, but runtime support and behavioral compatibility still matter.
 * `Default interface property`: A property within an interface that includes an implementation for its accessors.
 * `Default interface event`: An event within an interface that provides default add/remove logic.
 * `Default interface indexer`: An indexer within an interface that provides a default implementation.
-* `static abstract interface member`: A member that must be implemented by a static member in the implementing type; used to enforce static contracts (like operators) on generic types.
+* `static abstract interface member`: A static contract that an implementing type must satisfy with a static member; generic code can invoke it through a constrained type parameter. Target runtimes must support the feature.
 * `static virtual interface member`: A static member in an interface that provides a default implementation but can be overridden by the implementing type.
 * `static sealed interface member`: A static member in an interface that provides an implementation that cannot be overridden by implementing types.
-* `Non-virtual static interface member`: A static member in an interface that does not participate in virtual dispatch and is available across various runtime versions.
+* `Non-virtual static interface member`: A C# 15 static interface member with a body that doesn't participate in virtual dispatch and can be called directly on the interface type even when the target runtime lacks default interface implementation support.
 * `Interface reimplementation`: The process where a derived class re-declares an interface that was already implemented by a base class to provide a different implementation.
 * `Interface mapping`: The internal process by which the runtime matches interface members to the specific methods in a class.
 * `Generic interface implementation`: Implementing an interface that uses type parameters, allowing for type-safe contracts.
 * `Explicit member qualification`: Using the interface name to call an explicitly implemented member, necessary because the member is not directly visible on the class instance.
 * `Interface segregation`: A design principle where large interfaces are split into smaller, more specific ones so that clients only depend on what they use.
-* `Interface reference conversion`: The implicit or explicit conversion of a class instance to an interface type it implements.
+* `Interface reference conversion`: Converting a class/record instance or struct value to an implemented interface type. Converting a struct value to an interface-typed variable generally boxes it; generic constrained calls can avoid boxing in applicable cases.
+
+Default interface members are callable through the interface contract; they don't become ordinary class members that callers can invoke through the implementing class's concrete type. A class or struct can provide its own implementation. If unrelated interfaces provide competing defaults, the implementing type may need to resolve the conflict explicitly. A `ref struct` implementing an interface with default members must explicitly implement those members.
 
 # Cross-item comparison
 
-* **Interface vs. Abstract class**: An abstract class shares state (fields) and implementation; an interface defines a contract and supports multiple inheritance without instance storage.
+* **Interface vs. Abstract class**: An abstract class can share instance state and implementation and occupies the single class-inheritance slot. An interface supports multiple contracts and has no instance fields, though it can contain static state and default member implementations.
 * **Implicit vs. Explicit implementation**: Implicit is the default and makes the member part of the class's public API. Explicit hides the member, making it accessible only when the object is cast to the interface type.
 * **Static abstract vs. Default interface members**: Static abstract members define a contract for static behavior (like factories or operators) on types; default interface members provide instance-level logic for existing contracts.
 
@@ -78,3 +80,7 @@ class FileLogger : ILogger {
 
 4. **Question**: What is the primary difference between `virtual` dispatch and `new` member hiding?
    **Answer**: Virtual dispatch uses the runtime type to select the method, while `new` (non-virtual) lookup uses the compile-time type.
+
+## Version and runtime boundary
+
+Default interface implementations arrived in C# 8 and require a supporting runtime. Static abstract/virtual interface members arrived in C# 11 and also require runtime support. C# 15 non-virtual static interface members can be used with older runtimes that don't support default interface implementations; this compatibility does not extend to default instance members or static abstract/virtual dispatch.

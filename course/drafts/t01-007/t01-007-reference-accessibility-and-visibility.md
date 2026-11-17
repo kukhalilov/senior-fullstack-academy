@@ -16,25 +16,25 @@ The mental model relies on two pillars:
 
 # Supplied names explained
 
-* `public accessibility`: The most permissive level. There are no restrictions on accessing the member.
+* `public accessibility`: The least-restrictive declared member access. Actual access still requires the containing type and exposed types to be accessible.
 * `private accessibility`: The most restrictive level. Access is limited to the body of the class or struct in which the member is declared.
 * `protected accessibility`: Access is limited to the containing class and any classes derived from it.
-* `internal accessibility`: Access is limited to the current assembly (the compiled project file).
+* `internal accessibility`: Access is limited to the current assembly; a project can produce multiple assemblies. A declared friend assembly can also receive access through `InternalsVisibleToAttribute`.
 * `protected internal accessibility`: Access is limited to the current assembly OR types derived from the containing class in any assembly.
 * `private protected accessibility`: Access is limited to the current assembly AND types derived from the containing class.
 * `file accessibility modifier`: Limits the scope of a type to the specific source file in which it is declared.
-* `Top-level type accessibility`: The visibility of a type declared at the namespace level (only `public` or `internal` are allowed).
-* `Nested type accessibility`: The visibility of a type declared inside another type; it can use any of the six access modifiers.
+* `Top-level type accessibility`: A namespace-level type can use `public`, `internal`, or the C# `file` modifier; without an explicit modifier, it is `internal`.
+* `Nested type accessibility`: The visibility of a type declared inside another type. It can use the access modifiers allowed for its containing declaration; `file` applies only to top-level types.
 * `Member accessibility`: The visibility of methods, fields, properties, etc., within a type.
-* `Effective accessibility`: The actual visibility of a member, calculated as the minimum of the member's declared accessibility and the accessibility of its containing type.
+* `Effective accessibility`: The code region that can actually access a declaration, constrained by both its declared accessibility and all containing-type accessibility domains; think of this as intersecting access domains rather than simply ranking modifiers.
 * `Containing type accessibility`: The visibility of the class or struct that holds the member; this acts as a ceiling for the member's visibility.
-* `Signature accessibility consistency`: The rule that a member's return type or parameter types must be at least as accessible as the member itself.
-* `Friend assembly`: An assembly that is granted access to the `internal` members of another assembly.
-* `InternalsVisibleToAttribute`: The attribute used to designate a specific assembly as a "friend" to allow cross-assembly `internal` access.
-* `Assembly boundary`: The logical limit defined by the compiled project; `internal` members cannot cross this unless explicitly permitted.
+* `Signature accessibility consistency`: Compile-time rules prevent a declaration from exposing a less-accessible type through a more-accessible signature; effective accessibility and declaration context determine the exact rule.
+* `Friend assembly`: An assembly granted access to another assembly's `internal` members through `InternalsVisibleToAttribute`; qualifying derived friend types can also gain `private protected` access. Strong-named assemblies require the friend assembly's full public key.
+* `InternalsVisibleToAttribute`: The attribute used to grant a named assembly access to the declaring assembly's `internal` members (and qualifying `private protected` members). This is compile-time assembly visibility, not a security boundary.
+* `Assembly boundary`: The compiled assembly boundary; `internal` members aren't visible to other assemblies unless an explicit friend-assembly relationship applies.
 * `Derived-type access`: The ability of a subclass to access members of its base class based on the `protected` or `private protected` modifiers.
-* `Same-assembly access`: The ability for code within the same project to access `internal` members.
-* `Same-assembly derived-type access`: The intersection of `internal` and `protected` rules, allowing access if the code is either in the same assembly OR is a derived type.
+* `Same-assembly access`: The ability for code compiled into the same assembly to access `internal` members.
+* `Same-assembly derived-type access`: Access to `private protected` members requires code in the same assembly (or qualifying friend assembly) and in the containing type or a derived type; this is an AND condition. `protected internal` uses the OR condition.
 * `Protected access through derived receiver`: A rule stating that `protected` members can only be accessed through an instance of the derived class, not the base class.
 * `Accessibility domain`: The conceptual "scope" or region of code where a specific identifier is reachable.
 
@@ -44,6 +44,7 @@ The mental model relies on two pillars:
 | :--- | :--- |
 | `public` vs `internal` | `public` is visible everywhere; `internal` is restricted to the assembly. |
 | `protected internal` vs `private protected` | `protected internal` is an "OR" relationship (Assembly OR Derived); `private protected` is an "AND" relationship (Assembly AND Derived). |
+| `internal` vs `protected internal` | `internal` requires same assembly; `protected internal` permits same assembly or a derived type in another assembly. |
 
 # Examples
 

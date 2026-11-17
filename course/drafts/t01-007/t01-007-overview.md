@@ -21,7 +21,7 @@ These features work together to define how objects relate to each other:
 2.  **Inheritance** creates a hierarchy where a **Derived class** inherits members from a **Base class**.
 3.  **Polymorphism** allows you to use a base class reference to call methods on a derived object. **Virtual dispatch** ensures the correct version of a method runs based on the actual object type, not the reference type.
 4.  **Interfaces** provide a way to define capabilities that classes must implement, allowing for **Multiple interface implementation** where a class can fulfill many different contracts.
-5.  **Access modifiers** act as the "security guard," determining which parts of your code can see or change your classes and members.
+5.  **Access modifiers** define compile-time accessibility domains; they help encapsulate APIs but are not a runtime security boundary.
 
 # Concept map
 *   **Hierarchy:** Use **Inheritance** for "is-a" relationships (e.g., a `Dog` is an `Animal`). Use **Composition** (holding an object inside another) for "has-a" relationships.
@@ -40,7 +40,7 @@ Consider a simple system for a drawing application:
 
 # When to use it and tradeoffs
 *   **Use Inheritance** when you have a clear "is-a" relationship and want to share implementation code. **Tradeoff:** It creates tight coupling; changes to the base class can break all derived classes (the "Fragile base class" problem).
-*   **Use Interfaces** when you want to define capabilities across unrelated classes. **Tradeoff:** They do not store state, so you may repeat code if you don't use default interface implementations.
+*   **Use Interfaces** when you want to define capabilities across unrelated classes. Interfaces cannot contain instance fields, but modern C# supports default implementations and static members. Runtime support requirements depend on the interface feature and target runtime.
 *   **Use Access Modifiers** to follow the principle of least privilege. Prefer `private` unless a specific caller needs access; `protected` intentionally expands access to derived classes, while `public` exposes the member to all callers that can access the type.
 
 # What later lessons cover

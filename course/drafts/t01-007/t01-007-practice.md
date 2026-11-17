@@ -50,9 +50,9 @@ public class Player : Entity, IDamageable {
 3.  **Access**: The `protected` member is invisible to unrelated classes, even in the same assembly. It is only visible to the class itself and its children.
 
 # Tests and edge cases
-*   **Fragile Base Class**: If you change a `virtual` method in a base class, you might break all derived classes. Always consider if `sealed` is appropriate for your classes.
+*   **Fragile Base Class**: If you change a `virtual` method in a base class, you might break all derived classes. Consider sealing types or overrides when they are not intended extension points; this is an API design choice, not a security guarantee.
 *   **Interface Reimplementation**: If a class implements two interfaces with the same method name, use **Explicit interface implementation** to resolve the conflict.
-*   **Effective Accessibility**: You cannot have a `public` method that returns a `private` class. The compiler will throw an error because the return type is less accessible than the method.
+*   **Effective Accessibility**: You cannot have a `public` method that returns a `private` class. The compiler reports an inconsistent-accessibility error when the return type is less accessible than the effective signature contract.
 
 # Reflection questions
 1.  Why is "Composition over Inheritance" often preferred in large systems?

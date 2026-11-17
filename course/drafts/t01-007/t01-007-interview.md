@@ -18,9 +18,9 @@ In an interview, you will be asked to explain how C# manages object relationship
 *   **Why use `Composition over inheritance`?**
     *   Inheritance creates tight coupling. Composition allows you to change behavior at runtime by swapping out components, making the code more flexible and easier to test.
 *   **What does the `new` modifier do on a member?**
-    *   It performs **Member hiding**. It tells the compiler to ignore the base class member and use the derived class member instead, but it does *not* participate in virtual dispatch.
+    *   It declares a member that hides a visible base member during lookup through the derived type. A base-typed expression can still select the base member; `new` does not override the base virtual slot.
 *   **What is `Effective accessibility`?**
-    *   It is the actual visibility of a member, which is limited by the accessibility of its containing type. For example, a `public` method inside an `internal` class is only accessible within the same assembly.
+    *   It is the actual code region that can access the member, constrained by the declared accessibility and containing-type domains. For example, a `public` method inside an `internal` class is only accessible within the same assembly.
 
 # Deep follow-up answers
 *   **Explain `Explicit interface implementation` vs `Implicit interface implementation`.**

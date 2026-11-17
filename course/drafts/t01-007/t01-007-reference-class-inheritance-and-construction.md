@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers C# 15 / .NET 11 GA language features related to class inheritance, abstract types, and member overriding. It excludes memory-safety previews, records, structs, and generic variance. All information is based on the C# language reference as of 2026-11-14.
+This lesson covers C# 15 / .NET 11 GA language features related to class inheritance, abstract types, and member overriding. It excludes memory-safety previews, records, structs, and generic variance. All information is based on the C# language reference as of 2026-11-17.
 
 # How this group fits the mental model
 Inheritance allows you to create a hierarchy where a `Derived class` inherits the state and behavior of a `Base class`. This establishes an "is-a" relationship. 
@@ -19,13 +19,13 @@ Inheritance allows you to create a hierarchy where a `Derived class` inherits th
 * `Derived class`: A class that inherits members from a base class. It can extend or modify the base behavior.
 * `Direct base class`: The class immediately above the current class in the inheritance hierarchy.
 * `Indirect base class`: A class further up the hierarchy (e.g., the grandparent of the current class).
-* `Single class inheritance`: C# allows a class to inherit from only one other class, preventing the complexities of multiple inheritance.
+* `Single class inheritance`: A class has at most one direct base class (besides the implicit `object` base where applicable); it can implement multiple interfaces.
 * `base class constructor`: The constructor of the base class, which must be initialized before the derived class constructor completes.
 * `base constructor initializer : base(...)`: Syntax used in a derived constructor to explicitly call a specific constructor of the base class.
-* `base member access expression`: The `base` keyword used to access members of the base class that have been hidden or overridden in the derived class.
+* `base member access expression`: The `base` keyword used to access a base implementation or member hidden by the current derived type where permitted; `base` calls do not redispatch to the current override.
 * `Abstract class`: A class declared with `abstract` that cannot be instantiated; it serves as a base for other classes.
-* `abstract method`: A method without an implementation in an abstract class; derived classes must provide an implementation.
-* `abstract property`: A property without an implementation in an abstract class; derived classes must implement the accessors.
+* `abstract method`: A method without an implementation in an abstract class; a concrete derived class must provide an implementation, though an abstract intermediate class may defer it.
+* `abstract property`: A property without an implementation in an abstract class; a concrete derived class must implement the required abstract accessors; an abstract intermediate class may defer them.
 * `abstract indexer`: An indexer without an implementation in an abstract class; derived classes must implement it.
 * `Abstract accessor`: The `get` or `set` portion of an abstract property or indexer that lacks a body.
 * `Concrete implementation of abstract member`: The actual code provided by a derived class for an abstract member.
@@ -51,13 +51,13 @@ Inheritance allows you to create a hierarchy where a `Derived class` inherits th
 
 # Examples
 ```csharp
-// Unverified example
+// Abstract base class and concrete override
 public abstract class Animal {
     public abstract void Speak(); // abstract method
 }
 
 public class Dog : Animal {
-    public override void Speak() => Console.WriteLine("Woof"); // Concrete implementation
+    public override void Speak() => System.Console.WriteLine("Woof"); // Concrete implementation
 }
 ```
 
@@ -70,7 +70,7 @@ public class Dog : Animal {
 1. **Q: Can you instantiate an `Abstract class`?**
    A: No, the compiler prevents this.
 2. **Q: What is the difference between `virtual` and `abstract`?**
-   A: `virtual` members have an implementation that *can* be overridden; `abstract` members have no implementation and *must* be overridden.
+   A: `virtual` members have a default implementation that derived classes may override; `abstract` members have no implementation and must be implemented before a concrete derived type can be instantiated.
 3. **Q: What does `sealed` do to a class?**
    A: It prevents any other class from inheriting from it.
 
