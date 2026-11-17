@@ -19,11 +19,11 @@ The mental model relies on two pillars:
 * `IDisposable`: An interface that defines a mechanism for releasing unmanaged resources.
 * `IDisposable.Dispose`: The method called to perform application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
 * `IAsyncDisposable`: An interface that provides a mechanism for releasing unmanaged resources asynchronously.
-* `IAsyncDisposable.DisposeAsync`: The method called to perform application-defined tasks associated with freeing, releasing, or resetting unmanaged resources asynchronously.
+* `IAsyncDisposable.DisposeAsync`: The asynchronous cleanup contract. Cleanup can involve managed or external resources; it is not restricted to unmanaged resources.
 * `ValueTask from DisposeAsync`: The return type of `DisposeAsync`, which allows for efficient completion when the cleanup operation is synchronous.
 * `using declaration`: A variable declaration that ensures the object is disposed when the scope ends (e.g., `using var reader = new StreamReader();`).
 * `using statement`: A block-based syntax that ensures disposal at the end of the block.
-* `using expression`: A C# feature allowing `using` within an expression, disposing the resource when the expression result is no longer needed.
+* `using expression`: The expression form `using (resource) { ... }`; disposal happens when control leaves that statement, not when a later expression result is no longer needed.
 * `await using declaration`: An asynchronous version of the `using` declaration for `IAsyncDisposable` objects.
 * `await using statement`: An asynchronous version of the `using` block for `IAsyncDisposable` objects.
 * `await using expression`: An asynchronous version of the `using` expression.
@@ -41,14 +41,14 @@ The mental model relies on two pillars:
 * `Dispose managed resources`: Logic inside `Dispose(true)` to clean up objects that implement `IDisposable`.
 * `Release unmanaged resource`: Logic inside `Dispose(bool)` to clean up handles or native memory.
 * `GC.SuppressFinalize`: A method call that tells the GC not to call the object's finalizer, as cleanup has already occurred.
-* `Dispose idempotence`: The requirement that calling `Dispose` multiple times should not throw an exception.
+* `Dispose idempotence`: A widely useful contract/design goal that repeated disposal is safe. The interface itself does not require every implementation to be idempotent; callers should follow the specific type's documented contract.
 * `ObjectDisposedException after disposal`: An exception thrown if a consumer attempts to use an object after it has been disposed.
-* `Resource ownership`: The concept that the creator of a resource is responsible for its disposal.
+* `Resource ownership`: The concept that the component responsible for a resource's lifetime disposes it. Creation often implies ownership, but APIs can transfer ownership or return borrowed resources, so follow the contract.
 * `Borrowed resource versus owned resource`: A distinction where "borrowed" resources should not be disposed by the consumer.
 * `DisposeAsyncCore`: A common naming convention for the internal logic of `DisposeAsync`.
 * `Synchronous disposal of async-capable resource`: Calling `Dispose` on an object that implements both `IDisposable` and `IAsyncDisposable`.
 * `Prefer async disposal when asynchronous cleanup is required`: A guideline to use `IAsyncDisposable` for I/O-bound cleanup.
-* `ConfigureAwait(false) in library DisposeAsync`: A performance practice to avoid capturing the synchronization context during cleanup.
+* `ConfigureAwait(false) in library DisposeAsync`: An optional context-capture choice for awaits inside library cleanup code. It is not universally required and should follow the library's context and compatibility requirements.
 * `Cleanup order for dependent resources`: The requirement to dispose of objects in the correct dependency order.
 * `Exception thrown by Dispose`: A scenario where cleanup fails, which should be handled carefully to avoid masking original exceptions.
 * `Exception thrown by DisposeAsync`: Similar to `Dispose`, but occurring in an asynchronous context.
@@ -84,7 +84,7 @@ public void ProcessFile()
 1. **Question:** Why should you use `using` instead of a manual `try-finally` block?
    **Answer:** `using` is more concise and less error-prone, as the compiler handles the `try-finally` expansion automatically.
 2. **Question:** What is the purpose of `GC.SuppressFinalize(this)`?
-   **Answer:** It informs the GC that the object has already been cleaned up, so the finalizer does not need to run, improving performance.
+   **Answer:** If the type has a finalizer and deterministic disposal has made that finalizer unnecessary, suppression prevents a later finalizer run. A type with no finalizer generally has nothing to suppress.
 3. **Question:** Can you call `Dispose` more than once on the same object?
    **Answer:** Yes, `Dispose` should be implemented to be idempotent, meaning subsequent calls should do nothing.
 

@@ -9,7 +9,8 @@
     "Exception handling separates normal control flow from exceptional failure. Catch specific failures close to a recovery boundary, preserve stack information when rethrowing, and avoid converting cancellation into ordinary success or failure.",
     "Cleanup is a deterministic resource-lifetime concern. `IDisposable` and `IAsyncDisposable` represent cleanup contracts, `using` and `await using` guarantee cleanup on scope exit, and finalization is a nondeterministic fallback mainly for direct unmanaged-resource ownership.",
     "Managed memory is reclaimed by the garbage collector; disposal releases other resources or performs deterministic cleanup. A finalizer is not a substitute for `Dispose`, and `SafeHandle` is the preferred wrapper for owning operating-system handles.",
-    "Exception safety includes preserving invariants when an operation fails. Define cancellation boundaries, cleanup order, retryability, and which layer translates low-level exceptions into application-level failures."
+    "Exception safety includes preserving invariants when an operation fails. Define cancellation boundaries, cleanup order, retryability, and which layer translates low-level exceptions into application-level failures.",
+    "Cancellation is cooperative: CancellationTokenSource requests cancellation, listeners decide when and how to stop, and token sources and linked sources have disposal lifetimes. A timeout is one possible cancellation policy, not a different forced-termination mechanism."
   ],
   "inventory": [
     {
@@ -103,7 +104,18 @@
         "Cancellation versus timeout",
         "Transient failure versus permanent failure",
         "Retry only when operation and failure are retryable",
-        "Avoid exceptions for routine branching"
+        "Avoid exceptions for routine branching",
+        "CancellationToken.CanBeCanceled",
+        "CancellationToken.Register",
+        "CancellationToken.WaitHandle",
+        "CancellationTokenSource.Token",
+        "CancellationTokenSource.CreateLinkedTokenSource",
+        "CancellationTokenSource.Dispose",
+        "CancellationTokenSource.CancelAsync",
+        "CancellationTokenSource.TryReset",
+        "CancellationTokenRegistration.Dispose",
+        "CancellationTokenRegistration.DisposeAsync",
+        "Task cancellation state and token matching"
       ]
     },
     {
@@ -209,15 +221,42 @@
   ],
   "inventoryComplete": true,
   "comparisons": [
-    ["throw;", "throw exceptionVariable;"],
-    ["Exception filter", "Catch block condition"],
-    ["OperationCanceledException", "TaskCanceledException"],
-    ["Exception", "Result value for expected outcomes"],
-    ["IDisposable", "IAsyncDisposable"],
-    ["using", "try-finally cleanup"],
-    ["Dispose", "Finalizer"],
-    ["SafeHandle", "Hand-written finalizer"],
-    ["Managed memory", "External resource lifetime"]
+    [
+      "throw;",
+      "throw exceptionVariable;"
+    ],
+    [
+      "Exception filter",
+      "Catch block condition"
+    ],
+    [
+      "OperationCanceledException",
+      "TaskCanceledException"
+    ],
+    [
+      "Exception",
+      "Result value for expected outcomes"
+    ],
+    [
+      "IDisposable",
+      "IAsyncDisposable"
+    ],
+    [
+      "using",
+      "try-finally cleanup"
+    ],
+    [
+      "Dispose",
+      "Finalizer"
+    ],
+    [
+      "SafeHandle",
+      "Hand-written finalizer"
+    ],
+    [
+      "Managed memory",
+      "External resource lifetime"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
@@ -226,11 +265,44 @@
     "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
     "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle"
   ],
-  "versionNotes": [],
+  "versionNotes": [
+    {
+      "edition": ".NET 7",
+      "items": [
+        "ArgumentException.ThrowIfNullOrEmpty became available in .NET 7."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorempty"
+      ]
+    },
+    {
+      "edition": ".NET 8",
+      "items": [
+        "ArgumentException.ThrowIfNullOrWhiteSpace and generic ArgumentOutOfRangeException.ThrowIf* numeric helpers are available in .NET 8.",
+        "CancellationTokenSource.CancelAsync became available in .NET 8.",
+        "Formatter-based exception serialization APIs emit SYSLIB0051 obsoletion diagnostics in .NET 8."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception.throwifnegative",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/syslib-diagnostics/syslib0051"
+      ]
+    },
+    {
+      "edition": ".NET 5 and later",
+      "items": [
+        "Finalizers are not run as part of application termination; finalization is not a shutdown hook."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers"
+      ]
+    }
+  ],
   "sourceSnapshot": {
     "authority": "Microsoft C# language reference, .NET exception guidance, API reference, and disposal guidance",
-    "edition": "Current C# 15 / .NET 11 stable exception and disposal APIs checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "Current C# 15 / .NET 11 stable APIs and language behavior checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
       "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling",
@@ -242,7 +314,22 @@
       "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
       "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle",
       "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
-      "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable"
+      "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.constrainedexecution.criticalfinalizerobject",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle",
+      "https://learn.microsoft.com/en-us/dotnet/standard/threading/cancellation-in-managed-threads",
+      "https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorempty",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception.throwifnegative",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.aggregateexception",
+      "https://learn.microsoft.com/en-us/dotnet/fundamentals/syslib-diagnostics/syslib0051",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.disposeasync"
     ]
   },
   "scopeExclusions": [

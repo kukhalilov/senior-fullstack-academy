@@ -12,9 +12,9 @@ The .NET exception and disposal system exists to solve two distinct but related 
 2. **Resource Management:** Ensuring that external resources are cleaned up deterministically, even when errors occur.
 
 # Plain-language mental model
-Think of **Exception Handling** as a "panic" system. When a function encounters a problem it cannot solve, it "throws" an exception—a signal that stops normal execution. This signal travels up the call stack until it finds a "catch" block that knows how to handle that specific type of problem. If no one catches it, the program stops.
+Think of **Exception Handling** as a "panic" system. When a function encounters a problem it cannot solve, it "throws" an exception—a signal that stops normal execution. This signal travels up the call stack until it finds a "catch" block that knows how to handle that specific type of problem. If no handler accepts it at the relevant application/runtime boundary, the outcome depends on the host and execution context; unhandled exceptions on ordinary managed threads generally terminate the process.
 
-Think of **Disposal** as a "cleanup" contract. When you open a file or a network connection, you are "borrowing" a resource from the operating system. Because the garbage collector (which manages memory) doesn't know how to close these external resources, you must explicitly return them. The `using` statement acts like a guarantee: "No matter what happens in this block—even if an error occurs—make sure to clean up this resource when I am done."
+Think of **Disposal** as an explicit lifetime contract. An `IDisposable` object may own an external resource, another disposable object, or cleanup work; the GC does not automatically call `Dispose` on arbitrary objects. A `using` scope arranges disposal when control leaves that scope, including ordinary exception unwinding and early return. It cannot guarantee cleanup after immediate process termination, and a throwing `Dispose` can affect which exception propagates.
 
 # How the parts fit together
 The system is built on three pillars:
@@ -22,7 +22,7 @@ The system is built on three pillars:
 *   **Control Flow Statements:** Keywords like `try`, `catch`, `finally`, and `throw` that manage the movement of the program when things go wrong.
 *   **The Disposal Pattern:** Interfaces (`IDisposable`, `IAsyncDisposable`) and syntax (`using`) that ensure resources are released immediately after they are no longer needed.
 
-These parts work together to maintain **Exception Safety**: the guarantee that if an operation fails, your program remains in a valid, predictable state rather than leaving resources half-open or data partially modified.
+Together these mechanisms support **exception safety**: designing operations so failures leave documented invariants intact and acquired resources are released. Exception handling and `using` do not automatically roll back partially changed data or make every operation safe.
 
 # Concept map
 1.  **Exceptions:** Report failure. Only catch what you can fix; otherwise, let it propagate.
@@ -37,8 +37,8 @@ Imagine reading a file:
 1.  **Setup:** You open a file stream. Because it is an external resource, you wrap it in a `using` statement.
 2.  **Execution:** You attempt to read the file.
 3.  **Failure:** If the file is locked, the system throws an `IOException`.
-4.  **Cleanup:** Because you used `using`, the runtime automatically calls `Dispose()` on the file stream, closing the handle immediately, even though an error occurred.
-5.  **Handling:** Your `catch` block receives the `IOException`. You log the error and inform the user, preventing the application from crashing.
+4.  **Cleanup:** As control leaves the `using` scope, its generated `finally` invokes `Dispose()` on the file stream during ordinary exception unwinding.
+5.  **Handling:** An enclosing handler may receive the `IOException` and decide whether it can recover or present a safe error. This keeps a failure from escaping that application boundary.
 
 # When to use it and tradeoffs
 *   **Use Exceptions for truly exceptional cases:** Do not use them for routine control flow (like checking if a user exists). Exceptions are expensive to create and interrupt the natural flow of code.
@@ -48,7 +48,7 @@ Imagine reading a file:
 
 # What later lessons cover
 *   **Detailed API usage:** How to use specific exception types like `ArgumentNullException` or `OperationCanceledException`.
-*   **Advanced Disposal:** Implementing the full `Dispose` pattern for custom classes, including `Dispose(bool disposing)`.
+*   **Advanced Disposal:** Choosing the appropriate disposal implementation for owned resources, including the inheritable `Dispose(bool disposing)` pattern when required.
 *   **SafeHandle:** How to wrap unmanaged OS handles to prevent memory corruption.
 *   **Async Disposal:** Using `IAsyncDisposable` and `await using` for resources that require asynchronous cleanup (like network streams).
 

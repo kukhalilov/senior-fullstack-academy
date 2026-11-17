@@ -17,27 +17,27 @@ In .NET, an exception represents a failure to fulfill a contract. While managed 
 * `Custom exception type`: A class created to represent a specific domain-level failure. It should be used when the caller needs to programmatically distinguish this error from others.
 * `Derive application exception from Exception`: All custom exceptions must inherit from `System.Exception` (or a more specific base class like `InvalidOperationException`). Never derive from `ApplicationException`.
 * `Exception type name suffix convention`: Custom exception classes should end with the word `Exception` (e.g., `InvalidConfigurationException`).
-* `Serializable exception guidance for legacy remoting compatibility`: If your application interacts with legacy .NET Remoting, custom exceptions should be marked with the `[Serializable]` attribute and include a serialization constructor.
-* `Custom exception constructors`: A standard exception should provide at least three constructors: a parameterless one, one that takes a message string, and one that takes a message string and an inner exception.
-* `Exception message as diagnostic context`: The message property should provide a human-readable explanation of the error, including relevant state information that helps a developer diagnose the root cause.
-* `Inner exception preservation`: When catching an exception and throwing a new one, always pass the original exception into the new exception's constructor to preserve the full stack trace.
+* `Serializable exception guidance for legacy remoting compatibility`: Serialization constructors and `[Serializable]` were part of older .NET Framework remoting guidance. .NET Remoting is unsupported in modern .NET, and exception serialization constructors are obsolete; do not add them to new .NET applications unless maintaining a legacy target requires them.
+* `Custom exception constructors`: Provide constructors that fit the type's intended callers, commonly a message and message-plus-inner-exception overload. A parameterless constructor is a convention in some libraries, not a universal requirement.
+* `Exception message as diagnostic context`: Use a concise diagnostic message, but avoid secrets or sensitive user data. Preserve machine-readable context through properties or inner exceptions when callers need it.
+* `Inner exception preservation`: When translating a failure and its cause remains relevant, pass the original exception as the new exception's inner exception. This preserves causal diagnostics; it does not replace `throw;` when rethrowing the same exception.
 * `Exception.Data diagnostic metadata`: A dictionary property on the `Exception` class used to store additional key-value pairs that provide context about the state of the object when the error occurred.
 * `Catch only exceptions a layer can handle`: Do not catch exceptions unless you can perform a meaningful recovery action or translate the error into a more relevant domain exception.
 * `Catch specific exception type`: Always catch the most specific exception possible (e.g., `FileNotFoundException` instead of `Exception`) to avoid hiding unexpected bugs.
 * `Catch and rethrow with throw`: Use the `throw;` statement inside a catch block to re-throw the original exception while preserving the original stack trace.
 * `Exception translation at abstraction boundary`: When a low-level component (like a database driver) throws an error, catch it and wrap it in a domain-specific exception before passing it to higher layers.
 * `Do not expose internal exception details to clients`: Avoid leaking stack traces or internal system state to end-users, as this is a security risk and poor user experience.
-* `Log exception once at an ownership boundary`: Log errors at the highest level of the application where the error is "owned" or handled, preventing redundant log entries.
+* `Log exception once at an ownership boundary`: Prefer logging where the application has enough context to decide the outcome. This is a policy heuristic, not an absolute rule; tracing, rethrowing, and distributed boundaries can justify separate structured events.
 * `Avoid duplicate exception logging`: Ensure that an exception is logged only once to avoid cluttering logs and making debugging difficult.
 * `Restore object invariants after failed operation`: If an operation fails, ensure the object is left in a valid, consistent state so that subsequent operations do not fail unpredictably.
 * `Exception safety guarantee`: A promise that a method will either succeed or, if it fails, leave the system in a predictable state without leaking resources.
 * `Cancellation propagation policy`: Ensure that `OperationCanceledException` is allowed to propagate up the call stack to stop background tasks correctly.
 * `Fail-fast versus recoverable exception`: Distinguish between errors that require a process restart (fail-fast) and those that can be handled by retrying or informing the user (recoverable).
-* `Exception filter side-effect restriction`: Exception filters (`when` clauses) should be pure and avoid modifying state, as they may be evaluated multiple times or in different contexts.
+* `Exception filter side-effect restriction`: Keep `when` filters simple and side-effect-free as a design practice. The language evaluates a filter during handler search before stack unwinding; if the filter expression itself throws, it is treated as false.
 * `Do not swallow exceptions silently`: Never catch an exception and leave the block empty; this hides bugs and makes the system state unpredictable.
 * `Do not catch Exception without a recovery policy`: Catching the base `Exception` type is dangerous because it can hide critical system failures like `OutOfMemoryException`.
-* `Exception handling in background work`: Background tasks must explicitly handle exceptions, as unhandled exceptions in background threads can terminate the process.
-* `Exception handling in event callbacks`: Event handlers should be robust; an unhandled exception in an event callback can crash the subscriber or the event publisher.
+* `Exception handling in background work`: Observe task failures and define an application-level reporting/recovery policy. A faulted `Task` stores its exception; an unhandled exception on a raw managed thread can terminate the process. Do not conflate those behaviors.
+* `Exception handling in event callbacks`: A synchronous event publisher normally invokes handlers on the publisher's call path, so an uncaught handler exception can propagate to that caller. Frameworks and async event patterns can establish different boundaries; define who observes failures.
 
 # Cross-item comparison
 
@@ -67,7 +67,7 @@ try {
 # Common mistakes
 
 1. **Swallowing exceptions**: Catching an exception and doing nothing. This makes it impossible to know why a feature stopped working.
-2. **Catching `System.Exception`**: Catching the base class often catches errors you cannot recover from, such as thread aborts or memory issues.
+2. **Catching `System.Exception`**: A broad catch is justified only at a deliberate boundary with an explicit policy (for example, log and fail the request/process safely). It does not make fatal runtime conditions recoverable.
 3. **Modifying state in a filter**: Using a `when` clause to increment a counter or change a variable; this can lead to non-deterministic behavior.
 
 # Knowledge checks with answers

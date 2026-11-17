@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 324,
-    "pending": 2016,
-    "claimsChecked": 8541,
-    "claimsCorrected": 960,
+    "reviewed": 333,
+    "pending": 2007,
+    "claimsChecked": 8910,
+    "claimsCorrected": 1037,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 324,
-    "pendingLessons": 2016
+    "reviewedLessons": 333,
+    "pendingLessons": 2007
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1037,6 +1037,38 @@
       ],
       "findings": [
         "Reviewed all nine lessons against the complete topic manifest and current Microsoft C# specification, API docs, and C# 14/15 release notes. Corrected numeric and nullable conversion semantics, one-user-defined-conversion chaining boundaries, checked operator pairing, C# operator declaration pairs, IEqualityOperators arity, C# 14 explicit compound assignment signatures, relational/list pattern rules, unspecified member evaluation order, and non-exhaustive switch behavior. Confirmed C# 15 unions, closed hierarchies, and labeled jumps against current references. No unresolved issues remain."
+      ]
+    },
+    {
+      "scope": "t01-013 C# exception handling, cancellation, disposal, and finalization (all nine lessons)",
+      "status": "full lesson claim and frozen-inventory audit complete; lessons remain drafts",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.aggregateexception",
+        "https://learn.microsoft.com/en-us/dotnet/standard/threading/cancellation-in-managed-threads",
+        "https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorempty",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception.throwifnegative",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.disposeasync",
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/syslib-diagnostics/syslib0051",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.constrainedexecution.criticalfinalizerobject"
+      ],
+      "findings": [
+        "Audited all nine lesson files and all 175 named inventory entries plus their examples, version statements, exercises, and interview claims against current official Microsoft specifications/API references and .NET documentation. Added missing cancellation-token source/registration lifetime APIs. Corrected overstatements about exception filters, async/task and event propagation, cooperative cancellation, disposal/idempotence/ownership, critical finalization, SafeHandle and legacy exception serialization. Rechecked examples and target-framework notes. No unresolved factual or manifest-scope issue remains; no draft was promoted."
       ]
     }
   ],
@@ -14685,243 +14717,571 @@
       "topicId": "t01-013",
       "phase": "overview",
       "draft": "course/drafts/t01-013/t01-013-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling",
-        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 22,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Overview exception propagation, deterministic cleanup, disposal ownership, and exception-safety limits; corrected overbroad guarantees.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Overview exception propagation, deterministic cleanup, disposal ownership, and exception-safety limits; corrected overbroad guarantees.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Overview exception propagation, deterministic cleanup, disposal ownership, and exception-safety limits; corrected overbroad guarantees.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
+              "section": "Overview exception propagation, deterministic cleanup, disposal ownership, and exception-safety limits; corrected overbroad guarantees.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit completed against the cited current Microsoft specifications, API references, and .NET guidance. Examples and version scope were checked; corrections and missing scope were added. No unresolved issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-013-concepts",
       "topicId": "t01-013",
       "phase": "concepts",
       "draft": "course/drafts/t01-013/t01-013-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 28,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Exception/control flow and using semantics; disposal and SafeHandle guidance; corrected finalizer guarantee.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Exception/control flow and using semantics; disposal and SafeHandle guidance; corrected finalizer guarantee.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Exception/control flow and using semantics; disposal and SafeHandle guidance; corrected finalizer guarantee.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+              "section": "Exception/control flow and using semantics; disposal and SafeHandle guidance; corrected finalizer guarantee.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Exception/control flow and using semantics; disposal and SafeHandle guidance; corrected finalizer guarantee.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle",
+              "section": "Exception/control flow and using semantics; disposal and SafeHandle guidance; corrected finalizer guarantee.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling",
-        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
         "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed against the cited current Microsoft specifications, API references, and .NET guidance. Examples and version scope were checked; corrections and missing scope were added. No unresolved issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-013-reference-throwing-catching-and-propagation",
       "topicId": "t01-013",
       "phase": "reference",
       "draft": "course/drafts/t01-013/t01-013-reference-throwing-catching-and-propagation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 49,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Throw/rethrow, filters, finally, async/iterator propagation, EDI and AggregateException contracts; corrected unhandled/async claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Throw/rethrow, filters, finally, async/iterator propagation, EDI and AggregateException contracts; corrected unhandled/async claims.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Throw/rethrow, filters, finally, async/iterator propagation, EDI and AggregateException contracts; corrected unhandled/async claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Throw/rethrow, filters, finally, async/iterator propagation, EDI and AggregateException contracts; corrected unhandled/async claims.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Throw/rethrow, filters, finally, async/iterator propagation, EDI and AggregateException contracts; corrected unhandled/async claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
+              "section": "Throw/rethrow, filters, finally, async/iterator propagation, EDI and AggregateException contracts; corrected unhandled/async claims.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Throw/rethrow, filters, finally, async/iterator propagation, EDI and AggregateException contracts; corrected unhandled/async claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.aggregateexception",
+              "section": "Throw/rethrow, filters, finally, async/iterator propagation, EDI and AggregateException contracts; corrected unhandled/async claims.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling",
-        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
         "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.aggregateexception"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed against the cited current Microsoft specifications, API references, and .NET guidance. Examples and version scope were checked; corrections and missing scope were added. No unresolved issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-013-reference-common-exception-contracts-and-cancellation",
       "topicId": "t01-013",
       "phase": "reference",
       "draft": "course/drafts/t01-013/t01-013-reference-common-exception-contracts-and-cancellation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling",
-        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 69,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/threading/cancellation-in-managed-threads",
+              "section": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation",
+              "section": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorempty",
+              "section": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
+              "section": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception.throwifnegative",
+              "section": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
+              "section": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+              "section": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.disposeasync",
+              "section": "Current API signatures/version availability; cooperative cancellation, task token semantics, callback/source lifetime, and retry distinctions. Added missing cancellation lifecycle APIs and corrected exception contracts.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/threading/cancellation-in-managed-threads",
+        "https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorempty",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception.throwifnegative",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.cancelasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokensource.tryreset",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtokenregistration.disposeasync"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit completed against the cited current Microsoft specifications, API references, and .NET guidance. Examples and version scope were checked; corrections and missing scope were added. No unresolved issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-013-reference-custom-exceptions-and-error-policy",
       "topicId": "t01-013",
       "phase": "reference",
       "draft": "course/drafts/t01-013/t01-013-reference-custom-exceptions-and-error-policy.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling",
-        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Custom exception conventions, inner-exception semantics, sensitive diagnostics, filtering, task/event failure boundaries, and .NET 8 obsolete serialization APIs; qualified absolute recommendations.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
+              "section": "Custom exception conventions, inner-exception semantics, sensitive diagnostics, filtering, task/event failure boundaries, and .NET 8 obsolete serialization APIs; qualified absolute recommendations.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Custom exception conventions, inner-exception semantics, sensitive diagnostics, filtering, task/event failure boundaries, and .NET 8 obsolete serialization APIs; qualified absolute recommendations.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/syslib-diagnostics/syslib0051",
+              "section": "Custom exception conventions, inner-exception semantics, sensitive diagnostics, filtering, task/event failure boundaries, and .NET 8 obsolete serialization APIs; qualified absolute recommendations.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Custom exception conventions, inner-exception semantics, sensitive diagnostics, filtering, task/event failure boundaries, and .NET 8 obsolete serialization APIs; qualified absolute recommendations.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
+              "section": "Custom exception conventions, inner-exception semantics, sensitive diagnostics, filtering, task/event failure boundaries, and .NET 8 obsolete serialization APIs; qualified absolute recommendations.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/syslib-diagnostics/syslib0051",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.exception"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit completed against the cited current Microsoft specifications, API references, and .NET guidance. Examples and version scope were checked; corrections and missing scope were added. No unresolved issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-013-reference-deterministic-resource-cleanup",
       "topicId": "t01-013",
       "phase": "reference",
       "draft": "course/drafts/t01-013/t01-013-reference-deterministic-resource-cleanup.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+              "section": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
+              "section": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
+              "section": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable",
+              "section": "Using forms/null/scope exits/disposal order, async cleanup and inheritance; corrected ownership, idempotence, ConfigureAwait and unmanaged-resource-only claims.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling",
-        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
         "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
         "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle",
         "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
         "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed against the cited current Microsoft specifications, API references, and .NET guidance. Examples and version scope were checked; corrections and missing scope were added. No unresolved issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-013-reference-finalization-and-operating-system-resources",
       "topicId": "t01-013",
       "phase": "reference",
       "draft": "course/drafts/t01-013/t01-013-reference-finalization-and-operating-system-resources.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling",
-        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 14,
+      "evidence": [
+        {
+          "claims": "Finalization lifecycle/teardown limits, critical-finalizer ordering, SafeHandle ownership/PInvoke, KeepAlive, resurrection, suppression and exception policy; removed wrapper finalizer.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers",
+              "section": "Finalization lifecycle/teardown limits, critical-finalizer ordering, SafeHandle ownership/PInvoke, KeepAlive, resurrection, suppression and exception policy; removed wrapper finalizer.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Finalization lifecycle/teardown limits, critical-finalizer ordering, SafeHandle ownership/PInvoke, KeepAlive, resurrection, suppression and exception policy; removed wrapper finalizer.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.constrainedexecution.criticalfinalizerobject",
+              "section": "Finalization lifecycle/teardown limits, critical-finalizer ordering, SafeHandle ownership/PInvoke, KeepAlive, resurrection, suppression and exception policy; removed wrapper finalizer.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Finalization lifecycle/teardown limits, critical-finalizer ordering, SafeHandle ownership/PInvoke, KeepAlive, resurrection, suppression and exception policy; removed wrapper finalizer.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle",
+              "section": "Finalization lifecycle/teardown limits, critical-finalizer ordering, SafeHandle ownership/PInvoke, KeepAlive, resurrection, suppression and exception policy; removed wrapper finalizer.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Finalization lifecycle/teardown limits, critical-finalizer ordering, SafeHandle ownership/PInvoke, KeepAlive, resurrection, suppression and exception policy; removed wrapper finalizer.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+              "section": "Finalization lifecycle/teardown limits, critical-finalizer ordering, SafeHandle ownership/PInvoke, KeepAlive, resurrection, suppression and exception policy; removed wrapper finalizer.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.constrainedexecution.criticalfinalizerobject",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle",
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit completed against the cited current Microsoft specifications, API references, and .NET guidance. Examples and version scope were checked; corrections and missing scope were added. No unresolved issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-013-practice",
       "topicId": "t01-013",
       "phase": "practice",
       "draft": "course/drafts/t01-013/t01-013-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling",
-        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Recomputed examples, API target version, control flow and disposal behavior; corrected mismatched explanation, catch-by-message example, SafeHandle ownership solution, and idempotence claim.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Recomputed examples, API target version, control flow and disposal behavior; corrected mismatched explanation, catch-by-message example, SafeHandle ownership solution, and idempotence claim.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Recomputed examples, API target version, control flow and disposal behavior; corrected mismatched explanation, catch-by-message example, SafeHandle ownership solution, and idempotence claim.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+              "section": "Recomputed examples, API target version, control flow and disposal behavior; corrected mismatched explanation, catch-by-message example, SafeHandle ownership solution, and idempotence claim.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Recomputed examples, API target version, control flow and disposal behavior; corrected mismatched explanation, catch-by-message example, SafeHandle ownership solution, and idempotence claim.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception.throwifnegative",
+              "section": "Recomputed examples, API target version, control flow and disposal behavior; corrected mismatched explanation, catch-by-message example, SafeHandle ownership solution, and idempotence claim.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Recomputed examples, API target version, control flow and disposal behavior; corrected mismatched explanation, catch-by-message example, SafeHandle ownership solution, and idempotence claim.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Recomputed examples, API target version, control flow and disposal behavior; corrected mismatched explanation, catch-by-message example, SafeHandle ownership solution, and idempotence claim.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception.throwifnegative",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit completed against the cited current Microsoft specifications, API references, and .NET guidance. Examples and version scope were checked; corrections and missing scope were added. No unresolved issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t01-013-interview",
       "topicId": "t01-013",
       "phase": "interview",
       "draft": "course/drafts/t01-013/t01-013-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling",
-        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.exception",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.exceptionservices.exceptiondispatchinfo",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync",
-        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/safehandle",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.idisposable",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Interview answers on rethrow, filters, async exceptions, ownership, disposal and SafeHandle; corrected universal claims with contract/runtime scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
+              "section": "Interview answers on rethrow, filters, async exceptions, ownership, disposal and SafeHandle; corrected universal claims with contract/runtime scope.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Interview answers on rethrow, filters, async exceptions, ownership, disposal and SafeHandle; corrected universal claims with contract/runtime scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+              "section": "Interview answers on rethrow, filters, async exceptions, ownership, disposal and SafeHandle; corrected universal claims with contract/runtime scope.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Interview answers on rethrow, filters, async exceptions, ownership, disposal and SafeHandle; corrected universal claims with contract/runtime scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle",
+              "section": "Interview answers on rethrow, filters, async exceptions, ownership, disposal and SafeHandle; corrected universal claims with contract/runtime scope.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        },
+        {
+          "claims": "Interview answers on rethrow, filters, async exceptions, ownership, disposal and SafeHandle; corrected universal claims with contract/runtime scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Interview answers on rethrow, filters, async exceptions, ownership, disposal and SafeHandle; corrected universal claims with contract/runtime scope.",
+              "verdict": "Checked against current official Microsoft language specification, API reference, or .NET guidance; corrections are recorded in the lesson."
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions",
+        "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.safehandle",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements"
+      ],
+      "reviewNote": "Manual claim and frozen-inventory audit completed against the cited current Microsoft specifications, API references, and .NET guidance. Examples and version scope were checked; corrections and missing scope were added. No unresolved issue remains. Lesson remains a draft."
     },
     {
       "taskId": "t11-001-overview",
@@ -118010,6 +118370,14 @@
       "status": "full claim and frozen-inventory audit complete for this topic",
       "findings": [
         "Audited all 15 lessons against all 41 frozen inventory entries, current OpenDSA CPSC 270 Fall 2026 binary-tree/traversal/recursive-information-flow chapters, and eight current canonical LeetCode statements. Verified structure, DFS/BFS contracts, level snapshots, null and duplicate-value behavior, node-count depth versus edge-count diameter, balance-at-every-node, root-to-leaf path endpoints, examples, constraints, solution invariants, and asymptotic bounds. Corrected the overview to avoid implying that an undefined “balanced” shape guarantees logarithmic height. No unresolved issues remain."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "C# exceptions, cancellation, disposal, and finalization (t01-013)",
+      "status": "full claim and frozen-inventory audit complete for all 9 lessons",
+      "findings": [
+        "Checked all 175 manifest inventory entries and the nine lesson explanations/examples/exercises/interview claims. Added CancellationTokenSource.CancelAsync/TryReset/disposal and CancellationToken registration lifecycle coverage. Corrected that filter exceptions evaluate false; async Task faults differ from raw-thread unhandled exceptions; cancellation is cooperative and task cancellation has token/task-state semantics; IDisposable is not limited to unmanaged resources and idempotence is a design contract; modern .NET does not run finalizers during process termination; SafeHandle-owning wrappers do not need their own finalizer; critical finalization wording is bounded to CLR-supported scenarios; formatter-based exception serialization is obsolete from .NET 8. Reviewed examples and API release availability against official Microsoft docs. No unresolved issues remain; lessons remain drafts."
       ]
     }
   ]

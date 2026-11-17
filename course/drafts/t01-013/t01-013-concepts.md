@@ -26,7 +26,7 @@ The relationship between these concepts is defined by **scope**.
 
 * **`try-catch-finally`**: Used to isolate code that might fail. The `finally` block is the most critical part for resource safety; it executes regardless of whether an exception was thrown or the code completed successfully.
 * **`using` statements**: These are "syntactic sugar" that the compiler expands into a `try-finally` block. They ensure that `Dispose()` or `DisposeAsync()` is called on an object as soon as the code leaves the scope.
-* **`SafeHandle`**: This is the preferred way to wrap unmanaged OS resources. It prevents resource leaks even if the finalizer thread is interrupted.
+* **`SafeHandle`**: This is the preferred .NET wrapper for owning operating-system handles. Its critical-finalization design helps ensure the native handle is released if its managed wrapper is abandoned; it does not make process termination or power loss recoverable.
 
 # Worked examples
 

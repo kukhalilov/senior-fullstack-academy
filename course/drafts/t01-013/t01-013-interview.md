@@ -13,13 +13,13 @@ In an interview, you will be asked how to manage failures and resources. The cor
 # Concise interview answers
 *   **When should you throw an exception?** Only when an operation cannot fulfill its contract. Avoid using exceptions for expected outcomes or routine branching.
 *   **What is the difference between `throw;` and `throw ex;`?** `throw;` preserves the original stack trace, which is critical for debugging. `throw ex;` resets the stack trace to the current line, losing the original context.
-*   **Why use `IDisposable`?** It provides a standard contract for deterministic cleanup of unmanaged resources.
+*   **Why use `IDisposable`?** It provides a standard contract for deterministic cleanup, commonly cascading to owned disposable resources; it is not limited to unmanaged resources.
 *   **What is the purpose of `using`?** It ensures `Dispose()` is called automatically when the object goes out of scope, even if an exception occurs.
 
 # Deep follow-up answers
 *   **How do you handle exceptions in async methods?** Exceptions in `async` methods are captured in the returned `Task` or `ValueTask`. When you `await` the task, the exception is re-thrown.
 *   **What is an Exception Filter?** A `when` clause in a `catch` block. It allows you to inspect an exception without unwinding the stack. If the filter returns `false`, the catch block is skipped, and the search for a handler continues. This is safer than catching and re-throwing because it preserves the original stack state.
-*   **Why use `SafeHandle` instead of a finalizer?** A finalizer is nondeterministic and runs on a dedicated thread. `SafeHandle` provides a robust, thread-safe wrapper for OS handles that prevents handle leaks and resurrection issues, making it the preferred way to manage unmanaged resources.
+*   **Why use `SafeHandle` instead of a hand-written finalizer?** `SafeHandle` integrates handle lifetime with P/Invoke and critical finalization to reduce premature close, leak, and handle-reuse hazards. It does not make cleanup deterministic; callers should still dispose it promptly.
 
 # Scenario questions
 *   **Scenario:** You are writing a library and encounter an error. Should you catch it?
@@ -37,7 +37,7 @@ In an interview, you will be asked how to manage failures and resources. The cor
 *   **"I catch `Exception` to prevent the app from crashing."** 
     *   *Correction:* Catching the base `Exception` is dangerous because it hides bugs (like `NullReferenceException`) that you cannot recover from. Catch only specific exceptions you expect and can handle.
 *   **"I use finalizers to close database connections."** 
-    *   *Correction:* Finalizers are too slow and nondeterministic. Always use `Dispose()` or `using` blocks for database connections.
+    *   *Correction:* Database connections should be disposed deterministically using their ownership contract, commonly `using`. Finalization is nondeterministic and is not a substitute for returning pooled connections promptly.
 *   **"I log every exception I catch."** 
     *   *Correction:* Log only at the boundary where you decide to handle the exception. Logging at every level leads to "log noise" and makes debugging harder.
 
@@ -45,6 +45,6 @@ In an interview, you will be asked how to manage failures and resources. The cor
 *   **Can you explain the difference between managed memory and unmanaged resources?** (Managed memory is GC-reclaimed; unmanaged resources require `Dispose`.)
 *   **Do you know when to use `await using`?** (When the resource implements `IAsyncDisposable`.)
 *   **Can you identify the "Dispose Pattern"?** (Implementing `IDisposable`, using a `protected virtual Dispose(bool)` method, and calling `GC.SuppressFinalize(this)`.)
-*   **Do you understand why `ExceptionFilter` is superior to `if` inside a `catch`?** (It prevents stack unwinding and preserves the original error context.)
+*   **Can you explain when a filter helps compared with an `if` inside `catch`?** (A `when` filter participates in handler search before stack unwinding, so a rejected filter lets another handler be selected without entering a catch and rethrowing. It is a tool, not inherently superior in every design.)
 
 *Source: [Microsoft .NET Exception Guidance](https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions), [IDisposable Pattern](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose)*

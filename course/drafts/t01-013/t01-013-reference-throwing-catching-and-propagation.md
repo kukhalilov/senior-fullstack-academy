@@ -24,7 +24,7 @@ In .NET, an **exception** is a signal that an operation failed to meet its contr
 * `Exception.Message`: A human-readable string explaining the error.
 * `Exception.InnerException`: References the original exception that caused the current one, used for wrapping.
 * `Exception.Data`: A dictionary for providing additional user-defined key-value pairs.
-* `Exception.HResult`: A numeric value used by the runtime to identify specific error codes.
+* `Exception.HResult`: A numeric status code associated with the exception; its interpretation is framework-, operating-system-, or API-specific, and it is not a universal unique identifier.
 * `Exception.Source`: The name of the application or object that caused the error.
 * `Exception.StackTrace`: A string representation of the call stack when the exception was thrown.
 * `Exception.TargetSite`: The method that threw the current exception.
@@ -41,19 +41,19 @@ In .NET, an **exception** is a signal that an operation failed to meet its contr
 * `throw exception-variable rethrow`: Throws an exception variable; note that this resets the stack trace to the current location.
 * `try-catch statement`: Defines a block to attempt code and a block to handle specific exceptions.
 * `try-finally statement`: Ensures code in the `finally` block runs regardless of whether an exception occurred.
-* `try-catch-finally statement`: Combines both for handling and guaranteed cleanup.
+* `try-catch-finally statement`: Combines exception handling and cleanup when control leaves through normal language/runtime unwinding; it cannot guarantee execution after immediate process termination.
 * `Catch clause ordering`: Exceptions must be caught from most specific to least specific.
 * `Catch type matching`: The runtime checks if the thrown exception is of the caught type or a derived type.
 * `Catch-all clause`: A `catch` block without a type (e.g., `catch {}`) that handles all exceptions.
 * `Exception filter`: A mechanism to evaluate a condition before the stack is unwound.
 * `when exception filter`: The keyword used to define an `Exception filter`.
 * `Filter evaluation before stack unwinding`: The runtime checks `when` conditions while the stack is still intact.
-* `Finally execution on control transfer`: The `finally` block executes even if a `return`, `break`, or `continue` is used.
+* `Finally execution on control transfer`: A `finally` block runs as control leaves its associated `try` in ordinary execution, including return/break/continue and exception unwinding. Immediate process termination (for example `Environment.FailFast`) is outside that guarantee.
 * `Finally during exception propagation`: The `finally` block executes as the exception moves up the stack.
 * `Exception propagation up the call stack`: The process of searching for a matching `catch` block in caller methods.
-* `Unhandled exception boundary`: The point where an exception reaches the top of the stack, usually terminating the process.
-* `Exception from iterator execution`: Exceptions thrown inside `yield return` methods are surfaced when the iterator is enumerated.
-* `Exception from async method`: Exceptions in `async` methods are captured in the returned `Task`.
+* `Unhandled exception boundary`: The application/runtime boundary reached when no handler accepts the exception. The outcome depends on execution context and host; unhandled exceptions on ordinary managed threads generally terminate the process, while frameworks may provide request-level handling boundaries.
+* `Exception from iterator execution`: Exceptions in an iterator body are generally deferred until the relevant `MoveNext` call during enumeration; code before the first `yield` also executes as enumeration begins.
+* `Exception from async method`: Exceptions from an `async Task` or `async ValueTask` method are represented by its returned task-like value and observed by awaiting it; an `async void` exception follows the synchronization-context/event-handler exception path instead.
 
 ### Advanced Handling and Aggregation
 * `ExceptionDispatchInfo.Capture`: Captures the current state of an exception to be re-thrown later.
@@ -75,20 +75,18 @@ In .NET, an **exception** is a signal that an operation failed to meet its contr
 # Examples
 
 ```csharp
-// Unverified example
-try {
-    throw new InvalidOperationException("Something went wrong.");
+// The filter runs during handler search, before stack unwinding.
+try
+{
+    Process();
 }
-catch (InvalidOperationException ex) when (ex.Message.Contains("wrong")) {
-    // Exception filter: only catches if message contains "wrong"
-    Console.WriteLine("Caught specific error.");
+catch (IOException ex) when (IsRetryable(ex))
+{
+    RetryOrReport(ex);
 }
-catch {
-    // Catch-all
-    throw; // Preserves stack trace
-}
-finally {
-    // Always runs
+finally
+{
+    ReleaseTemporaryState(); // Runs during ordinary control transfer/unwinding.
 }
 ```
 

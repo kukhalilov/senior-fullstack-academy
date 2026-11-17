@@ -15,6 +15,8 @@ This group of APIs provides:
 2. **Validation Helpers:** Static methods that reduce boilerplate code when checking arguments.
 3. **Cancellation Infrastructure:** A pattern to stop long-running operations gracefully.
 
+The `ArgumentException.ThrowIfNullOrEmpty` helper is available starting in .NET 7; `ThrowIfNullOrWhiteSpace` and the generic `ArgumentOutOfRangeException.ThrowIf*` numeric helpers are available starting in .NET 8. `CancellationTokenSource.CancelAsync` is available in .NET 8 and later. Check the target framework when using these APIs in a multi-targeted library.
+
 # Supplied names explained
 
 ### Exception Types
@@ -27,18 +29,18 @@ This group of APIs provides:
 * `ObjectDisposedException`: Thrown when an operation is performed on an object that has already been disposed.
 * `FormatException`: Thrown when the format of an argument is invalid.
 * `OverflowException`: Thrown when an arithmetic, casting, or conversion operation results in an error.
-* `InvalidCastException`: Thrown when an explicit conversion from a base type to an interface or derived type fails.
+* `InvalidCastException`: Thrown when a runtime conversion cannot be performed, for example an invalid unboxing or explicit reference conversion; the exact contract depends on the operation.
 * `NullReferenceException`: Thrown when there is an attempt to dereference a null object reference.
 * `IndexOutOfRangeException`: Thrown when an attempt is made to access an array element with an index outside its bounds.
 * `KeyNotFoundException`: Thrown when the key specified for accessing an element in a collection does not match any key in the collection.
 * `IOException`: The exception that is thrown when an I/O error occurs.
-* `UnauthorizedAccessException`: Thrown when the operating system denies access because of an I/O error or a security error.
+* `UnauthorizedAccessException`: Thrown when the operating system denies access to a resource or operation; it is distinct from the broader set of I/O failures.
 * `TimeoutException`: Thrown when the time allotted for a process or operation expires.
-* `OperationCanceledException`: Thrown in a thread upon cancellation of an operation that the thread was executing.
-* `TaskCanceledException`: A specialized `OperationCanceledException` used when a task is canceled.
+* `OperationCanceledException`: The standard exception signal for cooperative cancellation. APIs can throw it (or a derived type) when an operation observes cancellation; cancellation is not automatically forced by the runtime.
+* `TaskCanceledException`: A derived `OperationCanceledException` commonly used when a task is canceled. Callers that handle cancellation generally catch the base type unless they need task-specific details.
 * `OutOfMemoryException`: Thrown when there is not enough memory to continue the execution of a program.
-* `StackOverflowException`: Thrown when the execution stack overflows because it contains too many nested method calls.
-* `SystemException`: The base class for all predefined system exceptions.
+* `StackOverflowException`: Reports stack exhaustion. In modern .NET, most stack-overflow cases terminate the process and are not a recoverable condition for ordinary application code.
+* `SystemException`: A base class for many runtime-defined exceptions; it is not the base class of every exception (all exceptions derive from `Exception`).
 
 ### Validation and Cancellation Helpers
 * `ArgumentException.ThrowIfNullOrEmpty`: Throws if a string is null or empty.
@@ -55,9 +57,20 @@ This group of APIs provides:
 * `CancellationTokenSource.Cancel`: Communicates a request for cancellation.
 * `CancellationTokenSource.CancelAfter`: Schedules a cancellation request after a specified delay.
 * `CancellationTokenSource linked token`: A token created by linking two or more tokens; cancellation of any source cancels the linked token.
+* `CancellationTokenSource.Token`: Gets the token clients receive and observe for cancellation.
+* `CancellationTokenSource.CreateLinkedTokenSource`: Creates and owns a source that relays cancellation from one or more supplied tokens; dispose the linked source when the combined operation ends.
+* `Task cancellation state and token matching`: A task becomes `Canceled` when it cooperatively acknowledges cancellation according to task/token rules; merely returning after observing a token can instead complete successfully. Inspect the exception token when distinguishing cancellation sources.
+* `CancellationTokenRegistration.DisposeAsync`: Asynchronously unregisters a callback and completes after it is no longer running, except the documented self-unregistering edge case.
+* `CancellationTokenSource.CancelAsync`: Requests cancellation and asynchronously completes after registered callbacks finish; unlike `Cancel`, it does not synchronously wait for all callback execution.
+* `CancellationTokenSource.Dispose`: Releases resources used by the source. Dispose a source and linked sources when their operation lifetime ends.
+* `CancellationTokenSource.TryReset`: Attempts to reset an eligible source that has not had cancellation requested. It is intended for a sole owner after its operation completes; concurrent cancellation/reset is not thread-safe, and a new source per operation is often simpler.
+* `CancellationToken.Register`: Registers a callback to run when cancellation is requested; dispose its returned registration when its lifetime ends if needed to release captured state promptly.
+* `CancellationToken.CanBeCanceled`: Indicates whether the token can ever transition to canceled.
+* `CancellationToken.WaitHandle`: Provides a wait handle signaled on cancellation for integration with wait-based APIs.
+* `CancellationTokenRegistration.Dispose` / `DisposeAsync`: Releases a registered callback; the async form can avoid synchronously blocking while waiting for callback completion.
 
 ### Concepts
-* `Catch OperationCanceledException for asynchronous cancellation`: The standard way to handle graceful task termination.
+* `Catch OperationCanceledException for asynchronous cancellation`: A common way to recognize cooperative cancellation at a boundary that can respond to it. Preserve cancellation semantics when the caller's request should continue propagating.
 * `Cancellation versus timeout`: Cancellation is an explicit request to stop; a timeout is an implicit failure due to time limits.
 * `Transient failure versus permanent failure`: Transient failures (e.g., network blip) might succeed on retry; permanent failures (e.g., invalid argument) will not.
 * `Retry only when operation and failure are retryable`: Avoid retrying logic that is guaranteed to fail again.
