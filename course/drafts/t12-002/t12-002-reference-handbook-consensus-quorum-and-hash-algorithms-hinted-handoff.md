@@ -1,6 +1,6 @@
 # distributed systems consistency coordination and convergence — Reference: Hinted handoff
 
-Sources: [Handbook module 3](https://hld.handbook.academy/curriculum/distributed-systems-theory/), [Dynamo paper](https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf), [Cassandra hints](https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html), [Cassandra repair](https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html).
+Sources: [Handbook module 3](https://hld.handbook.academy/curriculum/distributed-systems-theory/), [Dynamo paper](https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf), [Cassandra hints](https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html), [Cassandra repair](https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html).
 
 ## Scope and version
 

@@ -106,7 +106,7 @@ For a “likes received” display, independent per-replica increments may merge
 
 - Karger et al., “Consistent Hashing and Random Trees”: [paper](https://people.csail.mit.edu/karger/Papers/web.pdf)
 - Thaler and Ravishankar, “A Name-Based Mapping Scheme for Rendezvous”: [technical report](https://www.eecs.umich.edu/techreports/cse/96/CSE-TR-316-96.pdf)
-- DeCandia et al., “Dynamo: Amazon’s Highly Available Key-value Store”: [paper](https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf)
+- DeCandia et al., “Dynamo: Amazon’s Highly Available Key-value Store”: [paper](https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf)
 - Azure Architecture Center, [Data partitioning guidance](https://learn.microsoft.com/en-in/azure/architecture/best-practices/data-partitioning)
 - Shapiro et al., “Conflict-free Replicated Data Types”: [paper](https://pages.lip6.fr/Marc.Shapiro/papers/CRDTs_SSS-2011.pdf)
 - Cassandra 5.0, [Dynamo architecture and consistency](https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html)

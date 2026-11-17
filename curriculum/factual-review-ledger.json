@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 8,
-    "pending": 2332,
-    "claimsChecked": 178,
-    "claimsCorrected": 5,
+    "reviewed": 10,
+    "pending": 2330,
+    "claimsChecked": 200,
+    "claimsCorrected": 7,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -205,7 +205,7 @@
         "https://arxiv.org/abs/1406.2294",
         "https://www.lip6.fr/Marc.Shapiro/papers/2011/Comprehensive-CRDTs-RR7506-2011-01.pdf",
         "https://arxiv.org/abs/1210.3368",
-        "https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+        "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
         "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
         "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
         "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
@@ -224,7 +224,7 @@
         "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transactions.html",
         "https://www.postgresql.org/docs/current/ddl-partitioning.html",
         "https://people.csail.mit.edu/karger/Papers/web.pdf",
-        "https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+        "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
         "https://www.postgresql.org/docs/current/warm-standby.html",
         "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
         "https://www.postgresql.org/docs/current/mvcc.html",
@@ -78834,7 +78834,7 @@
         },
         {
           "claim": "Last-write-wins selects according to an implementation ordering such as timestamps and can discard a concurrent update; Cassandra and DynamoDB global tables document distinct implementation behavior.",
-          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html; https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables_HowItWorks.html; https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html; https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables_HowItWorks.html; https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
           "section": "Cassandra 5.0 Dynamo architecture; DynamoDB global table conflict resolution; original Dynamo vector-clock reconciliation",
           "verdict": "supported; corrected any implication that Cassandra, Dynamo (paper), and DynamoDB are interchangeable"
         },
@@ -79092,66 +79092,172 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-read-quorum-and-write-quorum.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "For fixed membership of N replicas, R+W>N guarantees every R-sized read quorum intersects every W-sized write quorum; 2W>N guarantees any two write quorums intersect.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.5, “Data Versioning”; set-cardinality consequence for write-write case",
+          "verdict": "supported; write-write formula derived from set intersection"
+        },
+        {
+          "claim": "Quorum intersection alone does not define returned version, conflict ordering, monotonicity, or linearizability.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.5 and §4.6; Dynamo uses vector clocks, returns causally unrelated versions, and uses sloppy quorum during failures",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dynamo R and W are minimum response thresholds; R+W>N is described as quorum-like, with latency governed by the slowest required replica responses.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.5",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dynamo may use the first N healthy preference-list nodes, including substitutes under failure, so the fixed-set intersection proof may not apply to sloppy quorum participants.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.5–4.6",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra consistency levels are per-operation response thresholds; writes are sent to all replicas and coordinator response waits for the selected level.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "“Tunable Consistency”",
+          "verdict": "supported for Cassandra 5.0 documentation"
+        },
+        {
+          "claim": "For Cassandra RF=3, QUORUM requires two replicas; QUORUM read and write sets intersect, and Cassandra documents that a successful quorum write is visible to a subsequent quorum read.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "“Tunable Consistency” and “Picking Consistency Levels”",
+          "verdict": "supported; product-specific behavior, not generalized"
+        },
+        {
+          "claim": "Cassandra conflict resolution uses mutation timestamps and last-write-wins semantics, which do not themselves establish causal ordering.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "“Data Versioning”",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra read repair can affect monotonic quorum reads and partition-level write atomicity depending on configuration.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "“Expectation of Monotonic Quorum Reads” and configuration options",
+          "verdict": "supported; lesson flags read repair as part of the full contract"
+        },
+        {
+          "claim": "Larger thresholds require more participating responses and can increase latency or reduce operation availability.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.5 and §6.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "For N=5, R=3, W=3, the minimum intersection size is one; for N=5, R=2, W=3, disjoint read and write sets are possible; with W=2, two write quorums need not intersect.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.5; arithmetic derived from fixed-set cardinalities",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Leader/consensus protocols are one common way to add ordering and recovery rules for linearizability; intersection is not the complete protocol proof.",
+          "source": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+          "section": "§2.2–2.5",
+          "verdict": "supported as an architectural example"
+        },
+        {
+          "claim": "The lesson covers its complete frozen manifest scope: read quorum and write quorum, their intersection conditions, protocol caveats, and a Cassandra example.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "inventory group “handbook-consensus-quorum-and-hash-algorithms-read-quorum-and-write-quorum”",
+          "verdict": "scope complete for assigned named item"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf"
+      ],
+      "reviewNote": "Manual claim-by-claim audit completed against the original Dynamo paper and Cassandra 5.0 documentation. Replaced a dead Dynamo PDF citation throughout the system-design materials with Amazon Science’s verified CDN download. Added explicit fixed-set intersection conditions and a Cassandra RF=3 example. Scope checked against the single assigned manifest item."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-sloppy-quorum",
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-sloppy-quorum.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Dynamo uses N highest-ranked reachable preference-list nodes rather than enforcing that all participants are the top N intended replicas; under failure an alternate node may temporarily store data for an unavailable intended replica.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.6, “Handling Failures: Hinted Handoff”",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Because participant sets can differ, fixed-membership R+W>N arithmetic alone does not prove read/write intersection for sloppy quorum operations.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.5–4.6; consequence of substitute participants",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The substitute holding a hinted replica records its intended destination and later attempts delivery when that node recovers.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.6",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Dynamo’s hinted handoff cannot cover permanent failures and is complemented by replica synchronization/anti-entropy.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.7, “Handling permanent failures: Replica synchronization”",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra 5.0 documents writes sent by a coordinator to all replicas, with unavailable-replica hints best-effort and anti-entropy repair as a separate convergence mechanism.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+          "section": "Hints and Hinted Handoff",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra and Dynamo have related design lineage but the lesson must not equate Cassandra consistency levels with Dynamo’s sloppy quorum behavior.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "Replication and tunable consistency",
+          "verdict": "supported; wording narrowed to product-specific documented behavior"
+        },
+        {
+          "claim": "Sloppy quorum favors availability during some preferred-replica failures at the cost of a more complex participant and reconciliation model.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.6 and §6.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A later read can miss a value on a substitute until handoff or another reconciliation path propagates it.",
+          "source": "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+          "section": "§4.6–4.7; illustrative consequence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Hints are best effort and do not guarantee eventual consistency; Cassandra also relies on read repair and anti-entropy repair.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+          "section": "Hints overview",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers its complete frozen manifest scope: sloppy quorum behavior, participant substitution, fixed-set quorum caveat, and recovery path.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "inventory group “handbook-consensus-quorum-and-hash-algorithms-sloppy-quorum”",
+          "verdict": "scope complete for assigned named item"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
         "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
         "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -100106,7 +100212,8 @@
         "Replaced generic TinyLFU filler with admission-versus-eviction distinction, compact frequency sketch and aging, Window TinyLFU cold-start behavior, scan/burst examples, and benchmark guidance. Selected claims checked against original research and Caffeine docs; full audit remains pending.",
         "Replaced generic APNs reference filler with provider/device flow, best-effort semantics, token lifecycle, collapse/expiration choices, durable outbox guidance, and operational retry examples. Selected claims checked against Apple docs; full factual and completeness audit remains pending.",
         "Replaced generic FCM reference filler with notification/data message handling, TTL/priority/collapse semantics, token management, durable event ownership, and cross-platform recovery design. Selected claims checked against Firebase docs; full factual and completeness audit remains pending.",
-        "Completed the Multi-Paxos lesson claim inventory and scope audit against Lamport, Paxos Made Live, and Raft primary papers; clarified leader recovery, safe gap filling, durable acceptor state, and an ambiguous example. One lesson is now fully reviewed."
+        "Completed the Multi-Paxos lesson claim inventory and scope audit against Lamport, Paxos Made Live, and Raft primary papers; clarified leader recovery, safe gap filling, durable acceptor state, and an ambiguous example. One lesson is now fully reviewed.",
+        "Completed claim and scope audit for read/write quorum; corrected the dead Dynamo paper citation throughout system-design materials and added a threshold matrix plus Cassandra 5.0 example. One additional lesson is fully reviewed."
       ]
     },
     {

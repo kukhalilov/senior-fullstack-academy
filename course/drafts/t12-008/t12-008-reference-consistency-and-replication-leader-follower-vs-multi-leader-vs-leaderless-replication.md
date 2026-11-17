@@ -1,6 +1,6 @@
 # system design tradeoffs and decision methods — Reference: Leader-follower vs multi-leader vs leaderless replication
 
-Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [Dynamo paper](https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf), [PostgreSQL streaming replication](https://www.postgresql.org/docs/current/warm-standby.html), [Cassandra replication and consistency](https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [Dynamo paper](https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf), [PostgreSQL streaming replication](https://www.postgresql.org/docs/current/warm-standby.html), [Cassandra replication and consistency](https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html).
 
 ## Scope and version
 
