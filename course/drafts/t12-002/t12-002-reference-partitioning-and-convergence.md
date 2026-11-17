@@ -1,5 +1,7 @@
 # distributed systems consistency coordination and convergence — Reference: Data placement and mergeable state
 
+Sources: [Shapiro et al., CRDT study](https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf), [Bieniusa et al., optimized OR-Set](https://arxiv.org/abs/1210.3368).
+
 ## Scope and version
 
 This conceptual lesson covers eight manifest items: consistent hashing, rendezvous hashing, hot partition, CRDT, state-based CRDT, operation-based CRDT, last-write-wins register, and split brain. Consistent-hash and rendezvous descriptions use their original research papers; the hot-partition and lease/fencing examples use current official guidance. CRDT claims are about the named formal models and their assumptions, not every library that uses the term.
@@ -11,6 +13,15 @@ When a dataset outgrows one machine, first decide **which machine owns each key*
 These questions are related but separate. Consistent hashing and rendezvous hashing assign placement; they do not replicate data or resolve edits. CRDTs define merge behavior for specific data types; they do not choose shard placement. A hash placement scheme also cannot make a single hot key’s operations parallel without changing the workload or data model.
 
 ## Supplied names explained
+
+### Concrete CRDT examples
+
+- **G-Counter:** each replica increments its own non-negative component; replicas merge by component-wise maximum and sum the components. It cannot decrement or enforce a hard cap by itself.
+- **PN-Counter:** pairs two grow-only component vectors, one for increments and one for decrements; the visible value is the increment sum minus the decrement sum. It can become negative during concurrent updates.
+- **Observed-Remove Set (OR-Set):** tags each add uniquely, and a remove removes only tags it observed. In the common add-wins variant, an unseen concurrent add survives the remove. Tag and causal metadata need a safe garbage-collection strategy.
+- **Last-Write-Wins Register (LWW-Register):** associates each value with a totally ordered timestamp/tie-break key and keeps the greatest. This converges deterministically but can discard concurrent intent; a physical clock timestamp is not proof of real-time ordering.
+
+These examples make different conflict choices. Select one from the meaning of the data and invariants, not simply because it converges.
 
 ### Consistent hashing
 

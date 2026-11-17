@@ -12,13 +12,13 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Supplied names explained
 
-- `Last-Write-Wins Register (LWW-Register)` — Stores a value with a timestamp (often plus a deterministic tie-breaker) and resolves concurrent versions by choosing the greatest timestamp/order key. This yields a deterministic winner if every replica applies the same total comparison, but it does not establish which user action happened later in real time: physical clocks can skew, and concurrent events have no inherent global order. The losing value is discarded from the register’s visible state unless separately retained.
+- `Last-Write-Wins Register (LWW-Register)` — Stores a value with a unique timestamp/order key (often plus a deterministic tie-breaker) and resolves versions by choosing the greatest key. This yields a deterministic winner if every replica applies the same total comparison, but it does not establish which user action happened later in real time: physical clocks can skew, and concurrent events have no inherent global order. The CRDT construction requires timestamp uniqueness and its clock assumptions; a tie-breaker makes selection deterministic, not semantically correct. The losing value is discarded from the register’s visible state unless separately retained.
 
 ## Choose by data semantics
 
 LWW is appropriate only when “one value wins by this ordering” is an acceptable product rule, such as a replaceable preference where losing a concurrent edit is tolerable. It is dangerous for counters, inventory, payments, collaborative text, or any state where both concurrent intents matter. Use causal versions and merge logic, a CRDT designed for the operation, explicit conflict presentation, or a coordinated transaction when those semantics are required. A tie-breaker makes choice repeatable, not meaningful.
 
-In Cassandra, for example, mutations are timestamped and the latest timestamp wins under its conflict-resolution model; clients and servers must account for timestamp generation and skew. That implementation detail should not be generalized to every LWW register or treated as consensus ordering.
+In Cassandra 5.0, mutation timestamps come from a client clock when supplied or otherwise from the coordinator clock, and the documentation explicitly says correctness depends on clock synchronization. Cassandra’s per-column conflict resolution and timestamp tie handling are product-specific; they should not be generalized to every LWW register or treated as consensus ordering.
 
 ## Cross-item comparison
 
@@ -35,6 +35,7 @@ Two offline devices edit the same profile field. Device A’s clock is five minu
 - Ignoring cost, operational ownership, observability, and recovery.
 - Treating the largest physical timestamp as proof of the latest real-world user intent.
 - Assuming deterministic conflict resolution is lossless conflict resolution.
+- Treating a replica-ID tie-breaker as a cure for physical clock skew or incorrect timestamps.
 
 ## Knowledge checks with answers
 

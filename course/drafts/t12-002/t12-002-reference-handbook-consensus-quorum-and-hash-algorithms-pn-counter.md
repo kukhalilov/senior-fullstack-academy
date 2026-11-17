@@ -12,9 +12,9 @@ A grow-only counter can merge increments but cannot decrement. A PN-Counter buil
 
 ## Supplied names explained
 
-Because both component vectors only grow and merge with maximum, repeated and reordered state merges converge. A replica's increment increases its own P component; a decrement increases its own N component. It must not directly reduce a component. The state must preserve stable replica identities so a restarted or reincarnated replica cannot reuse an identity and overwrite a larger prior component.
+Because both component vectors only grow and merge with maximum, repeated and reordered state merges converge. A replica's increment increases its own P component; a decrement increases its own N component. It must not directly reduce a component. The classic state-based construction assumes known, stable component identities and no integer overflow. A restarted or reincarnated replica must preserve/transfer its component state or receive a fresh identity; blindly reusing an identity with a lower component can overwrite prior information during max-merge.
 
-The mathematical type permits the visible value to become negative. It does not enforce a lower bound, an inventory invariant, or “decrement only if positive.” Concurrently checking a balance and decrementing it requires coordination or an escrow/rights-allocation construction that distributes safe decrement rights.
+The mathematical type permits the visible value to become negative. It does not enforce a lower bound, an inventory invariant, or “decrement only if positive.” Concurrently checking a balance and decrementing it requires coordination or a bounded/escrow construction that allocates rights so disconnected replicas cannot spend more than their assigned share.
 
 ## Cross-item comparison
 
@@ -30,6 +30,7 @@ Replicas A and B start with P=[0,0] and N=[0,0]. A increments twice: P becomes [
 - Assuming convergence prevents a negative result or enforces a quota.
 - Reusing replica identities without preserving or transferring their component state.
 - Treating the displayed value as globally current while replicas are disconnected.
+- Treating escrow rights as an ordinary PN-Counter feature; rights allocation is an additional protocol with transfer and recovery rules.
 
 ## Knowledge checks with answers
 

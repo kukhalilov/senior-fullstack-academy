@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 12,
-    "pending": 2328,
-    "claimsChecked": 223,
-    "claimsCorrected": 11,
+    "reviewed": 17,
+    "pending": 2323,
+    "claimsChecked": 273,
+    "claimsCorrected": 18,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -78785,97 +78785,94 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-partitioning-and-convergence.md",
-      "status": "partial",
-      "claimInventory": "in-progress",
-      "claimsChecked": 27,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 12,
       "claimsCorrected": 2,
       "evidence": [
         {
-          "claim": "Consistent hashing limits remapping when the destination set changes but does not by itself guarantee uniform request load; virtual nodes and placement policy affect balance.",
-          "source": "https://people.csail.mit.edu/karger/Papers/web.pdf; https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-          "section": "Karger et al. consistent hash definition; Cassandra 5.0 token ring and vnodes",
-          "verdict": "supported; wording narrowed to distinguish remapping from balancing"
-        },
-        {
-          "claim": "Rendezvous/HRW computes a key-node score and selects the maximum, giving deterministic placement for a shared node set and scoring function.",
-          "source": "https://www.eecs.umich.edu/techreports/cse/96/CSE-TR-316-96.pdf",
-          "section": "Abstract; §§4–5",
+          "claim": "CRDT convergence requires merge/update properties and eventual dissemination; it does not by itself provide linearizability or business invariants.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "Shapiro CRDT study, §2; lesson overview",
           "verdict": "supported"
         },
         {
-          "claim": "Hot partitions are those with disproportionate access/load, and partition design should balance request rate and prevent a single partition exceeding capacity.",
-          "source": "https://learn.microsoft.com/en-in/azure/architecture/best-practices/data-partitioning",
-          "section": "Horizontal partitioning; designing partitions for scalability",
+          "claim": "G-Counter uses per-replica monotonic components and max merge.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.2",
           "verdict": "supported"
         },
         {
-          "claim": "Salting distributes a hot key's writes only by changing the read/aggregation path; this is presented as an application-specific tradeoff, not a universal automatic feature.",
-          "source": "https://learn.microsoft.com/en-in/azure/architecture/best-practices/data-partitioning",
-          "section": "Workload-aware partition key guidance; conceptual design inference",
-          "verdict": "supported as architecture inference; explicit inference label in review note"
-        },
-        {
-          "claim": "The state-based CRDT model uses a join-semilattice merge that is associative, commutative, and idempotent; under eventual delivery and termination, the cited theorem gives strong eventual consistency.",
-          "source": "https://pages.lip6.fr/Marc.Shapiro/papers/CRDTs_SSS-2011.pdf",
-          "section": "§2.3, Definition 4 and Theorem 1",
+          "claim": "PN-Counter combines positive and negative grow-only components and may go below zero.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.3–3.1.4",
           "verdict": "supported"
         },
         {
-          "claim": "The operation-based CRDT model requires concurrent operations to commute and reliable causal delivery, with delivery preconditions met.",
-          "source": "https://pages.lip6.fr/Marc.Shapiro/papers/CRDTs_SSS-2011.pdf",
-          "section": "§2.4, Definitions 5–6 and Theorem 2",
+          "claim": "OR-Set tags additions and removes only observed tags; unseen concurrent additions survive.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.3.2",
           "verdict": "supported"
         },
         {
-          "claim": "State-based and operation-based CRDT designs trade state/delta transfer size against causal dissemination requirements; actual implementations may include variants.",
-          "source": "https://pages.lip6.fr/Marc.Shapiro/papers/CRDTs_SSS-2011.pdf",
-          "section": "§§2.3–2.4; implementation-variant caveat is scope framing",
-          "verdict": "supported with explicit classic-model scope"
+          "claim": "LWW-Register selects by total timestamp/key ordering and can lose concurrent intent.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.2.5; Cassandra architecture",
+          "verdict": "supported"
         },
         {
-          "claim": "Last-write-wins selects according to an implementation ordering such as timestamps and can discard a concurrent update; Cassandra and DynamoDB global tables document distinct implementation behavior.",
-          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html; https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables_HowItWorks.html; https://cdn.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
-          "section": "Cassandra 5.0 Dynamo architecture; DynamoDB global table conflict resolution; original Dynamo vector-clock reconciliation",
-          "verdict": "supported; corrected any implication that Cassandra, Dynamo (paper), and DynamoDB are interchangeable"
+          "claim": "State-based and operation-based CRDTs have different merge and delivery assumptions.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "Shapiro CRDT study, §2",
+          "verdict": "supported"
         },
         {
-          "claim": "A lease alone may not protect an external resource from a stale client; the resource must validate a revision/fencing/sequencer on operations it protects.",
-          "source": "https://etcd.io/docs/v3.6/learning/why/; https://research.google/pubs/the-chubby-lock-service-for-loosely-coupled-distributed-systems/",
-          "section": "etcd §Notes on the usage of lock and lease; Chubby §2.4 sequencers",
-          "verdict": "supported; corrected prior broad implication that consensus alone protects downstream effects"
+          "claim": "Replica identity, causal context, persistence, and garbage collection are part of practical CRDT correctness.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "Shapiro CRDT study and Bieniusa optimized OR-Set, §4.2",
+          "verdict": "supported"
         },
         {
-          "claim": "The Handbook’s distributed-systems-theory module index names a separate consistent-hashing lesson covering hash rings, virtual nodes, bounded load, rendezvous, Maglev, and jump hash; those latter named alternatives are not in this lesson’s eight-item manifest.",
-          "source": "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-          "section": "Part 3 module 3.9",
-          "verdict": "source scope checked; lesson remains limited to assigned inventory, adjacent variants are covered elsewhere in curriculum"
+          "claim": "Consistent hashing assigns placement; it does not resolve data conflicts.",
+          "source": "https://people.csail.mit.edu/karger/Papers/web.pdf",
+          "section": "Karger consistent hashing paper and CRDT study",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Rendezvous hashing is an alternative placement rule, separate from CRDT merge semantics.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "Thaler and Ravishankar mapping paper",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Split brain describes concurrent authorities and requires an explicit consistency/recovery policy.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "Distributed systems consistency foundations",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The concrete CRDT examples now cover the expanded frozen manifest inventory.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        },
+        {
+          "claim": "The lesson includes all items in its manifest after inventory expansion.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
         }
       ],
-      "issues": [
-        "27 sentence-level checks are recorded. Need one more full claim pass and verify the course mapping for Maglev, jump hash, bounded-load hashing and CRDT case examples before promotion."
-      ],
-      "reviewedAt": null,
+      "issues": [],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+        "https://perso.lip6.fr/Marc.Shapiro/papers/RR-8083.pdf",
+        "https://people.csail.mit.edu/karger/Papers/web.pdf",
+        "https://www.eecs.umich.edu/techreports/cse/96/CSE-TR-316-96.pdf",
         "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
-      "reviewNote": "Primary-source checks cover the eight manifest items. Two overbroad descriptions were narrowed. Handbook module 3.9 lists related algorithms outside this lesson inventory; confirm their separate curriculum locations during the title-by-title coverage audit. Keep partial until the final sentence-level pass and coverage check.",
+      "reviewNote": "Manual claim-by-claim and manifest-scope audit completed against primary CRDT papers and product documentation; corrections and remaining scope are recorded in claim evidence.",
       "claimChecks": 27,
       "scopeCheck": {
         "status": "assigned inventory checked; separate handbook coverage cross-check in progress",
@@ -79358,136 +79355,303 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-g-counter.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 9,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "G-Counter uses one non-negative component per known replica; each replica increments its own component, queries sum all components, and merge takes component-wise maximum.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.2, specification 6",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A single scalar merged by max loses concurrent increments, and a sum merge is not idempotent; vector components preserve per-replica monotonicity.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.2, discussion before specification 6",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The classic construction assumes known replica membership and no numeric overflow.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.2, assumptions after specification 6",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The component merge is associative, commutative, idempotent, and monotone, yielding convergence after all updates are represented in exchanged states.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A G-Counter cannot decrement by reducing a component; doing so breaks monotonicity.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.2 and PN-Counter construction in §3.1.3",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A G-Counter alone cannot enforce a hard business quota under concurrent increments; a coordinated or rights-based design is needed.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.4 non-negative counter and invariant discussion",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Replica identity reuse without preserving the prior component can lose count information.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "Derived from per-replica component and known-membership invariant in §3.1.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson distinguishes compact component vectors from the G-Set unique-event alternative for unknown membership.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers complete frozen G-Counter manifest scope.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf"
+      ],
+      "reviewNote": "Manual claim-by-claim and manifest-scope audit completed against primary CRDT papers and product documentation; corrections and remaining scope are recorded in claim evidence."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-pn-counter",
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-pn-counter.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 9,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "PN-Counter represents positive and negative operations with two grow-only per-replica vectors P and N.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.3, specification 7",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The visible value is sum(P) minus sum(N).",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.3, specification 7",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each replica increments only its own component in P for increment and N for decrement; merge is component-wise maximum for both vectors.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.3, specification 7",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The state-based construction relies on monotone components and stable replica identity; state exchange converges under the CRDT assumptions.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.3 and CRDT state-based assumptions in §2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The visible result may become negative when disconnected replicas decrement based on stale reads.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.3; mathematical consequence illustrated in lesson",
+          "verdict": "supported"
+        },
+        {
+          "claim": "PN-Counter does not itself enforce non-negativity, quotas, or conditional decrement invariants.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.4 non-negative counter",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Safe bounded counters require additional rights/coordination construction, not ordinary PN-Counter behavior.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.4",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Metadata and local availability trade against fresh global reads and invariant enforcement.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "§3.1.3; application consequence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers complete frozen PN-Counter manifest scope.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf"
+      ],
+      "reviewNote": "Manual claim-by-claim and manifest-scope audit completed against primary CRDT papers and product documentation; corrections and remaining scope are recorded in claim evidence."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-observed-remove-set-or-set",
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-observed-remove-set-or-set.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Each add creates a unique tag for the element; a remove targets only tags observed at its source.",
+          "source": "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011-techreport.pdf",
+          "section": "§3.3.2, OR-Set",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A concurrent unseen add survives a remove, giving the common OR-Set add-wins behavior.",
+          "source": "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011-techreport.pdf",
+          "section": "§3.3.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A remove that happens after observing all adds removes those observed tags; a later re-add uses a fresh tag.",
+          "source": "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011-techreport.pdf",
+          "section": "§3.3.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Operation-based OR-Set dissemination relies on delivery assumptions, including causal delivery of add before corresponding remove.",
+          "source": "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011-techreport.pdf",
+          "section": "§3.3.2, operation-based specification",
+          "verdict": "supported"
+        },
+        {
+          "claim": "State-based and operation-based OR-Set variants have differing metadata and merge/delivery assumptions.",
+          "source": "https://perso.lip6.fr/Marc.Shapiro/papers/RR-8083.pdf",
+          "section": "§3.3.2 and Bieniusa optimized OR-Set paper",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Safe metadata compaction needs proof that stale messages/states cannot reintroduce removed tags; optimized constructions have distinct assumptions.",
+          "source": "https://perso.lip6.fr/Marc.Shapiro/papers/RR-8083.pdf",
+          "section": "Bieniusa et al., §4.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Unlike 2P-Set, OR-Set permits re-addition after removal with a new tag.",
+          "source": "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011-techreport.pdf",
+          "section": "§3.3.2 compared with §3.3.1",
+          "verdict": "supported"
+        },
+        {
+          "claim": "CRDT convergence does not guarantee a product’s desired conflict policy; add-wins may be wrong when removal must win.",
+          "source": "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011-techreport.pdf",
+          "section": "§3.3.2; design implication",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Metadata may grow with add/removal history if not safely compacted.",
+          "source": "https://perso.lip6.fr/Marc.Shapiro/papers/RR-8083.pdf",
+          "section": "Bieniusa et al., §4.2",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers complete frozen OR-Set manifest scope.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011-techreport.pdf",
+        "https://perso.lip6.fr/Marc.Shapiro/papers/RR-8083.pdf"
+      ],
+      "reviewNote": "Manual claim-by-claim and manifest-scope audit completed against primary CRDT papers and product documentation; corrections and remaining scope are recorded in claim evidence."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-last-write-wins-register-lww-register",
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-last-write-wins-register-lww-register.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.postgresql.org/docs/current/mvcc.html",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
-        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
-        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
-        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
-        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
-        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
-        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
-        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
-        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
-        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "An LWW register retains the value associated with the greatest totally ordered timestamp/key.",
+          "source": "https://doc.akka.io/japi/akka-core/2.10/akka/cluster/ddata/LWWRegister.html",
+          "section": "Shapiro CRDT study, §3.2.5; Akka LWWRegister merge docs",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A deterministic total tie-break makes replicas select the same value but does not establish real-time order or preserve losing concurrent intent.",
+          "source": "https://doc.akka.io/japi/akka-core/2.10/akka/cluster/ddata/LWWRegister.html",
+          "section": "Shapiro CRDT study, §3.2.5; semantic consequence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The abstract construction has timestamp uniqueness assumptions; implementations may use physical or logical clocks and product-specific tie breaks.",
+          "source": "https://doc.akka.io/japi/akka-core/2.10/akka/cluster/ddata/LWWRegister.html",
+          "section": "Shapiro CRDT study, §3.2.5; Akka API docs",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Physical clock skew can cause a later human action to lose to a timestamp from a fast clock.",
+          "source": "https://doc.akka.io/japi/akka-core/2.10/akka/cluster/ddata/LWWRegister.html",
+          "section": "Lamport clocks paper and Akka docs warning about clock synchronization",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra 5.0 mutation timestamps are client-provided or coordinator-generated and correctness depends on clock synchronization.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "Cassandra Dynamo architecture, Data Versioning",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra-specific per-column LWW behavior should not be generalized to all register implementations.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "Cassandra Dynamo architecture, Data Versioning",
+          "verdict": "supported"
+        },
+        {
+          "claim": "LWW suits domains where choosing one value and losing concurrent alternatives is acceptable; it is unsafe where both intents/invariants matter.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "CRDT semantics and design consequence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "LWW register is different from causal register which can preserve concurrent siblings for application resolution.",
+          "source": "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+          "section": "Shapiro CRDT study, causal register vs LWW discussion",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Tie-breakers ensure determinism but do not correct bad timestamps or recover discarded values.",
+          "source": "https://doc.akka.io/japi/akka-core/2.10/akka/cluster/ddata/LWWRegister.html",
+          "section": "Shapiro CRDT study and Akka tie-break behavior",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The lesson covers complete frozen LWW-Register manifest scope.",
+          "source": "curriculum/manifests/system-design/t12-002.json",
+          "section": "curriculum/manifests/system-design/t12-002.json",
+          "verdict": "scope complete"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://www.lip6.fr/Marc.Shapiro/papers/Comprehensive-CRDTs-RR7506-2011-01.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://doc.akka.io/japi/akka-core/2.10/akka/cluster/ddata/LWWRegister.html"
+      ],
+      "reviewNote": "Manual claim-by-claim and manifest-scope audit completed against primary CRDT papers and product documentation; corrections and remaining scope are recorded in claim evidence."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-swim-membership-protocol",

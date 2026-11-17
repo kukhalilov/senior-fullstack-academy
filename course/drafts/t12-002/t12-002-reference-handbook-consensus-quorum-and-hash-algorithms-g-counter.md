@@ -12,11 +12,11 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Supplied names explained
 
-- `G-Counter` — A grow-only counter can be represented as a vector of non-negative components, one owned by each replica. Replica i increments only its own component; merge takes the component-wise maximum; the visible count is the sum. Max is associative, commutative, and idempotent, so repeated or reordered state merges converge after replicas exchange state. The design relies on stable component identity and a merge of states that eventually includes all updates.
+- `G-Counter` — A grow-only counter can be represented as a vector of non-negative components, one owned by each replica. Replica i increments only its own component; merge takes the component-wise maximum; the visible count is the sum. Max is associative, commutative, and idempotent, so repeated or reordered state merges converge after replicas exchange state. The classic vector construction assumes the replica set/component identities are known, remain unambiguous, and integer components do not overflow; replicas must eventually merge states carrying every update for convergence to the global count.
 
 ## Operational consequences
 
-The state vector grows with the number of replica identities unless the design safely compacts or bounds membership. A G-Counter cannot decrement: subtracting a component or deleting an increment can make merge order matter. Use a PN-Counter or another defined construction for increments and decrements, and ensure replica identity is not reused in a way that overwrites prior component state. The mergeable arithmetic does not enforce a business invariant such as “no more than 10 seats”; that requires coordination or a rights-allocation design.
+The classic vector has one component per known replica, so membership changes require a defined way to preserve old components or safely change the replica set; simply reusing an identity can lose increments. Components are also bounded by the implementation’s integer representation. A G-Counter cannot decrement: subtracting a component or deleting an increment can make merge order matter. Use a PN-Counter or another defined construction for increments and decrements, and ensure replica identity is not reused in a way that overwrites prior component state. The mergeable arithmetic does not enforce a business invariant such as “no more than 10 seats”; that requires coordination or a rights-allocation design. The paper notes a G-Set alternative when the replica set is not known, at the cost of storing unique increment events rather than a compact component vector.
 
 ## Cross-item comparison
 
@@ -32,6 +32,7 @@ Replicas A and B begin at [0,0]. A increments to [1,0]; B increments twice to [0
 - Treating a protocol or product name as a guarantee without reading its contract.
 - Ignoring cost, operational ownership, observability, and recovery.
 - Assuming a mergeable counter also enforces a quota or can safely delete an increment.
+- Applying the fixed-vector construction without accounting for known membership, identity lifecycle, or numeric overflow.
 
 ## Knowledge checks with answers
 

@@ -12,9 +12,9 @@ Replicated sets need a rule for concurrent add and remove operations. In an OR-S
 
 ## Supplied names explained
 
-The state-based representation carries add tags and enough removal metadata to prevent deleted tags from reappearing when older state arrives. The operation-based form can instead disseminate add/remove operations under delivery assumptions such as causal order. These are related implementations of an observed-remove semantic rule, not an excuse to omit the library's delivery and garbage-collection requirements.
+In the operation-based construction, add disseminates a fresh unique tag and remove disseminates the tags observed at its source; causal delivery ensures a removed tag’s add is delivered before the corresponding remove. State-based variants need merge metadata that prevents stale states from resurrecting removed tags. Optimized variants can reduce tombstone costs using causal stability or other metadata protocols. These variants implement the observed-remove rule under different delivery/merge assumptions; a library’s causal, membership, persistence, and garbage-collection contract matters.
 
-Remove followed by a later add is different from a concurrent add: the later add creates a fresh tag and the element is present. Metadata can grow as tags and removal knowledge accumulate. Safe compaction requires causal stability or another proof that removed tags cannot return from an old replica or backup.
+Remove followed by a later add is different from a concurrent add: the later add creates a fresh tag and the element is present. Metadata can grow with add history and removal knowledge. Safe compaction requires a proof that removed tags cannot reappear from an old replica, backup, or delayed message; some optimized constructions achieve this without retaining a permanent tombstone for every removal, but still require their stated causal/membership assumptions.
 
 ## Cross-item comparison
 
@@ -29,7 +29,7 @@ Replica A and replica B both initially lack “blue.” A adds blue with tag a1 
 - Assuming remove always wins against an unseen concurrent add.
 - Removing an element without tracking which add instances were observed.
 - Dropping tombstones or tags before old replicas can no longer reintroduce stale state.
-- Assuming two OR-Set libraries share the same wire format, causal assumptions, or compaction strategy.
+- Assuming every OR-Set implementation uses the same tombstone representation, wire format, causal assumptions, or compaction strategy.
 
 ## Knowledge checks with answers
 
