@@ -1,36 +1,46 @@
 # system design tradeoffs and decision methods — Reference: Leader-follower vs multi-leader vs leaderless replication
 
-Sources: [HLD Handbook](https://hld.handbook.academy/trade-offs/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [reference 5](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [Dynamo paper](https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf), [PostgreSQL streaming replication](https://www.postgresql.org/docs/current/warm-standby.html), [Cassandra replication and consistency](https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Replication topology determines who accepts writes and how replicas reconcile. These labels cover a family of designs; they do not by themselves specify consistency, failover safety, or durability.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+**Leader-follower:** one leader accepts or orders writes and followers copy its log/state. It makes a primary write order straightforward and supports read replicas, but replication lag can make follower reads stale. Failover must choose a sufficiently up-to-date leader and prevent the former leader from accepting writes (fencing/epochs).
+
+**Multi-leader:** multiple leaders accept writes, often in different regions, and exchange updates. It can improve local write latency and availability, but concurrent updates need conflict detection/resolution or partitioning ownership. Conflict policy must match business semantics; last timestamp wins may lose intent.
+
+**Leaderless:** clients/coordinators contact replica sets and use quorum/version reconciliation rather than one fixed write leader for every key. Dynamo-style systems may use sloppy quorums, version vectors, hinted handoff, and anti-entropy. Quorum arithmetic depends on placement and protocol assumptions; leaderless does not mean coordination-free or strongly consistent by default.
 
 ## Supplied names explained
 
-- `Leader-follower vs multi-leader vs leaderless replication` — A leader can simplify write order but creates election/failover dependencies; multi-leader permits concurrent writes and requires conflict policy; leaderless designs use replica protocols and quorum assumptions. Compare topology, consistency, failure, and repair behavior.
+Every topology must define acknowledgment durability, read consistency, membership changes, conflict handling, repair, replay, and client behavior after ambiguous timeout. Application-level uniqueness or balance invariants may require a consensus/transaction layer even when storage replication is multi-leader or leaderless.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Requirement | Likely fit | Must still solve |
+|---|---|---|
+| Single ordered write authority and simpler conflict model | Leader-follower | Failover, lag, stale reads, fencing |
+| Low-latency writes in several regions | Multi-leader | Concurrent conflict policy and ownership |
+| Replicated key-value availability with tunable replica participation | Leaderless | Quorum placement, version merge, repair |
+
+Pick by invariants, geographic latency, write conflict rate, failure policy, and operational skill—not by the topology label alone.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+In a global profile service, region A and region B both accept a name update during a network split. After connectivity returns, multi-leader replication must choose or expose the conflict. If the same topology is used for account balance, two independently accepted debits may violate a nonnegative invariant. A leader-follower design instead routes both writes to one authority and may reject/queue writes in the isolated region. A leaderless design needs a defined quorum and reconciliation path; simulate substitute replicas and delayed repair.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Assuming followers are current or that asynchronous replication provides read-your-writes.
+- Promoting a new leader without fencing a paused former leader.
+- Treating multi-leader conflict resolution as an application-correct merge.
+- Assuming leaderless quorum reads/writes imply linearizability or omit repair obligations.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Which topology naturally creates one primary write order?** Leader-follower, with failover/fencing requirements.
+2. **What new issue comes with multi-leader writes?** Concurrent updates and their conflict semantics.
+3. **Does leaderless mean no coordination or repair?** No; quorum participation, reconciliation, and anti-entropy may still be required.

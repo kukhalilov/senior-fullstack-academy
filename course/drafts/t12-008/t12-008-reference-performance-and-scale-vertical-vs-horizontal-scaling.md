@@ -1,14 +1,14 @@
 # system design tradeoffs and decision methods — Reference: Vertical vs horizontal scaling
 
-Sources: [HLD Handbook](https://hld.handbook.academy/trade-offs/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [reference 5](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [Azure autoscale concepts](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overview), [Azure scale-out design](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Vertical scaling gives one instance more CPU, memory, storage, or network capacity. Horizontal scaling adds or removes instances, often requiring stateless request handling, load distribution, shared or partitioned data, and coordination.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Scale up when one larger resource is simpler and within hardware/product limits; it can be a practical first move and avoids distributed coordination. Scale out when capacity, redundancy, or elasticity requires multiple instances. It does not multiply throughput automatically: locks, shared databases, hot keys, network, and synchronization can become bottlenecks. Scale out/in also changes membership and requires graceful draining and state management.
 
 ## Supplied names explained
 
@@ -16,21 +16,21 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Diagnose CPU, memory, I/O, lock contention, queue depth, and downstream saturation before selecting. Scale vertically for quick, low-complexity headroom when a suitable tier exists. Scale horizontally for independent stateless capacity or fault tolerance, after removing per-instance state and validating that dependencies scale too. Autoscaling has detection/cold-start delay and should include scale-in safety.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+An API fleet scales from 3 to 8 instances but stores login sessions only in process memory. Requests routed to a new instance appear logged out. Move sessions to a shared store or use stateless protected tokens, make background jobs single-owner/partitioned, and check the database connection pool before scaling further. Then test scale-in while requests and jobs are active.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Scaling app instances while the bottleneck is a saturated database or external API.
+- Assuming doubling instance count doubles throughput despite shared bottlenecks.
+- Scaling in without draining connections, handling in-flight jobs, or preserving data.
+- Ignoring per-instance sessions, caches, timers, and key material.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What changes when scaling vertically?** Capacity of one instance.
+2. **What new design requirement usually appears when scaling horizontally?** Distributing requests/state and handling shared bottlenecks and instance membership.
+3. **Why can adding web servers make the database slower?** More concurrent requests and connection pools can overload the shared database.

@@ -1,14 +1,14 @@
 # system design tradeoffs and decision methods — Reference: Monolith vs microservices
 
-Sources: [HLD Handbook](https://hld.handbook.academy/trade-offs/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [reference 5](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [Azure microservices assessment](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/microservices-assessment), [.NET common web application architectures](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures), [Azure microservices architecture](https://learn.microsoft.com/en-us/azure/architecture/microservices/migrate-monolith).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+“Monolith” describes a deployment unit, not necessarily poor internal structure. A modular monolith can enforce clear boundaries in one process/deployment. Microservices split capabilities into independently deployable networked services, each with ownership and operational cost.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+In a monolith, function calls and one local transaction can cross modules easily; deployment, scaling, and failure boundaries are shared. In microservices, teams can deploy and scale services independently, but each remote call can time out/fail, data transactions cross boundaries, and tracing/security/versioning/operations become distributed-system problems.
 
 ## Supplied names explained
 
@@ -16,21 +16,21 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Service boundaries should follow cohesive business capabilities and data ownership, not code-size targets. Microservices require CI/CD automation, service discovery, telemetry, compatibility practices, resilience, incident ownership, and a way to manage eventual consistency. Splitting too early can freeze an unstable domain model across APIs; a well-factored monolith can later provide extraction seams.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+An order and inventory module in one application can update both within one database transaction. If split into order and inventory services, a timeout after reservation leaves the caller unsure whether inventory changed; use an idempotency key and a durable workflow/outbox/saga, and design compensation. Scaling the catalog separately may justify a boundary, but verify the shared database or deployment pipeline does not preserve the old coupling.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Equating monolith with a single unstructured codebase.
+- Splitting by technical layers or database tables rather than business ownership.
+- Assuming microservices make each failure isolated when dependencies are synchronous.
+- Ignoring distributed data transactions, deployment automation, tracing, and on-call load.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Can a monolith be modular?** Yes; deployment shape and internal module quality are separate.
+2. **What does a service split add to a cross-module call?** Network failure, timeout ambiguity, versioning, and distributed consistency work.
+3. **What is a strong reason to split?** A measured need for independent ownership, scaling, isolation, or release cadence with the operational capacity to support it.

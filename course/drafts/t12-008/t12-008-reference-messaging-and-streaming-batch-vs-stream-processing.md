@@ -1,36 +1,38 @@
 # system design tradeoffs and decision methods — Reference: Batch vs stream processing
 
-Sources: [HLD Handbook](https://hld.handbook.academy/trade-offs/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [reference 5](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [Apache Flink streaming analytics](https://nightlies.apache.org/flink/flink-docs-stable/docs/learn-flink/streaming_analytics/), [Flink time concepts and watermarks](https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/time/), [Flink batch/stream execution mode](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/datastream/execution_mode/).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Batch and stream processing describe how computations consume data; they are not mutually exclusive storage choices. Modern stream engines may process bounded input, and batch jobs can produce results incrementally in stages.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+**Batch:** process a bounded dataset or accumulated interval, often with complete input available for a job. It is natural for historical recomputation, large joins, and reports; results arrive after the batch schedule and job runtime.
+
+**Stream:** process an ongoing sequence of events with state and continuous outputs. Define event time (when the event happened) versus processing time (when the system handled it), windows, out-of-order arrival, late events, state retention, checkpoints, replay, and delivery semantics. A watermark is a progress estimate used to decide when event-time work can proceed; it is not proof that no earlier event can ever arrive.
 
 ## Supplied names explained
 
-- `Batch vs stream processing` — Batch computes over bounded or accumulated data; stream processing handles continuing events with explicit event time, state, lateness, and recovery semantics. Many systems combine both.
+Exactly-once claims must name the boundary: processing state, source offsets, and sink writes need coordinated recovery or idempotence. A stream may replay after failure; downstream effects can still duplicate if the sink is not transactional/idempotent. Batch pipelines also need late corrections, backfills, and reproducibility.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Use batch for periodic complete recomputation or when minutes/hours of latency are acceptable. Use streaming for low-latency updates, continuous alerting, and event-time calculations, accepting always-on state/operations and late-data policy. A common design streams fresh events and periodically reconciles/backfills with batch.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+A fraud dashboard counts transactions per account over a rolling 10-minute event-time window. A card event created at 10:02 arrives at 10:09. A processing-time window may put it in the wrong interval; event time can place it correctly if the watermark/lateness policy permits. Define whether late events update prior results, how long state is kept, what a checkpoint restores, and whether an external alert can be emitted twice after recovery.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating a watermark as a guarantee that late events are impossible.
+- Confusing event time with wall-clock processing time.
+- Saying exactly-once without specifying source, state, sink, and failure boundary.
+- Ignoring state growth, replay, backfills, late data, and output correction.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What is a watermark used for?** Estimating event-time progress so the engine can close windows or fire event-time timers.
+2. **Does it forbid earlier events from arriving later?** No; late-event handling is still required.
+3. **When is batch a strong fit?** Bounded recomputation, historical backfill, or reporting where scheduled latency is acceptable.

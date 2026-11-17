@@ -1,14 +1,18 @@
 # system design tradeoffs and decision methods — Reference: Push vs pull delivery and fan-out
 
-Sources: [HLD Handbook](https://hld.handbook.academy/trade-offs/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [reference 5](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [Azure queue-based load leveling](https://learn.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling), [Azure competing consumers](https://learn.microsoft.com/en-us/azure/architecture/patterns/competing-consumers).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Push and pull describe who initiates delivery/consumption. Fan-out describes how one event reaches multiple interested consumers. They are separate decisions and can be combined.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+**Push:** a producer/broker sends work or events to consumers as they arrive. It can reduce delivery delay, but consumers need flow control, bounded queues, retry handling, and protection from overload.
+
+**Pull:** consumers request work when ready, controlling concurrency and pace. It smooths load and supports backpressure, but polling adds delay/empty requests unless a blocking receive is available.
+
+**Fan-out:** publish one event to multiple independent subscriptions/queues so each consumer can process it at its own rate. Decide whether each subscriber needs all events, replay, ordering, retention, and independent failure isolation. A work queue with competing consumers typically distributes each message to one worker; a pub/sub topic fans copies to subscriptions.
 
 ## Supplied names explained
 
@@ -16,21 +20,21 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Pull is useful when expensive consumers must cap work and apply backpressure. Push is useful for low-latency notification when the downstream can absorb controlled delivery. Use a durable queue to decouple bursty producers from workers; use pub/sub when multiple systems need separate copies. Limit prefetch and queue depth, and define what producers do when buffers fill.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Order-created events feed billing, email, and analytics. Publish once to a durable topic with three subscriptions; each subscriber pulls at bounded concurrency. If email is slow, its backlog grows without blocking billing, but retention and lag alarms must prevent expiry. A consumer crashes after sending an email but before acknowledging; on redelivery it must deduplicate by event ID or risk sending twice.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Confusing pub/sub fan-out with competing consumers in one work queue.
+- Pushing faster than consumers can process without bounded buffers/backpressure.
+- Assuming acknowledgement means exactly-once business side effect.
+- Sharing one subscriber's queue/retention so a slow consumer blocks unrelated subscribers.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **How do competing consumers use one work queue?** They divide messages among workers.
+2. **How does pub/sub fan-out differ?** Each subscription receives its own delivery stream/copy according to broker semantics.
+3. **What protects a push consumer from overload?** Bounded queues, flow control, concurrency/prefetch limits, and producer throttling.

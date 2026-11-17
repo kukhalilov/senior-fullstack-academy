@@ -1,36 +1,40 @@
 # system design tradeoffs and decision methods — Reference: Cache-aside vs write-through vs write-behind
 
-Sources: [HLD Handbook](https://hld.handbook.academy/trade-offs/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [reference 5](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [Azure caching guidance](https://learn.microsoft.com/en-us/azure/architecture/best-practices/caching), [Cache-Aside pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+These are cache population/write policies. In all three, state which copy is authoritative, how stale values are invalidated, and what happens on cache/store failure; names do not define one universal implementation contract.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+**Cache-aside:** the application checks the cache, loads a miss from the backing store, then populates the cache. Writes normally update the store and invalidate/update the cache. It avoids caching unused data and is simple to add, but concurrent misses, stale repopulation, invalidation failure, and cold-cache load need handling.
+
+**Write-through:** a write path updates the backing store and cache before reporting success, under the chosen implementation's policy. It can keep frequently read values warm but couples write latency/availability to cache behavior unless carefully designed. Define atomicity: most separate cache and database writes are not one atomic transaction.
+
+**Write-behind/write-back:** the cache acknowledges or accepts a write before the backing store is updated asynchronously. It can absorb bursts and reduce store write load, but introduces a durability window, queue/backpressure, ordering, retry, deduplication, and replay/recovery requirements. If acknowledged data exists only in volatile cache, cache loss can lose accepted writes.
 
 ## Supplied names explained
 
-- `Cache-aside vs write-through vs write-behind` — Cache-aside loads on demand; write-through updates cache and backing store according to a policy; write-behind acknowledges before deferred persistence and therefore needs explicit durability, ordering, and loss/replay handling.
+Expiration is not a correctness strategy by itself. Concurrent writers can cause cache/store divergence; use versioning, invalidation, write-through coordination, or short TTL according to tolerated staleness. Stampedes require request coalescing, jitter, or controlled refresh. Protect the backing store from a cold-cache surge.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Choose cache-aside for read-heavy data where misses can query the store and some staleness is acceptable. Use write-through when warm reads matter and a synchronous write path is acceptable. Use write-behind only when asynchronous persistence is safe and the system can durably queue, replay, and reconcile writes. For balances, permissions, or inventory, do not let a cache become an accidental source of truth.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+An ASP.NET Core product endpoint uses cache-aside: a miss loads SQL and sets a short TTL. During a price update, the transaction commits then invalidates the key; if invalidation fails, the old price may survive until expiry. Test update-vs-miss races, cache outage, stampede, and cold start. A write-behind counter would need a durable queue and replay key before acknowledging; a process crash between cache acknowledgement and durable enqueue is unacceptable for billing.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Assuming database and cache updates are atomic because both occur in a write-through request.
+- Acknowledging write-behind data that has no durable recovery record.
+- Forgetting stale-fill races, invalidation failure, eviction, and cold-cache load.
+- Using TTL as the only consistency/revocation rule for sensitive data.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Which strategy loads an entry on a read miss?** Cache-aside.
+2. **What must write-behind guarantee before acknowledging?** Durable capture, ordered/idempotent replay, bounded backlog, and recoverability.
+3. **Can cache and database writes usually be assumed atomic?** No; define partial failure and reconciliation behavior.

@@ -1,36 +1,38 @@
 # system design tradeoffs and decision methods — Reference: Strong vs eventual consistency
 
-Sources: [HLD Handbook](https://hld.handbook.academy/trade-offs/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [reference 5](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [Herlihy and Wing, linearizability](https://www.cs.cmu.edu/~wing/publications/HerlihyWing90.pdf), [Vogels, Eventually Consistent](https://www.cs.cornell.edu/lorenzo/papers/cac-tr.pdf), [Gilbert and Lynch, CAP](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [Abadi, PACELC](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+“Strong consistency” is an umbrella phrase; name the actual model, such as linearizability or serializability. Eventual consistency is a convergence promise under stated assumptions, not a bounded-staleness promise. This comparison focuses on linearizable operations versus eventual convergence.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+For a bank balance or unique username, a caller may need a read to reflect every completed write before another operation proceeds. Linearizability gives each operation an instantaneous point between invocation and response while preserving real-time order of non-overlapping operations. Implementations often coordinate with a leader/quorum, which adds network dependency and can reject or delay requests when the required authority is unreachable.
 
 ## Supplied names explained
 
-- `Strong vs eventual consistency` — Specify the actual consistency model and operation. Linearizable reads/writes give stronger ordering than eventual convergence but can require coordination; eventual consistency alone gives no fixed freshness bound.
+Eventual consistency says that, if updates stop and replicas communicate/reconcile under the model's assumptions, replicas eventually converge. It does not by itself specify how long convergence takes, what a read sees meanwhile, whether writes can conflict, or whether a client sees its own write. Systems may add read-your-writes, monotonic reads, causal consistency, bounded staleness, or conflict resolution; state those separately.
+
+“Strong” does not mean every operation is globally serializable: linearizability is per-object/history semantics, while serializability is a transaction property. A system can provide different models for different operations. CAP applies a particular atomic-consistency/availability tension during partitions; PACELC also describes latency/consistency choices without a partition.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Choose based on invariant and user-visible consequences. A uniqueness check or inventory reservation may need coordination to prevent two callers both succeeding. A view count or activity feed may tolerate temporary lag if the product communicates it and convergence is monitored. Relaxing consistency can improve availability/latency, but requires conflict handling and application logic for stale reads. Stronger models cost coordination, tail latency, and sometimes availability during failures; neither choice is free.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Replica A accepts a profile update while replica B is temporarily disconnected. Under an eventual model, B may return its older value before replication catches up; define whether the writer is routed back to A for read-your-writes and what happens if another user edits the same field. For an inventory decrement, two isolated replicas accepting the same final unit could oversell; use a coordinating authority, escrow rights, or another mechanism that preserves the invariant.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Saying “strong consistency” without naming the operation-level model.
+- Treating eventual consistency as “it will be fresh within a few seconds” without a documented bound.
+- Equating eventual consistency with eventual correctness; conflicts can converge to an undesirable value.
+- Assuming CAP labels explain normal-operation latency choices; use PACELC or explicit requirements.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What does linearizability add beyond eventual convergence?** A single legal operation order that also respects real time for non-overlapping operations.
+2. **Does eventual consistency set a maximum staleness period?** No, not by itself.
+3. **What should be specified before choosing a model?** The invariant, allowed stale/conflicting observations, failure behavior, and measurable latency/availability target.

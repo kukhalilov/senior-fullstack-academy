@@ -1,14 +1,14 @@
 # system design tradeoffs and decision methods — Reference: Latency vs throughput
 
-Sources: [HLD Handbook](https://hld.handbook.academy/trade-offs/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf), [reference 5](https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf).
+Sources: [HLD Handbook trade-off index](https://hld.handbook.academy/trade-offs/), [Google SRE: Service Level Objectives](https://sre.google/sre-book/service-level-objectives/), [Google SRE: Monitoring Distributed Systems](https://sre.google/sre-book/monitoring-distributed-systems/).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Latency measures elapsed time for an operation; throughput measures completed work per unit time. A system can have high throughput and poor per-request latency, or low latency at low load and then collapse when queues grow.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+For a request, measure end-to-end latency and time in each dependency or queue. For throughput, state the unit (requests, records, bytes, transactions) and count only successful useful work. Concurrency and batching can increase throughput but may add waiting time to each item. Queueing near capacity increases tail latency; averages hide slow requests and burst behavior.
 
 ## Supplied names explained
 
@@ -16,21 +16,21 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Separate service time from queueing time; a faster component may not reduce end-to-end latency if another dependency dominates. Track p50/p95/p99 alongside request rate, error rate, queue depth, and saturation. Define an SLO with eligible requests and a time window; compare the same workload, payload, concurrency, cache state, and failure mix.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+An API averages 40 ms but p99 is 2 seconds during bursts. A dashboard of mean latency alone looks healthy. Break down server time, database wait, and queue delay; compare p99 with concurrency and saturation. Then test a bounded queue plus load shedding: throughput may dip during overload, while successful requests regain predictable latency and fewer time out.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Optimizing only average latency while p95/p99 violate the user objective.
+- Reporting offered requests/s as successful throughput when errors/timeouts rise.
+- Increasing worker concurrency without considering downstream bottlenecks and queue growth.
+- Comparing benchmarks with different data, cache, concurrency, or durability settings.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What is throughput?** Successfully completed useful work per unit time, with the unit stated.
+2. **Why can high concurrency worsen p99?** More requests may queue or contend on saturated resources.
+3. **What should a serving-system dashboard pair with latency percentiles?** Traffic, errors, saturation, and dependency/queue breakdowns.

@@ -139,6 +139,26 @@
       ]
     },
     {
+      "scope": "t12-008 consistency, transaction, BASE, and normalization comparisons",
+      "status": "content expanded and primary-source spot checks performed; full lesson audits remain pending",
+      "sources": [
+        "https://www.cs.cmu.edu/~wing/publications/HerlihyWing90.pdf",
+        "https://www.cs.cornell.edu/lorenzo/papers/cac-tr.pdf",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://arxiv.org/abs/cs/0408036",
+        "https://learn.microsoft.com/en-us/azure/architecture/patterns/saga",
+        "https://learn.microsoft.com/en-us/dotnet/architecture/cloud-native/distributed-data",
+        "https://docs.oracle.com/en/database/oracle/transaction-manager-for-microservices/26.1/tmmdv/tcc-transaction-model.html",
+        "https://www.postgresql.org/docs/current/ddl-constraints.html",
+        "https://www.postgresql.org/docs/current/mvcc.html"
+      ],
+      "findings": [
+        "Replaced generic filler in strong-vs-eventual consistency, 2PC-vs-saga-vs-TCC, ACID-vs-BASE, and normalization-vs-denormalization with explicit guarantees, costs, failure cases, and examples.",
+        "Primary-source checks confirmed linearizability's real-time ordering condition, convergence without a built-in freshness bound, the distinction between 2PC and compensating workflows, TCC reservation/finalization semantics, and the fact that ACID's consistency property is not a distributed consistency model. Full claim inventory and omission review for every sentence remain pending."
+      ]
+    },
+    {
       "scope": "TLS and HTTP transport edition check in t12-001",
       "status": "partial claim audit; lesson remains draft",
       "sources": [
@@ -194,6 +214,58 @@
       "findings": [
         "Expanded bounded-load hashing, Maglev, Jump consistent hash, PN-Counter, OR-Set, sloppy quorum, hinted handoff, read quorum/write quorum, and read repair with topic-specific mechanisms, examples, limits, and checks. Added the Handbook module 3.9 placement alternatives and data-system contexts to the broader partitioning lesson.",
         "Primary-source spot checks support model-specific bounded-load guarantees, Maglev table construction and connection tracking, Jump sequential bucket assumptions, common OR-Set add-wins behavior, and Cassandra hint/read-repair behavior. Full sentence-level claim extraction and verification for these files remain pending; none is promoted to reviewed."
+      ]
+    },
+    {
+      "scope": "t12-008 SQL/NoSQL, partitioning, replication, concurrency, caching, limiting, and streaming comparisons",
+      "status": "content expanded with primary-source spot checks; complete lesson audits remain pending",
+      "sources": [
+        "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.WhyDynamoDB.html",
+        "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transactions.html",
+        "https://www.postgresql.org/docs/current/ddl-partitioning.html",
+        "https://people.csail.mit.edu/karger/Papers/web.pdf",
+        "https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf",
+        "https://www.postgresql.org/docs/current/warm-standby.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://www.postgresql.org/docs/current/mvcc.html",
+        "https://www.postgresql.org/docs/current/explicit-locking.html",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide",
+        "https://learn.microsoft.com/en-us/azure/architecture/best-practices/caching",
+        "https://redis.io/learn/howtos/ratelimiting/",
+        "https://www.itu.int/rec/T-REC-Y.1221-201006-I/en",
+        "https://nightlies.apache.org/flink/flink-docs-stable/docs/learn-flink/streaming_analytics/",
+        "https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/time/",
+        "https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/datastream/execution_mode/",
+        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+        "https://www.rfc-editor.org/rfc/rfc6455"
+      ],
+      "findings": [
+        "Expanded SQL-vs-NoSQL, partitioning strategies, replication topologies, optimistic-vs-pessimistic concurrency, cache write policies, token-bucket-vs-sliding-window, batch-vs-stream, and polling/long-polling/SSE/WebSocket/webhook lessons with concrete tradeoffs and failure cases.",
+        "Spot checks use vendor documentation, primary system papers, and protocols/specifications. All edited claims still need line-by-line evidence recording and omission checks before any lesson can be marked reviewed."
+      ]
+    },
+    {
+      "scope": "t12-008 API gateway, scaling, processing architecture, and delivery-pattern comparisons",
+      "status": "content expanded with primary-source spot checks; full lesson audits remain pending",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway",
+        "https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/",
+        "https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/",
+        "https://sre.google/sre-book/service-level-objectives/",
+        "https://sre.google/sre-book/monitoring-distributed-systems/",
+        "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overview",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out",
+        "https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/microservices-assessment",
+        "https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures",
+        "https://learn.microsoft.com/en-us/azure/architecture/microservices/migrate-monolith",
+        "https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/datastream/execution_mode/",
+        "https://nightlies.apache.org/flink/flink-docs-stable/docs/learn-flink/streaming_analytics/",
+        "https://learn.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling",
+        "https://learn.microsoft.com/en-us/azure/architecture/patterns/competing-consumers"
+      ],
+      "findings": [
+        "Replaced generic filler in latency/throughput, vertical/horizontal scaling, monolith/microservices, load balancer/reverse proxy/API gateway, Lambda/Kappa, and push/pull/fan-out references.",
+        "The citations support the specific current platform distinctions and monitoring/scaling semantics used. Full sentence-level claim extraction, scope audit, and additional source verification remain required before review status can change."
       ]
     }
   ],
@@ -100178,8 +100250,9 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "A corpus scan found 273 reference lessons reusing generic comparison, example, and knowledge-check text. This repeated filler is a substantive quality issue and those lessons still need topic-specific revision and claim-by-claim fact checks.",
-        "No new lesson was marked fully reviewed from this editorial pass."
+        "The current scan finds 240 reference lessons reusing generic comparison, example, or knowledge-check text (down from the prior 273 finding after edits). This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "No lesson was promoted to fully reviewed in this content-editing batch.",
+        "The t12-008 tradeoff track now has 2 remaining generic reference lessons on this scan; the other 22 reference lessons were expanded, but remain pending full factual audits."
       ]
     },
     {
