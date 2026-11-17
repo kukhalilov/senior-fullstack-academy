@@ -43,4 +43,4 @@ For five nodes, slow advances 1→2→3 while fast advances 1→3→5; slow ends
 3. **What must be saved before reversing a link?** Current's original next node.
 4. **Why trace even-length examples?** The middle convention depends on loop conditions.
 
-Source: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html).
+Source: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html).

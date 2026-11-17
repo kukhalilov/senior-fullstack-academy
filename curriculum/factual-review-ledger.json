@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 97,
-    "pending": 2243,
-    "claimsChecked": 976,
-    "claimsCorrected": 83,
+    "reviewed": 112,
+    "pending": 2228,
+    "claimsChecked": 1052,
+    "claimsCorrected": 84,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -13036,390 +13036,747 @@
       "topicId": "t11-006",
       "phase": "overview",
       "draft": "course/drafts/t11-006/t11-006-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 4,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Singly linked traversal is sequential; finding an arbitrary position costs O(n), while a local edit after locating a node changes a bounded number of links.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list representation and operations",
+          "verdict": "supported"
+        },
+        {
+          "claim": ".NET LinkedList<T> is doubly linked; known-node insertion/removal and Count have documented O(1) cost.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
+          "section": "Remarks; LinkedListNode<T>, AddAfter, Remove",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The reverse walkthrough saves each next reference before redirecting current.Next and returns the final previous node.",
+          "source": "https://leetcode.com/problems/reverse-linked-list/",
+          "section": "Description; reversal independently traced",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Node identity, sentinel, fast/slow, mutation and tradeoff map covers the assigned topic scope.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Manifest concepts, inventory and scope exclusions",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-concepts",
       "topicId": "t11-006",
       "phase": "concepts",
       "draft": "course/drafts/t11-006/t11-006-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 5,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Known-position link updates are O(1), but positional discovery still costs traversal; doubly linked nodes store both directions.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
+          "section": "LinkedList<T> remarks and node references",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Save-next-before-rewire preserves the unprocessed suffix during reversal and mutation.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list insertion/removal and node-link representation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Floyd pointers eventually meet inside a cycle; null reach proves acyclicity for a finite next chain.",
+          "source": "https://leetcode.com/problems/linked-list-cycle/",
+          "section": "Cycle definition; proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Shared-list intersection compares node identity, and a shared node implies a common suffix.",
+          "source": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+          "section": "Description and identity explanation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Sentinel, nth-from-end gap, reversal/merge complexity, and mutation invariants are consistent with their corresponding problem constraints.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Frozen inventory and assigned problem contracts",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
+        "https://leetcode.com/problems/linked-list-cycle/",
+        "https://leetcode.com/problems/intersection-of-two-linked-lists/"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-reference-representations-and-traversal",
       "topicId": "t11-006",
       "phase": "reference",
       "draft": "course/drafts/t11-006/t11-006-reference-representations-and-traversal.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 3,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Every supplied inventory term appears and is accurately explained within its stated preconditions.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Manifest inventory representations-and-traversal",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Representation, mutation, traversal, identity and complexity comparisons agree with cited data-structure/API definitions.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list representations and traversal",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# LinkedList<T> is doubly linked, exposes First/Last node references, and has null First/Last when empty.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
+          "section": "Remarks and properties",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-reference-mutation-and-sentinels",
       "topicId": "t11-006",
       "phase": "reference",
       "draft": "course/drafts/t11-006/t11-006-reference-mutation-and-sentinels.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 3,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Every supplied inventory term appears and is accurately explained within its stated preconditions.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Manifest inventory mutation-and-sentinels",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Representation, mutation, traversal, identity and complexity comparisons agree with cited data-structure/API definitions.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Header/sentinel nodes and linked-list mutation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A sentinel simplifies head-boundary mutation; link assignment order preserves the old successor.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Header node and insertion examples",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-reference-fast-slow-and-reversal",
       "topicId": "t11-006",
       "phase": "reference",
       "draft": "course/drafts/t11-006/t11-006-reference-fast-slow-and-reversal.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 3,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Every supplied inventory term appears and is accurately explained within its stated preconditions.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Manifest inventory fast-slow-and-reversal",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Representation, mutation, traversal, identity and complexity comparisons agree with cited data-structure/API definitions.",
+          "source": "https://leetcode.com/problems/linked-list-cycle/",
+          "section": "Cycle contract; pointer patterns independently proved",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Fast/slow null guards, middle conventions, Floyd meeting versus entry, and reverse-sublist reconnection are distinguished.",
+          "source": "https://leetcode.com/problems/linked-list-cycle/",
+          "section": "Cycle contract; independent proof for variants",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+        "https://leetcode.com/problems/linked-list-cycle/",
+        "https://leetcode.com/problems/reverse-linked-list/"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-reference-merge-identity-and-tradeoffs",
       "topicId": "t11-006",
       "phase": "reference",
       "draft": "course/drafts/t11-006/t11-006-reference-merge-identity-and-tradeoffs.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 3,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Every supplied inventory term appears and is accurately explained within its stated preconditions.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Manifest inventory merge-identity-and-tradeoffs",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Representation, mutation, traversal, identity and complexity comparisons agree with cited data-structure/API definitions.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
+          "section": "LinkedList<T> node operations and identity semantics",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Value equality is distinct from shared node identity; recursive traversal/output allocation costs are correctly separated.",
+          "source": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+          "section": "Identity semantics; complexity independently derived",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
+        "https://leetcode.com/problems/intersection-of-two-linked-lists/"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-practice-reverse-linked-list",
       "topicId": "t11-006",
       "phase": "practice",
       "draft": "course/drafts/t11-006/t11-006-practice-reverse-linked-list.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Problem contract, node identity/value requirements, input constraints, and return/mutation semantics match canonical statement.",
+          "source": "https://leetcode.com/problems/reverse-linked-list/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Supplied examples and dry-run output have been independently recalculated or traced.",
+          "source": "https://leetcode.com/problems/reverse-linked-list/",
+          "section": "Examples; direct node/digit trace",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Solution invariant preserves nodes/links and proves every required node is processed exactly once.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Pointer operations; solution proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# nullability, link updates, reference comparisons, and numeric ranges are valid under the stated constraints.",
+          "source": "https://leetcode.com/problems/reverse-linked-list/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time/space bounds count traversal, recursion, output nodes, map, and reused-node storage appropriately.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list operation cost; complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases cover empty/singleton/head/tail/cycle/alias or carry boundaries relevant to the problem.",
+          "source": "https://leetcode.com/problems/reverse-linked-list/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/reverse-linked-list/",
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-practice-merge-two-sorted-lists",
       "topicId": "t11-006",
       "phase": "practice",
       "draft": "course/drafts/t11-006/t11-006-practice-merge-two-sorted-lists.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Problem contract, node identity/value requirements, input constraints, and return/mutation semantics match canonical statement.",
+          "source": "https://leetcode.com/problems/merge-two-sorted-lists/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Supplied examples and dry-run output have been independently recalculated or traced.",
+          "source": "https://leetcode.com/problems/merge-two-sorted-lists/",
+          "section": "Examples; direct node/digit trace",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Solution invariant preserves nodes/links and proves every required node is processed exactly once.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Pointer operations; solution proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# nullability, link updates, reference comparisons, and numeric ranges are valid under the stated constraints.",
+          "source": "https://leetcode.com/problems/merge-two-sorted-lists/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time/space bounds count traversal, recursion, output nodes, map, and reused-node storage appropriately.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list operation cost; complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases cover empty/singleton/head/tail/cycle/alias or carry boundaries relevant to the problem.",
+          "source": "https://leetcode.com/problems/merge-two-sorted-lists/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Destructive splice solution requires disjoint input node chains; the lesson states this precondition and warns aliasing changes behavior.",
+          "source": "https://leetcode.com/problems/merge-two-sorted-lists/",
+          "section": "Splicing-together contract; explicit implementation precondition",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/merge-two-sorted-lists/",
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-practice-linked-list-cycle",
       "topicId": "t11-006",
       "phase": "practice",
       "draft": "course/drafts/t11-006/t11-006-practice-linked-list-cycle.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Problem contract, node identity/value requirements, input constraints, and return/mutation semantics match canonical statement.",
+          "source": "https://leetcode.com/problems/linked-list-cycle/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Supplied examples and dry-run output have been independently recalculated or traced.",
+          "source": "https://leetcode.com/problems/linked-list-cycle/",
+          "section": "Examples; direct node/digit trace",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Solution invariant preserves nodes/links and proves every required node is processed exactly once.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Pointer operations; solution proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# nullability, link updates, reference comparisons, and numeric ranges are valid under the stated constraints.",
+          "source": "https://leetcode.com/problems/linked-list-cycle/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time/space bounds count traversal, recursion, output nodes, map, and reused-node storage appropriately.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list operation cost; complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases cover empty/singleton/head/tail/cycle/alias or carry boundaries relevant to the problem.",
+          "source": "https://leetcode.com/problems/linked-list-cycle/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/linked-list-cycle/",
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-practice-remove-nth-node-from-end",
       "topicId": "t11-006",
       "phase": "practice",
       "draft": "course/drafts/t11-006/t11-006-practice-remove-nth-node-from-end.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Problem contract, node identity/value requirements, input constraints, and return/mutation semantics match canonical statement.",
+          "source": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Supplied examples and dry-run output have been independently recalculated or traced.",
+          "source": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+          "section": "Examples; direct node/digit trace",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Solution invariant preserves nodes/links and proves every required node is processed exactly once.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Pointer operations; solution proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# nullability, link updates, reference comparisons, and numeric ranges are valid under the stated constraints.",
+          "source": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time/space bounds count traversal, recursion, output nodes, map, and reused-node storage appropriately.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list operation cost; complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases cover empty/singleton/head/tail/cycle/alias or carry boundaries relevant to the problem.",
+          "source": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-practice-reorder-list",
       "topicId": "t11-006",
       "phase": "practice",
       "draft": "course/drafts/t11-006/t11-006-practice-reorder-list.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Problem contract, node identity/value requirements, input constraints, and return/mutation semantics match canonical statement.",
+          "source": "https://leetcode.com/problems/reorder-list/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Supplied examples and dry-run output have been independently recalculated or traced.",
+          "source": "https://leetcode.com/problems/reorder-list/",
+          "section": "Examples; direct node/digit trace",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Solution invariant preserves nodes/links and proves every required node is processed exactly once.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Pointer operations; solution proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# nullability, link updates, reference comparisons, and numeric ranges are valid under the stated constraints.",
+          "source": "https://leetcode.com/problems/reorder-list/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time/space bounds count traversal, recursion, output nodes, map, and reused-node storage appropriately.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list operation cost; complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases cover empty/singleton/head/tail/cycle/alias or carry boundaries relevant to the problem.",
+          "source": "https://leetcode.com/problems/reorder-list/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/reorder-list/",
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-practice-add-two-numbers",
       "topicId": "t11-006",
       "phase": "practice",
       "draft": "course/drafts/t11-006/t11-006-practice-add-two-numbers.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Problem contract, node identity/value requirements, input constraints, and return/mutation semantics match canonical statement.",
+          "source": "https://leetcode.com/problems/add-two-numbers/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Supplied examples and dry-run output have been independently recalculated or traced.",
+          "source": "https://leetcode.com/problems/add-two-numbers/",
+          "section": "Examples; direct node/digit trace",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Solution invariant preserves nodes/links and proves every required node is processed exactly once.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Pointer operations; solution proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# nullability, link updates, reference comparisons, and numeric ranges are valid under the stated constraints.",
+          "source": "https://leetcode.com/problems/add-two-numbers/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time/space bounds count traversal, recursion, output nodes, map, and reused-node storage appropriately.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list operation cost; complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases cover empty/singleton/head/tail/cycle/alias or carry boundaries relevant to the problem.",
+          "source": "https://leetcode.com/problems/add-two-numbers/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The earlier defensive statement treated a null side as zero but both-null returned null; code now returns a one-node zero representation.",
+          "source": "https://leetcode.com/problems/add-two-numbers/",
+          "section": "Canonical inputs are nonempty; defensive extension correction applied",
+          "verdict": "corrected"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/add-two-numbers/",
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-practice-intersection-of-two-linked-lists",
       "topicId": "t11-006",
       "phase": "practice",
       "draft": "course/drafts/t11-006/t11-006-practice-intersection-of-two-linked-lists.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Problem contract, node identity/value requirements, input constraints, and return/mutation semantics match canonical statement.",
+          "source": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Supplied examples and dry-run output have been independently recalculated or traced.",
+          "source": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+          "section": "Examples; direct node/digit trace",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Solution invariant preserves nodes/links and proves every required node is processed exactly once.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Pointer operations; solution proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# nullability, link updates, reference comparisons, and numeric ranges are valid under the stated constraints.",
+          "source": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time/space bounds count traversal, recursion, output nodes, map, and reused-node storage appropriately.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list operation cost; complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases cover empty/singleton/head/tail/cycle/alias or carry boundaries relevant to the problem.",
+          "source": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-practice-copy-list-with-random-pointer",
       "topicId": "t11-006",
       "phase": "practice",
       "draft": "course/drafts/t11-006/t11-006-practice-copy-list-with-random-pointer.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
-        "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
-        "https://leetcode.com/problems/intersection-of-two-linked-lists/",
-        "https://leetcode.com/problems/copy-list-with-random-pointer/"
+      "evidence": [
+        {
+          "claim": "Problem contract, node identity/value requirements, input constraints, and return/mutation semantics match canonical statement.",
+          "source": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Supplied examples and dry-run output have been independently recalculated or traced.",
+          "source": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+          "section": "Examples; direct node/digit trace",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Solution invariant preserves nodes/links and proves every required node is processed exactly once.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Pointer operations; solution proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# nullability, link updates, reference comparisons, and numeric ranges are valid under the stated constraints.",
+          "source": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time/space bounds count traversal, recursion, output nodes, map, and reused-node storage appropriately.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Linked-list operation cost; complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases cover empty/singleton/head/tail/cycle/alias or carry boundaries relevant to the problem.",
+          "source": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Node class does not override equality, so default dictionary keys use reference identity; duplicate values remain separate nodes.",
+          "source": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+          "section": "Node-identity contract and code inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/copy-list-with-random-pointer/",
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html"
+      ],
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-006-interview",
       "topicId": "t11-006",
       "phase": "interview",
       "draft": "course/drafts/t11-006/t11-006-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 4,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Search-to-location cost and known-node link-rewire cost are separated.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
+          "section": "Remarks; node-level operations",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cycle detection and cycle-entry follow-up use correct pointer speed and reset rules.",
+          "source": "https://leetcode.com/problems/linked-list-cycle/",
+          "section": "Cycle definition; Floyd proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Intersection and clone answers preserve node identity rather than comparing values.",
+          "source": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+          "section": "Description and identity statement",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Scenarios and self-check rubric cover all assigned pointer/mutation/identity tradeoffs.",
+          "source": "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
+          "section": "Manifest inventory and reference sections",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html",
+        "https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1",
-        "https://leetcode.com/problems/reverse-linked-list/",
-        "https://leetcode.com/problems/merge-two-sorted-lists/",
         "https://leetcode.com/problems/linked-list-cycle/",
-        "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
-        "https://leetcode.com/problems/reorder-list/",
-        "https://leetcode.com/problems/add-two-numbers/",
         "https://leetcode.com/problems/intersection-of-two-linked-lists/",
         "https://leetcode.com/problems/copy-list-with-random-pointer/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and frozen-inventory review completed against the refreshed OpenDSA module, current Microsoft LinkedList<T> documentation, and current canonical problem statements. Node identity, pointer invariants, null/boundary cases, examples, constraints, complexity, aliasing, and C# behavior were checked; the defensive both-null Add Two Numbers case was corrected. No unresolved issue remains."
     },
     {
       "taskId": "t11-007-overview",
@@ -104487,6 +104844,14 @@
       "status": "full claim and frozen-inventory audit complete for this topic",
       "findings": [
         "Audited all 16 lessons against the supplied search/bounds/answer-space/rotated/matrix inventory and current canonical problem statements. Corrected an overflow-prone generic ceiling-midpoint formula, the Binary Search constraint transcription, and a Search a 2D Matrix walkthrough. Verified lower/upper-bound contracts, rotated distinct-value assumptions, feasibility bounds/checks, matrix flattening, examples, C# arithmetic and complexities. No unresolved issues remain."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "DSA linked lists, pointer rewiring, reversal, and cycles (t11-006)",
+      "status": "full claim and frozen-inventory audit complete for this topic",
+      "findings": [
+        "Audited all 15 lessons against the linked-list representation/mutation/fast-slow/identity inventory, a refreshed OpenDSA module, .NET LinkedList<T> documentation, and eight current canonical problem statements. Checked node identity, pointer invariants, cycle behavior, constraints, examples, runtime/space costs, and input mutation. Corrected the defensive both-null Add Two Numbers result so it returns a zero node consistently with its stated null extension. No unresolved issues remain."
       ]
     }
   ]

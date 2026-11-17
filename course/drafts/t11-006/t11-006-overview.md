@@ -53,4 +53,4 @@ Cycles violate the usual assumption that traversal eventually reaches null. Use 
 
 The concepts lesson develops link invariants and identity. References explain node forms, mutation/sentinels, fast/slow and reversal, merge and tradeoffs. Separate problems cover reversing, merging, cycles, nth-from-end deletion, reordering, digit-list addition, intersection by identity, and random-pointer cloning.
 
-Sources: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html), [Microsoft Learn: LinkedList<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1).
+Sources: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html), [Microsoft Learn: LinkedList<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1).

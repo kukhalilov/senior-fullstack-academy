@@ -54,6 +54,8 @@ public static class Program
 {
     public static ListNode AddTwoNumbers(ListNode? l1, ListNode? l2)
     {
+        if (l1 is null && l2 is null) return new ListNode(0);
+
         var dummy = new ListNode();
         ListNode tail = dummy;
         int carry = 0;
@@ -99,6 +101,7 @@ public static class Program
         AssertSequence(Digits(AddTwoNumbers(Build(0), Build(0))), new[] { 0 }, "Example 2");
         AssertSequence(Digits(AddTwoNumbers(Build(9, 9, 9, 9, 9, 9, 9), Build(9, 9, 9, 9))), new[] { 8, 9, 9, 9, 0, 0, 0, 1 }, "Example 3");
         AssertSequence(Digits(AddTwoNumbers(Build(9), Build(1))), new[] { 0, 1 }, "Final carry");
+        AssertSequence(Digits(AddTwoNumbers(null, null)), new[] { 0 }, "Defensive null inputs");
         Console.WriteLine("All Add Two Numbers checks passed.");
     }
 }

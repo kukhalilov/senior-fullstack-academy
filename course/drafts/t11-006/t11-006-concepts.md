@@ -71,4 +71,4 @@ To remove the head of `5 → 7 → 9`, a dummy's next initially references 5. Se
 4. **What does intersection compare?** Node object identity.
 5. **Why use a dummy head?** It gives the original first node an ordinary predecessor for uniform rewiring.
 
-Sources: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html), [Microsoft Learn: LinkedList<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1).
+Sources: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html), [Microsoft Learn: LinkedList<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1).

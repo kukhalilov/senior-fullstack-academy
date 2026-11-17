@@ -26,7 +26,7 @@ Each node has an integer value, a next reference, and a random reference that ma
 ## Clarifying assumptions
 
 - The `next` chain is finite and acyclic; random links may point backward, forward, to self, or null.
-- Node identity, not value, keys the mapping. The Node class below does not override equality; an explicit reference comparer is used for clarity.
+- Node identity, not value, keys the mapping. The Node class below does not override equality, so the default class equality is reference identity. If a node type overrides equality by value, supply a reference-identity comparer instead.
 - The clone has exactly the same number of nodes and is independent of later original-link changes.
 - Input links are not modified by this two-pass mapping solution.
 
@@ -56,7 +56,7 @@ public static class Program
     public static Node? CopyRandomList(Node? head)
     {
         if (head is null) return null;
-        var clones = new Dictionary<Node, Node>(ReferenceEqualityComparer.Instance);
+        var clones = new Dictionary<Node, Node>();
 
         for (Node? current = head; current is not null; current = current.Next)
             clones.Add(current, new Node(current.Val));
@@ -78,7 +78,7 @@ public static class Program
         for (Node? node = copy; node is not null; node = node.Next) copies.Add(node);
         if (originals.Count != copies.Count) throw new InvalidOperationException(label + " count failed.");
 
-        var originalIndex = new Dictionary<Node, int>(ReferenceEqualityComparer.Instance);
+        var originalIndex = new Dictionary<Node, int>();
         for (int i = 0; i < originals.Count; i++) originalIndex.Add(originals[i], i);
         for (int i = 0; i < originals.Count; i++)
         {

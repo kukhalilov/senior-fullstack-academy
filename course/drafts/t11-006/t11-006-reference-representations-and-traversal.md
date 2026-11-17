@@ -43,4 +43,4 @@ For nodes A→B→C, head references A and tail references C. In a doubly linked
 3. **What identifies a list's first node?** Its head reference.
 4. **What distinguishes equal-valued nodes?** Their object identity/reference.
 
-Source: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html).
+Source: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html).

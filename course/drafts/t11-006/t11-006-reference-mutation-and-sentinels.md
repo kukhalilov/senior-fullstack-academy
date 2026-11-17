@@ -45,4 +45,4 @@ To delete the original head in dummy→A→B, set dummy.next=B and return dummy.
 3. **What does save-next protect?** Reachability of the not-yet-processed suffix.
 4. **When must tail change?** Whenever the operation changes which node is last, including becoming empty.
 
-Source: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html).
+Source: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html).

@@ -42,4 +42,4 @@ Merge 1→4→8 and 2→3: append 1,2,3,4, then attach the remaining 8 suffix. I
 3. **What space does recursive traversal use?** O(n) call stack in the worst case.
 4. **Why can an array scan be faster than a linked scan?** Better locality and fewer pointer-dependent memory accesses.
 
-Sources: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/Books/pubbook/odsa-all-0013bb43-a12f-4ab3-9b86-73b317f1e37e/fall-2020/F20_Public/html/ListLinked.html), [Microsoft Learn: LinkedList<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1).
+Sources: [OpenDSA: Linked Lists](https://opendsa.cs.vt.edu/ODSA/StandaloneModules/20260527013510/html/ListLinked.html), [Microsoft Learn: LinkedList<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.linkedlist-1).
