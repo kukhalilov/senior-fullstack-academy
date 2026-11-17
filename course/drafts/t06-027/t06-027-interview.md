@@ -5,7 +5,7 @@
 ## Core questions
 
 1. How do linting, formatting, type checking, and source maps differ?
-2. What changed when ESLint made flat config the default?
+2. What is the current ESLint config format, and what did ESLint 10 remove?
 3. What roles do `languageOptions`, `linterOptions`, `files`, and ignores serve?
 4. How does typed TypeScript linting obtain project information, and what does it cost?
 5. How do ESLint, Prettier, and Biome compare?
@@ -16,7 +16,7 @@
 ## Concise interview answers
 
 1. Linting reports configured pattern/rule diagnostics; formatting rewrites layout; type checking analyzes type relationships; source maps map generated locations to authored sources.
-2. ESLint v9 made flat config the default. Config is exported from `eslint.config.*` as objects/arrays; file matching, ignores, plugin objects, and language options differ from legacy eslintrc.
+2. Flat config became default in ESLint v9; ESLint v10 removed legacy eslintrc support. Current configs export objects/arrays from `eslint.config.*`; matching, ignores, plugin objects, and language options differ from legacy config.
 3. `files` selects a config's target files; `languageOptions` controls parser/language/globals; `linterOptions` controls lint-engine behavior; ignores can be global or scoped to a config object.
 4. typescript-eslint can enable `projectService` and type-aware presets such as `recommendedTypeChecked`. It analyzes TypeScript project information, which is slower and requires correct TSConfig coverage.
 5. ESLint is an extensible linter; Prettier is an opinionated formatter; Biome bundles formatter, linter, and assist actions. Their rules and output differ, so assign clear ownership.
@@ -30,7 +30,7 @@
 
 **Why can ESLint show no errors while TypeScript fails?** ESLint's syntax and rule layer is distinct from `tsc`. Even type-aware lint rules are a selected set of lints and may use project data differently from a full compiler run. Keep both commands when the project requires both guarantees.
 
-**How would you migrate to flat config?** Inventory old envs, parser, parserOptions, plugins, extends, overrides, ignores, and inline-disable policy; translate them to flat config objects and file matches; set globals explicitly; test effective config for representative files; and remove deprecated flags/config assumptions. The migrator can provide a starting point but must be reviewed.
+**How would you migrate to flat config?** Inventory old envs, parser, parserOptions, plugins, extends, overrides, ignores, and inline-disable policy; translate them to flat config objects and file matches; set globals explicitly; test effective config for representative files; and remove deprecated flags/config assumptions. For ESLint 10, migrate fully because eslintrc is no longer supported. The migrator can provide a starting point but must be reviewed.
 
 **What changed in Biome v2 import organization?** It moved into assist actions at `assist.actions.source.organizeImports`; the old standalone v1 shape is not current. v2 can also alter sorting/organize exports behavior, so migration should inspect resulting import order and side-effect assumptions.
 
@@ -68,7 +68,7 @@ Score 0 (missing), 1 (partly correct), or 2 (clear and accurate): four tool resp
 
 ## Sources
 
-- [ESLint flat config](https://eslint.org/docs/latest/use/configure/configuration-files)
+- [ESLint flat config](https://eslint.org/docs/latest/use/configure/configuration-files · [ESLint 10 migration](https://eslint.org/docs/latest/use/migrate-to-10.0.0))
 - [ESLint migration guide](https://eslint.org/docs/latest/use/configure/migration-guide)
 - [typescript-eslint typed linting](https://typescript-eslint.io/getting-started/typed-linting/)
 - [Prettier configuration](https://prettier.io/docs/configuration)

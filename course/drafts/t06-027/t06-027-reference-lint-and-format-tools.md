@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This reference covers the sixteen supplied tool and configuration names, using current official documentation checked 16 November 2026. It describes the main responsibilities and configuration surfaces rather than every individual lint rule or formatter option. See [ESLint configuration](https://eslint.org/docs/latest/use/configure/), [Prettier configuration](https://prettier.io/docs/configuration), [Biome quick start](https://biomejs.dev/installation/quick-start/), and [typescript-eslint typed linting](https://typescript-eslint.io/getting-started/typed-linting/).
+This reference covers the sixteen supplied tool and configuration names, using current official documentation checked 17 November 2026. It describes the main responsibilities and configuration surfaces rather than every individual lint rule or formatter option. See [ESLint configuration](https://eslint.org/docs/latest/use/configure/), [Prettier configuration](https://prettier.io/docs/configuration), [Biome quick start](https://biomejs.dev/installation/quick-start/), and [typescript-eslint typed linting](https://typescript-eslint.io/getting-started/typed-linting/).
 
 # How this group fits the mental model
 
@@ -16,7 +16,7 @@ Choose the tool that owns each job. ESLint primarily evaluates configurable rule
 - `typescript-eslint` — The project that supplies TypeScript parsing, ESLint integration, shared configurations, and TypeScript-aware rules. It includes a convenient `typescript-eslint` package as well as separately published parser/plugin packages. Versioned configuration and flat-config patterns should follow the installed release's docs.
 - `Prettier` — An opinionated code formatter with language parsers and optional plugins. It discovers configuration upward from the file location and intentionally has no global configuration, so repository policy can be shared across machines.
 - `Biome` — A toolchain with a formatter, linter, and assist actions. It overlaps with ESLint and Prettier but does not have identical language coverage, plugins, rules, or formatting choices. Biome v2 uses `assist.actions.source.organizeImports` for import organization.
-- `ESLint flat config` — ESLint's current configuration system based on an array of configuration objects exported from an `eslint.config.*` file. It is the default from ESLint v9. Config objects compose according to file matching and order/extension behavior; this differs from legacy `.eslintrc` merging.
+- `ESLint flat config` — ESLint's current configuration system based on an array of configuration objects exported from an `eslint.config.*` file. It became the default in ESLint v9; ESLint v10 removed legacy `.eslintrc` support entirely. Config objects compose according to file matching and order/extension behavior. For v10+, use flat config only.
 - `eslint.config.js` — A common flat-config file name. Its module interpretation follows Node/package settings; `.mjs` and `.cjs` alternatives make module format explicit. ESLint searches from target-file directories upward unless configuration is selected explicitly.
 - `defineConfig` — A helper exported by `eslint/config` in current flat config that accepts configuration objects/arrays and normalizes composition such as `extends`. Use the API available in the installed ESLint version.
 - `globalIgnores` — Current ESLint helper from `eslint/config` for declaring patterns that globally exclude files from linting. A config object's plain `ignores` with no other configuration similarly has global behavior; `ignores` alongside other settings applies only to that config object.
@@ -84,7 +84,7 @@ Biome v2 uses an assist configuration such as:
 
 # Common mistakes
 
-- Copying old `.eslintrc` keys into flat config without migration.
+- Copying old `.eslintrc` keys into flat config without migration; ESLint 10 cannot run legacy config.
 - Treating `files` and ignores as generic glob lists independent of config scope/base path.
 - Registering a plugin as a legacy string rather than a flat-config plugin object.
 - Expecting ESLint to perform TypeScript type checking without project service/type-aware rules.
@@ -96,7 +96,7 @@ Biome v2 uses an assist configuration such as:
 
 # Knowledge checks with answers
 
-1. **Which current ESLint file format is default?** Flat config via `eslint.config.*` (default since ESLint v9).
+1. **Which ESLint config format is current?** Flat config via `eslint.config.*`; it became default in v9 and is the only format supported since v10.
 2. **Where do parser and global settings go in flat config?** Under `languageOptions`.
 3. **Where do `noInlineConfig` and unused-disable behavior go?** Under `linterOptions`.
 4. **What does a processor do?** It preprocesses/postprocesses nonstandard or embedded code for linting; it is distinct from parser selection.
@@ -108,7 +108,7 @@ Biome v2 uses an assist configuration such as:
 - [ESLint configuration](https://eslint.org/docs/latest/use/configure/)
 - [ESLint configuration files](https://eslint.org/docs/latest/use/configure/configuration-files)
 - [ESLint language options](https://eslint.org/docs/latest/use/configure/language-options)
-- [ESLint migration guide](https://eslint.org/docs/latest/use/configure/migration-guide)
+- [ESLint migration guide](https://eslint.org/docs/latest/use/configure/migration-guide · [ESLint 10 migration](https://eslint.org/docs/latest/use/migrate-to-10.0.0))
 - [typescript-eslint typed linting](https://typescript-eslint.io/getting-started/typed-linting/)
 - [Prettier configuration](https://prettier.io/docs/configuration)
 - [Prettier ignore files](https://prettier.io/docs/ignore/)

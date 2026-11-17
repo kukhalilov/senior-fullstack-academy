@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 846,
-    "pending": 1495,
-    "claimsChecked": 32472,
+    "reviewed": 853,
+    "pending": 1488,
+    "claimsChecked": 32589,
     "claimsCorrected": 1468,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 846,
-    "pendingLessons": 1495
+    "reviewedLessons": 853,
+    "pendingLessons": 1488
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -96161,217 +96161,1407 @@
       "topicId": "t06-027",
       "phase": "overview",
       "draft": "course/drafts/t06-027/t06-027-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 11,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "ESLint 9 made flat config the default; ESLint 10 removed eslintrc and its legacy opt-out.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Flat-config global ignores differ from per-object ignores; the current globalIgnores helper makes intent explicit.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ESLint 10 migration also includes runtime, config lookup, rule and API changes; follow version guide.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Typed lint requires project type information, can cost more, and complements rather than replaces tsc.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Prettier parses/formats supported files, discovers project config, and uses ignore patterns; one formatter should own rewrites.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Biome v2 import organization uses assist.actions.source.organizeImports; it is not ESLint/Prettier-equivalent.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ECMA-426 map format uses version 3, generated/source/name tables and VLQ mappings; JS/CSS columns are UTF-16 code units.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Source-map header precedence, indexed sections, ignoreList, sourcesContent exposure and hidden-map privacy were checked against ECMA-426.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Exercise sequence, hints, solutions, examples and current-version distinctions checked against claims and inventory.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://eslint.org/docs/latest/use/configure/",
         "https://eslint.org/docs/latest/use/configure/configuration-files",
         "https://eslint.org/docs/latest/use/configure/language-options",
         "https://eslint.org/docs/latest/use/configure/migration-guide",
-        "https://typescript-eslint.io/getting-started/",
+        "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+        "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+        "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
         "https://typescript-eslint.io/getting-started/typed-linting/",
-        "https://typescript-eslint.io/troubleshooting/typed-linting/",
-        "https://prettier.io/docs/",
         "https://prettier.io/docs/configuration",
         "https://prettier.io/docs/ignore/",
-        "https://prettier.io/docs/cli",
-        "https://biomejs.dev/installation/quick-start/",
         "https://biomejs.dev/reference/configuration/",
         "https://biomejs.dev/installation/upgrade-to-biome-v2/",
         "https://tc39.es/ecma426/2024/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit against official ESLint 10/current docs, typescript-eslint, Prettier, Biome v2 and ECMA-426. Corrected practice exercise/hint/solution alignment and completed ESLint 9-to-10 migration coverage; no unresolved issues remain. Lesson remains in drafts by repository workflow."
     },
     {
       "taskId": "t06-027-concepts",
       "topicId": "t06-027",
       "phase": "concepts",
       "draft": "course/drafts/t06-027/t06-027-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 13,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "ESLint 9 made flat config the default; ESLint 10 removed eslintrc and its legacy opt-out.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Flat-config global ignores differ from per-object ignores; the current globalIgnores helper makes intent explicit.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ESLint 10 migration also includes runtime, config lookup, rule and API changes; follow version guide.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Typed lint requires project type information, can cost more, and complements rather than replaces tsc.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Prettier parses/formats supported files, discovers project config, and uses ignore patterns; one formatter should own rewrites.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Biome v2 import organization uses assist.actions.source.organizeImports; it is not ESLint/Prettier-equivalent.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ECMA-426 map format uses version 3, generated/source/name tables and VLQ mappings; JS/CSS columns are UTF-16 code units.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Source-map header precedence, indexed sections, ignoreList, sourcesContent exposure and hidden-map privacy were checked against ECMA-426.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Exercise sequence, hints, solutions, examples and current-version distinctions checked against claims and inventory.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://eslint.org/docs/latest/use/configure/",
         "https://eslint.org/docs/latest/use/configure/configuration-files",
         "https://eslint.org/docs/latest/use/configure/language-options",
         "https://eslint.org/docs/latest/use/configure/migration-guide",
-        "https://typescript-eslint.io/getting-started/",
+        "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+        "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+        "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
         "https://typescript-eslint.io/getting-started/typed-linting/",
-        "https://typescript-eslint.io/troubleshooting/typed-linting/",
-        "https://prettier.io/docs/",
         "https://prettier.io/docs/configuration",
         "https://prettier.io/docs/ignore/",
-        "https://prettier.io/docs/cli",
-        "https://biomejs.dev/installation/quick-start/",
         "https://biomejs.dev/reference/configuration/",
         "https://biomejs.dev/installation/upgrade-to-biome-v2/",
         "https://tc39.es/ecma426/2024/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit against official ESLint 10/current docs, typescript-eslint, Prettier, Biome v2 and ECMA-426. Corrected practice exercise/hint/solution alignment and completed ESLint 9-to-10 migration coverage; no unresolved issues remain. Lesson remains in drafts by repository workflow."
     },
     {
       "taskId": "t06-027-reference-lint-and-format-tools",
       "topicId": "t06-027",
       "phase": "reference",
       "draft": "course/drafts/t06-027/t06-027-reference-lint-and-format-tools.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "ESLint 9 made flat config the default; ESLint 10 removed eslintrc and its legacy opt-out.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Flat-config global ignores differ from per-object ignores; the current globalIgnores helper makes intent explicit.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ESLint 10 migration also includes runtime, config lookup, rule and API changes; follow version guide.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Typed lint requires project type information, can cost more, and complements rather than replaces tsc.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Prettier parses/formats supported files, discovers project config, and uses ignore patterns; one formatter should own rewrites.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Biome v2 import organization uses assist.actions.source.organizeImports; it is not ESLint/Prettier-equivalent.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ECMA-426 map format uses version 3, generated/source/name tables and VLQ mappings; JS/CSS columns are UTF-16 code units.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Source-map header precedence, indexed sections, ignoreList, sourcesContent exposure and hidden-map privacy were checked against ECMA-426.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Exercise sequence, hints, solutions, examples and current-version distinctions checked against claims and inventory.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://eslint.org/docs/latest/use/configure/",
         "https://eslint.org/docs/latest/use/configure/configuration-files",
         "https://eslint.org/docs/latest/use/configure/language-options",
         "https://eslint.org/docs/latest/use/configure/migration-guide",
-        "https://typescript-eslint.io/getting-started/",
+        "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+        "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+        "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
         "https://typescript-eslint.io/getting-started/typed-linting/",
-        "https://typescript-eslint.io/troubleshooting/typed-linting/",
-        "https://prettier.io/docs/",
         "https://prettier.io/docs/configuration",
         "https://prettier.io/docs/ignore/",
-        "https://prettier.io/docs/cli",
-        "https://biomejs.dev/installation/quick-start/",
         "https://biomejs.dev/reference/configuration/",
         "https://biomejs.dev/installation/upgrade-to-biome-v2/",
         "https://tc39.es/ecma426/2024/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit against official ESLint 10/current docs, typescript-eslint, Prettier, Biome v2 and ECMA-426. Corrected practice exercise/hint/solution alignment and completed ESLint 9-to-10 migration coverage; no unresolved issues remain. Lesson remains in drafts by repository workflow."
     },
     {
       "taskId": "t06-027-reference-lint-config-surfaces",
       "topicId": "t06-027",
       "phase": "reference",
       "draft": "course/drafts/t06-027/t06-027-reference-lint-config-surfaces.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 10,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "ESLint 9 made flat config the default; ESLint 10 removed eslintrc and its legacy opt-out.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Flat-config global ignores differ from per-object ignores; the current globalIgnores helper makes intent explicit.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ESLint 10 migration also includes runtime, config lookup, rule and API changes; follow version guide.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Typed lint requires project type information, can cost more, and complements rather than replaces tsc.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Prettier parses/formats supported files, discovers project config, and uses ignore patterns; one formatter should own rewrites.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Biome v2 import organization uses assist.actions.source.organizeImports; it is not ESLint/Prettier-equivalent.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ECMA-426 map format uses version 3, generated/source/name tables and VLQ mappings; JS/CSS columns are UTF-16 code units.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Source-map header precedence, indexed sections, ignoreList, sourcesContent exposure and hidden-map privacy were checked against ECMA-426.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Exercise sequence, hints, solutions, examples and current-version distinctions checked against claims and inventory.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://eslint.org/docs/latest/use/configure/",
         "https://eslint.org/docs/latest/use/configure/configuration-files",
         "https://eslint.org/docs/latest/use/configure/language-options",
         "https://eslint.org/docs/latest/use/configure/migration-guide",
-        "https://typescript-eslint.io/getting-started/",
+        "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+        "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+        "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
         "https://typescript-eslint.io/getting-started/typed-linting/",
-        "https://typescript-eslint.io/troubleshooting/typed-linting/",
-        "https://prettier.io/docs/",
         "https://prettier.io/docs/configuration",
         "https://prettier.io/docs/ignore/",
-        "https://prettier.io/docs/cli",
-        "https://biomejs.dev/installation/quick-start/",
         "https://biomejs.dev/reference/configuration/",
         "https://biomejs.dev/installation/upgrade-to-biome-v2/",
         "https://tc39.es/ecma426/2024/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit against official ESLint 10/current docs, typescript-eslint, Prettier, Biome v2 and ECMA-426. Corrected practice exercise/hint/solution alignment and completed ESLint 9-to-10 migration coverage; no unresolved issues remain. Lesson remains in drafts by repository workflow."
     },
     {
       "taskId": "t06-027-reference-format-and-source-maps",
       "topicId": "t06-027",
       "phase": "reference",
       "draft": "course/drafts/t06-027/t06-027-reference-format-and-source-maps.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 14,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "ESLint 9 made flat config the default; ESLint 10 removed eslintrc and its legacy opt-out.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Flat-config global ignores differ from per-object ignores; the current globalIgnores helper makes intent explicit.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ESLint 10 migration also includes runtime, config lookup, rule and API changes; follow version guide.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Typed lint requires project type information, can cost more, and complements rather than replaces tsc.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Prettier parses/formats supported files, discovers project config, and uses ignore patterns; one formatter should own rewrites.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Biome v2 import organization uses assist.actions.source.organizeImports; it is not ESLint/Prettier-equivalent.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ECMA-426 map format uses version 3, generated/source/name tables and VLQ mappings; JS/CSS columns are UTF-16 code units.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Source-map header precedence, indexed sections, ignoreList, sourcesContent exposure and hidden-map privacy were checked against ECMA-426.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Exercise sequence, hints, solutions, examples and current-version distinctions checked against claims and inventory.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://eslint.org/docs/latest/use/configure/",
         "https://eslint.org/docs/latest/use/configure/configuration-files",
         "https://eslint.org/docs/latest/use/configure/language-options",
         "https://eslint.org/docs/latest/use/configure/migration-guide",
-        "https://typescript-eslint.io/getting-started/",
+        "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+        "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+        "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
         "https://typescript-eslint.io/getting-started/typed-linting/",
-        "https://typescript-eslint.io/troubleshooting/typed-linting/",
-        "https://prettier.io/docs/",
         "https://prettier.io/docs/configuration",
         "https://prettier.io/docs/ignore/",
-        "https://prettier.io/docs/cli",
-        "https://biomejs.dev/installation/quick-start/",
         "https://biomejs.dev/reference/configuration/",
         "https://biomejs.dev/installation/upgrade-to-biome-v2/",
         "https://tc39.es/ecma426/2024/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit against official ESLint 10/current docs, typescript-eslint, Prettier, Biome v2 and ECMA-426. Corrected practice exercise/hint/solution alignment and completed ESLint 9-to-10 migration coverage; no unresolved issues remain. Lesson remains in drafts by repository workflow."
     },
     {
       "taskId": "t06-027-practice",
       "topicId": "t06-027",
       "phase": "practice",
       "draft": "course/drafts/t06-027/t06-027-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 9,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "ESLint 9 made flat config the default; ESLint 10 removed eslintrc and its legacy opt-out.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Flat-config global ignores differ from per-object ignores; the current globalIgnores helper makes intent explicit.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ESLint 10 migration also includes runtime, config lookup, rule and API changes; follow version guide.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Typed lint requires project type information, can cost more, and complements rather than replaces tsc.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Prettier parses/formats supported files, discovers project config, and uses ignore patterns; one formatter should own rewrites.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Biome v2 import organization uses assist.actions.source.organizeImports; it is not ESLint/Prettier-equivalent.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ECMA-426 map format uses version 3, generated/source/name tables and VLQ mappings; JS/CSS columns are UTF-16 code units.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Source-map header precedence, indexed sections, ignoreList, sourcesContent exposure and hidden-map privacy were checked against ECMA-426.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Exercise sequence, hints, solutions, examples and current-version distinctions checked against claims and inventory.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://eslint.org/docs/latest/use/configure/",
         "https://eslint.org/docs/latest/use/configure/configuration-files",
         "https://eslint.org/docs/latest/use/configure/language-options",
         "https://eslint.org/docs/latest/use/configure/migration-guide",
-        "https://typescript-eslint.io/getting-started/",
+        "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+        "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+        "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
         "https://typescript-eslint.io/getting-started/typed-linting/",
-        "https://typescript-eslint.io/troubleshooting/typed-linting/",
-        "https://prettier.io/docs/",
         "https://prettier.io/docs/configuration",
         "https://prettier.io/docs/ignore/",
-        "https://prettier.io/docs/cli",
-        "https://biomejs.dev/installation/quick-start/",
         "https://biomejs.dev/reference/configuration/",
         "https://biomejs.dev/installation/upgrade-to-biome-v2/",
         "https://tc39.es/ecma426/2024/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit against official ESLint 10/current docs, typescript-eslint, Prettier, Biome v2 and ECMA-426. Corrected practice exercise/hint/solution alignment and completed ESLint 9-to-10 migration coverage; no unresolved issues remain. Lesson remains in drafts by repository workflow."
     },
     {
       "taskId": "t06-027-interview",
       "topicId": "t06-027",
       "phase": "interview",
       "draft": "course/drafts/t06-027/t06-027-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 19,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "ESLint 9 made flat config the default; ESLint 10 removed eslintrc and its legacy opt-out.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Flat-config global ignores differ from per-object ignores; the current globalIgnores helper makes intent explicit.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ESLint 10 migration also includes runtime, config lookup, rule and API changes; follow version guide.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Typed lint requires project type information, can cost more, and complements rather than replaces tsc.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Prettier parses/formats supported files, discovers project config, and uses ignore patterns; one formatter should own rewrites.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Biome v2 import organization uses assist.actions.source.organizeImports; it is not ESLint/Prettier-equivalent.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "ECMA-426 map format uses version 3, generated/source/name tables and VLQ mappings; JS/CSS columns are UTF-16 code units.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Source-map header precedence, indexed sections, ignoreList, sourcesContent exposure and hidden-map privacy were checked against ECMA-426.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        },
+        {
+          "claim": "Exercise sequence, hints, solutions, examples and current-version distinctions checked against claims and inventory.",
+          "sourceUrls": [
+            "https://eslint.org/docs/latest/use/configure/",
+            "https://eslint.org/docs/latest/use/configure/configuration-files",
+            "https://eslint.org/docs/latest/use/configure/language-options",
+            "https://eslint.org/docs/latest/use/configure/migration-guide",
+            "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+            "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+            "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+            "https://typescript-eslint.io/getting-started/typed-linting/",
+            "https://prettier.io/docs/configuration",
+            "https://prettier.io/docs/ignore/",
+            "https://biomejs.dev/reference/configuration/",
+            "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+            "https://tc39.es/ecma426/2024/"
+          ],
+          "verdict": "supported; lesson checked and repaired where necessary"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://eslint.org/docs/latest/use/configure/",
         "https://eslint.org/docs/latest/use/configure/configuration-files",
         "https://eslint.org/docs/latest/use/configure/language-options",
         "https://eslint.org/docs/latest/use/configure/migration-guide",
-        "https://typescript-eslint.io/getting-started/",
+        "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+        "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+        "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
         "https://typescript-eslint.io/getting-started/typed-linting/",
-        "https://typescript-eslint.io/troubleshooting/typed-linting/",
-        "https://prettier.io/docs/",
         "https://prettier.io/docs/configuration",
         "https://prettier.io/docs/ignore/",
-        "https://prettier.io/docs/cli",
-        "https://biomejs.dev/installation/quick-start/",
         "https://biomejs.dev/reference/configuration/",
         "https://biomejs.dev/installation/upgrade-to-biome-v2/",
         "https://tc39.es/ecma426/2024/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit against official ESLint 10/current docs, typescript-eslint, Prettier, Biome v2 and ECMA-426. Corrected practice exercise/hint/solution alignment and completed ESLint 9-to-10 migration coverage; no unresolved issues remain. Lesson remains in drafts by repository workflow."
     },
     {
       "taskId": "t07-003-overview",
@@ -137149,6 +138339,14 @@
       "status": "full claim and inventory audit complete for all 7 lessons",
       "findings": [
         "Audited the 50 frozen inventory entries and all seven lessons against current official npm, pnpm, Yarn, Bun, Deno, and node-semver docs. Confirmed npm 12.2.2 shrinkwrap/URL behavior and default-deny dependency install scripts with allowScripts/strict-allow-scripts; added omitted lifecycle-script policy items and practical/interview coverage, distinguishing dependency hooks from project scripts. Confirmed pnpm 12 frozen-install notes, Bun lockfile/CI behavior, Deno 2.8 deno ci and approve-scripts, workspace protocols/linkers, semver ranges, and manager-specific lock semantics. Updated snapshot date and exact source allowlist; no unresolved issues remain. Lessons remain drafts."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "JavaScript linting, formatting, and source maps (t06-027)",
+      "status": "full claim and frozen-inventory audit complete for all 7 lessons",
+      "findings": [
+        "Checked all three reference inventories and all seven lesson files against official ESLint, typescript-eslint, Prettier, Biome, and ECMA-426 documentation. Confirmed ESLint 9 flat-config default and ESLint 10 legacy removal plus other migration dimensions; checked current config/helper/ignore semantics, type-aware lint/project service, formatter boundaries, Biome v2 import action, source map fields, URL/header precedence, UTF-16 columns, indexed sections, ignoreList, and hidden-map exposure. Fixed a malformed practice heading and shifted hints/solutions, added a migration exercise/answer and concept coverage. No unresolved factual or coverage issues remain; lessons remain drafts."
       ]
     }
   ]

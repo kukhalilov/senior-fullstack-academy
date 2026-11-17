@@ -20,7 +20,7 @@ Keep these jobs explicit in scripts, CI and editor settings. If ESLint formattin
 
 ## ESLint flat config composes matching configuration objects
 
-Current ESLint uses flat config by default. A project exports config objects from an `eslint.config.js` family file. A config object can select files, set `basePath`, extend shared configurations, choose `languageOptions` (parser, parser options, globals), install `plugins`, attach a `processor`, define `rules`, and provide `settings` or `linterOptions`. More than one object may apply to a file, so the final configuration depends on matching and order/extension rules.
+ESLint 9 made flat config the default; ESLint 10 removed legacy eslintrc support, so current ESLint 10 projects must use flat config. A project exports config objects from an `eslint.config.js` family file. A config object can select files, set `basePath`, extend shared configurations, choose `languageOptions` (parser, parser options, globals), install `plugins`, attach a `processor`, define `rules`, and provide `settings` or `linterOptions`. More than one object may apply to a file, so the final configuration depends on matching and order/extension rules.
 
 Rule severities are `off` (disabled), `warn` (warning), and `error` (error). Inline disable comments can suppress matching diagnostics; `linterOptions.reportUnusedDisableDirectives` can report stale suppressions, and `noInlineConfig` can disallow inline configuration. Prefer narrow suppressions with an explanation so a waiver does not silently outlive the issue.
 
@@ -89,6 +89,7 @@ An illustrative source map may contain `version: 3`, `sources`, `sourcesContent`
 - “ESLint type-checks TypeScript by itself.” Typed linting requires TypeScript parser/project integration; use `tsc` too.
 - “Formatting and linting are one job.” A formatter selects layout; lint rules diagnose selected patterns.
 - “ESLint config files use the same rules as `.eslintrc`.” Flat config changed shape, matching, and ignore behavior.
+- “ESLint 10 can still be switched back to `.eslintrc`.” ESLint 10 removed the legacy configuration system.
 - “`recommendedTypeChecked` works without a TypeScript project.” Type-aware rules need project information and may report files outside it.
 - “Prettier uses a machine-wide global config.” It intentionally discovers project configuration and does not support global configuration.
 - “Biome v2 still uses the v1 `organizeImports` field.” The action moved into `assist.actions.source.organizeImports`.
@@ -106,11 +107,13 @@ An illustrative source map may contain `version: 3`, `sources`, `sourcesContent`
 5. **What does a source-map `version` of 3 mean?** It identifies the fixed Source Map v3 data format.
 6. **What does `sourcesContent` contain?** Optional embedded original source texts aligned with sources.
 7. **Which source-map link wins if both header and annotation exist?** The ECMA-426 HTTP `sourcemap` header.
+8. **Can an ESLint 10 project rely on `.eslintrc`?** No; migrate to flat config.
 
 # Sources
 
 - [ESLint configuration](https://eslint.org/docs/latest/use/configure/)
 - [ESLint flat configuration files](https://eslint.org/docs/latest/use/configure/configuration-files)
+- [ESLint 10 migration guide](https://eslint.org/docs/latest/use/migrate-to-10.0.0)
 - [ESLint language options](https://eslint.org/docs/latest/use/configure/language-options)
 - [typescript-eslint typed linting](https://typescript-eslint.io/getting-started/typed-linting/)
 - [Prettier configuration](https://prettier.io/docs/configuration)

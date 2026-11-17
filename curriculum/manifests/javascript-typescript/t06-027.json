@@ -4,23 +4,192 @@
   "track": "track-06",
   "title": "JavaScript linting, formatting, and source maps",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Lint rules identify suspicious or invalid patterns", "Formatting tools make layout deterministic without changing intended behavior", "TypeScript linting needs parser and project-aware rule integration", "Source maps map generated locations back to authored sources", "Linting, formatting, and type checking solve different problems"],
+  "concepts": [
+    "Lint rules identify suspicious or invalid patterns",
+    "Formatting tools make layout deterministic without changing intended behavior",
+    "TypeScript linting needs parser and project-aware rule integration",
+    "Source maps map generated locations back to authored sources",
+    "Linting, formatting, and type checking solve different problems"
+  ],
   "inventory": [
-    {"id":"lint-and-format-tools","title":"Current JavaScript and TypeScript lint/format tools","items":["ESLint","typescript-eslint","Prettier","Biome","ESLint flat config","eslint.config.js","defineConfig","globalIgnores","languageOptions","linterOptions","plugins","processor","rules","settings","Prettier configuration file","Biome configuration file"]},
-    {"id":"lint-config-surfaces","title":"Core lint configuration and rule controls","items":["ESLint rule severity off","ESLint rule severity warn","ESLint rule severity error","ESLint parser","ESLint parserOptions","ESLint globals","ESLint files matching","ESLint ignores","ESLint basePath","ESLint extends","ESLint shareable config","ESLint plugin","ESLint processor","ESLint inline disable directive","ESLint reportUnusedDisableDirectives","ESLint noInlineConfig","typescript-eslint parser","typescript-eslint.configs.recommendedTypeChecked","typescript-eslint project service"]},
-    {"id":"format-and-source-maps","title":"Formatting and source-map artifacts","items":["Prettier parser","Prettier plugins","Prettier ignore file","Biome formatter","Biome linter","Biome organize imports","Source Map v3","Source map version field","Source map file (.map)","file field","sourceMappingURL directive","HTTP sourcemap header","sourceRoot field","sources field","sourcesContent field","names field","mappings field","ignoreList field","Deprecated x_google_ignoreList field","sections field","Indexed source map","Inline source map","External source map","Hidden source map"]}
+    {
+      "id": "lint-and-format-tools",
+      "title": "Current JavaScript and TypeScript lint/format tools",
+      "items": [
+        "ESLint",
+        "typescript-eslint",
+        "Prettier",
+        "Biome",
+        "ESLint flat config",
+        "eslint.config.js",
+        "defineConfig",
+        "globalIgnores",
+        "languageOptions",
+        "linterOptions",
+        "plugins",
+        "processor",
+        "rules",
+        "settings",
+        "Prettier configuration file",
+        "Biome configuration file"
+      ]
+    },
+    {
+      "id": "lint-config-surfaces",
+      "title": "Core lint configuration and rule controls",
+      "items": [
+        "ESLint rule severity off",
+        "ESLint rule severity warn",
+        "ESLint rule severity error",
+        "ESLint parser",
+        "ESLint parserOptions",
+        "ESLint globals",
+        "ESLint files matching",
+        "ESLint ignores",
+        "ESLint basePath",
+        "ESLint extends",
+        "ESLint shareable config",
+        "ESLint plugin",
+        "ESLint processor",
+        "ESLint inline disable directive",
+        "ESLint reportUnusedDisableDirectives",
+        "ESLint noInlineConfig",
+        "typescript-eslint parser",
+        "typescript-eslint.configs.recommendedTypeChecked",
+        "typescript-eslint project service"
+      ]
+    },
+    {
+      "id": "format-and-source-maps",
+      "title": "Formatting and source-map artifacts",
+      "items": [
+        "Prettier parser",
+        "Prettier plugins",
+        "Prettier ignore file",
+        "Biome formatter",
+        "Biome linter",
+        "Biome organize imports",
+        "Source Map v3",
+        "Source map version field",
+        "Source map file (.map)",
+        "file field",
+        "sourceMappingURL directive",
+        "HTTP sourcemap header",
+        "sourceRoot field",
+        "sources field",
+        "sourcesContent field",
+        "names field",
+        "mappings field",
+        "ignoreList field",
+        "Deprecated x_google_ignoreList field",
+        "sections field",
+        "Indexed source map",
+        "Inline source map",
+        "External source map",
+        "Hidden source map"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["ESLint","Biome linter"],["Prettier","Biome formatter"],["linting","formatting"],["source map","declaration map"],["syntax-only lint rule","type-aware lint rule"]],
-  "comparisonSources": ["https://eslint.org/docs/latest/use/configure/","https://typescript-eslint.io/getting-started/","https://prettier.io/docs/","https://biomejs.dev/guides/getting-started/","https://tc39.es/ecma426/"],
-  "versionNotes": [
-    {"edition":"ESLint 9.0.0","items":["Flat config became the default configuration system; eslintrc was deprecated and its migration guidance remains relevant."],"sourceUrls":["https://eslint.org/docs/latest/use/configure/migration-guide"]},
-    {"edition":"Biome 2.0","items":["Import organization moved into assist.actions.source.organizeImports; v1 configuration and sorting assumptions need migration."],"sourceUrls":["https://biomejs.dev/installation/upgrade-to-biome-v2/"]},
-    {"edition":"ECMA-426 1st Edition","items":["The Source Map v3 data format was specified as an Ecma standard; the map version field remains the integer 3."],"sourceUrls":["https://tc39.es/ecma426/2024/"]}
+  "comparisons": [
+    [
+      "ESLint",
+      "Biome linter"
+    ],
+    [
+      "Prettier",
+      "Biome formatter"
+    ],
+    [
+      "linting",
+      "formatting"
+    ],
+    [
+      "source map",
+      "declaration map"
+    ],
+    [
+      "syntax-only lint rule",
+      "type-aware lint rule"
+    ]
   ],
-  "sourceSnapshot": {"authority":"Official ESLint, typescript-eslint, Prettier, Biome, and ECMA-426 documentation","edition":"Current stable tool documentation checked 2026-11-16","checkedAt":"2026-11-16","urls":["https://eslint.org/docs/latest/use/configure/","https://eslint.org/docs/latest/use/configure/configuration-files","https://eslint.org/docs/latest/use/configure/language-options","https://eslint.org/docs/latest/use/configure/migration-guide","https://typescript-eslint.io/getting-started/","https://typescript-eslint.io/getting-started/typed-linting/","https://typescript-eslint.io/troubleshooting/typed-linting/","https://prettier.io/docs/","https://prettier.io/docs/configuration","https://prettier.io/docs/ignore/","https://prettier.io/docs/cli","https://biomejs.dev/installation/quick-start/","https://biomejs.dev/reference/configuration/","https://biomejs.dev/installation/upgrade-to-biome-v2/","https://tc39.es/ecma426/2024/"]},
+  "comparisonSources": [
+    "https://eslint.org/docs/latest/use/configure/",
+    "https://typescript-eslint.io/getting-started/",
+    "https://prettier.io/docs/",
+    "https://biomejs.dev/guides/getting-started/",
+    "https://tc39.es/ecma426/"
+  ],
+  "versionNotes": [
+    {
+      "edition": "ESLint 9.0.0",
+      "items": [
+        "Flat config became the default configuration system; eslintrc remained temporarily available with migration guidance."
+      ],
+      "sourceUrls": [
+        "https://eslint.org/docs/latest/use/configure/migration-guide"
+      ]
+    },
+    {
+      "edition": "ESLint 10.0.0 and current 10.x (2026)",
+      "items": [
+        "The eslintrc configuration system was removed; flat config is the only supported format. ESLint v10.15.0 was released 2026-11-13 in this snapshot.",
+        "The migration guide documents breaking changes that affect Node.js support, config lookup, rule behavior, and APIs; consult the version-specific guide when upgrading rather than assuming the config-format change is the only change."
+      ],
+      "sourceUrls": [
+        "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+        "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+        "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/"
+      ]
+    },
+    {
+      "edition": "Biome 2.0",
+      "items": [
+        "Import organization moved into assist.actions.source.organizeImports; v1 configuration and sorting assumptions need migration."
+      ],
+      "sourceUrls": [
+        "https://biomejs.dev/installation/upgrade-to-biome-v2/"
+      ]
+    },
+    {
+      "edition": "ECMA-426 1st Edition",
+      "items": [
+        "The Source Map v3 data format was specified as an Ecma standard; the map version field remains the integer 3."
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma426/2024/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Official ESLint, typescript-eslint, Prettier, Biome, and ECMA-426 documentation",
+    "edition": "Current stable tool documentation checked 2026-11-17",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://eslint.org/docs/latest/use/configure/",
+      "https://eslint.org/docs/latest/use/configure/configuration-files",
+      "https://eslint.org/docs/latest/use/configure/language-options",
+      "https://eslint.org/docs/latest/use/configure/migration-guide",
+      "https://eslint.org/docs/latest/use/migrate-to-10.0.0",
+      "https://eslint.org/blog/2026/02/eslint-v10.0.0-released/",
+      "https://eslint.org/blog/2026/11/eslint-v10.15.0-released/",
+      "https://typescript-eslint.io/getting-started/",
+      "https://typescript-eslint.io/getting-started/typed-linting/",
+      "https://typescript-eslint.io/troubleshooting/typed-linting/",
+      "https://prettier.io/docs/",
+      "https://prettier.io/blog/",
+      "https://prettier.io/docs/configuration",
+      "https://prettier.io/docs/ignore/",
+      "https://prettier.io/docs/cli",
+      "https://biomejs.dev/installation/quick-start/",
+      "https://biomejs.dev/reference/configuration/",
+      "https://biomejs.dev/installation/upgrade-to-biome-v2/",
+      "https://biomejs.dev/blog/biome-v2-5/",
+      "https://tc39.es/ecma426/2024/"
+    ]
+  },
   "accuracyFacts": [
-    "ESLint flat config has been the default since ESLint 9.0.0. Configuration objects can select files and combine languageOptions, linterOptions, plugins, processor, rules, settings, basePath, and extends; matching and cascading determine the effective config.",
+    "ESLint flat config became the default in ESLint 9.0.0; ESLint 10.0.0 removed the legacy eslintrc configuration system entirely. Current 10.x examples should use only flat config; older migration notes must distinguish when legacy config was still available.",
     "In flat config, a config object with only ignores establishes global ignores; ignores combined with other properties applies locally to that config object. globalIgnores is the explicit helper for global ignore patterns in current ESLint documentation.",
     "ESLint severity values off, warn, and error correspond to disabled, warning, and error reporting. They are lint outcomes, not runtime JavaScript exceptions.",
     "typescript-eslint typed rules require TypeScript type information and usually cost more time. The current recommended projectService option uses the nearest TypeScript project; files outside its project need deliberate configuration or should not receive typed rules.",
@@ -31,8 +200,13 @@
     "Source maps use generated/source/name tables and Base64 VLQ mappings; JavaScript and CSS generated columns are zero-based UTF-16 code-unit offsets. Index maps use non-overlapping ordered sections with generated offsets.",
     "sourcesContent is optional original source text and may expose source code when published. ignoreList marks source indices that developer tools may treat as third-party code; it does not change execution.",
     "A source map can be linked by a sourceMappingURL annotation or HTTP sourcemap header; the header takes precedence when both are present under ECMA-426. Inline/external/hidden describe delivery or bundler conventions, not separate mapping semantics.",
-    "A source map improves debugging and stack deobfuscation but does not guarantee perfect source-level stepping; transform chains, missing mappings, mismatched deployed artifacts, or invalid source origins can reduce accuracy."
+    "A source map improves debugging and stack deobfuscation but does not guarantee perfect source-level stepping; transform chains, missing mappings, mismatched deployed artifacts, or invalid source origins can reduce accuracy.",
+    "The ESLint 10 migration has changes beyond removing eslintrc; the version-specific migration guide must be followed for runtime support, config lookup, and other breaking changes."
   ],
-  "scopeExclusions": ["Exhaustive per-rule catalogs for individual lint plugins","Editor integrations and IDE-specific settings","Bundler-specific source-map configuration (t06-026)"],
+  "scopeExclusions": [
+    "Exhaustive per-rule catalogs for individual lint plugins",
+    "Editor integrations and IDE-specific settings",
+    "Bundler-specific source-map configuration (t06-026)"
+  ],
   "generationAllowed": true
 }
