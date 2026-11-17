@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 52,
-    "pending": 2288,
-    "claimsChecked": 746,
-    "claimsCorrected": 77,
+    "reviewed": 81,
+    "pending": 2259,
+    "claimsChecked": 896,
+    "claimsCorrected": 79,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -10794,740 +10794,1457 @@
       "topicId": "t11-003",
       "phase": "overview",
       "draft": "course/drafts/t11-003/t11-003-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Opposite-direction sum pointer elimination depends on sorted order; the corrected target examples use the safe movement for each comparison.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Two Pointers; sorted pair elimination",
+          "verdict": "supported"
+        },
+        {
+          "claim": "A linear window scan requires monotone boundary movement and incremental bounded-cost updates.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Sliding Window; amortized movement",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Fixed-size windows update state by removing outgoing and adding incoming elements.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Sliding Window; fixed-size windows",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Shortest sum-at-least windows rely on nonnegative values; signed values invalidate the monotonicity proof.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Sliding Window; sum constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The walkthrough sums, recorded lengths, and final minimum length 2 recalculate correctly.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Independent recalculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The overview reflects assigned concepts and separates sorting, windows, pointers, and exclusions.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Manifest concepts and scope exclusions",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Earlier target 7 endpoint example described the wrong pointer direction; it is corrected to target 12 for too-small and target 7 for too-large.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Two Pointers; sorted pair elimination",
+          "verdict": "corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+        "https://usaco.guide/gold/sliding-window"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-concepts",
       "topicId": "t11-003",
       "phase": "concepts",
       "draft": "course/drafts/t11-003/t11-003-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Sorted endpoint pair elimination follows sorted-order bounds.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Two Pointers; sorted arrays",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Read/write compaction preserves the retained prefix and cannot overwrite unread input when write <= read.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Two Pointers; in-place compaction",
+          "verdict": "supported"
+        },
+        {
+          "claim": "At-most-K counting adds right-left+1 valid suffixes after shrinking; subtracting nested counts gives exactly K.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Sliding Window; distinct-count windows",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Nonnegative sums justify the minimum sum-window monotonicity; signed input requires another invariant.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Sliding Window; sum constraint",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Complexity includes update cost and expected, rather than guaranteed, hash-map lookup.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Complexity analysis",
+          "verdict": "supported"
+        },
+        {
+          "claim": ".NET char is a UTF-16 code unit; Unicode scalar/grapheme handling depends on contract.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char",
+          "section": "Char type and Unicode representation",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/two-pointers",
         "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-reference-pointer-movement",
       "topicId": "t11-003",
       "phase": "reference",
       "draft": "course/drafts/t11-003/t11-003-reference-pointer-movement.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 2,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "evidence": [
+        {
+          "claim": "The reference explanations match the algorithmic movement/state properties, including their stated preconditions.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Two Pointers; pointer arrangements and elimination",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Every supplied inventory name is present and explained.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Manifest inventory pointer-movement",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://usaco.guide/silver/two-pointers"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-reference-window-shapes",
       "topicId": "t11-003",
       "phase": "reference",
       "draft": "course/drafts/t11-003/t11-003-reference-window-shapes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 2,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "evidence": [
+        {
+          "claim": "The reference explanations match the algorithmic movement/state properties, including their stated preconditions.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Sliding Window; fixed and variable windows",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Every supplied inventory name is present and explained.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Manifest inventory window-shapes",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://usaco.guide/gold/sliding-window"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-reference-window-state",
       "topicId": "t11-003",
       "phase": "reference",
       "draft": "course/drafts/t11-003/t11-003-reference-window-state.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 2,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "evidence": [
+        {
+          "claim": "The reference explanations match the algorithmic movement/state properties, including their stated preconditions.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Sliding Window; window state and counting",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Every supplied inventory name is present and explained.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Manifest inventory window-state",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://usaco.guide/gold/sliding-window",
+        "https://leetcode.com/problems/valid-palindrome/"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-reference-tradeoffs-and-failure-modes",
       "topicId": "t11-003",
       "phase": "reference",
       "draft": "course/drafts/t11-003/t11-003-reference-tradeoffs-and-failure-modes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 2,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "The reference explanations match the algorithmic movement/state properties, including their stated preconditions.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Two Pointers and Sliding Window; assumptions and tradeoffs",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Every supplied inventory name is present and explained.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Manifest inventory tradeoffs-and-failure-modes",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/two-pointers",
         "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-practice-valid-palindrome",
       "topicId": "t11-003",
       "phase": "practice",
       "draft": "course/drafts/t11-003/t11-003-practice-valid-palindrome.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "evidence": [
+        {
+          "claim": "Problem statement, input semantics, and constraints for Valid Palindrome match the assigned canonical statement and manifest snapshot.",
+          "source": "https://leetcode.com/problems/valid-palindrome/",
+          "section": "Problem Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and expected outputs recalculate consistently.",
+          "source": "https://leetcode.com/problems/valid-palindrome/",
+          "section": "Examples; independently recalculated",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm invariant and movement rule justify completeness and avoid skipping a valid optimum.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Assigned algorithm; independently proved",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, arithmetic, collection, and return behavior match the stated bounds.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+          "section": "C# language reference; implementation inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and auxiliary-space costs account for sorting, maps, returned output, and substring construction where applicable.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Independent complexity derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases and code-level checks cover important contract boundaries.",
+          "source": "https://leetcode.com/problems/valid-palindrome/",
+          "section": "Problem constraints; edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/valid-palindrome/",
+        "https://usaco.guide/silver/two-pointers"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-practice-two-sum-ii",
       "topicId": "t11-003",
       "phase": "practice",
       "draft": "course/drafts/t11-003/t11-003-practice-two-sum-ii.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "evidence": [
+        {
+          "claim": "Problem statement, input semantics, and constraints for Two Sum II - Input Array Is Sorted match the assigned canonical statement and manifest snapshot.",
+          "source": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+          "section": "Problem Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and expected outputs recalculate consistently.",
+          "source": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+          "section": "Examples; independently recalculated",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm invariant and movement rule justify completeness and avoid skipping a valid optimum.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Assigned algorithm; independently proved",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, arithmetic, collection, and return behavior match the stated bounds.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+          "section": "C# language reference; implementation inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and auxiliary-space costs account for sorting, maps, returned output, and substring construction where applicable.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Independent complexity derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases and code-level checks cover important contract boundaries.",
+          "source": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+          "section": "Problem constraints; edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+        "https://usaco.guide/silver/two-pointers"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-practice-remove-duplicates-sorted-array",
       "topicId": "t11-003",
       "phase": "practice",
       "draft": "course/drafts/t11-003/t11-003-practice-remove-duplicates-sorted-array.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "evidence": [
+        {
+          "claim": "Problem statement, input semantics, and constraints for Remove Duplicates from Sorted Array match the assigned canonical statement and manifest snapshot.",
+          "source": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
+          "section": "Problem Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and expected outputs recalculate consistently.",
+          "source": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
+          "section": "Examples; independently recalculated",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm invariant and movement rule justify completeness and avoid skipping a valid optimum.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Assigned algorithm; independently proved",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, arithmetic, collection, and return behavior match the stated bounds.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+          "section": "C# language reference; implementation inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and auxiliary-space costs account for sorting, maps, returned output, and substring construction where applicable.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Independent complexity derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases and code-level checks cover important contract boundaries.",
+          "source": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
+          "section": "Problem constraints; edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
+        "https://usaco.guide/silver/two-pointers"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-practice-three-sum",
       "topicId": "t11-003",
       "phase": "practice",
       "draft": "course/drafts/t11-003/t11-003-practice-three-sum.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "evidence": [
+        {
+          "claim": "Problem statement, input semantics, and constraints for 3Sum match the assigned canonical statement and manifest snapshot.",
+          "source": "https://leetcode.com/problems/3sum/",
+          "section": "Problem Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and expected outputs recalculate consistently.",
+          "source": "https://leetcode.com/problems/3sum/",
+          "section": "Examples; independently recalculated",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm invariant and movement rule justify completeness and avoid skipping a valid optimum.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Assigned algorithm; independently proved",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, arithmetic, collection, and return behavior match the stated bounds.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+          "section": "C# language reference; implementation inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and auxiliary-space costs account for sorting, maps, returned output, and substring construction where applicable.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Independent complexity derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases and code-level checks cover important contract boundaries.",
+          "source": "https://leetcode.com/problems/3sum/",
+          "section": "Problem constraints; edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/3sum/",
+        "https://usaco.guide/silver/two-pointers"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-practice-container-with-most-water",
       "topicId": "t11-003",
       "phase": "practice",
       "draft": "course/drafts/t11-003/t11-003-practice-container-with-most-water.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "evidence": [
+        {
+          "claim": "Problem statement, input semantics, and constraints for Container With Most Water match the assigned canonical statement and manifest snapshot.",
+          "source": "https://leetcode.com/problems/container-with-most-water/",
+          "section": "Problem Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and expected outputs recalculate consistently.",
+          "source": "https://leetcode.com/problems/container-with-most-water/",
+          "section": "Examples; independently recalculated",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm invariant and movement rule justify completeness and avoid skipping a valid optimum.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Assigned algorithm; independently proved",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, arithmetic, collection, and return behavior match the stated bounds.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+          "section": "C# language reference; implementation inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and auxiliary-space costs account for sorting, maps, returned output, and substring construction where applicable.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Independent complexity derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases and code-level checks cover important contract boundaries.",
+          "source": "https://leetcode.com/problems/container-with-most-water/",
+          "section": "Problem constraints; edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/container-with-most-water/",
+        "https://usaco.guide/silver/two-pointers"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-practice-longest-substring-without-repeating-characters",
       "topicId": "t11-003",
       "phase": "practice",
       "draft": "course/drafts/t11-003/t11-003-practice-longest-substring-without-repeating-characters.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Problem statement, input semantics, and constraints for Longest Substring Without Repeating Characters match the assigned canonical statement and manifest snapshot.",
+          "source": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+          "section": "Problem Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and expected outputs recalculate consistently.",
+          "source": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+          "section": "Examples; independently recalculated",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm invariant and movement rule justify completeness and avoid skipping a valid optimum.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Assigned algorithm; independently proved",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, arithmetic, collection, and return behavior match the stated bounds.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+          "section": "C# language reference; implementation inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and auxiliary-space costs account for sorting, maps, returned output, and substring construction where applicable.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Independent complexity derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases and code-level checks cover important contract boundaries.",
+          "source": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+          "section": "Problem constraints; edge-case inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The draft upper bound was corrected from stale 50,000 to the current 100,000 stated constraint.",
+          "source": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+          "section": "Problem Constraints",
+          "verdict": "corrected"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+        "https://usaco.guide/gold/sliding-window"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-practice-minimum-size-subarray-sum",
       "topicId": "t11-003",
       "phase": "practice",
       "draft": "course/drafts/t11-003/t11-003-practice-minimum-size-subarray-sum.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "evidence": [
+        {
+          "claim": "Problem statement, input semantics, and constraints for Minimum Size Subarray Sum match the assigned canonical statement and manifest snapshot.",
+          "source": "https://leetcode.com/problems/minimum-size-subarray-sum/",
+          "section": "Problem Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and expected outputs recalculate consistently.",
+          "source": "https://leetcode.com/problems/minimum-size-subarray-sum/",
+          "section": "Examples; independently recalculated",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm invariant and movement rule justify completeness and avoid skipping a valid optimum.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Assigned algorithm; independently proved",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, arithmetic, collection, and return behavior match the stated bounds.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+          "section": "C# language reference; implementation inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and auxiliary-space costs account for sorting, maps, returned output, and substring construction where applicable.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Independent complexity derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases and code-level checks cover important contract boundaries.",
+          "source": "https://leetcode.com/problems/minimum-size-subarray-sum/",
+          "section": "Problem constraints; edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/minimum-size-subarray-sum/",
+        "https://usaco.guide/gold/sliding-window"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-practice-minimum-window-substring",
       "topicId": "t11-003",
       "phase": "practice",
       "draft": "course/drafts/t11-003/t11-003-practice-minimum-window-substring.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+      "evidence": [
+        {
+          "claim": "Problem statement, input semantics, and constraints for Minimum Window Substring match the assigned canonical statement and manifest snapshot.",
+          "source": "https://leetcode.com/problems/minimum-window-substring/",
+          "section": "Problem Description and Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Examples and expected outputs recalculate consistently.",
+          "source": "https://leetcode.com/problems/minimum-window-substring/",
+          "section": "Examples; independently recalculated",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The algorithm invariant and movement rule justify completeness and avoid skipping a valid optimum.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Assigned algorithm; independently proved",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, arithmetic, collection, and return behavior match the stated bounds.",
+          "source": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+          "section": "C# language reference; implementation inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and auxiliary-space costs account for sorting, maps, returned output, and substring construction where applicable.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Independent complexity derivation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge cases and code-level checks cover important contract boundaries.",
+          "source": "https://leetcode.com/problems/minimum-window-substring/",
+          "section": "Problem constraints; edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/minimum-window-substring/",
+        "https://usaco.guide/gold/sliding-window"
+      ],
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-003-interview",
       "topicId": "t11-003",
       "phase": "interview",
       "draft": "course/drafts/t11-003/t11-003-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 3,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Sorted pair movement, shortest sum-window monotonicity, and amortized O(n) explanations follow their proofs.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Two Pointers; sorted pair elimination",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Signed-sum alternatives are qualified by task objective and distinct prefix-sum invariants.",
+          "source": "https://usaco.guide/gold/sliding-window",
+          "section": "Sliding Window; limitations",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Scenarios, tradeoffs, and weak-answer rubric cover assigned inventory without claiming windows suit arbitrary ranges.",
+          "source": "https://usaco.guide/silver/two-pointers",
+          "section": "Manifest concepts, practice and scope",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/two-pointers",
-        "https://usaco.guide/gold/sliding-window",
-        "https://leetcode.com/problems/valid-palindrome/",
-        "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
-        "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
-        "https://leetcode.com/problems/3sum/",
-        "https://leetcode.com/problems/container-with-most-water/",
-        "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-        "https://leetcode.com/problems/minimum-size-subarray-sum/",
-        "https://leetcode.com/problems/minimum-window-substring/"
+        "https://usaco.guide/gold/sliding-window"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim factual, numeric, code, proof, and frozen-manifest inventory review completed against cited algorithm/problem sources. Corrections were applied where identified; no unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-overview",
       "topicId": "t11-004",
       "phase": "overview",
       "draft": "course/drafts/t11-004/t11-004-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Leading-zero exclusive prefix construction P[i+1]=P[i]+a[i] and half-open/inclusive range cancellation formula are correct.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Static range sums and prefix definition",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The example prefix [0,3,1,6,7] and range [1,4) sum 4 recalculate correctly.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Independent recalculation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Prefix-frequency map identifies needed prior sum current-target and must query before inserting current boundary.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "Prefix differences and subarray counting",
+          "verdict": "supported"
+        },
+        {
+          "claim": "2D rectangle formula uses four-corner inclusion-exclusion; table construction and example boundaries are consistent.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "2D prefix sums",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Difference markers +x at l and -x at r+1 reconstruct offline inclusive range increments.",
+          "source": "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
+          "section": "Difference array explanation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Static and offline limitations are distinguished from interleaved update/query data structures.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "Difference arrays; static-vs-dynamic workload",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/prefix-sums",
         "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+        "https://usaco.guide/problems/cses-1651-range-update-queries/solution"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-concepts",
       "topicId": "t11-004",
       "phase": "concepts",
       "draft": "course/drafts/t11-004/t11-004-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Exclusive prefix table has n+1 boundaries and range formulas correctly distinguish inclusive and half-open endpoints.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Prefix definition and range query formula",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Prefix-frequency target-sum count uses S-k; query-then-insert excludes empty ranges while seed zero includes ranges starting at zero.",
+          "source": "https://leetcode.com/problems/subarray-sum-equals-k/",
+          "section": "Description and proof independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Equal normalized remainders characterize sums divisible by positive modulus; negative C# remainder needs normalization.",
+          "source": "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
+          "section": "Constraints and remainder equivalence; implementation inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "2D recurrence/query formula restores the overlap exactly once.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "2D prefix sum recurrence and inclusion-exclusion",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Difference-array inclusive boundary cancellation occurs at r+1 and reconstruction is a prefix scan.",
+          "source": "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
+          "section": "Difference array explanation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Static/O(n) memory and O(1) query cost, expected hash-map cost, and numeric-width caveats are correctly qualified.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Complexity analysis; direct bounds check",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/prefix-sums",
         "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+        "https://usaco.guide/problems/cses-1651-range-update-queries/solution"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-reference-prefix-sum-basics",
       "topicId": "t11-004",
       "phase": "reference",
       "draft": "course/drafts/t11-004/t11-004-reference-prefix-sum-basics.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 4,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/prefix-sums",
-        "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+      "evidence": [
+        {
+          "claim": "The supplied reference terms are all present and accurately distinguished according to the frozen manifest.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Manifest inventory prefix-sum-basics",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Core formulas and boundary semantics in this reference follow the cited source material.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Prefix definition and static range sum",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Exclusive boundaries use n+1 entries; inclusive [l,r] maps to P[r+1]-P[l], half-open [l,r) maps to P[r]-P[l].",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Prefix construction and range formula",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Prefix subtraction requires an invertible aggregate; minimum cannot be cancelled by subtraction.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Aggregate algebra; direct mathematical check",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://usaco.guide/silver/prefix-sums"
+      ],
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-reference-prefix-frequency-patterns",
       "topicId": "t11-004",
       "phase": "reference",
       "draft": "course/drafts/t11-004/t11-004-reference-prefix-frequency-patterns.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 5,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "The supplied reference terms are all present and accurately distinguished according to the frozen manifest.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Manifest inventory prefix-frequency-patterns",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Core formulas and boundary semantics in this reference follow the cited source material.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "Prefix differences, subarray patterns, and modulo counting",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Frequency seeding/query ordering counts distinct nonempty ranges correctly, including repeated prefix values.",
+          "source": "https://leetcode.com/problems/subarray-sum-equals-k/",
+          "section": "Description; independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Negative C# remainder normalization and equal-remainder divisibility rule are correct.",
+          "source": "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
+          "section": "Positive k constraints and modulo equivalence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "XOR is self-inverse and equal prefix balances encode zero-net ranges.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "Prefix aggregate identities; independently derived",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/prefix-sums",
         "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
         "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+        "https://leetcode.com/problems/subarray-sums-divisible-by-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-reference-multidimensional-prefix",
       "topicId": "t11-004",
       "phase": "reference",
       "draft": "course/drafts/t11-004/t11-004-reference-multidimensional-prefix.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 4,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/prefix-sums",
-        "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+      "evidence": [
+        {
+          "claim": "The supplied reference terms are all present and accurately distinguished according to the frozen manifest.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Manifest inventory multidimensional-prefix",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Core formulas and boundary semantics in this reference follow the cited source material.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "2D Prefix Sums and rectangle inclusion-exclusion",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Padded 2D recurrence and four-corner rectangle formula have correct signs and boundaries.",
+          "source": "https://leetcode.com/problems/range-sum-query-2d-immutable/",
+          "section": "O(1) query requirement, example outputs; independently verified",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The single-cell example yields 0 for the sample matrix cell at [2,2].",
+          "source": "https://leetcode.com/problems/range-sum-query-2d-immutable/",
+          "section": "Sample matrix and direct calculation",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://usaco.guide/silver/more-prefix-sums",
+        "https://leetcode.com/problems/range-sum-query-2d-immutable/"
+      ],
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-reference-difference-arrays",
       "topicId": "t11-004",
       "phase": "reference",
       "draft": "course/drafts/t11-004/t11-004-reference-difference-arrays.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 5,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "The supplied reference terms are all present and accurately distinguished according to the frozen manifest.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Manifest inventory difference-arrays",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Core formulas and boundary semantics in this reference follow the cited source material.",
+          "source": "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
+          "section": "Difference Arrays / range update markers",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Inclusive [l,r] increments use +x at l and -x at r+1; sentinel at n handles final element.",
+          "source": "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
+          "section": "Difference-array boundary update",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Corporate Flight Bookings converts one-based [first,last] to [first-1,last) and sample totals match.",
+          "source": "https://leetcode.com/problems/corporate-flight-bookings/",
+          "section": "Description, constraints, examples",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Offline reconstruction cost is O(q+n); an online Fenwick use case is distinguished.",
+          "source": "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
+          "section": "Difference arrays versus point queries",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
-        "https://usaco.guide/silver/prefix-sums",
         "https://usaco.guide/silver/more-prefix-sums",
         "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
         "https://leetcode.com/problems/corporate-flight-bookings/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-reference-query-boundaries-and-limits",
       "topicId": "t11-004",
       "phase": "reference",
       "draft": "course/drafts/t11-004/t11-004-reference-query-boundaries-and-limits.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 5,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "The supplied reference terms are all present and accurately distinguished according to the frozen manifest.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Manifest inventory query-boundaries-and-limits",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Core formulas and boundary semantics in this reference follow the cited source material.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Prefix boundaries, static limits, and difference-array workload",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The inclusive/half-open conversions and single-element boundary examples are arithmetically consistent.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Prefix range formulas",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Accumulator casts are required before narrow arithmetic can overflow; stated problem bounds are checked separately.",
+          "source": "https://leetcode.com/problems/range-sum-query-immutable/",
+          "section": "Constraints and solution arithmetic",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Static-prefix staleness and interleaved-update limitation are correctly separated.",
+          "source": "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
+          "section": "Difference array update/query behavior",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/prefix-sums",
         "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+        "https://usaco.guide/problems/cses-1651-range-update-queries/solution"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-practice-range-sum-query-immutable",
       "topicId": "t11-004",
       "phase": "practice",
       "draft": "course/drafts/t11-004/t11-004-practice-range-sum-query-immutable.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/prefix-sums",
-        "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+      "evidence": [
+        {
+          "claim": "Problem semantics, constraints, return contract, and supplied examples match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/range-sum-query-immutable/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each sample result and the lesson dry run have been recomputed from the input.",
+          "source": "https://leetcode.com/problems/range-sum-query-immutable/",
+          "section": "Examples; independent arithmetic",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The solution invariant counts/returns exactly the valid ranges, pivot, rectangle, or final update totals.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Assigned algorithm and proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, checked conversions, data structure size, and arithmetic are valid under the stated bounds.",
+          "source": "https://leetcode.com/problems/range-sum-query-immutable/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space bounds account for preprocessing, scan/query, and output allocation.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge-case checks cover empty-prefix, negative values/remainders, boundaries, sentinels, or static semantics as relevant.",
+          "source": "https://leetcode.com/problems/range-sum-query-immutable/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/range-sum-query-immutable/",
+        "https://usaco.guide/silver/prefix-sums"
+      ],
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-practice-find-pivot-index",
       "topicId": "t11-004",
       "phase": "practice",
       "draft": "course/drafts/t11-004/t11-004-practice-find-pivot-index.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/prefix-sums",
-        "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+      "evidence": [
+        {
+          "claim": "Problem semantics, constraints, return contract, and supplied examples match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/find-pivot-index/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each sample result and the lesson dry run have been recomputed from the input.",
+          "source": "https://leetcode.com/problems/find-pivot-index/",
+          "section": "Examples; independent arithmetic",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The solution invariant counts/returns exactly the valid ranges, pivot, rectangle, or final update totals.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Assigned algorithm and proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, checked conversions, data structure size, and arithmetic are valid under the stated bounds.",
+          "source": "https://leetcode.com/problems/find-pivot-index/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space bounds account for preprocessing, scan/query, and output allocation.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge-case checks cover empty-prefix, negative values/remainders, boundaries, sentinels, or static semantics as relevant.",
+          "source": "https://leetcode.com/problems/find-pivot-index/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/find-pivot-index/",
+        "https://usaco.guide/silver/prefix-sums"
+      ],
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-practice-subarray-sum-equals-k",
       "topicId": "t11-004",
       "phase": "practice",
       "draft": "course/drafts/t11-004/t11-004-practice-subarray-sum-equals-k.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/prefix-sums",
-        "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+      "evidence": [
+        {
+          "claim": "Problem semantics, constraints, return contract, and supplied examples match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/subarray-sum-equals-k/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each sample result and the lesson dry run have been recomputed from the input.",
+          "source": "https://leetcode.com/problems/subarray-sum-equals-k/",
+          "section": "Examples; independent arithmetic",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The solution invariant counts/returns exactly the valid ranges, pivot, rectangle, or final update totals.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "Assigned algorithm and proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, checked conversions, data structure size, and arithmetic are valid under the stated bounds.",
+          "source": "https://leetcode.com/problems/subarray-sum-equals-k/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space bounds account for preprocessing, scan/query, and output allocation.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "Complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge-case checks cover empty-prefix, negative values/remainders, boundaries, sentinels, or static semantics as relevant.",
+          "source": "https://leetcode.com/problems/subarray-sum-equals-k/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/subarray-sum-equals-k/",
+        "https://usaco.guide/silver/more-prefix-sums"
+      ],
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-practice-subarray-sums-divisible-by-k",
       "topicId": "t11-004",
       "phase": "practice",
       "draft": "course/drafts/t11-004/t11-004-practice-subarray-sums-divisible-by-k.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/prefix-sums",
-        "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+      "evidence": [
+        {
+          "claim": "Problem semantics, constraints, return contract, and supplied examples match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each sample result and the lesson dry run have been recomputed from the input.",
+          "source": "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
+          "section": "Examples; independent arithmetic",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The solution invariant counts/returns exactly the valid ranges, pivot, rectangle, or final update totals.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "Assigned algorithm and proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, checked conversions, data structure size, and arithmetic are valid under the stated bounds.",
+          "source": "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space bounds account for preprocessing, scan/query, and output allocation.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "Complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge-case checks cover empty-prefix, negative values/remainders, boundaries, sentinels, or static semantics as relevant.",
+          "source": "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
+        "https://usaco.guide/silver/more-prefix-sums"
+      ],
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-practice-range-sum-query-2d-immutable",
       "topicId": "t11-004",
       "phase": "practice",
       "draft": "course/drafts/t11-004/t11-004-practice-range-sum-query-2d-immutable.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 6,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/prefix-sums",
-        "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+      "evidence": [
+        {
+          "claim": "Problem semantics, constraints, return contract, and supplied examples match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/range-sum-query-2d-immutable/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each sample result and the lesson dry run have been recomputed from the input.",
+          "source": "https://leetcode.com/problems/range-sum-query-2d-immutable/",
+          "section": "Examples; independent arithmetic",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The solution invariant counts/returns exactly the valid ranges, pivot, rectangle, or final update totals.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "Assigned algorithm and proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, checked conversions, data structure size, and arithmetic are valid under the stated bounds.",
+          "source": "https://leetcode.com/problems/range-sum-query-2d-immutable/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space bounds account for preprocessing, scan/query, and output allocation.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "Complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge-case checks cover empty-prefix, negative values/remainders, boundaries, sentinels, or static semantics as relevant.",
+          "source": "https://leetcode.com/problems/range-sum-query-2d-immutable/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
+        "https://usaco.guide/silver/more-prefix-sums"
+      ],
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-practice-corporate-flight-bookings",
       "topicId": "t11-004",
       "phase": "practice",
       "draft": "course/drafts/t11-004/t11-004-practice-corporate-flight-bookings.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 7,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://usaco.guide/silver/prefix-sums",
-        "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+      "evidence": [
+        {
+          "claim": "Problem semantics, constraints, return contract, and supplied examples match the canonical assigned statement.",
+          "source": "https://leetcode.com/problems/corporate-flight-bookings/",
+          "section": "Description, Examples, Constraints",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Each sample result and the lesson dry run have been recomputed from the input.",
+          "source": "https://leetcode.com/problems/corporate-flight-bookings/",
+          "section": "Examples; independent arithmetic",
+          "verdict": "supported"
+        },
+        {
+          "claim": "The solution invariant counts/returns exactly the valid ranges, pivot, rectangle, or final update totals.",
+          "source": "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
+          "section": "Assigned algorithm and proof independently checked",
+          "verdict": "supported"
+        },
+        {
+          "claim": "C# indexing, checked conversions, data structure size, and arithmetic are valid under the stated bounds.",
+          "source": "https://leetcode.com/problems/corporate-flight-bookings/",
+          "section": "Constraints cross-checked against implementation",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Time and space bounds account for preprocessing, scan/query, and output allocation.",
+          "source": "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
+          "section": "Complexity independently derived",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Edge-case checks cover empty-prefix, negative values/remainders, boundaries, sentinels, or static semantics as relevant.",
+          "source": "https://leetcode.com/problems/corporate-flight-bookings/",
+          "section": "Constraints and edge-case inspection",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Input constraint is seats >= 1; implementation permits zero only as a harmless defensive extension and rejects negative seats.",
+          "source": "https://leetcode.com/problems/corporate-flight-bookings/",
+          "section": "Constraints; checked implementation contract",
+          "verdict": "supported"
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-17",
+      "sourceUrls": [
+        "https://leetcode.com/problems/corporate-flight-bookings/",
+        "https://usaco.guide/problems/cses-1651-range-update-queries/solution"
+      ],
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-004-interview",
       "topicId": "t11-004",
       "phase": "interview",
       "draft": "course/drafts/t11-004/t11-004-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 5,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Prefix range formula and n+1 boundary explanation are correct.",
+          "source": "https://usaco.guide/silver/prefix-sums",
+          "section": "Prefix definition and range query formula",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Signed exact-target counting uses current-target frequency and excludes empty ranges by query-before-insert.",
+          "source": "https://leetcode.com/problems/subarray-sum-equals-k/",
+          "section": "Problem description and independently derived proof",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Equal-remainder count handles negative values after normalization.",
+          "source": "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
+          "section": "Constraints; modular equivalence",
+          "verdict": "supported"
+        },
+        {
+          "claim": "2D four-corner and difference-array cancellation explanations are correct.",
+          "source": "https://usaco.guide/silver/more-prefix-sums",
+          "section": "2D Prefix Sums and Difference Arrays",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Static, offline and online workload recommendations are correctly distinguished.",
+          "source": "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
+          "section": "Difference array and dynamic point-query explanation",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://usaco.guide/silver/prefix-sums",
         "https://usaco.guide/silver/more-prefix-sums",
-        "https://usaco.guide/problems/cses-1651-range-update-queries/solution",
-        "https://leetcode.com/problems/range-sum-query-immutable/",
-        "https://leetcode.com/problems/find-pivot-index/",
-        "https://leetcode.com/problems/subarray-sum-equals-k/",
-        "https://leetcode.com/problems/subarray-sums-divisible-by-k/",
-        "https://leetcode.com/problems/range-sum-query-2d-immutable/",
-        "https://leetcode.com/problems/corporate-flight-bookings/"
+        "https://usaco.guide/problems/cses-1651-range-update-queries/solution"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual factual and scope audit checked every lesson section against the frozen inventory, current primary problem statements and cited algorithm references. Examples, proof invariants, index/modulo boundaries, C# types and complexity were independently checked. No unresolved issue remains for this lesson."
     },
     {
       "taskId": "t11-005-overview",
@@ -103361,6 +104078,22 @@
       "status": "full claim and inventory audit complete for this topic",
       "findings": [
         "Checked current C# array/list behavior and the seven assigned problem statements. Corrected overbroad memory/performance comparisons, dynamic-array average-case wording, capacity/insertion explanation, mutation-vs-copy assumptions, and rotation input guards. Proved the prefix/suffix, running-minimum, Kadane, stable-compaction, reversal, and complement-lookup invariants against constraints and examples. All 14 lessons have complete claim inventories and no unresolved issues."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "DSA two-pointer and sliding-window techniques (t11-003)",
+      "status": "full claim and frozen-inventory audit complete for this topic",
+      "findings": [
+        "Reviewed all 15 lessons against the assigned pointer/window inventory and canonical problem statements. Recalculated examples and complexity; checked invariants, C# bounds, duplicate/multiplicity handling, and monotonicity assumptions. Corrected the overview target-direction example and Longest Substring input upper bound (100,000). No unresolved factual or coverage issues remain."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "DSA prefix sums, difference arrays, and static range queries (t11-004)",
+      "status": "full claim and frozen-inventory audit complete for this topic",
+      "findings": [
+        "Reviewed all 14 lessons against the frozen prefix/window/difference-array inventory and current canonical LeetCode statements. Rechecked 1D/2D formulas, negative prefix/remainder handling, empty-prefix ordering, difference sentinels, example arithmetic, C# numeric/index bounds, and static/offline/online workload distinctions. No factual or scope corrections were required; no unresolved issues remain."
       ]
     }
   ]

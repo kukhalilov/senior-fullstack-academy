@@ -12,7 +12,7 @@ Given a string s, return the length of the longest substring without repeating c
 
 ## Input constraints
 
-- 0 <= s.Length <= 50,000.
+- 0 <= s.Length <= 100,000.
 - The input consists of English letters, digits, symbols, and spaces.
 - This problem's character domain is represented by .NET `char` code units for the supplied input. For a different Unicode problem, first clarify whether “character” means UTF-16 code unit, Unicode scalar value, or grapheme cluster.
 

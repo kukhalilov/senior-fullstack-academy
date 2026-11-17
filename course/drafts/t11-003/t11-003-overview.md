@@ -10,7 +10,7 @@ These are patterns, not magic templates. Their linear time comes from a proof th
 
 Imagine two bookmarks in a book. Sometimes one bookmark starts at each end: if the sequence is sorted, the current pair tells you which bookmark can safely move. Sometimes both bookmarks move forward: one marks the earliest still-useful position, while the other discovers new input. The interval between them is a window.
 
-For sorted values `[1, 3, 6, 8]`, a target sum of `9` begins with endpoints 1 and 8. Their sum is 9, so the pair is found. If the sum were 7, the largest possible partner for 1 is 8 and the sum would be 9; moving the right bookmark left would only make the sum smaller. Instead, the left value is the one that must be discarded. Such reasoning—not the diagram—makes the algorithm correct.
+For sorted values `[1, 3, 6, 8]`, target `9` is found immediately from the endpoints. If the target were `12`, the endpoint sum `9` would be too small; since `8` is the largest remaining partner for `1`, discard `1` by moving the left bookmark right. If the target were `7`, the endpoint sum would be too large; keep `1` and move the right bookmark left to try a smaller partner. Such reasoning—not the diagram—makes the algorithm correct.
 
 For a window, think of a basket containing the values between two bookmarks. When the right boundary adds a value, update the basket's summary. When the left boundary removes one, undo that value's contribution. The summary could be a sum, a count, or a frequency table.
 
