@@ -10,7 +10,7 @@ JavaScript functions are values that can be stored, passed to callbacks, detache
 
 Think of an ordinary function call as sending two things: the explicit arguments and an implicit receiver. In `account.read()`, the call expression carries `account` as that receiver. If you first copy `account.read` into a variable, the copy is just a function value; the old object is no longer carried along. `call` and `apply` choose a receiver for one call. `bind` makes a new callable package that remembers a receiver and any leading arguments. An arrow is different: it has no receiver slot of its own and uses the surrounding `this`.
 
-Function properties are labels and construction machinery. `name` and `length` are descriptive metadata. A constructible function's own `prototype` property is the object new instances initially inherit from. This is not the same property as the shared `Function.prototype` object that functions inherit methods from.
+Function properties are labels and construction machinery. `name` and `length` are descriptive metadata. An ordinary constructor's own `prototype` property supplies the initial prototype of instances created by it. Bound constructors can work without an own property; generator functions have a `prototype` property but are not constructors. This is not the same property as the shared `Function.prototype` object that functions inherit methods from.
 
 # How the parts fit together
 

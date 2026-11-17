@@ -203,6 +203,13 @@ When testing sloppy this substitution, place the sloppy function in a classic sc
 3. Which metadata can help debug the function, and why should it not control program correctness?
 4. How would a bound constructor surprise someone who assumes no `.prototype` means “cannot use with new”?
 
+# Reflection answers
+
+1. A callback passed as `object.method` may be invoked as a plain function by the receiving API, losing the object receiver. Inspect how that API calls it.
+2. Use an arrow when the callback should preserve the surrounding lexical receiver; use `bind` when a reusable callback value should explicitly retain a receiver and optionally preset arguments.
+3. `name` and `length` help diagnostics and tooling, but they can be inferred or altered by wrappers and do not validate calls or identify trusted code.
+4. A bound constructor can delegate construction to its target even though the bound function has no own `prototype` property; `new` ignores the stored bound receiver but keeps preset arguments.
+
 # Sources
 
 - [ECMAScript 2026 functions and classes](https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html)

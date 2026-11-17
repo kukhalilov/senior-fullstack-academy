@@ -57,7 +57,7 @@ An arrow created at top level captures the surrounding top-level `this`; it does
 
 ## Explicit calls and binding
 
-`call` invokes now with positional arguments. `apply` invokes now with arguments collected from an array-like value (or no arguments for null/undefined). Both pass the receiver value through; a strict target preserves it, while a non-strict ordinary target applies its own substitution. Neither can override an arrow's lexical receiver or an existing bound function's receiver.
+`call` invokes now with positional arguments. `apply` invokes now with arguments collected from an array-like object (or no arguments for null/undefined). Both pass the receiver value through; a strict target preserves it, while a non-strict ordinary target applies its own substitution. Neither can override an arrow's lexical receiver or an existing bound function's receiver.
 
 `bind` returns a new bound function. It fixes the target and receiver and prepends supplied arguments. Further binding cannot replace an already-bound receiver, although arguments from successive binds are concatenated in call order. If the target is constructible, the bound function is constructible; when invoked with `new`, the bound receiver is ignored and bound arguments remain. A bound function has no own `prototype` property, but can still be constructible. `instanceof` on a bound function follows the target's instance behavior.
 
@@ -69,7 +69,7 @@ For a base constructor called with `new`, JavaScript creates the receiver using 
 
 ## Function properties describe different layers
 
-`Function.prototype` is the shared intrinsic prototype object in the function prototype chain. It is callable and returns `undefined`, but cannot be constructed. By contrast, `fn.prototype` is an own property found only on function objects that can be constructors; it is used as the initial prototype for instances.
+`Function.prototype` is the shared intrinsic prototype object in the function prototype chain. It is callable and returns `undefined`, but cannot be constructed. Ordinary constructible functions have an own `fn.prototype` used as the initial prototype for instances. Generator and async-generator functions also have a `prototype` property, but cannot be constructed; bound constructors are constructible without an own property.
 
 `length` is an informational typical parameter count, adjusted by default/rest parameter rules and by `bind`; functions can still be called with any number of arguments. `name` is descriptive and does not identify a function semantically. Both are non-writable, non-enumerable, configurable on ordinary function instances. Function source text is not a portable serialization format: hosts may withhold it, and native/built-in forms are implementation-defined.
 
@@ -122,7 +122,7 @@ The second example shows that a later `call` can choose arguments but cannot rep
 2. **What does strictness change?** Whether an ordinary function preserves the supplied receiver or substitutes nullish values and boxes primitives.
 3. **Can `bind` set an arrow's receiver?** No; the arrow has lexical `this`.
 4. **Does constructing a bound constructor use its bound receiver?** No. Construction creates its receiver, but bound arguments still apply.
-5. **What is the difference between `Function.prototype` and `Fn.prototype`?** The former is shared in function inheritance; the latter is a constructor function's own initial instance prototype.
+5. **What is the difference between `Function.prototype` and `Fn.prototype`?** The former is shared in function inheritance; an ordinary constructor's own `.prototype` is used for its new instances. Generator functions have a prototype for their iterator objects without being constructors, and bound constructors can lack an own prototype.
 6. **Does `.length` cap accepted arguments?** No.
 
 # Sources

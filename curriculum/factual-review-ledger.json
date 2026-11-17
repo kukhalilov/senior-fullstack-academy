@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 733,
-    "pending": 1608,
-    "claimsChecked": 24790,
-    "claimsCorrected": 1434,
+    "reviewed": 740,
+    "pending": 1601,
+    "claimsChecked": 25092,
+    "claimsCorrected": 1441,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 733,
-    "pendingLessons": 1608
+    "reviewedLessons": 740,
+    "pendingLessons": 1601
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -49167,13 +49167,25 @@
       "topicId": "t06-017",
       "phase": "overview",
       "draft": "course/drafts/t06-017/t06-017-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 20,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked call-site receiver model, strict/sloppy distinctions, lexical arrows, explicit calls, bound construction, new.target, super, and Function prototype distinctions against ECMA-262 2026.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49181,20 +49193,32 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
     },
     {
       "taskId": "t06-017-concepts",
       "topicId": "t06-017",
       "phase": "concepts",
       "draft": "course/drafts/t06-017/t06-017-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Checked receiver selection, global/module this, strictness, apply/call/bind, bound constructors, new.target, super lookup, metadata, and property/constructibility nuances. Corrected overgeneralized .prototype explanations to cover generator and bound functions.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49202,20 +49226,32 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
     },
     {
       "taskId": "t06-017-reference-this-binding-rules",
       "topicId": "t06-017",
       "phase": "reference",
       "draft": "course/drafts/t06-017/t06-017-reference-this-binding-rules.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 41,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all ten receiver/context terms, method reference retention, optional calls, nullish/primitive rules, bound target behavior, construction returns, new.target, and super lookup against ECMA-262 and MDN.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49223,20 +49259,32 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
     },
     {
       "taskId": "t06-017-reference-function-prototype-methods",
       "topicId": "t06-017",
       "phase": "reference",
       "draft": "course/drafts/t06-017/t06-017-reference-function-prototype-methods.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 41,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all six inventory operations and classification claims, including apply array-like-object requirements (non-null primitives are rejected), bind construction/length/name, toString host availability, Symbol.hasInstance, and Object.prototype.toString fallback behavior.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49244,20 +49292,32 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
     },
     {
       "taskId": "t06-017-reference-function-own-properties",
       "topicId": "t06-017",
       "phase": "reference",
       "draft": "course/drafts/t06-017/t06-017-reference-function-own-properties.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 50,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Checked all nine properties and exact descriptor/constructibility distinctions. Corrected the prototype-property claim: generator functions have one but cannot be constructed; bound constructors can construct without an own one; Reflect.construct uses newTarget for the instance prototype.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49265,20 +49325,32 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
     },
     {
       "taskId": "t06-017-practice",
       "topicId": "t06-017",
       "phase": "practice",
       "draft": "course/drafts/t06-017/t06-017-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 55,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all seven exercises and complete solutions, strict/sloppy contexts, super lookup, bind argument order, bound construction, property-reference optional calls, and runtime assertions. Added answers to every reflection question.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49286,20 +49358,32 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
     },
     {
       "taskId": "t06-017-interview",
       "topicId": "t06-017",
       "phase": "interview",
       "draft": "course/drafts/t06-017/t06-017-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 60,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked core, deep, and scenario answers for strict/sloppy behavior, call/apply/bind, construction, new.target, super, function descriptors, metadata, and legacy poison-pill properties.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
+          ],
+          "verdict": "verified; corrections and reflection answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49307,7 +49391,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as an explanatory cross-check. Practice and interview prompts are answered in the repository. Lesson remains in drafts."
     },
     {
       "taskId": "t06-004-overview",
