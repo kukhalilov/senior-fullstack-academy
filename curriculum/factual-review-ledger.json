@@ -645,6 +645,20 @@
       "findings": [
         "Checked current IETF Idempotency-Key document status (active draft as of 2026-11-17), unique-per-logical-request and expiry/fingerprint guidance; checked HTTP method idempotency distinctions in RFC 9110 and application idempotency guidance. Distributed transaction/failure cases are design patterns; all claims and omissions remain pending. Lesson is not promoted."
       ]
+    },
+    {
+      "scope": "AWS Application Load Balancer reference",
+      "status": "partial primary-source checks; full lesson audit pending",
+      "sources": [
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html",
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html",
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html",
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html",
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html"
+      ],
+      "findings": [
+        "Checked listener/content-based routing, target group routing and health-check behavior including the documented all-unhealthy fail-open case, WebSocket health-check limitation, algorithm names, and slow-start explanation against AWS documentation. Other claims, service quotas/regions, and full completeness audit remain pending. Lesson is not promoted."
+      ]
     }
   ],
   "lessons": [
@@ -77577,29 +77591,11 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html",
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html",
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html",
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html",
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99891,7 +99887,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 177 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 176 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
@@ -100118,6 +100114,14 @@
       "status": "expanded; selected primary-source checks; full audit pending",
       "findings": [
         "Replaced generic filler with key lifecycle, atomic claim, fingerprinting, replay/in-progress policy, crash/outbox boundaries, retention, and payment/export examples. Verified the header document is still an Internet-Draft on the date checked; full sentence-level and completeness audits remain outstanding."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "AWS Application Load Balancer reference",
+      "status": "expanded; selected primary-source checks; full audit pending",
+      "findings": [
+        "Replaced generic filler with ALB request path, listener rules, target groups, health policy/fail-open, deployment draining/warm-up, TLS/security, observability, and failure scenarios. Selected AWS claims were checked; full factual and omission audits remain outstanding."
       ]
     }
   ]
