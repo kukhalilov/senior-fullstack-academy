@@ -5,25 +5,25 @@
 *Automatically generated draft.*
 
 # Scope and version
-This lesson covers the fundamental performance characteristics and correctness requirements of hash-based data structures. The concepts are timeless, with specific references to .NET 11 API behaviors as of 2026-11-14.
+This lesson covers the fundamental performance characteristics and correctness requirements of hash-based data structures. The concepts are timeless; current .NET `Dictionary<TKey,TValue>` and `Object.GetHashCode` documentation was checked 2026-11-17. Hash-table collision mitigations and details vary by implementation.
 
 # How this group fits the mental model
-A hash map functions by using a hash function to convert a key into an index. Because multiple keys might map to the same index (a collision), the structure must maintain a "contract" for how it compares keys. The items in this group define the trade-offs between speed (efficiency) and reliability (correctness). When you use a hash map, you are betting that your keys are distributed well enough to achieve fast lookups, while ensuring your keys remain stable so the map doesn't "lose" your data.
+A hash map computes a hash code from a key and maps that code to its storage according to the implementation. Because distinct keys may map to the same location, the structure must compare keys under a consistent equality rule. The items in this group define the trade-offs between expected speed and correctness. Keys should remain stable under equality and hashing while stored so lookups continue to follow the collection's assumptions.
 
 # Supplied names explained
 
 * `Expected constant-time lookup`: The performance goal under assumptions such as a well-distributed hash function and a controlled load factor. Hashing selects a bucket, but equality checks and collisions still contribute work; this is an expected bound, not a per-operation guarantee.
 * `Worst-case linear lookup`: The performance failure mode. If many keys collide (map to the same bucket) or the hash table becomes overloaded, the structure may be forced to scan through a long list of items, resulting in $O(n)$ time complexity.
 * `Amortized insertion`: The analysis that spreads occasional resize and rehash work over a sequence of insertions. With suitable growth and hash-distribution assumptions, the resize contribution is amortized constant per insertion; collisions or expensive user hash/equality code add their own costs.
-* `Key equality contract`: The requirement that if two keys are considered equal, they must return the same hash code. If this contract is broken, the map cannot reliably find or retrieve the values associated with those keys.
+* `Key equality contract`: The requirement that if two keys are considered equal under the map's comparer, they must produce the same hash code under that comparer. Unequal keys may have the same hash code; equality is still needed to distinguish them.
 * `Mutable-key hazard`: A correctness bug where equality-relevant key state changes after insertion. The stored entry remains in the location chosen using its earlier hash, so a later lookup can fail or the collection's behavior can otherwise violate its key assumptions.
-* `Hash collision attack`: A security vulnerability where an attacker provides specifically crafted keys that all result in the same hash code. This forces the map into `Worst-case linear lookup` behavior, potentially causing a Denial of Service (DoS) by exhausting CPU resources.
+* `Hash collision attack`: A potential denial-of-service technique in which attacker-controlled inputs cause excessive collisions and CPU work in a vulnerable hash-table design. Impact and available mitigations are implementation- and key-type-dependent; do not infer that every map necessarily degrades in the same way.
 
 # Cross-item comparison
 
-* **Performance vs. Security**: `Expected constant-time lookup` is the standard performance goal, but `Hash collision attack` exploits the mechanism that makes that speed possible to force `Worst-case linear lookup`.
+* **Performance vs. Security**: `Expected constant-time lookup` is a performance model under assumptions. A `Hash collision attack` attempts to violate those assumptions, but actual impact depends on the runtime, comparer, and input path.
 * **Correctness vs. Stability**: `Key equality contract` is a logical requirement for the map to function, while `Mutable-key hazard` is a runtime error caused by violating the stability of the keys stored within the map.
-* **Efficiency**: `Amortized insertion` explains how the map maintains its speed over time, even when it must occasionally perform the heavy work of resizing.
+* **Efficiency**: `Amortized insertion` accounts for occasional resizing across a sequence of operations under the growth and hashing assumptions of the chosen design.
 
 # Examples
 

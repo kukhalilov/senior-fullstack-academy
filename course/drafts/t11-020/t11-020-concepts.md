@@ -17,15 +17,15 @@
 * Understanding of basic equality concepts in programming.
 
 # Core concepts
-A **Map** is an abstract data structure that associates a unique **Key** with a **Value**. Unlike an array, where you access data via an integer index, a map allows you to use any object as an index, provided it can be hashed and compared for equality.
+A **Map** is an abstract data structure that associates a key with a value and treats keys as unique according to the map's equality rule. Unlike an array, where you access data via an integer index, a map lets you look up values using keys from the key domain supported by that map. A hash-table implementation additionally needs a hash function consistent with key equality.
 
-The **Hash table** is the most common implementation of a map. It uses a **Hash function** to convert a key into an integer called a **Hash code**. This code determines the index in a **Bucket array** where the value is stored. Because multiple keys might map to the same bucket, the structure must handle a **Collision**.
+The **Hash table** is one common implementation of a map. It uses a **Hash function** to convert a key into an integer called a **Hash code**. The implementation then maps that code to a location or probe sequence in its storage; the hash code is not itself the bucket index. Because distinct keys can map to the same location, the structure must handle a **Collision**.
 
 # Mechanisms and relationships
 The efficiency of a hash table relies on the distribution of keys.
-1. **Hash Function & Equality**: A good hash function distributes keys uniformly across the bucket array. **Equality comparison** is then used to verify if the key found in a bucket is the exact key requested.
-2. **Collision Resolution**: When two keys result in the same hash code, the structure must resolve the conflict. **Separate chaining** stores multiple items in a linked list at one bucket, while **Open addressing** (using techniques like **Linear probing**, **Quadratic probing**, or **Double hashing**) searches for the next available slot in the array.
-3. **Load Factor & Rehashing**: The **Load factor** measures how full the bucket array is. When it exceeds a threshold, the table performs **Rehashing**—creating a larger array and moving all existing items into it—to maintain performance.
+1. **Hash Function & Equality**: A hash function should distribute keys well for expected inputs. Equality comparison decides whether a candidate entry matches the requested key. Equal keys must have equal hash codes; unequal keys may still collide.
+2. **Collision Resolution**: When keys map to the same location, a hash table must resolve the conflict. Textbook strategies include **separate chaining** (entries associated with a bucket, using some secondary organization) and **open addressing** (probing for another table slot), including **linear probing**, **quadratic probing**, and **double hashing**. These are alternative designs, not a description of every runtime dictionary implementation.
+3. **Capacity & Rehashing**: Some table designs track load factor, the ratio of entries to buckets. Growth policies and thresholds vary by implementation. When storage grows, entries must be placed according to the new capacity; the exact growth factor is not universal.
 
 # Worked examples
 Consider counting the frequency of words in a list: `["apple", "banana", "apple"]`.
@@ -35,19 +35,19 @@ Consider counting the frequency of words in a list: `["apple", "banana", "apple"
 3. **"banana"**: Hash "banana" -> index 2. Bucket 2 is empty. Store `("banana", 1)`.
 4. **Second "apple"**: Hash "apple" -> index 5. Bucket 5 contains `("apple", 1)`. Update value to 2.
 
-This **Frequency map** pattern turns an $O(n^2)$ nested-loop search into an $O(n)$ single-pass operation.
+This **Frequency map** pattern can turn repeated scanning into one pass of expected $O(n)$ map operations, assuming bounded-cost hashing and equality with suitable distribution. It uses additional space.
 
 # Misconceptions and edge cases
-* **Mutable-key hazard**: If you use a mutable object as a key and change its value after insertion, its hash code changes. The map will be unable to find the key again because it will look in the wrong bucket.
-* **Worst-case linear lookup**: If a hash function is poor (e.g., all keys return the same hash code), the map degrades into a linked list, turning **Expected constant-time lookup** into **Worst-case linear lookup**.
-* **Hash collision attack**: Malicious actors can provide keys that intentionally collide to force a system into $O(n)$ performance, potentially causing a denial-of-service.
+* **Mutable-key hazard**: If equality-relevant key state changes after insertion, later lookup or removal may fail because the map searches according to the changed key while the entry was placed using its earlier hash. The entry is not necessarily permanently lost.
+* **Worst-case linear lookup**: If many keys collide, a hash table may need work proportional to the number of stored keys. Exact behavior depends on its collision strategy and implementation.
+* **Hash collision attack**: Attacker-controlled collisions can increase CPU work substantially in vulnerable designs. Do not assume every runtime degrades identically; risk depends on key types, mitigations, and exposure.
 
 # Knowledge checks with answers
 1. **Question**: Why is it dangerous to use a mutable object as a key in a hash map?
-   * **Answer**: Because the object's hash code is calculated based on its state. If the state changes, the hash code changes, and the map will look in the wrong bucket, making the entry unreachable.
+   * **Answer**: If the changed state participates in equality or hashing, lookup/removal may no longer locate the entry using the new hash. Keep key identity fields stable while stored.
 2. **Question**: What is the difference between a Map and a Set?
    * **Answer**: A Map stores key-value pairs, while a Set stores only unique keys (or elements) without associated values.
 3. **Question**: What happens during rehashing?
-   * **Answer**: The bucket array is resized (usually doubled), and all existing entries are re-inserted into the new array because their index positions change based on the new array size.
+   * **Answer**: In designs that resize, the table allocates storage under its capacity policy and redistributes entries to locations appropriate for the new capacity. The growth factor is implementation-specific.
 
 *Source: [OpenDSA hashing materials](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html), [Microsoft Learn Dictionary<TKey,TValue>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2), [USACO Guide](https://usaco.guide/bronze/intro-sets)*

@@ -5,10 +5,10 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers common algorithmic patterns using hash maps (specifically `Dictionary<TKey, TValue>` in .NET 11). It focuses on how to structure data to solve problems efficiently. This content is based on timeless data-structure concepts and the .NET 11 API reference as of 2026-11-14.
+This lesson covers common algorithmic patterns using hash maps, with examples using the current .NET `Dictionary<TKey, TValue>` API documentation checked 2026-11-17. It focuses on how to structure data to solve problems efficiently; expected-time bounds depend on hashing and equality assumptions.
 
 # How this group fits the mental model
-A hash map is a data structure that associates a unique **key** with a **value**. In algorithm design, we use these maps to transform slow, repeated searches into single-pass lookups. By storing intermediate results in a map, you trade memory for speed, often reducing a problem's complexity from quadratic ($O(n^2)$) to linear ($O(n)$).
+A hash map is a data structure that associates keys with values under an equality rule. In algorithm design, maps can transform repeated searches into single-pass expected-time lookups. By storing intermediate results, you trade memory for speed; some problems can drop from quadratic ($O(n^2)$) to expected linear ($O(n)$), subject to hashing and equality cost assumptions.
 
 # Supplied names explained
 * `Frequency map`: A dictionary where the key is an item from a collection and the value is the count of its occurrences. It is used to tally data in one pass.
@@ -16,7 +16,7 @@ A hash map is a data structure that associates a unique **key** with a **value**
 * `Index map`: A dictionary that stores the index of an item's last or first appearance. This allows you to calculate distances or track the most recent occurrence of an element.
 * `Grouping by canonical key`: A pattern where you use a transformation function to create a "canonical" (standardized) key, then map that key to a list of all items that share it (e.g., grouping anagrams by their sorted character string).
 * `Prefix-sum frequency map`: A technique used to count subarrays that sum to a specific value by storing the frequency of cumulative sums encountered so far.
-* `Memoization table`: A map used to store the results of expensive function calls, ensuring that the same input is never processed more than once.
+* `Memoization table`: A map used to store results for selected function inputs so repeated subproblems can reuse a completed result. The cache key must capture all inputs that affect the result, and cache policy/eviction may limit reuse.
 
 # Cross-item comparison
 These patterns are variations of the same underlying hash map structure, distinguished by what they store as the value:
@@ -48,17 +48,17 @@ foreach (var num in nums) {
 ```
 
 # Common mistakes
-* **Mutable keys:** Using an object as a key that changes its state (and thus its hash code) while inside the map. This makes the key "lost" because the map cannot find it again.
-* **Ignoring collisions:** Assuming that because a hash map is fast, it is always $O(1)$. In the worst case (many collisions), performance degrades to $O(n)$.
+* **Mutable keys:** Changing fields used by equality or hashing while the object is stored can make lookup or removal fail. Keep key identity stable.
+* **Ignoring collisions:** Assuming that because a hash map is fast, it is always $O(1)$. Some designs may require work proportional to $n$ under adverse collisions; implementation behavior varies.
 * **Over-allocation:** Creating a massive map when the input size is small or when a simpler array would suffice.
 
 # Knowledge checks with answers
 1. **Question:** Which pattern would you use to group all words that are anagrams of each other?
    **Answer:** Grouping by canonical key (e.g., sort the letters of each word to use as the key).
 2. **Question:** Why does a `Memoization table` improve performance?
-   **Answer:** It avoids redundant calculations by storing the result of a function for a specific input, allowing for $O(1)$ retrieval on subsequent calls.
+   **Answer:** It can avoid recomputing a completed subproblem when the same complete cache key is requested again. A hash-map retrieval is expected constant time only under the usual hashing, equality, and distribution assumptions.
 3. **Question:** What happens if you modify a key object after adding it to a `Dictionary`?
-   **Answer:** The hash code of the object may change, making the key unreachable within the map, effectively causing a memory leak or lookup failure.
+   **Answer:** If the mutation changes equality-relevant or hashed state, lookup/removal may fail because the map searches using the changed state. The stored entry is not necessarily permanently unreachable and this is not inherently a memory leak.
 
 *Sources:*
 [OpenDSA Hashing](https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html)

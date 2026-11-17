@@ -5,26 +5,26 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers the fundamental operations of the `Map` abstraction as defined in timeless data-structure theory. The reference points are based on general computer science principles and the .NET 11 `Dictionary<TKey, TValue>` implementation as of 2026-11-14. This lesson excludes set operations, tree-based structures, and cryptographic hashing.
+This lesson covers the fundamental operations of the `Map` abstraction as defined in timeless data-structure theory. .NET examples refer to the current `Dictionary<TKey, TValue>` API documentation checked 2026-11-17; implementation details are not generalized to every map. This lesson excludes set operations, tree-based structures, and cryptographic hashing.
 
 # How this group fits the mental model
-A `Map` is a collection that stores data as pairs. Think of it like a physical address book: the "Key" is the person's name, and the "Value" is their phone number. You do not search by the phone number; you search by the name to retrieve the number. 
+A `Map` is a collection that stores data as pairs and identifies each key under its equality rule. Think of it like a physical address book: the "Key" is the person's name, and the "Value" is their phone number. You search by the name to retrieve the number.
 
-The operations listed below define how you interact with this "book." Because a map uses a hash function to jump directly to the location of a key, these operations are typically very fast (constant-time), provided the keys are distributed well.
+The operations listed below define how you interact with this "book." A hash-based map uses a hash function to narrow where it searches. Its expected performance depends on hash distribution, collisions, and key hashing/equality costs; the abstract Map interface itself does not require hashing.
 
 # Supplied names explained
 
 * `Key-value mapping`: The core relationship where a unique identifier (the key) is associated with a specific piece of data (the value).
-* `Key uniqueness`: The constraint that every key in the map must be distinct. If you attempt to add a key that already exists, the map will either reject the new entry or overwrite the old one.
+* `Key uniqueness`: The constraint that keys must be unique under the map's equality rule. If you attempt to add an equivalent key, the API may reject it or replace the value, depending on the operation and implementation.
 * `Value replacement`: The process of updating the value associated with an existing key. This is usually performed by assigning a new value to an existing key.
 * `Insert or update`: A common pattern where the map checks if a key exists; if it does, it updates the value, and if it does not, it creates a new entry.
-* `Lookup by key`: The primary operation of retrieving a value by providing its corresponding key.
-* `Remove by key`: The operation of deleting both the key and its associated value from the map.
-* `Missing-key result`: The behavior of the map when you search for a key that does not exist. Depending on the language, this might return a "null" value, a default value, or throw an error.
+* `Lookup by key`: The primary operation of retrieving a value by providing its corresponding key. APIs may return a presence flag, an optional value, a default, or an exception on a miss.
+* `Remove by key`: The operation of deleting a matching key and associated value when present. Many APIs report whether an entry was removed; absence need not be an error.
+* `Missing-key result`: The behavior of the map when you search for a key that does not exist. It depends on the API. In .NET `Dictionary<TKey,TValue>`, the indexer getter throws `KeyNotFoundException`, while `TryGetValue` returns `false` and sets its output to the default value.
 
 # Cross-item comparison
 
-* `Lookup by key` vs `Remove by key`: Both require the key to be present to function effectively. However, `Lookup` is a read-only operation that leaves the map unchanged, while `Remove` modifies the internal structure of the map.
+* `Lookup by key` vs `Remove by key`: Both can be called with a present or absent key. `Lookup` leaves membership unchanged, while `Remove` changes membership when the key exists.
 * `Value replacement` vs `Insert or update`: `Value replacement` implies the key is already known to exist, whereas `Insert or update` is a conditional operation that handles both the presence and absence of a key in one logical step.
 
 # Examples
@@ -51,7 +51,7 @@ if (counts.ContainsKey(word)) {
 
 # Common mistakes
 
-* **Mutable Keys**: Using an object as a key and then changing its internal state. If the object's hash code changes after it is inserted, the map will be unable to find it again because it will look in the wrong "bucket."
+* **Mutable Keys**: Changing fields used by equality or hashing after insertion can make lookup/removal fail or violate the map's key assumptions. Keep such key state stable.
 * **Ignoring Missing-key results**: Assuming a key always exists. Always check if a key is present before accessing it to avoid runtime errors (like `KeyNotFoundException`).
 * **Over-reliance on performance**: Assuming all operations are always constant-time. If many keys have the same hash code (a collision), performance can degrade to linear time.
 

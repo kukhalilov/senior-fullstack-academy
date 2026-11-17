@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 179,
-    "pending": 2161,
-    "claimsChecked": 3137,
-    "claimsCorrected": 97,
+    "reviewed": 192,
+    "pending": 2148,
+    "claimsChecked": 3515,
+    "claimsCorrected": 142,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -729,6 +729,26 @@
       ],
       "findings": [
         "Checked MQTT 5.0 session-expiry and message-expiry additions versus MQTT 3.1.1 Clean Session, QoS protocol flows, retained publication behavior, shared subscriptions, and Will/session properties against OASIS specifications. Broker-specific persistence/limits and all claims/omissions remain pending; lesson is not promoted."
+      ]
+    },
+    {
+      "scope": "DSA t11-020 hash maps and frequency tables",
+      "status": "all 13 lesson units claim-reviewed; draft state retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-11.0",
+        "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.trygetvalue?view=net-11.0",
+        "https://usaco.guide/bronze/intro-sets",
+        "https://leetcode.com/problems/two-sum/",
+        "https://leetcode.com/problems/group-anagrams/",
+        "https://leetcode.com/problems/top-k-frequent-elements/",
+        "https://leetcode.com/problems/longest-consecutive-sequence/",
+        "https://leetcode.com/problems/isomorphic-strings/",
+        "https://leetcode.com/problems/subarray-sum-equals-k/"
+      ],
+      "findings": [
+        "Verified the 31 named inventory items and six practice problem scopes. Corrected claims that generalized chaining/probing internals to .NET Dictionary, treated hash codes as bucket indexes, prescribed universal load thresholds or doubling, overstated mutable-key outcomes and collision-attack behavior, and omitted map API miss semantics. Audited all six solution constraints, examples, loop invariants, arithmetic and complexity. This factual review does not promote drafts."
       ]
     }
   ],
@@ -7545,13 +7565,29 @@
       "topicId": "t11-020",
       "phase": "overview",
       "draft": "course/drafts/t11-020/t11-020-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 27,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            },
+            {
+              "url": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7563,20 +7599,41 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-concepts",
       "topicId": "t11-020",
       "phase": "concepts",
       "draft": "course/drafts/t11-020/t11-020-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 33,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            },
+            {
+              "url": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7588,20 +7645,36 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-reference-map-abstraction",
       "topicId": "t11-020",
       "phase": "reference",
       "draft": "course/drafts/t11-020/t11-020-reference-map-abstraction.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.trygetvalue?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7613,20 +7686,36 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-reference-hash-table-mechanism",
       "topicId": "t11-020",
       "phase": "reference",
       "draft": "course/drafts/t11-020/t11-020-reference-hash-table-mechanism.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 10,
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7638,20 +7727,36 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-reference-algorithmic-map-patterns",
       "topicId": "t11-020",
       "phase": "reference",
       "draft": "course/drafts/t11-020/t11-020-reference-algorithmic-map-patterns.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 29,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            },
+            {
+              "url": "https://usaco.guide/bronze/intro-sets",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7663,20 +7768,36 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-reference-cost-and-correctness",
       "topicId": "t11-020",
       "phase": "reference",
       "draft": "course/drafts/t11-020/t11-020-reference-cost-and-correctness.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7688,20 +7809,31 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-practice-two-sum",
       "topicId": "t11-020",
       "phase": "practice",
       "draft": "course/drafts/t11-020/t11-020-practice-two-sum.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://leetcode.com/problems/two-sum/",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7713,20 +7845,31 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-practice-group-anagrams",
       "topicId": "t11-020",
       "phase": "practice",
       "draft": "course/drafts/t11-020/t11-020-practice-group-anagrams.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://leetcode.com/problems/group-anagrams/",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7738,20 +7881,31 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-practice-top-k-frequent",
       "topicId": "t11-020",
       "phase": "practice",
       "draft": "course/drafts/t11-020/t11-020-practice-top-k-frequent.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7763,20 +7917,31 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-practice-longest-consecutive",
       "topicId": "t11-020",
       "phase": "practice",
       "draft": "course/drafts/t11-020/t11-020-practice-longest-consecutive.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 25,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://leetcode.com/problems/longest-consecutive-sequence/",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7788,20 +7953,31 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-practice-isomorphic-strings",
       "topicId": "t11-020",
       "phase": "practice",
       "draft": "course/drafts/t11-020/t11-020-practice-isomorphic-strings.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://leetcode.com/problems/isomorphic-strings/",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7813,20 +7989,31 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-practice-subarray-sum-k",
       "topicId": "t11-020",
       "phase": "practice",
       "draft": "course/drafts/t11-020/t11-020-practice-subarray-sum-k.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 27,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://leetcode.com/problems/subarray-sum-equals-k/",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7838,20 +8025,41 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-020-interview",
       "topicId": "t11-020",
       "phase": "interview",
       "draft": "course/drafts/t11-020/t11-020-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "All externally verifiable conceptual, API, complexity, constraint, example, code-invariant, and scope claims in this lesson were enumerated and checked. Practice files were also reviewed for algorithm correctness, boundary arithmetic, code structure, and stated complexities.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=net-11.0",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            },
+            {
+              "url": "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
+              "section": "Relevant definition, behavior, stated problem, constraints, examples, or collision/hash contract",
+              "verdict": "supported; corrections recorded in lesson text where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://opendsa-server.cs.vt.edu/ODSA/Books/pubbook/cs3/fall-2024/CS3_Public_F24/html/HashIntro.html",
         "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2",
@@ -7863,7 +8071,7 @@
         "https://leetcode.com/problems/isomorphic-strings/",
         "https://leetcode.com/problems/subarray-sum-equals-k/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the entire lesson and frozen manifest inventory against the listed official/primary or original problem statement sources. Corrected unsupported implementation generalizations, hash-code/bucket conflation, equality and mutable-key overstatements, universal growth/load-factor claims, and unqualified complexity/security statements. Verified each practice problem constraints, examples, algorithm invariant, arithmetic bounds, and time/space analysis. No unresolved omissions or issues remain within the assigned inventory."
     },
     {
       "taskId": "t11-021-overview",

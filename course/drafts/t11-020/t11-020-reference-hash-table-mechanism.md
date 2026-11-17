@@ -4,20 +4,20 @@
 
 # Scope and version
 
-This reference lesson covers the mechanics of hash tables under the scope of timeless data-structure concepts and .NET 11 API reference checks performed on 2026-11-14. 
+This reference lesson covers the mechanics of hash tables as timeless data-structure concepts. Current .NET API documentation was checked on 2026-11-17; textbook collision-resolution models below are not claims about the specific internal layout of .NET `Dictionary<TKey,TValue>`.
 
 Source citation: [Microsoft Learn Dictionary<TKey,TValue> Reference](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2)
 
 # How this group fits the mental model
 
-Before examining individual API names or structural features, it helps to understand the problem hash maps solve. When storing collections of items where you need to look up a value by a key, simple lists or arrays require linear scanning, which takes time proportional to the number of items. A hash map associates each key with a value and supports lookup by key in expected constant time.
+Before examining individual API names or structural features, it helps to understand the problem hash maps solve. When storing items for lookup by key, a simple unsorted list may require a scan proportional to its size. A hash table can support expected constant-time lookup under assumptions about key distribution, collision behavior, and the cost of hashing and equality; this is not a worst-case guarantee.
 
 To achieve this, the system uses a bucket array to store entries. The fundamental process works as follows:
 1. A **hash function** computes an integer **hash code** from the given key.
 2. The system maps this hash code to an index within the **bucket array**.
 3. Because multiple different keys can produce the same array index, a **collision** occurs, requiring a resolution strategy such as **separate chaining** or **open addressing**.
 4. Once the correct bucket or position is found, **equality comparison** determines if the stored key matches the query key.
-5. As items are added, the **load factor** increases. When it exceeds a threshold, the table undergoes **rehashing** into a larger bucket array to maintain performance.
+5. In designs that track **load factor**, that metric may inform a capacity policy. When the table grows, entries are redistributed for the new storage. The trigger and growth factor vary by implementation.
 
 # Supplied names explained
 
@@ -34,7 +34,7 @@ To achieve this, the system uses a bucket array to store entries. The fundamenta
   Purpose and behavior: An event where two distinct keys produce the same bucket index or hash-derived location. Because the table cannot store two different keys in the exact same slot without a strategy, hash structures must handle collisions explicitly.
 
 * `Separate chaining`
-  Purpose and behavior: A collision resolution technique where each bucket in the bucket array points to a secondary data structure (such as a linked list or tree) containing all entries that hashed to that same bucket index.
+  Purpose and behavior: A collision-resolution family where entries for a bucket are held in an associated collection. That collection may use different organizations; a linked list is one textbook example, not a universal requirement.
 
 * `Open addressing`
   Purpose and behavior: A collision resolution technique where all entries are stored directly within the bucket array itself. When a collision occurs, the table probes for the next available open slot according to a specified sequence.
@@ -49,13 +49,13 @@ To achieve this, the system uses a bucket array to store entries. The fundamenta
   Purpose and behavior: An open-addressing collision resolution method that computes a second hash function to determine the step size for probing alternative slots, yielding a more uniform distribution of probes during collisions.
 
 * `Load factor`
-  Purpose and behavior: A metric calculated as the ratio of stored entries to the total number of buckets in the bucket array. A higher load factor increases collision frequency, degrading lookup performance toward linear time.
+  Purpose and behavior: In common array-based textbook models, the ratio of stored entries to bucket count. Its interpretation and use depend on the design; as a table becomes crowded, collisions or probe work can increase, but the exact performance relationship depends on the collision strategy.
 
 * `Rehashing`
-  Purpose and behavior: The process of allocating a larger bucket array—typically double the previous capacity—and re-inserting all existing keys into their new computed bucket positions when the load factor exceeds a defined threshold.
+  Purpose and behavior: Reorganizing entries when capacity or structure changes, often during a growth operation. A table may need to recompute positions for the new capacity. The growth factor and trigger are implementation-specific, not necessarily doubling or a universal load threshold.
 
 * `Bucket array`
-  Purpose and behavior: The primary underlying contiguous memory array where hash table entries or references to separate chains are stored, indexed directly by transformed hash codes.
+  Purpose and behavior: An array of bucket locations in an array-based hash-table design. The implementation maps a hash code to a bucket or probe sequence; a hash code is not generally used directly as an array index.
 
 # Cross-item comparison
 
@@ -96,7 +96,7 @@ foreach (var word in words)
 
 # Common mistakes
 
-* **Mutating keys after insertion**: Changing the fields of an object that acts as a dictionary key alters its hash code or equality outcome, making the entry permanently lost or unretrievable within the bucket array.
+* **Mutating keys after insertion**: Changing fields used by a key's hash/equality can cause subsequent lookup or removal to fail because the key's new search location/equality behavior differs from when it was inserted. Do not assume the entry is permanently lost; behavior depends on the mutation and implementation.
 * **Inconsistent hash code and equality**: Implementing a custom type where two instances are considered equal via `Equality comparison` but produce different `Hash code` values violates fundamental hash contract rules and causes lookup failures.
 * **Ignoring load factor impacts**: Assuming that hash maps operate in constant time under all conditions without accounting for degenerate hash distributions that cause excessive collisions and worst-case linear performance.
 

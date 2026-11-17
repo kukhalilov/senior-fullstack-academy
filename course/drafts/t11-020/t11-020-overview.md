@@ -6,7 +6,7 @@
 
 When writing programs, we frequently need to answer questions like: *"Have I seen this item before?"*, *"How many times did this word appear?"*, or *"Which user ID belongs to this email address?"* 
 
-If we store items in a simple list or array, finding a specific item may require scanning elements one by one. A hash map uses extra storage to make lookup, insertion, and removal expected constant time when hashes are well distributed and collisions remain controlled; collisions or expensive key comparison can make individual operations slower.
+If we store items in a simple list or array, finding a specific item may require scanning elements one by one. A hash map uses extra storage to make lookup, insertion, and removal expected constant time under assumptions about hash distribution, load, and the cost of hashing and comparing keys. Collisions or expensive key operations can make individual operations slower; a hash table does not guarantee constant time.
 
 # Plain-language mental model
 
@@ -25,14 +25,14 @@ Behind the scenes, a hash map combines several moving parts:
 1. **The Hash Function and Code:** A formula converts a complex key (like a string) into an integer called a **hash code**.
 2. **Buckets and entries:** A table maps a hash code to a bucket. Depending on the implementation, buckets may contain entries directly, point to a chain, or guide a probe sequence; many implementations also keep entry storage separate from the bucket array.
 3. **Collisions and resolution:** Because keys outnumber the finite bucket locations, different keys can select the same bucket. Implementations resolve collisions with strategies such as **separate chaining** (keeping multiple entries associated with a bucket) or **open addressing** (probing for another slot).
-4. **Resizing:** As the table fills up (measured by the **load factor**), the program creates a larger bucket array and moves all existing items over through **rehashing**.
+4. **Resizing:** In common array-based designs, a policy tied to capacity or load triggers growth. The implementation allocates new storage and redistributes entries according to their new positions; growth factors and thresholds are implementation-specific.
 
 # Concept map
 
 * **Map Abstraction:** Associates unique keys with values, supporting lookups, inserts, updates, and removals.
 * **Hash-Table Mechanism:** Translates keys into bucket locations via hash codes, manages collisions, and handles capacity resizing.
 * **Algorithmic Map Patterns:** Uses maps for counting frequencies, finding complements, building index lookups, grouping data, and memoizing results.
-* **Cost and Correctness:** Delivers expected constant-time operations under good distribution, but risks worst-case linear performance or bugs if keys mutate or violate equality contracts.
+* **Cost and Correctness:** Can deliver expected constant-time operations under stated distribution and cost assumptions, but worst-case work can be linear. Keys must obey the equality/hash contract and remain stable while stored.
 
 # End-to-end walkthrough
 

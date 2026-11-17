@@ -9,7 +9,7 @@
 To master hash maps and frequency tables, you must be able to explain the "why" and "how" behind the data structure. Prepare to answer these fundamental questions:
 
 *   **What is a map?** A map is an abstract data type that stores pairs of (key, value). It allows you to retrieve a value by providing its unique key.
-*   **How does a hash table work?** It uses a **hash function** to convert a key into an integer (the **hash code**). This code determines the index in a **bucket array** where the value is stored.
+*   **How does a hash table work?** It uses a **hash function** to convert a key into a hash code, then maps that code to a bucket or probe sequence according to its storage design. Equality confirms whether a candidate entry is the requested key.
 *   **What is a collision?** A collision occurs when two distinct keys produce the same hash code or map to the same bucket.
 *   **How do we handle collisions?** Through **separate chaining** (storing a list of items at each bucket) or **open addressing** (searching for the next available slot using techniques like **linear probing**, **quadratic probing**, or **double hashing**).
 *   **Why use a frequency map?** It transforms a problem requiring repeated searches into a single-pass operation, reducing complexity from $O(N^2)$ to $O(N)$.
@@ -19,11 +19,11 @@ To master hash maps and frequency tables, you must be able to explain the "why" 
 When asked about performance, be direct:
 
 *   **"What is the time complexity of a hash map lookup?"**
-    "The expected time complexity is $O(1)$, or constant time. However, in the worst case—such as when many keys collide—it can degrade to $O(N)$, or linear time."
+    "Lookup is expected $O(1)$ under assumptions about hash distribution and bounded-cost hashing/equality. Worst-case work can be $O(N)$ in designs where many entries collide; actual runtime behavior depends on implementation."
 *   **"Why is the load factor important?"**
-    "The **load factor** represents the ratio of items to buckets. If it gets too high, collisions increase, slowing down operations. We trigger **rehashing**—creating a larger array and re-inserting all items—to maintain efficiency."
+    "In common array-based models, **load factor** is entries divided by bucket count and may guide growth. Thresholds and growth factors are implementation-specific; resizing redistributes entries for the new storage."
 *   **"Can I use a mutable object as a key?"**
-    "No. If a key's value changes after it is inserted, its hash code may change, making the item impossible to find. This is a **mutable-key hazard**."
+    "Avoid changing fields that affect equality or hashing while a key is stored. A later lookup or removal may fail because the key no longer follows the assumptions used at insertion."
 
 # Deep follow-up answers
 
@@ -31,7 +31,7 @@ If the interviewer probes deeper, demonstrate your understanding of the "contrac
 
 *   **The Equality Contract:** "A hash map relies on two things: the `GetHashCode` method and the `Equals` method. If two objects are equal, they *must* return the same hash code. If they return different hash codes, the map will treat them as distinct, even if they are logically equal."
 *   **Amortized Costs:** "While rehashing is an $O(N)$ operation, it happens infrequently. We describe insertion as **amortized constant time** because the cost is spread out over many operations."
-*   **Security:** "Be aware of **hash collision attacks**, where an attacker provides keys specifically designed to collide, forcing the map into $O(N)$ performance and potentially causing a Denial of Service."
+*   **Security:** "Attacker-controlled collisions can cause excessive work in vulnerable designs. Impact depends on the runtime, key/comparer, mitigations, and whether untrusted inputs reach the map."
 
 # Scenario questions
 
@@ -42,7 +42,7 @@ If the interviewer probes deeper, demonstrate your understanding of the "contrac
 
 # Tradeoffs and alternatives
 
-*   **Hash Table vs. Sorted Map:** A hash table provides $O(1)$ average lookup but no ordering. A sorted map (like a balanced tree) provides $O(\log N)$ lookup but keeps keys in order.
+*   **Hash Table vs. Sorted Map:** A hash table typically offers expected constant-time lookup under its assumptions and does not promise sorted key order. A balanced search tree provides logarithmic lookup and ordered traversal.
 *   **Map vs. Set:** Use a map when you need to associate data with a key. Use a set when you only need to track the existence of unique items.
 *   **Sorting vs. Frequency Map:** To find the most frequent element, you could sort the array ($O(N \log N)$). A frequency map is faster ($O(N)$) but uses $O(N)$ extra space.
 
@@ -55,7 +55,7 @@ If the interviewer probes deeper, demonstrate your understanding of the "contrac
 # Self-check rubric
 
 1.  **Can I explain the hash function's role?** (It maps keys to indices).
-2.  **Do I understand why rehashing is necessary?** (To keep the load factor low and performance high).
+2.  **Do I understand why some tables resize?** (To maintain their chosen capacity/performance policy; exact thresholds and growth factors vary).
 3.  **Can I identify when to use a frequency map?** (When counting occurrences or looking for complements).
 4.  **Do I know the risks of mutable keys?** (They break the lookup contract).
 
