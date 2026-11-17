@@ -1,36 +1,61 @@
 # end-to-end system design case studies — Reference: FIFO matching engine
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [FIX Market Data Order Book Management specification](https://www.fixtrading.org/wp-content/uploads/download-manager-files/MDOWG_Book_Mgt-v20.pdf), [Apache Kafka design: message ordering and transactions](https://kafka.apache.org/41/design/design/), [PostgreSQL transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson describes a simplified deterministic command-processing engine for matching compatible orders with price-time priority. It is not a production exchange specification. Real venues publish their own rules for order types, priority, allocation, halts, protection limits, and trade reporting; those rules and applicable regulations take precedence. FIX describes market-data/book representation and should not be mistaken for a matching algorithm standard.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+A matching engine consumes accepted commands, updates authoritative order state, creates trades when incoming orders cross resting interest, and publishes resulting events. Correctness requires that every command have a deterministic outcome and that recovery reproduce the same book/trades. Throughput matters, but it cannot override price priority, sequence, quantity, or audit invariants.
+
+Partitioning by instrument can allow independent books to process in parallel, while all commands for a given instrument still need one authoritative order. A single-threaded event loop per book is one possible design, not a universal requirement. Replicas can follow a durable ordered log for recovery/read views, but concurrent active writers for one book need explicit consensus/ordering semantics to avoid conflicting matches.
 
 ## Supplied names explained
 
-- `FIFO matching engine` — Processes orders in a deterministic queue under explicit price-level and venue rules; persistence, replay, and regulatory audit are critical.
+- **Command:** validated new, cancel, or replace request with identity, client/account, instrument, quantity, price, and required policy attributes.
+- **Acceptance and sequence:** point at which the engine commits an order into its authoritative ordered state; queue priority should follow the venue-defined sequencing rule.
+- **Matching loop:** compare an incoming order against eligible opposite-side price levels and consume quantities in priority order until the order is filled or cannot cross.
+- **Trade/execution event:** immutable record of matched quantity, price, counterparties/identities as permitted, order references, and sequence/time metadata.
+- **Leaves quantity:** amount still open after partial executions; must never become negative or exceed accepted original quantity.
+- **Deterministic replay:** reconstructing state by applying the same committed event/command sequence with versioned deterministic rules.
+- **Risk/pre-trade checks:** limits such as maximum quantity/price or account eligibility before matching; exact checks depend on product and legal requirements.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Processing shape | Benefit | Main trade-off |
+| --- | --- | --- |
+| One ordered processor per instrument | Straightforward per-book ordering and replay | Hot instruments can bottleneck; horizontal scaling occurs across instruments, not within one ordered book without more complex coordination |
+| Multiple concurrent active matchers for one book | Potential parallelism | Must resolve order priority and conflicting fills atomically; otherwise can double-match or violate queue position |
+| Synchronous durable log before acknowledging command | Stronger recovery boundary and clear accepted sequence | Adds persistence latency and requires capacity planning for replication/durability |
+| In-memory match then asynchronous persistence | Lower apparent path latency | Crash can lose acknowledged/visible matches unless acknowledgment semantics and recovery buffer are carefully designed |
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+An incoming buy order is accepted at sequence 9001, crosses two resting sell orders, and produces two partial trade events. The engine updates both sellers’ leaves quantities, the buyer’s remaining quantity, the order-book view, and trade sequence as one logically consistent state transition. The client acknowledgement and downstream event must correspond to committed state. If downstream delivery repeats, consumers deduplicate by immutable trade/event ID before settlement or notification.
+
+On recovery, load snapshot version 8800 and replay committed log records 8801 through 9001. Compare generated state with a checksum or independently computed invariants; never replay uncommitted commands as executed trades. If a client retries after timeout, the order request ID must return the accepted/rejected result rather than create a second order. If the engine cannot establish whether a command committed, query the durable command/result log before accepting a new logical order.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating broker message ordering as global; many logs guarantee order only within a partition/key.
+- Parallelizing matching of one instrument without an authoritative sequencer or conflict-safe allocation algorithm.
+- Acknowledging an order before the durable acceptance boundary while presenting it as guaranteed.
+- Replaying side effects such as settlement directly from a log without idempotent trade IDs.
+- Using floating-point prices or quantities and introducing rounding/equality errors; use instrument-defined tick/lot precision.
+- Allowing cancel/replace to race with matching without an explicit precedence/sequence policy.
+- Mixing command acceptance, trade execution, market-data publication, clearing, and settlement into one vague “processed” status.
+- Failing to version replay logic when matching rules or schemas change.
+- Treating a market-data book snapshot as the authoritative source for matching decisions.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Where is per-instrument ordering established?** At the authoritative acceptance/sequencing boundary for that book; partition ordering can help only when all same-instrument commands share the same ordered path.
+2. **A client times out after order submission. What should retry do?** Reuse the logical request ID or query the command result; avoid creating an unintended duplicate order.
+3. **Why separate trade event IDs from order IDs?** One order can create multiple partial executions, and downstream systems need deduplication per execution.
+4. **Can Kafka exactly-once processing alone guarantee one external settlement?** No. The settlement destination must cooperate through idempotency/transactions or reconciliation.
+
+## Review status
+
+Ordering/transaction caveats are checked against Kafka documentation; book representation context against FIX; transaction/replay examples are bounded to the stated model. This lesson remains pending full claim-by-claim audit and manifest omission check.
