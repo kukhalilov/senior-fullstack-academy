@@ -77847,31 +77847,38 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://docs.min.io/aistor/operations/core-concepts/",
+        "https://docs.min.io/aistor/operations/core-concepts/erasure-coding/",
+        "https://docs.min.io/aistor/operations/failure-and-recovery/",
+        "https://docs.min.io/aistor/operations/scaling/",
+        "https://docs.min.io/aistor/developers/s3-api-compatibility/",
+        "https://docs.min.io/aistor/administration/replication/bucket-replication/bucket-replication-requirements/",
+        "https://docs.min.io/aistor/reference/aistor-server/thresholds/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed.",
+      "partialSourceChecks": [
+        {
+          "status": "partial primary-source checks; full lesson audit pending",
+          "checks": [
+            {
+              "claim": "Distributed storage uses erasure sets, data/parity shards, and read/write quorum; failure tolerance depends on set and parity configuration.",
+              "source": "https://docs.min.io/aistor/operations/core-concepts/erasure-coding/",
+              "verdict": "verified; exact topology-specific tolerance intentionally not generalized"
+            },
+            {
+              "claim": "A deployment can route client operations through any node and uses cluster topology/pools to direct object operations.",
+              "source": "https://docs.min.io/aistor/operations/core-concepts/",
+              "verdict": "verified for current documented AIStor architecture"
+            },
+            {
+              "claim": "MinIO AIStor server-side replication has version and bucket-versioning requirements; arbitrary compatible destinations use a distinct mirror approach.",
+              "source": "https://docs.min.io/aistor/administration/replication/bucket-replication/bucket-replication-requirements/",
+              "verdict": "verified for current documented product feature"
+            }
+          ],
+          "remaining": "Exact supported API scope, all edition/release differences, product lifecycle, and every lesson sentence and omission have not been audited."
+        }
+      ]
     },
     {
       "taskId": "t12-001-reference-handbook-building-block-product-and-protocol-examples-cloudflare-workers",
@@ -99888,10 +99895,11 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 170 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 169 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits.",
-        "Replaced generic GCS reference filler with object-storage mental model, consistency boundaries, generation preconditions, resumable upload and signed-URL security, deletion/recovery distinctions, application flows, and design exercises. Selected claims checked against Google Cloud documentation; complete factual and feature-omission audits remain pending."
+        "Replaced generic GCS reference filler with object-storage mental model, consistency boundaries, generation preconditions, resumable upload and signed-URL security, deletion/recovery distinctions, application flows, and design exercises. Selected claims checked against Google Cloud documentation; complete factual and feature-omission audits remain pending.",
+        "Replaced generic MinIO reference filler with managed-versus-self-operated decision criteria, topology/quorum reasoning, S3 compatibility boundaries, recovery and replication responsibilities, and readiness exercises. Selected claims checked against current MinIO documentation; complete factual and feature-omission audits remain pending."
       ]
     },
     {
