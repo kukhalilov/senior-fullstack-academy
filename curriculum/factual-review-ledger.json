@@ -7,7 +7,7 @@
     "lessons": 2340,
     "reviewed": 6,
     "pending": 2334,
-    "claimsChecked": 96,
+    "claimsChecked": 104,
     "claimsCorrected": 2,
     "draftsMayBePromoted": false
   },
@@ -103,6 +103,21 @@
       ],
       "findings": [
         "RFC 9309 explicitly says robots rules are not access authorization, matching the lesson. RFC 8216 is an informational HLS specification describing version 7, so the lesson avoids treating it as a universal current implementation profile. NIST FIPS 203 and 204 are final standards but their live pages now identify potential errata; the lessons were updated to tell learners to check those errata. These checks do not promote any full lesson to reviewed."
+      ]
+    },
+    {
+      "scope": "CAP, PACELC, and Cassandra quorum/repair claims in t12-002 reference",
+      "status": "partial claim audit; lesson remains draft",
+      "sources": [
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html"
+      ],
+      "findings": [
+        "Eight named claims were checked against the original CAP/PACELC papers and Cassandra 5.0 documentation. A material read-repair nuance was added: Cassandra blocking mode supports monotonic quorum reads while NONE preserves partition-level write atomicity. Whole-lesson extraction and omission audit are not complete."
       ]
     }
   ],
@@ -77555,7 +77570,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77577,7 +77604,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77599,7 +77638,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77621,7 +77672,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77643,7 +77706,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77652,12 +77727,63 @@
       "topicId": "t12-002",
       "phase": "reference",
       "draft": "course/drafts/t12-002/t12-002-reference-cap-and-replication-guarantees.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "partial-review",
+      "claimInventory": "partial",
+      "claimsChecked": 8,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
+      "evidence": [
+        {
+          "claim": "CAP atomic consistency means each operation appears to occur at one instant between request and response; availability means every request eventually receives a response; communication may delay or lose messages.",
+          "source": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+          "section": "§2, lines 63–85 in the paper",
+          "verdict": "supported"
+        },
+        {
+          "claim": "CAP’s practical consistency/availability tradeoff is triggered by an actual partition; CAP does not constrain all normal operation choices.",
+          "source": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+          "section": "“CAP is for failures,” pp. 37–38",
+          "verdict": "supported"
+        },
+        {
+          "claim": "PACELC describes P→A/C during partitions and E→L/C otherwise.",
+          "source": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+          "section": "PACELC formulation and consistency/latency discussion",
+          "verdict": "supported"
+        },
+        {
+          "claim": "With fixed RF=3 and thresholds R=2,W=2, every read set intersects every write set; this is not alone a proof of linearizability.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "Tunable Consistency; R+W>RF",
+          "verdict": "supported with protocol assumptions stated"
+        },
+        {
+          "claim": "Cassandra consistency levels vary response thresholds; ANY is a write-only level that may be satisfied by a stored hint.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+          "section": "Consistency-level list; ANY",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra hinted handoff is best-effort and does not replace anti-entropy repair.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+          "section": "Hints; best-effort qualification",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra 5.0 blocking read repair provides monotonic quorum reads; NONE preserves partition-level write atomicity; both have different tradeoffs.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+          "section": "Read repair settings, BLOCKING and NONE",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Cassandra repair compares replica data using Merkle trees, streams differences, and is operator-run; one node’s repair does not cover the whole cluster.",
+          "source": "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+          "section": "Repair; Usage and Best Practices",
+          "verdict": "supported"
+        }
+      ],
+      "issues": [
+        "Lesson-wide claim extraction and omission audit are still incomplete; do not mark reviewed."
+      ],
       "reviewedAt": null,
       "sourceUrls": [
         "https://hld.handbook.academy/",
@@ -77665,9 +77791,21 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Eight high-risk CAP, PACELC, quorum, and Cassandra repair claims checked against original research and Cassandra 5.0 documentation. Remaining lesson claims and scope completeness are pending."
     },
     {
       "taskId": "t12-002-reference-handbook-consensus-quorum-and-hash-algorithms-multi-paxos",
@@ -77687,7 +77825,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77709,7 +77859,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77731,7 +77893,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77753,7 +77927,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77775,7 +77961,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77797,7 +77995,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77819,7 +78029,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77841,7 +78063,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77863,7 +78097,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77885,7 +78131,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77907,7 +78165,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77929,7 +78199,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77951,7 +78233,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77973,7 +78267,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77995,7 +78301,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78017,7 +78335,19 @@
         "https://www.postgresql.org/docs/current/mvcc.html",
         "https://sre.google/sre-book/table-of-contents/",
         "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/distributed-systems-theory/"
+        "https://hld.handbook.academy/curriculum/distributed-systems-theory/",
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf",
+        "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+        "https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html",
+        "https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html",
+        "https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf",
+        "https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf",
+        "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+        "https://web.stanford.edu/~ouster/cgi-bin/papers/raft-extended.pdf",
+        "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+        "https://www.csa.iisc.ac.in/~raghavan/CleanedPods2021/crdt-shapiro-2011.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },

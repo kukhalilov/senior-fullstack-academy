@@ -33,7 +33,7 @@ for (const part of parts) {
 }
 caseRows.forEach((row, i) => modules.push({
   id:`8.${i}`,part:8,partTitle:'Case Studies',title:row[2],sourceUrl:'https://hld.handbook.academy/curriculum/case-studies/',
-  topicIds:['t12-006'],mappedLessonPaths:[`course/drafts/${row[3].replace(/^\.\.\//,'')}`],coverageStatus:'title-mapped-depth-audit-pending',
+  topicIds:['t12-006'],mappedLessonPaths:[row[3].replace(/^\.\.\//,'')],coverageStatus:'title-mapped-depth-audit-pending',
 }));
 if (modules.length !== 159) throw new Error(`Expected 159 units, found ${modules.length}`);
 const manifestDir='curriculum/manifests/system-design';

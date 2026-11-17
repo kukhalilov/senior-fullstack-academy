@@ -1,6 +1,6 @@
 # distributed systems consistency coordination and convergence — Reference: Phi accrual failure detector
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://hld.handbook.academy/curriculum/distributed-systems-theory/).
+Sources: [Hayashibara et al., The φ Accrual Failure Detector](https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf), [SWIM paper](https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf).
 
 ## Scope and version
 
@@ -12,25 +12,31 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Supplied names explained
 
-- `Phi accrual failure detector` — Converts heartbeat arrival history into a suspicion level rather than a binary timeout; tune thresholds to workload and network behavior.
+- `Phi accrual failure detector` — Instead of returning only alive/dead, an accrual detector exposes a continuous suspicion value φ derived from how unlikely the observed heartbeat delay is under a learned arrival-time distribution. A consumer chooses its own threshold: a higher threshold tolerates longer delays but detects failures later; a lower threshold reacts sooner but risks more false suspicions. This separates evidence from policy, allowing a database, router, or membership layer to choose different responses.
+
+## Inputs, adaptation, and limits
+
+The detector observes heartbeat inter-arrival times and estimates their distribution. In the paper’s formulation, φ is the negative base-10 logarithm of the probability that the next heartbeat has not arrived by the observed delay. This is a statistical suspicion score, not a calibrated probability that a machine is dead. Estimation choices, sampling windows, heartbeat scheduling, JVM pauses or other runtime stalls, network congestion, and clock/timer behavior affect the signal.
+
+An accrual detector cannot distinguish a failed process from a slow process or a partition in a fully asynchronous system. It improves how an application reasons about varying delays; it does not remove uncertainty or provide consensus. Use hysteresis or staged suspicion where flapping is costly, and fence stale leaders before they can write after a replacement leader is elected.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Fixed timeout: simpler but assumes a known delay bound. Accrual detector: exposes graded suspicion from observed timing and leaves the reaction threshold to the consumer. Neither proves failure. A consensus election or lease/fencing rule is still needed to protect exclusive ownership.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+If heartbeats usually arrive each second, then one 1.5-second delay may be low suspicion during a jittery network and high suspicion on a stable local network. The φ value depends on learned history; it is not a universal “1.5 seconds means dead” constant. Show what the consumer does at two thresholds, then explain how a false suspicion is prevented from creating two active writers.
 
 ## Common mistakes
 
 - Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
+- Reading φ as the literal probability the process is dead; it is derived from heartbeat-delay probability, not ground truth about process state.
 - Ignoring cost, operational ownership, observability, and recovery.
 - Applying one consistency or caching rule to data with different correctness needs.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What does a larger φ mean?** The observed heartbeat delay is less likely under the learned timing distribution, so suspicion is greater.
+2. **Does a threshold prove failure?** No; it is a policy point that trades detection speed against false suspicion.
+3. **What protects data if a suspected old leader still runs?** An independent fencing, epoch, lease, or consensus-based authority check at the write boundary.

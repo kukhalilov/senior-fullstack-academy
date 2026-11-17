@@ -1,6 +1,6 @@
 # distributed systems consistency coordination and convergence — Reference: SWIM membership protocol
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://hld.handbook.academy/curriculum/distributed-systems-theory/).
+Sources: [SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol](https://courses.grainger.illinois.edu/cs425/fa2022/dsn02-SWIM.pdf), [The φ Accrual Failure Detector](https://oneofus.la/have-emacs-will-hack/files/HDY04.pdf).
 
 ## Scope and version
 
@@ -12,25 +12,31 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Supplied names explained
 
-- `SWIM membership protocol` — A scalable membership and failure-detection protocol based on randomized probing and gossip; suspicion is evidence, not proof that a node failed.
+- `SWIM membership protocol` — SWIM separates failure detection from dissemination. A process probes a randomly selected member; if direct probing fails, it can ask others to probe indirectly. Suspicion can be disseminated before a member is declared failed, allowing evidence to arrive and reducing false declarations under transient delay. Membership remains weakly consistent: different nodes can temporarily hold different views. A `suspect` or `failed` status is a local protocol judgment, not proof that the process is permanently dead.
+
+## Protocol shape and limits
+
+Randomized probing spreads load and avoids a centralized monitor. Piggybacking membership updates on probes spreads changes with low extra message cost. This does not make detection instantaneous: probe intervals, indirect-probe fan-out, network delay, packet loss, and suspicion timeouts trade detection speed against false positives and message load. A node falsely suspected may continue serving requests, so membership changes must be paired with fencing, epochs, leases, or another authority check when duplicate leaders could corrupt data.
+
+SWIM membership is not consensus. It tells a node which members it currently believes are alive; it does not elect one globally agreed leader or serialize application writes. Systems commonly combine membership with a separate replication or consensus protocol whose safety rules do not rely on every observer having the same instantaneous membership view.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+SWIM answers “which peers appear reachable?” Consensus answers “which decision/order is committed?” An accrual detector such as φ answers “how suspicious is this delay under an observed timing distribution?” These mechanisms can feed one another but do not provide interchangeable guarantees.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+With five members, have A fail to receive B’s direct probe, then ask C to probe B. Trace how suspicion is propagated and what evidence could refute it before timeout. Then partition B from A/C while B can still reach clients: explain why A must not assume B has stopped acting, and which fencing or consensus mechanism protects writes.
 
 ## Common mistakes
 
 - Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
+- Treating a timeout or SWIM suspicion as proof of process death, or treating membership as a consensus decision.
 - Ignoring cost, operational ownership, observability, and recovery.
 - Applying one consistency or caching rule to data with different correctness needs.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Does SWIM make every node agree immediately on membership?** No; dissemination is weakly consistent and views can temporarily differ.
+2. **Does a suspicion prove the target is dead?** No; delay and loss can cause suspicion, so designs must tolerate false positives.
+3. **Does membership elect a safe leader?** No; use consensus or fencing for decisions that require one authoritative writer.
