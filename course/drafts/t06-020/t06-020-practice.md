@@ -49,6 +49,10 @@ Read a large UTF-8 text response incrementally and stop early if the user cancel
 
 You have a 400 MiB file upload and a 2 KiB analytics event sent on page close. Decide whether to use a streamed Fetch request with `duplex`, `keepalive`, `sendBeacon`, or a normal upload. Explain browser support and size/lifetime boundaries.
 
+## Exercise 7 — Deferred end-of-visit telemetry
+
+Feature-detect `window.fetchLater()` and queue a small POST report with an activation delay and `AbortSignal`. Handle quota/policy failure. Explain what `.activated` proves, when the response is available, and how the default quota is allocated.
+
 # Progressive hints
 
 1. **Exercise 1:** Inspect status after `await fetch`; only call `json()` for responses whose body contract contains JSON.
@@ -57,6 +61,7 @@ You have a 400 MiB file upload and a 2 KiB analytics event sent on page close. D
 4. **Exercise 4:** The custom content type and Authorization trigger preflight. Credentialed actual access needs explicit origin and credentials permission.
 5. **Exercise 5:** Use `TextDecoderStream` to preserve decoding across byte chunks; cancel on early exit and release the reader lock in `finally`.
 6. **Exercise 6:** Keepalive is for a small request and has a 64 KiB budget. A large upload should remain an explicit upload flow; streaming support is not universal.
+7. **Exercise 7:** `fetchLater()` is secure-context/window-only and experimental. It returns a synchronous result handle, not a promise/response. Catch `QuotaExceededError` and do not treat activation as delivery confirmation.
 
 # Complete solutions
 
@@ -153,6 +158,28 @@ The decoder preserves multi-byte characters split between underlying byte chunks
 
 Use an ordinary upload flow for the 400 MiB file, with progress/UI, resumability where required, retries, server-side limits, and explicit cancellation. A streaming request body can reduce client buffering, but request-stream support and `duplex: "half"` are uneven and do not provide full duplex; it is not automatically the best upload architecture. A 2 KiB best-effort event can use `navigator.sendBeacon()` if no response is needed, or `fetch(..., { keepalive: true })` when method/headers/response access matter. Keepalive is constrained by a 64 KiB budget and browser lifecycle/policy, so it is not a durable queue. [MDN RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit)
 
+## Exercise 7
+
+```js
+function queueReport(report, signal) {
+  if (typeof window.fetchLater !== "function") return null;
+  try {
+    return window.fetchLater("/telemetry/report", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(report),
+      activateAfter: 30_000,
+      signal
+    });
+  } catch (error) {
+    if (error.name === "QuotaExceededError") return null;
+    throw error;
+  }
+}
+```
+
+The returned `FetchLaterResult` is synchronous; `.activated` only says the browser invoked the request. No response is exposed, so this is appropriate only for best-effort telemetry. The current standard allocates 640 KiB per top-level traversable/tab, with 128 KiB initially reserved for delegated minimal subframe quota and a 64 KiB cap per reporting origin. Quota is shared and policy-controlled; older browsers may not implement this experimental API. The signal can cancel a still-pending request before activation.
+
 # Tests and edge cases
 
 - Server returns 204 with no body; helper must not call `json()`.
@@ -166,6 +193,7 @@ Use an ordinary upload flow for the 400 MiB file, with progress/UI, resumability
 - Stream chunk divides a multibyte UTF-8 character; decoded text must remain correct.
 - Keepalive payload or aggregate budget is exceeded; handle rejection rather than assuming delivery.
 - Browser lacks `textStream` or streaming request support; the fallback path remains correct.
+- `fetchLater` is unavailable, the document is not active/secure, the URL is untrustworthy, or quota/policy rejects the request; feature detection and a best-effort fallback prevent it from becoming a required workflow.
 
 # Reflection questions
 

@@ -18,13 +18,13 @@ Ordinary `fetch()` starts work now and gives script a promise for the response. 
 - `FetchLaterResult` — Result handle for the deferred request. It does not expose response status, headers, or body because the request can be sent after the document is gone.
 - `FetchLaterResult.activated` — Read-only boolean initially false, later set true when the browser has sent/activated the request. It does not confirm server receipt, HTTP success, or application processing.
 - `Deferred fetch response is not exposed` — The browser ignores the eventual response, including status, headers, and body. Use ordinary fetch when outcome or response data matters.
-- `Deferred fetch activation on timeout or page termination` — The request is sent when the timeout elapses or the fetch group terminates (including page close/navigation or entering the back-forward cache), whichever condition occurs first; user-agent batching means exact send time can vary.
+- `Deferred fetch activation on timeout or page termination` — The request is sent when the delay elapses or the fetch group terminates (for example, when the page closes or navigates), whichever condition occurs first. The user agent may also activate sooner when it expects to lose the opportunity to run scripts, such as after a long-hidden/background period. Scheduling and batching mean this is not an exact timer.
 - `Deferred fetch abort behavior` — Pass an AbortSignal to cancel a deferred request while the document still controls it and before activation. Once sent—often after the page has gone—the request cannot be canceled from that destroyed context.
 - `Deferred fetch ReadableStream body restriction` — A ReadableStream request body cannot be deferred. The browser needs a bounded payload it can retain and schedule.
 - `Deferred fetch connect-src CSP requirement` — The destination is governed by Content Security Policy `connect-src`, like a fetch connection; a violation can block creation/use.
 - `Deferred fetch Permissions Policy directives` — `deferred-fetch` controls the main quota delegation and `deferred-fetch-minimal` controls the shared minimal subframe quota. A blocked policy can surface as `QuotaExceededError`, so that exception does not prove arithmetic quota exhaustion alone.
-- `Deferred fetch total document quota` — The documented total default quota is 640 KiB per document, subject to allocation/policy and implementation. Quota includes request resources such as URL, headers, body, and referrer, not just body bytes.
-- `Deferred fetch top-level and subframe quotas` — MDN documents default allocation of 512 KiB for the top-level document/same-origin descendants and a 128 KiB shared quota for cross-origin subframes; newly created cross-origin subframes generally receive a small 8 KiB allocation unless policy delegates more. Allocations can reduce available quota for other contexts.
+- `Deferred fetch top-level traversable quota` — The current standard allocates 640 KiB to a top-level traversable (a browser tab), not independently to every document. The top-level document and same-origin nested documents share the available allocation; policy can reserve or delegate parts to cross-origin nested contexts. Quota counts the serialized URL, referrer, headers, and body, not just body bytes.
+- `Deferred fetch top-level and subframe quotas` — By default 128 KiB of the tab allocation is reserved for delegation under `deferred-fetch-minimal`, leaving 512 KiB initially available to the top-level document's pool. Cross-origin subframes can receive 8 KiB by default or a 64 KiB reservation under `deferred-fetch` policy; reservations reduce the remaining shared pool and can be reclaimed in specified cases.
 - `Deferred fetch per-origin quota` — Only 64 KiB of the top-level pool can be used concurrently for the same reporting/request origin; a request over quota can throw even when the document-wide total is not exhausted.
 
 # Quota and lifecycle model
@@ -33,7 +33,7 @@ The API is suited to modest reporting payloads, not a durable job queue. A page 
 
 Quota is shared by scripts and frames and is allocated as frames are added. Third-party libraries can consume quota; catch `QuotaExceededError` defensively, especially when embedding analytics vendors. Permission Policy both restricts capability and delegates quota; do not interpret an exception as proof that the page simply sent too many bytes. Read the current [MDN quota guide](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch) before designing a quota-sensitive integration because allocations can evolve.
 
-FetchLater requests are controlled by `connect-src` and require a trustworthy URL in the current API contract. The request is not a service-worker background sync and its service-worker mode is disabled in the deferred-fetch algorithm. Use a server endpoint designed for idempotent, best-effort telemetry; never rely on the client to report a critical transaction outcome.
+FetchLater requests are available only from a fully active secure-context window, require an HTTP(S) potentially trustworthy URL, are controlled by `connect-src`, and reject bodies whose length is unknown (including a `ReadableStream`). The request is not a service-worker background sync and its service-worker mode is disabled in the deferred-fetch algorithm. Use a server endpoint designed for idempotent, best-effort telemetry; never rely on the client to report a critical transaction outcome.
 
 # Examples
 
@@ -91,7 +91,7 @@ The fallback in this example is only an in-memory next-visit hint; production co
 2. **Can the eventual status or response body be read?** No, it is discarded by design.
 3. **Does `activateAfter: 1000` guarantee transmission exactly one second later?** No. The browser can activate at termination or batch/schedule transmission.
 4. **Can you defer a ReadableStream body?** No.
-5. **What is the default documented total quota?** 640 KiB per document, with allocation across top-level and subframes and smaller per-origin constraints; policy can restrict it.
+5. **What is the default documented total quota?** 640 KiB per top-level traversable/tab, with delegated subframe reservations and a 64 KiB per-reporting-origin cap; policy can reduce or redistribute what a document can use.
 6. **Does a `QuotaExceededError` always mean too many bytes were queued?** No. Permissions Policy restrictions can also produce the exception.
 
 # Further reading

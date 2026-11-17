@@ -12,6 +12,7 @@
 6. Compare `RequestInit.credentials`, `mode`, and `headers`.
 7. What is a preflight and when is it sent?
 8. When are streaming uploads, `duplex`, `keepalive`, or `textStream()` appropriate?
+9. What is `window.fetchLater()`, and what does its `activated` property tell you?
 
 # Concise interview answers
 
@@ -23,6 +24,7 @@
 6. `mode` governs cross-origin handling; `credentials` governs ambient credentials/cookie acceptance; `headers` describes request metadata subject to forbidden-header and CORS-safelisted constraints.
 7. The browser sends an OPTIONS request to ask whether a non-safelisted cross-origin method/header combination is allowed, then sends the actual request only if permitted.
 8. Streaming upload can reduce buffering but support and `duplex: "half"` are limited; keepalive is for small requests that may outlive page unload; `textStream()` supports incremental UTF-8 where available and needs a fallback. None is a durable background transfer facility.
+9. `fetchLater()` queues a best-effort request for browser-controlled later activation and returns a synchronous `FetchLaterResult`. `activated` means the browser invoked it, not that a server received or accepted it; the response is discarded. It is experimental, secure-context/window-only, and quota/policy limited.
 
 # Deep follow-up answers
 
@@ -50,6 +52,10 @@ A `ReadableStream` body can avoid materializing the entire upload in memory. Whe
 
 `keepalive` lets a request remain eligible when its initiating page unloads, but body bytes and outstanding requests are constrained and user-agent termination/network failure remain possible. It provides no durable retry schedule or confirmation that delivery completed after the page disappears. Use a small telemetry payload, `sendBeacon()` when no response is needed, or a service-worker/background synchronization design where its lifecycle and support suit the requirement.
 
+## How is the deferred Fetch quota allocated?
+
+The current standard allocates 640 KiB per top-level traversable (tab). By default 128 KiB is reserved for `deferred-fetch-minimal` delegation, and a cross-origin nested context can receive 8 KiB by default or a 64 KiB reservation under `deferred-fetch` policy. There is also a 64 KiB cap per reporting origin. These budgets include URL, referrer, headers, and body, and reservations reduce the shared remaining pool. `QuotaExceededError` can therefore reflect policy/allocation as well as payload size.
+
 ## What are the latest body-reader additions and their support implications?
 
 `Request.bytes()` and `Response.bytes()` return a `Uint8Array` after consuming the body and are Baseline 2025 per MDN. `textStream()` on Request/Response supplies incremental UTF-8 text but remains limited availability/experimental in MDN docs checked 2026-11-16. A `ReadableStream` with `TextDecoderStream` is the composable fallback when supported. Feature-detect the method and test the actual browser matrix. [MDN Response.bytes](https://developer.mozilla.org/en-US/docs/Web/API/Response/bytes), [MDN Response.textStream](https://developer.mozilla.org/en-US/docs/Web/API/Response/textStream).
@@ -63,6 +69,7 @@ A `ReadableStream` body can avoid materializing the entire upload in memory. Whe
 5. A user clicks Cancel after the server has received a payment request. What can the client truthfully report, and what server protocol is needed to know final outcome?
 6. A page wants a cross-origin asset but does not need to read it. When might no-cors be useful, and why is it still not readable by script?
 7. A large streaming upload must work on browsers without Fetch upload streams. What fallback/product design do you propose?
+8. A page queues analytics with `fetchLater()` and sees `activated === true`. What can it report, and what can it not know?
 
 # Tradeoffs and alternatives
 
@@ -84,6 +91,7 @@ A `ReadableStream` body can avoid materializing the entire upload in memory. Whe
 - “The response body is ready when headers arrive.” Body consumption can still be pending, fail, or be canceled.
 - “CORS authenticates requests.” It controls browser script access, not server authentication/authorization.
 - “`keepalive` guarantees a request completes after tab close.” It is constrained and not durable.
+- “`fetchLater().activated` confirms delivery.” It confirms browser invocation, not server receipt or response success.
 - “`duplex: "half"` means full duplex.” It specifically does not promise simultaneous bidirectional processing.
 - “CORS response headers are all visible.” Only exposed/safelisted headers are visible; cookies remain hidden.
 - “`Response.ok` means my endpoint operation is semantically complete.” It only means 2xx; 202/204 and domain-specific statuses need explicit handling.
@@ -99,6 +107,7 @@ Give yourself 0 (incorrect), 1 (mostly right but misses a condition), or 2 (prec
 - Choose cache, redirect, referrer, integrity, priority, keepalive, and duplex options only for a defined use case.
 - Name the support caveat and fallback for recent/limited APIs such as streaming upload and textStream.
 - State an upload or telemetry strategy whose delivery and progress guarantees match product needs.
+- Explain deferred Fetch activation, quota allocation, cancellation timing, and the absence of a response contract.
 
 A strong answer distinguishes browser behavior from application policy and identifies what the server must configure. If any dimension is 0, redo the corresponding reference exercise before continuing.
 

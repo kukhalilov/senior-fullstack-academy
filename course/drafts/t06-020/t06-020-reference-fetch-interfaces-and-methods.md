@@ -31,7 +31,7 @@ This reference explains the supplied Request, Response, Headers, and global fetc
 - `Request.prototype.referrerPolicy` — Policy governing referrer disclosure, subject to browser defaults and security rules.
 - `Request.prototype.redirect` — Redirect handling mode: follow, error, or manual. Manual cross-origin redirects are deliberately opaque in window contexts.
 - `Request.prototype.targetAddressSpace` — Target address-space classification where exposed (`local`, `loopback`, or `public`); support and Local Network Access policy are evolving. Do not treat a caller value as authorization.
-- `Request.prototype.arrayBuffer` — Consumes the request body and resolves to an `ArrayBuffer`; fails if null/used/locked or decoding/streaming fails.
+- `Request.prototype.arrayBuffer` — Consumes the request body and resolves to an `ArrayBuffer`; a null body resolves to an empty buffer, while a disturbed/locked body or stream failure rejects.
 - `Request.prototype.blob` — Consumes the body into a `Blob`, using the request's available media type metadata where applicable.
 - `Request.prototype.bytes` — Consumes the body into a `Uint8Array`; a newer convenience reader with broader support since 2025, but still check older targets. [MDN Request.bytes](https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes).
 - `Request.prototype.formData` — Consumes and parses the body as `FormData`; the content type and encoding must be supported and the body can be consumed only once.
@@ -67,7 +67,7 @@ This reference explains the supplied Request, Response, Headers, and global fetc
 - `Response.prototype.redirected` — True when the response URL list indicates a redirect occurred; it is not a signal that the redirect was safe or expected.
 - `Response.prototype.status` — HTTP status code; opaque/error responses expose 0. Fetch does not reject merely for non-2xx HTTP status.
 - `Response.prototype.statusText` — Status message, often empty in HTTP/2/HTTP/3 contexts; do not branch on phrases such as “OK”.
-- `Response.prototype.type` — Response exposure kind: `basic`, `cors`, `opaque`, `opaqueredirect`, or `error`; it determines which metadata/body script can inspect.
+- `Response.prototype.type` — Response exposure kind: `basic`, `cors`, `default`, `error`, `opaque`, or `opaqueredirect`; it determines which metadata/body script can inspect. A constructed `Response` normally has type `default`; `Response.error()` creates type `error`.
 - `Response.prototype.url` — Final response URL after redirects, or an empty string for response types that hide it.
 
 ## Header collections
@@ -127,6 +127,7 @@ The fallback assumes a non-null readable body and a supported `TextDecoderStream
 - Expecting `no-cors` to make an opaque body available.
 - Splitting a combined header on commas when values such as `Set-Cookie` contain commas.
 - Assuming `Headers.getSetCookie()` exposes cookies to page JavaScript.
+- Assuming body readers fail just because a body is null; most readers consume null as an empty body, while parsers such as `json()` or `formData()` can then reject because there is no valid representation to parse.
 - Assuming `Request.prototype.duplex` or `textStream()` has universal support because the name appears in the standard/docs.
 - Treating `Response.redirected` as a security validation; validate the destination/redirect policy independently.
 
@@ -149,6 +150,7 @@ The fallback assumes a non-null readable body and a supported `TextDecoderStream
 3. **Can page code read a cross-origin Set-Cookie through `getSetCookie()`?** No; browser forbidden response-header filtering still applies.
 4. **What is `textStream()` for?** Incremental UTF-8 text chunks; it is limited-availability and should be feature-detected.
 5. **What does status 0 mean?** It can indicate a filtered opaque/opaqueredirect response or synthetic error response; it is not a normal HTTP status exposed to script.
+6. **What does `new Request(url).text()` resolve to when the request has no body?** The empty string; a null body is not the same as a disturbed or locked body.
 
 # Further reading
 

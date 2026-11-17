@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 802,
-    "pending": 1539,
-    "claimsChecked": 29480,
-    "claimsCorrected": 1461,
+    "reviewed": 810,
+    "pending": 1531,
+    "claimsChecked": 29871,
+    "claimsCorrected": 1467,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 802,
-    "pendingLessons": 1539
+    "reviewedLessons": 810,
+    "pendingLessons": 1531
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1384,6 +1384,25 @@
       ],
       "findings": [
         "Checked every manifest item and lesson claim against current ECMA-262 2026 grammar, early errors, module linking/evaluation and host hooks; cross-checked HTML host loading and Node behavior. Corrected the false claim that JSON-module support is merely optional host policy: the current standard requires conforming hosts to support type=\"json\", while older runtimes and build tools can lag. Added ES2022 string-literal module names, duplicate local/attribute/export name errors, and import attributes on re-exports. Verified dynamic data-module examples and syntax errors using Node. All 7 previously reviewed lessons remain drafts pending full-curriculum completion."
+      ]
+    },
+    {
+      "scope": "Browser Fetch API and deferred requests (t06-020)",
+      "status": "topic claim and inventory audit complete for 8 lessons",
+      "sources": [
+        "https://fetch.spec.whatwg.org/",
+        "https://fetch.spec.whatwg.org/#deferred-fetch",
+        "https://dom.spec.whatwg.org/#interface-AbortSignal",
+        "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Request/targetAddressSpace",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+      ],
+      "findings": [
+        "Checked the current WHATWG Fetch and DOM living standards and MDN API references for the supplied interfaces, method/body semantics, RequestInit core dictionary versus browser extensions, cancellation, and Deferred Fetch quotas/lifecycle. Corrected the null-body Request.arrayBuffer result, documented all six ResponseType values and Response.error() type, separated Chromium/browser privacy and target-address-space extensions from core RequestInit, and corrected fetchLater quota ownership from per-document to per-top-level traversable/tab. Expanded exact host-extension fields and deferred-fetch quota inventory. Reviewed all 8 lesson explanations, code examples, exercises, comparison tables, interview answers, and frozen inventory; no unresolved topic-specific issues remain."
       ]
     }
   ],
@@ -54989,13 +55008,30 @@
       "topicId": "t06-020",
       "phase": "overview",
       "draft": "course/drafts/t06-020/t06-020-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 34,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Fetch API semantics, RequestInit members and host extensions, current interface readers/body behavior, abort semantics, deferred fetch activation and quotas, examples and topic inventory.",
+          "sourceUrls": [
+            "https://fetch.spec.whatwg.org/",
+            "https://fetch.spec.whatwg.org/#deferred-fetch",
+            "https://dom.spec.whatwg.org/#interface-AbortSignal",
+            "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/targetAddressSpace",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+          ],
+          "verdict": "checked; corrections applied where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://fetch.spec.whatwg.org/",
         "https://fetch.spec.whatwg.org/#deferred-fetch",
@@ -55022,20 +55058,37 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
         "https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-level spot review and frozen manifest inventory review recorded in the topic evidence. Automated structure validation is not treated as a substitute for the listed source checks."
     },
     {
       "taskId": "t06-020-concepts",
       "topicId": "t06-020",
       "phase": "concepts",
       "draft": "course/drafts/t06-020/t06-020-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 42,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Fetch API semantics, RequestInit members and host extensions, current interface readers/body behavior, abort semantics, deferred fetch activation and quotas, examples and topic inventory.",
+          "sourceUrls": [
+            "https://fetch.spec.whatwg.org/",
+            "https://fetch.spec.whatwg.org/#deferred-fetch",
+            "https://dom.spec.whatwg.org/#interface-AbortSignal",
+            "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/targetAddressSpace",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+          ],
+          "verdict": "checked; corrections applied where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://fetch.spec.whatwg.org/",
         "https://fetch.spec.whatwg.org/#deferred-fetch",
@@ -55062,20 +55115,37 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
         "https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-level spot review and frozen manifest inventory review recorded in the topic evidence. Automated structure validation is not treated as a substitute for the listed source checks."
     },
     {
       "taskId": "t06-020-reference-fetch-interfaces-and-methods",
       "topicId": "t06-020",
       "phase": "reference",
       "draft": "course/drafts/t06-020/t06-020-reference-fetch-interfaces-and-methods.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 58,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Fetch API semantics, RequestInit members and host extensions, current interface readers/body behavior, abort semantics, deferred fetch activation and quotas, examples and topic inventory.",
+          "sourceUrls": [
+            "https://fetch.spec.whatwg.org/",
+            "https://fetch.spec.whatwg.org/#deferred-fetch",
+            "https://dom.spec.whatwg.org/#interface-AbortSignal",
+            "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/targetAddressSpace",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+          ],
+          "verdict": "checked; corrections applied where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://fetch.spec.whatwg.org/",
         "https://fetch.spec.whatwg.org/#deferred-fetch",
@@ -55102,20 +55172,37 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
         "https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-level spot review and frozen manifest inventory review recorded in the topic evidence. Automated structure validation is not treated as a substitute for the listed source checks."
     },
     {
       "taskId": "t06-020-reference-cancellation-and-abort",
       "topicId": "t06-020",
       "phase": "reference",
       "draft": "course/drafts/t06-020/t06-020-reference-cancellation-and-abort.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 53,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Fetch API semantics, RequestInit members and host extensions, current interface readers/body behavior, abort semantics, deferred fetch activation and quotas, examples and topic inventory.",
+          "sourceUrls": [
+            "https://fetch.spec.whatwg.org/",
+            "https://fetch.spec.whatwg.org/#deferred-fetch",
+            "https://dom.spec.whatwg.org/#interface-AbortSignal",
+            "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/targetAddressSpace",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+          ],
+          "verdict": "checked; corrections applied where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://fetch.spec.whatwg.org/",
         "https://fetch.spec.whatwg.org/#deferred-fetch",
@@ -55142,20 +55229,37 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
         "https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-level spot review and frozen manifest inventory review recorded in the topic evidence. Automated structure validation is not treated as a substitute for the listed source checks."
     },
     {
       "taskId": "t06-020-reference-fetch-host-behavior",
       "topicId": "t06-020",
       "phase": "reference",
       "draft": "course/drafts/t06-020/t06-020-reference-fetch-host-behavior.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 76,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Fetch API semantics, RequestInit members and host extensions, current interface readers/body behavior, abort semantics, deferred fetch activation and quotas, examples and topic inventory.",
+          "sourceUrls": [
+            "https://fetch.spec.whatwg.org/",
+            "https://fetch.spec.whatwg.org/#deferred-fetch",
+            "https://dom.spec.whatwg.org/#interface-AbortSignal",
+            "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/targetAddressSpace",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+          ],
+          "verdict": "checked; corrections applied where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://fetch.spec.whatwg.org/",
         "https://fetch.spec.whatwg.org/#deferred-fetch",
@@ -55182,20 +55286,37 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
         "https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-level spot review and frozen manifest inventory review recorded in the topic evidence. Automated structure validation is not treated as a substitute for the listed source checks."
     },
     {
       "taskId": "t06-020-reference-deferred-fetch-api",
       "topicId": "t06-020",
       "phase": "reference",
       "draft": "course/drafts/t06-020/t06-020-reference-deferred-fetch-api.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 63,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Fetch API semantics, RequestInit members and host extensions, current interface readers/body behavior, abort semantics, deferred fetch activation and quotas, examples and topic inventory.",
+          "sourceUrls": [
+            "https://fetch.spec.whatwg.org/",
+            "https://fetch.spec.whatwg.org/#deferred-fetch",
+            "https://dom.spec.whatwg.org/#interface-AbortSignal",
+            "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/targetAddressSpace",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+          ],
+          "verdict": "checked; corrections applied where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://fetch.spec.whatwg.org/",
         "https://fetch.spec.whatwg.org/#deferred-fetch",
@@ -55222,20 +55343,37 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
         "https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-level spot review and frozen manifest inventory review recorded in the topic evidence. Automated structure validation is not treated as a substitute for the listed source checks."
     },
     {
       "taskId": "t06-020-practice",
       "topicId": "t06-020",
       "phase": "practice",
       "draft": "course/drafts/t06-020/t06-020-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Fetch API semantics, RequestInit members and host extensions, current interface readers/body behavior, abort semantics, deferred fetch activation and quotas, examples and topic inventory.",
+          "sourceUrls": [
+            "https://fetch.spec.whatwg.org/",
+            "https://fetch.spec.whatwg.org/#deferred-fetch",
+            "https://dom.spec.whatwg.org/#interface-AbortSignal",
+            "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/targetAddressSpace",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+          ],
+          "verdict": "checked; corrections applied where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://fetch.spec.whatwg.org/",
         "https://fetch.spec.whatwg.org/#deferred-fetch",
@@ -55262,20 +55400,37 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
         "https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-level spot review and frozen manifest inventory review recorded in the topic evidence. Automated structure validation is not treated as a substitute for the listed source checks."
     },
     {
       "taskId": "t06-020-interview",
       "topicId": "t06-020",
       "phase": "interview",
       "draft": "course/drafts/t06-020/t06-020-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 34,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Fetch API semantics, RequestInit members and host extensions, current interface readers/body behavior, abort semantics, deferred fetch activation and quotas, examples and topic inventory.",
+          "sourceUrls": [
+            "https://fetch.spec.whatwg.org/",
+            "https://fetch.spec.whatwg.org/#deferred-fetch",
+            "https://dom.spec.whatwg.org/#interface-AbortSignal",
+            "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/targetAddressSpace",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+            "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+          ],
+          "verdict": "checked; corrections applied where noted"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://fetch.spec.whatwg.org/",
         "https://fetch.spec.whatwg.org/#deferred-fetch",
@@ -55302,7 +55457,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
         "https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-level spot review and frozen manifest inventory review recorded in the topic evidence. Automated structure validation is not treated as a substitute for the listed source checks."
     },
     {
       "taskId": "t06-011-overview",
@@ -136369,6 +136524,14 @@
       "status": "full claim and frozen-inventory audit complete for all 9 lessons",
       "findings": [
         "Reviewed 315 named inventory items across five groups and all explanations, examples, exercises, comparisons, and interview answers. Corrected the false Queryable.ToLookup attribution, expanded missing Queryable explicit-default and Index overloads, fixed async API release wording, corrected Queryable/IQueryProvider and grouped-join descriptions, and qualified over-fetching, async pacing, single-use enumeration, and execution-location claims. Verified examples and release claims against official Microsoft C#/.NET API and release documentation. All nine lessons remain drafts."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "Browser Fetch API and deferred requests (t06-020)",
+      "status": "full claim and inventory audit complete for all 8 lessons",
+      "findings": [
+        "Checked the current WHATWG Fetch and DOM living standards plus MDN current API references for every assigned topic group. Corrected Request.arrayBuffer behavior for null bodies, completed ResponseType coverage including constructed and error responses, separated browser privacy/network extensions from normative RequestInit, corrected Deferred Fetch quota ownership and documented its allocation model and activation limits. Checked all lesson examples and expanded exact inventory items. No unresolved factual or coverage issues remain; lessons remain drafts."
       ]
     }
   ]
