@@ -473,6 +473,20 @@
       "findings": [
         "Cache poisoning, scope, and artifact-vs-cache behavior checked against GitHub Actions docs; ephemeral runner and self-hosted runner risks checked against official runner/security docs; Firecracker VMM/jailer/seccomp/host setup claims checked against project docs. Lessons remain pending full claim and omission audits."
       ]
+    },
+    {
+      "scope": "Linux cgroups and time-series downsampling references in t12-006",
+      "status": "partial source check; full lesson audits pending",
+      "sources": [
+        "https://docs.kernel.org/admin-guide/cgroup-v2.html",
+        "https://docs.kernel.org/admin-guide/namespaces/cgroup.html",
+        "https://prometheus.io/docs/practices/rules/",
+        "https://prometheus.io/docs/practices/histograms/",
+        "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+      ],
+      "findings": [
+        "cgroup v2 controller, weighting, limit, protection and delegation caveats checked against Linux kernel docs; time-series aggregation, ratio weighting, counter rate ordering and histogram caveats checked against Prometheus docs. Full claim and omission audits remain pending."
+      ]
     }
   ],
   "lessons": [
@@ -100456,7 +100470,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 206 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 204 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
