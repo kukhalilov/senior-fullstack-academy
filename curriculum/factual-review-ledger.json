@@ -351,6 +351,24 @@
       "findings": [
         "Rewrote four DNS references to separate transport confidentiality/integrity from DNSSEC origin authentication/integrity; checked protocol framing, default ports, and DNSSEC boundaries against the cited IETF RFCs. Added resolver trust, fallback, network support, key-chain and rollover failure cases. All remain pending complete claim-by-claim audit and inventory omission check."
       ]
+    },
+    {
+      "scope": "Approximate leaderboard rank, bipartite dispatch matching, and contraction hierarchies in t12-006",
+      "status": "partial source check; full lesson audits pending",
+      "sources": [
+        "https://datasketches.apache.org/docs/pdf/Quantiles_KLL.pdf",
+        "https://docs.cloud.google.com/bigquery/docs/sketches",
+        "https://redis.io/docs/latest/develop/data-types/sorted-sets/",
+        "https://developers.google.com/optimization/assignment",
+        "https://developers.google.com/optimization/flow/mincostflow",
+        "https://developers.google.com/optimization/cp/cp_solver",
+        "https://ai.dmi.unibas.ch/research/reading_group/geisberger-et-al-wea2008.pdf",
+        "https://doi.org/10.1145/2886843",
+        "https://pubsonline.informs.org/doi/abs/10.1287/trsc.1110.0401?journalCode=trsc"
+      ],
+      "findings": [
+        "Distinguished quantile/rank sketches from distinct counting, using DataSketches/BigQuery/Redis docs; assignment and solver descriptions checked against Google OR-Tools docs; contraction hierarchy preprocessing/shortcut concepts checked against original paper and later research. Lessons remain pending full claim-by-claim and omission audits."
+      ]
     }
   ],
   "lessons": [
@@ -100334,7 +100352,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 227 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 224 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
