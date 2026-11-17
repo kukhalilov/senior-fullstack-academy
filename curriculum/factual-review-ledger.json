@@ -7,7 +7,7 @@
     "lessons": 2340,
     "reviewed": 7,
     "pending": 2333,
-    "claimsChecked": 123,
+    "claimsChecked": 126,
     "claimsCorrected": 4,
     "draftsMayBePromoted": false
   },
@@ -87432,75 +87432,40 @@
       "phase": "reference",
       "draft": "course/drafts/t12-006/t12-006-reference-handbook-case-study-specific-techniques-map-tile-rendering.md",
       "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "claimInventory": "partial; remaining claims and scope omissions pending",
+      "claimsChecked": 3,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "MVT encodes vector tile layers and features using Protocol Buffers and expects the consumer to know the projection and tile bounds from the tiling context.",
+          "source": "https://github.com/mapbox/vector-tile-spec/blob/master/2.1/README.md",
+          "section": "Purpose; Projection and Bounds; Internal Structure",
+          "verdict": "supported"
+        },
+        {
+          "claim": "MVT geometry may extend beyond a tile extent, and the specification does not require one clipping strategy.",
+          "source": "https://github.com/mapbox/vector-tile-spec/blob/master/2.1/README.md",
+          "section": "Layers; extent and geometry outside tile area",
+          "verdict": "supported"
+        },
+        {
+          "claim": "Vector tile service configuration can use tile buffers to retain data beyond tile edges for rendering continuity.",
+          "source": "https://docs.mapbox.com/data/tilesets/guides/vector-tiles-standards/; https://docs.mapbox.com/mapbox-tiling-service/recipe-specification/vector/",
+          "section": "Vector tiles standards; Buffer size",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
         "https://hld.handbook.academy/",
-        "https://sre.google/sre-book/table-of-contents/",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework",
-        "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
-        "https://hld.handbook.academy/curriculum/case-studies/",
-        "https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/",
-        "https://www.rfc-editor.org/rfc/rfc9309",
-        "https://www.rfc-editor.org/rfc/rfc5322",
-        "https://www.rfc-editor.org/rfc/rfc8216",
-        "https://redis.io/docs/latest/develop/programmability/",
-        "https://redis.io/docs/latest/interact/programmability/eval-intro/",
-        "https://redis.io/docs/latest/develop/programmability/functions-intro/",
-        "https://redis.io/docs/latest/commands/eval/",
-        "https://redis.io/docs/latest/interact/transactions/",
-        "https://redis.io/docs/latest/management/scaling/",
-        "https://redis.io/docs/latest/develop/reference/errors/common/busy/",
-        "https://gateway.envoyproxy.io/docs/concepts/rate-limiting/",
-        "https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/other_features/local_rate_limiting",
-        "https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/other_features/global_rate_limiting",
-        "https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
-        "https://www.rfc-editor.org/rfc/rfc6585",
-        "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html",
-        "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/troubleshooting-dlq-redrive.html",
-        "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dead-letter-queues",
-        "https://docs.cloud.google.com/pubsub/docs/dead-letter-topics",
-        "https://docs.cloud.google.com/storage/docs/retry-strategy",
-        "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_prevent_interaction_failure_idempotent.html",
-        "https://signal.org/docs/",
-        "https://signal.org/docs/specifications/pqxdh/",
-        "https://signal.org/docs/specifications/doubleratchet/",
-        "https://support.signal.org/hc/en-us/articles/360007060632-What-is-a-safety-number-and-why-do-I-see-that-it-changed",
-        "https://support.signal.org/hc/en-us/articles/10223569377562-Automatic-Key-Verification",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://developer.apple.com/documentation/http-live-streaming",
-        "https://developer.apple.com/streaming/hls-authoring-specification-for-apple-devices.html",
-        "https://developer.apple.com/documentation/http-live-streaming/enabling-low-latency-http-live-streaming-hls",
-        "https://www.rfc-editor.org/info/rfc8216",
-        "https://www.mpeg.org/standards/MPEG-DASH/",
-        "https://docs.cloud.google.com/spanner/docs/queues/queues-at-most-once",
-        "https://learn.microsoft.com/en-us/azure/architecture/best-practices/caching",
-        "https://learn.microsoft.com/en-us/azure/architecture/microservices/design/data-considerations",
-        "https://engineering.fb.com/2021/01/26/ml-applications/news-feed-ranking/",
-        "https://engineering.fb.com/2013/06/25/core-infra/tao-the-power-of-the-graph/",
-        "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html",
-        "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html",
-        "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-the-cache-key.html",
-        "https://redis.io/docs/latest/commands/zrange/",
-        "https://redis.io/docs/latest/develop/use-cases/leaderboard/",
-        "https://www.mpeg.org/standards/MPEG-A/19/",
-        "https://developer.apple.com/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls",
-        "https://dashif.org/Guidelines-TimingModel/Timing-Model.pdf",
-        "https://openconnect.netflix.com/en/",
-        "https://openconnect.netflix.com/Open-Connect-Overview.pdf",
-        "https://www.cloudflare.com/learning/network-layer/what-is-peering/",
-        "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/on-demand-streaming-video.html",
-        "https://docs.aws.amazon.com/solutions/latest/video-on-demand-on-aws/architecture-details.html",
-        "https://netflixtechblog.com/optimized-shot-based-encodes-now-streaming-4b9464204830"
+        "https://github.com/mapbox/vector-tile-spec/blob/master/2.1/README.md",
+        "https://docs.mapbox.com/data/tilesets/guides/vector-tiles-standards/",
+        "https://docs.mapbox.com/mapbox-tiling-service/recipe-specification/vector/",
+        "https://docs.mapbox.com/style-spec/reference/sources/",
+        "https://docs.mapbox.com/data/tilesets/guides/vector-tiles-introduction/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Partial source verification only. Three format and rendering claims checked against the MVT specification and Mapbox documentation; remaining claims and inventory omissions require full audit. Do not promote."
     },
     {
       "taskId": "t12-006-reference-handbook-case-study-specific-techniques-graph-neural-network-gnn-eta-prediction",
@@ -100404,7 +100369,7 @@
       "status": "in-progress; factual claim audit still pending",
       "findings": [
         "Added plain-language, user-story-first introductions to t12-001 and t12-002 overviews, and topic-specific practical pictures to t12-003 through t12-008 concept lessons. Updated the system-design authoring script so regenerated concepts retain a learner-first introduction.",
-        "The current scan finds 201 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
+        "The current scan finds 200 reference lessons reusing generic comparison, example, or knowledge-check text. This remains a substantive quality issue; all such lessons need topic-specific revision and claim-by-claim fact checks.",
         "No lesson was promoted to fully reviewed in this content-editing batch.",
         "The t12-008 tradeoff track has 22 reference lessons in its manifest: 20 have been expanded and two were generic on the prior scan. All 22 remain pending full factual audits."
       ]
@@ -100431,6 +100396,14 @@
       "status": "expanded; partial claim verification; full audit pending",
       "findings": [
         "Rebuilt the lesson around the geospatial indexing problem, the location-to-cell data path, resolution choice, approximation boundaries, candidate search followed by exact predicates, scaling, and edge-case practice. Three claims were checked against H3 primary documentation and Uber’s design article; the full claim inventory and manifest omission review remain pending."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "Map tile rendering case study",
+      "status": "expanded; partial claim verification; full audit pending",
+      "findings": [
+        "Rebuilt the lesson around the source-to-tile-to-client pipeline, projection and coordinate contracts, raster/vector tradeoffs, edge buffers, cache keys, dataset versioning, rendering performance, and failure examples. Three format claims were checked against the MVT specification and official Mapbox documentation; the full claim inventory and manifest omission review remain pending."
       ]
     }
   ]
