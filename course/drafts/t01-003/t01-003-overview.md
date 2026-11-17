@@ -10,9 +10,7 @@ In C#, every piece of data must have a defined type. Without types, the computer
 The purpose of C# built-in type aliases is to provide a convenient, readable shorthand for fundamental types defined in the .NET type system. Instead of writing long, complex names, you use keywords like `int` or `string`. These keywords ensure that your code is consistent, portable, and easy for the compiler to understand.
 
 # Plain-language mental model
-Think of C# types as **containers** for information. 
-*   **Value types** are like small, self-contained boxes. When you assign one to another, you copy the actual value inside the box.
-*   **Reference types** are like labels or pointers. The variable doesn't hold the data itself; it holds the "address" of where the data lives in the computer's memory.
+Think of C# types as describing values and operations. A value-type variable contains an instance; ordinary assignment copies that instance. A reference-type variable contains a reference to an object. The language doesn't specify that reference as a physical address or prescribe where objects are stored.
 
 When you use a keyword like `int`, you are telling the compiler: "I need a box that holds a whole number." The compiler then maps that keyword to a specific .NET structure that handles the math and memory storage for you.
 
@@ -22,11 +20,11 @@ C# built-in types are organized by how they store data and what kind of data the
 2.  **Floating-point types:** Represent numbers with fractional parts (e.g., `double`, `decimal`).
 3.  **Other built-ins:** Handle logic (`bool`), text (`char`, `string`), or special cases (`object`, `dynamic`, `void`).
 
-These keywords are aliases, meaning they are just "nicknames" for types defined in the underlying .NET libraries. For example, the keyword `int` is an alias for `System.Int32`.
+Most keywords are aliases for .NET types: `int` and `System.Int32` are interchangeable. `dynamic` represents runtime binding (and is encoded as `object` in metadata); `void` denotes no return type. `delegate` declares a custom delegate type rather than aliasing one specific .NET type.
 
 # Concept map
 *   **Keywords as Aliases:** C# keywords map directly to the .NET type system.
-*   **Value vs. Reference:** Value types store data directly; reference types store a reference to the data.
+*   **Value vs. Reference:** A variable contains a value-type instance or a reference to a reference-type object. Physical layout is an implementation detail.
 *   **Numeric Characteristics:** Types differ based on their range (how big a number they hold), precision (how accurate they are), and representation.
 *   **Domain Selection:** Choosing a type involves balancing the need for accuracy, memory efficiency, and compatibility with other APIs.
 
@@ -38,8 +36,8 @@ Imagine you are writing a program to track a user's age and their name.
     int age = 25;
     string name = "Alex";
     ```
-2.  **Memory Allocation:** The compiler sees `int` (a value type) and allocates space for the number 25. It sees `string` (a reference type) and allocates space for a reference to the text "Alex" stored elsewhere in memory.
-3.  **Usage:** When you perform math on `age`, the CPU uses the specific instructions for 32-bit integers. When you print `name`, the system follows the reference to find the characters.
+2.  **Type behavior:** `int` is a value type; `string` is a reference type. Their runtime storage and generated instructions depend on context and implementation.
+3.  **Usage:** The compiler and runtime apply the operations defined for each type; source-level type semantics do not promise a particular physical layout.
 4.  **Result:** The program safely handles the data because the types defined exactly what the computer should expect.
 
 # When to use it and tradeoffs

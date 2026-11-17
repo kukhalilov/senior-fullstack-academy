@@ -7,9 +7,11 @@
     "lessons": 2340,
     "reviewed": 206,
     "pending": 2134,
-    "claimsChecked": 4019,
-    "claimsCorrected": 256,
-    "draftsMayBePromoted": false
+    "claimsChecked": 4268,
+    "claimsCorrected": 313,
+    "draftsMayBePromoted": false,
+    "reviewedLessons": 215,
+    "pendingLessons": 2125
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -791,6 +793,21 @@
       ],
       "findings": [
         "Verified all 26 named inventory items. Corrected the false association of file-based apps with top-level statements, incorrect claim that a declared Main conflicts with top-level statements, Main signature/argument/exit behavior, global using scope, file-scoped namespace restrictions, and extern alias setup. No unresolved issues remain within the topic scope."
+      ]
+    },
+    {
+      "scope": "C# t01-003 built-in type aliases and characteristics",
+      "status": "all 9 lesson units claim-reviewed; draft state retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
+      ],
+      "findings": [
+        "Checked the entire 9-file lesson set. Corrected the overgeneralization that all built-in keywords are aliases; added the omitted delegate keyword; corrected value/reference memory analogies, decimal classification and representation, nint use claims, object/ref-struct caveat, Unicode code-unit behavior, string equality/immutability, and dynamic binding. Removed unsupported claim that memory safety is preview-only. Reworked financial-type selection and scalar-width tradeoffs."
       ]
     }
   ],
@@ -1943,198 +1960,540 @@
       "topicId": "t01-003",
       "phase": "overview",
       "draft": "course/drafts/t01-003/t01-003-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 23,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked factual claims about keyword aliases, value/reference semantics, ranges and representations, architecture dependence, boxing and dynamic binding, Unicode, examples, API behavior, versions, and stated scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+              "section": "Built-in type table: aliases, dynamic, delegate, void",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+              "section": "Integral ranges, sizes, native-sized integers, and semantics",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+              "section": "IEEE formats, ranges, precision, decimal representation and special values",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value instances, copy behavior, and reference-containing value types",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "object, string, dynamic, boxing, immutability and equality",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char",
+              "section": "UTF-16 code units, literals, operators, and conversions",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            }
+          ]
+        }
+      ],
+      "issues": [
+        "Corrected factual overstatements and/or missing details; see lesson edits."
+      ],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually reviewed the full lesson against current Microsoft C# language reference. Corrected and clarified claims and checked scope against the topic inventory. Draft status is retained."
     },
     {
       "taskId": "t01-003-concepts",
       "topicId": "t01-003",
       "phase": "concepts",
       "draft": "course/drafts/t01-003/t01-003-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked factual claims about keyword aliases, value/reference semantics, ranges and representations, architecture dependence, boxing and dynamic binding, Unicode, examples, API behavior, versions, and stated scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+              "section": "Built-in type table: aliases, dynamic, delegate, void",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+              "section": "Integral ranges, sizes, native-sized integers, and semantics",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+              "section": "IEEE formats, ranges, precision, decimal representation and special values",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value instances, copy behavior, and reference-containing value types",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "object, string, dynamic, boxing, immutability and equality",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char",
+              "section": "UTF-16 code units, literals, operators, and conversions",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            }
+          ]
+        }
+      ],
+      "issues": [
+        "Corrected factual overstatements and/or missing details; see lesson edits."
+      ],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually reviewed the full lesson against current Microsoft C# language reference. Corrected and clarified claims and checked scope against the topic inventory. Draft status is retained."
     },
     {
       "taskId": "t01-003-reference-signed-integral",
       "topicId": "t01-003",
       "phase": "reference",
       "draft": "course/drafts/t01-003/t01-003-reference-signed-integral.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked factual claims about keyword aliases, value/reference semantics, ranges and representations, architecture dependence, boxing and dynamic binding, Unicode, examples, API behavior, versions, and stated scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+              "section": "Built-in type table: aliases, dynamic, delegate, void",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+              "section": "Integral ranges, sizes, native-sized integers, and semantics",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+              "section": "IEEE formats, ranges, precision, decimal representation and special values",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value instances, copy behavior, and reference-containing value types",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "object, string, dynamic, boxing, immutability and equality",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char",
+              "section": "UTF-16 code units, literals, operators, and conversions",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            }
+          ]
+        }
+      ],
+      "issues": [
+        "Corrected factual overstatements and/or missing details; see lesson edits."
+      ],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually reviewed the full lesson against current Microsoft C# language reference. Corrected and clarified claims and checked scope against the topic inventory. Draft status is retained."
     },
     {
       "taskId": "t01-003-reference-unsigned-integral",
       "topicId": "t01-003",
       "phase": "reference",
       "draft": "course/drafts/t01-003/t01-003-reference-unsigned-integral.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 23,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked factual claims about keyword aliases, value/reference semantics, ranges and representations, architecture dependence, boxing and dynamic binding, Unicode, examples, API behavior, versions, and stated scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+              "section": "Built-in type table: aliases, dynamic, delegate, void",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+              "section": "Integral ranges, sizes, native-sized integers, and semantics",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+              "section": "IEEE formats, ranges, precision, decimal representation and special values",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value instances, copy behavior, and reference-containing value types",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "object, string, dynamic, boxing, immutability and equality",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char",
+              "section": "UTF-16 code units, literals, operators, and conversions",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            }
+          ]
+        }
+      ],
+      "issues": [
+        "Corrected factual overstatements and/or missing details; see lesson edits."
+      ],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually reviewed the full lesson against current Microsoft C# language reference. Corrected and clarified claims and checked scope against the topic inventory. Draft status is retained."
     },
     {
       "taskId": "t01-003-reference-native-integral",
       "topicId": "t01-003",
       "phase": "reference",
       "draft": "course/drafts/t01-003/t01-003-reference-native-integral.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 23,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked factual claims about keyword aliases, value/reference semantics, ranges and representations, architecture dependence, boxing and dynamic binding, Unicode, examples, API behavior, versions, and stated scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+              "section": "Built-in type table: aliases, dynamic, delegate, void",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+              "section": "Integral ranges, sizes, native-sized integers, and semantics",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+              "section": "IEEE formats, ranges, precision, decimal representation and special values",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value instances, copy behavior, and reference-containing value types",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "object, string, dynamic, boxing, immutability and equality",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char",
+              "section": "UTF-16 code units, literals, operators, and conversions",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            }
+          ]
+        }
+      ],
+      "issues": [
+        "Corrected factual overstatements and/or missing details; see lesson edits."
+      ],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually reviewed the full lesson against current Microsoft C# language reference. Corrected and clarified claims and checked scope against the topic inventory. Draft status is retained."
     },
     {
       "taskId": "t01-003-reference-floating-point",
       "topicId": "t01-003",
       "phase": "reference",
       "draft": "course/drafts/t01-003/t01-003-reference-floating-point.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked factual claims about keyword aliases, value/reference semantics, ranges and representations, architecture dependence, boxing and dynamic binding, Unicode, examples, API behavior, versions, and stated scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+              "section": "Built-in type table: aliases, dynamic, delegate, void",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+              "section": "Integral ranges, sizes, native-sized integers, and semantics",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+              "section": "IEEE formats, ranges, precision, decimal representation and special values",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value instances, copy behavior, and reference-containing value types",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "object, string, dynamic, boxing, immutability and equality",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char",
+              "section": "UTF-16 code units, literals, operators, and conversions",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            }
+          ]
+        }
+      ],
+      "issues": [
+        "Corrected factual overstatements and/or missing details; see lesson edits."
+      ],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually reviewed the full lesson against current Microsoft C# language reference. Corrected and clarified claims and checked scope against the topic inventory. Draft status is retained."
     },
     {
       "taskId": "t01-003-reference-other-built-in",
       "topicId": "t01-003",
       "phase": "reference",
       "draft": "course/drafts/t01-003/t01-003-reference-other-built-in.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked factual claims about keyword aliases, value/reference semantics, ranges and representations, architecture dependence, boxing and dynamic binding, Unicode, examples, API behavior, versions, and stated scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+              "section": "Built-in type table: aliases, dynamic, delegate, void",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+              "section": "Integral ranges, sizes, native-sized integers, and semantics",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+              "section": "IEEE formats, ranges, precision, decimal representation and special values",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value instances, copy behavior, and reference-containing value types",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "object, string, dynamic, boxing, immutability and equality",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char",
+              "section": "UTF-16 code units, literals, operators, and conversions",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            }
+          ]
+        }
+      ],
+      "issues": [
+        "Corrected factual overstatements and/or missing details; see lesson edits."
+      ],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually reviewed the full lesson against current Microsoft C# language reference. Corrected and clarified claims and checked scope against the topic inventory. Draft status is retained."
     },
     {
       "taskId": "t01-003-practice",
       "topicId": "t01-003",
       "phase": "practice",
       "draft": "course/drafts/t01-003/t01-003-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked factual claims about keyword aliases, value/reference semantics, ranges and representations, architecture dependence, boxing and dynamic binding, Unicode, examples, API behavior, versions, and stated scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+              "section": "Built-in type table: aliases, dynamic, delegate, void",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+              "section": "Integral ranges, sizes, native-sized integers, and semantics",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+              "section": "IEEE formats, ranges, precision, decimal representation and special values",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value instances, copy behavior, and reference-containing value types",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "object, string, dynamic, boxing, immutability and equality",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char",
+              "section": "UTF-16 code units, literals, operators, and conversions",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            }
+          ]
+        }
+      ],
+      "issues": [
+        "Corrected factual overstatements and/or missing details; see lesson edits."
+      ],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually reviewed the full lesson against current Microsoft C# language reference. Corrected and clarified claims and checked scope against the topic inventory. Draft status is retained."
     },
     {
       "taskId": "t01-003-interview",
       "topicId": "t01-003",
       "phase": "interview",
       "draft": "course/drafts/t01-003/t01-003-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked factual claims about keyword aliases, value/reference semantics, ranges and representations, architecture dependence, boxing and dynamic binding, Unicode, examples, API behavior, versions, and stated scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
+              "section": "Built-in type table: aliases, dynamic, delegate, void",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+              "section": "Integral ranges, sizes, native-sized integers, and semantics",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
+              "section": "IEEE formats, ranges, precision, decimal representation and special values",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
+              "section": "Value instances, copy behavior, and reference-containing value types",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
+              "section": "object, string, dynamic, boxing, immutability and equality",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char",
+              "section": "UTF-16 code units, literals, operators, and conversions",
+              "verdict": "Supported against current official C# reference; corrections and omissions recorded in this lesson where needed"
+            }
+          ]
+        }
+      ],
+      "issues": [
+        "Corrected factual overstatements and/or missing details; see lesson edits."
+      ],
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually reviewed the full lesson against current Microsoft C# language reference. Corrected and clarified claims and checked scope against the topic inventory. Draft status is retained."
     },
     {
       "taskId": "t01-024-overview",

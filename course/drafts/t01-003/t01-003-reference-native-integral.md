@@ -7,13 +7,13 @@
 # C# Native-Sized Integral Types: `nint` and `nuint`
 
 ## Scope and version
-This lesson covers the C# keywords `nint` and `nuint`. These types are stable as of C# 15 on .NET 11 GA. 
+This lesson covers the C# keywords `nint` and `nuint`. These types are stable as of C# 15 on .NET 11 GA.
 *Source: [Microsoft Learn C# Built-in Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table)*
 
 ## How this group fits the mental model
-In C#, most numeric types have a fixed size (e.g., `int` is always 32 bits). However, when interacting with low-level memory addresses or native APIs, you often need an integer that matches the size of the processor's pointer (32 bits on a 32-bit system, 64 bits on a 64-bit system). 
+In C#, most numeric types have a fixed size (e.g., `int` is always 32 bits). Native-sized integers may be useful with native-sized integer APIs or low-level libraries; their width matches the process pointer size (32 bits in a 32-bit process, 64 bits in a 64-bit process).
 
-`nint` and `nuint` provide this "native-sized" behavior. They allow your code to remain portable and performant across different hardware architectures without manually checking the system's bit-width.
+`nint` and `nuint` provide native-sized integer behavior. They do not by themselves ensure portability or performance; arithmetic, conversions, and API contracts still matter.
 
 ## Supplied names explained
 
@@ -26,7 +26,7 @@ In C#, most numeric types have a fixed size (e.g., `int` is always 32 bits). How
 | :--- | :--- | :--- | :--- | :--- |
 | **Signedness** | Signed | Unsigned | Signed | Unsigned |
 | **Size** | Platform-dependent | Platform-dependent | Fixed (32-bit) | Fixed (32-bit) |
-| **Primary Use** | Pointer math | Pointer math | General logic | General logic |
+| **Typical use** | Native interop/low-level integer APIs | Native interop/low-level integer APIs | General integer values | General integer values |
 
 *Source: [C# 9 Native-sized integers](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9)*
 
@@ -34,12 +34,11 @@ In C#, most numeric types have a fixed size (e.g., `int` is always 32 bits). How
 
 ```csharp
 // Unverified example
-nint pointerSize = sizeof(nint); 
-// On a 64-bit system, pointerSize will be 8.
-// On a 32-bit system, pointerSize will be 4.
+nint byteSize = sizeof(nint);
+// 4 in a 32-bit process; 8 in a 64-bit process.
 
-nuint address = 0x12345678; 
-// This is safe for pointer arithmetic regardless of the platform.
+nuint nativeValue = 0x12345678;
+// Width follows the process; this alone does not make pointer arithmetic safe.
 ```
 
 ## Common mistakes

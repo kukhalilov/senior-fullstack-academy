@@ -14,16 +14,16 @@
 5. What is the difference between `object` and `dynamic`?
 
 ## Concise interview answers
-1. **Keywords as Aliases:** C# keywords are aliases for underlying types in the .NET `System` namespace. For example, `int` is an alias for `System.Int32`. They are functionally identical to the framework types.
+1. **Keywords and .NET types:** Most built-in type keywords alias .NET types; `int` and `System.Int32` name the same type. `dynamic` represents runtime binding and is encoded as `object`; `delegate` declares a new delegate type, and `void` denotes no return type.
 2. **Value vs. Reference:** Value-type variables contain values; reference-type variables contain references to objects. The language does not guarantee a stack location for values or define object references as physical memory addresses.
-3. **Floating-point Choice:** Use `float` for memory efficiency, `double` for general-purpose scientific calculations, and `decimal` for financial or high-precision calculations where decimal-domain rules matter; finite-precision decimal arithmetic can still round.
+3. **Numeric choice:** `float`/`double` are binary IEEE 754 formats; `decimal` uses finite-precision decimal scaling. Choose by range, precision, special values, domain rounding rules, and APIs, not a universal finance rule.
 4. **Native-sized Integers:** `nint` and `nuint` are native-sized integers. Their size is determined by the platform (32-bit or 64-bit). They were introduced in C# 9 to allow for efficient pointer-like arithmetic and interoperability with native APIs.
 5. **Object vs. Dynamic:** `object` is the base type for all types; you must cast it to use specific members. `dynamic` tells the compiler to bypass compile-time type checking and resolve members at runtime.
 
 ## Deep follow-up answers
-*   **On Memory Safety:** While C# provides these types, memory safety remains a preview feature in C# 15/.NET 11. Understanding how these types interact with memory is critical for high-performance scenarios.
-*   **On Platform Dependence:** While `int` is always 32-bit, `nint` changes based on the architecture. This makes `nint` essential for cross-platform code that interacts with native memory addresses or handles large indices that might exceed 32-bit limits on 64-bit systems.
-*   **On Precision:** `decimal` is not a floating-point type in the same sense as `float` or `double`. It uses a base-10 representation, which avoids the binary representation errors inherent in floating-point math, making it the standard for currency.
+*   **On memory safety:** Memory safety is not a property of this type list and the claim that it is preview-only is unsupported. Unsafe code, managed references, and ref safety are separate topics.
+*   **On platform dependence:** `nint` follows process pointer width and is useful when an API specifies a native-sized integer. It is not inherently required for cross-platform code or large indices; `long` remains fixed-width.
+*   **On precision:** `decimal` exactly represents many decimal fractions, but has finite range and precision and can round. Financial calculations must follow domain-defined scale and rounding rules.
 
 ## Scenario questions
 *   **Scenario:** You are building a high-frequency trading application. Which numeric type do you choose for currency?
@@ -41,12 +41,12 @@
     *   `dynamic`: Flexible, but loses compile-time safety and performance due to runtime resolution.
 
 ## Common weak answers
-*   "I use `double` for everything because it's the default." (Weak because it ignores precision requirements for money or memory constraints for large arrays).
+*   "I use `double` for everything because it's the default." (Weak because type choice should follow domain, range, precision, rounding, and API requirements).
 *   "I use `dynamic` because it's easier than casting." (Weak because it ignores the performance cost and the loss of compile-time error detection).
 *   "I don't know the difference between `int` and `Int32`." (Weak because it shows a lack of understanding of the language's relationship with the underlying .NET framework).
 
 ## Self-check rubric
-*   **Can you explain the alias concept?** (Yes: Keywords = aliases for .NET types).
+*   **Can you explain the built-in keyword set?** (Most keywords alias .NET types; `dynamic`, `delegate`, and `void` have distinct language semantics).
 *   **Can you distinguish value vs reference?** (Yes: Value = data, Reference = pointer).
 *   **Do you know when to use `decimal`?** (Yes: Financial/High precision).
 *   **Can you explain `nint`?** (Yes: Native-sized, platform-dependent, C# 9+).

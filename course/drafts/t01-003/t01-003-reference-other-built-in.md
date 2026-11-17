@@ -17,15 +17,16 @@ In C#, every variable has a type. While numeric types handle calculations, the "
 
 *   **`bool`**: Represents a Boolean value, which can only be `true` or `false`. It is used for logical operations and conditional branching.
 *   **`char`**: Represents one 16-bit UTF-16 code unit; some Unicode scalar values require a surrogate pair. It is a value type.
-*   **`object`**: The ultimate base type for all other types in the .NET type system. Every type, whether built-in or custom, inherits from `object`.
-*   **`string`**: Represents a sequence of zero or more Unicode characters. Unlike `char`, `string` is a reference type.
-*   **`dynamic`**: A special type that tells the compiler to bypass compile-time type checking. Type resolution happens at runtime.
-*   **`void`**: A keyword used to indicate that a method does not return a value. It is not a type that can be used for variables.
+*   **`object`**: Alias for `System.Object`, the root base type in the unified type system. `ref struct` types cannot be boxed or assigned to `object`.
+*   **`string`**: Alias for `System.String`, an immutable reference type representing a sequence of UTF-16 `char` values. Its `==` and `!=` operators compare contents.
+*   **`dynamic`**: An object-like source type for which operations are bound at runtime. It is represented as `object` in metadata; it does not turn off all compile-time checks.
+*   **`void`**: Represents absence of a type and is used for methods that return no value; it cannot be used for variables.
+*   **`delegate`**: A built-in reference-type keyword that declares custom delegate types deriving from `System.Delegate`; it isn't an alias for one specific .NET type. This keyword is missing from the manifest inventory.
 
 ## Cross-item comparison
 
-*   **`object` vs. `dynamic`**: `object` requires you to explicitly cast (convert) the variable back to its original type before accessing its members. `dynamic` allows you to call members directly, and the runtime attempts to resolve them.
-*   **`char` vs. `string`**: `char` is a single value (a single character). `string` is an immutable reference type that acts as a collection of characters.
+*   **`object` vs. `dynamic`**: `object` member access is checked against `object`, so use a cast or pattern to access a more specific member. Operations on `dynamic` are runtime-bound and can throw binder exceptions.
+*   **`char` vs. `string`**: `char` is a UTF-16 code unit, not necessarily a complete user-perceived character. `string` is an immutable sequence of UTF-16 code units.
 
 ## Examples
 
@@ -43,7 +44,7 @@ data = "Hello";
 // string: Text sequence
 string greeting = "Hello, World!";
 
-// dynamic: Bypasses compile-time checks
+// dynamic: this operation is bound at runtime
 dynamic flexible = 5;
 flexible = "Now I am a string";
 
@@ -57,7 +58,8 @@ void LogMessage() {
 
 1.  **Using `void` as a variable type**: You cannot declare `void x;`. `void` is only for method signatures.
 2.  **Confusing `char` and `string`**: `char` uses single quotes (`'A'`), while `string` uses double quotes (`"A"`).
-3.  **Overusing `dynamic`**: Because `dynamic` skips compile-time checking, you lose the safety of the compiler. If you try to call a method that doesn't exist on the underlying object, your program will crash at runtime.
+3.  **Overusing `dynamic`**: Dynamically bound member operations can fail at runtime if the runtime value lacks the member; the rest of the program remains subject to normal compile-time checks.
+4.  **Object boxing:** Converting most value types to `object` boxes a copy; `ref struct` values cannot be boxed. `object` is the base of the unified type system, not a guarantee every value can be stored in an object variable.
 
 ## Knowledge checks with answers
 

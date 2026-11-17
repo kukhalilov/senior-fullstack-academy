@@ -17,24 +17,24 @@
 * Understanding that computer memory stores data as bits and bytes.
 
 ## Core concepts
-In C#, every piece of data you use is an instance of a type. C# provides **built-in type aliases**—keywords like `int` or `bool`—that act as shorthand for specific types defined in the .NET type system.
+In C#, every expression has a type. Most built-in type keywords are aliases for .NET types (`int` and `System.Int32` are the same type). `dynamic` has runtime-binding semantics, while `void` represents the absence of a return type.
 
 ### Mental Model: The Container vs. The Label
-* **Value Types:** Think of these as a box that holds the actual data (e.g., the number `5`). When you copy a value type, you copy the data itself.
-* **Reference Types:** Think of these as a label or a pointer. The variable doesn't hold the data; it holds the address of where the data lives in memory.
+* **Value Types:** A variable contains an instance of its value type. Ordinary assignment copies that instance; if it contains reference-typed fields, those references are copied too.
+* **Reference Types:** A variable contains a reference to an object. C# does not specify a physical address representation or prescribe the object's storage location.
 
 ### The Type Map
 1. **Integral Types:** Represent whole numbers. These are divided into signed (can be negative) and unsigned (only zero or positive).
-2. **Floating-Point Types:** Represent numbers with fractional parts.
+2. **Floating-point types:** `float` and `double` are IEEE 754 binary formats. `decimal` is a finite-precision base-10 scaled representation, not an IEEE binary floating-point format.
 3. **Other Types:** Include logical values (`bool`), text (`char`, `string`), and special types like `object`, `dynamic`, and `void`.
 
 ## Mechanisms and relationships
-The C# compiler maps keywords to the .NET runtime types. For example, the keyword `int` is an alias for `System.Int32`. 
+Most built-in type keywords alias .NET types; for example, `int` and `System.Int32` name the same type. `dynamic` is represented as `object` in metadata but changes binding behavior, and `void` denotes no return type.
 
 ### Key Distinctions
-* **Range and Precision:** Numeric types differ in how much memory they consume and the range of values they can represent. For instance, `long` holds a larger range than `int`.
-* **Native-sized Integers (`nint`, `nuint`):** Introduced in C# 9, these types change their size (32-bit or 64-bit) based on the underlying processor architecture, making them ideal for memory addresses or interop scenarios.
-* **`object` vs. `dynamic`:** `object` is the base type for all types in .NET. `dynamic` tells the compiler to bypass compile-time type checking, deferring resolution until the code actually runs.
+* **Range and precision:** `long` has a wider range than `int`; storage width alone doesn't determine total memory use or speed.
+* **Native-sized Integers (`nint`, `nuint`):** Their width follows the process architecture (32 or 64 bits) and they can fit native-sized integer APIs. They are not managed object references; follow the interop API's contract.
+* **`object` vs. `dynamic`:** `object` is the root base type for ordinary .NET types (with `ref struct` restrictions); member access is statically checked against `object`. Operations on `dynamic` are runtime-bound and can fail at runtime.
 
 ## Worked examples
 
@@ -57,8 +57,9 @@ string name = "C#"; // Reference type: 'name' holds a reference to the string ob
 ## Misconceptions and edge cases
 * **Misconception:** `float`, `double`, and `decimal` are interchangeable. 
     * **Reality:** They differ significantly in precision and performance. `float` and `double` are binary floating-point types (fast, but can have rounding errors), while `decimal` uses a base-10 scaled representation (often useful for decimal-domain amounts, though finite precision can still round); benchmark performance for the actual workload.
-* **Edge Case:** `void` is a special keyword used to indicate that a method does not return a value; it is not a type that can hold data.
-* **Edge Case:** `dynamic` is not a "type" in the traditional sense; it is a directive to the compiler to skip type checking for that variable.
+* **Edge Case:** `void` represents absence of a type and is used for methods that return no value; it cannot be used for variables.
+* **Edge Case:** `dynamic` is a source-level type with runtime-bound operations, represented as `object` in metadata; it does not disable all compile-time checking.
+* **Unicode:** `char` is one 16-bit UTF-16 code unit, not necessarily a complete Unicode scalar. `string` is immutable and its `==` operator compares contents.
 
 ## Knowledge checks with answers
 

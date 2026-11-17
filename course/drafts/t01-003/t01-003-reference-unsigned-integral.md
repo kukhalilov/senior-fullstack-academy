@@ -8,7 +8,7 @@
 This lesson covers the unsigned integral type keywords in C# 15, running on .NET 11 GA. The information is based on the Microsoft Learn C# built-in type reference (checked 2026-11-14).
 
 # How this group fits the mental model
-In C#, "integral" types represent whole numbers. "Unsigned" means these types can only represent zero and positive numbers; they do not have a sign bit to represent negative values. Because they do not need to store a negative sign, they can store a larger positive range than their signed counterparts (e.g., `sbyte` vs `byte`). These are **value types**; a variable contains its value, with physical storage location left to implementation and context.
+In C#, integral types represent integers. Unsigned types represent zero and nonnegative values, with the same width's full range available above zero (for example, `byte` ranges 0–255 while `sbyte` ranges -128–127). These are value types; physical storage location is implementation- and context-dependent.
 
 # Supplied names explained
 *   **`byte`**: An 8-bit unsigned integer. It is the smallest integral type, ranging from 0 to 255.
@@ -26,7 +26,7 @@ The primary difference between these types is the amount of memory they occupy a
 | `uint` | 32 | 4,294,967,295 |
 | `ulong` | 64 | 18,446,744,073,709,551,615 |
 
-When choosing a type, select the smallest one that can accommodate your expected data range to optimize memory usage.
+Choose based on domain range, interoperability, and collection/API contracts. A narrower scalar type does not necessarily make arithmetic faster or an application smaller; arrays expose a clear per-element size tradeoff.
 
 # Examples
 ```csharp
@@ -38,7 +38,7 @@ ulong veryLargeValue = 18000000000000000000UL;
 ```
 
 # Common mistakes
-1.  **Overflow**: Attempting to assign a value larger than the type's maximum capacity will cause a compilation error or a runtime exception (depending on the context).
+1.  **Overflow**: Constant assignments outside permitted range may be compile-time errors; runtime integral arithmetic and conversions have checked/unchecked behavior that depends on context and operation.
 2.  **Negative Assignment**: Assigning a negative number to an unsigned type is not allowed. For example, `byte b = -1;` will result in a compilation error.
 3.  **Mixing Types**: Performing arithmetic between different integral types often results in an implicit conversion to a larger type. Always be mindful of the resulting type to avoid unexpected data loss or errors.
 

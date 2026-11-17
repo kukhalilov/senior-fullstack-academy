@@ -5,10 +5,10 @@
   "title": "C# built-in type aliases and characteristics",
   "status": "source-backed-draft-generation-enabled",
   "concepts": [
-    "C# keywords alias named types in the .NET type system",
+    "Most C# built-in type keywords alias named types; dynamic, delegate, and void have distinct semantics",
     "Value types store values while reference types store object references",
-    "Numeric types differ in range, precision, representation, and platform dependence",
-    "The language's built-in type set includes numeric, Boolean, character, object, string, dynamic, and void forms",
+    "Numeric types differ in range, precision, representation, and platform dependence; decimal is not IEEE binary floating point",
+    "The built-in type set includes numeric, Boolean, character, object, string, dynamic, delegate, and void forms",
     "Choosing a type means balancing domain meaning, range, precision, interoperability, and API expectations"
   ],
   "inventory": [
@@ -58,6 +58,7 @@
         "object",
         "string",
         "dynamic",
+        "delegate",
         "void"
       ]
     }
@@ -109,29 +110,34 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn C# built-in type reference and C# language specification",
-    "edition": "C# 15 stable on .NET 11 GA; Memory safety remains preview-only; checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "Latest released C# language reference; checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
-      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/char"
     ]
   },
   "scopeExclusions": [
     "Numeric literal syntax and numeric conversion rules, covered in a separate topic",
     "Nullable forms such as T? and nullable reference annotations, covered separately",
-    "Arrays, tuples, enums, structs, classes, interfaces, and delegates",
     "Framework types not exposed as C# built-in keywords",
     "Formatting and parsing APIs for values"
   ],
   "generationAllowed": true,
   "accuracyFacts": [
-    "Value-type variables contain values; do not claim the language requires local value data to be stored on the stack or directly inside a physical variable slot. Object references are not specified as physical memory addresses.",
-    "decimal uses a finite-precision base-10 representation. It represents many decimal fractions exactly, but arithmetic can still round; do not claim decimal eliminates rounding errors or is always slower/faster.",
-    "char is a 16-bit UTF-16 code unit, not necessarily one complete Unicode scalar value; supplementary scalars use surrogate pairs.",
-    "Integral literal assignment outside the target type's permitted constant range is generally a compile-time error; distinguish compile-time constant conversions from runtime checked/unchecked casts."
+    "Most keywords are aliases, but dynamic is represented as object with runtime binding behavior, delegate declares custom delegate types, and void represents absence of a type.",
+    "Value-type variables contain instances and reference-type variables contain references; do not claim the language requires local values on the stack, objects elsewhere, or references to be physical addresses.",
+    "decimal uses finite-precision base-10 representation and many decimal fractions are exact, but arithmetic may round; no blanket speed claim.",
+    "float and double use IEEE 754 binary32/binary64 and support NaN/infinities; decimal is a 96-bit integer scaled by a power of ten, occupies 16 bytes, and has no NaN/infinities.",
+    "char is a 16-bit UTF-16 code unit, not necessarily one complete Unicode scalar; supplementary scalars use surrogate pairs.",
+    "string is immutable, stores UTF-16 code units, and its equality operators compare string contents.",
+    "nint/nuint width follows process architecture; they are not managed object references and do not automatically make pointer arithmetic safe.",
+    "object is the root base type with ref-struct restrictions; converting value types to object boxes, while dynamic binding can fail at runtime.",
+    "Integral constant conversions, runtime conversions, and arithmetic overflow follow distinct rules; distinguish compile-time constants and checked/unchecked runtime contexts."
   ]
 }

@@ -43,7 +43,7 @@ long largeValue = 9000000000000000000L;
 
 # Common mistakes
 *   **Overflow**: Assigning a value that is too large for the chosen type will cause an error or unexpected behavior. For example, trying to store 200 in an `sbyte` will result in a compilation error because 200 exceeds the maximum value of 127.
-*   **Choosing `long` by default**: While `long` can hold any value an `int` can, it uses twice the memory. Use the smallest type that fits your data requirements to keep your application memory-efficient.
+*   **Choosing by width alone**: `long` has a wider range and its array element payload is twice `int`; for ordinary variables total memory and performance depend on context. Choose by domain range and API contract.
 
 # Knowledge checks with answers
 
@@ -54,4 +54,4 @@ long largeValue = 9000000000000000000L;
 *   *Answer:* The maximum value for a `short` is 32,767. 40,000 exceeds this limit, so you would need to use an `int` instead.
 
 **3. Are these types reference types or value types?**
-*   *Answer:* They are value types; they store the actual numeric value in memory.
+*   *Answer:* They are value types; a variable contains an instance of the numeric type. Physical placement is not specified by the language.

@@ -29,17 +29,17 @@ string message = "Hello";
 
 ## Exercises
 1. You need to store a value that represents a toggle (on/off). Which type from the `other-built-in` category is most appropriate?
-2. You are writing a financial application requiring high precision for currency. Compare `float`, `double`, and `decimal`. Which is the safest choice?
+2. You are implementing a financial rule. Compare `float`, `double`, and `decimal`; what additional domain decisions are needed before choosing?
 3. You need an integer type that automatically adjusts its size (32-bit or 64-bit) based on the underlying processor architecture. Which keywords should you use?
 
 ## Progressive hints
 * **Hint 1 (Exercise 1):** Look at the `other-built-in` list. Is there a type specifically for logical truth values?
-* **Hint 2 (Exercise 2):** `float` and `double` are binary floating-point types (good for scientific calculations). `decimal` is a 128-bit type with higher precision and smaller range, often useful for decimal-domain financial calculations because many base-10 fractions are represented exactly; finite precision still means arithmetic can round.
+* **Hint 2 (Exercise 2):** `float` and `double` are IEEE binary floating-point; `decimal` uses finite precision base-10 scaling. Ask what scale, rounding, range, and interoperability the financial specification requires.
 * **Hint 3 (Exercise 3):** Refer to the `native-integral` category. These types were introduced in C# 9 to match the size of the native pointer on the host machine.
 
 ## Complete solutions
 1. **`bool`**: It is the built-in type for Boolean values.
-2. **`decimal`**: It represents many base-10 fractions exactly and is often suitable for financial rules, but it has finite precision and arithmetic may still round. Choose based on domain rules.
+2. **There is no universal safest type.** `decimal` often fits decimal-based amounts because many base-10 fractions are exact, but choose the representation and explicit rounding/scale policy required by the domain. It can still round or overflow.
 3. **`nint` and `nuint`**: These are native-sized integers.
 
 ## Tests and edge cases
