@@ -53,7 +53,7 @@ Imagine you are processing a list of files:
 *   **`using declaration` vs `await using declaration`:** Use `using declaration` for standard synchronous disposal; use `await using declaration` when the resource requires asynchronous cleanup (e.g., closing a network stream).
 *   **`throw statement` vs `throw expression`:** The `throw statement` is used to trigger an exception as a standalone action; the `throw expression` allows you to throw an exception within an expression (e.g., in a null-coalescing operator).
 
-*Note: C# 15 introduces labeled `break` and `continue` statements, which allow you to target specific outer loops or switch sections, reducing the need for complex flags.*
+*Note: C# 15 introduces labeled `break` and `continue` statements: labeled `break` exits a named enclosing loop or switch, and labeled `continue` starts the next iteration of a named enclosing loop. The label belongs on the target loop or switch.*
 
 # What later lessons cover
 This overview covers the structure of C# statements. Later lessons will dive into:

@@ -39,7 +39,7 @@ try {
 2. The `foreach` statement iterates through the list.
 3. The `if` statement checks the condition.
 4. The `continue` statement skips the remainder of the current loop iteration.
-5. The `using declaration` ensures the `StringReader` is disposed of when it goes out of scope.
+5. The `using declaration` is scoped inside the `foreach` body, so its `StringReader` is disposed when that body iteration exits, including via `continue` or an exception.
 
 # Exercises
 1. **Selection:** Write a `switch statement` that evaluates an integer and uses a `when guard` to check if the number is greater than 10.
@@ -51,7 +51,7 @@ try {
 * **Exercise 1:** Remember that a `switch section` requires a `case pattern label` or `case constant label`. The `when guard` follows the pattern.
 * **Exercise 2:** A `for iteration clause` usually contains initialization, condition, and iterator. In a `while statement`, move the initialization outside and the iterator to the end of the block.
 * **Exercise 3:** To use a `Labeled break statement`, prefix your outer loop with an identifier followed by a colon (e.g., `OuterLoop: for(...)`). Then use `break OuterLoop;`.
-* **Exercise 4:** A `using statement` requires curly braces `{}`. A `using declaration` ends with a semicolon `;` and disposes the object when the current block ends.
+* **Exercise 4:** A `using statement` may use a block or a single embedded statement. A `using declaration` ends with a semicolon and disposes the object when its enclosing scope exits.
 
 # Complete solutions
 1. **Selection:**
@@ -79,8 +79,8 @@ try {
 # Tests and edge cases
 * **Empty statement:** A lone `;` is valid but often indicates a logic error (e.g., `if (x > 0);`).
 * **Labeled statements:** Ensure labels are unique within the same scope.
-* **Exception filters:** Use `catch (Exception ex) when (ex.Message.Contains("error"))` to handle specific conditions without catching everything.
-* **Unsafe:** The `unsafe statement` and `fixed statement` are required when working with pointers; ensure the project is configured to allow unsafe code.
+* **Exception filters:** Prefer filters on stable exception properties or application state rather than message text, which may change or be localized. A filter condition that throws is treated as false.
+* **Unsafe:** Pointer declarations and operations require an unsafe context and the project must enable unsafe blocks. `fixed` is needed when a pointer must keep movable managed storage pinned; not every pointer requires `fixed` (for example, stack-allocated memory).
 
 # Reflection questions
 1. Why does C# provide both `using statement` and `using declaration`? How does the scope differ?

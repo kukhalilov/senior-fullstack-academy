@@ -19,14 +19,15 @@ In C#, **statements** are the instructions that perform actions, whereas **expre
 
 *   `Block statement`: A sequence of zero or more statements enclosed in braces `{}`. It creates a new local variable scope; variables declared inside are not accessible outside the block.
 *   `Empty statement`: A single semicolon `;`. It is used when the language syntax requires a statement but your logic requires no action (e.g., in a `while` loop body that does all its work in the condition).
-*   `Expression statement`: An expression followed by a semicolon. This evaluates the expression and discards the result. Common examples include method calls, assignments, and increment/decrement operations.
+*   `Expression statement`: A permitted statement-expression followed by a semicolon. C# does not permit every expression as a standalone expression statement; common forms include invocations, assignments, increments/decrements, object creation, and await expressions.
+*   `Expression statement permitted forms`: C# permits specific expression categories as statements; an arithmetic expression like `x + 1;` is not valid by itself.
 *   `Declaration statement`: A statement that introduces a new local variable or constant. It is the umbrella category for the following two items.
 *   `Local variable declaration`: Introduces a variable whose value can change. It specifies a type and a name, optionally followed by an initialization (e.g., `int x = 5;`).
 *   `Local constant declaration`: Introduces a constant using the `const` keyword. It must be initialized at the time of declaration, and its value cannot be changed thereafter.
-*   `Labeled statement`: A name followed by a colon and a statement (e.g., `myLabel: statement;`). It allows you to jump to that specific point in the code using a `goto` statement.
+*   `Labeled statement`: A name followed by a colon and a statement. A `goto` can target an in-scope label in the same function, subject to definite-assignment and scope rules; C# 15 also lets labeled `break`/`continue` target enclosing constructs.
 
 # Cross-item comparison
-*   `Local variable declaration` vs `Local constant declaration`: Both introduce names into the current scope. However, variables are mutable (can be reassigned), while constants are immutable and require an immediate value assignment that is known at compile time.
+*   `Local variable declaration` vs `Local constant declaration`: Both introduce names into the current scope. However, variables can be reassigned, while a `const` requires a compile-time constant value at its declaration and cannot be reassigned.
 *   `Block statement` vs `Labeled statement`: A block groups statements to manage scope, while a label provides a target for control flow jumps. They are often used together, as a label can precede a block.
 
 # Examples
@@ -62,7 +63,7 @@ while (SomeCondition()) ;
 *   **Scope confusion**: Attempting to access a variable declared inside a `Block statement` from outside that block.
 *   **Missing semicolons**: Forgetting that an `Expression statement` must end with a `;`.
 *   **Constant initialization**: Attempting to declare a `Local constant declaration` without assigning a value immediately, which causes a compilation error.
-*   **Label placement**: Placing a `Labeled statement` immediately before a closing brace `}` without an associated statement; you must follow the label with at least an `Empty statement` (`;`) if no other code follows.
+*   **Label placement**: A label must label a statement. If no operation follows, use an empty statement (`;`); labels also have function-level scope rules and cannot be duplicated in the same function.
 
 # Knowledge checks with answers
 
@@ -73,4 +74,4 @@ while (SomeCondition()) ;
 3.  **Question**: Does a `Block statement` create a new scope?
     *   **Answer**: Yes, variables declared within a block are local to that block and cannot be accessed outside of it.
 4.  **Question**: What is the difference between an `Expression statement` and an expression?
-    *   **Answer**: An expression produces a value, while an `Expression statement` is an expression followed by a semicolon, which executes the expression as a command and discards the result.
+    *   **Answer**: An expression statement is limited to expression forms C# permits as statements (such as an invocation or assignment); appending a semicolon to any arbitrary value-producing expression is not valid.

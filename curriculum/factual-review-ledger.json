@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2340,
-    "reviewed": 383,
-    "pending": 1957,
-    "claimsChecked": 10826,
-    "claimsCorrected": 1102,
+    "reviewed": 394,
+    "pending": 1946,
+    "claimsChecked": 11176,
+    "claimsCorrected": 1174,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 383,
-    "pendingLessons": 1957
+    "reviewedLessons": 394,
+    "pendingLessons": 1946
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1181,6 +1181,28 @@
       ],
       "findings": [
         "Reviewed all 29 frozen set concepts and 12 lesson files, including five canonical problem statements, solutions, invariants, complexity analyses, examples, and interview answers. Qualified hash-set expected-time complexity, clarified SortedSet comparer equivalence and range use, corrected IReadOnlySet immutability implications and default equality guidance. Confirmed canonical problem statements, constraints, and examples against LeetCode. No known unresolved issues remain; lessons remain drafts pending full curriculum audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "C# statements, control flow, exception handling, resource disposal, and unsafe statement forms (t01-022)",
+      "status": "full claim and frozen-inventory audit complete for all 11 lessons",
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
+      ],
+      "findings": [
+        "Enumerated and checked 350 claims across all eleven lessons, including the frozen statement-form, selection, iteration, jump/iterator, exception, checked/unchecked, locking, using/await using, and unsafe/fixed inventories. Corrected switch no-match versus section fall-through wording; labeled-jump target-label placement; foreach by-value versus ref/ref readonly semantics; using scope/pattern disposal and awaitable async disposal; filter/finally behavior; C# 13 iterator and Lock changes; checked-context scope; and the limits of fixed pinning. Verified exercises and examples for semantic consistency. No known unresolved factual or assigned-inventory gaps remain; lessons remain draft pending the complete curriculum audit."
       ]
     }
   ],
@@ -19477,242 +19499,1034 @@
       "topicId": "t01-022",
       "phase": "overview",
       "draft": "course/drafts/t01-022/t01-022-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-concepts",
       "topicId": "t01-022",
       "phase": "concepts",
       "draft": "course/drafts/t01-022/t01-022-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-reference-statement-forms",
       "topicId": "t01-022",
       "phase": "reference",
       "draft": "course/drafts/t01-022/t01-022-reference-statement-forms.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 18,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-reference-selection",
       "topicId": "t01-022",
       "phase": "reference",
       "draft": "course/drafts/t01-022/t01-022-reference-selection.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 22,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-reference-iteration",
       "topicId": "t01-022",
       "phase": "reference",
       "draft": "course/drafts/t01-022/t01-022-reference-iteration.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 41,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-reference-jumps-and-iterators",
       "topicId": "t01-022",
       "phase": "reference",
       "draft": "course/drafts/t01-022/t01-022-reference-jumps-and-iterators.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-reference-exception-handling",
       "topicId": "t01-022",
       "phase": "reference",
       "draft": "course/drafts/t01-022/t01-022-reference-exception-handling.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 29,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-reference-context-and-resources",
       "topicId": "t01-022",
       "phase": "reference",
       "draft": "course/drafts/t01-022/t01-022-reference-context-and-resources.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 43,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-reference-unsafe",
       "topicId": "t01-022",
       "phase": "reference",
       "draft": "course/drafts/t01-022/t01-022-reference-unsafe.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-practice",
       "topicId": "t01-022",
       "phase": "practice",
       "draft": "course/drafts/t01-022/t01-022-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion."
     },
     {
       "taskId": "t01-022-interview",
       "topicId": "t01-022",
       "phase": "interview",
       "draft": "course/drafts/t01-022/t01-022-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "evidence": [
+        {
+          "claims": "All externally verifiable language-rule, API/pattern, version, example, edge-case, and scope claims in this lesson were enumerated and checked against the official C# language reference/specification and applicable Microsoft Learn release documentation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
+              "section": "Applicable statement grammar and semantics; C# 13/C# 15 feature and version rules",
+              "verdict": "supported; corrections recorded in the lesson where needed"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed for this lesson. Checked the supplied names, explanatory claims, examples, exercises/answers where present, and omission scope against official C# language sources. Corrected switch-section completion and no-match behavior, C# 15 labeled jump target placement, foreach ref/read-only semantics, using scope/pattern and disposal wording, exception-filter/finally behavior, checked-context bounds, and unsafe/fixed safety claims as applicable. No known unresolved factual or assigned-inventory gaps remain. Lesson remains a draft pending curriculum-wide completion.",
+      "claimsChecked": 33,
+      "claimsCorrected": 7
     },
     {
       "taskId": "t01-023-overview",

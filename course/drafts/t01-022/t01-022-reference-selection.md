@@ -54,7 +54,7 @@ switch (input)
 
 # Common mistakes
 
-1. **Missing `break`**: In a `switch` statement, failing to include a `break` (or other jump statement) at the end of a `switch section` will cause a compiler error, as C# does not allow "fall-through" between sections.
+1. **Assuming C-style fall-through**: A non-empty switch section generally must end with a jump that prevents control from falling into the next section; the compiler reports an error otherwise. Multiple labels can share one section. If no case matches and there is no `default`, execution continues after the switch.
 2. **Overusing `if-else`**: When checking a single variable against many values, a long chain of `if-else` statements is harder to read than a `switch` statement.
 3. **Ignoring `default`**: Forgetting a `default` label in a `switch` can lead to unexpected behavior if the input does not match any of your defined cases.
 

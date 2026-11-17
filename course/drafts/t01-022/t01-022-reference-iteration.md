@@ -16,8 +16,9 @@ In C#, statements perform actions. Iteration statements are a specific category 
 * `await foreach statement`: An asynchronous iteration form for types supported by the async-enumerator pattern, commonly `IAsyncEnumerable<T>`.
 * `while statement`: A loop that repeats a block of code as long as a specified boolean expression evaluates to `true`. The condition is checked before the loop body executes.
 * `do statement`: A loop that executes a block of code once, then repeats it as long as a specified boolean expression evaluates to `true`. The condition is checked after the loop body executes.
-* `foreach iteration variable`: The read-only variable that represents the current element being processed during a `foreach` or `await foreach` loop.
-* `for iteration clause`: The specific part of a `for` statement that contains the initialization, condition, and iterator logic.
+* `foreach iteration variable`: The variable representing the current element. A by-value iteration variable is read-only; a ref iteration variable can refer to the element when the enumerator exposes `Current` by reference.
+* `ref and ref readonly foreach iteration variables`: When `Current` returns by reference, `foreach (ref T item ...)` can modify the element and `foreach (ref readonly T item ...)` provides read-only access without copying.
+* `for iteration clause`: A `for` statement has three parts: an optional initializer, a condition, and an iterator clause. The initializer and iterator can each contain multiple expressions.
 
 # Cross-item comparison
 * `while` vs `do`: The `while` statement checks the condition before the first iteration (the loop might never run), whereas the `do` statement guarantees the loop body runs at least once because it checks the condition after the body.
@@ -53,6 +54,6 @@ do { x++; } while (x < 5);
 2. **Question:** What is the primary difference between `foreach` and `await foreach`?
    **Answer:** `await foreach` is used for asynchronous collections that require awaiting each element retrieval.
 3. **Question:** Can you modify the `foreach iteration variable` inside the loop?
-   **Answer:** No, the iteration variable is read-only.
+   **Answer:** A by-value iteration variable cannot be assigned to. A `ref` iteration variable can modify the underlying element when the enumerator exposes `Current` by reference; `ref readonly` is read-only.
 
 *Source: [https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements)*

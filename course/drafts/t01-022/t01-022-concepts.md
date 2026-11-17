@@ -59,15 +59,15 @@ In this example:
 
 # Misconceptions and edge cases
 *   **Statements vs. Expressions**: A common mistake is trying to use a `throw statement` where an expression is required. Remember that a `throw statement` is an action, while a `throw expression` (not covered here) produces a value.
-*   **Labeled Jumps**: In C# 15, you can use `Labeled break statement` and `Labeled continue statement` to target specific outer loops, which is much safer than using a `goto statement` to jump across code blocks.
+*   **Labeled Jumps**: In C# 15, you can use `Labeled `break` and `continue` in C# 15 to target enclosing constructs: `break` can target a loop or switch, while `continue` can target only a loop.
 *   **Resource Disposal**: Choose `using declaration` or `using statement` to match the needed lifetime; a statement is useful when disposal should happen before the enclosing scope ends.
 
 # Knowledge checks with answers
 1. **Question**: What is the primary difference between a `Block statement` and a simple statement?
-   *   **Answer**: A block statement groups multiple statements together and creates a new local scope for variables.
+   *   **Answer**: A block groups statements and establishes a local-variable declaration space; local names declared in it are not in scope outside it, though captured variables can outlive the block as storage.
 
 2. **Question**: If you want to stop the current iteration of a loop and move to the next one, which statement should you use?
-   *   **Answer**: The `continue statement`.
+   *   **Answer**: The `continue statement`. For nested loops, C# 15 also permits a labeled `continue` targeting an enclosing loop.
 
 3. **Question**: Why would you use a `try-finally statement`?
    *   **Answer**: To guarantee that specific code (like closing a file) runs regardless of whether an exception was thrown in the `try` block.

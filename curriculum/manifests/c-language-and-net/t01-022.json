@@ -25,7 +25,8 @@
         "Declaration statement",
         "Local variable declaration",
         "Local constant declaration",
-        "Labeled statement"
+        "Labeled statement",
+        "Expression statement permitted forms"
       ]
     },
     {
@@ -52,7 +53,8 @@
         "while statement",
         "do statement",
         "foreach iteration variable",
-        "for iteration clause"
+        "for iteration clause",
+        "ref and ref readonly foreach iteration variables"
       ]
     },
     {
@@ -70,7 +72,12 @@
         "yield return statement",
         "yield break statement",
         "Labeled break statement",
-        "Labeled continue statement"
+        "Labeled continue statement",
+        "goto label scope and definite assignment rules",
+        "throw statement rethrow stack-trace preservation",
+        "yield statement placement restrictions",
+        "C# 13 iterator unsafe-context relaxation",
+        "C# 13 ref struct locals in iterators across yield boundary"
       ]
     },
     {
@@ -82,7 +89,10 @@
         "try-catch-finally statement",
         "catch clause",
         "exception filter",
-        "finally clause"
+        "finally clause",
+        "exception filter evaluated before stack unwinding",
+        "exception filter failure treated as false",
+        "finally clause behavior on abrupt process termination"
       ]
     },
     {
@@ -95,7 +105,13 @@
         "using statement",
         "using declaration",
         "await using statement",
-        "await using declaration"
+        "await using declaration",
+        "using pattern-based Dispose support",
+        "await using pattern-based DisposeAsync support",
+        "using declaration reverse-order disposal",
+        "C# 13 lock statement lowering for System.Threading.Lock",
+        "await prohibited in lock body",
+        "checked context applies only to textually included operations"
       ]
     },
     {
@@ -103,7 +119,9 @@
       "title": "Unsafe statement forms",
       "items": [
         "unsafe statement",
-        "fixed statement"
+        "fixed statement",
+        "fixed statement GetPinnableReference pattern",
+        "fixed pinning lifetime does not make pointer use safe"
       ]
     }
   ],
@@ -152,19 +170,40 @@
         "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
         "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements"
       ]
+    },
+    {
+      "edition": "C# 13",
+      "items": [
+        "`lock` on a statically typed `System.Threading.Lock` lowers through `EnterScope` and scope disposal; a `lock` body still cannot use `await`.",
+        "Iterator methods may contain unsafe blocks, but `yield` statements must remain in a safe context. Ref locals and ref struct locals may be used when they do not cross a yield boundary.",
+        "C# 8 introduced using declarations, await using, and await foreach; these language forms use synchronous or asynchronous disposal/enumeration patterns."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+        "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield"
+      ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn C# statements reference and C# language specification",
-    "edition": "C# 15 stable on .NET 11 GA; Memory safety remains preview-only; checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "C# 15 stable and .NET 11 GA statement forms checked 2026-11-17; preview memory-safety changes remain explicitly excluded",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/",
       "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/selection-statements",
       "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration-statements",
       "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/jump-statements",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements",
-      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15"
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/exception-handling-statements"
     ]
   },
   "scopeExclusions": [
@@ -174,5 +213,16 @@
     "Asynchronous programming beyond await foreach and await using statement forms",
     "Pointer types and unsafe expressions beyond unsafe and fixed statement forms"
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "C# 15 labeled break can target an enclosing loop or switch; labeled continue can target only an enclosing loop. C# 15 feature status checked against current Microsoft language documentation.",
+    "`yield return` and `yield break` cannot appear in catch/finally clauses or a try with a catch; both are permitted in try-finally without catch, and starting C# 13 iterator methods may include unsafe blocks but yield statements must be in safe context.",
+    "C# 13 allows ref/ref struct locals in iterator methods only when those values do not cross yield boundaries.",
+    "An exception filter runs before stack unwinding. A filter that evaluates false or itself throws is treated as not matching.",
+    "`using` and `await using` support appropriate disposal patterns as well as interface-based disposal; declarations dispose at the end of their enclosing scope.",
+    "A `lock` body cannot contain await. .NET 9/C# 13 uses `System.Threading.Lock.EnterScope` lowering when that is the static type of the lock expression.",
+    "checked/unchecked statements affect specified integral arithmetic and conversions that are textually within the context. Called method bodies are not affected; division by zero still throws in unchecked context.",
+    "Expression statements are restricted to permitted statement-expression forms; a semicolon does not turn every expression into a valid statement.",
+    "A goto target must be valid within the current function and respect local-variable scope and definite-assignment rules."
+  ]
 }

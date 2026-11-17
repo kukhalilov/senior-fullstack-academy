@@ -8,15 +8,17 @@
 This lesson covers the `unsafe` and `fixed` statement forms in C#. These features are part of the C# 15 language specification running on .NET 11 GA. Note that while these statements are stable, broader memory safety features in C# remain in preview as of the 2026-11-14 snapshot.
 
 # How this group fits the mental model
-In C#, the runtime (CLR) manages memory automatically. However, some performance-critical or low-level tasks require direct memory access, similar to languages like C or C++. The `unsafe` and `fixed` statements provide a "sandbox" where you can perform operations the compiler cannot fully verify as type-safe to perform pointer arithmetic or interact with unmanaged memory.
+In C#, the runtime (CLR) manages memory automatically. However, some performance-critical or low-level tasks require direct memory access, similar to languages like C or C++. An `unsafe` context permits pointer operations that the compiler cannot fully verify. It is not a sandbox and does not disable all runtime checks; it makes the programmer responsible for correct pointer use.
 
-*   **`unsafe` statement**: Acts as a container. It tells the compiler that the code inside is allowed to use pointers and perform operations that the runtime cannot verify for safety.
-*   **`fixed` statement**: Acts as a protector. It tells the garbage collector (GC) to "pin" a variable in memory so that its address does not change while you are working with it via a pointer.
+*   **`unsafe` statement**: Marks a block in which pointer types and operations are permitted, provided the project allows unsafe code.
+*   **`fixed` statement**: Pins movable managed storage for the pointer lifetime so the GC does not relocate that storage while the pointer is in use.
 
 # Supplied names explained
 
 *   `unsafe statement`: This statement defines a block of code where pointer types and pointer-related operations are permitted. You cannot use pointers outside of an `unsafe` context. The compiler requires the project to be configured to allow unsafe code to compile this block.
-*   `fixed statement`: This statement prevents the garbage collector from relocating a movable variable. It creates a pointer to the variable, which remains valid only for the duration of the `fixed` block. Once the block exits, the variable is unpinned and the garbage collector may move it; a pointer value retained beyond the block no longer has a guaranteed stable address.
+*   `fixed statement`: This statement pins movable managed storage while a pointer is in use. The pointer is valid only for the pinning lifetime; after exit, the GC may move the storage.
+* `fixed statement GetPinnableReference pattern`: A type can participate in a `fixed` initializer by exposing `GetPinnableReference`; the returned managed reference is pinned for the `fixed` scope.
+* `fixed pinning lifetime does not make pointer use safe`: Pinning stabilizes an address only during the scope; bounds, lifetime, aliasing, and correct pointer arithmetic remain the programmer's responsibility.
 
 # Cross-item comparison
 
@@ -25,7 +27,7 @@ In C#, the runtime (CLR) manages memory automatically. However, some performance
 | `unsafe` | Enables the use of pointers and unsafe operations. | Defines a block where unsafe code is permitted. |
 | `fixed` | Pins memory to prevent the GC from moving an object. | Pins a specific variable for the duration of the block. |
 
-The `fixed` statement is almost always used *inside* an `unsafe` block, as `fixed` requires the ability to work with pointers. While `unsafe` enables the *capability* to use pointers, `fixed` provides the *safety guarantee* required to use them on managed objects.
+A `fixed` statement producing a pointer is used in an unsafe context. It pins movable storage for the statement lifetime; this stabilizes the address but does not make pointer operations safe. C# also supports pinnable-reference patterns such as `GetPinnableReference`.
 
 # Examples
 
@@ -50,7 +52,7 @@ unsafe
 
 1.  **Forgetting to enable unsafe code**: Even if you write the `unsafe` keyword, your project file must have `<AllowUnsafeBlocks>true</AllowUnsafeBlocks>` set, or the compiler will reject the code.
 2.  **Accessing pointers after the `fixed` block**: Once the `fixed` block ends, the address is no longer guaranteed to remain stable. Do not use a pointer to movable managed data beyond the pinning lifetime.
-3.  **Overusing `unsafe`**: Because these statements bypass the runtime's memory safety, they should only be used when necessary for performance or interop. Using them unnecessarily increases the risk of bugs that the compiler cannot detect.
+3.  **Overusing `unsafe`**: Unsafe contexts relax compile-time pointer safety checks; the GC and other runtime services still operate. Use pointers only when required for interop or measured low-level needs, and maintain bounds, lifetime, and ownership invariants yourself.
 
 # Knowledge checks with answers
 
@@ -61,6 +63,6 @@ unsafe
 *Answer*: No. The compiler enforces that pointer types and pointer operations are only allowed within an `unsafe` context.
 
 **3. What happens to the pointer created by `fixed` once the block finishes?**
-*Answer*: The pointer becomes invalid, and the variable is no longer pinned, meaning the garbage collector is free to move it again.
+*Answer*: The storage is unpinned and may move. A retained pointer no longer has a guaranteed stable address and must not be used as if the pin were still active.
 
 *Source: [Microsoft Learn C# statements reference](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/)*
