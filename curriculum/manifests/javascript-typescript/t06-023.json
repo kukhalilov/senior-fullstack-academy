@@ -4,18 +4,131 @@
   "track": "track-06",
   "title": "TypeScript function types, overloads, predicates, and call signatures",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Function types describe accepted arguments and return values", "Call and construct signatures allow object types to be callable or constructable", "Overload signatures expose multiple valid call shapes", "Type predicates connect runtime checks to static narrowing", "The implementation signature must support every public overload"],
+  "concepts": [
+    "Function types describe accepted arguments and return values",
+    "Call and construct signatures allow object types to be callable or constructable",
+    "Overload signatures expose multiple valid call shapes",
+    "Type predicates connect runtime checks to static narrowing",
+    "The implementation signature must support every public overload"
+  ],
   "inventory": [
-    {"id":"function-signature-forms","title":"Function type and object call signatures","items":["Function type expression","Call signature","Construct signature","Method signature","Generic call signature","Generic construct signature","Optional parameter","Rest parameter","Tuple rest parameter","Named tuple parameter","this parameter","Constructor signature","Abstract construct signature"]},
-    {"id":"overloads-and-guards","title":"Overloads, predicates, and assertion signatures","items":["Overload signature","Overload implementation signature","Function overload","Method overload","Constructor overload","Type predicate return type","Assertion signature","Assertion condition signature","Callable object type","Newable object type"]},
-    {"id":"callback-and-variance","title":"Callbacks, contextual typing, and function compatibility","items":["Callback function type","Contextual parameter typing","Return type annotation","Optional callback parameter","Rest callback parameter","Function type compatibility"]}
+    {
+      "id": "function-signature-forms",
+      "title": "Function type and object call signatures",
+      "items": [
+        "Function type expression",
+        "Call signature",
+        "Construct signature",
+        "Method signature",
+        "Generic call signature",
+        "Generic construct signature",
+        "Optional parameter",
+        "Rest parameter",
+        "Tuple rest parameter",
+        "Named tuple parameter",
+        "this parameter",
+        "Constructor signature",
+        "Abstract construct signature"
+      ]
+    },
+    {
+      "id": "overloads-and-guards",
+      "title": "Overloads, predicates, and assertion signatures",
+      "items": [
+        "Overload signature",
+        "Overload implementation signature",
+        "Function overload",
+        "Method overload",
+        "Constructor overload",
+        "Type predicate return type",
+        "Assertion signature",
+        "Assertion condition signature",
+        "Callable object type",
+        "Newable object type"
+      ]
+    },
+    {
+      "id": "callback-and-variance",
+      "title": "Callbacks, contextual typing, and function compatibility",
+      "items": [
+        "Callback function type",
+        "Contextual parameter typing",
+        "Return type annotation",
+        "Optional callback parameter",
+        "Rest callback parameter",
+        "Function type compatibility"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["overload signature","union parameter"],["call signature","function type expression"],["type predicate","boolean return type"],["this parameter","JavaScript this binding"]],
-  "comparisonSources": ["https://www.typescriptlang.org/docs/handbook/2/functions.html","https://www.typescriptlang.org/docs/handbook/type-compatibility.html"],
-  "versionNotes": [{"edition":"TypeScript 5.5","items":["Eligible boolean-returning functions can have an inferred type predicate return signature instead of only boolean."],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"]}],
-  "sourceSnapshot": {"authority":"Official TypeScript Handbook and release notes","edition":"TypeScript 7.0 stable; 7.1 beta as of 2026-11-16","checkedAt":"2026-11-16","urls":["https://www.typescriptlang.org/docs/handbook/2/functions.html","https://www.typescriptlang.org/docs/handbook/type-compatibility.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"]},
-  "accuracyFacts": ["A function type expression describes one callable signature; a call signature can be a member of a larger object type that also has properties or multiple call signatures.","An explicit this parameter is erased and is a type-only declaration in the first parameter position; JavaScript's runtime receiver behavior remains separate.","Overload signatures are the public call surface; the implementation signature is hidden from callers and must be compatible with every overload implementation path.","A union-typed argument may fail to match any of several overloads unless there is a suitable overload for the union or a single union-parameter signature.","Under strictFunctionTypes, ordinary function parameter positions are checked contravariantly, while method and constructor parameter positions retain a bivariance compatibility exception.","Optional callback parameters mean callers may omit that argument; a callback that merely ignores an argument can usually declare fewer parameters without marking the last parameter optional.","TypeScript 5.5 inferred type predicates only under the documented conditions and two-way semantics; predicate soundness details and runtime guard behavior are covered in t06-021."],
-  "scopeExclusions": ["JavaScript function implementation and runtime behavior (t06-003)","Generic inference rules beyond function signatures (t06-008)","Detailed type predicate validation and control-flow results (t06-021)"],
+  "comparisons": [
+    [
+      "overload signature",
+      "union parameter"
+    ],
+    [
+      "call signature",
+      "function type expression"
+    ],
+    [
+      "type predicate",
+      "boolean return type"
+    ],
+    [
+      "this parameter",
+      "JavaScript this binding"
+    ]
+  ],
+  "comparisonSources": [
+    "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+    "https://www.typescriptlang.org/docs/handbook/type-compatibility.html"
+  ],
+  "versionNotes": [
+    {
+      "edition": "TypeScript 5.5",
+      "items": [
+        "Eligible boolean-returning functions can have an inferred type predicate return signature instead of only boolean."
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 7.0 and 7.1 beta status checked 2026-11-17",
+      "items": [
+        "TypeScript 7.0 stable was announced July 8, 2026; TypeScript 7.1 remained beta as of the audit date. No newer function-signature rule was assumed in this lesson."
+      ],
+      "sourceUrls": [
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Official TypeScript Handbook and release notes",
+    "edition": "TypeScript 7.0 stable; 7.1 beta as of 2026-11-17",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+      "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+    ]
+  },
+  "accuracyFacts": [
+    "A function type expression describes one callable signature; a call signature can be a member of a larger object type that also has properties or multiple call signatures.",
+    "An explicit this parameter is erased and is a type-only declaration in the first parameter position; JavaScript's runtime receiver behavior remains separate.",
+    "Overload signatures are the public call surface; the implementation signature is hidden from callers and must be compatible with every overload implementation path.",
+    "A union-typed argument may fail to match any of several overloads unless there is a suitable overload for the union or a single union-parameter signature.",
+    "Under strictFunctionTypes, ordinary function parameter positions are checked contravariantly, while method and constructor parameter positions retain a bivariance compatibility exception.",
+    "Optional callback parameters mean callers may omit that argument; a callback that merely ignores an argument can usually declare fewer parameters without marking the last parameter optional.",
+    "TypeScript 5.5 inferred type predicates only under the documented conditions and two-way semantics; predicate soundness details and runtime guard behavior are covered in t06-021."
+  ],
+  "scopeExclusions": [
+    "JavaScript function implementation and runtime behavior (t06-003)",
+    "Generic inference rules beyond function signatures (t06-008)",
+    "Detailed type predicate validation and control-flow results (t06-021)"
+  ],
   "generationAllowed": true
 }

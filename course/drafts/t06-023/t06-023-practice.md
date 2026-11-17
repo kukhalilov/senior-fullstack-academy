@@ -26,7 +26,7 @@ Marking `index` optional would say the API may omit it and force a callback that
 3. Add function overloads that accept a string and return a number, or accept a number and return a string. Also support a caller whose argument is `string | number`.
 4. Define a constructor type that accepts a string and produces an instance with a `name`. Explain how an abstract construct signature differs.
 5. Write a function with an explicit `this` parameter and show a safe bound call. Explain why `this` is not passed as an ordinary argument.
-6. Write an assertion function for a non-empty string and use it before returning string methods. Explain which runtime behavior makes the assertion truthful.
+6. Write an assertion function that validates an `unknown` as a branded non-empty string and use it before calling a string method. Explain which runtime behavior makes the assertion truthful and why a plain `string` assertion cannot encode non-emptiness.
 7. A callback API always supplies an event and index. Type it correctly, then assign a callback that only uses the event. Explain why the index should not be optional.
 8. Compare assignment of an `Animal` consumer where a `Dog` consumer is required with the reverse assignment under `strictFunctionTypes`.
 9. Explain the conditions under which TypeScript 5.5 can infer a predicate return for a boolean function.
@@ -39,7 +39,7 @@ Marking `index` optional would say the API may omit it and force a callback that
 3. Add a third overload for the union input if that call is part of the public API.
 4. A concrete constructor type is `new (value: string) => Instance`; `abstract new` can describe abstract classes that are not directly instantiated.
 5. Put `this: Receiver` first in the type-level parameter list and use `.bind(receiver)` at runtime.
-6. The function must throw before returning if the claimed condition is false.
+6. Check both `typeof value === "string"` and `value.length > 0`; assert a branded subtype so the static type expresses the non-empty invariant. Throw before returning on every invalid case.
 7. Parameter optionality describes what the caller might omit, not what the callback may ignore.
 8. A wider consumer can handle narrower values; a narrower consumer cannot handle all wider values.
 9. Check the 5.5 eligibility conditions and whether both true and false outcomes match the refinement.
@@ -103,15 +103,18 @@ Marking `index` optional would say the API may omit it and force a callback that
 
 6.
    ```ts
-   function assertNonEmpty(value: string): asserts value is string {
-     if (value.length === 0) throw new Error("Expected non-empty text");
+   type NonEmptyString = string & { readonly __brand: "NonEmptyString" };
+   function assertNonEmpty(value: unknown): asserts value is NonEmptyString {
+     if (typeof value !== "string" || value.length === 0) {
+       throw new Error("Expected non-empty text");
+     }
    }
-   function upper(value: string): string {
+   function upper(value: unknown): string {
      assertNonEmpty(value);
      return value.toUpperCase();
    }
    ```
-   The assertion establishes non-emptiness only because it throws for the empty string. Its asserted type is still `string`; additional refinements may need a branded type or a value-returning validator.
+   The runtime check rejects non-strings and the empty string before the branded refinement is trusted. The brand is static and does not alter the runtime string; callers should keep the constructor/validator private so unchecked casts cannot bypass it.
 
 7.
    ```ts

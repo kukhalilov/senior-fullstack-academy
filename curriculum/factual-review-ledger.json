@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 825,
-    "pending": 1516,
-    "claimsChecked": 31075,
-    "claimsCorrected": 1467,
+    "reviewed": 832,
+    "pending": 1509,
+    "claimsChecked": 31636,
+    "claimsCorrected": 1468,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 825,
-    "pendingLessons": 1516
+    "reviewedLessons": 832,
+    "pendingLessons": 1509
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1443,6 +1443,20 @@
       ],
       "findings": [
         "Audited all eight lessons against every assigned utility/operator and current official TypeScript reference material. Corrected no false claims; expanded important omissions: keyof union/intersection/index-signature behavior, typeof import module queries, homomorphic mapped-type structure and optional modifier behavior, NonNullable<unknown> under strictNullChecks after 4.8, and Awaited history from 4.5. Verified the 7.1 distributive-branch change from the official beta announcement and kept it explicitly beta relative to stable 7.0. Added examples, practice, and interview coverage. No unresolved issues remain; lessons remain drafts."
+      ]
+    },
+    {
+      "scope": "TypeScript function types, overloads, predicates, and call signatures (t06-023)",
+      "status": "topic claim and inventory audit complete for all 7 lessons",
+      "sources": [
+        "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+        "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+      ],
+      "findings": [
+        "Reviewed all seven lessons against the complete function-signature inventory and current official TypeScript function/type-compatibility documentation. Checked overload call surfaces and implementation compatibility, callable/constructable types, parameter forms, contextual typing, callback optionality, strictFunctionTypes method/constructor exception, void callbacks, explicit this erasure, and predicate/assertion contracts. Corrected the non-empty-string exercise so its asserted static type uses a branded subtype and the runtime validator checks unknown input before narrowing. Confirmed TypeScript 7.0 stable and 7.1 beta status on 2026-11-17; no other scope gaps or unresolved claims remain."
       ]
     }
   ],
@@ -94901,133 +94915,231 @@
       "topicId": "t06-023",
       "phase": "overview",
       "draft": "course/drafts/t06-023/t06-023-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 32,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Function and object signature forms, overload visibility and implementation constraints, callback optionality/variance, void returns, this parameters, and predicate/assertion signatures, including all examples and exercises.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+            "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; one exercise contract corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/functions.html",
         "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all lesson claims and assigned inventory against official TypeScript handbook and release documentation; examples and overload/callback scenarios checked for consistency."
     },
     {
       "taskId": "t06-023-concepts",
       "topicId": "t06-023",
       "phase": "concepts",
       "draft": "course/drafts/t06-023/t06-023-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 55,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Function and object signature forms, overload visibility and implementation constraints, callback optionality/variance, void returns, this parameters, and predicate/assertion signatures, including all examples and exercises.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+            "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; one exercise contract corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/functions.html",
         "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all lesson claims and assigned inventory against official TypeScript handbook and release documentation; examples and overload/callback scenarios checked for consistency."
     },
     {
       "taskId": "t06-023-reference-function-signature-forms",
       "topicId": "t06-023",
       "phase": "reference",
       "draft": "course/drafts/t06-023/t06-023-reference-function-signature-forms.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 68,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Function and object signature forms, overload visibility and implementation constraints, callback optionality/variance, void returns, this parameters, and predicate/assertion signatures, including all examples and exercises.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+            "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; one exercise contract corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/functions.html",
         "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all lesson claims and assigned inventory against official TypeScript handbook and release documentation; examples and overload/callback scenarios checked for consistency."
     },
     {
       "taskId": "t06-023-reference-overloads-and-guards",
       "topicId": "t06-023",
       "phase": "reference",
       "draft": "course/drafts/t06-023/t06-023-reference-overloads-and-guards.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 76,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Function and object signature forms, overload visibility and implementation constraints, callback optionality/variance, void returns, this parameters, and predicate/assertion signatures, including all examples and exercises.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+            "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; one exercise contract corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/functions.html",
         "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all lesson claims and assigned inventory against official TypeScript handbook and release documentation; examples and overload/callback scenarios checked for consistency."
     },
     {
       "taskId": "t06-023-reference-callback-and-variance",
       "topicId": "t06-023",
       "phase": "reference",
       "draft": "course/drafts/t06-023/t06-023-reference-callback-and-variance.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 65,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Function and object signature forms, overload visibility and implementation constraints, callback optionality/variance, void returns, this parameters, and predicate/assertion signatures, including all examples and exercises.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+            "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; one exercise contract corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/functions.html",
         "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all lesson claims and assigned inventory against official TypeScript handbook and release documentation; examples and overload/callback scenarios checked for consistency."
     },
     {
       "taskId": "t06-023-practice",
       "topicId": "t06-023",
       "phase": "practice",
       "draft": "course/drafts/t06-023/t06-023-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 170,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Function and object signature forms, overload visibility and implementation constraints, callback optionality/variance, void returns, this parameters, and predicate/assertion signatures, including all examples and exercises.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+            "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; one exercise contract corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/functions.html",
         "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all lesson claims and assigned inventory against official TypeScript handbook and release documentation; examples and overload/callback scenarios checked for consistency."
     },
     {
       "taskId": "t06-023-interview",
       "topicId": "t06-023",
       "phase": "interview",
       "draft": "course/drafts/t06-023/t06-023-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 95,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Function and object signature forms, overload visibility and implementation constraints, callback optionality/variance, void returns, this parameters, and predicate/assertion signatures, including all examples and exercises.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+            "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; one exercise contract corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/functions.html",
         "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
-        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all lesson claims and assigned inventory against official TypeScript handbook and release documentation; examples and overload/callback scenarios checked for consistency."
     },
     {
       "taskId": "t06-024-overview",
@@ -136943,6 +137055,14 @@
       "status": "full claim and inventory audit complete for all 8 lessons",
       "findings": [
         "Audited all eight lessons against every assigned utility/operator and current official TypeScript reference material. Corrected no false claims; expanded important omissions: keyof union/intersection/index-signature behavior, typeof import module queries, homomorphic mapped-type structure and optional modifier behavior, NonNullable<unknown> under strictNullChecks after 4.8, and Awaited history from 4.5. Verified the 7.1 distributive-branch change from the official beta announcement and kept it explicitly beta relative to stable 7.0. Added examples, practice, and interview coverage. No unresolved issues remain; lessons remain drafts."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "TypeScript function types, overloads, predicates, and call signatures (t06-023)",
+      "status": "full claim and inventory audit complete for all 7 lessons",
+      "findings": [
+        "Reviewed all seven lessons against the complete function-signature inventory and current official TypeScript function/type-compatibility documentation. Checked overload call surfaces and implementation compatibility, callable/constructable types, parameter forms, contextual typing, callback optionality, strictFunctionTypes method/constructor exception, void callbacks, explicit this erasure, and predicate/assertion contracts. Corrected the non-empty-string exercise so its asserted static type uses a branded subtype and the runtime validator checks unknown input before narrowing. Confirmed TypeScript 7.0 stable and 7.1 beta status on 2026-11-17; no other scope gaps or unresolved claims remain."
       ]
     }
   ]
