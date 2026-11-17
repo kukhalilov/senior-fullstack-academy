@@ -12,6 +12,9 @@
 8. What limitations do `Parameters` and `ReturnType` have for overloads and generic functions?
 9. What does `NoInfer` change about an API call?
 10. What changed for distributive type parameter relationships in TypeScript 7.1 beta?
+11. How does `keyof` behave for a union compared with an intersection?
+12. What is `typeof import("./module.js")` used for?
+13. What does `NonNullable<unknown>` become in modern TypeScript under `strictNullChecks`?
 
 ## Concise interview answers
 
@@ -25,6 +28,9 @@
 8. Overload extraction uses the last signature; unresolved generic parts can become `unknown`.
 9. It blocks one type position from supplying inference candidates while keeping that position's assignability check.
 10. A distributed branch's narrowed parameter is no longer assumed to relate to another parameter constrained only by the original union; the beta can reject unsound uses. [7.1 beta notes](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/)
+11. A union exposes only keys safe on every alternative; an intersection can expose keys from both constituents.
+12. It obtains a module's static exported type without writing a runtime import expression.
+13. `{}`. Since TypeScript 4.8, `NonNullable<T>` is represented as `T & {}`; this excludes nullish types statically but validates no runtime value.
 
 ## Deep follow-up answers
 

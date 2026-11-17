@@ -4,19 +4,197 @@
   "track": "track-06",
   "title": "TypeScript indexed, conditional, mapped, and utility types",
   "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Type operators transform or query existing types", "Conditional types select results from assignability relationships", "Mapped types iterate over keys and change modifiers", "Template literal types construct string-shaped type families", "Built-in utility types package common transformations"],
+  "concepts": [
+    "Type operators transform or query existing types",
+    "Conditional types select results from assignability relationships",
+    "Mapped types iterate over keys and change modifiers",
+    "Template literal types construct string-shaped type families",
+    "Built-in utility types package common transformations"
+  ],
   "inventory": [
-    {"id":"type-operators","title":"Type queries, indexed access, conditional types, and mapped types","items":["keyof operator","typeof type query","Indexed access type (T[K])","Lookup type","Type constraint operator (extends)","Conditional type","Distributive conditional type","infer keyword","Mapped type","Mapped type key remapping (as)","Mapped type optional modifier (+? and -?)","Mapped type readonly modifier (+readonly and -readonly)","Template literal type","Template literal type inference","Recursive conditional type","Stricter type parameter relationships in distributive conditional branches"]},
-    {"id":"intrinsic-string-types","title":"Intrinsic string manipulation types","items":["Uppercase<StringType>","Lowercase<StringType>","Capitalize<StringType>","Uncapitalize<StringType>","Intrinsic string manipulation type"]},
-    {"id":"utility-types-objects-and-unions","title":"Built-in utility types for object and union transformations","items":["Partial<Type>","Required<Type>","Readonly<Type>","Record<Keys, Type>","Pick<Type, Keys>","Omit<Type, Keys>","Exclude<UnionType, ExcludedMembers>","Extract<Type, Union>","NonNullable<Type>"]},
-    {"id":"utility-types-functions-and-promises","title":"Built-in utility types for functions, instances, and promises","items":["Parameters<Type>","ConstructorParameters<Type>","ReturnType<Type>","InstanceType<Type>","ThisParameterType<Type>","OmitThisParameter<Type>","ThisType<Type>","Awaited<Type>","NoInfer<Type>"]}
+    {
+      "id": "type-operators",
+      "title": "Type queries, indexed access, conditional types, and mapped types",
+      "items": [
+        "keyof operator",
+        "typeof type query",
+        "typeof import(\"module\") type query",
+        "Indexed access type (T[K])",
+        "Lookup type",
+        "Type constraint operator (extends)",
+        "Conditional type",
+        "Distributive conditional type",
+        "infer keyword",
+        "Mapped type",
+        "Mapped type key remapping (as)",
+        "Mapped type optional modifier (+? and -?)",
+        "Mapped type readonly modifier (+readonly and -readonly)",
+        "Template literal type",
+        "Template literal type inference",
+        "Recursive conditional type",
+        "Stricter type parameter relationships in distributive conditional branches"
+      ]
+    },
+    {
+      "id": "intrinsic-string-types",
+      "title": "Intrinsic string manipulation types",
+      "items": [
+        "Uppercase<StringType>",
+        "Lowercase<StringType>",
+        "Capitalize<StringType>",
+        "Uncapitalize<StringType>",
+        "Intrinsic string manipulation type"
+      ]
+    },
+    {
+      "id": "utility-types-objects-and-unions",
+      "title": "Built-in utility types for object and union transformations",
+      "items": [
+        "Partial<Type>",
+        "Required<Type>",
+        "Readonly<Type>",
+        "Record<Keys, Type>",
+        "Pick<Type, Keys>",
+        "Omit<Type, Keys>",
+        "Exclude<UnionType, ExcludedMembers>",
+        "Extract<Type, Union>",
+        "NonNullable<Type>"
+      ]
+    },
+    {
+      "id": "utility-types-functions-and-promises",
+      "title": "Built-in utility types for functions, instances, and promises",
+      "items": [
+        "Parameters<Type>",
+        "ConstructorParameters<Type>",
+        "ReturnType<Type>",
+        "InstanceType<Type>",
+        "ThisParameterType<Type>",
+        "OmitThisParameter<Type>",
+        "ThisType<Type>",
+        "Awaited<Type>",
+        "NoInfer<Type>"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["keyof","typeof"],["indexed access type","lookup with keyof"],["conditional type","mapped type"],["Exclude","Extract"],["Parameters","ReturnType"]],
-  "comparisonSources": ["https://www.typescriptlang.org/docs/handbook/2/types-from-types.html","https://www.typescriptlang.org/docs/handbook/utility-types.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html"],
-  "versionNotes": [{"edition":"TypeScript 4.1","items":["Template literal types","Mapped type key remapping","Recursive conditional types","Intrinsic string manipulation types"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html"]},{"edition":"TypeScript 5.4","items":["NoInfer<Type>"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html"]},{"edition":"TypeScript 7.1 beta","items":["Stronger checks for relationships between distributed type parameters and other parameters constrained to their original type."],"sourceUrls":["https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"]}],
-  "sourceSnapshot": {"authority":"Official TypeScript Handbook and release notes","edition":"TypeScript 7.0 stable; 7.1 beta as of 2026-11-16","checkedAt":"2026-11-16","urls":["https://www.typescriptlang.org/docs/handbook/2/types-from-types.html","https://www.typescriptlang.org/docs/handbook/utility-types.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html","https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"]},
-  "accuracyFacts": ["The official global utility types in scope are Awaited, Partial, Required, Readonly, Record, Pick, Omit, Exclude, Extract, NonNullable, Parameters, ConstructorParameters, ReturnType, InstanceType, ThisParameterType, OmitThisParameter, ThisType, and NoInfer. Do not add third-party utilities such as DeepPartial.","The intrinsic string manipulation types are Uppercase, Lowercase, Capitalize, and Uncapitalize. They are compiler intrinsics for type-level string processing, not runtime functions.","TypeScript 7.1 beta strengthens checking when a type parameter is distributed into a conditional branch: the branch parameter is a narrower form that is not automatically related to another type constrained by the original union. Mark this change beta; stable TypeScript 7.0 retains prior behavior.","Conditional types, mapped types, indexed access types, and template literal types operate on static types; they do not perform runtime validation or transformation."],
-  "scopeExclusions": ["Generic declaration and inference mechanics (t06-008)","Union narrowing at runtime control-flow points (t06-021)","The satisfies operator and type assertions (t06-007)","Third-party type utility libraries"],
+  "comparisons": [
+    [
+      "keyof",
+      "typeof"
+    ],
+    [
+      "indexed access type",
+      "lookup with keyof"
+    ],
+    [
+      "conditional type",
+      "mapped type"
+    ],
+    [
+      "Exclude",
+      "Extract"
+    ],
+    [
+      "Parameters",
+      "ReturnType"
+    ]
+  ],
+  "comparisonSources": [
+    "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+    "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+    "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+    "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+    "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+    "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html"
+  ],
+  "versionNotes": [
+    {
+      "edition": "TypeScript 4.1",
+      "items": [
+        "Template literal types",
+        "Mapped type key remapping",
+        "Recursive conditional types",
+        "Intrinsic string manipulation types"
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 4.5",
+      "items": [
+        "Introduced Awaited<Type> to model recursive promise/thenable unwrapping used by await and Promise methods."
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 4.8",
+      "items": [
+        "Reformulated NonNullable<T> as T & {} under strict null checking, enabling improved simplification and assignability behavior."
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 5.4",
+      "items": [
+        "NoInfer<Type>"
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 7.1 beta",
+      "items": [
+        "Stronger checks for relationships between distributed type parameters and other parameters constrained to their original type."
+      ],
+      "sourceUrls": [
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Official TypeScript Handbook and release notes",
+    "edition": "TypeScript 7.0 stable; 7.1 beta as of 2026-11-17",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+      "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+      "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+      "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+      "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+      "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+      "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html"
+    ]
+  },
+  "accuracyFacts": [
+    "The official global utility types in scope are Awaited, Partial, Required, Readonly, Record, Pick, Omit, Exclude, Extract, NonNullable, Parameters, ConstructorParameters, ReturnType, InstanceType, ThisParameterType, OmitThisParameter, ThisType, and NoInfer. Do not add third-party utilities such as DeepPartial.",
+    "The intrinsic string manipulation types are Uppercase, Lowercase, Capitalize, and Uncapitalize. They are compiler intrinsics for type-level string processing, not runtime functions.",
+    "TypeScript 7.1 beta strengthens checking when a type parameter is distributed into a conditional branch: the branch parameter is a narrower form that is not automatically related to another type constrained by the original union. Mark this change beta; stable TypeScript 7.0 retains prior behavior.",
+    "Conditional types, mapped types, indexed access types, and template literal types operate on static types; they do not perform runtime validation or transformation.",
+    "typeof import(\"module\") queries the module's exported type without a runtime import expression. Type queries are restricted to identifiers/property accesses and this module-query form.",
+    "keyof a union exposes only keys safe/common across every union member, while keyof an intersection combines keys; keyof any is string | number | symbol. Index signatures can broaden keyof, such as string index yielding string | number.",
+    "Homomorphic mapped types based on keyof T preserve important source structure such as optional/readonly modifiers unless changed, and can distribute over unions and preserve tuple/array shape. Removing optionality and explicit undefined behavior depends on exactOptionalPropertyTypes.",
+    "Since TypeScript 4.8, NonNullable<T> is modeled as T & {} under strictNullChecks; for example NonNullable<unknown> becomes {}. TypeScript 4.5 introduced Awaited<T> for recursive thenable unwrapping."
+  ],
+  "scopeExclusions": [
+    "Generic declaration and inference mechanics (t06-008)",
+    "Union narrowing at runtime control-flow points (t06-021)",
+    "The satisfies operator and type assertions (t06-007)",
+    "Third-party type utility libraries"
+  ],
   "generationAllowed": true
 }

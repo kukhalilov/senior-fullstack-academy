@@ -16,7 +16,7 @@ Know TypeScript unions, object types, generic parameters, function and construct
 
 ### Type queries inspect declarations
 
-`keyof T` produces the permitted property keys of `T`; the result is often a string, number, or symbol literal union, not a runtime array. `typeof value` in a type position asks for the static type of a declared value. This is distinct from JavaScript's runtime `typeof` operator: the type query cannot inspect a value that exists only at runtime.
+`keyof T` produces the permitted property keys of `T`; the result is often a string, number, or symbol literal union, not a runtime array. `keyof (A | B)` includes only properties safe on both alternatives, while `keyof (A & B)` combines their available keys. A string index signature broadens the result to `string | number` because numeric object keys are string-coerced; `keyof any` is `string | number | symbol`. `typeof value` in a type position asks for the static type of a declared value, and `typeof import("./module.js")` queries a module's exported type without emitting an import. These differ from JavaScript's runtime `typeof` operator.
 
 Indexed access `T[K]` looks up a property type using a key type. If `K` is a union, `T[K]` becomes the union of the corresponding member types. A constrained key (`K extends keyof T`) prevents asking for an absent property. Array indexing can use `number` to represent the element type; tuple indexes can select known positions. With `noUncheckedIndexedAccess`, runtime array indexing has an added possibility of `undefined`; a type-level element lookup is not itself proof that an array position exists.
 
@@ -28,7 +28,7 @@ Inside a true branch, the compiler can use the checked relation to narrow the ty
 
 ### Mapped types iterate over keys
 
-`{ [K in keyof T]: ... }` creates properties by iterating over a key union. A mapped type can preserve or alter optional/readonly status, remove a modifier with `-?` or `-readonly`, add one with `+?` or `+readonly`, and remap/drop keys with `as` (mapping to `never` drops a key). Mapping over a tuple or array can preserve tuple structure in supported forms; do not assume every key transform has the same result as transforming a plain object. Mapped types are transformations of static structure, not object-copying code.
+`{ [K in keyof T]: ... }` creates properties by iterating over a key union. A homomorphic mapping over the keys of its source can preserve source modifiers, union distribution, and tuple/array structure. A mapped type can alter optional/readonly status, remove a modifier with `-?` or `-readonly`, add one with `+?` or `+readonly`, and remap/drop keys with `as` (mapping to `never` drops a key). Removing optionality can also remove implicit `undefined`; exact behavior for explicitly declared `undefined` depends on `exactOptionalPropertyTypes`. Mapped types are transformations of static structure, not object-copying code.
 
 ### Template literal types form string families
 

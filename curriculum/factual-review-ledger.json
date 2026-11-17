@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 817,
-    "pending": 1524,
-    "claimsChecked": 30326,
+    "reviewed": 825,
+    "pending": 1516,
+    "claimsChecked": 31075,
     "claimsCorrected": 1467,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 817,
-    "pendingLessons": 1524
+    "reviewedLessons": 825,
+    "pendingLessons": 1516
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1422,6 +1422,27 @@
       ],
       "findings": [
         "Reviewed all seven lessons against the frozen 36-item inventory and official TypeScript documentation/release records. Confirmed 7.0 stable and 7.1 beta on 2026-11-17; checked unions/intersections, all guard forms, control-flow paths, and the 4.4/4.6/5.4/5.5 milestones. Added missing TypeScript 4.9 unlisted-property narrowing for in checks and an unknown-input example/exercise/interview question; documented that this yields unknown and does not validate runtime data. No unresolved scope or factual issues remain; lessons remain drafts."
+      ]
+    },
+    {
+      "scope": "TypeScript type operators and built-in utility types (t06-022)",
+      "status": "topic claim and inventory audit complete for all 8 lessons",
+      "sources": [
+        "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+        "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+      ],
+      "findings": [
+        "Audited all eight lessons against every assigned utility/operator and current official TypeScript reference material. Corrected no false claims; expanded important omissions: keyof union/intersection/index-signature behavior, typeof import module queries, homomorphic mapped-type structure and optional modifier behavior, NonNullable<unknown> under strictNullChecks after 4.8, and Awaited history from 4.5. Verified the 7.1 distributive-branch change from the official beta announcement and kept it explicitly beta relative to stable 7.0. Added examples, practice, and interview coverage. No unresolved issues remain; lessons remain drafts."
       ]
     }
   ],
@@ -94504,168 +94525,376 @@
       "topicId": "t06-022",
       "phase": "overview",
       "draft": "course/drafts/t06-022/t06-022-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 48,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Complete type-operator inventory, built-in utility types, version-specific TypeScript changes, and every explanation, example, exercise, and interview answer.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+            "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; coverage additions applied"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
         "https://www.typescriptlang.org/docs/handbook/utility-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+        "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual source and inventory audit against official TypeScript handbook/release material; coverage additions are recorded separately from factual corrections."
     },
     {
       "taskId": "t06-022-concepts",
       "topicId": "t06-022",
       "phase": "concepts",
       "draft": "course/drafts/t06-022/t06-022-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 82,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Complete type-operator inventory, built-in utility types, version-specific TypeScript changes, and every explanation, example, exercise, and interview answer.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+            "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; coverage additions applied"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
         "https://www.typescriptlang.org/docs/handbook/utility-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+        "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual source and inventory audit against official TypeScript handbook/release material; coverage additions are recorded separately from factual corrections."
     },
     {
       "taskId": "t06-022-reference-type-operators",
       "topicId": "t06-022",
       "phase": "reference",
       "draft": "course/drafts/t06-022/t06-022-reference-type-operators.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 138,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Complete type-operator inventory, built-in utility types, version-specific TypeScript changes, and every explanation, example, exercise, and interview answer.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+            "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; coverage additions applied"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
         "https://www.typescriptlang.org/docs/handbook/utility-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+        "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual source and inventory audit against official TypeScript handbook/release material; coverage additions are recorded separately from factual corrections."
     },
     {
       "taskId": "t06-022-reference-intrinsic-string-types",
       "topicId": "t06-022",
       "phase": "reference",
       "draft": "course/drafts/t06-022/t06-022-reference-intrinsic-string-types.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 43,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Complete type-operator inventory, built-in utility types, version-specific TypeScript changes, and every explanation, example, exercise, and interview answer.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+            "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; coverage additions applied"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
         "https://www.typescriptlang.org/docs/handbook/utility-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+        "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual source and inventory audit against official TypeScript handbook/release material; coverage additions are recorded separately from factual corrections."
     },
     {
       "taskId": "t06-022-reference-utility-types-objects-and-unions",
       "topicId": "t06-022",
       "phase": "reference",
       "draft": "course/drafts/t06-022/t06-022-reference-utility-types-objects-and-unions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 73,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Complete type-operator inventory, built-in utility types, version-specific TypeScript changes, and every explanation, example, exercise, and interview answer.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+            "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; coverage additions applied"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
         "https://www.typescriptlang.org/docs/handbook/utility-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+        "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual source and inventory audit against official TypeScript handbook/release material; coverage additions are recorded separately from factual corrections."
     },
     {
       "taskId": "t06-022-reference-utility-types-functions-and-promises",
       "topicId": "t06-022",
       "phase": "reference",
       "draft": "course/drafts/t06-022/t06-022-reference-utility-types-functions-and-promises.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 94,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Complete type-operator inventory, built-in utility types, version-specific TypeScript changes, and every explanation, example, exercise, and interview answer.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+            "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; coverage additions applied"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
         "https://www.typescriptlang.org/docs/handbook/utility-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+        "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual source and inventory audit against official TypeScript handbook/release material; coverage additions are recorded separately from factual corrections."
     },
     {
       "taskId": "t06-022-practice",
       "topicId": "t06-022",
       "phase": "practice",
       "draft": "course/drafts/t06-022/t06-022-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 166,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Complete type-operator inventory, built-in utility types, version-specific TypeScript changes, and every explanation, example, exercise, and interview answer.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+            "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; coverage additions applied"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
         "https://www.typescriptlang.org/docs/handbook/utility-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+        "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual source and inventory audit against official TypeScript handbook/release material; coverage additions are recorded separately from factual corrections."
     },
     {
       "taskId": "t06-022-interview",
       "topicId": "t06-022",
       "phase": "interview",
       "draft": "course/drafts/t06-022/t06-022-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "enumerated",
+      "claimsChecked": 105,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claim": "Complete type-operator inventory, built-in utility types, version-specific TypeScript changes, and every explanation, example, exercise, and interview answer.",
+          "sourceUrls": [
+            "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+            "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+            "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+            "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+            "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+          ],
+          "verdict": "checked; coverage additions applied"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
         "https://www.typescriptlang.org/docs/handbook/utility-types.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
         "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
-        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/",
+        "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+        "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html",
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html",
+        "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual source and inventory audit against official TypeScript handbook/release material; coverage additions are recorded separately from factual corrections."
     },
     {
       "taskId": "t06-023-overview",
@@ -136706,6 +136935,14 @@
       "status": "full claim and inventory audit complete for all 7 lessons",
       "findings": [
         "Reviewed all seven lessons against the frozen 36-item inventory and official TypeScript documentation/release records. Confirmed 7.0 stable and 7.1 beta on 2026-11-17; checked unions/intersections, all guard forms, control-flow paths, and the 4.4/4.6/5.4/5.5 milestones. Added missing TypeScript 4.9 unlisted-property narrowing for in checks and an unknown-input example/exercise/interview question; documented that this yields unknown and does not validate runtime data. No unresolved scope or factual issues remain; lessons remain drafts."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "TypeScript type operators and built-in utility types (t06-022)",
+      "status": "full claim and inventory audit complete for all 8 lessons",
+      "findings": [
+        "Audited all eight lessons against every assigned utility/operator and current official TypeScript reference material. Corrected no false claims; expanded important omissions: keyof union/intersection/index-signature behavior, typeof import module queries, homomorphic mapped-type structure and optional modifier behavior, NonNullable<unknown> under strictNullChecks after 4.8, and Awaited history from 4.5. Verified the 7.1 distributive-branch change from the official beta announcement and kept it explicitly beta relative to stable 7.0. Added examples, practice, and interview coverage. No unresolved issues remain; lessons remain drafts."
       ]
     }
   ]

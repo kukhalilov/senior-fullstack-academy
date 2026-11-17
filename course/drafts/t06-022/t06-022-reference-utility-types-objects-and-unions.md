@@ -13,14 +13,14 @@ These utilities package common mapped-type and conditional-type patterns. Object
 | Supplied name | Role, behavior, and practical use |
 |---|---|
 | `Partial<Type>` | Makes each property in `Type` optional. Often useful for patch/update inputs, but shallow: nested objects remain unchanged. With `exactOptionalPropertyTypes`, an omitted property and a present property explicitly set to `undefined` are distinct unless `undefined` is in that property's value type. |
-| `Required<Type>` | Removes the optional modifier from every property. It changes the static requirement that properties be present; it does not fill missing runtime values. Explicit `undefined` in a property type remains a value possibility. |
+| `Required<Type>` | Removes the optional modifier from every property. With `strictNullChecks`, this also removes `undefined` that was contributed only by optionality; an explicitly declared `undefined` remains when `exactOptionalPropertyTypes` is enabled. It changes the static requirement that properties be present; it does not fill missing runtime values. |
 | `Readonly<Type>` | Marks each top-level property readonly in the resulting type. It is shallow and compile-time only; it does not call `Object.freeze` or prevent mutation through another mutable alias. |
 | `Record<Keys, Type>` | Constructs a property mapping from each key in `Keys` to `Type`, such as `Record<"small" | "large", number>`. A finite key union requires those properties in an object literal; a broad key type does not create or populate a runtime dictionary. |
 | `Pick<Type, Keys>` | Constructs a type containing the selected property keys from `Type`. `Keys` must be a subset of `keyof Type`; use it to define a focused view that remains linked to the source properties. |
 | `Omit<Type, Keys>` | Constructs a type by removing selected keys from `Type`. Unlike `Pick`, it keeps the remaining keys. This is a static shape transformation and does not delete properties from a runtime value. |
 | `Exclude<UnionType, ExcludedMembers>` | Removes union members of `UnionType` that are assignable to `ExcludedMembers`. It distributes over the union. It does not subtract arbitrary subsets from a broad primitive: `Exclude<string, "red">` remains `string`. |
 | `Extract<Type, Union>` | Keeps union members of `Type` that are assignable to `Union`. It is the inclusion counterpart to `Exclude`, often used to select a tagged variant. |
-| `NonNullable<Type>` | Removes `null` and `undefined` from a type. It does not test a value or prove one is non-null at runtime; a check or validation must establish that fact. |
+| `NonNullable<Type>` | Removes `null` and `undefined` from a type. Since TypeScript 4.8 it is represented as `Type & {}` under `strictNullChecks`, so `NonNullable<unknown>` becomes `{}` and repeated application simplifies. It does not test a value or prove one is non-null at runtime; a check or validation must establish that fact. |
 
 ## Cross-item comparison
 
@@ -65,4 +65,4 @@ type Present = NonNullable<string | null | undefined>;
 4. **Which utility keeps matching members: `Exclude` or `Extract`?** `Extract` keeps them; `Exclude` removes them.
 5. **Can `NonNullable<T>` prove an API response contains a value?** No, it only changes the static type.
 
-Sources: [Utility types handbook](https://www.typescriptlang.org/docs/handbook/utility-types.html), [type manipulation handbook](https://www.typescriptlang.org/docs/handbook/2/types-from-types.html).
+Sources: [Utility types handbook](https://www.typescriptlang.org/docs/handbook/utility-types.html), [type manipulation handbook](https://www.typescriptlang.org/docs/handbook/2/types-from-types.html), [TypeScript 4.8 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html).

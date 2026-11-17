@@ -28,6 +28,9 @@ const patch: ProductPatch = { price: 12 };
 7. Given `Promise<Promise<number>> | string`, determine its `Awaited` type. Explain why that does not fetch or validate data.
 8. A recursive conditional type processes nested tuple types. Identify a terminating base case and one risk if the input shape is infinitely recursive or very deep.
 9. A TypeScript 7.1 beta build rejects a generic relation in a distributive conditional branch. Explain which relationship is no longer assumed and how version labeling affects the lesson.
+10. Determine `keyof (A | B)` and `keyof (A & B)` for two object types with one shared key and distinct keys. Explain why a string index signature also includes `number` in `keyof`.
+11. Write a type alias using `typeof import("./library.js")`. Explain what it references and whether it emits or loads a runtime import.
+12. Under `strictNullChecks`, determine `NonNullable<unknown>` and explain the TypeScript 4.8 representation change.
 
 ## Progressive hints
 
@@ -40,6 +43,9 @@ const patch: ProductPatch = { price: 12 };
 7. `Awaited` recursively unwraps promise-like members while preserving ordinary members.
 8. Return the input unchanged or a known empty type in the base case; recursive calls must move toward it.
 9. Each distributed branch narrows the original type parameter; a second parameter constrained by the full original union need not satisfy that narrower type.
+10. The union exposes only the common key; the intersection exposes keys from both sides. `keyof { [key: string]: unknown }` is `string | number` because JavaScript coerces numeric property keys to strings.
+11. `type Library = typeof import("./library.js")` queries the module's static exported type; it is type-only syntax and does not load or emit a module import.
+12. It is `{}`: since TypeScript 4.8, `NonNullable<T>` is modeled as `T & {}`, and `{}` excludes only null and undefined when strict null checking is enabled.
 
 ## Complete solutions
 
@@ -113,6 +119,20 @@ const patch: ProductPatch = { price: 12 };
    This illustrates a terminating shape for finite tuples, but recursive and variadic tuple cases have compiler complexity limits and need careful testing. It is not a runtime array flattener.
 
 9. A relation `B extends A` to the original union does not prove `B` is assignable to every narrowed constituent after `A` is distributed. TypeScript 7.1 beta rejects that assumption in cases where it could produce an impossible result; keep the claim labeled beta and teach the broader distribution rule separately. [TypeScript 7.1 beta announcement](https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/)
+
+10.
+   ```ts
+   type Left = { id: string; left: boolean };
+   type Right = { id: number; right: Date };
+   type SafeUnionKeys = keyof (Left | Right); // "id"
+   type CombinedKeys = keyof (Left & Right); // "id" | "left" | "right"
+   type DictionaryKeys = keyof { [key: string]: unknown }; // string | number
+   ```
+   A value of the union may be either alternative, so only the shared key is safe. An intersection must satisfy both shapes. JavaScript treats `object[0]` and `object["0"]` as the same property key.
+
+11. `type Library = typeof import("./library.js")` references the module's static exported shape in a type position. No runtime import expression is emitted by this alias.
+
+12. `NonNullable<unknown>` is `{}` with `strictNullChecks`. TypeScript 4.8's `T & {}` form makes the utility more directly reducible and idempotent; it remains a static type operation, not a runtime check. [TypeScript 4.8](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-8.html)
 
 ## Tests and edge cases
 

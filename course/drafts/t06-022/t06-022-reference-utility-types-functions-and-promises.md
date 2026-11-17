@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson explains all 9 supplied global utility names. The exact overload/generic caveats matter: extraction utilities do not reconstruct every overload or preserve every generic relationship. These are static transformations, not runtime reflection. [Utility types handbook](https://www.typescriptlang.org/docs/handbook/utility-types.html) · [TypeScript 5.4 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html)
+This lesson explains all 9 supplied global utility names. `Awaited<Type>` was added in TypeScript 4.5; `NoInfer<Type>` was added in 5.4. The exact overload/generic caveats matter: extraction utilities do not reconstruct every overload or preserve every generic relationship. These are static transformations, not runtime reflection. [Utility types handbook](https://www.typescriptlang.org/docs/handbook/utility-types.html) · [TypeScript 4.5 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html) · [TypeScript 5.4 release notes](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html)
 
 ## How this group fits the mental model
 
