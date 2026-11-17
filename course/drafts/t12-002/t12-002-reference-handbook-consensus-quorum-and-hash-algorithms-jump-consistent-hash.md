@@ -1,36 +1,38 @@
 # distributed systems consistency coordination and convergence — Reference: Jump consistent hash
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://hld.handbook.academy/curriculum/distributed-systems-theory/).
+Sources: [Handbook module 3.9](https://hld.handbook.academy/curriculum/distributed-systems-theory/), [Lamping and Veach, A Fast, Minimal Memory, Consistent Hash Algorithm](https://arxiv.org/abs/1406.2294).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson covers the original Jump Consistent Hash algorithm and its bucket model. Implementations must use compatible arithmetic and hashing to produce identical assignments.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Jump consistent hash maps a key directly to one of a numbered sequence of buckets, `0` through `bucketCount - 1`. Instead of storing a ring or a table, it uses a deterministic pseudorandom sequence to find the last bucket jump for that key. The result is fast and memory-light, while changing the bucket count moves only the keys that jump to the newly added bucket.
 
 ## Supplied names explained
 
-- `Jump consistent hash` — Compact algorithm mapping keys to buckets with low remapping when bucket count changes; its bucket model differs from weighted heterogeneous nodes.
+The algorithm's central constraint is that buckets are numbered consecutively and the count changes by adding or removing the final bucket. It is not a direct fit for arbitrary node identities, removal of a middle bucket, or weighted heterogeneous servers. One common deployment maps bucket numbers to physical shards through a separate assignment layer, but changing that mapping can introduce additional movement. The hash/key encoding and integer behavior must be consistent across clients.
+
+The paper compares the algorithm with ring-based consistent hashing: Jump uses very little memory and is fast, while the ring naturally represents named nodes, virtual nodes, and replica successors. Neither method solves hot-key load skew or data movement itself; they determine placement.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+For sequentially numbered storage buckets, Jump can be simpler and cheaper than maintaining ring positions. If servers have arbitrary identities, weights, or replica successor requirements, a ring or rendezvous scheme may better match the membership model. If strict load bounds matter, use a scheme that explicitly provides them rather than assuming Jump balances every operational measure.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Suppose a key-value service has 10,000 logical buckets, and the algorithm maps key `customer-42` to bucket 731. Adding bucket 10,000 may move a subset of keys to the new bucket while other keys keep their bucket. The storage service still has to create and place that bucket, copy or backfill the moved data, route reads during migration, and retire the old copy safely. The hash function answers “which bucket?”; it does not perform the migration protocol.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Applying Jump directly to arbitrary backend IDs or weighted nodes without an extra mapping scheme.
+- Assuming low remapping means no data copy or routing change is required.
+- Using different hash encodings or integer arithmetic in different clients.
+- Assuming balanced bucket counts imply balanced request volume or byte storage.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What bucket model does Jump require?** Consecutively numbered buckets from zero; bucket-count changes add or remove the last bucket.
+2. **Does adding a bucket automatically move the stored records?** No. It changes computed placement; a separate migration and dual-read/write or cutover plan is required.
+3. **When is a ring a better fit?** When destinations have arbitrary identities, weights/virtual nodes, or a natural successor walk for replicas.

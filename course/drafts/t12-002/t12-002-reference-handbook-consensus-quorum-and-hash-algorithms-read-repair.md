@@ -1,36 +1,38 @@
 # distributed systems consistency coordination and convergence — Reference: Read repair
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://hld.handbook.academy/curriculum/distributed-systems-theory/).
+Sources: [Handbook module 3](https://hld.handbook.academy/curriculum/distributed-systems-theory/), [Cassandra 5.0 read repair](https://cassandra.apache.org/doc/stable/cassandra/managing/operating/read_repair.html), [Cassandra repair](https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson uses Apache Cassandra 5.0 to make read repair concrete. Other databases may use the term for different mechanisms.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Replicas can disagree because writes were missed, delayed, or only partly acknowledged. During a read, the coordinator compares responses from the replicas needed by the requested consistency level. If it finds a mismatch, read repair sends the newer reconciled data to stale replicas involved in that read. This repairs the data touched by that request, not every partition in the cluster.
 
 ## Supplied names explained
 
-- `Read repair` — Repairs divergent replicas during reads in some storage systems; it can add read latency and does not replace anti-entropy or a stated consistency model.
+In Cassandra 5.0, blocking read repair waits for repair writes to reach the requested consistency level and supports monotonic quorum reads: under the documented conditions, successive quorum reads do not go backward after a failed quorum write. It can break partition-level write atomicity when only part of a multi-row partition write is read and repaired. The table option `read_repair='NONE'` reconciles data for the response without sending repairs; this preserves partition-level write atomicity but does not provide the same monotonic quorum-read property.
+
+Read repair adds work and latency to reads that discover mismatches. It is distinct from hinted handoff, which replays a recorded missed mutation, and anti-entropy repair, which compares broader replica ranges. Neither a successful read nor a read-repair setting proves that all data across all replicas is synchronized.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Use blocking read repair where the monotonic-quorum-read property is required and its write-atomicity tradeoff is acceptable. Use NONE when preserving partition-level write atomicity is more important and the read model can tolerate a value appearing in one read then disappearing from a later read after a failed quorum write. Schedule or operate anti-entropy repair for broader convergence regardless of which rows users happen to read.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Two replicas store a partition with rows x and y. A batch intends to update both, but a failed write leaves only one replica with the newer values. A later query selects only x. Blocking read repair may make x converge among the read replicas; it does not necessarily repair y, and this granular repair can expose a partially applied partition update. With NONE, the read returns reconciled x without repairing replicas, preserving partition-level write atomicity while sacrificing the same monotonic-quorum-read guarantee.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Calling a read repair a cluster-wide synchronization job.
+- Assuming every database's “read repair” has Cassandra's semantics.
+- Ignoring the Cassandra BLOCKING versus NONE tradeoff.
+- Treating repair-on-read as a replacement for scheduled anti-entropy repair.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Which data can a read repair cover?** The data/rows and replicas involved in the read, not the entire cluster.
+2. **What does Cassandra BLOCKING favor?** Monotonic quorum reads, with a possible loss of partition-level write atomicity.
+3. **What does Cassandra NONE favor?** Partition-level write atomicity, without the same monotonic-quorum-read guarantee.

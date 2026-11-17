@@ -17,7 +17,7 @@ These concepts are tools for solving different parts of the system path. Select 
 - `Read quorum` — A configured response threshold for a read in a replication protocol. Whether it observes a concurrent or prior write depends on replica placement, version comparison, read/write paths, and the protocol’s consistency semantics.
 - `Write quorum` — A configured acknowledgement threshold for a write. In a simple fixed replica set with RF replicas and compatible version semantics, choosing read threshold R and write threshold W with R + W > RF makes the sets intersect; intersection alone does not prove linearizability or freshness.
 - `Sloppy quorum` — In Dynamo-style systems, when preferred replicas are unavailable, a write may be accepted by reachable substitutes. The substitute set may not intersect a later read’s replica set, so temporary availability does not provide the simple fixed-set quorum guarantee; handoff and anti-entropy are recovery mechanisms.
-- `Hinted handoff` — A node temporarily records a hint for an unavailable intended replica and later forwards the mutation. Cassandra documents hints as best-effort; hints can expire or be unavailable after failure, so they do not replace repair.
+- `Hinted handoff` — When an intended replica is unavailable, a coordinator may store a temporary hint locally and later try to deliver the missed mutation. In Cassandra, hints are best-effort, can be lost or expire, and are one of several convergence mechanisms; they do not replace full or incremental anti-entropy repair.
 - `Read repair` — A read path may compare versions and repair stale replicas participating in that read. Cassandra 5.0’s blocking mode can provide monotonic quorum reads, but only the data covered by a query is repaired; this can trade away partition-level write atomicity for granular reads. `NONE` avoids that read-repair side effect but does not provide the same monotonic-quorum-read property. It is not a full replica scan and does not replace operator-run anti-entropy repair.
 
 ## A concrete quorum calculation
@@ -26,7 +26,7 @@ Suppose a protocol replicates a partition to RF = 3 fixed replicas and uses W = 
 
 ## Repair and recovery are separate
 
-Replication writes, hints, foreground read repair, and operator-run anti-entropy repair cover different failure windows. A successful quorum acknowledgement does not mean every replica has the value. Hints can bridge temporary outages; Cassandra repair compares replica data (using Merkle trees) and streams differences. Repair has I/O and network cost and is operator-run; a repair command covers ranges on the node where it runs, so a cluster-wide plan must cover the required nodes and ranges. Applications and operators still need to understand conflict resolution, repair scope, operational load, and what happens when hints or tombstones expire.
+Replication writes, hints, foreground read repair, and operator-run anti-entropy repair cover different failure windows. A successful quorum acknowledgement does not mean every replica has the value. Hints can bridge temporary outages; Cassandra repair compares replica data (using Merkle trees) and streams differences. Repair has I/O and network cost and is not run automatically; a repair command covers ranges on the node where it runs, so a cluster-wide plan must cover the required nodes and ranges. Applications and operators still need to understand conflict resolution, repair scope, operational load, and what happens when hints or tombstones expire.
 
 ## Cross-item comparison
 

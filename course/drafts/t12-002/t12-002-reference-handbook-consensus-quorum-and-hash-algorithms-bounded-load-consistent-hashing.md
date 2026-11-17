@@ -1,36 +1,38 @@
 # distributed systems consistency coordination and convergence — Reference: Bounded-load consistent hashing
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://hld.handbook.academy/curriculum/distributed-systems-theory/).
+Sources: [Handbook module 3.9](https://hld.handbook.academy/curriculum/distributed-systems-theory/), [Mirrokni, Thorup, and Zadimoghaddam, Consistent Hashing with Bounded Loads](https://arxiv.org/abs/1608.01350), [SIAM publication](https://epubs.siam.org/doi/10.1137/1.9781611975031.39).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson explains the bounded-load variant of consistent hashing. It focuses on the original theoretical scheme and its stated guarantees; production variants can differ. Check the design and workload assumptions before applying a bound to real traffic.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Ordinary consistent hashing limits how many keys move when a server set changes, but a skewed key distribution can still overload one server. Bounded-load hashing adds a capacity rule: a key follows its consistent-hash assignment unless that server reaches a specified load threshold, then it is assigned elsewhere. This improves the worst-case load at the cost of some extra movement and a more involved assignment rule.
 
 ## Supplied names explained
 
-- `Bounded-load consistent hashing` — Consistent hashing variant that caps node load and may redirect keys when a target is full; capacity, imbalance, and remapping effects need evaluation.
+The published bounded-load construction treats keys as balls and servers as bins. Each key has a preferred server from the consistent-hash ordering. If that bin reaches its capacity bound, the key proceeds to another candidate according to the construction. In the paper’s setting with n keys and n servers, the construction guarantees maximum load at most 2 while moving an expected constant number of keys per server insertion or deletion. That is a theorem under the paper’s model, not a blanket guarantee for arbitrary weighted servers, changing request rates, replication, or hot keys.
+
+“Load” must be defined. The theoretical result bounds the number of assigned keys under its assumptions; it does not automatically bound bytes, CPU, request rate, or latency. A single popular key can dominate traffic even when the number of keys per server is balanced.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Compared with ordinary ring hashing, bounded-load hashing gives a formal load cap in its model, but may remap more keys to honor the cap. Compared with adding virtual nodes or weights, it has a different balancing mechanism and guarantee. Before adopting it, verify that its load metric matches the bottleneck and model the cost of reassignment, metadata, replication, and movement.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Suppose 1,000 equally sized cache keys map to four servers, but one server's preferred keys exceed the configured capacity. Ordinary ring assignment can preserve the preferred ownership and leave that server overloaded. A bounded-load assignment redirects overflow keys to alternative eligible servers. If one server is added, reassignment should remain limited by the construction; measure how many cache entries must be warmed again and whether the bound concerns key count or actual request load.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Assuming the paper's maximum key-count bound also caps bytes, CPU, or request rate.
+- Treating a theoretical construction as a vendor implementation guarantee without checking its exact variant.
+- Ignoring the operational cost of relocating keys, warming caches, or updating replicas.
+- Applying bounded-load placement to a hot key that remains a single serialized owner.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What problem does bounded-load hashing add to consistent hashing?** It limits the maximum assigned key count per server under the construction’s assumptions, while keeping reassignment limited as membership changes.
+2. **Does a cap on key count guarantee equal request rate?** No. Key popularity and object size can be highly skewed.
+3. **What operational work follows when overflow keys move?** Data or cache movement, replica updates, and warming may be needed; measure this against the benefit of the cap.

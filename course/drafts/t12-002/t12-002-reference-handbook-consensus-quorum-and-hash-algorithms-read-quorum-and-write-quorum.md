@@ -1,36 +1,38 @@
 # distributed systems consistency coordination and convergence — Reference: Read quorum and write quorum
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://hld.handbook.academy/curriculum/distributed-systems-theory/).
+Sources: [Handbook module 3](https://hld.handbook.academy/curriculum/distributed-systems-theory/), [Dynamo paper](https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf), [Cassandra replication and consistency](https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson introduces read and write quorum thresholds for replicated data. The guarantees depend on the database protocol, replica membership, version ordering, and failure behavior.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+With N fixed replicas, a write quorum W is the number of acknowledgements needed before a write succeeds; a read quorum R is the number of replica responses a read collects. If R+W>N, every fixed-set read quorum intersects every fixed-set write quorum. If 2W>N, every pair of fixed-set write quorums intersects. These are set-intersection facts, not complete consistency guarantees.
 
 ## Supplied names explained
 
-- `Read quorum and write quorum` — Replica acknowledgement thresholds whose intersection can support particular consistency guarantees only under the protocol's failure, version, and replica assumptions.
+To turn intersection into a useful read result, the protocol must retain enough version information, compare or order concurrent values correctly, and return/reconcile the appropriate value. Membership changes, sloppy quorum substitutes, local versus global datacenter scopes, speculative requests, and failed writes can alter the argument. Strong consistency can require a leader or a consensus-backed protocol rather than merely intersecting thresholds.
+
+Cassandra's consistency levels select response thresholds for a particular operation, while writes are sent to all replicas; its documentation describes when quorum intersections make writes visible to subsequent reads. This should not be generalized to every datastore or called linearizability without checking the full contract.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Larger quorums can improve overlap and reduce the number of stale responses that determine a read, but require more nodes to respond and can increase latency or reduce availability. Configure R and W together with replication factor, region scope, failure domains, and whether concurrent writes need serialization.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+For N=5, choose W=3 and R=3. Any three responders intersect any other three, so a read set overlaps a successful write set. But if the common replica is stale, if version reconciliation chooses incorrectly, or if the participants are substitute nodes outside the fixed set, arithmetic alone does not tell you what the client observes. Add a failed write and a concurrent write to the trace before claiming the required guarantee.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Claiming R+W>N proves linearizability without stating the fixed-set and version assumptions.
+- Assuming the latest wall-clock timestamp always means the causally latest write.
+- Applying fixed-set arithmetic to sloppy quorums or membership transitions.
+- Ignoring the latency/availability cost of requiring more responses.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **With N=5,R=3,W=3, do fixed-set read/write quorums intersect?** Yes, because 3+3>5.
+2. **Does that prove linearizability?** No; protocol-level version, ordering, failure, and membership rules matter.
+3. **What availability cost can a larger quorum impose?** More replicas must respond before the operation completes.

@@ -1,36 +1,38 @@
 # distributed systems consistency coordination and convergence — Reference: Observed-Remove Set (OR-Set)
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://hld.handbook.academy/curriculum/distributed-systems-theory/).
+Sources: [Handbook CRDT module](https://hld.handbook.academy/curriculum/distributed-systems-theory/crdts/), [Shapiro et al., comprehensive study of convergent and commutative replicated data types](https://www.lip6.fr/Marc.Shapiro/papers/2011/Comprehensive-CRDTs-RR7506-2011-01.pdf), [Shapiro et al., optimized conflict-free replicated set](https://arxiv.org/abs/1210.3368).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson uses the common add-wins observed-remove set (OR-Set) model. CRDT libraries differ in tag representation, causal metadata, and compaction; consult the implementation's contract.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Replicated sets need a rule for concurrent add and remove operations. In an OR-Set, every add creates a unique tag for that element. A remove deletes the tags for that element which the removing replica has observed. If another replica concurrently adds the same element with a new tag, that tag was not observed by the remove and remains after merge. Thus this common OR-Set is add-wins for a concurrent unseen add.
 
 ## Supplied names explained
 
-- `Observed-Remove Set (OR-Set)` — A set CRDT that associates additions with unique tags so a remove targets observed additions; concurrent unseen adds can remain after a remove.
+The state-based representation carries add tags and enough removal metadata to prevent deleted tags from reappearing when older state arrives. The operation-based form can instead disseminate add/remove operations under delivery assumptions such as causal order. These are related implementations of an observed-remove semantic rule, not an excuse to omit the library's delivery and garbage-collection requirements.
+
+Remove followed by a later add is different from a concurrent add: the later add creates a fresh tag and the element is present. Metadata can grow as tags and removal knowledge accumulate. Safe compaction requires causal stability or another proof that removed tags cannot return from an old replica or backup.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+An OR-Set permits removal and re-addition, unlike a two-phase set whose tombstoned element cannot be re-added. Compared with a last-write-wins set, OR-Set semantics are based on observed add identities rather than a timestamp winner, but carry more metadata. Pick the conflict rule that matches product intent: “a concurrent invite should survive” differs from “a removal always wins.”
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Replica A and replica B both initially lack “blue.” A adds blue with tag a1 and B, without seeing it, adds blue with tag b1. A removes blue and therefore removes only a1. After merging, b1 remains and blue is present. If B had observed a1 before the remove and had not added b1, the remove would remove the observed addition and blue would be absent. A later add creates a new tag and makes it present again.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Assuming remove always wins against an unseen concurrent add.
+- Removing an element without tracking which add instances were observed.
+- Dropping tombstones or tags before old replicas can no longer reintroduce stale state.
+- Assuming two OR-Set libraries share the same wire format, causal assumptions, or compaction strategy.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What does a remove operation target in an OR-Set?** The unique add tags for that element observed by the removing replica.
+2. **What happens to an unseen concurrent add?** Its new tag survives, so the common OR-Set is add-wins for that race.
+3. **Why can removed-tag metadata not be discarded arbitrarily?** An old replica could later send stale state that reintroduces the removed addition.

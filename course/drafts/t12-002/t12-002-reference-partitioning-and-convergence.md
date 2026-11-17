@@ -26,9 +26,21 @@ For a key and each candidate node, compute a deterministic score from the pair; 
 
 Both aim for stable mappings as the node set changes. A ring makes ordered token ranges and replica walks natural; rendezvous ranking is a direct per-key ranking over the candidate set and is straightforward to compute independently at clients. Compare memory and lookup cost, weighted-node support, replication needs, failure/removal behavior, and how node membership stays consistent. The name “consistent” does not mean strongly consistent data.
 
+### Placement algorithms named by the Handbook
+
+The Handbook's consistent-hashing module also names bounded-load hashing, Maglev, and jump consistent hash. They solve different placement constraints:
+
+- **Bounded-load consistent hashing** adds a capacity rule to a preferred consistent-hash assignment. The cited construction bounds the maximum number of keys per server under its mathematical model while keeping expected reassignment low. That does not bound request rate or bytes when keys are skewed.
+- **Maglev** precomputes a fixed-size lookup table for fast network load-balancer backend selection and aims for near-equal table shares with limited disruption after membership changes. Table size trades memory/build work against balance and remapping; connection tracking is a separate mechanism.
+- **Jump consistent hash** maps keys to consecutively numbered buckets using little memory and computation. It is a natural fit when bucket count changes by appending/removing the final bucket; it is not a direct weighted mapping over arbitrary server IDs.
+
+These algorithms do not automatically copy data, migrate partitions, replicate state, or solve a hot key. A production design needs a membership/configuration source, a versioned assignment rule, and a safe data-movement or connection transition plan. The Handbook's examples are a syllabus map, not a claim that these methods are drop-in substitutes.
+
 ### Hot partition
 
 A partition is hot when it receives far more requests or work than the others. The cause may be a skewed partition key, a popular tenant, or a single high-traffic key. Adding machines does not help if the hot traffic still maps to one partition. Remedies depend on semantics: choose a more even key, split a tenant or range, add read replicas/caches, isolate noisy tenants, or salt a write key and aggregate later. Salting spreads writes but can turn a simple read or update into a fan-out/merge operation and can complicate transactions and ordering. Measure request rate, bytes, CPU, storage, and contention per partition; equal data sizes do not imply equal load.
+
+The Handbook's data-systems examples include consistent-hash placement for Dynamo-style databases, distributed caches, and Kafka partition assignment. These are application contexts, not a single shared implementation: Kafka's partition assignment and consumer-group protocols have their own rules, while cache/database systems may use ring tokens, replica walks, or different balancing mechanisms. Choose based on the actual system contract.
 
 ### Conflict-free replicated data type (CRDT)
 
@@ -101,3 +113,7 @@ For a “likes received” display, independent per-replica increments may merge
 - Amazon DynamoDB, [global tables conflict resolution](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables_HowItWorks.html)
 - Burrows, “The Chubby Lock Service for Loosely-coupled Distributed Systems”: [paper](https://research.google/pubs/the-chubby-lock-service-for-loosely-coupled-distributed-systems/)
 - etcd v3.6, [lease and lock limitations](https://etcd.io/docs/v3.6/learning/why/)
+- Handbook, [Distributed Systems Theory module 3.9](https://hld.handbook.academy/curriculum/distributed-systems-theory/)
+- Mirrokni, Thorup, and Zadimoghaddam, [Consistent Hashing with Bounded Loads](https://arxiv.org/abs/1608.01350)
+- Google Research, [Maglev: A Fast and Reliable Software Network Load Balancer](https://research.google.com/pubs/archive/44824.pdf)
+- Lamping and Veach, [A Fast, Minimal Memory, Consistent Hash Algorithm](https://arxiv.org/abs/1406.2294)

@@ -1,36 +1,38 @@
 # distributed systems consistency coordination and convergence — Reference: PN-Counter
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://hld.handbook.academy/curriculum/distributed-systems-theory/).
+Sources: [Handbook CRDT module](https://hld.handbook.academy/curriculum/distributed-systems-theory/crdts/), [Shapiro et al., Conflict-free Replicated Data Types](https://pages.lip6.fr/Marc.Shapiro/papers/CRDTs_SSS-2011.pdf).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson explains the positive-negative counter construction from the CRDT model. Implementations may encode or compact it differently; verify their merge, identity, and persistence guarantees.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+A grow-only counter can merge increments but cannot decrement. A PN-Counter builds a counter with increments and decrements from two grow-only counters: P records positive increments and N records negative increments. The visible value is the sum of P minus the sum of N. Each replica owns a component in each vector and only increases its own components; replicas merge vectors by component-wise maximum.
 
 ## Supplied names explained
 
-- `PN-Counter` — A CRDT counter composed from positive and negative grow-only components to represent increments and decrements under its merge assumptions.
+Because both component vectors only grow and merge with maximum, repeated and reordered state merges converge. A replica's increment increases its own P component; a decrement increases its own N component. It must not directly reduce a component. The state must preserve stable replica identities so a restarted or reincarnated replica cannot reuse an identity and overwrite a larger prior component.
+
+The mathematical type permits the visible value to become negative. It does not enforce a lower bound, an inventory invariant, or “decrement only if positive.” Concurrently checking a balance and decrementing it requires coordination or an escrow/rights-allocation construction that distributes safe decrement rights.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Compared with a G-Counter, PN-Counter supports negative operations by tracking a second monotone vector, which increases metadata and still does not enforce business constraints. Compared with a serialized database counter, it can accept local updates during disconnection but reads may be stale until state exchanges; a database transaction can enforce invariants by coordinating with an authority.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Replicas A and B start with P=[0,0] and N=[0,0]. A increments twice: P becomes [2,0]. B decrements once: N becomes [0,1]. After exchanging states, both merge to P=[2,0], N=[0,1], and display 1. Repeating the exchange changes nothing. If A and B both see a displayed value of 1 and each decrements, both may do so while disconnected; after merge the result is -1. That is convergence, but it may violate the product rule.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Subtracting directly from a component instead of increasing a component of N.
+- Assuming convergence prevents a negative result or enforces a quota.
+- Reusing replica identities without preserving or transferring their component state.
+- Treating the displayed value as globally current while replicas are disconnected.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **How is the visible PN-Counter value calculated?** Sum the P components and subtract the sum of N components.
+2. **How do replicas merge?** Take component-wise maximum of P and separately of N.
+3. **Can two disconnected replicas each decrement a balance they observe as 1?** Yes; after merge the value can be -1. Use coordination or allocated rights if non-negativity is a hard invariant.

@@ -1,36 +1,38 @@
 # distributed systems consistency coordination and convergence — Reference: Hinted handoff
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.rfc-editor.org/rfc/rfc9110), [reference 2](https://www.postgresql.org/docs/current/mvcc.html), [reference 3](https://sre.google/sre-book/table-of-contents/), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://hld.handbook.academy/curriculum/distributed-systems-theory/).
+Sources: [Handbook module 3](https://hld.handbook.academy/curriculum/distributed-systems-theory/), [Dynamo paper](https://assets.amazon.science/ac/1d/eb50c4064c538c8ac440ce6a1d91/dynamo-amazons-highly-available-key-value-store.pdf), [Cassandra hints](https://cassandra.apache.org/doc/stable/cassandra/managing/operating/hints.html), [Cassandra repair](https://cassandra.apache.org/doc/stable/cassandra/managing/operating/repair.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson explains the temporary missed-write record used by hint-based replication. Persistence, expiry, delivery, and monitoring settings are product-specific.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+When a replica is temporarily unavailable, a coordinator can keep a record that the replica missed a mutation. Later, it attempts to replay that mutation to the intended replica. The hint is a repair aid for a bounded outage window; it is not the replica itself and does not guarantee that every missed update will arrive.
 
 ## Supplied names explained
 
-- `Hinted handoff` — Temporarily stores a replica's missed update at another node for later delivery; it is repair support, not by itself a consistency guarantee.
+Hints consume storage at coordinators and require expiry, retry, back-pressure, and observability policies. A coordinator may fail, a hint may expire, or the replica may remain unavailable beyond the retention window. Cassandra explicitly treats hints as best-effort and lists read repair and full/incremental anti-entropy repair as additional convergence mechanisms.
+
+Replay must also coexist with newer writes and deletions. The database's version/timestamp reconciliation determines whether an old hinted mutation is superseded; tombstone retention and repair timing matter. Never build an application workflow that treats hint acknowledgement as proof that every replica durably stores the value.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Hinted handoff is targeted replay to replicas believed to have missed writes. Read repair fixes discrepancies discovered by reads, while anti-entropy repair compares broader replica ranges on a schedule or operator command. Hints can reduce inconsistency duration but do not replace those wider repair paths.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+Replica B is unavailable for 20 minutes while coordinator A accepts a mutation at the configured write threshold and stores a hint for B. When B returns, A replays the hint. If A fails before replay, or the hint expires, B may remain stale; a later read repair or anti-entropy repair must detect and fix the difference. Define how operators monitor pending hint volume and what repair covers a missed hint.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating a hint as a durable replica or guaranteed write-ahead log.
+- Assuming a hint queue is unbounded or retained until successful delivery.
+- Treating hinted handoff as a substitute for full/incremental repair.
+- Ignoring old writes, tombstones, expiration, coordinator failure, and hint backlog.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What does a hint record?** A mutation that an intended replica missed, for later attempted delivery.
+2. **Does successful hint storage prove every replica has the update?** No; it proves at most that the current implementation accepted the hint under its write path.
+3. **What repairs discrepancies if a hint is lost or expires?** Read repair may fix data encountered by reads; anti-entropy repair compares wider ranges.
