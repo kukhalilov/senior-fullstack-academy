@@ -221,49 +221,47 @@ Within this assigned signaling and coordination group, several primitives share 
 
 * **Kernel vs. Slim Primitives (`AutoResetEvent` / `ManualResetEvent` vs. `ManualResetEventSlim`, `Semaphore` vs. `SemaphoreSlim`)**: OS-backed wait handles can support named cross-process coordination, but are also usable within one process. Slim variants are in-process alternatives that may spin briefly before blocking; spinning can help only for suitable short waits and is not a universal performance win.
 * **Completion Tracking (`CountdownEvent` vs. `Barrier`)**: A `CountdownEvent` tracks a one-shot countdown (e.g., waiting for $N$ worker tasks to finish before proceeding). A `Barrier`, by contrast, coordinates cyclical work where threads meet repeatedly at phase boundaries, executing phased, iterative algorithms.
-* **Exclusive vs. Shared Access (`lock` vs. `ReaderWriterLockSlim`)**: Standard locks provide exclusive mutual exclusion (one thread at a time). `ReaderWriterLockSlim` permits high-concurrency read operations while serializing write operations, making it ideal for read-heavy cache structures.
+* **Exclusive vs. Shared Access (`lock` vs. `ReaderWriterLockSlim`)**: Standard locks provide exclusive mutual exclusion (one thread at a time). `ReaderWriterLockSlim` permits high-concurrency read operations while serializing write operations, which can help some read-heavy workloads when measurements justify its added bookkeeping.
 
 # Examples
 
-The following end-to-end example demonstrates how to coordinate multiple worker threads using `SemaphoreSlim` to throttle concurrent operations and `CountdownEvent` to wait for all work items to complete.
+The following example uses `SemaphoreSlim` to cap concurrent asynchronous work and awaits every task so faults are observed.
 
 ```csharp
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 class Program
 {
-    static async Task Main(string[] args)
+    static async Task Main()
     {
-        // Limit concurrency to 3 simultaneous operations
         using var semaphore = new SemaphoreSlim(3, 3);
-        
-        // Track completion of 10 total items
-        using var countdown = new CountdownEvent(10);
+        var workers = new Task[10];
 
-        for (int i = 1; i <= 10; i++)
+        for (int i = 0; i < workers.Length; i++)
         {
-            int taskId = i;
-            _ = Task.Run(() =>
+            int taskId = i + 1;
+            workers[i] = Task.Run(async () =>
             {
+                bool entered = false;
                 try
                 {
-                    semaphore.Wait(); // Acquire concurrency slot
+                    await semaphore.WaitAsync();
+                    entered = true;
                     Console.WriteLine($"Task {taskId} started.");
-                    Thread.Sleep(500); // Simulate work
+                    await Task.Delay(500); // Simulate asynchronous work
                 }
                 finally
                 {
-                    semaphore.Release(); // Free concurrency slot
-                    countdown.Signal();  // Mark item complete
+                    if (entered)
+                        semaphore.Release();
                     Console.WriteLine($"Task {taskId} finished.");
                 }
             });
         }
 
-        // Wait until all 10 tasks have signaled completion
-        countdown.Wait();
+        // Await every task so worker exceptions propagate to Main.
+        await Task.WhenAll(workers);
         Console.WriteLine("All tasks completed successfully.");
     }
 }
@@ -284,7 +282,7 @@ All tasks completed successfully.
 # Common mistakes
 
 * **Ignoring disposable primitive lifetime**: Dispose synchronization primitives when their owning scope ends and no waits or operations remain. Some implementations allocate OS handles lazily; disposal races with active users are unsafe.
-* **Releasing Semaphores Incorrectly**: Calling `SemaphoreSlim.Release()` without a matching successful `Wait()` call corrupts the semaphore count, allowing more threads into the critical section than intended.
+* **Releasing Semaphores Incorrectly**: Calling `SemaphoreSlim.Release()` without a successfully acquired permit violates the coordination protocol and can exceed the configured maximum, causing `SemaphoreFullException` or incorrect capacity accounting.
 * **Using Heavy Kernel Handles In-Process**: Using `AutoResetEvent` or process-wide `Semaphore` objects for simple in-process thread signaling adds unnecessary context-switch overhead. Prefer `ManualResetEventSlim` or `SemaphoreSlim`.
 * **Lock Recursion Deadlocks in `ReaderWriterLockSlim`**: Entering write locks while holding read locks without using upgradeable read modes can trigger runtime exceptions or deadlocks depending on the configured `RecursionPolicy`.
 
@@ -295,7 +293,7 @@ All tasks completed successfully.
 2. **Question**: What is the primary difference between `CountdownEvent` and a `Barrier`?
    * **Answer**: A `CountdownEvent` is used for one-shot coordination where threads signal completion until a count reaches zero. A `Barrier` coordinates cyclical phases where multiple threads must repeatedly meet and wait for all participants to arrive before entering the next phase.
 3. **Question**: Why might calling `WaitHandle.WaitAll` on an array of wait handles fail or be discouraged in modern .NET applications?
-   * **Answer**: `WaitAll` is unsupported on STA threads and blocks the calling thread. Any blocking wait can deadlock if required signaling work depends on the blocked thread; use it only when blocking and handle-count constraints fit the design.
+   * **Answer**: `WaitAll` is unsupported on STA threads and on Windows the wait-handle count is limited (typically 64). It blocks the calling thread; if required signaling depends on that thread, a deadlock can result.
 
 # Sources
 

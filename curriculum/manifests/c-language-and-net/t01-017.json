@@ -243,7 +243,15 @@
         "Throughput versus tail latency under contention",
         "Bounded wait and timeout policy",
         "Cancellation-aware synchronization",
-        "Primitive disposal while waiters remain"
+        "Primitive disposal while waiters remain",
+        "SpinWait not safe for concurrent use of same instance",
+        "SpinWait.SpinOnce(Int32)",
+        "SpinLock constructor owner tracking option",
+        "SpinLock.TryEnter(Int32,Boolean)",
+        "SpinLock.TryEnter(TimeSpan,Boolean)",
+        "SpinLock non-reentrant behavior",
+        "SpinLock Enter lockTaken must start false",
+        "SpinLock.Exit without ownership corrupts state"
       ]
     },
     {
@@ -309,16 +317,46 @@
   ],
   "inventoryComplete": true,
   "comparisons": [
-    ["Concurrency", "Parallelism"],
-    ["Thread", "Task"],
-    ["ThreadPool", "dedicated Thread"],
-    ["lock and System.Threading.Lock", "Interlocked"],
-    ["Monitor", "Mutex"],
-    ["Semaphore", "SemaphoreSlim"],
-    ["AutoResetEvent", "ManualResetEventSlim"],
-    ["lock", "ReaderWriterLockSlim"],
-    ["SpinLock", "Monitor"],
-    ["Parallel.ForEach", "serial foreach"]
+    [
+      "Concurrency",
+      "Parallelism"
+    ],
+    [
+      "Thread",
+      "Task"
+    ],
+    [
+      "ThreadPool",
+      "dedicated Thread"
+    ],
+    [
+      "lock and System.Threading.Lock",
+      "Interlocked"
+    ],
+    [
+      "Monitor",
+      "Mutex"
+    ],
+    [
+      "Semaphore",
+      "SemaphoreSlim"
+    ],
+    [
+      "AutoResetEvent",
+      "ManualResetEventSlim"
+    ],
+    [
+      "lock",
+      "ReaderWriterLockSlim"
+    ],
+    [
+      "SpinLock",
+      "Monitor"
+    ],
+    [
+      "Parallel.ForEach",
+      "serial foreach"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-threading-basics",
@@ -342,8 +380,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft .NET managed-threading, synchronization primitive, and Task Parallel Library documentation",
-    "edition": ".NET 11 GA and C# 15 stable threading APIs checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": ".NET 11 GA and C# 15 stable threading APIs checked 2026-11-17",
+    "checkedAt": "2026-11-17",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/standard/threading/managed-threading-basics",
       "https://learn.microsoft.com/en-us/dotnet/standard/threading/threads-and-threading",
@@ -371,7 +409,14 @@
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.waithandle.waitall",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.spinlock",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.spinlock.exit",
-      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.threadpool.unsafequeueuserworkitem"
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.threadpool.unsafequeueuserworkitem",
+      "https://learn.microsoft.com/en-us/dotnet/standard/threading/semaphore-and-semaphoreslim",
+      "https://learn.microsoft.com/en-us/dotnet/standard/threading/spinlock",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.spinwait",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.spinwait.spinonce",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.spinlock.isheldbycurrentthread",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-threadpool-starvation"
     ]
   },
   "scopeExclusions": [
@@ -390,6 +435,15 @@
     "ParallelLoopState.Stop prevents not-yet-started iterations from needing to run; already-running iterations may finish. Break records a lowest index and allows lower-index iterations to complete. Stop and Break cannot be combined in one loop.",
     "WaitHandle.WaitAll blocks the caller, is unsupported on STA threads, and supports at most 64 handles on current .NET. Deadlock depends on the signaling dependencies; it is not automatic.",
     "ThreadPool UnsafeQueueUserWorkItem and UnsafeRegisterWaitForSingleObject do not flow ExecutionContext; do not describe this only as skipping a security context.",
-    "A thread-pool task, callback, or I/O completion can use a pool thread, but naturally asynchronous I/O does not occupy one worker thread for its entire wait."
+    "A thread-pool task, callback, or I/O completion can use a pool thread, but naturally asynchronous I/O does not occupy one worker thread for its entire wait.",
+    "ThreadPool threads are background threads, and unhandled exceptions on them generally terminate the process; describe exceptions with runtime-version qualifications.",
+    "SpinWait is a mutable value intended for a single waiter at a time; SpinOnce(Int32) uses a sleep1Threshold, and -1 disables Thread.Sleep(1).",
+    "The parameterless SpinLock constructor enables owner tracking; IsHeldByCurrentThread is invalid when tracking is disabled. SpinLock is non-reentrant and copies are distinct lock state.",
+    "Lock-free progress is system-wide; wait-free is per-operation; obstruction-free means progress when an operation runs without interference. These theoretical properties do not imply real-time wall-clock bounds.",
+    "Version-tagged CAS requires the value and version to be atomically updated/compared together; ordinary Interlocked overloads do not make arbitrary pairs atomic.",
+    "WaitHandle.WaitAll is blocking, unsupported on STA threads, and current Windows wait-object limits constrain handle count; use platform/API-specific limits when describing it.",
+    "Parallel.ForEachAsync defaults to at most Environment.ProcessorCount concurrent bodies; -1 means the same cap for this API. This is a maximum, not a utilization promise.",
+    "A SemaphoreSlim permit must be released only after successful acquisition. Async code should prefer WaitAsync and observe all started tasks.",
+    "Thread-safety is member- and invariant-specific; do not promise all instance or static members are safe without their documented contracts."
   ]
 }
