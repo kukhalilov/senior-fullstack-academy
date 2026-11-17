@@ -537,6 +537,16 @@
       "findings": [
         "Checked FreeBSD 15.1 queue/kevent model, (ident, filter) key, batching and event aggregation, principal action flags, read/write filters, vnode/process/signal/timer/user filter examples, and close behavior against the FreeBSD manual page. Other platform variants and all lesson claims/omissions remain pending; this lesson is not promoted."
       ]
+    },
+    {
+      "scope": "Linux io_uring asynchronous I/O reference",
+      "status": "partial primary-source checks; full lesson audit pending",
+      "sources": [
+        "https://man7.org/linux/man-pages/man7/io_uring.7.html"
+      ],
+      "findings": [
+        "Checked the SQ/CQ lifecycle, SQEs/CQEs and negative result error reporting, completion reordering and user_data correlation, buffer lifetimes, SQPOLL, linked operations, and exceptions to the one-request/one-completion basic model against Linux man-pages io_uring(7). Kernel-specific opcode support, every claim, and omission checks remain pending; lesson is not promoted."
+      ]
     }
   ],
   "lessons": [
@@ -77298,29 +77308,7 @@
       "issues": [],
       "reviewedAt": null,
       "sourceUrls": [
-        "https://hld.handbook.academy/",
-        "https://www.rfc-editor.org/rfc/rfc9110",
-        "https://www.rfc-editor.org/rfc/rfc8446",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6455",
-        "https://www.rfc-editor.org/rfc/rfc9000",
-        "https://learn.microsoft.com/en-us/azure/architecture/guide/",
-        "https://hld.handbook.academy/curriculum/prerequisites/",
-        "https://hld.handbook.academy/curriculum/building-blocks/",
-        "https://man7.org/linux/man-pages/man7/epoll.7.html",
-        "https://man7.org/linux/man-pages/man7/io_uring.7.html",
-        "https://man.freebsd.org/cgi/man.cgi?query=kqueue",
-        "https://www.rfc-editor.org/rfc/rfc9846",
-        "https://www.rfc-editor.org/rfc/rfc9113",
-        "https://www.rfc-editor.org/rfc/rfc9114",
-        "https://www.rfc-editor.org/rfc/rfc9525",
-        "https://www.rfc-editor.org/rfc/rfc9325",
-        "https://html.spec.whatwg.org/multipage/server-sent-events.html",
-        "https://www.rfc-editor.org/rfc/rfc1034",
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc9112",
-        "https://www.rfc-editor.org/rfc/rfc9931",
-        "https://www.rfc-editor.org/rfc/rfc8441"
+        "https://man7.org/linux/man-pages/man7/io_uring.7.html"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -100118,6 +100106,14 @@
       "status": "expanded; selected primary-source checks; full audit pending",
       "findings": [
         "Replaced generic filler with queue/filter model, lifecycle-safe event dispatch, socket and non-socket filters, action-flag distinctions, recovery/reconciliation, platform comparison, and practice. Selected claims were checked against FreeBSD 15.1 manual pages; full claim and completeness audits remain outstanding."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "Linux io_uring reference",
+      "status": "expanded; selected primary-source checks; full audit pending",
+      "findings": [
+        "Replaced generic filler with a learner-first comparison to readiness notification, lifecycle, buffer ownership, completion correlation, ordering/cancellation, feature-dependent behavior, operational constraints, examples, and practice. Selected claims were checked against Linux man-pages; full sentence-level and completeness audits remain outstanding."
       ]
     }
   ]
