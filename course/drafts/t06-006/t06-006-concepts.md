@@ -27,7 +27,7 @@ Callers may inspect the returned Error and continue. The thrown Error transfers 
 
 `Error` is the base diagnostic type. `AggregateError` represents several values/failures; its constructor consumes an iterable and stores an array. `EvalError`, `RangeError`, `ReferenceError`, `SyntaxError`, `TypeError`, and `URIError` identify conventional categories. The engine may choose which NativeError to throw for a specification-detected failure; messages and stack traces are not stable language-level protocols. `EvalError` remains for compatibility but the current ECMAScript specification does not use it for its own runtime errors.
 
-Error constructors can be called with or without `new`. A message argument becomes a non-enumerable own `message` property. Without an own message, the inherited `Error.prototype.message` is the empty string. `Error.prototype.name` defaults to `"Error"`; `Error.prototype.toString()` combines the effective name and message with `": "`, using defaults when either is `undefined`.
+Error constructors can be called with or without `new`. A message value other than `undefined` becomes a non-enumerable own `message` property; explicitly passing `undefined` is like omitting it. Without an own message, the inherited `Error.prototype.message` is the empty string. `Error.prototype.name` defaults to `"Error"`; `Error.prototype.toString()` combines the effective name and message with `": "`, using defaults when either is `undefined`.
 
 ## Context with `cause`; multiple failures with AggregateError
 
@@ -118,3 +118,4 @@ This is legal but usually poor design. A cleanup block should not silently repla
 - [ECMAScript 2026 throw and try statements](https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html)
 - [MDN: Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 - [MDN: Error.isError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/isError)
+- [Web IDL: DOMException JavaScript bindings](https://webidl.spec.whatwg.org/#js-DOMException-specialness)

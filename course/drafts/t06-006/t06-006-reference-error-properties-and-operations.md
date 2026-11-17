@@ -12,8 +12,8 @@ Error objects carry diagnostic data; throw/catch transfer that data through cont
 
 # Supplied names explained
 
-- `Error.isError` — ECMAScript 2026 static branded check. It returns false for primitives and objects without the internal `[[ErrorData]]` slot; true for standard branded Error-family objects. It works across realms, unlike `instanceof Error`, but a Proxy around an Error is not itself branded. MDN currently marks support as limited availability, so feature-detect if runtime versions are not controlled.
-- `Error.prototype.message` — The inherited default message is the empty string. A constructor creates an own message property only when a message argument is supplied; that own property is writable and configurable but non-enumerable. Do not assume an error always owns `message`.
+- `Error.isError` — ECMAScript 2026 static branded check. It returns false for primitives and objects without the internal `[[ErrorData]]` slot; true for standard branded Error-family objects. It works across realms, unlike `instanceof Error`, but a Proxy around an Error is not itself branded. The web platform also specifies `DOMException` values to pass this check even though `DOMException` is not specified as an Error subclass. MDN currently marks support as limited availability, so feature-detect if runtime versions are not controlled.
+- `Error.prototype.message` — The inherited default message is the empty string. A constructor creates an own message property only when the message value is not `undefined`; explicit `undefined` behaves like omission. The own property is writable and configurable but non-enumerable. Do not assume an error always owns `message`.
 - `Error.prototype.name` — The inherited default name is `"Error"`; subtype prototypes supply names such as `"TypeError"`. It is a normal writable/configurable, non-enumerable property by default. Instances or application code may override it, so it is descriptive rather than a protected tag.
 - `Error.prototype.toString` — Reads `name` and `message` from its receiver, defaulting only `undefined` values to `"Error"` and `""`. It stringifies non-undefined values. If name is empty it returns the message; if message is empty it returns the name; otherwise it returns `name + ": " + message`. It throws if `this` is not an object and can also propagate errors from getters or string conversion.
 - `Error instance cause property` — When installed, this is an own, writable, configurable, non-enumerable data property holding exactly the supplied cause value. It can be any value, not only an Error. It is not created merely because an `options` object exists; options must have a `cause` property.
@@ -53,17 +53,19 @@ The feature check protects runtimes that do not yet implement the new static met
 # Common mistakes
 
 - Assuming a `cause` exists whenever a constructor options object is passed.
+- Assuming `new Error(undefined)` creates an own `message` property; the constructor only creates one when the value is not `undefined`.
 - Assuming `cause` must be an Error or is enumerable.
 - Assuming AggregateError's `errors` argument must be an array; any synchronous iterable works.
 - Assuming `Error.isError` is available in every current browser/runtime.
 - Assuming an object that inherits from `Error.prototype` has the Error internal brand.
+- Assuming `Error.isError()` is limited to objects whose prototype chain includes `Error.prototype`; web-platform `DOMException` is also recognized.
 - Returning or throwing from `finally` unintentionally and suppressing the original completion.
 - Placing a newline immediately after `throw`.
 - Using message or stack text as stable machine-readable fields.
 
 # Knowledge checks with answers
 
-1. **Does `{ cause: undefined }` create an own cause property?** Yes, because the options object has the property even though its value is undefined.
+1. **Does `{ cause: undefined }` create an own cause property?** Yes, because the options object has the property even though its value is undefined. By contrast, a message value of `undefined` does not create an own `message` property.
 2. **Is `AggregateError.errors` enumerable?** No; it is writable and configurable but non-enumerable.
 3. **Can `throw` carry a string?** Yes, though Error objects are usually better diagnostics.
 4. **What does normal completion of finally do?** It preserves the pending result from try/catch.
@@ -75,3 +77,4 @@ The feature check protects runtimes that do not yet implement the new static met
 - [ECMAScript 2026 statements and declarations](https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html)
 - [MDN: Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 - [MDN: Error.isError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/isError)
+- [Web IDL: DOMException JavaScript bindings](https://webidl.spec.whatwg.org/#js-DOMException-specialness)

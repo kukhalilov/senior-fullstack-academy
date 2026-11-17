@@ -71,15 +71,17 @@ try {
 
 What values print? Would a `catch (error)` binding convert the value to an Error?
 
-## Exercise 4: cause property presence
+## Exercise 4: message and cause property presence
 
 ```js
 const first = new Error("first");
+const omittedMessage = new Error(undefined);
 const second = new Error("second", { cause: first });
 const third = new Error("third", { cause: undefined });
 console.log(Object.hasOwn(second, "cause"), second.cause === first);
 console.log(Object.hasOwn(third, "cause"), third.cause);
 console.log(Object.getOwnPropertyDescriptor(second, "cause").enumerable);
+console.log(Object.hasOwn(omittedMessage, "message"));
 ```
 
 ## Exercise 5: aggregate iterable
@@ -136,7 +138,7 @@ What do the returned promises fulfill with? Which catch handles each failure, an
 1. **Exercise 1:** A returned value does not make the surrounding try abrupt; a throw does.
 2. **Exercise 2:** Track the pending throw, then ask whether finally completes normally.
 3. **Exercise 3:** A catch binding receives the exact value from the throw expression.
-4. **Exercise 4:** The constructor tests property presence, not whether the cause value is non-undefined; message and cause are non-enumerable.
+4. **Exercise 4:** The constructor tests property presence for `cause`, not whether its value is non-undefined. It creates `message` only when the message value is not `undefined`; both own properties are non-enumerable.
 5. **Exercise 5:** AggregateError consumes the iterator and stores every yielded value in an array.
 6. **Exercise 6:** `instanceof` checks the prototype chain; Error.isError checks the internal brand.
 7. **Exercise 7:** In `bad`, the try block does not await the rejected promise, so rejection happens after the try has left.
@@ -165,6 +167,7 @@ It prints `E_LIMIT false`. Catch binds the exact object thrown. It does not wrap
 ## Solution 4
 
 The first line is `true true`. The second is `true undefined`: the third Error owns cause even though its value is undefined. The final result is `false`, because the cause property is non-enumerable. The standard also defines message as non-enumerable; host-specific extra Error fields may affect a full `Object.keys` result, so inspect the property you need directly.
+The added final check prints `false`: an Error constructed with an `undefined` message does not get an own `message` property.
 
 ## Solution 5
 

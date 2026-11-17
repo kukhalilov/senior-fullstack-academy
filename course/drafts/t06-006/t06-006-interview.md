@@ -13,6 +13,7 @@
 7. What does the `AggregateError` constructor do with its first argument?
 8. What are the limits of Error messages and stack traces?
 9. How should an async function catch a Promise rejection?
+10. Does `Error.isError()` recognize a browser `DOMException`?
 
 # Concise interview answers
 
@@ -25,6 +26,7 @@
 7. **It synchronously consumes a synchronous iterable into a new `errors` array.** Entries need not all be Error instances.
 8. **Messages and stack format are not portable protocol fields.** Stack capture and formatting are host-specific; use application-owned codes for program decisions.
 9. **Await the promise inside the try block.** A rejection that happens after control leaves a non-awaiting try is not caught there.
+10. **Yes.** Web IDL gives `DOMException` the `[[ErrorData]]` brand used by `Error.isError()`, even though it is defined as a platform interface rather than a JavaScript Error subclass.
 
 # Deep follow-up answers
 
@@ -96,3 +98,4 @@ Aim for 8/10 or higher. Revisit any score of 0 by writing each pending completio
 - [ECMAScript 2026 statements and declarations](https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html)
 - [MDN: Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 - [MDN: Error.isError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/isError)
+- [Web IDL: DOMException JavaScript bindings](https://webidl.spec.whatwg.org/#js-DOMException-specialness)

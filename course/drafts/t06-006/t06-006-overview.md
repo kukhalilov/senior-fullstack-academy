@@ -19,7 +19,7 @@ An Error's `message` describes the immediate failure. `cause` can preserve the l
 3. The nearest dynamically enclosing `catch` receives the exact thrown value.
 4. `finally` runs during exit. Its normal completion preserves the pending result; an abrupt `finally` completion replaces it.
 5. Callers can add context with `cause`, or collect several independent failures with `AggregateError`.
-6. At boundaries, `Error.isError` can distinguish branded ECMAScript errors from arbitrary thrown values, including across realms; it is not yet available in every runtime.
+6. At boundaries, `Error.isError` can distinguish branded ECMAScript errors from arbitrary thrown values, including across realms; browser `DOMException` also has this brand even though it is a Web IDL platform exception. The method is not yet available in every runtime.
 
 # Concept map
 
@@ -69,3 +69,4 @@ The concepts lesson traces throw completion and stack unwinding. The reference l
 - [ECMAScript 2026 statements and declarations](https://tc39.es/ecma262/2026/multipage/ecmascript-language-statements-and-declarations.html)
 - [MDN: Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 - [MDN: Error.isError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/isError)
+- [Web IDL: DOMException JavaScript bindings](https://webidl.spec.whatwg.org/#js-DOMException-specialness)
