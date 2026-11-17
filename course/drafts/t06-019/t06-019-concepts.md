@@ -42,7 +42,7 @@ Top-level `await` is permitted in modules, not ordinary classic scripts. It make
 
 ## Import attributes and JSON modules
 
-The current syntax is `with { key: "value" }`, for example `import data from "./settings.json" with { type: "json" };`. The attribute is metadata attached to the module request. The ECMAScript host hook determines supported attribute keys. The current standard requires the host to parse a request marked `type: "json"` as a JSON module when loading completes normally; concrete host policies and runtime support still matter. Node and browser environments may require the explicit JSON type attribute. Do not use the old `assert { ... }` spelling in current examples.
+The current syntax is `with { key: "value" }`, for example `import data from "./settings.json" with { type: "json" };`. The attribute is metadata attached to the module request. The host declares supported attribute keys; unsupported keys are rejected consistently, while the meaning of supported keys and actual loading are host-specific. The `type: "json"` attribute is commonly used for JSON modules, but JSON module support and whether the attribute is required depend on the target host/runtime. Do not use the old `assert { ... }` spelling in current examples.
 
 ## Module namespace and metadata objects
 

@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 753,
-    "pending": 1588,
-    "claimsChecked": 26146,
-    "claimsCorrected": 1447,
+    "reviewed": 760,
+    "pending": 1581,
+    "claimsChecked": 26687,
+    "claimsCorrected": 1451,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 753,
-    "pendingLessons": 1588
+    "reviewedLessons": 760,
+    "pendingLessons": 1581
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -1270,6 +1270,25 @@
       ],
       "findings": [
         "Checked all 42 frozen inventory entries and all six lesson files against ECMA-262 2026, MDN class references, and the TC39 class-fields proposal. Verified class declaration/expression scope, constructor and heritage semantics, super/new.target, methods/accessors, field define-own-property behavior, initialization order, private elements/brand checks, static initialization, and ES2022 additions. Corrected imprecise framing that equated private brand presence with ordinary instanceof ancestry; a base constructor can return an unrelated object that receives derived private elements. Added an executable counterexample, clarified extends null constructor behavior, and answered all practice reflection prompts. No unresolved scope omissions found; lessons remain drafts pending full-curriculum audit."
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "scope": "ECMAScript modules, imports, exports and loading semantics (t06-019)",
+      "status": "full claim and frozen-inventory audit complete for all 7 lessons",
+      "sources": [
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+        "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+        "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+        "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+        "https://html.spec.whatwg.org/multipage/webappapis.html",
+        "https://nodejs.org/api/esm.html",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+        "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
+        "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
+      ],
+      "findings": [
+        "Reviewed all 35 manifest inventory entries and all seven lesson files against ECMA-262 2026, WHATWG HTML Living Standard, current Node ESM docs, and MDN. Verified import/export forms, live bindings, namespace objects, graph/link/evaluation behavior, cycles, dynamic import, top-level await, import.meta host hooks, HostLoadImportedModule, and import-attribute rules. Corrected an overstatement that the ES2026 host hook requires a JSON parse module record universally; clarified that hosts declare supported attribute keys and control supported-key semantics/resource loading. Completed missing answers to five practice reflection questions. No unresolved scope omissions remain; lessons stay drafts pending full-curriculum audit."
       ]
     }
   ],
@@ -50443,13 +50462,65 @@
       "topicId": "t06-019",
       "phase": "overview",
       "draft": "course/drafts/t06-019/t06-019-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 23,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked module-scope mental model, graph/link/evaluate stages, live-binding example, host-resolution claims, dynamic import and top-level-await summaries, and import-attribute version notes against current standards and host documentation.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/webappapis.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://nodejs.org/api/esm.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            }
+          ],
+          "verdict": "verified against current normative and host documentation"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
@@ -50462,20 +50533,72 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
     },
     {
       "taskId": "t06-019-concepts",
       "topicId": "t06-019",
       "phase": "concepts",
       "draft": "course/drafts/t06-019/t06-019-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 66,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked module records, imported binding behavior, export forms, link/evaluate/cycle behavior, dynamic import, TLA dependency effects, namespace descriptors, host hooks, and import attributes. Narrowed JSON module claim to host-supported loading.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/webappapis.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://nodejs.org/api/esm.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            }
+          ],
+          "verdict": "verified against current normative and host documentation"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
@@ -50488,20 +50611,72 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
     },
     {
       "taskId": "t06-019-reference-static-import-forms",
       "topicId": "t06-019",
       "phase": "reference",
       "draft": "course/drafts/t06-019/t06-019-reference-static-import-forms.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 71,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all 10 static import inventory entries, grammar/placement, immutable live bindings, namespace imports, current with syntax, supported attribute keys, and JSON host behavior. Corrected prior claim that ES2026 universally requires a JSON parse module record.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/webappapis.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://nodejs.org/api/esm.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            }
+          ],
+          "verdict": "verified against current normative and host documentation"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
@@ -50514,20 +50689,72 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
     },
     {
       "taskId": "t06-019-reference-export-forms",
       "topicId": "t06-019",
       "phase": "reference",
       "draft": "course/drafts/t06-019/t06-019-reference-export-forms.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 65,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 10 export and re-export forms, default binding distinctions, star export ambiguity/default omission, function/class initialization timing, and examples against module resolution algorithms.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/webappapis.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://nodejs.org/api/esm.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            }
+          ],
+          "verdict": "verified against current normative and host documentation"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
@@ -50540,20 +50767,72 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
     },
     {
       "taskId": "t06-019-reference-module-meta-dynamic-loading",
       "topicId": "t06-019",
       "phase": "reference",
       "draft": "course/drafts/t06-019/t06-019-reference-module-meta-dynamic-loading.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 116,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 15 supplied semantics/hooks, dynamic import promise, TLA evaluation, namespace exotic object, live bindings, cycles, module status/evaluation, import.meta hooks, HostLoadImportedModule, and host resolution boundaries.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/webappapis.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://nodejs.org/api/esm.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            }
+          ],
+          "verdict": "verified against current normative and host documentation"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
@@ -50566,20 +50845,72 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
     },
     {
       "taskId": "t06-019-practice",
       "topicId": "t06-019",
       "phase": "practice",
       "draft": "course/drafts/t06-019/t06-019-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 88,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked five exercise solutions, default expression/alias output, re-export syntax, cycle ordering, dynamic import behavior, JSON attributes, and host boundaries. Added complete answers to all five reflection questions and narrowed JSON host support statement.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/webappapis.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://nodejs.org/api/esm.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            }
+          ],
+          "verdict": "verified against current normative and host documentation"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
@@ -50592,20 +50923,72 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
     },
     {
       "taskId": "t06-019-interview",
       "topicId": "t06-019",
       "phase": "interview",
       "draft": "course/drafts/t06-019/t06-019-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 112,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked 12 core answers, six scenarios, follow-ups, tradeoff comparisons, weak-answer corrections, and rubric. Clarified supported versus unsupported import-attribute keys and JSON host policy.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ecmascript-language-expressions.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/host-layering-points.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/webappapis.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://nodejs.org/api/esm.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html",
+              "section": "current ECMA-262 module/link/evaluation/import-attribute algorithms; WHATWG HTML host module integration; Node ESM behavior as host-specific example",
+              "verdict": "supported; host-specific wording corrected where noted"
+            }
+          ],
+          "verdict": "verified against current normative and host documentation"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-scripts-and-modules.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
@@ -50618,7 +51001,7 @@
         "https://tc39.es/ecma262/2022/multipage/ecmascript-language-scripts-and-modules.html",
         "https://tc39.es/ecma262/2023/multipage/ecmascript-language-scripts-and-modules.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit complete; all practice/interview/reflection prompts have answers. Lessons remain drafts pending full course audit."
     },
     {
       "taskId": "t06-012-overview",

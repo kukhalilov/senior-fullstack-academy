@@ -52,7 +52,7 @@ Linking can establish a live binding before its lexical declaration has initiali
 
 ## How do hosts fit into the standard?
 
-The language defines module syntax, request records, linking, evaluation, and host hooks. The host controls how a specifier is mapped/fetched and which import-attribute keys it supports. The current loading integration uses `HostLoadImportedModule`. `import.meta` is created by the language and host hooks can populate/finalize it; properties such as `url` and a method such as `resolve()` are host-specific.
+The language defines module syntax, request records, linking, evaluation, and host hooks. The host controls how a specifier is mapped/fetched and which import-attribute keys it supports. Unsupported keys are rejected consistently, while supported-key meanings and concrete loading are host-specific. The current loading integration uses `HostLoadImportedModule`. `import.meta` is created by the language and host hooks can populate/finalize it; properties such as `url` and a method such as `resolve()` are host-specific.
 
 ## What happens with JSON imports?
 

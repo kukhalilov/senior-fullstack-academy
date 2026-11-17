@@ -20,8 +20,8 @@ Static imports declare dependency edges and local imported bindings before the i
 - `Combined default and namespace import` — `import main, * as api from "./module.js";` binds the default export and a namespace object in one declaration.
 - `Combined default and named import` — `import main, { parse } from "./module.js";` binds both the default export and selected named exports.
 - `Import alias` — `import { parse as parseInput } from "./module.js";` gives an imported export a different local name. The alias still refers to the same live read-only imported binding.
-- `Import attributes clause (with)` — Adds key/string-value metadata to a static module request, for example `with { type: "json" }`. The standardized syntax is `with`; `assert { ... }` is historical. Hosts specify supported attribute keys, and unsupported attributes fail loading/linking consistently as a syntax-related module error.
-- `JSON module type attribute` — `with { type: "json" }` identifies a JSON module request. The ES2026 host hook requires a JSON parse module record for such a request when loading succeeds. Browser/Node policies normally require the attribute, and JSON modules expose a default value rather than named exports; test the intended host/runtime.
+- `Import attributes clause (with)` — Adds key/string-value metadata to a static module request, for example `with { type: "json" }`. The standardized syntax is `with`; `assert { ... }` is historical. The host declares which attribute keys it supports; unsupported keys are rejected consistently by the module-loading algorithms, while supported-key meanings and loading remain host-dependent.
+- `JSON module type attribute` — `with { type: "json" }` marks the request as a JSON module request. Whether a host supports JSON modules and requires this attribute is a runtime/host policy; when such a request loads as a JSON module, its module interface supplies a default export rather than named exports. Check the target browser or Node version rather than treating syntax support as universal.
 
 # Cross-item comparison
 
@@ -49,7 +49,7 @@ import settings from "./settings.json" with { type: "json" };
 console.log(settings.theme);
 ```
 
-The JSON form is standards syntax; an environment must support JSON modules and the specified attribute for it to load successfully.
+The `with` form is standardized syntax; the host must support JSON modules and the `type` attribute for this request to load successfully.
 
 # Common mistakes
 

@@ -53,7 +53,7 @@ Write a static import for `settings.json` using the current import-attribute syn
 2. A re-export list can rename names; `export * as` creates one namespace export. Star export omits `default`.
 3. Put `import()` inside the true branch. It returns a promise for a namespace; the caller can await it.
 4. Linking can create the cycle's bindings before the bodies run; lexical `const` remains uninitialized until its declaration evaluates.
-5. Use `with { type: "json" }`; test the host's import-attribute and JSON-module support.
+5. Use `with { type: "json" }`; test that the target host supports both the attribute and JSON module loading.
 
 # Complete solutions
 
@@ -129,7 +129,7 @@ import settings from "./settings.json" with { type: "json" };
 console.log(settings.theme);
 ```
 
-The host must support the `type` import attribute and JSON modules. The current standard defines the request type, but deployment/runtime support must still be checked.
+The host must support the `type` import attribute and JSON module loading. ECMAScript standardizes the request metadata, while supported keys and resource loading depend on the host/runtime.
 
 # Tests and edge cases
 
@@ -145,11 +145,13 @@ The host must support the `type` import attribute and JSON modules. The current 
 
 # Reflection questions
 
-1. Which local names in your public API should remain private?
-2. Where is a live imported binding useful, and when is a snapshot preferable?
-3. What work belongs to linking, and what work belongs to evaluation?
-4. Which dependencies actually need dynamic loading?
-5. Which module behaviors are specified by ECMAScript and which by your host?
+Answers follow each question.
+
+1. **Which local names in your public API should remain private?** Keep implementation details private when callers do not need them; expose the smallest stable surface that supports intended use.
+2. **Where is a live imported binding useful, and when is a snapshot preferable?** A live binding is useful for shared module state and functions; a snapshot is appropriate when consumers need an immutable historical value, which can be made explicit by exporting/copying that value at a defined time.
+3. **What work belongs to linking, and what work belongs to evaluation?** Linking resolves import/export relationships and initializes module environments; evaluation runs module bodies and their side effects.
+4. **Which dependencies actually need dynamic loading?** Dependencies used only on a conditional, rare, or deferred path may be dynamically imported; ordinary required dependencies are clearer as static imports.
+5. **Which module behaviors are specified by ECMAScript and which by your host?** ECMAScript defines module records, syntax, linking, evaluation, and host hooks; the host defines resolution/fetching and supported attributes and supplies metadata properties.
 
 # Sources
 
