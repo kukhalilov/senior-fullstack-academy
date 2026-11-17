@@ -10,6 +10,12 @@ After this lesson, you should be able to turn a product goal into constraints, m
 
 Know HTTP request/response, relational transactions, async work, authentication versus authorization, and basic deployment. The existing programming, browser, database, security, and operations stages supply these foundations.
 
+## Begin with the practical picture
+
+A system design case is a practice problem, not a puzzle with one hidden diagram. For a photo-sharing product, first decide what users can do, what counts as a successful upload, who may view a private photo, and how quickly a new post should appear. Then sketch the simplest request and storage path.
+
+Make the answer concrete by estimating the busiest traffic, tracing one write and one read, and asking what happens after a timeout or a failed region. Add a cache, queue, replica, or separate service only when you can say which requirement it meets and what new failure or operating cost it creates. The case lessons use this order before discussing technology choices.
+
 ## Core concepts
 
 ### Requirements are executable design inputs

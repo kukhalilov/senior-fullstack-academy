@@ -10,6 +10,12 @@ After this lesson, you should be able to turn a product goal into constraints, m
 
 Know HTTP request/response, relational transactions, async work, authentication versus authorization, and basic deployment. The existing programming, browser, database, security, and operations stages supply these foundations.
 
+## Begin with the practical picture
+
+Imagine a shop needs to take orders, show product searches, calculate monthly sales, and keep uploaded images. These are different kinds of work. The order record must be saved safely; search should find useful matches quickly; reports scan many records; images need durable file storage. Trying to make one tool do every job can make the system slow or hard to recover.
+
+Start by asking what information must never be lost, which screens need the newest value, how people search or report on it, and how long records must be kept. Then draw where a change is first saved and how copies used for search or reporting are refreshed. Only after that compare databases, event logs, search indexes, and object storage.
+
 ## Core concepts
 
 ### Requirements are executable design inputs

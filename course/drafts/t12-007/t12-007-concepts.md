@@ -10,6 +10,12 @@ After this lesson, you should be able to turn a product goal into constraints, m
 
 Know HTTP request/response, relational transactions, async work, authentication versus authorization, and basic deployment. The existing programming, browser, database, security, and operations stages supply these foundations.
 
+## Begin with the practical picture
+
+Suppose a service must store customer orders and let staff search them. Several products can do that, but they differ in how they handle transactions, query flexibility, scale, failure, operations, cost, and vendor dependence. A popular product is not automatically the right choice.
+
+First write down the workload and the promises the application makes. Then compare options that solve the same job using the same questions: what data model fits, which reads and writes are guaranteed, how failures appear, how it is backed up and monitored, what it costs at the expected load, and what skills the team has. The examples include .NET, React, and SQL Server where useful, alongside alternatives from other ecosystems and cloud providers.
+
 ## Core concepts
 
 ### Requirements are executable design inputs

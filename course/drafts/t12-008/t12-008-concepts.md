@@ -10,6 +10,12 @@ After this lesson, you should be able to turn a product goal into constraints, m
 
 Know HTTP request/response, relational transactions, async work, authentication versus authorization, and basic deployment. The existing programming, browser, database, security, and operations stages supply these foundations.
 
+## Begin with the practical picture
+
+A tradeoff is a choice where improving one thing makes another harder. A cache may make a page load faster while showing older data. A synchronous dependency may give an immediate answer while making the whole request wait. A second region may survive a local outage while making conflicting writes harder to resolve.
+
+To make a useful choice, name the user promise first, compare options that solve the same problem, and say what each option costs during normal operation and failure. “It depends” is only a good answer when you state what it depends on and how the requirement decides between options.
+
 ## Core concepts
 
 ### Requirements are executable design inputs

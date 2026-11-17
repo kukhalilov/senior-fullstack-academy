@@ -10,6 +10,12 @@ After this lesson, you should be able to turn a product goal into constraints, m
 
 Know HTTP request/response, relational transactions, async work, authentication versus authorization, and basic deployment. The existing programming, browser, database, security, and operations stages supply these foundations.
 
+## Begin with the practical picture
+
+Imagine a small application whose team can deploy it as one unit. As the product grows, separate teams may need to release parts independently, isolate sensitive data, or scale one busy feature without scaling everything. Splitting it into services can help, but every split adds calls that can fail, more deployments to operate, and more places where data may disagree.
+
+Begin by drawing who owns each important rule and record, who changes each part, and what the user sees if a dependency is unavailable. Keep a boundary only when it gives a clear benefit in ownership, security, scaling, or release speed. Reliability and security are visible behaviors—such as what happens during an outage and who may access a tenant's data—not boxes to add at the end.
+
 ## Core concepts
 
 ### Requirements are executable design inputs

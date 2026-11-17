@@ -10,6 +10,12 @@ After this lesson, you should be able to turn a product goal into constraints, m
 
 Know HTTP request/response, relational transactions, async work, authentication versus authorization, and basic deployment. The existing programming, browser, database, security, and operations stages supply these foundations.
 
+## Begin with the practical picture
+
+Imagine adding a helper that drafts answers from company documents. The model is only one step: the system must gather approved documents, choose relevant passages, send a request, check the response, show uncertainty, protect private data, and measure whether answers help. If a model is slow or wrong, users still need a safe path forward.
+
+Start with the task and a way to measure a good result. Ask whether ordinary code can solve any part more reliably, what data the model may see, what errors are harmful, and when a person or fallback should take over. Then draw the data and request path. Only then compare model families, retrieval, serving engines, accelerators, and deployment platforms.
+
 ## Core concepts
 
 ### Requirements are executable design inputs
