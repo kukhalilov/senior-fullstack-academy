@@ -12,7 +12,7 @@ This reference compares effect timing after commit and around browser repaint. E
 
 ## `useLayoutEffect`: measure before repaint
 
-`useLayoutEffect(setup, dependencies?)` runs after DOM commit and before the browser repaints. It is appropriate when you must read layout (for example, `getBoundingClientRect`) and synchronously update position/state to prevent visible flicker. It blocks repaint and can hurt performance, so prefer `useEffect` when possible. It does nothing during server rendering; for server-rendered UI, render a layout-independent initial state or defer client-only content appropriately.
+`useLayoutEffect(setup, dependencies?)` runs after DOM commit and before the browser repaints. It is appropriate when you must read layout (for example, `getBoundingClientRect`) and synchronously update position/state to prevent visible flicker. It blocks repaint and can hurt performance, so prefer `useEffect` when possible. It does nothing during server rendering and may produce a server-rendering warning; for server-rendered UI, render a layout-independent initial state or defer client-only content appropriately.
 
 ## `useInsertionEffect`: library-specific style injection
 
@@ -59,9 +59,14 @@ The variants synchronize at different moments around a committed host tree; choo
 - `useInsertionEffect(setup, dependencies?)`
 - `useEffect timing after commit`
 - `useLayoutEffect timing before browser repaint`
+- `useLayoutEffect blocks repaint`
+- `useLayoutEffect does nothing on server`
 - `useInsertionEffect before layout Effects`
 - `useLayoutEffect for layout measurement`
 - `useInsertionEffect for CSS-in-JS libraries`
+- `useInsertionEffect cannot update state`
+- `Refs unattached during insertion Effect`
+- `Insertion Effect DOM update timing is not guaranteed`
 - `Effects do not run during server rendering`
 
 ## Supplied names explained

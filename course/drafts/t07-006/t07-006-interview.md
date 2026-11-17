@@ -16,6 +16,7 @@ Sources: React 19.3 [`useEffect`](https://react.dev/reference/react/useEffect), 
 10. When use a DOM ref or callback ref?
 11. What does `useImperativeHandle` expose?
 12. How did ref passing change in React 19?
+13. What problem does `useEffectEvent` solve, and what restrictions apply?
 
 ## Concise interview answers
 
@@ -31,6 +32,7 @@ Sources: React 19.3 [`useEffect`](https://react.dev/reference/react/useEffect), 
 10. Imperative focus/measure/widget integration or callback attachment lifecycle.
 11. A narrow custom command API instead of exposing internals/whole DOM node.
 12. Function components can receive `ref` as a prop in React 19; `forwardRef` is for React 18 and earlier.
+13. React 19.2 `useEffectEvent` reads latest committed values for event logic invoked by an Effect without resynchronizing for those values. Its identity changes each render; omit it from dependencies, call it only from same-component Effects/Effect Events, and keep real synchronization inputs as dependencies.
 
 ## Deep follow-up answers
 

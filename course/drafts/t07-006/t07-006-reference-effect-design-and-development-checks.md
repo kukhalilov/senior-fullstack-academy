@@ -1,6 +1,6 @@
 # React effects refs imperative handles and external systems — Reference: Effect purpose, cleanup, and development checks
 
-Sources: React 19.3 [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects), [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect),.
+Sources: React 19.3 [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects), [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect), and [`StrictMode`](https://react.dev/reference/react/StrictMode).
 
 ## Scope and version
 
@@ -12,7 +12,7 @@ An Effect is for synchronizing with an external system React does not own: a con
 
 ## Setup/cleanup symmetry
 
-Setup establishes a relationship; cleanup should undo/stop that same relationship. Connect/disconnect, subscribe/unsubscribe, add/remove listener, start/clear timer. Each setup should be independently safe; Strict Mode performs an extra development setup-cleanup cycle to detect missing cleanup. The correct fix is to make cleanup mirror setup, not to add a “run once” ref guard. Dependencies identify when a new synchronization is required.
+Setup establishes a relationship; cleanup should undo/stop that same relationship. Connect/disconnect, subscribe/unsubscribe, add/remove listener, start/clear timer. At a root Strict Mode boundary, React performs an extra development setup-cleanup cycle to detect missing cleanup. A nested Strict Mode boundary may omit initial Effect re-running if that sequence could not occur in production without its parent Effects. The correct fix is to make cleanup mirror setup, not to add a “run once” ref guard. Dependencies identify when a new synchronization is required.
 
 ## Async work and races
 
@@ -50,7 +50,7 @@ Effect design decides whether React should own the behavior as render/event logi
 
 ## Supplied names explained
 
-The exact index below covers synchronization, alternatives, teardown symmetry, connection lifecycle, stale async work, Strict Mode, and custom Hook reuse.
+The exact index below covers synchronization, alternatives, teardown symmetry, connection lifecycle, stale async work, Strict Mode's root/nested distinction, and custom Hook reuse.
 
 ## Examples
 
@@ -67,6 +67,7 @@ Connection, derived-value, and purchase examples illustrate the right mechanism 
 - `Connection setup and teardown`
 - `Abort or ignore stale asynchronous result`
 - `Strict Mode extra setup-cleanup cycle`
+- `Root-versus-nested Strict Mode Effect-cycle caveat`
 - `Avoiding unnecessary Effects`
 - `Custom Hook for reusable synchronization`
 

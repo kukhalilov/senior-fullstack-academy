@@ -8,11 +8,11 @@ Refs store values outside render output or provide DOM access. `useImperativeHan
 
 ## Ref object and `.current`
 
-`useRef(initialValue)` returns a stable object with one mutable property, `.current`. The argument is used for initial value and ignored after initial render. React returns the same object on subsequent renders. Updating `.current` does not trigger a re-render; unlike state, it is not a reactive dependency. Use it for interval IDs, a previous external handle, or imperative values not needed to calculate JSX.
+`useRef(initialValue)` returns a stable object with one mutable property, `.current`. The argument initializes the ref and is ignored after the initial render, but JavaScript still evaluates the argument expression on every render. Avoid expensive construction in the argument; use a guarded initialization such as `if (playerRef.current === null) playerRef.current = new Player()` when needed. React returns the same object on subsequent renders. Updating `.current` does not trigger a re-render; unlike state, it is not a reactive dependency. Use it for interval IDs, a previous external handle, or imperative values not needed to calculate JSX.
 
 ## Host DOM refs
 
-Pass a ref object to a supported JSX host node; React sets `.current` to the node when attached and resets it on detach. Use this for focus, scrolling, measurement, or integration with a non-React widget. Prefer declarative props when possible. A callback ref receives the node (or null on detach) and can return a cleanup function in React 19; callback identity changes can cause detach/reattach, so stabilize only if that matters. Strict Mode development may stress callback ref cleanup.
+Pass a ref object to a supported JSX host node; React sets `.current` to the node when attached and resets it on detach. Use this for focus, scrolling, measurement, or integration with a non-React widget. Prefer declarative props when possible. A callback ref receives the node and can return a cleanup function in React 19; when it returns cleanup, React calls that cleanup on detach rather than also calling the ref with `null`. Without returned cleanup, callback refs are called with `null` on detach. Callback identity changes can cause detach/reattach, so stabilize only if that matters. Strict Mode development may stress callback ref cleanup.
 
 Read/write refs in event handlers and Effects, not while rendering, except predictable initialization. Reading mutable ref state during render makes output depend on hidden state and can become inconsistent. A ref that contains data used for visible output should usually be state. Do not mutate objects in `.current` if they are also shared render data.
 
@@ -58,6 +58,8 @@ State changes schedule render; ref changes do not. A DOM node ref is a special h
 ### Exact terms covered
 
 - `useRef(initialValue)`
+- `useRef initialValue expression runs on every render`
+- `Lazy ref initialization`
 - `Ref object`
 - `ref.current`
 - `Stable ref object across renders`
@@ -65,6 +67,7 @@ State changes schedule render; ref changes do not. A DOM node ref is a special h
 - `DOM node ref`
 - `Callback ref`
 - `Callback ref cleanup function`
+- `Callback-ref cleanup replaces null-on-detach callback`
 - `Reading ref.current outside rendering`
 - `Do not read or write ref.current during render`
 

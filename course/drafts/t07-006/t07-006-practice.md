@@ -54,7 +54,13 @@ An Effect filters a list from `items` and stores `visibleItems` in state.
 
 **Solution:** Compute `const visibleItems = items.filter(...)` during render. Use memoization only if the computation is measured expensive; don't use an Effect to mirror a pure derivation.
 
-### 8. Specific interaction
+### 8. External event needs current presentation state
+
+A chat connection should stay connected when `theme` changes, but its connected notification should use the latest theme.
+
+**Solution:** In React 19.2+, define `onConnected` with `useEffectEvent` and call it from the connection listener registered inside the Effect. Keep `roomId` in the Effect dependencies. The Effect Event reads the latest committed `theme`; do not put its changing identity in dependencies or pass it to a child/custom Hook. If changing a value must recreate the external relationship, keep that value as a real dependency rather than hiding it in an Effect Event.
+
+### 9. Specific interaction
 
 An Effect watches `didBuy` and sends a purchase request when true.
 
@@ -70,7 +76,7 @@ Solutions provide mechanism choice and lifecycle details. Test cleanup on depend
 
 ## Tests and edge cases
 
-Test Strict Mode setup/cleanup, changed dependencies, unmount, stale request ordering, abort behavior, SSR no-Effect behavior, ref attachment/detachment/callback cleanup, layout flicker, and no-render guarantee of ref changes.
+Test Strict Mode setup/cleanup, changed dependencies, unmount, stale request ordering, abort behavior, SSR no-Effect behavior, ref attachment/detachment/callback cleanup, layout flicker, no-render guarantee of ref changes, and Effect Event latest-value behavior while confirming genuine dependencies still resynchronize.
 
 ## Reflection questions
 

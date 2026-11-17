@@ -22,7 +22,7 @@ useInsertionEffect: specialized style insertion before layout Effects
 
 ## Concept map
 
-Use event handlers for work caused by a specific interaction. Calculate values from props/state during render. Use Effects to synchronize with an external system React does not own. `useEffect` is the default; `useLayoutEffect` is for visual measurement/mutation before repaint and can hurt performance; `useInsertionEffect` is for CSS-in-JS library authors. Effects run only on the client. Strict Mode performs an extra development setup/cleanup cycle to stress-test cleanup.
+Use event handlers for work caused by a specific interaction. Calculate values from props/state during render. Use Effects to synchronize with an external system React does not own. `useEffect` is the default; `useLayoutEffect` is for visual measurement/mutation before repaint and can hurt performance; `useInsertionEffect` is for CSS-in-JS library authors. Effects run only on the client. At the root, Strict Mode performs an extra development setup/cleanup cycle to stress-test cleanup; a nested-only boundary may skip that initial Effect cycle when it would be impossible in production.
 
 ## End-to-end walkthrough
 
@@ -34,8 +34,8 @@ Effects are an escape hatch for synchronization, not a general place to mirror p
 
 ## What later lessons cover
 
-References detail the Effect dependency lifecycle, timing variants, refs/DOM access, imperative handles (including React 19 ref props), and design/Strict Mode checks. Practice covers subscriptions, stale network results, visual measurement, and avoiding unnecessary Effects.
+References detail the Effect dependency lifecycle, timing variants, refs/DOM access, imperative handles (including React 19 ref props), React 19.2 Effect Events, and design/Strict Mode checks. Practice covers subscriptions, stale network results, visual measurement, and avoiding unnecessary Effects.
 
 ## Version notes
 
-In React 19, function components can receive `ref` as a prop; new function components no longer need `forwardRef`. `forwardRef` remains relevant to React 18 and earlier and is planned for future deprecation. See [`useImperativeHandle`](https://react.dev/reference/react/useImperativeHandle) and [`forwardRef`](https://react.dev/reference/react/forwardRef).
+React 19 adds callback-ref cleanup functions and lets function components receive `ref` as a prop; React 19.2 adds `useEffectEvent` for event logic called from Effects that needs latest committed values without changing synchronization inputs. In React 19, function components can receive `ref` as a prop; new function components no longer need `forwardRef`. `forwardRef` remains relevant to React 18 and earlier and is planned for future deprecation. See [`useImperativeHandle`](https://react.dev/reference/react/useImperativeHandle) and [`forwardRef`](https://react.dev/reference/react/forwardRef).
