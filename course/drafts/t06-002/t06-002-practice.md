@@ -191,6 +191,14 @@ Avoid relying on the result for `typeof document.all` outside browsers: it is a 
 4. Is a BigInt conversion performed before or after a lossy Number calculation?
 5. Is a Symbol being used for collision avoidance, and is anyone mistakenly treating it as secret?
 
+# Reflection answers
+
+1. Use `typeof` for broad primitive classification, then add checks such as `value === null`, `Array.isArray(value)`, or a domain-specific predicate when the shape matters.
+2. Primitive values compare according to their type's equality rules; separately allocated objects compare by identity under `===`, even if their contents match.
+3. Yes. Number cannot represent every large consecutive integer exactly; validate with `Number.isSafeInteger` or use BigInt before precision is lost.
+4. Convert before any Number operation that may round. Converting afterward preserves only the already-rounded integer value.
+5. Symbols help avoid accidental key collisions, but symbol-keyed properties can be discovered through reflection. A Symbol is not a secrecy or access-control mechanism.
+
 # Sources
 
 - [ECMAScript 2026: Data Types and Values](https://tc39.es/ecma262/2026/multipage/ecmascript-data-types-and-values.html)

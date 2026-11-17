@@ -15,7 +15,7 @@ Think of `typeof` as a quick label, not a complete type system. Its historical r
 # How the parts fit together
 
 1. An expression produces a value from one of the language types.
-2. A binding stores a reference to a value; reassigning the binding and mutating an object are different operations.
+2. A binding associates an identifier with its current value; for an object value, assignment copies the object reference, so reassigning a binding and mutating the shared object are different operations.
 3. Primitive values compare by their type-specific value rules; objects compare by identity under strict equality.
 4. Number and BigInt are distinct numeric types with different ranges and operator compatibility.
 5. Symbols are unique primitive keys; descriptions help debugging but do not define identity.

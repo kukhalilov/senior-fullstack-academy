@@ -46,6 +46,14 @@
 4. A condition using `new Boolean(false)` takes the true branch. Explain object truthiness.
 5. A cache expects a symbol key to be private. Explain how symbols help and what security boundary they do not provide.
 
+## Scenario answers
+
+1. `typeof null` is the legacy string `"object"`. Check `value !== null && typeof value === "object"` for non-null objects, then use `Array.isArray` or a domain-specific validator where needed.
+2. Strict equality checks object identity, not structural equality. Compare the relevant fields explicitly or use a suitable structural comparison with clearly defined treatment of ordering, missing fields, and special values.
+3. If a Number was created from a magnitude above the safe-integer range, it may already have rounded. `BigInt(number)` converts the Number's represented integer, not the source integer the programmer intended; parse exact decimal text to BigInt before arithmetic when exactness is required.
+4. `new Boolean(false)` creates an Object, and all objects are truthy. Use the Boolean primitive `false` rather than a wrapper.
+5. Symbols avoid accidental collisions and are not enumerated by some ordinary key operations, but reflective APIs such as `Reflect.ownKeys` can reveal symbol keys. They do not provide authorization or secrecy.
+
 ## Tradeoffs and alternatives
 
 `typeof` is useful for quick primitive classification but should be combined with `=== null`, `Array.isArray`, or domain-specific checks. Number is convenient for general arithmetic and fractional values, while BigInt provides exact large integer arithmetic with operator interoperability constraints. Primitive values are simple and immutable; objects support structure, mutation, and identity. Explicit wrappers rarely improve application code and add coercion surprises. Choose based on invariants and validation needs, not a superficial type label.
