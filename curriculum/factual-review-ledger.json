@@ -5,13 +5,13 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2341,
-    "reviewed": 726,
-    "pending": 1615,
-    "claimsChecked": 24463,
-    "claimsCorrected": 1433,
+    "reviewed": 733,
+    "pending": 1608,
+    "claimsChecked": 24790,
+    "claimsCorrected": 1434,
     "draftsMayBePromoted": false,
-    "reviewedLessons": 726,
-    "pendingLessons": 1615
+    "reviewedLessons": 733,
+    "pendingLessons": 1608
   },
   "reviewRequirements": [
     "Extract each externally verifiable statement, including versions, APIs, limits, protocol behavior, and safety claims.",
@@ -48894,13 +48894,28 @@
       "topicId": "t06-003",
       "phase": "overview",
       "draft": "course/drafts/t06-003/t06-003-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 20,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked function-form selection, argument initialization, return/completion distinctions, and Promise/generator result-shape summaries against ECMA-262 2026.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
+          ],
+          "verdict": "verified; inventory expansion and tutorial answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -48911,20 +48926,35 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as explanatory cross-check. Practice and interview prompts have self-contained answers. Lesson remains in drafts."
     },
     {
       "taskId": "t06-003-concepts",
       "topicId": "t06-003",
       "phase": "concepts",
       "draft": "course/drafts/t06-003/t06-003-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked callable forms, defaults, parameter initialization order, rest/arguments mapping, strictness conditions, return ASI, callbacks, higher-order functions, metadata, and examples against the specification.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
+          ],
+          "verdict": "verified; inventory expansion and tutorial answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -48935,20 +48965,35 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as explanatory cross-check. Practice and interview prompts have self-contained answers. Lesson remains in drafts."
     },
     {
       "taskId": "t06-003-reference-function-forms",
       "topicId": "t06-003",
       "phase": "reference",
       "draft": "course/drafts/t06-003/t06-003-reference-function-forms.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 62,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all 18 forms, async/arrow/method receiver and constructibility distinctions, generator call behavior, Function constructor scope, and metadata. Expanded the inventory to include async arrows and generator/async method forms that were missing; verified their syntax and semantics in ECMA-262 2026.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
+          ],
+          "verdict": "verified; inventory expansion and tutorial answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -48959,20 +49004,35 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as explanatory cross-check. Practice and interview prompts have self-contained answers. Lesson remains in drafts."
     },
     {
       "taskId": "t06-003-reference-parameters-and-arguments",
       "topicId": "t06-003",
       "phase": "reference",
       "draft": "course/drafts/t06-003/t06-003-reference-parameters-and-arguments.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all ten inventory terms, defaults and TDZ ordering, destructuring, rest versus arguments, mapped-arguments conditions, actual argument length, and strict-mode callee behavior against ECMA-262 and MDN.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
+          ],
+          "verdict": "verified; inventory expansion and tutorial answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -48983,20 +49043,35 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as explanatory cross-check. Practice and interview prompts have self-contained answers. Lesson remains in drafts."
     },
     {
       "taskId": "t06-003-reference-calls-and-completion",
       "topicId": "t06-003",
       "phase": "reference",
       "draft": "course/drafts/t06-003/t06-003-reference-calls-and-completion.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 44,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all nine call/completion/composition terms, return ASI, fall-through undefined, recursion, callback contracts, IIFE, name inference, and exact function-length metadata claims against ECMA-262.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
+          ],
+          "verdict": "verified; inventory expansion and tutorial answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49007,20 +49082,35 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as explanatory cross-check. Practice and interview prompts have self-contained answers. Lesson remains in drafts."
     },
     {
       "taskId": "t06-003-practice",
       "topicId": "t06-003",
       "phase": "practice",
       "draft": "course/drafts/t06-003/t06-003-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 64,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all eight exercises and complete worked answers, including sloppy-script mapped arguments context, async and generator call behavior, and Function constructor scope. Added answers to all reflection questions.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
+          ],
+          "verdict": "verified; inventory expansion and tutorial answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49031,20 +49121,35 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as explanatory cross-check. Practice and interview prompts have self-contained answers. Lesson remains in drafts."
     },
     {
       "taskId": "t06-003-interview",
       "topicId": "t06-003",
       "phase": "interview",
       "draft": "course/drafts/t06-003/t06-003-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked concise, deep, and scenario answers covering function form, lexical/dynamic receiver implications, nullish defaults, arguments mapping conditions, length, generator suspension, and Function constructor global environment. All scenario prompts have answers.",
+          "sources": [
+            "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
+            "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
+          ],
+          "verdict": "verified; inventory expansion and tutorial answers incorporated"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-17",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html",
         "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
@@ -49055,7 +49160,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against ECMA-262 2026 as normative source and MDN as explanatory cross-check. Practice and interview prompts have self-contained answers. Lesson remains in drafts."
     },
     {
       "taskId": "t06-017-overview",

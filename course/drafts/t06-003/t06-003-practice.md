@@ -187,6 +187,14 @@ In a module or strict function, arguments are unmapped even for a simple paramet
 4. Does a callback depend on an outer binding that can change before invocation?
 5. Is this function supposed to return a value, a Promise, or an iterator?
 
+# Reflection answers
+
+1. Use a declaration for a stable named operation, an expression when a function value is needed, an arrow when lexical context is desired, and method syntax for object behavior that needs a method home object or `super`.
+2. A default initializer runs only for missing or `undefined` arguments. If `null` should also select a fallback, handle it explicitly with a nullish check or `??` in the body.
+3. Rest creates a real Array containing the remaining arguments and is usually clearer. `arguments` is useful for legacy APIs or inspecting all actual arguments in ordinary functions, with strictness/mapped behavior caveats.
+4. A closure reads the current captured binding when invoked. If that binding can change, pass a stable copied value or redesign the callback contract when snapshot behavior is required.
+5. The function form determines the completion shape: an ordinary function returns a value (or `undefined`), an async function returns a Promise, and a generator or async generator returns its corresponding iterator object.
+
 # Sources
 
 - [ECMAScript 2026 functions and classes](https://tc39.es/ecma262/2026/multipage/ecmascript-language-functions-and-classes.html)

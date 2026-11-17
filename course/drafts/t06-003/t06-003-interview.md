@@ -45,6 +45,15 @@
 5. A caller expects a generator call to produce the first value immediately. Explain the suspended-start behavior and the role of `.next()`.
 6. Dynamically created code cannot see a local variable. Explain the Function constructor's environment choice.
 
+## Scenario answers
+
+1. An arrow inherits lexical `this`, which helps when a callback should retain its surrounding receiver. Use an ordinary function or concise method when the API should supply a dynamic receiver; arrows cannot be rebound with `call`/`apply` and are not constructors.
+2. A default parameter applies only when the argument is absent or `undefined`. To default both nullish values, use a body check or `value ?? fallback`.
+3. The aliasing behavior occurs in a non-strict ordinary function with a simple parameter list. Strict functions, modules, arrows, and non-simple parameter lists do not provide a mapped arguments object in that way.
+4. `.length` counts formal parameters only up to the first default initializer or rest parameter. It is metadata and does not enforce arity; actual supplied count is available as `arguments.length` in an ordinary function.
+5. Calling a generator creates a generator object in the suspended-start state; the body begins when `.next()` (or another generator method) resumes it.
+6. `Function` constructor source is compiled against the function's realm global environment, not the caller's lexical scope, so it cannot capture caller-local bindings.
+
 ## Tradeoffs and alternatives
 
 Arrows are concise and preserve lexical context, but are poor substitutes for methods that need dynamic receivers or constructors. Rest parameters are explicit and array-friendly, while `arguments` exposes all actual arguments and retains legacy mapped behavior under narrow conditions. Named function expressions provide a stable self-reference; a declaration may be clearer for a top-level operation. Async and generator forms represent different control-flow contracts, so choose according to whether the caller consumes a Promise or iterator. Avoid choosing solely by syntax length.
