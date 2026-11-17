@@ -17,6 +17,7 @@
       "title": "Map constructor, properties, methods, and symbols",
       "items": [
         "Map",
+        "Map.prototype",
         "Map.groupBy",
         "Map[Symbol.species]",
         "Map.prototype.constructor",
@@ -41,6 +42,7 @@
       "title": "Set constructor, properties, methods, and symbols",
       "items": [
         "Set",
+        "Set.prototype",
         "Set[Symbol.species]",
         "Set.prototype.constructor",
         "Set.prototype.size",
@@ -127,9 +129,10 @@
   "sourceSnapshot": {
     "authority": "ECMA-262 and MDN JavaScript reference",
     "edition": "ECMAScript 2026",
-    "checkedAt": "2026-11-17",
+    "checkedAt": "2026-11-18",
     "urls": [
       "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+      "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
       "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
       "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
       "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/getOrInsert",
@@ -153,7 +156,11 @@
     "Set composition and relation methods accept a set-like object, not merely an iterable. The required protocol reads size, has, and keys; keys must be callable and return an iterable when an algorithm iterates it. A plain iterable without these members is insufficient. Native Map is set-like because its keys() returns keys and its size/has match that protocol.",
     "Set.prototype.union keeps this Set's insertion order and appends previously absent values in the other object's keys iteration order. difference preserves this Set's order. symmetricDifference emits values unique to this Set in this order, followed by values unique to the other keys iteration. intersection's output order depends on relative sizes: it iterates this Set when this size is no larger, otherwise iterates other.keys().",
     "The seven Set composition/relationship methods were standardized in ECMAScript 2025. They produce ordinary Set results and do not use Set[Symbol.species]. Map[Symbol.species] and Set[Symbol.species] remain standardized accessor properties returning the receiver constructor, but MDN documents both accessors as unused by their respective current Map/Set methods.",
-    "Map.prototype.getOrInsert and Map.prototype.getOrInsertComputed were standardized in ECMAScript 2026 and are marked Baseline 2026 by MDN; older browsers and runtimes may lack them. Map.groupBy was standardized in ECMAScript 2024 and has broad browser availability since March 2024 per MDN."
+    "Map.prototype.getOrInsert and Map.prototype.getOrInsertComputed were standardized in ECMAScript 2026 and are marked Baseline 2026 by MDN; older browsers and runtimes may lack them. Map.groupBy was standardized in ECMAScript 2024 and has broad browser availability since March 2024 per MDN. Earlier implementations used the transitional Array.prototype.groupToMap name; current standard code uses Map.groupBy.",
+    "The Map and Set specifications require average access times sublinear in collection size, but do not require a particular backing structure or promise constant-time operations. The specification's list-based algorithms describe observable behavior, not required implementation details.",
+    "Set-like size is read and converted with ToNumber and ToIntegerOrInfinity; NaN and negative results throw, non-integers are truncated, and positive Infinity is permitted. The protocol then requires callable has and keys properties.",
+    "Map.prototype and Set.prototype are non-writable, non-enumerable, non-configurable constructor properties. Their shared prototype objects are ordinary objects without [[MapData]]/[[SetData]], so inherited size getters and collection methods throw TypeError when invoked with those prototypes as receivers.",
+    "Map.groupBy is the current ES2024 static API; older browser implementations used the transitional Array.prototype.groupToMap name. Object own-key enumeration has distinct ordering rules: array-index string keys in numeric order, other strings in creation order, then symbols in creation order."
   ],
   "scopeExclusions": [
     "WeakMap and WeakSet APIs (t06-014)",

@@ -76,6 +76,8 @@ For a real Set `A` and set-like `B`, the operations represent ordinary membershi
 
 The returned order is observable. Union keeps the receiver's order and appends unseen values in the other operand's `keys()` order. Difference keeps receiver order. Symmetric difference keeps receiver-only values first, then other-only values in its keys order. Intersection iterates whichever side is smaller according to reported `size`, so its result order follows that side. For a custom set-like object with an inaccurate size or unstable methods, algorithm choice and result may be surprising; implement the protocol honestly.
 
+`GetSetRecord` reads the other object's `size` first, converts it to a Number and then an integer-or-infinity, and rejects NaN (`TypeError`) or negative values (`RangeError`). Fractions truncate toward zero and positive Infinity is allowed. It then requires callable `has` and `keys`. Because these are ordinary property reads and calls, getters and custom methods can run or throw; custom implementations should be side-effect-aware and report coherent data.
+
 ## Mechanisms and relationships
 
 ### `has` is different from testing `get`
@@ -87,6 +89,8 @@ The returned order is observable. Union keeps the receiver's order and appends u
 Map and Set strongly retain entries as long as the collection is reachable and the entry remains. This gives deterministic listing, count, and deletion. WeakMap/WeakSet use a different relationship for object/non-registered-symbol keys and cannot enumerate or count. Select based on desired lifetime and observability, not because “weak” sounds automatically more efficient. [MDN Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) · [MDN WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
 
 ### Species accessors are not result factories here
+
+The `Map.prototype` and `Set.prototype` constructor properties themselves are non-writable, non-enumerable, and non-configurable. The referenced prototype objects are ordinary objects without the collection's internal data slot, so their inherited `size` getters and collection methods throw `TypeError` when used with the prototype as receiver. Each actual Map or Set instance receives the required internal slot during construction. [ECMA-262 keyed collections](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
 
 The Map and Set constructor species accessors are still standardized. Each returns the receiver constructor and may be overridden by subclasses. However, MDN documents both as unused by all current methods; Map.groupBy constructs a Map and Set algebra constructs a Set rather than consulting those accessors. Do not assume a subclass gets subclass instances from these newer methods. [MDN Map species](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species) · [MDN Set species](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species)
 

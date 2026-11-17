@@ -12,6 +12,7 @@
 8. How do Set difference, intersection, union, and symmetric difference differ?
 9. What role does `Symbol.species` play in current Map/Set methods?
 10. Which edition added Map groupBy, Set composition, and Map get-or-insert methods?
+11. Do Map and Set guarantee O(1) lookup, and what performance requirement does the specification state?
 
 ## Concise interview answers
 
@@ -25,6 +26,7 @@
 8. Difference is directional; intersection returns common values; union combines values; symmetric difference returns values belonging to exactly one side.
 9. The static accessors remain standardized and return the constructor receiver, but MDN documents them as unused by current Map and Set methods. Do not assume them to select result subclasses.
 10. Map.groupBy: ES2024; Set composition methods: ES2025; Map getOrInsert methods: ES2026. Runtime support may lag the standard.
+11. No O(1) guarantee: implementations must provide average access times sublinear in collection size, but the backing structure and exact complexity are implementation choices.
 
 ## Deep follow-up answers
 
@@ -61,6 +63,15 @@ No. Map and Set species accessors remain defined for compatibility, but current 
 5. A Map stores `undefined` for a valid key. How does a caller distinguish this from absence?
 6. A team targets older browsers and wants to use ES2026 insertion methods. What compatibility checks and fallback behavior should they define?
 
+## Scenario answers
+
+1. Map keys use object identity, so a reconstructed object is a different key even if its fields match. If the domain identity is the stable `id`, key by that primitive value instead; validate that IDs are unique and normalized.
+2. A not-yet-visited deleted key is skipped, newly appended keys can be visited, and a visited key deleted/re-added can be visited again at its new position. Snapshot the intended starting entries first, for example `const original = [...map]`; this copies entry pairs but not nested key/value objects.
+3. The caller supplied an iterable, but Set composition asks for the set-like protocol (`size`, callable `has`, callable `keys`). Convert the array with `new Set(array)` or deliberately implement that protocol.
+4. `intersection` traverses the smaller side by reported size, so its output order follows whichever side it traverses. If a canonical order is required, sort the result with a domain-specific comparator after computing the members.
+5. Call `map.has(key)` to test presence; `get(key)` alone cannot distinguish a missing key from a stored `undefined`.
+6. Feature-detect both `Map.prototype.getOrInsert` and `getOrInsertComputed` on the actual target runtimes. Provide a tested fallback using `has`, `get`, and `set`; preserve the desired callback laziness and same-key reentrancy policy explicitly.
+
 ## Tradeoffs and alternatives
 
 - **Map vs Object:** Map has arbitrary keys, size, direct iteration, and collection semantics; Object suits fixed fields and property-oriented data.
@@ -93,5 +104,6 @@ Score each answer 0–2: 0 = inaccurate, 1 = correct but missing an important bo
 - I can name all three properties of the Set-like protocol and explain Map compatibility.
 - I know that intersection order can follow the smaller operand.
 - I distinguish the ES2024, ES2025, and ES2026 additions and plan for target support.
+- I avoid claiming Map or Set lookup is guaranteed O(1); I can state the standard's sublinear-average requirement.
 
 Sources: [ECMA-262 keyed collections](https://tc39.es/ecma262/2026/multipage/keyed-collections.html) · [MDN Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) · [MDN Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)

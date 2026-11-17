@@ -11,6 +11,7 @@ Set is an ordered collection of unique values, with membership determined by Sam
 ## Supplied names explained
 
 - `Set` — A constructor requiring `new`. No argument, `undefined`, or `null` creates an empty Set; otherwise it consumes a synchronous iterable of values and calls the new instance's `add` method for each. Subclass overrides can affect initialization. Duplicate values collapse by SameValueZero, and invalid iterator/adder completion throws with iterator closing when required. [ECMA-262 constructor](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
+- `Set.prototype` — The non-writable, non-enumerable, non-configurable property on the Set constructor whose value is the shared prototype object for Set instances. The prototype object itself is an ordinary object without Set's `[[SetData]]` internal slot; consequently, reading its inherited `size` getter or calling a Set method with it as receiver throws `TypeError`. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
 - `Set[Symbol.species]` — A static accessor on the Set constructor. Its getter returns the constructor value on which it was called, which permits subclass override. The accessor is standardized but MDN documents it as unused by all current Set methods. Set algebra results are ordinary Set instances and do not consult species. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html) · [MDN Set species](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species)
 - `Set.prototype.constructor` — Initially references `Set`. It is a mutable prototype property and not a trustworthy authenticity test; native Set methods require internal Set state. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
 - `Set.prototype.size` — An inherited getter returning the current number of unique members. It has no setter and throws if its receiver lacks Set internal state. It is not an own data property on each Set instance. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
@@ -34,13 +35,26 @@ Set is an ordered collection of unique values, with membership determined by Sam
 
 ## Cross-item comparison
 
-`union` combines; `intersection` keeps shared values; `difference` is directional (this minus other); `symmetricDifference` keeps one-sided membership. The three relation methods return booleans and create no output collection. Their set-like operand must supply `size`, `has`, and `keys`. A Map qualifies: its `keys()` yields the key side, not its `[key, value]` entry pairs. An Array's iterator alone is insufficient. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
+`union` combines; `intersection` keeps shared values; `difference` is directional (this minus other); `symmetricDifference` keeps one-sided membership. The three relation methods return booleans and create no output collection. Their set-like operand must supply `size`, callable `has`, and callable `keys`. The standard reads `size`, converts it to Number and then an integer-or-infinity, rejects NaN with `TypeError` and negative values with `RangeError`, and truncates fractional sizes toward zero; `+Infinity` is permitted. A Map qualifies: its `keys()` yields the key side, not its `[key, value]` entry pairs. An Array's iterator alone is insufficient. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
 
-`Set` versus `Array`: Set deduplicates by equality, has direct membership and set algebra, and preserves first insertion order. Array retains duplicates and indexes; it is often the natural structure when positions or repeated values matter. Set versus Map: Set has membership without a payload; Map associates a payload with each key. [MDN Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+`Set` versus `Array`: Set deduplicates by equality, has direct membership and set algebra, and preserves first insertion order. Array retains duplicates and indexes; it is often the natural structure when positions or repeated values matter. Set versus Map: Set has membership without a payload; Map associates a payload with each key. The specification requires average Set access time to be sublinear in collection size, but does not promise O(1) operations or require a particular backing structure. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html) · [MDN Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 
 Species is present but unused by current Set methods, so it does not select subclass result types for algebra. [MDN Set species](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Symbol.species)
 
 ## Examples
+
+### The prototype property and the prototype object
+
+```js
+console.log(Object.getOwnPropertyDescriptor(Set, "prototype"));
+// { value: Set.prototype, writable: false, enumerable: false, configurable: false }
+console.log(Set.prototype instanceof Set); // false
+try {
+  console.log(Set.prototype.size);
+} catch (error) {
+  console.log(error.name); // TypeError: Set.prototype has no [[SetData]]
+}
+```
 
 ### Set algebra with insertion order
 
@@ -96,3 +110,4 @@ Provide a real Set/Map or an object that deliberately implements the set-like pr
 4. **When can intersection use the other operand's order?** When this Set is larger than the other's reported size and the algorithm traverses `other.keys()`.
 5. **Does species control a Set algebra result?** No, current Set methods do not consult it.
 6. **What does `Set.prototype.keys()` yield?** Values, exactly like `values()`.
+7. **How does Set algebra interpret a custom `size` value?** It converts it to Number, then integer-or-infinity; NaN is `TypeError`, negative is `RangeError`, fractions truncate toward zero, and positive Infinity is permitted.

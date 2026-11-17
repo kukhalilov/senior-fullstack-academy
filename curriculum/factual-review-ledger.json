@@ -7,8 +7,8 @@
     "lessons": 2360,
     "reviewed": 1041,
     "pending": 1319,
-    "claimsChecked": 39961,
-    "claimsCorrected": 1547,
+    "claimsChecked": 40021,
+    "claimsCorrected": 1573,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1313,11 +1313,19 @@
       ]
     },
     {
-      "date": "2026-11-17",
+      "date": "2026-11-18",
       "scope": "JavaScript Map and Set collections (t06-013)",
-      "status": "full claim and frozen-inventory audit complete for all 6 lessons",
+      "status": "follow-up full claim and frozen-inventory audit complete; inventory and coverage corrections applied across all 6 lessons",
       "findings": [
-        "Checked all 39 inventoried API names plus explanatory, version, output-order, example, exercise, and interview claims against ECMA-262 2026 and current MDN references. Verified Map groupBy (ES2024), Set composition (ES2025), Map getOrInsert methods (ES2026), SameValueZero/canonicalized zero, live iteration, set-like protocol, operation order/size strategy, and species behavior. No factual corrections or missing inventory items found. Local Node 24 lacks the ES2026 Map insertion methods; lessons mark their runtime requirements. All six lessons remain drafts pending whole-course audit."
+        "Checked all 39 inventoried API names plus explanatory, version, output-order, example, exercise, and interview claims against ECMA-262 2026 and current MDN references. Verified Map groupBy (ES2024), Set composition (ES2025), Map getOrInsert methods (ES2026), SameValueZero/canonicalized zero, live iteration, set-like protocol, operation order/size strategy, and species behavior. No factual corrections or missing inventory items found. Local Node 24 lacks the ES2026 Map insertion methods; lessons mark their runtime requirements. All six lessons remain drafts pending whole-course audit.",
+        "Follow-up audit found the initial Map/Set inventories omitted the standardized static constructor properties Map.prototype and Set.prototype. Added both (41 inventoried API/property names total) and explained their immutable constructor descriptors; the prototype objects lack [[MapData]]/[[SetData]], so collection size/method calls throw TypeError on those receivers. Added missing exact Set-like size conversion rules (ToNumber, ToIntegerOrInfinity, NaN/negative errors, fraction truncation, +Infinity); the ECMA-262 average-sublinear access requirement without an O(1) guarantee; object own-key ordering distinction; and the transitional Array.prototype.groupToMap history for current Map.groupBy. Rechecked all six lessons and worked answers; all remain draft.",
+        "A further prompt/answer completeness pass found that six interview scenarios and six practice reflection prompts had no in-project answers. Added complete scenario answers and sample reflection answers so learners do not need interactive follow-up. Expanded Map.groupBy coverage to include callback validation and iterator closing on abrupt completion. Rechecked the new answers against ECMA-262; all prompts now have in-project explanatory answers."
+      ],
+      "sources": [
+        "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+        "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection"
       ]
     },
     {
@@ -55591,7 +55599,7 @@
       "draft": "course/drafts/t06-013/t06-013-overview.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 32,
+      "claimsChecked": 35,
       "claimsCorrected": 0,
       "evidence": [
         {
@@ -55644,10 +55652,37 @@
             }
           ],
           "verdict": "verified; no factual correction required"
+        },
+        {
+          "claims": "Follow-up audit added Map.prototype and Set.prototype to the explicit frozen inventories and explained their immutable constructor descriptors and absence of collection internal slots. Added exact Set-like size conversion/error rules, the standard average-sublinear access requirement without an O(1) promise, object own-key ordering comparison, and Map.groupBy transitional history. Rechecked every lesson, all 41 API/property inventory items, examples and answer keys.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "24.1.2.2 Map.prototype; Map internal slots and Map algorithms; 24.2.3.1 Set.prototype; 24.2.1.2 GetSetRecord; Map/Set access complexity; collection operation algorithms",
+              "verdict": "normative algorithms and definitions checked; coverage corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.1.11.1 OrdinaryOwnPropertyKeys",
+              "verdict": "normative property-order algorithm checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy current static API and browser compatibility/history",
+              "verdict": "MDN cross-check; normative edition controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set-like operands and size-based intersection behavior",
+              "verdict": "MDN cross-check; normative edition controls"
+            }
+          ],
+          "verdict": "follow-up correction and full lesson re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -55664,7 +55699,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked the mental model, comparisons, version boundaries, examples, and stated scope against ECMA-262 2026 and current MDN Map/Set references. No factual corrections required. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit checked the complete updated manifest and lesson claims against ECMA-262 2026 and current MDN documentation. Added the omitted constructor prototype properties and clarified protocol, performance, ordering, and version-history details where relevant. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-concepts",
@@ -55673,8 +55708,8 @@
       "draft": "course/drafts/t06-013/t06-013-concepts.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 57,
-      "claimsCorrected": 0,
+      "claimsChecked": 69,
+      "claimsCorrected": 3,
       "evidence": [
         {
           "claims": "Checked SameValueZero/canonicalized zero, insertion order and live mutation, iterable constructor behavior, grouping, default insertion callbacks, set-like protocol, operation ordering, weak lifetime, and species claims against ECMA-262 2026 and MDN. No factual corrections required.",
@@ -55726,10 +55761,37 @@
             }
           ],
           "verdict": "verified; no factual correction required"
+        },
+        {
+          "claims": "Follow-up audit added Map.prototype and Set.prototype to the explicit frozen inventories and explained their immutable constructor descriptors and absence of collection internal slots. Added exact Set-like size conversion/error rules, the standard average-sublinear access requirement without an O(1) promise, object own-key ordering comparison, and Map.groupBy transitional history. Rechecked every lesson, all 41 API/property inventory items, examples and answer keys.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "24.1.2.2 Map.prototype; Map internal slots and Map algorithms; 24.2.3.1 Set.prototype; 24.2.1.2 GetSetRecord; Map/Set access complexity; collection operation algorithms",
+              "verdict": "normative algorithms and definitions checked; coverage corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.1.11.1 OrdinaryOwnPropertyKeys",
+              "verdict": "normative property-order algorithm checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy current static API and browser compatibility/history",
+              "verdict": "MDN cross-check; normative edition controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set-like operands and size-based intersection behavior",
+              "verdict": "MDN cross-check; normative edition controls"
+            }
+          ],
+          "verdict": "follow-up correction and full lesson re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -55746,7 +55808,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked SameValueZero/canonicalized zero, insertion order and live mutation, iterable constructor behavior, grouping, default insertion callbacks, set-like protocol, operation ordering, weak lifetime, and species claims against ECMA-262 2026 and MDN. No factual corrections required. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit checked the complete updated manifest and lesson claims against ECMA-262 2026 and current MDN documentation. Added the omitted constructor prototype properties and clarified protocol, performance, ordering, version history, and previously unanswered self-study prompts. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-reference-map-api",
@@ -55755,8 +55817,8 @@
       "draft": "course/drafts/t06-013/t06-013-reference-map-api.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 61,
-      "claimsCorrected": 0,
+      "claimsChecked": 74,
+      "claimsCorrected": 5,
       "evidence": [
         {
           "claims": "Checked all 18 inventoried Map names, signatures, return/receiver behavior, constructor and iterator details, current species behavior, Map.groupBy, and ES2026 get-or-insert semantics against ECMA-262 2026 and current MDN. No factual corrections required.",
@@ -55808,10 +55870,54 @@
             }
           ],
           "verdict": "verified; no factual correction required"
+        },
+        {
+          "claims": "Follow-up audit added Map.prototype and Set.prototype to the explicit frozen inventories and explained their immutable constructor descriptors and absence of collection internal slots. Added exact Set-like size conversion/error rules, the standard average-sublinear access requirement without an O(1) promise, object own-key ordering comparison, and Map.groupBy transitional history. Rechecked every lesson, all 41 API/property inventory items, examples and answer keys.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "24.1.2.2 Map.prototype; Map internal slots and Map algorithms; 24.2.3.1 Set.prototype; 24.2.1.2 GetSetRecord; Map/Set access complexity; collection operation algorithms",
+              "verdict": "normative algorithms and definitions checked; coverage corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.1.11.1 OrdinaryOwnPropertyKeys",
+              "verdict": "normative property-order algorithm checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy current static API and browser compatibility/history",
+              "verdict": "MDN cross-check; normative edition controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set-like operands and size-based intersection behavior",
+              "verdict": "MDN cross-check; normative edition controls"
+            }
+          ],
+          "verdict": "follow-up correction and full lesson re-verification complete",
+          "reviewedAt": "2026-11-18"
+        },
+        {
+          "claims": "Completed a prompt-answer completeness pass. Added worked answers to all six practice reflection prompts and all six interview scenarios; expanded Map.groupBy callback-validation and abrupt-iterator-closing behavior.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "24.1.2.1 Map.groupBy and GroupBy iterator closing",
+              "verdict": "normative algorithm checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy callback and iterable contract",
+              "verdict": "explanatory cross-check"
+            }
+          ],
+          "verdict": "all prompts now have in-project answers",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -55828,7 +55934,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked all 18 inventoried Map names, signatures, return/receiver behavior, constructor and iterator details, current species behavior, Map.groupBy, and ES2026 get-or-insert semantics against ECMA-262 2026 and current MDN. No factual corrections required. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit checked the complete updated manifest and lesson claims against ECMA-262 2026 and current MDN documentation. Added the omitted constructor prototype properties and clarified protocol, performance, ordering, version history, and previously unanswered self-study prompts. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-reference-set-api",
@@ -55837,8 +55943,8 @@
       "draft": "course/drafts/t06-013/t06-013-reference-set-api.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 67,
-      "claimsCorrected": 0,
+      "claimsChecked": 75,
+      "claimsCorrected": 4,
       "evidence": [
         {
           "claims": "Checked all 21 inventoried Set names, constructor/iterator/callback semantics, all seven set operations and relations, size-based traversal/order, set-like protocol, and species behavior against ECMA-262 2026 and MDN. No factual corrections required.",
@@ -55890,10 +55996,37 @@
             }
           ],
           "verdict": "verified; no factual correction required"
+        },
+        {
+          "claims": "Follow-up audit added Map.prototype and Set.prototype to the explicit frozen inventories and explained their immutable constructor descriptors and absence of collection internal slots. Added exact Set-like size conversion/error rules, the standard average-sublinear access requirement without an O(1) promise, object own-key ordering comparison, and Map.groupBy transitional history. Rechecked every lesson, all 41 API/property inventory items, examples and answer keys.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "24.1.2.2 Map.prototype; Map internal slots and Map algorithms; 24.2.3.1 Set.prototype; 24.2.1.2 GetSetRecord; Map/Set access complexity; collection operation algorithms",
+              "verdict": "normative algorithms and definitions checked; coverage corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.1.11.1 OrdinaryOwnPropertyKeys",
+              "verdict": "normative property-order algorithm checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy current static API and browser compatibility/history",
+              "verdict": "MDN cross-check; normative edition controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set-like operands and size-based intersection behavior",
+              "verdict": "MDN cross-check; normative edition controls"
+            }
+          ],
+          "verdict": "follow-up correction and full lesson re-verification complete",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -55910,7 +56043,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked all 21 inventoried Set names, constructor/iterator/callback semantics, all seven set operations and relations, size-based traversal/order, set-like protocol, and species behavior against ECMA-262 2026 and MDN. No factual corrections required. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit checked the complete updated manifest and lesson claims against ECMA-262 2026 and current MDN documentation. Added the omitted constructor prototype properties and clarified protocol, performance, ordering, and version-history details where relevant. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-practice",
@@ -55919,8 +56052,8 @@
       "draft": "course/drafts/t06-013/t06-013-practice.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 45,
-      "claimsCorrected": 0,
+      "claimsChecked": 57,
+      "claimsCorrected": 6,
       "evidence": [
         {
           "claims": "Checked all five exercise solutions, output predictions, compatibility statements, and Set/Map edge-case assertions against the specification and locally supported runtime behavior. The local Node 24 runtime supports groupBy and Set algebra but lacks ES2026 Map insertion methods; those examples are explicitly compatibility-qualified. All exercises have worked answers.",
@@ -55972,10 +56105,54 @@
             }
           ],
           "verdict": "verified; no factual correction required"
+        },
+        {
+          "claims": "Follow-up audit added Map.prototype and Set.prototype to the explicit frozen inventories and explained their immutable constructor descriptors and absence of collection internal slots. Added exact Set-like size conversion/error rules, the standard average-sublinear access requirement without an O(1) promise, object own-key ordering comparison, and Map.groupBy transitional history. Rechecked every lesson, all 41 API/property inventory items, examples and answer keys.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "24.1.2.2 Map.prototype; Map internal slots and Map algorithms; 24.2.3.1 Set.prototype; 24.2.1.2 GetSetRecord; Map/Set access complexity; collection operation algorithms",
+              "verdict": "normative algorithms and definitions checked; coverage corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.1.11.1 OrdinaryOwnPropertyKeys",
+              "verdict": "normative property-order algorithm checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy current static API and browser compatibility/history",
+              "verdict": "MDN cross-check; normative edition controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set-like operands and size-based intersection behavior",
+              "verdict": "MDN cross-check; normative edition controls"
+            }
+          ],
+          "verdict": "follow-up correction and full lesson re-verification complete",
+          "reviewedAt": "2026-11-18"
+        },
+        {
+          "claims": "Completed a prompt-answer completeness pass. Added worked answers to all six practice reflection prompts and all six interview scenarios; expanded Map.groupBy callback-validation and abrupt-iterator-closing behavior.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "24.1.2.1 Map.groupBy and GroupBy iterator closing",
+              "verdict": "normative algorithm checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy callback and iterable contract",
+              "verdict": "explanatory cross-check"
+            }
+          ],
+          "verdict": "all prompts now have in-project answers",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -55992,7 +56169,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked all five exercise solutions, output predictions, compatibility statements, and Set/Map edge-case assertions against the specification and locally supported runtime behavior. The local Node 24 runtime supports groupBy and Set algebra but lacks ES2026 Map insertion methods; those examples are explicitly compatibility-qualified. All exercises have worked answers. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit checked the complete updated manifest and lesson claims against ECMA-262 2026 and current MDN documentation. Added the omitted constructor prototype properties and clarified protocol, performance, ordering, version history, and previously unanswered self-study prompts. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-013-interview",
@@ -56001,8 +56178,8 @@
       "draft": "course/drafts/t06-013/t06-013-interview.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 46,
-      "claimsCorrected": 0,
+      "claimsChecked": 58,
+      "claimsCorrected": 8,
       "evidence": [
         {
           "claims": "Checked all core/deep/scenario answers, alternatives, common-mistake corrections, and edition claims against ECMA-262 2026 and MDN. All interview prompts have answers; no factual corrections required.",
@@ -56054,10 +56231,54 @@
             }
           ],
           "verdict": "verified; no factual correction required"
+        },
+        {
+          "claims": "Follow-up audit added Map.prototype and Set.prototype to the explicit frozen inventories and explained their immutable constructor descriptors and absence of collection internal slots. Added exact Set-like size conversion/error rules, the standard average-sublinear access requirement without an O(1) promise, object own-key ordering comparison, and Map.groupBy transitional history. Rechecked every lesson, all 41 API/property inventory items, examples and answer keys.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "24.1.2.2 Map.prototype; Map internal slots and Map algorithms; 24.2.3.1 Set.prototype; 24.2.1.2 GetSetRecord; Map/Set access complexity; collection operation algorithms",
+              "verdict": "normative algorithms and definitions checked; coverage corrections applied"
+            },
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+              "section": "10.1.11.1 OrdinaryOwnPropertyKeys",
+              "verdict": "normative property-order algorithm checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy current static API and browser compatibility/history",
+              "verdict": "MDN cross-check; normative edition controls"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection",
+              "section": "Set-like operands and size-based intersection behavior",
+              "verdict": "MDN cross-check; normative edition controls"
+            }
+          ],
+          "verdict": "follow-up correction and full lesson re-verification complete",
+          "reviewedAt": "2026-11-18"
+        },
+        {
+          "claims": "Completed a prompt-answer completeness pass. Added worked answers to all six practice reflection prompts and all six interview scenarios; expanded Map.groupBy callback-validation and abrupt-iterator-closing behavior.",
+          "sources": [
+            {
+              "url": "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
+              "section": "24.1.2.1 Map.groupBy and GroupBy iterator closing",
+              "verdict": "normative algorithm checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy",
+              "section": "Map.groupBy callback and iterable contract",
+              "verdict": "explanatory cross-check"
+            }
+          ],
+          "verdict": "all prompts now have in-project answers",
+          "reviewedAt": "2026-11-18"
         }
       ],
       "issues": [],
-      "reviewedAt": "2026-11-17",
+      "reviewedAt": "2026-11-18",
       "sourceUrls": [
         "https://tc39.es/ecma262/2026/multipage/keyed-collections.html",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -56074,7 +56295,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
       ],
-      "reviewNote": "Manual claim and frozen-inventory audit complete; all listed APIs and question answers checked. Checked all core/deep/scenario answers, alternatives, common-mistake corrections, and edition claims against ECMA-262 2026 and MDN. All interview prompts have answers; no factual corrections required. Lesson remains draft pending whole-course audit."
+      "reviewNote": "Follow-up audit checked the complete updated manifest and lesson claims against ECMA-262 2026 and current MDN documentation. Added the omitted constructor prototype properties and clarified protocol, performance, ordering, version history, and previously unanswered self-study prompts. Lesson remains draft pending whole-course audit."
     },
     {
       "taskId": "t06-014-overview",

@@ -180,3 +180,12 @@ The last assertion documents a semantic boundary: constructors consume iterables
 - Does your Set operand implement `size`, `has`, and `keys`, or only `[Symbol.iterator]`?
 - Which target runtimes provide `Map.groupBy`, ES2025 Set operations, and ES2026 default insertion methods?
 - Would a fixed object record or an indexed array express your data more clearly?
+
+## Sample answers to reflection questions
+
+- Treat two same-shaped objects as separate keys when their identities represent different entities. If the domain defines identity by a stable ID, key by that ID instead.
+- Map and Set expose insertion order. If output order matters, make insertion and delete/reinsert behavior deliberate; ordinary object key enumeration has its own ordering rules.
+- If the algorithm must process only the initial collection, snapshot it first (for example, `[...map]` or `[...set]`). The snapshot freezes which entries are traversed, but referenced objects are still shared.
+- Set algebra needs `size`, callable `has`, and callable `keys`; `[Symbol.iterator]` alone is not enough. A Map qualifies through its keys; an Array can be converted with `new Set(array)`.
+- Check the actual deployment targets: Map.groupBy is ES2024 and broadly available since March 2024, Set composition is ES2025, and Map get-or-insert methods are ES2026/Baseline 2026. Feature detection can cover older engines.
+- Use an object for a fixed named record, an Array for indexed order/duplicates, a Map for arbitrary-key associations, and a Set for unique membership. Choose based on semantics and lifecycle, not a blanket speed assumption.

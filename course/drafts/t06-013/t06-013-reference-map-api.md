@@ -11,7 +11,8 @@ Map is an ordered association table keyed by SameValueZero identity/value equali
 ## Supplied names explained
 
 - `Map` — A constructor requiring `new`. No argument, `undefined`, or `null` creates an empty Map. Otherwise it consumes a synchronous iterable whose elements are pair-like: index/property `0` supplies key and `1` supplies value; extra fields are not part of the key/value pair. It obtains the new instance's `set` method and invokes it for each pair, so subclass or instance overrides participate. Bad entries, invalid `set`, or abrupt iteration cause construction to fail with iterator closing when required by the iteration protocol. [ECMA-262 constructor](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
-- `Map.groupBy` — Consumes an iterable and calls the callback for each element in order with `(element, zeroBasedIndex)`. Each callback result is used directly as a key; the returned Map maps each first-seen key to an array of original elements in encounter order. It is not string-key coercion, and object keys compare by identity. The input elements are not deep-cloned. It was standardized in ES2024 and is broadly available in current browsers since March 2024 per MDN. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html) · [MDN Map.groupBy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy)
+- `Map.prototype` — The non-writable, non-enumerable, non-configurable property on the Map constructor whose value is the shared prototype object for Map instances. The prototype object itself is an ordinary object without Map's `[[MapData]]` internal slot; consequently, reading its inherited `size` getter or calling a Map method with it as receiver throws `TypeError`. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
+- `Map.groupBy` — Validates a callable callback, consumes an iterable, and calls the callback for each element in order with `(element, zeroBasedIndex)`. Each callback result is used directly as a key; the returned Map maps each first-seen key to an array of original elements in encounter order. It uses Map key equality, does not coerce keys to strings, and object keys compare by identity. The input elements are not deep-cloned. If iteration or the callback fails, the iterator is closed as required and no partial result Map is returned (callback side effects remain). It was standardized in ES2024 and is broadly available in current browsers since March 2024 per MDN. Earlier browser implementations used the transitional name `Array.prototype.groupToMap`; current code uses `Map.groupBy`. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html) · [MDN Map.groupBy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy)
 - `Map[Symbol.species]` — A static accessor on the Map constructor; its getter returns the constructor value on which it is accessed (normally `Map`, or a subclass constructor). The accessor is a standardized compatibility surface, but MDN documents it as unused by all current Map methods. `Map.groupBy` constructs an ordinary Map and does not consult this accessor. Overriding species therefore does not customize current Map operation result types. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html) · [MDN Map species](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species)
 - `Map.prototype.constructor` — Initially points to `Map`. It is an ordinary writable prototype property, so reassignment is possible; it is not a reliable authenticity or type test. Built-in methods instead require the receiver's Map internal state and throw `TypeError` when borrowed onto an incompatible object. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
 - `Map.prototype.size` — An accessor returning the current number of entries. It is inherited from the prototype and has no setter; assignment in strict code fails, while non-strict assignment does not change the collection's size. It throws when its receiver lacks Map internal state. [ECMA-262](https://tc39.es/ecma262/2026/multipage/keyed-collections.html)
@@ -37,7 +38,22 @@ Map is an ordered association table keyed by SameValueZero identity/value equali
 
 `Map[Symbol.species]` is present but does not make current Map methods produce subclass results. This is a legacy accessor rather than an active result-factory hook in this API surface. [MDN Map species](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Symbol.species)
 
+Object key enumeration has its own ordering rules (array-index string keys first in numeric order, other string keys in creation order, then symbols), so an object should not be treated as a fully interchangeable ordered Map. The ECMAScript specification requires average Map access times to be sublinear in the number of entries, but it does not promise O(1) operations or mandate a hash-table implementation. [ECMA-262 keyed collections](https://tc39.es/ecma262/2026/multipage/keyed-collections.html) · [ECMA-262 ordinary object key order](https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html)
+
 ## Examples
+
+### The prototype property and the prototype object
+
+```js
+console.log(Object.getOwnPropertyDescriptor(Map, "prototype"));
+// { value: Map.prototype, writable: false, enumerable: false, configurable: false }
+console.log(Map.prototype instanceof Map); // false
+try {
+  console.log(Map.prototype.size);
+} catch (error) {
+  console.log(error.name); // TypeError: Map.prototype has no [[MapData]]
+}
+```
 
 ### Stable order, update versus delete/reinsert
 
