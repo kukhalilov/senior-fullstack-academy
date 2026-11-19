@@ -26,14 +26,17 @@ An exception/status handler selects the HTTP outcome. A Problem Details service/
 | `ProblemDetailsOptions` | Options for customizing Problem Details generation, including occurrence customization. |
 | `ProblemDetailsOptions.CustomizeProblemDetails` | Callback that can set safe fields/extensions from the current `HttpContext`, such as a correlation ID or environment-safe metadata. Avoid overwriting status incorrectly. |
 | `IProblemDetailsService` | Service abstraction used to write a Problem Details response, respecting registered writers/content negotiation. |
-| `IProblemDetailsService.WriteAsync` | Attempts to write a Problem Details response using the current context/details; callers must provide an appropriate status/body state. |
+| `ProblemDetailsContext` | Carries the `HttpContext`, problem document, and exception context to `IProblemDetailsService` and writers. Do not expose the exception merely because it is available in the context. |
+| `IProblemDetailsService.WriteAsync` | Writes a Problem Details response using the registered writers. It throws `InvalidOperationException` if no writer can handle the context; use `TryWriteAsync` when the caller needs a non-throwing fallback branch. |
 | `IProblemDetailsService.TryWriteAsync` | Tries to write when a suitable writer exists and reports success/failure, enabling the caller to provide a fallback response. |
 | `IProblemDetailsWriter` | Pluggable writer that decides whether it supports a context and serializes the details. |
 | `IProblemDetailsWriter.CanWrite` | Determines whether the writer can produce the response for the supplied Problem Details context, including relevant negotiation conditions. |
 | `IProblemDetailsWriter.WriteAsync` | Writes the actual response for a context accepted by `CanWrite`. Preserve status and content type and avoid writing a second body. |
-| `DefaultProblemDetailsWriter` | Framework writer used by default when registered service/writer conditions allow it. Its supported media types and defaults can vary by framework release/configuration. |
+| `DefaultProblemDetailsWriter` | Framework writer used by default when registered service/writer conditions allow it. In current ASP.NET Core docs it supports `application/json`, `application/problem+json`, `*/*`, and `application/*`; `text/html` and `application/xml` are unsupported unless an app registers another writer. |
 | `Results.Problem` | Minimal API result factory for a Problem Details response. Supply the intended status/type/title/detail deliberately. |
 | `Results.ValidationProblem` | Minimal API result factory for a validation-oriented error dictionary and status. |
+| `TypedResults.Problem` / `TypedResults.ValidationProblem` | Strongly typed Minimal API result factories for problem and validation responses; typed results can also contribute response metadata to OpenAPI. |
+| `ProducesProblem` / `ProducesValidationProblem` | Endpoint metadata conventions declaring Problem Details responses for OpenAPI. They describe the contract; they do not cause runtime validation or guarantee that the handler returns that body. |
 | `ControllerBase.Problem` | MVC controller helper for producing a Problem Details response with controller/request context. |
 | `ControllerBase.ValidationProblem` | MVC helper for returning validation errors as a validation Problem Details document. |
 | `ProblemDetailsFactory` | MVC abstraction for creating Problem Details and validation details with application customization. |
@@ -49,6 +52,8 @@ An exception/status handler selects the HTTP outcome. A Problem Details service/
 | `AddExceptionHandler<TExceptionHandler>` | Registers an `IExceptionHandler` implementation in DI for exception middleware. Handler order and fallback behavior should be tested. |
 | `ExceptionHandlerOptions` | Configuration for exception handling, including handler path/callback, status code behavior, and diagnostics options. |
 | `ExceptionHandlerOptions.StatusCodeSelector` | Selects an HTTP status for an exception. Map only known, safe failure categories; unknown exceptions should remain server errors. |
+| `ExceptionHandlerOptions.AllowStatusCode404Response` | Controls whether a 404 from the configured exception handler is accepted as a valid handled response. The default is false; returning 404 without opting in can cause the middleware to rethrow the original exception. |
+| `ExceptionHandlerOptions.SuppressDiagnosticsCallback` | ASP.NET Core 10 option to control diagnostics emitted for handled exceptions. Choose based on the application's observability policy; suppressed framework diagnostics still require suitable application logging/metrics. |
 | `ExceptionHandlerOptions.ExceptionHandler` | Callback/alternate pipeline configuration used to handle an exception and write the response. |
 | `UseStatusCodePages` | Middleware that can add a body to error responses that otherwise have no body; it does not replace exception handling. |
 | `StatusCodePagesOptions` | Options for status-code page behavior, including a response callback or alternate path. |
@@ -133,6 +138,10 @@ The problem URI and title should remain stable/documented. Keep internal rule de
 ## Sources
 
 - [Handle errors in ASP.NET Core APIs](https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors)
+- [IProblemDetailsService.WriteAsync API reference](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-10.0)
+- [ExceptionHandlerOptions.AllowStatusCode404Response API reference](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.exceptionhandleroptions.allowstatuscode404response?view=aspnetcore-10.0)
+- [ASP.NET Core exception handling](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling)
+- [OpenAPI response metadata for Problem Details](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/include-metadata?view=aspnetcore-10.0)
 - [ASP.NET Core 11 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11)
 - [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457.html)
 - [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)

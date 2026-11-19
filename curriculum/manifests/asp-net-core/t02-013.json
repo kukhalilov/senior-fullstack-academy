@@ -68,7 +68,8 @@
         "HTTP QUERY is safe and idempotent with request content",
         "Accept-Query response header supported query media types",
         "OpenAPI 3.2 query field for QUERY operations",
-        "OpenAPI 3.0 and 3.1 QUERY extension representation"
+        "OpenAPI 3.0 and 3.1 QUERY extension representation",
+        "HTTP QUERY cache key includes request content"
       ]
     },
     {
@@ -149,7 +150,18 @@
         "Versioning Minimal APIs with Asp.Versioning.Http",
         "Versioning controllers with Asp.Versioning.Mvc",
         "Versioned OpenAPI document grouping",
-        "Old Microsoft.AspNetCore.Mvc.Versioning package names"
+        "Old Microsoft.AspNetCore.Mvc.Versioning package names",
+        "ConstantApiVersionSelector",
+        "CurrentImplementationApiVersionSelector",
+        "LowestImplementedApiVersionSelector",
+        "ApiVersionRange",
+        "Asp.Versioning analyzers",
+        "EnableApiVersioningAnalyzers",
+        "ApiVersionRange.Any",
+        "ApiVersionRange.Empty",
+        "VisibleInApiVersionAttribute",
+        "Versioned model member filtering",
+        "IAnnotation<TKey,TValue>"
       ]
     },
     {
@@ -206,7 +218,14 @@
         "Error response status consistency",
         "Do not expose exception internals in production errors",
         "Accept header and supported Problem Details writer behavior",
-        "Problem Details is not a replacement for domain error semantics"
+        "Problem Details is not a replacement for domain error semantics",
+        "ProblemDetailsContext",
+        "TypedResults.Problem",
+        "TypedResults.ValidationProblem",
+        "ProducesProblem",
+        "ProducesValidationProblem",
+        "ExceptionHandlerOptions.AllowStatusCode404Response",
+        "ExceptionHandlerOptions.SuppressDiagnosticsCallback"
       ]
     },
     {
@@ -267,7 +286,8 @@
         "API deprecation policy",
         "Sunset response header",
         "Deprecation response header",
-        "Consumer-driven contract testing"
+        "Consumer-driven contract testing",
+        "Idempotency-Key current IETF status"
       ]
     }
   ],
@@ -322,7 +342,7 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-16",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
       "items": [
         "ASP.NET Core 11 generates OpenAPI 3.2 by default; .NET 10 generated 3.1 by default. Explicitly select 3.1 when downstream tooling cannot consume 3.2.",
         "ASP.NET Core 11 upgrades Microsoft.OpenApi to 3.x, which changes transformer-facing model APIs; custom transformers written against 2.x may need source changes.",
@@ -330,8 +350,10 @@
         "HTTP QUERY is standardized in RFC 10008 (June 2026), not merely a proposed method. It is safe and idempotent, carries query content with a media type, and resources can advertise supported formats with Accept-Query. OpenAPI 3.2 has a native query operation field; OpenAPI 3.0/3.1 use the x-oai-additionalOperations extension representation in the ASP.NET Core generator.",
         "Deprecation and Sunset are distinct standardized response headers: RFC 9745 Deprecation signals lifecycle status, while RFC 8594 Sunset indicates an expected date when the resource may become unresponsive.",
         "API versioning remains a separate Asp.Versioning package family rather than a built-in ASP.NET Core feature. The old Microsoft.AspNetCore.Mvc.Versioning package family is deprecated; keep exact third-party package APIs labeled as such.",
-        "Asp.Versioning package releases are independent of the .NET runtime release. At the 2026-11-16 check, the project GitHub releases page listed 10.2.0 while NuGet listed Asp.Versioning.OpenApi 10.2.3; verify each package's compatible framework and dependency ranges instead of assuming every package version matches.",
-        "ASP.NET Core 11 UseExceptionHandler preserves BadHttpRequestException.StatusCode by default in Problem Details responses. Applications that depended on conversion to 500 should review their custom exception handling."
+        "Asp.Versioning releases are independent of the .NET runtime. NuGet versions checked 2026-11-20: Abstractions 10.2.1, MVC 10.2.1, MVC.ApiExplorer 10.2.1, HTTP 10.2.3, and OpenApi 10.2.3. Check each package compatibility rather than assuming family-wide version alignment.",
+        "ASP.NET Core 11 UseExceptionHandler preserves BadHttpRequestException.StatusCode by default in Problem Details responses. Applications that depended on conversion to 500 should review their custom exception handling.",
+        "Asp.Versioning 10.2 adds ApiVersionRange and compiler analyzers; analyzers are enabled by default and can surface build diagnostics when upgrading. NuGet package versions can differ across family packages.",
+        "Asp.Versioning 10.2 also adds VisibleInApiVersionAttribute for versioned model members and IAnnotation<TKey,TValue> for out-of-band member metadata; member filtering changes serialization/schema shape, not authorization."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi",
@@ -345,14 +367,18 @@
         "https://www.nuget.org/packages/Asp.Versioning.OpenApi",
         "https://www.rfc-editor.org/rfc/rfc10008.html",
         "https://www.rfc-editor.org/rfc/rfc9745.html",
-        "https://www.rfc-editor.org/rfc/rfc8594.html"
+        "https://www.rfc-editor.org/rfc/rfc8594.html",
+        "https://www.nuget.org/packages/Asp.Versioning.Abstractions",
+        "https://www.nuget.org/packages/Asp.Versioning.Http",
+        "https://www.nuget.org/packages/Asp.Versioning.Mvc",
+        "https://www.nuget.org/packages/Asp.Versioning.Mvc.ApiExplorer"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core OpenAPI/error handling/API implementation guidance; dotnet/aspnet-api-versioning official community documentation; RFC 9110 and RFC 8288",
-    "edition": "ASP.NET Core 11 / .NET 11 GA and applicable RFCs checked 2026-11-16; Asp.Versioning docs current at check",
-    "checkedAt": "2026-11-16",
+    "edition": "ASP.NET Core 11 / .NET 11 GA, OpenAPI 3.2.1, HTTP QUERY RFC 10008, Problem Details RFC 9457, Asp.Versioning 10.2, and Idempotency-Key draft -08 checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/customize-openapi",
@@ -376,7 +402,19 @@
       "https://www.rfc-editor.org/rfc/rfc10008.html",
       "https://www.rfc-editor.org/rfc/rfc9745.html",
       "https://www.rfc-editor.org/rfc/rfc8594.html",
-      "https://www.rfc-editor.org/rfc/rfc6585.html"
+      "https://www.rfc-editor.org/rfc/rfc6585.html",
+      "https://www.nuget.org/packages/Asp.Versioning.Abstractions",
+      "https://www.nuget.org/packages/Asp.Versioning.Http",
+      "https://www.nuget.org/packages/Asp.Versioning.Mvc",
+      "https://www.nuget.org/packages/Asp.Versioning.Mvc.ApiExplorer",
+      "https://dotnet.github.io/aspnet-api-versioning/aspnet-core/config/selector.html",
+      "https://spec.openapis.org/oas/v3.2.1.html",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-10.0",
+      "https://github.com/dotnet/aspnet-api-versioning/releases/tag/v10.2.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/include-metadata?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.exceptionhandleroptions.allowstatuscode404response?view=aspnetcore-10.0",
+      "https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/08/"
     ]
   },
   "scopeExclusions": [

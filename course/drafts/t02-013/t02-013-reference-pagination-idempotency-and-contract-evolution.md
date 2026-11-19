@@ -51,6 +51,7 @@ A collection endpoint promises which items appear and where traversal resumes. T
 | `POST is not inherently idempotent` | POST processing is resource-defined and can create repeated effects. Retry only when the API has a documented idempotent semantic or deduplication mechanism. |
 | `PATCH idempotency depends on patch operation` | Some patches (set field to value) can be idempotent; others (increment/append) are not. Analyze the operation, not just the method name. |
 | `Idempotency-Key request header convention` | Client-provided identifier for one logical operation. The header alone does nothing: server storage and concurrency rules implement deduplication. |
+| `Idempotency-Key current IETF status` | As of 2026-11-20, draft `draft-ietf-httpapi-idempotency-key-header-08` is an active HTTPAPI Internet-Draft, not a published RFC. It specifies a Structured Fields string value (quoted on the wire) and continues to evolve; label the header as an API convention and pin a draft version only if the API intentionally adopts its details. |
 | `Idempotency key scope` | Defines where a key is unique, such as authenticated account + operation/route. Avoid cross-tenant collisions or allowing a key to expose another principal's result. |
 | `Request fingerprint` | Canonical digest of relevant request semantics (method, target, body and possibly selected headers) stored with the key to detect accidental/malicious payload changes. |
 | `Durable idempotency record` | Persistent record of key, fingerprint, processing state, and completed outcome. Retention and recovery must outlive expected retries and survive process restarts. |
@@ -144,7 +145,7 @@ Keep a deprecated endpoint functional under the announced policy, return `Deprec
 4. **What does HTTP idempotency guarantee?** The same intended effect when repeated, not identical response bytes or exactly one server execution.
 5. **What does `If-Match` prevent?** Applying a mutation based on a stale representation; a mismatch normally yields 412.
 6. **How do Deprecation and Sunset differ?** Deprecation marks lifecycle status while it may continue functioning; Sunset announces a likely unavailability date.
-7. **Is `Idempotency-Key` middleware built into ASP.NET Core?** No. The header convention requires an application/library implementation with persistent concurrency/replay rules.
+7. **Is `Idempotency-Key` middleware built into ASP.NET Core or a published RFC?** No. The HTTPAPI document is an active Internet-Draft as of 2026-11-20; the header still requires an application/library implementation with persistent concurrency/replay rules.
 
 ## Sources
 
@@ -154,3 +155,4 @@ Keep a deprecated endpoint functional under the announced policy, return `Deprec
 - [Deprecation HTTP Response Header, RFC 9745](https://www.rfc-editor.org/rfc/rfc9745.html)
 - [Sunset HTTP Header, RFC 8594](https://www.rfc-editor.org/rfc/rfc8594.html)
 - [API implementation guidance](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-implementation)
+- [IETF Idempotency-Key Internet-Draft -08](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/08/)

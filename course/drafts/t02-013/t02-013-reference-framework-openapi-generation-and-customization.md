@@ -61,6 +61,7 @@ The generator inspects endpoint/API Explorer metadata, response declarations, an
 | `OpenAPI Server-Sent Events itemSchema` | OpenAPI 3.2 supports the SSE media type's stream item schema description; do not claim that a 3.1 document carries this same standardized field. |
 | `HTTP QUERY method RFC 10008` | Standardized HTTP method for sending a query representation as request content when URI query parameters are insufficient. The target resource defines how it processes the query. |
 | `HTTP QUERY is safe and idempotent with request content` | RFC 10008 defines QUERY as safe and idempotent, unlike arbitrary POST-based query conventions. A QUERY request requires a Content-Type describing its content; clients and intermediaries still need end-to-end support. |
+| `HTTP QUERY cache key includes request content` | RFC 10008 permits caching QUERY responses, but a cache key must incorporate the request content and related metadata. A proxy that ignores the body when keying entries can return the wrong query result; verify cache support before enabling shared caching. |
 | `Accept-Query response header supported query media types` | Response field that advertises media types the resource accepts as QUERY content, such as JSON-based or form query formats. It is distinct from `Accept`, which negotiates response representations. |
 | `OpenAPI 3.2 query field for QUERY operations` | OpenAPI 3.2 has a native `query` operation field on a path item so the body-bearing QUERY method can be described directly. ASP.NET Core's `MapMethods` can map the method; document generation does not ensure every proxy/client supports it. |
 | `OpenAPI 3.0 and 3.1 QUERY extension representation` | These versions lack the OpenAPI 3.2 native `query` field; ASP.NET Core emits QUERY under `x-oai-additionalOperations`. Consumers must understand the extension to discover the operation. |
@@ -129,7 +130,7 @@ app.MapMethods("/search", ["QUERY"], (SearchRequest request) =>
     SearchService.Run(request));
 ```
 
-HTTP QUERY is now standardized by RFC 10008 as a safe, idempotent request with query content and a required media type. OpenAPI 3.2 represents it natively; a pinned 3.0/3.1 document uses the framework's `x-oai-additionalOperations` extension. This does not guarantee that a browser, CORS policy, proxy, gateway, cache, or generated client supports QUERY. Test the full path, and keep GET when a URI is suitable. [RFC 10008](https://www.rfc-editor.org/rfc/rfc10008.html) [OpenAPI generation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi)
+HTTP QUERY is now standardized by RFC 10008 as a safe, idempotent request with query content and a required media type. OpenAPI 3.2 represents it natively; a pinned 3.0/3.1 document uses the framework's `x-oai-additionalOperations` extension. RFC 10008 also permits QUERY response caching, but a cache key must include the request content and related metadata; many intermediaries may not implement this method or body-aware cache behavior. This does not guarantee that a browser, CORS policy, proxy, gateway, cache, or generated client supports QUERY. Test the full path, and keep GET when a URI is suitable. [RFC 10008](https://www.rfc-editor.org/rfc/rfc10008.html) [OpenAPI generation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi)
 
 ## Common mistakes
 
@@ -141,6 +142,7 @@ HTTP QUERY is now standardized by RFC 10008 as a safe, idempotent request with q
 - Assuming ASP.NET Core 11 still emits 3.1 by default or that all .NET 10-era Microsoft.OpenApi 2.x transformer code compiles unchanged.
 - Describing OpenAPI 3.2 features in a pinned 3.0/3.1 artifact as if standardized there.
 - Assuming API Explorer can infer responses that the app never declares.
+- Caching QUERY by URI alone; RFC 10008 requires cache keys to incorporate the request content and related metadata.
 - Using deprecated `WithOpenApi` customization when endpoint metadata/transformers are the current approach.
 
 ## Knowledge checks with answers
