@@ -4,6 +4,8 @@
 
 This lesson targets EF Core 11 and cites the [official provider catalog](https://learn.microsoft.com/en-us/ef/core/providers/) and [context configuration documentation](https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/). Providers are separate packages maintained by Microsoft or third parties; confirm each provider's supported EF Core major and target database version before upgrading.
 
+**Catalog freshness caveat:** The Microsoft provider catalog currently lists Microsoft-maintained provider compatibility only through EF Core 10, while the final .NET 11 release notes publish EF Core 11.0.0. Do not infer EF Core 11 support for every provider from the EF Core release alone; verify the exact provider package release and support statement before choosing or upgrading a provider.
+
 ## How this group fits the mental model
 
 Options select one provider for a context instance and configure diagnostics and behavior. The provider supplies translation, type mapping, connection, and database operations. Initialization APIs affect schema/database lifecycle and should be chosen separately from request-time data access. Provider support does not guarantee every query is portable.

@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1274,
-    "pending": 1075,
-    "claimsChecked": 57960,
-    "claimsCorrected": 2944,
+    "reviewed": 1280,
+    "pending": 1069,
+    "claimsChecked": 58554,
+    "claimsCorrected": 2953,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -116264,138 +116264,390 @@
       "topicId": "t04-001",
       "phase": "overview",
       "draft": "course/drafts/t04-001/t04-001-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 47,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 47 externally verifiable statements, assigned inventory entries where applicable, API behavior, release/version claims, examples and answers. Reviewed the mental model, service lifetime, provider selection, configuration and schema lifecycle summary.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+              "section": "Context lifecycle, DI, thread safety, disposal, initialization and configuration",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling lifecycle, reset boundary, factory and performance caveats",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider support, package ownership, major-version compatibility and published compatibility table",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "InMemory and relational provider testing differences",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
+              "section": "Final .NET 11 release status",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "EF Core 11 final release notes",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+              "section": "EF Core release status page and feature history",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
         "https://learn.microsoft.com/en-us/ef/core/providers/",
-        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
-        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed the mental model, service lifetime, provider selection, configuration and schema lifecycle summary."
     },
     {
       "taskId": "t04-001-concepts",
       "topicId": "t04-001",
       "phase": "concepts",
       "draft": "course/drafts/t04-001/t04-001-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 86,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 86 externally verifiable statements, assigned inventory entries where applicable, API behavior, release/version claims, examples and answers. Checked unit-of-work, DI/factory/pooling, provider semantics, diagnostics, design-time construction, migrations, and EF Core 11 release status.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+              "section": "Context lifecycle, DI, thread safety, disposal, initialization and configuration",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling lifecycle, reset boundary, factory and performance caveats",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider support, package ownership, major-version compatibility and published compatibility table",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "InMemory and relational provider testing differences",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
+              "section": "Final .NET 11 release status",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "EF Core 11 final release notes",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+              "section": "EF Core release status page and feature history",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
         "https://learn.microsoft.com/en-us/ef/core/providers/",
-        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
-        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked unit-of-work, DI/factory/pooling, provider semantics, diagnostics, design-time construction, migrations, and EF Core 11 release status."
     },
     {
       "taskId": "t04-001-reference-context-lifetime-and-di",
       "topicId": "t04-001",
       "phase": "reference",
       "draft": "course/drafts/t04-001/t04-001-reference-context-lifetime-and-di.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 139,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 139 externally verifiable statements, assigned inventory entries where applicable, API behavior, release/version claims, examples and answers. Checked all 24 inventory items for context creation, DI lifetimes, factories, disposal, thread safety, methods and pooling state reset.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+              "section": "Context lifecycle, DI, thread safety, disposal, initialization and configuration",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling lifecycle, reset boundary, factory and performance caveats",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider support, package ownership, major-version compatibility and published compatibility table",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "InMemory and relational provider testing differences",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
+              "section": "Final .NET 11 release status",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "EF Core 11 final release notes",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+              "section": "EF Core release status page and feature history",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
         "https://learn.microsoft.com/en-us/ef/core/providers/",
-        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
-        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 24 inventory items for context creation, DI lifetimes, factories, disposal, thread safety, methods and pooling state reset."
     },
     {
       "taskId": "t04-001-reference-providers-and-options",
       "topicId": "t04-001",
       "phase": "reference",
       "draft": "course/drafts/t04-001/t04-001-reference-providers-and-options.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 162,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 162 externally verifiable statements, assigned inventory entries where applicable, API behavior, release/version claims, examples and answers. Checked all 26 assigned items, provider-specific behavior, options/logging, initialization APIs and provider version compatibility. Added caveat that provider catalog has not caught up to EF Core 11.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+              "section": "Context lifecycle, DI, thread safety, disposal, initialization and configuration",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling lifecycle, reset boundary, factory and performance caveats",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider support, package ownership, major-version compatibility and published compatibility table",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "InMemory and relational provider testing differences",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
+              "section": "Final .NET 11 release status",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "EF Core 11 final release notes",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+              "section": "EF Core release status page and feature history",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
         "https://learn.microsoft.com/en-us/ef/core/providers/",
-        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
-        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 26 assigned items, provider-specific behavior, options/logging, initialization APIs and provider version compatibility. Added caveat that provider catalog has not caught up to EF Core 11."
     },
     {
       "taskId": "t04-001-practice",
       "topicId": "t04-001",
       "phase": "practice",
       "draft": "course/drafts/t04-001/t04-001-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 84,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 84 externally verifiable statements, assigned inventory entries where applicable, API behavior, release/version claims, examples and answers. Checked context lifetime redesign, pooling state leakage, provider testing, and EnsureCreated/Migrate answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+              "section": "Context lifecycle, DI, thread safety, disposal, initialization and configuration",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling lifecycle, reset boundary, factory and performance caveats",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider support, package ownership, major-version compatibility and published compatibility table",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "InMemory and relational provider testing differences",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
+              "section": "Final .NET 11 release status",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "EF Core 11 final release notes",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+              "section": "EF Core release status page and feature history",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
         "https://learn.microsoft.com/en-us/ef/core/providers/",
-        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
-        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked context lifetime redesign, pooling state leakage, provider testing, and EnsureCreated/Migrate answers."
     },
     {
       "taskId": "t04-001-interview",
       "topicId": "t04-001",
       "phase": "interview",
       "draft": "course/drafts/t04-001/t04-001-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 76,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 76 externally verifiable statements, assigned inventory entries where applicable, API behavior, release/version claims, examples and answers. Checked interview responses and scenarios for thread safety, pooling, provider portability, testing, initialization and diagnostics.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+              "section": "Context lifecycle, DI, thread safety, disposal, initialization and configuration",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling lifecycle, reset boundary, factory and performance caveats",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider support, package ownership, major-version compatibility and published compatibility table",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "InMemory and relational provider testing differences",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
+              "section": "Final .NET 11 release status",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "EF Core 11 final release notes",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+              "section": "EF Core release status page and feature history",
+              "verdict": "Checked against current Microsoft/dotnet primary documentation; stale provider catalog boundary is stated explicitly"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/",
+        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
         "https://learn.microsoft.com/en-us/ef/core/providers/",
-        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/11.0.0.md",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
-        "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics"
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/",
+        "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#dbcontext-in-dependency-injection-for-aspnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked interview responses and scenarios for thread safety, pooling, provider portability, testing, initialization and diagnostics."
     },
     {
       "taskId": "t04-002-overview",
