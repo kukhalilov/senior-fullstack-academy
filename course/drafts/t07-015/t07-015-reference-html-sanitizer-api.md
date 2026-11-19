@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This is the security-sensitive reference for the WHATWG HTML dynamic markup insertion and Sanitizer APIs. The method inventory follows the HTML Living Standard checked 2026-11-16 (last updated 2026-11-14). The new streaming and neighbor-insertion methods are present in the current standard but are not yet broadly documented/implemented; feature-detect them and do not assume deployment support. MDN marks the Sanitizer API limited availability / not Baseline. See [WHATWG dynamic markup insertion](https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html), [MDN HTML Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API), and [MDN Element.setHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/setHTML).
+This is the security-sensitive reference for the WHATWG HTML dynamic markup insertion and Sanitizer APIs. The method inventory follows the HTML Living Standard checked 2026-11-19 (last updated 2026-11-19). The new streaming and neighbor-insertion methods are present in the current standard but are not yet broadly documented/implemented; feature-detect them and do not assume deployment support. MDN marks the Sanitizer API limited availability / not Baseline. See [WHATWG dynamic markup insertion](https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html), [MDN HTML Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API), and [MDN Element.setHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/setHTML).
 
 # How this group fits the mental model
 
@@ -77,12 +77,22 @@ Use text APIs for text. When rich markup is required, prefer a safe method when 
 - `SanitizerConfig.comments` — Boolean controlling whether HTML comments remain.
 - `SanitizerConfig.dataAttributes` — Boolean for allowing custom `data-*` attributes; valid only with compatible attribute allowlist configuration.
 - `SanitizerConfig.javascriptURLs` — Boolean policy for `javascript:` URL values. Enabling it is high risk and safe insertion still removes script-capable markup.
+- `SanitizerPresets` — The current enum has one value, `"default"`, which selects the built-in safe default configuration.
+- `SetHTMLOptions.sanitizer` — Accepts a `Sanitizer`, `SanitizerConfig`, or `"default"`; it defaults to `"default"` for safe insertion methods.
+- `SetHTMLUnsafeOptions.sanitizer` — Accepts a `Sanitizer`, `SanitizerConfig`, or `"default"`. The unsafe method applies this configuration but does not add the safe method's unconditional safe filtering.
+- `SetHTMLUnsafeOptions.runScripts` — Boolean that defaults to `false`. If explicitly true, scripts in the parsed markup can run immediately after insertion; it is only meaningful for unsafe insertion paths and is a high-risk capability.
+- `ParseHTMLUnsafeOptions.sanitizer` — Accepts a `Sanitizer`, `SanitizerConfig`, or `"default"` for `Document.parseHTMLUnsafe()`; this dictionary has no `runScripts` member.
+- `SanitizerElementNamespace` — A `SanitizerConfig.elements` entry may be a string or an object with required `name` and optional nullable `_namespace` (defaulting to the XHTML namespace); element objects can additionally carry `attributes` and `removeAttributes` sequences.
+- `SanitizerAttributeNamespace` — An attribute entry may be a string or an object with required `name` and optional nullable `_namespace` (default null), allowing namespace-sensitive rules.
+- `SanitizerProcessingInstruction` — A processing-instruction entry may be a string or an object with required `target`.
+- `TrustedHTMLParserOptions` — An opaque Trusted Types options object carrying policy-created sanitizer and script-execution settings; it is not a public bag of mutable properties. This integration is specified in the current Trusted Types Editor's Draft, which is work in progress and may change.
+- `TrustedTypePolicy.createParserOptions()` — Current Trusted Types Editor's Draft callback/factory integration for creating `TrustedHTMLParserOptions`. Under enforcement it can authorize raw HTML strings for parsing sinks while vetting or replacing sanitizer and script options; it is not itself a sanitizer, so the policy must choose and enforce one deliberately.
 - `Safe sanitization methods` — `setHTML`, `appendHTML`, `prependHTML`, sibling insertion/replacement methods, their streaming forms, and `Document.parseHTML` sanitize while parsing and strip unsafe markup even if an allow rule asks to retain it.
 - `Unsafe sanitization methods` — Methods ending in `Unsafe` and `Document.parseHTMLUnsafe` honor supplied sanitizer options but do not apply safe filtering by default. “Unsafe” is about the security guarantee, not a claim that the parser itself is malformed.
 - `Default sanitizer preset` — Built-in safe default policy, narrower than the XSS-safe baseline. It removes unsafe constructs plus comments, custom data attributes, and additional attack-surface markup such as clickjacking/spoofing helpers.
 - `HTML sanitizer context-sensitive parsing` — Element methods parse using the target element/parent/host context; invalid-in-context elements are discarded. The same string can yield different trees at different insertion points.
 - `Streaming HTML insertion` — The streaming methods return `WritableStream`s and incrementally parse chunks as they are written. Streaming variants are in the latest standard but have uncertain browser support; detect before use and handle stream errors/cancellation.
-- `Trusted Types interaction with unsafe sanitization methods` — Unsafe methods are Trusted Types sinks. Under enforcement, trusted `TrustedHTML` or an approved `TrustedHTMLParserOptions` policy is required as applicable. Safe Sanitizer methods already apply safe filtering and do not use Trusted Types as a second sanitizer gate.
+- `Trusted Types interaction with unsafe sanitization methods` — Under Trusted Types enforcement, parser sinks may accept a policy-created `TrustedHTMLParserOptions` object; `TrustedTypePolicy.createParserOptions()` can vet or override requested sanitizer and `runScripts` settings, and can authorize a raw string without converting it to `TrustedHTML`. A `TrustedHTML` value alone does not automatically make caller-supplied risky parser options acceptable. The Trusted Types source for this evolving integration is an Editor's Draft, not a final published specification. Safe Sanitizer methods already apply safe filtering and do not use Trusted Types as a second sanitizer gate.
 - `Sanitizer does not prevent server-side XSS` — It operates on DOM parsing/insertion in the browser; it cannot protect server-rendered output or other consumers of stored content.
 - `Sanitizer does not prevent DOM clobbering by default` — Malicious `id`/`name` values may shadow DOM properties or confuse application code. Remove these attributes where untrusted markup does not need them.
 - `Sanitizer does not prevent framework script gadgets` — Inert-looking markup/attributes can trigger existing application/framework code that interprets them. Review `data-*`, slots, templates, and third-party library behavior.
@@ -117,6 +127,17 @@ function renderComment(container, untrustedMarkup) {
 
 The fallback must be an actually installed and maintained sanitizer; the name in the example is illustrative. Never silently replace the missing API with `container.innerHTML = untrustedMarkup`.
 
+The unsafe option `runScripts` is deliberately omitted from ordinary examples. Its default is false; setting it to true permits scripts in the parsed markup to execute after insertion. The safe methods cannot enable this. Never enable it for untrusted content. For example, even an explicitly configured sanitizer and Trusted Types policy must be reviewed as one security boundary:
+
+```js
+target.setHTMLUnsafe(markup, {
+  sanitizer: reviewedSanitizer,
+  runScripts: false,
+});
+```
+
+This explicit false documents the intended behavior but does not turn the unsafe method into a universally safe sink; prefer a safe method whenever its filtering policy meets the product requirement.
+
 # Common mistakes
 
 - Using an `Unsafe` method without specifying a strict sanitizer leaves dangerous markup available by default.
@@ -127,6 +148,8 @@ The fallback must be an actually installed and maintained sanitizer; the name in
 - Configuring contradictory allow/remove lists. Construction can throw `TypeError`; validate configuration once and reuse a `Sanitizer`.
 - Assuming `DOMParser` or `parseHTMLUnsafe` scripts run immediately. They may be inert in the returned document, but importing/inserting their nodes into an active document is a separate risk.
 - Assuming browser support from the standard alone. Feature-detect the exact method, especially 2026 streaming and sibling insertion methods.
+- Treating `runScripts: true` as a harmless parsing option. The standard permits inserted scripts to execute; it belongs only in a deliberately controlled trusted-content pipeline.
+- Assuming `TrustedHTMLParserOptions` is a normal options dictionary or that `TrustedHTML` automatically sanitizes content. The parser-options object is policy-created and its sanitizer/script behavior depends on the policy that created it.
 - Using a sanitizer to claim protection from server-side XSS, DOM clobbering, or app-specific gadget behavior. These need separate defenses.
 
 # Cross-item comparison
@@ -145,6 +168,8 @@ The fallback must be an actually installed and maintained sanitizer; the name in
 4. **What happens if a safe method is unavailable?** Feature-detect and use a maintained sanitizer plus safe node insertion; do not use raw `innerHTML` as a fallback for untrusted text.
 5. **Can the Sanitizer API prevent a server from returning reflected XSS?** No. It filters browser DOM parsing/insertion only.
 6. **Does `streamHTML()` currently have reliable cross-browser support?** Do not assume so; it is listed in the current Living Standard but browser implementation coverage is limited.
+7. **What does `runScripts: true` change?** Unsafe insertion may execute scripts after the tree is updated; the default is false, and the safe APIs do not expose this option.
+8. **Can `TrustedHTMLParserOptions` be constructed or edited like a plain object?** No. It is an opaque policy-created object; the current Trusted Types Editor's Draft describes `TrustedTypePolicy.createParserOptions()` and may still change.
 
 # Further reading
 
@@ -154,3 +179,4 @@ The fallback must be an actually installed and maintained sanitizer; the name in
 - [MDN: SanitizerConfig](https://developer.mozilla.org/en-US/docs/Web/API/SanitizerConfig)
 - [MDN: Element.setHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/setHTML)
 - [MDN: Trusted Types API](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API)
+- [W3C Trusted Types Editor's Draft](https://w3c.github.io/trusted-types/dist/spec/) (work in progress; parser-options integration checked 2026-11-19)

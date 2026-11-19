@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This lesson covers the `ShadowRoot` interface and its interaction with a host element, slots, focus, events, stylesheets, and serialization. The inventory is based on the current WHATWG DOM/HTML standards and MDN reference checked 2026-11-16. Newer root options and reference targeting may not be uniformly supported; feature-detect as needed. See [WHATWG DOM](https://dom.spec.whatwg.org/), [WHATWG HTML shadow trees](https://html.spec.whatwg.org/multipage/dom.html#shadow-trees), and [MDN ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot).
+This lesson covers the `ShadowRoot` interface and its interaction with a host element, slots, focus, events, stylesheets, and serialization. The inventory is based on the current WHATWG DOM/HTML standards and MDN references checked 2026-11-19. Root options such as `serializable`, `clonable`, and scoped custom-element registries have varying support. MDN documents `referenceTarget`, but that member was not present in the current WHATWG DOM IDL when checked; treat it as a limited-availability, evolving feature and feature-detect it. See [WHATWG DOM](https://dom.spec.whatwg.org/), [WHATWG HTML shadow trees](https://html.spec.whatwg.org/multipage/dom.html#shadow-trees), and [MDN ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot).
 
 # How this group fits the mental model
 
@@ -15,11 +15,18 @@ A shadow tree is a separate node subtree attached to a host. It participates in 
 - `ShadowRoot` — Root object for a shadow tree; it inherits from `DocumentFragment` and exposes shadow-specific state/methods.
 - `ShadowRoot.mode` — `open` or `closed`; this controls exposure through `Element.shadowRoot`, not privilege isolation.
 - `ShadowRoot.host` — The element to which this root is attached.
+- `Element.attachShadow()` and `ShadowRootInit` — `attachShadow()` creates the root and requires a `mode`; the other `ShadowRootInit` fields configure focus delegation, slot assignment, serialization, cloning, and an optional scoped custom-element registry.
+- `ShadowRootInit.mode` — Required `"open"` or `"closed"` setting that controls whether `host.shadowRoot` exposes the root.
+- `ShadowRootInit.delegatesFocus` — Optional boolean, default false, controlling focus delegation behavior.
+- `ShadowRootInit.slotAssignment` — Optional `"named"` or `"manual"`, default `"named"`.
+- `ShadowRootInit.serializable` — Optional boolean, default false; permits inclusion by serialization when requested.
+- `ShadowRootInit.clonable` — Optional boolean, default false; permits inclusion when its host is cloned/imported.
+- `ShadowRootInit.customElementRegistry` — Optional nullable scoped `CustomElementRegistry`; when omitted/null the standard’s applicable registry behavior is used. Support varies.
 - `ShadowRoot.delegatesFocus` — Whether focus targeting can delegate from a non-focusable host into focusable shadow content.
 - `ShadowRoot.slotAssignment` — `named` or `manual`, describing how light-DOM children are assigned to slots.
 - `ShadowRoot.clonable` — Whether cloning the host also clones the shadow root; this is configured when the root is created.
 - `ShadowRoot.serializable` — Whether serialization options may include this root; this is configured at creation and does not make serialization safe for untrusted input.
-- `ShadowRoot.referenceTarget` — Optional element ID used as the effective target for supported external element references to the host; support and exact reference features vary.
+- `ShadowRoot.referenceTarget` — MDN documents a nullable string naming an internal target for external element references to the host. It was absent from the current WHATWG DOM IDL checked for this lesson, so treat it as an evolving, limited-availability feature rather than a portable standard contract.
 - `ShadowRoot.customElementRegistry` — The registry associated with the shadow root when scoped registries are used, otherwise null.
 - `ShadowRoot.activeElement` — Focused element within this shadow tree, or null when focus is outside it.
 - `ShadowRoot.fullscreenElement` — Element in this shadow tree currently presented fullscreen, or null.
@@ -32,7 +39,7 @@ A shadow tree is a separate node subtree attached to a host. It participates in 
 - `ShadowRoot.elementsFromPoint()` — Returns hit-tested elements in the shadow tree from topmost downward.
 - `ShadowRoot.getAnimations()` — Returns animations affecting elements in this shadow subtree.
 - `ShadowRoot.getSelection()` — Returns the selection/caret associated with this shadow tree where implemented; support differs, so feature-detect.
-- `ShadowRoot.slotchange event` — A `slotchange` event can bubble from a slot through the shadow root when its assigned-node set changes. It does not report every descendant mutation inside assigned nodes.
+- `ShadowRoot.slotchange event` — A `slotchange` event bubbles from a slot through its shadow tree when its assigned-node set changes; it is not composed across the host boundary. It does not report every descendant mutation inside assigned nodes.
 - `Shadow DOM open and closed mode` — Open roots can be obtained from `host.shadowRoot`; closed roots return null there. A component may still retain a reference internally.
 - `Shadow DOM event retargeting and composed paths` — Events crossing the boundary can retarget `target`; composed events can cross boundaries. `composedPath()` exposes the path subject to closed-root encapsulation.
 - `Shadow DOM style encapsulation and part export` — Shadow styles are scoped; `part` and `exportparts` deliberately expose named styling hooks rather than all internals.
@@ -48,7 +55,7 @@ The root exists for the lifetime of its host unless explicitly detached by host 
 
 Focus can be inside a shadow tree while `document.activeElement` reports the host; inspect `shadowRoot.activeElement` when the root reference is available. `delegatesFocus` changes focus behavior but does not replace correct tab order, labels, or keyboard interaction. Event retargeting is an encapsulation behavior, not event suppression; use composed custom events as the component's intentional public signal.
 
-Document-level selection APIs and shadow-root selection are not identical across implementations. Feature-detect `getSelection()` on the root before relying on it. Constructed stylesheets can be adopted by multiple roots from the same document; mutation to a shared sheet affects every adopter. Use ordinary `<style>`/`<link>` within the root when that better suits component loading and CSP policy.
+Document-level selection APIs and shadow-root selection are not identical across implementations. `ShadowRoot.getSelection()` is documented by MDN but is not part of the current WHATWG `ShadowRoot` IDL checked for this lesson; feature-detect it and provide a fallback. Constructed stylesheets can be adopted by multiple roots from the same document; mutation to a shared sheet affects every adopter. Use ordinary `<style>`/`<link>` within the root when that better suits component loading and CSP policy.
 
 # Examples
 
@@ -86,6 +93,7 @@ This uses a closed-over root reference only if needed; here the constructor does
 - Serializing a shadow root and assuming its markup is trusted, portable, or includes closed roots automatically.
 - Assuming `innerHTML` is a safe sanitizer sink.
 - Relying on `ShadowRoot.getSelection()` or newer serialization/reference-target features without checking browser support.
+- Treating MDN-documented `referenceTarget` as a cross-browser WHATWG-standard contract; it was not in the current DOM IDL checked here.
 - Emitting a custom event with `composed: true` without deciding which internal details become public.
 
 # Cross-item comparison

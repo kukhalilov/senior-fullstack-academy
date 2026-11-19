@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This lesson covers DOM traversal objects and array-like collections in the DOM Standard checked 2026-11-16. These APIs complement CSS selectors: selectors find elements, while traversal can visit text/comment nodes and filter or prune a walk. See [WHATWG DOM traversal](https://dom.spec.whatwg.org/#traversal), [MDN selection and traversal](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Selection_and_traversal_on_the_DOM_tree), and the references for [NodeIterator](https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator), [TreeWalker](https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker), and [NodeFilter](https://developer.mozilla.org/en-US/docs/Web/API/NodeFilter).
+This lesson covers DOM traversal objects and array-like collections in the DOM Standard checked 2026-11-19 (the standard was last updated 2026-11-15). These APIs complement CSS selectors: selectors find elements, while traversal can visit text/comment nodes and filter or prune a walk. See [WHATWG DOM traversal](https://dom.spec.whatwg.org/#traversal), [MDN selection and traversal](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Selection_and_traversal_on_the_DOM_tree), and the references for [NodeIterator](https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator), [TreeWalker](https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker), and [NodeFilter](https://developer.mozilla.org/en-US/docs/Web/API/NodeFilter).
 
 # How this group fits the mental model
 
@@ -20,6 +20,7 @@ This lesson covers DOM traversal objects and array-like collections in the DOM S
 - `NodeIterator.filter` — Optional callback/object filter applied to eligible node types; `FILTER_SKIP` and `FILTER_REJECT` both omit the node while continuing through descendants.
 - `NodeIterator.nextNode()` — Advances and returns the next accepted node, or null at the end.
 - `NodeIterator.previousNode()` — Moves backward and returns the previous accepted node, or null at the beginning.
+- `NodeIterator.detach()` — Legacy compatibility method that now does nothing; it no longer disables the iterator.
 - `TreeWalker` — Filtered traversal view with navigation among parent, child, sibling, and document-order nodes.
 - `TreeWalker.root` — The fixed traversal root.
 - `TreeWalker.currentNode` — Mutable cursor location; assigning a node changes where traversal methods continue.
@@ -37,6 +38,15 @@ This lesson covers DOM traversal objects and array-like collections in the DOM S
 - `NodeFilter.SHOW_ELEMENT` — Selects Element nodes before filter evaluation.
 - `NodeFilter.SHOW_TEXT` — Selects Text nodes before filter evaluation.
 - `NodeFilter.SHOW_COMMENT` — Selects Comment nodes before filter evaluation.
+- `NodeFilter.SHOW_ATTRIBUTE` — Selects Attr nodes if encountered; attributes are not children in the ordinary node tree.
+- `NodeFilter.SHOW_CDATA_SECTION` — Selects CDATASection nodes, relevant to XML rather than ordinary HTML text.
+- `NodeFilter.SHOW_ENTITY_REFERENCE` — Legacy constant retained for compatibility; modern DOM trees do not expose entity-reference nodes.
+- `NodeFilter.SHOW_ENTITY` — Legacy constant retained for compatibility; modern DOM trees do not expose entity nodes.
+- `NodeFilter.SHOW_PROCESSING_INSTRUCTION` — Selects ProcessingInstruction nodes, primarily relevant to XML documents.
+- `NodeFilter.SHOW_DOCUMENT` — Selects Document nodes.
+- `NodeFilter.SHOW_DOCUMENT_TYPE` — Selects DocumentType nodes.
+- `NodeFilter.SHOW_DOCUMENT_FRAGMENT` — Selects DocumentFragment nodes, including ShadowRoot nodes.
+- `NodeFilter.SHOW_NOTATION` — Legacy constant retained for compatibility; modern DOM trees do not expose notation nodes.
 - `NodeFilter.FILTER_ACCEPT` — Include the node in the traversal result.
 - `NodeFilter.FILTER_REJECT` — Exclude the node; for `TreeWalker`, also prune its descendants. For `NodeIterator`, it does not prune descendants.
 - `NodeFilter.FILTER_SKIP` — Exclude only the node and continue into descendants.
@@ -99,6 +109,7 @@ The element type must be included in `whatToShow` for the filter to reject those
 
 - Assuming all `NodeList` objects share the same liveness semantics.
 - Treating `FILTER_REJECT` as identical in both interfaces: it prunes subtrees only for TreeWalker.
+- Calling `NodeIterator.detach()` expecting it to release or disable the iterator; the retained compatibility method is a no-op.
 - Forgetting that `whatToShow` filters node types before the callback runs.
 - Using `getElementsByTagName()` to find camel-case SVG names in HTML without considering HTML lowercasing; use namespace-aware matching.
 - Removing from a live collection while iterating forward and skipping entries.

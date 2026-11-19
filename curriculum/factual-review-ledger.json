@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1057,
-    "pending": 1290,
-    "claimsChecked": 41039,
-    "claimsCorrected": 1587,
+    "reviewed": 1061,
+    "pending": 1286,
+    "claimsChecked": 41286,
+    "claimsCorrected": 1650,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -69097,7 +69097,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -69168,7 +69171,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -69177,13 +69183,44 @@
       "topicId": "t07-015",
       "phase": "reference",
       "draft": "course/drafts/t07-015/t07-015-reference-tree-traversal-and-live-collections.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 10,
+      "evidence": [
+        {
+          "claims": "Checked every assigned traversal and collection inventory item, filter ordering and traversal semantics, live/static collection behavior, DOM mutation interactions, examples, and advice. Added NodeIterator.detach() (a no-op retained for compatibility) and all remaining NodeFilter SHOW_* constants, including XML-oriented and legacy constants, omitted from the original inventory/lesson.",
+          "sources": [
+            {
+              "url": "https://dom.spec.whatwg.org/#traversal",
+              "section": "§6.1–6.3 NodeIterator, TreeWalker, NodeFilter IDL, traversal algorithms and constants",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://dom.spec.whatwg.org/#interface-nodelist",
+              "section": "§4.2.10.1 NodeList IDL and collection behavior",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://dom.spec.whatwg.org/#interface-htmlcollection",
+              "section": "§4.2.10.2 HTMLCollection IDL and named property behavior",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator",
+              "section": "NodeIterator interface and legacy detach() behavior",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker",
+              "section": "TreeWalker navigation and filter behavior",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://dom.spec.whatwg.org/",
         "https://html.spec.whatwg.org/multipage/",
@@ -69239,22 +69276,61 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and inventory audit complete. Added the omitted detach compatibility method and complete NodeFilter SHOW_* constant family; no unresolved factual or scope issues remain."
     },
     {
       "taskId": "t07-015-reference-shadow-root-and-shadow-tree-apis",
       "topicId": "t07-015",
       "phase": "reference",
       "draft": "course/drafts/t07-015/t07-015-reference-shadow-root-and-shadow-tree-apis.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Checked every assigned ShadowRoot property and method, root initialization options, slot distribution and slotchange semantics, focus retargeting, composed event behavior, style sharing, serialization/cloning, and security boundaries. Clarified the standards status of getSelection() and referenceTarget: MDN documents them, but the current DOM ShadowRoot IDL does not include them, so both are explicitly treated as feature-detected/nonportable.",
+          "sources": [
+            {
+              "url": "https://dom.spec.whatwg.org/#interface-shadowroot",
+              "section": "§4.8 ShadowRoot IDL and root mode/host state",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://dom.spec.whatwg.org/#shadow-trees",
+              "section": "§4.2.2 slotting and slotchange behavior",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://dom.spec.whatwg.org/#dom-element-attachshadow",
+              "section": "Element.attachShadow() and ShadowRootInit dictionary",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot",
+              "section": "Documented ShadowRoot properties/methods, support caveats, and slotchange event",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+              "section": "Root initialization options and support notes",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/dom.html#shadow-trees",
+              "section": "HTML shadow-tree integration and serialization",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://dom.spec.whatwg.org/",
         "https://html.spec.whatwg.org/multipage/",
@@ -69310,22 +69386,66 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit complete. Corrected the conformance/support wording for referenceTarget and getSelection(), and expanded ShadowRootInit option coverage. No unresolved issues remain."
     },
     {
       "taskId": "t07-015-reference-document-and-tree-interfaces",
       "topicId": "t07-015",
       "phase": "reference",
       "draft": "course/drafts/t07-015/t07-015-reference-document-and-tree-interfaces.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
+      "claimsCorrected": 39,
+      "evidence": [
+        {
+          "claims": "Checked the complete assigned Document/Node/DocumentFragment/Text/Comment/Attr/DocumentType inventory against the current DOM IDL and algorithms, including factories, query results, live collections, ownership, import/adoption, movement, clone/normalize, namespace lookups, node-type/position constants, and edge cases. Expanded omitted current Document attributes/factories and options, Node legacy constants/methods, and GetRootNodeOptions.composed. Corrected Node.nodeValue/textContent wording to distinguish Attr, CharacterData, Element/DocumentFragment, Document, and DocumentType behavior.",
+          "sources": [
+            {
+              "url": "https://dom.spec.whatwg.org/#interface-document",
+              "section": "§4.5 Document IDL, constructors/factories, options, and behavior",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://dom.spec.whatwg.org/#interface-node",
+              "section": "§4.4 Node IDL, constants, nodeValue/textContent, movement, comparison, and namespace methods",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://dom.spec.whatwg.org/#interface-documentfragment",
+              "section": "§4.7 DocumentFragment IDL and inherited query behavior",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://dom.spec.whatwg.org/#interface-attr",
+              "section": "§4.9.2 Attr IDL and value semantics",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/dom.html",
+              "section": "HTML document additions including name queries and document-specific behavior",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document",
+              "section": "Document API reference",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+              "section": "Node API reference",
+              "verdict": "Supported against current primary reference; lesson corrections/omissions recorded where applicable."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://dom.spec.whatwg.org/",
         "https://html.spec.whatwg.org/multipage/",
@@ -69381,9 +69501,12 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and inventory audit complete. Expanded missing current Document and Node APIs/options and fixed generic textContent/nodeValue descriptions. No unresolved factual or coverage issues remain within the frozen inventory."
     },
     {
       "taskId": "t07-015-reference-element-and-attribute-interfaces",
@@ -69452,7 +69575,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -69523,7 +69649,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -69532,13 +69661,39 @@
       "topicId": "t07-015",
       "phase": "reference",
       "draft": "course/drafts/t07-015/t07-015-reference-html-sanitizer-api.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 74,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked every assigned API name and the lesson’s externally verifiable claims: safe versus unsafe guarantees; methods, targets, insertion contexts, stream return/lifecycle statements; parsing and script behavior; Sanitizer methods/configuration shapes, namespaces and consistency rules; preset/default behavior; Trusted Types enforcement, runScripts, security boundaries, and support caveats. Added the omitted current option dictionaries and Trusted Types parser-options integration. Corrected the stale standard snapshot date and clarified that TrustedHTMLParserOptions is opaque, createParserOptions is policy integration (not a sanitizer), and runScripts is an unsafe-path execution capability.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html",
+              "section": "§8.5.2–8.5.3 IDL, SanitizerPresets and Set/Parse/GetHTMLOptions; §8.6.1–8.6.6 safe/unsafe contract, Sanitizer interface/configuration, validity, algorithms, preset, and security considerations",
+              "verdict": "Supported against current Living Standard; missing current API options and script-execution behavior added."
+            },
+            {
+              "url": "https://w3c.github.io/trusted-types/dist/spec/",
+              "section": "§2.3.1 and §2.3.4–2.3.6, §2.4.2 and parser-options algorithms; Editor’s Draft dated 2026-11-18",
+              "verdict": "Supported as work in progress; lesson explicitly labels this source an Editor’s Draft and does not present it as a final Recommendation."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API",
+              "section": "API support status and safe/unsafe method overview",
+              "verdict": "Supported; limited availability caveat retained."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element/setHTML",
+              "section": "setHTML safe insertion contract and custom sanitizer behavior",
+              "verdict": "Supported; safe-method behavior and fallback guidance retained."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://dom.spec.whatwg.org/",
         "https://html.spec.whatwg.org/multipage/",
@@ -69594,9 +69749,12 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit complete. Added ten missing exact option/type/policy entries and explained their scope. No unresolved factual or coverage issues remain within this lesson inventory."
     },
     {
       "taskId": "t07-015-reference-events-and-dispatch",
@@ -69665,7 +69823,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -69736,7 +69897,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -69807,7 +69971,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -69878,7 +70045,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -69949,7 +70119,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -70020,7 +70193,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -70091,7 +70267,10 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/Event",
         "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry",
-        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry"
+        "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry",
+        "https://w3c.github.io/trusted-types/dist/spec/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/referenceTarget"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
