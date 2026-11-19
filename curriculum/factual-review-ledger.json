@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1173,
-    "pending": 1176,
-    "claimsChecked": 50396,
-    "claimsCorrected": 2673,
+    "reviewed": 1174,
+    "pending": 1175,
+    "claimsChecked": 50487,
+    "claimsCorrected": 2685,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -104527,13 +104527,34 @@
       "topicId": "t03-001",
       "phase": "reference",
       "draft": "course/drafts/t03-001/t03-001-reference-transactions-consistency-and-concurrency.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Checked 91 claim units across transaction scope, ACID properties, isolation anomalies, concurrency control, MongoDB concerns/causal sessions, replication acknowledgement, and failure/retry behavior against official SQL Server, PostgreSQL 19, MySQL 9.7, and MongoDB documentation. Updated stale PostgreSQL references and added PostgreSQL 19 standby WAIT FOR LSN behavior. Distinguished deadlocks from serialization failures; documented SQL Server READ_COMMITTED_SNAPSHOT/locking distinctions, PostgreSQL command snapshots and Repeatable Read anomalies, and InnoDB’s REPEATABLE READ default. Corrected the MongoDB majority-write gotcha: acknowledgement may precede application on a secondary, and write-concern timeout does not imply rollback.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
+            "https://www.postgresql.org/docs/19/transaction-iso.html",
+            "https://www.postgresql.org/docs/19/runtime-config-wal.html",
+            "https://www.postgresql.org/docs/19/release-19.html",
+            "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
+            "https://www.mongodb.com/docs/manual/core/causal-consistency-read-write-concerns/",
+            "https://www.mongodb.com/docs/manual/core/read-isolation-consistency-recency/",
+            "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html",
+            "https://dev.mysql.com/doc/refman/9.7/en/server-options.html",
+            "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
+            "https://www.mongodb.com/docs/manual/reference/read-concern/",
+            "https://www.mongodb.com/docs/manual/reference/write-concern/",
+            "https://www.mongodb.com/docs/manual/core/transactions/",
+            "https://www.mongodb.com/docs/manual/core/write-operations-atomicity/"
+          ],
+          "verdict": "verified and substantially corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17",
@@ -104568,9 +104589,17 @@
         "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
         "https://www.postgresql.org/docs/18/transaction-iso.html",
-        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html"
+        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
+        "https://www.postgresql.org/docs/19/transaction-iso.html",
+        "https://www.postgresql.org/docs/19/runtime-config-wal.html",
+        "https://www.postgresql.org/docs/19/release-19.html",
+        "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
+        "https://www.mongodb.com/docs/manual/core/causal-consistency-read-write-concerns/",
+        "https://www.mongodb.com/docs/manual/core/read-isolation-consistency-recency/",
+        "https://dev.mysql.com/doc/refman/9.7/en/server-options.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual specification and vendor-semantics audit, including failure, retry, replica acknowledgement and read freshness boundaries."
     },
     {
       "taskId": "t03-001-reference-availability-operations-and-service-models",

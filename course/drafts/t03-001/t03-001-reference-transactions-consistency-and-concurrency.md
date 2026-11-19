@@ -2,7 +2,7 @@
 
 # Scope and version
 
-Engine facts and release channels are pinned to the source snapshot checked 2026-11-16. Managed-service version/feature availability varies by provider and offering; verify the exact target. The list below contains only the supplied names.
+Engine facts and release channels are pinned to the source snapshot checked 2026-11-20. Managed-service version/feature availability varies by provider and offering; verify the exact target. The list below contains only the supplied names.
 
 # How this group fits the mental model
 
@@ -28,9 +28,9 @@ Transaction and replication terms describe different boundaries: what changes at
 
 - `Isolation level` — Named concurrency contract controlling phenomena such as nonrepeatable reads or serialization conflicts; exact implementation and snapshot scope differ.
 
-- `Read committed` — Common isolation level that prevents dirty reads; statement/transaction behavior and versioning/locking implementation differ among engines.
+- `Read committed` — Isolation level that prevents dirty reads, but permits data committed by another transaction between statements. SQL Server defaults to it, with locking or statement-snapshot behavior depending on READ_COMMITTED_SNAPSHOT configuration. PostgreSQL takes a new snapshot for each command. MySQL InnoDB supports it but defaults to REPEATABLE READ. Therefore, “read committed” is not a promise of identical concurrency behavior.
 
-- `Repeatable read` — Isolation level that protects rows previously read from changing invisibly in a transaction; phantom/predicate behavior varies by engine.
+- `Repeatable read` — Protects repeated reads more strongly than read committed, but exact phantom and predicate behavior varies. InnoDB defaults to REPEATABLE READ and combines consistent snapshots with next-key/gap locking for relevant locking reads. PostgreSQL’s implementation prevents phantoms but can still allow serialization anomalies. SQL Server REPEATABLE READ does not provide the same range protection as SERIALIZABLE. Check the exact engine’s anomaly table and locking/read semantics.
 
 - `Serializable isolation` — Strong isolation intended to make concurrent transactions equivalent to a serial order, often by blocking or detecting conflicts; cost and mechanisms vary.
 
@@ -46,19 +46,19 @@ Transaction and replication terms describe different boundaries: what changes at
 
 - `Table-level lock` — Lock scoped to a whole table/collection or relation; can be intentional or chosen by engine for maintenance/locking strategy.
 
-- `Deadlock detection` — Detects a cycle of waits and aborts/selects a victim, or reports serialization failure; applications must handle retryable errors appropriately.
+- `Deadlock detection` — Detects a cycle in which transactions wait on each other and aborts or selects a victim. This is distinct from a serialization failure, where a serializable transaction is rejected because its concurrent result cannot be safely serialized. Applications should identify the vendor error and retry only the documented retryable transaction scope.
 
 - `Write conflict` — Concurrent changes violate a transaction’s snapshot or write precondition; some engines block, some abort, and drivers/applications may need retry logic.
 
 - `Unique-key race` — Two transactions concurrently attempt the same supposedly new key; only a database uniqueness constraint reliably arbitrates the race across application instances.
 
-- `Read-your-writes consistency` — A client sees its own acknowledged changes in subsequent reads under the selected session/replica routing policy; replica routing may need session guarantees.
+- `Read-your-writes consistency` — A client sees its own preceding acknowledged change in a later read under the selected session and routing policy. In MongoDB, a majority write acknowledgement does not mean every secondary has applied the change already; a causally consistent session with suitable majority read/write concerns can carry the ordering when reading from secondaries.
 
 - `Linearizability` — Strong real-time ordering guarantee for operations relative to their completion/starting times; do not infer it from ACID or replica count alone.
 
-- `Causal consistency` — Preserves observed cause-before-effect ordering for related operations, often through session/cluster time metadata and suitable read/write concerns.
+- `Causal consistency` — Preserves observed cause-before-effect ordering for related operations. In MongoDB, causally consistent sessions propagate operation/cluster time; the documented full set of guarantees requires majority read concern and majority write concern. Causal consistency does not make a session isolated from concurrent writes.
 
-- `Eventual consistency` — Replicas may temporarily disagree but are expected to converge if updates stop and propagation succeeds; it states neither a time bound nor conflict policy by itself.
+- `Eventual consistency` — Replicas may temporarily disagree and are expected to converge after updates stop if propagation and conflict resolution complete. The label alone gives no convergence deadline, read-your-writes guarantee, or conflict-resolution policy.
 
 - `Primary-replica replication` — One primary accepts writes and propagates changes to replicas. Commit acknowledgement and read routing determine lag/data-loss behavior.
 
@@ -66,13 +66,13 @@ Transaction and replication terms describe different boundaries: what changes at
 
 - `Asynchronous replication` — Primary acknowledges without waiting for replica completion, allowing lag and possible loss of unreplicated writes during failure.
 
-- `Quorum write` — Write acknowledged after a configured replica/vote threshold; exact quorum, failure domains, and durability semantics are product-specific.
+- `Quorum write` — Write acknowledged after a configured replica/vote threshold. A majority may be calculated from voting members rather than meaning every replica has applied the change; exact failure domains, persistence point, and read-after-write behavior are product-specific.
 
 - `Read concern` — MongoDB policy controlling consistency/isolation properties of reads, such as local, majority, or linearizable behavior under documented constraints.
 
-- `Write concern` — MongoDB acknowledgement policy requiring a configured number/state of nodes to acknowledge a write; journal and timeout settings change the guarantee.
+- `Write concern` — MongoDB acknowledgement policy requiring a configured number/state of nodes to acknowledge a write. The w, j, and wtimeout options affect acknowledgement requirements and waiting behavior; a write-concern timeout does not roll back a write that may already have succeeded.
 
-- `MongoDB multi-document transaction` — Provides ACID transaction behavior across multiple documents/collections within supported deployment and topology constraints, with higher coordination cost than one-document atomic writes.
+- `MongoDB multi-document transaction` — Provides ACID transaction behavior across multiple documents/collections within supported replica-set or sharded-cluster deployments. It incurs more coordination and resource cost than a single-document atomic write; transaction size, duration, retry behavior, and topology limits matter.
 
 - `Relational transaction` — Groups relational statements under an engine’s transaction and isolation rules; a transaction does not automatically span independent databases or services.
 
@@ -80,7 +80,7 @@ Transaction and replication terms describe different boundaries: what changes at
 
 # Cross-item comparison
 
-Relational transactions commonly span statements/rows within a database; MongoDB single-document writes are atomic and its multi-document transactions expand that boundary with additional coordination. Read concern, isolation level, write concern, synchronous/asynchronous replication, and quorum are not synonyms. Compare the exact acknowledgement and read-freshness guarantees.
+Relational transactions commonly span statements/rows within a database; MongoDB single-document writes are atomic and its multi-document transactions expand that boundary with additional coordination. Isolation level governs what a transaction can observe; read concern selects MongoDB read visibility; write concern controls acknowledgement; replication mode describes propagation/acknowledgement timing; and quorum describes a threshold. None substitutes for another. Compare the exact acknowledged durability point, failover assumptions, and whether a read routed to a secondary can observe the acknowledged write.
 
 # Examples
 
@@ -89,6 +89,8 @@ One order document update: may fit MongoDB single-document atomicity.
 Order + inventory in separate documents: define a multi-document transaction or redesign the invariant.
 In any engine, test duplicate-key races, commit acknowledgement, replica lag, retry behavior, and durability configuration.
 ```
+
+For PostgreSQL 19, a client that writes on a primary and then reads from a standby can use WAIT FOR LSN to wait for replay through a known WAL position before reading. This is a product-specific read-your-writes mechanism, not a generic consequence of synchronous replication. MongoDB can instead preserve causal ordering through a causally consistent session with majority concerns. Both choices add latency or coordination and must be tested under failover and routing changes.
 
 These are decision sketches, not benchmark results or guarantees. Check the target engine/service documentation and test under the workload that matters.
 
@@ -111,11 +113,14 @@ These are decision sketches, not benchmark results or guarantees. Check the targ
 # Sources
 
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17)
+- [Official documentation](https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/)
+- [Official documentation](https://www.postgresql.org/docs/19/)
+- [Official documentation](https://www.postgresql.org/docs/19/transaction-iso.html)
+- [Official documentation](https://www.postgresql.org/docs/19/runtime-config-wal.html)
 - [Official documentation](https://www.postgresql.org/support/versioning/)
-- [Official documentation](https://www.postgresql.org/docs/18/release-18-7.html)
-- [Official documentation](https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442/)
+- [Official documentation](https://www.postgresql.org/docs/19/release-19.html)
+- [Official documentation](https://www.postgresql.org/about/news/postgresql-19-released-3449/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/relnotes/mysql/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html)
@@ -129,6 +134,8 @@ These are decision sketches, not benchmark results or guarantees. Check the targ
 - [Official documentation](https://www.mongodb.com/docs/manual/core/transactions/)
 - [Official documentation](https://www.mongodb.com/docs/manual/reference/read-concern/)
 - [Official documentation](https://www.mongodb.com/docs/manual/reference/write-concern/)
+- [Official documentation](https://www.mongodb.com/docs/manual/core/causal-consistency-read-write-concerns/)
+- [Official documentation](https://www.mongodb.com/docs/manual/core/read-isolation-consistency-recency/)
 - [Official documentation](https://www.mongodb.com/docs/manual/indexes/)
 - [Official documentation](https://www.mongodb.com/docs/manual/sharding/)
 - [Official documentation](https://www.mongodb.com/docs/atlas/)
@@ -139,8 +146,8 @@ These are decision sketches, not benchmark results or guarantees. Check the targ
 - [Official documentation](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql)
 - [Official documentation](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview?view=azuresql)
 - [Official documentation](https://www.mongodb.com/docs/manual/data-modeling/concepts/embedding-vs-references/)
-- [Official documentation](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [Official documentation](https://www.postgresql.org/docs/19/ddl-constraints.html)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/transaction-iso.html)
+- [Official documentation](https://www.postgresql.org/docs/19/transaction-iso.html)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html)
