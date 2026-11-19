@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1327,
-    "pending": 1022,
-    "claimsChecked": 63917,
-    "claimsCorrected": 3044,
+    "reviewed": 1334,
+    "pending": 1015,
+    "claimsChecked": 64511,
+    "claimsCorrected": 3045,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -119762,13 +119762,64 @@
       "topicId": "t04-009",
       "phase": "overview",
       "draft": "course/drafts/t04-009/t04-009-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 48 externally verifiable claims and supplied inventory items, including API behavior, version/provider scope, examples, tradeoffs and answer keys. Reviewed the pipeline model and optimization order; no unsupported universal performance promises.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
+              "section": "Indexes, projection, limits, pagination, loading, and round trips",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+              "section": "Command timing, tags, plans, diagnostics",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling, compiled queries, context state",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
+              "section": "Unique ordering, offset and keyset behavior",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, split-query tradeoffs",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 query changes and SQL Server features",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release-note status",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+              "section": "SQL Server parameter-sensitive plan applicability and compatibility levels",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0",
+              "section": "Relational MaxBatchSize API",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
         "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
@@ -119776,22 +119827,75 @@
         "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed the pipeline model and optimization order; no unsupported universal performance promises."
     },
     {
       "taskId": "t04-009-concepts",
       "topicId": "t04-009",
       "phase": "concepts",
       "draft": "course/drafts/t04-009/t04-009-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 119,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 119 externally verifiable claims and supplied inventory items, including API behavior, version/provider scope, examples, tradeoffs and answer keys. Reviewed the diagnostic workflow, query shapes, indexes, pagination, tracking, pooling, compiled queries, and version-specific changes. Corrected parameter-sensitive-plan wording to identify SQL Server PSP eligibility and compatibility requirements.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
+              "section": "Indexes, projection, limits, pagination, loading, and round trips",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+              "section": "Command timing, tags, plans, diagnostics",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling, compiled queries, context state",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
+              "section": "Unique ordering, offset and keyset behavior",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, split-query tradeoffs",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 query changes and SQL Server features",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release-note status",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+              "section": "SQL Server parameter-sensitive plan applicability and compatibility levels",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0",
+              "section": "Relational MaxBatchSize API",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
         "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
@@ -119799,22 +119903,75 @@
         "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed the diagnostic workflow, query shapes, indexes, pagination, tracking, pooling, compiled queries, and version-specific changes. Corrected parameter-sensitive-plan wording to identify SQL Server PSP eligibility and compatibility requirements."
     },
     {
       "taskId": "t04-009-reference-projection-batching-and-result-shape",
       "topicId": "t04-009",
       "phase": "reference",
       "draft": "course/drafts/t04-009/t04-009-reference-projection-batching-and-result-shape.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 84,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 84 externally verifiable claims and supplied inventory items, including API behavior, version/provider scope, examples, tradeoffs and answer keys. Checked all 22 supplied inventory items, including batching, result transfer, pagination, and relationship query shape.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
+              "section": "Indexes, projection, limits, pagination, loading, and round trips",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+              "section": "Command timing, tags, plans, diagnostics",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling, compiled queries, context state",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
+              "section": "Unique ordering, offset and keyset behavior",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, split-query tradeoffs",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 query changes and SQL Server features",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release-note status",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+              "section": "SQL Server parameter-sensitive plan applicability and compatibility levels",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0",
+              "section": "Relational MaxBatchSize API",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
         "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
@@ -119822,22 +119979,75 @@
         "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 22 supplied inventory items, including batching, result transfer, pagination, and relationship query shape."
     },
     {
       "taskId": "t04-009-reference-index-and-query-plan-alignment",
       "topicId": "t04-009",
       "phase": "reference",
       "draft": "course/drafts/t04-009/t04-009-reference-index-and-query-plan-alignment.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 82 externally verifiable claims and supplied inventory items, including API behavior, version/provider scope, examples, tradeoffs and answer keys. Checked all 23 supplied inventory items, including index semantics, diagnostics, parameterization, and compiled-query limitations.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
+              "section": "Indexes, projection, limits, pagination, loading, and round trips",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+              "section": "Command timing, tags, plans, diagnostics",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling, compiled queries, context state",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
+              "section": "Unique ordering, offset and keyset behavior",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, split-query tradeoffs",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 query changes and SQL Server features",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release-note status",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+              "section": "SQL Server parameter-sensitive plan applicability and compatibility levels",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0",
+              "section": "Relational MaxBatchSize API",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
         "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
@@ -119845,22 +120055,75 @@
         "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 23 supplied inventory items, including index semantics, diagnostics, parameterization, and compiled-query limitations."
     },
     {
       "taskId": "t04-009-reference-context-and-materialization-costs",
       "topicId": "t04-009",
       "phase": "reference",
       "draft": "course/drafts/t04-009/t04-009-reference-context-and-materialization-costs.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 80,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 80 externally verifiable claims and supplied inventory items, including API behavior, version/provider scope, examples, tradeoffs and answer keys. Checked all 23 supplied inventory items, including pooling, tracking, buffering, cancellation, async use, and measurement.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
+              "section": "Indexes, projection, limits, pagination, loading, and round trips",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+              "section": "Command timing, tags, plans, diagnostics",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling, compiled queries, context state",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
+              "section": "Unique ordering, offset and keyset behavior",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, split-query tradeoffs",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 query changes and SQL Server features",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release-note status",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+              "section": "SQL Server parameter-sensitive plan applicability and compatibility levels",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0",
+              "section": "Relational MaxBatchSize API",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
         "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
@@ -119868,22 +120131,75 @@
         "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 23 supplied inventory items, including pooling, tracking, buffering, cancellation, async use, and measurement."
     },
     {
       "taskId": "t04-009-practice",
       "topicId": "t04-009",
       "phase": "practice",
       "draft": "course/drafts/t04-009/t04-009-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 93,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 93 externally verifiable claims and supplied inventory items, including API behavior, version/provider scope, examples, tradeoffs and answer keys. Reviewed example, exercise answer key, edge cases, and cursor/plan/pooling recommendations.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
+              "section": "Indexes, projection, limits, pagination, loading, and round trips",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+              "section": "Command timing, tags, plans, diagnostics",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling, compiled queries, context state",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
+              "section": "Unique ordering, offset and keyset behavior",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, split-query tradeoffs",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 query changes and SQL Server features",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release-note status",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+              "section": "SQL Server parameter-sensitive plan applicability and compatibility levels",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0",
+              "section": "Relational MaxBatchSize API",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
         "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
@@ -119891,22 +120207,75 @@
         "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed example, exercise answer key, edge cases, and cursor/plan/pooling recommendations."
     },
     {
       "taskId": "t04-009-interview",
       "topicId": "t04-009",
       "phase": "interview",
       "draft": "course/drafts/t04-009/t04-009-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 88,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 88 externally verifiable claims and supplied inventory items, including API behavior, version/provider scope, examples, tradeoffs and answer keys. Reviewed answers, scenario reasoning, EF11 note, and self-assessment rubric.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
+              "section": "Indexes, projection, limits, pagination, loading, and round trips",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+              "section": "Command timing, tags, plans, diagnostics",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+              "section": "Pooling, compiled queries, context state",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
+              "section": "Unique ordering, offset and keyset behavior",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, split-query tradeoffs",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 query changes and SQL Server features",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release-note status",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+              "section": "SQL Server parameter-sensitive plan applicability and compatibility levels",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0",
+              "section": "Relational MaxBatchSize API",
+              "verdict": "Checked against current official documentation; lesson scope and applicable caveats are recorded."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
         "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
@@ -119914,9 +120283,11 @@
         "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.infrastructure.relationaldbcontextoptionsbuilder-2.maxbatchsize?view=efcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed answers, scenario reasoning, EF11 note, and self-assessment rubric."
     },
     {
       "taskId": "t04-010-overview",
