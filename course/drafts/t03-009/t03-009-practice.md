@@ -22,6 +22,8 @@ A parameterized report runs quickly for most customers but slowly for a few larg
 10. A memory grant is ten times larger than peak used memory, reducing concurrency. Compare grant feedback, estimate correction, and an explicit hint.
 11. Compilation CPU spikes for many concurrent identical `sp_executesql` batches on SQL Server 2025. Identify the release feature and its scope.
 12. An actual plan shows parallel exchange skew. Explain why MAXDOP alone may not fix it.
+13. SQL Server 2025 Query Store shows a regression only on a readable secondary. Explain how to verify secondary capture, identify the replica group, and apply or remove a scoped hint safely while accounting for preview status.
+14. PSP is enabled, but a query has no dispatcher. Explain how to distinguish unsupported predicate shape from missing feature eligibility using Showplan and Extended Events; explain why three selected predicates can still produce more than three variants.
 
 # Progressive hints
 
@@ -46,6 +48,8 @@ A parameterized report runs quickly for most customers but slowly for a few larg
 10. Check actual row estimates, operator memory requirements, grant feedback eligibility/persistence, and Query Store state. Fix row estimates where possible; feedback may converge over executions. Explicit grant hints can harm other values/concurrency and require revalidation.
 11. SQL Server 2025 `OPTIMIZED_SP_EXECUTESQL` can serialize equivalent concurrent `sp_executesql` compilation work to reduce compilation storms. Validate its database-scoped configuration, application workload, and compile/runtime measurements.
 12. Exchanges redistribute rows; one worker may receive a disproportionate share because of key/data skew or distribution requirements. Inspect per-thread rows and upstream estimates/keys, then address skew/query shape. MAXDOP changes worker count but cannot remove a fundamentally uneven distribution and may worsen CPU or latency.
+13. Confirm Query Store is `READ_WRITE` on the primary and the secondary reports `READ_CAPTURE_SECONDARY` with the documented readonly reason. Join runtime-stat replica-group IDs to `sys.query_store_replicas`; failover can change roles, so never assume numeric IDs. Query Store for readable secondaries remains preview. If a scoped hint is justified, use `sys.sp_query_store_set_hints` with an ID obtained from the replica view, inspect `sys.query_store_query_hints` for applied/failure status, and document a clear-hint rollback and revalidation condition.
+14. PSP currently requires eligible equality predicates and can select at most three interesting predicates. Check the compatibility level, CE/statistics and query shape, then inspect `parameter_sensitive_plan_optimization_skipped_reason` and the `psp_skipped_reason_enum` map via `sys.dm_xe_map_values`. A dispatcher in Showplan is direct evidence of engagement. Each selected predicate can have up to three cardinality buckets, so combinations can create more than three variants.
 
 # Tests and edge cases
 

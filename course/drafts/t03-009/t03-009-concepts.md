@@ -34,6 +34,8 @@ These mechanisms do not cover arbitrary dynamic search patterns. OPTION(RECOMPIL
 
 The plan cache is an evictable in-memory store of reusable compiled plans. Query Store persists query/plan and interval runtime history and can capture waits; SQL Server 2022+ enables it by default for new databases in read-write mode. It exposes plan regressions and supports plan forcing and Query Store hints, which have different mechanisms: forcing requests a captured plan; a hint alters compilation behavior. Both can fail, override expectations, or turn harmful after data/schema/compatibility changes. Query Store hints override in-text and plan-guide hints; unsupported or contradictory hints may be ignored (ABORT_QUERY_EXECUTION intentionally blocks execution).
 
+SQL Server 2025 adds Query Store collection for readable secondary replicas as a preview feature. Runtime and wait records are streamed to the primary Query Store, with replica identity exposed through `replica_group_id`; check actual state on each secondary. Query Store hints can be scoped to a replica group with `@replica_group_id`, but the scope only works when the secondary Query Store feature is enabled and supported on that platform.
+
 # Repeatable diagnosis loop
 
 1. Define a performance objective and collect same-workload baselines.

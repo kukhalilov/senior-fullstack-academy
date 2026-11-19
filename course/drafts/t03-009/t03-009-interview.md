@@ -16,6 +16,8 @@
 12. How do compatibility level and IQP features affect rollout?
 13. Why are query hash and plan hash useful but insufficient?
 14. How would you safely tune a plan regression in production?
+15. What changes when Query Store captures readable-secondary workloads, and how would you scope a hint to one replica group?
+16. What does PSP's three-predicate limit actually constrain, and how would you diagnose why a query was skipped?
 
 # Concise interview answers
 
@@ -33,6 +35,8 @@
 12. Compatibility makes release features eligible but can change plans broadly. Stage it, compare Query Store baselines, replay representative parameter values, and keep a rollback path.
 13. Hashes help group query/plan shapes, but do not encode parameter distribution, runtime resources, data state, or guarantee collision-free identity.
 14. Establish baseline and parameter classes, inspect plan/runtime/Query Store evidence, isolate one cause, test a reversible change, monitor total workload and remove temporary controls when no longer needed.
+15. On supported SQL Server 2025/Azure platforms, secondary query runtime and wait data can be streamed to the primary Query Store; SQL Server 2025's feature is preview. Verify `READ_CAPTURE_SECONDARY`, join `replica_group_id` through `sys.query_store_replicas`, and use the optional `@replica_group_id` on `sys.sp_query_store_set_hints` only after testing and confirming the exact scope/status.
+16. It caps selected predicates, not total variants: range combinations can multiply. PSP currently targets eligible equality predicates; inspect the PSP skipped-reason Extended Event and decode `psp_skipped_reason_enum` through `sys.dm_xe_map_values`, then confirm the actual dispatcher or query variant in Showplan/Query Store. Eligibility still does not promise improved runtime.
 
 # Deep follow-up answers
 

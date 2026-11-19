@@ -109,8 +109,19 @@
         "Simple containment assumption",
         "Base containment assumption",
         "Parameter Sensitive Plan predicate limit",
+        "PSP query variant range combinations",
         "PSP equality-predicate eligibility boundary",
         "PSP support for DML at compatibility 170",
+        "PSP tempdb support at compatibility 170",
+        "query_with_parameter_sensitivity Extended Event",
+        "parameter_sensitive_plan_optimization_skipped_reason Extended Event",
+        "parameter_sensitive_plan_optimization debug Extended Event",
+        "psp_skipped_reason_enum",
+        "sys.dm_xe_map_values PSP skipped-reason lookup",
+        "query_with_optional_parameter_predicate Extended Event",
+        "optional_parameter_optimization_skipped_reason Extended Event",
+        "opo_skipped_reason_enum",
+        "SQL Server 2025 PSP readable-secondary fix in CU1",
         "OPTIONAL_PARAMETER_OPTIMIZATION configuration",
         "OPPO compatibility level 170 requirement",
         "DISABLE_OPTIONAL_PARAMETER_OPTIMIZATION hint",
@@ -172,7 +183,15 @@
         "ABORT_QUERY_EXECUTION query hint effect",
         "Query Store DML statement capture",
         "Query Store excludes DDL plans",
-        "Query Store capture mode AUTO"
+        "Query Store capture mode AUTO",
+        "Query Store for readable secondaries preview boundary",
+        "ALTER DATABASE FOR SECONDARY SET QUERY_STORE",
+        "sys.query_store_query_text",
+        "sys.query_store_replicas",
+        "sys.query_store_runtime_stats.replica_group_id",
+        "sys.query_store_plan_forcing_locations",
+        "sys.database_query_store_options actual_state_desc READ_CAPTURE_SECONDARY",
+        "sys.sp_query_store_set_hints @replica_group_id"
       ]
     }
   ],
@@ -219,7 +238,14 @@
     "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-text-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-replicas?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-plan-forcing-locations-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-query-store-set-hints-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/query-store-catalog-views-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-processing-architecture-guide?view=sql-server-ver17"
   ],
   "versionNotes": [
     {
@@ -228,21 +254,30 @@
         "SQL Server 2025 adds PSP optimization for eligible DML statements and can select multiple eligible predicates from the same table; PSP remains equality-predicate-focused and selects at most three predicates per query.",
         "OPPO requires compatibility level 170 and OPTIONAL_PARAMETER_OPTIMIZATION; SQL Server 2025 enables the database-scoped setting by default. OPPO creates variants for eligible optional NULL predicates, not arbitrary dynamic filtering logic.",
         "SQL Server 2025 introduces CE feedback for expressions at compatibility level 160 on SQL Server (170 on Azure SQL Database), and OPTIMIZED_SP_EXECUTESQL is available to reduce concurrent compilation storms.",
-        "Compatibility level enables feature eligibility; it does not guarantee that every query qualifies or that the resulting plan is faster. Evaluate workload regressions in Query Store before rollout."
+        "Compatibility level enables feature eligibility; it does not guarantee that every query qualifies or that the resulting plan is faster. Evaluate workload regressions in Query Store before rollout.",
+        "Query Store for readable secondaries is a preview feature; in SQL Server 2025 it must be enabled per database on the primary and selected secondaries, and the replica-group APIs identify capture and hint scope.",
+        "PSP selects at most three predicates, but each can create up to three cardinality ranges and combinations can produce more than three variants. SQL Server 2025 updates PSP Extended Event fields and adds eligible tempdb support; inspect skipped-reason events and current map metadata.",
+        "A PSP readable-secondary access-violation issue was resolved in SQL Server 2025 CU1 (January 2026); check the servicing level when using PSP with secondary Query Store."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-text-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-plan-forcing-locations-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-query-store-set-hints-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/query-store-catalog-views-transact-sql?view=sql-server-ver17"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft SQL Server 2025 query processing, Showplan, Query Store, and intelligent query processing documentation",
-    "edition": "SQL Server 2025 (17.x), compatibility level 170 boundaries checked 2026-11-16",
-    "checkedAt": "2026-11-16",
+    "edition": "SQL Server 2025 (17.x), compatibility level 170 boundaries checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
@@ -259,16 +294,33 @@
       "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-text-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-replicas?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-plan-forcing-locations-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-query-store-set-hints-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/query-store-catalog-views-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-processing-architecture-guide?view=sql-server-ver17"
     ]
   },
   "scopeExclusions": [
     "Index design and maintenance are taught in t03-008.",
     "Wait types, production monitoring, and broad performance troubleshooting are in t03-013.",
     "Transaction locking and deadlock analysis are in t03-010.",
-    "Specific query-hint syntax beyond named diagnostics is outside this inventory.",
     "Detailed index design, join syntax, and wait-type diagnosis are taught in adjacent SQL Server topics; this lesson explains how to interpret their plan evidence.",
-    "The Showplan operator inventory is a curated common set, not every operator in the engine; consult the live Microsoft operator reference for operators outside the named scope."
+    "The Showplan operator inventory is a curated common set, not every operator in the engine; consult the live Microsoft operator reference for operators outside the named scope.",
+    "The complete query-hint catalog is outside this inventory; only named hint behavior and Query Store APIs are covered."
   ],
-  "generationAllowed": true
+  "generationAllowed": true,
+  "accuracyFacts": [
+    "An estimated plan contains optimizer estimates but no actual execution measurements; an actual plan records runtime observations from one execution and is not representative of all parameter values.",
+    "Operator icons are not diagnoses: compare estimated and actual rows, executions, rows read, predicates, memory and waits; a seek can still read a broad range or incur repeated lookups.",
+    "PSP currently works with eligible equality predicates. SQL Server 2025 at compatibility level 170 adds eligible DML and multi-predicate same-table support, but selected predicates remain capped at three; range combinations can yield more than three variants.",
+    "OPPO requires compatibility level 170, OPTIONAL_PARAMETER_OPTIMIZATION enabled, and a qualifying optional-NULL predicate. Its dispatcher and skipped-reason events differ from PSP diagnostics.",
+    "CE feedback for expressions is SQL Server 2025 compatibility 160 on SQL Server and 170 on Azure SQL Database. DOP feedback and persisted memory-grant feedback depend on Query Store configuration and eligibility.",
+    "Query Store is enabled by default for new SQL Server 2022+ databases in READ_WRITE mode, not for all existing databases or prior versions. Runtime statistics are aggregated by intervals and capture/capacity state can create history gaps.",
+    "Query Store for readable secondary replicas is preview; SQL Server 2025 must enable it per database and uses replica_group_id for runtime attribution and scoped hints. PSP readable-secondary access violation was resolved in SQL Server 2025 CU1.",
+    "Query Store hints can override statement and plan-guide hints, but unsupported/contradictory hints may be ignored; ABORT_QUERY_EXECUTION is the exception that prevents execution. Verify application/failure status and retire stale interventions."
+  ]
 }

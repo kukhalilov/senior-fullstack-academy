@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1232,
-    "pending": 1117,
-    "claimsChecked": 53360,
-    "claimsCorrected": 2799,
+    "reviewed": 1239,
+    "pending": 1110,
+    "claimsChecked": 54029,
+    "claimsCorrected": 2856,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -111516,13 +111516,54 @@
       "topicId": "t03-009",
       "phase": "overview",
       "draft": "course/drafts/t03-009/t03-009-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked the plan-as-hypothesis mental model, diagnosis sequence, parameter-sensitive example, SQL Server 2025/compatibility matrix, and exact sources. Clarified PSP variant-count versus predicate-count limits and recorded the readable-secondary Query Store preview boundary and CU1 servicing note.",
+          "sources": [
+            {
+              "verdict": "supported; missing operator-specific explanations added",
+              "section": "Official Showplan operator semantics, execution direction, properties, and runtime counters",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "PSP eligibility, predicates/ranges, compatibility-level 170 changes, Extended Events, and servicing notes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "OPPO query patterns, prerequisites, hints, and diagnostic Extended Events",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "IQP release/compatibility matrix and Query Store persistence prerequisites",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store capture, runtime aggregation, storage/state, DML and DDL coverage",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Preview availability, secondary capture state, replica data flow and configuration",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store hint precedence, failure/ignore handling, and ABORT_QUERY_EXECUTION behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
@@ -111539,22 +111580,70 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-text-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-plan-forcing-locations-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-query-store-set-hints-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/query-store-catalog-views-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-processing-architecture-guide?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked the plan-as-hypothesis mental model, diagnosis sequence, parameter-sensitive example, SQL Server 2025/compatibility matrix, and exact sources. Clarified PSP variant-count versus predicate-count limits and recorded the readable-secondary Query Store preview boundary and CU1 servicing note."
     },
     {
       "taskId": "t03-009-concepts",
       "topicId": "t03-009",
       "phase": "concepts",
       "draft": "course/drafts/t03-009/t03-009-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 73,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Reviewed optimizer inputs, tree execution direction, estimates/runtime distinctions, diagnosis sequence, Query Store, parameter behavior, feature prerequisites, and checks. Added secondary Query Store preview and replica-scoped behavior; verified OPPO/PSP/CE-feedback compatibility boundaries and Query Store hint precedence.",
+          "sources": [
+            {
+              "verdict": "supported; missing operator-specific explanations added",
+              "section": "Official Showplan operator semantics, execution direction, properties, and runtime counters",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "PSP eligibility, predicates/ranges, compatibility-level 170 changes, Extended Events, and servicing notes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "OPPO query patterns, prerequisites, hints, and diagnostic Extended Events",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "IQP release/compatibility matrix and Query Store persistence prerequisites",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store capture, runtime aggregation, storage/state, DML and DDL coverage",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Preview availability, secondary capture state, replica data flow and configuration",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store hint precedence, failure/ignore handling, and ABORT_QUERY_EXECUTION behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
@@ -111571,22 +111660,70 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-text-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-plan-forcing-locations-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-query-store-set-hints-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/query-store-catalog-views-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-processing-architecture-guide?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed optimizer inputs, tree execution direction, estimates/runtime distinctions, diagnosis sequence, Query Store, parameter behavior, feature prerequisites, and checks. Added secondary Query Store preview and replica-scoped behavior; verified OPPO/PSP/CE-feedback compatibility boundaries and Query Store hint precedence."
     },
     {
       "taskId": "t03-009-reference-plan-shapes-and-operators",
       "topicId": "t03-009",
       "phase": "reference",
       "draft": "course/drafts/t03-009/t03-009-reference-plan-shapes-and-operators.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 138,
+      "claimsCorrected": 29,
+      "evidence": [
+        {
+          "claims": "Audited every assigned plan/operator/property explanation against the current Microsoft Showplan and query-processing references. Replaced 26 generic placeholder rows with operator-specific semantics for Adaptive Join, Bitmap, Concatenation, Constant Scan, TOP, window/spool/exchange operators, rebinds/rewinds, execution modes, and optimizer properties; validated the plan-reading direction and cost semantics.",
+          "sources": [
+            {
+              "verdict": "supported; missing operator-specific explanations added",
+              "section": "Official Showplan operator semantics, execution direction, properties, and runtime counters",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "PSP eligibility, predicates/ranges, compatibility-level 170 changes, Extended Events, and servicing notes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "OPPO query patterns, prerequisites, hints, and diagnostic Extended Events",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "IQP release/compatibility matrix and Query Store persistence prerequisites",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store capture, runtime aggregation, storage/state, DML and DDL coverage",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Preview availability, secondary capture state, replica data flow and configuration",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store hint precedence, failure/ignore handling, and ABORT_QUERY_EXECUTION behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
@@ -111603,22 +111740,70 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-text-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-plan-forcing-locations-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-query-store-set-hints-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/query-store-catalog-views-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-processing-architecture-guide?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited every assigned plan/operator/property explanation against the current Microsoft Showplan and query-processing references. Replaced 26 generic placeholder rows with operator-specific semantics for Adaptive Join, Bitmap, Concatenation, Constant Scan, TOP, window/spool/exchange operators, rebinds/rewinds, execution modes, and optimizer properties; validated the plan-reading direction and cost semantics."
     },
     {
       "taskId": "t03-009-reference-cardinality-and-parameter-sensitivity",
       "topicId": "t03-009",
       "phase": "reference",
       "draft": "course/drafts/t03-009/t03-009-reference-cardinality-and-parameter-sensitivity.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 114,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Checked the full CE/parameter/feedback inventory, SQL Server 2025 version notes, examples, and knowledge checks. Added PSP range-combination limits, current PSP/OPPO diagnostic Extended Events and map lookups, eligible tempdb boundary, and the documented SQL Server 2025 CU1 readable-secondary fix. Verified CE feedback compat 160/170 split, OPPO prerequisites, PSP equality-only boundary, and Query Store requirements for persistence/feedback.",
+          "sources": [
+            {
+              "verdict": "supported; missing operator-specific explanations added",
+              "section": "Official Showplan operator semantics, execution direction, properties, and runtime counters",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "PSP eligibility, predicates/ranges, compatibility-level 170 changes, Extended Events, and servicing notes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "OPPO query patterns, prerequisites, hints, and diagnostic Extended Events",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "IQP release/compatibility matrix and Query Store persistence prerequisites",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store capture, runtime aggregation, storage/state, DML and DDL coverage",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Preview availability, secondary capture state, replica data flow and configuration",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store hint precedence, failure/ignore handling, and ABORT_QUERY_EXECUTION behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
@@ -111635,22 +111820,70 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-text-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-plan-forcing-locations-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-query-store-set-hints-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/query-store-catalog-views-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-processing-architecture-guide?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked the full CE/parameter/feedback inventory, SQL Server 2025 version notes, examples, and knowledge checks. Added PSP range-combination limits, current PSP/OPPO diagnostic Extended Events and map lookups, eligible tempdb boundary, and the documented SQL Server 2025 CU1 readable-secondary fix. Verified CE feedback compat 160/170 split, OPPO prerequisites, PSP equality-only boundary, and Query Store requirements for persistence/feedback."
     },
     {
       "taskId": "t03-009-reference-query-store-and-diagnostics",
       "topicId": "t03-009",
       "phase": "reference",
       "draft": "course/drafts/t03-009/t03-009-reference-query-store-and-diagnostics.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 126,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Reviewed all Query Store views, commands, capture modes, statistics and plan evidence, hint lifecycle, actual/estimated plan interfaces, and secondary-replica behavior. Added query-text and replica catalog APIs, READ_CAPTURE_SECONDARY state, replica-specific hint scope, preview availability, and relevant source links; verified Query Store does not capture DDL plans and ignores invalid hints except ABORT_QUERY_EXECUTION.",
+          "sources": [
+            {
+              "verdict": "supported; missing operator-specific explanations added",
+              "section": "Official Showplan operator semantics, execution direction, properties, and runtime counters",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "PSP eligibility, predicates/ranges, compatibility-level 170 changes, Extended Events, and servicing notes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "OPPO query patterns, prerequisites, hints, and diagnostic Extended Events",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "IQP release/compatibility matrix and Query Store persistence prerequisites",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store capture, runtime aggregation, storage/state, DML and DDL coverage",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Preview availability, secondary capture state, replica data flow and configuration",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store hint precedence, failure/ignore handling, and ABORT_QUERY_EXECUTION behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
@@ -111667,22 +111900,70 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-text-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-plan-forcing-locations-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-query-store-set-hints-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/query-store-catalog-views-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-processing-architecture-guide?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all Query Store views, commands, capture modes, statistics and plan evidence, hint lifecycle, actual/estimated plan interfaces, and secondary-replica behavior. Added query-text and replica catalog APIs, READ_CAPTURE_SECONDARY state, replica-specific hint scope, preview availability, and relevant source links; verified Query Store does not capture DDL plans and ignores invalid hints except ABORT_QUERY_EXECUTION."
     },
     {
       "taskId": "t03-009-practice",
       "topicId": "t03-009",
       "phase": "practice",
       "draft": "course/drafts/t03-009/t03-009-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Checked every scenario, progressive hint, solution, measurement claim, and validation step against the manifest and Microsoft documentation. Added replica-specific Query Store diagnosis and a PSP/OPPO skipped-reason/variant-count problem; corrected diagnostic terms and current feature boundaries.",
+          "sources": [
+            {
+              "verdict": "supported; missing operator-specific explanations added",
+              "section": "Official Showplan operator semantics, execution direction, properties, and runtime counters",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "PSP eligibility, predicates/ranges, compatibility-level 170 changes, Extended Events, and servicing notes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "OPPO query patterns, prerequisites, hints, and diagnostic Extended Events",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "IQP release/compatibility matrix and Query Store persistence prerequisites",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store capture, runtime aggregation, storage/state, DML and DDL coverage",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Preview availability, secondary capture state, replica data flow and configuration",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store hint precedence, failure/ignore handling, and ABORT_QUERY_EXECUTION behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
@@ -111699,22 +111980,70 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-text-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-plan-forcing-locations-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-query-store-set-hints-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/query-store-catalog-views-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-processing-architecture-guide?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked every scenario, progressive hint, solution, measurement claim, and validation step against the manifest and Microsoft documentation. Added replica-specific Query Store diagnosis and a PSP/OPPO skipped-reason/variant-count problem; corrected diagnostic terms and current feature boundaries."
     },
     {
       "taskId": "t03-009-interview",
       "topicId": "t03-009",
       "phase": "interview",
       "draft": "course/drafts/t03-009/t03-009-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 79,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Audited interview questions, concise and deep answers, scenarios, tradeoffs, and weak-answer rubric. Added readable-secondary Query Store scope and PSP predicate/variant/skip-event questions, retaining the SQL Server 2025 preview and servicing caveats.",
+          "sources": [
+            {
+              "verdict": "supported; missing operator-specific explanations added",
+              "section": "Official Showplan operator semantics, execution direction, properties, and runtime counters",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "PSP eligibility, predicates/ranges, compatibility-level 170 changes, Extended Events, and servicing notes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitive-plan-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "OPPO query patterns, prerequisites, hints, and diagnostic Extended Events",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optional-parameter-optimization?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "IQP release/compatibility matrix and Query Store persistence prerequisites",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/intelligent-query-processing?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store capture, runtime aggregation, storage/state, DML and DDL coverage",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Preview availability, secondary capture state, replica data flow and configuration",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections and omissions recorded",
+              "section": "Query Store hint precedence, failure/ignore handling, and ABORT_QUERY_EXECUTION behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-hints?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-and-save-execution-plans?view=sql-server-ver17",
@@ -111731,9 +112060,16 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-query?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/extended-events/extended-events?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-store-for-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-text-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-plan-forcing-locations-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sys-sp-query-store-set-hints-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/query-store-catalog-views-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-processing-architecture-guide?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited interview questions, concise and deep answers, scenarios, tradeoffs, and weak-answer rubric. Added readable-secondary Query Store scope and PSP predicate/variant/skip-event questions, retaining the SQL Server 2025 preview and servicing caveats."
     },
     {
       "taskId": "t03-010-overview",
