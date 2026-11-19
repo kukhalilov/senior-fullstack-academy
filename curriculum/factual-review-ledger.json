@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1280,
-    "pending": 1069,
-    "claimsChecked": 58554,
-    "claimsCorrected": 2953,
+    "reviewed": 1287,
+    "pending": 1062,
+    "claimsChecked": 59390,
+    "claimsCorrected": 2967,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -116654,168 +116654,532 @@
       "topicId": "t04-002",
       "phase": "overview",
       "draft": "course/drafts/t04-002/t04-002-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 47,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 47 externally verifiable claims and exact inventory entries where applicable, including API availability, model behavior, examples, and EF version/provider boundaries. Checked the model mental model, configuration precedence, entity/value distinction, property mapping and key/index/concurrency overview.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/",
+              "section": "Model metadata, convention/annotation/fluent precedence, model-building lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
+              "section": "Entity discovery, keyless and shared entity types, table/view and migration mapping",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
+              "section": "Property mapping, nullability, type facets, access, and column metadata",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+              "section": "Primary/alternate/composite keys, generated keys, and EF Core 11 complex-property keys",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex vs owned identity, collections, JSON and version features",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
+              "section": "Default/generated/computed values, sentinel and named default constraints",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": "EF Core 10 JSON and SQL Server named constraint changes",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex types, mapping and nested path feature status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 shipped feature record",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
         "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked the model mental model, configuration precedence, entity/value distinction, property mapping and key/index/concurrency overview."
     },
     {
       "taskId": "t04-002-concepts",
       "topicId": "t04-002",
       "phase": "concepts",
       "draft": "course/drafts/t04-002/t04-002-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 88,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 88 externally verifiable claims and exact inventory entries where applicable, including API availability, model behavior, examples, and EF version/provider boundaries. Verified model construction and precedence, identities, properties, key vs unique index, generated values, concurrency, and EF Core 10/11 version differences.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/",
+              "section": "Model metadata, convention/annotation/fluent precedence, model-building lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
+              "section": "Entity discovery, keyless and shared entity types, table/view and migration mapping",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
+              "section": "Property mapping, nullability, type facets, access, and column metadata",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+              "section": "Primary/alternate/composite keys, generated keys, and EF Core 11 complex-property keys",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex vs owned identity, collections, JSON and version features",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
+              "section": "Default/generated/computed values, sentinel and named default constraints",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": "EF Core 10 JSON and SQL Server named constraint changes",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex types, mapping and nested path feature status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 shipped feature record",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
         "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Verified model construction and precedence, identities, properties, key vs unique index, generated values, concurrency, and EF Core 10/11 version differences."
     },
     {
       "taskId": "t04-002-reference-entity-model-and-conventions",
       "topicId": "t04-002",
       "phase": "reference",
       "draft": "course/drafts/t04-002/t04-002-reference-entity-model-and-conventions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 148,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 148 externally verifiable claims and exact inventory entries where applicable, including API availability, model behavior, examples, and EF version/provider boundaries. Checked all 26 inventory items for discovery, configuration types, table/view, keyless/shared/property-bag shapes, and exclusion behavior.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/",
+              "section": "Model metadata, convention/annotation/fluent precedence, model-building lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
+              "section": "Entity discovery, keyless and shared entity types, table/view and migration mapping",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
+              "section": "Property mapping, nullability, type facets, access, and column metadata",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+              "section": "Primary/alternate/composite keys, generated keys, and EF Core 11 complex-property keys",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex vs owned identity, collections, JSON and version features",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
+              "section": "Default/generated/computed values, sentinel and named default constraints",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": "EF Core 10 JSON and SQL Server named constraint changes",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex types, mapping and nested path feature status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 shipped feature record",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
         "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 26 inventory items for discovery, configuration types, table/view, keyless/shared/property-bag shapes, and exclusion behavior."
     },
     {
       "taskId": "t04-002-reference-properties-types-and-column-mapping",
       "topicId": "t04-002",
       "phase": "reference",
       "draft": "course/drafts/t04-002/t04-002-reference-properties-types-and-column-mapping.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 201,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 201 externally verifiable claims and exact inventory entries where applicable, including API availability, model behavior, examples, and EF version/provider boundaries. Checked all 33 inventory items including access modes, facets, defaults, conversions/comparers, shadow/indexer fields, JSON and EF11 complex collections/nested properties.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/",
+              "section": "Model metadata, convention/annotation/fluent precedence, model-building lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
+              "section": "Entity discovery, keyless and shared entity types, table/view and migration mapping",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
+              "section": "Property mapping, nullability, type facets, access, and column metadata",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+              "section": "Primary/alternate/composite keys, generated keys, and EF Core 11 complex-property keys",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex vs owned identity, collections, JSON and version features",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
+              "section": "Default/generated/computed values, sentinel and named default constraints",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": "EF Core 10 JSON and SQL Server named constraint changes",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex types, mapping and nested path feature status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 shipped feature record",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
         "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 33 inventory items including access modes, facets, defaults, conversions/comparers, shadow/indexer fields, JSON and EF11 complex collections/nested properties."
     },
     {
       "taskId": "t04-002-reference-keys-indexes-and-concurrency-metadata",
       "topicId": "t04-002",
       "phase": "reference",
       "draft": "course/drafts/t04-002/t04-002-reference-keys-indexes-and-concurrency-metadata.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 174,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 174 externally verifiable claims and exact inventory entries where applicable, including API availability, model behavior, examples, and EF version/provider boundaries. Checked all 26 items for primary/alternate/composite keys, unique indexes, generation, SQL Server provider boundaries, concurrency, and EF11 nested complex keys/indexes.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/",
+              "section": "Model metadata, convention/annotation/fluent precedence, model-building lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
+              "section": "Entity discovery, keyless and shared entity types, table/view and migration mapping",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
+              "section": "Property mapping, nullability, type facets, access, and column metadata",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+              "section": "Primary/alternate/composite keys, generated keys, and EF Core 11 complex-property keys",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex vs owned identity, collections, JSON and version features",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
+              "section": "Default/generated/computed values, sentinel and named default constraints",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": "EF Core 10 JSON and SQL Server named constraint changes",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex types, mapping and nested path feature status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 shipped feature record",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
         "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 26 items for primary/alternate/composite keys, unique indexes, generation, SQL Server provider boundaries, concurrency, and EF11 nested complex keys/indexes."
     },
     {
       "taskId": "t04-002-practice",
       "topicId": "t04-002",
       "phase": "practice",
       "draft": "course/drafts/t04-002/t04-002-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 96,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 96 externally verifiable claims and exact inventory entries where applicable, including API availability, model behavior, examples, and EF version/provider boundaries. Checked configuration examples, mapping decisions, generated value assumptions, and solutions against provider/version constraints.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/",
+              "section": "Model metadata, convention/annotation/fluent precedence, model-building lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
+              "section": "Entity discovery, keyless and shared entity types, table/view and migration mapping",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
+              "section": "Property mapping, nullability, type facets, access, and column metadata",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+              "section": "Primary/alternate/composite keys, generated keys, and EF Core 11 complex-property keys",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex vs owned identity, collections, JSON and version features",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
+              "section": "Default/generated/computed values, sentinel and named default constraints",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": "EF Core 10 JSON and SQL Server named constraint changes",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex types, mapping and nested path feature status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 shipped feature record",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
         "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked configuration examples, mapping decisions, generated value assumptions, and solutions against provider/version constraints."
     },
     {
       "taskId": "t04-002-interview",
       "topicId": "t04-002",
       "phase": "interview",
       "draft": "course/drafts/t04-002/t04-002-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 82 externally verifiable claims and exact inventory entries where applicable, including API availability, model behavior, examples, and EF version/provider boundaries. Checked key-vs-index, model precedence, complex-vs-owned, generated-value, concurrency, and current release answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/",
+              "section": "Model metadata, convention/annotation/fluent precedence, model-building lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
+              "section": "Entity discovery, keyless and shared entity types, table/view and migration mapping",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
+              "section": "Property mapping, nullability, type facets, access, and column metadata",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+              "section": "Primary/alternate/composite keys, generated keys, and EF Core 11 complex-property keys",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex vs owned identity, collections, JSON and version features",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
+              "section": "Default/generated/computed values, sentinel and named default constraints",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": "EF Core 10 JSON and SQL Server named constraint changes",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex types, mapping and nested path feature status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 shipped feature record",
+              "verdict": "Checked against official Microsoft/dotnet documentation; stale release-planning wording was not treated as final shipped status"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-types",
         "https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties",
         "https://learn.microsoft.com/en-us/ef/core/modeling/keys",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked key-vs-index, model precedence, complex-vs-owned, generated-value, concurrency, and current release answers."
     },
     {
       "taskId": "t04-003-overview",
