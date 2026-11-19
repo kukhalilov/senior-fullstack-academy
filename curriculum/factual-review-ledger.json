@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1065,
-    "pending": 1282,
-    "claimsChecked": 41573,
-    "claimsCorrected": 1662,
+    "reviewed": 1066,
+    "pending": 1281,
+    "claimsChecked": 41634,
+    "claimsCorrected": 1670,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -70018,13 +70018,39 @@
       "topicId": "t07-015",
       "phase": "reference",
       "draft": "course/drafts/t07-015/t07-015-reference-events-and-dispatch.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 61,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "EventTarget/Listener IDL and listener options; duplicate/removal matching, synchronous dispatch and return value; Event and CustomEvent properties, constructors, constants, legacy fields and methods; path/phase, cancel/default action, passive/trust, shadow retargeting, delegation, examples and interview checks",
+          "sources": [
+            {
+              "url": "https://dom.spec.whatwg.org/#events",
+              "section": "Event, CustomEvent, EventTarget, dispatch algorithm",
+              "verdict": "verified; added omitted EventTarget constructor, EventListener callback interface, phase constants, and legacy Event/CustomEvent members"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget",
+              "section": "Listener registration and removal",
+              "verdict": "cross-checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+              "section": "Event properties, methods, phases, and trust",
+              "verdict": "cross-checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
+              "section": "CustomEvent detail and initialization",
+              "verdict": "cross-checked"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://dom.spec.whatwg.org/",
         "https://html.spec.whatwg.org/multipage/",
@@ -70096,7 +70122,7 @@
         "https://w3c.github.io/selection-api/",
         "https://developer.mozilla.org/en-US/docs/Web/API/Range/createContextualFragment"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and API inventory audit complete. Added the omitted current Event phase constants and EventTarget/EventListener surfaces, while explicitly labeling historical Event fields/initializers as legacy. Verified dispatch, cancellation, listener matching, trust, and shadow-path behavior. No unresolved factual or coverage issues remain."
     },
     {
       "taskId": "t07-015-reference-abort-and-mutation-observation",

@@ -13,10 +13,12 @@ An EventTarget keeps listeners. An event object carries information and flags. D
 # Supplied names explained
 
 - `EventTarget` — Base interface for objects that can receive and dispatch events.
+- EventTarget() constructor — Creates an EventTarget with its own listener list; a directly constructed EventTarget is not attached to a DOM tree and does not acquire a browser default action automatically.
 - `EventTarget.addEventListener()` — Registers a callback/listener object for a type, optionally with capture, once, passive, and abort signal behavior. Re-adding the same type/callback/capture combination does not create a duplicate listener.
 - `EventTarget.removeEventListener()` — Removes a matching listener; callback identity, type, and capture flag must match. A different anonymous function does not remove the original.
 - `EventTarget.dispatchEvent()` — Synchronously dispatches an untrusted event and returns false only when a cancelable event was canceled. It does not emulate a trusted user gesture.
 - `AddEventListenerOptions.capture` — Registers for capture phase; affects listener matching/removal.
+- `EventListenerOptions.capture` — Base option shared by add/remove listener dictionaries; the legacy boolean third argument is shorthand for this capture setting.
 - `AddEventListenerOptions.once` — Removes the listener after its first invocation.
 - `AddEventListenerOptions.passive` — Declares that the listener will not cancel the default action. Calling `preventDefault()` from a passive listener has no effect (and may warn).
 - `AddEventListenerOptions.signal` — Removes the listener when the supplied AbortSignal aborts; useful for lifecycle cleanup.
@@ -25,12 +27,17 @@ An EventTarget keeps listeners. An event object carries information and flags. D
 - `Event.target` — Original/retargeted event target as exposed at the current boundary; shadow DOM can retarget it.
 - `Event.currentTarget` — Object whose listener is currently running; becomes null outside listener dispatch.
 - `Event.eventPhase` — Numeric phase constant: NONE, CAPTURING_PHASE, AT_TARGET, or BUBBLING_PHASE.
+- `Event.NONE`, `Event.CAPTURING_PHASE`, `Event.AT_TARGET`, and `Event.BUBBLING_PHASE` — Numeric eventPhase constants for outside dispatch, capture, target, and bubble phases.
 - `Event.bubbles` — Whether the event participates in bubbling beyond the target; many events do not bubble.
 - `Event.cancelable` — Whether `preventDefault()` can cancel this event's default action.
 - `Event.composed` — Whether the event can cross a shadow DOM boundary, subject to retargeting and composed path rules.
 - `Event.defaultPrevented` — True after a successful cancellation of a cancelable event.
 - `Event.isTrusted` — True for browser-generated trusted events; false for events dispatched by script. It is not an authentication/authorization signal.
 - `Event.timeStamp` — Event creation timestamp in the relevant time origin's high-resolution timing model; do not assume it is a wall-clock Unix timestamp.
+- `Event.srcElement` — Legacy alias for `target`; use `target` in new code.
+- `Event.cancelBubble` — Legacy propagation-control alias related to `stopPropagation()`; use the method for clarity.
+- `Event.returnValue` — Legacy cancellation property; use `preventDefault()` and `defaultPrevented` instead.
+- `Event.initEvent()` — Legacy event initializer retained for compatibility; constructors are the normal way to create events and initialization after dispatch has begun is not useful.
 - `Event.preventDefault()` — Requests cancellation of the default action when cancelable and not passive. It does not stop propagation.
 - `Event.stopPropagation()` — Stops further traversal to later targets; other listeners on the current target can still run.
 - `Event.stopImmediatePropagation()` — Stops further propagation and prevents later listeners on the current target.
@@ -38,9 +45,11 @@ An EventTarget keeps listeners. An event object carries information and flags. D
 - `CustomEvent` — Event subtype carrying an application-provided `detail` value.
 - `CustomEvent.detail` — The supplied detail value; it is not automatically deep-cloned or validated.
 - `CustomEvent() constructor` — Constructs a CustomEvent with optional `CustomEventInit` fields including detail, bubbles, cancelable, and composed.
+- `CustomEvent.initCustomEvent()` — Legacy initializer retained for compatibility; use the constructor and `CustomEventInit` for new code.
 - `Event() constructor` — Constructs an Event with optional `EventInit` fields; script-created events are untrusted.
 - `EventInit` — Initialization dictionary containing `bubbles`, `cancelable`, and `composed` booleans, defaulting false.
 - `CustomEventInit` — EventInit plus a `detail` value, default null.
+- `EventListener` and `EventListener.handleEvent()` — Listener callback contract; listeners can be functions or objects whose `handleEvent(event)` method is called with the listener object as `this`.
 - `Capture phase` — Dispatch travels from outer path ancestors toward the target, invoking capture listeners.
 - `Target phase` — Listeners on the target run; capture listeners on target and non-capture listeners may both apply according to dispatch rules.
 - `Bubble phase` — After target, events with `bubbles=true` travel outward through ancestors to invoke non-capture listeners.
