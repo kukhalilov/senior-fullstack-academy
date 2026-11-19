@@ -2,7 +2,7 @@
 
 # Scope and version
 
-Engine facts and release channels are pinned to the source snapshot checked 2026-11-16. Managed-service version/feature availability varies by provider and offering; verify the exact target. The list below contains only the supplied names.
+Engine facts and release channels are pinned to the source snapshot checked 2026-11-20. Managed-service version/feature availability varies by provider, region, edition, and offering; verify the exact target. The list below contains only the supplied names.
 
 # How this group fits the mental model
 
@@ -36,15 +36,15 @@ Evaluation is the evidence layer that tests whether a candidate serves actual wo
 
 - `Concurrency profile` — Concurrent readers/writers, transaction duration, bursts, hot keys, and peak connection behavior used to test contention and throughput.
 
-- `Latency percentile` — Distribution statistic such as p50/p95/p99. Percentiles expose tail behavior that means can hide, but require enough representative samples.
+- `Latency percentile` — Distribution statistic such as p50/p95/p99. p95 is the latency at or below which about 95% of measured operations completed; p99 exposes a more extreme tail than the mean or median. Report the sample count, measurement window, and whether failed/timed-out operations are included; a percentile from too few or unrepresentative samples is misleading.
 
-- `Throughput measurement` — Successful useful operations completed per unit time under a defined workload, not merely requests submitted.
+- `Throughput measurement` — Successful useful operations completed per unit time under a defined workload, not merely requests submitted. Report errors, retries, and latency alongside throughput so a system cannot appear faster by rejecting or timing out more work.
 
 - `Durability configuration` — Settings and acknowledgement policy governing what failures a committed write survives; inspect fsync/journal/log and replica policies.
 
 - `Cache-warm benchmark` — Measures performance after representative data/index pages are cached; it does not predict cold-start or failover behavior.
 
-- `Cold-start benchmark` — Measures startup or cold-cache performance including load/compilation and storage reads; do not compare it with warm-cache results as equivalent runs.
+- `Cold-start benchmark` — Measures performance before the relevant data and index pages reach a representative warm cache. Measure process/service startup and cold-cache query behavior separately where both matter; do not compare either run with a warm-cache result as if they were equivalent.
 
 - `Representative data distribution` — Skew, cardinality, document size, null/optional frequency, and tenant/key distribution matching production; averages can mask hot keys.
 
@@ -66,7 +66,7 @@ Evaluation is the evidence layer that tests whether a candidate serves actual wo
 
 - `Migration rehearsal` — Repeatable test of schema/data conversion, application compatibility, downtime/replication, validation, cutover, and recovery/rollback.
 
-- `Workload-specific benchmark conclusion` — Conclusion bounded to declared hardware/service, data, query mix, concurrency, durability, cache, software versions, and metrics; it does not rank engines universally.
+- `Workload-specific benchmark conclusion` — Conclusion bounded to declared hardware/service, data, query mix, concurrency, durability, cache, software versions, and metrics; it does not rank engines universally. Standardized TPC results include disclosure material for reproducing the stated configuration; a vendor’s custom benchmark is not directly comparable unless its workload, setup, and rules match.
 
 # Cross-item comparison
 
@@ -75,37 +75,48 @@ A decision method begins from workload and invariants. Latency, throughput, reco
 # Examples
 
 ```text
-Benchmark setup: same representative data and query mix, same durability target, stated concurrency, measured p50/p95/p99 and successful throughput.
-Run warm-cache, cold-start, write-heavy, and failover/recovery cases separately.
-Report tested versions, service tiers, index costs, and uncertainty; do not generalize beyond them.
+1. Define the production transaction mix, correctness checks, durability target, data distribution, growth, and peak concurrency.
+2. Use equivalent data, workload scripts, service tiers/hardware, indexes, cache state, and measurement windows for each candidate.
+3. Warm up consistently; repeat steady-state runs. Record p50/p95/p99, useful throughput, errors/retries, CPU, memory, I/O, storage, and cost.
+4. Run cold-cache/startup, write-heavy, failover, backup/restore, and maintenance-window tests separately.
+5. Report versions, configuration, sample counts, variability, and unsupported or excluded features. State exactly which deployment decision the evidence supports.
 ```
+
+Do not treat a built-in benchmark as automatically representative. For example, PostgreSQL’s default pgbench workload is described as TPC-B-inspired but not TPC-B; pgbench supports custom scripts for other transaction mixes. Standardized TPC results have disclosure requirements intended to let readers inspect and reproduce the reported configuration.
 
 These are decision sketches, not benchmark results or guarantees. Check the target engine/service documentation and test under the workload that matters.
 
 # Common mistakes
 
-- Inferring constraints or null behavior from one engine’s SQL syntax.
-- Embedding unbounded child data or duplicating facts without a consistency owner.
-- Comparing “synchronous” settings without knowing which acknowledgement is required.
-- Calling a compatibility service the original engine.
-- Counting a read replica as an independent backup.
-- Comparing only average latency or one warmed-up query.
-- Ignoring upgrade cadence, extensions, keys, restore time, and provider feature gaps.
+- Choosing from a product popularity list before writing down invariants and query shapes.
+- Using average latency alone and hiding a high p95/p99 tail or failures.
+- Comparing one warm-cache run with another candidate’s cold-start run.
+- Running with tiny or uniform data that omits production skew, hot keys, tenant sizes, and history.
+- Measuring requests submitted instead of successful correct transactions.
+- Comparing engines with different durability, indexes, versions, hardware, service tiers, or concurrency and attributing the result only to the database.
+- Treating a synthetic benchmark or vendor benchmark as a universal engine ranking.
+- Ignoring index writes, backups, replicas, egress, licenses, engineering effort, and restore/failover costs in TCO.
+- Accepting a successful migration rehearsal without validating data, application behavior, cutover, and rollback/recovery.
 
 # Knowledge checks with answers
 
 1. Why measure p99? **To expose tail behavior hidden by means.**
 2. What makes a benchmark representative? **Realistic queries, data distribution, concurrency, durability, and cache conditions.**
 3. What limits the conclusion? **The tested versions, service setup, and workload.**
+4. Why should warm-cache and cold-cache results be separate? **They measure different storage/cache states and answer different user-impact questions.**
+5. What should accompany p99? **Sample count, measurement window, workload, success/error handling, and the tested environment.**
+6. What should happen to timeouts and failed transactions in throughput? **Report them explicitly; only successful correct operations count as useful throughput.**
+7. Why inspect a TPC full-disclosure report? **It exposes configuration and implementation details needed to interpret and reproduce the reported result.**
 
 # Sources
 
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/)
+- [Official documentation](https://www.postgresql.org/docs/19/)
+- [Official documentation](https://www.postgresql.org/docs/19/pgbench.html)
 - [Official documentation](https://www.postgresql.org/support/versioning/)
-- [Official documentation](https://www.postgresql.org/docs/18/release-18-7.html)
-- [Official documentation](https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442/)
+- [Official documentation](https://www.postgresql.org/docs/19/release-19.html)
+- [Official documentation](https://www.postgresql.org/about/news/postgresql-19-released-3449/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/relnotes/mysql/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html)
@@ -129,8 +140,9 @@ These are decision sketches, not benchmark results or guarantees. Check the targ
 - [Official documentation](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql)
 - [Official documentation](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview?view=azuresql)
 - [Official documentation](https://www.mongodb.com/docs/manual/data-modeling/concepts/embedding-vs-references/)
-- [Official documentation](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [Official documentation](https://www.postgresql.org/docs/19/ddl-constraints.html)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/transaction-iso.html)
+- [Official documentation](https://www.postgresql.org/docs/19/transaction-iso.html)
+- [TPC Benchmark Full Disclosure Requirements](https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-DS_v4.0.0.pdf) (standardized results must include reproducibility disclosure)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html)
