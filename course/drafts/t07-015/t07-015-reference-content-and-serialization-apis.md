@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This lesson covers DOM text and markup properties, ranges/selections, parsing/serialization APIs, and Trusted Types values. Current HTML includes the `getHTML()` serialization API with optional declarative shadow-root serialization; the standard status does not guarantee support in every target browser. See [WHATWG DOM](https://dom.spec.whatwg.org/), [WHATWG dynamic markup insertion](https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html), and [MDN DOMParser](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser).
+This lesson covers DOM text and markup properties, ranges/selections, parsing/serialization APIs, and Trusted Types values, checked against the current DOM, HTML, Selection API, and CSSOM View sources on 2026-11-19. Current HTML includes the `getHTML()` serialization API with optional declarative shadow-root serialization; the standard status does not guarantee support in every target browser. See [WHATWG DOM](https://dom.spec.whatwg.org/), [WHATWG dynamic markup insertion](https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html), [Selection API](https://w3c.github.io/selection-api/), and [CSSOM View](https://drafts.csswg.org/cssom-view/).
 
 # How this group fits the mental model
 
@@ -22,6 +22,7 @@ There are three different operations: reading/writing text, parsing HTML/XML str
 - `innerText` — Gets rendered/visually relevant text and may trigger layout; setting it performs text-oriented replacement with line-break processing. It is not identical to `textContent`.
 - `insertAdjacentHTML()` — Parses HTML relative to the element at `beforebegin`, `afterbegin`, `beforeend`, or `afterend`. It is an injection sink; use safe Sanitizer methods or a reviewed sanitizer for untrusted content.
 - `Range` — Represents a live boundary-point selection in a DOM tree; it can span nodes and is adjusted as the tree mutates.
+- `Range()` — Creates a live range initially collapsed at the associated document's start.
 - `Range.selectNode()` — Selects a node and its contents by placing range boundaries immediately before and after it.
 - `Range.selectNodeContents()` — Selects all children of a node without selecting the node itself.
 - `Range.deleteContents()` — Deletes the selected portion and collapses the range according to the algorithm.
@@ -29,12 +30,38 @@ There are three different operations: reading/writing text, parsing HTML/XML str
 - `Range.cloneContents()` — Returns a cloned DocumentFragment of selected content without removing it.
 - `Range.insertNode()` — Inserts a node at the range start, splitting a Text node when needed.
 - `Range.surroundContents()` — Wraps selected content in a node, but throws if the range partially contains a non-Text node; it is not a general rich-text wrapping shortcut.
+- `Range.startContainer`, `Range.startOffset`, `Range.endContainer`, `Range.endOffset`, and `Range.collapsed` — Read-only boundary-point state inherited from AbstractRange; offsets count character-data units for text-like nodes and child positions for container nodes.
+- `Range.setStart()`, `Range.setEnd()`, `Range.setStartBefore()`, `Range.setStartAfter()`, `Range.setEndBefore()`, and `Range.setEndAfter()` — Set range boundary points; setting an endpoint before the current start or after the current end can collapse the range according to the live-range rules.
+- `Range.commonAncestorContainer` — Nearest node that contains both boundary-point containers.
+- `Range.START_TO_START`, `Range.START_TO_END`, `Range.END_TO_END`, and `Range.END_TO_START` — Numeric constants accepted by `compareBoundaryPoints()` to select which endpoints are compared.
+- `Range.compareBoundaryPoints()` — Compares boundary points using one of the constants; the numeric result indicates ordering.
+- `Range.cloneRange()` — Creates a distinct live Range with the same boundary points; later mutation adjusts both independently.
+- `Range.detach()` — Historical no-op retained for compatibility; ranges do not need explicit detachment in current DOM.
+- `Range.isPointInRange()`, `Range.comparePoint()`, and `Range.intersectsNode()` — Test a boundary point or node against the range; invalid roots/offsets have defined false/exception behavior.
+- `Range.createContextualFragment()` — Parses input as HTML/XML in the range's context and returns a DocumentFragment. It is an injection sink, not a sanitizer; use Trusted Types and sanitization where untrusted input is possible.
+- `Range.getClientRects()` and `Range.getBoundingClientRect()` — CSSOM View geometry snapshots for selected fragments and their union; detached ranges can return an empty list/zero rectangle.
+- `Range.toString()` — Stringifies the range's contained text; it does not serialize markup.
+- `StaticRange` and `StaticRangeInit.startContainer`, `StaticRangeInit.startOffset`, `StaticRangeInit.endContainer`, and `StaticRangeInit.endOffset` — Constructor-created boundary snapshot that does not adjust when the tree mutates, unlike live Range.
+- `StaticRange()` — Constructs a static boundary range from a `StaticRangeInit` dictionary; endpoints must be valid in one tree and offsets within the corresponding node lengths.
 - `Selection` — User/document selection state, typically exposed by `window.getSelection()`. It can contain ranges depending on platform and selection mode.
+- `Selection.anchorNode`, `Selection.anchorOffset`, `Selection.focusNode`, and `Selection.focusOffset` — Describe the selection's directed anchor/focus endpoints; null nodes or zero offsets can represent an empty/out-of-document selection.
+- `Selection.isCollapsed`, `Selection.rangeCount`, `Selection.type`, and `Selection.direction` — Report whether endpoints coincide, the exposed range count, `None`/`Caret`/`Range`, and selection direction (`none`/`forward`/`backward`). Browser selection behavior still has platform-specific edges.
 - `Selection.getRangeAt()` — Returns a selected Range at an index; indexes can be invalid and shadow-boundary behavior may require newer selection APIs.
-- `Selection.addRange()` — Adds a range subject to browser selection model behavior; some engines maintain one range.
+- `Selection.addRange()` — Associates a range with the document selection; the current Selection API model has at most one associated range, so adding a second does not create a portable multi-range selection.
+- `Selection.removeRange()` — Removes a specific range; throws if it is not the associated range.
 - `Selection.removeAllRanges()` — Clears the selection and usually fires `selectionchange`.
+- `Selection.empty()` — Legacy alias of `removeAllRanges()`.
 - `Selection.collapse()` — Collapses selection to a caret at a node/offset, or clears it when node is null.
+- `Selection.setPosition()` — Legacy alias of `collapse()`.
+- `Selection.collapseToStart()` and `Selection.collapseToEnd()` — Collapse to the corresponding endpoint; an empty selection can throw.
+- `Selection.extend()` — Moves the focus endpoint while retaining the anchor, changing the selected extent.
+- `Selection.setBaseAndExtent()` — Sets anchor/focus endpoints directly and preserves direction.
 - `Selection.selectAllChildren()` — Selects all contents of the given node.
+- `Selection.deleteFromDocument()` — Deletes selected contents when the selection is valid in the document tree.
+- `Selection.containsNode()` — Tests full or optional partial inclusion of a node in the current selection.
+- `Selection.getComposedRanges()` and `GetComposedRangesOptions.shadowRoots` — Produces StaticRange snapshots adjusted across shadow boundaries, with explicitly supplied roots controlling which shadow-tree boundaries remain exposed.
+- `Selection.modify()` — Text-command selection movement/extension API in the Selection API specification; granularity and browser support vary, so avoid depending on inconsistent commands for critical editing behavior.
+- `Selection.toString()` — Stringifies selected rendered text; it is not an HTML serializer.
 - `DOMParser.parseFromString()` — Parses a string as HTML or XML MIME type into a separate Document. HTML parsing yields a largely inert document for script execution, but event handlers/resources or nodes later inserted into an active document still require security care; XML parse errors yield parser-error documents.
 - `XMLSerializer.serializeToString()` — Serializes a node tree to XML text. It does not guarantee the output is a safe HTML fragment or preserve all runtime state.
 - `TrustedHTML` — Trusted Types wrapper for HTML strings accepted by protected HTML sinks under Trusted Types enforcement. It records passage through an application policy; it does not mean the content is inherently safe or that policy logic is correct.
