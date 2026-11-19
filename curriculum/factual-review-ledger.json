@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1174,
-    "pending": 1175,
-    "claimsChecked": 50487,
-    "claimsCorrected": 2685,
+    "reviewed": 1175,
+    "pending": 1174,
+    "claimsChecked": 50561,
+    "claimsCorrected": 2691,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -104606,13 +104606,36 @@
       "topicId": "t03-001",
       "phase": "reference",
       "draft": "course/drafts/t03-001/t03-001-reference-availability-operations-and-service-models.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 74,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Checked 74 claim units across self-managed/managed responsibility boundaries, Azure SQL/RDS/DocumentDB/Atlas service descriptions, scaling and failover terminology, backup/PITR, restore validation, upgrade tracks, data residency, RPO/RTO, and client connection pools. Updated the stale PostgreSQL snapshot references to PostgreSQL 19 documentation. Corrected the oversimplified minor-version definition: release tracks differ, including MySQL Innovation releases that carry new functionality. Tightened failover/restore language to distinguish automation from actual interruption, acknowledged-write safety, retention windows, and measured recovery outcomes.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+            "https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql",
+            "https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview?view=azuresql",
+            "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html",
+            "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html",
+            "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html",
+            "https://docs.aws.amazon.com/documentdb/latest/developerguide/what-is.html",
+            "https://www.mongodb.com/docs/atlas/",
+            "https://www.mongodb.com/docs/manual/sharding/",
+            "https://www.postgresql.org/docs/19/",
+            "https://www.postgresql.org/docs/19/release-19.html",
+            "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
+            "https://www.postgresql.org/docs/19/ddl-constraints.html",
+            "https://www.postgresql.org/docs/19/transaction-iso.html",
+            "https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html",
+            "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html"
+          ],
+          "verdict": "verified and operationally clarified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17",
@@ -104647,9 +104670,14 @@
         "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
         "https://www.postgresql.org/docs/18/transaction-iso.html",
-        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html"
+        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html",
+        "https://www.postgresql.org/docs/19/",
+        "https://www.postgresql.org/docs/19/release-19.html",
+        "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
+        "https://www.postgresql.org/docs/19/ddl-constraints.html",
+        "https://www.postgresql.org/docs/19/transaction-iso.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual operational-reference audit across engine, managed-service, failure/recovery, and responsibility boundaries."
     },
     {
       "taskId": "t03-001-reference-selection-and-evaluation-method",

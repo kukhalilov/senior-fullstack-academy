@@ -2,7 +2,7 @@
 
 # Scope and version
 
-Engine facts and release channels are pinned to the source snapshot checked 2026-11-16. Managed-service version/feature availability varies by provider and offering; verify the exact target. The list below contains only the supplied names.
+Engine facts and release channels are pinned to the source snapshot checked 2026-11-20. Managed-service version/feature availability varies by provider, region, edition, and offering; verify the exact target. The list below contains only the supplied names.
 
 # How this group fits the mental model
 
@@ -36,7 +36,7 @@ Deployment product and topology determine who operates which component and what 
 
 - `High availability replica` — Replica/topology intended to continue service after a failure, with failover and data-loss behavior determined by commit mode, quorum, and configuration.
 
-- `Automatic failover` — Automated promotion/routing after qualifying health events. Eligibility, detection, connection recovery, and data loss vary by topology and service.
+- `Automatic failover` — Automated promotion/routing after qualifying health events. Detection time, eligible replica, acknowledged-write safety, DNS/proxy changes, client reconnection, and recovery of in-flight transactions determine actual RTO/RPO; “automatic” does not mean zero interruption or zero data loss.
 
 - `Sharding` — Distributes records across partitions/nodes using a shard key. It adds routing, balancing, cross-shard transaction/query, and operational complexity.
 
@@ -46,17 +46,17 @@ Deployment product and topology determine who operates which component and what 
 
 - `Hash partitioning` — Distributes by hash of key to spread values, often balancing load but complicating range locality and rebalancing.
 
-- `Backup and point-in-time recovery` — Creates retained recoverable copies and, when logs/journals and service capabilities support it, selects a point in time. Retention, keys, and tested restore paths matter.
+- `Backup and point-in-time recovery` — Retains recoverable copies and, when continuous logs/journals and service capabilities support it, restores to a selected time within the retention window. Backups protect against logical deletion/corruption that can replicate to a standby; retention, encryption keys, region scope, and tested restore paths matter.
 
 - `Logical backup` — Exports logical schema/data statements or records, generally portable across some environments but slower/larger and subject to version/extension compatibility.
 
 - `Physical backup` — Copies engine storage/data files or storage-level representation for efficient restore to compatible engine/platform conditions; less portable than logical export.
 
-- `Restore validation` — Performs real restores to a representative target, checks integrity/application behavior, and measures duration/data loss. A green backup job is insufficient evidence.
+- `Restore validation` — Performs real restores to a representative target, checks database integrity and application behavior, and records elapsed restore/reconnection time and the gap from the intended recovery point. A green backup job is insufficient evidence.
 
 - `Major-version upgrade` — Moves to a new major engine line with potentially changed syntax, behavior, storage formats, and upgrade path; test application compatibility and rollback options.
 
-- `Minor-version update` — Patch/update within a supported release line, usually focused on fixes but still requiring compatibility and maintenance planning.
+- `Minor-version update` — Update within a major release line; its contents depend on the vendor’s release policy. PostgreSQL minor releases are generally maintenance/security updates, while MySQL Innovation releases use changing minor numbers to deliver new functionality. Never infer risk or feature scope from the word “minor” alone; check the release channel and notes.
 
 - `Extension compatibility` — Checks engine extensions/plugins and their versions against the target server/service version and deployment model.
 
@@ -90,13 +90,16 @@ These are decision sketches, not benchmark results or guarantees. Check the targ
 
 # Common mistakes
 
-- Inferring constraints or null behavior from one engine’s SQL syntax.
-- Embedding unbounded child data or duplicating facts without a consistency owner.
-- Comparing “synchronous” settings without knowing which acknowledgement is required.
-- Calling a compatibility service the original engine.
-- Counting a read replica as an independent backup.
-- Comparing only average latency or one warmed-up query.
-- Ignoring upgrade cadence, extensions, keys, restore time, and provider feature gaps.
+- Assuming a managed service means the provider owns every recovery, access, configuration, and incident-response task.
+- Treating automatic failover as proof of zero downtime or zero acknowledged-write loss.
+- Treating a read replica or HA replica as an independent backup; deletes and corruption can propagate.
+- Calling engine partitioning and cross-node sharding the same scaling mechanism.
+- Assuming point-in-time recovery works outside the configured backup/log retention window.
+- Assuming a provider’s region label alone proves that backups, logs, support access, and replicas meet a residency requirement.
+- Assuming every “minor” release contains only fixes; release-channel policies differ.
+- Declaring RPO/RTO satisfied from a design diagram instead of a timed restore/failover rehearsal.
+- Ignoring connection-pool limits when diagnosing request latency or database connection failures.
+- Ignoring version, extension, key, region, service-tier, and feature limitations when planning upgrades or migration.
 
 # Knowledge checks with answers
 
@@ -108,10 +111,10 @@ These are decision sketches, not benchmark results or guarantees. Check the targ
 
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/)
+- [Official documentation](https://www.postgresql.org/docs/19/)
+- [Official documentation](https://www.postgresql.org/docs/19/release-19.html)
 - [Official documentation](https://www.postgresql.org/support/versioning/)
-- [Official documentation](https://www.postgresql.org/docs/18/release-18-7.html)
-- [Official documentation](https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442/)
+- [Official documentation](https://www.postgresql.org/about/news/postgresql-19-released-3449/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/relnotes/mysql/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html)
@@ -135,8 +138,8 @@ These are decision sketches, not benchmark results or guarantees. Check the targ
 - [Official documentation](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql)
 - [Official documentation](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview?view=azuresql)
 - [Official documentation](https://www.mongodb.com/docs/manual/data-modeling/concepts/embedding-vs-references/)
-- [Official documentation](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [Official documentation](https://www.postgresql.org/docs/19/ddl-constraints.html)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/transaction-iso.html)
+- [Official documentation](https://www.postgresql.org/docs/19/transaction-iso.html)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html)
