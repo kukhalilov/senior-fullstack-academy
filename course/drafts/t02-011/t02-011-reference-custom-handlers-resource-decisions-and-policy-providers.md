@@ -40,8 +40,10 @@ A requirement names a rule; one or more handlers evaluate it using the principal
 |---|---|
 | `IAuthorizationService` | High-level service for evaluating a principal against a named policy or supplied requirement(s), optionally with a resource. |
 | `IAuthorizationService.AuthorizeAsync(ClaimsPrincipal,Object,String)` | Evaluates a named policy for a principal and resource. Use after loading the actual resource when the decision depends on ownership/state. |
-| `IAuthorizationService.AuthorizeAsync(ClaimsPrincipal,Object,AuthorizationPolicy)` | Evaluates a concrete policy against a principal and resource. |
-| `IAuthorizationService.AuthorizeAsync(ClaimsPrincipal,Object,IAuthorizationRequirement)` | Evaluates a specific requirement against the principal/resource without requiring a registered named policy. |
+| `AuthorizationServiceExtensions.AuthorizeAsync(IAuthorizationService,ClaimsPrincipal,Object,AuthorizationPolicy)` | Extension method that evaluates a concrete policy against a principal and resource. |
+| `AuthorizationServiceExtensions.AuthorizeAsync(IAuthorizationService,ClaimsPrincipal,Object,IAuthorizationRequirement)` | Extension method that evaluates one requirement against the principal/resource without requiring a registered named policy. |
+| `AuthorizationServiceExtensions.AuthorizeAsync(IAuthorizationService,ClaimsPrincipal,AuthorizationPolicy)` | Extension method that evaluates a concrete policy without a separate resource argument; use the resource-taking overload when the rule depends on a loaded object. |
+| `AuthorizationServiceExtensions.AuthorizeAsync(IAuthorizationService,ClaimsPrincipal,String)` | Extension method that evaluates a named policy without a separate resource argument. |
 | `AuthorizationService` | Framework implementation that resolves the policy, creates context, invokes handlers, and evaluates the result. |
 | `IAuthorizationHandlerContextFactory` | Abstraction that creates an evaluation context for the user, resource, and requirements. |
 | `OperationAuthorizationRequirement` | Reusable requirement representation for a named operation such as read, update, or delete. The handler determines what each operation means for the supplied resource. |
@@ -71,8 +73,8 @@ A requirement names a rule; one or more handlers evaluate it using the principal
 | `AuthorizationResult` | Final outcome from authorization service: success or failure, optionally with diagnostic details. |
 | `AuthorizationResult.Succeeded` | Indicates that all requirements were met and authorization succeeded. |
 | `AuthorizationResult.Failure` | Failure object describing the failed evaluation when authorization is unsuccessful. |
-| `AuthorizationResult.FailureReasons` | Structured reasons attached by handlers for diagnostics. Do not expose internal reasoning or sensitive fields indiscriminately. |
-| `AuthorizationResult.FailedRequirements` | Requirements that were not satisfied or were part of a failed evaluation, useful for tests and safe diagnostics. |
+| `AuthorizationFailure.FailureReasons` | Structured reasons attached by handlers to the failure object. Do not expose internal reasoning or sensitive fields indiscriminately. |
+| `AuthorizationFailure.FailedRequirements` | Requirements that were not satisfied, exposed through `AuthorizationResult.Failure`. Useful for tests and safe diagnostics. [AuthorizationResult API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0) [AuthorizationFailure API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0) |
 | `AuthorizationFilterContext` | MVC filter context used by authorization filters, exposing the current HTTP context and MVC action context. |
 | `IAsyncAuthorizationFilter` | MVC filter contract for asynchronous authorization filter logic. Prefer policy/handler mechanisms where possible so authorization remains reusable and testable. |
 | `IAuthorizationFilter` | MVC filter contract for synchronous authorization filter logic. Avoid blocking I/O or duplicating resource authorization rules here. |

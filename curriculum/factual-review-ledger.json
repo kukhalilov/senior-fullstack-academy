@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1426,
-    "pending": 923,
-    "claimsChecked": 72848,
-    "claimsCorrected": 3176,
+    "reviewed": 1434,
+    "pending": 915,
+    "claimsChecked": 73537,
+    "claimsCorrected": 3182,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -126142,13 +126142,40 @@
       "topicId": "t02-011",
       "phase": "overview",
       "draft": "course/drafts/t02-011/t02-011-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 56,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked each externally verifiable prose/claim unit (excluding code-only fragments) against official ASP.NET Core 11 security guidance and API references; checked every assigned manifest item, policy-selection case, example, exercise, answer, and scope boundary.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/claims",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
@@ -126157,22 +126184,59 @@
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit complete. Corrected AuthenticateResult.None to its Boolean property meaning; moved failure-detail properties to AuthorizationFailure via AuthorizationResult.Failure; identified policy and single-requirement AuthorizeAsync forms as AuthorizationServiceExtensions methods; replaced an unsupported ClaimsTransformation implementation description with NoopClaimsTransformation and AuthenticationService.Transform; and documented WebApplication automatic middleware insertion. No unresolved factual or scope gaps remain; lesson remains a draft."
     },
     {
       "taskId": "t02-011-concepts",
       "topicId": "t02-011",
       "phase": "concepts",
       "draft": "course/drafts/t02-011/t02-011-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 76,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked each externally verifiable prose/claim unit (excluding code-only fragments) against official ASP.NET Core 11 security guidance and API references; checked every assigned manifest item, policy-selection case, example, exercise, answer, and scope boundary.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/claims",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
@@ -126181,22 +126245,59 @@
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit complete. Corrected AuthenticateResult.None to its Boolean property meaning; moved failure-detail properties to AuthorizationFailure via AuthorizationResult.Failure; identified policy and single-requirement AuthorizeAsync forms as AuthorizationServiceExtensions methods; replaced an unsupported ClaimsTransformation implementation description with NoopClaimsTransformation and AuthenticationService.Transform; and documented WebApplication automatic middleware insertion. No unresolved factual or scope gaps remain; lesson remains a draft."
     },
     {
       "taskId": "t02-011-reference-authentication-principal-scheme-and-request-flow",
       "topicId": "t02-011",
       "phase": "reference",
       "draft": "course/drafts/t02-011/t02-011-reference-authentication-principal-scheme-and-request-flow.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 96,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually checked each externally verifiable prose/claim unit (excluding code-only fragments) against official ASP.NET Core 11 security guidance and API references; checked every assigned manifest item, policy-selection case, example, exercise, answer, and scope boundary.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/claims",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
@@ -126205,22 +126306,59 @@
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit complete. Corrected AuthenticateResult.None to its Boolean property meaning; moved failure-detail properties to AuthorizationFailure via AuthorizationResult.Failure; identified policy and single-requirement AuthorizeAsync forms as AuthorizationServiceExtensions methods; replaced an unsupported ClaimsTransformation implementation description with NoopClaimsTransformation and AuthenticationService.Transform; and documented WebApplication automatic middleware insertion. No unresolved factual or scope gaps remain; lesson remains a draft."
     },
     {
       "taskId": "t02-011-reference-authorization-metadata-policies-and-application",
       "topicId": "t02-011",
       "phase": "reference",
       "draft": "course/drafts/t02-011/t02-011-reference-authorization-metadata-policies-and-application.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 86,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked each externally verifiable prose/claim unit (excluding code-only fragments) against official ASP.NET Core 11 security guidance and API references; checked every assigned manifest item, policy-selection case, example, exercise, answer, and scope boundary.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/claims",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
@@ -126229,22 +126367,59 @@
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit complete. Corrected AuthenticateResult.None to its Boolean property meaning; moved failure-detail properties to AuthorizationFailure via AuthorizationResult.Failure; identified policy and single-requirement AuthorizeAsync forms as AuthorizationServiceExtensions methods; replaced an unsupported ClaimsTransformation implementation description with NoopClaimsTransformation and AuthenticationService.Transform; and documented WebApplication automatic middleware insertion. No unresolved factual or scope gaps remain; lesson remains a draft."
     },
     {
       "taskId": "t02-011-reference-claims-roles-requirements-and-built-in-policies",
       "topicId": "t02-011",
       "phase": "reference",
       "draft": "course/drafts/t02-011/t02-011-reference-claims-roles-requirements-and-built-in-policies.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Manually checked each externally verifiable prose/claim unit (excluding code-only fragments) against official ASP.NET Core 11 security guidance and API references; checked every assigned manifest item, policy-selection case, example, exercise, answer, and scope boundary.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/claims",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
@@ -126253,22 +126428,59 @@
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit complete. Corrected AuthenticateResult.None to its Boolean property meaning; moved failure-detail properties to AuthorizationFailure via AuthorizationResult.Failure; identified policy and single-requirement AuthorizeAsync forms as AuthorizationServiceExtensions methods; replaced an unsupported ClaimsTransformation implementation description with NoopClaimsTransformation and AuthenticationService.Transform; and documented WebApplication automatic middleware insertion. No unresolved factual or scope gaps remain; lesson remains a draft."
     },
     {
       "taskId": "t02-011-reference-custom-handlers-resource-decisions-and-policy-providers",
       "topicId": "t02-011",
       "phase": "reference",
       "draft": "course/drafts/t02-011/t02-011-reference-custom-handlers-resource-decisions-and-policy-providers.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 95,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Manually checked each externally verifiable prose/claim unit (excluding code-only fragments) against official ASP.NET Core 11 security guidance and API references; checked every assigned manifest item, policy-selection case, example, exercise, answer, and scope boundary.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/claims",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
@@ -126277,22 +126489,59 @@
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit complete. Corrected AuthenticateResult.None to its Boolean property meaning; moved failure-detail properties to AuthorizationFailure via AuthorizationResult.Failure; identified policy and single-requirement AuthorizeAsync forms as AuthorizationServiceExtensions methods; replaced an unsupported ClaimsTransformation implementation description with NoopClaimsTransformation and AuthenticationService.Transform; and documented WebApplication automatic middleware insertion. No unresolved factual or scope gaps remain; lesson remains a draft."
     },
     {
       "taskId": "t02-011-practice",
       "topicId": "t02-011",
       "phase": "practice",
       "draft": "course/drafts/t02-011/t02-011-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 108,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked each externally verifiable prose/claim unit (excluding code-only fragments) against official ASP.NET Core 11 security guidance and API references; checked every assigned manifest item, policy-selection case, example, exercise, answer, and scope boundary.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/claims",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
@@ -126301,22 +126550,59 @@
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit complete. Corrected AuthenticateResult.None to its Boolean property meaning; moved failure-detail properties to AuthorizationFailure via AuthorizationResult.Failure; identified policy and single-requirement AuthorizeAsync forms as AuthorizationServiceExtensions methods; replaced an unsupported ClaimsTransformation implementation description with NoopClaimsTransformation and AuthenticationService.Transform; and documented WebApplication automatic middleware insertion. No unresolved factual or scope gaps remain; lesson remains a draft."
     },
     {
       "taskId": "t02-011-interview",
       "topicId": "t02-011",
       "phase": "interview",
       "draft": "course/drafts/t02-011/t02-011-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 90,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Manually checked each externally verifiable prose/claim unit (excluding code-only fragments) against official ASP.NET Core 11 security guidance and API references; checked every assigned manifest item, policy-selection case, example, exercise, answer, and scope boundary.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/claims",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
@@ -126325,9 +126611,19 @@
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit complete. Corrected AuthenticateResult.None to its Boolean property meaning; moved failure-detail properties to AuthorizationFailure via AuthorizationResult.Failure; identified policy and single-requirement AuthorizeAsync forms as AuthorizationServiceExtensions methods; replaced an unsupported ClaimsTransformation implementation description with NoopClaimsTransformation and AuthenticationService.Transform; and documented WebApplication automatic middleware insertion. No unresolved factual or scope gaps remain; lesson remains a draft."
     },
     {
       "taskId": "t02-012-overview",
@@ -213634,6 +213930,16 @@
       "findings": [
         "Audited all 8 lessons against the four expanded inventories and current ASP.NET Core 11 API documentation, official upload guidance, .NET 10/11 release notes, and System.IO.Pipelines documentation. Reviewed request/context lifetimes, all enumerated IHeaderDictionary members, typed request/response headers, the separate HeaderParsing package and registration/parser/cache APIs, body and JSON overloads, buffering thresholds and limits, FormOptions defaults, multipart/model-binding behavior, response commitment/callbacks, cookies, trailers, file results, streaming and backpressure, examples, exercises, and interview answers.",
         "Corrected a misleading header parsing description: GetHeaderParsing resolves registered package functionality and requires Microsoft.AspNetCore.HeaderParsing plus AddHeaderParsing/registry setup. Removed nonexistent FileBufferingReadStream.TempFileDirectory and documented TempFileName plus ASPNETCORE_TEMP/current-user temp behavior. Removed nonexistent ResponseCookiesOptions and CookieOptions.Partitioned/SecurePolicy inventory entries; documented CookieBuilder.SecurePolicy and CookieOptions.Secure correctly. Added missing strongly typed header APIs, trailer helpers, HasJsonContentType, buffering overloads, ReadFormAsync cancellation, and FormOptions defaults.",
+        "All assigned inventory terms are present and validated; no unresolved factual or scope gaps remain. Lessons remain drafts."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "ASP.NET Core authentication schemes, principals, claims, roles, authorization policies, handlers, and resource checks (t02-011)",
+      "status": "full claim and frozen-inventory audit complete for all 8 lessons",
+      "findings": [
+        "Audited all 8 lessons against the four frozen inventories and current ASP.NET Core 11 authentication, authorization, claims, role, resource-authorization, middleware, and API documentation. Checked scheme defaults and selection, Authenticate/Challenge/Forbid distinctions, principal/claim trust and freshness, policy combination/default/fallback/anonymous metadata, handler success/pending/failure semantics, resource loading and authorization ordering, dynamic provider behavior, middleware placement, every example, exercise, and answer.",
+        "Corrected API inaccuracies: AuthenticateResult.None is a Boolean property while NoResult() is its factory; failure reasons and failed requirements belong to AuthorizationFailure exposed by AuthorizationResult.Failure; policy and single-requirement AuthorizeAsync calls are AuthorizationServiceExtensions methods; and the framework no-op claims transformation is NoopClaimsTransformation, with AuthenticationService.Transform exposing the configured transform. Added WebApplication automatic authentication/authorization middleware insertion and current API names.",
         "All assigned inventory terms are present and validated; no unresolved factual or scope gaps remain. Lessons remain drafts."
       ]
     }

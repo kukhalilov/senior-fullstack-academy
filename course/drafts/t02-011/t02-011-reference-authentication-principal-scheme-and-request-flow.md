@@ -56,6 +56,7 @@ Authentication produces the principal that authorization evaluates. Scheme defau
 | `AuthenticationService` | Framework implementation of `IAuthenticationService`; it resolves schemes and delegates operations to handlers. |
 | `AuthenticationMiddleware` | Middleware that authenticates the current request using the default authenticate scheme and assigns the resulting principal when authentication succeeds. |
 | `UseAuthentication` | Adds authentication middleware to the pipeline. It should run before authorization middleware so `HttpContext.User` is ready for policy evaluation. |
+| `WebApplication automatic authentication and authorization middleware` | `WebApplication` automatically inserts authentication and authorization after routing when the corresponding services are registered and the app hasn't added them explicitly. Add the middleware explicitly when controlling order (for example, around CORS); keep authentication before authorization. [Middleware guidance](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0) |
 
 ### Results, principals, and authentication properties
 
@@ -66,7 +67,7 @@ Authentication produces the principal that authorization evaluates. Scheme defau
 | `AuthenticateResult.Fail` | Factory for a failed result with an exception or failure description. Do not turn validation failures into successful anonymous fallback without deliberate policy. |
 | `AuthenticateResult.NoResult` | Indicates the handler found no credential/result to process. It is not the same as a credential that was presented and rejected. |
 | `AuthenticateResult.Succeeded` | Indicates the result contains a successful authentication ticket. |
-| `AuthenticateResult.None` | Sentinel result indicating no authentication result is available, used by framework flows where a handler did not produce one. |
+| `AuthenticateResult.None` | Boolean property that is true when the handler returned no authentication information. `AuthenticateResult.NoResult()` is the factory that produces that state; `None` is not itself a result object. [API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0) |
 | `AuthenticateResult.Failure` | Failure exception associated with a failed result, if present. Avoid returning raw details to external callers. |
 | `ClaimsPrincipal` | Container for one or more identities and their claims. Authorization evaluates this principal, but claims only carry trusted meaning when handler validation and mapping establish it. |
 | `ClaimsIdentity` | Collection of claims with an authentication type and claim interpretation settings. Multiple identities can be present on one principal. |

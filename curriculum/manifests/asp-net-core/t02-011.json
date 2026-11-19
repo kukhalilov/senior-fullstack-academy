@@ -53,6 +53,7 @@
         "AuthenticationService",
         "AuthenticationMiddleware",
         "UseAuthentication",
+        "WebApplication automatic authentication and authorization middleware",
         "AuthenticateResult",
         "AuthenticateResult.Success",
         "AuthenticateResult.Fail",
@@ -166,7 +167,8 @@
         "Claims transformation",
         "IClaimsTransformation",
         "IClaimsTransformation.TransformAsync",
-        "ClaimsTransformation",
+        "NoopClaimsTransformation",
+        "AuthenticationService.Transform",
         "Role-based authorization",
         "Claims-based authorization",
         "RequireRole",
@@ -215,8 +217,10 @@
         "IAuthorizationEvaluator.Evaluate",
         "IAuthorizationService",
         "IAuthorizationService.AuthorizeAsync(ClaimsPrincipal,Object,String)",
-        "IAuthorizationService.AuthorizeAsync(ClaimsPrincipal,Object,AuthorizationPolicy)",
-        "IAuthorizationService.AuthorizeAsync(ClaimsPrincipal,Object,IAuthorizationRequirement)",
+        "AuthorizationServiceExtensions.AuthorizeAsync(IAuthorizationService,ClaimsPrincipal,Object,AuthorizationPolicy)",
+        "AuthorizationServiceExtensions.AuthorizeAsync(IAuthorizationService,ClaimsPrincipal,Object,IAuthorizationRequirement)",
+        "AuthorizationServiceExtensions.AuthorizeAsync(IAuthorizationService,ClaimsPrincipal,AuthorizationPolicy)",
+        "AuthorizationServiceExtensions.AuthorizeAsync(IAuthorizationService,ClaimsPrincipal,String)",
         "AuthorizationService",
         "IAuthorizationHandlerContextFactory",
         "OperationAuthorizationRequirement",
@@ -241,8 +245,8 @@
         "AuthorizationResult",
         "AuthorizationResult.Succeeded",
         "AuthorizationResult.Failure",
-        "AuthorizationResult.FailureReasons",
-        "AuthorizationResult.FailedRequirements",
+        "AuthorizationFailure.FailureReasons",
+        "AuthorizationFailure.FailedRequirements",
         "AuthorizationFilterContext",
         "IAsyncAuthorizationFilter",
         "IAuthorizationFilter",
@@ -293,21 +297,32 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
       "items": [
         "The source-backed framework guide is versioned to ASP.NET Core 11. Keep scheme defaults, endpoint policy-combination behavior, and framework middleware semantics separate from provider-specific identity products and third-party OpenID Connect/JWT packages.",
-        "A fallback authorization policy is not automatically applied to requests served by middleware that runs before UseAuthorization; secure-by-default configuration must include the actual request pipeline and public-resource exceptions."
+        "A fallback authorization policy is not automatically applied to requests served by middleware that runs before UseAuthorization; secure-by-default configuration must include the actual request pipeline and public-resource exceptions.",
+        "WebApplication automatically inserts authentication and authorization middleware after routing when the corresponding services are registered and the app has not explicitly inserted the middleware; explicit placement is needed when order (for example, CORS) must be controlled."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
-        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core authentication, authorization, claims, roles, resource-based authorization, and API reference",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/",
       "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
@@ -316,7 +331,17 @@
       "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/roles",
       "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice",
-      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler"
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationhandler",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticateresult?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.noopclaimstransformation?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.authenticationservice.transform?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationresult?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationfailure?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirementdata?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationserviceextensions.authorizeasync?view=aspnetcore-11.0"
     ]
   },
   "scopeExclusions": [
