@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1218,
-    "pending": 1131,
-    "claimsChecked": 52312,
-    "claimsCorrected": 2753,
+    "reviewed": 1225,
+    "pending": 1124,
+    "claimsChecked": 52777,
+    "claimsCorrected": 2771,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -110186,13 +110186,39 @@
       "topicId": "t03-007",
       "phase": "overview",
       "draft": "course/drafts/t03-007/t03-007-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Audited the mental model, invariant map, migration advice, temporal/ledger version notes, and legacy deprecation boundary. Verified SQL Server 2016 temporal and SQL Server 2022 ledger/resumable-constraint claims; added the deprecated CREATE DEFAULT/CREATE RULE family and modern replacements.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/create?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-updatable-ledger-tables?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -110219,22 +110245,70 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-identity-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sequences-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-seed-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-incr-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/dbts-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the mental model, invariant map, migration advice, temporal/ledger version notes, and legacy deprecation boundary. Verified SQL Server 2016 temporal and SQL Server 2022 ledger/resumable-constraint claims; added the deprecated CREATE DEFAULT/CREATE RULE family and modern replacements."
     },
     {
       "taskId": "t03-007-concepts",
       "topicId": "t03-007",
       "phase": "concepts",
       "draft": "course/drafts/t03-007/t03-007-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Checked the core descriptions, lifecycle and concurrency examples, misconceptions, all knowledge checks, and assigned inventory groups. Added DBCC CHECKIDENT, identity/sequence/computed metadata views, @@DBTS, SELECT INTO rowversion duplication, and the legacy bound-object migration boundary.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-identity-columns-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sequences-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -110261,22 +110335,60 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-identity-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sequences-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-seed-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-incr-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/dbts-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked the core descriptions, lifecycle and concurrency examples, misconceptions, all knowledge checks, and assigned inventory groups. Added DBCC CHECKIDENT, identity/sequence/computed metadata views, @@DBTS, SELECT INTO rowversion duplication, and the legacy bound-object migration boundary."
     },
     {
       "taskId": "t03-007-reference-keys-and-constraints",
       "topicId": "t03-007",
       "phase": "reference",
       "draft": "course/drafts/t03-007/t03-007-reference-keys-and-constraints.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 74,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Reviewed all 46 assigned key/constraint items, NULL and composite-key behavior, filtered uniqueness, trust/enable state, referential actions, migration syntax, examples, and checks. Replaced the vague update-cascade caveat with the documented rowversion/timestamp-key and INSTEAD OF UPDATE trigger restrictions.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-table-constraint-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -110303,22 +110415,75 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-identity-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sequences-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-seed-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-incr-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/dbts-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all 46 assigned key/constraint items, NULL and composite-key behavior, filtered uniqueness, trust/enable state, referential actions, migration syntax, examples, and checks. Replaced the vague update-cascade caveat with the documented rowversion/timestamp-key and INSTEAD OF UPDATE trigger restrictions."
     },
     {
       "taskId": "t03-007-reference-generated-identifiers",
       "topicId": "t03-007",
       "phase": "reference",
       "draft": "course/drafts/t03-007/t03-007-reference-generated-identifiers.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 85,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Audited all 50 assigned identity/sequence/GUID/rowversion items, every reference-table explanation, sample, and check. Corrected CREATE/ALTER SEQUENCE, IDENT_SEED/IDENT_INCR, and NEWSEQUENTIALID source attribution; removed duplicated sequence allocation item from explanatory emphasis; fixed copied constraint comparison/examples/checks; added identity reseeding/catalog tools, @@DBTS, and SELECT INTO rowversion duplication.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-sequence-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-sequence-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-seed-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-incr-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -110345,22 +110510,85 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-identity-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sequences-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-seed-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-incr-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/dbts-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all 50 assigned identity/sequence/GUID/rowversion items, every reference-table explanation, sample, and check. Corrected CREATE/ALTER SEQUENCE, IDENT_SEED/IDENT_INCR, and NEWSEQUENTIALID source attribution; removed duplicated sequence allocation item from explanatory emphasis; fixed copied constraint comparison/examples/checks; added identity reseeding/catalog tools, @@DBTS, and SELECT INTO rowversion duplication."
     },
     {
       "taskId": "t03-007-reference-defaults-computed-and-temporal-columns",
       "topicId": "t03-007",
       "phase": "reference",
       "draft": "course/drafts/t03-007/t03-007-reference-defaults-computed-and-temporal-columns.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 99,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Reviewed all 56 assigned default/computed/temporal/ledger/encryption/metadata items plus examples, SET-option/index conditions, migration edge cases, and checks. Clarified scalar UDF/CLR default expressions, tightened Always Encrypted operation/key/index/constraint limitations including enclave boundaries, replaced copied constraint comparison/examples/checks, and added the legacy bound DEFAULT/RULE API families plus computed-column metadata APIs.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/indexes-on-computed-columns?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -110387,22 +110615,65 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-identity-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sequences-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-seed-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-incr-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/dbts-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all 56 assigned default/computed/temporal/ledger/encryption/metadata items plus examples, SET-option/index conditions, migration edge cases, and checks. Clarified scalar UDF/CLR default expressions, tightened Always Encrypted operation/key/index/constraint limitations including enclave boundaries, replaced copied constraint comparison/examples/checks, and added the legacy bound DEFAULT/RULE API families plus computed-column metadata APIs."
     },
     {
       "taskId": "t03-007-practice",
       "topicId": "t03-007",
       "phase": "practice",
       "draft": "course/drafts/t03-007/t03-007-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 65,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 19 exercises and complete solutions, including newly added legacy binding migration, identity reseeding collision analysis, rowversion SELECT INTO hazard, computed metadata/SET diagnosis, and existing temporal, constraint, and generated-value examples. Added regression checks for legacy bindings and reseed safety.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -110429,22 +110700,70 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-identity-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sequences-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-seed-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-incr-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/dbts-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 19 exercises and complete solutions, including newly added legacy binding migration, identity reseeding collision analysis, rowversion SELECT INTO hazard, computed metadata/SET diagnosis, and existing temporal, constraint, and generated-value examples. Added regression checks for legacy bindings and reseed safety."
     },
     {
       "taskId": "t03-007-interview",
       "topicId": "t03-007",
       "phase": "interview",
       "draft": "course/drafts/t03-007/t03-007-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 63,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 19 core interview prompts, concise and deep answers, scenarios, alternatives, and weak-answer rubric. Added accurately bounded questions on identity recovery, rowversion copy duplication, legacy bound-object migration, and computed-column metadata/index eligibility.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17",
+              "section": "Official SQL Server 2025 documentation: syntax, applicability, constraints, metadata, operation semantics and documented limitations relevant to the checked claims",
+              "verdict": "supported; corrections and omissions recorded in lesson and note"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -110471,9 +110790,26 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-default-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-rule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindefault-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindrule-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-identity-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sequences-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-seed-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/ident-incr-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/dbts-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 19 core interview prompts, concise and deep answers, scenarios, alternatives, and weak-answer rubric. Added accurately bounded questions on identity recovery, rowversion copy duplication, legacy bound-object migration, and computed-column metadata/index eligibility."
     },
     {
       "taskId": "t03-008-overview",

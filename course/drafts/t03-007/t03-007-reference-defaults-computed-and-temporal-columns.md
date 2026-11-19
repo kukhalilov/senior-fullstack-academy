@@ -34,7 +34,7 @@ The exact inventory table explains each supplied name and its correctness bounda
 | `Metadata default value` | Inspect `sys.default_constraints` joined to `sys.columns` using parent_object_id and parent_column_id. Its definition and is_system_named flag help migrations discover unnamed defaults safely. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17)) |
 | `Migration backfill versus default constraint` | A DEFAULT handles future omitted inserts; it does not generally update old rows when added to an existing column. Backfill explicitly or use WITH VALUES where supported, and plan locks/log volume. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17)) |
 | `One DEFAULT constraint per column` | A column can have only one default definition. Replacing it requires identifying and dropping the existing constraint before adding the new one. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17)) |
-| `DEFAULT expression allowed forms` | A default may be a constant or supported scalar/system function expression, such as SYSUTCDATETIME() or NEXT VALUE FOR. It is not a subquery or arbitrary cross-table lookup. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17)) |
+| `DEFAULT expression allowed forms` | A disk-based column default can use constants, NULL, scalar system/user-defined/CLR functions, and supported NEXT VALUE FOR sequence expressions; it cannot use subqueries or refer to another column/table. Natively compiled tables have a narrower supported-expression subset. Legacy CREATE DEFAULT is narrower and prohibits user-defined functions. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql?view=sql-server-ver17)) |
 | `DEFAULT expression cannot reference another column` | A default definition cannot derive its value from another column in the same row. Use a computed column for a derived value or explicitly supply related values in DML. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17)) |
 | `Adding a default to a populated table` | Adding only a default constraint affects later inserts, not existing rows. Adding a new NOT NULL column to a populated table requires a default or an empty table; operational cost depends on edition/operation and row count. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17)) |
 | `WITH VALUES backfills existing rows` | When adding a nullable column with a default, `WITH VALUES` stores the default for existing rows; without it, existing rows remain NULL. Assess whether the operation rewrites rows, holds locks, or generates substantial log. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17)) |
@@ -52,35 +52,59 @@ The exact inventory table explains each supplied name and its correctness bounda
 | `Ledger generated SEQUENCE_NUMBER START and END` | Ledger-generated BIGINT columns order row versions within the transaction; START/END values are assigned by SQL Server and cannot be treated as application sequence numbers. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-updatable-ledger-tables?view=sql-server-ver17)) |
 | `Ledger-generated columns hidden and engine-managed` | Ledger system columns may be HIDDEN so implicit projections remain compatible. They are still metadata-bearing engine-generated values and must not be inserted or maintained by the application. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-updatable-ledger-tables?view=sql-server-ver17)) |
 | `Ledger generated columns SQL Server 2022 availability` | Ledger tables and their transaction/sequence generated metadata are a SQL Server 2022 (16.x) feature. Confirm ledger support and configuration on the target platform before using this schema. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-updatable-ledger-tables?view=sql-server-ver17)) |
-| `Always Encrypted deterministic versus randomized constraint support` | Randomized encryption provides stronger ciphertext variation but blocks equality/index/constraint uses; deterministic encryption supports equality-related operations and selected keys but leaks equality patterns. Secure enclaves alter some capabilities; check exact engine/client support. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17)) |
+| `Always Encrypted deterministic versus randomized constraint support` | Without a secure enclave, randomized encryption prevents indexing and equality computation; deterministic encryption supports equality comparisons and indexing, but leaks equality patterns. Deterministic encrypted columns can participate in unique/primary-key constraints; FK use requires deterministic encryption with matching keys/algorithms on both sides. CHECK constraints and DEFAULT constraints on encrypted columns are unsupported. Enclaves add selected operations, but randomized encrypted columns still have key/constraint limitations. Verify the exact SQL Server version, enclave, driver, and key configuration. ([Always Encrypted limitations](https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17), [enclave limitations](https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17)) |
+| `Always Encrypted schema restrictions` | Always Encrypted excludes several schema features, including identity, ROWGUIDCOL, rowversion, sparse columns, computed columns, defaults, and CHECK-referenced columns; character columns also require a supported BIN2 collation. Consult the full current limitation list before schema design. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17)) |
+| `Always Encrypted secure enclave capability boundary` | Secure enclaves expand confidential queries and support some randomized-encryption indexing/operations, but do not remove every key constraint; for example randomized encrypted columns cannot be primary, unique, or referenced foreign-key columns in the documented configuration. Capabilities differ by SQL Server release and enclave setup. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17)) |
 | `Generated value OUTPUT retrieval boundary` | OUTPUT INSERTED can return identity, default, computed, and rowversion values for each changed row. It is a statement row image; transaction errors/rollback and trigger timing determine whether it represents durable final state. ([source](https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17)) |
 | `sys.default_constraints metadata` | This catalog view has one row for each table default created inline or by ALTER TABLE; definition, parent_column_id, and is_system_named support discovery. Metadata visibility follows permissions. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17)) |
+| `CREATE DEFAULT (deprecated legacy bound default)` | Creates a standalone default object; Microsoft marks it for future removal. Use a column DEFAULT constraint for new development. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17)) |
+| `DROP DEFAULT (deprecated legacy bound default)` | Removes a standalone default; unbind it first. Microsoft marks DROP DEFAULT for removal in the next SQL Server version and directs new work to column DEFAULT constraints. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-default-transact-sql?view=sql-server-ver17)) |
+| `sp_bindefault (deprecated legacy binding procedure)` | Binds a legacy standalone default to a column or alias data type. Replace the binding with a column DEFAULT constraint during a controlled schema migration. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindefault-transact-sql?view=sql-server-ver17)) |
+| `sp_unbindefault (deprecated legacy unbinding procedure)` | Removes a legacy default binding; inspect affected columns/types before unbinding because omitted inserts may then store NULL or fail for NOT NULL columns. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindefault-transact-sql?view=sql-server-ver17)) |
+| `CREATE RULE (deprecated legacy bound rule)` | Creates a standalone rule object; Microsoft marks it for future removal and recommends CHECK constraints. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17)) |
+| `DROP RULE (deprecated legacy bound rule)` | Removes a standalone rule; unbind it first. Existing data is not changed, but future writes lose the old rule enforcement. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-rule-transact-sql?view=sql-server-ver17)) |
+| `sp_bindrule (deprecated legacy binding procedure)` | Binds a legacy standalone rule to a column or alias type. Replace it with a validated CHECK constraint in new schema design. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindrule-transact-sql?view=sql-server-ver17)) |
+| `sp_unbindrule (deprecated legacy unbinding procedure)` | Removes a legacy rule binding. Inspect all affected columns/types before unbinding so validation is not silently removed. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindrule-transact-sql?view=sql-server-ver17)) |
+| `sys.computed_columns` | Catalog metadata for computed columns includes the expression definition, persisted flag, and database-collation dependency. Metadata visibility follows permissions. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17)) |
+| `COLUMNPROPERTY computed-column metadata` | COLUMNPROPERTY can inspect computed, deterministic, precise, indexable, and system-verified properties. These values help diagnose eligibility but do not replace the full index rules and required SET options. ([source](https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17)) |
 | `Default migration rollout and backfill cost` | Separate schema default deployment from historical backfill when large tables need controlled batches. A default alone is not data cleanup; choose locking, rollback, validation, and application dual-read/write order deliberately. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17)) |
 
 # Cross-item comparison
 
-PRIMARY KEY and UNIQUE both create unique enforcement, but only one primary key exists and its columns are NOT NULL. A UNIQUE constraint allows NULL but limits duplicates; filtered unique indexes express conditional uniqueness. CHECK handles row predicates, while FOREIGN KEY handles parent membership. DEFAULT handles omitted input and is independent of both.
+A DEFAULT supplies an omitted input; a computed column derives a value from the current row; temporal periods record system-managed validity; ledger columns associate row versions with transaction metadata. Choose by required behavior and account for each feature’s write, history, security, and schema costs.
 
 # Examples
 
-For an optional unique code, use a filtered unique index where the value is not NULL. For a parent relationship, define a foreign key to a unique key and consider an index on child columns. To restore trust after cleanup, use `ALTER TABLE dbo.Child WITH CHECK CHECK CONSTRAINT FK_Child_Parent` and verify catalog metadata.
+```sql
+CREATE TABLE dbo.InvoiceLine
+(
+    Quantity int NOT NULL,
+    UnitPrice decimal(12,2) NOT NULL,
+    LineTotal AS (Quantity * UnitPrice) PERSISTED,
+    CreatedAt datetime2(7) NOT NULL CONSTRAINT DF_InvoiceLine_CreatedAt DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT CK_InvoiceLine_Quantity CHECK (Quantity > 0)
+);
+CREATE INDEX IX_InvoiceLine_LineTotal ON dbo.InvoiceLine(LineTotal);
+```
+
+The computed expression is deterministic and precise for these decimal inputs; the actual schema must also satisfy result-type/index-key and connection SET-option requirements. For a legacy table, inspect bindings and rows before replacing a bound default/rule, then validate the new column DEFAULT/CHECK enforcement.
 
 # Common mistakes
 
-- Treating CHECK as a NOT NULL rule.
-- Assuming FK creates its child index.
-- Re-enabling with NOCHECK and assuming old rows were validated.
-- Using a trigger instead of a basic declarative key.
-- Choosing SET NULL/SET DEFAULT without checking child nullability/defaults.
-- Forgetting cascade-cycle/multiple-path limits.
+- Expecting a DEFAULT to replace explicit NULL or update old rows.
+- Treating a computed column as automatically persisted or indexable.
+- Ignoring SET options when DML touches an indexed computed column.
+- Assuming `ROWGUIDCOL` generates a GUID or enforces uniqueness.
+- Using SELECT * across schema changes without considering hidden generated columns or COLUMN_SET.
+- Creating new standalone bound defaults/rules instead of column DEFAULT/CHECK constraints.
 
 # Knowledge checks with answers
 
-1. **Does CHECK validate cross-table membership?** No; use FK or other transactional design.
-2. **Does WITH NOCHECK validate historic rows?** No; it creates/re-enables an untrusted constraint.
-3. **What does SET DEFAULT require?** A valid default and a resulting value that still references a parent.
-4. **Does a foreign key create an index automatically?** No.
-5. **What is the purpose of a filtered unique index?** Unique values only for rows in its filter.
+1. **Does adding a DEFAULT constraint necessarily backfill existing rows?** No; historical backfill is a separate migration operation.
+2. **What does PERSISTED change?** It stores the computed result and maintains it when inputs change, with storage/write costs.
+3. **Can a computed column be indexed automatically?** No; determinism, precision/persistence, type, and SET options apply.
+4. **What replaces a legacy bound rule?** A CHECK constraint, after existing data is validated.
+5. **Which metadata helps diagnose a computed-column index failure?** `sys.computed_columns` and `COLUMNPROPERTY`, plus the complete SET-option/type rules.
 
 # Sources
 
@@ -110,3 +134,13 @@ For an optional unique code, use a filtered unique index where the value is not 
 - https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-default-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/statements/drop-rule-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindefault-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindefault-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-bindrule-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-unbindrule-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17

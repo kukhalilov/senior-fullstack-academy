@@ -22,6 +22,10 @@ NEXT VALUE FOR assigns sequence values per row in defined statement contexts. OV
 
 rowversion is an 8-byte database-wide counter value. Every update to a row containing it changes the token, even if a column is assigned its old value. A predicate using the prior token detects stale state; it does not supply a timestamp, order all transactions by commit, or remain stable enough for a primary key ([rowversion](https://learn.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql?view=sql-server-ver17)).
 
+For operations and diagnosis, `DBCC CHECKIDENT` checks or reseeds an identity; `sys.identity_columns` and `sys.sequences` expose generator metadata; `@@DBTS` reports the database rowversion counter. These are observational/repair tools, not substitutes for constraints. `SELECT INTO` can duplicate copied rowversion values, so rowversion is not a durable unique key. For computed expressions, `sys.computed_columns` and `COLUMNPROPERTY` expose definition, persistence, determinism, precision, and indexability metadata; still check the full documented type and SET-option requirements.
+
+Older databases may contain standalone bound defaults and rules created with `CREATE DEFAULT`/`CREATE RULE` and attached by `sp_bindefault`/`sp_bindrule`. Microsoft marks these legacy families for future removal; prefer column DEFAULT constraints and CHECK constraints in new schemas. During cleanup, inspect bindings and existing data before unbinding/dropping objects so enforcement is not silently lost.
+
 # Worked examples
 
 ```sql
@@ -50,6 +54,9 @@ The filtered index permits many NULL emails but prevents duplicate supplied emai
 - SCOPE_IDENTITY and @@IDENTITY differ when triggers insert identities.
 - A rowversion is not time and changes on no-op UPDATE statements.
 - A computed expression is not automatically indexable; deterministic/precision, SET options, and persistence matter.
+- `DBCC CHECKIDENT` can create collisions if reseeded without reconciling stored keys.
+- `SELECT INTO` can create duplicate copied rowversion values.
+- Legacy bound defaults/rules are not modern equivalents of column DEFAULT/CHECK constraints; migrate bindings deliberately.
 - NOT ENFORCED constraints in Fabric are not equivalent to SQL Server enforced constraints; this course targets the SQL Server Database Engine.
 
 # Knowledge checks with answers
@@ -61,6 +68,8 @@ The filtered index permits many NULL emails but prevents duplicate supplied emai
 5. **Which identity function stays in the caller’s scope?** SCOPE_IDENTITY.
 6. **What does rowversion tell you?** Whether a row changed since a token was read, not when it changed.
 7. **When can an imprecise computed expression be indexed?** When it is deterministic and PERSISTED, subject to type and SET rules.
+8. **What should replace a legacy bound rule?** A column CHECK constraint, after confirming the rule’s bindings and validating existing rows.
+9. **Which tools inspect identity and sequence metadata?** `sys.identity_columns` and `sys.sequences`; `DBCC CHECKIDENT` checks or changes the current identity value.
 
 # Sources
 
@@ -90,3 +99,11 @@ The filtered index permits many NULL emails but prevents duplicate supplied emai
 - https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-default-constraints-transact-sql?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-identity-columns-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sequences-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-computed-columns-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/functions/columnproperty-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/functions/dbts-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/statements/create-default-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/statements/create-rule-transact-sql?view=sql-server-ver17

@@ -21,6 +21,10 @@ Design constraints and generated values that preserve invariants through NULLs, 
 13. A temporal table’s period columns use mismatched datetime2 precision. Repair the schema requirements.
 14. Name the SQL Server 2022 ledger generated column families and state who writes them.
 15. A schema uses SPARSE and COLUMN_SET to store optional properties. Explain storage tradeoff and SELECT * compatibility risk.
+16. A deployment has an old bound RULE and DEFAULT attached to alias types. Identify the legacy objects and safe modern replacements; explain why unbinding/removal must be planned.
+17. An identity reseed has caused a duplicate-key error after a data import. Which diagnostic/repair command applies, what metadata can you inspect, and what must be reconciled before reseeding?
+18. A replication/export process uses SELECT INTO to copy a rowversion column and then treats it as unique. Explain the documented hazard and redesign the destination token/key strategy.
+19. An indexed computed column deployment fails on one application connection but succeeds on another. Which catalog/function metadata and session SET requirements should be checked?
 
 # Complete solutions
 
@@ -39,6 +43,10 @@ Design constraints and generated values that preserve invariants through NULLs, 
 13. Use exactly one ROW START and ROW END datetime2 pair with matching precision, NOT NULL semantics, one PERIOD FOR SYSTEM_TIME, and a table primary key before enabling SYSTEM_VERSIONING.
 14. SQL Server 2022 adds GENERATED ALWAYS AS TRANSACTION_ID START/END and SEQUENCE_NUMBER START/END. SQL Server assigns these metadata values; applications must not supply them.
 15. SPARSE saves space for NULL-heavy columns but costs more for non-NULL retrieval/storage and has type/feature restrictions. A column set is one updatable XML view of sparse values and changes SELECT * shape; client projections should be explicit.
+16. `CREATE DEFAULT`/`CREATE RULE` and their `sp_bind*` procedures are legacy bound-object features marked for future removal. Replace defaults with column DEFAULT constraints and rules with CHECK constraints. Inventory every object binding and validate existing rows before dropping enforcement.
+17. Use `DBCC CHECKIDENT` to inspect or correct the identity counter and inspect `sys.identity_columns`; compare the proposed next allocation with actual stored keys and concurrent writers before reseeding. Retain the PRIMARY KEY/UNIQUE invariant.
+18. SQL Server documents that SELECT INTO can duplicate rowversion values when the rowversion is selected. Generate a fresh rowversion in the destination if a change token is needed, and use a separate key for identity.
+19. Inspect the expression and persistence in `sys.computed_columns`; use `COLUMNPROPERTY` for IsDeterministic, IsPrecise, IsIndexable, and IsSystemVerified, then verify result type and required SET options on every connection that modifies the table.
 
 # Worked example
 
@@ -65,6 +73,8 @@ This separates requiredness, domain, optional uniqueness, generated value, and c
 - Update a rowversion row without changing business values; the token still changes, so optimistic concurrency detects the write.
 - Add a default to a populated table without a backfill; verify historical rows remain unchanged unless the chosen ALTER TABLE operation explicitly uses WITH VALUES.
 - After enabling a constraint with validation, inspect `sys.foreign_keys` or `sys.check_constraints` for enabled and trusted state.
+- After reseeding, test the next generated value against the table key invariant; inspect identity metadata without assuming metadata alone proves no collision.
+- Check that no legacy bound rules/defaults remain attached after migrating to CHECK/DEFAULT constraints.
 
 The assigned SQL Server references are [CHECK and UNIQUE semantics](https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17), [ALTER TABLE validation](https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17), [sequence allocation](https://learn.microsoft.com/en-us/sql/t-sql/functions/next-value-for-transact-sql?view=sql-server-ver17), [rowversion](https://learn.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql?view=sql-server-ver17), and [default values](https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-default-values-for-columns?view=sql-server-ver17).
 
