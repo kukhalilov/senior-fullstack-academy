@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This reference covers Web Storage, its cross-document event, classic `History`, fragment changes, and URL utilities. Storage policy, quota, and partitioning vary by user agent and user settings. See [WHATWG HTML Web Storage](https://html.spec.whatwg.org/multipage/webstorage.html), [WHATWG navigation/history](https://html.spec.whatwg.org/multipage/nav-history-apis.html), [MDN Storage](https://developer.mozilla.org/en-US/docs/Web/API/Storage), and [MDN History](https://developer.mozilla.org/en-US/docs/Web/API/History).
+This reference covers Web Storage, its cross-document event, classic `History`, fragment changes, and URL utilities. APIs and behavior were checked against the current HTML and URL Living Standards on 2026-11-19. Storage policy, quota, and partitioning vary by user agent and user settings. See [WHATWG HTML Web Storage](https://html.spec.whatwg.org/multipage/webstorage.html), [WHATWG navigation/history](https://html.spec.whatwg.org/multipage/nav-history-apis.html), [WHATWG URL](https://url.spec.whatwg.org/), [MDN Storage](https://developer.mozilla.org/en-US/docs/Web/API/Storage), and [MDN History](https://developer.mozilla.org/en-US/docs/Web/API/History).
 
 # How this group fits the mental model
 
@@ -26,6 +26,8 @@ Web Storage is a synchronous, origin-scoped string key/value shelf. Classic Hist
 - `StorageEvent.newValue` — New string value; null when a key was removed or `clear()` occurred.
 - `StorageEvent.url` — URL of the document that performed the change.
 - `StorageEvent.storageArea` — Storage object affected (local or session storage), or null in some cases.
+- StorageEvent() constructor and `StorageEventInit` — Constructs a synthetic storage event with optional key/oldValue/newValue/url/storageArea and inherited event flags; dispatching one does not change storage.
+- `StorageEvent.initStorageEvent()` — Legacy initializer retained for compatibility; use the constructor for new code.
 - `storage event` — Cross-document notification for storage changes subject to same-origin/storage-area rules. It is not a lock or transaction protocol; simultaneous writes can race.
 - `History.length` — Number of entries in the session history list for this browsing context; it does not expose all URLs.
 - `History.state` — State associated with the current history entry, structured-cloned by history APIs. Treat it as client-visible, untrusted, and serializable data.
@@ -35,10 +37,19 @@ Web Storage is a synchronous, origin-scoped string key/value shelf. Classic Hist
 - `History.back()` — Asynchronously traverses one entry backward; the result is observed through navigation events such as `popstate`, not a return value.
 - `History.forward()` — Asynchronously traverses one entry forward.
 - `History.go()` — Traverses by a relative index; zero reloads the current page. Out-of-range requests may do nothing.
-- `popstate event` — Fires when traversal activates a same-document history entry with state; it is not fired by `pushState()`/`replaceState()` at the time they are called. Browser timing/state restoration requires care.
+- `popstate event` — Fires when history traversal activates a same-document entry; its `state` can be null, including for entries without application state. It is not fired by `pushState()`/`replaceState()` at the time they are called. Browser timing/state restoration requires care.
+- PopStateEvent() constructor, `PopStateEventInit`, `PopStateEvent.state`, and `PopStateEvent.hasUAVisualTransition` — Synthetic-event initialization fields and state snapshot for the activated entry; `hasUAVisualTransition` signals that the browser performed a visual transition before dispatch, so feature-detect it.
 - `hashchange event` — Fires when fragment navigation changes the document URL's fragment. `pushState()`/`replaceState()` do not trigger it merely because they changed a hash.
+- HashChangeEvent() constructor, `HashChangeEventInit`, `HashChangeEvent.oldURL`, and `HashChangeEvent.newURL` — Event constructor/dictionary plus previous and current URL strings for a fragment-change event.
 - `URL` — Parses/resolves URL components with standards-based normalization; use `new URL(input, base)` and validate allowed protocols/hosts for security-sensitive links.
+- URL() constructor — Parses an absolute URL or resolves a relative URL against a base; invalid input throws `TypeError`.
+- `URL.parse()` and `URL.canParse()` — Static helpers returning a parsed URL or null, and a parseability boolean; newer support can vary, so feature-detect.
+- `URL.href`, `URL.toJSON()`, `URL.origin`, `URL.protocol`, `URL.username`, `URL.password`, `URL.host`, `URL.hostname`, `URL.port`, `URL.pathname`, `URL.search`, `URL.searchParams`, and `URL.hash` — Stringifier/serialization, origin, and mutable or read-only component views. `searchParams` is live with the URL; changing it can normalize query encoding.
 - `URLSearchParams` — Encodes/decodes a query parameter list. `append()` preserves repeated keys, `set()` replaces them, `getAll()` returns all values, and automatic serialization can normalize encoding/order.
+- URLSearchParams() constructor — Builds an ordered name/value list from a query string, pair sequence, or record; string input uses form-style decoding.
+- `URLSearchParams.size` — Number of name/value pairs, including duplicate names.
+- URLSearchParams.append(), URLSearchParams.delete(), URLSearchParams.get(), URLSearchParams.getAll(), URLSearchParams.has(), URLSearchParams.set(), and URLSearchParams.sort() — Mutate or query pairs; optional value arguments for `delete`/`has` are newer and may need compatibility checks. `set()` keeps one value, while `append()` preserves duplicates.
+- URLSearchParams.entries(), URLSearchParams.keys(), URLSearchParams.values(), URLSearchParams.forEach(), URLSearchParams[Symbol.iterator], and URLSearchParams.toString() — Iterate pairs in list order or serialize using `application/x-www-form-urlencoded` rules (spaces become `+`).
 
 # Storage failure and security model
 
@@ -48,7 +59,7 @@ All stored values are client-controlled. Do not store secrets, access tokens, au
 
 # History behavior
 
-`pushState()` and `replaceState()` update the active same-document history entry and optionally its URL; they do not cause a network fetch. The URL must be same-origin. State must be structured serializable and may be persisted by the browser, so keep it small and non-sensitive. Traversals such as Back/Forward trigger `popstate` when a different same-document state entry becomes active. The event may occur before the browser finishes restoring persisted user state such as scroll/form values; apps should avoid assuming the entire page is already settled.
+`pushState()` and `replaceState()` update the active same-document history entry and optionally its URL; they do not cause a network fetch. The URL must be same-origin. State must be structured serializable and may be persisted by the browser, so keep it small and non-sensitive. Traversals such as Back/Forward trigger `popstate` when a different same-document entry becomes active, even if its state is null. The event may occur before the browser finishes restoring persisted user state such as scroll/form values; apps should avoid assuming the entire page is already settled.
 
 For new SPA routing, compare this API with the modern Navigation API lesson. Classic history remains widely used and can still be appropriate, but it has no single central event for every eligible navigation and does not expose entry identity/list in the same-origin, app-focused way.
 
@@ -108,6 +119,7 @@ Storage reads can fail under browser policy, and stored strings should be valida
 
 - [WHATWG HTML Web Storage](https://html.spec.whatwg.org/multipage/webstorage.html)
 - [WHATWG HTML session history](https://html.spec.whatwg.org/multipage/nav-history-apis.html)
+- [WHATWG URL Standard](https://url.spec.whatwg.org/)
 - [MDN Storage](https://developer.mozilla.org/en-US/docs/Web/API/Storage)
 - [MDN History](https://developer.mozilla.org/en-US/docs/Web/API/History)
 - [MDN URL](https://developer.mozilla.org/en-US/docs/Web/API/URL)
