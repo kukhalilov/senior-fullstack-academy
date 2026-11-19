@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1137,
-    "pending": 1212,
-    "claimsChecked": 47552,
-    "claimsCorrected": 2274,
+    "reviewed": 1138,
+    "pending": 1211,
+    "claimsChecked": 47690,
+    "claimsCorrected": 2288,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -90812,13 +90812,55 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-images.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 138,
+      "claimsCorrected": 14,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 138 claims across all four assigned properties: applicability and inheritance; complete value grammars; initial and computed behavior; image metadata and EXIF orientation; angle normalization, flip ordering, layout dimensions, and deprecation/optional implementation status; all scaling hints, compatibility aliases, browser-controlled algorithm behavior, and fractional pixel-art scaling; object-fit sizing algorithms, clipping, aspect-ratio consequences, replaced-element/SVG boundaries, Level 4 scale-down syntax; object-position axis interpretation, percentage alignment against free space, edge offsets, negative and over-100% placement; distinctions from background sizing/positioning, semantic alt text, examples, common errors, version context, and scope boundaries. Fourteen material omissions, overstatements, and scope errors in the generated draft were corrected.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-images-3/",
+              "section": "Editor’s Draft status; §5 image-orientation and image-rendering definitions; §4.3 sizing algorithms and §4.6 object-position",
+              "verdict": "supported; property behavior and deprecation/implementation caveats checked directly"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-images-4/",
+              "section": "Current Level 4 draft and changes since Level 3; object-fit grammar, including scale-down combinations",
+              "verdict": "supported; draft status and Level 4 delta identified explicitly"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-values-4/",
+              "section": "<position> value grammar and percentage positioning model",
+              "verdict": "supported; object-position examples follow shared position syntax"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/image-orientation",
+              "section": "Property summary and compatibility cross-check",
+              "verdict": "consistent with specification; specification is primary for optional/deprecated values"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering",
+              "section": "Keyword summary and compatibility cross-check",
+              "verdict": "consistent; no exact browser interpolation algorithm promised"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit",
+              "section": "Property summary, replaced-element examples, and compatibility cross-check",
+              "verdict": "consistent with current spec grammar distinctions"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/object-position",
+              "section": "Position value examples and compatibility cross-check",
+              "verdict": "consistent with CSS Values positioning model"
+            }
+          ],
+          "verdict": "All claims in the assigned inventory were checked against primary CSS specifications; 14 material omissions, stale statements, or overgeneralizations were corrected. No unresolved factual issues remain within the four-property scope."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -91175,9 +91217,16 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-images-3/",
+        "https://drafts.csswg.org/css-images-4/",
+        "https://drafts.csswg.org/css-values-4/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/image-orientation",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/object-position"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual property-by-property claim audit against the current CSS Images and CSS Values editor’s drafts; level, implementation status, exact property grammar, applicability, sizing/positioning math, inheritance, and cross-property boundaries checked. Draft status is not represented as browser support."
     },
     {
       "taskId": "t07-018-reference-mathml",
