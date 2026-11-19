@@ -89,11 +89,15 @@
         "Untrusted constraint",
         "WITH CHECK",
         "WITH NOCHECK",
+        "NOCHECK CONSTRAINT disable syntax",
+        "CHECK CONSTRAINT enable syntax",
+        "WITH CHECK CHECK CONSTRAINT revalidate and trust syntax",
         "Nullable column",
         "NULL marker",
         "Three-valued predicate logic",
         "IS NULL predicate",
         "IS NOT NULL predicate",
+      "IS [NOT] DISTINCT FROM predicate (SQL Server 2022+)",
         "NULL is not equal to NULL",
         "NULL versus zero",
         "NULL versus empty string",
@@ -253,6 +257,8 @@
     "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-table-constraint-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-unique-indexes?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/data-types/decimal-and-numeric-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/data-types/money-and-smallmoney-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar-transact-sql?view=sql-server-ver17",
@@ -290,14 +296,17 @@
       "items": [
         "The SQL Server 2025 (17.x) native json data type and JSON indexes are generally available in SQL Server 2025; JSON functions predate this type and can also operate on text columns. The json type stores documents in a binary format, is available under all compatibility levels, and has explicit conversion and index-key limitations.",
         "A varchar(n) declaration counts bytes, not characters. SQL Server 2019 and later UTF-8 collations allow varchar/char to represent Unicode using UTF-8, so the number of characters that fit can vary by encoded byte length.",
-        "SQL Server 2025 vector data type and vector functions are generally available. Vector indexes and VECTOR_SEARCH are preview in the SQL Server 2025 Database Engine; float16 vectors also remain preview for boxed SQL Server 2025. Do not carry Azure SQL availability status over to boxed SQL Server."
+        "SQL Server 2025 vector data type and vector functions are generally available. Vector indexes and VECTOR_SEARCH are preview in the SQL Server 2025 Database Engine; float16 vectors also remain preview for boxed SQL Server 2025. Do not carry Azure SQL availability status over to boxed SQL Server.",
+        "SQL Server 2022 (16.x) introduced IS [NOT] DISTINCT FROM for null-safe equality/inequality comparisons that always return TRUE or FALSE; ordinary = and <> comparisons involving NULL still evaluate UNKNOWN."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-functions-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-functions-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17"
       ]
     }
   ],
@@ -342,7 +351,9 @@
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
       "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
-      "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf"
+      "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf",
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17"
+      ,"https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17"
     ]
   },
   "scopeExclusions": [

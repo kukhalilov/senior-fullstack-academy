@@ -44,7 +44,13 @@ The table below is a design toolkit, not a sequence of independent vocabulary ca
 
 - `WITH CHECK` — When adding or re-enabling a constraint, WITH CHECK validates existing rows and establishes trust if successful. It may fail on legacy violations and require remediation first.
 
-- `WITH NOCHECK` — Disables validation of existing rows when adding/enabling a constraint and can leave it untrusted. It is a controlled migration escape hatch, not proof that the data is valid.
+- `WITH NOCHECK` — In `ALTER TABLE ... WITH NOCHECK ADD CONSTRAINT` (or `ALTER TABLE ... WITH NOCHECK CHECK CONSTRAINT`), SQL Server skips checking old rows and leaves an enabled constraint untrusted; future relevant writes are still checked. This is different from `ALTER TABLE ... NOCHECK CONSTRAINT`, which disables enforcement until re-enabled. `ALTER TABLE ... CHECK CONSTRAINT` enables checking future writes without proving old rows valid; `ALTER TABLE ... WITH CHECK CHECK CONSTRAINT` revalidates existing rows and restores trust if validation succeeds. [ALTER TABLE constraint validation and enablement](https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17)
+
+- NOCHECK CONSTRAINT disable syntax — `ALTER TABLE ... NOCHECK CONSTRAINT constraint_name` disables an enabled FOREIGN KEY or CHECK constraint, so future inserts and updates are not checked until it is enabled again.
+
+- CHECK CONSTRAINT enable syntax — `ALTER TABLE ... CHECK CONSTRAINT constraint_name` enables enforcement for future writes but does not validate old data or necessarily restore trust.
+
+- WITH CHECK CHECK CONSTRAINT revalidate and trust syntax — `ALTER TABLE ... WITH CHECK CHECK CONSTRAINT constraint_name` validates all existing rows while enabling the constraint; successful validation makes it trusted.
 
 - `Nullable column` — A nullable column permits a NULL marker in addition to values from its type. Decide what NULL means and how predicates, uniqueness, defaults, and application serialization treat it.
 
@@ -55,6 +61,8 @@ The table below is a design toolkit, not a sequence of independent vocabulary ca
 - `IS NULL predicate` — Tests whether an expression is the SQL NULL marker. Use it instead of `= NULL`; it yields TRUE or FALSE rather than UNKNOWN.
 
 - `IS NOT NULL predicate` — Tests whether an expression has a non-NULL value. It does not establish that the value is nonempty or valid for the domain.
+
+- `IS [NOT] DISTINCT FROM predicate (SQL Server 2022+)` — Performs null-safe comparison and always returns TRUE or FALSE: two NULLs are not distinct, while exactly one NULL makes values distinct. Use it for equality semantics that treat NULL as a comparable state; use `IS NULL` when asking only whether one expression is the NULL marker. [IS [NOT] DISTINCT FROM](https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17)
 
 - `NULL is not equal to NULL` — Under SQL Server’s ordinary comparison semantics, `NULL = NULL` evaluates UNKNOWN rather than TRUE. Use IS NULL to test the marker; set operators and grouping have their own documented treatment.
 
@@ -111,6 +119,8 @@ Consider a `Course`, a `Student`, and an `Enrollment`. A candidate key may be an
 
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17)
+- [Microsoft Learn — IS [NOT] DISTINCT FROM](https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17)
+- [Microsoft Learn — ALTER TABLE constraint validation and enablement](https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-table-constraint-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/null-and-unknown-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-unique-indexes?view=sql-server-ver17)
