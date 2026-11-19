@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1134,
-    "pending": 1215,
-    "claimsChecked": 46917,
-    "claimsCorrected": 2230,
+    "reviewed": 1135,
+    "pending": 1214,
+    "claimsChecked": 47093,
+    "claimsCorrected": 2245,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -89573,13 +89573,58 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-scalable-vector-graphics.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 176,
+      "claimsCorrected": 15,
+      "evidence": [
+        {
+          "claims": "Checked all 31 assigned names against the SVG 2 property index and property-specific sections, including value syntax, initial values, applicability, inheritance, percentage bases, computed behavior, and animation descriptions. Removed the unsupported blanket browser-baseline statements and corrected the description of text-anchor as a text-chunk anchor rather than CSS box alignment.",
+          "sources": [
+            "https://www.w3.org/TR/SVG2/propidx.html",
+            "https://www.w3.org/TR/SVG2/geometry.html",
+            "https://www.w3.org/TR/SVG2/painting.html",
+            "https://www.w3.org/TR/SVG2/paths.html"
+          ],
+          "verdict": "verified; full assigned-property inventory retained and property-specific details supplied"
+        },
+        {
+          "claims": "Verified cx/cy/r/rx/ry/x/y geometry applicability and percentages, negative-value behavior and radius auto/caps, d path string grammar and compatible-structure animation, path-length versus pathLength mapping and affected calculations, and SVG viewport/user-coordinate behavior.",
+          "sources": [
+            "https://www.w3.org/TR/SVG2/geometry.html",
+            "https://www.w3.org/TR/SVG2/paths.html",
+            "https://www.w3.org/TR/SVG2/coords.html"
+          ],
+          "verdict": "verified; negative-value, viewport, and path calibration edge cases clarified"
+        },
+        {
+          "claims": "Verified SVG paint grammar and paint-server fallback, context-fill/context-stroke contexts, fill defaults and open-subpath closure, winding-rule algorithms, fill/stroke/stop opacity isolation and clamping, gradient stop applicability, and fill/stroke defaults.",
+          "sources": [
+            "https://www.w3.org/TR/SVG2/painting.html",
+            "https://www.w3.org/TR/SVG2/propidx.html"
+          ],
+          "verdict": "verified; paint model and fallback distinctions added"
+        },
+        {
+          "claims": "Verified stroke width units and negative/zero behavior, cap/join forms, miter limit and fallback, odd dash-list repetition and invalid cases, offset and pathLength effects, marker reference grammar and vertex targeting, closed-path caveats, marker rendering order, marker shorthand, context paint, paint-order behavior, and vector-effect scope.",
+          "sources": [
+            "https://www.w3.org/TR/SVG2/painting.html",
+            "https://www.w3.org/TR/SVG2/paths.html"
+          ],
+          "verdict": "verified; stroke and marker interactions corrected and expanded"
+        },
+        {
+          "claims": "Checked rendering-hint value sets and their non-guaranteeing nature, paint-order ordering, SVG presentation-attribute relationship to the CSS cascade, and the boundary between SVG 2 properties and proposed CSS Fill and Stroke Level 3 extensions. Reviewed all examples for SVG syntax and cross-check consistency.",
+          "sources": [
+            "https://www.w3.org/TR/SVG2/painting.html",
+            "https://www.w3.org/TR/SVG2/coords.html",
+            "https://drafts.csswg.org/fill-stroke-3/"
+          ],
+          "verdict": "verified; stable SVG 2 model kept separate from draft extensions"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
