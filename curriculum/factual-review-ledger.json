@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1287,
-    "pending": 1062,
-    "claimsChecked": 59390,
-    "claimsCorrected": 2967,
+    "reviewed": 1293,
+    "pending": 1056,
+    "claimsChecked": 60040,
+    "claimsCorrected": 2979,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -117186,156 +117186,498 @@
       "topicId": "t04-003",
       "phase": "overview",
       "draft": "course/drafts/t04-003/t04-003-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 47,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 47 externally verifiable claims and exact inventory items where applicable, including API semantics, conventions, provider-sensitive behavior, examples, and EF Core 11 version scope. Reviewed relationship mental model, persisted FK vs navigation, delete behavior, ownership, complex values, and fix-up limits.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
+              "section": "Relationship FK and navigation mapping concepts",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
+              "section": "Relationship discovery convention and ambiguity resolution",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
+              "section": "Attribute semantics and precedence",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+              "section": "Navigation shape, access, initialization and proxy caveats",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "FK/navigation fix-up and tracking behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
+              "section": "Cascade delete and orphan timing/client-vs-database behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+              "section": "Owned entity identity and owner lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex type identity/value semantics and mapping",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex type capabilities (release-planning page status is stale)",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
-        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed relationship mental model, persisted FK vs navigation, delete behavior, ownership, complex values, and fix-up limits."
     },
     {
       "taskId": "t04-003-concepts",
       "topicId": "t04-003",
       "phase": "concepts",
       "draft": "course/drafts/t04-003/t04-003-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 84,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 84 externally verifiable claims and exact inventory items where applicable, including API semantics, conventions, provider-sensitive behavior, examples, and EF Core 11 version scope. Verified cardinality/discovery, alternate principal keys, requiredness, client/database cascades, orphan timing, ownership and EF11 feature claims.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
+              "section": "Relationship FK and navigation mapping concepts",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
+              "section": "Relationship discovery convention and ambiguity resolution",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
+              "section": "Attribute semantics and precedence",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+              "section": "Navigation shape, access, initialization and proxy caveats",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "FK/navigation fix-up and tracking behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
+              "section": "Cascade delete and orphan timing/client-vs-database behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+              "section": "Owned entity identity and owner lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex type identity/value semantics and mapping",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex type capabilities (release-planning page status is stale)",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
-        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Verified cardinality/discovery, alternate principal keys, requiredness, client/database cascades, orphan timing, ownership and EF11 feature claims."
     },
     {
       "taskId": "t04-003-reference-relationship-shape-and-navigation",
       "topicId": "t04-003",
       "phase": "reference",
       "draft": "course/drafts/t04-003/t04-003-reference-relationship-shape-and-navigation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 159,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 159 externally verifiable claims and exact inventory items where applicable, including API semantics, conventions, provider-sensitive behavior, examples, and EF Core 11 version scope. Checked all 28 supplied relationship-shape items, conventions, mappings, attributes, skip navigations, join entities, backing fields, and fix-up boundaries.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
+              "section": "Relationship FK and navigation mapping concepts",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
+              "section": "Relationship discovery convention and ambiguity resolution",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
+              "section": "Attribute semantics and precedence",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+              "section": "Navigation shape, access, initialization and proxy caveats",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "FK/navigation fix-up and tracking behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
+              "section": "Cascade delete and orphan timing/client-vs-database behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+              "section": "Owned entity identity and owner lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex type identity/value semantics and mapping",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex type capabilities (release-planning page status is stale)",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
-        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 28 supplied relationship-shape items, conventions, mappings, attributes, skip navigations, join entities, backing fields, and fix-up boundaries."
     },
     {
       "taskId": "t04-003-reference-requiredness-delete-and-ownership",
       "topicId": "t04-003",
       "phase": "reference",
       "draft": "course/drafts/t04-003/t04-003-reference-requiredness-delete-and-ownership.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 196,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 196 externally verifiable claims and exact inventory items where applicable, including API semantics, conventions, provider-sensitive behavior, examples, and EF Core 11 version scope. Checked all 35 assigned items including DeleteBehavior distinctions, orphan timing, ownership identity, table/JSON mapping and EF11 complex types.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
+              "section": "Relationship FK and navigation mapping concepts",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
+              "section": "Relationship discovery convention and ambiguity resolution",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
+              "section": "Attribute semantics and precedence",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+              "section": "Navigation shape, access, initialization and proxy caveats",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "FK/navigation fix-up and tracking behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
+              "section": "Cascade delete and orphan timing/client-vs-database behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+              "section": "Owned entity identity and owner lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex type identity/value semantics and mapping",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex type capabilities (release-planning page status is stale)",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
-        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 35 assigned items including DeleteBehavior distinctions, orphan timing, ownership identity, table/JSON mapping and EF11 complex types."
     },
     {
       "taskId": "t04-003-practice",
       "topicId": "t04-003",
       "phase": "practice",
       "draft": "course/drafts/t04-003/t04-003-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 87,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 87 externally verifiable claims and exact inventory items where applicable, including API semantics, conventions, provider-sensitive behavior, examples, and EF Core 11 version scope. Checked worked relationship configurations, cascade outcomes, tracking/fix-up examples and solutions.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
+              "section": "Relationship FK and navigation mapping concepts",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
+              "section": "Relationship discovery convention and ambiguity resolution",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
+              "section": "Attribute semantics and precedence",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+              "section": "Navigation shape, access, initialization and proxy caveats",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "FK/navigation fix-up and tracking behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
+              "section": "Cascade delete and orphan timing/client-vs-database behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+              "section": "Owned entity identity and owner lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex type identity/value semantics and mapping",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex type capabilities (release-planning page status is stale)",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
-        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked worked relationship configurations, cascade outcomes, tracking/fix-up examples and solutions."
     },
     {
       "taskId": "t04-003-interview",
       "topicId": "t04-003",
       "phase": "interview",
       "draft": "course/drafts/t04-003/t04-003-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 77,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 77 externally verifiable claims and exact inventory items where applicable, including API semantics, conventions, provider-sensitive behavior, examples, and EF Core 11 version scope. Checked relationship design, FK/navigation, cardinality, cascade and owned-vs-complex answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
+              "section": "Relationship FK and navigation mapping concepts",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
+              "section": "Relationship discovery convention and ambiguity resolution",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
+              "section": "Attribute semantics and precedence",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+              "section": "Navigation shape, access, initialization and proxy caveats",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "FK/navigation fix-up and tracking behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
+              "section": "Cascade delete and orphan timing/client-vs-database behavior",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+              "section": "Owned entity identity and owner lifecycle",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
+              "section": "Complex type identity/value semantics and mapping",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 complex type capabilities (release-planning page status is stale)",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet primary documentation; version status reconciled with final release artifact"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/conventions",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/mapping-attributes",
-        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
-        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
         "https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations",
+        "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://learn.microsoft.com/en-us/ef/core/saving/cascade-delete",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities",
+        "https://learn.microsoft.com/en-us/ef/core/modeling/complex-types",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked relationship design, FK/navigation, cardinality, cascade and owned-vs-complex answers."
     },
     {
       "taskId": "t04-004-overview",
