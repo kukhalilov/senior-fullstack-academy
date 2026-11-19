@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1144,
-    "pending": 1205,
-    "claimsChecked": 48297,
-    "claimsCorrected": 2362,
+    "reviewed": 1145,
+    "pending": 1204,
+    "claimsChecked": 48378,
+    "claimsCorrected": 2376,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -92275,13 +92275,50 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-paged-media.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 81,
+      "claimsCorrected": 14,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 81 factual claims for the sole inventory property page and its immediate paged-media context: grammar, initial/computed/animated values, applicability and non-inheritance; named page selection and forced page-type transitions; auto resolution and the Level 3 legacy-implementation exception; distinction from @page descriptors, margin at-rules and CSS Fragmentation; page selectors, descriptors, the 16 margin-box names, counters; print-engine support limitations; examples, caveats and scope boundaries. Fourteen substantial omissions and misleading generalizations in the original one-row reference were corrected with property semantics, interactions, a working print pattern, and standards-status distinctions.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-page-3/",
+              "section": "21 October 2026 Editor’s Draft §§3–8.1: page model, page selectors/context, page margins/counters/descriptors, and named page property",
+              "verdict": "Current work-in-progress source; grammar, applicability, auto behavior and page-type transition algorithm checked directly."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-page-3/",
+              "section": "14 September 2023 Working Draft §§3–8.1",
+              "verdict": "Published snapshot checked for status and historical comparison; correctly identified as a draft."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-break-3/",
+              "section": "Fragmentation model and break-before/after/inside properties",
+              "verdict": "Supports separation between page-type selection and break control."
+            },
+            {
+              "url": "https://www.w3.org/TR/CSS22/page.html",
+              "section": "CSS 2.2 §13: page boxes, @page, page selectors, and legacy page breaks",
+              "verdict": "Foundational model cross-check; distinguished current fragmentation properties from legacy page-break aliases."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/page",
+              "section": "Syntax, formal definition, named-page example and Baseline metadata",
+              "verdict": "Confirms page:auto | <custom-ident>, initial auto, noninheritance and reported property-level Baseline date; this was not treated as a support guarantee for all Paged Media features."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@page",
+              "section": "@page descriptors and margin at-rules overview",
+              "verdict": "Supports rule-context distinction and practical support caveat; feature support was not generalized from page property support."
+            }
+          ],
+          "verdict": "The complete page-property explanation and related-context claims are supported by the cited sources; draft status and feature-by-feature support caveats are explicit."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -92638,9 +92675,14 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-page-3/",
+        "https://www.w3.org/TR/css-page-3/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://www.w3.org/TR/CSS22/page.html",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@page"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the page property and paged-media interactions against current and published W3C specifications, CSS Fragmentation, CSS 2.2, and current MDN references. Corrected the shallow generated row and reran draft/catalog validation."
     },
     {
       "taskId": "t07-018-reference-css-ruby",
