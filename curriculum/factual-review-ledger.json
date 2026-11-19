@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1146,
-    "pending": 1203,
-    "claimsChecked": 48510,
-    "claimsCorrected": 2394,
+    "reviewed": 1147,
+    "pending": 1202,
+    "claimsChecked": 48655,
+    "claimsCorrected": 2412,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -93112,13 +93112,70 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-shapes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 145,
+      "claimsCorrected": 18,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 145 factual claims across the three supplied properties: exact grammars, defaults, applicability, inheritance, percentage references, computed values and animation; the complete current basic-shape and shape-box inventories; default margin-box reference geometry, coordinate system and percentage resolution; float-area versus layout-position and paint-clipping distinctions; image value forms, alpha extraction, strict threshold comparison, clamping, CORS fetching and invalid-image fallback; shape-margin expansion, inline-size percentages, nonnegative range and margin-box clipping; initial-letter applicability in the current draft; limitations and support/version context; examples, fallback behavior, misconceptions and scope boundaries. Eighteen material omissions, outdated breadth claims, and unsupported simplifications in the original short reference were corrected. The current 2026 Editor’s Draft was compared with the June 2025 published CRD, specifically identifying the later half-border-box and border-contour-path changes instead of presenting them as universally implemented.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-shapes-1/",
+              "section": "16 November 2026 Editor’s Draft §§2–6.3 and change log: float area model, all shape grammars, property definitions, image/CORS behavior, margin expansion and changes since June 2025",
+              "verdict": "Primary current work-in-progress source; property semantics and recent additions checked directly."
+            },
+            {
+              "url": "https://www.w3.org/TR/2025/CRD-css-shapes-1-20250612/",
+              "section": "12 June 2025 Candidate Recommendation Draft §§2–6",
+              "verdict": "Published snapshot verified as earlier than current Editor’s Draft; used to isolate subsequent draft-only changes."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-box-4/",
+              "section": "Visual-box and box-model reference terminology",
+              "verdict": "Supports content, padding, border, margin and half-border geometry vocabulary."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-borders-4/",
+              "section": "Border contour path, border-radius and corner-shape definitions",
+              "verdict": "Supports current Editor’s Draft shape-box contour construction; marked as newer draft-sensitive behavior."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-images-4/",
+              "section": "CSS image values/functions",
+              "verdict": "Supports image-value context for shape-outside beyond literal URL syntax."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-color-4/",
+              "section": "Opacity-value number/percentage type",
+              "verdict": "Supports shape-image-threshold numeric and percentage grammar."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-values-4/",
+              "section": "Length-percentage and percentage value definitions",
+              "verdict": "Supports shape-margin value type and percentage terminology."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/shape-outside",
+              "section": "Current formal shape-outside syntax, image and shape functions, box values and Baseline/partial-support note",
+              "verdict": "Cross-checks property syntax and warning that parts can have varying implementation support."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/shape-image-threshold",
+              "section": "Formal threshold syntax and alpha comparison/clamping behavior",
+              "verdict": "Confirms alpha-value number or percentage, strict greater-than extraction and clamping."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/shape-margin",
+              "section": "Length-percentage grammar, initial value, applicability, inheritance and percentage reference",
+              "verdict": "Confirms nonnegative range and containing-block percentage; current spec further defines inline-size reference."
+            }
+          ],
+          "verdict": "The complete property model agrees with current CSSWG text; the dated published snapshot and browser-support distinctions prevent draft-only details from being mistaken for universal support."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -93475,9 +93532,13 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://www.w3.org/TR/2025/CRD-css-shapes-1-20250612/",
+        "https://drafts.csswg.org/css-box-4/",
+        "https://drafts.csswg.org/css-images-4/",
+        "https://drafts.csswg.org/css-values-4/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited all three properties against current CSS Shapes, its June 2025 published CRD, CSS Box/Borders/Images/Color/Values, and current MDN property pages. Corrected major scope omissions and clearly separated float wrapping from painting, plus current draft extensions from implemented baseline behavior. Validators rerun."
     },
     {
       "taskId": "t07-018-reference-css-text-decoration",
