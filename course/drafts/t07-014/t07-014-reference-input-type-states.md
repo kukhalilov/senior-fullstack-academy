@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This is the full current `input` type-state inventory in the WHATWG HTML Living Standard last updated 2026-11-14. Picker UI and mobile keyboards vary by browser/locale, but state semantics and submission/validation rules are standardized. See [WHATWG input](https://html.spec.whatwg.org/multipage/input.html) and [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input).
+This is the full current `input` type-state inventory in the WHATWG HTML Living Standard last updated 2026-11-19. Picker UI and mobile keyboards vary by browser/locale, but state semantics and submission/validation rules are standardized. See [WHATWG input](https://html.spec.whatwg.org/multipage/input.html) and [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input).
 
 # How this group fits the mental model
 

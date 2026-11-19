@@ -6,7 +6,7 @@
 
 HTML forms provide a browser-native way to collect data, explain what each field means, validate common constraints, and submit an ordered set of values. Forms work without application JavaScript and can be progressively enhanced. Their behavior is more than a collection of inputs: the browser tracks form ownership, validity, labels, submitters, successful controls, encodings, and navigation/request rules.
 
-This topic follows the current WHATWG HTML Living Standard, last updated 2026-11-14, and current MDN validation documentation. It covers native HTML and DOM APIs. React form Actions and hooks are covered elsewhere.
+This topic follows the current WHATWG HTML Living Standard, last updated 2026-11-19, and current MDN validation documentation. It covers native HTML and DOM APIs. React form Actions and hooks are covered elsewhere.
 
 # Plain-language mental model
 

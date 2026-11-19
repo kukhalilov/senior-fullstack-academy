@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This reference follows the WHATWG HTML Living Standard last updated 2026-11-14. `<selectedcontent>` and newer button invoker attributes belong to the current standard; browser support can lag the standard, so feature-test before relying on newer presentation behavior. See [form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [forms](https://html.spec.whatwg.org/multipage/forms.html), and [form-associated custom elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-face-example).
+This reference follows the WHATWG HTML Living Standard, checked 2026-11-19. `<selectedcontent>` and newer button invoker attributes belong to the current standard; browser support can lag the standard, so feature-test before relying on newer presentation behavior. See [form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [forms](https://html.spec.whatwg.org/multipage/forms.html), and [form-associated custom elements](https://html.spec.whatwg.org/multipage/custom-elements.html#form-associated-custom-elements).
 
 # How this group fits the mental model
 
@@ -16,6 +16,7 @@ These elements create form ownership, data entry, labels, grouping, suggestions,
 - `<datalist>` — Supplies suggested options to an input through its `list` attribute. It does not restrict input to those suggestions and is not a replacement for a select when choices must be enumerated.
 - `<fieldset>` — A listed, form-associated grouping element. It groups related controls and can be disabled as a group; a disabled fieldset generally disables descendants except descendants of its first `<legend>` child. Its `name` can identify it in the form and `form.elements` collections, but the fieldset itself does not contribute an entry to the submitted form data.
 - `<form>` — Form submission owner with action, method, encoding, target, name, validation policy, and related attributes. Controls can belong by ancestry or a `form` attribute, even when rendered elsewhere in the DOM.
+- `<img>` form association — The standard includes `img` among form-associated elements, but not among listed controls or submittable elements. It is not an ordinary form field; legacy `form[name]` lookup can return an image by ID after checking listed controls. Do not confuse an `<img>` with `<input type="image">`, which is a submit control with special coordinates.
 - `<input>` — Versatile single-control element whose `type` selects its state, UI, validation, value model, and submission behavior. Its `name` is used in the entry list; its `id` commonly associates a label.
 - `<label>` — Associates caption text with a labelable control by explicit `for`/`id` or implicit nesting. Activating label text focuses/activates the labeled control. Do not nest unrelated interactive content inside it.
 - `<legend>` — Caption for a `<fieldset>` grouping. The first legend child labels the fieldset and has special behavior for disabled fieldset descendants.
@@ -72,3 +73,5 @@ These elements create form ownership, data entry, labels, grouping, suggestions,
 7. Is `<selectedcontent>` a form-associated control? **No. It presents selected option content as part of customizable-select UI.**
 
 Sources: [WHATWG form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html), [WHATWG custom elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-face-example).
+
+Inventory label: <img> form association.

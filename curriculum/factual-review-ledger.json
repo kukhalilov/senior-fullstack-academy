@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-17",
+  "generatedAt": "2026-11-19",
   "purpose": "Track manual, claim-by-claim factual review. Shape validation and automated model review do not count as factual verification.",
   "status": "in-progress",
   "summary": {
-    "lessons": 2344,
-    "reviewed": 1041,
-    "pending": 1303,
-    "claimsChecked": 40021,
-    "claimsCorrected": 1573,
+    "lessons": 2347,
+    "reviewed": 1043,
+    "pending": 1304,
+    "claimsChecked": 40104,
+    "claimsCorrected": 1574,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1548,9 +1548,9 @@
     {
       "date": "2026-11-18",
       "scope": "HTML forms controls validation and form submission (t07-014)",
-      "status": "partial claim and inventory audit; all 13 lesson files remain pending",
+      "status": "partial claim and inventory audit; 2 of 16 current lesson files reviewed",
       "findings": [
-        "Started a targeted review against the current WHATWG HTML Living Standard and related primary specifications. ",
+        "Updated the source baseline to the WHATWG HTML Living Standard as of 2026-11-19. Manually reviewed the overview and input content-attribute reference; corrected input[multiple] scope and detailed modern pattern semantics. Expanded the frozen inventory after finding missing select/option collection APIs, textarea selection methods, form interface properties, and img form-association nuance; added three focused API references. The remaining 14 files are pending claim-by-claim audit; this topic is not complete.",
         "The frozen form-associated custom-element term did not enumerate the form lifecycle callbacks and ElementInternals form APIs. Added a dedicated complete reference group covering static formAssociated, attachInternals, form and labels, submission/state, validity, and all four form callbacks, with worked answers. The full topic claim-by-claim audit is still pending; this entry does not mark any lesson reviewed. The form-submission inventory also lacked the FormData methods/iterators, FormDataEvent and SubmitEvent constructors/properties, and indexed/named form collection lookups; added those API names, semantics, gotchas, and checks to the manifest/reference."
       ],
       "sources": [
@@ -1569,7 +1569,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection/item",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection/namedItem"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection/namedItem",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ]
     }
   ],
@@ -67420,13 +67424,34 @@
       "topicId": "t07-014",
       "phase": "overview",
       "draft": "course/drafts/t07-014/t07-014-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked the lesson’s overview claims about native/no-script behavior, form ownership, naming and successful controls, validation order, GET and multipart examples, FormData enhancement, and submit()/requestSubmit() against the current HTML standard and MDN validation guide.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Introduction; form submission; entry-list construction; interactive validation; form APIs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/input.html",
+              "section": "Input states and successful-control behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation",
+              "section": "Native validation and limitations",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -67457,9 +67482,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review complete for the overview. It accurately distinguishes native behavior from scripted enhancement and retains server validation boundaries. The lesson remains in drafts pending remaining course reviews."
     },
     {
       "taskId": "t07-014-concepts",
@@ -67503,7 +67532,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -67549,7 +67582,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -67595,7 +67632,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -67604,13 +67645,34 @@
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-input-content-attributes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 57,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked each of the 36 assigned input content-attribute names and the explanatory claims, examples, comparison, and checks against the current HTML input-state applicability matrix and normative algorithms. Corrected the inaccurate statement that input[multiple] covers select choices; clarified pattern applicability and its Unicode Sets v-flag, whole-value matching, and user guidance; updated the standard snapshot date.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/input.html",
+              "section": "Common input attributes; state-specific attribute applicability; file upload accept; pattern; checkbox switch; color alpha/colorspace",
+              "verdict": "supported after correction"
+            },
+            {
+              "url": "https://www.w3.org/TR/html-media-capture/",
+              "section": "capture attribute values and user-agent capture hint",
+              "verdict": "supported; browser/device behavior remains implementation-dependent"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
+              "section": "Attribute applicability and API reference",
+              "verdict": "cross-check"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -67641,9 +67703,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory review complete for this input-attribute lesson. Corrected the select/input multiple conflation and expanded modern pattern semantics. Draft remains in drafts pending the remaining course audit."
     },
     {
       "taskId": "t07-014-reference-form-submission-and-control-attributes",
@@ -67687,7 +67753,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -67733,7 +67803,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -67779,7 +67853,161 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+      ],
+      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+    },
+    {
+      "taskId": "t07-014-reference-form-element-apis",
+      "topicId": "t07-014",
+      "phase": "reference",
+      "draft": "course/drafts/t07-014/t07-014-reference-form-element-apis.md",
+      "status": "not-reviewed",
+      "claimInventory": "not-yet-extracted",
+      "claimsChecked": 0,
+      "claimsCorrected": 0,
+      "evidence": [],
+      "issues": [],
+      "reviewedAt": null,
+      "sourceUrls": [
+        "https://html.spec.whatwg.org/multipage/forms.html",
+        "https://html.spec.whatwg.org/multipage/input.html",
+        "https://html.spec.whatwg.org/multipage/form-elements.html",
+        "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html",
+        "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill",
+        "https://html.spec.whatwg.org/multipage/forms.html#the-label-element",
+        "https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-face-example",
+        "https://html.spec.whatwg.org/multipage/custom-elements.html#form-associated-custom-elements",
+        "https://xhr.spec.whatwg.org/#interface-formdata",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormData",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection/namedItem",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection/item",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/formData",
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/submitter",
+        "https://www.w3.org/TR/html-media-capture/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setFormValue",
+        "https://html.spec.whatwg.org/multipage/interaction.html",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/requestSubmit",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form",
+        "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/"
+      ],
+      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+    },
+    {
+      "taskId": "t07-014-reference-select-and-option-apis",
+      "topicId": "t07-014",
+      "phase": "reference",
+      "draft": "course/drafts/t07-014/t07-014-reference-select-and-option-apis.md",
+      "status": "not-reviewed",
+      "claimInventory": "not-yet-extracted",
+      "claimsChecked": 0,
+      "claimsCorrected": 0,
+      "evidence": [],
+      "issues": [],
+      "reviewedAt": null,
+      "sourceUrls": [
+        "https://html.spec.whatwg.org/multipage/forms.html",
+        "https://html.spec.whatwg.org/multipage/input.html",
+        "https://html.spec.whatwg.org/multipage/form-elements.html",
+        "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html",
+        "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill",
+        "https://html.spec.whatwg.org/multipage/forms.html#the-label-element",
+        "https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-face-example",
+        "https://html.spec.whatwg.org/multipage/custom-elements.html#form-associated-custom-elements",
+        "https://xhr.spec.whatwg.org/#interface-formdata",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormData",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection/namedItem",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection/item",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/formData",
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/submitter",
+        "https://www.w3.org/TR/html-media-capture/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setFormValue",
+        "https://html.spec.whatwg.org/multipage/interaction.html",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/requestSubmit",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form",
+        "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/"
+      ],
+      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+    },
+    {
+      "taskId": "t07-014-reference-textarea-element-apis",
+      "topicId": "t07-014",
+      "phase": "reference",
+      "draft": "course/drafts/t07-014/t07-014-reference-textarea-element-apis.md",
+      "status": "not-reviewed",
+      "claimInventory": "not-yet-extracted",
+      "claimsChecked": 0,
+      "claimsCorrected": 0,
+      "evidence": [],
+      "issues": [],
+      "reviewedAt": null,
+      "sourceUrls": [
+        "https://html.spec.whatwg.org/multipage/forms.html",
+        "https://html.spec.whatwg.org/multipage/input.html",
+        "https://html.spec.whatwg.org/multipage/form-elements.html",
+        "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html",
+        "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill",
+        "https://html.spec.whatwg.org/multipage/forms.html#the-label-element",
+        "https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-face-example",
+        "https://html.spec.whatwg.org/multipage/custom-elements.html#form-associated-custom-elements",
+        "https://xhr.spec.whatwg.org/#interface-formdata",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormData",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection/namedItem",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection/item",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/formData",
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/submitter",
+        "https://www.w3.org/TR/html-media-capture/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals",
+        "https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setFormValue",
+        "https://html.spec.whatwg.org/multipage/interaction.html",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/requestSubmit",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form",
+        "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -67825,7 +68053,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -67871,7 +68103,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -67917,7 +68153,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -67963,7 +68203,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -68009,7 +68253,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent",
         "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent",
-        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent"
+        "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/SubmitEvent",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },

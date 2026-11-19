@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This covers the current `input` content-attribute inventory in the WHATWG HTML Living Standard last updated 2026-11-14. Applicability depends on the input type; many attributes are ignored or inapplicable on other states. See [WHATWG input](https://html.spec.whatwg.org/multipage/input.html) and [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input).
+This covers the current `input` content-attribute inventory in the WHATWG HTML Living Standard, checked 2026-11-19. Applicability depends on the input type; many attributes are ignored or inapplicable on other states. See [WHATWG input](https://html.spec.whatwg.org/multipage/input.html) and [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input).
 
 # How this group fits the mental model
 
@@ -33,9 +33,9 @@ Content attributes configure initial/default state and behavior in markup. DOM I
 - `maxlength` — Maximum length constraint for applicable text-entry states, measured in UTF-16 code units under HTML's rules. It can constrain user editing; do not use it as a substitute for server limits.
 - `min` — Lower bound for supported numeric/date/time states; participates in range-underflow validation and affects range defaults.
 - `minlength` — Minimum length constraint for applicable text-entry states. Browser validation behavior accounts for user input; server validation is still required.
-- `multiple` — Allows multiple selected files, multiple email addresses, or multiple select choices depending on the control state. It does not mean the same data shape in every state.
+- `multiple` — For `input`, permits multiple selected files in the file-upload state or a comma-separated list of email addresses in the email state. It does not apply to `<select>`; that element has its own `multiple` attribute and selection behavior.
 - `name` — Name used to construct form-data entries and expose controls through `form.elements`. Without a name, a control commonly contributes no entry; names should be unique where the server expects distinct fields.
-- `pattern` — Regular-expression constraint for applicable text-like states. The pattern is matched against the whole value according to HTML's pattern semantics; use a title/help text for user guidance and server-side validation too.
+- `pattern` — Regular-expression constraint on supported text-like states (text, search, tel, URL, email, and password). HTML compiles it using JavaScript's Unicode Sets `v` flag and matches the whole value, as if anchored at both ends; it is not a substring search. When `multiple` applies to email, the list's values are checked under the standard's rules. Invalid regular-expression syntax does not create an active pattern constraint. Provide clear visible instructions and a meaningful title that describes the format; validate independently on the server.
 - `placeholder` — Short hint shown when the value is empty. It disappears during entry and is not a label or accessible-name replacement.
 - `popovertarget` — Current invoker attribute targeting a popover element by ID for applicable button-like input states. It connects declarative activation to the browser popover API.
 - `popovertargetaction` — Chooses whether the target popover is toggled, shown, or hidden for applicable invoker controls. It has no effect without a valid target and popover relationship.
@@ -84,4 +84,4 @@ The first chooser hint does not guarantee the uploaded file is an image; the ser
 5. Can a client script set an arbitrary local file path using `value`? **No.**
 6. Does `capture="environment"` guarantee that a rear-camera capture UI opens? **No. It is a user-agent hint from HTML Media Capture; device support and picker behavior vary.**
 
-Sources: [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input), [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html).
+Sources: [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input), [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html), [W3C HTML Media Capture](https://www.w3.org/TR/html-media-capture/).

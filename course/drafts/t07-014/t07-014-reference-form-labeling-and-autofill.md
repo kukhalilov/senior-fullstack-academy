@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This lesson covers native HTML labeling, autofill metadata, virtual-keyboard hints, text-entry hints, and direction submission. The token inventory follows the WHATWG HTML Living Standard last updated 2026-11-14. User agents decide whether and how to offer autofill; markup communicates meaning and does not guarantee a particular UI. See [WHATWG form-control infrastructure](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html), [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), and [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input).
+This lesson covers native HTML labeling, autofill metadata, virtual-keyboard hints, text-entry hints, and direction submission. The token inventory follows the WHATWG HTML Living Standard last updated 2026-11-19. User agents decide whether and how to offer autofill; markup communicates meaning and does not guarantee a particular UI. See [WHATWG form-control infrastructure](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html), [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), and [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input).
 
 # How this group fits the mental model
 
