@@ -5,9 +5,9 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1187,
-    "pending": 1162,
-    "claimsChecked": 51225,
+    "reviewed": 1188,
+    "pending": 1161,
+    "claimsChecked": 51264,
     "claimsCorrected": 2736,
     "draftsMayBePromoted": false
   },
@@ -106005,32 +106005,73 @@
       "topicId": "t03-003",
       "phase": "concepts",
       "draft": "course/drafts/t03-003/t03-003-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
+          "verdict": "supported; logical binding is not physical execution order",
+          "section": "SELECT logical binding, alias availability, execution distinction, DISTINCT and projection"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
+          "verdict": "supported; explicit casts appropriately recommended when type precision matters",
+          "section": "Set operator column compatibility and implicit conversion"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
+          "verdict": "supported; null-safe comparison behavior independently confirmed in https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+          "section": "Three-valued logic, NULL comparisons, IS [NOT] DISTINCT FROM, and quantified subquery comparisons"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17",
+          "verdict": "supported",
+          "section": "LIKE wildcard grammar, collation-dependent ranges, ESCAPE and trailing-space behavior"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
+          "verdict": "supported",
+          "section": "REGEXP_LIKE availability, flags, collation independence, SARGable anchored subset"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
+          "verdict": "supported",
+          "section": "ORDER BY stability, null sorting, OFFSET/FETCH requirements, pagination consistency"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
+          "verdict": "supported",
+          "section": "TOP PERCENT rounding, WITH TIES, and row-limit semantics"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
+          "verdict": "supported; tradeoff caveat retained",
+          "section": "SNAPSHOT/SERIALIZABLE and transaction isolation assumptions"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/operator-precedence-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/exists-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/operator-precedence-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Enumerated and verified 39 factual assertions covering query projection and set-operation typing, logical binding, three-valued predicates, NOT IN/EXISTS and quantified comparisons, LIKE grammar and string details, REGEXP_LIKE version/flags/collation/indexability, ordering and NULL placement, TOP/OFFSET/FETCH, pagination consistency/isolation, and SQL Server versus Fabric scope. Checked each claim against the linked Microsoft Learn sections and found no factual correction or manifest-scope addition necessary."
     },
     {
       "taskId": "t03-003-reference-select-query-shape-and-projection",
