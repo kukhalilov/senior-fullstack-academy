@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1073,
-    "pending": 1274,
-    "claimsChecked": 41988,
-    "claimsCorrected": 1706,
+    "reviewed": 1074,
+    "pending": 1273,
+    "claimsChecked": 42009,
+    "claimsCorrected": 1707,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -71006,13 +71006,44 @@
       "topicId": "t07-016",
       "phase": "concepts",
       "draft": "course/drafts/t07-016/t07-016-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 21,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claim": "Cascade ordering, origin/importance ranks, layer reversal, encapsulation contexts, style attributes, transitions and animations",
+          "source": "https://www.w3.org/TR/css-cascade-5/",
+          "section": "§6.1–6.4 Cascade sorting order, origins, importance and layers",
+          "verdict": "verified; added explicit origin-level priority ladder and clarified Level 5 as the complete algorithm reference"
+        },
+        {
+          "claim": "Selector matching, compound/complex selectors, specificity, lists, pseudo-classes and pseudo-elements",
+          "source": "https://www.w3.org/TR/selectors-4/",
+          "section": "§2–5",
+          "verdict": "verified; selector terminology and zero specificity of :where() are accurate"
+        },
+        {
+          "claim": "Declared through actual value stages and CSS-wide defaulting",
+          "source": "https://www.w3.org/TR/css-cascade-5/",
+          "section": "§4 Value Processing; §7 Defaulting",
+          "verdict": "verified; descriptions correctly distinguish cascade selection from value resolution"
+        },
+        {
+          "claim": "Box model, box-sizing, margins, intrinsic sizing and final geometry",
+          "source": "https://www.w3.org/TR/css-box-3/; https://drafts.csswg.org/css-sizing-3/",
+          "section": "Box areas and sizing properties",
+          "verdict": "verified; dimension explanation and margins outside border-box are accurate"
+        },
+        {
+          "claim": "At-rule roles, standards maturity, browser support and example rule winner",
+          "source": "https://www.w3.org/TR/css-2026/; https://www.w3.org/TR/css-cascade-5/",
+          "section": "CSS profile; layers; cascade",
+          "verdict": "corrected source framing; Level 6 is exploratory/additive, while Level 5 is the complete cascade reference"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference",
@@ -71038,9 +71069,12 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/",
+        "https://www.w3.org/TR/css-box-3/",
+        "https://drafts.csswg.org/css-sizing-3/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-by-claim audit of learning objectives, core concepts, cascade priority ladder, at-rule descriptions, value processing, box sizing, walkthrough, misconceptions, and knowledge checks against current W3C CSS specs and Snapshot 2026. Corrected the reference to the incomplete Level 6 exploratory draft and added a concise priority ladder. No unresolved issues."
     },
     {
       "taskId": "t07-016-reference-selector-building-blocks",
@@ -71079,7 +71113,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71120,7 +71155,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71161,7 +71197,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71202,7 +71239,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71243,7 +71281,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71284,7 +71323,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71325,7 +71365,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71366,7 +71407,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71407,7 +71449,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71448,7 +71491,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71489,7 +71533,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71530,7 +71575,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71571,7 +71617,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71612,7 +71659,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71653,7 +71701,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71694,7 +71743,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71735,7 +71785,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71776,7 +71827,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71817,7 +71869,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -71858,7 +71911,8 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
