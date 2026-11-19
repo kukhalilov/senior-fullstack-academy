@@ -28,7 +28,7 @@ A login gets you to the server; a database user and its token determine database
 
 # End-to-end walkthrough
 
-A web service connects using managed identity where supported. A database user belongs to a custom role with EXECUTE on a small set of procedures. Procedure parameters are bound, and dynamic identifiers are chosen from an allow-list. Row-level policy derives tenant identity from trusted context. The connection uses TLS with certificate validation, while audit events are written to a protected target.
+A web service connects using managed identity where supported. A database user belongs to a custom role with EXECUTE on a small set of procedures. Procedure parameters are bound, and dynamic identifiers are chosen from an allow-list. A row-level policy can use session or execution context to select a tenant, but the application must establish that context from an authenticated identity and prevent callers from setting another tenant's value; the predicate does not authenticate the context by itself. The connection uses TLS with certificate validation, while audit events are written to a protected target.
 
 # When to use it and tradeoffs
 

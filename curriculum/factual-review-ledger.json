@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1253,
-    "pending": 1096,
-    "claimsChecked": 55139,
-    "claimsCorrected": 2891,
+    "reviewed": 1260,
+    "pending": 1089,
+    "claimsChecked": 56078,
+    "claimsCorrected": 2907,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -112953,308 +112953,1050 @@
       "topicId": "t03-012",
       "phase": "overview",
       "draft": "course/drafts/t03-012/t03-012-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 54,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 54 externally verifiable statements, including assigned manifest inventory where applicable, examples, knowledge checks, edge cases, and version/platform boundaries. Reviewed the security mental model, end-to-end identity and permission path, boundary distinctions, and worked tenant-context example. Clarified that tenant context must be protected and identity-derived; RLS does not authenticate caller-supplied context.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
+              "section": "Principal types, SIDs, dbo/public boundaries, and login-to-user mapping",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
+              "section": "Fixed, custom, and application roles; role membership and broad database roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
+              "section": "Fixed and user-defined server roles; SQL Server 2022 least-privilege roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+              "section": "SQL Server 2025 SQL login PBKDF2 and Entra login options",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
+              "section": "Entra methods and SQL Server/Azure hosting support",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
+              "section": "Permission scopes, inheritance, DENY behavior, sysadmin/dbo, and effective permissions",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
+              "section": "Cross-database ownership chaining configuration and security risk",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
+              "section": "EXECUTE AS semantics and context reset",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+              "section": "Module signing and certificate permission behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+              "section": "Filter/block predicates, schemabinding, policy bypass limits, and context boundary",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+              "section": "Masking functions, UNMASK, and inference limitations",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+              "section": "Client-side encryption, enclave limits, key placement, and operation constraints",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
+              "section": "Audit components, targets, enablement, and operational behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+              "section": "Injection classes, validation, dynamic SQL and construction pitfalls",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+              "section": "Parameterization, identifier boundaries, least privilege, and escaping limits",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+              "section": "TDS 8.0, TLS, Encrypt Strict and certificate validation",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+              "section": "Microsoft.Data.SqlClient authentication and encryption options/defaults",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+              "section": "Database-scoped credentials for outbound resource access",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+              "section": "Server audit vs database audit specifications and selected event capture",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
-        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
+        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-string-syntax?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed the security mental model, end-to-end identity and permission path, boundary distinctions, and worked tenant-context example. Clarified that tenant context must be protected and identity-derived; RLS does not authenticate caller-supplied context."
     },
     {
       "taskId": "t03-012-concepts",
       "topicId": "t03-012",
       "phase": "concepts",
       "draft": "course/drafts/t03-012/t03-012-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 78,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 78 externally verifiable statements, including assigned manifest inventory where applicable, examples, knowledge checks, edge cases, and version/platform boundaries. Checked identity mapping, aggregation, grant/deny/revoke, ownership, signing, injection defenses, RLS/DDM, Always Encrypted, audit, and TLS boundaries; verified current SQL Server 2025 notes.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
+              "section": "Principal types, SIDs, dbo/public boundaries, and login-to-user mapping",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
+              "section": "Fixed, custom, and application roles; role membership and broad database roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
+              "section": "Fixed and user-defined server roles; SQL Server 2022 least-privilege roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+              "section": "SQL Server 2025 SQL login PBKDF2 and Entra login options",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
+              "section": "Entra methods and SQL Server/Azure hosting support",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
+              "section": "Permission scopes, inheritance, DENY behavior, sysadmin/dbo, and effective permissions",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
+              "section": "Cross-database ownership chaining configuration and security risk",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
+              "section": "EXECUTE AS semantics and context reset",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+              "section": "Module signing and certificate permission behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+              "section": "Filter/block predicates, schemabinding, policy bypass limits, and context boundary",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+              "section": "Masking functions, UNMASK, and inference limitations",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+              "section": "Client-side encryption, enclave limits, key placement, and operation constraints",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
+              "section": "Audit components, targets, enablement, and operational behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+              "section": "Injection classes, validation, dynamic SQL and construction pitfalls",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+              "section": "Parameterization, identifier boundaries, least privilege, and escaping limits",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+              "section": "TDS 8.0, TLS, Encrypt Strict and certificate validation",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+              "section": "Microsoft.Data.SqlClient authentication and encryption options/defaults",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+              "section": "Database-scoped credentials for outbound resource access",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+              "section": "Server audit vs database audit specifications and selected event capture",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
-        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
+        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-string-syntax?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked identity mapping, aggregation, grant/deny/revoke, ownership, signing, injection defenses, RLS/DDM, Always Encrypted, audit, and TLS boundaries; verified current SQL Server 2025 notes."
     },
     {
       "taskId": "t03-012-reference-authentication-principals-and-roles",
       "topicId": "t03-012",
       "phase": "reference",
       "draft": "course/drafts/t03-012/t03-012-reference-authentication-principals-and-roles.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 184,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 184 externally verifiable statements, including assigned manifest inventory where applicable, examples, knowledge checks, edge cases, and version/platform boundaries. Checked all 38 supplied identity/role items, current principals, SQL Server 2025 PBKDF2 and Entra conditions, SQL Server 2022 granular roles, SIDs, role semantics, context functions, and object IDs.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
+              "section": "Principal types, SIDs, dbo/public boundaries, and login-to-user mapping",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
+              "section": "Fixed, custom, and application roles; role membership and broad database roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
+              "section": "Fixed and user-defined server roles; SQL Server 2022 least-privilege roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+              "section": "SQL Server 2025 SQL login PBKDF2 and Entra login options",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
+              "section": "Entra methods and SQL Server/Azure hosting support",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
+              "section": "Permission scopes, inheritance, DENY behavior, sysadmin/dbo, and effective permissions",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
+              "section": "Cross-database ownership chaining configuration and security risk",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
+              "section": "EXECUTE AS semantics and context reset",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+              "section": "Module signing and certificate permission behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+              "section": "Filter/block predicates, schemabinding, policy bypass limits, and context boundary",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+              "section": "Masking functions, UNMASK, and inference limitations",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+              "section": "Client-side encryption, enclave limits, key placement, and operation constraints",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
+              "section": "Audit components, targets, enablement, and operational behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+              "section": "Injection classes, validation, dynamic SQL and construction pitfalls",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+              "section": "Parameterization, identifier boundaries, least privilege, and escaping limits",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+              "section": "TDS 8.0, TLS, Encrypt Strict and certificate validation",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+              "section": "Microsoft.Data.SqlClient authentication and encryption options/defaults",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+              "section": "Database-scoped credentials for outbound resource access",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+              "section": "Server audit vs database audit specifications and selected event capture",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
-        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
+        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-string-syntax?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 38 supplied identity/role items, current principals, SQL Server 2025 PBKDF2 and Entra conditions, SQL Server 2022 granular roles, SIDs, role semantics, context functions, and object IDs."
     },
     {
       "taskId": "t03-012-reference-permissions-and-security-boundaries",
       "topicId": "t03-012",
       "phase": "reference",
       "draft": "course/drafts/t03-012/t03-012-reference-permissions-and-security-boundaries.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 227,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 227 externally verifiable statements, including assigned manifest inventory where applicable, examples, knowledge checks, edge cases, and version/platform boundaries. Checked all 46 supplied permission/security items, securable scope and token aggregation, legacy column grant exception, role limits, ownership chaining, signing and ALTER behavior, RLS/DDM, and audit boundaries.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
+              "section": "Principal types, SIDs, dbo/public boundaries, and login-to-user mapping",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
+              "section": "Fixed, custom, and application roles; role membership and broad database roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
+              "section": "Fixed and user-defined server roles; SQL Server 2022 least-privilege roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+              "section": "SQL Server 2025 SQL login PBKDF2 and Entra login options",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
+              "section": "Entra methods and SQL Server/Azure hosting support",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
+              "section": "Permission scopes, inheritance, DENY behavior, sysadmin/dbo, and effective permissions",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
+              "section": "Cross-database ownership chaining configuration and security risk",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
+              "section": "EXECUTE AS semantics and context reset",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+              "section": "Module signing and certificate permission behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+              "section": "Filter/block predicates, schemabinding, policy bypass limits, and context boundary",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+              "section": "Masking functions, UNMASK, and inference limitations",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+              "section": "Client-side encryption, enclave limits, key placement, and operation constraints",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
+              "section": "Audit components, targets, enablement, and operational behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+              "section": "Injection classes, validation, dynamic SQL and construction pitfalls",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+              "section": "Parameterization, identifier boundaries, least privilege, and escaping limits",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+              "section": "TDS 8.0, TLS, Encrypt Strict and certificate validation",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+              "section": "Microsoft.Data.SqlClient authentication and encryption options/defaults",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+              "section": "Database-scoped credentials for outbound resource access",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+              "section": "Server audit vs database audit specifications and selected event capture",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
-        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
+        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-string-syntax?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 46 supplied permission/security items, securable scope and token aggregation, legacy column grant exception, role limits, ownership chaining, signing and ALTER behavior, RLS/DDM, and audit boundaries."
     },
     {
       "taskId": "t03-012-reference-injection-safe-query-boundary",
       "topicId": "t03-012",
       "phase": "reference",
       "draft": "course/drafts/t03-012/t03-012-reference-injection-safe-query-boundary.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 186,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 186 externally verifiable statements, including assigned manifest inventory where applicable, examples, knowledge checks, edge cases, and version/platform boundaries. Checked all 34 supplied injection/data-access items, value-vs-identifier rules, dynamic SQL risks, credentials, TLS driver/version behavior, audit configuration, and outbound credential scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
+              "section": "Principal types, SIDs, dbo/public boundaries, and login-to-user mapping",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
+              "section": "Fixed, custom, and application roles; role membership and broad database roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
+              "section": "Fixed and user-defined server roles; SQL Server 2022 least-privilege roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+              "section": "SQL Server 2025 SQL login PBKDF2 and Entra login options",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
+              "section": "Entra methods and SQL Server/Azure hosting support",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
+              "section": "Permission scopes, inheritance, DENY behavior, sysadmin/dbo, and effective permissions",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
+              "section": "Cross-database ownership chaining configuration and security risk",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
+              "section": "EXECUTE AS semantics and context reset",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+              "section": "Module signing and certificate permission behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+              "section": "Filter/block predicates, schemabinding, policy bypass limits, and context boundary",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+              "section": "Masking functions, UNMASK, and inference limitations",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+              "section": "Client-side encryption, enclave limits, key placement, and operation constraints",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
+              "section": "Audit components, targets, enablement, and operational behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+              "section": "Injection classes, validation, dynamic SQL and construction pitfalls",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+              "section": "Parameterization, identifier boundaries, least privilege, and escaping limits",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+              "section": "TDS 8.0, TLS, Encrypt Strict and certificate validation",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+              "section": "Microsoft.Data.SqlClient authentication and encryption options/defaults",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+              "section": "Database-scoped credentials for outbound resource access",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+              "section": "Server audit vs database audit specifications and selected event capture",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
-        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
+        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-string-syntax?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 34 supplied injection/data-access items, value-vs-identifier rules, dynamic SQL risks, credentials, TLS driver/version behavior, audit configuration, and outbound credential scope."
     },
     {
       "taskId": "t03-012-practice",
       "topicId": "t03-012",
       "phase": "practice",
       "draft": "course/drafts/t03-012/t03-012-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 119,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 119 externally verifiable statements, including assigned manifest inventory where applicable, examples, knowledge checks, edge cases, and version/platform boundaries. Checked all worked solutions and edge-case tests for permission aggregation, safe dynamic SQL, module signing, DDM inference, certificate validation, and audit operations.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
+              "section": "Principal types, SIDs, dbo/public boundaries, and login-to-user mapping",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
+              "section": "Fixed, custom, and application roles; role membership and broad database roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
+              "section": "Fixed and user-defined server roles; SQL Server 2022 least-privilege roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+              "section": "SQL Server 2025 SQL login PBKDF2 and Entra login options",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
+              "section": "Entra methods and SQL Server/Azure hosting support",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
+              "section": "Permission scopes, inheritance, DENY behavior, sysadmin/dbo, and effective permissions",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
+              "section": "Cross-database ownership chaining configuration and security risk",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
+              "section": "EXECUTE AS semantics and context reset",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+              "section": "Module signing and certificate permission behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+              "section": "Filter/block predicates, schemabinding, policy bypass limits, and context boundary",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+              "section": "Masking functions, UNMASK, and inference limitations",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+              "section": "Client-side encryption, enclave limits, key placement, and operation constraints",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
+              "section": "Audit components, targets, enablement, and operational behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+              "section": "Injection classes, validation, dynamic SQL and construction pitfalls",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+              "section": "Parameterization, identifier boundaries, least privilege, and escaping limits",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+              "section": "TDS 8.0, TLS, Encrypt Strict and certificate validation",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+              "section": "Microsoft.Data.SqlClient authentication and encryption options/defaults",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+              "section": "Database-scoped credentials for outbound resource access",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+              "section": "Server audit vs database audit specifications and selected event capture",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
-        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
+        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-string-syntax?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all worked solutions and edge-case tests for permission aggregation, safe dynamic SQL, module signing, DDM inference, certificate validation, and audit operations."
     },
     {
       "taskId": "t03-012-interview",
       "topicId": "t03-012",
       "phase": "interview",
       "draft": "course/drafts/t03-012/t03-012-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 91 externally verifiable statements, including assigned manifest inventory where applicable, examples, knowledge checks, edge cases, and version/platform boundaries. Checked concise/deep answers, scenario diagnosis, tradeoffs, and weak-answer rubric against permission and injection boundaries.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
+              "section": "Principal types, SIDs, dbo/public boundaries, and login-to-user mapping",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
+              "section": "Fixed, custom, and application roles; role membership and broad database roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
+              "section": "Fixed and user-defined server roles; SQL Server 2022 least-privilege roles",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+              "section": "SQL Server 2025 SQL login PBKDF2 and Entra login options",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
+              "section": "Entra methods and SQL Server/Azure hosting support",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
+              "section": "Permission scopes, inheritance, DENY behavior, sysadmin/dbo, and effective permissions",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
+              "section": "Cross-database ownership chaining configuration and security risk",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
+              "section": "EXECUTE AS semantics and context reset",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+              "section": "Module signing and certificate permission behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+              "section": "Filter/block predicates, schemabinding, policy bypass limits, and context boundary",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+              "section": "Masking functions, UNMASK, and inference limitations",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+              "section": "Client-side encryption, enclave limits, key placement, and operation constraints",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
+              "section": "Audit components, targets, enablement, and operational behavior",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
+              "section": "Injection classes, validation, dynamic SQL and construction pitfalls",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
+              "section": "Parameterization, identifier boundaries, least privilege, and escaping limits",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+              "section": "TDS 8.0, TLS, Encrypt Strict and certificate validation",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+              "section": "Microsoft.Data.SqlClient authentication and encryption options/defaults",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+              "section": "Database-scoped credentials for outbound resource access",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+              "section": "Server audit vs database audit specifications and selected event capture",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+              "verdict": "Checked against current primary documentation; corrections and scope limits are recorded in the lesson where applicable"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
-        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/cross-db-ownership-chaining-server-configuration-option?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/add-signature-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
+        "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/security/networking/tds-8?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-strings?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-scoped-credential-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/create-a-server-audit-and-database-audit-specification?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/getting-started-with-database-engine-permissions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/permissions-database-engine?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/deny-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-security-policy-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-data-source-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/connect/ado-net/connection-string-syntax?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked concise/deep answers, scenario diagnosis, tradeoffs, and weak-answer rubric against permission and injection boundaries."
     },
     {
       "taskId": "t03-013-overview",
