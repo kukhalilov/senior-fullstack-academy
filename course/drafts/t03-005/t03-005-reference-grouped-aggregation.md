@@ -44,7 +44,7 @@ Aggregation converts rows into summaries, so define the group grain before choos
 | `ANY_VALUE unsupported in SQL Server` | ANY_VALUE appears in Microsoft documentation for some other Microsoft SQL platforms, but it is not a SQL Server Database Engine aggregate. Do not copy Fabric-only syntax into SQL Server. If a representative value is functionally determined by a grouped key, model that dependency or choose a deterministic aggregate only when its semantics are correct ([ANY_VALUE platform applicability](https://learn.microsoft.com/en-us/sql/t-sql/functions/any-value-transact-sql?view=fabric)). |
 | `MEDIAN unsupported in SQL Server` | The MEDIAN aggregate listed for Fabric analytics endpoints and Fabric Warehouse is not supported in the SQL Server Database Engine. Use PERCENTILE_CONT(0.5) WITHIN GROUP with OVER (PARTITION BY ...) for a median per partition, or an explicitly designed alternative ([MEDIAN platform applicability](https://learn.microsoft.com/en-us/sql/t-sql/functions/median-transact-sql?view=fabric)). |
 | `APPROX_MEDIAN unsupported in SQL Server` | APPROX_MEDIAN is listed for other Microsoft data platforms, not the SQL Server Database Engine. Do not treat it as a SQL Server aggregate; approximate distinct counting is a separate supported function ([APPROX_MEDIAN platform applicability](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-median-transact-sql?view=fabric)). |
-| `APPROX_QUANTILE unsupported in SQL Server` | APPROX_QUANTILE is not supported by the SQL Server Database Engine. It appears in other Microsoft analytics platforms and must not be used as if it were a SQL Server T-SQL aggregate ([APPROX_QUANTILE platform applicability](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=sql-server-ver17)). |
+| `APPROX_QUANTILE unsupported in SQL Server` | APPROX_QUANTILE is not supported by the SQL Server Database Engine. It appears in other Microsoft analytics platforms and must not be used as if it were a SQL Server T-SQL aggregate ([APPROX_QUANTILE platform applicability](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=fabric)). |
 | `CHECKSUM_AGG` | Returns an integer checksum over a group and ignores NULL inputs. It can help detect some changes but collisions are possible; it is not a cryptographic hash or proof that two datasets are equal. |
 | `Aggregate NULL exclusion` | Except for COUNT(*), SQL Server aggregate functions ignore NULL input values. COUNT(expression), SUM, AVG, MIN, MAX, statistical aggregates, PRODUCT, and STRING_AGG therefore summarize non-NULL inputs; this is distinct from filtering rows in WHERE. |
 | `Aggregate over empty input` | A scalar aggregate without GROUP BY still returns one row for empty input: COUNT and COUNT_BIG return zero; SUM, AVG, MIN, MAX and most value aggregates return NULL. A grouped aggregate over empty input has no groups and returns no rows. |
@@ -81,44 +81,13 @@ WHERE limits contributing rows; GROUP BY defines one row per store; HAVING filte
 
 # Knowledge checks with answers
 
-1. **What does `GROUP BY clause` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-2. **What does `GROUP BY expression` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-3. **What does `Multiple grouping columns` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-4. **What does `GROUP BY ordinal unsupported boundary` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-5. **What does `GROUP BY ALL legacy syntax` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-6. **What does `WHERE before grouping` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-7. **What does `HAVING after grouping` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-8. **What does `Aggregate function` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-9. **What does `COUNT(*)` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-10. **What does `COUNT(expression)` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-11. **What does `COUNT(DISTINCT expression)` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-12. **What does `Aggregate ALL and DISTINCT modifiers` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-13. **What does `COUNT_BIG` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-14. **What does `SUM` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-15. **What does `AVG` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-16. **What does `MIN` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-17. **What does `MAX` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-18. **What does `STRING_AGG` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-19. **What does `STRING_AGG WITHIN GROUP ordering` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-20. **What does `STRING_AGG DISTINCT unsupported boundary` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-21. **What does `APPROX_COUNT_DISTINCT` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-22. **What does `APPROX_COUNT_DISTINCT accuracy and collation boundary` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-23. **What does `PRODUCT` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-24. **What does `PRODUCT DISTINCT` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-25. **What does `PRODUCT return type` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-26. **What does `STDEV` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-27. **What does `STDEVP` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-28. **What does `VAR` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-29. **What does `VARP` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-30. **What does `ANY_VALUE unsupported in SQL Server` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-31. **What does `MEDIAN unsupported in SQL Server` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-32. **What does `APPROX_MEDIAN unsupported in SQL Server` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-33. **What does `APPROX_QUANTILE unsupported in SQL Server` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-34. **What does `CHECKSUM_AGG` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-35. **What does `Aggregate NULL exclusion` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-36. **What does `Aggregate over empty input` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-37. **What does `Aggregate result type and overflow` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-38. **What does `GROUP BY with NULL` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
+1. **A nullable `Discount` column should count only known discounts while the total order count includes every row. Which expressions fit?** `COUNT(Discount)` and `COUNT(*)`; the first excludes NULL, the second counts rows.
+2. **A grouped report can exceed 2.1 billion rows. Which count should be selected and why?** `COUNT_BIG`, which returns `bigint`; `COUNT` returns `int` and can overflow.
+3. **A `SUM(intColumn)` can exceed the `int` range. Does casting the final result to `bigint` prevent the aggregate overflow?** No. Cast the input before aggregation, e.g. `SUM(CONVERT(bigint, intColumn))`.
+4. **`STRING_AGG` omits some labels and produces inconsistent order. What should be checked?** NULL expressions are omitted along with their separators; use `ISNULL`/`COALESCE` if placeholders are required and `WITHIN GROUP (ORDER BY ...)` for concatenation order. Cast to a MAX string type when necessary to avoid the bounded return type.
+5. **A case-insensitive collation query uses `APPROX_COUNT_DISTINCT` and differs from exact `COUNT(DISTINCT ...)`. Is that necessarily a bug?** No. Its documented string matching is binary and its count is probabilistic; it is not interchangeable with exact linguistic distinctness.
+6. **A query copied from Fabric uses `APPROX_QUANTILE`. What should a SQL Server user do?** Do not assume cross-product compatibility. That function is documented for Fabric, not the SQL Server Database Engine; use the SQL Server percentile functions that meet the required accuracy contract.
+
 
 # Sources
 
@@ -147,7 +116,7 @@ WHERE limits contributing rows; GROUP BY defines one row per store; HAVING filte
 - [Microsoft Learn: anyValue](https://learn.microsoft.com/en-us/sql/t-sql/functions/any-value-transact-sql?view=fabric)
 - [Microsoft Learn: median](https://learn.microsoft.com/en-us/sql/t-sql/functions/median-transact-sql?view=fabric)
 - [Microsoft Learn: approxMedian](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-median-transact-sql?view=fabric)
-- [Microsoft Learn: approxQuantile](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=sql-server-ver17)
+- [Microsoft Learn: approxQuantile](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=fabric)
 - [Microsoft Learn: grouping](https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: groupingId](https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-id-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: having](https://learn.microsoft.com/en-us/sql/t-sql/queries/select-having-transact-sql?view=sql-server-ver17)

@@ -67,30 +67,13 @@ The window keeps every sale row and sums at most the current row plus six preced
 
 # Knowledge checks with answers
 
-1. **What does `OVER clause` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-2. **What does `WINDOW named-window clause` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-3. **What does `WINDOW inheritance and extension` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-4. **What does `PARTITION BY` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-5. **What does `Window ORDER BY` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-6. **What does `ROWS frame` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-7. **What does `RANGE frame` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-8. **What does `RANGE offset unsupported boundary` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-9. **What does `GROUPS frame unsupported in SQL Server` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-10. **What does `UNBOUNDED PRECEDING` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-11. **What does `n PRECEDING` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-12. **What does `CURRENT ROW` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-13. **What does `n FOLLOWING` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-14. **What does `UNBOUNDED FOLLOWING` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-15. **What does `ROWS BETWEEN frame` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-16. **What does `RANGE BETWEEN frame` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-17. **What does `Default window frame` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-18. **What does `Window aggregate` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-19. **What does `DISTINCT aggregate OVER unsupported boundary` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-20. **What does `Running total` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-21. **What does `Moving average` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-22. **What does `Partition boundary` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-23. **What does `Peer rows` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-24. **What does `Window order does not order final result` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
+1. **You need the current sale plus the previous six sales, regardless of elapsed time. Which frame?** `ROWS BETWEEN 6 PRECEDING AND CURRENT ROW`, with a deterministic order key.
+2. **Two rows tie on every `ORDER BY` expression and a running `SUM` uses the default frame. Why can both rows show the same result?** The default ordered frame is `RANGE UNBOUNDED PRECEDING ... CURRENT ROW`, and `RANGE CURRENT ROW` includes all peers.
+3. **Does `OVER (PARTITION BY StoreId ORDER BY SaleTime)` sort the final result?** No. It orders the window calculation; add an outer query `ORDER BY` for presentation.
+4. **Can SQL Server express a seven-day numeric `RANGE` offset or `GROUPS` frame directly?** No. SQL Server supports `ROWS` and restricted `RANGE` syntax without numeric offsets; `GROUPS` is not in its T-SQL frame grammar. Use a different query shape for calendar intervals.
+5. **A `LAST_VALUE` query should return the final value for the entire partition. What frame should be explicit?** `ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`, with a deterministic order if the final row must be unique.
+6. **What does named `WINDOW` add, and what is its SQL Server compatibility requirement?** It names reusable window definitions; SQL Server 2022+ requires database compatibility level 160.
+
 
 # Sources
 
@@ -119,7 +102,7 @@ The window keeps every sale row and sums at most the current row plus six preced
 - [Microsoft Learn: anyValue](https://learn.microsoft.com/en-us/sql/t-sql/functions/any-value-transact-sql?view=fabric)
 - [Microsoft Learn: median](https://learn.microsoft.com/en-us/sql/t-sql/functions/median-transact-sql?view=fabric)
 - [Microsoft Learn: approxMedian](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-median-transact-sql?view=fabric)
-- [Microsoft Learn: approxQuantile](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=sql-server-ver17)
+- [Microsoft Learn: approxQuantile](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=fabric)
 - [Microsoft Learn: grouping](https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: groupingId](https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-id-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: having](https://learn.microsoft.com/en-us/sql/t-sql/queries/select-having-transact-sql?view=sql-server-ver17)

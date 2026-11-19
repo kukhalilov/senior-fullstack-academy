@@ -53,21 +53,13 @@ This emits region/year detail, a subtotal per region, and a grand total. GROUPIN
 
 # Knowledge checks with answers
 
-1. **What does `GROUPING SETS` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-2. **What does `ROLLUP` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-3. **What does `CUBE` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-4. **What does `Empty grouping set ()` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-5. **What does `GROUPING function` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-6. **What does `GROUPING_ID function` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-7. **What does `Subtotal row` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-8. **What does `Grand-total row` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-9. **What does `Grouping NULL placeholder` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-10. **What does `GROUPING_ID bitmask` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-11. **What does `Explicit UNION ALL subtotal` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-12. **What does `ROLLUP hierarchy` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-13. **What does `CUBE combination count` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-14. **What does `GROUPING SETS output limit` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-15. **What does `Legacy WITH CUBE and WITH ROLLUP` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
+1. **You need details, monthly subtotals, and one grand total, but no other combinations. Which clause expresses exactly that?** `GROUPING SETS ((Year, Month), (Year), ())`.
+2. **Why does `ROLLUP(Year, Month, Day)` differ from `ROLLUP(Day, Month, Year)`?** ROLLUP follows the written hierarchy; key order determines which progressively less-detailed subtotals are emitted.
+3. **A `CUBE` uses 5 dimensions. How many grouping combinations does it request?** `2^5 = 32`, including the empty grouping set and full detail.
+4. **How do you avoid treating a real NULL dimension value as a subtotal marker?** Select `GROUPING(column)` or `GROUPING_ID(...)`; omitted grouping expressions are marked separately from source NULLs.
+5. **Can duplicate grouping sets in a `GROUPING SETS` list be assumed to collapse?** No. Repeated grouping sets can produce repeated subtotal rows; remove duplicates or handle them deliberately.
+6. **When is explicit `UNION ALL` still useful?** When subtotal shapes need custom logic not expressed clearly with grouping constructs; align each branch's types and labels and preserve duplicates intentionally.
+
 
 # Sources
 
@@ -96,7 +88,7 @@ This emits region/year detail, a subtotal per region, and a grand total. GROUPIN
 - [Microsoft Learn: anyValue](https://learn.microsoft.com/en-us/sql/t-sql/functions/any-value-transact-sql?view=fabric)
 - [Microsoft Learn: median](https://learn.microsoft.com/en-us/sql/t-sql/functions/median-transact-sql?view=fabric)
 - [Microsoft Learn: approxMedian](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-median-transact-sql?view=fabric)
-- [Microsoft Learn: approxQuantile](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=sql-server-ver17)
+- [Microsoft Learn: approxQuantile](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=fabric)
 - [Microsoft Learn: grouping](https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: groupingId](https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-id-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: having](https://learn.microsoft.com/en-us/sql/t-sql/queries/select-having-transact-sql?view=sql-server-ver17)

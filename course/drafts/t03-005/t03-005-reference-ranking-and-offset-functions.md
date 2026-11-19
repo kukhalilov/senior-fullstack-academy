@@ -76,38 +76,13 @@ A unique OrderId resolves ties. LAG’s default applies only when no eligible pr
 
 # Knowledge checks with answers
 
-1. **What does `ROW_NUMBER` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-2. **What does `RANK` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-3. **What does `DENSE_RANK` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-4. **What does `NTILE` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-5. **What does `LAG` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-6. **What does `LEAD` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-7. **What does `FIRST_VALUE` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-8. **What does `LAST_VALUE` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-9. **What does `PERCENT_RANK` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-10. **What does `CUME_DIST` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-11. **What does `PERCENTILE_CONT` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-12. **What does `PERCENTILE_DISC` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-13. **What does `APPROX_PERCENTILE_CONT` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-14. **What does `APPROX_PERCENTILE_DISC` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-15. **What does `Approximate percentile rank-error guarantee` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-16. **What does `RANK tie gaps` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-17. **What does `DENSE_RANK no tie gaps` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-18. **What does `Nondeterministic ROW_NUMBER without unique order` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-19. **What does `LAG default argument` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-20. **What does `LEAD default argument` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-21. **What does `LAG IGNORE NULLS` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-22. **What does `LEAD IGNORE NULLS` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-23. **What does `FIRST_VALUE IGNORE NULLS` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-24. **What does `LAST_VALUE IGNORE NULLS` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-25. **What does `LAG RESPECT NULLS` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-26. **What does `LEAD RESPECT NULLS` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-27. **What does `FIRST_VALUE RESPECT NULLS` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-28. **What does `LAST_VALUE RESPECT NULLS` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-29. **What does `NTILE bucket count` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-30. **What does `LAG and LEAD offset rules` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-31. **What does `SQL Server 2022 IGNORE NULLS availability and CU4 fix` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
-32. **What does `Window function versus grouped aggregate` mean here?** Use the exact inventory row above; identify its input grain, NULL/duplicate behavior, version or compatibility boundary, and output contract where applicable.
+1. **Scores are 100, 100, 90. What ranks do `RANK` and `DENSE_RANK` assign?** `RANK`: 1, 1, 3. `DENSE_RANK`: 1, 1, 2.
+2. **You need stable `ROW_NUMBER` results for tied timestamps. What must the ordering contain?** A unique tie-break key within each partition; otherwise the order among ties is not guaranteed.
+3. **`LAG(Amount, 1, 0)` returns NULL even though its default is zero. Why?** The default is used only when the offset row is outside the partition; it does not replace a NULL value found at that row. `IGNORE NULLS` changes how NULLs are skipped.
+4. **Why can default-frame `LAST_VALUE` fail to return the partition's final value?** It reads the last row in the current frame, whose default endpoint is the current peer group. Use a full-partition frame when that is intended.
+5. **Does the approximate percentile guarantee limit the returned value's numeric distance from the exact percentile?** No. The documented guarantee is about rank error; sparse or skewed data can make adjacent ranks numerically far apart.
+6. **When should approximate percentiles be avoided?** When exact percentile values are contractually required or when their documented rank-based probabilistic guarantee is insufficient for the decision.
+
 
 # Sources
 
@@ -136,7 +111,7 @@ A unique OrderId resolves ties. LAG’s default applies only when no eligible pr
 - [Microsoft Learn: anyValue](https://learn.microsoft.com/en-us/sql/t-sql/functions/any-value-transact-sql?view=fabric)
 - [Microsoft Learn: median](https://learn.microsoft.com/en-us/sql/t-sql/functions/median-transact-sql?view=fabric)
 - [Microsoft Learn: approxMedian](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-median-transact-sql?view=fabric)
-- [Microsoft Learn: approxQuantile](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=sql-server-ver17)
+- [Microsoft Learn: approxQuantile](https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-quantile-transact-sql?view=fabric)
 - [Microsoft Learn: grouping](https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: groupingId](https://learn.microsoft.com/en-us/sql/t-sql/functions/grouping-id-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: having](https://learn.microsoft.com/en-us/sql/t-sql/queries/select-having-transact-sql?view=sql-server-ver17)
