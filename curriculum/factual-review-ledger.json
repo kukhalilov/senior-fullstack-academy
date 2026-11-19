@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1170,
-    "pending": 1179,
-    "claimsChecked": 50173,
-    "claimsCorrected": 2658,
+    "reviewed": 1171,
+    "pending": 1178,
+    "claimsChecked": 50240,
+    "claimsCorrected": 2662,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -104293,13 +104293,34 @@
       "topicId": "t03-001",
       "phase": "overview",
       "draft": "course/drafts/t03-001/t03-001-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 67,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Checked 67 claim units against current official database manuals, release notes, and managed-service documentation. Corrected the PostgreSQL version snapshot: PostgreSQL 19 GA was released 2026-11-19, so RC2 is no longer prerelease; refreshed the date and the 19.0/18.7 release context. Verified SQL Server 2025 CU11 and the distinction between generally available vector type/functions and preview vector indexes/VECTOR_SEARCH, including Azure servicing differences. Rechecked MySQL LTS/Innovation track terminology and MongoDB 9.0.8 date/rollout caveat. Expanded the model walkthrough with normalization, embedding/reference tradeoffs, aggregate atomicity, and engine-versus-hosted-service responsibilities.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/troubleshoot/sql/releases/sqlserver-2025/build-versions",
+            "https://www.postgresql.org/docs/19/",
+            "https://www.postgresql.org/docs/19/release-19.html",
+            "https://dev.mysql.com/doc/refman/9.7/en/which-version.html",
+            "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
+            "https://www.postgresql.org/support/versioning/",
+            "https://www.mongodb.com/docs/manual/release-notes/9.0/",
+            "https://blogs.oracle.com/mysql/mysql-october-2026-ga-releases-now-available",
+            "https://dev.mysql.com/doc/relnotes/mysql/9.7/en/",
+            "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+            "https://www.mongodb.com/docs/manual/data-modeling/",
+            "https://www.mongodb.com/docs/manual/core/write-operations-atomicity/",
+            "https://www.mongodb.com/docs/manual/core/transactions/",
+            "https://docs.aws.amazon.com/documentdb/latest/developerguide/what-is.html"
+          ],
+          "verdict": "verified and updated for current releases; no known omission in overview scope"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17",
@@ -104334,9 +104355,14 @@
         "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
         "https://www.postgresql.org/docs/18/transaction-iso.html",
-        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html"
+        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html",
+        "https://learn.microsoft.com/en-us/troubleshoot/sql/releases/sqlserver-2025/build-versions",
+        "https://www.postgresql.org/docs/19/",
+        "https://www.postgresql.org/docs/19/release-19.html",
+        "https://dev.mysql.com/doc/refman/9.7/en/which-version.html",
+        "https://www.postgresql.org/about/news/postgresql-19-released-3449/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual current-release and big-picture database model audit against official vendor docs and hosted-service documentation."
     },
     {
       "taskId": "t03-001-concepts",

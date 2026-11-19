@@ -244,35 +244,43 @@
     "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html",
     "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
     "https://www.postgresql.org/docs/18/transaction-iso.html",
-    "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html"
+    "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html",
+    "https://learn.microsoft.com/en-us/troubleshoot/sql/releases/sqlserver-2025/build-versions",
+    "https://www.postgresql.org/docs/19/",
+    "https://www.postgresql.org/docs/19/release-19.html",
+    "https://dev.mysql.com/doc/refman/9.7/en/which-version.html"
   ],
   "versionNotes": [
     {
-      "edition": "SQL Server 2025 (17.x), PostgreSQL 18.7 stable with PostgreSQL 19 RC2 prerelease, MySQL 9.7.4 LTS and 26.10 Innovation, MongoDB 9.0.8 stable checked 2026-11-16",
+      "edition": "SQL Server 2025 CU11, PostgreSQL 19.0 GA and 18.7, MySQL 9.7.4 LTS and 26.10 Innovation, MongoDB 9.0.8 checked 2026-11-20",
       "items": [
-        "SQL Server 2025 adds vector data types/functions and preview vector indexes; preview status and edition/configuration eligibility must remain distinct from generally available engine features.",
-        "PostgreSQL 18.7 is the current stable PostgreSQL 18 update on 2026-11-16. PostgreSQL 19 RC2 is prerelease; the project announcement schedules PostgreSQL 19 GA for November 19, 2026.",
-        "MySQL 9.7.4 LTS is the current LTS maintenance release and MySQL 26.10 is the current Innovation release. These are distinct tracks, not a single maturity-ordered version sequence.",
-        "MongoDB 9.0 is the current stable major line and 9.0.8 is the latest patch listed on November 10, 2026; Atlas rollout and self-managed distribution availability can differ."
+        "SQL Server 2025 (17.x) is current; CU11 is the latest listed cumulative update on 2026-11-20. Vector data type/functions are available in the engine; vector indexes and VECTOR_SEARCH remain preview in SQL Server 2025 and require PREVIEW_FEATURES. Azure SQL product/update-policy availability can differ.",
+        "PostgreSQL 19.0 became generally available on 2026-11-19. PostgreSQL 18.7 is the latest 18.x minor update. PostgreSQL 19 major changes include concurrent REPACK, logical replication of sequence values, standby read-your-writes with WAIT FOR LSN, and INSERT ... ON CONFLICT DO SELECT.",
+        "MySQL 9.7.4 is the current LTS maintenance release and 26.10 the current Innovation release in the manual/release materials checked on 2026-11-20. These are distinct release tracks.",
+        "MongoDB 9.0.8 is the latest 9.0 patch listed on 2026-11-10. Atlas rollout and self-managed distribution availability may differ."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
         "https://www.postgresql.org/support/versioning/",
         "https://www.postgresql.org/docs/18/release-18-7.html",
-        "https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442/",
         "https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html",
         "https://dev.mysql.com/doc/relnotes/mysql/9.7/en/",
         "https://blogs.oracle.com/mysql/mysql-october-2026-ga-releases-now-available",
         "https://www.mongodb.com/docs/manual/release-notes/9.0/",
         "https://www.mongodb.com/docs/manual/release-notes/",
-        "https://www.mongodb.com/legal/support-policy/lifecycles"
+        "https://www.mongodb.com/legal/support-policy/lifecycles",
+        "https://learn.microsoft.com/en-us/troubleshoot/sql/releases/sqlserver-2025/build-versions",
+        "https://www.postgresql.org/docs/19/",
+        "https://www.postgresql.org/docs/19/release-19.html",
+        "https://dev.mysql.com/doc/refman/9.7/en/which-version.html",
+        "https://www.postgresql.org/about/news/postgresql-19-released-3449/"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Official Microsoft, PostgreSQL Global Development Group, Oracle MySQL, MongoDB, AWS, and Microsoft Azure documentation",
     "edition": "SQL Server 2025, PostgreSQL 18.7 stable / 19 RC2 prerelease, MySQL 9.7.4 LTS / 26.10 Innovation, MongoDB 9.0.8 stable; checked 2026-11-16",
-    "checkedAt": "2026-11-16",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17",

@@ -6,7 +6,7 @@ Choosing a database is a workload and operations decision, not a popularity cont
 
 # Plain-language mental model
 
-A relational model stores facts in related tables and uses keys and constraints to protect relationships. A document model stores related fields in a document-shaped aggregate and can make that aggregate convenient to read or update together. Both still need schema rules, indexes, transaction boundaries, access controls, backups, and a plan for growth. “Flexible schema” does not mean “no schema design.”
+A relational model stores facts in related tables and connects them through keys. Constraints can protect rules such as uniqueness and valid references; normalization can reduce duplicated facts, while joins let a query bring related rows together. A document model stores a record as a document-shaped aggregate, often nesting fields that are read and changed together. Embedding can make a bounded aggregate convenient to fetch and update atomically, while references can reduce duplication or unbounded growth at the cost of more reads or multi-document coordination. Both models still need schema rules, indexes, transaction boundaries, access controls, backups, and a plan for growth. “Flexible schema” does not mean “no schema design.”
 
 # How the parts fit together
 
@@ -26,7 +26,7 @@ A relational model stores facts in related tables and uses keys and constraints 
 | Scaling | Vertical, replicas, partitions, service tiers | Vertical, replicas, shards, service tiers |
 | Operations | Self-managed or provider service | Self-managed or managed/compatibility service |
 
-These are design tendencies, not guarantees. SQL Server, PostgreSQL, and MySQL are all relational but expose different types, dialects, optimizer behavior, and deployment controls. MongoDB offers both single-document atomic updates and multi-document transactions; using a document model does not make every multi-record invariant atomic automatically. [SQL Server 2025](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17) [PostgreSQL 18 docs](https://www.postgresql.org/docs/18/) [MySQL manual](https://dev.mysql.com/doc/refman/9.7/en/) [MongoDB data modeling](https://www.mongodb.com/docs/manual/data-modeling/)
+These are design tendencies, not guarantees. SQL Server, PostgreSQL, and MySQL are all relational, but expose different types, SQL dialects, optimizer behavior, storage engines, extension models, and deployment controls. MongoDB supports atomic writes within one document and multi-document transactions; using a document model does not make every multi-record invariant atomic automatically. A database engine is also distinct from a hosted service: a provider may change supported features, maintenance windows, failover behavior, backup/restore controls, and upgrade timing. [SQL Server 2025](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17) [PostgreSQL 19 docs](https://www.postgresql.org/docs/19/) [MySQL manual](https://dev.mysql.com/doc/refman/9.7/en/) [MongoDB data modeling](https://www.mongodb.com/docs/manual/data-modeling/)
 
 # End-to-end walkthrough
 
@@ -42,17 +42,21 @@ The first reference lesson maps data/query surfaces and indexes. The second comp
 
 # Recent version changes
 
-As checked on 2026-11-16, SQL Server 2025 is the current SQL Server line; PostgreSQL 18.7 is the current stable update while PostgreSQL 19 RC2 remains prerelease; MySQL 9.7.4 is LTS and 26.10 is Innovation; MongoDB 9.0.8 is the latest patch in its current stable major line. Treat the release channel and hosted availability as separate facts. [PostgreSQL release](https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442/) [MySQL October release](https://blogs.oracle.com/mysql/mysql-october-2026-ga-releases-now-available) [MongoDB release notes](https://www.mongodb.com/docs/manual/release-notes/9.0/)
+As checked on 2026-11-20, SQL Server 2025 (17.x) is current and CU11 is the latest listed cumulative update. Its vector type and functions are available in the engine, while vector indexes and VECTOR_SEARCH remain preview features in SQL Server 2025 and require PREVIEW_FEATURES; Azure SQL products can have different availability. PostgreSQL 19.0 became generally available on 2026-11-19, while PostgreSQL 18.7 is the latest 18.x minor update. PostgreSQL 19 adds, among other changes, concurrent table repacking, logical replication of sequence values, standby read-your-writes via WAIT FOR LSN, and INSERT ... ON CONFLICT DO SELECT. MySQL 9.7.4 is the current LTS maintenance release and 26.10 the current Innovation release in the checked manual; these are different release tracks. MongoDB 9.0.8 is the latest 9.0 patch listed on 2026-11-10, but rollout across Atlas and self-managed distributions can differ. Recheck release channels and hosted availability when choosing a production version. [SQL Server builds](https://learn.microsoft.com/en-us/troubleshoot/sql/releases/sqlserver-2025/build-versions) [PostgreSQL 19 release notes](https://www.postgresql.org/docs/19/release-19.html) [MySQL release tracks](https://dev.mysql.com/doc/refman/9.7/en/which-version.html) [MongoDB 9.0 release notes](https://www.mongodb.com/docs/manual/release-notes/9.0/)
 
 # Sources
 
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17)
+- [Official documentation](https://learn.microsoft.com/en-us/troubleshoot/sql/releases/sqlserver-2025/build-versions)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17)
 - [Official documentation](https://www.postgresql.org/docs/18/)
+- [Official documentation](https://www.postgresql.org/docs/19/)
+- [Official documentation](https://www.postgresql.org/docs/19/release-19.html)
 - [Official documentation](https://www.postgresql.org/support/versioning/)
 - [Official documentation](https://www.postgresql.org/docs/18/release-18-7.html)
 - [Official documentation](https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/)
+- [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/which-version.html)
 - [Official documentation](https://dev.mysql.com/doc/relnotes/mysql/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html)
 - [Official documentation](https://blogs.oracle.com/mysql/mysql-october-2026-ga-releases-now-available)
