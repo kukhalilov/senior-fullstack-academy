@@ -2,101 +2,115 @@
 
 # Scope and version
 
-This lesson explains all 46 supplied properties in **CSS Logical Properties and Values properties** and no additional inventory names. MDN descriptions and support labels were captured on 2026-11-16. 46 names have an MDN Baseline label, 0 have Limited availability, and 0 are explicitly marked Experimental in the 2026-11-16 capture. These labels can overlap; the row for every name preserves its own status. A missing Baseline label is not proof that no browser implements it. Support can change after this capture. The CSS Snapshot 2026 reports specification maturity rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This lesson covers all 46 names in the assigned logical-property inventory. CSS Logical Properties and Values Level 1 (Working Draft, 4 December 2025) supplies writing-mode-relative equivalents for sizing, margins, padding, borders, and corners. The property model is established in browsers, but the cited document remains a draft and its open issues should be checked for advanced cascade/feature questions. The key to using these properties correctly is knowing which box’s writing mode controls the mapping.
 
 # How this group fits the mental model
 
-Logical properties describe start/end and inline/block dimensions in the element’s writing mode. Their physical mapping changes for RTL and vertical writing; this makes one rule adapt across scripts instead of encoding left/right assumptions. The overview and concepts lessons explain the surrounding layout model; this catalog now ties every supplied name to its role. A short MDN description is not a complete grammar. Follow the linked specification/reference for exact values, applicability, inheritance, computed-value rules, and browser-specific support before using an unfamiliar value.
+CSS layout uses two coordinate systems. Physical properties name the canvas (`left`, `top`, `width`); logical properties name the content flow (`inline-start`, `block-end`, `inline-size`). In a typical horizontal LTR paragraph, inline-start is left and block-start is top. In horizontal RTL, inline-start becomes right. In `vertical-rl`, block-start is right and inline-size maps to physical height. Logical declarations make a component adapt when language or writing mode changes.
+
+Mappings are determined by the applicable writing mode and direction, not by guessing from the property spelling. For properties affecting a box itself, the containing block’s writing mode commonly supplies the mapping; consult the defining module for special cases. Physical properties remain appropriate for effects intentionally tied to the physical canvas, such as a shadow that should always fall down and right.
 
 # Supplied names explained
 
-| Exact supplied property | Meaning in this model |
+All names below are in the 46-name manifest. CSS-wide keywords apply throughout. Grammar for each family follows its corresponding physical property; the mapping changes the side/axis, not the underlying value system.
+
+## Logical dimensions — six names
+
+| Names | Behavior and value model |
 | --- | --- |
-| `block-size` | The block-size CSS property defines the size of an element's block along the block axis. If the writing-mode is horizontal, it corresponds to the height; if the writing mode is vertical, it corresponds to the width. A related property is inline-size, which defines the other dimension of the element. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/block-size) |
-| `border-block` | The border-block CSS shorthand property sets the individual logical block border property values in a single place in the style sheet. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block) |
-| `border-block-color` | The border-block-color CSS property defines the color of the logical block borders of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color and border-bottom-color, or border-right-color and border-left-color property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-color) |
-| `border-block-end` | The border-block-end CSS shorthand property sets the individual logical block-end border property values in a single place in the style sheet. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-end) |
-| `border-block-end-color` | The border-block-end-color CSS property defines the color of the logical block-end border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-end-color) |
-| `border-block-end-style` | The border-block-end-style CSS property defines the style of the logical block-end border of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style, border-right-style, border-bottom-style, or border-left-style property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-end-style) |
-| `border-block-end-width` | The border-block-end-width CSS property defines the width of the logical block-end border of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width, border-right-width, border-bottom-width, or border-left-width property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-end-width) |
-| `border-block-start` | The border-block-start CSS shorthand property sets the individual logical block-start border property values in a single place in the style sheet. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-start) |
-| `border-block-start-color` | The border-block-start-color CSS property defines the color of the logical block-start border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-start-color) |
-| `border-block-start-style` | The border-block-start-style CSS property defines the style of the logical block start border of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style, border-right-style, border-bottom-style, or border-left-style property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-start-style) |
-| `border-block-start-width` | The border-block-start-width CSS property defines the width of the logical block-start border of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width, border-right-width, border-bottom-width, or border-left-width property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-start-width) |
-| `border-block-style` | The border-block-style CSS property defines the style of the logical block borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style and border-bottom-style, or border-left-style and border-right-style properties depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-style) |
-| `border-block-width` | The border-block-width CSS property defines the width of the logical block borders of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width and border-bottom-width, or border-left-width, and border-right-width property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-block-width) |
-| `border-end-end-radius` | The border-end-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on the element's writing-mode, direction, and text-orientation. This is useful when building styles to work regardless of the text orientation and writing mode. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-end-end-radius) |
-| `border-end-start-radius` | The border-end-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation. This is useful when building styles to work regardless of the text orientation and writing mode. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-end-start-radius) |
-| `border-inline` | The border-inline CSS shorthand property sets the individual logical inline border property values in a single place in the style sheet. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline) |
-| `border-inline-color` | The border-inline-color CSS property defines the color of the logical inline borders of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color and border-bottom-color, or border-right-color and border-left-color property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-color) |
-| `border-inline-end` | The border-inline-end CSS shorthand property sets the individual logical inline-end border property values in a single place in the style sheet. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-end) |
-| `border-inline-end-color` | The border-inline-end-color CSS property defines the color of the logical inline-end border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-end-color) |
-| `border-inline-end-style` | The border-inline-end-style CSS property defines the style of the logical inline end border of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style, border-right-style, border-bottom-style, or border-left-style property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-end-style) |
-| `border-inline-end-width` | The border-inline-end-width CSS property defines the width of the logical inline-end border of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width, border-right-width, border-bottom-width, or border-left-width property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-end-width) |
-| `border-inline-start` | The border-inline-start CSS shorthand property sets the individual logical inline-start border property values in a single place in the style sheet. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-start) |
-| `border-inline-start-color` | The border-inline-start-color CSS property defines the color of the logical inline start border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-start-color) |
-| `border-inline-start-style` | The border-inline-start-style CSS property defines the style of the logical inline start border of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style, border-right-style, border-bottom-style, or border-left-style property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-start-style) |
-| `border-inline-start-width` | The border-inline-start-width CSS property defines the width of the logical inline-start border of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width, border-right-width, border-bottom-width, or border-left-width property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-start-width) |
-| `border-inline-style` | The border-inline-style CSS property defines the style of the logical inline borders of an element, which maps to a physical border style depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-style and border-bottom-style, or border-left-style and border-right-style properties depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-style) |
-| `border-inline-width` | The border-inline-width CSS property defines the width of the logical inline borders of an element, which maps to a physical border width depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-width and border-bottom-width, or border-left-width, and border-right-width property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-inline-width) |
-| `border-start-end-radius` | The border-start-end-radius CSS property defines a logical border radius on an element, which maps to a physical border radius depending on the element's writing-mode, direction, and text-orientation. This is useful when building styles to work regardless of the text orientation and writing mode. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-start-end-radius) |
-| `border-start-start-radius` | The border-start-start-radius CSS property defines a logical border radius on an element, which maps to a physical border radius that depends on the element's writing-mode, direction, and text-orientation. This is useful when building styles to work regardless of the text orientation and writing mode. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-start-start-radius) |
-| `inline-size` | The inline-size CSS property defines the size of an element's block along the inline axis. If the writing-mode is horizontal, it corresponds to the width; if the writing mode is vertical, it corresponds to the height. A related property is block-size, which defines the other dimension of the element. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inline-size) |
-| `margin-block` | The margin-block CSS shorthand property defines the logical block start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-block) |
-| `margin-block-end` | The margin-block-end CSS property defines the logical block end margin of an element, which maps to a physical margin depending on the element's writing mode, directionality, and text orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-block-end) |
-| `margin-block-start` | The margin-block-start CSS property defines the logical block start margin of an element, which maps to a physical margin depending on the element's writing mode, directionality, and text orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-block-start) |
-| `margin-inline` | The margin-inline CSS shorthand property defines both the logical inline start and end margins of an element, which maps to physical margins depending on the element's writing mode, directionality, and text orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-inline) |
-| `margin-inline-end` | The margin-inline-end CSS property defines the logical inline end margin of an element, which maps to a physical margin depending on the element's writing mode, directionality, and text orientation. In other words, it corresponds to the margin-top, margin-right, margin-bottom or margin-left property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-inline-end) |
-| `margin-inline-start` | The margin-inline-start CSS property defines the logical inline start margin of an element, which maps to a physical margin depending on the element's writing mode, directionality, and text orientation. It corresponds to the margin-top, margin-right, margin-bottom, or margin-left property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-inline-start) |
-| `max-block-size` | The max-block-size CSS property specifies the maximum size of an element in the direction opposite that of the writing direction as specified by writing-mode. That is, if the writing direction is horizontal, then max-block-size is equivalent to max-height; if the writing direction is vertical, max-block-size is the same as max-width. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/max-block-size) |
-| `max-inline-size` | The max-inline-size CSS property defines the horizontal or vertical maximum size of an element's block, depending on its writing mode. It corresponds to either the max-width or the max-height property, depending on the value of writing-mode. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/max-inline-size) |
-| `min-block-size` | The min-block-size CSS property defines the minimum horizontal or vertical size of an element's block, depending on its writing mode. It corresponds to either the min-width or the min-height property, depending on the value of writing-mode. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/min-block-size) |
-| `min-inline-size` | The min-inline-size CSS property defines the horizontal or vertical minimal size of an element's block, depending on its writing mode. It corresponds to either the min-width or the min-height property, depending on the value of writing-mode. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/min-inline-size) |
-| `padding-block` | The padding-block CSS shorthand property defines the logical block start and end padding of an element, which maps to physical padding properties depending on the element's writing mode, directionality, and text orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-block) |
-| `padding-block-end` | The padding-block-end CSS property defines the logical block end padding of an element, which maps to a physical padding depending on the element's writing mode, directionality, and text orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-block-end) |
-| `padding-block-start` | The padding-block-start CSS property defines the logical block start padding of an element, which maps to a physical padding depending on the element's writing mode, directionality, and text orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-block-start) |
-| `padding-inline` | The padding-inline CSS shorthand property defines the logical inline start and end padding of an element, which maps to physical padding properties depending on the element's writing mode, directionality, and text orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-inline) |
-| `padding-inline-end` | The padding-inline-end CSS property defines the logical inline end padding of an element, which maps to a physical padding depending on the element's writing mode, directionality, and text orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-inline-end) |
-| `padding-inline-start` | The padding-inline-start CSS property defines the logical inline start padding of an element, which maps to a physical padding depending on the element's writing mode, directionality, and text orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-inline-start) |
+| `inline-size`, `min-inline-size`, `max-inline-size` | Set preferred, minimum, and maximum size along the inline axis. In horizontal writing this usually maps to width; in vertical writing it usually maps to height. Follow the matching `width`/`min-width`/`max-width` grammar, including intrinsic sizing keywords where allowed. |
+| `block-size`, `min-block-size`, `max-block-size` | Set preferred, minimum, and maximum size along the block axis. In horizontal writing this usually maps to height; in vertical writing it usually maps to width. Follow the matching `height`/`min-height`/`max-height` grammar. |
+
+Size is not interchangeable with min/max constraints: `inline-size` proposes a size; `min-inline-size` and `max-inline-size` bound the used result. Percentages and intrinsic values retain the rules of their physical counterparts and can depend on whether the containing block has a definite size.
+
+## Logical margins — six names
+
+| Names | Behavior and value model |
+| --- | --- |
+| `margin-block`, `margin-inline` | Two-edge shorthands. One value sets both edges of that logical axis; two set start then end. |
+| `margin-block-start`, `margin-block-end`, `margin-inline-start`, `margin-inline-end` | Individual logical side margins. Values follow `margin`: lengths, percentages, and `auto`; negative margins are permitted. A percentage margin resolves against the containing block’s inline size, including block-axis margins. |
+
+Use `margin-inline: auto` for inline-axis centering when the layout context permits auto margins. It is not a universal substitute for alignment properties in flex/grid.
+
+## Logical padding — six names
+
+| Names | Behavior and value model |
+| --- | --- |
+| `padding-block`, `padding-inline` | Two-edge shorthands. One value sets both logical edges; two set start then end. |
+| `padding-block-start`, `padding-block-end`, `padding-inline-start`, `padding-inline-end` | Individual logical side padding. Values follow `padding`: nonnegative lengths or percentages, with the same percentage basis as the physical properties. |
+
+Padding creates space inside the border and participates in box sizing; it cannot be negative. Logical mapping does not change `box-sizing` behavior.
+
+## Logical borders — 24 names
+
+| Exact names | What they set |
+| --- | --- |
+| `border-block`, `border-inline` | Shorthands for the two borders on the named axis. They set the axis’s start and end sides, including their width, style, and color. Their value follows the physical `border` shorthand components. |
+| `border-block-start`, `border-block-end`, `border-inline-start`, `border-inline-end` | One-side shorthands. Each follows `border` grammar and sets width/style/color on that logical side. |
+| `border-block-width`, `border-block-style`, `border-block-color`, `border-inline-width`, `border-inline-style`, `border-inline-color` | Two-edge shorthands for a border component. One value sets both sides on that axis; two set start then end. Width, style, and color use the corresponding physical border-component grammar. |
+| `border-block-start-width`, `border-block-end-width`, `border-inline-start-width`, `border-inline-end-width` | Individual logical side widths; follow `border-*-width` values such as length or the applicable width keywords. |
+| `border-block-start-style`, `border-block-end-style`, `border-inline-start-style`, `border-inline-end-style` | Individual logical side styles; follow `border-*-style` keywords. `none`/`hidden` affect whether a visible border is drawn and interact with border conflict resolution for tables as defined by CSS. |
+| `border-block-start-color`, `border-block-end-color`, `border-inline-start-color`, `border-inline-end-color` | Individual logical side colors; follow `border-*-color`, including color values and `currentColor`. |
+
+Border shorthands reset omitted components to their initial values, as physical border shorthands do. A declared border width is not visibly painted when its style computes to `none` (and border styles/widths participate in the rules for collapsed tables).
+
+## Logical corner radii — four names
+
+| Exact supplied property | Corner selected |
+| --- | --- |
+| `border-start-start-radius` | Intersection of block-start and inline-start. |
+| `border-start-end-radius` | Intersection of block-start and inline-end. |
+| `border-end-start-radius` | Intersection of block-end and inline-start. |
+| `border-end-end-radius` | Intersection of block-end and inline-end. |
+
+Each follows the physical `border-*-radius` grammar: one or two length/percentage radii describe horizontal and vertical curvature for that mapped corner. The mapping changes the corner, not the curve rules.
 
 # Cross-item comparison
 
-`inline-size`/`block-size` map to width/height according to writing mode; inline start/end correspond roughly to text progression, while block start/end describe block progression. Logical border, margin, and padding properties mirror physical longhands and shorthands. When both logical and physical declarations set the same underlying side, cascade order and mapping determine the winner.
+To read a name, identify its axis, edge, and component. For example, `border-inline-start-width` means width component → inline axis → start edge. `border-inline` instead sets the complete border on both inline edges. Dimensions, margins, padding, border components, and corner radii map independently; using one logical property does not automatically convert other physical declarations.
+
+When physical and logical declarations target the same underlying side/component, the cascade resolves them according to the normal origin, importance, layer, specificity, and source-order rules. There is no special rule that logical always wins. Avoid setting both forms unless an intentional fallback/override pattern is clear.
 
 # Examples
 
-Use `margin-inline: auto` for centering along the inline axis and `padding-block` for block-axis breathing room; test horizontal LTR, horizontal RTL, and vertical writing modes.
+This card uses logical dimensions and spacing, so it can adapt to horizontal RTL and vertical writing without rewriting its box spacing. Its shadow stays physically down/right because that visual choice is intentional.
 
 ```css
-.panel { inline-size: min(100%, 52rem); margin-inline: auto; padding-block: 1.5rem; padding-inline: 1rem; }
+.quote-card {
+  inline-size: min(100%, 52rem);
+  min-block-size: 12rem;
+  margin-inline: auto;
+  padding-block: 1.5rem;
+  padding-inline: 1rem;
+  border-inline-start: 0.25rem solid currentColor;
+  border-start-start-radius: 0.75rem;
+  box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 15%);
+}
 ```
-
-The example illustrates a layout choice; adapt it to actual content and test target browsers, zoom, writing modes, keyboard use, and narrow containers.
 
 # Common mistakes
 
-- Assuming inline always means horizontal or block always means vertical.
-- Mixing a physical property and its logical counterpart without understanding the cascade mapping.
-- Using `start`/`end` as synonyms for left/right.
-- Overlooking corner naming: block/inline start and end combine into logical corners.
-- Inferring a property’s full value grammar from its name or the brief definition alone.
-- Assuming MDN support labels prove support in every browser version or embedded webview.
-- Confusing the CSS Working Group draft status with a browser implementation guarantee.
+- Reading `inline` as “horizontal” and `block` as “vertical”; vertical writing reverses those assumptions.
+- Assuming `start` always means left or `block-start` always means top.
+- Confusing an axis shorthand (`border-block`) with a one-edge shorthand (`border-block-start`) or component shorthand (`border-block-width`).
+- Assuming padding permits negative values; margin does, padding does not.
+- Assuming logical properties outrank physical properties in the cascade.
+- Mixing physical and logical shorthand/longhand declarations without tracing which underlying sides and components they set or reset.
+- Using logical corner names as if the first word were a physical top/bottom designation; both words are flow-relative.
+- Forgetting that min/max constraints and percentage sizing retain the underlying property’s sizing rules.
 
 # Knowledge checks with answers
 
-1. **Which exact names are represented here?** `block-size`, `border-block`, `border-block-color`, `border-block-end`, `border-block-end-color`, `border-block-end-style`, `border-block-end-width`, `border-block-start`, `border-block-start-color`, `border-block-start-style`, `border-block-start-width`, `border-block-style`, `border-block-width`, `border-end-end-radius`, `border-end-start-radius`, `border-inline`, `border-inline-color`, `border-inline-end`, `border-inline-end-color`, `border-inline-end-style`, `border-inline-end-width`, `border-inline-start`, `border-inline-start-color`, `border-inline-start-style`, `border-inline-start-width`, `border-inline-style`, `border-inline-width`, `border-start-end-radius`, `border-start-start-radius`, `inline-size`, `margin-block`, `margin-block-end`, `margin-block-start`, `margin-inline`, `margin-inline-end`, `margin-inline-start`, `max-block-size`, `max-inline-size`, `min-block-size`, `min-inline-size`, `padding-block`, `padding-block-end`, `padding-block-start`, `padding-inline`, `padding-inline-end`, `padding-inline-start`. Each has an individual definition and support link above.
-2. **What should be checked beyond this concise description?** Full grammar, applicable boxes, inheritance, computed behavior, interactions, and the target browser compatibility data.
-3. **What is the MDN status label’s date?** The local reference capture is dated 2026-11-16; consult current compatibility data for future production decisions.
+1. **What does `inline-size` map to in horizontal versus vertical writing?** Usually width in horizontal writing and height in vertical writing; exact axes follow the writing mode.
+2. **What is the value order for `margin-inline: 1rem 2rem`?** Inline-start then inline-end.
+3. **Can padding be negative?** No. Logical padding follows physical padding’s nonnegative value rules.
+4. **What does `border-block-width: 1px 3px` set?** Block-start border width to 1px and block-end border width to 3px.
+5. **Does `border-inline-start` mean the left border?** Only in writing modes where inline-start maps to physical left; in horizontal RTL it maps to right.
+6. **How does `border-start-end-radius` identify a corner?** It rounds the intersection of logical block-start and inline-end.
+7. **If a later physical `margin-left` and a logical margin map to the same side, which wins?** The normal cascade decides; neither naming system has priority by itself.
 
 # Sources
 
-- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
-- [CSS Flexible Box Layout Level 2 draft](https://drafts.csswg.org/css-flexbox-2/)
-- [CSS Overflow Level 4 draft](https://drafts.csswg.org/css-overflow-4/)
-- [CSS Overflow Level 5 draft](https://drafts.csswg.org/css-overflow-5/)
-- [CSS Scroll Snap Level 2 draft](https://drafts.csswg.org/css-scroll-snap-2/)
-- [CSS Display Level 4 draft](https://drafts.csswg.org/css-display-4/)
-- [CSS Anchor Positioning Level 1 draft](https://drafts.csswg.org/css-anchor-position-1/)
+- [CSS Logical Properties and Values Level 1](https://www.w3.org/TR/css-logical-1/) — §§1–4: mapping model, dimensions, margin/padding/border shorthands and longhands, logical corners, and cascade mapping.
+- [CSS Writing Modes Level 4](https://www.w3.org/TR/css-writing-modes-4/) — abstract block/inline directions and physical mappings.
+- [CSS Box Model Level 3](https://www.w3.org/TR/css-box-3/) — margin, padding, border, and sizing behavior inherited by logical equivalents.
