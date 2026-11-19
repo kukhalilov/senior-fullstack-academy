@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1189,
-    "pending": 1160,
-    "claimsChecked": 51288,
-    "claimsCorrected": 2736,
+    "reviewed": 1190,
+    "pending": 1159,
+    "claimsChecked": 51340,
+    "claimsCorrected": 2738,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -106131,32 +106131,74 @@
       "topicId": "t03-003",
       "phase": "reference",
       "draft": "course/drafts/t03-003/t03-003-reference-where-predicates-and-search-conditions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "section": "Search-condition predicate forms, Boolean truth values, logical precedence, evaluation order, IN/EXISTS/ANY/ALL behavior",
+          "verdict": "supported; documentation has a conflicting statement for ALL over an empty subquery, recorded in lesson and compared with running engine",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "Comparison operators, three-valued Boolean results and NULL comparison setting",
+          "verdict": "supported for target engine, with ANSI_NULLS ON",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "ANSI_NULLS always ON beginning SQL Server 2017; OFF deprecated",
+          "verdict": "supported; added missing version boundary",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-ansi-nulls-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "SQL Server 2025 RTM 17.0.1155.3: ALL over empty subquery TRUE, ANY over empty subquery FALSE, NULL equality UNKNOWN",
+          "verdict": "directly executed read-only SELECT expressions on the local SQL Server instance",
+          "url": "local SQL Server 2025 RTM verification"
+        },
+        {
+          "section": "IS [NOT] DISTINCT FROM definite NULL-safe comparison; SQL Server 2022 applicability",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "LIKE wildcard classes, collation range behavior, ESCAPE and trailing-space rules",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "REGEXP_LIKE flags c/i/m/s, compatibility 170, collation independence and anchored SARGable subset",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "ALL dedicated predicate definition",
+          "verdict": "every-pair rule supports universal interpretation; general search-condition page empty-set statement is inconsistent with the dedicated definition and current engine behavior",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/operator-precedence-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-ansi-nulls-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/exists-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/operator-precedence-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Enumerated all 44 assigned predicates/pattern items and checked surrounding version, logic, and optimizer claims against Microsoft SQL Server references. Added the SQL Server 2017+ ANSI_NULLS=ON boundary. Found Microsoft Learn’s general search-condition page contradicts the dedicated ALL definition on an empty set; verified SQL Server 2025 RTM 17.0.1155.3 returns TRUE for ALL over an empty subquery and documented the official-page inconsistency transparently. Verified SQL Server 2025 REGEXP_LIKE flags, compatibility boundary, collation behavior and restricted SARGable pattern grammar. No assigned inventory items are missing."
     },
     {
       "taskId": "t03-003-reference-ordering-and-result-determinism",
