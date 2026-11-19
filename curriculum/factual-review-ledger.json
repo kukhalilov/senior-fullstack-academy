@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1072,
-    "pending": 1275,
-    "claimsChecked": 41970,
-    "claimsCorrected": 1703,
+    "reviewed": 1073,
+    "pending": 1274,
+    "claimsChecked": 41988,
+    "claimsCorrected": 1706,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -70930,13 +70930,44 @@
       "topicId": "t07-016",
       "phase": "overview",
       "draft": "course/drafts/t07-016/t07-016-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 18,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claim": "Selectors, combinators, pseudo-classes/elements and CSS language purpose",
+          "source": "https://www.w3.org/TR/selectors-4/",
+          "section": "§2–3 Selector syntax and structure",
+          "verdict": "corrected; clarified compound versus complex selectors and their combination"
+        },
+        {
+          "claim": "Cascade stages, origins, importance, layers, specificity, scope proximity, source order, animations/transitions",
+          "source": "https://www.w3.org/TR/css-cascade-5/; https://www.w3.org/TR/css-cascade-6/",
+          "section": "§4–7 Cascade and value processing",
+          "verdict": "corrected; overview now flags animation/transition priority and special inline-style/encapsulation considerations while labeling its ordering as a checklist"
+        },
+        {
+          "claim": "CSS box geometry and box-sizing explanation",
+          "source": "https://www.w3.org/TR/css-box-3/; https://drafts.csswg.org/css-sizing-3/",
+          "section": "Box areas; box-sizing property",
+          "verdict": "corrected; clarified margins remain outside the width/height governed by box-sizing"
+        },
+        {
+          "claim": "CSS Snapshot 2026 status and standards maturity distinction",
+          "source": "https://www.w3.org/TR/css-2026/",
+          "section": "Abstract / classification of CSS specifications",
+          "verdict": "verified; distinguishes standards maturity from browser adoption"
+        },
+        {
+          "claim": "DevTools debugging flow, calculated versus used geometry, and teaching scope",
+          "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Introduction",
+          "section": "Cascade order and computed values",
+          "verdict": "verified; no unresolved factual issues"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference",
@@ -70962,9 +70993,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/column-wrap",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain-intrinsic-size",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+        "https://www.w3.org/TR/css-cascade-5/",
+        "https://www.w3.org/TR/css-box-3/",
+        "https://drafts.csswg.org/css-sizing-3/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Introduction"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-by-claim audit of the overview mental model, concept map, end-to-end debugging example, tradeoffs, and stated future coverage against W3C CSS Snapshot 2026, current Cascade/Selectors/Box Sizing specifications, and MDN. Corrected selector composition terminology, cascade checklist omissions, and box-sizing/margin boundary. No unresolved issues."
     },
     {
       "taskId": "t07-016-concepts",
