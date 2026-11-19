@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1300,
-    "pending": 1049,
-    "claimsChecked": 60867,
-    "claimsCorrected": 2994,
+    "reviewed": 1306,
+    "pending": 1043,
+    "claimsChecked": 61580,
+    "claimsCorrected": 3006,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -118181,13 +118181,54 @@
       "topicId": "t04-005",
       "phase": "overview",
       "draft": "course/drafts/t04-005/t04-005-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 53,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 53 externally verifiable statements, APIs and supplied items where applicable, including LINQ semantics, translation boundaries, provider/version scope, examples and answers. Reviewed expression-tree/provider mental model, execution boundaries, client projection exception, terminal cardinality, and SQL inspection.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/",
+              "section": "Query composition/execution and IQueryable provider flow",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
+              "section": "Server vs client evaluation and top-level projection exception",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/how-query-works",
+              "section": "Query pipeline overview; page notes internals may be outdated",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific translation and compatibility limits",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": ".NET 10 LeftJoin/RightJoin and EF10 query translations",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF11 FullJoin, MaxBy/MinBy, GroupBy improvements and query translation (release status page stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/querying/",
         "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
@@ -118197,20 +118238,61 @@
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed expression-tree/provider mental model, execution boundaries, client projection exception, terminal cardinality, and SQL inspection."
     },
     {
       "taskId": "t04-005-concepts",
       "topicId": "t04-005",
       "phase": "concepts",
       "draft": "course/drafts/t04-005/t04-005-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 91 externally verifiable statements, APIs and supplied items where applicable, including LINQ semantics, translation boundaries, provider/version scope, examples and answers. Checked deferred execution, translation failure boundaries, materialization/client processing, operator cardinality, async/cancellation and provider dependence.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/",
+              "section": "Query composition/execution and IQueryable provider flow",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
+              "section": "Server vs client evaluation and top-level projection exception",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/how-query-works",
+              "section": "Query pipeline overview; page notes internals may be outdated",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific translation and compatibility limits",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": ".NET 10 LeftJoin/RightJoin and EF10 query translations",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF11 FullJoin, MaxBy/MinBy, GroupBy improvements and query translation (release status page stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/querying/",
         "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
@@ -118220,20 +118302,61 @@
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked deferred execution, translation failure boundaries, materialization/client processing, operator cardinality, async/cancellation and provider dependence."
     },
     {
       "taskId": "t04-005-reference-query-composition-and-execution",
       "topicId": "t04-005",
       "phase": "reference",
       "draft": "course/drafts/t04-005/t04-005-reference-query-composition-and-execution.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 225,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 225 externally verifiable statements, APIs and supplied items where applicable, including LINQ semantics, translation boundaries, provider/version scope, examples and answers. Checked all 61 assigned operators/methods and query shapes, including .NET 10/11 additions, buffering/streaming and async variants.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/",
+              "section": "Query composition/execution and IQueryable provider flow",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
+              "section": "Server vs client evaluation and top-level projection exception",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/how-query-works",
+              "section": "Query pipeline overview; page notes internals may be outdated",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific translation and compatibility limits",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": ".NET 10 LeftJoin/RightJoin and EF10 query translations",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF11 FullJoin, MaxBy/MinBy, GroupBy improvements and query translation (release status page stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/querying/",
         "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
@@ -118243,20 +118366,61 @@
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 61 assigned operators/methods and query shapes, including .NET 10/11 additions, buffering/streaming and async variants."
     },
     {
       "taskId": "t04-005-reference-translation-and-client-boundaries",
       "topicId": "t04-005",
       "phase": "reference",
       "draft": "course/drafts/t04-005/t04-005-reference-translation-and-client-boundaries.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 174,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 174 externally verifiable statements, APIs and supplied items where applicable, including LINQ semantics, translation boundaries, provider/version scope, examples and answers. Checked all 27 translation/caching/extension items, top-level client evaluation, unsupported expression behavior, tags/interceptors and cache boundaries.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/",
+              "section": "Query composition/execution and IQueryable provider flow",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
+              "section": "Server vs client evaluation and top-level projection exception",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/how-query-works",
+              "section": "Query pipeline overview; page notes internals may be outdated",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific translation and compatibility limits",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": ".NET 10 LeftJoin/RightJoin and EF10 query translations",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF11 FullJoin, MaxBy/MinBy, GroupBy improvements and query translation (release status page stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/querying/",
         "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
@@ -118266,20 +118430,61 @@
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 27 translation/caching/extension items, top-level client evaluation, unsupported expression behavior, tags/interceptors and cache boundaries."
     },
     {
       "taskId": "t04-005-practice",
       "topicId": "t04-005",
       "phase": "practice",
       "draft": "course/drafts/t04-005/t04-005-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 91 externally verifiable statements, APIs and supplied items where applicable, including LINQ semantics, translation boundaries, provider/version scope, examples and answers. Checked examples and answers for server-first query composition, client boundary placement, cardinality and generated SQL interpretation.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/",
+              "section": "Query composition/execution and IQueryable provider flow",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
+              "section": "Server vs client evaluation and top-level projection exception",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/how-query-works",
+              "section": "Query pipeline overview; page notes internals may be outdated",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific translation and compatibility limits",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": ".NET 10 LeftJoin/RightJoin and EF10 query translations",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF11 FullJoin, MaxBy/MinBy, GroupBy improvements and query translation (release status page stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/querying/",
         "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
@@ -118289,20 +118494,61 @@
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked examples and answers for server-first query composition, client boundary placement, cardinality and generated SQL interpretation."
     },
     {
       "taskId": "t04-005-interview",
       "topicId": "t04-005",
       "phase": "interview",
       "draft": "course/drafts/t04-005/t04-005-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 79,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 79 externally verifiable statements, APIs and supplied items where applicable, including LINQ semantics, translation boundaries, provider/version scope, examples and answers. Checked interview explanations for IQueryable, client evaluation, translation failures, operator choice and version-specific joins.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/",
+              "section": "Query composition/execution and IQueryable provider flow",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
+              "section": "Server vs client evaluation and top-level projection exception",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/how-query-works",
+              "section": "Query pipeline overview; page notes internals may be outdated",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific translation and compatibility limits",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
+              "section": ".NET 10 LeftJoin/RightJoin and EF10 query translations",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF11 FullJoin, MaxBy/MinBy, GroupBy improvements and query translation (release status page stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release status",
+              "verdict": "Checked against official Microsoft/dotnet documentation; provider-specific and current release boundaries are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/querying/",
         "https://learn.microsoft.com/en-us/ef/core/querying/client-eval",
@@ -118312,7 +118558,7 @@
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked interview explanations for IQueryable, client evaluation, translation failures, operator choice and version-specific joins."
     },
     {
       "taskId": "t04-006-overview",
