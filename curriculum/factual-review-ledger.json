@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1183,
-    "pending": 1166,
-    "claimsChecked": 51064,
-    "claimsCorrected": 2722,
+    "reviewed": 1184,
+    "pending": 1165,
+    "claimsChecked": 51119,
+    "claimsCorrected": 2723,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -105581,13 +105581,65 @@
       "topicId": "t03-002",
       "phase": "reference",
       "draft": "course/drafts/t03-002/t03-002-reference-modeling-decisions-and-schema-evolution.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 55,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "verdict": "Supported after one timing clarification; no assigned item is absent.",
+          "claims": "Enumerated 55 claims for all assigned modeling decisions: optionality, identity/ownership, relationship cardinality, key scope, cascade/delete behavior, application/database validation, computed/audit/time fields, migration/backfill, retention, tenancy, deterministic ordering, temporal tables, IDENTITY/SEQUENCE.",
+          "sources": [
+            {
+              "verdict": "supported; specific migration and transaction-time nuances checked",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
+              "section": "Applicable SQL Server relational constraints, computed/temporal columns, identifiers, and migration behavior"
+            },
+            {
+              "verdict": "supported; specific migration and transaction-time nuances checked",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
+              "section": "Applicable SQL Server relational constraints, computed/temporal columns, identifiers, and migration behavior"
+            },
+            {
+              "verdict": "supported; specific migration and transaction-time nuances checked",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-table-constraint-transact-sql?view=sql-server-ver17",
+              "section": "Applicable SQL Server relational constraints, computed/temporal columns, identifiers, and migration behavior"
+            },
+            {
+              "verdict": "supported; specific migration and transaction-time nuances checked",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
+              "section": "Applicable SQL Server relational constraints, computed/temporal columns, identifiers, and migration behavior"
+            },
+            {
+              "verdict": "supported; specific migration and transaction-time nuances checked",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+              "section": "Applicable SQL Server relational constraints, computed/temporal columns, identifiers, and migration behavior"
+            },
+            {
+              "verdict": "supported; specific migration and transaction-time nuances checked",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
+              "section": "Applicable SQL Server relational constraints, computed/temporal columns, identifiers, and migration behavior"
+            },
+            {
+              "verdict": "supported; specific migration and transaction-time nuances checked",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-sequence-transact-sql?view=sql-server-ver17",
+              "section": "Applicable SQL Server relational constraints, computed/temporal columns, identifiers, and migration behavior"
+            },
+            {
+              "verdict": "supported; specific migration and transaction-time nuances checked",
+              "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/expand-contract",
+              "section": "Applicable SQL Server relational constraints, computed/temporal columns, identifiers, and migration behavior"
+            },
+            {
+              "verdict": "supported; specific migration and transaction-time nuances checked",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support?view=sql-server-ver17",
+              "section": "Applicable SQL Server relational constraints, computed/temporal columns, identifiers, and migration behavior"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -105634,7 +105686,7 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/spatial-geography/stpointfromtext-geography-data-type?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Enumerated and checked all assigned modeling decision and schema evolution claims, including one-to-one mandatory-side limits, composite/tenant keys, delete/update actions, computed-column constraints, audit/retention limits, rolling schema migration, temporal history, and IDENTITY/SEQUENCE behavior. Clarified that SQL Server temporal period timestamps use the current transaction's UTC begin time, not business-effective or commit time. All assigned items are explained; no unresolved material omissions remain."
     },
     {
       "taskId": "t03-002-practice",

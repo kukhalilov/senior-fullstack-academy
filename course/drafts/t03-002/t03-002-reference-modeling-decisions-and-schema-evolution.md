@@ -68,7 +68,7 @@ The table below is a design toolkit, not a sequence of independent vocabulary ca
 
 - `Deterministic ordering key modeling` — If an application must page or replay rows deterministically, identify a unique tie-breaker and model it explicitly. A timestamp alone can collide; uniqueness and transaction consistency are separate guarantees.
 
-- `Temporal table modeling` — System-versioned temporal tables maintain current and history rows with system period timestamps for database-time history. This is not automatically business-valid time, an audit identity trail, or a substitute for retention/security policy. [Temporal tables](https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17)
+- `Temporal table modeling` — System-versioned temporal tables maintain current and history rows with system period timestamps for database-time history; period values use the beginning time of the current transaction in UTC, not a business event’s effective time or commit time. This is not automatically business-valid time, an audit identity trail, or a substitute for retention/security policy. [Temporal tables](https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17)
 
 - `IDENTITY property` — The IDENTITY property generates a number when rows are inserted, using seed and increment, but it does not itself enforce uniqueness, prevent gaps, or guarantee consecutive/commit order. Add a key/unique constraint and never treat it as a clock. [IDENTITY](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17)
 
