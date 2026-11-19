@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1157,
-    "pending": 1192,
-    "claimsChecked": 49509,
-    "claimsCorrected": 2540,
+    "reviewed": 1158,
+    "pending": 1191,
+    "claimsChecked": 49535,
+    "claimsCorrected": 2542,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -97769,13 +97769,53 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-experimental-css-inline.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "CSS Inline Layout Level 3 is a work-in-progress Editor’s Draft dated 2026-10-14; latest published version is a 2024-12-18 Working Draft; initial-letter-wrap, not initial-letter-align, is marked at-risk.",
+          "sources": [
+            "https://drafts.csswg.org/css-inline-3/#status",
+            "https://www.w3.org/TR/css-inline-3/"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "initial-letter-align grammar, initial value, applicable boxes, inheritance, computed value, and discrete animation behavior.",
+          "sources": [
+            "https://drafts.csswg.org/css-inline-3/#initial-letter-align-property"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "The property selects over/under alignment points and the meanings of alphabetic, ideographic, hanging, leading, and border-box.",
+          "sources": [
+            "https://drafts.csswg.org/css-inline-3/#initial-letter-align-property"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "Content-based alignment defaults, proposed language/script UA rules, metric gaps affecting Hebrew/Thai, and the repeated-script editorial inconsistency in the ED.",
+          "sources": [
+            "https://drafts.csswg.org/css-inline-3/#initial-letter-align-property",
+            "https://drafts.csswg.org/css-inline-3/#ua-default-stylesheet"
+          ],
+          "verdict": "verified; ambiguity explicitly retained as ambiguity"
+        },
+        {
+          "claim": "Relationship to initial-letter, effects of border/padding, and initial-letter applicability model.",
+          "sources": [
+            "https://drafts.csswg.org/css-inline-3/#initial-letter-property",
+            "https://drafts.csswg.org/css-inline-3/#initial-letter-align-property",
+            "https://drafts.csswg.org/css-inline-3/#initial-letter-layout"
+          ],
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -98132,9 +98172,14 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-inline-3/#initial-letter-align-property",
+        "https://drafts.csswg.org/css-inline-3/#ua-default-stylesheet",
+        "https://drafts.csswg.org/css-inline-3/#initial-letter-property",
+        "https://drafts.csswg.org/css-inline-3/#initial-letter-layout",
+        "https://www.w3.org/TR/css-inline-3/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually checked 26 factual claims against CSS Inline Layout Level 3 Editor’s Draft (2026-10-14) and latest published Working Draft (2024-12-18). Replaced generic unsupported inventory prose with exact grammar, applicability/inheritance, alignment-point semantics, companion-property model, script/font metric behavior, draft maturity, and fallback/testing guidance. Corrected two scope/status omissions: initial-letter-align is not the feature identified as at-risk, and language/script UA defaults are draft proposals rather than a support guarantee. The ED contains a duplicated script condition in its automatic-alignment list; the lesson reports that editorial inconsistency instead of inventing a hanging-selection rule. No unresolved lesson issues."
     },
     {
       "taskId": "t07-018-reference-experimental-css-values-and-units",
