@@ -20,8 +20,8 @@ A CTE gives a name to a query expression for one following statement. A recursiv
 | `Recursive CTE anchor member` | The anchor query supplies the initial rows and does not reference the CTE itself. It runs first and establishes the starting frontier for recursive expansion. |
 | `Recursive CTE recursive member` | The recursive query references the CTE and derives the next rows from the prior iteration. Corresponding columns must have the same data types as the anchor; SQL Server also applies recursion restrictions. Design a clear next-step relation. |
 | `UNION ALL recursion separator` | The last anchor member and first recursive member must be joined with UNION ALL; UNION ALL is also the only separator allowed between multiple recursive members. Anchor members can use other set operators. Recursive UNION ALL preserves every produced row, so duplicate and cycle control must be deliberate. |
-| `Recursive CTE termination condition` | Recursion stops when an iteration returns no rows, or when the configured recursion limit is reached. A cyclic relationship may never naturally terminate, so the query needs cycle handling or an appropriate limit. |
-| `MAXRECURSION query hint` | OPTION (MAXRECURSION n) on the outer statement limits recursion levels; it cannot be placed inside the CTE definition. SQL Server default is 100, and valid explicit values are 0 through 32767. A limit detects runaway depth but does not make cyclic results correct. |
+| `Recursive CTE termination condition` | Normal recursion stops when an iteration returns no rows. If MAXRECURSION is exceeded, SQL Server cancels the statement with an error; this is a safety failure, not successful termination. A cyclic relationship may never naturally terminate, so the query needs cycle handling or an appropriate limit. |
+| `MAXRECURSION query hint` | OPTION (MAXRECURSION n) on the outer statement limits recursion levels; it cannot be placed inside the CTE definition. SQL Server default is 100, and valid explicit values are 0 through 32767. When the limit is exceeded, the statement is canceled with an error. The limit is a runaway-depth guard, not cycle detection or a way to return a complete partial hierarchy. |
 | `Recursive CTE cycle prevention` | Carry a visited-path or other cycle-detection state and refuse to revisit a key. A depth limit alone only stops expansion after a threshold; it does not identify a cycle or guarantee complete results. |
 | `Recursive member restrictions` | SQL Server forbids SELECT DISTINCT, GROUP BY, PIVOT (at compatibility level 110 or higher), HAVING, scalar aggregation, TOP, LEFT/RIGHT/OUTER JOIN, subqueries, and a hint applied to the recursive CTE reference inside a recursive member. INNER JOIN is allowed. Put restricted shaping in an outer query or a separate nonrecursive step when appropriate. |
 | `CTE scope is one statement` | A CTE is scoped to the single SELECT, INSERT, UPDATE, MERGE, or DELETE statement immediately following its WITH clause; it can also appear inside the defining SELECT of CREATE VIEW. It is not a session variable or reusable object. |
@@ -69,6 +69,7 @@ The anchor selects roots; each recursive step finds their children. The integer 
 - Thinking a CTE is a temporary table or is evaluated exactly once.
 - Omitting a recursive stop condition or cycle policy.
 - Using MAXRECURSION 0 as a cycle safeguard.
+- Treating a MAXRECURSION error as normal successful termination.
 - Mismatching anchor and recursive data types.
 - Assuming recursion order defines final row order.
 - Forgetting a CTE is available only to the immediately following statement.
