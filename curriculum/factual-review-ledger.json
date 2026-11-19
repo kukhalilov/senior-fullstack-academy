@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1075,
-    "pending": 1272,
-    "claimsChecked": 42050,
-    "claimsCorrected": 1714,
+    "reviewed": 1076,
+    "pending": 1271,
+    "claimsChecked": 42104,
+    "claimsCorrected": 1723,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -71182,13 +71182,114 @@
       "topicId": "t07-016",
       "phase": "reference",
       "draft": "course/drafts/t07-016/t07-016-reference-standard-pseudo-classes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 54,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked the complete assigned pseudo-class inventory, broad mental model, examples, comparison guidance, pitfalls, and knowledge-check answers against current primary CSS/HTML specifications and MDN reference pages.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/selectors-4/",
+              "section": "Selectors Level 4 definitions for structural, link, functional, interaction, temporal, and resource-state pseudo-classes; specificity, :empty, :has(), :visited, and open/modal states",
+              "verdict": "supported; corrections recorded below"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/semantics-other.html#pseudo-classes",
+              "section": "HTML pseudo-class mappings for form constraints, disabledness, autofill, and user validity",
+              "verdict": "supported; clarified host-language control scope"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes",
+              "section": "Current MDN inventory and category index, including adjacent newer and experimental names",
+              "verdict": "supported; adjacent inventories remain separately assigned"
+            }
+          ]
+        },
+        {
+          "claims": "Corrected :empty to state the Selectors Level 4 allowance for document-whitespace-only content and documented historical browser differences; clarified comments and non-empty text-node behavior.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/selectors-4/",
+              "section": "Section 13.2 :empty pseudo-class",
+              "verdict": "corrected draft to current published specification; added compatibility caveat"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes",
+              "section": ":empty definition and browser-facing guidance",
+              "verdict": "cross-checked"
+            }
+          ]
+        },
+        {
+          "claims": "Clarified structural position counting and An+B examples, including filtered nth-child counting; checked element siblings, same-type counting, and selector-function specificity.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/selectors-4/",
+              "section": "Sections 4 and 13: functional selector specificity and structural pseudo-classes",
+              "verdict": "supported"
+            }
+          ]
+        },
+        {
+          "claims": "Corrected :has guidance: nested :has() and pseudo-elements are invalid absent an explicit extension; avoided unsupported blanket performance claims and advised measuring real pages.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/selectors-4/",
+              "section": "Section 4.5 relational pseudo-class :has()",
+              "verdict": "corrected restriction details and replaced categorical cost claim with measured guidance"
+            }
+          ]
+        },
+        {
+          "claims": "Corrected :host-context status: it has been removed from the current CSS Shadow Module draft; marked it legacy and added robust component-theming alternatives. Clarified :has-slotted matching, whitespace assigned nodes, shadow-tree context, and limited availability.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-scoping/",
+              "section": "Current CSS Shadow Module Level 1 host and slot matching definitions",
+              "verdict": "corrected current status and support caveat"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahas-slotted",
+              "section": ":has-slotted definition and whitespace text-node note",
+              "verdict": "supported"
+            }
+          ]
+        },
+        {
+          "claims": "Corrected playback-state overlap: :buffering and :stalled can both also match :playing. Clarified the WebVTT/time-based context for :current, :past, and :future.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/selectors-4/",
+              "section": "Sections 10.1–10.3 resource and time-dimensional states",
+              "verdict": "corrected overlapping state behavior and scope"
+            }
+          ]
+        },
+        {
+          "claims": "Rechecked view-transition and page pseudo-class definitions, link privacy protections, accessibility cautions, examples, and distinction between standardized names and interoperable browser support.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-view-transitions-2/",
+              "section": "View transition lifecycle and type selectors",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-pseudo-4/",
+              "section": "Current pseudo-element and related state definitions",
+              "verdict": "cross-checked"
+            },
+            {
+              "url": "https://www.w3.org/TR/selectors-4/",
+              "section": "Sections 8.1–8.4, 11, and 14: links, targets, focus, presentation states, and page selectors",
+              "verdict": "supported; examples remain illustrative"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference",
@@ -71220,9 +71321,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Attribute_selectors",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Column_combinator",
         "https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute",
-        "https://drafts.csswg.org/cssom/#dom-css-escape"
+        "https://drafts.csswg.org/cssom/#dom-css-escape",
+        "https://html.spec.whatwg.org/multipage/semantics-other.html#pseudo-classes",
+        "https://drafts.csswg.org/css-scoping/",
+        "https://drafts.csswg.org/css-view-transitions-2/",
+        "https://drafts.csswg.org/css-pseudo-4/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually enumerated and checked every claim in the assigned standard pseudo-class lesson against the published Selectors Level 4 specification, HTML Living Standard, current CSS Shadow and View Transitions drafts, CSS Pseudo-Elements, and MDN. Corrected the current :empty whitespace rule with a browser-compatibility caveat, clarified :has() restrictions and removed an unsubstantiated performance generalization, marked :host-context() removed from the current draft/legacy, clarified :has-slotted whitespace and limited support, documented :buffering/:stalled overlap with :playing, and scoped :current/:past/:future to time-based content. Newer experimental and current-index names remain explicitly assigned to adjacent references. No unresolved factual omissions remain within this lesson inventory."
     },
     {
       "taskId": "t07-016-reference-experimental-pseudo-classes",

@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-Inventory is the pinned MDN data snapshot named in the [manifest](https://github.com/mdn/data/blob/1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27/css/selectors.json); syntax and specificity follow [Selectors Level 4](https://www.w3.org/TR/selectors-4/) and current [MDN selector guidance](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Selectors/Selector_structure). Standardized does not mean supported uniformly; check browser compatibility before shipping newer state selectors.
+The assigned names come from the pinned MDN data inventory in the [manifest](https://github.com/mdn/data/blob/1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27/css/selectors.json), checked against [Selectors Level 4](https://www.w3.org/TR/selectors-4/), the [HTML Living Standard](https://html.spec.whatwg.org/multipage/semantics-other.html#pseudo-classes), the [CSS Pseudo-Elements draft](https://drafts.csswg.org/css-pseudo-4/), and [MDN's current pseudo-class index](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes) on 2026-11-19. A name being specified does not guarantee interoperable browser support. Experimental and newer index additions are covered in the adjacent experimental/current-index lessons.
 
 ## How this group fits the mental model
 
@@ -12,7 +12,7 @@ Pseudo-classes select existing elements based on link state, user interaction, f
 
 ### Interaction, links, and forms
 
-- `:active` matches an element being activated, typically during pointer or keyboard activation; it is transient and platform dependent.
+- `:active` applies during the host language's activation behavior and, for CSS boxes, while a pointing device is held down. It is transient; keyboard activation details depend on the host language and browser.
 - `:any-link` matches links with `href`, whether visited or not.
 - `:autofill` matches a form control whose value was populated by the browser; styling can be constrained by browser privacy and UA rules.
 - `:checked` matches checked checkboxes/radios and selected options where applicable.
@@ -34,15 +34,15 @@ Pseudo-classes select existing elements based on link state, user interaction, f
 ### Document structure and relationships
 
 - `:root` matches the document root element (the `html` element in HTML).
-- `:empty` matches elements with no children other than permitted empty text; whitespace text nodes can make an element non-empty.
+- `:empty` matches an element with no element or non-empty content-node children; comments do not count. Selectors Level 4 allows document-whitespace-only text, while deployed engines and older guidance have differed, so test whitespace-only cases in target browsers.
 - `:first-child`, `:last-child`, and `:only-child` test position among element siblings.
 - `:first-of-type`, `:last-of-type`, and `:only-of-type` test position among siblings of the same element type.
-- `:nth-child()` and `:nth-last-child()` select positions from the beginning/end of all element siblings; optional `of <selector-list>` narrows the counted set.
+- `:nth-child()` and `:nth-last-child()` select positions among element siblings from the beginning/end. Their `An+B` formula supports forms such as `odd`, `even`, `3n+1`, and `-n+3`; the optional `of <selector-list>` filters which siblings are counted before positions are assigned.
 - `:nth-of-type()` and `:nth-last-of-type()` count only same-type siblings from the beginning/end.
 - `:is()` matches any argument selector and takes the maximum argument specificity; its forgiving selector list can ignore invalid arguments.
 - `:where()` matches like `:is()` but contributes zero specificity, including its arguments.
 - `:not()` matches elements not matched by its selector list; its specificity is the maximum argument specificity, not an extra pseudo-class weight.
-- `:has()` matches an element when a relative selector anchored to it finds a qualifying related element; nested `:has()` is disallowed, and broad relational selectors can be costly or hard to maintain.
+- `:has()` matches an element when a relative selector anchored to it finds a qualifying related element; nested `:has()` and pseudo-elements as arguments are invalid unless another specification explicitly permits one. Selectors can express ancestor/relationship conditions; keep them understandable and measure performance in the actual page rather than assuming every `:has()` is slow.
 - `:scope` represents the scoping root for a selector evaluation; its identity depends on the API or stylesheet context.
 - `:dir()` matches based on resolved text direction (`ltr` or `rtl`), including inherited directionality.
 - `:lang()` matches based on language information, including language-range matching and inherited language context.
@@ -54,28 +54,29 @@ Pseudo-classes select existing elements based on link state, user interaction, f
 
 - `:host` matches a shadow host from within its shadow tree; it only has meaning in a shadow context.
 - `:host()` matches a shadow host that also matches the supplied selector argument.
-- `:host-context()` matches a shadow host when it or an ancestor matches the supplied selector; support and encapsulation implications should be checked for the target platform.
-- `:has-slotted` matches a slot whose assigned content is non-empty rather than its fallback; even a single whitespace text node can make it match. It only works in CSS inside a shadow tree.
+- `:host-context()` was historically used in shadow stylesheets to match a host based on it or an outside ancestor, but it has been removed from the current CSS Shadow Module draft. Treat it as legacy, check target-engine support, and prefer inherited custom properties or explicit component attributes for theming.
+- `:has-slotted` matches a `<slot>` with assigned content rather than fallback content; even one assigned whitespace text node is enough. It applies in stylesheets in a shadow tree and has limited browser availability.
 - `:fullscreen` matches an element currently presented in fullscreen mode.
 - `:modal` matches a dialog or other element currently in a modal state, such as a modal dialog opened with the relevant platform API.
 
 ### Media playback and view transitions
 
-- `:buffering` matches a media element that is buffering; it is a transient playback state.
+- `:buffering` matches a playable element that cannot continue because it is obtaining media data; it still matches `:playing` while buffering.
 - `:muted` matches a media element whose audio is muted.
-- `:paused`, `:playing`, `:seeking`, and `:stalled` match the corresponding media playback conditions; they are stateful and may change asynchronously.
+- `:paused`, `:playing`, `:seeking`, and `:stalled` match the corresponding media playback conditions; they are stateful and may change asynchronously. `:stalled`, like `:buffering`, can also match while `:playing` matches.
 - `:volume-locked` matches media whose volume is not user-adjustable through the usual controls.
 - `:picture-in-picture` matches an element currently presented in picture-in-picture mode.
 - `:active-view-transition` matches the document while a view transition is active.
 - `:active-view-transition-type()` matches an active transition having one of the specified transition types; argument matching uses the transition type identifiers.
-- `:future` matches a temporal pseudo-class's future state in applicable media timelines.
-- `:past` matches a temporal pseudo-class's past state in applicable media timelines.
-- `:first` matches the first page box in paged media; it does not mean the first DOM child.
+- `:current` matches the current item, or its relevant ancestors, in time-based content such as WebVTT cue trees.
+- `:future` matches items after the current item in that time-based context.
+- `:past` matches items entirely before the current item in that time-based context.
+- `:first` matches the first page in paged media; it does not mean the first DOM child. The companion [experimental pseudo-class reference](t07-016-reference-experimental-pseudo-classes.md) covers the separately inventoried `:blank` page and input variants.
 - `:left` and `:right` select left/right page boxes in paged media, with interpretation tied to page progression and writing direction.
 
 ## Cross-item comparison
 
-Use `:is()` to reduce repeated selector lists while retaining the most specific argument's weight; use `:where()` when the same match should be easy to override. Use `:nth-child(... of S)` when counting among a filtered set; `:nth-of-type()` always filters by element type. `:focus` expresses focus itself; `:focus-visible` expresses the UA's focus-indication heuristic. Form validity pseudo-classes reflect constraint validation, while `:user-valid` and `:user-invalid` avoid presenting a result as user-confirmed before interaction. `:active` is pointer/keyboard activation state, not a permanent selected state. `:host*` and `:has-slotted` require shadow-tree context. Media and transition pseudo-classes represent live platform state rather than stable document structure.
+Use `:is()` to reduce repeated selector lists while retaining the most specific argument's weight; use `:where()` when the same match should be easy to override. Use `:nth-child(... of S)` when counting among a filtered set; `:nth-of-type()` always filters by element type. `:focus` expresses focus itself; `:focus-visible` expresses the UA's focus-indication heuristic. Form validity pseudo-classes reflect constraint validation, while `:user-valid` and `:user-invalid` avoid presenting a result as user-confirmed before interaction. `:active` is pointer/keyboard activation state, not a permanent selected state. `:host*` and `:has-slotted` require shadow-tree context. Media and transition pseudo-classes represent live platform state rather than stable document structure. `:buffering` and `:stalled` can overlap `:playing`; `:host-context()` is legacy because it was removed from the current CSS Shadow draft.
 
 ## Examples
 
@@ -102,14 +103,17 @@ The examples illustrate selector mechanics. Provide equivalent text, focus, and 
 - Forgetting `:is()` and `:not()` take argument-list specificity while `:where()` has zero specificity.
 - Confusing position among all siblings with position among same-type siblings.
 - Using `:visited` to reveal history or styling properties beyond browser-permitted privacy-safe values.
-- Assuming every media, view-transition, shadow, or newer form pseudo-class is available in every browser.
-- Using `:has()` with overly broad selectors without considering maintainability and matching cost.
+- Assuming every media, view-transition, shadow, or newer form pseudo-class is available in every browser; check compatibility, especially for `:has-slotted` and draft additions.
+- Using `:has()` without considering readability; measure actual performance instead of assuming its cost from syntax alone.
 - Treating client-side validity or disabled styling as server-side validation or authorization.
 
 ## Knowledge checks with answers
 
 1. **Does `:where(.a, #b)` add ID specificity?** No; `:where()` contributes zero specificity for itself and its arguments.
-2. **What does `:nth-child(2 of .item)` count?** The second sibling matching `.item`, not necessarily the second child overall.
+2. **What does `:nth-child(2 of .item)` count?** The second sibling matching `.item`, not necessarily the second child overall. `:nth-child(-n+3)` selects the first three element siblings.
 3. **Can a page read which links match `:visited` to reconstruct browser history?** Browsers restrict observable visited styling to prevent this privacy leak.
 4. **What context is required for `:host`?** A shadow tree stylesheet matching its host.
 5. **Is `:disabled` an authorization check?** No. It affects interaction/presentation; enforce access and validation on trusted application/server boundaries.
+6. **Do `:buffering` and `:playing` exclude one another?** No. A playable element can match both while it buffers.
+7. **Does `:host-context()` remain in the current CSS Shadow draft?** No. It was removed; treat existing implementations as legacy and use explicit theming inputs such as inherited custom properties.
+8. **Does the current `:empty` definition permit whitespace-only text?** Selectors Level 4 permits document-whitespace-only children, though browser behavior has historically differed; check compatibility for the target engines.
