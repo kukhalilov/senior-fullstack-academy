@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1099,
-    "pending": 1248,
-    "claimsChecked": 43704,
-    "claimsCorrected": 1994,
+    "reviewed": 1100,
+    "pending": 1247,
+    "claimsChecked": 43852,
+    "claimsCorrected": 2013,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -75270,7 +75270,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -75557,7 +75559,9 @@
         "https://www.w3.org/TR/css-flexbox-1/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -75823,7 +75827,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76104,7 +76110,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76375,7 +76383,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76384,13 +76394,59 @@
       "topicId": "t07-017",
       "phase": "reference",
       "draft": "course/drafts/t07-017/t07-017-reference-css-grid-layout.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 148,
+      "claimsCorrected": 19,
+      "evidence": [
+        {
+          "claims": "Checked all 15 assigned property names and the correct axes of row versus column placement. Verified explicit/implicit tracks, named lines and negative indices, spans, named-area rectangularity and generated lines, grid-area expansion order, track sizing functions and fr minimum behavior, auto-fit versus auto-fill, subgrid, auto-placement and dense backfilling, implicit track sizing, grid-template versus grid reset behavior, writing-mode mapping, and responsive examples. Corrected the generated description that mislabeled grid-column-start/end as block-axis edges. Added current experimental Grid Level 3 grid-lanes comparison without conflating it with subgrid or established two-dimensional Grid.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/css-grid-1/",
+              "section": "Grid Level 1 model, track sizing, placement, explicit/implicit grids, shorthands and auto-placement",
+              "verdict": "published specification checked"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-grid-2/",
+              "section": "subgrid, nested grid track participation, current Grid Level 2 text",
+              "verdict": "published specification checked"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-grid-3/",
+              "section": "grid-lanes one-dimensional placement, track model and draft status",
+              "verdict": "current Editor’s Draft checked; work-in-progress status stated"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-align-3/",
+              "section": "grid item versus track alignment interaction",
+              "verdict": "current Editor’s Draft checked"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-gaps-1/",
+              "section": "Grid gutters and their sizing interactions",
+              "verdict": "current Editor’s Draft checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout",
+              "section": "current Grid guide and feature overview",
+              "verdict": "checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
+              "section": "captured compatibility/status data for all 15 assigned properties",
+              "verdict": "Baseline labels qualified as property-level only"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "published specification maturity context",
+              "verdict": "checked; not used as browser-support evidence"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -76600,7 +76656,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76825,7 +76883,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77050,7 +77110,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77275,7 +77337,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77500,7 +77564,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77725,7 +77791,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77950,7 +78018,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78175,7 +78245,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78400,7 +78472,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78625,7 +78699,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78850,7 +78926,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79075,7 +79153,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79300,7 +79380,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79525,7 +79607,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79750,7 +79834,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79975,7 +80061,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80200,7 +80288,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80425,7 +80515,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80650,7 +80742,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80875,7 +80969,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -81100,7 +81196,9 @@
         "https://www.w3.org/TR/css-grid-2/",
         "https://www.w3.org/TR/css-multicol-1/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-line-count",
+        "https://www.w3.org/TR/css-grid-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
