@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1120,
-    "pending": 1229,
-    "claimsChecked": 45280,
-    "claimsCorrected": 2131,
+    "reviewed": 1121,
+    "pending": 1228,
+    "claimsChecked": 45318,
+    "claimsCorrected": 2133,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -82683,13 +82683,40 @@
       "topicId": "t07-017",
       "phase": "practice",
       "draft": "course/drafts/t07-017/t07-017-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Verified the Grid automatic minimum/minmax sizing diagnosis, flex versus grid constraint descriptions, out-of-flow positioning effect, container-query ancestor model, logical-axis guidance, scroll-marker-group draft maturity and links/tabs semantics, and scroll-snap accessibility advice. Corrected the oversized-snap-area explanation: the specification permits free scrolling while an oversized snap area covers the snapport; inaccessible gaps are a risk when mandatory targets are too sparse or too small. Clarified the different focus and accessibility semantics of draft scroll-marker links and tabs modes.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-grid-2/",
+              "section": "§6.6 Automatic Minimum Size of Grid Items",
+              "verdict": "Verified; grid item automatic minimum can be content-based under specified conditions."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-flexbox-1/",
+              "section": "Flex sizing algorithm and automatic minimum size",
+              "verdict": "Verified flex sizing and the need to consider item minimums."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-scroll-snap-1/",
+              "section": "§§4.1, 5.2.2, 6.2",
+              "verdict": "Verified oversized snap areas permit free scrolling; mandatory snapping on sparse small targets can make intermediate content inaccessible; UAs must allow escape."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-overflow-5/",
+              "section": "§§3.1.3, 3.1.6, 3.1.8-3.1.10",
+              "verdict": "Verified draft marker group placement, links/tabs roles and focus behavior, and activation."
+            }
+          ],
+          "verdict": "Verified; corrections and completeness clarification recorded."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -82940,9 +82967,11 @@
         "https://www.w3.org/TR/css-contain-3/",
         "https://drafts.csswg.org/css-conditional-4/",
         "https://drafts.csswg.org/css-transitions-2/",
-        "https://html.spec.whatwg.org/multipage/popover.html"
+        "https://html.spec.whatwg.org/multipage/popover.html",
+        "https://drafts.csswg.org/css-grid-2/",
+        "https://drafts.csswg.org/css-flexbox-1/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Worked examples, exercise assumptions, hints, solutions, and technical claims checked against primary CSS specifications; supplied scope and experimental-feature maturity reviewed."
     },
     {
       "taskId": "t07-017-interview",
