@@ -237,7 +237,9 @@
         "Route handler parameter nullability",
         "Route handler binding exception",
         "Route handler binding diagnostics",
-        "Route handler binding source metadata"
+        "Route handler binding source metadata",
+        "Endpoint filters on parameter-binding failures",
+        "C# union types in Minimal API JSON binding"
       ]
     }
   ],
@@ -291,20 +293,22 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
       "items": [
-        "Endpoint routing remains the routing model for current MVC and Minimal API endpoints. In .NET 11, verify route binding, validation and result behavior against the 11.0 docs; do not infer precedence from source-code declaration order."
+        "Endpoint routing remains the routing model for MVC and Minimal APIs. Endpoint selection compares RouteEndpoint.Order before route-template precedence; MapControllerRoute-family conventional routes assign order by invocation sequence.",
+        "Minimal API endpoint filters run after supported parameter-check failures when a filter pipeline is configured; in Development, RouteHandlerOptions.ThrowOnBadRequest=false is required for filters to observe the 400 response. Body deserialization failures and binding exceptions are not covered by this behavior.",
+        "C# union types are supported by System.Text.Json JSON body serialization/deserialization, including Minimal API request/response bodies, but not route, query, header, or form binding."
       ],
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/parameter-binding?view=aspnetcore-11.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters?view=aspnetcore-11.0"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core 11 routing, MVC model binding, Minimal API binding, and .NET API reference",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-11.0",

@@ -14,23 +14,27 @@ Sources: Microsoft's [routing](https://learn.microsoft.com/en-us/aspnet/core/fun
 8. Why is more than one body-bound parameter problematic?
 9. Compare `BindAsync`, `TryParse`, and `IParsable<TSelf>`.
 10. How do catch-all `*` and `**` differ?
-11. How can an inbound route work while URL generation fails?
-12. How do you diagnose `AmbiguousMatchException`?
+11. In ASP.NET Core 11, can endpoint filters observe a failed parameter parse?
+12. Where can C# union types be used for Minimal API binding?
+13. How can an inbound route work while URL generation fails?
+14. How do you diagnose `AmbiguousMatchException`?
 
 ## Concise interview answers
 
 1. Routing matches request data against endpoint patterns, builds candidates, applies constraints/policies, then selects the best endpoint using precedence/order/metadata. Binding and handler execution follow.
 2. No; routing is candidate-based. Declaration order is not a universal selection rule.
-3. Precedence derives specificity from pattern structure. Explicit `Order` can influence selection but should not hide ambiguous URL designs.
+3. Lower `RouteEndpoint.Order` has priority first; when orders tie, route-template precedence favors the more specific pattern. Conventional MVC route mapping assigns order based on invocation sequence. Do not use order to hide unclear public route design.
 4. Constraint failure rejects a candidate and can lead to 404; it does not naturally produce a validation error for the selected endpoint. Bind and validate when the caller should receive a 400/domain error.
 5. Route values are captured text/object values from path matching. Binding selects a source and converts them into a typed method parameter.
 6. MVC uses model binders, value providers, ModelState and input formatters. Minimal APIs infer sources from parameter type/registration/route and use attributes, parsing/custom binding; rules differ.
 7. Inference is based on explicit attributes, route values, special types, service registration, and supported parsing/body rules. Explicit attributes make public API intent clear.
 8. The request body is a single stream; multiple consumers cannot independently read it. Use one body DTO or one explicit custom reader.
 9. `TryParse`/`IParsable<TSelf>` convert a string-like value; `BindAsync` can bind from broader HTTP context/parameter info and can be asynchronous.
-10. Both catch remaining path; `**` preserves encoded slash as route data under its documented behavior, while `*` has different decoding/segment handling. Test through proxies.
-11. URL generation needs an address/name and sufficient compatible values/metadata/context; inbound match and outbound generation are distinct.
-12. Inspect matched endpoint candidates/templates/HTTP methods/constraints/metadata and equal precedence. Redesign patterns or add a deliberate documented discriminator.
+10. Both catch remaining path. For URL generation, `*` escapes `/` in a route value as `%2F`, while `**` emits `/` separators so the path can round-trip. Inbound encoded-slash handling still depends on the server/proxy chain.
+11. Yes. Configured filters can run after supported route/query/header parameter-check failures and inspect the 400 status while the handler is skipped. In Development, `ThrowOnBadRequest` must be false; body deserialization failures and arbitrary binding exceptions are not covered by that filter behavior.
+12. .NET 11 union types are supported for JSON request/response bodies processed by `System.Text.Json`; they are not supported for route, query, header, or form sources.
+13. URL generation needs an address/name and sufficient compatible values/metadata/context; inbound match and outbound generation are distinct.
+14. Inspect matched endpoint candidates/templates/HTTP methods/constraints/metadata and equal order/precedence. Redesign patterns or add a deliberate documented discriminator.
 
 ## Deep follow-up answers
 
@@ -56,7 +60,7 @@ Check the endpoint name/address, required route values, defaults, optional segme
 2. **Two handlers differ only in `{id}` versus `{name}`.** Template names do not distinguish candidates; use distinct literals/constraints/HTTP methods consistent with contract.
 3. **A required query value is missing.** Decide whether omission should be a binding error or optional default/null, and explicitly model/test that contract.
 4. **A GET handler needs a body.** Explicit binding may be possible but is often unsupported by clients/proxies/caches; reconsider the HTTP contract, or document/test the unusual requirement end-to-end.
-5. **A wildcard file path yields inconsistent production behavior.** Verify `*`/`**` encoded slash semantics through proxy/server decoding and avoid trusting path text as filesystem path.
+5. **A wildcard file path yields inconsistent production behavior.** Verify outbound slash escaping and inbound encoded-slash handling separately through the actual proxy/server chain; never treat route text as a trusted filesystem path.
 
 ## Tradeoffs and alternatives
 

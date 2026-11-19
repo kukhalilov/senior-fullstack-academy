@@ -52,10 +52,12 @@ Minimal API route handlers use parameter types, registration, route templates, a
 - `Route handler binding exception` — exception/result generated when a required parameter cannot be supplied or converted; framework behavior and response details depend on binding source and version.
 - `Route handler binding diagnostics` — startup/runtime diagnostics, exceptions, metadata, and logs used to identify inferred source or conversion failures; avoid logging sensitive request bodies.
 - `Route handler binding source metadata` — endpoint metadata describing inferred/explicit parameter source and types, usable by tooling such as API description generation.
+- `Endpoint filters on parameter-binding failures` — in ASP.NET Core 11, a configured Minimal API filter pipeline also runs after supported parameter-check failures (such as invalid route/query/header parsing), with the response status set to 400 and the handler skipped. In Development, set `RouteHandlerOptions.ThrowOnBadRequest = false` for the filter to observe the response instead of the developer exception behavior; this does not make filters handle body deserialization failures or arbitrary binding exceptions.
+- `C# union types in Minimal API JSON binding` — .NET 11 union types can be serialized/deserialized anywhere `System.Text.Json` is used, including Minimal API JSON request and response bodies. They are not supported for route, query, header, or form binding sources.
 
 ## Cross-item comparison
 
-`FromRouteAttribute`, `FromQueryAttribute`, `FromHeaderAttribute`, `FromFormAttribute`, and `FromBodyAttribute` make request sources explicit; a service parameter comes from DI. `IParsable<TSelf>`/`TryParse` handle string-to-type conversion; `BindAsync`/`IBindableFromHttpContext<TSelf>` can inspect broader request context. `AsParameters` aggregates member sources; it is not the same as a JSON body DTO. `IFormFile` binds multipart data; `Stream`/`PipeReader` access the raw body.
+`FromRouteAttribute`, `FromQueryAttribute`, `FromHeaderAttribute`, `FromFormAttribute`, and `FromBodyAttribute` make request sources explicit; a service parameter comes from DI. `IParsable<TSelf>`/`TryParse` handle string-to-type conversion; `BindAsync`/`IBindableFromHttpContext<TSelf>` can inspect broader request context. `AsParameters` aggregates member sources; it is not the same as a JSON body DTO. `IFormFile` binds multipart data; `Stream`/`PipeReader` access the raw body. ASP.NET Core 11 filters may observe parameter-check failures, but body deserialization failures and binding exceptions do not pass through that filter path; JSON union types apply only to JSON serialization-based sources.
 
 ## Examples
 

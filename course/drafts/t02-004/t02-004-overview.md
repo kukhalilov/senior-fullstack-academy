@@ -12,7 +12,7 @@ Routing is a matching and selection process, not a loop that invokes routes in d
 
 ## How the parts fit together
 
-Endpoint routing supports MVC attribute/conventional routes and Minimal API endpoints. Route patterns describe literals, parameters, defaults, optional segments, catch-alls, and constraints. Route values are strings in the request context; model binding converts them to declared parameter types. MVC has model binders, value providers, ModelState, and input formatters. Minimal APIs use source inference, special parameter types, parsers, and custom binding patterns. URL generation separately selects endpoint metadata and values, so successful inbound matching does not guarantee a desired outbound link.
+Endpoint routing supports MVC attribute/conventional routes and Minimal API endpoints. Route patterns describe literals, parameters, defaults, optional segments, catch-alls, and constraints. Route values are strings in the request context; model binding converts them to declared parameter types. MVC has model binders, value providers, ModelState, and input formatters. Minimal APIs use source inference, special parameter types, parsers, and custom binding patterns. In ASP.NET Core 11, configured endpoint filters can observe supported parameter-check failures, and .NET 11 C# union types work with JSON body serialization/deserialization. URL generation separately selects endpoint metadata and values, so successful inbound matching does not guarantee a desired outbound link.
 
 ## Concept map
 

@@ -18,18 +18,18 @@ Templates describe the path candidates routing can match. Constraints/policies n
 - `Optional parameter syntax (?)` — suffix syntax such as `{id?}` marking a parameter optional in a route template.
 - `Default route value` — configured value used when an optional/defaulted parameter is omitted, also available during outbound generation.
 - `Default route value syntax (=)` — inline syntax such as `{page=1}` specifying a default route value.
-- `Catch-all route parameter (*)` — captures remaining path segments into one route value; encoded slash handling differs from ordinary segments.
-- `Encoded catch-all route parameter (**)` — catch-all form that preserves encoded slash `%2F` in the captured route value rather than decoding it into a path separator before matching, subject to supported framework behavior.
-- `Multiple route parameters in one segment` — a segment may combine literal separators and several parameters, such as `{file}.{ext}`; delimiters must provide unambiguous boundaries.
+- `Catch-all route parameter (*)` — captures remaining path segments into one route value; during outbound URL generation it escapes `/` in the supplied value as `%2F`.
+- `Encoded catch-all route parameter (**)` — catch-all form that preserves `/` separators when generating a URL from a route value, allowing path separators to round-trip; inbound encoded-slash handling can depend on server/proxy layers.
+- `Multiple route parameters in one segment` — a segment may combine literal separators and several parameters, such as `{file}.{ext}`; routing matches complex segments from right to left, non-greedily, so delimiters should be chosen to avoid ambiguity.
 - `Constrained route parameter` — parameter annotated with a policy, for example `{id:int}`, that narrows route candidates based on a shape/type check.
 - `Parameter transformer` — transforms parameter text, primarily for outbound URL generation; it does not validate or change the stored route value.
 - `Route constraint` — policy that tests whether a route value is compatible with a candidate endpoint. Failure generally rejects that route candidate; it is not a model/domain validation response.
 - `int route constraint` — accepts an integer-shaped route value within supported `Int32` range; it does not establish a business invariant such as positivity.
 - `bool route constraint` — accepts values convertible to Boolean according to route constraint rules; use typed binding/domain validation for richer semantics.
-- `datetime route constraint` — accepts a value parsed as a date/time under framework parsing rules; specify a stable date format in an API contract rather than relying on cultural assumptions.
-- `decimal route constraint` — accepts decimal-parsable route text; number format/culture considerations mean it should not replace explicit contract parsing/validation.
-- `double route constraint` — accepts a double-precision floating-point value according to route parsing rules; it does not validate finiteness or domain range.
-- `float route constraint` — accepts a single-precision floating-point value; validate range/NaN semantics separately if relevant.
+- `datetime route constraint` — tests date/time conversion using invariant culture; route values remain text, so define a stable URL format and bind/parse after matching.
+- `decimal route constraint` — tests decimal conversion using invariant culture; the converted number is not stored in route values, and the constraint does not replace typed binding or validation.
+- `double route constraint` — tests double-precision conversion using invariant culture; it does not validate finiteness or domain range, and the route value remains text.
+- `float route constraint` — tests single-precision conversion using invariant culture; validate range/NaN semantics separately, and note that the route value remains text.
 - `guid route constraint` — accepts a GUID-formatted value understood by the constraint.
 - `long route constraint` — accepts a 64-bit integer-shaped value within range.
 - `min route constraint` — accepts a numeric parameter at or above the configured lower bound.
@@ -38,7 +38,7 @@ Templates describe the path candidates routing can match. Constraints/policies n
 - `length route constraint` — accepts a string route value whose character length is within configured bounds or exact length as specified.
 - `minlength route constraint` — requires route text to be at least the configured length.
 - `maxlength route constraint` — requires route text to be no longer than the configured length.
-- `alpha route constraint` — accepts alphabetic route characters according to framework route semantics; it is not Unicode/business validation.
+- `alpha route constraint` — accepts only English ASCII letters `A`–`Z` and `a`–`z`; it is not Unicode or business validation.
 - `regex route constraint` — applies a regular-expression policy to route text. Keep patterns bounded/safe to avoid catastrophic backtracking and don't expose a validation error via route rejection when a 400 is required.
 - `required route constraint` — requires a route value to be present/non-empty according to policy; route templates should usually express required values structurally.
 - `file route constraint` — classifies a final path segment as a file-like value using period semantics; useful for routing/static-file distinctions, not file existence/security validation.
@@ -55,16 +55,16 @@ Templates describe the path candidates routing can match. Constraints/policies n
 - `Case-insensitive route matching` — route literal matching is generally case-insensitive in ASP.NET Core routing; generated canonical URL casing and proxies/browser behavior should still be tested.
 - `Trailing slash matching` — routing generally treats a trailing slash equivalently for matching in common configurations; canonical URL generation/redirect policy is separate.
 - `Encoded path segment` — percent-encoded path text is decoded/normalized across server/proxy layers; encoded delimiters can change segment boundaries, so do not assume raw and decoded paths are identical.
-- `Period in route segment` — periods may have special routing implications for file-like paths and optional values; constrain/design routes so an extension does not unexpectedly prevent matching.
+- `Period in route segment` — in `files/{filename}.{ext?}`, the trailing period and extension are optional together, so both `/files/myFile.txt` and `/files/myFile` match.
 - `Optional parameter followed by literal` — optional parameters adjacent to required literals can create matching/generation ambiguity or impossible combinations; restructure or provide explicit route variants.
-- `Catch-all encoded slash behavior` — catch-all syntax and encoding determine whether `%2F` remains data or becomes a segment separator. Test `%2F`, literal `/`, double encoding, and proxy normalization end to end.
+- `Catch-all encoded slash behavior` — `*` escapes slashes in generated route values as `%2F`, while `**` emits them as path separators. This describes outbound generation; test inbound `%2F`, literal `/`, double encoding, and proxy normalization end to end because infrastructure may reject or normalize encoded separators.
 - `Route value constraint composition` — multiple constraints/policies may be chained on a parameter and all must accept for the endpoint candidate to remain.
 - `Route constraint policy registration` — custom constraint policies are registered through routing options/DI and resolved by policy name; keep registration consistent across application and tests.
 - `ConstraintMap` — route options mapping from constraint names in templates to constraint implementations; use unique stable names and test parsing/behavior.
 
 ## Cross-item comparison
 
-`Route constraint` rejects a candidate before action/handler validation; `ModelState validation error` or Minimal API binding/domain validation communicates an error after matching. `IOutboundParameterTransformer` changes generated route text; `IRouteConstraint` narrows inbound candidates. `*` and `**` catch-alls differ in encoded slash handling. Defaults and optional parameters affect both matching and URL generation, so verify both directions.
+`Route constraint` rejects a candidate before action/handler validation; `ModelState validation error` or Minimal API binding/domain validation communicates an error after matching. Type constraints use invariant culture to test conversion but leave the route value as text. `IOutboundParameterTransformer` changes generated route text; `IRouteConstraint` narrows inbound candidates. `*` and `**` differ in how outbound generation escapes slash characters. Defaults and optional parameters affect both matching and URL generation, so verify both directions.
 
 ## Examples
 
@@ -73,7 +73,7 @@ An identifier route can use `{id:int}` to distinguish a numeric endpoint from a 
 ## Common mistakes
 
 - Using `{id:int}` to return a clean 400 for malformed user input; rejection may become 404.
-- Assuming `*` and `**` decode slashes identically.
+- Assuming `*` and `**` differ in inbound URL decoding; their documented distinction is outbound slash escaping.
 - Using broad regex constraints without timeout/performance analysis.
 - Assuming route constraints enforce authorization, resource existence, or business rules.
 - Adding optional parameters/literals that create ambiguous inbound or outbound patterns.

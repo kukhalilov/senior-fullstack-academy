@@ -23,8 +23,8 @@ Endpoints are descriptions plus metadata; a matcher finds candidates and an endp
 - `Endpoint routing matching phase` — stage that evaluates HTTP method, route pattern, constraints and policies to produce candidates; it precedes endpoint invocation and model binding.
 - `Route pattern matching` — matching of URL path segments against literals, parameter parts, catch-alls, and associated policies.
 - `Route candidate set` — endpoints that satisfy initial matching and have not yet been rejected by applicable policies; later selection resolves the best candidate.
-- `Endpoint Order` — explicit route endpoint order value that influences selection after route precedence rules; use it sparingly rather than to hide ambiguous route design.
-- `RouteEndpoint.Order` — `RouteEndpoint` property exposing its order value.
+- `Endpoint Order` — explicit priority value evaluated before route-template precedence; a lower `RouteEndpoint.Order` has higher priority. Use it sparingly rather than to hide ambiguous route design.
+- `RouteEndpoint.Order` — `RouteEndpoint` property exposing its order value; endpoint selection prioritizes lower values before comparing route-template precedence.
 - `Route precedence` — specificity ordering derived from route template structure so more specific patterns generally outrank less specific patterns; it is not simply declaration order.
 - `RoutePattern` — parsed representation of a route template with segments and parts used for matching/generation.
 - `RoutePatternFactory` — API for parsing/building `RoutePattern` objects from strings or parts.
@@ -65,7 +65,7 @@ Endpoints are descriptions plus metadata; a matcher finds candidates and an endp
 
 ## Cross-item comparison
 
-`Route precedence` derives specificity from pattern structure; `Endpoint Order` is an explicit selection value and should not be used as a substitute for unambiguous URL design. `EndpointSelector` chooses among candidates, while endpoint execution invokes the chosen delegate later. `LinkGenerator` is endpoint-address/DI based; `IUrlHelper` is MVC/action-context oriented. Inbound selection and outbound URL generation are separate.
+`Endpoint Order` is compared before `Route precedence`: lower order wins first, and specificity breaks ties among matching endpoints with the same order. `MapControllerRoute` and related conventional-route mapping APIs assign order based on invocation sequence as a documented compatibility behavior. `EndpointSelector` chooses among candidates, while endpoint execution invokes the chosen delegate later. `LinkGenerator` is endpoint-address/DI based; `IUrlHelper` is MVC/action-context oriented. Inbound selection and outbound URL generation are separate.
 
 ## Examples
 

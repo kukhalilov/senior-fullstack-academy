@@ -38,7 +38,7 @@ Define `GET /products/{id:int}` with a Minimal API handler taking a route ID, a 
 4. Define one request DTO and mark/use `[FromBody]` explicitly. Other parameters should have clear route/query/header/form/service sources. Validate the actual binding and generated API description for the target framework.
 5. Bind `Stream` or `PipeReader`, count bytes while reading, enforce request/server limits and timeouts, pass cancellation to storage, and write to non-public storage using a generated name. Verify file type/content safely and clean partial uploads. `Content-Length` can be absent or untrusted, so enforce the cap during consumption.
 6. Confirm the endpoint was mapped and has the expected unique name; provide required route values, scheme/host/path base/context as required; inspect `SuppressLinkGenerationMetadata`; distinguish named endpoint generation from MVC action URL generation. A valid inbound path is not proof every outbound-value set can generate a URL.
-7. Test raw/encoded slash, double encoding, path base, and proxy normalization using the exact ingress/server chain and supported catch-all syntax. Do not assume TestServer models proxy decoding. Validate authorization and path traversal separately.
+7. Test generated URLs separately: `*` encodes a supplied `/` as `%2F`, while `**` preserves it as a separator. For inbound requests, test raw/encoded slash, double encoding, path base, and proxy normalization using the exact ingress/server chain. Do not assume TestServer models proxy decoding. Validate authorization and path traversal separately.
 
 ## Tests and edge cases
 

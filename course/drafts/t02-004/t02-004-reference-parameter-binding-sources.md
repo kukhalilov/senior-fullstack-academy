@@ -11,7 +11,7 @@ After routing selects a controller action, MVC model binding reads request sourc
 ## Supplied names explained
 
 - `Model binding` — process that obtains values from request sources and converts them into action parameters or model properties.
-- `ModelBinder` — MVC attribute/configuration that selects or configures model binding for a parameter/property, including model name and binder type.
+- `ModelBinder` — general term for an MVC component that performs binding; it is not one specific public attribute/type named `ModelBinder`. `ModelBinderAttribute` selects a binder and/or model name for a parameter or property.
 - `IModelBinder` — custom binder contract that reads a `ModelBindingContext` and reports a successful or failed binding result.
 - `IModelBinderProvider` — provider that selects an `IModelBinder` for model metadata and binder context.
 - `ModelMetadata` — description of a model/parameter/property type and its binding, validation, display, and nullability characteristics.
@@ -25,7 +25,7 @@ After routing selects a controller action, MVC model binding reads request sourc
 - `QueryStringValueProvider` — value provider exposing query-string values.
 - `FormValueProvider` — value provider exposing parsed form fields.
 - `JQueryFormValueProvider` — compatibility provider that handles jQuery-style form key naming/index conventions for collection/complex binding.
-- `HeaderValueProvider` — value provider for HTTP header values when the configured binding source allows it.
+- `HeaderValueProvider` — framework implementation detail used for `[FromHeader]` binding in MVC, not a public reusable value-provider API; application code should use `[FromHeader]` or implement/register its own provider when adding a custom source.
 - `BindingSource` — metadata describing where a parameter/model can be supplied from, such as path, query, body, form, header, services, or custom.
 - `BindingSource.Path` — source metadata for route/path values; route matching has already selected an endpoint before typed conversion.
 - `BindingSource.Query` — source metadata for query-string values.
