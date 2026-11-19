@@ -2,61 +2,94 @@
 
 # Scope and version
 
-This lesson explains all 6 supplied properties in **CSS Fragmentation properties** and no additional inventory names. MDN descriptions and support labels were captured on 2026-11-16. 3 names have an MDN Baseline label, 3 have Limited availability, and 0 are explicitly marked Experimental in the 2026-11-16 capture. These labels can overlap; the row for every name preserves its own status. A missing Baseline label is not proof that no browser implements it. Support can change after this capture. The CSS Snapshot 2026 reports specification maturity rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This lesson covers the six core properties—`box-decoration-break`, `break-after`, `break-before`, `break-inside`, `orphans`, and `widows`—plus the three legacy aliases `page-break-after`, `page-break-before`, and `page-break-inside`. CSS Fragmentation Level 3 defines page, column, and region fragmentation; its 2018 Candidate Recommendation marked region values at-risk. The values remain in the current published text, but region fragmentation is not a broadly available layout context. User agents can relax break preferences when a layout cannot satisfy all constraints.
 
 # How this group fits the mental model
 
-Fragmentation breaks one flow across pages, columns, or regions. Break preferences are constraints considered by a fragmentation algorithm; “avoid” values can be overridden when honoring all constraints is impossible. The overview and concepts lessons explain the surrounding layout model; this catalog now ties every supplied name to its role. A short MDN description is not a complete grammar. Follow the linked specification/reference for exact values, applicability, inheritance, computed-value rules, and browser-specific support before using an unfamiliar value.
+A fragmentainer is a finite container that receives part of a continuous flow: a printed page, a multicol column, or (in the draft model) a region. Fragmentation chooses where to split content while trying to honor forced breaks, avoidance requests, widow/orphan line counts, and content fit. Avoidance is a preference, not permission to overflow an entire page or make content unreachable.
+
+Break-before/after govern the boundaries around boxes; break-inside governs splits within a box; widows/orphans influence line-level breaks; box-decoration-break controls how visual decoration is drawn on the resulting fragments. The first set influences fragmentation decisions; the last affects fragment painting/box appearance.
 
 # Supplied names explained
 
-| Exact supplied property | Meaning in this model |
+## Break controls
+
+| Exact supplied property | Values and behavior |
 | --- | --- |
-| `box-decoration-break` | The box-decoration-break CSS property specifies how an element's fragments should be rendered when broken across multiple lines, columns, or pages. **MDN support snapshot:** Limited availability. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-decoration-break) |
-| `break-after` | The break-after CSS property sets how page, column, or region breaks should behave after a generated box. If there is no generated box, the property is ignored. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/break-after) |
-| `break-before` | The break-before CSS property sets how page, column, or region breaks should behave before a generated box. If there is no generated box, the property is ignored. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/break-before) |
-| `break-inside` | The break-inside CSS property sets how page, column, or region breaks should behave inside a generated box. If there is no generated box, the property is ignored. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/break-inside) |
-| `orphans` | The orphans CSS property sets the minimum number of lines in a block container that must be shown at the bottom of a page, region, or column. **MDN support snapshot:** Limited availability. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/orphans) |
-| `widows` | The widows CSS property sets the minimum number of lines in a block container that must be shown at the top of a page, region, or column. **MDN support snapshot:** Limited availability. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/widows) |
+| `break-before` | `auto`, generic `avoid`, page values `avoid-page`, `page`, `left`, `right`, `recto`, `verso`, column values `avoid-column`, `column`, and region values `avoid-region`, `region`. Initial `auto`; non-inherited. Applies to block-level boxes, grid/flex items, table row groups/rows and other normal-flow boxes as specified; it does not force a break before an absolutely positioned box. `auto` adds no constraint; avoid values discourage a break; forced values require a break in the named fragmentation context. |
+| `break-after` | Same grammar and core behavior as `break-before`, applied after the generated box. Break values on the first/last in-flow child can propagate to the parent, subject to layout-mode-specific rules. |
+| `break-inside` | `auto`, `avoid`, `avoid-page`, `avoid-column`, and draft `avoid-region`; initial `auto`; non-inherited. It adds a constraint against splitting the principal box. It cannot prohibit every break in all situations. |
+| `page-break-before`, `page-break-after`, `page-break-inside` | Legacy page-break aliases retained for compatibility. `page-break-before`/`after` accept `auto`, `always`, `avoid`, `left`, and `right`; `always` maps to a forced page break. `page-break-inside` accepts `auto` and `avoid`. Use the modern `break-*` properties for new code; these aliases express page behavior and do not provide the modern column/region value families. |
+
+`page` only has an effect in paginated layout; `column` only in a multicol context; region values apply only to region flows. `left`, `right`, `recto`, and `verso` force one or two page breaks as necessary to place the next page on the requested side of a spread. The legacy aliases are kept for existing stylesheets; prefer modern `break-*` properties in new CSS.
+
+When constraints conflict, forced break values take precedence over avoidance. The position and type of competing forced breaks also matter; a forced page break is not the same as a forced column break. Avoidance can be relaxed if necessary to make progress and fit content.
+
+## Line-count controls
+
+| Exact supplied property | Values and behavior |
+| --- | --- |
+| `orphans` | Positive integer; initial `2`; inherited. Sets the minimum number of lines of a block container’s inline formatting context to remain at the bottom of a fragment before a break. Zero and negative values are invalid and the declaration is ignored. |
+| `widows` | Positive integer; initial `2`; inherited. Sets the minimum number of lines of that block to appear at the top of the next fragment after a break. Zero and negative values are invalid and ignored. |
+
+If the block has fewer lines than the requested count, the draft says keep all of its lines together where possible. These requirements participate in break optimization and can be relaxed when content/fragmentainer size makes them impossible.
+
+## Fragment decoration
+
+| Exact supplied property | Values and behavior |
+| --- | --- |
+| `box-decoration-break` | `slice \| clone`; initial `slice`; non-inherited; applies to all elements; discrete. `slice` treats the box as continuous and then cuts it at breaks: no new border/padding is inserted at the cut and backgrounds are positioned as if the box were unbroken. `clone` independently wraps every fragment with border, padding, background, radius, and shadow. Cloned margins on block-level boxes are truncated as defined by the draft. |
+
+For inline content split across lines, whether an edge counts as the broken edge follows the parent’s inline progression direction. This is subtle in RTL and mixed-direction text.
 
 # Cross-item comparison
 
-`break-before`, `break-after`, and `break-inside` express break opportunities and avoidance around boxes; `orphans` and `widows` request minimum line counts on adjacent fragments. `box-decoration-break` controls whether border/padding decoration is cloned or sliced at fragment boundaries.
+Use `break-before: page` for a hard print-section start; `break-before: avoid-page` only discourages a page break at that boundary. Use `break-inside: avoid-page` to try to keep a small card together, but avoid it on a box taller than a page. `orphans`/`widows` are line-count controls, not box-level keep-together rules. `box-decoration-break: clone` repeats decoration but does not itself prevent fragmentation.
 
 # Examples
 
-For printable sections, request that a short heading stay with following content using a break-avoid rule, but ensure long sections can still break to prevent blank pages.
-
 ```css
-@media print { h2 { break-after: avoid-page; } .keep-together { break-inside: avoid-page; } }
+@media print {
+  h2 {
+    break-after: avoid-page;
+  }
+
+  .short-callout {
+    break-inside: avoid-page;
+    box-decoration-break: clone;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+}
 ```
 
-The example illustrates a layout choice; adapt it to actual content and test target browsers, zoom, writing modes, keyboard use, and narrow containers.
+Check the generated PDF/print result: rules can be relaxed, font metrics change line counts, and a callout taller than a page must split or overflow regardless of avoidance.
 
 # Common mistakes
 
-- Treating break-avoid as an absolute guarantee.
-- Confusing page, column, and region fragmentation contexts.
-- Using a keep-together rule on content taller than a page.
-- Assuming decoration is always repeated on every fragment.
-- Inferring a property’s full value grammar from its name or the brief definition alone.
-- Assuming MDN support labels prove support in every browser version or embedded webview.
-- Confusing the CSS Working Group draft status with a browser implementation guarantee.
+- Treating `avoid` as an absolute prohibition or forced break as applying to every fragmentation context.
+- Confusing `break-before`/`break-after` (between boxes) with `break-inside` (within a box).
+- Expecting `column` to work in print pages or `page` to create a column break.
+- Assuming `orphans` and `widows` count DOM elements; they count formatted lines in an inline formatting context.
+- Setting `orphans: 0` or `widows: 0`; those declarations are invalid.
+- Expecting `box-decoration-break: clone` to keep a box together.
+- Assuming region values describe a broadly implemented layout system; region fragmentation was marked at-risk and the context is not broadly available.
+- Forgetting that RTL parent direction changes which inline fragment edge is considered broken for decoration.
 
 # Knowledge checks with answers
 
-1. **Which exact names are represented here?** `box-decoration-break`, `break-after`, `break-before`, `break-inside`, `orphans`, `widows`. Each has an individual definition and support link above.
-2. **What should be checked beyond this concise description?** Full grammar, applicable boxes, inheritance, computed behavior, interactions, and the target browser compatibility data.
-3. **What is the MDN status label’s date?** The local reference capture is dated 2026-11-16; consult current compatibility data for future production decisions.
+1. **Which property requests no split inside a small card?** `break-inside: avoid` or a context-specific value such as `avoid-page`; it is a preference and may be relaxed.
+2. **What does `break-before: column` do outside multicol?** Nothing; column values only affect multicol fragmentation.
+3. **What do widows and orphans count?** Lines at the top and bottom of adjacent fragments, respectively.
+4. **Can widow/orphan constraints always be satisfied?** No. The algorithm can relax constraints when required by content and fragmentainer size.
+5. **What changes between `slice` and `clone`?** Slice paints one continuous box cut at fragment boundaries; clone paints each fragment with its own decoration.
+6. **Does `box-decoration-break: clone` avoid page breaks?** No; it only changes how decoration is drawn when a break occurs.
 
 # Sources
 
-- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
-- [CSS Flexible Box Layout Level 2 draft](https://drafts.csswg.org/css-flexbox-2/)
-- [CSS Overflow Level 4 draft](https://drafts.csswg.org/css-overflow-4/)
-- [CSS Overflow Level 5 draft](https://drafts.csswg.org/css-overflow-5/)
-- [CSS Scroll Snap Level 2 draft](https://drafts.csswg.org/css-scroll-snap-2/)
-- [CSS Display Level 4 draft](https://drafts.csswg.org/css-display-4/)
-- [CSS Anchor Positioning Level 1 draft](https://drafts.csswg.org/css-anchor-position-1/)
+- [CSS Fragmentation Module Level 3](https://www.w3.org/TR/css-break-3/) — §§2–5: fragmentainers, break properties/values, optimization, widows/orphans, and box-decoration-break.
+- [CSS Multi-column Layout Module Level 1](https://www.w3.org/TR/css-multicol-1/) — column fragmentation context.
+- [CSS Writing Modes Level 4](https://www.w3.org/TR/css-writing-modes-4/) — inline progression and writing-direction mapping.

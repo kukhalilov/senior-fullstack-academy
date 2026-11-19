@@ -2,61 +2,69 @@
 
 # Scope and version
 
-This lesson explains all 5 supplied properties in **CSS Table properties** and no additional inventory names. MDN descriptions and support labels were captured on 2026-11-16. 5 names have an MDN Baseline label, 0 have Limited availability, and 0 are explicitly marked Experimental in the 2026-11-16 capture. These labels can overlap; the row for every name preserves its own status. A missing Baseline label is not proof that no browser implements it. Support can change after this capture. The CSS Snapshot 2026 reports specification maturity rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This lesson covers the five assigned properties: `border-collapse`, `border-spacing`, `caption-side`, `empty-cells`, and `table-layout`. The CSS 2.2 table chapter remains the detailed reference for the table model and algorithms. CSS Logical Properties Level 1 adds the logical `caption-side` values `inline-start` and `inline-end`; those are draft-defined additions, not `block-start`/`block-end` values. A specification value does not by itself guarantee implementation across browsers.
 
 # How this group fits the mental model
 
-Table layout uses rows, columns, cells, and column sizing constraints rather than ordinary block flow. The table formatting algorithm can coordinate column widths across rows, while border model and caption placement affect geometry and painting. The overview and concepts lessons explain the surrounding layout model; this catalog now ties every supplied name to its role. A short MDN description is not a complete grammar. Follow the linked specification/reference for exact values, applicability, inheritance, computed-value rules, and browser-specific support before using an unfamiliar value.
+CSS table layout coordinates cells through shared row and column tracks. The table’s structure comes from the document language (normally HTML); CSS controls presentation and sizing. This coordination is why a column’s width can be affected by cells in multiple rows. A table is appropriate for data whose relationships are genuinely tabular, not merely because a page needs columns.
 
 # Supplied names explained
 
-| Exact supplied property | Meaning in this model |
+| Property | Values and behavior |
 | --- | --- |
-| `border-collapse` | The border-collapse CSS property sets whether cells inside a <table> have shared or separate borders. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-collapse) |
-| `border-spacing` | The border-spacing CSS property sets the distance between the borders of adjacent cells in a <table>. This property applies only when border-collapse is separate. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-spacing) |
-| `caption-side` | The caption-side CSS property puts the content of a table's <caption> on the specified side. The values are relative to the writing-mode of the table. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/caption-side) |
-| `empty-cells` | The empty-cells CSS property sets whether borders and backgrounds appear around <table> cells that have no visible content. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/empty-cells) |
-| `table-layout` | The table-layout CSS property sets the algorithm used to lay out <table> cells, rows, and columns. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/table-layout) |
+| `table-layout` | `auto \| fixed`; initial `auto`; applies to `table` and `inline-table`; not inherited. The fixed algorithm determines horizontal layout from the table’s specified width, column widths, borders/spacing, and first row rather than examining every cell’s contents. `<col>` widths are considered first, then first-row cell widths (spanning widths are distributed), then remaining space is shared. The table needs a non-auto width for the specified fixed algorithm; CSS 2.2 allows user agents to use fixed layout for a block-level table in normal flow even when width is `auto`. The automatic algorithm considers cell content, but CSS 2.2 does not completely define its algorithm, so implementations can differ. |
+| `border-collapse` | `collapse \| separate`; initial `separate`; inherited. `separate` draws cell borders independently and permits spacing; `collapse` resolves adjoining borders into a shared border. In the collapsed model, competing borders are resolved by rules considering `hidden`, style, width, and the originating table/row/cell elements. |
+| `border-spacing` | One or two nonnegative lengths; initial `0`; inherited; applies only with `border-collapse: separate`. One value sets both horizontal and vertical spacing; two values set horizontal then vertical spacing. Spacing also exists between the outer table border and the first/last cells, with the table’s padding contributing at the edge. It has no effect in collapsed-border mode. |
+| `empty-cells` | `show \| hide`; initial `show`; inherited; applies to table-cell boxes in the separated-border model. `hide` suppresses the borders and background of an empty cell according to the specification’s emptiness conditions; it does not remove the cell from table layout. It has no effect when borders collapse. |
+| `caption-side` | CSS 2.2 defines `top \| bottom` (initial `top`; inherited), placing the caption before or after the table grid. The CSS Logical Properties Level 1 draft adds `inline-start \| inline-end` where supported; these map to the table’s inline axis. CSS 2.2 `left`/`right` behavior is legacy and not a substitute for the logical values. The added inventory values are `caption-side: inline-start` and `caption-side: inline-end`. |
 
 # Cross-item comparison
 
-`table-layout: fixed` bases horizontal column sizing on table width and early row/caption inputs rather than all cell content; `auto` considers content contributions. `border-collapse` chooses shared versus separated borders; `border-spacing` matters only in separated mode. `empty-cells` and `caption-side` affect presentation, not whether semantic table markup is appropriate.
+Choose `table-layout: fixed` when predictable, early-determined columns matter and the table has a usable width. It can avoid scanning later cell contents to determine horizontal track widths, but long content still needs an overflow or wrapping strategy. `auto` adapts tracks to content and can be more suitable when content should influence sizing; its exact algorithm is implementation-dependent.
+
+Choose `border-collapse: collapse` for a single shared grid line. Choose `separate` when independent cell borders or visible spacing is desired; only there do `border-spacing` and `empty-cells` have their specified effects. `caption-side` places the caption relative to the table and writing direction; it does not replace a meaningful `<caption>` or header relationships.
 
 # Examples
 
-Use a real table for data with row/column relationships and headers. Select fixed layout when a known table width and predictable columns matter, then handle long cell content explicitly.
-
 ```css
-table { table-layout: fixed; width: 100%; border-collapse: collapse; }
-th, td { overflow-wrap: anywhere; border: 1px solid #888; }
+table.data {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+table.data th,
+table.data td {
+  border: 1px solid #888;
+  overflow-wrap: anywhere;
+}
+
+table.data caption {
+  caption-side: top;
+}
 ```
 
-The example illustrates a layout choice; adapt it to actual content and test target browsers, zoom, writing modes, keyboard use, and narrow containers.
+For tables with long or complex content, test narrow viewports and zoom. Preserve semantic header cells and associations; changing the visual table model alone does not create accessible tabular semantics.
 
 # Common mistakes
 
-- Using a table solely for page layout.
-- Expecting border-spacing to affect collapsed borders.
-- Setting fixed layout without a table width that permits its algorithm.
-- Omitting captions and header associations for data tables.
-- Inferring a property’s full value grammar from its name or the brief definition alone.
-- Assuming MDN support labels prove support in every browser version or embedded webview.
-- Confusing the CSS Working Group draft status with a browser implementation guarantee.
+- Assuming CSS 2.2 fully specifies the automatic table-layout algorithm.
+- Expecting `border-spacing` or `empty-cells` to affect collapsed borders.
+- Thinking `empty-cells: hide` removes a cell or shifts later cells into its place.
+- Assuming `table-layout: fixed` clips or wraps overflowing content automatically.
+- Treating the draft logical caption values as universally supported or using nonexistent `block-start`/`block-end` values for this property.
+- Using data-table markup only to obtain page layout columns.
 
 # Knowledge checks with answers
 
-1. **Which exact names are represented here?** `border-collapse`, `border-spacing`, `caption-side`, `empty-cells`, `table-layout`. Each has an individual definition and support link above.
-2. **What should be checked beyond this concise description?** Full grammar, applicable boxes, inheritance, computed behavior, interactions, and the target browser compatibility data.
-3. **What is the MDN status label’s date?** The local reference capture is dated 2026-11-16; consult current compatibility data for future production decisions.
+1. **Why can a cell in a later row affect an auto-layout column?** The automatic algorithm considers content contributions across cells, although CSS 2.2 leaves its exact algorithm under-specified.
+2. **Which border model uses `border-spacing`?** The separated model (`border-collapse: separate`).
+3. **Does `empty-cells: hide` remove an empty cell from the grid?** No. It suppresses its border/background under the defined conditions; the cell remains part of layout.
+4. **What values does the logical-properties draft add to `caption-side`?** `inline-start` and `inline-end`.
 
 # Sources
 
-- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
-- [CSS Flexible Box Layout Level 2 draft](https://drafts.csswg.org/css-flexbox-2/)
-- [CSS Overflow Level 4 draft](https://drafts.csswg.org/css-overflow-4/)
-- [CSS Overflow Level 5 draft](https://drafts.csswg.org/css-overflow-5/)
-- [CSS Scroll Snap Level 2 draft](https://drafts.csswg.org/css-scroll-snap-2/)
-- [CSS Display Level 4 draft](https://drafts.csswg.org/css-display-4/)
-- [CSS Anchor Positioning Level 1 draft](https://drafts.csswg.org/css-anchor-position-1/)
+- [CSS 2.2, Tables](https://www.w3.org/TR/CSS22/tables.html) — table model, layout algorithms, captions, borders, and empty cells.
+- [CSS Logical Properties and Values Level 1](https://www.w3.org/TR/css-logical-1/) — §2.1, logical values for `caption-side`.
+- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/) — status of CSS modules, not browser support.
+- [MDN CSS property reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties) — compatibility information should be checked for target browsers.
