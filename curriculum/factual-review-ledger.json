@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1138,
-    "pending": 1211,
-    "claimsChecked": 47690,
-    "claimsCorrected": 2288,
+    "reviewed": 1139,
+    "pending": 1210,
+    "claimsChecked": 47795,
+    "claimsCorrected": 2300,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -91233,13 +91233,45 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-mathml.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 105,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 105 claim units across both supplied properties: MathML Core maturity and scope; CSS property grammars, initial/inherited/applies-to/computed/animation behavior; normal versus compact layout; large operators, movable limits, fraction/radical math-font constants; context-sensitive auto-add; additive versus absolute integer depth; font-size: math and MATH-table-dependent scaling; MathML display, displaystyle, and scriptlevel mappings; UA stylesheet defaults; examples, all scope boundaries, and checks. Twelve generated-draft errors or omissions were corrected, including treating compact mode as a simple font-size switch, omitting the auto-add condition, failing to distinguish additive depth from absolute reset, and claiming MathML properties were limited to relevant MathML boxes.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/mathml-core/",
+              "section": "Candidate Recommendation Snapshot dated 24 June 2025; §§2.1.6, 4.3, and 4.5, including UA stylesheet rules, displaystyle/scriptlevel mapping, math-style effects, math-depth computed values, font-size: math, and OpenType MATH constants",
+              "verdict": "supported; normative property definitions and MathML integration rules checked directly"
+            },
+            {
+              "url": "https://www.w3.org/TR/2026/WD-mathml4-20261008/",
+              "section": "Document title, date, and Working Draft status; used only to distinguish MathML 4 from MathML Core scope",
+              "verdict": "supported; separate draft maturity clearly identified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/math-style",
+              "section": "Property summary and compatibility cross-check",
+              "verdict": "consistent with MathML Core; primary spec controls detailed behavior"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/math-depth",
+              "section": "Property summary and compatibility cross-check",
+              "verdict": "consistent with MathML Core; primary spec controls computed-depth behavior"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "CSS Snapshot role and standards maturity context",
+              "verdict": "supported; standards maturity is distinguished from browser interoperability"
+            }
+          ],
+          "verdict": "All claims within the two-property manifest inventory were checked against the current MathML Core Candidate Recommendation Snapshot and related primary references; 12 material omissions, inaccurate simplifications, or scope errors were corrected. No unresolved factual issues remain within the assigned scope."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -91596,9 +91628,11 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://www.w3.org/TR/mathml-core/",
+        "https://www.w3.org/TR/2026/WD-mathml4-20261008/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit against the MathML Core Candidate Recommendation Snapshot; property grammar, inheritance, computed-depth algorithm, MathML integration, UA defaults, and the OpenType MATH dependency were checked directly. MathML 4 Working Draft scope is distinguished from MathML Core."
     },
     {
       "taskId": "t07-018-reference-motion-path",
