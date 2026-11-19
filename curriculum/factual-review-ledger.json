@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1145,
-    "pending": 1204,
-    "claimsChecked": 48378,
-    "claimsCorrected": 2376,
+    "reviewed": 1146,
+    "pending": 1203,
+    "claimsChecked": 48510,
+    "claimsCorrected": 2394,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -92689,13 +92689,60 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-ruby.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 132,
+      "claimsCorrected": 18,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 132 claims across the three assigned properties and their layout context: exact grammar, initial/computed/animation behavior, applicability and inheritance; ruby-position alternate-level algorithm and over/under mapping in vertical writing; inter-character behavior and annotation writing-mode; all ruby-align distribution values, defaults, script-sensitive justification opportunities and inter-character exception; ruby-overhang auto/spaces behavior, adjacent-space allowances and collision limits; HTML ruby/rt/rp semantics; related ruby-merge scope; line-spacing, bidi and line-break boundaries; historical syntax changes, standards status, support notes, examples and scope caveats. Eighteen material omissions and outdated or overgeneralized statements in the original generic table were corrected. The current CSSWG and MDN formal grammar were checked against stale MDN ruby-overhang examples, which still show the superseded none value; the lesson identifies the inconsistency and teaches the current spaces keyword.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-ruby-1/",
+              "section": "1 May 2026 Editor’s Draft §§2–5 and change history: ruby model, property definitions, layout, alignment, overhang",
+              "verdict": "Primary current work-in-progress source; all property grammars, initial values and detailed interactions checked directly."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-ruby-1/",
+              "section": "31 December 2022 published Working Draft and status",
+              "verdict": "Published historical snapshot confirmed as a draft; compared to current draft."
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-ruby-element",
+              "section": "HTML text-level semantics, ruby segmentation, rt annotation and rp fallback",
+              "verdict": "Confirms markup semantics and the role of fallback parentheses."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/ruby-align",
+              "section": "Syntax, formal definition, values, baseline status and examples",
+              "verdict": "Confirms current ruby-align keywords, initial space-around, applicability, inheritance, and reported Baseline metadata."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/ruby-overhang",
+              "section": "Formal syntax and compatibility status compared with examples and descriptive prose",
+              "verdict": "Confirms Limited availability and current formal grammar auto | spaces; stale examples/prose still expose none, so the lesson warns against copying it."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/ruby-position",
+              "section": "Formal definition, grammar, alternate/inter-character explanation and compatibility notes",
+              "verdict": "Cross-checks ruby-position initial alternate, inherited applicability, grammar and support caveat."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-writing-modes-3/",
+              "section": "Writing modes and logical line direction",
+              "verdict": "Supports interpreting over/under as writing-mode-relative rather than fixed physical directions."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-text-4/",
+              "section": "Text justification terminology used for distribution",
+              "verdict": "Supports distinction between ruby alignment keywords and script-dependent justification opportunities."
+            }
+          ],
+          "verdict": "The expanded property reference is supported by current CSSWG and HTML specifications; the known documentation inconsistency and draft/support limitations are called out rather than hidden."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -93052,9 +93099,13 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://www.w3.org/TR/css-ruby-1/",
+        "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-ruby-element",
+        "https://www.w3.org/TR/css-writing-modes-3/",
+        "https://drafts.csswg.org/css-text-4/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited all three properties against the current CSS Ruby draft, published Working Draft, HTML Living Standard, CSS Writing Modes/Text and per-property MDN references. Corrected major omissions and highlighted the stale ruby-overhang none example versus current spaces syntax; validators rerun."
     },
     {
       "taskId": "t07-018-reference-css-shapes",
