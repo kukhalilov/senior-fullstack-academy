@@ -24,6 +24,7 @@ Two transfers update accounts in opposite order and deadlock. Normalize account 
 12. There are long blocking chains but no deadlock reports. What do you capture?
 13. After LOCK_TIMEOUT, is the connection safe to return to a pool?
 14. Explain sp_getapplock naming, owner, return codes, and ordering.
+15. An application-lock request returns -3 inside an active transaction. What cleanup is required, and how would you distinguish two resource names that appear identical in a lock DMV?
 
 # Progressive hints
 
@@ -50,6 +51,7 @@ Two transfers update accounts in opposite order and deadlock. Normalize account 
 12. Capture wait/resource, blocker, SQL, transaction age, and application state. Blocking has no cycle requirement; deadlock reports only represent cycles.
 13. No. Inspect @@TRANCOUNT/XACT_STATE and roll back as needed before returning a clean connection. Timeout itself is not transaction cleanup.
 14. Resource names are case-sensitive and must be unique. Transaction owner requires an active transaction; session owner needs explicit release. Check return code and acquire resources consistently.
+15. `-3` means the application-lock request was selected as a deadlock victim, but that result does not automatically roll back the caller's transaction; explicitly roll it back or restore a safe state. Resource identity also includes database ID and `@DbPrincipal`; only the first 32 resource-name characters are visible in plain text, so inspect the full calling parameters and database/principal context.
 
 # Tests and edge cases
 

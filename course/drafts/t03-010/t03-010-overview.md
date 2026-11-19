@@ -23,7 +23,7 @@ A transaction is a short lease over the facts it needs to keep consistent. Locks
 | Atomic multi-statement work | BEGIN/COMMIT/ROLLBACK | Nested BEGIN is a counter |
 | Committed statement view | READ COMMITTED + RCSI | New snapshot per statement |
 | Stable transaction view | SNAPSHOT | Update conflicts/write skew remain possible |
-| Prevent predicate phantoms | SERIALIZABLE/key-range locks | Requires indexed range access; can block |
+| Prevent predicate phantoms | SERIALIZABLE | Key-range locks need a suitable index; otherwise broader protection can block more |
 | Reduce write lock pressure | Optimized locking | SQL Server 2025 opt-in + ADR; LAQ needs RCSI |
 
 # End-to-end walkthrough

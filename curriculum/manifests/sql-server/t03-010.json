@@ -41,6 +41,7 @@
         "tempdb version store",
         "Accelerated Database Recovery persistent version store",
         "Transaction scope",
+        "MARS batch-scoped explicit or implicit transaction",
         "Long-running transaction",
         "Nested BEGIN TRANSACTION counter behavior",
         "Snapshot update conflict",
@@ -57,7 +58,7 @@
         "NOLOCK still takes schema stability locks",
         "Lock timeout is not deadlock detection",
         "RCSI does not eliminate writer conflicts",
-        "Serializable requires usable range index for key-range locks",
+        "Key-range locks require SERIALIZABLE and a suitable index; SERIALIZABLE still protects semantics when coarser locks are needed",
         "Version store retention from oldest active snapshot",
         "ADR persistent version store placement"
       ]
@@ -108,8 +109,11 @@
         "Deadlock graph victim/process/resource lists",
         "Deadlocks can involve workers memory and exchanges",
         "Application lock resource case sensitivity",
+        "Application lock resource identity database principal and name",
+        "Application lock resource length and diagnostic truncation",
         "Application lock owner transaction versus session",
-        "sp_getapplock return codes",
+        "sp_getapplock return code values 0 1 -1 -2 -3 -999",
+        "Application-lock deadlock does not automatically roll back transaction",
         "Application lock acquisition order",
         "sys.dm_exec_requests blocking_session_id"
       ]
@@ -140,7 +144,7 @@
         "TID XACT lock lifetime",
         "TID row/page lock release behavior",
         "LAQ requires RCSI and READ COMMITTED",
-        "LAQ evaluates latest committed version",
+        "LAQ evaluates latest committed version as of statement start",
         "LAQ predicate requalification after concurrent update",
         "LAQ statement restart event lock_after_qual_stmt_abort",
         "LAQ disabled by conflicting lock hints",
@@ -221,8 +225,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft SQL Server transactions, locking, row versioning, deadlock, and optimized-locking documentation",
-    "edition": "SQL Server 2025 (17.x), checked 2026-11-16",
-    "checkedAt": "2026-11-16",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",

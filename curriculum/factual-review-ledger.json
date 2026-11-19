@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1239,
-    "pending": 1110,
-    "claimsChecked": 54029,
-    "claimsCorrected": 2856,
+    "reviewed": 1246,
+    "pending": 1103,
+    "claimsChecked": 54530,
+    "claimsCorrected": 2871,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -112076,13 +112076,34 @@
       "topicId": "t03-010",
       "phase": "overview",
       "draft": "course/drafts/t03-010/t03-010-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 57,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 57 externally verifiable statements, including each assigned manifest item plus explanations, examples, exercises, and answers. Reviewed purpose, mental model, comparison table, examples, tradeoffs, and inventory scope; clarified Serializable indexed range locks as a mechanism rather than prerequisite to the isolation guarantee and added MARS scope.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Isolation guarantees, RCSI/SNAPSHOT timing, anomalies and cross-database requirements",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Transactions, MARS scope, lock escalation, key-range requirements and locking behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Availability, ADR prerequisite, TID/LAQ semantics, statement-start snapshot and exclusions",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optimized-locking?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
@@ -112100,20 +112121,46 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed purpose, mental model, comparison table, examples, tradeoffs, and inventory scope; clarified Serializable indexed range locks as a mechanism rather than prerequisite to the isolation guarantee and added MARS scope."
     },
     {
       "taskId": "t03-010-concepts",
       "topicId": "t03-010",
       "phase": "concepts",
       "draft": "course/drafts/t03-010/t03-010-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 78,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 78 externally verifiable statements, including each assigned manifest item plus explanations, examples, exercises, and answers. Checked transaction state, anomalies, versions, locks/deadlocks, optimized locking/LAQ, examples, and answer keys; clarified MARS, Serializable fallback protection, and LAQ statement-start timing and requalification.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Transactions, MARS scope, lock escalation, key-range requirements and locking behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Isolation guarantees, RCSI/SNAPSHOT timing, anomalies and cross-database requirements",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Availability, ADR prerequisite, TID/LAQ semantics, statement-start snapshot and exclusions",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optimized-locking?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Victim policy, retry, error 1205, graphs and system_health",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-deadlocks-guide?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
@@ -112131,20 +112178,51 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked transaction state, anomalies, versions, locks/deadlocks, optimized locking/LAQ, examples, and answer keys; clarified MARS, Serializable fallback protection, and LAQ statement-start timing and requalification."
     },
     {
       "taskId": "t03-010-reference-transaction-and-isolation",
       "topicId": "t03-010",
       "phase": "reference",
       "draft": "course/drafts/t03-010/t03-010-reference-transaction-and-isolation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 82 externally verifiable statements, including each assigned manifest item plus explanations, examples, exercises, and answers. Checked every transaction/isolation inventory row and surrounding claims; added MARS batch rollback behavior and corrected the key-range-index requirement; verified transaction, retry, XACT_ABORT, snapshot, and PVS details.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Transactions, MARS scope, lock escalation, key-range requirements and locking behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Isolation guarantees, RCSI/SNAPSHOT timing, anomalies and cross-database requirements",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Transaction committability and cleanup",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/xact-state-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "XACT_ABORT and error behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Version storage, retention and cleanup",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-version-store-transact-sql?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
@@ -112162,20 +112240,41 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked every transaction/isolation inventory row and surrounding claims; added MARS batch rollback behavior and corrected the key-range-index requirement; verified transaction, retry, XACT_ABORT, snapshot, and PVS details."
     },
     {
       "taskId": "t03-010-reference-locks-blocking-and-deadlocks",
       "topicId": "t03-010",
       "phase": "reference",
       "draft": "course/drafts/t03-010/t03-010-reference-locks-blocking-and-deadlocks.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 86,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 86 externally verifiable statements, including each assigned manifest item plus explanations, examples, exercises, and answers. Checked all modes, DMVs, blocking, deadlock, escalation, application-lock, and diagnostic entries; added escalation thresholds/targets, deadlock tie rules, application-lock identity/length/return codes, and manual transaction cleanup.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Transactions, MARS scope, lock escalation, key-range requirements and locking behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Victim policy, retry, error 1205, graphs and system_health",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-deadlocks-guide?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Resource identity/limits, return values, ownership and rollback behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
@@ -112193,20 +112292,41 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all modes, DMVs, blocking, deadlock, escalation, application-lock, and diagnostic entries; added escalation thresholds/targets, deadlock tie rules, application-lock identity/length/return codes, and manual transaction cleanup."
     },
     {
       "taskId": "t03-010-reference-row-versioning-and-optimized-locking",
       "topicId": "t03-010",
       "phase": "reference",
       "draft": "course/drafts/t03-010/t03-010-reference-row-versioning-and-optimized-locking.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 76,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 76 externally verifiable statements, including each assigned manifest item plus explanations, examples, exercises, and answers. Checked versioning, hints, cleanup, platform, options, metadata, TID, LAQ, and limitation entries; tightened LAQ timing to the latest version committed as of statement start and verified exclusions.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Isolation guarantees, RCSI/SNAPSHOT timing, anomalies and cross-database requirements",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Availability, ADR prerequisite, TID/LAQ semantics, statement-start snapshot and exclusions",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optimized-locking?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Version storage, retention and cleanup",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-version-store-transact-sql?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
@@ -112224,20 +112344,51 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked versioning, hints, cleanup, platform, options, metadata, TID, LAQ, and limitation entries; tightened LAQ timing to the latest version committed as of statement start and verified exclusions."
     },
     {
       "taskId": "t03-010-practice",
       "topicId": "t03-010",
       "phase": "practice",
       "draft": "course/drafts/t03-010/t03-010-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 67,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 67 externally verifiable statements, including each assigned manifest item plus explanations, examples, exercises, and answers. Checked all scenarios, solutions, retries, diagnostics, and test interleavings; added application-lock deadlock cleanup, exact -3 behavior, and resource identity context.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Transactions, MARS scope, lock escalation, key-range requirements and locking behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Isolation guarantees, RCSI/SNAPSHOT timing, anomalies and cross-database requirements",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Availability, ADR prerequisite, TID/LAQ semantics, statement-start snapshot and exclusions",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optimized-locking?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Resource identity/limits, return values, ownership and rollback behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Victim policy, retry, error 1205, graphs and system_health",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-deadlocks-guide?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
@@ -112255,20 +112406,46 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all scenarios, solutions, retries, diagnostics, and test interleavings; added application-lock deadlock cleanup, exact -3 behavior, and resource identity context."
     },
     {
       "taskId": "t03-010-interview",
       "topicId": "t03-010",
       "phase": "interview",
       "draft": "course/drafts/t03-010/t03-010-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 55,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 55 externally verifiable statements, including each assigned manifest item plus explanations, examples, exercises, and answers. Checked interview answers, scenarios, tradeoffs, and rubric; corrected Serializable/key-range relationship, deadlock tie behavior, and LAQ statement-start timing.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Isolation guarantees, RCSI/SNAPSHOT timing, anomalies and cross-database requirements",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Victim policy, retry, error 1205, graphs and system_health",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-deadlocks-guide?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Availability, ADR prerequisite, TID/LAQ semantics, statement-start snapshot and exclusions",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/optimized-locking?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Transactions, MARS scope, lock escalation, key-range requirements and locking behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
@@ -112286,7 +112463,7 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked interview answers, scenarios, tradeoffs, and rubric; corrected Serializable/key-range relationship, deadlock tie behavior, and LAQ statement-start timing."
     },
     {
       "taskId": "t03-011-overview",

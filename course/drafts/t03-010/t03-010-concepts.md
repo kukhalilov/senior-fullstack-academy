@@ -12,7 +12,9 @@ Know SQL DML, constraints, indexes, sessions, and application transaction bounda
 
 ACID is a goal, not a blanket concurrency guarantee. Autocommit makes each statement its own transaction. Explicit BEGIN remains open until outer COMMIT/full ROLLBACK; nested BEGIN only increments @@TRANCOUNT. Savepoints allow partial rollback only while committable. In errors, @@TRANCOUNT reports scope while XACT_STATE reports whether commit is possible. A connection returned to a pool must not retain an open/doomed transaction.
 
-READ UNCOMMITTED permits dirty reads. READ COMMITTED is default: locking reads use shared locks when RCSI is OFF; RCSI ON gives each statement a committed snapshot. REPEATABLE READ retains locks on rows already read but allows new matching rows. SERIALIZABLE protects predicate ranges when an indexed range access is available. SNAPSHOT gives a transaction-level committed view and detects conflicting same-row writes, but can permit write skew across rows.
+Transaction scope normally follows the connection, but MARS is a boundary: explicit or implicit transactions become batch-scoped and are rolled back when the batch ends uncommitted. Applications using MARS must not assume transaction lifetime follows the ordinary connection rule.
+
+READ UNCOMMITTED permits dirty reads. READ COMMITTED is default: locking reads use shared locks when RCSI is OFF; RCSI ON gives each statement a committed snapshot. REPEATABLE READ retains locks on rows already read but allows new matching rows. SERIALIZABLE prevents phantoms; a suitable index lets SQL Server protect the predicate with key-range locks, while other plans can require broader, more blocking locks. SNAPSHOT gives a transaction-level committed view and detects conflicting same-row writes, but can permit write skew across rows.
 
 Row versions reduce some reader/writer waits, not writer conflicts or schema locks. Versions consume storage and cleanup can be delayed by active snapshots. ADR uses a persistent version store (PVS) in the user database; traditional version storage otherwise uses tempdb.
 
@@ -20,7 +22,7 @@ A lock request is a resource plus a mode. S/U/X and intent modes have compatibil
 
 # Mechanisms and relationships
 
-Optimized locking uses transaction-ID locks to shorten row/page lock lifetimes. LAQ evaluates DML predicates against the latest committed row version before locking qualifying rows. SQL Server 2025 supports optimized locking but leaves it disabled by default; ADR is required. LAQ additionally requires RCSI and READ COMMITTED. Conflicting hints, statement forms, isolation, and table types can disable LAQ. Under optimized locking plus RCSI, do not assume strict execution ordering; use stronger isolation/locking when the invariant requires serialization.
+Optimized locking uses transaction-ID locks to shorten row/page lock lifetimes. LAQ evaluates DML predicates against the latest row version committed as of the statement start, before locking qualifying rows. If a conflict occurs, the engine waits and requalifies; some unsupported plan forms can force statement restart without LAQ. SQL Server 2025 supports optimized locking but leaves it disabled by default; ADR is required. LAQ additionally requires RCSI and READ COMMITTED. Conflicting hints, statement forms, isolation, and table types can disable LAQ. Under optimized locking plus RCSI, do not assume strict execution ordering; use stronger isolation/locking when the invariant requires serialization.
 
 # Worked examples
 

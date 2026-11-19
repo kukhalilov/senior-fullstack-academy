@@ -19,14 +19,14 @@
 
 1. Isolation changes visibility/locking; writers still need conflict protection and can block/fail.
 2. RCSI gives statement-start snapshots under READ COMMITTED; SNAPSHOT gives one transaction view and can abort same-row conflicts.
-3. READ COMMITTED prevents dirty reads; REPEATABLE READ retains row locks but allows phantoms; SERIALIZABLE protects indexed predicate ranges.
+3. READ COMMITTED prevents dirty reads; REPEATABLE READ retains row locks but allows phantoms; SERIALIZABLE prevents phantoms. Indexed key ranges make that protection more targeted, while broader locking can be more expensive.
 4. @@TRANCOUNT counts nesting; XACT_STATE says absent, committable, or doomed.
 5. Blocking is one-way waiting; deadlock is a cycle automatically broken by victim rollback.
-6. SQL Server generally chooses least rollback cost unless DEADLOCK_PRIORITY differs, rolls back victim, and returns 1205.
+6. Lower DEADLOCK_PRIORITY loses; equal priorities use rollback cost, with a random tie if costs also match. The deadlock victim transaction is rolled back and receives 1205.
 7. It permits dirty/missing/duplicate/inconsistent observations and still takes Sch-S.
-8. Protects qualifying key intervals from phantoms when SERIALIZABLE uses a suitable index.
+8. Protects qualifying key intervals from phantoms when SERIALIZABLE uses a suitable index. The isolation guarantee still applies without one, potentially through broader locks.
 9. ADR stores versions in database PVS; traditional versions otherwise use tempdb.
-10. TID retains a transaction lock while releasing many row/page locks earlier. LAQ qualifies DML on latest committed versions before locking rows.
+10. TID retains a transaction lock while releasing many row/page locks earlier. LAQ qualifies DML against the latest version committed as of statement start, then locks qualifying rows.
 11. ADR is required; SQL Server 2025 is opt-in. LAQ additionally needs RCSI ON and READ COMMITTED.
 12. Clean up and retry the whole business unit in a new transaction with bounded backoff and idempotent effects.
 
