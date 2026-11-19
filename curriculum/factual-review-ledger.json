@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1200,
-    "pending": 1149,
-    "claimsChecked": 51578,
-    "claimsCorrected": 2742,
+    "reviewed": 1201,
+    "pending": 1148,
+    "claimsChecked": 51612,
+    "claimsCorrected": 2743,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -106745,26 +106745,53 @@
       "topicId": "t03-004",
       "phase": "practice",
       "draft": "course/drafts/t03-004/t03-004-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql?view=sql-server-ver17",
+          "section": "Outer joins, APPLY, row preservation, PIVOT/UNPIVOT behavior",
+          "verdict": "supported"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-except-and-intersect-transact-sql?view=sql-server-ver17",
+          "section": "INTERSECT distinct semantics and NULL equality",
+          "verdict": "supported"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/subqueries?view=sql-server-ver17",
+          "section": "Scalar subquery zero/multiple row behavior and EXISTS semantics",
+          "verdict": "supported; solution corrected to directly address multirow error and unique-key contract"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver17",
+          "section": "CTE materialization and recursive CTE types, recursion defaults, restrictions, MAXRECURSION error",
+          "verdict": "supported"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot?view=sql-server-ver17",
+          "section": "PIVOT/UNPIVOT behavior and output handling",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-except-and-intersect-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/relational-databases/performance/subqueries?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/recursive-common-table-expression-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/subqueries?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-join?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/table-value-constructor-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/table-value-constructor-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all worked examples and answers for joins/outer-row preservation, EXISTS versus row multiplication, set operator semantics and NULL behavior, scalar subquery cardinality, NOT EXISTS and nullable keys, recursive hierarchy type/cycle/order, MAXRECURSION behavior, CTE storage claims, and PIVOT/UNPIVOT details. Corrected solution 6, which previously answered a different aggregate/latest-row scenario instead of the stated duplicate-email scalar-subquery case; it now states the multirow error, uniqueness design, and deterministic selection alternative. No assigned-scope gaps remain."
     },
     {
       "taskId": "t03-004-interview",
