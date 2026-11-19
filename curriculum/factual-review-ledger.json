@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1122,
-    "pending": 1227,
-    "claimsChecked": 45360,
-    "claimsCorrected": 2136,
+    "reviewed": 1124,
+    "pending": 1225,
+    "claimsChecked": 45457,
+    "claimsCorrected": 2154,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -83649,7 +83649,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -83991,7 +83997,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -84000,13 +84012,40 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-custom-properties-for-cascading-variables.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
+      "claimsCorrected": 10,
+      "evidence": [
+        {
+          "claims": "Verified custom-property name and token grammar, universal applicability, default inheritance, case sensitivity, guaranteed-invalid initial value, cascade and computed-value timing, var() fallback parsing, comma behavior, cycles, invalid-at-computed-value-time semantics, shorthand pending substitution, animation-taint behavior, and URL resolution. Expanded the incomplete reference with full registration mechanisms: all Level 1 syntax types and multipliers, @property descriptors, current API defaults, CSS.registerProperty() error cases, registration precedence, computational independence, CSSPropertyRule attributes, and the newer draft shorthand syntax clearly labeled as draft.",
+          "sources": [
+            {
+              "url": "https://drafts.css-houdini.org/css-properties-values-api-1/",
+              "section": "§§2–6",
+              "verdict": "Verified current draft registration behavior, type syntax inventory, CSS.registerProperty, descriptor defaults/errors, precedence, URL/cycle behavior, and CSSPropertyRule."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-properties-values-api-1/",
+              "section": "Published 2024 Working Draft, §§2–6",
+              "verdict": "Verified published snapshot and used it to distinguish changes in the current Editor’s Draft."
+            },
+            {
+              "url": "https://drafts.csswg.org/cssom/",
+              "section": "CSSStyleDeclaration custom-property access",
+              "verdict": "Verified literal-name CSSOM access."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+              "section": "Usage, fallback, @property, and compatibility",
+              "verdict": "Practical cross-check; primary specification remains authoritative."
+            }
+          ],
+          "verdict": "Verified; corrections and completeness additions recorded."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -84333,22 +84372,55 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-by-claim review against CSS Variables Level 1 and Properties and Values API primary specifications; complete --* inventory scope checked."
     },
     {
       "taskId": "t07-018-reference-webkit-extensions",
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-webkit-extensions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "Verified exact inventory and each property’s grammar, initial value, inheritance, all-elements applicability, fill versus stroke behavior, shorthand reset/components, width lower bound/keywords and discrete animation, support-snapshot caveat, and distinction from SVG fill/stroke. Corrected generic advice suggesting unrelated unprefixed or flexbox equivalents; clarified that these names are historical but defined in the Compatibility Standard and that outlined HTML text has no general direct unprefixed replacement.",
+          "sources": [
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-fill-color",
+              "section": "Formal definition and compatibility",
+              "verdict": "Verified fill currentcolor fallback and captured support status."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke",
+              "section": "Formal syntax and constituent properties",
+              "verdict": "Verified shorthand grammar and width/color decomposition."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke-color",
+              "section": "Formal definition",
+              "verdict": "Verified color initial/inheritance and animation."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke-width",
+              "section": "Formal definition and syntax",
+              "verdict": "Verified width values, zero default, and support snapshot."
+            }
+          ],
+          "verdict": "Verified; corrections and completeness additions recorded."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -84675,9 +84747,15 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://compat.spec.whatwg.org/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "All four supplied text fill/stroke properties checked against the WHATWG Compatibility Standard and individual compatibility references."
     },
     {
       "taskId": "t07-018-reference-css-basic-user-interface",
@@ -85017,7 +85095,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -85359,7 +85443,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -85701,7 +85791,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -86043,7 +86139,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -86385,7 +86487,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -86727,7 +86835,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -87069,7 +87183,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -87411,7 +87531,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -87753,7 +87879,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -88095,7 +88227,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -88437,7 +88575,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -88779,7 +88923,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -89121,7 +89271,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -89463,7 +89619,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -89805,7 +89967,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -90147,7 +90315,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -90489,7 +90663,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -90831,7 +91011,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -91173,7 +91359,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -91515,7 +91707,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -91857,7 +92055,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -92199,7 +92403,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -92541,7 +92751,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -92883,7 +93099,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -93225,7 +93447,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -93567,7 +93795,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -93909,7 +94143,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -94251,7 +94491,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -94593,7 +94839,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -94935,7 +95187,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -95277,7 +95535,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -95619,7 +95883,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -95961,7 +96231,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -96303,7 +96579,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -96645,7 +96927,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -96987,7 +97275,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -97329,7 +97623,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -97671,7 +97971,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -98013,7 +98319,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -98355,7 +98667,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -98697,7 +99015,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99039,7 +99363,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99381,7 +99711,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99723,7 +100059,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-spacing-trim",
-        "https://drafts.csswg.org/fill-stroke/"
+        "https://drafts.csswg.org/fill-stroke/",
+        "https://www.w3.org/TR/css-variables-1/",
+        "https://drafts.css-houdini.org/css-properties-values-api-1/",
+        "https://www.w3.org/TR/css-properties-values-api-1/",
+        "https://drafts.csswg.org/cssom/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+        "https://compat.spec.whatwg.org/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },

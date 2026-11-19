@@ -1,59 +1,60 @@
-<!-- GENERATED DRAFT: automated shape and editorial checks passed; independent factual verification is not implied. -->
-
 # CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: WebKit Extensions properties
 
 # Scope and version
 
-This reference explains all 4 supplied names in **WebKit Extensions properties**. Property names and short descriptions were captured for offline use from the linked property references on 2026-11-16. These are vendor-prefixed extensions/compatibility names, not a single standard module. Check whether a modern unprefixed equivalent is available. The CSS Snapshot 2026 describes specification stability rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This reference covers all four supplied text-fill and text-stroke properties. Their `-webkit-` names are historical, but these are not merely arbitrary old WebKit hacks: the WHATWG Compatibility Standard currently defines their grammar and behavior to preserve web compatibility. MDN marked all four Baseline Widely available in the captured 2026-11-16 compatibility snapshot; check the actual target browsers and embedded webviews before depending on them. The Compatibility Standard is a compatibility specification, not a general unprefixed CSS module.
 
 # How this group fits the mental model
 
-These are WebKit-prefixed extensions and compatibility names. Some remain implemented for web compatibility; others are legacy, unsupported, or have an unprefixed/logical replacement. They are not one coherent standardized module. Each property definition still has its own value grammar, applicability, inheritance, computed-value rules, and browser support. Read the name together with its linked reference; do not infer a full grammar from the name alone.
+Text fill controls the interior paint of glyphs; text stroke paints an outline at glyph edges. The stroke shorthand controls width and color. The properties inherit, so setting them on a text container affects descendant text unless overridden. They are separate from SVG’s unprefixed `fill`/`stroke` properties and from `text-shadow`; there is no general unprefixed equivalent for outlining ordinary HTML text. Use them when an outlined-text effect is genuinely needed, and preserve readable contrast and an un-stroked fallback.
 
 # Supplied names explained
 
-| Exact inventory name | Meaning |
+| Exact supplied property | Grammar, initial value, and behavior |
 | --- | --- |
-| `-webkit-text-fill-color` | Vendor-prefixed extension: The -webkit-text-fill-color CSS property specifies the fill color of characters of text. If this property is not set, the value of the color property is used. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-fill-color) |
-| `-webkit-text-stroke` | Vendor-prefixed extension: The -webkit-text-stroke CSS shorthand property specifies the width and color of strokes for text characters. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke) |
-| `-webkit-text-stroke-color` | Vendor-prefixed extension: The -webkit-text-stroke-color CSS property specifies the stroke color of characters of text. If this property is not set, the value of the color property is used. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke-color) |
-| `-webkit-text-stroke-width` | Vendor-prefixed extension: The -webkit-text-stroke-width CSS property specifies the width of the stroke for text. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke-width) |
+| `-webkit-text-fill-color` | `<color>`; initial `currentcolor`; inherited; applies to all elements. Determines text’s foreground fill. With no separate fill value, it follows `color` through its `currentcolor` initial value. It animates as a color. |
+| `-webkit-text-stroke` | `<line-width> || <color>`; shorthand for the width and color longhands; inherited. Width and color may appear in either order. Omitted components take the respective longhand’s initial value. |
+| `-webkit-text-stroke-color` | `<color>`; initial `currentcolor`; inherited; applies to all elements. Sets the glyph-outline color and animates as a color. |
+| `-webkit-text-stroke-width` | `<line-width>`; initial `0`; inherited; applies to all elements. A zero width paints no stroke; negative widths are invalid. Stroke width animates discretely in the Compatibility Standard. |
+
+`<line-width>` includes non-negative lengths and the line-width keywords accepted by the compatibility definition (`hairline`, `thin`, `medium`, and `thick`). Do not assume percentages are accepted. These properties apply to visual presentation; they do not add semantic meaning to text.
 
 # Cross-item comparison
 
-Prefer the unprefixed interoperable property or modern logical/flexbox equivalent when it matches the need. A prefixed declaration can be a narrowly tested fallback, but must not be the only implementation unless the target environment explicitly requires it.
-
-| Item | How to interpret it |
-| --- | --- |
-| `-webkit-text-fill-color` | See its individual linked definition above; apply its property-specific value grammar and context. |
-| `-webkit-text-stroke` | See its individual linked definition above; apply its property-specific value grammar and context. |
+`-webkit-text-fill-color` changes the glyph interior; `-webkit-text-stroke-color` and `-webkit-text-stroke-width` jointly define the outline; `-webkit-text-stroke` sets both outline components. A stroke can overlap glyph counters or neighboring glyphs and may reduce legibility, especially at small font sizes. Test font, size, weight, color contrast, and platform rendering rather than assuming that a thick outline improves readability.
 
 # Examples
 
-Use `text-overflow`, `line-clamp`, or modern flexbox features where they satisfy the goal; verify each legacy alias and target browser instead of assuming every `-webkit-` property is supported.
+```css
+.outlined-heading {
+  color: white;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke: 1px #243047;
+}
+```
 
-
-
-The example is a starting point for reasoning, not a support guarantee. Inspect the computed style and test the rendered result in the browsers and writing modes relevant to the project.
+The regular `color` remains a fallback for engines that ignore the prefixed fill declaration. It is prudent for the fill and stroke colors to maintain contrast if the stroke is absent. `text-shadow` can approximate an outline by layering shadows but differs in geometry and rendering; it is not a drop-in standardized replacement.
 
 # Common mistakes
 
-- Treating a vendor prefix as proof of current support or standardization.
-- Copying a prefix-only snippet from an old example.
-- Using physical-direction aliases when a logical property is correct.
-- Assuming two prefixed names with similar spelling are equivalent.
-- Assuming a property listed by an index is a stable or interoperable standard.
-- Treating a shorthand, alias, vendor extension, or draft property as interchangeable with its neighboring names.
-- Skipping value grammar, inheritance, cascade, and applicable-box details in the linked definition.
+- Assuming the `-webkit-` prefix means no other browser implements the feature; these four names are documented in the Compatibility Standard for web compatibility.
+- Assuming the prefixed names have direct unprefixed equivalents for ordinary HTML text. SVG `fill` and `stroke` apply under their own element and paint rules.
+- Setting only the stroke color and expecting an outline; the initial width is zero.
+- Using a negative stroke width or assuming percentages are valid line widths.
+- Confusing text fill with the inherited `color` value. `color` supplies the `currentcolor` default; an explicitly set fill can differ from it.
+- Applying thick strokes to small text without checking counters, edge overlap, and contrast.
+- Treating Baseline status as a guarantee in every browser version, webview, or rendering environment.
 
 # Knowledge checks with answers
 
-1. **Which exact names are representative of this group?** `-webkit-text-fill-color`, `-webkit-text-stroke`, `-webkit-text-stroke-color`. Consult each linked row for its specific behavior.
-2. **Does inclusion in this inventory prove support?** No; check the linked reference and target browser support data.
-3. **What should be checked before using one of these properties?** Its grammar, applicability, inheritance, status, interactions, and fallback needs.
+1. **What does `-webkit-text-stroke` set?** It is shorthand for stroke width and stroke color; the two components are independently available as longhands.
+2. **Why might `-webkit-text-stroke-color: navy` show no visible effect?** The width defaults to zero; set a positive non-negative width.
+3. **What does the `currentcolor` initial value do for text fill?** Unless a separate fill color is specified, the text fill follows the element’s `color` value.
+4. **Are these properties limited to WebKit browsers?** No. Their names are prefixed for historical reasons, and the Compatibility Standard documents them for cross-browser web compatibility; still check actual target support.
+5. **Is SVG `stroke` an interchangeable unprefixed replacement?** No. SVG paint properties have their own applicability and rendering model and do not generally replace outlined HTML text.
 
 # Sources
 
-- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property index](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
+- [WHATWG Compatibility Standard](https://compat.spec.whatwg.org/) — §3.4.6 defines the four supplied text fill/stroke properties and their values, inheritance, initial values, shorthand relationship, and animation behavior.
+- [MDN `-webkit-text-fill-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-fill-color), [`-webkit-text-stroke`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke), [`-webkit-text-stroke-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke-color), and [`-webkit-text-stroke-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-text-stroke-width) — practical syntax, compatibility summaries, and browser tables.
+- [CSS Snapshot 2026](https://www.w3.org/TR/css-2026/) — specification maturity profile; it is not a browser support table.
