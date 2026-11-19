@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1168,
-    "pending": 1181,
-    "claimsChecked": 50055,
-    "claimsCorrected": 2641,
+    "reviewed": 1169,
+    "pending": 1180,
+    "claimsChecked": 50112,
+    "claimsCorrected": 2650,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -103467,13 +103467,25 @@
       "topicId": "t07-018",
       "phase": "practice",
       "draft": "course/drafts/t07-018/t07-018-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 57,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Checked 57 claim units against CSS Overflow, CSS Transforms, CSS Selectors/forced-colors references, CSS Scroll-driven Animations and current Animation Triggers Editor’s Draft, CSS Properties and Values API guidance, CSS Will Change guidance, and CSS Fill and Stroke. Expanded generic exercises into worked solutions with concrete fallbacks and browser/device checks. Clarified that overflow-wrap:anywhere adds break opportunities relevant to min-content sizing; focus-visible is not hover and forced-colors needs an explicit check; animation-timeline progress is distinct from triggered playback and the trigger model is a separate draft; unregistered custom properties animate discretely while registered typed values interpolate; will-change can carry memory/stacking side effects and is not a guarantee; SVG stroke:currentColor is the established fallback for unsupported draft stroke-color.",
+          "sources": [
+            "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/word-break",
+            "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Properties_and_values_API/Registering_properties",
+            "https://drafts.csswg.org/animation-triggers-1/",
+            "https://drafts.csswg.org/fill-stroke/",
+            "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/stroke"
+          ],
+          "verdict": "verified and corrected/expanded"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -103855,9 +103867,10 @@
         "https://www.w3.org/TR/css-size-adjust/",
         "https://github.com/mdn/browser-compat-data/blob/main/css/properties/text-size-adjust.json",
         "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/viewport",
-        "https://www.w3.org/TR/css-text-decor-4/"
+        "https://www.w3.org/TR/css-text-decor-4/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Properties_and_values_API/Registering_properties"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual exercise and worked-solution fact audit against current CSS specifications and primary references; checked each technical statement, fallback, and test recommendation."
     },
     {
       "taskId": "t07-018-interview",
