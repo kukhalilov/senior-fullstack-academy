@@ -1,70 +1,79 @@
-# CSS selectors at-rules cascade values and box model — Reference: Additional data types in the current MDN CSS reference, checked 2026-11-16
+# CSS selectors at-rules cascade values and box model — Reference: Additional data types in the current MDN CSS reference, checked 2026-11-19
 
 ## Scope and version
 
-This supplement adds type names in the current [MDN CSS data types index](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/Data_types) that were not in the curriculum's pinned [MDN types data](https://github.com/mdn/data/blob/1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27/css/types.json). The MDN index is expressly not exhaustive of every module-specific grammar; this module covers the complete current named index at the check date, plus the pinned inventory in its companion reference.
+This supplement covers the 25 names assigned to `current-index-css-value-types` in the manifest. They were collected from the live [MDN CSS data types index](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/Data_types) as a supplement to the curriculum's pinned [MDN types snapshot](https://github.com/mdn/data/blob/1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27/css/types.json). The live index is a useful reference, not an exhaustive inventory of every grammar production in every CSS module. A type name usually describes a reusable grammar category; it does not by itself establish browser support or a property context.
 
 ## How this group fits the mental model
 
-Types name reusable grammar components in CSS specifications. Many are value categories used inside property grammars, not literal keywords authors type. They overlap and compose: an alignment property may use a position or distribution type, while math functions accept calculated types. Knowing the type tells you the shape of a value; the consuming property still defines where it is valid and what it means.
+CSS specifications use named types such as `<length>`, `<color>`, or `<content-position>` to define which tokens a property accepts. A type can be a keyword set, a numeric range, a compound grammar, or a calculation syntax. Types compose, and the consuming property supplies the meaning: `start` in an alignment property is not automatically the same as `start` in a timeline or anchor-positioning grammar. Treat the angle-bracket name as a map into the specification, then read the property grammar and behavior.
 
 ## Supplied names explained
 
-- **`absolute-size`** — One of the absolute font-size keywords such as `medium` or `large`, as defined by the font sizing grammar.
-- **`alpha-value`** — Numeric or percentage opacity component for a color, normally from fully transparent to fully opaque with property/function-specific clamping.
-- **`axis`** — A module-specific axis identifier used to select a physical or logical dimension, such as inline/block or x/y depending on the consuming grammar.
-- **`baseline-position`** — Alignment value that chooses a baseline alignment mode, including first/last baseline semantics where supported.
-- **`box-edge`** — Identifies a reference-box edge such as margin, border, padding, or content edge in geometries that accept a box reference.
-- **`calc-keyword`** — A named numeric constant such as `e`, `pi`, `infinity`, or `NaN` used by CSS mathematical expressions; availability depends on the function/specification.
-- **`calc-sum`** — A calculation expression made from calculation values joined by addition/subtraction under CSS dimensional rules.
-- **`color-interpolation-method`** — Specifies the color space and hue-interpolation strategy used when interpolating colors, such as in gradients or color mixing.
-- **`content-distribution`** — Alignment value that distributes free space among multiple subjects, such as `space-between` or `space-around`.
-- **`content-position`** — Alignment value positioning a subject within available space, such as start, end, center, or flex-relative positions.
-- **`corner-shape-value`** — Shape value controlling a corner's curvature profile, such as rounded, bevel-like, scoop, notch, or superellipse forms.
-- **`dashed-function`** — A custom function name beginning with `--`, used by CSS custom functions/mixins grammar; distinct from a custom property identifier even though both use a dashed name.
-- **`generic-family`** — A generic font family category such as `serif`, `sans-serif`, `monospace`, `system-ui`, or other defined generic families.
-- **`hex-color`** — A hexadecimal color notation with 3, 4, 6, or 8 hex digits after `#`, with short forms expanding to full channel values.
-- **`hue`** — A color-wheel angle used in color functions; unitless values are interpreted according to the function's hue grammar.
-- **`hue-interpolation-method`** — Selects how hue angles travel around a cylindrical color wheel when colors are interpolated, including shorter/longer/increasing/decreasing paths where defined.
-- **`line-width`** — Border/outline line thickness value, typically a non-negative length or a keyword such as thin, medium, or thick.
-- **`named-color`** — A predefined CSS color keyword such as `rebeccapurple`; named colors have fixed sRGB values and keyword-specific casing rules are generally ASCII-insensitive.
-- **`overflow-position`** — Alignment modifier that controls whether overflow may occur toward the start or end side when an alignment subject does not fit.
-- **`position-area`** — Anchor-positioning area value selecting a region around an anchor, often using block/inline sides and spans.
-- **`relative-size`** — Font-size keyword relative to the parent's computed size, such as `larger` or `smaller`.
-- **`self-position`** — Alignment value positioning an individual alignment subject relative to its container, such as self-start, self-end, center, or stretch in applicable grammars.
-- **`shape`** — Broad shape grammar category used by newer shape and corner systems; distinguish it from the narrower `<basic-shape>` type and from the `shape()` function.
-- **`system-color`** — A color keyword drawn from the operating system/user-agent color scheme, such as Canvas or CanvasText; it adapts to user preference and forced-colors environments.
-- **`timeline-range-name`** — A name identifying a named range within a scroll/view progress timeline, used to address animation attachment/range positions.
+- **`absolute-size`** — The absolute font-size keyword category (`xx-small`, `x-small`, `small`, `medium`, `large`, `x-large`, `xx-large`, and, in the current Fonts grammar, `xxx-large`). “Absolute” distinguishes this keyword scale from `larger`/`smaller`; it does not mean a physical length such as `cm`.
+- **`alpha-value`** — The color-alpha component grammar: a number or percentage, with the color specifications defining range handling (computed alpha is clamped to [0, 1]). It is not a general opacity property type, and a percentage is not combined with a number as an interchangeable math operand in all contexts.
+- **`axis`** — A scroll-driven animation axis choice, using `block`, `inline`, `x`, or `y` where that grammar applies. `block` and `inline` follow writing mode; `x` and `y` refer to physical axes. This name is context-specific, not a universal CSS “dimension” type.
+- **`baseline-position`** — A baseline-alignment grammar, including `baseline` and the `first baseline` / `last baseline` forms where the alignment property accepts them. It is not interchangeable with `self-position` or `content-position`.
+- **`box-edge`** — A reference edge/box choice used by specific geometry and positioning grammars. The allowed values depend on that grammar; do not assume every use accepts all of `content-box`, `padding-box`, `border-box`, and `margin-box`.
+- **`calc-keyword`** — Numeric constants permitted inside CSS calculations: `e`, `pi`, `infinity`, `-infinity`, and `NaN`, with other specifications able to add context-specific keywords. These are calculation values, not generally usable as standalone property keywords; for example, use `calc(pi)` when a calculation is required.
+- **`calc-sum`** — A CSS Values math-expression grammar used by calculation functions. It composes calculation values with addition and subtraction, obeying CSS dimensional type rules and whitespace requirements around `+` and `-`. It is a grammar production, not a property or literal token.
+- **`color-interpolation-method`** — A color-interpolation grammar that selects an interpolation color space and, for cylindrical spaces, a hue interpolation strategy. It appears in features such as gradients and color mixing; the surrounding feature defines whether and how it is accepted.
+- **`content-distribution`** — An alignment grammar for distributing free space among multiple alignment subjects, with values such as `space-between`, `space-around`, `space-evenly`, and `stretch` in applicable properties.
+- **`content-position`** — An alignment grammar for positioning an alignment subject within its container, using values such as `center`, `start`, `end`, `flex-start`, or `flex-end` where allowed. The exact keyword set is property-specific.
+- **`corner-shape-value`** — CSS Borders 4's corner profile grammar: `round`, `scoop`, `bevel`, `notch`, `square`, `squircle`, or `superellipse(<number>)`. It controls corner curvature for `corner-shape` properties and works with corner radii; it does not replace `border-radius`'s size.
+- **`dashed-function`** — The invocation syntax for a CSS custom function whose name starts with `--`, such as `--negative(1em)`. It passes comma-separated arguments to a custom `@function`; it is not a custom property (`--name: value`) or a built-in function such as `var()`.
+- **`generic-family`** — The generic font-family keyword category, including families such as `serif`, `sans-serif`, `monospace`, `cursive`, `fantasy`, `system-ui`, `ui-serif`, `ui-sans-serif`, `ui-monospace`, `ui-rounded`, `emoji`, `math`, and `fangsong` in the current Fonts grammar. These names request a generic family; they do not identify one installed font file.
+- **`hex-color`** — A hexadecimal color token with 3, 4, 6, or 8 hexadecimal digits after `#`. Three/four-digit forms duplicate each nibble; four/eight-digit forms include alpha. Hexadecimal CSS colors use sRGB and are not case-sensitive.
+- **`hue`** — A hue component accepted by CSS color grammars, represented as an angle or number according to the particular function's syntax and interpretation rules. Do not assume one unitless-number interpretation applies to every color function.
+- **`hue-interpolation-method`** — A hue-path choice for interpolation in cylindrical color spaces, such as `shorter`, `longer`, `increasing`, or `decreasing` hue travel, with the color space and surrounding interpolation grammar determining its effect.
+- **`line-width`** — A non-negative border/outline width grammar using a length or the `thin`, `medium`, and `thick` keywords. The keyword widths are user-agent-defined relative widths, not fixed pixel constants.
+- **`named-color`** — The predefined CSS color keyword set, including `rebeccapurple` and the legacy color names. These resolve to defined sRGB colors; `transparent` and system color keywords have separate grammar roles even though they also represent colors.
+- **`overflow-position`** — An alignment modifier, `safe` or `unsafe`, that controls how an alignment subject is treated when it would overflow the alignment container. It modifies alignment behavior; it does not itself set `overflow` or create scrolling.
+- **`position-area`** — The anchor-positioning area grammar used with `position-area` to select a grid-like region around an implicit anchor and the positioned element's containing block, using physical/logical sides and span forms. It is distinct from `position-try-fallbacks` and from the `anchor()` inset-value function.
+- **`relative-size`** — The relative font-size keyword category `larger` and `smaller`, interpreted relative to the inherited font size. It is not the `<length-percentage>` type and does not name units such as `em`.
+- **`self-position`** — An alignment grammar for positioning one alignment subject relative to its own alignment container, with values such as `center`, `start`, `end`, `self-start`, `self-end`, and `flex-start`/`flex-end` where supported by the consuming property.
+- **`shape`** — A broad shape grammar used in newer shape-related properties. Its accepted alternatives and reference-box handling are defined by the consuming module; it is not synonymous with `<basic-shape>` or the `shape()` function.
+- **`system-color`** — A user-agent/system color keyword category such as `Canvas`, `CanvasText`, `ButtonFace`, or `Highlight`. The browser maps these to platform or user-agent colors and user preferences, including high-contrast/forced-colors behavior where applicable; they are not fixed sRGB swatches like named colors.
+- **`timeline-range-name`** — A named scroll/view timeline range such as `cover`, `contain`, `entry`, `entry-crossing`, `exit`, or `exit-crossing`, used in animation-range and timeline range-position grammars. It is not a custom timeline name; custom names use their own dashed identifier grammar.
 
 ## Cross-item comparison
 
-`absolute-size` and `relative-size` are font-size keyword categories, not CSS physical units. `hex-color`, `named-color`, `system-color`, and `alpha-value` are related to color but represent different syntactic components and sources. `content-distribution`, `content-position`, `self-position`, and `baseline-position` are distinct alignment grammars; do not substitute them without checking the property. `box-edge` picks a reference boundary, whereas `position-area` names a region relative to an anchor. `shape` is broader than `basic-shape`; a type name and a function name can share vocabulary but are not interchangeable. `dashed-function` names a function, not a variable.
+`absolute-size` and `relative-size` are font-size keyword categories, not physical units. `hex-color`, `named-color`, and `system-color` are different ways to express a color; `alpha-value` is a channel component. `content-distribution`, `content-position`, `self-position`, and `baseline-position` all relate to alignment but have different grammars and roles. `box-edge` chooses a geometric reference boundary, while `position-area` identifies an anchor-positioning region. `shape` is not automatically `<basic-shape>`; neither is interchangeable with `shape()`. `dashed-function` is a custom-function call, not a custom property. Type names can overlap conceptually while remaining distinct productions.
 
 ## Examples
 
 ```css
 .panel {
-  color: CanvasText;                /* system-color */
-  border: thick solid #336699cc;    /* line-width and hex-color/alpha */
-  justify-content: space-between;  /* content-distribution */
-  align-items: first baseline;      /* baseline-position */
+  color: CanvasText;                 /* system-color */
+  border: thick solid #336699cc;     /* line-width and hex-color with alpha */
+  justify-content: space-between;   /* content-distribution */
+  align-items: first baseline;       /* baseline-position */
+}
+
+@function --double(--n <number>) returns <number> {
+  result: calc(var(--n) * 2);
 }
 ```
 
-Examples are property-specific: a token's matching type is only one part of grammar validation. Use browser DevTools or a CSS parser to confirm a value is accepted in its intended property and test forced-colors, writing modes, and narrow layouts where relevant.
+These examples illustrate specific property/function contexts, not universal validity of the values in every declaration. Check the module grammar and support for the actual target property. Test system colors in relevant user-preference modes, alignment under different writing modes, and font-family choices with real fallback stacks.
 
 ## Common mistakes
 
-- Treating every type index entry as a standalone property or a literal keyword.
-- Confusing `absolute-size` with absolute physical CSS units such as `cm`.
-- Confusing generic, named, and system colors; system colors intentionally follow user-agent/OS themes.
-- Treating `shape`, `basic-shape`, and `shape()` as synonyms.
-- Reusing alignment values across properties without checking their exact grammar.
-- Assuming the MDN data-types index enumerates every specification-specific internal type.
+- Treating every reference-index type as a standalone property or literal value.
+- Reading “absolute” in `absolute-size` as a physical unit; these are font-size keywords.
+- Treating `calc-keyword` constants as ordinary keywords outside calculations.
+- Assuming alignment categories accept the same keywords because their meanings sound similar.
+- Assuming a `box-edge` or `position-area` keyword set is universal across modules.
+- Treating generic font-family keywords as named installed fonts or assuming `system-ui` equals a particular OS font file.
+- Treating `<shape>`, `<basic-shape>`, `shape()`, and corner-shape values as synonyms.
+- Treating an MDN type index as a maturity or browser-compatibility statement.
 
 ## Knowledge checks with answers
 
-1. **Does `relative-size` refer to `em`?** No; it names relative font-size keywords such as `larger`/`smaller`; `em` is a length unit.
-2. **What makes `system-color` different from a named color?** It follows the user-agent/OS color scheme and accessibility preferences.
-3. **Is `dashed-function` a custom property?** No; it names a CSS custom function with a dashed identifier.
-4. **Is `<shape>` interchangeable with `<basic-shape>`?** No; the grammar and consuming features differ.
+1. **Does `relative-size` mean the `em` unit?** No. It is the `larger`/`smaller` font-size keyword category; `em` is a length unit.
+2. **Why can `space-between` be valid for one alignment property but not another?** The consuming property's grammar chooses which alignment subtypes and keywords it accepts.
+3. **How does a system color differ from a named color?** A system color is mapped by the user agent to platform/user-preference colors; named colors have fixed sRGB definitions.
+4. **Is `dashed-function` a custom property?** No. It is a call to a custom CSS function whose name starts with `--`; custom properties store values and are referenced with `var()`.
+5. **Can `<shape>` be substituted wherever `<basic-shape>` or `shape()` is accepted?** No. Their productions and consuming-property support must be checked separately.
+
+Primary definitions: [CSS Values and Units 4](https://drafts.csswg.org/css-values-4/), [CSS Color 4](https://drafts.csswg.org/css-color-4/), [CSS Box Alignment 3](https://drafts.csswg.org/css-align-3/), [CSS Fonts 4](https://drafts.csswg.org/css-fonts-4/), [CSS Shapes 1](https://drafts.csswg.org/css-shapes-1/), [CSS Borders 4](https://drafts.csswg.org/css-borders-4/), [CSS Custom Functions and Mixins 1](https://drafts.csswg.org/css-mixins-1/), [CSS Anchor Positioning 1](https://drafts.csswg.org/css-anchor-position-1/), and [Scroll-driven Animations 1](https://drafts.csswg.org/scroll-animations-1/). These module links are living drafts; consult their current status and browser compatibility data before use.
